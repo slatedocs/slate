@@ -1,806 +1,158 @@
-## Crear Reporte de Industria
+## Crear Reporte de Marca
+`POST /brand-report/`
 
+<%= partial "includes/snippets/brand-report.md" %>
+
+**Parámetros**
+
+|Name|In|Type|Required|
+|---|---|---|---|---|
+|body|body|[BrandReportRequest](#schemabrandreportrequest)|true|
+
+**Respuestas**
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[BrandReportResponse](#schemabrandreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+## Crear Reporte de Marcas
+`POST /brands-report/`
+
+<%= partial "includes/snippets/brands-report.md" %>
+
+**Parámetros**
+
+|Name|In|Type|Required|
+|---|---|---|---|---|
+|body|body|[BrandsReportRequest](#schemabrandsreportrequest)|true|
+
+**Respuestas**
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[BrandsReportResponse](#schemabrandsreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+## Crear Reporte de Campañas
+`POST /campaign-report/`
+
+<%= partial "includes/snippets/campaigns-report.md" %>
+
+**Parámetros**
+
+|Name|In|Type|Required|
+|---|---|---|---|---|
+|body|body|[CampaignReportRequest](#schemacampaignreportrequest)|true|
+
+**Respuestas**
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[CampaignsReportResponse](#schemacampaignsreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+## Crear Reporte de Industria
 `POST /industry-report/`
 
 <%= partial "includes/snippets/industry-report.md" %>
 
 **Parámetros**
 
-|Nombre|En|Tipo|Requerido|
+|Name|In|Type|Required|
 |---|---|---|---|---|
 |body|body|[IndustryReportRequest](#schemaindustryreportrequest)|true|
+
+> Example responses
+
+> 200 Response
 
 
 **Respuestas**
 
-|Estado|Descripción|Modelo|
+|Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|[IndustryReportResponse](#schemaindustryreportresponse)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|[Status: Bad Request](#schemastatus: bad request)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|[Status: Unauthorized](#schemastatus: unauthorized)|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|[Status: Confict](#schemastatus: confict)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|[Status: Internal Server Error](#schemastatus: internal server error)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[IndustryReportResponse](#schemaindustryreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
 
 <aside class="warning">
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
 ## Crear Reporte de Mercado
-
-<a id="opIdCrear Reporte de Mercado"></a>
-
 `POST /market-report/data/v3/`
 
 <%= partial "includes/snippets/market-report-v3.md" %>
 
 **Parámetros**
 
-|Nombre|En|Tipo|Requerido|Descripción|
+|Name|In|Type|Required|
 |---|---|---|---|---|
-|ad_type|query|integer|true|Filtrar por AdType|
-|country|query|integer|true|Filtrar por país|
+|ad_type|query|integer|true|none|
+|country|query|integer|true|none|
 |day|query|string(date)|true|Formato: `YYYY-MM-DD`|
-|device|query|integer|true|Filtrar por dispositivo|
+|device|query|integer|true|none|
 
 
 **Respuestas**
 
-|Estado|Descripción|Modelo|
+|Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|[MarketReportResponse](#schemamarketreportresponse)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|[Status: Bad Request](#schemastatus: bad request)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|[Status: Unauthorized](#schemastatus: unauthorized)|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|[Status: Confict](#schemastatus: confict)|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|[Status: Internal Server Error](#schemastatus: internal server error)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[MarketReportResponse](#schemamarketreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
 
 <aside class="warning">
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-## Modelos
+## Crear Reporte de Oportunidades
+`POST /opportunity-brand-report/`
 
-<h3 id="tocS_AdFile">AdFile</h3>
-<!-- backwards compatibility -->
-<a id="schemaadfile"></a>
-<a id="schema_AdFile"></a>
-<a id="tocSadfile"></a>
-<a id="tocsadfile"></a>
+<%= partial "includes/snippets/opportunity-report.md" %>
 
-```json
-{
-  "type": "object",
-  "properties": {
-    "name": {}
-  },
-  "required": [
-    "name"
-  ]
-}
+**Parámetros**
 
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|Name|In|Type|Required|
 |---|---|---|---|---|
-|name|string|true|none|none|
-
-<h3 id="tocS_AdMeasurements">AdMeasurements</h3>
-<!-- backwards compatibility -->
-<a id="schemaadmeasurements"></a>
-<a id="schema_AdMeasurements"></a>
-<a id="tocSadmeasurements"></a>
-<a id="tocsadmeasurements"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "height": {},
-    "width": {}
-  },
-  "required": [
-    "height",
-    "width"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|height|integer|true|none|none|
-|width|integer|true|none|none|
-
-<h3 id="tocS_CampaignMetric">CampaignMetric</h3>
-<!-- backwards compatibility -->
-<a id="schemacampaignmetric"></a>
-<a id="schema_CampaignMetric"></a>
-<a id="tocScampaignmetric"></a>
-<a id="tocscampaignmetric"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "id": {},
-    "title": {},
-    "landing_page": {},
-    "metrics": {},
-    "brand": {},
-    "date_range": {},
-    "countries": {},
-    "ad_types": {},
-    "devices": {},
-    "sold_by": {},
-    "websites": {},
-    "preview": {}
-  },
-  "required": [
-    "id",
-    "metrics",
-    "title"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|id|string|true|none|none|
-|title|string|true|none|none|
-|landing_page|string|false|none|none|
-|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
-|brand|[ObjectResponse](#schemaobjectresponse)|false|none|none|
-|date_range|[DateTimeRangeResponse](#schemadatetimerangeresponse)|false|none|none|
-|countries|[[MetricField](#schemametricfield)]|false|none|none|
-|ad_types|[[MetricField](#schemametricfield)]|false|none|none|
-|devices|[[MetricField](#schemametricfield)]|false|none|none|
-|sold_by|[[MetricField](#schemametricfield)]|false|none|none|
-|websites|[[WebsiteMetric](#schemawebsitemetric)]|false|none|none|
-|preview|[ObjectPreviewResponse](#schemaobjectpreviewresponse)|false|none|none|
-
-<h3 id="tocS_DateRange">DateRange</h3>
-<!-- backwards compatibility -->
-<a id="schemadaterange"></a>
-<a id="schema_DateRange"></a>
-<a id="tocSdaterange"></a>
-<a id="tocsdaterange"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "start": {},
-    "end": {},
-    "group_by": {}
-  },
-  "required": [
-    "end",
-    "start"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|start|string(date-time)|true|none|none|
-|end|string(date-time)|true|none|none|
-|group_by|string|false|none|none|
-
-<h3 id="tocS_DateTimeRangeResponse">DateTimeRangeResponse</h3>
-<!-- backwards compatibility -->
-<a id="schemadatetimerangeresponse"></a>
-<a id="schema_DateTimeRangeResponse"></a>
-<a id="tocSdatetimerangeresponse"></a>
-<a id="tocsdatetimerangeresponse"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "start": {},
-    "end": {}
-  }
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|start|string(date-time)|false|none|Inicio del Periodo|
-|end|string(date-time)|false|none|Fin del Periodo|
-
-<h3 id="tocS_IncludeObjects">IncludeObjects</h3>
-<!-- backwards compatibility -->
-<a id="schemaincludeobjects"></a>
-<a id="schema_IncludeObjects"></a>
-<a id="tocSincludeobjects"></a>
-<a id="tocsincludeobjects"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "include": {}
-  },
-  "required": [
-    "include"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|include|[[ObjectWithID](#schemaobjectwithid)]|true|none|Objetos a incluir|
-
-<h3 id="tocS_IndustryReportData">IndustryReportData</h3>
-<!-- backwards compatibility -->
-<a id="schemaindustryreportdata"></a>
-<a id="schema_IndustryReportData"></a>
-<a id="tocSindustryreportdata"></a>
-<a id="tocsindustryreportdata"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "brands": {},
-    "brands_by_date": {},
-    "campaigns": {},
-    "countries": {},
-    "date_range": {},
-    "devices": {},
-    "industries": {},
-    "sold_by": {},
-    "summary": {},
-    "websites": {},
-    "websites_by_date": {}
-  }
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|brands|[[MetricWithDate](#schemametricwithdate)]|false|none|Información de marcas encontradas|
-|brands_by_date|[[MetricWithDate](#schemametricwithdate)]|false|none|Información de marcas encontradas (por fecha)|
-|campaigns|[[CampaignMetric](#schemacampaignmetric)]|false|none|Información de campañas encontradas|
-|countries|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por países encontrados|
-|date_range|[[MetricWithDate](#schemametricwithdate)]|false|none|Periodo de búsqueda|
-|devices|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por dispositivos|
-|industries|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por industria|
-|sold_by|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por fuente de publicidad|
-|summary|[[MetricWithDate](#schemametricwithdate)]|false|none|Resumen de métricas|
-|websites|[[WebsiteMetric](#schemawebsitemetric)]|false|none|Métricas por sitios web (dominios) encontrados|
-|websites_by_date|[[WebsiteMetric](#schemawebsitemetric)]|false|none|Métricas por sitios web por fecha|
-
-<h3 id="tocS_IndustryReportRequest">IndustryReportRequest</h3>
-<!-- backwards compatibility -->
-<a id="schemaindustryreportrequest"></a>
-<a id="schema_IndustryReportRequest"></a>
-<a id="tocSindustryreportrequest"></a>
-<a id="tocsindustryreportrequest"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "ad_format": {},
-    "ad_types": {},
-    "countries": {},
-    "new_campaigns": {},
-    "order_by": {},
-    "date_range": {},
-    "devices": {},
-    "industries": {},
-    "sold_by": {}
-  },
-  "required": [
-    "date_range",
-    "devices",
-    "industries"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
-|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
-|countries|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por países|
-|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
-|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
-|date_range|[DateRange](#schemadaterange)|true|none|Rango de fechas|
-|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
-|industries|[IncludeObjects](#schemaincludeobjects)|true|none|Listado de industrias a mostrar|
-|sold_by|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por servidores de anuncios|
-
-<h3 id="tocS_IndustryReportResponse">IndustryReportResponse</h3>
-<!-- backwards compatibility -->
-<a id="schemaindustryreportresponse"></a>
-<a id="schema_IndustryReportResponse"></a>
-<a id="tocSindustryreportresponse"></a>
-<a id="tocsindustryreportresponse"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "meta": {},
-    "data": {}
-  },
-  "required": [
-    "data"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|meta|[Metadata](#schemametadata)|false|none|Metadata de la Respuesta|
-|data|[IndustryReportData](#schemaindustryreportdata)|true|none|Datos del Reporte|
-
-<h3 id="tocS_MarketReportResponse">MarketReportResponse</h3>
-<!-- backwards compatibility -->
-<a id="schemamarketreportresponse"></a>
-<a id="schema_MarketReportResponse"></a>
-<a id="tocSmarketreportresponse"></a>
-<a id="tocsmarketreportresponse"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "ad_link": {},
-    "ad_sizes": {},
-    "ad_type": {},
-    "ad_type_id": {},
-    "advertiser": {},
-    "brand": {},
-    "brand_id": {},
-    "campaign_tags": {},
-    "campaign_id": {},
-    "campaign_landing_page": {},
-    "campaign_name": {},
-    "country": {},
-    "country_id": {},
-    "date": {},
-    "device": {},
-    "duration": {},
-    "hosted_by": {},
-    "industry": {},
-    "industry_id": {},
-    "metrics_count": {},
-    "metrics_impact": {},
-    "metrics_valuation": {},
-    "position": {},
-    "publisher": {},
-    "screenshot_link": {},
-    "skip": {},
-    "sold_bys": {},
-    "web_report": {},
-    "website": {},
-    "website_id": {},
-    "website_sections": {}
-  },
-  "required": [
-    "ad_link",
-    "ad_sizes",
-    "ad_type",
-    "ad_type_id",
-    "brand",
-    "brand_id",
-    "campaign_id",
-    "country",
-    "country_id",
-    "date",
-    "device",
-    "industry",
-    "industry_id",
-    "metrics_count",
-    "metrics_impact",
-    "metrics_valuation",
-    "screenshot_link",
-    "web_report",
-    "website",
-    "website_id"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|ad_link|string|true|none|Anuncio|
-|ad_sizes|string|true|none|Tamaños de publicidad|
-|ad_type|string|true|none|Tipo de publicidad (nombre)|
-|ad_type_id|integer|true|none|Tipo de publicidad|
-|advertiser|string|false|none|Advertiser|
-|brand|string|true|none|Nombre de un avisador o marca|
-|brand_id|integer|true|none|Identificador de un avisador o marca|
-|campaign_tags|string|false|none|Etiquetas que se generan a partir del contenido de las campañas|
-|campaign_id|integer|true|none|Identificador de campaña|
-|campaign_landing_page|string|false|none|Link de campaña|
-|campaign_name|string|false|none|Nombre de campaña|
-|country|string|true|none|País (nombre)|
-|country_id|integer|true|none|País (ID)|
-|date|string|true|none|Fecha|
-|device|string|true|none|Tipo de dispositivo|
-|duration|string|false|none|Largos de publicidades|
-|hosted_by|string|false|none|Adservers|
-|industry|string|true|none|Industria (nombre)|
-|industry_id|integer|true|none|Industria (ID)|
-|metrics_count|integer|true|none|Cantidad de anuncios|
-|metrics_impact|integer|true|none|Impacto de campaña, equivalente a valor|
-|metrics_valuation|integer|true|none|Valorización en pesos chilenos|
-|position|string|false|none|Identifica el porcentaje de los ads de la campaña que aparecieron en el primer, segundo o tercer scroll|
-|publisher|string|false|none|Publisher de sitio web|
-|screenshot_link|string|true|none|Pantallazo de captura|
-|skip|integer|false|none|La publicidad bloquea la pantalla|
-|sold_bys|string|false|none|Quién la vendió|
-|web_report|string|true|none|Link a la campaña en Admetricks|
-|website|string|true|none|Nombre de medio o soporte|
-|website_id|integer|true|none|Identificador de medio o soporte|
-|website_sections|integer|false|none|Secciones de website|
-
-<h3 id="tocS_Metadata">Metadata</h3>
-<!-- backwards compatibility -->
-<a id="schemametadata"></a>
-<a id="schema_Metadata"></a>
-<a id="tocSmetadata"></a>
-<a id="tocsmetadata"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "date_range": {}
-  }
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|date_range|[DateTimeRangeResponse](#schemadatetimerangeresponse)|false|none|Metadata de fechas|
-
-<h3 id="tocS_MetricField">MetricField</h3>
-<!-- backwards compatibility -->
-<a id="schemametricfield"></a>
-<a id="schema_MetricField"></a>
-<a id="tocSmetricfield"></a>
-<a id="tocsmetricfield"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "id": {},
-    "name": {},
-    "metrics": {}
-  },
-  "required": [
-    "id",
-    "metrics",
-    "name"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|id|string|true|none|none|
-|name|string|true|none|none|
-|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
-
-<h3 id="tocS_MetricWithDate">MetricWithDate</h3>
-<!-- backwards compatibility -->
-<a id="schemametricwithdate"></a>
-<a id="schema_MetricWithDate"></a>
-<a id="tocSmetricwithdate"></a>
-<a id="tocsmetricwithdate"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "date": {},
-    "metrics": {}
-  },
-  "required": [
-    "date",
-    "metrics"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|date|string|true|none|none|
-|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
-
-<h3 id="tocS_MetricsResponse">MetricsResponse</h3>
-<!-- backwards compatibility -->
-<a id="schemametricsresponse"></a>
-<a id="schema_MetricsResponse"></a>
-<a id="tocSmetricsresponse"></a>
-<a id="tocsmetricsresponse"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "count": {},
-    "impact": {},
-    "impressions": {},
-    "valuation": {},
-    "valuation_usd": {},
-    "valuation_by_country": {}
-  },
-  "required": [
-    "impact"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|count|integer|false|none|none|
-|impact|integer|true|none|none|
-|impressions|integer|false|none|none|
-|valuation|integer|false|none|none|
-|valuation_usd|integer|false|none|none|
-|valuation_by_country|integer|false|none|none|
-
-<h3 id="tocS_ObjectPreviewResponse">ObjectPreviewResponse</h3>
-<!-- backwards compatibility -->
-<a id="schemaobjectpreviewresponse"></a>
-<a id="schema_ObjectPreviewResponse"></a>
-<a id="tocSobjectpreviewresponse"></a>
-<a id="tocsobjectpreviewresponse"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "ad_file": {},
-    "ad_measurements": {}
-  }
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|ad_file|[AdFile](#schemaadfile)|false|none|none|
-|ad_measurements|[AdMeasurements](#schemaadmeasurements)|false|none|none|
-
-<h3 id="tocS_ObjectResponse">ObjectResponse</h3>
-<!-- backwards compatibility -->
-<a id="schemaobjectresponse"></a>
-<a id="schema_ObjectResponse"></a>
-<a id="tocSobjectresponse"></a>
-<a id="tocsobjectresponse"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "id": {},
-    "name": {}
-  },
-  "required": [
-    "id",
-    "name"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|id|string|true|none|none|
-|name|string|true|none|none|
-
-<h3 id="tocS_ObjectWithID">ObjectWithID</h3>
-<!-- backwards compatibility -->
-<a id="schemaobjectwithid"></a>
-<a id="schema_ObjectWithID"></a>
-<a id="tocSobjectwithid"></a>
-<a id="tocsobjectwithid"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "id": {},
-    "name": {}
-  },
-  "required": [
-    "id"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|id|integer|true|none|ID Del objeto|
-|name|string|false|none|Nombre|
-
-<h3 id="tocS_Status: Bad Request">Status: Bad Request</h3>
-<!-- backwards compatibility -->
-<a id="schemastatus: bad request"></a>
-<a id="schema_Status: Bad Request"></a>
-<a id="tocSstatus: bad request"></a>
-<a id="tocsstatus: bad request"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "detail": {}
-  },
-  "required": [
-    "detail"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|detail|string|true|read-only|Parámetros inválidos o faltantes|
-
-<h3 id="tocS_Status: Confict">Status: Confict</h3>
-<!-- backwards compatibility -->
-<a id="schemastatus: confict"></a>
-<a id="schema_Status: Confict"></a>
-<a id="tocSstatus: confict"></a>
-<a id="tocsstatus: confict"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "detail": {}
-  },
-  "required": [
-    "detail"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|detail|string|true|read-only|Respuesta demasiado larga o no se encontraron datos|
-
-<h3 id="tocS_Status: Internal Server Error">Status: Internal Server Error</h3>
-<!-- backwards compatibility -->
-<a id="schemastatus: internal server error"></a>
-<a id="schema_Status: Internal Server Error"></a>
-<a id="tocSstatus: internal server error"></a>
-<a id="tocsstatus: internal server error"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "detail": {}
-  },
-  "required": [
-    "detail"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|detail|string|true|read-only|Servicio no disponible|
-
-<h3 id="tocS_Status: Unauthorized">Status: Unauthorized</h3>
-<!-- backwards compatibility -->
-<a id="schemastatus: unauthorized"></a>
-<a id="schema_Status: Unauthorized"></a>
-<a id="tocSstatus: unauthorized"></a>
-<a id="tocsstatus: unauthorized"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "detail": {}
-  },
-  "required": [
-    "detail"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|detail|string|true|read-only|Token de acceso expiró o no fue encontrado|
-
-<h3 id="tocS_WebsiteMetric">WebsiteMetric</h3>
-<!-- backwards compatibility -->
-<a id="schemawebsitemetric"></a>
-<a id="schema_WebsiteMetric"></a>
-<a id="tocSwebsitemetric"></a>
-<a id="tocswebsitemetric"></a>
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "id": {},
-    "domain": {},
-    "metrics": {}
-  },
-  "required": [
-    "domain",
-    "id",
-    "metrics"
-  ]
-}
-
-```
-
-**Propiedades**
-
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|id|string|true|none|none|
-|domain|string|true|none|none|
-|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
-
+|body|body|[OpportunityReportRequest](#schemaopportunityreportrequest)|true|
+
+**Respuestas**
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[OpportunityReportResponse](#schemaopportunityreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>

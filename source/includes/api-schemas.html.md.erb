@@ -1,0 +1,652 @@
+# Modelos
+
+<h2 id="tocS_AdFile">AdFile</h2>
+<!-- backwards compatibility -->
+<a id="schemaadfile"></a>
+<a id="schema_AdFile"></a>
+<a id="tocSadfile"></a>
+<a id="tocsadfile"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|name|string|true|none|none|
+
+<h2 id="tocS_AdMeasurements">AdMeasurements</h2>
+<!-- backwards compatibility -->
+<a id="schemaadmeasurements"></a>
+<a id="schema_AdMeasurements"></a>
+<a id="tocSadmeasurements"></a>
+<a id="tocsadmeasurements"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|height|integer|true|none|none|
+|width|integer|true|none|none|
+
+<h2 id="tocS_BaseReportData">BaseReportData</h2>
+<!-- backwards compatibility -->
+<a id="schemabasereportdata"></a>
+<a id="schema_BaseReportData"></a>
+<a id="tocSbasereportdata"></a>
+<a id="tocsbasereportdata"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_types|[[MetricField](#schemametricfield)]|false|none|none|
+|brands|[[MetricWithDate](#schemametricwithdate)]|false|none|Información de marcas encontradas|
+|brands_by_date|[[MetricWithDate](#schemametricwithdate)]|false|none|Información de marcas encontradas (por fecha)|
+|campaigns|[[CampaignMetric](#schemacampaignmetric)]|false|none|Información de campañas encontradas|
+|countries|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por países encontrados|
+|date_range|[[MetricWithDate](#schemametricwithdate)]|false|none|Periodo de búsqueda|
+|devices|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por dispositivos|
+|industries|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por industria|
+|sold_by|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por fuente de publicidad|
+|summary|[[MetricWithDate](#schemametricwithdate)]|false|none|Resumen de métricas|
+|websites|[[WebsiteMetric](#schemawebsitemetric)]|false|none|Métricas por sitios web (dominios) encontrados|
+|websites_by_date|[[WebsiteMetric](#schemawebsitemetric)]|false|none|Métricas por sitios web por fecha|
+
+<h2 id="tocS_BrandReportRequest">BrandReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemabrandreportrequest"></a>
+<a id="schema_BrandReportRequest"></a>
+<a id="tocSbrandreportrequest"></a>
+<a id="tocsbrandreportrequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
+|api_version|string|false|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
+|date_range|[DateRange](#schemadaterange)|true|none|Rango de fechas|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
+|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
+|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
+|sold_by|[SoldByIncludeRequest](#schemasoldbyincluderequest)|false|none|Filtrar por servidores de anuncios|
+|websites|[WebsiteFilters](#schemawebsitefilters)|false|none|Filtrar por dominio|
+|brands|[IncludeObjects](#schemaincludeobjects)|true|none|none|
+
+<h2 id="tocS_BrandReportResponse">BrandReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemabrandreportresponse"></a>
+<a id="schema_BrandReportResponse"></a>
+<a id="tocSbrandreportresponse"></a>
+<a id="tocsbrandreportresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|data|[BaseReportData](#schemabasereportdata)|true|none|Información del Reporte de Marca|
+|meta|[DateTimeRangeResponse](#schemadatetimerangeresponse)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_BrandsReportData">BrandsReportData</h2>
+<!-- backwards compatibility -->
+<a id="schemabrandsreportdata"></a>
+<a id="schema_BrandsReportData"></a>
+<a id="tocSbrandsreportdata"></a>
+<a id="tocsbrandsreportdata"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_types|[[MetricField](#schemametricfield)]|false|none|none|
+|brands|[[MetricWithDate](#schemametricwithdate)]|false|none|Información de marcas encontradas|
+|brands_by_date|[[MetricWithDate](#schemametricwithdate)]|false|none|Información de marcas encontradas (por fecha)|
+|campaigns|[[CampaignMetric](#schemacampaignmetric)]|false|none|Información de campañas encontradas|
+|countries|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por países encontrados|
+|date_range|[[MetricWithDate](#schemametricwithdate)]|false|none|Periodo de búsqueda|
+|devices|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por dispositivos|
+|industries|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por industria|
+|sold_by|[[MetricWithDate](#schemametricwithdate)]|false|none|Métricas por fuente de publicidad|
+|summary|[[MetricWithDate](#schemametricwithdate)]|false|none|Resumen de métricas|
+|websites|[[WebsiteMetric](#schemawebsitemetric)]|false|none|Métricas por sitios web (dominios) encontrados|
+|websites_by_date|[[WebsiteMetric](#schemawebsitemetric)]|false|none|Métricas por sitios web por fecha|
+|campaigns_by_date|[MetricByDate](#schemametricbydate)|true|none|Información de campañas por fecha|
+
+<h2 id="tocS_BrandsReportRequest">BrandsReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemabrandsreportrequest"></a>
+<a id="schema_BrandsReportRequest"></a>
+<a id="tocSbrandsreportrequest"></a>
+<a id="tocsbrandsreportrequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
+|api_version|string|false|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
+|date_range|[DateRange](#schemadaterange)|true|none|Rango de fechas|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
+|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
+|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
+|sold_by|[SoldByIncludeRequest](#schemasoldbyincluderequest)|false|none|Filtrar por servidores de anuncios|
+|websites|[WebsiteFilters](#schemawebsitefilters)|false|none|Filtrar por dominio|
+|brands|[IncludeObjects](#schemaincludeobjects)|true|none|none|
+
+<h2 id="tocS_BrandsReportResponse">BrandsReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemabrandsreportresponse"></a>
+<a id="schema_BrandsReportResponse"></a>
+<a id="tocSbrandsreportresponse"></a>
+<a id="tocsbrandsreportresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|data|[BrandsReportData](#schemabrandsreportdata)|true|none|Información del Reporte de Marcas|
+|meta|[DateTimeRangeResponse](#schemadatetimerangeresponse)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_CampaignMetric">CampaignMetric</h2>
+<!-- backwards compatibility -->
+<a id="schemacampaignmetric"></a>
+<a id="schema_CampaignMetric"></a>
+<a id="tocScampaignmetric"></a>
+<a id="tocscampaignmetric"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|string|true|none|none|
+|title|string|true|none|none|
+|landing_page|string|false|none|none|
+|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
+|brand|[ObjectResponse](#schemaobjectresponse)|false|none|none|
+|date_range|[DateTimeRangeResponse](#schemadatetimerangeresponse)|false|none|none|
+|countries|[[MetricField](#schemametricfield)]|false|none|none|
+|ad_types|[[MetricField](#schemametricfield)]|false|none|none|
+|devices|[[MetricField](#schemametricfield)]|false|none|none|
+|sold_by|[[MetricField](#schemametricfield)]|false|none|none|
+|websites|[[WebsiteMetric](#schemawebsitemetric)]|false|none|none|
+|preview|[ObjectPreviewResponse](#schemaobjectpreviewresponse)|false|none|none|
+
+<h2 id="tocS_CampaignReportRequest">CampaignReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemacampaignreportrequest"></a>
+<a id="schema_CampaignReportRequest"></a>
+<a id="tocScampaignreportrequest"></a>
+<a id="tocscampaignreportrequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
+|api_version|string|false|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
+|date_range|[DateRange](#schemadaterange)|true|none|Rango de fechas|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
+|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
+|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
+|sold_by|[SoldByIncludeRequest](#schemasoldbyincluderequest)|false|none|Filtrar por servidores de anuncios|
+|websites|[WebsiteFilters](#schemawebsitefilters)|false|none|Filtrar por dominio|
+|campaigns|[IncludeObjects](#schemaincludeobjects)|true|none|none|
+
+<h2 id="tocS_CampaignsReportData">CampaignsReportData</h2>
+<!-- backwards compatibility -->
+<a id="schemacampaignsreportdata"></a>
+<a id="schema_CampaignsReportData"></a>
+<a id="tocScampaignsreportdata"></a>
+<a id="tocscampaignsreportdata"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_types|[[ObjectResponse](#schemaobjectresponse)]|false|none|none|
+|brand|[ObjectResponse](#schemaobjectresponse)|false|none|none|
+|countries|[[ObjectResponse](#schemaobjectresponse)]|false|none|none|
+|date_range|[DateTimeRangeResponse](#schemadatetimerangeresponse)|false|none|none|
+|description|string|false|none|none|
+|devices|[[ObjectResponse](#schemaobjectresponse)]|false|none|none|
+|id|string|true|none|none|
+|industry|[ObjectResponse](#schemaobjectresponse)|false|none|none|
+|landing_page|string|false|none|none|
+|preview|[ObjectPreviewResponse](#schemaobjectpreviewresponse)|false|none|none|
+|title|string|true|none|none|
+
+<h2 id="tocS_CampaignsReportResponse">CampaignsReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemacampaignsreportresponse"></a>
+<a id="schema_CampaignsReportResponse"></a>
+<a id="tocScampaignsreportresponse"></a>
+<a id="tocscampaignsreportresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|data|[[CampaignsReportData](#schemacampaignsreportdata)]|true|none|Información del reporte de Campañas|
+|meta|[DateTimeRangeResponse](#schemadatetimerangeresponse)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_CountryValuation">CountryValuation</h2>
+<!-- backwards compatibility -->
+<a id="schemacountryvaluation"></a>
+<a id="schema_CountryValuation"></a>
+<a id="tocScountryvaluation"></a>
+<a id="tocscountryvaluation"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|country|string|true|none|País valorizado|
+|value|integer|true|none|Valorización del país|
+
+<h2 id="tocS_DateRange">DateRange</h2>
+<!-- backwards compatibility -->
+<a id="schemadaterange"></a>
+<a id="schema_DateRange"></a>
+<a id="tocSdaterange"></a>
+<a id="tocsdaterange"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|start|string(date-time)|true|none|none|
+|end|string(date-time)|true|none|none|
+|group_by|string|false|none|none|
+
+<h2 id="tocS_DateTimeRangeResponse">DateTimeRangeResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemadatetimerangeresponse"></a>
+<a id="schema_DateTimeRangeResponse"></a>
+<a id="tocSdatetimerangeresponse"></a>
+<a id="tocsdatetimerangeresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|start|string(date-time)|false|none|Inicio del Periodo|
+|end|string(date-time)|false|none|Fin del Periodo|
+
+<h2 id="tocS_IncludeObjects">IncludeObjects</h2>
+<!-- backwards compatibility -->
+<a id="schemaincludeobjects"></a>
+<a id="schema_IncludeObjects"></a>
+<a id="tocSincludeobjects"></a>
+<a id="tocsincludeobjects"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|include|[[ObjectWithID](#schemaobjectwithid)]|true|none|Objetos a incluir|
+
+<h2 id="tocS_IndustryReportRequest">IndustryReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemaindustryreportrequest"></a>
+<a id="schema_IndustryReportRequest"></a>
+<a id="tocSindustryreportrequest"></a>
+<a id="tocsindustryreportrequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
+|api_version|string|false|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
+|date_range|[DateRange](#schemadaterange)|true|none|Rango de fechas|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
+|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
+|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
+|sold_by|[SoldByIncludeRequest](#schemasoldbyincluderequest)|false|none|Filtrar por servidores de anuncios|
+|websites|[WebsiteFilters](#schemawebsitefilters)|false|none|Filtrar por dominio|
+|industries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por industrias|
+
+<h2 id="tocS_IndustryReportResponse">IndustryReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaindustryreportresponse"></a>
+<a id="schema_IndustryReportResponse"></a>
+<a id="tocSindustryreportresponse"></a>
+<a id="tocsindustryreportresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|data|[BaseReportData](#schemabasereportdata)|true|none|Información del Reporte de Industria|
+|meta|[DateTimeRangeResponse](#schemadatetimerangeresponse)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_MarketReportResponse">MarketReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemamarketreportresponse"></a>
+<a id="schema_MarketReportResponse"></a>
+<a id="tocSmarketreportresponse"></a>
+<a id="tocsmarketreportresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_link|string|true|none|Anuncio|
+|ad_sizes|string|true|none|Tamaños de publicidad|
+|ad_type|string|true|none|Tipo de publicidad (nombre)|
+|ad_type_id|integer|true|none|Tipo de publicidad|
+|advertiser|string|false|none|Advertiser|
+|brand|string|true|none|Nombre de un avisador o marca|
+|brand_id|integer|true|none|Identificador de un avisador o marca|
+|campaign_tags|string|false|none|Etiquetas que se generan a partir del contenido de las campañas|
+|campaign_id|integer|true|none|Identificador de campaña|
+|campaign_landing_page|string|false|none|Link de campaña|
+|campaign_name|string|false|none|Nombre de campaña|
+|country|string|true|none|País (nombre)|
+|country_id|integer|true|none|País (ID)|
+|date|string|true|none|Fecha|
+|device|string|true|none|Tipo de dispositivo|
+|duration|string|false|none|Largos de publicidades|
+|hosted_by|string|false|none|Adservers|
+|industry|string|true|none|Industria (nombre)|
+|industry_id|integer|true|none|Industria (ID)|
+|metrics_count|integer|true|none|Cantidad de anuncios|
+|metrics_impact|integer|true|none|Impacto de campaña, equivalente a valor|
+|metrics_valuation|integer|true|none|Valorización en pesos chilenos|
+|position|string|false|none|Identifica el porcentaje de los ads de la campaña que aparecieron en el primer, segundo o tercer scroll|
+|publisher|string|false|none|Publisher de sitio web|
+|screenshot_link|string|true|none|Pantallazo de captura|
+|skip|integer|false|none|La publicidad bloquea la pantalla|
+|sold_bys|string|false|none|Quién la vendió|
+|web_report|string|true|none|Link a la campaña en Admetricks|
+|website|string|true|none|Nombre de medio o soporte|
+|website_id|integer|true|none|Identificador de medio o soporte|
+|website_sections|integer|false|none|Secciones de website|
+
+<h2 id="tocS_MetricByDate">MetricByDate</h2>
+<!-- backwards compatibility -->
+<a id="schemametricbydate"></a>
+<a id="schema_MetricByDate"></a>
+<a id="tocSmetricbydate"></a>
+<a id="tocsmetricbydate"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|string|true|none|none|
+|name|string|true|none|none|
+|metrics_by_date|[[MetricWithDate](#schemametricwithdate)]|true|none|none|
+
+<h2 id="tocS_MetricField">MetricField</h2>
+<!-- backwards compatibility -->
+<a id="schemametricfield"></a>
+<a id="schema_MetricField"></a>
+<a id="tocSmetricfield"></a>
+<a id="tocsmetricfield"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|string|true|none|none|
+|name|string|true|none|none|
+|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
+
+<h2 id="tocS_MetricWithDate">MetricWithDate</h2>
+<!-- backwards compatibility -->
+<a id="schemametricwithdate"></a>
+<a id="schema_MetricWithDate"></a>
+<a id="tocSmetricwithdate"></a>
+<a id="tocsmetricwithdate"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|date|string|true|none|none|
+|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
+
+<h2 id="tocS_MetricsResponse">MetricsResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemametricsresponse"></a>
+<a id="schema_MetricsResponse"></a>
+<a id="tocSmetricsresponse"></a>
+<a id="tocsmetricsresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|count|integer|false|none|none|
+|impact|integer|true|none|none|
+|impressions|integer|false|none|none|
+|valuation|integer|false|none|none|
+|valuation_by_country|[[CountryValuation](#schemacountryvaluation)]|false|none|none|
+|valuation_usd|integer|false|none|none|
+
+<h2 id="tocS_ObjectPreviewResponse">ObjectPreviewResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaobjectpreviewresponse"></a>
+<a id="schema_ObjectPreviewResponse"></a>
+<a id="tocSobjectpreviewresponse"></a>
+<a id="tocsobjectpreviewresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_file|[AdFile](#schemaadfile)|false|none|none|
+|ad_measurements|[AdMeasurements](#schemaadmeasurements)|false|none|none|
+
+<h2 id="tocS_ObjectResponse">ObjectResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaobjectresponse"></a>
+<a id="schema_ObjectResponse"></a>
+<a id="tocSobjectresponse"></a>
+<a id="tocsobjectresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|string|true|none|none|
+|name|string|true|none|none|
+
+<h2 id="tocS_ObjectWithID">ObjectWithID</h2>
+<!-- backwards compatibility -->
+<a id="schemaobjectwithid"></a>
+<a id="schema_ObjectWithID"></a>
+<a id="tocSobjectwithid"></a>
+<a id="tocsobjectwithid"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|none|ID Del objeto|
+|name|string|false|none|Nombre|
+
+<h2 id="tocS_OpportunityReportRequest">OpportunityReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemaopportunityreportrequest"></a>
+<a id="schema_OpportunityReportRequest"></a>
+<a id="tocSopportunityreportrequest"></a>
+<a id="tocsopportunityreportrequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
+|api_version|string|false|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
+|date_range|[DateRange](#schemadaterange)|true|none|Rango de fechas|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
+|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
+|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
+|sold_by|[SoldByIncludeRequest](#schemasoldbyincluderequest)|false|none|Filtrar por servidores de anuncios|
+|websites|[WebsiteFilters](#schemawebsitefilters)|true|none|Websites a incluir/excluir|
+
+<h2 id="tocS_OpportunityReportResponse">OpportunityReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemaopportunityreportresponse"></a>
+<a id="schema_OpportunityReportResponse"></a>
+<a id="tocSopportunityreportresponse"></a>
+<a id="tocsopportunityreportresponse"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|data|[OpportunityReportResponseData](#schemaopportunityreportresponsedata)|true|none|Información del Reporte de Oportunidades|
+|meta|[DateTimeRangeResponse](#schemadatetimerangeresponse)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_OpportunityReportResponseData">OpportunityReportResponseData</h2>
+<!-- backwards compatibility -->
+<a id="schemaopportunityreportresponsedata"></a>
+<a id="schema_OpportunityReportResponseData"></a>
+<a id="tocSopportunityreportresponsedata"></a>
+<a id="tocsopportunityreportresponsedata"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|countries|[[MetricField](#schemametricfield)]|false|none|none|
+|ad_types|[[MetricField](#schemametricfield)]|false|none|none|
+|devices|[[MetricField](#schemametricfield)]|false|none|none|
+|sold_by|[[MetricField](#schemametricfield)]|false|none|none|
+|brands|[[MetricField](#schemametricfield)]|false|none|none|
+|campaigns|[[CampaignMetric](#schemacampaignmetric)]|false|none|none|
+|brands_by_date|[[MetricByDate](#schemametricbydate)]|false|none|none|
+|websites|[[WebsiteMetric](#schemawebsitemetric)]|false|none|none|
+
+<h2 id="tocS_RangeRequest">RangeRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemarangerequest"></a>
+<a id="schema_RangeRequest"></a>
+<a id="tocSrangerequest"></a>
+<a id="tocsrangerequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|start|integer|true|none|none|
+|end|integer|true|none|none|
+
+<h2 id="tocS_SoldByIncludeRequest">SoldByIncludeRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemasoldbyincluderequest"></a>
+<a id="schema_SoldByIncludeRequest"></a>
+<a id="tocSsoldbyincluderequest"></a>
+<a id="tocssoldbyincluderequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|include|[[SoldByRequest](#schemasoldbyrequest)]|true|none|none|
+
+<h2 id="tocS_SoldByRequest">SoldByRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemasoldbyrequest"></a>
+<a id="schema_SoldByRequest"></a>
+<a id="tocSsoldbyrequest"></a>
+<a id="tocssoldbyrequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|string|true|none|none|
+|name|string|false|none|none|
+
+<h2 id="tocS_WebsiteFilters">WebsiteFilters</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsitefilters"></a>
+<a id="schema_WebsiteFilters"></a>
+<a id="tocSwebsitefilters"></a>
+<a id="tocswebsitefilters"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|include|[[WebsiteObjectRangeRequest](#schemawebsiteobjectrangerequest)]|false|none|Incluir dominios|
+|exclude|[[WebsiteObjectRangeRequest](#schemawebsiteobjectrangerequest)]|false|none|Excluir dominios|
+
+<h2 id="tocS_WebsiteMetric">WebsiteMetric</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsitemetric"></a>
+<a id="schema_WebsiteMetric"></a>
+<a id="tocSwebsitemetric"></a>
+<a id="tocswebsitemetric"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|string|true|none|none|
+|domain|string|true|none|none|
+|metrics|[MetricsResponse](#schemametricsresponse)|true|none|none|
+
+<h2 id="tocS_WebsiteObjectRangeRequest">WebsiteObjectRangeRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsiteobjectrangerequest"></a>
+<a id="schema_WebsiteObjectRangeRequest"></a>
+<a id="tocSwebsiteobjectrangerequest"></a>
+<a id="tocswebsiteobjectrangerequest"></a>
+
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|none|none|
+|domain|string|false|none|none|
+|share|[RangeRequest](#schemarangerequest)|false|none|none|
+
