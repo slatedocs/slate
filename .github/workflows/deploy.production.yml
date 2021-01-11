@@ -41,8 +41,8 @@ jobs:
         with:
           aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: ${{ secrets.AWS_BUCKET_STAGE }}
+          aws_bucket: ${{ secrets.AWS_BUCKET_PROD }}
           source_dir: "."
           destination_dir: ''
       - name: Success
-        run: echo "Deployed to dev(dot)admetricks(dot)com"
+        run: echo "Deployed to ${${{ secrets.AWS_BUCKET_PROD}}//./(dot}"
