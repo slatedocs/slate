@@ -45,4 +45,6 @@ jobs:
           source_dir: "."
           destination_dir: ''
       - name: Success
-        run: echo "Deployed to ${${{ secrets.AWS_BUCKET_PROD}}//./(dot}"
+        run: |
+          BUCKET=${{ secrets.AWS_BUCKET_PROD}}
+          echo "Deployed to ${$BUCKET/./(dot)}"
