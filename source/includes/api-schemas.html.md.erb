@@ -559,6 +559,40 @@
 |brands_by_date|[[MetricByDate](#schemametricbydate)]|false|none|none|
 |websites|[[WebsiteMetric](#schemawebsitemetric)]|false|none|none|
 
+<h2 id="tocS_WebsiteReportRequest">WebsiteReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsitereportrequest"></a>
+<a id="schema_WebsiteReportRequest"></a>
+<a id="tocSwebsitereportrequest"></a>
+<a id="tocswebsitereportrequest"></a>
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
+|api_version|string|false|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
+|date_range|[DateRange](#schemadaterange)|true|none|Rango de fechas|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
+|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
+|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
+|sold_by|[SoldByIncludeRequest](#schemasoldbyincluderequest)|false|none|Filtrar por servidores de anuncios|
+|websites|[WebsiteIncludeRequest](#schemawebsiteincluderequest)|true|none|Incluir/excluir sitios web|
+
+<h2 id="tocS_WebsiteReportResponse">WebsiteReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsitereportresponse"></a>
+<a id="schema_WebsiteReportResponse"></a>
+<a id="tocSwebsitereportresponse"></a>
+<a id="tocswebsitereportresponse"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|data|[BaseReportData](#schemabasereportdata)|true|none|Información del Reporte de Sitios Web|
+|meta|[DateTimeRangeResponse](#schemadatetimerangeresponse)|true|none|Metadata del Reporte|
+
 <h2 id="tocS_RangeRequest">RangeRequest</h2>
 <!-- backwards compatibility -->
 <a id="schemarangerequest"></a>
@@ -650,3 +684,23 @@
 |domain|string|false|none|none|
 |share|[RangeRequest](#schemarangerequest)|false|none|none|
 
+
+<h2 id="tocS_WebsiteIncludeRequest">WebsiteIncludeRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsiteincluderequest"></a>
+<a id="schema_WebsiteIncludeRequest"></a>
+<a id="tocSwebsiteincluderequest"></a>
+<a id="tocswebsiteincluderequest"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|include|[[WebsiteObjectRequest](#schemawebsiteobjectrequest)]|true|none|none|
+
+<h2 id="tocS_WebsiteObjectRequest">WebsiteObjectRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsiteobjectrequest"></a>
+<a id="schema_WebsiteObjectRequest"></a>
+<a id="tocSwebsiteobjectrequest"></a>
+<a id="tocswebsiteobjectrequest"></a>
