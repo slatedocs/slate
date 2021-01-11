@@ -1244,6 +1244,7 @@ You must replace <code>access_token</code> with your personal access_token.
     </span><span class="s2">"receiver_province_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"701"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"receiver_district_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70101"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"receiver_commune_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7010101"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_split_pkg"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sp 1"</span><span class="p">,</span><span class="w">
@@ -1458,6 +1459,7 @@ You must replace <code>access_token</code> with your personal access_token.
                     </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"is_split_pkg"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="s2">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 x 20g test"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"total_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
             </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">200000</span><span class="w">
@@ -1556,6 +1558,13 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>string</td>
 <td></td>
 <td>Id of receiver&#39;s commune. Get in api <a href="#get-communes">GET /geo/communes</a></td>
+</tr>
+<tr>
+<td>is_split_pkg</td>
+<td>false</td>
+<td>boolean</td>
+<td>false</td>
+<td>If <code>true</code> use split package feature</td>
 </tr>
 <tr>
 <td>items</td>

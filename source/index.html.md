@@ -766,6 +766,7 @@ Content-Type: application/json
     "receiver_province_id": "701",
     "receiver_district_id": "70101",
     "receiver_commune_id": "7010101",
+    "is_split_pkg": false,
     "items": [
         {
             "name": "sp 1",
@@ -981,6 +982,7 @@ Content-Type: application/json
                     "weight": 20
                 }
             ],
+            "is_split_pkg": false,
             "snippet": "1 x 20g test",
             "total_weight": 20,
             "value": 200000
@@ -1012,6 +1014,7 @@ receiver_address | true | string | | Address of receiver
 receiver_province_id | true | string | | Id of receiver's province. Get in api [GET /geo/provinces](#get-provinces)
 receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
 receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
+is_split_pkg | false | boolean | false | If `true` use split package feature
 items | true | array | | List of items in tracking package
 service_name | false | string | | Name of service one of `express` or `standard`. Get in api [GET /snappy/trackings/cal_shipping_cost](#calculate-shipping-cost)
 cod | false | integer | | Amount of cod or values of all items in package
