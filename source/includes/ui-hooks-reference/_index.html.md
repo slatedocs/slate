@@ -99,7 +99,7 @@ getFormMetadata
       "description"
     ]
   },
-  "on_submit_callback": "Create New Issue",
+  "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
   "title": "Create New Issue"
 }
@@ -215,7 +215,7 @@ onFormChange
       "description"
     ]
   },
-  "on_submit_callback": "Create New Issue",
+  "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
   "title": "Create New Issue"
 }
@@ -603,7 +603,7 @@ getActionMetadata
       "description"
     ]
   },
-  "on_submit_callback": "Create New Issue",
+  "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
   "title": "Create New Issue"
 }
@@ -724,7 +724,7 @@ onActionFormChange
       "description"
     ]
   },
-  "on_submit_callback": "Create New Issue",
+  "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
   "title": "Create New Issue"
 }
@@ -1316,7 +1316,7 @@ The response to a successful attach request.
       "description"
     ]
   },
-  "on_submit_callback": "Create New Issue",
+  "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
   "title": "Create New Issue"
 }

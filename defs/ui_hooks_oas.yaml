@@ -308,7 +308,7 @@ components:
             If this is field is omitted then the submission button will be disabled. This is useful if the user must
             enter information in a watched field first, such as to show additional fields.
           type: string
-          example: 'Create New Issue'
+          example: 'www.example.com/on_submit'
         on_change:
           $ref: '#/components/schemas/FormOnChangeConfig'
         error:

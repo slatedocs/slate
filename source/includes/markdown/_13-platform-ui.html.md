@@ -172,7 +172,7 @@ on changes a user makes.
 
 To take advantage of `on_change` events, you'll supply a list of `watched_fields` and an endpoint to hit with updates. 
 See the `on_change` field in the response to the 
-[form metadata request](/get-form-metadata). The request sent to that
+[form metadata request](/docs/get-form-metadata). The request sent to that
 endpoint is the [On change callback request](/docs/on-change-callback).
 
 Related References: 
@@ -181,7 +181,7 @@ Related References:
 
 * [On change callback](/docs/on-change-callback)
 
-* [On change callback](/docs/on-submit-callback)
+* [On submit callback](/docs/on-submit-callback)
 
 <hr>
 
@@ -278,7 +278,7 @@ Related References:
 
 * [On action change callback](/docs/on-action-change-callback)
 
-* [On action change callback](/docs/on-action-submit-callback)
+* [On action submit callback](/docs/on-action-submit-callback)
 
 <hr class="full-line">
 
@@ -763,7 +763,7 @@ the url params (for GET requests) or the json body (for POST requests) using a s
 this signature as shown in pseudocode on the right.
 
 Additionally, your app should respect the timeliness of requests. Without this, attackers can replay requests to your 
-server after. This is also shown in the pseudocode on the right.
+server. This is also shown in the pseudocode on the right.
 
 You should read the [UI Hooks Security](/docs/ui-hooks-security) section before deploying anything to production.
 
@@ -774,7 +774,7 @@ You should read the [UI Hooks Security](/docs/ui-hooks-security) section before 
 To deploy you'll need to host your localhost server to a full [App Server](/docs/app-server).
    
    1. All of your urls need to change to the new hosted location (both in your app definition and your responses).
-   2. We recommend hosting on AWS Lambda or Google Cloud Functions for reliable uptime and easy maintenance.
+   2. We recommend hosting on AWS Lambda, Google Cloud Functions, or Microsoft Azure for reliable uptime and easy maintenance.
    
 <hr>
 
