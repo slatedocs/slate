@@ -21,6 +21,7 @@ curl "https://cloudmc_endpoint/rest/custom_fields?organization_id=fb0eeef9-eddd-
       "organization": {
         "id": "fb0eeef9-eddd-48bc-949c-871481777ff9"
       },
+      "required": false,
       "id": "f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e",
       "type": "ORGANIZATION",
       "nameTranslations": {
@@ -47,6 +48,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The custom field's id.
 `organization.id`<br/>*UUID* | The organization id that the custom field belongs to.
 `field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name. 
+`required`<br/>*boolean* | Whether or not the field is required on the field.
 `type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER.
 `nameTranslations`<br/>*map* | Map of language short codes to name translations for the field.
 `descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field.
@@ -69,6 +71,7 @@ curl "http://localhost:8080/rest/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdea
     "organization": {
       "id": "fb0eeef9-eddd-48bc-949c-871481777ff9"
     },
+    "required": false,
     "id": "f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e",
     "type": "ORGANIZATION",
     "nameTranslations": {
@@ -89,6 +92,47 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The custom field's id.
 `organization.id`<br/>*UUID* | The organization id that the custom field belongs to.
 `field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name. 
+`required`<br/>*boolean* | Whether or not the field is required on the field.
 `type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER.
 `nameTranslations`<br/>*map* | Map of language short codes to name translations for the field.
 `descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field.
+
+### Create a custom field
+
+`POST /custom_fields`
+
+
+```shell
+curl --request POST \
+  --url https://cloudmc_endpoint/rest/custom_fields \
+  --header "Content-Type: application/json" \
+  --header "Mc-Api-Key: your_api_key" \
+  --data "request_body"
+```
+
+> Request body example:
+
+```json 
+{
+	"type": "ORGANIZATION",
+	"field": "adminEmail",
+	"nameTranslations": {
+		"en": "Administrator's email",
+		"fr": "Courriel de l'administrateur"
+	}
+}
+``` 
+
+Create a new custom field.
+
+Required | &nbsp;
+---------- | -----------
+`field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name.
+`nameTranslations`<br/>*map* | Map of language short codes to name translations for the field. Translations for all languages are required.
+`type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER. You will need the `Custom fields: Manage` permission to execute this operation.
+
+Optional | &nbsp;
+---------- | -----------
+`descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field. If passed translations for all languages are required.
+`organization.id`<br/>*UUID* | The organization id that the email settings are linked to. It cannot be changed. If not passed will default to the calling user's organization.
+`required`<br/>*boolean* | Whether or not the field is required on the field. Defaults to false.
