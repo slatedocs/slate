@@ -91,7 +91,7 @@ $data = $dataApi->get($type, $options);
 
 `GET /data/{type}?dateFrom={YYYY-mm-dd}&dateTo={YYYY-mm-dd}&timeUnit={m}`
 
-Returns response which can be directly visualized byt the [chartJS](http://www.chartjs.org/) library.
+Returns response which can be directly visualized by the [chartJS](http://www.chartjs.org/) library.
 
 #### Response
 
