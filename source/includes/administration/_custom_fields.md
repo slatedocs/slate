@@ -26,7 +26,7 @@ curl "https://cloudmc_endpoint/rest/custom_fields?organization_id=fb0eeef9-eddd-
       "type": "ORGANIZATION",
       "nameTranslations": {
         "en": "username",
-        "fr": "username fr",
+        "fr": "username fr"
       },
       "descriptionTranslations": {
         "en": "username desc",
@@ -136,3 +136,22 @@ Optional | &nbsp;
 `descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field. If passed translations for all languages are required.
 `organization.id`<br/>*UUID* | The organization id that the email settings are linked to. It cannot be changed. If not passed will default to the calling user's organization.
 `required`<br/>*boolean* | Whether or not the field is required on the field. Defaults to false.
+
+### Delete a custom field
+
+`DELETE /custom_fields/:id`
+
+
+```shell
+curl --request DELETE \
+  --url https://cloudmc_endpoint/rest/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
+  --header "Content-Type: application/json" \
+  --header "Mc-Api-Key: your_api_key" 
+```
+
+Delete a custom field.
+
+Required | &nbsp;
+---------- | -----------
+`id`<br/>*UUID* | The custom field's id.
+
