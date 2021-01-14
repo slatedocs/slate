@@ -1,4 +1,4 @@
-## Introducción
+## Inicio
 
 > ¡Te damos la bienvenida!
 
