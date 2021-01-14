@@ -9746,7 +9746,7 @@ paths:
 
         Resources with type `user` are returned in order of most contacted to
         least contacted. This is determined by task assignments, adding the user
-        to projects, and adding the user as a follower to tasks, conversations,
+        to projects, and adding the user as a follower to tasks, messages,
         etc.
 
         Resources with type `project` are returned in order of recency. This is

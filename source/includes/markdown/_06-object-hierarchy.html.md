@@ -77,7 +77,7 @@ An organization is a special kind of workspace that represents a company. Organi
 
 <h3 id="teams-hierarchy">Teams</h3>
 
-Teams are a subset of users in an organization who collaborate on projects together. Every project in an organization is associated with one team. [Team conversations](https://asana.com/guide/help/conversations/team-conversations) are not currently available in the API.
+Teams are a subset of users in an organization who collaborate on projects together. Every project in an organization is associated with one team. [Team messages](https://asana.com/guide/help/fundamentals/messaging#gl-team) are not currently available in the API.
 
 * [Teams API documentation](/docs/asana-teams)
 * [Teams in the Asana Product Guide](https://asana.com/guide/help/organizations/team-basics)
