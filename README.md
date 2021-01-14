@@ -56,7 +56,6 @@ Companies Using Slate
 * [Clearbit](https://clearbit.com/docs)
 * [Coinbase](https://developers.coinbase.com/api)
 * [Parrot Drones](http://developer.parrot.com/docs/bebop/)
-* [Scale](https://docs.scaleapi.com/)
 
 You can view more in [the list on the wiki](https://github.com/slatedocs/slate/wiki/Slate-in-the-Wild).
 
