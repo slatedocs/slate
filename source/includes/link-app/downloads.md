@@ -3,7 +3,24 @@
 
 Integra Dátil a tu sistema en minutos.
 
-### Más reciente (6.2.3)
+### Más reciente (6.2.4)
+
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.4_32bit.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.4_64bit.exe)
+
+#### Notas de la versión
+
+#### <strong>6.2.4</strong><br><small><strong>Enero 31, 2020</strong></small>
+
+##### Nuevo
+Emitir liquidaciones de compra a través de archivos XML
+
+##### Corregido
+Error al emitir documentos a través de archivos XML
+
+### Versiones anteriores
+
+#### 6.2.3
 
 - [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.3_32bit.exe)
 - [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.2.3_64bit.exe)
@@ -15,7 +32,6 @@ Integra Dátil a tu sistema en minutos.
 ##### Corregido
 Error al momento de emitir una liquidación de compra.
 
-### Versiones anteriores
 
 #### 6.2.2
 
@@ -41,7 +57,6 @@ Mejora en información de pagos para compatibilidad con Oracle.
 
 ##### Corregido
 Error al momento de obtener información de una liquidación de compras sin que ésta tenga registrada una máquina fiscal.
-
 
 
 #### 6.2.0
