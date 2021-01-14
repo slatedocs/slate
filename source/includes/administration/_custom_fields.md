@@ -150,8 +150,3 @@ curl --request DELETE \
 ```
 
 Delete a custom field.
-
-Required | &nbsp;
----------- | -----------
-`id`<br/>*UUID* | The custom field's id.
-
