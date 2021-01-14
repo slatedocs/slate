@@ -133,8 +133,8 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ---------- | -----------
-`descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field. If passed translations for all languages are required.
-`organization.id`<br/>*UUID* | The organization id that the email settings are linked to. It cannot be changed. If not passed will default to the calling user's organization.
+`descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field. If passed, translations for all languages are required.
+`organization.id`<br/>*UUID* | The organization id that the email settings are linked to. It cannot be changed. If not passed, will default to the calling user's organization.
 `required`<br/>*boolean* | Whether or not the field is required on the field. Defaults to false.
 
 ### Delete a custom field
