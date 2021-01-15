@@ -77,12 +77,6 @@ At this point, your integration has been migrated to the new behavior. At any po
 
 The latest version of our [official client libraries](/docs/official-client-libraries) for Python, Java, PHP, and Javascript all support sending custom headers and are able to use our deprecations framework. Consult the individual libraries for how to send headers with each request.
 
-
-### Active deprecations
-<a name="active-deprecations" class="jump-anchor"></a>
-
-There are currently no active deprecations.
-
 <div>
   <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>

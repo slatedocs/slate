@@ -28,6 +28,7 @@ deprecate requests to these endpoints in the future.
 > Request
 
 ```shell
+!
 curl "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9" \
   -H "Authorization: Bearer <personal_access_token>"
 ```

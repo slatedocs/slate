@@ -12244,7 +12244,6 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
   "data": {
     "approval_status": "pending",
     "assignee": "12345",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
@@ -12289,7 +12288,6 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -12461,7 +12459,6 @@ explicitly if you specify `projects` or a `parent` task instead.
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
@@ -12487,9 +12484,6 @@ explicitly if you specify `projects` or a `parent` task instead.
 
 #### Detailed descriptions
 
-**assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
-Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
-
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
@@ -12507,11 +12501,6 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 | approval_status|approved|
 | approval_status|rejected|
 | approval_status|changes_requested|
-| assignee_status|today|
-| assignee_status|upcoming|
-| assignee_status|later|
-| assignee_status|new|
-| assignee_status|inbox|
 | resource_subtype|default_task|
 | resource_subtype|milestone|
 | resource_subtype|section|
@@ -12600,7 +12589,6 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -12851,7 +12839,6 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
   "data": {
     "approval_status": "pending",
     "assignee": "12345",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
@@ -12896,7 +12883,6 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -13070,7 +13056,6 @@ Returns the complete updated task record.
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
@@ -13097,9 +13082,6 @@ Returns the complete updated task record.
 
 #### Detailed descriptions
 
-**assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
-Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
-
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
@@ -13117,11 +13099,6 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 | approval_status|approved|
 | approval_status|rejected|
 | approval_status|changes_requested|
-| assignee_status|today|
-| assignee_status|upcoming|
-| assignee_status|later|
-| assignee_status|new|
-| assignee_status|inbox|
 | resource_subtype|default_task|
 | resource_subtype|milestone|
 | resource_subtype|section|
@@ -13811,8 +13788,7 @@ $result = $client->tasks->getTasksForUserTaskList($user_task_list_gid, array('pa
 </p>
 
 <span class="description">
-Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
-*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
+Returns the compact list of tasks in a user’s My Tasks list.
 *Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
 *Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
 </span>
@@ -14025,7 +14001,6 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
   "data": {
     "approval_status": "pending",
     "assignee": "12345",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
@@ -14070,7 +14045,6 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -14236,7 +14210,6 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
@@ -14263,9 +14236,6 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 
 #### Detailed descriptions
 
-**assignee_status**: Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.
-Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.
-
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
 
@@ -14283,11 +14253,6 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 | approval_status|approved|
 | approval_status|rejected|
 | approval_status|changes_requested|
-| assignee_status|today|
-| assignee_status|upcoming|
-| assignee_status|later|
-| assignee_status|new|
-| assignee_status|inbox|
 | resource_subtype|default_task|
 | resource_subtype|milestone|
 | resource_subtype|section|
@@ -14392,7 +14357,6 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -16212,7 +16176,6 @@ Searching for multiple exact matches of a custom field is not supported.
 |?resource_subtype<span class="param-type"> string</span>|Filters results by the task's resource_subtype|
 |?assignee.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?assignee.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
-|?assignee_status<span class="param-type"> string</span>|One of `inbox`, `today`, `upcoming`, or `later`|
 |?portfolios.any<span class="param-type"> string</span>|Comma-separated list of portfolio IDs|
 |?projects.any<span class="param-type"> string</span>|Comma-separated list of project IDs|
 |?projects.not<span class="param-type"> string</span>|Comma-separated list of project IDs|
@@ -16271,10 +16234,6 @@ Searching for multiple exact matches of a custom field is not supported.
 |---|---|
 |resource_subtype|default_task|
 |resource_subtype|milestone|
-|assignee_status|inbox|
-|assignee_status|today|
-|assignee_status|upcoming|
-|assignee_status|later|
 |sort_by|due_date|
 |sort_by|created_at|
 |sort_by|completed_at|
@@ -18148,8 +18107,6 @@ Results are sorted alphabetically by user names.
 
 <span class="description">
 A user task list represents the tasks assigned to a particular user.
-
-A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](/docs/tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
 </span>
 
 </section>
@@ -22336,7 +22293,6 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
   "resource_type": "task",
   "name": "Buy catnip",
   "approval_status": "pending",
-  "assignee_status": "upcoming",
   "completed": false,
   "completed_at": "2012-02-22T02:06:58.147Z",
   "completed_by": {
@@ -22497,7 +22453,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
-|assignee_status<span class="param-type"> string</span>|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.<br>Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
 |completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -22611,11 +22566,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |approval_status|approved|
 |approval_status|rejected|
 |approval_status|changes_requested|
-|assignee_status|today|
-|assignee_status|upcoming|
-|assignee_status|later|
-|assignee_status|new|
-|assignee_status|inbox|
 |resource_subtype|default_task|
 |resource_subtype|milestone|
 |resource_subtype|section|

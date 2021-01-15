@@ -624,17 +624,6 @@ tags:
   - name: User Task Lists
     description: >-
       A user task list represents the tasks assigned to a particular user.
-
-
-      A user’s “My Tasks” represent all of the tasks assigned to that user.
-      It is visually divided into regions based on the task’s
-      [`assignee_status`](/docs/tocS_Task)
-      for Asana users to triage their tasks based on when they can address
-      them. When building an integration it’s worth noting that tasks with
-      due dates will automatically move through `assignee_status` states as
-      their due dates approach; read up on [task
-      auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote)
-      for more information.
   - name: Webhooks
     description: >-
       Webhooks allow an application to be notified of changes in Asana. They
@@ -3530,21 +3519,6 @@ components:
                 - rejected
                 - changes_requested
               example: pending
-            assignee_status:
-              description: >-
-                Scheduling status of this task for the user it is assigned to.
-                This field can only be set if the assignee is non-null.
-
-                Setting this field to "inbox" or "upcoming" inserts it at the top
-                of the section, while the other options will insert at the bottom.
-              type: string
-              enum:
-                - today
-                - upcoming
-                - later
-                - new
-                - inbox
-              example: upcoming
             completed:
               description: >-
                 True if the task is currently marked complete, false if not.
@@ -8031,14 +8005,6 @@ paths:
       summary: Get tasks from a user task list
       description: >-
         Returns the compact list of tasks in a user’s My Tasks list.
-        The returned tasks will be in order within each assignee status
-        group of `Inbox`, `Today`, and `Upcoming`.
-
-        *Note: tasks in `Later` have a different ordering in the Asana
-        web app than the other assignee status groups; this endpoint
-        will still return them in list order in `Later` (differently
-        than they show up in Asana, but the same order as in Asana’s
-        mobile apps).*
 
         *Note: Access control is enforced for this endpoint as with
         all Asana API endpoints, meaning a user’s private tasks will be
@@ -8761,18 +8727,6 @@ paths:
         schema:
           type: string
         example: 12345,23456,34567
-      - name: assignee_status
-        in: query
-        description: >-
-          One of `inbox`, `today`, `upcoming`, or `later`
-        schema:
-          type: string
-          enum:
-            - inbox
-            - today
-            - upcoming
-            - later
-        example: later
       - name: portfolios.any
         in: query
         description: >-
