@@ -6,14 +6,14 @@ on:
       - master
 
 jobs:
-  phpunit:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: update live developer docs using SSH
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: cd /var/www/developer && git pull && bundle install && bundle exec middleman build
+        command: cd /var/www/developer && git pull && bundle install --quiet && bundle exec middleman build | grep -E '\b(create|delete|error|update)\b'
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
