@@ -1,20 +1,30 @@
-name: Update live developer docs
+name: Build developer docs (and deploy on push)
 
 on:
   push:
     branches:
       - master
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: update live developer docs using SSH
-      uses: garygrossgarten/github-action-ssh@release
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
       with:
-        command: cd /var/www/developer && git pull && bundle install --quiet && bundle exec middleman build | grep -E '\b(create|delete|error|update)\b'
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        ruby-version: 2.3.1
+        bundler-cache: true
+    - name: install deps
+      run: bundle install
+    - name: build docs
+      run: bundle exec middleman build
+    - name: deploy docs
+      if: ${{ github.event_name == 'push' }}
+      run: bundle exec middleman deploy
+      env:
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_DEPLOYMENT_PATH: ${{ secrets.SSH_PATH }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}

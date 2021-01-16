@@ -12,6 +12,9 @@ gem "middleman-syntax"
 # Plugin for middleman to generate Github pages
 gem 'middleman-gh-pages'
 
+# For deploying to Mautic's live server
+gem 'middleman-deploy', '~> 1.0'
+
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.3.0"
 
