@@ -1,0 +1,20 @@
+name: Update live developer docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: update live developer docs using SSH
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: cd /var/www/developer && git pull && bundle install && bundle exec middleman build
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
