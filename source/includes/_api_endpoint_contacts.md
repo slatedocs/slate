@@ -427,6 +427,30 @@ Delete a contact.
 
 Same as [Get Contact](#get-contact).
 
+### Delete Batch Contact
+```php
+<?php
+$data = array(1, 2);
+$contact = $contactApi->deleteBatch($data);
+```
+Delete contacts.
+
+#### HTTP Request
+
+`DELETE /contacts/batch/delete`
+
+If you are not using PHP, here is a URL example:
+
+`DELETE https://[your_mautic_domain]/api/contacts/batch/delete?ids=1,2`
+
+#### Response
+
+`Expected Response Code: 200`
+
+**Properties**
+
+Contacts array. Record same as [Get Contact](#get-contact).
+
 ### Add Do Not Contact
 ```php
 <?php
