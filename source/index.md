@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - introduction
+  - cache
   - plugin_intro
   - plugin_migrations
   - plugin_migrations_1.2
