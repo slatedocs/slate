@@ -407,6 +407,67 @@ Same as [Get Contact](#get-contact).
 > Note: In order to remove tag from contact add minus `-` before it.
 > For example: `tags: ['one', '-two']`  - sending this in request body will add tag `one` and remove tag `two` from contact.
 
+### Edit Batch Contact
+```php
+<?php
+
+$data = array(
+    array(
+        'id'        => 1,
+        'firstname' => 'Jim',
+        'lastname'  => 'Contact',
+        'email'     => 'jim@his-site.com',
+        'ipAddress' => $_SERVER['REMOTE_ADDR']
+    ),
+    array(
+        'id'        => 1,
+        'firstname' => 'John',
+        'lastname'  => 'Doe',
+        'email'     => 'john@his-site.com',
+        'ipAddress' => $_SERVER['REMOTE_ADDR']
+    )
+);
+
+$contact = $contactApi->editBatch($data);
+```
+Edit several contacts in one request.  Note that this supports PUT or PATCH depending on the desired behavior.
+
+**PUT** creates a contact if the given ID does not exist and clears all the contact information, adds the information from the request.
+**PATCH** fails if the contact with the given ID does not exist and updates the contact field values with the values form the request.
+
+#### HTTP Request
+
+To edit a contact and return a 404 if the contact is not found:
+
+`PATCH /contacts/batch/edit`
+
+To edit a contact and create a new one if the contact is not found:
+
+`PUT /contacts/batch/edit`
+
+**Post Parameters**
+
+Name|Description
+----|-----------
+*|Any contact field alias can be posted as a parameter.  For example, firstname, lastname, email, etc.
+ipAddress|IP address to associate with the contact
+lastActive|Date/time in UTC; preferably in the format of Y-m-d H:m:i but if that format fails, the string will be sent through PHP's strtotime then formatted
+owner|ID of a Mautic user to assign this contact to
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
+
+#### Response
+
+If `PUT`, the expected response code is `200` if the contact was edited or `201` if created.
+
+If `PATCH`, the expected response code is `200`.
+
+**Properties**
+
+Contacts array. Record same as [Get Contact](#get-contact).
+
+> Note: In order to remove tag from contact add minus `-` before it.
+> For example: `tags: ['one', '-two']`  - sending this in request body will add tag `one` and remove tag `two` from contact.
+
 ### Delete Contact
 ```php
 <?php
