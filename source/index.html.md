@@ -746,6 +746,285 @@ filter_inner_outer | false | integer | | `1` is inner, `2` is outer in same prov
 creator_id | false | string | | id of creator `UUID`
 keyword | false | string | | keyword for search by address, phone number, tracking id, ...
 
+## Show Tracking
+
+```http
+GET /snappy/trackings/<ID>?access_token=<access_token> HTTP/1.1
+```
+
+> Response
+
+```json
+{
+   "success":true,
+   "tracking":{
+      "intercity_bag_id":null,
+      "services":{
+         "name_vi":"Chuyển phát nhanh",
+         "is_allow_try_out":false,
+         "is_allow_checking_good":false,
+         "is_new_customer":false,
+         "receiver_commune_id":"1010113",
+         "cod_cost":0,
+         "cod":0,
+         "value":0,
+         "sender_district_id":"10137",
+         "shop_note":null,
+         "is_receiver_pay":false,
+         "receiver_district_id":"10101",
+         "is_save_log_insurance_cost":false,
+         "delivery_note":"",
+         "is_confirm_returned":false,
+         "is_save_log_return":false,
+         "services":{
+            "express":{
+               "cost":16000,
+               "delivery_time":"Trong ngày",
+               "discount_percentage":20,
+               "each_weight":300,
+               "each_weight_cost":30000,
+               "lgt_weight_cost":0,
+               "weight_threshold":100
+            }
+         },
+         "insurance_cost":0,
+         "return_cost":0,
+         "shipping_cost":20000,
+         "is_save_log_shipping_cost":false,
+         "discount":null,
+         "name":"express",
+         "sender_commune_id":"1013731",
+         "pickup_note":",csa",
+         "business_id":2,
+         "service_name":"express",
+         "total_weight":10,
+         "is_save_log_shipping_cost_of_shop":false,
+         "is_exchange":false,
+         "error":null,
+         "cod_service":{
+            "amount":0,
+            "cost":0,
+            "is_save_log_cod":false,
+            "original_cod":0,
+            "use_cod":false
+         },
+         "shipping_cost_of_shop":0
+      },
+      "from":{
+         "address":"13",
+         "commune_id":"1013731",
+         "district_id":"10137",
+         "full_address":"123 - 13 - Xã An Khánh, Huyện Hoài Đức, Hà Nội",
+         "id":"1c86c15a-cf60-47f4-8da3-11af3e047782",
+         "name":"123",
+         "phone_number":"+84123231321",
+         "province_id":"101",
+         "real_address":null,
+         "return_address":null
+      },
+      "sny_warehouse_id":null,
+      "inserted_at":"2020-12-17T12:16:42",
+      "last_update":{
+         "editor":{
+            "avatar_url":null,
+            "email":"leminh@gmail.com",
+            "fb_id":null,
+            "id":"ebebe989-75e1-438a-b06c-a6e9b0f6504b",
+            "name":"lê minh",
+            "permission":6,
+            "phone_number":"+84123456788",
+            "signatures":null
+         },
+         "last_editor":{
+            "avatar_url":null,
+            "email":"leminh@gmail.com",
+            "fb_id":null,
+            "id":"ebebe989-75e1-438a-b06c-a6e9b0f6504b",
+            "name":"lê minh",
+            "permission":6,
+            "phone_number":"+84123456788",
+            "signatures":null
+         },
+         "last_updated_at":"2020-12-17T12:16:42",
+         "location":"123 - 13 - Xã An Khánh, Huyện Hoài Đức, Hà Nội",
+         "note":"Khởi tạo vận đơn",
+         "status":"Đơn mới",
+         "status_color":"#AD7E05",
+         "status_en":"request_received",
+         "updated_at":"2020-12-17T12:16:42"
+      },
+      "shop_id":null,
+      "picked_up_at":null,
+      "receiver_district_id":"10101",
+      "status_color":"#AD7E05",
+      "balance_adjustment":0,
+      "delivered_at":null,
+      "customer_tracking_id":null,
+      "shipper_id":null,
+      "current_status":"Đơn mới",
+      "first_import_warehouse_at":null,
+      "current_status_en":"request_received",
+      "business":{
+         "coupon_ids":[
+
+         ],
+         "hotlines":null,
+         "id":2,
+         "name":"lê minh",
+         "owner":{
+            "avatar_url":null,
+            "email":"leminh@gmail.com",
+            "fb_id":null,
+            "id":"ebebe989-75e1-438a-b06c-a6e9b0f6504b",
+            "name":"lê minh",
+            "permission":6,
+            "phone_number":"+84123456788",
+            "signatures":null
+         },
+         "phone_number":"+84123456788"
+      },
+      "has_partner":false,
+      "returned_editor":null,
+      "department":{
+         "address":"35 Lê Văn Thiêm, Phường Nhân Chính",
+         "commune_id":"8050307",
+         "district_id":"80503",
+         "district_name":"Thành phố Châu Đốc",
+         "full_address":"35 Lê Văn Thiêm, Phường Nhân Chính - Xã Vĩnh Tế, Thành phố Châu Đốc, An Giang",
+         "name":"Snappy HN",
+         "phone_number":"0934559505",
+         "province_id":"805",
+         "province_name":"An Giang"
+      },
+      "partner_info":{
+         "ems":{
+            "cod_cost":0,
+            "insurance_cost":0,
+            "shipping_cost":12650
+         },
+         "ghtk":{
+            "cod_cost":0,
+            "insurance_cost":0,
+            "shipping_cost":0,
+            "transport":"fly"
+         },
+         "njv":{
+            "cod_cost":0,
+            "insurance_cost":0,
+            "shipping_cost":25000
+         }
+      },
+      "returner_id":null,
+      "print_data":{
+         "district_type":"NT",
+         "receiver_province":"HAN",
+         "sender_province":"HAN"
+      },
+      "is_lost":false,
+      "returned_at":null,
+      "receiver_commune_id":"1010113",
+      "short_id":173,
+      "creator_id":"ebebe989-75e1-438a-b06c-a6e9b0f6504b",
+      "tracking_undeliverable":null,
+      "updated_at":"2020-12-17T12:16:42",
+      "business_id":2,
+      "business_address_id":"1c86c15a-cf60-47f4-8da3-11af3e047782",
+      "picker_id":null,
+      "tags":[
+
+      ],
+      "creator":{
+         "avatar_url":null,
+         "email":"leminh@gmail.com",
+         "fb_id":null,
+         "id":"ebebe989-75e1-438a-b06c-a6e9b0f6504b",
+         "name":"lê minh",
+         "permission":6,
+         "phone_number":"+84123456788",
+         "signatures":null
+      },
+      "delivery_times":0,
+      "package_info":{
+         "items":[
+            {
+               "name":"xs",
+               "quantity":1,
+               "retail_price":0,
+               "selected":false,
+               "weight":10
+            }
+         ],
+         "snippet":"1 x 10g xs",
+         "total_weight":10,
+         "value":0
+      },
+      "updates":[
+         {
+            "editor":{
+               "avatar_url":null,
+               "email":"leminh@gmail.com",
+               "fb_id":null,
+               "id":"ebebe989-75e1-438a-b06c-a6e9b0f6504b",
+               "name":"lê minh",
+               "permission":6,
+               "phone_number":"+84123456788",
+               "signatures":null
+            },
+            "last_editor":{
+               "avatar_url":null,
+               "email":"leminh@gmail.com",
+               "fb_id":null,
+               "id":"ebebe989-75e1-438a-b06c-a6e9b0f6504b",
+               "name":"lê minh",
+               "permission":6,
+               "phone_number":"+84123456788",
+               "signatures":null
+            },
+            "last_updated_at":"2020-12-17T12:16:42",
+            "location":"123 - 13 - Xã An Khánh, Huyện Hoài Đức, Hà Nội",
+            "note":"Khởi tạo vận đơn",
+            "status":"Đơn mới",
+            "status_color":"#AD7E05",
+            "status_en":"request_received",
+            "updated_at":"2020-12-17T12:16:42"
+         }
+      ],
+      "addition_services":[
+
+      ],
+      "id":"S00001735",
+      "receiver_province_id":"101",
+      "log":null,
+      "to":{
+         "address":"fe Phường",
+         "commune_id":"1010113",
+         "district_id":"10101",
+         "full_address":"fe Phường - Phường Đội Cấn, Quận Ba Đình, Hà Nội",
+         "id":null,
+         "name":"fekjw",
+         "phone_number":"090999898",
+         "province_id":"101",
+         "real_address":null,
+         "return_address":null
+      }
+   }
+}
+
+```
+
+This endpoint retrieves a tracking.
+
+### HTTP Request
+
+`GET /snappy/trackings/<ID>`
+
+### URL Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+ID | true | string | | Id of a tracking in list trackings. Get in api [GET /snappy/trackings](#get-trackings)
+
 ## Create tracking
 
 ```http
