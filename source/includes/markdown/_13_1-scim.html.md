@@ -8,6 +8,7 @@
 Asana supports SCIM operations at `https://app.asana.com/api/1.0/scim`. Okta provides greats docs for 
 [understanding SCIM](https://developer.okta.com/docs/concepts/scim/).
 
+Note that only Service Accounts in Enterprise Domains can access SCIM endpoints.
 
 |API call|Asana Behavior|
 |--------|--------------|
