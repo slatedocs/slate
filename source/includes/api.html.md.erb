@@ -1,4 +1,6 @@
-## Crear Reporte de Marca
+## Reportes
+
+### Crear Reporte de Marca
 `POST /brand-report/`
 
 <%= partial "includes/snippets/brand-report.md" %>
@@ -23,7 +25,7 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-## Crear Reporte de Marcas
+### Crear Reporte de Marcas
 `POST /brands-report/`
 
 <%= partial "includes/snippets/brands-report.md" %>
@@ -48,7 +50,7 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-## Crear Reporte de Campañas
+### Crear Reporte de Campañas
 `POST /campaign-report/`
 
 <%= partial "includes/snippets/campaigns-report.md" %>
@@ -73,7 +75,7 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-## Crear Reporte de Industria
+### Crear Reporte de Industria
 `POST /industry-report/`
 
 <%= partial "includes/snippets/industry-report.md" %>
@@ -103,7 +105,7 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-## Crear Reporte de Mercado
+### Crear Reporte de Mercado
 `POST /market-report/data/v3/`
 
 <%= partial "includes/snippets/market-report-v3.md" %>
@@ -132,7 +134,7 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-## Crear Reporte de Oportunidades
+### Crear Reporte de Oportunidades
 `POST /opportunity-brand-report/`
 
 <%= partial "includes/snippets/opportunity-report.md" %>
@@ -157,8 +159,7 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-
-## Crear Reporte de Sitios Web
+### Crear Reporte de Sitios Web
 
 `POST /website-report/`
 
@@ -177,6 +178,60 @@
 |Estado|Resultado|Descripción|Modelo|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[WebsiteReportResponse](#schemawebsitereportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+### Crear Reporte de Nuevos Negocios
+
+`POST /newdeals-report/`
+
+<%= partial "includes/snippets/newdeals-report.md" %>
+
+**Parámetros**
+
+|Nombre|En|Tipo|Requerido|
+|---|---|---|---|---|
+|body|body|[NewdealsReportRequest](#schemanewdealsreportrequest)|true|none|
+
+
+**Respuestas**
+
+|Estado|Resultado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[NewDealsReportResponse](#schemanewdealsreportresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+### Crear Reporte de Verificación
+
+`POST /verification-report/`
+
+<%= partial "includes/snippets/verification-report.md" %>
+
+**Parámetros**
+
+|Nombre|En|Tipo|Requerido|
+|---|---|---|---|---|
+|body|body|[VerificationReportRequest](#schemaverificationreportrequest)|true|none|
+
+
+**Respuestas**
+
+|Estado|Resultado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[VerificationReportResponse](#schemaverificationreportresponse)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
 |409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
