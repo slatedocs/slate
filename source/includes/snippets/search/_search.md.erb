@@ -1,0 +1,153 @@
+## API de Búsqueda
+
+Con esta API podrás obtener el detalle de los recursos que, posteriormente,
+podrás utilizar en los filtros de tus reportes para refinarlos.
+
+### Obtener anunciantes
+
+`GET /advertiser/`
+
+<%= partial "includes/snippets/search/advertiser.md" %>
+
+Entrega una lista de marcas anunciantes filtradas por país.
+
+**Parámetros**
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|countries|query|string|false|none|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+### Obtener marcas
+
+`GET /brand/`
+
+<%= partial "includes/snippets/search/brand.md" %>
+
+Entrega una lista de marcas filtradas (opcionalmente) por nombre y país.
+
+**Parámetros**
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|countries|query|string|false|none|
+|name_autocomplete|query|string|true|none|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+
+### Obtener industrias
+
+`GET /industry/`
+
+<%= partial "includes/snippets/search/industry.md" %>
+
+Entrega una lista de industrias filtradas por nombre.
+
+**Parámetros**
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|countries|query|string|false|none|
+|name_autocomplete|query|string|true|none|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+### Obtener editores
+
+`GET /publisher/`
+
+<%= partial "includes/snippets/search/publisher.md" %>
+
+Entrega una lista de editores filtrados por país.
+
+**Parámetros**
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|countries|query|string|false|none|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+### Obtener sitios web
+
+`GET /website/`
+
+<%= partial "includes/snippets/search/website.md" %>
+
+Entrega una lista de sitios web filtrados (opcionalmente) por nombre y país.
+
+**Parámetros**
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|countries|query|string|false|none|
+|domain_autocomplete|query|string|true|none|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
