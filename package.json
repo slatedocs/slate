@@ -1,0 +1,19 @@
+{
+  "name": "snappy-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=devolopment node server.js",
+    "start": "NODE_ENV=production node server.js",
+    "setup": "bundle exec middleman build --clean && git add . && git commit -m 'update docs' && git push && pm2 deploy ecosystem.config.js production setup",
+    "deploy": "bundle exec middleman build --clean && git add . && git commit -m 'update docs' && git push && pm2 deploy ecosystem.config.js production --force"
+  },
+  "keywords": [],
+  "author": "sh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}

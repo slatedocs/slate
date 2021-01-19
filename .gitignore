@@ -5,6 +5,7 @@
 coverage
 InstalledFiles
 lib/bundler/man
+vendor/
 pkg
 rdoc
 spec/reports
@@ -12,7 +13,6 @@ test/tmp
 test/version_tmp
 tmp
 *.DS_STORE
-build/
 .cache
 .vagrant
 .sass-cache
@@ -22,3 +22,4 @@ build/
 _yardoc
 doc/
 .idea/
+node_modules/
