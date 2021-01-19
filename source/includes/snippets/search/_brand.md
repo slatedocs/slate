@@ -1,7 +1,7 @@
 > Ejemplo de petición
 
 ```shell
-curl 'http://clientela-document-search-endpoints.eks.admetricks.net/brand/?countries=1&name_autocomplete=faceb' \
+curl 'https://clientela.admetricks.com/brand/?countries=1&name_autocomplete=faceb' \
   -H 'accept: application/json, text/plain, */*' \
   -H 'authorization: Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
 ```
@@ -19,7 +19,7 @@ params = (
     ('name_autocomplete', 'faceb'),
 )
 
-response = requests.get('http://clientela-document-search-endpoints.eks.admetricks.net/brand/', headers=headers, params=params)
+response = requests.get('https://clientela.admetricks.com/brand/', headers=headers, params=params)
 ```
 
 ```javascript
@@ -31,7 +31,7 @@ var headers = {
 };
 
 var options = {
-    url: 'http://clientela-document-search-endpoints.eks.admetricks.net/brand/?countries=1&name_autocomplete=faceb',
+    url: 'https://clientela.admetricks.com/brand/?countries=1&name_autocomplete=faceb',
     headers: headers
 };
 
@@ -52,7 +52,7 @@ $headers = array(
     'accept' => 'application/json, text/plain, */*',
     'authorization' => 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
 );
-$response = Requests::get('http://clientela-document-search-endpoints.eks.admetricks.net/brand/?countries=1&name_autocomplete=faceb', $headers);
+$response = Requests::get('https://clientela.admetricks.com/brand/?countries=1&name_autocomplete=faceb', $headers);
 ```
 
 > Respuesta (200)

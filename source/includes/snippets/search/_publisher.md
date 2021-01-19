@@ -1,7 +1,7 @@
 > Ejemplo de petición
 
 ```shell
-curl 'http://clientela-document-search-endpoints.eks.admetricks.net/publisher/?countries=1' \
+curl 'https://clientela.admetricks.com/publisher/?countries=1' \
   -H 'accept: application/json, text/plain, */*' \
   -H 'authorization: Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
 ```
@@ -18,7 +18,7 @@ params = (
     ('countries', '1'),
 )
 
-response = requests.get('http://clientela-document-search-endpoints.eks.admetricks.net/publisher/', headers=headers, params=params)
+response = requests.get('https://clientela.admetricks.com/publisher/', headers=headers, params=params)
 ```
 
 ```javascript
@@ -30,7 +30,7 @@ var headers = {
 };
 
 var options = {
-    url: 'http://clientela-document-search-endpoints.eks.admetricks.net/publisher/?countries=1',
+    url: 'https://clientela.admetricks.com/publisher/?countries=1',
     headers: headers
 };
 
@@ -51,7 +51,7 @@ $headers = array(
     'accept' => 'application/json, text/plain, */*',
     'authorization' => 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
 );
-$response = Requests::get('http://clientela-document-search-endpoints.eks.admetricks.net/publisher/?countries=1', $headers);
+$response = Requests::get('https://clientela.admetricks.com/publisher/?countries=1', $headers);
 ```
 
 > Respuesta (200)
