@@ -3,7 +3,7 @@
 ```shell
 curl 'https://clientela.admetricks.com/publisher/?countries=1' \
   -H 'accept: application/json, text/plain, */*' \
-  -H 'authorization: Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
+  -H 'authorization: Token YOUR_TOKEN'
 ```
 
 ```python
@@ -11,7 +11,7 @@ import requests
 
 headers = {
     'accept': 'application/json, text/plain, */*',
-    'authorization': 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2',
+    'authorization': 'Token YOUR_TOKEN',
 }
 
 params = (
@@ -26,7 +26,7 @@ var request = require('request');
 
 var headers = {
     'accept': 'application/json, text/plain, */*',
-    'authorization': 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
+    'authorization': 'Token YOUR_TOKEN'
 };
 
 var options = {
@@ -49,7 +49,7 @@ include('vendor/rmccue/requests/library/Requests.php');
 Requests::register_autoloader();
 $headers = array(
     'accept' => 'application/json, text/plain, */*',
-    'authorization' => 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
+    'authorization' => 'Token YOUR_TOKEN'
 );
 $response = Requests::get('https://clientela.admetricks.com/publisher/?countries=1', $headers);
 ```
@@ -59,28 +59,66 @@ $response = Requests::get('https://clientela.admetricks.com/publisher/?countries
 ```json
 [
   {
-    "id":269,
-    "name":"prisa",
-    "websites":[
+    "id": 2845,
+    "name": "discovery networks international",
+    "websites": [
       {
-        "id":"215",
-        "domain":"elpais.com",
-        "last_seen":"2021-01-17T18:16:40Z"
+        "id": "601",
+        "domain": "tudiscovery.com",
+        "last_seen": "2021-01-18T21:42:02Z"
       },
       {
-        "id":"343",
-        "domain":"concierto.cl",
-        "last_seen":"2021-01-18T00:25:01Z"
+        "id": "604",
+        "domain": "discoverymujer.com",
+        "last_seen": "2016-12-03T19:13:20Z"
       },
       {
-        "id":"344",
-        "domain":"futuro.cl",
-        "last_seen":"2021-01-18T00:17:54Z"
+        "id": "2975",
+        "domain": "discovery.com",
+        "last_seen": "2016-11-30T00:53:27Z"
+      }
+    ]
+  },
+  {
+    "id": 3119,
+    "name": "amazon, inc.",
+    "websites": [
+      {
+        "id": "6862",
+        "domain": "amazon.com",
+        "last_seen": "2021-01-18T16:59:37Z"
       },
       {
-        "id":"454",
-        "domain":"adnradio.cl",
-        "last_seen":"2021-01-18T00:11:24Z"
+        "id": "11221",
+        "domain": "amazon.es",
+        "last_seen": "2020-10-16T00:00:01Z"
+      }
+    ]
+  },
+  {
+    "id": 1525,
+    "name": "univision communications",
+    "websites": [
+      {
+        "id": "124",
+        "domain": "univision.com",
+        "last_seen": "2021-01-18T21:37:01Z"
+      },
+      {
+        "id": "3205",
+        "domain": "uvideos.com",
+        "last_seen": "2019-02-08T23:06:47Z"
+      }
+    ]
+  },
+  {
+    "id": 1474,
+    "name": "televisa",
+    "websites": [
+      {
+        "id": "8228",
+        "domain": "cocinafacil.com.mx",
+        "last_seen": "2021-01-18T15:20:47Z"
       }
     ]
   }
