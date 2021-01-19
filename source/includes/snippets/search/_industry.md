@@ -1,7 +1,7 @@
 > Ejemplo de petición
 
 ```shell
-curl 'http://clientela-document-search-endpoints.eks.admetricks.net/industry/?countries=1&name_autocomplete=tel' \
+curl 'https://clientela.admetricks.com/industry/?countries=1&name_autocomplete=tel' \
   -H 'accept: application/json, text/plain, */*' \
   -H 'authorization: Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
 ```
@@ -19,7 +19,7 @@ params = (
     ('name_autocomplete', 'tel'),
 )
 
-response = requests.get('http://clientela-document-search-endpoints.eks.admetricks.net/industry/', headers=headers, params=params)
+response = requests.get('https://clientela.admetricks.com/industry/', headers=headers, params=params)
 ```
 
 ```javascript
@@ -31,7 +31,7 @@ var headers = {
 };
 
 var options = {
-    url: 'http://clientela-document-search-endpoints.eks.admetricks.net/industry/?countries=1&name_autocomplete=tel',
+    url: 'https://clientela.admetricks.com/industry/?countries=1&name_autocomplete=tel',
     headers: headers
 };
 
@@ -52,7 +52,7 @@ $headers = array(
     'accept' => 'application/json, text/plain, */*',
     'authorization' => 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2'
 );
-$response = Requests::get('http://clientela-document-search-endpoints.eks.admetricks.net/industry/?countries=1&name_autocomplete=tel', $headers);
+$response = Requests::get('https://clientela.admetricks.com/industry/?countries=1&name_autocomplete=tel', $headers);
 ```
 
 > Respuesta (200)
