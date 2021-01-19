@@ -150,8 +150,8 @@ Embed1 Feature | Status | Comments
 -------------- | -------------- | --------------
 `authCallback` | Modified | Renamed to `zdChatterAuthCallback`.
 `crossWindowPersistence` | Modified | Simplified to accept a boolean instead of an object.
-`dragAndDrop` | Deprecated | 
-`mobileOverlay` | Deprecated | 
+`dragAndDrop` | Deprecated |
+`mobileOverlay` | Deprecated |
 `private` | Modified | Renamed to `privateMode`.
 `styles` | Same API | Now requires a feature flag to use.
 
@@ -310,6 +310,10 @@ When `true`, this will prevent the bot from loading until the `adaEmbed.start(..
 `parentElement?: string | HTMLElement;`
 
 Specifies where to mount the `<iframe>` if the default side drawer is not desired. Accepts the `HTMLElement` or element `id` of the desired parent element.
+
+<aside class="warning">
+  Chat will render immediately inside the `parentElement` provided. It means that the conversation would also get initialized. We do not recommend initializing Embed2 with `parentElement` setting automatically on every page, since it could lead to low engagement rates.
+</aside>
 
 #### preload
 `preload?: boolean;`
