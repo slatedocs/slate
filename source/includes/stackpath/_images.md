@@ -90,7 +90,7 @@ curl -X GET \
     "tag": "v20201110",
     "createdAt": "2020-11-10T20:34:11.328575Z",
     "description": "test 2",
-    "reference": "a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu:v20201110",
+    "reference": "stackpath-edge/ubuntu:v20201110",
     "status": "READY"
   }
 }
