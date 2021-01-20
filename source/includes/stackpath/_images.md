@@ -23,21 +23,23 @@ curl -X GET \
     {
       "stackId": "a8050b2b-39eb-4929-bce5-1af42055903e",
       "id": "a8050b2b-39eb-4929-bce5-1af42055903e/centos7/v20201110",
+      "slug": "stackpath-edge",
       "family": "centos7",
       "tag": "v20201110",
       "createdAt": "2020-11-10T20:33:32.609434Z",
       "description": "Image using centos7",
-      "reference": "a8050b2b-39eb-4929-bce5-1af42055903e/centos7:v20201110",
+      "reference": "stackpath-edge/centos7:v20201110",
       "status": "READY"
     },
     {
       "stackId": "a8050b2b-39eb-4929-bce5-1af42055903e",
       "id": "a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu/v20201110",
+      "slug": "stackpath-edge",
       "family": "ubuntu",
       "tag": "v20201110",
       "createdAt": "2020-11-10T20:34:11.328575Z",
       "description": "Image using ubuntu",
-      "reference": "a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu:v20201110",
+      "reference": "stackpath-edge/ubuntu:v20201110",
       "status": "READY"
     }
   ],
@@ -50,6 +52,10 @@ curl -X GET \
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/images</code>
 
 Retrieve a list of all images in a given [environment](#administration-environments).
+
+Optional | &nbsp;
+------ | -----------
+`includeOnlySystemImages`<br/>*boolean* | Setting the query parameter to **true** will return only the default **stackpath images**.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -79,6 +85,7 @@ curl -X GET \
   "data": {
     "stackId": "a8050b2b-39eb-4929-bce5-1af42055903e",
     "id": "a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu/v20201110",
+    "slug": "stackpath-edge",
     "family": "ubuntu",
     "tag": "v20201110",
     "createdAt": "2020-11-10T20:34:11.328575Z",
