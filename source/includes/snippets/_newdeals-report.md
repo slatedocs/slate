@@ -1,9 +1,9 @@
 > Ejemplo de petición
 
 ```shell
-curl -k 'http://clientela-verification-and-newdeals.eks.admetricks.net/newdeals-report/' \
+curl -k 'http://clientela.admetricks.com/newdeals-report/' \
   -H 'accept: application/json, text/plain, */*' \
-  -H 'authorization: Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2' \
+  -H 'authorization: Token YOUR_TOKEN' \
   -H 'content-type: application/json;charset=UTF-8' \
   --data-binary '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":2},{"id":3}]},"countries":{"include":[{"id":3}]},"devices":{"include":[{"id":1},{"id":2}]},"date_range":{"start":"2021-01-07T00:00:00.000","end":"2021-01-09T00:00:59.999","group_by":"day"},"websites":{"our_sites":[{"id":144,"domain":"facebook.com"}],"include":[{"id":147,"domain":"youtube.com","last_seen":"2021-01-13T17:56:36Z"}]}}'
 ```
@@ -13,25 +13,25 @@ import requests
 
 headers = {
     'accept': 'application/json, text/plain, */*',
-    'authorization': 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2',
+    'authorization': 'Token YOUR_TOKEN',
     'content-type': 'application/json;charset=UTF-8',
 }
 
 data = '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":2},{"id":3}]},"countries":{"include":[{"id":3}]},"devices":{"include":[{"id":1},{"id":2}]},"date_range":{"start":"2021-01-07T00:00:00.000","end":"2021-01-09T00:00:59.999","group_by":"day"},"websites":{"our_sites":[{"id":144,"domain":"facebook.com"}],"include":[{"id":147,"domain":"youtube.com","last_seen":"2021-01-13T17:56:36Z"}]}}'
 
-response = requests.post('http://clientela-verification-and-newdeals.eks.admetricks.net/newdeals-report/', headers=headers, data=data, verify=False)
+response = requests.post('http://clientela.admetricks.com/newdeals-report/', headers=headers, data=data, verify=False)
 ```
 
 ```javascript
 var fetch = require("node-fetch");
 
 fetch(
-  "http://clientela-verification-and-newdeals.eks.admetricks.net/newdeals-report/",
+  "http://clientela.admetricks.com/newdeals-report/",
   {
     method: "POST",
     headers: {
       accept: "application/json, text/plain, */*",
-      authorization: "Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2",
+      authorization: "Token YOUR_TOKEN",
       "content-type": "application/json;charset=UTF-8",
       "Content-Type": "application/json; charset=UTF-8",
     },
@@ -62,11 +62,11 @@ include('vendor/rmccue/requests/library/Requests.php');
 Requests::register_autoloader();
 $headers = array(
     'accept' => 'application/json, text/plain, */*',
-    'authorization' => 'Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2',
+    'authorization' => 'Token YOUR_TOKEN',
     'content-type' => 'application/json;charset=UTF-8'
 );
 $data = '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":2},{"id":3}]},"countries":{"include":[{"id":3}]},"devices":{"include":[{"id":1},{"id":2}]},"date_range":{"start":"2021-01-07T00:00:00.000","end":"2021-01-09T00:00:59.999","group_by":"day"},"websites":{"our_sites":[{"id":144,"domain":"facebook.com"}],"include":[{"id":147,"domain":"youtube.com","last_seen":"2021-01-13T17:56:36Z"}]}}';
-$response = Requests::post('http://clientela-verification-and-newdeals.eks.admetricks.net/newdeals-report/', $headers, $data);
+$response = Requests::post('http://clientela.admetricks.com/newdeals-report/', $headers, $data);
 ```
 
 > Respuesta (200)
