@@ -406,7 +406,7 @@ Returns back paged product_listings for a given manifest_id.  Default page size 
 
 Url format:
 
-/api/manifests/MANIFEST_ID/product_listings?page=1&page_size=20
+/api/manifests/MANIFEST_ID/product_listings?page=1&page_size=20&created_at=DATE
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -432,6 +432,11 @@ curl -X GET \
             "title": "Style & Co. Womens Louiza Low Top Slip On Fashion Sneakers, Navy, Size 8.5",
             "quantity": 1,
             "quantity_listed": 1,
+            "retail_price": 10.00,
+            "msrp": 20.00,
+            "min_price": 2.00,
+            "max_price": 20.00,
+            "cost_price": 0.50,
             "item_condition": "new",
             "item_location": null,
             "variant_listings": [
@@ -543,6 +548,11 @@ curl -X GET \
             "title": "Lego Scooby-Doo: Haunted Hollywood",
             "quantity": 2,
             "quantity_listed": 0,
+            "retail_price": 10.00,
+            "msrp": 20.00,
+            "min_price": 2.00,
+            "max_price": 20.00,
+            "cost_price": 0.50,
             "item_condition": "new",
             "item_location": null,
             "product_images": [
@@ -829,7 +839,11 @@ marketplace_account_id | String (optional) | Returns the products belonging to t
             "title": "Bethlehem Lights 8.5\" Metallic Scroll Aqua, Red,",
             "quantity_available": 0,
             "quantity_listed": 0,
-            "retail_price": 0,
+            "retail_price": 10.00,
+            "msrp": 20.00,
+            "min_price": 2.00,
+            "max_price": 20.00,
+            "cost_price": 1.00,
             "marketplace_status": "inactive",
             "marketplace_id": null,
             "item_condition": "new",
@@ -934,7 +948,11 @@ product_id | String (optional) | The ID for the product to fetch.
         "title": "Bethlehem Lights 8.5\" Metallic Scroll Aqua, Red,",
         "quantity_available": 0,
         "quantity_listed": 0,
-        "retail_price": 0,
+        "retail_price": 10.00,
+        "msrp": 20.00,
+        "min_price": 2.00,
+        "max_price": 20.00,
+        "cost_price": 1.00,
         "marketplace_status": "inactive",
         "marketplace_id": null,
         "item_condition": "new",
