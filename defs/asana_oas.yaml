@@ -3948,7 +3948,26 @@ components:
                 A url that points directly to the object within Asana.
               example: https://app.asana.com/0/resource/123456789/list
     TeamRequest:
-      $ref: '#/components/schemas/TeamBase'
+      allOf:
+        - $ref: '#/components/schemas/TeamBase'
+        - type: object
+          properties:
+            description:
+              description: >
+                The description of the team.
+              type: string
+              example: All developers should be members of this team.
+            html_description:
+              description: >
+                The description of the team with formatting as HTML.
+              type: string
+              example: >-
+                <body><em>All</em> developers should be members of this
+                team.</body>
+            organization:
+              type: string
+              description: >
+                The organization/workspace the team belongs to.
     TeamBase:
       $ref: '#/components/schemas/TeamCompact'
     TeamCompact:
@@ -9404,6 +9423,49 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/TeamMembershipCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /teams:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    post:
+      summary: Create a team
+      description: |-
+        Creates a team within the current workspace.
+      tags:
+        - Teams
+      operationId: createTeam
+      requestBody:
+        description: The team to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/TeamRequest'
+      responses:
+        201:
+          description: Successfully created a new team.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:

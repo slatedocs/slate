@@ -357,7 +357,6 @@ replay attacks.
   authenticationUrl: "https://jira-asana-integration.asana.com/auth",
   icon: {
     x32: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_32.png",
-    x48: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_48.png",
     x64: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_64.png",
     x96: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_96.png",
     x192: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_192.png",
