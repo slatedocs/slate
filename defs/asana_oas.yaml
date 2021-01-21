@@ -3968,6 +3968,7 @@ components:
               type: string
               description: >
                 The organization/workspace the team belongs to.
+              example: "123456789"
     TeamBase:
       $ref: '#/components/schemas/TeamCompact'
     TeamCompact:
