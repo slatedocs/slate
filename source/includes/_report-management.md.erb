@@ -1,21 +1,14 @@
-## Búsqueda
+## Mis Reportes
 
-Con estas API podrás obtener el detalle de los recursos que, posteriormente,
-podrás utilizar en los filtros de tus reportes para refinarlos.
+### Obtener todos tus Reportes
 
-### Obtener anunciantes
+<a id="opIdObtener todos tus Reportes"></a>
 
-`GET /advertiser/`
+`GET /report/`
 
-<%= partial "includes/snippets/search/advertiser.md" %>
+<%= partial "includes/snippets/reports-management/read.md" %>
 
-Entrega una lista de marcas anunciantes filtradas por país.
-
-**Parámetros**
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
+Entrega una lista de los reportes asociados a tu usuario.
 
 **Respuestas**
 
@@ -28,24 +21,106 @@ Entrega una lista de marcas anunciantes filtradas por país.
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
 
 
+**Respuestas**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|Reportes|[[Report](#schemareport)]|true|none|Reportes encontrados|
+
 <aside class="warning">
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-### Obtener marcas
+### Guardar un Reporte
 
-`GET /brand/`
+<a id="opIdGuardar un Reporte"></a>
 
-<%= partial "includes/snippets/search/brand.md" %>
+`POST /report/`
 
-Entrega una lista de marcas filtradas (opcionalmente) por nombre y país.
+<%= partial "includes/snippets/reports-management/create.md" %>
+
+Permite suscribirse a un reporte en específico y obtener actualizaciones por correo electrónico.
 
 **Parámetros**
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|countries|query|string|false|none|
-|name_autocomplete|query|string|true|none|
+|report|body|[SaveReportRequest](#schemasavereportrequest)|true|Información del reporte|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[Report](#schemareport)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+
+**Respuestas**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|Reporte|[Report](#schemareport)|true|none|Información del reporte|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+### Obtener un Reporte
+
+<a id="opIdObtener un Reporte"></a>
+
+`GET /report/{id}/`
+
+<%= partial "includes/snippets/reports-management/retrieve.md" %>
+
+Entrega uno de tus reportes.
+
+**Parámetros**
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|integer|true|Identificador del reporte a buscar|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[Report](#schemareport)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+
+**Respuestas**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|Reporte|[Report](#schemareport)|true|none|Información del reporte|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
+### Editar un Reporte
+
+<a id="opIdEditar un Reporte"></a>
+
+`PUT /report/{id}/`
+
+<%= partial "includes/snippets/reports-management/update.md" %>
+
+Modifica uno de tus reportes ya existentes.
+
+**Parámetros**
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|integer|true|Identificador del reporte a modificar|
+|report|body|[SaveReportRequest](#schemasavereportrequest)|true|Nueva información del reporte|
 
 **Respuestas**
 
@@ -57,131 +132,34 @@ Entrega una lista de marcas filtradas (opcionalmente) por nombre y país.
 |409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
 
-
 <aside class="warning">
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
+### Eliminar un Reporte
 
-### Obtener industrias
+<a id="opIdEliminar un Reporte"></a>
 
-`GET /industry/`
+`DELETE /report/{id}/`
 
-<%= partial "includes/snippets/search/industry.md" %>
+<%= partial "includes/snippets/reports-management/delete.md" %>
 
-Entrega una lista de industrias filtradas por nombre.
+Elimina un Reporte (por identificador).
 
 **Parámetros**
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|countries|query|string|false|none|
-|name_autocomplete|query|string|true|none|
-
-**Respuestas**
+|id|path|integer|true|Identificador del reporte a eliminar|
 
 |Estado|Significado|Descripción|Modelo|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[Report](#schemareport)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
 |409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
 
-
-<aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
-</aside>
-
-### Obtener editores
-
-`GET /publisher/`
-
-<%= partial "includes/snippets/search/publisher.md" %>
-
-Entrega una lista de editores filtrados por país.
-
-**Parámetros**
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
-
-**Respuestas**
-
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
-
-
-<aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
-</aside>
-
-### Obtener sitios web
-
-`GET /website/`
-
-<%= partial "includes/snippets/search/website.md" %>
-
-Entrega una lista de sitios web filtrados (opcionalmente) por nombre y país.
-
-**Parámetros**
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
-|domain_autocomplete|query|string|true|none|
-
-**Respuestas**
-
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
-
-
-<aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
-</aside>
-
-
-
-### Obtener campañas
-
-<a id="opIdObtener campañas"></a>
-
-`POST /campaigns/`
-
-<%= partial "includes/snippets/search/campaigns.md" %>
-
-Entrega una lista de campañas filtradas por industria y un término de búsqueda.
-
-**Parámetros**
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|CampaignsRequest|body|[CampaignsRequest](#schemacampaignsrequest)|true|Filtrar campañas|
-
-**Respuestas**
-
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[CampaignsReportResponse](#schemacampaignsreportresponse)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
-
-
-**Respuestas**
 
 <aside class="warning">
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>

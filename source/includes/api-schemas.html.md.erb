@@ -41,6 +41,36 @@
 |ad_file|[AdFile](#schemaadfile)|false|none|URL de descarga|
 |ad_measurements|[AdMeasurements](#schemaadmeasurements)|false|none|Medidas del anuncio|
 
+<h2 id="tocS_Advertisers">Advertisers</h2>
+<!-- backwards compatibility -->
+<a id="schemaadvertisers"></a>
+<a id="schema_Advertisers"></a>
+<a id="tocSadvertisers"></a>
+<a id="tocsadvertisers"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|none|Identificador del objeto|
+|name|string|false|none|Nombre del objeto|
+|brands|[[Autocomplete](#schemaautocomplete)]|true|none|none|
+
+<h2 id="tocS_Autocomplete">Autocomplete</h2>
+<!-- backwards compatibility -->
+<a id="schemaautocomplete"></a>
+<a id="schema_Autocomplete"></a>
+<a id="tocSautocomplete"></a>
+<a id="tocsautocomplete"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|none|Identificador del objeto|
+|name|string|false|none|Nombre del objeto|
+|last_seen|string(date-time)|false|none|none|
+
 <h2 id="tocS_BaseReportData">BaseReportData</h2>
 <!-- backwards compatibility -->
 <a id="schemabasereportdata"></a>
@@ -76,7 +106,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -138,7 +168,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -199,7 +229,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -247,6 +277,26 @@
 |---|---|---|---|---|
 |data|[[CampaignsReportData](#schemacampaignsreportdata)]|true|none|Información del reporte de Campañas|
 |meta|[DateTimeRange](#schemadatetimerange)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_CampaignsRequest">CampaignsRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemacampaignsrequest"></a>
+<a id="schema_CampaignsRequest"></a>
+<a id="tocScampaignsrequest"></a>
+<a id="tocscampaignsrequest"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|true|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Países a incluir|
+|date_range|[GroupedDateRange](#schemagroupeddaterange)|true|none|Rango de fecha|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Dispositivos a incluir|
+|industries|[IncludeObjects](#schemaincludeobjects)|false|none|Industrias a incluir|
+|order_by|string|false|none|Ordenar por métrica|
+|search_term|string|true|none|Término de búsqueda para las campañas|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 
 <h2 id="tocS_CountryValuation">CountryValuation</h2>
 <!-- backwards compatibility -->
@@ -304,6 +354,21 @@
 |---|---|---|---|---|
 |include|[[ObjectWithID](#schemaobjectwithid)]|true|none|Objetos a incluir|
 
+<h2 id="tocS_Industry">Industry</h2>
+<!-- backwards compatibility -->
+<a id="schemaindustry"></a>
+<a id="schema_Industry"></a>
+<a id="tocSindustry"></a>
+<a id="tocsindustry"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|read-only|none|
+|name|string|true|none|none|
+|code|string|true|none|none|
+
 <h2 id="tocS_IndustryReportRequest">IndustryReportRequest</h2>
 <!-- backwards compatibility -->
 <a id="schemaindustryreportrequest"></a>
@@ -315,7 +380,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -446,6 +511,20 @@
 |valuation_by_country|[[CountryValuation](#schemacountryvaluation)]|false|none|Valorización por país|
 |valuation_usd|integer|false|none|Valorización en dólares|
 
+<h2 id="tocS_Nested">Nested</h2>
+<!-- backwards compatibility -->
+<a id="schemanested"></a>
+<a id="schema_Nested"></a>
+<a id="tocSnested"></a>
+<a id="tocsnested"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|read-only|none|
+|name|string|true|none|none|
+
 <h2 id="tocS_NewDealsReportDataResponse">NewDealsReportDataResponse</h2>
 <!-- backwards compatibility -->
 <a id="schemanewdealsreportdataresponse"></a>
@@ -490,7 +569,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -540,7 +619,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -599,6 +678,64 @@
 |include|[[WebsiteObjectRangeRequest](#schemawebsiteobjectrangerequest)]|false|none|Sitios web a incluir|
 |exclude|[[WebsiteObjectRangeRequest](#schemawebsiteobjectrangerequest)]|true|none|Sitios web a excluir|
 
+<h2 id="tocS_Publishers">Publishers</h2>
+<!-- backwards compatibility -->
+<a id="schemapublishers"></a>
+<a id="schema_Publishers"></a>
+<a id="tocSpublishers"></a>
+<a id="tocspublishers"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|none|Identificador del objeto|
+|name|string|false|none|Nombre del objeto|
+|websites|[[WebsiteAutocompleteResponse](#schemawebsiteautocompleteresponse)]|true|none|Sitios web agrupados por editor|
+
+<h2 id="tocS_Report">Report</h2>
+<!-- backwards compatibility -->
+<a id="schemareport"></a>
+<a id="schema_Report"></a>
+<a id="tocSreport"></a>
+<a id="tocsreport"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|integer|true|read-only|none|
+|name|string|true|none|none|
+|query|string|true|none|none|
+|filter|string|false|none|none|
+|period|integer|false|none|none|
+|daily_updates|boolean|false|none|none|
+|weekly_updates|boolean|false|none|none|
+|monthly_updates|boolean|false|none|none|
+|monthly_memories|boolean|false|none|none|
+|last_delivered_date|string(date-time)¦null|false|none|none|
+|last_delivered_status|string¦null|false|none|none|
+|weekly_updates_delivery_day|[WeeklyUpdatesDeliveryDayEnum](#schemaweeklyupdatesdeliverydayenum)|false|none|none|
+|report_type|[Nested](#schemanested)|true|read-only|none|
+
+<h2 id="tocS_SaveReportRequest">SaveReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemasavereportrequest"></a>
+<a id="schema_SaveReportRequest"></a>
+<a id="tocSsavereportrequest"></a>
+<a id="tocssavereportrequest"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|name|string|true|none|Nombre del reporte|
+|query|string|true|none|Filtros del reporte|
+|filter|string|false|none|Descripción de filtros aplicados|
+|period|integer|false|none|Periodo de actualización|
+|report_type|[ObjectWithID](#schemaobjectwithid)|true|none|Tipo del reporte|
+|weekly_updates_delivery_day|integer|false|none|Día de la semana cuando se envía el correo|
+
 <h2 id="tocS_ShareRangeRequest">ShareRangeRequest</h2>
 <!-- backwards compatibility -->
 <a id="schemasharerangerequest"></a>
@@ -651,7 +788,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -676,6 +813,21 @@
 |---|---|---|---|---|
 |data|[BaseReportData](#schemabasereportdata)|true|none|Información del Reporte de Verificación|
 |meta|[DateTimeRange](#schemadatetimerange)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_WebsiteAutocompleteResponse">WebsiteAutocompleteResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemawebsiteautocompleteresponse"></a>
+<a id="schema_WebsiteAutocompleteResponse"></a>
+<a id="tocSwebsiteautocompleteresponse"></a>
+<a id="tocswebsiteautocompleteresponse"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|id|string|true|none|Identificador de sitio web|
+|domain|string|true|none|Dominio del sitio web|
+|last_seen|string(date-time)|false|none|none|
 
 <h2 id="tocS_WebsiteFilters">WebsiteFilters</h2>
 <!-- backwards compatibility -->
@@ -759,7 +911,7 @@
 
 |Nombre|Tipo|Requerido|Restricciones|Descripción|
 |---|---|---|---|---|
-|ad_format|integer|false|none|Incluir solo campañas de alto impacto|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
 |ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
 |api_version|string|false|none|none|
 |countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
@@ -783,3 +935,26 @@
 |---|---|---|---|---|
 |data|[BaseReportData](#schemabasereportdata)|true|none|Información del Reporte de Sitios Web|
 |meta|[DateTimeRange](#schemadatetimerange)|true|none|Metadata del Reporte|
+
+<h2 id="tocS_WeeklyUpdatesDeliveryDayEnum">WeeklyUpdatesDeliveryDayEnum</h2>
+<!-- backwards compatibility -->
+<a id="schemaweeklyupdatesdeliverydayenum"></a>
+<a id="schema_WeeklyUpdatesDeliveryDayEnum"></a>
+<a id="tocSweeklyupdatesdeliverydayenum"></a>
+<a id="tocsweeklyupdatesdeliverydayenum"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|*anonymous*|integer|false|none|Frecuencia de actualizaciones semanales|
+
+|Valores válidos|
+|---|
+|1|
+|2|
+|4|
+|8|
+|16|
+|32|
+|64|
