@@ -537,6 +537,7 @@ sent to your Attach endpoint.
 ```json
 {
   "title": "My Form",
+  "fields": [],
   "on_submit_callback": "http://localhost:5000/resource",
   "submit_button_text": "Create"
 }
