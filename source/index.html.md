@@ -220,6 +220,27 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/code \
 
 Responds to `GET` requests to `/v1/patients/:id/code` and returns a valid connection code for the given patient and the status of the connection, either `connected` or `pending`.
 
+## Create Connection Code
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/patients/5EMCB4oFCPjN1KNttOcTc77u4z1no0hv/code \
+ -u YOUR-API-KEY:
+ -d templateId=fUlH8l0slNgmREONXewlbukau7ci7sec
+```
+
+> Example Response
+
+```shell
+{
+  "code": "LQYP-MSAK-NPJR",
+  "status": "connected"
+}
+```
+
+Responds to `POST` requests to `/patients/{id}/connectionCode` and returns a valid connection code for the given patient and the status of the connection, either `connected` or `pending`.
+
 ## Disconnect patient connection
 
 > Example Request
