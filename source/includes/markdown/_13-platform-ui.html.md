@@ -591,7 +591,8 @@ attachment matches your `matchUrlPattern` so Asana will try to load the Widget.
    "data": {
       "title": "My Widget",
       "subtitle": "Still My Widget",
-      "footer": "Also My Widget"
+      "footer": "Also My Widget",
+      "fields": []
    }
 }
 ```
