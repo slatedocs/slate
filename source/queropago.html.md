@@ -787,6 +787,193 @@ curl --header "Authorization: Bearer ########" \
 | ---- | ---- | --------- |
 | external_id | text | Identificador da mensalidade na instituição de ensino |
 
+## Ignorar mensalidade
+Atualiza o status da mensalidade no sistema do Quero Pago para ignorada com o motivo e retorna o objeto atualizado
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -d external_id=12345 \
+     -d ignore_reason="ignored_at_institution"\
+     -d observations="Baixada pela IES"\
+     -X PUT \
+     https://queropago.com.br/api/v1/bills/ignore
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "12345",
+  "status": "ignored",
+  "year": 2020,
+  "month": 12,
+  "due_date": "2020-12-22",
+  "value_without_discount": 1000.0,
+  "value_with_discount": 400.0,
+  "interest": 0.0,
+  "penalty": 0.0,
+  "paid_value": 0.0,
+  "paid_date": null,
+  "payment_methods": [
+    {
+      "method_name": "boleto",
+      "status": "canceled",
+      "paid_at": null,
+      "full_value": 400.0,
+      "paid_value": 0.0,
+      "refunded_value": 0.0,
+      "installments": 1,
+      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+      "boleto_url": "https://boleto-url.com",
+      "boleto_expiry_date": "2020-12-28",
+      "created_at": "2020-12-21T22:31:32Z",
+      "updated_at": "2020-12-21T22:32:32Z"
+    }
+],
+  "enrollment": {
+    "id": 123456,
+    "external_id": "RA984930527"
+  },
+  "created_at": "2020-12-20T22:31:32Z",
+  "updated_at": "2020-12-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/bills/ignore` |
+
+### Possíveis motivos para ignorar mensalidade
+
+| Motivo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| agreement | text | Acordo |
+| paid_at_institution | text | Pago na IES |
+| ignored_at_institution | text | Baixada pela IES |
+
+### Possíveis atributos para ignorar mensalidade
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| ignore_reason | text | Motivo para ignorar |
+| observations | text | Observações |
+
+## Cancelar mensalidade
+Atualiza o status da mensalidade no sistema do Quero Pago para cancelada com o motivo e retorna o objeto atualizado
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -d external_id=12345 \
+     -d observations="Baixada pela IES"\
+     -X PUT \
+     https://queropago.com.br/api/v1/bills/cancel
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "12345",
+  "status": "canceled",
+  "year": 2020,
+  "month": 12,
+  "due_date": "2020-12-22",
+  "value_without_discount": 1000.0,
+  "value_with_discount": 400.0,
+  "interest": 0.0,
+  "penalty": 0.0,
+  "paid_value": 0.0,
+  "paid_date": null,
+  "payment_methods": [
+    {
+      "method_name": "boleto",
+      "status": "canceled",
+      "paid_at": null,
+      "full_value": 400.0,
+      "paid_value": 0.0,
+      "refunded_value": 0.0,
+      "installments": 1,
+      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+      "boleto_url": "https://boleto-url.com",
+      "boleto_expiry_date": "2020-12-28",
+      "created_at": "2020-12-21T22:31:32Z",
+      "updated_at": "2020-12-21T22:32:32Z"
+    }
+],
+  "enrollment": {
+    "id": 123456,
+    "external_id": "RA984930527"
+  },
+  "created_at": "2020-12-20T22:31:32Z",
+  "updated_at": "2020-12-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/bills/cancel` |
+
+### Possíveis atributos para cancelar mensalidade
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| observations | text | Observações |
+
+## Criar ou atualizar external id
+Cria ou atualiza o id externo da mensalidade no Quero Pago.
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -d id=12345 \
+     -d external_id=54321 \
+     -X PUT \
+     https://queropago.com.br/api/v1/bills/update_external_id
+```
+
+> Resposta
+
+```bash
+{}
+```
+
+### Paramêtros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/bills/update_external_id` |
+
+### Possíveis atributos para criar/atualizar o external id
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | int | Identificador da mensalidade no Quero Pago |
+| external_id | text | Identificador da mensalidade na instituição de ensino |
+
+
 # Campus
 Entidade que representa o **Campus** da instituição no sistema do Quero Pago.
 
