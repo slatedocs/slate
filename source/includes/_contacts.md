@@ -165,7 +165,7 @@ curl "https://getquipu.com/contacts/45923" \
 > Example request
 
 ```shell
-curl "https://getquipu.com/SUBDOMAIN/contacts" \
+curl "https://getquipu.com/contacts" \
   -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
   -H "Accept: application/vnd.quipu.v1+json" \
   -H "Content-Type: application/vnd.quipu.v1+json" \
