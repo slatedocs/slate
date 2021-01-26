@@ -134,8 +134,54 @@ Required | &nbsp;
 Optional | &nbsp;
 ---------- | -----------
 `descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field. If passed, translations for all languages are required.
-`organization.id`<br/>*UUID* | The organization id that the email settings are linked to. It cannot be changed. If not passed, will default to the calling user's organization.
+`organization.id`<br/>*UUID* | The organization id that the custom fields are linked to. It cannot be changed. If not passed, will default to the calling user's organization.
 `required`<br/>*boolean* | Whether or not the field is required on the field. Defaults to false.
+
+### Edit a custom field
+
+`PUT /custom_fields/:id`
+
+
+```shell
+curl --request PUT \
+  --url https://cloudmc_endpoint/rest/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
+  --header "Content-Type: application/json" \
+  --header "Mc-Api-Key: your_api_key" \
+  --data "request_body"
+```
+
+> Request body example:
+
+```json 
+{
+  "id": "f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e",
+	"type": "ORGANIZATION",
+	"field": "adminEmail",
+	"nameTranslations": {
+		"en": "Administrator's email",
+		"fr": "Courriel de l'administrateur"
+	},
+  "descriptionTranslations": {
+      "en": "username desc",
+      "fr": "username desc fr"
+  }
+}
+``` 
+
+Edit an existing custom field.
+
+Required | &nbsp;
+---------- | -----------
+`id`<br/>*UUID* | The ID of the custom field.
+`field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name. It cannot be changed.
+`nameTranslations`<br/>*map* | Map of language short codes to name translations for the field. Translations for all languages are required.
+`type`<br/>*string* | The type of model for the field. It cannot be changed.
+`organization.id`<br/>*UUID* | The organization id that the custom fields are linked to. It cannot be changed.
+`required`<br/>*boolean* | Whether or not the field is required on the field. Defaults to false.
+
+Optional | &nbsp;
+---------- | -----------
+`descriptionTranslations`<br/>*map* | Map of language short codes to description translations for the field. If passed, translations for all languages are required.
 
 ### Delete a custom field
 
