@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 2.8.0
+## Version 2.9.0
 
 *January 19, 2021*
 
@@ -9,6 +9,8 @@
 * __[Security]__ Bump redcarpet from 3.5.0 to 3.5.1
 * Specify slate is not supported on Ruby 3.x
 * Bump rouge from 3.24.0 to 3.26.0
+
+## Version 2.8.0
 
 *October 27, 2020*
 
