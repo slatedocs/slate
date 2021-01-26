@@ -47,7 +47,7 @@ Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The custom field's id.
 `organization.id`<br/>*UUID* | The organization id that the custom field belongs to.
-`field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name. 
+`field`<br/>*String* | The field you're defining, this is *not* the UI-facing name. 
 `required`<br/>*boolean* | Whether or not the field is required on the field.
 `type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER.
 `nameTranslations`<br/>*map* | Map of language short codes to name translations for the field.
@@ -91,7 +91,7 @@ Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The custom field's id.
 `organization.id`<br/>*UUID* | The organization id that the custom field belongs to.
-`field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name. 
+`field`<br/>*String* | The field you're defining, this is *not* the UI-facing name. 
 `required`<br/>*boolean* | Whether or not the field is required on the field.
 `type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER.
 `nameTranslations`<br/>*map* | Map of language short codes to name translations for the field.
@@ -127,7 +127,7 @@ Create a new custom field.
 
 Required | &nbsp;
 ---------- | -----------
-`field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name.
+`field`<br/>*String* | The field you're defining, this is *not* the UI-facing name.
 `nameTranslations`<br/>*map* | Map of language short codes to name translations for the field. Translations for all languages are required.
 `type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER. You will need the `Custom fields: Manage` permission to execute this operation.
 
@@ -176,7 +176,7 @@ Edit an existing custom field.
 Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The ID of the custom field.
-`field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name. It cannot be changed.
+`field`<br/>*String* | The field you're defining, this is *not* the UI-facing name. It cannot be changed.
 `nameTranslations`<br/>*map* | Map of language short codes to name translations for the field. Translations for all languages are required.
 `type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER. It cannot be changed.
 `organization.id`<br/>*UUID* | The organization id that the custom fields are linked to. It cannot be changed.
