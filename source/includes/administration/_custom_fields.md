@@ -154,17 +154,20 @@ curl --request PUT \
 
 ```json 
 {
-  "id": "f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e",
+	"id": "f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e",
 	"type": "ORGANIZATION",
 	"field": "adminEmail",
 	"nameTranslations": {
 		"en": "Administrator's email",
 		"fr": "Courriel de l'administrateur"
 	},
-  "descriptionTranslations": {
-      "en": "username desc",
-      "fr": "username desc fr"
-  }
+	"descriptionTranslations": {
+		"en": "username desc",
+		"fr": "username desc fr"
+	},
+	"organization": {
+		"id": "2e481375-98e6-4963-adee-5067584f1580"
+	}
 }
 ``` 
 
@@ -175,7 +178,7 @@ Required | &nbsp;
 `id`<br/>*UUID* | The ID of the custom field.
 `field`<br/>*UUID* | The field you're defining, this is *not* the UI-facing name. It cannot be changed.
 `nameTranslations`<br/>*map* | Map of language short codes to name translations for the field. Translations for all languages are required.
-`type`<br/>*string* | The type of model for the field. It cannot be changed.
+`type`<br/>*string* | The type of model for the field. Possible values: ORGANIZATION, USER. It cannot be changed.
 `organization.id`<br/>*UUID* | The organization id that the custom fields are linked to. It cannot be changed.
 `required`<br/>*boolean* | Whether or not the field is required on the field. Defaults to false.
 
