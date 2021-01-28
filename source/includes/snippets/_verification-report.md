@@ -1,9 +1,9 @@
 > Ejemplo de petición
 
 ```shell
-curl 'http://clientela-verification-and-newdeals.eks.admetricks.net/verification-report/' \
+curl 'https://clientela.admetricks.com/verification-report/' \
   -H 'accept: application/json, text/plain, */*' \
-  -H 'authorization: Token 53c566f0ee81d09acb616e913e38bd22ed17c0e2' \
+  -H 'authorization: Token YOUR_TOKEN' \
   -H 'content-type: application/json;charset=UTF-8' \
   -H 'accept-language: es-ES,es;q=0.9,en;q=0.8,fi;q=0.7,gl;q=0.6,el;q=0.5' \
   --data-binary '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":2},{"id":3}]},"countries":{"include":[{"id":3}]},"devices":{"include":[{"id":1},{"id":2}]},"date_range":{"end":"2021-01-09T23:59:59.999","start":"2021-01-07T00:00:00.000","group_by":"day"},"brands":{"include":[{"id":156014,"name":"facebook"}]}}'
@@ -21,14 +21,14 @@ headers = {
 
 data = '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":2},{"id":3}]},"countries":{"include":[{"id":3}]},"devices":{"include":[{"id":1},{"id":2}]},"date_range":{"end":"2021-01-09T23:59:59.999","start":"2021-01-07T00:00:00.000","group_by":"day"},"brands":{"include":[{"id":156014,"name":"facebook"}]}}'
 
-response = requests.post('http://clientela-verification-and-newdeals.eks.admetricks.net/verification-report/', headers=headers, data=data)
+response = requests.post('https://clientela.admetricks.com/verification-report/', headers=headers, data=data)
 ```
 
 ```javascript
 var fetch = require("node-fetch");
 
 fetch(
-  "http://clientela-verification-and-newdeals.eks.admetricks.net/verification-report/",
+  "https://clientela.admetricks.com/verification-report/",
   {
     method: "POST",
     headers: {
@@ -64,7 +64,7 @@ $headers = array(
     'accept-language' => 'es-ES,es;q=0.9,en;q=0.8,fi;q=0.7,gl;q=0.6,el;q=0.5'
 );
 $data = '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":2},{"id":3}]},"countries":{"include":[{"id":3}]},"devices":{"include":[{"id":1},{"id":2}]},"date_range":{"end":"2021-01-09T23:59:59.999","start":"2021-01-07T00:00:00.000","group_by":"day"},"brands":{"include":[{"id":156014,"name":"facebook"}]}}';
-$response = Requests::post('http://clientela-verification-and-newdeals.eks.admetricks.net/verification-report/', $headers, $data);
+$response = Requests::post('https://clientela.admetricks.com/verification-report/', $headers, $data);
 ```
 
 > Respuesta (200)
