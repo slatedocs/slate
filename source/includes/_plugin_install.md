@@ -1,5 +1,7 @@
 ## Install/Upgrade
 
+THIS IS NOW DEPRECATED AND DISCOURAGED FROM USE. USE THE [INTEGRATION FRAMEWORK'S MIGRATION](#plugin_schema) INSTEAD.
+
 ```php
 <?php
 // plugins/HelloWorldBundle/HelloWorldBundle.php

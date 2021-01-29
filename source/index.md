@@ -16,6 +16,7 @@ includes:
   - plugin_migrations
   - plugin_migrations_1.2
   - plugin_migrations_2.0
+  - plugin_migrations_3.0
   - plugin_structure
   - plugin_install
   - plugin_config
@@ -44,6 +45,11 @@ includes:
   - plugin_database
   - plugin_permissions
   - plugin_configuration
+  - plugin_integrations
+  - plugin_integrations_migrations
+  - plugin_integrations_authentication
+  - plugin_integrations_configuration
+  - plugin_integrations_sync
   - plugin_manipulating_contacts
   - plugin_extending_intro
   - plugin_extending_api

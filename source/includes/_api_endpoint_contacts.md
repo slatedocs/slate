@@ -1002,7 +1002,7 @@ See [Campaigns](#campaigns).
 
 $events = $contactApi->getEvents($id, $search, $includeEvents, $excludeEvents, $orderBy, $orderByDir, $page);
 ```
-Warining: Deprecated. Use `getActivityForContact` instead.
+Warning: Deprecated. Use `getActivityForContact` instead.
 
 ** Query Parameters **
 
@@ -1067,7 +1067,7 @@ Get a list of contact events the contact created.
 
 `GET /contacts/ID/events`
 
-Warining: Deprecated. Use `GET /contacts/ID/activity` instead.
+Warning: Deprecated. Use `GET /contacts/ID/activity` instead.
 
 #### Response
 
