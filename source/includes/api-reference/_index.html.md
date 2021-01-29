@@ -9960,6 +9960,7 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
     "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "resource_subtype": "comment_added",
+    "sticker_name": "dancing_unicorn",
     "text": "This is a comment.",
     "assignee": {
       "gid": "12345",
@@ -10232,6 +10233,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
   "data": {
     "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
+    "sticker_name": "dancing_unicorn",
     "text": "This is a comment."
   }
 }
@@ -10248,6 +10250,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
     "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "resource_subtype": "comment_added",
+    "sticker_name": "dancing_unicorn",
     "text": "This is a comment.",
     "assignee": {
       "gid": "12345",
@@ -10433,10 +10436,28 @@ Updates the story and returns the full record for the updated story. Only commen
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|»» sticker_name<span class="param-type"> string</span>|The name of the sticker in this story. `null` if there is no sticker.|
 |»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |/story_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the story.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| sticker_name|green_checkmark|
+| sticker_name|people_dancing|
+| sticker_name|dancing_unicorn|
+| sticker_name|heart|
+| sticker_name|party_popper|
+| sticker_name|people_waving_flags|
+| sticker_name|splashing_narwhal|
+| sticker_name|trophy|
+| sticker_name|yeti_riding_unicorn|
+| sticker_name|celebrating_people|
+| sticker_name|determined_climbers|
+| sticker_name|phoenix_spreading_love|
 
 <h3 id="update-a-story-responses">Responses</h3>
 
@@ -10748,6 +10769,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
   "data": {
     "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
+    "sticker_name": "dancing_unicorn",
     "text": "This is a comment."
   }
 }
@@ -10764,6 +10786,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
     "html_text": "<body>This is a comment.<body>",
     "is_pinned": false,
     "resource_subtype": "comment_added",
+    "sticker_name": "dancing_unicorn",
     "text": "This is a comment.",
     "assignee": {
       "gid": "12345",
@@ -10953,10 +10976,28 @@ Returns the full record for the new story added to the task.
 |» data<span class="param-type"> object</span>|A story represents an activity associated with an object in the Asana system.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |»» is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
+|»» sticker_name<span class="param-type"> string</span>|The name of the sticker in this story. `null` if there is no sticker.|
 |»» text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| sticker_name|green_checkmark|
+| sticker_name|people_dancing|
+| sticker_name|dancing_unicorn|
+| sticker_name|heart|
+| sticker_name|party_popper|
+| sticker_name|people_waving_flags|
+| sticker_name|splashing_narwhal|
+| sticker_name|trophy|
+| sticker_name|yeti_riding_unicorn|
+| sticker_name|celebrating_people|
+| sticker_name|determined_climbers|
+| sticker_name|phoenix_spreading_love|
 
 <h3 id="create-a-story-on-a-task-responses">Responses</h3>
 
@@ -21945,6 +21986,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
   "html_text": "<body>This is a comment.<body>",
   "is_pinned": false,
   "resource_subtype": "comment_added",
+  "sticker_name": "dancing_unicorn",
   "text": "This is a comment.",
   "assignee": {
     "gid": "12345",
@@ -22127,6 +22169,7 @@ A story represents an activity associated with an object in the Asana system.
 |html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.|
 |is_pinned<span class="param-type"> boolean</span>|*Conditional*. Whether the story should be pinned on the resource.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|sticker_name<span class="param-type"> string</span>|The name of the sticker in this story. `null` if there is no sticker.|
 |text<span class="param-type"> string</span>|The plain text of the comment to add. Cannot be used with html_text.|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -22262,6 +22305,18 @@ A story represents an activity associated with an object in the Asana system.
 
 |Property|Value|
 |---|---|
+|sticker_name|green_checkmark|
+|sticker_name|people_dancing|
+|sticker_name|dancing_unicorn|
+|sticker_name|heart|
+|sticker_name|party_popper|
+|sticker_name|people_waving_flags|
+|sticker_name|splashing_narwhal|
+|sticker_name|trophy|
+|sticker_name|yeti_riding_unicorn|
+|sticker_name|celebrating_people|
+|sticker_name|determined_climbers|
+|sticker_name|phoenix_spreading_love|
 |resource_subtype|text|
 |resource_subtype|enum|
 |resource_subtype|number|

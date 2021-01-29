@@ -3201,6 +3201,24 @@ components:
                 resource.
               type: boolean
               example: false
+            sticker_name:
+              description: >-
+                The name of the sticker in this story. `null` if there is no sticker.
+              type: string
+              enum:
+                - "green_checkmark"
+                - "people_dancing"
+                - "dancing_unicorn"
+                - "heart"
+                - "party_popper"
+                - "people_waving_flags"
+                - "splashing_narwhal"
+                - "trophy"
+                - "yeti_riding_unicorn"
+                - "celebrating_people"
+                - "determined_climbers"
+                - "phoenix_spreading_love"
+              example: "dancing_unicorn"
     StoryCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
