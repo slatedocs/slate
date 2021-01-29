@@ -530,9 +530,8 @@ boleto, mesmo sendo paga com cartão de crédito.
 | penalty                | float  | Valor de multa aplicado                                             |
 | paid_value             | float  | Valor pago                                                          |
 | paid_date              | date   | Data do pagamento, formatado no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| payment_methods        | array  | Lista de métodos de pagamento utilizados                               |
-| boleto_barcode         | text   | Código de barras do boleto                                          |
-| boleto_url             | text   | URL para download do boleto                                         |
+| payment_methods        | array  | Lista de métodos de pagamento utilizados                            |
+| enrollment             | object | Referência a entidade Matrícula na qual a mensalidade pertence      |
 | created_at             | datetime | Momento da criação da mensalidade no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 | updated_at             | datetime | Momento da última atualização da mensalidade no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 
@@ -544,6 +543,8 @@ boleto, mesmo sendo paga com cartão de crédito.
 | paid | Mensalidade paga |
 | overdue | Mensalidade em atraso |
 | exempted | Mensalidade isenta |
+| canceled | Mensalidade cancelada |
+| ignored | Mensalidade ignorada |
 
 **Atributos dos Métodos de Pagamento utilizados**
 
@@ -727,48 +728,49 @@ Faz o update de uma mensalidade no sistema do Quero Pago e retorna o objeto atua
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
      -d external_id=12345 \
+     -d due_date="2020-12-22"\
      -X PUT \
-     https://queropago.com.br/api/v1/bills/1
+     https://queropago.com.br/api/v1/bills/
 ```
 
 > Resposta
 
 ```json
 {
-  "id": 1,
-  "external_id": "12345",
-  "status": "paid",
-  "year": 2018,
-  "month": 12,
-  "due_date": "2018-12-28",
-  "value_without_discount": 1000.0,
-  "value_with_discount": 400.0,
+  "id": 796873,
+  "external_id": "1023936",
+  "status": "open",
+  "year": 2020,
+  "month": 3,
+  "due_date": "2020-02-10",
+  "value_with_discount": 297.89,
+  "value_without_discount": 297.89,
   "interest": 0.0,
   "penalty": 0.0,
-  "paid_value": 400.0,
-  "paid_date": "2018-12-27",
+  "paid_value": 0.0,
+  "paid_date": null,
   "payment_methods": [
     {
       "method_name": "boleto",
-      "status": "paid",
-      "paid_at": "2018-12-27T22:31:32Z",
-      "full_value": 400.0,
-      "paid_value": 400.0,
+      "status": "waiting_payment",
+      "paid_at": null,
+      "full_value": 261.76,
+      "paid_value": 0.0,
       "refunded_value": 0.0,
       "installments": 1,
-      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
-      "boleto_url": "https://boleto-url.com",
-      "boleto_expiry_date": "2018-12-28",
-      "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z"
+      "boleto_barcode": "23791.22928 60004.759696 16000.046900 5 82110000026176",
+      "boleto_url": "https://api.pagar.me/1/boletos/live_ck8ejmmww67co8v3d53jdaqbv",
+      "boleto_expiry_date": "2020-03-31",
+      "created_at": "2020-03-30T14:03:55Z",
+      "updated_at": "2020-03-30T14:03:57Z"
     }
   ],
   "enrollment": {
-    "id": 123456,
-    "external_id": "RA984930527"
+    "id": 35969,
+    "external_id": "4297"
   },
-  "created_at": "2018-03-20T22:31:32Z",
-  "updated_at": "2018-03-20T22:32:32Z"
+  "created_at": "2020-03-27T18:57:42Z",
+  "updated_at": "2021-01-29T14:54:44Z"
 }
 ```
 
@@ -779,13 +781,23 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/bills/{id}` |
+| URL | `https://queropago.com.br/api/v1/bills/` |
 
 ### Possíveis atributos para realizar o update
 
 | Atributo | Tipo | Descrição |
 | ---- | ---- | --------- |
-| external_id | text | Identificador da mensalidade na instituição de ensino |
+| due_date | date | Data de vencimento. Deve ser formatada no padrão [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| full_amount | float | Valor da mensalidade sem desconto |
+| discounts | array | Entidade que representa os descontos de uma mensalidade |
+
+### Possíveis atributos para atualizar a entidade Descontos
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| amount | float | Valor do desconto |
+| kind | text | Tipo do desconto |
+| expiry_date | date | Data de expiração do desconto |
 
 ## Ignorar mensalidade
 Atualiza o status da mensalidade no sistema do Quero Pago para ignorada com o motivo e retorna o objeto atualizado
@@ -805,42 +817,7 @@ curl --header "Authorization: Bearer ########" \
 > Resposta
 
 ```json
-{
-  "id": 1,
-  "external_id": "12345",
-  "status": "ignored",
-  "year": 2020,
-  "month": 12,
-  "due_date": "2020-12-22",
-  "value_without_discount": 1000.0,
-  "value_with_discount": 400.0,
-  "interest": 0.0,
-  "penalty": 0.0,
-  "paid_value": 0.0,
-  "paid_date": null,
-  "payment_methods": [
-    {
-      "method_name": "boleto",
-      "status": "canceled",
-      "paid_at": null,
-      "full_value": 400.0,
-      "paid_value": 0.0,
-      "refunded_value": 0.0,
-      "installments": 1,
-      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
-      "boleto_url": "https://boleto-url.com",
-      "boleto_expiry_date": "2020-12-28",
-      "created_at": "2020-12-21T22:31:32Z",
-      "updated_at": "2020-12-21T22:32:32Z"
-    }
-],
-  "enrollment": {
-    "id": 123456,
-    "external_id": "RA984930527"
-  },
-  "created_at": "2020-12-20T22:31:32Z",
-  "updated_at": "2020-12-20T22:32:32Z"
-}
+{ }
 ```
 
 ### Parâmetros da request
@@ -884,42 +861,7 @@ curl --header "Authorization: Bearer ########" \
 > Resposta
 
 ```json
-{
-  "id": 1,
-  "external_id": "12345",
-  "status": "canceled",
-  "year": 2020,
-  "month": 12,
-  "due_date": "2020-12-22",
-  "value_without_discount": 1000.0,
-  "value_with_discount": 400.0,
-  "interest": 0.0,
-  "penalty": 0.0,
-  "paid_value": 0.0,
-  "paid_date": null,
-  "payment_methods": [
-    {
-      "method_name": "boleto",
-      "status": "canceled",
-      "paid_at": null,
-      "full_value": 400.0,
-      "paid_value": 0.0,
-      "refunded_value": 0.0,
-      "installments": 1,
-      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
-      "boleto_url": "https://boleto-url.com",
-      "boleto_expiry_date": "2020-12-28",
-      "created_at": "2020-12-21T22:31:32Z",
-      "updated_at": "2020-12-21T22:32:32Z"
-    }
-],
-  "enrollment": {
-    "id": 123456,
-    "external_id": "RA984930527"
-  },
-  "created_at": "2020-12-20T22:31:32Z",
-  "updated_at": "2020-12-20T22:32:32Z"
-}
+{ }
 ```
 
 ### Parâmetros da request
