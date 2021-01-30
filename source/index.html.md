@@ -1675,6 +1675,7 @@ Name | Vn Name | Color code | Description
 `processing_picked_up` | `Đang lấy hàng` | `#039BE5` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `picked_up_fail` | `Chưa lấy được hàng` | `#C62828` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `picked_up` | `Đã lấy` | `#277790` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
+`waiting_on_the_way` | `Chờ trung chuyển` | `#9C27B0` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `processing_on_the_way` | `Đang trung chuyển` | `#9C27B0` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `on_the_way` | `Đang trong kho` | `#129797` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `out_for_delivery` | `Đang giao` | `#0063B8` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
