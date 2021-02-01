@@ -105,35 +105,6 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
-### Crear Reporte de Mercado
-`POST /market-report/data/v3/`
-
-<%= partial "includes/snippets/market-report-v3.md" %>
-
-**Parámetros**
-
-|Nombre|En|Tipo|Requerido|
-|---|---|---|---|---|
-|ad_type|query|integer|true|none|
-|country|query|integer|true|none|
-|day|query|string(date)|true|Formato: `YYYY-MM-DD`|
-|device|query|integer|true|none|
-
-
-**Respuestas**
-
-|Estado|Resultado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[MarketReportResponse](#schemamarketreportresponse)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
-
-<aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
-</aside>
-
 ### Crear Reporte de Oportunidades
 `POST /opportunity-brand-report/`
 

@@ -1,28 +1,50 @@
-## Recursos
+## Filtros comunes
 
-Clientela se organiza a través de ciertos recursos, los cuales pueden ser utilizados para realizar peticiones como también entregados en las respuestas.
+Clientela utiliza los siguientes filtros, los cuales pueden ser utilizados para realizar peticiones y refinar
+los resultados de tus reportes.
 
-### Dispositivos (Devices)
+### Dispositivos
 
-Puedes filtrar tus consultas según el tipo de dispositivo que necesites.
+Restringe tus consultas según el tipo de dispositivo que más te interese.
+
+En las peticiones y respuestas de la API el campo correspondiente es `device` o `devices`
+y los valores que puedes utilizar son los siguientes:
 
 | ID  | Dispositivo   |
 | --- | ------------- |
-| 1   | De escritorio |
+| 1   | Escritorio    |
 | 2   | Móvil         |
 
-### Campañas con anuncios de alto impacto (AdFormat)
+### Campañas con anuncios de alto impacto
 
-Indica si una campaña contiene anuncios de alto impacto o no
+Indica si una campaña contiene anuncios de alto impacto o no.
+
+En las peticiones y respuestas de la API el campo correspondiente es `ad_format`
+y los valores que puedes utilizar son los siguientes:
 
 | ID  | Alto impacto           |
 | --- | ---------------------- |
 | 0   | Todas las campañas     |
 | 1   | Solo alto impacto      |
 
+### Nuevas campañas
+
+Permite filtrar campañas según su fecha de creación.
+
+En las peticiones y respuestas de la API el campo correspondiente es `new_campaigns`
+y los valores que puedes utilizar son los siguientes:
+
+| ID  | Nuevas campañas        |
+| --- | ---------------------- |
+| 0   | Todas las campañas     |
+| 1   | Solo nuevas campañas   |
+
 ### Tipos de publicidad (AdTypes)
 
-Puedes filtrar tus consultas según el tipo de publicidad que necesites.
+Filtra tus consultas según el tipo de publicidad que necesites.
+
+En las peticiones y respuestas de la API el campo correspondiente es `ad_type` o `ad_types`
+y los valores que puedes utilizar son los siguientes:
 
 | ID  | Publicidad |
 | --- | ---------- |
@@ -32,7 +54,10 @@ Puedes filtrar tus consultas según el tipo de publicidad que necesites.
 
 ### Países (Countries)
 
-Puedes filtrar tus consultas según el país que necesites.
+Delimita tus consultas según el país que necesites.
+
+En las peticiones y respuestas de la API el campo correspondiente es `country` o `countries`
+y los valores que puedes utilizar son los siguientes:
 
 | ID  | País                 |
 | --- | -------------------- |
@@ -57,6 +82,11 @@ Puedes filtrar tus consultas según el país que necesites.
 | 19  | Paraguay             |
 
 ### Industrias
+
+Obtén información de las industrias que necesites.
+
+En las peticiones y respuestas de la API el campo correspondiente es `industry` o `industries`
+y los valores que puedes utilizar son los siguientes:
 
 <details>
   <summary>Haz clic aquí para desplegar la lista de industrias disponibles.</summary>
