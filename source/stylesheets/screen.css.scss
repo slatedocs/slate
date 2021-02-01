@@ -527,6 +527,10 @@ section {
     @extend %code-font;
   }
 
+  p > code {
+    white-space: nowrap;
+  }
+
   pre > code {
     background-color: transparent;
     padding: 0;

@@ -6,7 +6,9 @@ Extrae información, crea reportes y analiza estadísticas para descubrir dónde
 
 El API de Clientela se organiza alredededor de <a href="https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional" target="_blank">REST</a>. Implementa URLs orientadas a recursos y entrega respuestas en <a href="https://www.json.org/json-es.html" target="_blank">JSON</a> a través de códigos de estado y verbos HTTP.
 
-## Actualización de datos
+<%= partial "includes/token.html.md" %>
+
+## Política de actualización
 
 Para mantener la información lo más fresca posible, se recomienda obtener la información de los **últimos cinco días**, pues los datos se recopilan diariamente pero mejoran a medida que se aplican ciertos algoritmos de enriquecimiento.
 
@@ -17,9 +19,9 @@ El reproceso es programado y ocurre en las siguientes fechas.
 - **Día 15 de cada mes:** se reprocesa el mes pasado. Ejemplo: el 15 de enero se reprocesa diciembre
 - **Cada 3 meses**: el día 15 de cada trimestre, se reprocesa el trimestre pasado. Al terminar el reproceso trimestral, **la información se cierra** y no deberían existir cambios para ninguna campaña. Ejemplo: el 15 de enero se reprocesan octubre, noviembre y diciembre
 
-## Límite de actualización
+## Límite de uso
 
-Un límite de actualización (del inglés *rate limit*) es el **número de llamadas** a la API que una aplicación o un usuario puede realizar en un **período de tiempo determinado**. Si se supera este límite o, la aplicación o el usuario pueden ser limitados. Las solicitudes de API realizadas por una aplicación o un usuario limitados, fallarán.
+Un límite de uso (del inglés *rate limit*) es el **número de llamadas** a la API que una aplicación o un usuario puede realizar en un **período de tiempo determinado**. Si se supera este límite o, la aplicación o el usuario pueden ser limitados. Las solicitudes de API realizadas por una aplicación o un usuario limitados, fallarán.
 
 > A través de este panel lateral recibirás consejos y ejemplos.
 
