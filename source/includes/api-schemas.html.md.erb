@@ -71,6 +71,28 @@
 |name|string|false|none|Nombre del objeto|
 |last_seen|string(date-time)|false|none|none|
 
+<h2 id="tocS_ReportRequest">ReportRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemareportrequest"></a>
+<a id="schema_ReportRequest"></a>
+<a id="tocSreportrequest"></a>
+<a id="tocsreportrequest"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|ad_format|boolean|false|none|Incluir solo campañas de alto impacto|
+|ad_types|[IncludeObjects](#schemaincludeobjects)|false|none|Filtrar por AdTypes|
+|api_version|string|false|none|none|
+|countries|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por países|
+|date_range|[GroupedDateRange](#schemagroupeddaterange)|true|none|Rango de fechas|
+|devices|[IncludeObjects](#schemaincludeobjects)|true|none|Filtrar por dispositivos|
+|new_campaigns|boolean|false|none|Incluir solo campañas recientes|
+|order_by|string|false|none|Ordenar por métrica (valoración o impresiones)|
+|sold_by|[SoldByIncludeRequest](#schemasoldbyincluderequest)|false|none|Filtrar por servidores de anuncios|
+|websites|[WebsiteFilters](#schemawebsitefilters)|false|none|Filtrar por dominio|
+
 <h2 id="tocS_BaseReportData">BaseReportData</h2>
 <!-- backwards compatibility -->
 <a id="schemabasereportdata"></a>
@@ -813,6 +835,22 @@
 |---|---|---|---|---|
 |data|[BaseReportData](#schemabasereportdata)|true|none|Información del Reporte de Verificación|
 |meta|[DateTimeRange](#schemadatetimerange)|true|none|Metadata del Reporte|
+
+
+<h2 id="tocS_WebMarketReportResponse">WebMarketReportResponse</h2>
+<!-- backwards compatibility -->
+<a id="schemawebmarketreportresponse"></a>
+<a id="schema_WebMarketReportResponse"></a>
+<a id="tocSwebmarketreportresponse"></a>
+<a id="tocswebmarketreportresponse"></a>
+
+**Propiedades**
+
+|Nombre|Tipo|Requerido|Restricciones|Descripción|
+|---|---|---|---|---|
+|data|[BaseReportData](#schemabasereportdata)|true|none|Información del Mercado|
+|meta|[DateTimeRange](#schemadatetimerange)|true|none|Metadata del Reporte|
+
 
 <h2 id="tocS_WebsiteAutocompleteResponse">WebsiteAutocompleteResponse</h2>
 <!-- backwards compatibility -->

@@ -50,6 +50,34 @@
   Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
 
+### Crear Reporte de Mercado
+
+<a id="opIdReporte de Mercado (web)"></a>
+
+`POST /market-report/`
+
+<%= partial "includes/snippets/market-report-web.md" %>
+
+**Parámetros**
+
+|Nombre|En|Tipo|Requerido|Descripción|
+|---|---|---|---|---|
+|Reporte|body|[ReportRequest](#schemareportrequest)|true|Filtrar reporte|
+
+**Respuestas**
+
+|Estado|Significado|Descripción|Modelo|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[WebMarketReportResponse](#tocS_WebMarketReportResponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+
+<aside class="warning">
+  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+
 ### Crear Reporte de Campañas
 `POST /campaign-report/`
 
