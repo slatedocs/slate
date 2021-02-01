@@ -10,7 +10,7 @@ Configure the service providers that can use CloudMC as their authentication sou
 
 ```shell
 # Retrieve service providers
-curl "https://cloudmc_endpoint/api/v2/service_providers?organization_id=:organization_id" \
+curl "https://cloudmc_endpoint/api/v1/service_providers?organization_id=:organization_id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -79,7 +79,7 @@ List the service providers of an organization
 
 ```shell
 # Retrieve service providers
-curl "https://cloudmc_endpoint/api/v2/service_providers/:id" \
+curl "https://cloudmc_endpoint/api/v1/service_providers/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -142,7 +142,7 @@ Return the service provider configured associated to the id on the system.
 
 ```shell
 # Creates a new service provider
-curl -X POST "https://cloudmc_endpoint/api/v2/service_providers" \
+curl -X POST "https://cloudmc_endpoint/api/v1/service_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -234,7 +234,7 @@ Create a new service provider
 
 ```shell
 # Updates an existing service provider
-curl -X PUT "https://cloudmc_endpoint/api/v2/service_providers/:id" \
+curl -X PUT "https://cloudmc_endpoint/api/v1/service_providers/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -327,7 +327,7 @@ Updates a specific service provider
 
 ```shell
 # Delete a service provider
-curl "https://cloudmc_endpoint/api/v2/service_providers/:id" \
+curl "https://cloudmc_endpoint/api/v1/service_providers/:id" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
