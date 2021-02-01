@@ -40,7 +40,7 @@ List the SAML settings of an organization
 | Attributes                                                         | &nbsp;                                                                                        |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
 | `id`<br/>_UUID_                                                    | The id of the SAML setting.                                                                   |
-| `certificate`<br/>_string_                                         | The certificate send in the SAML response for the service provider to validate the signature. |
+| `certificate`<br/>_string_                                         | The certificate sent in the SAML response for the service provider to validate the signature. |
 | `privateKey`<br/>_string_                                          | The private key used to sign the SAML request.                                                |
 | `organization`<br/>_[Organization](#administration-organizations)_ | The organization tied to the SAML settings.                                                   |
 
@@ -76,7 +76,7 @@ Return the SAML settings of an organization
 | Attributes                                                         | &nbsp;                                                                                        |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
 | `id`<br/>_UUID_                                                    | The id of the SAML setting.                                                                   |
-| `certificate`<br/>_string_                                         | The certificate send in the SAML response for the service provider to validate the signature. |
+| `certificate`<br/>_string_                                         | The certificate sent in the SAML response for the service provider to validate the signature. |
 | `privateKey`<br/>_string_                                          | The private key used to sign the SAML request.                                                |
 | `organization`<br/>_[Organization](#administration-organizations)_ | The organization tied to the SAML settings.                                                   |
 
@@ -124,7 +124,7 @@ Creates a specific SAML settings
 
 | Required                                                           | &nbsp;                                                                                                                           |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `certificate`<br/>_string_                                         | The certificate send in the SAML response for the service provider to validate the signature. It must use the SHA-256 algorithm. |
+| `certificate`<br/>_string_                                         | The certificate sent in the SAML response for the service provider to validate the signature. It must use the SHA-256 algorithm. |
 | `privateKey`<br/>_string_                                          | The private key used to sign the SAML request. It must be an RSA key of 2048 bits.                                               |
 | `organization`<br/>_[Organization](#administration-organizations)_ | The organization tied to the SAML settings.                                                                                      |
 
@@ -173,7 +173,7 @@ Updates a specific SAML settings
 | Required                                                           | &nbsp;                                                                                                                           |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
 | `id`<br/>_UUID_                                                    | The id of the SAML setting.                                                                                                      |
-| `certificate`<br/>_string_                                         | The certificate send in the SAML response for the service provider to validate the signature. It must use the SHA-256 algorithm. |
+| `certificate`<br/>_string_                                         | The certificate sent in the SAML response for the service provider to validate the signature. It must use the SHA-256 algorithm. |
 | `privateKey`<br/>_string_                                          | The private key used to sign the SAML request. It must be an RSA key of 2048 bits.                                               |
 | `organization`<br/>_[Organization](#administration-organizations)_ | The organization tied to the SAML settings.                                                                                      |
 
