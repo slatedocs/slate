@@ -10,6 +10,7 @@ __appliance_part_type_replacement_linker_id__ <br><font color="DarkGray">_int_</
 __<a href="/#appliance-type">appliance_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#existing-appliance-part-type">existing_appliance_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
 __<a href="/#replacement-appliance-part-type">replacement_appliance_part_type_id</a>__ <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,foreign-key)</font> | 
+__max_part_count__  <br><font color="DarkGray">_int_</font> <font color="Crimson">(not-null,default=1)</font>| Count of appliance_part_types for each Appliance
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
@@ -30,6 +31,7 @@ Relationship | Description
     url = "https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker"
     data = json.dumps({
 		"appliance_type_id": 1,
+        "max_part_count": 2,
 		"existing_appliance_part_type_id": 1,
 		"replacement_appliance_part_type_id": 1,
 		})
@@ -45,6 +47,7 @@ Relationship | Description
     >>> {
 		"appliance_part_type_replacement_linker_id": 1
 		"appliance_type_id": 1,
+        "max_part_count": 2,
 		"existing_appliance_part_type_id": 1,
 		"replacement_appliance_part_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -68,6 +71,7 @@ Relationship | Description
     >>> {
 		"appliance_part_type_replacement_linker_id": 1
 		"appliance_type_id": 1,
+        "max_part_count": 2,
 		"existing_appliance_part_type_id": 1,
 		"replacement_appliance_part_type_id": 1,
 		"created_at": "2000-01-01 00:00:00"
@@ -108,6 +112,7 @@ Relationship | Description
     url = 'https://smartapi.bboxx.co.uk/v1/appliance_part_type_replacement_linker/1'
     data = json.dumps({
 		"appliance_type_id": 2,
+        "max_part_count": 4,
 		"existing_appliance_part_type_id": 2,
 		"replacement_appliance_part_type_id": 2,
 		})
@@ -122,6 +127,7 @@ Relationship | Description
     >>> {
 		"appliance_part_type_replacement_linker_id": 1
 		"appliance_type_id": 2,
+        "max_part_count": 4,
 		"existing_appliance_part_type_id": 2,
 		"replacement_appliance_part_type_id": 2,
 		"created_at": "2000-01-01 00:00:00"
