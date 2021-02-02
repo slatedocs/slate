@@ -2,9 +2,11 @@
 
 > ¡Te damos la bienvenida!
 
-Extrae información, crea reportes y analiza estadísticas para descubrir dónde y cuánto dinero están invirtiendo las marcas en sus campañas digitales. **Clientela es la mejor forma de interactuar con Admetricks** de manera automática.
+Extrae información, crea reportes y analiza estadísticas para descubrir dónde y cuánto dinero están invirtiendo las marcas en sus campañas digitales. **Clientela es la mejor forma de interactuar con [Admetricks](https://admetricks.com)** de manera automática.
 
 El API de Clientela se organiza alredededor de <a href="https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional" target="_blank">REST</a>. Implementa URLs orientadas a recursos y entrega respuestas en <a href="https://www.json.org/json-es.html" target="_blank">JSON</a> a través de códigos de estado y verbos HTTP.
+
+**URL base:** todas tus consultas deben ser enviadas a <a href="https://clientela.admetricks.com" target="_blank">https://clientela.admetricks.com</a>
 
 <%= partial "includes/token.html.md" %>
 
@@ -31,4 +33,4 @@ Un límite de uso (del inglés *rate limit*) es el **número de llamadas** a la 
 
 **El API de Clientela está sujeto a límites de tarifas**. Cada usuario puede realizar **máximo 1000 consultas a la API por día y 120 consultas por minuto**. Si cualquiera de los dos límites es excedido, podrá volver a realizar consultas una vez termine el periodo sobrepasado.
 
-**URL base:** todas tus peticiones deben ser enviadas a <a href="https://clientela.admetricks.com" target="_blank">https://clientela.admetricks.com</a>
+En el caso de alcanzar el límite de consultas por día o por minuto, Clientela responderá con el código `429 Too Many Requests`.

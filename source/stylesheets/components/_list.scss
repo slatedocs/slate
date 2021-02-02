@@ -1,0 +1,35 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  &.list--request-params {
+    $dividerColor: #e3e8ee;
+    > li {
+      border-bottom: 1px solid $dividerColor;
+      padding: 10px 8px;
+      background: white;
+    }
+    .param {
+      &__name {
+        font-size: 1.05rem;
+      }
+      &__type {
+        font-size: 0.85rem;
+      }
+      &__required {
+        color: lightpink;
+        font-size: 1.5em;
+      }
+      &__child {
+        &2 {
+          padding-left: 1em;
+          border-left: 5px solid $dividerColor;
+        }
+        &3 {
+          padding-left: 1.5em;
+          border-left: 10px solid $dividerColor;
+        }
+      }
+    }
+  }
+}

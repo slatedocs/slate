@@ -1,32 +1,408 @@
-## Exportar todos los datos
+<!-- START OP -->
 
-Puedes utilizar el siguiente reporte para exportar todos los datos de un mercado.
-
-### Crear Reporte de Mercado
-`POST /market-report/data/v3/`
+### Exportar todos los datos
 
 <%= partial "includes/snippets/market-report-v3.md" %>
 
+<a id="opIdExportar todos los datos"></a>
+
+`POST /market-report/data/v3/`
+
+Puedes utilizar el siguiente reporte para exportar todos los datos de un mercado
+
 **Parámetros**
 
-|Nombre|En|Tipo|Requerido|
-|---|---|---|---|---|
-|ad_type|query|integer|true|none|
-|country|query|integer|true|none|
-|day|query|string(date)|true|Formato: `YYYY-MM-DD`|
-|device|query|integer|true|none|
+<ul class="list--request-params">
 
+  <li class="param__childundefined">
+    <strong class="param__name">ad_type</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__childundefined">
+    <strong class="param__name">country</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__childundefined">
+    <strong class="param__name">day</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__childundefined">
+    <strong class="param__name">device</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
 
 **Respuestas**
 
-|Estado|Resultado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[MarketReportResponse](#schemamarketreportresponse)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child1">
+    <strong class="param__name">ad_link</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Anuncio</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">ad_sizes</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Tamaños de publicidad</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">ad_type</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Tipo de publicidad (nombre)</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">ad_type_id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Tipo de publicidad</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">advertiser</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Advertiser</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">brand</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Nombre de un avisador o marca</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">brand_id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador de un avisador o marca</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">campaign_tags</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Etiquetas que se generan a partir del contenido de las campañas</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">campaign_id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador de campaña</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">campaign_landing_page</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Link de campaña</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">campaign_name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre de campaña</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">country</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">País (nombre)</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">country_id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">País (ID)</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">date</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Fecha</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">device</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Tipo de dispositivo</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">duration</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Largos de publicidades</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">hosted_by</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Adservers</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">industry</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Industria (nombre)</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">industry_id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Industria (ID)</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">metrics_count</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Cantidad de anuncios</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">metrics_impact</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Impacto de campaña, equivalente a valor</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">metrics_valuation</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Valorización en pesos chilenos</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">position</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Identifica el porcentaje de los ads de la campaña que aparecieron en el primer, segundo o tercer scroll</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">publisher</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Publisher de sitio web</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">screenshot_link</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Pantallazo de captura</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">skip</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+    <span class="param__desc">La publicidad bloquea la pantalla</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">sold_bys</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Quién la vendió</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">web_report</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Link a la campaña en Admetricks</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">website</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Nombre de medio o soporte</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">website_id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador de medio o soporte</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">website_sections</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+    <span class="param__desc">Secciones de website</span>
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  </br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  </br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  </br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+</br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atendida.
+  </br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->

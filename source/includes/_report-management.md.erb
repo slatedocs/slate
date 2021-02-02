@@ -1,6 +1,10 @@
 ## Mis Reportes
 
+<!-- START OP -->
+
 ### Obtener todos tus Reportes
+
+<!-- Insert code snippets here -->
 
 <a id="opIdObtener todos tus Reportes"></a>
 
@@ -12,26 +16,247 @@ Entrega una lista de los reportes asociados a tu usuario.
 
 **Respuestas**
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child0">
+    <strong class="param__name">*Body*</strong>
+    <small class="param__type">array</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">query</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">filter</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">period</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">daily_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_memories</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_date</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_status</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates_delivery_day</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">report_type</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  </br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  </br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  </br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+</br>
+</p>
+
+</details>
 
 
-**Respuestas**
+<!--LIST VALUES-->
 
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|Reportes|[[Report](#schemareport)]|true|none|Reportes encontrados|
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atendida.
+  </br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->
+
+<!-- START OP -->
 
 ### Guardar un Reporte
+
+<!-- Insert code snippets here -->
 
 <a id="opIdGuardar un Reporte"></a>
 
@@ -43,32 +268,255 @@ Permite suscribirse a un reporte en específico y obtener actualizaciones por co
 
 **Parámetros**
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|report|body|[SaveReportRequest](#schemasavereportrequest)|true|Información del reporte|
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">report</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Información del reporte</span>
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
 
 **Respuestas**
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[Report](#schemareport)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">query</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">filter</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">period</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">daily_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_memories</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_date</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_status</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates_delivery_day</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">report_type</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  </br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  </br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  </br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+</br>
+</p>
+
+</details>
 
 
-**Respuestas**
+<!--LIST VALUES-->
 
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|Reporte|[Report](#schemareport)|true|none|Información del reporte|
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atendida.
+  </br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->
+
+<!-- START OP -->
 
 ### Obtener un Reporte
+
+<!-- Insert code snippets here -->
 
 <a id="opIdObtener un Reporte"></a>
 
@@ -80,32 +528,255 @@ Entrega uno de tus reportes.
 
 **Parámetros**
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|id|path|integer|true|Identificador del reporte a buscar|
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del reporte a buscar</span>
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
 
 **Respuestas**
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[Report](#schemareport)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">query</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">filter</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">period</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">daily_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_memories</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_date</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_status</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates_delivery_day</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">report_type</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  </br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  </br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  </br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+</br>
+</p>
+
+</details>
 
 
-**Respuestas**
+<!--LIST VALUES-->
 
-|Nombre|Tipo|Requerido|Restricciones|Descripción|
-|---|---|---|---|---|
-|Reporte|[Report](#schemareport)|true|none|Información del reporte|
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atendida.
+  </br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->
+
+<!-- START OP -->
 
 ### Editar un Reporte
+
+<!-- Insert code snippets here -->
 
 <a id="opIdEditar un Reporte"></a>
 
@@ -117,26 +788,38 @@ Modifica uno de tus reportes ya existentes.
 
 **Parámetros**
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|id|path|integer|true|Identificador del reporte a modificar|
-|report|body|[SaveReportRequest](#schemasavereportrequest)|true|Nueva información del reporte|
+<ul class="list--request-params">
 
-**Respuestas**
+  <li class="param__childundefined">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del reporte a modificar</span>
+  </li>
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+  <li class="param__childundefined">
+    <strong class="param__name">report</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Nueva información del reporte</span>
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->
+
+<!-- START OP -->
 
 ### Eliminar un Reporte
+
+<!-- Insert code snippets here -->
 
 <a id="opIdEliminar un Reporte"></a>
 
@@ -148,19 +831,246 @@ Elimina un Reporte (por identificador).
 
 **Parámetros**
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|id|path|integer|true|Identificador del reporte a eliminar|
+<ul class="list--request-params">
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[Report](#schemareport)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+  <li class="param__childundefined">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del reporte a eliminar</span>
+  </li>
 
+</ul>
+
+<!--LIST VALUES-->
+
+**Respuestas**
+
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">query</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">filter</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">period</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">daily_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_updates</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">monthly_memories</strong>
+    <small class="param__type">boolean</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_date</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_delivered_status</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">weekly_updates_delivery_day</strong>
+    <small class="param__type">integer</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">report_type</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  </br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  </br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  </br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+</br>
+</p>
+
+</details>
+
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atendida.
+  </br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->

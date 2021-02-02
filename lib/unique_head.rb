@@ -21,4 +21,9 @@ class UniqueHeadCounter < Middleman::Renderers::MiddlemanRedcarpetHTML
     end
     return "<h#{header_level} id='#{friendly_text}'>#{text}</h#{header_level}>"
   end
+  def preprocess(full_document)
+    full_document = super(full_document) if defined?(super)
+    full_document = ERB.new(full_document).result(binding)
+    return full_document
+  end
 end

@@ -55,6 +55,14 @@ body {
   width: 20px;
 }
 
+span.tag {
+  background: blue;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
 
