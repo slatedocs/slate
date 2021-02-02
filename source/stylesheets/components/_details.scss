@@ -3,6 +3,8 @@ details {
   padding: 0.2em 1em;
   summary {
     padding: 1em;
+    outline: none;
+    cursor: pointer;
   }
   &[open] summary ~ * {
     animation: open 100ms;

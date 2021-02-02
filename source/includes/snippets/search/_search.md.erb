@@ -1,188 +1,1286 @@
 ## Búsqueda
 
-Con estas API podrás obtener el detalle de los recursos que, posteriormente,
+Con estas APIs podrás obtener el detalle de los recursos que, posteriormente,
 podrás utilizar en los filtros de tus reportes para refinarlos.
+
+<!-- START OP -->
 
 ### Obtener anunciantes
 
-`GET /advertiser/`
-
 <%= partial "includes/snippets/search/advertiser.md" %>
 
-Entrega una lista de marcas anunciantes filtradas por país.
+<a id="opIdObtener anunciantes"></a>
+
+`GET /advertiser/`
+
+List Advertiser filtered by countries.
 
 **Parámetros**
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">countries</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
 
 **Respuestas**
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+<details>
+<summary>
 
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child0">
+    <strong class="param__name">*Body*</strong>
+    <small class="param__type">array</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del objeto</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre del objeto</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">brands</strong>
+    <small class="param__type">array</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del objeto</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre del objeto</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">last_seen</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  <br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  <br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  <br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+<br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atentida.
+  <br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->
+
+<!-- START OP -->
 
 ### Obtener marcas
 
-`GET /brand/`
-
 <%= partial "includes/snippets/search/brand.md" %>
+
+<a id="opIdObtener marcas"></a>
+
+`GET /brand/`
 
 Entrega una lista de marcas filtradas (opcionalmente) por nombre y país.
 
 **Parámetros**
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
-|name_autocomplete|query|string|true|none|
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">countries</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__childundefined">
+    <strong class="param__name">name_autocomplete</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
 
 **Respuestas**
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+<details>
+<summary>
 
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child0">
+    <strong class="param__name">*Body*</strong>
+    <small class="param__type">array</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del objeto</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre del objeto</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_seen</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  <br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  <br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  <br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+<br>
+</p>
+
+</details>
+
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atentida.
+  <br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->
 
-
-### Obtener industrias
-
-`GET /industry/`
-
-<%= partial "includes/snippets/search/industry.md" %>
-
-Entrega una lista de industrias filtradas por nombre.
-
-**Parámetros**
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
-|name_autocomplete|query|string|true|none|
-
-**Respuestas**
-
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
-
-
-<aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
-</aside>
-
-### Obtener editores
-
-`GET /publisher/`
-
-<%= partial "includes/snippets/search/publisher.md" %>
-
-Entrega una lista de editores filtrados por país.
-
-**Parámetros**
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
-
-**Respuestas**
-
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
-
-
-<aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
-</aside>
-
-### Obtener sitios web
-
-`GET /website/`
-
-<%= partial "includes/snippets/search/website.md" %>
-
-Entrega una lista de sitios web filtrados (opcionalmente) por nombre y país.
-
-**Parámetros**
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|countries|query|string|false|none|
-|domain_autocomplete|query|string|true|none|
-
-**Respuestas**
-
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
-
-
-<aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
-</aside>
-
-
+<!-- START OP -->
 
 ### Obtener campañas
+
+<%= partial "includes/snippets/search/campaigns.md" %>
 
 <a id="opIdObtener campañas"></a>
 
 `POST /campaigns/`
 
-<%= partial "includes/snippets/search/campaigns.md" %>
-
 Entrega una lista de campañas filtradas por industria y un término de búsqueda.
 
 **Parámetros**
 
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|CampaignsRequest|body|[CampaignsRequest](#schemacampaignsrequest)|true|Filtrar campañas|
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">CampaignsRequest</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Filtrar campañas</span>
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
 
 **Respuestas**
 
-|Estado|Significado|Descripción|Modelo|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|none|[CampaignsReportResponse](#schemacampaignsreportresponse)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|none|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|none|Inline|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|none|Inline|
-|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|none|Inline|
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child1">
+    <strong class="param__name">data</strong>
+    <small class="param__type">array</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Información del reporte de Campañas</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">ad_types</strong>
+    <small class="param__type">array</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del objeto</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre del objeto</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">brand</strong>
+    <small class="param__type">object</small>
+
+    <br />
+    <span class="param__desc">Marca de la campaña</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del objeto</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre del objeto</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">countries</strong>
+    <small class="param__type">array</small>
+
+    <br />
+    <span class="param__desc">Países donde se anuncia</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">date_range</strong>
+    <small class="param__type">object</small>
+
+    <br />
+    <span class="param__desc">Fecha de inicio y fin</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">start</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Inicio del rango (formato `YYYY-MM-DD hh:mm:ss`)</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">end</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Fin del rango (formato `YYYY-MM-DD hh:mm:ss`)</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">description</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Descripción de la campaña</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">devices</strong>
+    <small class="param__type">array</small>
+
+    <br />
+    <span class="param__desc">Dispositivos donde se visualiza</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">id</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador de la campaña</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">industry</strong>
+    <small class="param__type">object</small>
+
+    <br />
+    <span class="param__desc">Industria de la campaña</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del objeto</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre del objeto</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">landing_page</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">URL de la página de landing</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">preview</strong>
+    <small class="param__type">object</small>
+
+    <br />
+    <span class="param__desc">Imagen de la vista previa de la campaña</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">ad_file</strong>
+    <small class="param__type">object</small>
+
+    <br />
+    <span class="param__desc">URL de descarga</span>
+  </li>
+
+  <li class="param__child4">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">URL del archivo (descargable)</span>
+  </li>
+
+  <li class="param__child3">
+    <strong class="param__name">ad_measurements</strong>
+    <small class="param__type">object</small>
+
+    <br />
+    <span class="param__desc">Medidas del anuncio</span>
+  </li>
+
+  <li class="param__child4">
+    <strong class="param__name">height</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Alto del anuncio en píxeles</span>
+  </li>
+
+  <li class="param__child4">
+    <strong class="param__name">width</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Ancho del anuncio en píxeles</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">title</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Título de la campaña</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">meta</strong>
+    <small class="param__type">object</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Metadata del Reporte</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">start</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Inicio del rango (formato `YYYY-MM-DD hh:mm:ss`)</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">end</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Fin del rango (formato `YYYY-MM-DD hh:mm:ss`)</span>
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  <br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  <br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  <br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+<br>
+</p>
+
+</details>
 
 
-**Respuestas**
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atentida.
+  <br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
 
 <aside class="warning">
-  Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
 </aside>
+<!-- END OP -->
+
+<!-- START OP -->
+
+### Obtener industrias
+
+<%= partial "includes/snippets/search/industry.md" %>
+
+<a id="opIdObtener industrias"></a>
+
+`GET /industry/`
+
+Entrega una lista de industrias filtradas por nombre.
+
+**Parámetros**
+
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">countries</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__childundefined">
+    <strong class="param__name">name_autocomplete</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
+
+**Respuestas**
+
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child0">
+    <strong class="param__name">*Body*</strong>
+    <small class="param__type">array</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">code</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  <br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  <br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  <br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+<br>
+</p>
+
+</details>
+
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atentida.
+  <br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<aside class="warning">
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+<!-- END OP -->
+
+<!-- START OP -->
+
+### Obtener editores
+
+<%= partial "includes/snippets/search/publisher.md" %>
+
+<a id="opIdObtener editores"></a>
+
+`GET /publisher/`
+
+Entrega una lista de editores filtrados por país.
+
+**Parámetros**
+
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">countries</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
+
+**Respuestas**
+
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child0">
+    <strong class="param__name">*Body*</strong>
+    <small class="param__type">array</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">integer</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador del objeto</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">name</strong>
+    <small class="param__type">string</small>
+
+    <br />
+    <span class="param__desc">Nombre del objeto</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">websites</strong>
+    <small class="param__type">array</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Sitios web agrupados por editor</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">id</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador de sitio web</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">domain</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Dominio del sitio web</span>
+  </li>
+
+  <li class="param__child2">
+    <strong class="param__name">last_seen</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  <br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  <br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  <br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+<br>
+</p>
+
+</details>
+
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atentida.
+  <br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<aside class="warning">
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+<!-- END OP -->
+<!-- START OP -->
+
+### Obtener sitios web
+
+<%= partial "includes/snippets/search/website.md" %>
+
+<a id="opIdObtener sitios web"></a>
+
+`GET /website/`
+
+Entrega una lista de sitios web filtrados (opcionalmente) por nombre y país.
+
+**Parámetros**
+
+<ul class="list--request-params">
+
+  <li class="param__childundefined">
+    <strong class="param__name">countries</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__childundefined">
+    <strong class="param__name">domain_autocomplete</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+
+  </li>
+
+</ul>
+
+<!--LIST VALUES-->
+
+**Respuestas**
+
+<details>
+<summary>
+
+    <strong>200 OK</strong>
+
+</summary>
+
+<ul class="list--request-params">
+
+  <li class="param__child0">
+    <strong class="param__name">*Body*</strong>
+    <small class="param__type">array</small>
+
+    <br />
+
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">id</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Identificador de sitio web</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">domain</strong>
+    <small class="param__type">string</small>
+    <span class="param__required">*</span>
+    <br />
+    <span class="param__desc">Dominio del sitio web</span>
+  </li>
+
+  <li class="param__child1">
+    <strong class="param__name">last_seen</strong>
+    <small class="param__type">string</small>
+
+    <br />
+
+  </li>
+
+</ul>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>400 Bad Request</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición contiene filtros inválidos o parámetros faltantes.
+  <br>
+  <strong>Solución:</strong> valida que todos los parámetros sean correctos.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>401 Unauthorized</strong>
+
+</summary>
+
+<p class="card">
+  No estás autorizado para realizar esta petición. Tu token puede estar vencido o ausente
+  <br>
+  <span>
+    <strong>Solución:</strong> <a href="#configura-tu-token">configura tu token</a>.
+  </span>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>409 Conflict</strong>
+
+</summary>
+
+<p class="card">
+  No se encontraron datos para los filtros aplicados.
+  <br>
+  <strong>Solución:</strong> modifica los filtros de tu reporte (ejemplo: amplia el rango de fechas).
+<br>
+</p>
+
+</details>
+
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>429 Too Many Requests</strong>
+
+</summary>
+
+<p class="card">
+  Has alcanzado el <a href="#limite-de-uso">límite de peticiones</a> por día (1000) o por minuto (120).
+  <br>
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<details>
+<summary>
+
+    <strong>500 Internal Server Error</strong>
+
+</summary>
+
+<p class="card">
+  Tu petición no puede ser atentida.
+  <br>
+  <strong>Solución:</strong> comunícate con tu ejecutivo de Admetricks.
+</p>
+
+</details>
+
+<!--LIST VALUES-->
+
+<aside class="warning">
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+<!-- END OP -->
