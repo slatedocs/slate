@@ -8,14 +8,16 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v1/clients-and-locations/clients', [	   
-    'name'                 => 'Le Bernardin',               
-    'company-url'          => 'le-bernardin.com'
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v1/clients-and-locations/clients', [
+    'name'        => 'Le Bernardin',
+    'company-url' => 'le-bernardin.com'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -74,14 +76,17 @@ Update an existing client. Only supply values you want to update. The rest will 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('/v1/clients-and-locations/clients/<client_id>', [
-    'name'                 => 'Le Bernardin',               
-    'company-url'          => 'le-bernardin.com',
+$clientId = 1;
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->put('/v1/clients-and-locations/clients/' . $clientId, [
+    'name'        => 'Le Bernardin',
+    'company-url' => 'le-bernardin.com'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -137,13 +142,16 @@ reference-number | An arbitrary unique reference you can use to identify a clien
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $clientId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('/v1/clients-and-locations/clients/' . $clientId);
-if (!empty($result['success'])) {
-	echo 'Successfully deleted client.' . PHP_EOL;
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->delete('/v1/clients-and-locations/clients/' . $clientId);
+var_dump($response->getResult());
+if ($response->isSuccess()) {
+    echo 'Successfully deleted client.' . PHP_EOL;
 }
 ```
 
@@ -186,11 +194,14 @@ client-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
+
 $clientId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$client = $api->get('/v1/clients-and-locations/clients/'. $clientId);
-print_r($client);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v1/clients-and-locations/clients/' . $clientId);
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -238,13 +249,15 @@ client-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v1/clients-and-locations/clients/search', [   
-    'q' => 'BrightLocal'    
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v1/clients-and-locations/clients/search', [
+    'q' => 'BrightLocal'
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell

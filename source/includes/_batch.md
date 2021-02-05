@@ -15,15 +15,14 @@ A batch acts like a container for API requests. It allows you to group requests 
 
 ```php
 <?php
-use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
+require '../../vendor/autoload.php';
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-$batchId = $batchApi->create();
-if ($batchId) {
-    printf('Created batch ID %d%s', $batchId, PHP_EOL);
-}
+use BrightLocal\Api;
+
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+// Step: Create a new batch
+$batch = $api->createBatch();
+printf('Created batch ID %d%s', $batch->getId(), PHP_EOL);
 ```
 
 ```shell
@@ -97,15 +96,15 @@ callback | Callback URL. When a batch fails or completes the batch results will 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-if ($batchApi->commit($batchId)) {
-    echo 'Committed batch successfully.' . PHP_EOL;
-}
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$batch = $api->getBatch($batchId);
+$batch->commit();
+printf('Committed batch successfully.%s', PHP_EOL);
 ```
 
 ```shell
@@ -171,13 +170,14 @@ batch-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-print_r($batchApi->get_results($batchId));
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$batch = $api->getBatch($batchId);
+print_r($batch->getResults());
 ```
 
 ```shell
@@ -266,15 +266,15 @@ batch-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-if ($batchApi->delete($batchId)) {
-    echo 'Successfully deleted batch.' . PHP_EOL;
-}
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$batch = $api->getBatch($batchId);
+$batch->delete();
+printf('Successfully deleted batch %d%s', $batchId, PHP_EOL);
 ```
 
 ```shell
@@ -327,15 +327,15 @@ batch-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
 
 $batchId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-if ($batchApi->stop($batchId)) {
-    echo 'Successfully stopped batch.' . PHP_EOL;
-}
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$batch = $api->getBatch($batchId);
+$batch->stop();
+echo 'Successfully stopped batch' . PHP_EOL;
 ```
 
 ```shell

@@ -13,11 +13,17 @@ We now have an API method (shown below) that enables you to retrieve a list of d
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->get('v1/directories/all');
-print_r($success);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$responseForAll = $api->get('v1/directories/all');
+print_r($responseForAll->getResult());
+
+$country = 'USA';
+$responseByCountry = $api->get('v1/directories/' . $country);
+print_r($responseByCountry->getResult());
 ```
 
 ```shell

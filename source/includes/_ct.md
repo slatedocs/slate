@@ -8,24 +8,26 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/ct/add', [
-    'location-id'	=> 1,
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/ct/add', [
+    'location-id'       => 1,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
-    'address1'          => '155 West 51st Street',
-    'address2'          => 'The Equitable Bldg',
+    'address-1'         => '155 West 51st Street',
+    'address-2'         => 'The Equitable Bldg',
     'business-location' => 'New York, NY',
     'postcode'          => '10020',
     'phone'             => '+1 212-554-1515',
     'website'           => 'le-bernardin.com',
     'business-type'     => 'Restaurant',
     'state-code'        => 'NY',
-    'primary-location' => '10020',
+    'primary-location'  => '10020'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -123,11 +125,13 @@ primary-location | <span class="label label-required">Required</span> We use ‘
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/ct/update', [
-    'location-id'	=> 1,
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/ct/update', [
+    'location-id'       => 1,
     'report-id'         => 682,
     'report-name'       => 'Le Bernardin',
     'business-name'     => 'Le Bernardin',
@@ -137,9 +141,9 @@ $success = $api->post('/v2/ct/update', [
     'phone'             => '+1 212-554-1515',
     'website'           => 'le-bernardin.com',
     'business-type'     => 'Restaurant',
-    'state-code'        => 'NY'	
+    'state-code'        => 'NY'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -235,13 +239,15 @@ is-public | Publish reports on a white label URL. Yes or No.
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/ct/get', [
-	'report-id' => 682 
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/ct/get', [
+    'report-id' => 682
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -333,13 +339,15 @@ report-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/ct/run', [
-	'report-id' => 682
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/ct/run', [
+    'report-id' => 682
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -391,16 +399,18 @@ report-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/ct/delete', [
-	'report-id' => 682
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/ct/delete', [
+    'report-id' => 682
 ]);
-if($success) {
-	echo 'Successfully deleted report.' . PHP_EOL;
+var_dump($response->getResult());
+if ($response->isSuccess()) {
+    echo 'Successfully deleted report.' . PHP_EOL;
 }
-print_r($success);
 ```
 
 ```shell
@@ -454,11 +464,13 @@ report-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/ct/get-all');
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/ct/get-all');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -599,13 +611,15 @@ location-id |
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/ct/get-results', [
-	'report-id' => 2457
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/ct/get-results', [
+    'report-id' => 2457
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell

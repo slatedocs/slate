@@ -8,105 +8,118 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$briefDescription = 'Born in Paris in 1972 by sibling duo Maguy and Gilbert Le Coze, Le Bernardin only served fish: Fresh, simple and prepared with respect. After receiving its first Michelin star in 1976, and two more in 1980, the Le Coze’s set to open Le Bernardin in New York in 1986.';
-$fullDescription = 'The restaurant has held three stars from the Michelin Guide since its 2005 New York launch and currently ranks 24 on the World’s 50 Best Restaurants list. The New York Zagat Guide has recognized Le Bernardin as top rated in the category of “Best Food” for the last nine consecutive years, and in 2015 was rated by the guide as New York City’s top restaurant for food and service.  Le Bernardin has earned seven James Beard Awards since 1998 including “Outstanding Restaurant of the Year,” “Top Chef in New York City,” “Outstanding Service,” “Outstanding Chef in the United States,” “Outstanding Pastry Chef,” “Outstanding Wine Service,” and “Best Restaurant Design” in 2012. 
-Most recently, the Foundation named Maguy Le Coze as Outstanding.';
+$briefDescription = 'Born in Paris in 1972 by sibling duo Maguy and Gilbert Le Coze, Le Bernardin only served fish: 
+Fresh, simple and prepared with respect.';
+$fullDescription = 'The restaurant has held three stars from the Michelin Guide since its 2005 New York launch and 
+currently ranks 24 on the World’s 50 Best Restaurants list. The New York Zagat Guide has recognized Le Bernardin as top rated 
+in the category of “Best Food” for the last nine consecutive years, and in 2015 was rated by the guide as New York 
+City’s top restaurant for food and service. Le Bernardin has earned seven James Beard Awards since 1998 including 
+“Outstanding Restaurant of the Year”.';
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v4/cb/create', [
-    'location_id'		 => 1,
-    'campaign_name'              => 'Le Bernardin Citation Builder',
-    'business_name'              => 'Le Bernardin',
-    'website_address'            => 'le-bernardin.com',
-    'campaign_country'           => 'USA',
-    'campaign_city'              => 'New York',
-    'campaign_state'             => 'NY',
-    'business_category_id'       => 605,
-    'business_categories'        => '["restaurant", "cafe"]',
-    'address1'                   => '155 West 51st Street',
-    'address2'                   => '',
-    'city'                       => 'New York',
-    'region'                     => 'New York, USA',
-    'postcode'                   => '10019',
-    'contact_name'               => 'Bloggs',
-    'contact_firstname'          => 'Joe',
-    'contact_telephone'          => '+1 212-554-1515',
-    'contact_email'              => 'joe.bloggs@test.com',
-    'brief_description'          => $briefDescription,
-    'full_description'           => $fullDescription,
-    'employees_number'           => 35,
-    'formation_date'             => '11-2008',
-    'opening_hours' => [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v4/cb/create', [
+    'location_id'            => 1,
+    'campaign_name'          => 'Le Bernardin',
+    'business_name'          => 'Le Bernardin',
+    'website_address'        => 'le-bernardin.com',
+    'campaign_country'       => 'USA',
+    'campaign_city'          => 'New York',
+    'campaign_state'         => 'NY',
+    'business_category_id'   => 605,
+    'business_categories'    => '["restaurant", "cafe"]',
+    'address1'               => '155 West 51st Street',
+    'address2'               => '',
+    'city'                   => 'New York',
+    'region'                 => 'New York, USA',
+    'postcode'               => '10019',
+    'contact_name'           => 'Bloggs',
+    'contact_firstname'      => 'Joe',
+    'contact_telephone'      => '+1 212-554-1515',
+    'contact_email'          => 'joe.bloggs@test.com',
+    'brief_description'      => $briefDescription,
+    'full_description'       => $fullDescription,
+    'employees_number'       => 35,
+    'formation_date'         => '01-2021',
+    'opening_hours'          => [
         'regular' => [
             'apply_to_all' => false,
-            'mon' => [
+            'mon'          => [
                 'status' => 'open',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '18:00',
-                    ]
-                ],           
+                        'end'   => '18:00',
+                    ],
+                ],
             ],
-            'tue' => [
+            'tue'          => [
                 'status' => 'split',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '12:00',
+                        'end'   => '12:00',
                     ],
                     [
                         'start' => '13:00',
-                        'end' => '18:00',
-                    ]
-                ],                  
+                        'end'   => '18:00',
+                    ],
+                ],
             ],
-            'wed' => [
+            'wed'          => [
                 'status' => '24hrs',
-                'hours' => [],           
+                'hours'  => [],
             ],
-            'thu' => [
+            'thu'          => [
                 'status' => 'open',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '18:00',
-                    ]
-                ],           
+                        'end'   => '18:00',
+                    ],
+                ],
             ],
-            'fri' => [
+            'fri'          => [
                 'status' => 'open',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '18:00',
-                    ]
-                ],           
+                        'end'   => '18:00',
+                    ],
+                ],
             ],
-            'sat' => [
+            'sat'          => [
                 'status' => 'closed',
-                'hours' => [
-                    []
-                ],           
+                'hours'  => [
+                    [],
+                ],
             ],
-            'sun' => [
+            'sun'          => [
                 'status' => 'closed',
-                'hours' => [],           
+                'hours'  => [],
             ],
         ],
         'special' => [
             [
-                'date' => '01-01-2020',
+                'date'   => '2021-01-27',
                 'status' => 'closed',
-                'hours' => [],
+                'hours'  => [],
             ],
         ],
-    ], 
-    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":"","pinterest":"https:\/\/www.pinterest.co.uk\/brightlocal\/"}'
+    ],
+    'social_profile_links'   => [
+        'facebook'  => 'https://en-gb.facebook.com/brightlocal/',
+        'twitter'   => 'https://twitter.com/bright_local',
+        'linkedin'  => 'https://uk.linkedin.com/company/bright-local-seo',
+        'instagram' => '',
+        'pinterest' => 'https://www.pinterest.co.uk/brightlocal/',
+    ],
+    'white_label_profile_id' => 12
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -268,35 +281,41 @@ white_label_profile_id | <span class="label label-required">Required</span> Id o
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $campaignId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('/v4/cb/' .$campaignId, [
-    'location_id'		 => 1,
-    'campaign_name'              => 'Le Bernardin Citation Builder',
-    'business_name'              => 'Le Bernardin',
-    'website_address'            => 'le-bernardin.com',
-    'campaign_country'           => 'USA',
-    'campaign_city'              => 'New York',
-    'campaign_state'             => 'NY',
-    'business_category_id'       => 605,
-    'business_categories'        => '["restaurant", "cafe"]',
-    'address1'                   => '155 West 51st Street',
-    'address2'                   => '',
-    'city'                       => 'New York',
-    'postcode'                   => '10019',
-    'contact_name'               => 'Bloggs',
-    'contact_firstname'          => 'Joe',
-    'contact_telephone'          => '+1 212-554-1515',
-    'contact_email'              => 'joe.bloggs@test.com',	
-    'payment_methods'   => [
-            "visa",
-            "paypal"
-        ],
-    'social_profile_links'       => '{"facebook":"https:\/\/en-gb.facebook.com\/brightlocal\/","twitter":"https:\/\/twitter.com\/bright_local","linkedin":"https:\/\/uk.linkedin.com\/company\/bright-local-seo","instagram":"","pinterest":"https:\/\/www.pinterest.co.uk\/brightlocal\/"}'
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->put('/v4/cb/' . $campaignId, [
+    'location_id'          => 1,
+    'campaign_name'        => 'Le Bernardin',
+    'business_name'        => 'Le Bernardin',
+    'website_address'      => 'le-bernardin.com',
+    'campaign_country'     => 'USA',
+    'campaign_city'        => 'New York',
+    'campaign_state'       => 'NY',
+    'business_category_id' => 605,
+    'business_categories'  => '["restaurant", "cafe"]',
+    'address1'             => '155 West 51st Street',
+    'address2'             => '',
+    'city'                 => 'New York',
+    'postcode'             => '10019',
+    'contact_name'         => 'Bloggs',
+    'contact_firstname'    => 'Joe',
+    'contact_telephone'    => '+1 212-554-1515',
+    'contact_email'        => 'joe.bloggs@test.com',
+    'payment_methods'      => [
+        'visa',
+        'paypal',
+    ],
+    'social_profile_links' => [
+        'facebook' => 'https://en-gb.facebook.com/brightlocal/',
+        'twitter'  => 'https://twitter.com/bright_local',
+    ],
 ]);
-print_r($success);
+print_r($response->getResult());
+
 ```
 
 
@@ -442,13 +461,16 @@ white_label_profile_id | <span class="label label-required">Required</span> Id o
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/cb/upload/<campaignId>/<imageType>', [
+$campaignId = 1;
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post("/v2/cb/upload/$campaignId/logo", [
     'file' => fopen('/path/to/image.jpg', 'r')
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -497,13 +519,15 @@ http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/cb/citations', [
-	'campaign_id' => 1 
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/cb/citations', [
+    'campaign-id' => 1
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -582,19 +606,25 @@ campaign-id	| <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/cb/confirm-and-pay', [
-	'campaign_id'       => 1,
-	'package_id'        => 'cb15',
-	'autoselect'        => 'N',
-	'remove-duplicates' => 'Y',
-	'aggregators'       => '["foursquare"]',
-	'citations'         => '["brownbook.net", "bing.com", "manta.com", "yell.com", "accessplace.com", "bizfo.co.uk", "bizwiki.co.uk", "citylocal.co.uk", "cylex-uk.co.uk", "where2go.com", "yelp.co.uk", "scoot.co.uk", "restaurants.co.uk", "opendi.co.uk", "misterwhat.co.uk"]',
-	'notes'             => 'Some very important notes'
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/cb/confirm-and-pay', [
+    'campaign_id'       => 1,
+    'package_id'        => 'cb15',
+    'autoselect'        => 'N',
+    'remove-duplicates' => 'Y',
+    'aggregators'       => json_encode(['foursquare']),
+    'citations'         => json_encode([
+        'brownbook.net', 'bing.com', 'manta.com', 'yell.com', 'accessplace.com', 'bizfo.co.uk',
+        'bizwiki.co.uk', 'citylocal.co.uk', 'cylex-uk.co.uk', 'where2go.com', 'yelp.co.uk', 'scoot.co.uk',
+        'restaurants.co.uk', 'opendi.co.uk', 'misterwhat.co.uk'
+    ]),
+    'notes'             => 'Some very important notes'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -660,11 +690,13 @@ notes | Provide instructions to our submissions team with specifics about how yo
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->post('/v4/cb/get-all');
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/cb/get-all');
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -753,13 +785,15 @@ location-id |
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$campaign = $api->get('/v2/cb/get', [
-	'campaign-id' => 1
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/cb/get', [
+    'campaign-id' => 1
 ]);
-print_r($campaign);
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -1149,11 +1183,13 @@ campaign-id	| <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/cb/credits');
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/cb/credits');
+print_r($response->getResult());
 ```
 
 ```csharp
