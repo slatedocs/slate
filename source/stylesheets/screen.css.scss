@@ -24,6 +24,54 @@ under the License.
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
 
+@font-face {
+  font-family: 'AauxNext-Bold';
+  src: local('AauxNext-Bold'), url(../fonts/AauxNext-Bold.eot); /* IE9 Compat Modes */
+  src: local('AauxNext-Bold'),
+       url(../fonts/AauxNext-Bold.woff) format('woff'), /* Pretty Modern Browsers */
+       url(../fonts/AauxNext-Bold.ttf)  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'AauxNext-Regular';
+  src: local('AauxNext-Regular'), url(../fonts/AauxNext-Regular.eot); /* IE9 Compat Modes */
+  src: local('AauxNext-Regular'),
+       url(../fonts/AauxNext-Regular.woff) format('woff'), /* Pretty Modern Browsers */
+       url(../fonts/AauxNext-Regular.ttf)  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'AauxNext-Light';
+  src: local('AauxNext-Light'), url(../fonts/AauxNext-Light.eot); /* IE9 Compat Modes */
+  src: local('AauxNext-Light'),
+       url(../fonts/AauxNext-Light.woff) format('woff'), /* Pretty Modern Browsers */
+       url(../fonts/AauxNext-Light.ttf)  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'AauxNext-SemiBold';
+  src: local('AauxNext-SemiBold'), url(../fonts/AauxNext-SemiBold.eot); /* IE9 Compat Modes */
+  src: local('AauxNext-SemiBold'),
+       url(../fonts/AauxNext-SemiBold.woff) format('woff'), /* Pretty Modern Browsers */
+       url(../fonts/AauxNext-SemiBold.ttf)  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Tungsten-Medium';
+  src: local('Tungsten-Medium'), url(../fonts/Tungsten-Medium.eot); /* IE9 Compat Modes */
+  src: local('Tungsten-Medium'),
+       url(../fonts/Tungsten-Medium.woff) format('woff'), /* Pretty Modern Browsers */
+       url(../fonts/Tungsten-Medium.ttf)  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Tungsten-Semibold';
+  src: local('Tungsten-Semibold'), url(../fonts/Tungsten-Semibold.eot); /* IE9 Compat Modes */
+  src: local('Tungsten-Semibold'),
+       url(../fonts/Tungsten-Semibold.woff) format('woff'), /* Pretty Modern Browsers */
+       url(../fonts/Tungsten-Semibold.ttf)  format('truetype'); /* Safari, Android, iOS */
+}
+
 html, body {
   color: $main-text;
   padding: 0;
@@ -60,7 +108,7 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
+  font-family: 'AauxNext-Semibold';
 
   // language selector for mobile devices
   .lang-selector {
@@ -166,7 +214,6 @@ html, body {
   .toc-list-h2 {
     display: none;
     background-color: $nav-subitem-bg;
-    font-weight: 500;
   }
 
   .toc-h2 {
@@ -228,7 +275,7 @@ html, body {
   z-index: 100;
   color: #000;
   text-decoration: none;
-  font-weight: bold;
+  font-family: 'AauxNext-Semibold';
   opacity: 0.7;
   line-height: 16px;
   img {
@@ -281,7 +328,7 @@ html, body {
   display: flex;
   background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
+  font-family: 'AauxNext-Semibold';
   overflow-x: auto;
   a {
     display: inline;
@@ -433,7 +480,7 @@ html, body {
   }
 
   dt {
-    font-weight: bold;
+    font-family: 'AauxNext-Bold';
   }
 
   dd {

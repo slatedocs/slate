@@ -23,33 +23,33 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
-$examples-bg: #2E3336 !default;
+$nav-bg: #e1e8ed !default;
+$examples-bg: #e1e8ed !default;
 $code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
+$code-annotation-bg: #30404D !default;
+$nav-subitem-bg: #CED9E0 !default;
+$nav-active-bg: #106ba3 !default;
+$nav-active-parent-bg: #CED9E0 !default; // parent links of the current section
 $lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
+$lang-select-bg: #CED9E0 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #F3F7F9 !default;
-$aside-notice-bg: #8fbcd4 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
-$search-notice-bg: #c97a7e !default;
+$aside-notice-bg: #48AFF0 !default;
+$aside-warning-bg: #F29D49 !default;
+$aside-success-bg: #3DCC91 !default;
+$search-notice-bg: #FF7373 !default;
 
 
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
+$nav-text: #4b525f !default;
 $nav-active-text: #fff !default;
-$nav-active-parent-text: #fff !default; // parent links of the current section
-$lang-select-text: #fff !default; // color of unselected language tab text
-$lang-select-active-text: #fff !default; // color of selected language tab text
-$lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
+$nav-active-parent-text: #4b525f !default; // parent links of the current section
+$lang-select-text: #4b525f !default; // color of unselected language tab text
+$lang-select-active-text: #4b525f !default; // color of selected language tab text
+$lang-select-pressed-text: #4b525f !default; // color of language tab text when mouse is pressed
 
 
 // SIZES
@@ -70,13 +70,13 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
+  font-family: 'AauxNext-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
 }
 
 %header-font {
-  @extend %default-font;
-  font-weight: bold;
+  font-family: 'AauxNext-Bold';
+  font-weight: normal;
 }
 
 %code-font {
