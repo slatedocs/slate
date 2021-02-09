@@ -19,7 +19,9 @@ curl "https://cloudmc_endpoint/api/v1/feedback/find?organizationId=fcda8d5a-0276
 ```json
 {
   "data": {
+    "widgetZesettings": "",
     "supportEmail": "support@company.com",
+    "zendeskWidgetKey": "",
     "organization": {
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
@@ -48,7 +50,9 @@ curl "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38ffecfa4
 ```json
 {
   "data": {
+    "widgetZesettings": "",
     "supportEmail": "support@company.com",
+    "zendeskWidgetKey": "",
     "organization": {
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
@@ -68,6 +72,8 @@ Attributes | &nbsp;
 `supportEmail`<br/>*string* | Email address used for support requests.
 `feedbackEmail`<br/>*string* |  Email address used for feedback.
 `feedbackSlackWebhookUrl`<br/>*string* | The slack webhook url used for feedback. Please refer to [https://api.slack.com/messaging/webhooks](https://api.slack.com/messaging/webhooks).
+`zendeskWidgetKey`<br/>*string* | The key taken from the Zendesk admin page. Only one of supportEmail and zendeskWidgetKey can be set.
+`widgetZesettings`<br/>*string* | Content of the zeSettings as a JSON for customization. Please refer to [https://developer.zendesk.com/embeddables/docs/widget/settings](https://developer.zendesk.com/embeddables/docs/widget/settings).
 `version`<br/>*integer* | The feedback settings version.
 
 
@@ -76,7 +82,7 @@ Attributes | &nbsp;
 
 `POST /feedback`
 
-Create a new feedback settings.
+Create a new feedback settings. The support can either be through email or a Zendesk widget, but not both.
 
 ```shell
 # Creates a new feedback settings
@@ -94,7 +100,9 @@ curl -X POST "https://cloudmc_endpoint/api/v1/feedback" \
 	},
 	"feedbackEmail": "feedback@company.com",
 	"feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
-    "supportEmail": "support@company.com"
+  "supportEmail": "",
+  "widgetZesettings": "{ \"webWidget\": { \"color\": { \"theme\": \"#78a300\" } } }",
+  "zendeskWidgetKey": "YourZendeskWidgetKey"
 }
 ```
 > The above command return JSON structured like this:
@@ -102,14 +110,16 @@ curl -X POST "https://cloudmc_endpoint/api/v1/feedback" \
 ```json
 {
   "data": {
-    "supportEmail": "support@company.com",
+    "widgetZesettings": "{ \"webWidget\": { \"color\": { \"theme\": \"#78a300\" } } }",
+    "supportEmail": "",
+    "zendeskWidgetKey": "YourZendeskWidgetKey",
     "organization": {
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
     "feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
     "id": "f4be2785-ec67-474c-af3a-38ffecfa4094",
     "version": 1,
-    "feedbackEmail": "feedback@company.com"
+    "feedbackEmail": "feedback@company.com",
   }
 }
 ```
@@ -125,6 +135,8 @@ Optional | &nbsp;
 `feedbackEmail`<br/>*string* |  Email address used for feedback.
 `feedbackSlackWebhookUrl`<br/>*string* | The slack webhook url used for feedback. Please refer to [https://api.slack.com/messaging/webhooks](https://api.slack.com/messaging/webhooks).
 `version`<br/>*integer* | The feedback settings version.
+`zendeskWidgetKey`<br/>*string* | The key taken from the Zendesk admin page. Only one of supportEmail and zendeskWidgetKey can be set.
+`widgetZesettings`<br/>*string* | Content of the zeSettings as a JSON for customization. Please refer to [https://developer.zendesk.com/embeddables/docs/widget/settings](https://developer.zendesk.com/embeddables/docs/widget/settings).
 
 
 <!-------------------- UPDATE FEEDBACK SETTINGS -------------------->
@@ -132,7 +144,7 @@ Optional | &nbsp;
 
 `PUT /feedback/:id`
 
-Updates the feedback settings of an organization.
+Updates the feedback settings of an organization. The support can either be through email or a Zendesk widget, but not both.
 
 ```shell
 # Updates an existing feedback settings for an organization
@@ -152,7 +164,9 @@ curl -X PUT "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38
 	},
 	"feedbackEmail": "feedback@company.com",
 	"feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
-    "supportEmail": "support@company.com"
+  "supportEmail": "support@company.com",
+  "widgetZesettings": "",
+  "zendeskWidgetKey": ""
 }
 ```
 > The above command return JSON structured like this:
@@ -160,7 +174,9 @@ curl -X PUT "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38
 ```json
 {
   "data": {
+    "widgetZesettings": "",
     "supportEmail": "support@company.com",
+    "zendeskWidgetKey": "",
     "organization": {
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
@@ -183,6 +199,8 @@ Optional | &nbsp;
 `feedbackEmail`<br/>*string* |  Email address used for feedback.
 `feedbackSlackWebhookUrl`<br/>*string* | The slack webhook url used for feedback. Please refer to [https://api.slack.com/messaging/webhooks](https://api.slack.com/messaging/webhooks).
 `version`<br/>*integer* | The feedback settings version.
+`zendeskWidgetKey`<br/>*string* | The key taken from the Zendesk admin page. Only one of supportEmail and zendeskWidgetKey can be set.
+`widgetZesettings`<br/>*string* | Content of the zeSettings as a JSON for customization. Please refer to [https://developer.zendesk.com/embeddables/docs/widget/settings](https://developer.zendesk.com/embeddables/docs/widget/settings).
 
 
 <!-------------------- DELETE FEEDBACK SETTINGS -------------------->
