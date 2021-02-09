@@ -10,6 +10,7 @@ __appliance_part_type_id__ <br><font color="DarkGray">_int_</font> <font color="
 __name__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __description__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __erp_code__ <br><font color="DarkGray">_unknown-type_</font> <font color="Crimson"></font> | 
+__image__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __created_at__  <br><font color="DarkGray">_datetime_</font> | timestamp that the record was created at
 __created_by__  <br><font color="DarkGray">_text_</font>| username of the user who created the record
 __modified_at__ <br><font color="DarkGray">_datetime_</font>| timestamp that the record was last modified
