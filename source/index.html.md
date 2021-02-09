@@ -133,7 +133,7 @@ You can check your available balance at anytime to ensure that you have sufficie
 
 * Integrate with our [API](https://api-docs.oyindonesia.com/#fund-disbursement)
 
-## Testing (Testing environment coming soon)
+## Testing
 
 ## How to Use 
 
