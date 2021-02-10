@@ -646,109 +646,204 @@ titleRemittanceAddress | The full address that the vehicle title should be sent 
 vehicleLocation | The full address where the vehicle is located, if different from the titleRemittanceAddress | N
 vin | The Vehicle Identification Number for the vehicle on the claim | Y
 
+## Update Claim
+
+> Update Claim response body:
+
+```json
+{
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  ...claim object (with updated claim info)
+}
+```
+
+This route allows for updating a claim. It is recommended that you only pass in data that has been changed, as opposed to a full object payload. This is recommended to reduce the size and complexity of `claim-updated` activities.
+
+### HTTP Request
+
+`PUT https://.lossexpress.com/claims/{claimId}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+claimId | The LossExpress UUID associated with the claim
+
+### Request Body
+
+This route accepts a JSON payload of an object comprising of:
+
+Body Parameter | Description | Required?
+-------------- | ----------- | ---------
+accountNumber | The customer's account number for the loan associated with the claim | N
+adjusterName	| The primary adjuster for the claim | N
+adjusterEmailAddress | The email address associated with the primary adjuster for the claim | N
+adjusterPhoneNumber | The phone number associated with the primary adjuster for the claim | N
+causeOfLoss | The cause of loss listed on the claim. These causes can be one of the following: "Single-Vehicle Collision", "Multi-Vehicle Collision", "Wind/Hail", "Fire", "Flood", "Vandalism", "Theft", "Other" | N
+claimNumber | The claim number as noted by the carrier | N
+dateOfLoss | The date the loss occurred | N
+deductible | The current deductible for the payoff | N
+financeType | Either "Retail" or "Lease" | N
+insurerType | Either "First Party" or "Third Party" | N
+lenderName | The lender's name | N
+odometer | The mileage on the vehicle associated with the claim | N
+ownersName | The vehicle owner's name | N
+ownersPhoneNumber | The vehicle owner's phone number | N
+ownersRetained | Whether the owner is retaining the vehicle (boolean) | N
+ownersStreetAddress | The full address of the vehicle owner | N
+settlementAmount | The settlement amount for the claim | N
+titleRemittanceAddress | The full address that the vehicle title should be sent to | N
+vehicleLocation | The full address where the vehicle is located, if different from the titleRemittanceAddress | N
+vin | The Vehicle Identification Number for the vehicle on the claim | N
+
 ## Search Claims
+> Search Claims response body:
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+Status: `200`
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "claims": [
+    ...claim information
+  ],
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This route allows for searching our claims database for records. This route can return multiple claims in certain scenarios.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://.lossexpress.com/claims`
+
+### Query Parameters
+
+Parameters | Description
+---------- | -----------
+vin | Vehicle Identification Number to search by
+claimNumber | Claim number to search by (case insensitive)
+
+# Documents
+
+## Add Document to Claim
+
+# Payoff Requests
+
+## Create Payoff Request
+
+This route will create a payoff request on a claim. The request will fail when:
+
+- IF documents with type `settlement breakdown` and `valuation report` are not available (or a document with type `settlement breakdown & valuation report`)
+
+### HTTP Request
+
+`POST https://.lossexpress.com/claims/{claimId}/payoff-request`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+claimId | The LossExpress UUID associated with the claim
 
-## Delete a Specific Kitten
+## Cancel Payoff Request
 
-```ruby
-require 'kittn'
+This route will cancel a payoff request on a claim. This route will return an error if a payoff request has not been added on a claim yet.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
+This route will not return an error if a payoff request has been previously cancelled or completed.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`DELETE https://.lossexpress.com/claims/{claimId}/payoff-request`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+claimId | The LossExpress UUID associated with the claim
 
+# Letter of Guarantee Requests
+
+## Create Letter of Guarantee Request
+
+This route will create a letter of guarantee request on a claim. The letter of guarantee request can be added at any time, but will fail when:
+
+- IF documents with type `settlement breakdown` and `valuation report` are not available (or a document with type `settlement breakdown & valuation report`)
+
+### HTTP Request
+
+`POST https://.lossexpress.com/claims/{claimId}/letter-of-guarantee-request`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+claimId | The LossExpress UUID associated with the claim
+
+## Cancel Letter of Guarantee Request
+
+This route will cancel a letter of guarantee request on a claim. This route will return an error if a letter of guarantee request has not been added on a claim yet.
+
+This route will not return an error if a letter of guarantee request has been previously cancelled or completed.
+
+### HTTP Request
+
+`DELETE https://.lossexpress.com/claims/{claimId}/letter-of-guarantee-request`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+claimId | The LossExpress UUID associated with the claim
+
+# Direct Messages
+
+## Create Direct Message
+
+This route allows for sending a direct message to our Claim Specialists.
+
+### HTTP Request
+
+`POST https://.lossexpress.com/claims/{claimId}/direct-messages`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+claimId | The LossExpress UUID associated with the claim
+
+### Request Body
+
+This route accepts a JSON payload of an object comprising of:
+
+Body Parameter | Description | Required?
+-------------- | ----------- | ---------
+message | The direct message to be sent to LossExpress | Y
+
+# Settlement Counter
+
+## Accept or Dispute Counter
+
+This route allows for either accepting or disputing a settlement counter presented by a lender.
+
+To accept a counter, you must send a new settlement breakdown document. To dispute a counter, you must set `dispute` to true and provide a `reasonForDispute`.
+
+This route will throw an error if there are no settlement counters.
+
+### HTTP Request
+
+`POST https://.lossexpress.com/claims/{claimId}/settlement-counter`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+claimId | The LossExpress UUID associated with the claim
+
+### Request Body
+
+This route accepts a JSON payload of an object comprising of:
+
+Body Parameter | Description | Required?
+-------------- | ----------- | ---------
+dispute | True if it should be disputed, false otherwise (boolean) | Y if dispute
+settlementBreakdown | | Y if not dispute
+reasonForDispute | Message containing the reason for dispute | Y if dispute
