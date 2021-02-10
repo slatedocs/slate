@@ -1,15 +1,5 @@
 ---
-title: API Reference
-
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+title: LossExpress Carrier API
 
 includes:
   - errors
@@ -21,119 +11,578 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the LossExpress Carrier API! This API is designed for use by insurance carriers interested in triggering processing events within LossExpress and viewing the results of those events.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+When going through the integration process with your organization’s systems and LossExpress, it’s important to keep in mind the idea at the core of the LossExpress product and underlying APIs: we act simply as a conduit of information, from carriers to lenders.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+As a result, we have done our best when building out this API to give the power to make decisions to the carrier (where that power belongs), not ourselves.
 
 # Authentication
 
-> To authorize, use this code:
+Our Carrier API utilizes a standard OAuth 2.0 Client Credentials flow, where the external server authenticates itself using a provided client ID and client secret and is provided an access token that will be used on every request.
 
-```ruby
-require 'kittn'
+Once a token has been received, every request is expected to have a header that looks like the following:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+`Authorization: Bearer exampletokenbutreplacewithyourown`
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+### HTTP Request
+`POST https://.lossexpress.com/oauth/token`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>exampletokenbutreplacewithyourown</code> with the access token provided.
 </aside>
 
-# Kittens
+# Activity Feed
 
-## Get All Kittens
+## Activities
 
-```ruby
-require 'kittn'
+LossExpress provides a simple way to view events that have taken place within our system, relevant to an organization’s claims. Our Activity Feed provides access to all scoped activities while allowing for a large variety of filtering options to suit any organization’s needs. One of our core tenants at LossExpress is transparency, so you may find that we provide access to _too many_ activities. Feel free to use only what’s important to your organization!
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+As a general rule, all Activity objects include the following keys:
 
-```python
-import kittn
+Key | Description
+--- | -----------
+createdAt | GMT timestamp marking when the Activity occured in our system
+claimId | The LossExpress UUID given to the claim the Activity occurred on
+type | A string containing one of the available Activity Types
+claimNumber | The claim number entered for the claim the Activity occurred on
+data | An object containing relevant information for the Activity
+hash | A SHA256 hash uniquely identifying the activity type
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+## Fetch Activities
+> This route returns a paginated set of results that looks like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+  "requestUrl": "https://.lossexpress.com/activities?createdBefore=2021-01-08T22:03:09.598Z",
+  "results": [
+    ...array of activity objects
+  ],
+  "pagination": {
+    "pageSize": 100,
+    "page": 0,
+    "totalPages": 3,
+    "totalResults": 296
   }
-]
+}
 ```
+> Note that the result will return a `requestUrl` object, which will allow you to perfectly replay the request.
 
-This endpoint retrieves all kittens.
+This route will allow you to view Activities.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://.lossexpress.com/activities`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+types | all | A comma separated list of types to view
+createdBefore | current time | Allows for filtering activities to only those that were created before a certain timestamp
+createdAfter | 30 minutes earlier | Allows for filtering activities to only those that were created after a certain timestamp
+pageSize | 100 | Sets the size of pages in paginated results. Maximum is currently 500.
+pageNumber | 0 | Sets the zero-indexed page number in paginated results.
+claimId | | Filters the activities to only contain activities for the specific LossExpress Claim ID.
+hash | | Show activity types starting from when the hash's activity and moving into the future
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+# Activity Types
+
+## List of Types
+
+Below is a list of Activity Types that will be available within the Activity Feed:
+
+Type | Will appear when...
+---- | -------------------
+account-number-viewed | Account number is viewed
+call-made | A call is made by LossExpress
+claim-created | A claim is originally created
+claim-updated | A claim's primary information is updated
+direct-message-added | A direct message is added to a claim
+document-added | A document is added to a claim
+document-sent-to-lender | A document is sent to a lender
+letter-of-guarantee-added | A letter of guarantee is added to a claim
+letter-of-guarantee-request-created | A letter of guarantee request is created on a claim
+payoff-data-added | Payoff information is added to a claim
+payoff-request-created | A payoff request is created on a claim
+settlement-counter-added | A lender adds a counter to the proposed settlement amount
+settlement-counter-updated | The settlement counter is either accepted or disputed by the carrier
+
+## account-number-viewed
+
+> account-number-viewed example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "account-number-viewed",
+  "claimNumber": "EXAMPLE1",
+  "data": {
+    "viewedByLossExpress": true
+  }
+}
+```
+
+This activity type will appear in the feed whenever an account number is viewed by someone on LossExpress.
+
+
+## call-made
+
+> call-made example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "call-made",
+  "claimNumber": "EXAMPLE2",
+  "data": {
+    "callLength": 30 // in minutes
+  }
+}
+```
+
+This activity type will appear in the feed whenever a call was made on behalf of the carrier by LossExpress.
+
+## claim-created
+
+> claim-created example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "claim-created",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "accountNumber": "TEST-AN",
+    "adjusterName": "Mike Mclaren",
+    "adjusterEmailAddress": "mike@lossexpress.com",
+    "adjusterPhoneNumber": "+13332225555",
+    "causeOfLoss": "Fire",
+    "dateOfLoss": "2020-10-20",
+    "deductible": 400,
+    "financeType": "Retail",
+    "insurerType": "First Party",
+    "lenderName": "Test Lender",
+    "lenderId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+    "odometer": 39993,
+    "ownersName": "Test Owner",
+    "ownersPhoneNumber": "+12223334444",
+    "ownerRetained": false,
+    "ownersStreetAddress": "12200 Test Avenue Dallas TX 75204",
+    "settlementAmount": 5553,
+    "titleRemittanceAddress": "1000 Main Street Dallas TX 75204",
+    "vehicle": {
+      "make": "TEST",
+      "model": "Car",
+      "year": 2034
+    },
+    "vehicleLocation": "1200 Main Street Dallas TX 75204",
+    "vin": "1N4AL3AP8JC231503"
+  }
+}
+```
+
+This activity type will appear in the feed whenever a claim is created in our system by a carrier. This activity will contain in its data all claim information that had
+been passed on create along with Make/Model/Year information for the VIN passed, if available. Any information not sent on creation will not appear in the data object and
+would appear as <code>undefined</code> when parsed.
+
+If desired, we do give carriers the ability to not have account numbers added to this event type for security purposes.
+
+<aside class="notice">For more information regarding the formats/types passed in the <code>data</code> object, please see the Create Claim route.</aside>
+
+## claim-updated
+
+> claim-updated example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "claim-updated",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "update": { // contains the updated information
+      "accountNumber": "TEST-AN1"
+    },
+    "previous": { // contains the information just prior to update
+      "accountNumber": "TEST-AN"
+    }
+  }
+}
+```
+
+This activity type will appear in the feed whenever _primary claim information_ is updated. In LossExpress, we define primary claim information as any piece of data that can be sent in the update or create claim routes.
+
+Note that this activity type could be triggered by actions made by LossExpress. Some examples that could cause LossExpress to trigger this activity type:
+
+- Account number was empty or incorrect, so was updated when talking to the lender.
+- Finance type was set to Retail but was actually a Lease.
+- Lender name was incorrect or updated.
+
+<aside class="warning">This activity type will not fire for any claims that have had no activity for two weeks.</aside>
+
+## direct-message-added
+
+> direct-message-added example object (sent by LossExpress)
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "direct-message-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "sentByLossExpress": true,
+    "message": "Settlement amount appears to differ from documents. Please update.",
+  }
+```
+
+> direct-message-added example object (sent by carrier user)
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "direct-message-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "sentByLossExpress": false,
+    "message": "The LoG looks to have the wrong settlement amount, please get an LoG with the proper amount. Thanks!",
+    "sentBy": "User Name"
+  }
+}
+```
+
+This activity type will appear in the feed whenever a direct message is added to a claim, either by LossExpress or by a carrier user.
+
+## document-added
+
+> document-added example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "document-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "type": "settlement breakdown",
+    "documentUrl": "https://.lossexpress.com/documents/555ae9da-9222-4de5-81fe-fe1ac590fa0f"
+  }
+}
+```
+
+This activity type will appear in the feed whenever a document has been added to a claim.
+
+<aside class="warning">Letters of Guarantee added to the claim will not trigger this activity type.</aside>
+
+## document-sent-to-lender
+
+> document-sent-to-lender example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "document-sent-to-lender",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "documentUrl": "https://.lossexpress.com/documents/555ae9da-9222-4de5-81fe-fe1ac590fa0f"
+  }
+}
+```
+
+This activity type is added to the feed whenever a document is sent by LossExpress to the lender for a particular claim. The <code>documentUrl</code> contains a link to the document that was sent to the lender.
+
+## letter-of-guarantee-added
+
+> letter-of-guarantee-added example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "letter-of-guarantee-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "documentUrl": "https://.lossexpress.com/documents/555ae9da-9222-4de5-81fe-fe1ac590fa0f"
+  }
+}
+```
+
+This activity type is added to the feed whenever a letter of guarantee is added to a claim. The <code>documentUrl</code> contains a link to the letter of guarantee that was received.
+
+<aside class="warning">This activity could be added to the feed even if a letter of guarantee request wasn't created in LossExpress. In those scenarios, a letter of guarantee request will be automatically created at the same time as the letter of guarantee is added to the claim.</aside>
+
+## letter-of-guarantee-request-created
+
+> letter-of-guarantee-request-created example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "letter-of-guarantee-request-created",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "estimatedResponseTime": "2021-01-20T22:03:09.598Z"
+  }
+}
+```
+
+This activity type is added to the feed whenever a letter of guarantee request is created for a claim.
+
+Note that although we _typically_ request letters of guarantee whenever we reach out to a lender, we do not follow-up on the status of letters of guarantee nor can we absolutely guarantee that a letter of guarantee will be added to a claim unless a letter of guarantee request is created on a claim.
+
+<aside class="warning"><code>estimatedResponseTime</code> may not exist on every activity for this type, and is merely an estimate based on _prior_ letter of guarantee request response times for that lender.</aside>
+
+## payoff-data-added
+
+> payoff-data-added example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "payoff-data-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "payoffAmount": 10222.33,
+    "perDiem": 2.3,
+    "validThroughDate": "2021-01-18T00:00:00.000Z",
+    "remittanceInformation": {
+      "standard": {
+        "makeCheckPayableTo": "ALLY FINANCIAL",
+        "attn": "ATTN LINE",
+        "streetAddress": "1000 Main Street",
+        "streetAddress2": "Ste. 500",
+        "city": "Dallas",
+        "state": "TX",
+        "zipCode": "75204"
+      },
+      "overnight": {
+        "makeCheckPayableTo": "ALLY FINANCIAL",
+        "attn": "ATTN LINE",
+        "streetAddress": "1000 Main Street",
+        "streetAddress2": "Ste. 500",
+        "city": "Dallas",
+        "state": "TX",
+        "zipCode": "75204"
+      }
+    }
+  }
+}
+```
+
+This activity type is added to the feed whenever payoff data is added to a claim.
+
+<aside class="warning">This activity may be called multiple times in the claim and may not contain all information. Only information changed or added will be available in this activity type.</aside>
+
+## payoff-request-created
+
+> payoff-request-created example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "payoff-request-created",
+  "claimNumber": "EXAMPLE3",
+  "data": {}
+}
+```
+
+This activity type is added to the feed whenever a payoff request is created on a particular claim.
+
+## settlement-counter-added
+
+> settlement-counter-added example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "settlement-counter-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "description": "missing options",
+    "documentUrl": "https://.lossexpress.com/documents/555ae9da-9222-4de5-81fe-fe1ac590fa0f"
+  }
+}
+```
+
+This activity type is added to the feed whenever a settlement counter is added to a claim by a lender. Typically, this comes with a document that can be accessed via the <code>documentUrl</code>.
+
+## settlement-counter-updated
+
+> settlement-counter-updated example object (dispute)
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "settlement-counter-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "disputed": true,
+    "reasonForDispute": "Vehicle is not missing any options, verified in person."
+  }
+}
+```
+
+> settlement-counter-updated example object (accepted)
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "settlement-counter-added",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "disputed": false,
+    "documentUrl": "https://.lossexpress.com/documents/555ae9da-9222-4de5-81fe-fe1ac590fa0f"
+  }
+}
+```
+
+This activity type is added to the feed whenever a settlement counter is either accepted or disputed by the carrier. <code>documentUrl</code> will contain a link to the settlment breakdown passed to the lender with the new settlement amount.
+
+# Claims
+
+> Example Claim Object
+
+```json
+{
+  "accountNumber": "TEST-AN",
+  "adjusterName": "Mike Mclaren",
+  "adjusterEmailAddress": "mike@lossexpress.com",
+  "adjusterPhoneNumber": "+13332225555",
+  "causeOfLoss": "Fire",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "claimNumber": "EXAMPLE3",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "dateOfLoss": "2020-10-20",
+  "deductible": 400,
+  "documents": [
+    {
+      "createdAt": "2021-01-08T22:03:09.598Z",
+      "updatedAt": "2021-01-08T22:03:09.598Z",
+      "documentUrl": "https://.lossexpress.com/documents/555ae9da-9222-4de5-81fe-fe1ac590fa0f",
+      "type": "settlement breakdown & valuation report"
+    }
+  ],
+  "financeType": "Retail",
+  "insurerType": "First Party",
+  "lenderName": "Test Lender",
+  "lenderId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "letterOfGuaranteeRequest": {
+    "createdAt": "2021-01-08T22:03:09.598Z",
+    "updatedAt": "2021-01-08T22:03:09.598Z",
+    "documentUrl": "https://.lossexpress.com/documents/555ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  },
+  "odometer": 39993,
+  "ownersName": "Test Owner",
+  "ownersPhoneNumber": "+12223334444",
+  "ownerRetained": false,
+  "ownersStreetAddress": "12200 Test Avenue Dallas TX 75204",
+  "payoffData": {
+    "createdAt": "2021-01-08T22:03:09.598Z",
+    "updatedAt": "2021-01-08T22:03:09.598Z",
+    "payoffAmount": 10222.33,
+    "perDiem": 2.3,
+    "validThroughDate": "2021-01-18T00:00:00.000Z",
+    "remittanceInformation": {
+      "standard": {
+        "makeCheckPayableTo": "ALLY FINANCIAL",
+        "attn": "ATTN LINE",
+        "streetAddress": "1000 Main Street",
+        "streetAddress2": "Ste. 500",
+        "city": "Dallas",
+        "state": "TX",
+        "zipCode": "75204"
+      },
+      "overnight": {
+        "makeCheckPayableTo": "ALLY FINANCIAL",
+        "attn": "ATTN LINE",
+        "streetAddress": "1000 Main Street",
+        "streetAddress2": "Ste. 500",
+        "city": "Dallas",
+        "state": "TX",
+        "zipCode": "75204"
+      }
+    }
+  },
+  "settlementAmount": 5553,
+  "titleRemittanceAddress": "1000 Main Street Dallas TX 75204",
+  "updatedAt": "2021-01-08T22:03:09.598Z",
+  "vehicle": {
+    "make": "TEST",
+    "model": "Car",
+    "year": 2034
+  },
+  "vehicleLocation": "1200 Main Street Dallas TX 75204",
+  "vin": "1N4AL3AP8JC231503"
+}
+```
+
+The routes in the section are scoped specifically to claims. Our Carrier API provides a couple ways to search and fetch claim information on top of the ability to create claims.
+
+The Claim object itself contains the following keys:
+
+Object Key | Description
+---------- | -----------
+accountNumber | The customer's account number for the loan associated with the claim
+adjusterName | The primary adjuster for the claim
+adjusterEmailAddress | The email address associated with the primary adjuster for the claim
+adjusterPhoneNumber | The phone number associated with the primary adjuster for the claim
+causeOfLoss | The cause of loss listed on the claim. These causes can be one of the following: "Single-Vehicle Collision", "Multi-Vehicle Collision", "Wind/Hail", "Fire", "Flood", "Vandalism", "Theft", "Other"
+claimId | The LossExpress UUID associated with the claim
+claimNumber | The claim number as noted by the carrier
+createdAt | The timestamp the claim was created in the system
+dateOfLoss | The date the loss occurred
+deductible | The current deductible for the payoff
+documents | An array of Document objects
+financeType | Either "Retail" or "Lease"
+insurerType | Either "First Party" or "Third Party"
+lenderName | The lender's name
+lenderId | The LossExpress UUID associated with that lender, if that lender exists in our lender database
+letterOfGuaranteeRequest | A letter of guarantee request object, containing basic information about the letter of guarantee request
+odometer | The mileage on the vehicle associated with the claim
+ownersName | The vehicle owner's name
+ownersPhoneNumber | The vehicle owner's phone number
+ownersRetained | Whether the owner is retaining the vehicle (boolean)
+ownersStreetAddress | The full address of the vehicle owner
+payoffData | A Payoff Data object
+settlementAmount | The settlement amount for the claim
+titleRemittanceAddress | The full address that the vehicle title should be sent to
+updatedAt | The timestamp the claim was last updated; this can happen in a number of scenarios and is not recommended to be used to track claim changes - please use the activity feed instead
+vehicle | A vehicle object containing the make, model, and year of the vehicle, if available
+vehicleLocation | The full address where the vehicle is located, if different from the titleRemittanceAddress
+vin | The Vehicle Identification Number for the vehicle on the claim
+
+## Fetch Claim
+
+## Create Claim
+
+## Search Claims
 
 ## Get a Specific Kitten
 
