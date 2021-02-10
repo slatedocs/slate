@@ -119,7 +119,7 @@ curl -X POST "https://cloudmc_endpoint/api/v1/feedback" \
     "feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
     "id": "f4be2785-ec67-474c-af3a-38ffecfa4094",
     "version": 1,
-    "feedbackEmail": "feedback@company.com",
+    "feedbackEmail": "feedback@company.com"
   }
 }
 ```
