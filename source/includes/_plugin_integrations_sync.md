@@ -7,7 +7,7 @@ The sync is initiated using the `mautic:integrations:sync` command. For example:
 `php app/console mautic:integrations:sync HelloWorld --start-datetime="2020-01-01 00:00:00" --end-datetime="2020-01-02 00:00:00"`. (Use `php bin/console` for Mautic 3). 
 
 #### Registering the Integration for the Sync Engine
-To tell the IntegrationsBundle that this integration has configuration options, tag the integration or support class with `mautic.config_integration` in the plugin's `app/config.php`.
+To tell the IntegrationsBundle that this integration provides a syncing feature, tag the integration or support class with `mautic.sync_integration` in the plugin's `app/config.php`.
 
 ```php
 return [
@@ -30,7 +30,7 @@ return [
 ];
 ```
 
-The `SyncSupport` class must implement `\Mautic\IntegrationsBundle\Integration\Interfaces\SyncSupport`.
+The `SyncSupport` class must implement `\Mautic\IntegrationsBundle\Integration\Interfaces\SyncInterface`.
 
 
 #### Syncing
