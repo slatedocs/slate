@@ -580,6 +580,27 @@ vin | The Vehicle Identification Number for the vehicle on the claim
 
 ## Fetch Claim
 
+> Example Response:
+
+```json
+{
+  "claim": ...claim object,
+  "requestUrl": "https://.lossexpress.com/claims/c30ae9da-9222-4de5-81fe-fe1ac590fa0f"
+}
+```
+
+This route allows for access to a claim's data in one location.
+
+### HTTP Request
+
+`GET https://.lossexpress.com/claims/{claimId}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+claimId | The LossExpress UUID associated with the claim
+
 ## Create Claim
 
 ## Search Claims
