@@ -603,6 +603,49 @@ claimId | The LossExpress UUID associated with the claim
 
 ## Create Claim
 
+> Create Claim Response:
+
+> `STATUS 201`
+
+```json
+{
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f"
+}
+```
+
+This route creates a claim in LossExpress, which can be used to generate requests. Please note that our billing may currently or in the future consider all claims in our system, so be sure to only add claims that will eventually be worked on by us to avoid excess charges.
+
+### HTTP Request
+
+`POST https://.lossexpress.com/claims`
+
+### Request Body
+
+This route accepts a JSON payload of an object comprising of:
+
+Body Parameter | Description | Required?
+-------------- | ----------- | ---------
+accountNumber | The customer's account number for the loan associated with the claim | Y
+adjusterName	| The primary adjuster for the claim | Y
+adjusterEmailAddress | The email address associated with the primary adjuster for the claim | Y
+adjusterPhoneNumber | The phone number associated with the primary adjuster for the claim | Y
+causeOfLoss | The cause of loss listed on the claim. These causes can be one of the following: "Single-Vehicle Collision", "Multi-Vehicle Collision", "Wind/Hail", "Fire", "Flood", "Vandalism", "Theft", "Other" | Y
+claimNumber | The claim number as noted by the carrier | Y
+dateOfLoss | The date the loss occurred | Y
+deductible | The current deductible for the payoff | Y
+financeType | Either "Retail" or "Lease" | Y
+insurerType | Either "First Party" or "Third Party" | Y
+lenderName | The lender's name | Y
+odometer | The mileage on the vehicle associated with the claim | Y
+ownersName | The vehicle owner's name | Y
+ownersPhoneNumber | The vehicle owner's phone number | Y
+ownersRetained | Whether the owner is retaining the vehicle (boolean) | Y
+ownersStreetAddress | The full address of the vehicle owner | Y
+settlementAmount | The settlement amount for the claim | Y
+titleRemittanceAddress | The full address that the vehicle title should be sent to | Y
+vehicleLocation | The full address where the vehicle is located, if different from the titleRemittanceAddress | N
+vin | The Vehicle Identification Number for the vehicle on the claim | Y
+
 ## Search Claims
 
 ## Get a Specific Kitten
