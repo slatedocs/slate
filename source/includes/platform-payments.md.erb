@@ -177,7 +177,7 @@ Updates a specific set of stored account details. This will trigger an AML check
 
 ## *Registering Companies as Wallet Holders*
 
-## `POST /companies 🚧`
+## `POST /companies`
 ```http
 POST /companies HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -186,8 +186,24 @@ Authorization: Basic ...
 
 {
   "ukCompany": {
+    "type": "SOLE_TRADER",
     "number": "AB123456",
-    "name": "Fake Company LIMITED"
+    "name": "Fake Company LIMITED",
+    "associatedIndivduals": [
+      {
+        "firstName": "John",
+        "surname": "Smith",
+        "dateOfBirth": "1980-01-01",
+        "address": {
+          "lineOne": "Flat 15 Victory House",
+          "lineTwo": "12 Morris Road",
+          "lineThree": "Greenwich",
+          "townCity": "London",
+          "region": "England",
+          "country": "UK",
+          "postcode": "E17 FTW",
+        }
+    ]
   }
 }
 ```
@@ -199,8 +215,25 @@ Content-Type: application/json
   "partyId": "COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502",
   "status": "PENDING",
   "ukCompany": {
+    "name": "Fake Company LIMITED",
     "number": "AB123456",
-    "name": "Fake Company LIMITED"
+    "type": "SOLE_TRADER",
+    "associatedIndivduals": [
+      {
+        "firstName": "John",
+        "surname": "Smith",
+        "dateOfBirth": "1980-01-01",
+        "address": {
+          "lineOne": "Flat 15 Victory House",
+          "lineTwo": "12 Morris Road",
+          "lineThree": "Greenwich",
+          "townCity": "London",
+          "region": "England",
+          "country": "UK",
+          "postcode": "E17 FTW",
+        }
+      }
+    ]
   }
 }
 ```
@@ -218,6 +251,7 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 </aside>
 
 ### Request
+<<<<<<< Updated upstream:source/includes/platform-payments.md.erb
 | Name              | Type   | Description                                        | Required |
 | ----------------- | ------ | -------------------------------------------------- | -------- |
 | ukCompany.number  | string | The Company Number registered with Companies House.| required |
@@ -259,14 +293,17 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </aside>
 
 ### Response
-| Name              | Type   | Description                                        |
-| ----------------- | ------ | -------------------------------------------------- |
-| partyId           | string | The Party ID for this company.                     |
-| status            | string | Enum: REGISTERED.                                  |
-| ukCompany.number  | string | The Company Number registered with Companies House.|
-| ukCompany.name    | string | Company Name.                                      |
+| Name                             | Type   | Description                                                            |
+| -------------------------------- | ------ | ---------------------------------------------------------------------- |
+| partyId                          | string | The Party ID for this company.                                         |
+| status                           | string | Enum: REGISTERED.                                                      |
+| ukCompany.name                   | string | Company Name                                                           |
+| ukCompany.type                   | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.|
+| ukCompany.number                 | string | The Company Number registered with Companies House.                    |
+| ukCompany.associatedIndividuals  | array  | List of associated individuals.                                        |
 
-## `GET /companies 🚧`
+
+## `GET /companies`
 ```http
 GET /companies HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -300,7 +337,12 @@ Retrieves all companies that have been registered.
 | ukCompany.number  | string | The Company Number registered with Companies House.|
 | ukCompany.name    | string | Company Name                                       |
 
+<<<<<<< Updated upstream:source/includes/platform-payments.md.erb
 ## `GET /companies/{id} 🚧`
+=======
+
+## `GET /companies/{id}`
+>>>>>>> Stashed changes:source/includes/_platform-payments.md
 ```http
 GET /companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502 HTTP/1.1
 Host: api-sandbox.goji.investments
