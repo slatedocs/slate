@@ -19,6 +19,16 @@
   @include borders($bg);
 }
 
+@mixin rounded-top {
+  border-top-left-radius: $rounded-border;
+  border-top-right-radius: $rounded-border;
+}
+@mixin rounded-bottom {
+  border-bottom-left-radius: $rounded-border;
+  border-bottom-right-radius: $rounded-border;
+}
+
+
 button {
   padding: 0.5em 1em;
   border-radius: 4px;

@@ -3,18 +3,18 @@ ul {
   padding: 0;
   list-style: none;
   &.list--request-params {
-    $dividerColor: #e3e8ee;
     > li {
-      border-bottom: 1px solid $dividerColor;
       padding: 10px 8px;
-      background: white;
+      background: $code-bg;
     }
     .param {
       &__name {
-        font-size: 1.05rem;
+        font-family: monospace;
+        margin-right: 1em;
       }
       &__type {
         font-size: 0.85rem;
+        opacity: 0.4;
       }
       &__required {
         color: lightpink;
@@ -23,12 +23,15 @@ ul {
       &__child {
         &2 {
           padding-left: 1em;
-          border-left: 5px solid $dividerColor;
+          border-left: 5px solid $aside-warning-bg;
         }
         &3 {
           padding-left: 1.5em;
-          border-left: 10px solid $dividerColor;
+          border-left: 10px solid $aside-warning-bg;
         }
+      }
+      p {
+        margin: 0;
       }
     }
   }

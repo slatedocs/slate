@@ -1,0 +1,34 @@
+@import "../variables";
+
+.tag {
+  background: $purple-bg;
+  border-radius: 4px;
+  color: white !important;
+  display: inline;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  text-align: center;
+  transition: 100ms;
+  &__green {
+    background: green;
+  }
+  &__yellow {
+    background: yellow;
+  }
+  &__red {
+    background: darkred;
+  }
+  &--list {
+    display: flex !important;
+    align-items: center;
+    height: 50px;
+    li {
+      height: 15px;
+      margin-right: 5px;
+      font-size: 0.8em;
+    }
+  }
+  &:hover {
+    filter: opacity(0.8);
+  }
+}
