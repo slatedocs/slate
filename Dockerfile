@@ -2,10 +2,13 @@ FROM ruby:2.6-slim
 
 WORKDIR /srv/slate
 
+VOLUME /srv/slate/build
 VOLUME /srv/slate/source
+
 EXPOSE 4567
 
-COPY . /srv/slate
+COPY Gemfile .
+COPY Gemfile.lock .
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -17,4 +20,9 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-CMD ["bundle", "exec", "middleman", "server", "--watcher-force-polling"]
+COPY . /srv/slate
+
+RUN chmod +x /srv/slate/slate.sh
+
+ENTRYPOINT ["/srv/slate/slate.sh"]
+CMD ["build"]

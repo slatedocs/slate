@@ -28,6 +28,7 @@ Vagrant.configure(2) do |config|
       echo "=============================================="
       echo "Installing app dependencies"
       cd /vagrant
+      sudo gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" 
       bundle config build.nokogiri --use-system-libraries
       bundle install
     SHELL
