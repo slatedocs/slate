@@ -69,6 +69,7 @@ document-added | A document is added to a claim
 document-sent-to-lender | A document is sent to a lender
 letter-of-guarantee-added | A letter of guarantee is added to a claim
 letter-of-guarantee-request-created | A letter of guarantee request is created on a claim
+payment-sent | Payment has been sent for a claim
 payoff-data-added | Payoff information is added to a claim
 payoff-request-created | A payoff request is created on a claim
 settlement-counter-added | A lender adds a counter to the proposed settlement amount
@@ -314,6 +315,37 @@ This activity type is added to the feed whenever a letter of guarantee request i
 Note that although we _typically_ request letters of guarantee whenever we reach out to a lender, we do not follow-up on the status of letters of guarantee nor can we absolutely guarantee that a letter of guarantee will be added to a claim unless a letter of guarantee request is created on a claim.
 
 <aside class="warning"><code>estimatedResponseTime</code> may not exist on every activity for this type, and is merely an estimate based on _prior_ letter of guarantee request response times for that lender.</aside>
+
+## payment-sent
+
+> payment-sent example object
+
+```json
+{
+  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "createdAt": "2021-01-08T22:03:09.598Z",
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "type": "payment-sent",
+  "claimNumber": "EXAMPLE3",
+  "data": {
+    "checkAmount": 20000,
+    "sentAt": "2021-01-08T22:03:09.598Z",
+    "sentTo": {
+      "streetAddress": "1000 Main Street",
+      "streetAddress2": "Ste. 500",
+      "city": "Dallas",
+      "state": "TX",
+      "zipCode": "75204"
+    },
+    "sentVia": "USPS",
+    "trackingNumber": "EXAMPLENUMBER"
+  }
+}
+```
+
+This activity type is added to the feed whenever acknowledgement that payment has been sent has been added to LossExpress; this can be trigged by either the carrier or our payment processing partner, if that partner is enabled in the carrier's system and set-up properly in LossExpress.
+
+<aside class="warning"><code>sentTo</code> and <code>trackingNumber</code> may not exist on every activity for this type.</aside>
 
 ## payoff-data-added
 

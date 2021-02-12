@@ -2,6 +2,15 @@
 
 ## Create Direct Message
 
+> Example Response Body:
+
+```json
+{
+  "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
+  "message": "Test message."
+}
+```
+
 This route allows for sending a direct message to our Claim Specialists.
 
 ### HTTP Request

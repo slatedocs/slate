@@ -7,6 +7,7 @@ includes:
   - direct_messages
   - documents
   - letter_of_guarantee
+  - payments
   - settlement_counters
   - errors
 
