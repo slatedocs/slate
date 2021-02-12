@@ -4,9 +4,9 @@ title: LossExpress Carrier API
 includes:
   - activity_feed
   - claims
+  - direct_messages
   - documents
   - letter_of_guarantee
-  - direct_messages
   - settlement_counters
   - errors
 
