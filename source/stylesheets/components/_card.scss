@@ -1,6 +1,8 @@
+@import "../variables";
+
 .card {
-  background: white;
+  background: darken($code-bg, $amount: 3%);
   border-radius: 4px;
   padding: 5px 10px;
-  box-shadow: 1px 2px #c7c7c7;
+  box-shadow: 1px 2px darken($code-bg, $amount: 5%);
 }

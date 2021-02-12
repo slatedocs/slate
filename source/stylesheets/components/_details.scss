@@ -1,14 +1,29 @@
+@import "../variables";
+
 details {
-  max-width: 600px;
+  max-width: 550px;
   padding: 0.2em 1em;
   summary {
     padding: 1em;
     outline: none;
     cursor: pointer;
+    border-radius: 4px;
+    transition: 100ms;
   }
-  &[open] summary ~ * {
-    animation: open 100ms;
+
+  &[open] {
+    summary {
+      background: lighten($code-bg, 3%);
+      margin-left: -1.5em;
+      margin-right: -1.5em;
+      margin-top: -0.5em;
+      margin-bottom: 1em;
+      ~ * {
+        animation: open 100ms;
+      }
+    }
   }
+
   p {
     text-align: justify;
   }
