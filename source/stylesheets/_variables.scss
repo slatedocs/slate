@@ -75,6 +75,7 @@ $rounded-border: 4px;
 %header-font {
   @extend %default-font;
   font-weight: bold;
+  padding-left: 0;
 }
 
 %code-font {

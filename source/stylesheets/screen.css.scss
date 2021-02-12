@@ -3,27 +3,6 @@
 @import "variables";
 @import "icon-font";
 @import "buttons";
-// @import 'rtl'; // uncomment to switch to RTL format
-
-/*
-Copyright 2008-2013 Concur Technologies, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may
-not use this file except in compliance with the License. You may obtain
-a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations
-under the License.
-*/
-
-////////////////////////////////////////////////////////////////////////////////
-// GENERAL STUFF
-////////////////////////////////////////////////////////////////////////////////
 
 html,
 body {
@@ -371,7 +350,8 @@ section {
     clear: both;
   }
 
-  p, aside {
+  p,
+  aside {
     a {
       color: #89c4f4;
       font-weight: bold;
@@ -433,14 +413,21 @@ section {
     margin-top: 0;
   }
 
+  h1 {
+    @extend %header-font;
+    font-size: 1.7rem !important;
+  }
   h2 {
     @extend %header-font;
-    font-size: 19px;
+    font-size: 1.5rem !important;
     margin-top: 1em;
     margin-bottom: 0;
     border-top: 1px solid darken(#666, 2%);
     padding-top: 1.2em;
     padding-bottom: 1.2em;
+  }
+  h3 {
+    font-size: 1.1rem !important;
   }
 
   // h2s right after h1s should bump right up
@@ -632,7 +619,7 @@ section {
 
     & > p {
       margin: 0;
-      background: lighten($color: $code-bg, $amount: 3%)
+      background: lighten($color: $code-bg, $amount: 3%);
     }
 
     a {
