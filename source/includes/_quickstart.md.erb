@@ -37,22 +37,30 @@ En el caso de alcanzar el límite de consultas por día o por minuto, Clientela 
 
 <span id="time_range_limits"></span>
 
-## Rangos de fecha
+## Períodos de Búsqueda
 
 Siempre que desees aplicar un rango de fecha en tus reportes deberás tener en cuenta los siguientes límites entre la diferencia entre la fecha de inicio y la fecha de fin de tu reporte, lo que generalmente corresponde a los campos `date_range.start` y `date_range.end`
 
-| Reporte         | Rango máximo |
-| --------------- | ------------ |
-| Campañas        | 12 meses     |
-| Industria       | 6 meses      |
-| Marca           | 12 meses     |
-| Marcas          | 12 meses     |
-| Mercado         | 2 meses      |
-| Nuevos Negocios | 12 meses     |
-| Oportunidades   | 6 meses      |
-| Sitios Web      | 12 meses     |
-| Verificación    | 12 meses     |
+<details>
+  <summary>Haz clic aquí para desplegar los límites de periodos máximos.</summary>
+  <%= partial "includes/static/time_range_limits.md" %>
+</details>
 
 <aside class="warning">
 Si tu reporte supera este límite de rango de fechas, recibirás un error 400 describiendo el máximo de meses que puedes solicitar
+</aside>
+
+<span id="search_term_limits"></span>
+
+## Términos de Búsqueda
+
+Para determinados reportes, deberás tener en cuenta los siguientes límites en la cantidad de términos que puedes solicitar.
+
+<details>
+  <summary>Haz clic aquí para desplegar los límites de términos de búsqueda.</summary>
+  <%= partial "includes/static/search_term_limits.md" %>
+</details>
+
+<aside class="warning">
+Si tu reporte supera el límite de términos de búsqueda, recibirás un error 400 describiendo la cantidad máxima correspondiente
 </aside>
