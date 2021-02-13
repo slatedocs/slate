@@ -12,16 +12,17 @@
   &__green {
     background: green;
   }
-  &__yellow {
-    background: yellow;
+  &__orange {
+    background: #c37e00;
   }
   &__red {
     background: darkred;
   }
   &--list {
-    display: flex !important;
     align-items: center;
-    height: 50px;
+    display: flex !important;
+    flex-wrap: wrap;
+    min-height: 50px;
     li {
       height: 15px;
       margin-right: 5px;
