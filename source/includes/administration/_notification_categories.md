@@ -3,7 +3,7 @@ Manage notification categories.
 
 <!-------------------- LIST NOTIFICATION CATEGORIES -------------------->
 
-#### List notification categories
+### List notification categories
 
 `GET /content/categories`
 
@@ -69,7 +69,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET NOTIFICATION CATEGORY -------------------->
 
-#### Retrieve notification category
+### Retrieve notification category
 
 `GET /content/categories/:id`
 
@@ -131,7 +131,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE NOTIFICATION CATEGORY -------------------->
 
-#### Create notification category
+### Create notification category
 
 `POST /content/categories/`
 
@@ -175,7 +175,7 @@ Required | &nbsp;
 
 <!-------------------- UPDATE NOTIFICATION CATEGORY -------------------->
 
-#### Update notification category
+### Update notification category
 
 `PUT /content/categories/:id`
 

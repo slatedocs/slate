@@ -3,7 +3,7 @@
 The product catalogs determine the product configured for a service type and optionally for specific connections.
 
 <!-------------------- LIST PRODUCT CATALOGS -------------------->
-#### List product catalogs
+### List product catalogs
 
 `GET /product_catalogs`
 
@@ -108,7 +108,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- GET PRODUCT CATALOG -------------------->
-#### Retrieve a product catalog
+### Retrieve a product catalog
 
 `GET /product_catalogs/:id`
 
@@ -212,7 +212,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- CREATE PRODUCT CATALOG -------------------->
-#### Create product catalog
+### Create product catalog
 
 `POST /product_catalogs`
 
@@ -373,7 +373,7 @@ Optional | &nbsp;
 
 
 <!-------------------- UPDATE PRODUCT CATALOG -------------------->
-#### Update product catalog
+### Update product catalog
 
 `PUT /product_catalogs/:id`
 
@@ -535,7 +535,7 @@ Optional | &nbsp;
 
 
 <!-------------------- DELETE PRODUCT CATALOG -------------------->
-#### Delete product catalog
+### Delete product catalog
 
 `DELETE /product_catalogs/:id`
 

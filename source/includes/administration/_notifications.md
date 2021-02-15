@@ -3,7 +3,7 @@ Manage notifications.
 
 <!-------------------- LIST NOTIFICATIONS -------------------->
 
-#### List notifications
+### List notifications
 
 `GET /content/notifications`
 
@@ -120,7 +120,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET NOTIFICATION -------------------->
 
-#### Retrieve notification
+### Retrieve notification
 
 `GET /content/notifications/:id`
 
@@ -234,7 +234,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE NOTIFICATION -------------------->
 
-#### Create notification
+### Create notification
 
 `POST /content/notifications/`
 
@@ -295,7 +295,7 @@ Optional | &nbsp;
 
 <!-------------------- UPDATE NOTIFICATION -------------------->
 
-#### Update notification
+### Update notification
 
 `PUT /content/notifications/:id`
 

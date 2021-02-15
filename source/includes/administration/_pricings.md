@@ -3,7 +3,7 @@
 The pricing determines the price for each product defined for a selected catalog.
 
 <!-------------------- LIST PRICINGS -------------------->
-#### List pricings
+### List pricings
 
 `GET /pricings`
 
@@ -103,7 +103,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- GET PRICING -------------------->
-#### Retrieve a pricing
+### Retrieve a pricing
 
 `GET /pricings/:id`
 
@@ -233,7 +233,7 @@ Attributes | &nbsp;
 `pricingProducts.currency`<br/>*string* | The currency of the pricing.
 
 <!-------------------- CREATE PRICING -------------------->
-#### Create pricing
+### Create pricing
 
 `POST /pricings`
 
@@ -365,7 +365,7 @@ Optional | &nbsp;
 `description` <br/>*Object* | A map of language language keys to the description in the specified language.
 
 <!-------------------- UPDATE PRICING -------------------->
-#### Update pricing
+### Update pricing
 
 `PUT /pricings/:id`
 
@@ -456,7 +456,7 @@ Optional | &nbsp;
 ------- | -----------
 `description` <br/>*Object* | A map of language language keys to the description in the specified language.
 
-#### Delete pricing
+### Delete pricing
 
 `DELETE /pricings/:id`
 
