@@ -18,7 +18,7 @@ BBOXX SLATE INSTRUCTIONS
 
 **Autogenerate docs**
  - clone the slate repository
- - run the backend locally
+ - run the SMART Solar Backend locally
  - ensure that a folder called "docs" is present in the /app directory
  - navigate to: http://localhost/v1/generate_slate_docs to fill the /docs folder with auto-gen documentation
  - copy the \_\<doc-name\>.md files over to the `includes` folder in the slate repo.
@@ -33,5 +33,7 @@ BBOXX SLATE INSTRUCTIONS
  - Now that Slate is all set up your machine, you'll probably want to learn more about SlateMarkDown (https://github.com/tripit/slate/wiki/Markdown-Syntax)
 
  **Publish Docs**
- - push changes to MASTER branch
- - view newly published docs at http://docs.smart.bboxx.co.uk
+ - push changes to slate MASTER branch
+ - they will build automatically on the old CI machine - https://ci.bboxx.co.uk/job/SMART-Solar-Documentation/
+ - they will fail to be published on docs.smart.bboxx.co.uk as the CI machine no longer has access to it. DevOps need to fix this
+ - when publication has been fixed, view newly published docs at http://docs.smart.bboxx.co.uk
