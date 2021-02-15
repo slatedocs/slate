@@ -3,7 +3,7 @@
 The applied pricing allows the assignment of pricing to organization with a determined scope.
 
 <!-------------------- LIST APPLIED PRICINGS -------------------->
-#### List applied pricings
+### List applied pricings
 
 `GET /applied_pricings`
 
@@ -78,7 +78,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- GET APPLIED PRICING -------------------->
-#### Retrieve an applied pricing
+### Retrieve an applied pricing
 
 `GET /applied_pricings/:id`
 
@@ -150,7 +150,7 @@ Attributes | &nbsp;
 `status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, FUTURE.
 
 <!-------------------- CREATE APPLIED PRICING -------------------->
-#### Create applied pricing
+### Create applied pricing
 
 `POST /applied_pricings`
 
@@ -217,7 +217,7 @@ Optional | &nbsp;
 
 
 <!-------------------- UPDATE APPLIED PRICING -------------------->
-#### Update applied pricing
+### Update applied pricing
 
 `PUT /applied_pricings/:id`
 
@@ -302,7 +302,7 @@ Optional | &nbsp;
 `endDate` <br/>*Date* | The end date for the applied pricing. 
 `scopeOrganization.id` <br/>*UUID* | The UUID of the organization that the scope is targeting. Only required for scopes : ORG_BASE, ORG_TREE, ORG_SUBS.
 
-#### Delete applied pricing
+### Delete applied pricing
 
 `DELETE /applied_pricings/:id`
 
