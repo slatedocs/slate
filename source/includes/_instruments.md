@@ -365,7 +365,7 @@ Http Status:
 | 404 Not Found    | No allocation with this UUID exists              | None       | n/a              |
 
 
-## `PUT /allocations/test/{id}/approve`
+## `🧪 PUT /allocations/test/{id}/approve`
 
 ```http
 PUT /allocations/test/5dd40510-810e-4a55-a395-04819fd915b9/approve HTTP/1.1
@@ -410,7 +410,7 @@ Http Status:
 
 
 
-## `PUT /allocations/test/{id}/reject`
+## `🧪 PUT /allocations/test/{id}/reject`
 
 ```http
 PUT /allocations/test/5dd40510-810e-4a55-a395-04819fd915b9/reject HTTP/1.1

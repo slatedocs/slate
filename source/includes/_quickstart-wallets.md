@@ -1,4 +1,4 @@
-## <em>Quickstart Wallets 🚧</em>
+## <em>Quickstart Wallets</em>
 
 <aside class="notice">
 Please note that wallets are not available by default. Please speak to the Goji integrations team if you wish to use this functionality.

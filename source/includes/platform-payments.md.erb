@@ -186,7 +186,7 @@ Authorization: Basic ...
 
 {
   "ukCompany": {
-    "type": "SOLE_TRADER",
+    "type": "LIMITED_COMPANY",
     "number": "AB123456",
     "name": "Fake Company LIMITED",
     "associatedIndivduals": [
@@ -217,7 +217,7 @@ Content-Type: application/json
   "ukCompany": {
     "name": "Fake Company LIMITED",
     "number": "AB123456",
-    "type": "SOLE_TRADER",
+    "type": "LIMITED_COMPANY",
     "associatedIndivduals": [
       {
         "firstName": "John",
@@ -251,11 +251,26 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 </aside>
 
 ### Request
-<<<<<<< Updated upstream:source/includes/platform-payments.md.erb
-| Name              | Type   | Description                                        | Required |
-| ----------------- | ------ | -------------------------------------------------- | -------- |
-| ukCompany.number  | string | The Company Number registered with Companies House.| required |
-| ukCompany.name    | string | Company Name.                                      | required |
+| Name                                                | Type   | Description                                                                           | Required             |
+| --------------------------------------------------- | ------ | ------------------------------------------------------------------------------------- | -------------------- |
+| ukCompany.name                                      | string | Company Name.                                                                         | required             |
+| ukCompany.type                                      | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.               | required<sup>1</sup> |
+| ukCompany.number                                    | string | The Company Number registered with Companies House.                                   | optional<sup>2</sup> |
+| ukCompany.associatedIndividuals                     | array  | List of associated individuals.                                                       | optional             |
+| ukCompany.associatedIndividuals[].firstName         | string | The first name of the associated individual.                                          |                                                                                                                                            | required |
+| ukCompany.associatedIndividuals[].lastName          | string | The last name of the associated individual.                                           |                                                                                                                                            | required |
+| ukCompany.associatedIndividuals[].dateOfBirth       | string | The date of birth of the associated individual. Must be between 18 and 100 years old. |                                                                                                                                                                                  | required |
+| ukCompany.associatedIndividuals[].address           | object |                                                                                       |                                                                                                                               | required |
+| ukCompany.associatedIndividuals[].address.lineOne   | string | Line one of the address.                                                              |                                                                                                                               ||
+| ukCompany.associatedIndividuals[].address.lineTwo   | string | Line two of the address.                                                              |                                                                                                                               ||
+| ukCompany.associatedIndividuals[].address.lineThree | string | Line three of the address.                                                            |                                                                                                                               ||
+| ukCompany.associatedIndividuals[].address.townCity  | string | The town/city of the address.                                                         |                                                                                                                                ||
+| ukCompany.associatedIndividuals[].address.region    | string | The region of the address eg county.                                                  |                                                                                                                                ||
+| ukCompany.associatedIndividuals[].address.postcode  | string | The post code of the address.                                                         |                                                                                                                                ||
+| ukCompany.associatedIndividuals[].address.country   | string | The country of the associated individual's address in 3 character ISO code.           |
+
+<sup>1. Required when integrating after 2021-02-15.</sup><br/>
+<sup>2. Required when ukCompany.type is *NOT* SOLE_TRADER.</sup>
 
 ### Response
 | Name              | Type   | Description                                        |
@@ -265,7 +280,7 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 | ukCompany.number  | string | The Company Number registered with Companies House.|
 | ukCompany.name    | string | Company Name.                                      |
 
-## `PUT /test/companies/{id}/enable 🚧`
+## `🧪 PUT /test/companies/{id}/enable`
 ```http
 PUT /test/companies/COM~d28360c5-07a3-4d78-ade4-bddcdd8b5502/enable HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -371,7 +386,7 @@ Retrieve details of a single company.
 ## *Managing Wallets*
 
 
-## `POST /wallets 🚧`
+## `POST /wallets`
 ```http
 POST /wallets HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -431,7 +446,7 @@ you of the Wallet creation completing, including the Bank Account Number and Sor
 | walletName   | string | Wallet name.                          |
 
 
-## `GET /wallets 🚧`
+## `GET /wallets`
 ```http
 GET /wallets HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -479,7 +494,7 @@ Retrieve all Wallet details.
 | balance.amount              | number | The amount.                                      |
 | balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
 
-## `GET /wallets/{id} 🚧`
+## `GET /wallets/{id}`
 ```http
 GET /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213 HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -526,7 +541,7 @@ Retrieve details of a single Wallet.
 | balance.amount              | number | The amount.                                      |
 | balance.currency            | string | The ISO 4217 three character codes eg 'GBP'      |
 
-## `POST /wallets/{id}/payment 🚧`
+## `POST /wallets/{id}/payment`
 ```http
 POST /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/payment HTTP/1.1
 Host: api-sandbox.goji.investments
@@ -605,7 +620,7 @@ Create a payment instruction from a Wallet.
 | INVALID_AMOUNT       | Instruction must include a positive non-zero amount.                                        |
 | INSUFFICIENT_BALANCE | Insufficient balance to perform an outbound payment of amount: £10.45. Current balance: £0. |
 
-## `GET /wallets/{id}/transactions/year/{year}/month/{month} 🚧`
+## `GET /wallets/{id}/transactions/year/{year}/month/{month}`
 
 ```http
 GET /wallets/3d9ca033-eb05-459f-9f70-1139d2e2b213/transactions/year/2020/month/1 HTTP/1.1

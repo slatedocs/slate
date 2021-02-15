@@ -444,7 +444,7 @@ Lists the investments for the account.
 | investments[].amountInvested         | ref    | The amount invested.                                                                                                                          |
 | investments[].gainToDate             | ref    | The gain to date. Can be negative if the investment has decreased in value.                                                                   |
 
-## `POST /platformApi/test/bondManagement/investmentCycle`
+## `🧪 POST /platformApi/test/bondManagement/investmentCycle`
 
 ```http
 
@@ -626,7 +626,7 @@ Returns details of the current bonds
 | bonds[].nextRepaymentDate       | string | The date of the next repayment event.                                                                           |
 
 
-## `POST /platformApi/test/bondManagement/investmentCycle/repaymentsAccrual`
+## `🧪 POST /platformApi/test/bondManagement/investmentCycle/repaymentsAccrual`
 
 ```http
 
