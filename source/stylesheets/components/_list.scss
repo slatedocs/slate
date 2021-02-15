@@ -8,6 +8,9 @@ ul {
       background: $code-bg;
     }
     .param {
+      &__desc {
+        display: block;
+      }
       &__name {
         font-family: monospace;
         margin-right: 1em;
