@@ -257,28 +257,41 @@ In sandbox use this <a href="#payments-manager-put-test-companies-id-enable">end
 | ukCompany.type                                      | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.               | required<sup>1</sup> |
 | ukCompany.number                                    | string | The Company Number registered with Companies House.                                   | optional<sup>2</sup> |
 | ukCompany.associatedIndividuals                     | array  | List of associated individuals.                                                       | optional             |
-| ukCompany.associatedIndividuals[].firstName         | string | The first name of the associated individual.                                          |                                                                                                                                            | required |
-| ukCompany.associatedIndividuals[].lastName          | string | The last name of the associated individual.                                           |                                                                                                                                            | required |
-| ukCompany.associatedIndividuals[].dateOfBirth       | string | The date of birth of the associated individual. Must be between 18 and 100 years old. |                                                                                                                                                                                  | required |
-| ukCompany.associatedIndividuals[].address           | object |                                                                                       |                                                                                                                               | required |
-| ukCompany.associatedIndividuals[].address.lineOne   | string | Line one of the address.                                                              |                                                                                                                               ||
-| ukCompany.associatedIndividuals[].address.lineTwo   | string | Line two of the address.                                                              |                                                                                                                               ||
-| ukCompany.associatedIndividuals[].address.lineThree | string | Line three of the address.                                                            |                                                                                                                               ||
-| ukCompany.associatedIndividuals[].address.townCity  | string | The town/city of the address.                                                         |                                                                                                                                ||
-| ukCompany.associatedIndividuals[].address.region    | string | The region of the address eg county.                                                  |                                                                                                                                ||
-| ukCompany.associatedIndividuals[].address.postcode  | string | The post code of the address.                                                         |                                                                                                                                ||
-| ukCompany.associatedIndividuals[].address.country   | string | The country of the associated individual's address in 3 character ISO code.           |
+| ukCompany.associatedIndividuals[].firstName         | string | The first name of the associated individual.                                          | required             |
+| ukCompany.associatedIndividuals[].lastName          | string | The last name of the associated individual.                                           | required             |                                                                                                                                                                                                                                                                                       | required |
+| ukCompany.associatedIndividuals[].dateOfBirth       | string | The date of birth of the associated individual. Must be between 18 and 100 years old. | required             |                                                                                                                                                                                                                                                                                                                            | required |
+| ukCompany.associatedIndividuals[].address           | object |                                                                                       | required             |                                                                                                                                                                                                                                                                         | required |
+| ukCompany.associatedIndividuals[].address.lineOne   | string | Line one of the address.                                                              | required             |                                                                                                                                                                                                                                                                         ||
+| ukCompany.associatedIndividuals[].address.lineTwo   | string | Line two of the address.                                                              | required             |                                                                                                                                                                                                                                                                         ||
+| ukCompany.associatedIndividuals[].address.lineThree | string | Line three of the address.                                                            | required             |                                                                                                                                                                                                                                                                         ||
+| ukCompany.associatedIndividuals[].address.townCity  | string | The town/city of the address.                                                         | required             |                                                                                                                                                                                                                                                                          ||
+| ukCompany.associatedIndividuals[].address.region    | string | The region of the address eg county.                                                  | required             |                                                                                                                                                                                                                                                                          ||
+| ukCompany.associatedIndividuals[].address.postcode  | string | The post code of the address.                                                         | required             |                                                                                                                                                                                                                                                                          ||
+| ukCompany.associatedIndividuals[].address.country   | string | The country of the associated individual's address in 3 character ISO code.           | required             |
 
 <sup>1. Required when integrating after 2021-02-15.</sup><br/>
 <sup>2. Required when ukCompany.type is *NOT* SOLE_TRADER.</sup>
 
 ### Response
-| Name              | Type   | Description                                        |
-| ----------------- | ------ | -------------------------------------------------- |
-| partyId           | string | The Party ID for this company.                     |
-| status            | string | Enum: PENDING, REGISTERED.                         |
-| ukCompany.number  | string | The Company Number registered with Companies House.|
-| ukCompany.name    | string | Company Name.                                      |
+
+| Name                                                | Type   | Description                                                                           |
+| --------------------------------------------------- | ------ | ------------------------------------------------------------------------------------- |
+| partyId                                             | string | The Party ID for this company.                                                        |
+| ukCompany.name                                      | string | Company Name.                                                                         |
+| ukCompany.type                                      | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.               |
+| ukCompany.number                                    | string | The Company Number registered with Companies House.                                   |
+| ukCompany.associatedIndividuals                     | array  | List of associated individuals.                                                       |
+| ukCompany.associatedIndividuals[].firstName         | string | The first name of the associated individual.                                          |
+| ukCompany.associatedIndividuals[].lastName          | string | The last name of the associated individual.                                           |
+| ukCompany.associatedIndividuals[].dateOfBirth       | string | The date of birth of the associated individual. Must be between 18 and 100 years old. |
+| ukCompany.associatedIndividuals[].address           | object |                                                                                       |
+| ukCompany.associatedIndividuals[].address.lineOne   | string | Line one of the address.                                                              |
+| ukCompany.associatedIndividuals[].address.lineTwo   | string | Line two of the address.                                                              |
+| ukCompany.associatedIndividuals[].address.lineThree | string | Line three of the address.                                                            |
+| ukCompany.associatedIndividuals[].address.townCity  | string | The town/city of the address.                                                         |
+| ukCompany.associatedIndividuals[].address.region    | string | The region of the address eg county.                                                  |
+| ukCompany.associatedIndividuals[].address.postcode  | string | The post code of the address.                                                         |
+| ukCompany.associatedIndividuals[].address.country   | string | The country of the associated individual's address in 3 character ISO code.           |
 
 ## `🧪 PUT /test/companies/{id}/enable`
 ```http
@@ -308,15 +321,25 @@ Please note this is a test endpoint and is only available in the sandbox environ
 </aside>
 
 ### Response
-| Name                             | Type   | Description                                                            |
-| -------------------------------- | ------ | ---------------------------------------------------------------------- |
-| partyId                          | string | The Party ID for this company.                                         |
-| status                           | string | Enum: REGISTERED.                                                      |
-| ukCompany.name                   | string | Company Name                                                           |
-| ukCompany.type                   | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.|
-| ukCompany.number                 | string | The Company Number registered with Companies House.                    |
-| ukCompany.associatedIndividuals  | array  | List of associated individuals.                                        |
-
+| Name                                                | Type   | Description                                                                           |
+| --------------------------------------------------- | ------ | ------------------------------------------------------------------------------------- |
+| partyId                                             | string | The Party ID for this company.                                                        |
+| status                                              | string | Enum: REGISTERED.                                                                     |
+| ukCompany.name                                      | string | Company Name.                                                                         |
+| ukCompany.type                                      | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.               |
+| ukCompany.number                                    | string | The Company Number registered with Companies House.                                   |
+| ukCompany.associatedIndividuals                     | array  | List of associated individuals.                                                       |
+| ukCompany.associatedIndividuals[].firstName         | string | The first name of the associated individual.                                          |
+| ukCompany.associatedIndividuals[].lastName          | string | The last name of the associated individual.                                           |
+| ukCompany.associatedIndividuals[].dateOfBirth       | string | The date of birth of the associated individual. Must be between 18 and 100 years old. |
+| ukCompany.associatedIndividuals[].address           | object |                                                                                       |
+| ukCompany.associatedIndividuals[].address.lineOne   | string | Line one of the address.                                                              |
+| ukCompany.associatedIndividuals[].address.lineTwo   | string | Line two of the address.                                                              |
+| ukCompany.associatedIndividuals[].address.lineThree | string | Line three of the address.                                                            |
+| ukCompany.associatedIndividuals[].address.townCity  | string | The town/city of the address.                                                         |
+| ukCompany.associatedIndividuals[].address.region    | string | The region of the address eg county.                                                  |
+| ukCompany.associatedIndividuals[].address.postcode  | string | The post code of the address.                                                         |
+| ukCompany.associatedIndividuals[].address.country   | string | The country of the associated individual's address in 3 character ISO code.           |
 
 ## `GET /companies`
 ```http
@@ -346,11 +369,25 @@ Content-Type: application/json
 Retrieves all companies that have been registered.
 
 ### Response
-| Name              | Type   | Description                                        |
-| ----------------- | ------ | -------------------------------------------------- |
-| partyId           | string                                                      |
-| ukCompany.number  | string | The Company Number registered with Companies House.|
-| ukCompany.name    | string | Company Name                                       |
+| Name                                                   | Type   | Description                                                                           |
+| ------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------- |
+| [].partyId                                             | string | The Party ID for this company.                                                        |
+| [].status                                              | string | Enum: REGISTERED.                                                                     |
+| [].ukCompany.name                                      | string | Company Name.                                                                         |
+| [].ukCompany.type                                      | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.               |
+| [].ukCompany.number                                    | string | The Company Number registered with Companies House.                                   |
+| [].ukCompany.associatedIndividuals                     | array  | List of associated individuals.                                                       |
+| [].ukCompany.associatedIndividuals[].firstName         | string | The first name of the associated individual.                                          |
+| [].ukCompany.associatedIndividuals[].lastName          | string | The last name of the associated individual.                                           |
+| [].ukCompany.associatedIndividuals[].dateOfBirth       | string | The date of birth of the associated individual. Must be between 18 and 100 years old. |
+| [].ukCompany.associatedIndividuals[].address           | object |                                                                                       |
+| [].ukCompany.associatedIndividuals[].address.lineOne   | string | Line one of the address.                                                              |
+| [].ukCompany.associatedIndividuals[].address.lineTwo   | string | Line two of the address.                                                              |
+| [].ukCompany.associatedIndividuals[].address.lineThree | string | Line three of the address.                                                            |
+| [].ukCompany.associatedIndividuals[].address.townCity  | string | The town/city of the address.                                                         |
+| [].ukCompany.associatedIndividuals[].address.region    | string | The region of the address eg county.                                                  |
+| [].ukCompany.associatedIndividuals[].address.postcode  | string | The post code of the address.                                                         |
+| [].ukCompany.associatedIndividuals[].address.country   | string | The country of the associated individual's address in 3 character ISO code.           |
 
 ## `GET /companies/{id}`
 ```http
@@ -377,11 +414,25 @@ Content-Type: application/json
 Retrieve details of a single company.
 
 ### Response
-| Name              | Type   | Description                                        |
-| ----------------- | ------ | -------------------------------------------------- |
-| partyId           | string | Party ID for the company                           |
-| ukCompany.number  | string | The Company Number registered with Companies House.|
-| ukCompany.name    | string | Company Name                                       |
+| Name                                                | Type   | Description                                                                           |
+| --------------------------------------------------- | ------ | ------------------------------------------------------------------------------------- |
+| partyId                                             | string | The Party ID for this company.                                                        |
+| status                                              | string | Enum: REGISTERED.                                                                     |
+| ukCompany.name                                      | string | Company Name.                                                                         |
+| ukCompany.type                                      | string | The type of company: SOLE_TRADER, LIMITED_COMPANY, LIMITED_PARTNERSHIP.               |
+| ukCompany.number                                    | string | The Company Number registered with Companies House.                                   |
+| ukCompany.associatedIndividuals                     | array  | List of associated individuals.                                                       |
+| ukCompany.associatedIndividuals[].firstName         | string | The first name of the associated individual.                                          |
+| ukCompany.associatedIndividuals[].lastName          | string | The last name of the associated individual.                                           |
+| ukCompany.associatedIndividuals[].dateOfBirth       | string | The date of birth of the associated individual. Must be between 18 and 100 years old. |
+| ukCompany.associatedIndividuals[].address           | object |                                                                                       |
+| ukCompany.associatedIndividuals[].address.lineOne   | string | Line one of the address.                                                              |
+| ukCompany.associatedIndividuals[].address.lineTwo   | string | Line two of the address.                                                              |
+| ukCompany.associatedIndividuals[].address.lineThree | string | Line three of the address.                                                            |
+| ukCompany.associatedIndividuals[].address.townCity  | string | The town/city of the address.                                                         |
+| ukCompany.associatedIndividuals[].address.region    | string | The region of the address eg county.                                                  |
+| ukCompany.associatedIndividuals[].address.postcode  | string | The post code of the address.                                                         |
+| ukCompany.associatedIndividuals[].address.country   | string | The country of the associated individual's address in 3 character ISO code.           |
 
 ## *Managing Wallets*
 
