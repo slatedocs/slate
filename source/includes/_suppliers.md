@@ -54,6 +54,12 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
 
 Create a new suppliers and returns the `Supplier` object that is created.
 
+### Supplier Approval
+
+If Supplier `Require Approval` setting is ON and any one Approver is selected. Then supplier will go under approval process and this supplier will available on supplier list once approved by the approver.
+
+Returns text: `Your request to add a new supplier has been sent for approval, please check your email for updates.`
+
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/suppliers`
