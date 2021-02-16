@@ -51,7 +51,7 @@ components:
       name: action
       in: query
       description: >-
-        The asset id of the asset containing the URL attachment
+        The id of an existing app action that is being edited. Should be omitted when configuring a new app action.
     action_type:
       name: action_type
       in: query
@@ -61,7 +61,7 @@ components:
       name: asset
       in: query
       description: >-
-        The id of an existing app action that is being edited. Should be omitted when configuring a new app action.
+        The asset id of the asset containing the URL attachment
     attachment:
       name: attachment
       in: query

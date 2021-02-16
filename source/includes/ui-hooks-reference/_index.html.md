@@ -623,7 +623,7 @@ When a user has navigated to the Custom Rule Builder UI and selected an App Acti
 
 |Name|Description|
 |---|---|
-|?action<span class="param-type"> undefined</span>|The asset id of the asset containing the URL attachment|
+|?action<span class="param-type"> undefined</span>|The id of an existing app action that is being edited. Should be omitted when configuring a new app action.|
 |?action_type<span class="param-type"> undefined</span>|The id of the configuration used to create the app action|
 |?workspace<span class="param-type"> undefined</span>|The workspace gid this hook is coming from.|
 |?task<span class="param-type"> undefined</span>|The task gid this hook is coming from.|
@@ -1127,7 +1127,7 @@ Get the metadata from the App Server to render a widget.
 |?user<span class="param-type"> undefined</span>|The user gid this hook is coming from.|
 |?locale<span class="param-type"> undefined</span>|The locale of the user (i.e. en, fr)|
 |?attachment<span class="param-type"> undefined</span>|The attachment id of the URL attachment|
-|?asset<span class="param-type"> undefined</span>|The id of an existing app action that is being edited. Should be omitted when configuring a new app action.|
+|?asset<span class="param-type"> undefined</span>|The asset id of the asset containing the URL attachment|
 |?expires<span class="param-type"> undefined</span>|The time in milliseconds since epoch time when the request should expire|
 
 <h3 id="get-widget-metadata-responses">Responses</h3>
