@@ -1598,3 +1598,85 @@ object_type | `purchaseorder`, `receiptline`, `accountcode`, `vendor`
 
 200 OK
 
+## Batch Upsert Object Maps <code class='get'>POST</code>
+
+### HTTP Request
+
+`https://example.procurify.com/api/v3/integrations/object-maps/batch/`
+
+> The above command accepts a body:
+
+```json
+[
+    {
+        "object_id": 151,
+        "content_type": 23,
+        "status": 1,
+        "external_id": "1234",
+        "message": "Error Message"
+    },
+    {
+        "object_id": 121,
+        "content_type": 23,
+        "status": 1,
+        "external_id": "1244",
+        "message": "Error Message"
+    },
+]
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": [
+    {
+        "id": 1,
+        "object_id": 151,
+        "status": 1,
+        "content_type": 23,
+        "external_id": "1234"
+    },
+    {
+        "id": 2,
+        "object_id": 121,
+        "status": 1,
+        "content_type": 23,
+        "external_id": "1244"
+    }
+    ],
+    "metadata": {}
+}
+```
+
+This endpoint batch upserts multiple object maps.
+
+### HTTP Response Status Code
+
+201 CREATED
+
+### Arguments
+
+<code>object_id</code><span class="required-tag">required</span><br />
+ID of the Procurify object.
+
+<code>content_type</code><span class="required-tag">required</span><br />
+ID of Procurify content_type.
+
+<code>status</code><br />
+Object map status.
+
+Status | ID
+--------- | -----------
+PENDING | 0
+SYNCED | 1
+ERROR | 2
+
+<code>name</code><br />
+Object map name.
+
+<code>external_id</code><span class="required-tag">required</span><br />
+ID of the integration object.
+
+<code>message</code><br />
+Optional message to save to integration logs.
