@@ -471,7 +471,7 @@ section {
       line-height: 1.6;
       code {
         white-space: nowrap;
-        background: $code-annotation-bg;
+        @extend %code-font;
       }
     }
 
@@ -707,11 +707,6 @@ section {
 .highlight .c1,
 .highlight .cs {
   color: #909090;
-}
-
-.highlight,
-.highlight .w {
-  background-color: $code-bg;
 }
 
 .copy-clipboard {

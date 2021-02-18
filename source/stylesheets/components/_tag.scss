@@ -10,13 +10,19 @@
   text-align: center;
   transition: 100ms;
   &__green {
-    background: green;
+    background: #156064;
   }
   &__orange {
-    background: #c37e00;
+    background: #f17f29;
   }
   &__red {
-    background: darkred;
+    background: #a5243d;
+  }
+  &__pink {
+    background: #faa4bd;
+  }
+  &__blue {
+    background: #3a86ff;
   }
   &--list {
     align-items: center;

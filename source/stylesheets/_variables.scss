@@ -37,7 +37,7 @@ $aside-notice-bg: #8fbcd4 !default;
 $aside-warning-bg: #091626 !default;
 $aside-success-bg: #6ac174 !default;
 $search-notice-bg: #c97a7e !default;
-$purple-bg: #556cd6 !default;
+$purple-bg: #5a47ab !default;
 
 // TEXT COLORS
 ////////////////////
@@ -84,6 +84,7 @@ $rounded-border: 4px;
     serif;
   font-size: 12px;
   line-height: 1.5;
+  background: $code-annotation-bg;
 }
 
 // OTHER
