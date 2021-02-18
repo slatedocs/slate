@@ -64,3 +64,12 @@ Para determinados reportes, deberás tener en cuenta los siguientes límites en 
 <aside class="warning">
 Si tu reporte supera el límite de términos de búsqueda, recibirás un error 400 describiendo la cantidad máxima correspondiente
 </aside>
+
+## Agrupación por fechas
+
+Esta funcionalidad permite agrupar los datos de tu reporte por día, semana o mes, para facilitar su visualización.
+
+Al solicitar un reporte, si no indicas un valor en el atributo `date_range.group_by` recibirás una agrupación predeterminada. Esta agrupación se determina de la siguiente forma:
+
+<%= partial "includes/static/auto_groupby_date.md" %>
+
