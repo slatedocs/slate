@@ -422,7 +422,7 @@ section {
     font-size: 1.5rem !important;
     margin-top: 1em;
     margin-bottom: 0;
-    border-top: 1px solid darken(#666, 2%);
+    border-top: 1px dashed rgba(211, 211, 211, 0.2);
     padding-top: 1.2em;
     padding-bottom: 1.2em;
   }
