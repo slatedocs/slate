@@ -2,39 +2,44 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  &.list--request-params {
-    > li {
-      padding: 10px 8px;
-      background: $code-bg;
+  &.list {
+    &__disc {
+      list-style: disc;
     }
-    .param {
-      &__desc {
-        display: block;
+    &--request-params {
+      > li {
+        padding: 10px 8px;
+        background: $code-bg;
       }
-      &__name {
-        font-family: monospace;
-        margin-right: 1em;
-      }
-      &__type {
-        font-size: 0.85rem;
-        opacity: 0.4;
-      }
-      &__required {
-        color: lightpink;
-        font-size: 1.5em;
-      }
-      &__child {
-        &2 {
-          padding-left: 1em;
-          border-left: 5px solid $aside-warning-bg;
+      .param {
+        &__desc {
+          display: block;
         }
-        &3 {
-          padding-left: 1.5em;
-          border-left: 10px solid $aside-warning-bg;
+        &__name {
+          font-family: monospace;
+          margin-right: 1em;
         }
-      }
-      p {
-        margin: 0;
+        &__type {
+          font-size: 0.85rem;
+          opacity: 0.4;
+        }
+        &__required {
+          color: lightpink;
+          font-size: 1.5em;
+        }
+        &__child {
+          &2 {
+            padding-left: 1em;
+            border-left: 5px solid $aside-warning-bg;
+          }
+          &3 {
+            padding-left: 1.5em;
+            border-left: 10px solid $aside-warning-bg;
+          }
+        }
+        p {
+          margin: 0;
+        }
       }
     }
   }
