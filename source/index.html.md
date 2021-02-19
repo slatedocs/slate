@@ -534,7 +534,7 @@ All of the VA information, even after they are updated, is available on the OY! 
 
 ## API VA Aggregator - Use Cases
 
-![API VA Aggregator](images/va_use_case.png)
+![API VA Aggregator](images/va_use_case_new.png)
 
 ## API VA Aggregator - Registration and Set Up
 
