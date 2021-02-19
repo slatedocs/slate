@@ -16,17 +16,20 @@ Welcome to OY! We aim to be among the world class financial services and always 
 
 ## How OY! Can Help
 
-![How OY Can Help](images/How OY! Can Help.png)
+![How OY Can Help](images/how_oy_can_help.png)
 
 ## Our Product Suites
 
 **Money-Out (Disbursement)**
-1. API Disburse
-2. Bulk Disbursement
+
+* API Disburse
+* Bulk Disbursement
 
 **Money-In (Accepting Payments)**
-1. Virtual Account (VA) Aggregator
-2. Payment Checkout Page/Invoice
+
+* Virtual Account (VA) Aggregator
+* Payment Checkout Page/Invoice
+
 
 ## Registration Process
 
@@ -512,17 +515,22 @@ Your users will be able to pay into a Virtual Account through ATM, Mobile Bankin
 
 5. **Capability to update VA** 
 
-	Attribute that can be updated:
+Attribute that can be updated:
 
-	-  	amount
-	-   is_single_use
-	-   email
-	-   trx_counter
-	-   expired_time
-	-   trx_expired_time
-	-   username_display
+* amount
+* is_single_use
+* email
+* trx_counter
+* expired_time
+* trx_expired_time
+* username_display
 
-All of the VA information, even after they are updated, is available on the OY! dashboard or via API. Once a VA is updated, the new set of configuration will   apply for that VA and the previous configuration is overridden and no longer applicable 
+Example:
+* A static VA with a closed amount can be updated with a new closed amount hence it can work as a bill to be paid for a particular customer
+* A static VA can be updated to a single use so it will be the last payment received from a particular customer
+* A dynamic VA with a closed amount is updated to an opened amount so that it can accept payments for any amount
+
+All of the VA information, even after they are updated, is available on the OY! dashboard or via API. Once a VA is updated, the new set of configuration will apply for that VA and the previous configure is overridden and no longer applicable 
 
 ## API VA Aggregator - Use Cases
 
@@ -540,7 +548,7 @@ Follow the below check-list to ensure you're all set up to use our VA Aggregator
 6. Receive an API Key from us (note: it is required for API authorization purpose)
 7. Integrate with our Virtual Account Aggregator API
 
-# API VA Aggregator - Testing 
+## API VA Aggregator - Testing 
 
 Once you successfully create an OY! account, you can immediately simulate VA payments via API.
 
@@ -560,7 +568,7 @@ Follow the below steps to test the VA flow:
 
 7. The payment made to the VA can be monitored through OY! dashboard. Go to "Virtual Account" menu, and choose "Incoming Payment"
 
-## How to Use
+## API VA Aggregator - How to Use
 
 Send us instructions to generate a new VA number.
 
