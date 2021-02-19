@@ -475,7 +475,8 @@ var success = request.Get("/v2/clients-and-locations/locations/" + locationId + 
         "long-desc":"",
         "services-or-products":[
             "analytics"
-        ]
+        ],
+        "external-report-url":"https://www.local-marketing-reports.com/location-dashboard/2c6c2d77e55862b302858746b2ef7a6d50ac6c4f/view"
    }
 }
 ```
