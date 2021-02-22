@@ -256,10 +256,10 @@ Attributes | &nbsp;
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deployments`<br/>*Array[Object]* | The list of deployment targets.
-`deployments.deploymentName`<br/>*string* | The name of the deployment.
-`deployments.deploymentPopsNames`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deployments.name`<br/>*string* | The name of the deployment.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
-`deployments.deploymentInstancePerPops`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
+`deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
 `deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
 `deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
 `deployments.maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
@@ -413,7 +413,7 @@ Required | &nbsp;
 `deployments.maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
 
 <aside class="notice">
-A workload can be created without `publicPort`, `publicPortSrc`, `publicPortDesc` and `protocol` as part of the payload. But all these fields are required to open a port/port-range on the created workload.
+A workload can be created without any `ports`. However, `ports.publicPort` and `ports.protocol` are required to open a port or port range at workload creation.
 </aside>
 
 <!-------------------- EDIT A WORKLOAD -------------------->
@@ -494,8 +494,8 @@ Required | &nbsp;
 `image`<br/>*string* | The location of a Docker image to run as a container. Only editable when `type` is equal to `CONTAINER`.
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deployments`<br/>*Array[Object]* | The list of deployment targets.
-`deployments.deploymentName`<br/>*string* | The name of the deployment.
-`deployments.deploymentPopsNames`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deployments.name`<br/>*string* | The name of the deployment.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
 
 Optional | &nbsp;
