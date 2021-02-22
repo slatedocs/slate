@@ -1109,9 +1109,9 @@ filters[includeEvents][]|Array of event types to include.
 filters[excludeEvents][]|Array of event types to exclude.
 filters[dateFrom]|Date from filter. Must be type of `\DateTime` for the PHP API libary and in format `Y-m-d H:i:s` for HTTP param
 filters[dateTo]|Date to filter. Must be type of `\DateTime` for the PHP API libary and in format `Y-m-d H:i:s` for HTTP param
-orderBy|Column to sort by. Can use any column listed in the response.
-orderByDir|Sort direction: asc or desc.
+order|Array of Column and Direction [COLUMN, DIRECTION].
 page|What page number to load
+limit|Limit of events per page
 
 ```json
 {
