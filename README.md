@@ -50,6 +50,7 @@ You're going to need:
 ```shell
 # either run this to run locally
 bundle install
+# make sure you have a JS runtime such as node before running below
 bundle exec middleman server
 
 # OR run this to run with vagrant
