@@ -132,9 +132,9 @@ Attributes | &nbsp;
 `categories.createdAt`<br/>*string* | The creation date.
 `categories.updatedAt`<br/>*string* | The update date.
 `categories.featured`<br/>*boolean* | If the category needs to be displayed.
-`categories.externalDocumentation`<br/> | List of URL and language objects. Only either 1) articles, or, 2) external documentation, will be provided for a category (example above shows both only as an example for the object structure).
-`categories.externalDocumentation.language`<br/> | Language of the external documentation. This indicates which URL to use based on the help center selected language.
-`categories.externalDocumentation.url`<br/> | URL link to the external documentation.
+`categories.externalDocumentation`<br/>*Array[Object]* | List of URL and language objects. Only either 1) articles, or, 2) external documentation, will be provided for a category (example above shows both only as an example for the object structure).
+`categories.externalDocumentation.language`<br/>*string* | Language of the external documentation. This indicates which URL to use based on the help center selected language.
+`categories.externalDocumentation.url`<br/>*string* | URL link to the external documentation.
 `categories.translations`<br/>*Array[Object]* | The translation objects for the category.
 `categories.translations.id`<br/>*UUID* | The id of the translation.
 `categories.translations.language`<br/>*string* | The language of the translation.
@@ -280,9 +280,9 @@ Attributes | &nbsp;
 `categories.createdAt`<br/>*string* | The creation date.
 `categories.updatedAt`<br/>*string* | The update date.
 `categories.featured`<br/>*boolean* | If the category needs to be displayed.
-`categories.externalDocumentation`<br/> | List of URL and language objects. Only either 1) articles, or, 2) external documentation, will be provided for a category (example above shows both only as an example for the object structure).
-`categories.externalDocumentation.language`<br/> | Language of the external documentation. This indicates which URL to use based on the help center selected language.
-`categories.externalDocumentation.url`<br/> | URL link to the external documentation.
+`categories.externalDocumentation`<br/>*Array[Object]* | List of URL and language objects. Only either 1) articles, or, 2) external documentation, will be provided for a category (example above shows both only as an example for the object structure).
+`categories.externalDocumentation.language`<br/>*string* | Language of the external documentation. This indicates which URL to use based on the help center selected language.
+`categories.externalDocumentation.url`<br/>*string* | URL link to the external documentation.
 `categories.translations`<br/>*Array[Object]* | The translation objects for the category.
 `categories.translations.id`<br/>*UUID* | The id of the translation.
 `categories.translations.language`<br/>*string* | The language of the translation.
