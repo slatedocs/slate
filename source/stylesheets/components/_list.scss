@@ -6,9 +6,15 @@ ul {
     &__disc {
       list-style: disc;
     }
+    &__padded {
+      padding: 0 1.5em;
+    }
     &--request-params {
+      p {
+        margin: 0
+      }
       > li {
-        padding: 10px 8px;
+        padding: 4px 8px;
         background: $code-bg;
       }
       .param {
@@ -27,14 +33,15 @@ ul {
           color: lightpink;
           font-size: 1.5em;
         }
+        &--enums {
+          margin: 5px 1.5em;
+        }
         &__child {
           &2 {
-            padding-left: 1em;
-            border-left: 5px solid $aside-warning-bg;
+            padding-left: 2em;
           }
           &3 {
-            padding-left: 1.5em;
-            border-left: 10px solid $aside-warning-bg;
+            padding-left: 3em;
           }
         }
         p {

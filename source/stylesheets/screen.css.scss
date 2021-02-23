@@ -22,7 +22,8 @@ body {
   a {
     text-decoration: none;
   }
-  p > a {
+  p > a, table a {
+    font-weight: bold;
     &:visited {
       color: #e4f1fe;
     }
@@ -483,18 +484,19 @@ section {
 
     td {
       padding: 10px;
+      vertical-align: middle;
     }
 
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
-    }
-
-    tr:nth-child(odd) > td {
-      background-color: lighten($main-bg, 4.2%);
-    }
-
-    tr:nth-child(even) > td {
-      background-color: lighten($main-bg, 2.4%);
+    tr {
+      &:last-child {
+        border-bottom: 1px solid #ccc;
+      }
+      &:nth-child(odd) > td {
+        background-color: lighten($main-bg, 4.2%);
+      }
+      &:nth-child(even) > td {
+        background-color: lighten($main-bg, 2.4%);
+      }
     }
   }
 

@@ -5,4 +5,18 @@
   border-radius: 4px;
   padding: 5px 10px;
   box-shadow: 1px 2px darken($code-bg, $amount: 5%);
+
+  table {
+    tr {
+      &:last-child {
+        border-bottom: 1px solid lighten($code-bg, 7%);
+      }
+      &:nth-child(odd) > td {
+        background-color: lighten($code-bg, 2%);
+      }
+      &:nth-child(even) > td {
+        background-color: lighten($code-bg, .2%);
+      }
+    }
+  }
 }

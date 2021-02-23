@@ -1,7 +1,11 @@
-@import "./details";
-@import "./token";
-@import "./snippets";
-@import "./scrollbar";
 @import "./card";
+@import "./details";
 @import "./list";
+@import "./scrollbar";
+@import "./sizing";
+@import "./snippets";
 @import "./tag";
+@import "./text";
+@import "./token";
+
+@import "./padding"; // must be last one
