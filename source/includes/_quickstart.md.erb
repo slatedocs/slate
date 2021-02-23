@@ -2,9 +2,9 @@
 
 > ¡Te damos la bienvenida!
 
-Extrae información, crea reportes y analiza estadísticas para descubrir dónde y cuánto dinero están invirtiendo las marcas en sus campañas digitales. **Clientela es la mejor forma de interactuar con [Admetricks](https://admetricks.com)** de manera automática.
+Extrae información, crea reportes y analiza estadísticas para descubrir dónde y cuánto dinero están invirtiendo las marcas en sus campañas digitales. **El API de Admetricks es la mejor forma de interactuar con los datos** de manera automática.
 
-El API de Clientela se organiza alredededor de <a href="https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional" target="_blank">REST</a>. Implementa URLs orientadas a recursos y entrega respuestas en <a href="https://www.json.org/json-es.html" target="_blank">JSON</a> a través de códigos de estado y verbos HTTP.
+El API de Admetricks utiliza <a href="https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional" target="_blank">REST</a>. Implementa URLs orientadas a recursos y entrega respuestas en <a href="https://www.json.org/json-es.html" target="_blank">JSON</a> a través de códigos de estado y verbos HTTP.
 
 **URL base:** todas tus consultas deben ser enviadas a <a href="https://clientela.admetricks.com" target="_blank">https://clientela.admetricks.com</a>
 
@@ -18,8 +18,14 @@ Adicionalmente, existe un proceso de refinamiento (conocido como **reproceso**) 
 
 El reproceso es programado y ocurre en las siguientes fechas.
 
-- **Día 15 de cada mes:** se reprocesa el mes pasado. Ejemplo: el 15 de enero se reprocesa diciembre
-- **Cada 3 meses**: el día 15 de cada trimestre, se reprocesa el trimestre pasado. Al terminar el reproceso trimestral, **la información se cierra** y no deberían existir cambios para ninguna campaña. Ejemplo: el 15 de enero se reprocesan octubre, noviembre y diciembre
+<ul class="list__disc text-justify">
+ <li>
+  <strong>Día 15 de cada mes:</strong>
+  se reprocesa el mes pasado. Ejemplo: el 15 de enero se reprocesa diciembre</li>
+ <li>
+  <strong>Cada 3 meses:</strong>
+  el día 15 de cada trimestre, se reprocesa el trimestre pasado. Al terminar el reproceso trimestral, <strong>la información se cierra</strong> y no deberían existir cambios para ninguna campaña. Ejemplo: el 15 de enero se reprocesan octubre, noviembre y diciembre</li>
+</ul>
 
 ## Límite de uso
 
@@ -31,9 +37,9 @@ Un límite de uso (del inglés _rate limit_) es el **número de llamadas** a la 
   echo "Hola mundo!"
 ```
 
-**El API de Clientela está sujeto a límites de tarifas**. Cada usuario puede realizar **máximo 1000 consultas a la API por día y 120 consultas por minuto**. Si cualquiera de los dos límites es excedido, podrá volver a realizar consultas una vez termine el periodo sobrepasado.
+**El API de Admetricks está sujeto a límites de tarifas**. Cada usuario puede realizar **máximo 1000 consultas a la API por día y 120 consultas por minuto**. Si cualquiera de los dos límites es excedido, podrá volver a realizar consultas una vez termine el periodo sobrepasado.
 
-En el caso de alcanzar el límite de consultas por día o por minuto, Clientela responderá con el código `429 Too Many Requests`.
+En el caso de alcanzar el límite de consultas por día o por minuto, Admetricks responderá con el código `429 Too Many Requests`.
 
 <span id="time_range_limits"></span>
 
@@ -41,7 +47,7 @@ En el caso de alcanzar el límite de consultas por día o por minuto, Clientela 
 
 Siempre que desees aplicar un rango de fecha en tus reportes deberás tener en cuenta los siguientes límites entre la diferencia entre la fecha de inicio y la fecha de fin de tu reporte, lo que generalmente corresponde a los campos `date_range.start` y `date_range.end`
 
-<details>
+<details class="card">
   <summary>Haz clic aquí para desplegar los límites de periodos máximos.</summary>
   <%= partial "includes/static/time_range_limits.md" %>
 </details>
@@ -56,7 +62,7 @@ Si tu reporte supera este límite de rango de fechas, recibirás un error 400 de
 
 Para determinados reportes, deberás tener en cuenta los siguientes límites en la cantidad de términos que puedes solicitar.
 
-<details>
+<details class="card">
   <summary>Haz clic aquí para desplegar los límites de términos de búsqueda.</summary>
   <%= partial "includes/static/search_term_limits.md" %>
 </details>
@@ -73,3 +79,4 @@ Al solicitar un reporte, si no indicas un valor en el atributo `date_range.group
 
 <%= partial "includes/static/auto_groupby_date.md" %>
 
+<%= partial "includes/errors.html.md" %>

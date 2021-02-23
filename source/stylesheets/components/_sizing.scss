@@ -1,0 +1,7 @@
+$widths: (0, 25, 50, 75, 100);
+
+@each $width in $widths {
+  .w-#{$width} {
+    width: $width * 100%;
+  }
+}
