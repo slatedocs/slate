@@ -1,6 +1,6 @@
 ## Sites
 
-Stackpath allows you to create and manage your CDN, WAF, and/or Serverless Scripting Delivery sites. 
+Create and manage your CDN, WAF, and/or Serverless Scripting Delivery sites. 
 
 <!-------------------- LIST SITES -------------------->
 
@@ -54,16 +54,16 @@ Retrieve a list of all sites in a given [environment](#administration-environmen
 
 Optional | &nbsp;
 ------ | -----------
-`status`<br/>*string* | Setting the status parameter to **ACTIVE** will return only the active **stackpath sites**.
+`status`<br/>*string* | Setting the status parameter will return only the **stackpath sites** with that particular status. The site's status can either be `ACTIVE`, `PENDING`, or `PROVISIONING`.
 
 Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*string* | A sites's unique identifier. 
 `stackId`<br/>*string* | The ID of the stack that a site belongs to.
 `domain`<br/>*string* | The domain of the site.
-`status`<br/>*string* | The status of the site. It can be either `READY`, `SUSPENDED`, or `DISABLED`.
-`createdAt`<br/>*string* | Creation timestamp of the site.
-`updatedAt`<br/>*string* | Last updation timestamp of the site.
+`status`<br/>*string* | The status of the site. It can either be `ACTIVE`, `PENDING`, or `PROVISIONING`.
+`createdAt`<br/>*string* | The date on which the site was created.
+`updatedAt`<br/>*string* | The date on which the site was last updated.
 `services`<br/>*array* | List of services running on the site.
 
 <!-------------------- RETRIEVE A SITE -------------------->
@@ -104,7 +104,7 @@ Attributes | &nbsp;
 `id`<br/>*string* | A sites's unique identifier. 
 `stackId`<br/>*string* | The ID of the stack that a site belongs to.
 `domain`<br/>*string* | The domain of the site.
-`status`<br/>*string* | The status of the site. It can be either `READY`, `SUSPENDED`, or `DISABLED`.
-`createdAt`<br/>*string* | Creation timestamp of the site.
-`updatedAt`<br/>*string* | Last updation timestamp of the site.
+`status`<br/>*string* | The status of the site. It can either be `ACTIVE`, `PENDING`, or `PROVISIONING`.
+`createdAt`<br/>*string* | The date on which the site was created.
+`updatedAt`<br/>*string* | The date on which the site was last updated.
 `services`<br/>*array* | List of services running on the site.
