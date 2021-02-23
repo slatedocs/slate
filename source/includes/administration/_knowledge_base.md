@@ -132,7 +132,7 @@ Attributes | &nbsp;
 `categories.createdAt`<br/>*string* | The creation date.
 `categories.updatedAt`<br/>*string* | The update date.
 `categories.featured`<br/>*boolean* | If the category needs to be displayed.
-`categories.externalDocumentation`<br/> | List of URL and language object. Only one of articles or external documentation is provided for a category (example above shows both only as an example for the object structure).
+`categories.externalDocumentation`<br/> | List of URL and language objects. Only either 1) articles, or, 2) external documentation, will be provided for a category (example above shows both only as an example for the object structure).
 `categories.externalDocumentation.language`<br/> | Language of the external documentation. This indicates which URL to use based on the help center selected language.
 `categories.externalDocumentation.url`<br/> | URL link to the external documentation.
 `categories.translations`<br/>*Array[Object]* | The translation objects for the category.
@@ -280,7 +280,7 @@ Attributes | &nbsp;
 `categories.createdAt`<br/>*string* | The creation date.
 `categories.updatedAt`<br/>*string* | The update date.
 `categories.featured`<br/>*boolean* | If the category needs to be displayed.
-`categories.externalDocumentation`<br/> | List of URL and language object. Only one of articles or external documentation is provided for a category (example above shows both only as an example for the object structure).
+`categories.externalDocumentation`<br/> | List of URL and language objects. Only either 1) articles, or, 2) external documentation, will be provided for a category (example above shows both only as an example for the object structure).
 `categories.externalDocumentation.language`<br/> | Language of the external documentation. This indicates which URL to use based on the help center selected language.
 `categories.externalDocumentation.url`<br/> | URL link to the external documentation.
 `categories.translations`<br/>*Array[Object]* | The translation objects for the category.
