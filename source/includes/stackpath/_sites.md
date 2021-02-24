@@ -108,3 +108,30 @@ Attributes | &nbsp;
 `createdAt`<br/>*string* | The date on which the site was created.
 `updatedAt`<br/>*string* | The date on which the site was last updated.
 `services`<br/>*array* | List of services running on the site.
+
+<!-------------------- DELETE A SITE -------------------->
+
+### Delete a site
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites/:id</code>
+
+Delete a site in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site deletion.
+`taskStatus` <br/>*string* | The status of the operation.
