@@ -132,11 +132,11 @@ Attributes | &nbsp;
 `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable.
+`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `environmentVariables.value` <br/>*string* | An environment variable's value.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable.
-`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value.
+`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
@@ -247,11 +247,11 @@ Attributes | &nbsp;
 `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable.
+`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `environmentVariables.value` <br/>*string* | An environment variable's value.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable.
-`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value.
+`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
 `persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
@@ -405,11 +405,11 @@ Required | &nbsp;
 `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set.
 `containerEmail` <br/>*string* | The email address to use for the docker registry account
 `environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable.
+`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `environmentVariables.value` <br/>*string* | An environment variable's value.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable.
-`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value.
+`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
 `deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
 `deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
@@ -513,11 +513,11 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable.
+`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `environmentVariables.value` <br/>*string* | An environment variable's value.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable.
-`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. Setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
+`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only available when `type` is equal to `CONTAINER`.
 `containerUsername`<br/>*string* | The username that should be used for authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
 `containerEmail`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
