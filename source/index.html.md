@@ -12,34 +12,70 @@ search: true
 ---
 # Home
 
-Welcome to OY! We aim to be among the world class financial services and always put our customers first in everything we do. We have a variety of products ranging from sending payments, accepting payments, and other financial related products that are all ready to meet your needs. We are ready to help you achieve greater success. 
+Welcome to OY! We aim to be among the world class financial services and always put our customers first in everything that we do. Armed with money-in (accepting payments) and money-out (fund disbursement) products and services, we are ready to help your business achieve higher growth through swift and secure payment infrastructure solutions.
 
-## How to Register 
-You can immediately create an account and enjoy some of our features in trial mode with limited functionalities until your account is upgraded to the full version. Our documentation will help you navigate through the entire registration process, including submitting requests for upgrading your account. For further inquiries, please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) and our representative will get in touch. 
+## How OY! Can Help
+
+![How OY Can Help](images/how_oy_can_help.png)
+
+## Our Product Suites
+
+**Money-Out (Disbursement)**
+
+* API Disburse
+* Bulk Disbursement
+
+**Money-In (Accepting Payments)**
+
+* Virtual Account (VA) Aggregator
+* Payment Checkout Page/Invoice
+
+
+## Registration Process
+
+Registration process begins with creating an account. Creating an account is 100% free and enables you to try our product suites in staging/test environment, where you can execute money-in and money-out dummy transactions (without real money movement).
+
+After successfully creating an account, if you are interested to go live (execute real money-in and/or money-out transactions) or integrate with OY!, you are required to upgrade your account by submitting supporting legal documentations.
+
+## Creating Account
+
+Follow the steps below to create an account:
 
 **1. Register on the OY! dashboard**: To create your account, please register [here](https://business.oyindonesia.com/register?), and complete the form with all the required information. 
 
-*Please note that your username cannot be change once the registration form is submitted.*
+*Please note that your username cannot be changed once the registration form is submitted.*
 
-![Register](images/register_1.png)
+![Creating Account](images/creating_account_1.png)
+
 
 **2. Activate your account**: Once the registration is submitted, an activation link will be sent to the email registered. 
 
-![Register](images/register_2.png)
 
-Once you are able to login, you will be able to test some of our features in trial mode or request to upgrade your account to enjoy the full version! 
+![Creating Account](images/creating_account_2.png)
+
+Once you are successfully logged in, you will be able to try our product suites in staging/test environment, where you can execute money-in and money-out dummy transactions (without real money movement).
+
+If you are ready to proceed to go live or integrate with OY!, refer to the below sections for more information on the steps to upgrade your account.
 
 ## Upgrading your Account 
 
-**1. Request to Upgrade your Account**: to access the full version of our products and services, please select “Upgrade Your Account” on the menu at the left side of the OY! dashboard and complete all the required information.
+Follow the steps below to upgrade your account:
+
+**1. Request to Upgrade your Account**: to access the full version of our products and services, please select “Upgrade Your Account” on the menu at the left side of the OY! dashboard  (Production environment) and complete all the required information.
 
 *Please note that the receiving bank account information cannot be changed via the OY! dashboard once your upgrade account request is approved for security reasons. Please contact us at [partner@oyindonesia.com](partner@oyindonesia.com) to change the receiving bank account information.*
 
-![Upgrade](images/upgrade_1.png)
+![Upgrade](images/upgrade_account_1.png)
+
+![Upgrade](images/upgrade_account_2.png)
 
 **2. Upload the Required Supporting Documents**: Please upload the required supporting documents according to your business type. Documents are only accepted in PDF format and must be less than 10 MB in size each. 
 
-![Upgrade](images/upgrade_2.png)
+![Upgrade](images/upgrade_account_3.png)
+
+![Upgrade](images/upgrade_account_4.png)
+
+After you upload the required supporting documents, you need to choose which products that you want to use.
 
 **3. Submit your Request**: Click “Submit & Request to Upgrade”, and a new status of “Upgrade Account Requested” should appear on this page, indicating that your request has been submitted along with your supporting documents.
 
@@ -82,24 +118,32 @@ Below is the list of documentation to be submitted for an upgrade request:
 
 8. NIB/TDP
 
-## Completion Checklist 
-This set up checklist is recommended to ensure you correctly set up your professional profile and fully maximize the capabilities of our platform: 
+## Completion/Go-Live Checklist 
+Once you're ready to execute real money-in and money-out transactions or integrate with OY!, follow the below check-list to ensure you're all set up:
 
 1. Create an account
 
-2. Fill out the upgrade requirement
+2. Upgrade your account by submitting the required documentations
 
-3. Ensure the receiving bank account information is accurate
+3. Have your upgrade request approved
 
-4. Upload the required documentations
+4. Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons)
 
-5. *Optional* - create additional sub-account users under User Management
+5. (Required if you want to use our API) Submit your IPs and callback URLs (both for staging and production environment) to your business representative or to partner@oyindonesia.com
 
-# API Disbursement
+6. (Required if you want to use our API) Request your staging and production API Key to our business representative (note: you are not required to upgrade your account to request staging API Key. Upgrade is only required if you want to request Production API Key).
+
+7. (Optional) Perform testing. We recommend that you thoroughly test before going live. We’ve provided a Staging Mode in our dashboard, where you can test transactions to understand how our products work, without using real money. If you are a developer, you can also test your integrations.
+
+8. (Optional) If your company wants to have multiple users: Create additional sub-account users under User Management
+
+# Sending Payments
+
+## API Disbursement
 
 API disbursement product provides the capability for you to disburse to 100+ banks in Indonesia via OY! at any time. The integration process to use the API disbursement product is straight forward and the details can be checked [here](https://api-docs.oyindonesia.com/#fund-disbursement).  
 
-## Key Features 
+## API Disbursement - Key Features
 **Overdraft**
 
 OY! has established partnerships with third party lenders to credit a specific amount of funds that can be used for your disbursement needs. With this feature, you don’t need to top up the OY! balance to execute disbursements. Please contact our [business representative](partner@oyindonesia.com) for further details about this feature.
@@ -116,7 +160,7 @@ For all disbursements executed, you will receive notifications regarding your tr
 
 You can check your available balance at anytime to ensure that you have sufficient balance to execute a disbursement.
 
-## Registration and Set Up 
+## API Disbursement - Registration and Set Up
 **Prerequisites** 
 
 * Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
@@ -133,9 +177,9 @@ You can check your available balance at anytime to ensure that you have sufficie
 
 * Integrate with our [API](https://api-docs.oyindonesia.com/#fund-disbursement)
 
-## Testing (Testing environment coming soon)
+## API Disbursement - Testing (Coming Soon)
 
-## How to Use 
+## API Disbursement - How to Use 
 
 In order to create disbursements, a sufficient available OY! balance is required in the account. More details and instructions about topping up to your OY! account coming soon.
 
@@ -314,11 +358,11 @@ Lastly, all transactions can be monitored from the OY! dashboard which includes 
 For further details on the parameters definition and proper usage, please refer to our [API Documentation](https://api-docs.oyindonesia.com/#fund-disbursement).
 
 
-# Bulk Disburse 
+## Bulk Disbursement
 
 Our Bulk disbursement product provides the capability to execute disbursements to multiple beneficiaries with a single xlsx or csv file upload (“Campaign”). Bulk disbursement is made through the OY! dashboard, where details regarding the disbursement campaign can be found. No technical integration is required to use this product. 
 
-## Key Features 
+## Bulk Disbursement - Key Features 
 **Overdraft**
 
 OY! has established partnerships with third party lenders to credit a specific amount of funds that can be used for your disbursement needs. With this feature, you don’t need to top up the OY! balance to execute disbursements. Please contact our [business representative](partner@oyindonesia.com) for further details about this feature.
@@ -343,7 +387,7 @@ Keep track of all the details of the entire campaign such as the total amount of
 
 Itemized details of each individual transaction, including their respective statuses: success, pending, or failed.
 
-## Registration and Set Up 
+## Bulk Disbursement - Registration and Set Up 
 **Prerequisites**
 
 * Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
@@ -354,9 +398,9 @@ Itemized details of each individual transaction, including their respective stat
 
 * Upgrade request is approved 
 
-## Testing (Testing environment coming soon) 
+## Bulk Disbursement - Testing (Testing environment coming soon) 
 
-## How to Use
+## Bulk Disbursement - How to Use
 
 In order to create disbursement campaigns, a sufficient available OY! balance is required in the account. If there is an insufficient available balance in the account, campaigns can still be created but not approved. 
 
@@ -429,11 +473,11 @@ If you choose not to approve your disbursement campaign, the status of your bulk
 You can also double check each of your transactions by navigating to the account statement page on the OY! dashboard. 
 
 
-# API VA Aggregator 
+# Accepting Payments
 
-**What is a VA?** 
+## API VA Aggregator 
 
-Businesses are struggling to manage hundreds or even thousands of physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the amount of account maintainence and man hours needed for reporting and reconciliation purposes, combining different information from different accounts. 
+Businesses are struggling to manage hundreds or even thousands of physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the amount of account maintenance and man hours needed for reporting and reconciliation purposes, combining different information from different accounts. 
 
 Virtual Account (VA) is essentially a dummy account that is linked to a physical account and has all the physical account characteristics that enables a much easier reporting and reconciliation process by centralizing the money flow into the physical account. By issuing VAs, you can assign each VA for specific person and/or purposes.
 
@@ -449,64 +493,82 @@ Our virtual accounts are adjustable according to your needs. We offer options of
 
 ![API VA Aggregator](images/va_diagram_2.png)
 
-## Key Features
+**VA Payment Flow**
 
-***Static VA vs Dynamic VA***
+Your users will be able to pay into a Virtual Account through ATM, Mobile Banking, and Internet Banking.
 
-* A static VA is an account that has a lifetime validity that will exist until it is manually deactivated. Therefore, a static VA is always active and configured to be used for multiple times.
+## API VA Aggregator - Key Features
 
-* A dynamic VA is an account that has a specific validity that will exist until it is expired or manually deactivated. 
+1. **Support multiple banks** - Currently, we support virtual accounts (VA) at 6 banks: BCA, BNI, Mandiri, BRI, Permata, and CIMB Niaga
+2. **Real-time settlement for majority of the banks** - Payment into a VA will settle in your OY! dashboard on a real-time basis for the majority of the banks (note: for BCA, the settlement will take place H+2 after payment is made into the VA)
+3. **Transaction tracking and monitoring capability** - You can track all created VA, incoming payments, and their respective details through our API callback or the OY! dashboard. You will receive a callback all incoming transactions.
+4. **Customizable VA types** - Refer to the table below for more informations on various types of VA:
 
-**Closed vs Opened Amount**
+| Type/Feature      | Description |
+| ----------- | ----------- |
+| Static Virtual Account     | VA that has a lifetime validity. It will always be active until it is manually deactivated   |
+| Dynamic Virtual Account  | VA that has a specific validity period. It will always be active until it is expired or manually deactivated       |
+| Closed Amount Virtual Account   | VA that only accepts payment of a specific amount/declared amount     |
+| Opened Amount Virtual Account  |  VA that accepts payment of any amount        |
+| Single Use Virtual Account    | VA that expires after a single payment. A single use configuration can only be set up for a dynamic VA      |
+| Multiple Use Virtual Account | VA that only expires when expiration date is reached or when it is manually deactivated        |
 
-* A closed amount is a configuration so that a VA can only be paid if the actual declared amount is paid to the VA.
+5. **Capability to update VA** 
 
-* An opened amount is a configuration so that a VA can be paid up to the declared amount (or any, if amount is not declared).
+Attribute that can be updated:
 
-**Single Use vs Multi Use**
+* amount
+* is_single_use
+* email
+* trx_counter
+* expired_time
+* trx_expired_time
+* username_display
 
-* A single use configuration can only be setup for a dynamic VA where the VA is no longer usable once it receives a payment.
-
-* A multi use configuration, by nature, is the characteristic of static VAs. For dynamic VAs, it means it can be used for multiple times until the VA is expired or manually deactivated.
-
-**Update VA**
-
-All VA characteristics mentioned above can be updated. Below are a few examples of what features can be updated on a VA: 
-
+Example:
 * A static VA with a closed amount can be updated with a new closed amount hence it can work as a bill to be paid for a particular customer
-
 * A static VA can be updated to a single use so it will be the last payment received from a particular customer
-
 * A dynamic VA with a closed amount is updated to an opened amount so that it can accept payments for any amount
 
 All of the VA information, even after they are updated, is available on the OY! dashboard or via API. Once a VA is updated, the new set of configuration will apply for that VA and the previous configure is overridden and no longer applicable 
 
-***Retrieve the VA details and incoming transactions***
+## API VA Aggregator - Use Cases
 
-All details regarding your [created VAs](https://api-docs.oyindonesia.com/#get-list-of-created-va) and [incoming transactions](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va) can be retrieved via our API endpoint or can be monitored directly from the OY! dashboard. Notifications will also be sent for all incoming transactions.
+![API VA Aggregator](images/va_use_case_new.png)
 
+## API VA Aggregator - Registration and Set Up
 
-## Registration and Set Up
+Follow the below check-list to ensure you're all set up to use our VA Aggregator API service:
 
-**Prerequisities:**
+1. Create an account
+2. Upgrade your account by submitting the required documentations
+3. Have your upgrade request approved
+4. Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons)
+5. Submit your IPs and callback URLs to your business representative or to partner@oyindonesia.com
+6. Receive an API Key from us (note: it is required for API authorization purpose)
+7. Integrate with our Virtual Account Aggregator API
 
-* Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
+## API VA Aggregator - Testing 
 
-* Activate your account through the activation link sent via email
+Once you successfully create an OY! account, you can immediately simulate VA payments via API.
 
-* Upgrade your account 
+Follow the below steps to test the VA flow:
 
-* Upgrade request is approved
+1. Create an account
 
-* Provide an IP to be whitelisted and callback link to our business team 
+2. Send a request to activate API VA Aggregator product and obtain staging API Key to your business representative
 
-* API Key to be shared
+3. Create a VA number by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/generate-static-va using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#create-va)
 
-* Integrate with our [API](https://api-docs.oyindonesia.com/#fund-disbursement)
+4. After VA number is generated, partner can simulate VA payment through your dashboard (in Staging environment) by going to Settings, and choose "VA Callback"
 
-## Testing (Testing environment coming soon) 
+5.  Fill in the bank name associated with the generated VA number, the generated VA number, amount, and payment date & time
 
-## How to Use
+6. If payment is successful, we will send a callback to the registered staging callback URL destination
+
+7. The payment made to the VA can be monitored through OY! dashboard. Go to "Virtual Account" menu, and choose "Incoming Payment"
+
+## API VA Aggregator - How to Use
 
 Send us instructions to generate a new VA number.
 
@@ -646,143 +708,205 @@ Similarly, all the details regarding [incoming transactions](https://api-docs.oy
 For further details regarding OY!'s extensive API VA Aggregator capabilities and endpoints, please refer to the [OY! API Documentation](https://api-docs.oyindonesia.com/#va-aggregator).
 
 
-# Payment Checkouts/Invoice 
+## Payment Checkouts/Invoice 
 
-Our Payment Checkout/Invoice product allows you to create and send URLs to accept payments from your users. You can either send your users a pre-generated URL for your account ("Payment Checkout/Invoice via Link") or a unique encapsulated URL generated through an API ("Payment Checkout/Invoice via API") or the OY! Dashboard ("Payment Checkout/Invoice via Dashboard"). 
+**Overview**
 
-## Key Features 
-### Payment Checkout/Invoice via Link
+OY! Payment Checkout/Invoice is a pre-built payment page that allows your business to easily and securely accept payments online. Currently, our payment checkout/invoice page supports Credit Card, Debit Card, Bank Transfer, and QRIS (e-wallet) payment methods. You can create payment checkout/invoice pages through various methods: OY! Dashboard, pre-generated URL, and API.
 
-**_1. No Integration Needed_** 
+Creating a payment checkout/invoice page is free! You will only be charged when you successfully receive a payment made through that checkout/invoice page.
 
+**Payment Flow**
+
+1. You create payment checkout/invoice page for your customers
+2. Your customers make a payment through the payment checkout/invoice page
+3. OY! detects the payments and notifies you about the payments through sending a callback and/or updating the payment status on your dashboard
+4. The payments received will settle in your OY! dashboard
+
+**Payment Checkout Preview**
+
+Step 1 - Input Amount
+
+![Payment Checkout](images/payment_checkout_input_amount.png)
+
+Step 2 - Input Personal Info of the Customer
+
+![Payment Checkout](images/payment_checkout_info_customer.png)
+
+Step 3 - Select Payment Method
+
+![Payment Checkout](images/payment_checkout_payment_method.png)
+
+
+## Payment Checkout/Invoice - Key Features 
+
+### Various options of creating payment  checkout/invoice page
+
+**1. Creating payment checkout/invoice page through pre-generated URL**
+
+ - **No integration needed**
 Access and declare all parameters needed from the URL with easy and simple declaration. 
 
-**_2. Reusable Link_** 
-
+ - **Reusable link** 
 One link can be used many times without repeating declaration. 
 
-**_3. Amount and Payment Method Customization_** 
+ - **Amount and payment method customization** 
+You can choose whether your users will pay a fixed amount (closed amount) or any amount (open amount). 
 
-You can customize the amount to be billed to your users whether they have to pay a fix amount (closed amount) or any amount (open amount). We provide Bank Transfers, Credit Card, Debit Card, and QR code payment methods that you can also enable/disable at any time. Please refer to our [FAQ page](https://docs.oyindonesia.com/#faqs) below for more information regarding closed and open amounts. 
+	You can also choose which payment methods that you will enable for your customers. The payment methods to choose from are Bank Transfers, Credit Card, Debit Card, and QR code. 
 
-**_4. Hide Specific Payment Checkout Pages_**
+	Please refer to our [FAQ page](https://docs.oyindonesia.com/#faqs) below for more information regarding closed and open amounts.
 
+ - **Payment checkout page customization** 
 You can customize which payment checkout pages are accessible for your users. We offer options to hide pages 1 (Input Amount), 2 (Customer Information), and 3 (Select Payment Method) of our payment checkout.
 
-**_5. Check Incoming Transactions Status and Callback_** 
+**2. Creating payment checkout/invoice page through API**
 
-For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
+ - **Seamless integration with your customer's purchase journey**
+ You can easily call our API - we will take care of the payment checkout/invoice link creation and feed it back to you so that you can embed the link in your customer journey. 
+ 
+ - **Added level of customization**
+ 
+Below are the things that you can customize:
+1. Amount (specify the amount and choose between open amount vs closed amount)
 
-### Payment Checkout/Invoice via API
+2. Admin fee (choose whether the admin fee will be borne by your customers or borne by you)
 
-**_1. Complete Customization_**
+3. Payment method (choose the payment methods displayed to your customers among Bank Transfers, Credit Card, Debit Card, and QR code options. Additionally, you can choose which banks are enabled for Bank Transfer method.)
+ 
+4. Payment checkout page (choose which payment checkout pages are accessible for your users. We offer options to hide pages 1 (Input Amount), 2 (Customer Information), and 3 (Select Payment Method) of our payment checkout.
 
-* Open vs. closed amount
+5. Payment link expiration date
 
-* Admin fee to be paid by your customers
-
-* Amount and payment method customization
-
-* Hide specific payment checkout pages
-
-* Choose the bank(s) to be enabled for your Bank Transfer
-
-* Set an expiry time for your payment link
-
-
-**_2. Static VA for Invoice Payment_**
-
+ - **Static VA for Invoice Payment**
 You can enable a static VA option when using the API specifically assigned to your customer.
 
-
-**_3. Upload or Create a PDF for your Invoice Billing_**
-
+ - **Upload or Create a PDF for your Invoice Billing**
 You can upload an invoice attachment or create an attachment using the OY! PDF templates via our API so you do not need to send a separate email to your customer.
 
-
-**_4. Payment Link Delivery by Email_**
-
-Payment link created can be sent to your customer’s email directly instead of sharing the payment link separately.
+- **Payment Link Delivery by Email**
+If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email!
 
 
-**_5. Check Incoming Transaction Status and Callback_**
+**3. Creating payment checkout/invoice page through dashboard**
 
-For all incoming payments, you will receive notifications regarding your transactions. We also provide an API for you to check the transaction status. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
+If you want to use our payment checkout/invoice page without undergoing technical integration process/without API and with higher level of customization, you can choose to create it through your dashboard.
 
-### Payment Checkout/Invoice via Dashboard (Coming Soon) 
+This capability enables you to enjoy most of the features and benefits of creating payment checkout/invoice page through API - without any integration needed!
 
-### Enjoy the quality services of our product!
+### Capability to monitor payment checkout/invoice details on dashboard
 
-Whether you send your user a pre-generated link or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through the OY! Dashboard. 
+Whether you send your user a pre-generated link, dashboard-generated link, or an API-generated encapsulated link, each of your distributed payment checkout links can be monitored through the OY! Dashboard. We will also send a callback for all incoming payments.
 
 You will be able to see the details of the payment checkout including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status. 
 
+We also provide an API for you to check the transaction status manually. 
+
 ![Payment Checkout](images/payment_checkout_list.png)
 
-## Registration and Set Up
+## Payment Checkout/Invoice - Registration and Set Up
 
-**Prerequisites** 
+**For dashboard and URL-generated links** 
 
-* Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
+Follow the below check-list to ensure you're all set up to use the above service:
 
-* Activate your account through the activation link sent via email
+1. Create an account
+2. Upgrade your account by submitting the required documentations
+3. Have your upgrade request approved
+4. Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons)
+5. Once your account is approved, you can access the URL via [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). 
+Step by step instructions can be found [here](https://docs.oyindonesia.com/#how-to-use-payment-checkout-via-link)
 
-* Upgrade your account 
+	You can also start creating the payment checkout/invoice page link through the dashboard. Step by step instructions can be found here.
 
-* Upgrade request is approved
+**For API-generated links** 
 
-* Provide an IP to be whitelisted (for API Payment Checkout/Invoice) and callback link to our business team 
+1. Create an account
 
-* For link: once your account is approved, you can access it via [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). Step by step instructions can be found [here](https://docs.oyindonesia.com/#how-to-use-payment-checkout-via-link).
+2. Upgrade your account by submitting the required documentations
 
+3. Have your upgrade request approved
 
-* For API: 
+4. Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons)
 
-1. Complete IP whitelisting process
+5. Submit your IPs and callback URLs to your business representative or to partner@oyindonesia.com
 
-2. Retrieve API Key 
+6. Receive an API Key from us (note: it is required for API authorization purpose)
 
-3. Integrate with our [API](https://api-docs.oyindonesia.com/#api-create-payment-checkout)
+8. Integrate with our [Payment Checkout API](https://api-docs.oyindonesia.com/#api-create-payment-checkout)
 
-## Testing (Testing environment coming soon) 
+## Payment Checkout/Invoice - Testing 
 
-## How to Use Payment Checkout via Link
+**Creating dashboard-generated test links** 
+
+1. Log on your OY! dashboard
+2. Choose "Staging" environment
+3. Click "Request Money" menu, and choose "Payment Checkout"
+4. Click "Create Payment Checkout Link"
+5. Fill in the necessary details
+
+| Parameter     | Description |
+| ----------- | ----------- |
+| Amount Type    |You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount|
+| Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
+| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer, Credit Card, Debit Card, and QRIS (e-wallet)|
+| Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
+| Expiration Fee |You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
+| Payment Type |You can choose between "Non Invoice" and "Invoice". By choosing "Invoice", you will be able to upload the invoice PDF or list down the items to be invoiced (item name, description, quantity, purchase date, price per item, and total price). You can also choose whether to assign a static virtual account to the corresponding user.  |
+| Description   |The description of the payment link. Usually this is used to describe the purpose of the payment checkout page|
+|Customer Detail |Details that can be specified: Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link to the specified email address (if email address is filled in)|
+
+**Creating API-generated test links** 
+
+1. Create an account
+2. Send a request to activate API Payment Checkout product and obtain staging API Key to your business representative
+3. Create a payment checkout by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/payment-checkout/create-v2. Enter the required and optional fields, as referenced in the [API reference docs](https://api-docs.oyindonesia.com/#api-create-payment-checkout)
+
+**Accessing and monitoring the created test payment checkout links**
+
+Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
+
+## How to Use Payment Checkout/Invoice via Link/URL
 
 *Note:* Our payment link includes parameters that are easily adjustable according to your needs. You can send the link to multiple customers using the same link (please refer to the steps below) and we will take care the rest.
 
-**1. Access your payment link and input amount**: Access our pre-generated link unique to your account by simply replacing yourusername with your username approved with OY at [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). 
+1. Access the base URL of your payment checkout page: Access our pre-generated test link unique to your account by simply replacing your username with your username approved with OY! at [https://pay.oyindonesia.com/v2?username=yourusername](https://pay.oyindonesia.com/v2?username=yourusername). 
 
-By default, payment checkout via link declaration will be expired within 24 hours.
+2. Customize the URL parameter(s) as needed: There are various parameters that you can customize within the URL, simply refer to the below table to do the customization;
 
-If you do not want to specify the amount, you can immediately send the link at this step to your customers, allowing them to input their desired amount. 
+| Parameter     | Definition | Customization Step | Sample Link | 
+| ----------- | ----------- |----------- |----------- |
+| Amount    |The payment amount that will be displayed in the payment checkout page  | Add "amount=[the specified amount]", separated by &. Example: amount=100000 | `https://pay.oyindonesia.com/v2?username=yourusername&amount=100000`
+| Step | The section of the payment checkout page you want to redirect your users to.     |Add "step=[the specified step]", separated by &. The specified step can be filled in with one of the following: "input_amount", "input_personal_info", or "select_payment_method". | `https://pay.oyindonesia.com/v2?username=yourusername&step=input_personal_info`
+| Partner transaction ID   |  The identifier corresponding to the payment checkout transaction. Example: partner_tx_id=OY2021ABCD123.  | Add “partner_tx_id=[the specified partner transaction ID]”, separated by &. | `https://pay.oyindonesia.com/v2?username=yourusername&partner_tx_id=OY2020ABCD123`
+|Sender Name  | The name of your user that will be displayed in the payment checkout page. Example: sender_name=John Doe        | Add "sender_name=[the specified sender name]", separated by &. | `https://pay.oyindonesia.com/v2?username=yourusername&sender_name=John`
+| Is  Open   | Identifier of whether the amount is open or closed for this payment check out page. If set to TRUE, your user will be able to edit the amount. If set to FALSE: 1) your user will not be able to edit the amount, 2) it is mandatory for you to define the partner_tx_id and amount parameter in the link. When is_open is set to FALSE, deleting `is_open=false` from the link or changing it back to `is_open=true` will not revert the amount back to an unlocked value. Once `is_open=false` is declared, the amount is permanently frozen for this particular `partner_tx_id`.  |Add "is_open=[TRUE or FALSE]", separated by &.|`https://pay.oyindonesia.com/v2?username=yourusername&is_open=false&amount=100000&partner_tx_id=OY2020ABCD123`
+|Payment Method | The payment method to be enabled for the users. Payment methods available are bank transfer through VA (Virtual Account), Credit Card,  Debit Card, and QR (e-wallet). You can choose specific payment methods to be enabled/disabled via parameter declaration by specifying `enable_payment_va`, `enable_payment_cc` or `enable_payment_debit` as `true` or `false`|Add "is_open=[TRUE or FALSE]", separated by &. If not specified, it will be enabled by default| `https://pay.oyindonesia.com/v2?username=yourusername&enable_payment_va=FALSE`
 
-If you would like to charge your customers for a specific amount, input the number and click “Lanjutkan”.
+It is optional to specify each of the parameter listed above.
 
-**2. (Optional) Lock amount**: You might notice that you can easily change the checkout details by simply editing the parameters within the link. For example, `amount=100000` can be changed to a different number and the payment details will readjust accordingly. The same is true when you edit the `username`, `step`, and `sender_name`.
+Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
 
-`https://pay.oyindonesia.com/v2?username=yourusername&amount=100000&partner_tx_id=OY2020ABCD123&step=input_personal_info`
+## How to Use Payment Checkout/Invoice via Dashboard
 
-In order to lock editing the amount for your customers, add `is_open=false` to the payment link and the `partner_tx_id` and `amount` becomes mandatory to be filled out. This will permanently attach the amount to the unique transaction ID. In the example above, the `amount=100000` is locked to this specific `partner_tx_id`.
+1. Log on your OY! dashboard
+2. Choose "Production" environment
+3. Click "Request Money" menu, and choose "Payment Checkout"
+4. Click "Create Payment Checkout Link"
+5. Fill in the necessary details
 
-`https://pay.oyindonesia.com/v2?username=yourusername&amount=100000&partner_tx_id=OY2020ABCD123&step=input_personal_info&is_open=false`
+| Parameter     | Description |
+| ----------- | ----------- |
+| Amount Type    |You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount|
+| Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
+| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer, Credit Card, Debit Card, and QRIS (e-wallet)|
+| Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
+| Expiration Fee |You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
+| Payment Type |You can choose between "Non Invoice" and "Invoice". By choosing "Invoice", you will be able to upload the invoice PDF or list down the items to be invoiced (item name, description, quantity, purchase date, price per item, and total price). You can also choose whether to assign a static virtual account to the corresponding user.  |
+| Description   |The description of the payment link. Usually this is used to describe the purpose of the payment checkout page|
+|Customer Detail |Details that can be specified: Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link to the specified email address (if email address is filled in)|
 
-When this is done, deleting `is_open=false` from the link or changing it back to `is_open=true` will not revert the amount back to an unlocked value. Once `is_open=false` is declared, the amount is permanently frozen for this particular `partner_tx_id`.
-
-Test your link to ensure that the amount is locked by changing the `amount` parameter within your link. If done correctly, the amount displayed on the payment checkout page should reflect what you have previously locked regardless of what is altered within the link.
-
-**3. Input the customer's information**: After inputting the amount, you will be required to enter the customer’s information. Either you or your customer can fill out this information. 
-
-**4. Select Payment Method**: We support payments either through bank transfer, credit card, debit card, or QR code. You can choose specific payment methods to be enabled via parameter declaration by specifying `enable_payment_va`, `enable_payment_cc` or `enable_payment_debit` as `true` or `false`.
-
-**5. Access payment checkout link details**:
-
-You can look at your payment checkout link details through the OY! dashboard. It notes each created payment checkout link including the URL, status, payment link details, and user details. 
-
-![Payment Checkout](images/payment_checkout_complete.png)
-
-**6. Monitor all your payment checkout links**: The OY! dashboard also provides you with the capabilities to monitor all your created payment links and their statuses. This allows you to track the statuses of each created link, including those that have expired. This report will include all payment checkout links generated both via Link and API.
-
-![Payment Checkout](images/payment_checkout_list.png)
+Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
 
 ## How to Use Payment Checkout via API 
 
