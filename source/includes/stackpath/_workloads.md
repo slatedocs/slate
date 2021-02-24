@@ -142,7 +142,7 @@ Attributes | &nbsp;
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deployments`<br/>*Array[Object]* | The list of deployment targets.
 `deployments.name`<br/>*string* | The name of the deployment.
-`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
 `deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
 `deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
@@ -257,7 +257,7 @@ Attributes | &nbsp;
 `persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `deployments`<br/>*Array[Object]* | The list of deployment targets.
 `deployments.name`<br/>*string* | The name of the deployment.
-`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
 `deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
 `deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
@@ -310,53 +310,56 @@ curl -X POST \
 
 ```json
 {
-	"type": "CONTAINER",
-   "name":"container-workload",
-   "slug":"container-workload",
-	 "image": "nginx",
-   "addAnyCastIpAddress": false,
-	 "ports": [
-		 {
-			 "publicPort": "80",
-			 "protocol": "TCP",
-       "publicPortDesc": "rule-name"
-		 }
-	 ],
-   "specs":"SP-1",
-   "persistenceStoragePath": "/lib/data/newFolder",
-   "persistenceStorageSize": 1,
-	 "commands": [
-		 "/bin/sh -c \"sleep 50\""
-	 ],
-	 "environmentVariables": [
-		 {
-			 "key": "USER",
-			 "value": "my-user"
-		 }
-	 ],
-	 "secretEnvironmentVariables": [
-		 {
-			 "key": "PASSWORD",
-			 "value": "my-password"
-		 }
-	 ],
-	 "deployments": [
-		 {
-			 "name": "deployment-mia",
- 			 "enableAutoScaling": false,
- 			 "pops": ["MIA"],
-			 "instancesPerPop": "1"
-
-		 },
-		 {
-			 "name": "deployment-lax",
-			 "pops": ["LAX"],
-			 "enableAutoScaling": true,
-			 "minInstancesPerPop": 1,
-			 "maxInstancesPerPop": 2,
-			 "cpuUtilization": 50
-		 }
-	]
+  "type": "CONTAINER",
+  "name": "container-workload",
+  "slug": "container-workload",
+  "image": "nginx",
+  "addAnyCastIpAddress": false,
+  "ports": [
+    {
+      "publicPort": "80",
+      "protocol": "TCP",
+      "publicPortDesc": "rule-name"
+    }
+  ],
+  "specs": "SP-1",
+  "persistenceStoragePath": "/lib/data/newFolder",
+  "persistenceStorageSize": 1,
+  "commands": [
+    "/bin/sh -c \"sleep 50\""
+  ],
+  "environmentVariables": [
+    {
+      "key": "USER",
+      "value": "my-user"
+    }
+  ],
+  "secretEnvironmentVariables": [
+    {
+      "key": "PASSWORD",
+      "value": "my-password"
+    }
+  ],
+  "deployments": [
+    {
+      "name": "deployment-mia",
+      "enableAutoScaling": false,
+      "pops": [
+        "MIA"
+      ],
+      "instancesPerPop": "1"
+    },
+    {
+      "name": "deployment-lax",
+      "pops": [
+        "LAX"
+      ],
+      "enableAutoScaling": true,
+      "minInstancesPerPop": 1,
+      "maxInstancesPerPop": 2,
+      "cpuUtilization": 50
+    }
+  ]
 }
 ```
 > The above commands return a JSON structured like this:
@@ -381,7 +384,7 @@ Required | &nbsp;
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
 `deployments`<br/>*Array[Object]* | The list of deployment targets.
 `deployments.name`<br/>*string* | The name of the deployment.
-`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
  
  Optional | &nbsp;
@@ -413,7 +416,7 @@ Required | &nbsp;
 `deployments.maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
 
 <aside class="notice">
-A workload can be created without any `ports`. However, `ports.publicPort` and `ports.protocol` are required to open a port or port range at workload creation.
+A workload can be added without any `ports`. However, `ports.publicPort` and `ports.protocol` are required to open a port or port range at workload creation.
 </aside>
 
 <!-------------------- EDIT A WORKLOAD -------------------->
@@ -436,18 +439,20 @@ curl -X PUT \
   "deployments": [
     {
       "name": "toronto-1",
-      "pops": ["YYZ"],
+      "pops": [
+        "YYZ"
+      ],
       "enableAutoScaling": true,
-			"minInstancesPerPop": 1,
-			"maxInstancesPerPop": 2,
-			"cpuUtilization": 50
+      "minInstancesPerPop": 1,
+      "maxInstancesPerPop": 2,
+      "cpuUtilization": 50
     }
   ]
 }
 ```
 > Request body example for a CONTAINER Workload type:
 
-```json
+```js
 {
   "name": "my-container-workload",
   "type": "CONTAINER",
@@ -456,6 +461,11 @@ curl -X PUT \
     {
       "key": "PASSWORD",
       "value": "my-password"
+    },
+    {
+      // set value to [REDACTED] to preserve existing secret
+      "key": "PRIVATE-KEY",
+      "value": "[REDACTED]"
     }
   ],
   "addImagePullCredentialsOption": true,
@@ -468,7 +478,9 @@ curl -X PUT \
     {
       "name": "toronto-1",
       "enableAutoScaling": false,
-      "pops": ["YYZ"],
+      "pops": [
+        "YYZ"
+      ],
       "instancesPerPop": "1"
     }
   ]
@@ -495,7 +507,7 @@ Required | &nbsp;
 `specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
 `deployments`<br/>*Array[Object]* | The list of deployment targets.
 `deployments.name`<br/>*string* | The name of the deployment.
-`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z][A-Z][A-Z]`.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
 
 Optional | &nbsp;
@@ -505,7 +517,7 @@ Optional | &nbsp;
 `environmentVariables.value` <br/>*string* | An environment variable's value.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable.
-`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value.l to `CONTAINER`.
+`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. Setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only available when `type` is equal to `CONTAINER`.
 `containerUsername`<br/>*string* | The username that should be used for authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
 `containerEmail`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
