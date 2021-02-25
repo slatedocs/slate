@@ -258,7 +258,6 @@ The list entry resource that was just created through this request.
 ```shell
 curl "https://api.affinity.co/lists/450/list-entries/56517" \
    -u :<API-KEY> \
-   -d entity_id=38706 \
    -X "DELETE"
 ```
 

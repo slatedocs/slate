@@ -153,7 +153,10 @@ interaction.
 
 You can filter by interaction dates by providing additional query parameters like
 `min_last_email_date` or `max_next_event_date`. The value of these query parameters should
-be ISO 8601 formatted date strings.
+be ISO 8601 formatted date strings. The interaction dates are stored with timestamps,
+so the `{min,max}_<interaction>_date` parameter can include or exclude timestamps to explicitly
+filter the dataset. If a timestamp is not provided, the system will use the default value of 
+`00:00:00`.
 
 > Example Request
 
@@ -192,7 +195,20 @@ curl "https://api.affinity.co/organizations?term=affinity" -u :<API-KEY>
 
 ```shell
 # To get the second page of results, issue the following query:
-curl "https://api.affinity.co/organizations?term=affinity&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+curl --request GET  "https://api.affinity.co/organizations" \
+  -u :<API-KEY> \
+  -d page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9
+```
+
+> Example with interaction date
+
+```shell
+# To get the results between min_last_email_interaction_date and max_last_email_interaction_date, issue the following query:
+curl --request GET "https://api.affinity.co/organizations" \
+  -u :<API-KEY> \
+  -d min_last_email_date=2021-01-01T00:00:00 \
+  -d with_interaction_dates=true \
+  -d max_last_email_date=2021-01-12T23:59:59
 ```
 
 ### Query Parameters

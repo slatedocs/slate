@@ -52,12 +52,10 @@ Of course, all fields can be modified and the opportunity can be deleted.
 | Attribute        | Type        | Description                                                                                     |
 | ---------------- | ----------- | ----------------------------------------------------------------------------------------------- |
 | id               | integer     | The unique identifier of the opportunity object.                                                |
-| name             | integer     | The name of the opportunity (see below).                                                        |
+| name             | string      | The name of the opportunity (see below).                                                        |
 | person_ids       | number[]    | An array of unique identifiers for persons that are associated with the opportunity             |
 | organization_ids | number[]    | An array of unique identifiers for organizations that are associated with the opportunity       |
-| list_entries     | ListEntry[] | An array of list entry resources associated with the opportunity (at most 1 list entry). If the |
-
-user corresponding to the API key does not have access to the list, this will be empty.
+| list_entries     | ListEntry[] | An array of list entry resources associated with the opportunity (at most 1 list entry). If the user corresponding to the API key does not have access to the list, this will be empty. |
 
 ## Search for opportunities
 
