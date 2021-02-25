@@ -31,6 +31,7 @@ includes:
   - administration/email_settings
   - administration/feedback_settings
   - administration/custom_fields
+  - administration/quotas
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
