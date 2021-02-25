@@ -215,7 +215,7 @@ QuotaDetail Attributes | &nbsp;
 Deletes an existing quota. The parameter `quota_id` is only required when deleting a quota that is currently assigned to an organization. 
 
 ```shell
-# Delete a specific Quota 
+# Delete a specific quota 
 curl -X DELETE "https://cloudmc_endpoint/api/v2/quotas/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
