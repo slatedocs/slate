@@ -113,10 +113,7 @@ QuotaDetail Attributes | &nbsp;
 
 ### Retrieve a quota
 
-`GET /quota/:id`
-
-```shell
-# Retrieve a specific quota
+`GET /quotas/:id`
 
 ```shell
 # Retrieve a specific quota
@@ -208,3 +205,32 @@ QuotaDetail Attributes | &nbsp;
 `metricIdentifier`<br/>*string* | Id matching the metric identifiers provided by the plugin writer.
 `ceiling`<br/>*number* | The ceiling value (metric).
 `limitsize`<br/>*number* | `DEPRECATED` The maximum for the type (metric).
+
+
+<!-------------------- DELETE A QUOTA -------------------->
+
+### Delete a quota
+`DELETE /quotas/:id1?quota_id=:id2`
+
+Deletes an existing quota. The parameter `quota_id` is only required when deleting a quota that is currently assigned to an organization. 
+
+```shell
+# Delete a specific Quota 
+curl -X DELETE "https://cloudmc_endpoint/api/v2/quotas/:id" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "085b008e-7ee4-444b-8092-350190786147",
+  "taskStatus": "SUCCESS"
+}
+```
+
+**Query Parameters**
+
+Optional | &nbsp;
+---------- | -----------
+`quota_id`<br/>*UUID* | The id of the quota that will be used as a substitution for the quota that is being deleted. 
+
