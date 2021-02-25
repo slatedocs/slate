@@ -1,0 +1,813 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ALMEXAPIQA</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-e033bdd3.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;json&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="json">json</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#token" class="toc-h2 toc-link" data-title="Token">Token</a>
+                  </li>
+                  <li>
+                    <a href="#refresh-token" class="toc-h2 toc-link" data-title="Refresh Token">Refresh Token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#quote" class="toc-h1 toc-link" data-title="Quote">Quote</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#rate" class="toc-h2 toc-link" data-title="Rate">Rate</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pickup-request" class="toc-h1 toc-link" data-title="Pickup Request">Pickup Request</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#generate" class="toc-h2 toc-link" data-title="Generate">Generate</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#tracking" class="toc-h1 toc-link" data-title="Tracking">Tracking</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#last-event" class="toc-h2 toc-link" data-title="Last Event">Last Event</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#imaging" class="toc-h1 toc-link" data-title="Imaging">Imaging</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#image-download" class="toc-h2 toc-link" data-title="Image Download">Image Download</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>All endpoints except auth/token and auth/refresh-token require a token for Authorization, failure to which the API will return an error .</p>
+
+<p>HOST: <a href="https://almexapiqa.azure-api.net">https://almexapiqa.azure-api.net</a>.</p>
+
+<p>This API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>.</p>
+<h1 id='authentication'>Authentication</h1><h2 id='token'>Token</h2>
+<p>This endpoint deals with a user.</p>
+<h3 id='endpoint'>EndPoint</h3>
+<p>POST/auth/token</p>
+<h3 id='http-request'>HTTP Request</h3>
+<blockquote>
+<p>REQUEST</p>
+
+<p><code>Headers</code></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"numberAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>RESPONSE : <code>200</code></p>
+
+<p>Headers</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJqdGkiOiIwYTZlZGM0Ni1kODI1LTQ2YWItOGQ1ZS05ZjE3ZjY5YjRlMGIiLCJ1c2VyTmFtZSI6IiIsIm51bWJlckFjY291bnQiOiIiLCJ1c2VySWQiOjExNzQwLCJjbGllbnRJZCI6NTUxMDU4LCJjdXJyZW5jeUlkIjowLCJkZW5zaXR5IjowLjAsImdyb3VwUHJvamVjdElkIjowLCJwcm9qZWN0SWQiOjAsInR5cGVTZXJ2aWNlIjoxLCJjb21wYW55SWQiOjUsInBhcmlkYWRJZCI6MC4wLCJpdmFJZCI6MSwicm9sZSI6IkFsbWV4IiwibmJmIjoxNjEzMzgzODQwLCJleHAiOjE2MTM5ODg2NDAsImlhdCI6MTYxMzM4Mzg0MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMzYvIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMzYvIn0.DtUX_YD892zImsjpOjQBzHSGeDiMGJr4XcfdnMafp6c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"refreshToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ep2/QZ+GirsSpVKUmeuN54qN/tQr+NctvJ0BUmofsNm7M/iAxoW8/gjXxPC5OJ4G14oj6ZA5w5Cq5Q2DdATVw=="</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>POST https://almexapiqa.azure-api.net/auth/token?subscription-key=e725bd3f101c46c8a4e8ce132d3f34c4</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscription-key</td>
+<td>e725bd3f101c46c8a4e8ce132d3f34c4</td>
+</tr>
+</tbody></table>
+<h2 id='refresh-token'>Refresh Token</h2>
+<p>This endpoint refreshes the token.</p>
+<h3 id='endpoint-2'>EndPoint</h3>
+<p>POST/auth/refresh-token</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<blockquote>
+<p>REQUEST</p>
+
+<p><code>Headers</code></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIiLCJqdGkiOiIwYTZlZGM0Ni1kODI1LTQ2YWItOGQ1ZS05ZjE3ZjY5YjRlMGIiLCJ1c2VyTmFtZSI6IiIsIm51bWJlckFjY291bnQiOiIiLCJ1c2VySWQiOjExNzQwLCJjbGllbnRJZCI6NTUxMDU4LCJjdXJyZW5jeUlkIjowLCJkZW5zaXR5IjowLjAsImdyb3VwUHJvamVjdElkIjowLCJwcm9qZWN0SWQiOjAsInR5cGVTZXJ2aWNlIjoxLCJjb21wYW55SWQiOjUsInBhcmlkYWRJZCI6MC4wLCJpdmFJZCI6MSwicm9sZSI6IkFsbWV4IiwibmJmIjoxNjEzMzgzODQwLCJleHAiOjE2MTM5ODg2NDAsImlhdCI6MTYxMzM4Mzg0MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMzYvIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMzYvIn0.DtUX_YD892zImsjpOjQBzHSGeDiMGJr4XcfdnMafp6c"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>RESPONSE : <code>200</code></p>
+
+<p>Headers</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nombre de usuario o contraseña incorrectos, inténtalo de nuevo."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>POST https://almexapiqa.azure-api.net/auth/refresh-token?subscription-key=820987daaf1d4b37bca95b6e7a0cd8da</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscription-key</td>
+<td>820987daaf1d4b37bca95b6e7a0cd8da</td>
+</tr>
+</tbody></table>
+<h1 id='quote'>Quote</h1><h2 id='rate'>Rate</h2>
+<p>This endpoint ..............</p>
+<h3 id='endpoint-3'>EndPoint</h3>
+<p>POST/quote/rate</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<blockquote>
+<p>REQUEST</p>
+
+<p><code>Headers</code></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"origin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52227"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75110"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"packages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"camisetas rosas"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"box"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"declaredValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"weightUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KGS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"lengthUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MTS"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>RESPONSE : <code>401</code></p>
+
+<p>Headers</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://httpstatuses.com/401"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthorized"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"traceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|abb06879-486bc05a368175f2."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>POST https://almexapiqa.azure-api.net/quote/rate?subscription-key=820987daaf1d4b37bca95b6e7a0cd8da</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscription-key</td>
+<td>820987daaf1d4b37bca95b6e7a0cd8da</td>
+</tr>
+</tbody></table>
+<h1 id='pickup-request'>Pickup Request</h1><h2 id='generate'>Generate</h2>
+<p>This endpoint generates a pickup request.</p>
+<h3 id='endpoint-4'>EndPoint</h3>
+<p>POST/pickuprequest/generate</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<blockquote>
+<p>REQUEST</p>
+
+<p><code>Headers</code></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"shipper"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tepeji Depot MX"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Costco_224"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address_street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Calle Norte 3 No. 3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address_neighborhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parque Industrial"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tepeji del Rio de Ocampo"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HG"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MX"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42884"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123@123.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"consignee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centiro"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address_street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benito Juárez"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address_neighborhood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centro"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asuncion Cuyotepeji City"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OA"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MX"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zipcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64500"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"073001100"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centiro@costco.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"observations"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"service_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"shipping_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"accessorials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"types_insurance"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"declared_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"pickup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"service_needed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-29T00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"delivery"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"service_needed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"only_working_days"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"packages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"weight_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KGS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"length_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MTS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"package"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOX"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.42</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.94</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.94</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">172.0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"references"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"almex_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MX11Ord2222165"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>RESPONSE : <code>401</code></p>
+
+<p>Headers</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://httpstatuses.com/401"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthorized"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"traceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|abb06885-486bc05a368175f2."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>POST https://almexapiqa.azure-api.net/pickuprequest/generate?subscription-key=820987daaf1d4b37bca95b6e7a0cd8da</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscription-key</td>
+<td>820987daaf1d4b37bca95b6e7a0cd8da</td>
+</tr>
+</tbody></table>
+<h1 id='tracking'>Tracking</h1><h2 id='last-event'>Last Event</h2>
+<p>This endpoint tracks the last event..</p>
+<h3 id='endpoint-5'>EndPoint</h3>
+<p>GET/tracking/:id/lastevent</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<blockquote>
+<p>RESPONSE : <code>200</code></p>
+
+<p>Headers</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"idEvent"</span><span class="p">:</span><span class="w"> </span><span class="mi">88983549</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"trackingIdEvent"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"descriptionEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mercancía Entregada"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description2Event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Goods delivered"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dateLastEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-10T16:02:38.363"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hourLastEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-10T16:02:38.363"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"referenceEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 MONTERREY (SUC. GUERRERO)"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"officeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTERREY (SUC. GUERRERO)"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tractor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"operatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tractorNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://almexapiqa.azure-api.net/tracking/07053846188/lastevent?subscription-key=820987daaf1d4b37bca95b6e7a0cd8da&quot;</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscription-key</td>
+<td>820987daaf1d4b37bca95b6e7a0cd8da</td>
+</tr>
+</tbody></table>
+<h1 id='imaging'>Imaging</h1><h2 id='image-download'>Image Download</h2>
+<p>This endpoint downloads an image.</p>
+<h3 id='endpoint-6'>EndPoint</h3>
+<p>GET/imaging/:id/imaging/es-mx</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<blockquote>
+<p>RESPONSE : <code>200</code></p>
+
+<p>Headers</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="s2">"Content-Type: application/json"</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://imagenguias.almex.com.mx/imgCte.asp?Q5fr2ytYSTP55xrRvdrkps4wtQOP0dNB"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET https://almexapiqa.azure-api.net/imaging/07070769168/imaging/es-mx?documentType=DR&amp;documentFormat=URL&amp;subscription-key=85070f2ccf9345c58bcd5d3ad78446bf</code></p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>subscription-key</td>
+<td>820987daaf1d4b37bca95b6e7a0cd8da</td>
+</tr>
+<tr>
+<td>documentType</td>
+<td>DR</td>
+</tr>
+<tr>
+<td>documentFormat</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>subscription-key</td>
+<td>85070f2ccf9345c58bcd5d3ad78446bf</td>
+</tr>
+</tbody></table>
+<h1 id='errors'>Errors</h1>
+<p>The Buclist API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is wrong.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access an item with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="json">json</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
