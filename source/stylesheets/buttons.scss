@@ -19,6 +19,15 @@
   @include borders($bg);
 }
 
+@mixin clickable {
+  cursor: pointer;
+}
+@mixin rounded {
+  border-top-left-radius: $rounded-border;
+  border-top-right-radius: $rounded-border;
+  border-bottom-left-radius: $rounded-border;
+  border-bottom-right-radius: $rounded-border;
+}
 @mixin rounded-top {
   border-top-left-radius: $rounded-border;
   border-top-right-radius: $rounded-border;
