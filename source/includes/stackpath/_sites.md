@@ -123,17 +123,17 @@ curl -X POST \
 
 ```json
 {
-	"domain": "www.rpgfan.com",
-	"services": [
-		"CDN",
-		"SERVERLESS_EDGE_ENGINE",
-		"WAF"
-	],
-	"protocol": "HTTPS",
-	"hostname": "199.250.204.212",
-    "authMethod": "BASIC",
-	"username": "alavoie",
-	"password": "123456"
+  "domain": "www.rpgfan.com",
+  "services": [
+    "CDN",
+    "SERVERLESS_EDGE_ENGINE",
+    "WAF"
+  ],
+  "protocol": "HTTPS",
+  "hostname": "199.250.204.212",
+  "authMethod": "BASIC",
+  "username": "alavoie",
+  "password": "123456"
 }
 ```
 
@@ -141,14 +141,14 @@ curl -X POST \
 
 ```json
 {
-	"domain": "www.rpgfan.com",
-	"services": [
-		"CDN",
-		"SERVERLESS_EDGE_ENGINE",
-		"WAF"
-	],
-	"protocol": "HTTPS",
-	"hostname": "199.250.204.212"
+  "domain": "www.rpgfan.com",
+  "services": [
+    "CDN",
+    "SERVERLESS_EDGE_ENGINE",
+    "WAF"
+  ],
+  "protocol": "HTTPS",
+  "hostname": "199.250.204.212"
 }
 ```
 > The above commands return a JSON structured like this:
