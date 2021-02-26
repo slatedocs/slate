@@ -31,17 +31,29 @@ response = requests.post('https://clientela.admetricks.com/campaign-report/', he
 ```
 
 ```javascript
-var fetch = require('node-fetch');
+var fetch = require("node-fetch");
 
-fetch('https://clientela.admetricks.com/campaign-report/', {
-    method: 'POST',
-    headers: {
-        'accept': 'application/json, text/plain, */*',
-        'authorization': 'Token YOUR_TOKEN',
-        'content-type': 'application/json;charset=UTF-8',
-        'Content-Type': 'application/json; charset=UTF-8'
+fetch("https://clientela.admetricks.com/campaign-report/", {
+  method: "POST",
+  headers: {
+    accept: "application/json, text/plain, */*",
+    authorization: "Token YOUR_TOKEN",
+    "content-type": "application/json;charset=UTF-8",
+    "Content-Type": "application/json; charset=UTF-8",
+  },
+  body: JSON.stringify({
+    order_by: "valuation",
+    search_term: "a",
+    campaigns: { include: [{ id: 4394864 }] },
+    ad_types: { include: [{ id: 1 }, { id: 2 }, { id: 3 }] },
+    countries: { include: [{ id: 4 }] },
+    devices: { include: [{ id: 1 }, { id: 2 }] },
+    date_range: {
+      start: "2020-12-28T00:00:00.000",
+      end: "2020-12-30T23:59:59.999",
+      group_by: "day",
     },
-    body: JSON.stringify({ "order_by": "valuation", "search_term": "a", "campaigns": {"include": [{"id": 4394864}]}, "ad_types": {"include": [{"id": 1},{"id": 2},{"id": 3}]}, "countries": {"include": [{"id": 4}]}, "devices": {"include": [{"id": 1},{"id": 2}]}, "date_range": {"start": "2020-12-28T00:00:00.000","end": "2020-12-30T23:59:59.999","group_by": "day"} })
+  }),
 });
 ```
 
@@ -58,72 +70,406 @@ $data = '{ "order_by": "valuation", "search_term": "a", "campaigns": {"include":
 $response = Requests::post('https://clientela.admetricks.com/campaign-report/', $headers, $data);
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 {
   "meta": {
     "date_range": {
-      "start": "2020-12-29T00:25:40.000Z",
-      "end": "2020-12-30T17:25:27.000Z"
+      "start": "2020-12-28T11:33:16.000Z",
+      "end": "2020-12-30T23:59:59.999"
     }
   },
   "data": {
     "industries": [
       {
         "metrics": {
-          "impact": 79553,
-          "count": 405,
-          "valuation_usd": 2478.1347373241542,
-          "valuation_by_country": [{"chile": 1724529}],
-          "impressions": 684353,
-          "valuation": 1724529
+          "impact": 4872,
+          "count": 3,
+          "valuation_usd": 10.912790159992602,
+          "valuation_by_country": [
+            {
+              "brazil": 59
+            }
+          ],
+          "impressions": 10723,
+          "valuation": 59
         },
-        "id": 221,
-        "name": "energía - energía domestica"
+        "id": 196,
+        "name": "cultura - productos editoriales impresos y online"
       }
     ],
     "websites_by_date": [
       {
-        "domain": "biobiochile.cl",
+        "domain": "dicio.com.br",
         "metrics_by_date": [
           {
-            "date": "2020-12-29T00:00:00.000Z",
+            "date": "2020-12-28T00:00:00.000Z",
             "metrics": {
-              "impact": 8660,
-              "count": 18,
-              "valuation_usd": 122.17307761556899,
-              "valuation_by_country": [{"chile": 85020}],
-              "impressions": 44320,
-              "valuation": 85020
+              "impact": 4816,
+              "count": 1,
+              "valuation_usd": 9.9879774345695,
+              "valuation_by_country": [
+                {
+                  "brazil": 54
+                }
+              ],
+              "impressions": 10131,
+              "valuation": 54
             },
-            "date_int": 1609200000000
-          },
-          {
-            "date": "2020-12-30T00:00:00.000Z",
-            "metrics": {
-              "impact": 27291,
-              "count": 34,
-              "valuation_usd": 833.8664610353807,
-              "valuation_by_country": [{"chile": 580286}],
-              "impressions": 283639,
-              "valuation": 580286
-            },
-            "date_int": 1609286400000
+            "date_int": 1609113600000
           }
         ],
-        "id": 448
+        "id": 1027
+      },
+      {
+        "domain": "jornalopcao.com.br",
+        "metrics_by_date": [
+          {
+            "date": "2020-12-28T00:00:00.000Z",
+            "metrics": {
+              "impact": 48,
+              "count": 1,
+              "valuation_usd": 0.7398501803384814,
+              "valuation_by_country": [
+                {
+                  "brazil": 4
+                }
+              ],
+              "impressions": 576,
+              "valuation": 4
+            },
+            "date_int": 1609113600000
+          }
+        ],
+        "id": 8044
+      },
+      {
+        "domain": "gazetaweb.com.br",
+        "metrics_by_date": [
+          {
+            "date": "2020-12-28T00:00:00.000Z",
+            "metrics": {
+              "impact": 8,
+              "count": 1,
+              "valuation_usd": 0.18496254508462034,
+              "valuation_by_country": [
+                {
+                  "brazil": 1
+                }
+              ],
+              "impressions": 16,
+              "valuation": 1
+            },
+            "date_int": 1609113600000
+          }
+        ],
+        "id": 7964
+      }
+    ],
+    "ad_files": [
+      {
+        "date_range": {
+          "start": "2020-12-28T15:20:33.000Z",
+          "end": "2020-12-28T15:20:33.000Z"
+        },
+        "websites": [
+          {
+            "metrics": {
+              "impact": 4816,
+              "count": 1,
+              "valuation_usd": 9.9879774345695,
+              "valuation_by_country": [
+                {
+                  "brazil": 54
+                }
+              ],
+              "impressions": 10131,
+              "valuation": 54
+            },
+            "domain": "dicio.com.br",
+            "id": 1027
+          }
+        ],
+        "ad_types": [
+          {
+            "metrics": {
+              "impact": 4816,
+              "count": 1,
+              "valuation_usd": 9.9879774345695,
+              "valuation_by_country": [
+                {
+                  "brazil": 54
+                }
+              ],
+              "impressions": 10131,
+              "valuation": 54
+            },
+            "id": 1,
+            "name": "display"
+          }
+        ],
+        "url": "https://ads.admetricks.com/banner_900a8fa54e8a37380f822c6049164c87.jpg",
+        "sold_by": [
+          {
+            "metrics": {
+              "impact": 4816,
+              "count": 1,
+              "valuation_usd": 9.9879774345695,
+              "valuation_by_country": [
+                {
+                  "brazil": 54
+                }
+              ],
+              "impressions": 10131,
+              "valuation": 54
+            },
+            "id": "google",
+            "name": "google"
+          }
+        ],
+        "ad_measurements": {
+          "width": 468,
+          "height": 390
+        },
+        "metrics": {
+          "impact": 4816,
+          "count": 1,
+          "valuation_usd": 9.9879774345695,
+          "valuation_by_country": [
+            {
+              "brazil": 54
+            }
+          ],
+          "impressions": 10131,
+          "valuation": 54
+        },
+        "devices": [
+          {
+            "metrics": {
+              "impact": 4816,
+              "count": 1,
+              "valuation_usd": 9.9879774345695,
+              "valuation_by_country": [
+                {
+                  "brazil": 54
+                }
+              ],
+              "impressions": 10131,
+              "valuation": 54
+            },
+            "id": 2,
+            "name": "mobile"
+          }
+        ],
+        "id": 195305111
+      },
+      {
+        "date_range": {
+          "start": "2020-12-28T16:43:48.000Z",
+          "end": "2020-12-28T16:43:48.000Z"
+        },
+        "websites": [
+          {
+            "metrics": {
+              "impact": 48,
+              "count": 1,
+              "valuation_usd": 0.7398501803384814,
+              "valuation_by_country": [
+                {
+                  "brazil": 4
+                }
+              ],
+              "impressions": 576,
+              "valuation": 4
+            },
+            "domain": "jornalopcao.com.br",
+            "id": 8044
+          }
+        ],
+        "ad_types": [
+          {
+            "metrics": {
+              "impact": 48,
+              "count": 1,
+              "valuation_usd": 0.7398501803384814,
+              "valuation_by_country": [
+                {
+                  "brazil": 4
+                }
+              ],
+              "impressions": 576,
+              "valuation": 4
+            },
+            "id": 1,
+            "name": "display"
+          }
+        ],
+        "url": "https://ads.admetricks.com/banner_bc5bee7ad5154c4bccda203f7e439def.jpg",
+        "sold_by": [
+          {
+            "metrics": {
+              "impact": 48,
+              "count": 1,
+              "valuation_usd": 0.7398501803384814,
+              "valuation_by_country": [
+                {
+                  "brazil": 4
+                }
+              ],
+              "impressions": 576,
+              "valuation": 4
+            },
+            "id": "google",
+            "name": "google"
+          }
+        ],
+        "ad_measurements": {
+          "width": 320,
+          "height": 100
+        },
+        "metrics": {
+          "impact": 48,
+          "count": 1,
+          "valuation_usd": 0.7398501803384814,
+          "valuation_by_country": [
+            {
+              "brazil": 4
+            }
+          ],
+          "impressions": 576,
+          "valuation": 4
+        },
+        "devices": [
+          {
+            "metrics": {
+              "impact": 48,
+              "count": 1,
+              "valuation_usd": 0.7398501803384814,
+              "valuation_by_country": [
+                {
+                  "brazil": 4
+                }
+              ],
+              "impressions": 576,
+              "valuation": 4
+            },
+            "id": 2,
+            "name": "mobile"
+          }
+        ],
+        "id": 195354200
+      },
+      {
+        "date_range": {
+          "start": "2020-12-28T11:33:16.000Z",
+          "end": "2020-12-28T11:33:16.000Z"
+        },
+        "websites": [
+          {
+            "metrics": {
+              "impact": 8,
+              "count": 1,
+              "valuation_usd": 0.18496254508462034,
+              "valuation_by_country": [
+                {
+                  "brazil": 1
+                }
+              ],
+              "impressions": 16,
+              "valuation": 1
+            },
+            "domain": "gazetaweb.com.br",
+            "id": 7964
+          }
+        ],
+        "ad_types": [
+          {
+            "metrics": {
+              "impact": 8,
+              "count": 1,
+              "valuation_usd": 0.18496254508462034,
+              "valuation_by_country": [
+                {
+                  "brazil": 1
+                }
+              ],
+              "impressions": 16,
+              "valuation": 1
+            },
+            "id": 1,
+            "name": "display"
+          }
+        ],
+        "url": "https://ads.admetricks.com/banner_e10340542517a6f94f9ff5627d0ae572.jpg",
+        "sold_by": [
+          {
+            "metrics": {
+              "impact": 8,
+              "count": 1,
+              "valuation_usd": 0.18496254508462034,
+              "valuation_by_country": [
+                {
+                  "brazil": 1
+                }
+              ],
+              "impressions": 16,
+              "valuation": 1
+            },
+            "id": "google",
+            "name": "google"
+          }
+        ],
+        "ad_measurements": {
+          "width": 468,
+          "height": 390
+        },
+        "metrics": {
+          "impact": 8,
+          "count": 1,
+          "valuation_usd": 0.18496254508462034,
+          "valuation_by_country": [
+            {
+              "brazil": 1
+            }
+          ],
+          "impressions": 16,
+          "valuation": 1
+        },
+        "devices": [
+          {
+            "metrics": {
+              "impact": 8,
+              "count": 1,
+              "valuation_usd": 0.18496254508462034,
+              "valuation_by_country": [
+                {
+                  "brazil": 1
+                }
+              ],
+              "impressions": 16,
+              "valuation": 1
+            },
+            "id": 2,
+            "name": "mobile"
+          }
+        ],
+        "id": 195194494
       }
     ],
     "ad_types": [
       {
         "metrics": {
-          "impact": 79553,
-          "count": 405,
-          "valuation_usd": 2478.1347373241542,
-          "valuation_by_country": [{"chile": 1724529}],
-          "impressions": 684353,
-          "valuation": 1724529
+          "impact": 4872,
+          "count": 3,
+          "valuation_usd": 10.912790159992602,
+          "valuation_by_country": [
+            {
+              "brazil": 59
+            }
+          ],
+          "impressions": 10723,
+          "valuation": 59
         },
         "id": 1,
         "name": "display"
@@ -132,41 +478,56 @@ $response = Requests::post('https://clientela.admetricks.com/campaign-report/', 
     "countries": [
       {
         "metrics": {
-          "impact": 79553,
-          "count": 405,
-          "valuation_usd": 2478.1347373241542,
-          "valuation_by_country": [{"chile": 1724529}],
-          "impressions": 684353,
-          "valuation": 1724529
+          "impact": 4872,
+          "count": 3,
+          "valuation_usd": 10.912790159992602,
+          "valuation_by_country": [
+            {
+              "brazil": 59
+            }
+          ],
+          "impressions": 10723,
+          "valuation": 59
         },
-        "id": 1,
-        "name": "chile"
+        "id": 4,
+        "name": "brazil"
       }
     ],
-    "date_range": {"start": "2020-12-29T00:25:40.000Z", "end": "2020-12-30T17:25:27.000Z"},
+    "date_range": {
+      "start": "2020-12-28T11:33:16.000Z",
+      "end": "2020-12-28T16:43:48.000Z"
+    },
     "sold_by": [
       {
         "metrics": {
-          "impact": 74222,
-          "count": 345,
-          "valuation_usd": 2198.886915318999,
-          "valuation_by_country": [{"chile": 1530201}],
-          "impressions": 629810,
-          "valuation": 1530201
+          "impact": 4872,
+          "count": 3,
+          "valuation_usd": 10.912790159992602,
+          "valuation_by_country": [
+            {
+              "brazil": 59
+            }
+          ],
+          "impressions": 10723,
+          "valuation": 59
         },
-        "id": "direct",
-        "name": "direct"
+        "id": "google",
+        "name": "google"
       }
     ],
     "devices": [
       {
         "metrics": {
-          "impact": 52165,
-          "count": 342,
-          "valuation_usd": 1340.7007981372303,
-          "valuation_by_country": [{"chile": 932991}],
-          "impressions": 285086,
-          "valuation": 932991
+          "impact": 4872,
+          "count": 3,
+          "valuation_usd": 10.912790159992602,
+          "valuation_by_country": [
+            {
+              "brazil": 59
+            }
+          ],
+          "impressions": 10723,
+          "valuation": 59
         },
         "id": 2,
         "name": "mobile"
@@ -175,23 +536,23 @@ $response = Requests::post('https://clientela.admetricks.com/campaign-report/', 
     "summary": {
       "metrics_by_date": [
         {
-          "date": "2020-12-29T00:00:00.000Z",
+          "date": "2020-12-28T00:00:00.000Z",
           "metrics": {
-            "impact": 43310,
-            "valuation_usd": 1268.161431423117,
-            "impressions": 285382,
-            "valuation": 882511
+            "impact": 4872,
+            "valuation_usd": 10.912790159992602,
+            "impressions": 10723,
+            "valuation": 59
           },
-          "date_int": 1609200000000
+          "date_int": 1609113600000
         }
       ],
       "ad_types": [
         {
           "metrics": {
-            "impact": 79553,
-            "valuation_usd": 2478.1347373241542,
-            "impressions": 684353,
-            "valuation": 1724529
+            "impact": 4872,
+            "valuation_usd": 10.912790159992602,
+            "impressions": 10723,
+            "valuation": 59
           },
           "id": 1,
           "name": "display"
@@ -200,139 +561,193 @@ $response = Requests::post('https://clientela.admetricks.com/campaign-report/', 
       "countries": [
         {
           "metrics": {
-            "impact": 79553,
-            "valuation_usd": 2478.1347373241542,
-            "impressions": 684353,
-            "valuation": 1724529
+            "impact": 4872,
+            "valuation_usd": 10.912790159992602,
+            "impressions": 10723,
+            "valuation": 59
           },
-          "id": 1,
-          "name": "chile"
+          "id": 4,
+          "name": "brazil"
         }
       ],
-      "total_impressions": 684353,
-      "total_impact": 79553,
+      "total_impressions": 10723,
+      "total_impact": 4872,
       "devices": [
         {
           "metrics": {
-            "impact": 52165,
-            "valuation_usd": 1340.7007981372303,
-            "impressions": 285086,
-            "valuation": 932991
+            "impact": 4872,
+            "valuation_usd": 10.912790159992602,
+            "impressions": 10723,
+            "valuation": 59
           },
           "id": 2,
           "name": "mobile"
         }
       ],
-      "total_valuation_usd": 2478.1347373241542,
+      "total_valuation_usd": 10.912790159992602,
       "position": {
-        "first_scroll": 0.1493600385583463,
-        "second_scroll": 0.12472802595046056,
-        "third_or_more_scroll": 0.7210009104053982
+        "first_scroll": 0.6666666666666666,
+        "second_scroll": 0.0,
+        "third_or_more_scroll": 0.3333333333333333
       },
-      "total_valuation": 1724529
+      "total_valuation": 59
     },
     "campaigns": [
       {
-        "landing_page": "enel.cl/es/conoce-enel/prensa/news/d202011-hito-historico-para-enel-lider-del-dow-jones-sustainability-world-index-de-2020.html",
-        "description": "feliz | fotografía | mañana | mundo | paisaje | pie foto | prenda pieza | ropa formal | vestido | viento",
-        "ad_format": { "id": 154, "name": "brand-day" },
-        "title": "Hito histórico para Enel: líder del Dow Jones Sustainability World Index de 2020",
-        "date_range": { "start": "2020-12-29T00:25:40.000Z", "end": "2020-12-30T17:25:27.000Z" },
-        "industry": { "id": 221, "name": "energía - energía domestica"},
-        "brand": { "id": 8968, "name": "enel"},
+        "landing_page": "loja.grupoa.com.br",
+        "description": null,
+        "title": "Compre Livros Acadêmicos, Universitários, Profissionais e Técnicos",
+        "date_range": {
+          "start": "2020-12-28T11:33:16.000Z",
+          "end": "2020-12-28T16:43:48.000Z"
+        },
+        "industry": {
+          "id": 196,
+          "name": "cultura - productos editoriales impresos y online"
+        },
+        "brand": {
+          "id": 146829,
+          "name": "grupo a"
+        },
         "countries": [
           {
             "metrics": {
-              "impact": 46444,
-              "count": 351,
-              "valuation_usd": 1563.2334116346076,
-              "valuation_by_country": [{"chile": 1087851}],
-              "impressions": 370893,
-              "valuation": 1087851
+              "impact": 4872,
+              "count": 3,
+              "valuation_usd": 10.912790159992602,
+              "valuation_by_country": [
+                {
+                  "brazil": 59
+                }
+              ],
+              "impressions": 10723,
+              "valuation": 59
             },
-            "id": 1,
-            "name": "chile"
+            "id": 4,
+            "name": "brazil"
           }
         ],
         "devices": [
           {
             "metrics": {
-              "impact": 35492,
-              "count": 293,
-              "valuation_usd": 1105.524090192201,
-              "valuation_by_country": [{"chile": 769332}],
-              "impressions": 199766,
-              "valuation": 769332
+              "impact": 4872,
+              "count": 3,
+              "valuation_usd": 10.912790159992602,
+              "valuation_by_country": [
+                {
+                  "brazil": 59
+                }
+              ],
+              "impressions": 10723,
+              "valuation": 59
             },
             "id": 2,
             "name": "mobile"
-          },
-          {
-            "metrics": {
-              "impact": 10952,
-              "count": 58,
-              "valuation_usd": 457.7093214424067,
-              "valuation_by_country": [{"chile": 318519}],
-              "impressions": 171127,
-              "valuation": 318519
-            },
-            "id": 1,
-            "name": "desktop"
           }
         ],
         "metrics": {
-          "impact": 46444,
-          "count": 351,
-          "valuation_usd": 1563.2334116346076,
-          "valuation_by_country": [{"chile": 1087851}],
-          "impressions": 370893,
-          "valuation": 1087851
+          "impact": 4872,
+          "count": 3,
+          "valuation_usd": 10.912790159992602,
+          "valuation_by_country": [
+            {
+              "brazil": 59
+            }
+          ],
+          "impressions": 10723,
+          "valuation": 59
         },
         "websites": [
           {
             "metrics": {
-              "impact": 3096,
-              "count": 238,
-              "valuation_usd": 230.84705041908606,
-              "valuation_by_country": [{"chile": 160646}],
-              "impressions": 19912,
-              "valuation": 160646
+              "impact": 4816,
+              "count": 1,
+              "valuation_usd": 9.9879774345695,
+              "valuation_by_country": [
+                {
+                  "brazil": 54
+                }
+              ],
+              "impressions": 10131,
+              "valuation": 54
             },
-            "domain": "duna.cl",
-            "id": 475
+            "domain": "dicio.com.br",
+            "id": 1027
+          },
+          {
+            "metrics": {
+              "impact": 8,
+              "count": 1,
+              "valuation_usd": 0.18496254508462034,
+              "valuation_by_country": [
+                {
+                  "brazil": 1
+                }
+              ],
+              "impressions": 16,
+              "valuation": 1
+            },
+            "domain": "gazetaweb.com.br",
+            "id": 7964
+          },
+          {
+            "metrics": {
+              "impact": 48,
+              "count": 1,
+              "valuation_usd": 0.7398501803384814,
+              "valuation_by_country": [
+                {
+                  "brazil": 4
+                }
+              ],
+              "impressions": 576,
+              "valuation": 4
+            },
+            "domain": "jornalopcao.com.br",
+            "id": 8044
           }
         ],
         "sold_by": [
           {
             "metrics": {
-              "impact": 41299,
-              "count": 294,
-              "valuation_usd": 1285.4556326593363,
-              "valuation_by_country": [{"chile": 894546}],
-              "impressions": 317250,
-              "valuation": 894546
+              "impact": 4872,
+              "count": 3,
+              "valuation_usd": 10.912790159992602,
+              "valuation_by_country": [
+                {
+                  "brazil": 59
+                }
+              ],
+              "impressions": 10723,
+              "valuation": 59
             },
-            "id": "direct",
-            "name": "direct"
+            "id": "google",
+            "name": "google"
           }
         ],
         "preview": {
           "ad_measurements": {
-            "width": 300,
-            "height": 250
+            "width": 468,
+            "height": 390
           },
-          "ad_file": { "name": "https://ads.admetricks.com/banner_c4420d89bb6b5b5a1d348488ace3f8f0.jpg" }
+          "ad_file": {
+            "name": "https://ads.admetricks.com/banner_900a8fa54e8a37380f822c6049164c87.jpg"
+          }
         },
-        "id": 7852217,
+        "id": 4394864,
         "ad_types": [
           {
             "metrics": {
-              "impact": 46444,
-              "count": 351,
-              "valuation_usd": 1563.2334116346076,
-              "valuation_by_country": [{"chile": 1087851}],
-              "impressions": 370893,
-              "valuation": 1087851
+              "impact": 4872,
+              "count": 3,
+              "valuation_usd": 10.912790159992602,
+              "valuation_by_country": [
+                {
+                  "brazil": 59
+                }
+              ],
+              "impressions": 10723,
+              "valuation": 59
             },
             "id": 1,
             "name": "display"
@@ -344,48 +759,92 @@ $response = Requests::post('https://clientela.admetricks.com/campaign-report/', 
       {
         "metrics_by_date": [
           {
-            "date": "2020-12-29T00:00:00.000Z",
+            "date": "2020-12-28T00:00:00.000Z",
             "metrics": {
-              "impact": 35746,
-              "count": 242,
-              "valuation_usd": 1162.5022682742397,
-              "valuation_by_country": [{"chile": 808983}],
-              "impressions": 246627,
-              "valuation": 808983
+              "impact": 4872,
+              "count": 3,
+              "valuation_usd": 10.912790159992602,
+              "valuation_by_country": [
+                {
+                  "brazil": 59
+                }
+              ],
+              "impressions": 10723,
+              "valuation": 59
             },
-            "date_int": 1609200000000
+            "date_int": 1609113600000
           }
         ],
-        "id": 7852217,
-        "name": "Hito histórico para Enel: líder del Dow Jones Sustainability World Index de 2020"
+        "id": 4394864,
+        "name": "Compre Livros Acadêmicos, Universitários, Profissionais e Técnicos"
       }
     ],
     "websites": [
       {
         "metrics": {
-          "impact": 35951,
-          "count": 52,
-          "valuation_usd": 956.0395386509497,
-          "valuation_by_country": [{"chile": 665306}],
-          "impressions": 327959,
-          "valuation": 665306
+          "impact": 4816,
+          "count": 1,
+          "valuation_usd": 9.9879774345695,
+          "valuation_by_country": [
+            {
+              "brazil": 54
+            }
+          ],
+          "impressions": 10131,
+          "valuation": 54
         },
-        "domain": "biobiochile.cl",
-        "id": 448
+        "domain": "dicio.com.br",
+        "id": 1027
+      },
+      {
+        "metrics": {
+          "impact": 48,
+          "count": 1,
+          "valuation_usd": 0.7398501803384814,
+          "valuation_by_country": [
+            {
+              "brazil": 4
+            }
+          ],
+          "impressions": 576,
+          "valuation": 4
+        },
+        "domain": "jornalopcao.com.br",
+        "id": 8044
+      },
+      {
+        "metrics": {
+          "impact": 8,
+          "count": 1,
+          "valuation_usd": 0.18496254508462034,
+          "valuation_by_country": [
+            {
+              "brazil": 1
+            }
+          ],
+          "impressions": 16,
+          "valuation": 1
+        },
+        "domain": "gazetaweb.com.br",
+        "id": 7964
       }
     ],
     "brands": [
       {
         "metrics": {
-          "impact": 79553,
-          "count": 405,
-          "valuation_usd": 2478.1347373241542,
-          "valuation_by_country": [{"chile": 1724529}],
-          "impressions": 684353,
-          "valuation": 1724529
+          "impact": 4872,
+          "count": 3,
+          "valuation_usd": 10.912790159992602,
+          "valuation_by_country": [
+            {
+              "brazil": 59
+            }
+          ],
+          "impressions": 10723,
+          "valuation": 59
         },
-        "id": 8968,
-        "name": "enel"
+        "id": 146829,
+        "name": "grupo a"
       }
     ]
   }

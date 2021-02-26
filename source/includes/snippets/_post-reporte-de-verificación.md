@@ -67,7 +67,7 @@ $data = '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":2},{"id":
 $response = Requests::post('https://clientela.admetricks.com/verification-report/', $headers, $data);
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 {

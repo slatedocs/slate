@@ -55,7 +55,7 @@ $headers = array(
 $response = Requests::get('https://clientela.admetricks.com/website/?countries=1&domain_autocomplete=buzzfeed', $headers);
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 [

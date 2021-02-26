@@ -50,7 +50,7 @@ $response = Requests::post('https://clientel.admetricks.com/website-report/', $h
 
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 {

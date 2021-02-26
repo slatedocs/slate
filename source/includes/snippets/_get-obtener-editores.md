@@ -54,7 +54,7 @@ $headers = array(
 $response = Requests::get('https://clientela.admetricks.com/publisher/?countries=1', $headers);
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 [

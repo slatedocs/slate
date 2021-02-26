@@ -55,7 +55,7 @@ $headers = array(
 $response = Requests::get('https://clientela.admetricks.com/brand/?countries=1&name_autocomplete=toyota', $headers);
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 [
