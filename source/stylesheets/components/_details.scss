@@ -24,6 +24,15 @@ details {
     }
   }
 
+  .go-to-top {
+    @include clickable;
+    @include rounded-bottom;
+    background: lighten($code-bg, 5%);
+    display: block;
+    padding: 5px;
+    text-align: center;
+  }
+
   p {
     text-align: justify;
   }

@@ -15,7 +15,6 @@ ul {
       }
       > li {
         padding: 4px 8px;
-        background: $code-bg;
       }
       .param {
         &__desc {
@@ -37,13 +36,13 @@ ul {
           margin: 5px 1.5em;
         }
         &__child {
-          &2 {
-            padding-left: 2em;
-          }
-          &3 {
-            padding-left: 3em;
+          @for $depth from 1 to 10 {
+            &#{$depth} {
+              padding-left: #{$depth * 0.9em};
+            }
           }
         }
+
         p {
           margin: 0;
         }
