@@ -214,8 +214,6 @@ print(data)
 
 This endpoint deals with home energy.
 
-### Request
-
 `POST https://dynm.herokuapp.com/transportation`
 
 # Transportation
@@ -373,8 +371,6 @@ print(data)
 
 This endpoint deals with transportation.
 
-### Request
-
 `POST https://dynm.herokuapp.com/transportation`
 
 # Waste
@@ -502,7 +498,5 @@ print(data)
 ```
 
 This endpoint deals with waste.
-
-### Request
 
 `POST https://dynm.herokuapp.com/waste`
