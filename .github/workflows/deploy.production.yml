@@ -21,7 +21,7 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Generate static site
-      run: bundle exec middleman build --clean
+      run: bundle exec middleman build --clean --verbose
     - name: Save artifact
       uses: actions/upload-artifact@v2
       with:
