@@ -70,7 +70,6 @@ This API documentation page was created with [Slate](https://github.com/slatedoc
 
 ```javascript
 const fetch = require("node-fetch");
-
 const data = {
   number_of_people: 2,
   primary_heating_source: "Electricity",
@@ -187,7 +186,12 @@ print(response.text)
 ```javascript
 Success: {
   total_emissions: 1866,
-  utility_emissions: { natural_gas: 1435, electricity: 11, fuel_oil: 271, propane: 149 },
+  utility_emissions: {
+    natural_gas: 1435,
+    electricity: 11,
+    fuel_oil: 271,
+    propane: 149
+  },
   invalid: []
 }
 ```
@@ -246,7 +250,43 @@ POST/home-energy
 ```
 
 ```javascript
+const fetch = require("node-fetch");
 
+const data = {
+  current_maintenance: "Do Not Do",
+  average_emissions_per_vehicle: 10484,
+  vehicles: [
+    {
+      average_miles_driven: {
+        duration: "Per Week",
+        value: 23,
+      },
+      average_gas_mileage: 20,
+    },
+    {
+      average_miles_driven: {
+        duration: "Per Week",
+        value: 30,
+      },
+      average_gas_mileage: 30,
+    },
+  ],
+};
+
+fetch("https://dynm.herokuapp.com/transportation", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 ```
 
 ```python
@@ -304,11 +344,17 @@ print(response.text)
 ```
 
 ```javascript
-
+Success: {
+  total_exhaust: 2310,
+  usa_average: 20968
+}
 ```
 
 ```python
-{"total_exhaust":2310,"usa_average":20968}
+{
+  "total_exhaust":2310,
+  "usa_average":20968
+}
 ```
 
 ```PHP
@@ -352,7 +398,34 @@ POST/transportation
 ```
 
 ```javascript
+const fetch = require("node-fetch");
 
+const data = {
+  average_waste_per_person: 692,
+  number_of_people: 2,
+  materials_recycled: {
+    metal: true,
+    plastic: true,
+    glass: false,
+    newspaper: false,
+    magazines: false,
+  },
+};
+
+fetch("https://dynm.herokuapp.com/waste", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 ```
 
 ```python
@@ -410,11 +483,25 @@ print(response.text)
 ```
 
 ```javascript
-
+Success: {
+    total_emissions_after_recycling: 1134,
+    total_recycled: 250,
+    usa_average: 1384,
+    waste_reduction: { metal: 179, plastic: 71 },
+    invalid_inputs: []
+  }
 ```
 
 ```python
-{"total_emissions_after_recycling":1134,"total_recycled":250,"usa_average":1384,"waste_reduction":{"metal":179,"plastic":71},"invalid_inputs":[]}
+{
+  "total_emissions_after_recycling":1134,
+  "total_recycled":250,
+  "usa_average":1384,
+  "waste_reduction":{
+    "metal":179,
+    "plastic":71
+  },"invalid_inputs":[]
+}
 ```
 
 ```PHP
