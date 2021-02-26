@@ -3,6 +3,9 @@ title: DYNM
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - json: json
+  - javascript: javascript
+  - python: python
+  - PHP: PHP
 
 toc_footers:
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
@@ -19,11 +22,11 @@ code_clipboard: true
 
 This API.......
 
-HOST: [https://almexapiqa.azure-api.net](https://almexapiqa.azure-api.net).
+HOST: [https://dynm.herokuapp.com/](https://dynm.herokuapp.com/).
 
 This API documentation page was created with [Slate](https://github.com/slatedocs/slate).
 
-# home_energy
+# Home Energy
 
 > REQUEST
 
@@ -37,10 +40,125 @@ This API documentation page was created with [Slate](https://github.com/slatedoc
 
 ```json
 {
-  "userName": "",
-  "password": "",
-  "numberAccount": ""
+  "number_of_people": 2,
+  "primary_heating_source": "Electricity",
+  "utility_options": {
+    "natural_gas": {
+      "unit_of_measurement": "Dollars",
+      "average_price_per_thousand_cubic_feet": 1000,
+      "value": 1000
+    },
+    "electricity": {
+      "unit_of_measurement": "Dollars",
+      "average_price_per_kilowatt": 1000,
+      "green_percentage": 10,
+      "value": 1000
+    },
+    "fuel_oil": {
+      "unit_of_measurement": "Dollars",
+      "average_price_per_gallon": 1000,
+      "value": 1000
+    },
+    "propane": {
+      "unit_of_measurement": "Dollars",
+      "average_price_per_gallon": 1000,
+      "value": 1000
+    }
+  }
 }
+```
+
+```javascript
+const fetch = require("node-fetch");
+
+const data = {
+  number_of_people: 2,
+  primary_heating_source: "Electricity",
+  utility_options: {
+    natural_gas: {
+      unit_of_measurement: "Dollars",
+      average_price_per_thousand_cubic_feet: 1000,
+      value: 1000,
+    },
+    electricity: {
+      unit_of_measurement: "Dollars",
+      average_price_per_kilowatt: 1000,
+      green_percentage: 10,
+      value: 1000,
+    },
+    fuel_oil: {
+      unit_of_measurement: "Dollars",
+      average_price_per_gallon: 1000,
+      value: 1000,
+    },
+    propane: {
+      unit_of_measurement: "Dollars",
+      average_price_per_gallon: 1000,
+      value: 1000,
+    },
+  },
+};
+
+fetch("https://dynm.herokuapp.com/home-energy", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+
+url = "https://dynm.herokuapp.com/home-energy"
+
+payload = {
+    "number_of_people": 2,
+    "primary_heating_source": "Electricity",
+    "utility_options": {
+        "natural_gas": {
+            "unit_of_measurement": "Dollars",
+            "average_price_per_thousand_cubic_feet": 1000,
+            "value": 1000
+        },
+        "electricity": {
+            "unit_of_measurement": "Dollars",
+            "average_price_per_kilowatt": 1000,
+            "green_percentage": 10,
+            "value": 1000
+        },
+        "fuel_oil": {
+            "unit_of_measurement": "Dollars",
+            "average_price_per_gallon": 1000,
+            "value": 1000
+        },
+        "propane": {
+            "unit_of_measurement": "Dollars",
+            "average_price_per_gallon": 1000,
+            "value": 1000
+        }
+    }
+}
+
+headers = {'Content-Type': 'application/json'}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+print(response.text)
+
+```
+
+```php
+
 ```
 
 > RESPONSE : <code>200</code>
@@ -55,43 +173,44 @@ This API documentation page was created with [Slate](https://github.com/slatedoc
 
 ```json
 {
-  "response": {
-    "idEvent": 88983549,
-    "trackingIdEvent": 4,
-    "descriptionEvent": "Mercancía Entregada",
-    "description2Event": "Goods delivered",
-    "dateLastEvent": "2020-06-10T16:02:38.363",
-    "hourLastEvent": "2020-06-10T16:02:38.363",
-    "referenceEvent": "0 MONTERREY (SUC. GUERRERO)",
-    "officeName": "MONTERREY (SUC. GUERRERO)",
-    "tractor": {
-      "operatorName": "",
-      "tractorNumber": ""
-    }
+  "total_emissions": 1866,
+  "utility_emissions": {
+    "natural_gas": 1435,
+    "electricity": 11,
+    "fuel_oil": 271,
+    "propane": 149
   },
-  "success": true,
-  "code": 200,
-  "message": ""
+  "invalid": []
 }
 ```
 
-This endpoint deals with a user.
+```javascript
+Success: {
+  total_emissions: 1866,
+  utility_emissions: { natural_gas: 1435, electricity: 11, fuel_oil: 271, propane: 149 },
+  invalid: []
+}
+```
+
+```python
+{"total_emissions":1866,"utility_emissions":{"natural_gas":1435,"electricity":11,"fuel_oil":271,"propane":149},"invalid":[]}
+```
+
+```PHP
+
+```
+
+This endpoint deals with home energy.
 
 ### EndPoint
 
-POST/auth/token
+POST/home-energy
 
 ### HTTP Request
 
-`POST https://almexapiqa.azure-api.net/auth/token?subscription-key=e725bd3f101c46c8a4e8ce132d3f34c4`
+`POST https://dynm.herokuapp.com/home-energy`
 
-### Query Parameters
-
-| Parameter        | Description                      |
-| ---------------- | -------------------------------- |
-| subscription-key | e725bd3f101c46c8a4e8ce132d3f34c4 |
-
-# transportation
+# Transportation
 
 > REQUEST
 
@@ -126,6 +245,47 @@ POST/auth/token
 }
 ```
 
+```javascript
+
+```
+
+```python
+import requests
+import json
+
+url = "https://dynm.herokuapp.com/transportation"
+
+payload={
+  "current_maintenance": "Do Not Do",
+  "average_emissions_per_vehicle": 10484,
+  "vehicles": [{
+    "average_miles_driven": {
+      "duration": "Per Week",
+      "value": 23
+    },
+    "average_gas_mileage": 20
+  },
+  {
+    "average_miles_driven": {
+      "duration": "Per Week",
+      "value": 30
+    },
+    "average_gas_mileage": 30
+  }]
+}
+
+headers = {'Content-Type': 'application/json'}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+print(response.text)
+
+```
+
+```PHP
+
+```
+
 > RESPONSE : <code>200</code>
 
 > Headers
@@ -138,43 +298,34 @@ POST/auth/token
 
 ```json
 {
-  "response": {
-    "idEvent": 88983549,
-    "trackingIdEvent": 4,
-    "descriptionEvent": "Mercancía Entregada",
-    "description2Event": "Goods delivered",
-    "dateLastEvent": "2020-06-10T16:02:38.363",
-    "hourLastEvent": "2020-06-10T16:02:38.363",
-    "referenceEvent": "0 MONTERREY (SUC. GUERRERO)",
-    "officeName": "MONTERREY (SUC. GUERRERO)",
-    "tractor": {
-      "operatorName": "",
-      "tractorNumber": ""
-    }
-  },
-  "success": true,
-  "code": 200,
-  "message": ""
+  "total_exhaust": 2310,
+  "usa_average": 20968
 }
 ```
 
-This endpoint deals with a user.
+```javascript
+
+```
+
+```python
+{"total_exhaust":2310,"usa_average":20968}
+```
+
+```PHP
+
+```
+
+This endpoint deals with transportation.
 
 ### EndPoint
 
-POST/auth/token
+POST/transportation
 
 ### HTTP Request
 
-`POST https://almexapiqa.azure-api.net/auth/token?subscription-key=e725bd3f101c46c8a4e8ce132d3f34c4`
+`POST https://dynm.herokuapp.com/transportation`
 
-### Query Parameters
-
-| Parameter        | Description                      |
-| ---------------- | -------------------------------- |
-| subscription-key | e725bd3f101c46c8a4e8ce132d3f34c4 |
-
-# waste
+# Waste
 
 > REQUEST
 
@@ -200,6 +351,41 @@ POST/auth/token
 }
 ```
 
+```javascript
+
+```
+
+```python
+import requests
+import json
+
+url = "https://dynm.herokuapp.com/waste"
+
+payload={
+  "average_waste_per_person": 692,
+  "number_of_people": 2,
+  "materials_recycled": {
+    "metal": true,
+    "plastic": true,
+    "glass": false,
+    "newspaper": false,
+    "magazines": false
+  }
+}
+
+headers = {'Content-Type': 'application/json'}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+print(response.text)
+
+
+```
+
+```PHP
+
+```
+
 > RESPONSE : <code>200</code>
 
 > Headers
@@ -212,38 +398,35 @@ POST/auth/token
 
 ```json
 {
-  "response": {
-    "idEvent": 88983549,
-    "trackingIdEvent": 4,
-    "descriptionEvent": "Mercancía Entregada",
-    "description2Event": "Goods delivered",
-    "dateLastEvent": "2020-06-10T16:02:38.363",
-    "hourLastEvent": "2020-06-10T16:02:38.363",
-    "referenceEvent": "0 MONTERREY (SUC. GUERRERO)",
-    "officeName": "MONTERREY (SUC. GUERRERO)",
-    "tractor": {
-      "operatorName": "",
-      "tractorNumber": ""
-    }
+  "total_emissions_after_recycling": 1134,
+  "total_recycled": 250,
+  "usa_average": 1384,
+  "waste_reduction": {
+    "metal": 179,
+    "plastic": 71
   },
-  "success": true,
-  "code": 200,
-  "message": ""
+  "invalid_inputs": []
 }
 ```
 
-This endpoint deals with a user.
+```javascript
+
+```
+
+```python
+{"total_emissions_after_recycling":1134,"total_recycled":250,"usa_average":1384,"waste_reduction":{"metal":179,"plastic":71},"invalid_inputs":[]}
+```
+
+```PHP
+
+```
+
+This endpoint deals with waste.
 
 ### EndPoint
 
-POST/auth/token
+POST/waste
 
 ### HTTP Request
 
-`POST https://almexapiqa.azure-api.net/auth/token?subscription-key=e725bd3f101c46c8a4e8ce132d3f34c4`
-
-### Query Parameters
-
-| Parameter        | Description                      |
-| ---------------- | -------------------------------- |
-| subscription-key | e725bd3f101c46c8a4e8ce132d3f34c4 |
+`POST https://dynm.herokuapp.com/waste`
