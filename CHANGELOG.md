@@ -4,7 +4,7 @@
 
 *February 27, 2021*
 
-* Fix Slate language tabs not working if localStorage is diabled
+* Fix Slate language tabs not working if localStorage is disabled
 
 ## Version 2.9.0
 
