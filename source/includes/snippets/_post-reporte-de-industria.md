@@ -53,29 +53,27 @@ const params = {
   date_range: {
     start: "2020-11-23T00:00:00.000",
     end: "2020-11-24T23:59:59.999",
-    group_by: "day"
+    group_by: "day",
   },
   industries: {
     include: [
       {
         id: 204,
-        name: "deportes y tiempo libre - artículos deportivos"
-      }
-    ]
-  }
-}
+        name: "deportes y tiempo libre - artículos deportivos",
+      },
+    ],
+  },
+};
 
-
-fetch('https://clientela.admetricks.com/industry-report/', {
-    method: 'POST',
-    headers: {
-        'authorization': 'Token YOUR_TOKEN',
-        'content-type': 'application/json;charset=UTF-8',
-        'Content-Type': 'application/json; charset=UTF-8'
-    },
-    body: JSON.stringify(params)
+fetch("https://clientela.admetricks.com/industry-report/", {
+  method: "POST",
+  headers: {
+    authorization: "Token YOUR_TOKEN",
+    "content-type": "application/json;charset=UTF-8",
+    "Content-Type": "application/json; charset=UTF-8",
+  },
+  body: JSON.stringify(params),
 });
-
 ```
 
 ```php
@@ -95,26 +93,30 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
 ?>
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 {
   "meta": {
     "date_range": {
-      "start": "2020-12-05T08:01:55.000Z",
-      "end": "2020-12-05T08:08:05.000Z"
+      "start": "2020-11-23T11:06:44.000Z",
+      "end": "2020-11-23T11:06:44.000Z"
     }
   },
   "data": {
     "industries": [
       {
         "metrics": {
-          "impact": 2358,
-          "count": 3,
-          "valuation_usd": 20.942220828111466,
-          "valuation_by_country": [{ "chile": 15579 }],
-          "impressions": 13737,
-          "valuation": 15579
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
         "id": 204,
         "name": "deportes y tiempo libre - artículos deportivos"
@@ -122,33 +124,41 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
     ],
     "websites_by_date": [
       {
-        "domain": "elmostrador.cl",
+        "domain": "clarin.com",
         "metrics_by_date": [
           {
-            "date": "2020-12-05T00:00:00.000Z",
+            "date": "2020-11-23T00:00:00.000Z",
             "metrics": {
-              "impact": 2358,
-              "count": 3,
-              "valuation_usd": 20.942220828111466,
-              "valuation_by_country": [{ "chile": 15579 }],
-              "impressions": 13737,
-              "valuation": 15579
+              "impact": 8152,
+              "count": 1,
+              "valuation_usd": 54.44819822133432,
+              "valuation_by_country": [
+                {
+                  "chile": 38163
+                }
+              ],
+              "impressions": 29387,
+              "valuation": 38163
             },
-            "date_int": 1607126400000
+            "date_int": 1606089600000
           }
         ],
-        "id": 339
+        "id": 365
       }
     ],
     "ad_types": [
       {
         "metrics": {
-          "impact": 2358,
-          "count": 3,
-          "valuation_usd": 20.942220828111466,
-          "valuation_by_country": [{ "chile": 15579 }],
-          "impressions": 13737,
-          "valuation": 15579
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
         "id": 1,
         "name": "display"
@@ -157,30 +167,38 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
     "countries": [
       {
         "metrics": {
-          "impact": 2358,
-          "count": 3,
-          "valuation_usd": 20.942220828111466,
-          "valuation_by_country": [{ "chile": 15579 }],
-          "impressions": 13737,
-          "valuation": 15579
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
         "id": 1,
         "name": "chile"
       }
     ],
     "date_range": {
-      "start": "2020-12-05T08:01:55.000Z",
-      "end": "2020-12-05T08:08:05.000Z"
+      "start": "2020-11-23T11:06:44.000Z",
+      "end": "2020-11-23T11:06:44.000Z"
     },
     "sold_by": [
       {
         "metrics": {
-          "impact": 2358,
-          "count": 3,
-          "valuation_usd": 20.942220828111466,
-          "valuation_by_country": [{ "chile": 15579 }],
-          "impressions": 13737,
-          "valuation": 15579
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
         "id": "google",
         "name": "google"
@@ -189,12 +207,16 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
     "devices": [
       {
         "metrics": {
-          "impact": 2358,
-          "count": 3,
-          "valuation_usd": 20.942220828111466,
-          "valuation_by_country": [{ "chile": 15579 }],
-          "impressions": 13737,
-          "valuation": 15579
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
         "id": 1,
         "name": "desktop"
@@ -203,23 +225,23 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
     "summary": {
       "metrics_by_date": [
         {
-          "date": "2020-12-05T00:00:00.000Z",
+          "date": "2020-11-23T00:00:00.000Z",
           "metrics": {
-            "impact": 2358,
-            "valuation_usd": 20.942220828111466,
-            "impressions": 13737,
-            "valuation": 15579
+            "impact": 8152,
+            "valuation_usd": 54.44819822133432,
+            "impressions": 29387,
+            "valuation": 38163
           },
-          "date_int": 1607126400000
+          "date_int": 1606089600000
         }
       ],
       "ad_types": [
         {
           "metrics": {
-            "impact": 2358,
-            "valuation_usd": 20.942220828111466,
-            "impressions": 13737,
-            "valuation": 15579
+            "impact": 8152,
+            "valuation_usd": 54.44819822133432,
+            "impressions": 29387,
+            "valuation": 38163
           },
           "id": 1,
           "name": "display"
@@ -228,61 +250,71 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
       "countries": [
         {
           "metrics": {
-            "impact": 2358,
-            "valuation_usd": 20.942220828111466,
-            "impressions": 13737,
-            "valuation": 15579
+            "impact": 8152,
+            "valuation_usd": 54.44819822133432,
+            "impressions": 29387,
+            "valuation": 38163
           },
           "id": 1,
           "name": "chile"
         }
       ],
-      "total_impressions": 13737,
-      "total_impact": 2358,
+      "total_impressions": 29387,
+      "total_impact": 8152,
       "devices": [
         {
           "metrics": {
-            "impact": 2358,
-            "valuation_usd": 20.942220828111466,
-            "impressions": 13737,
-            "valuation": 15579
+            "impact": 8152,
+            "valuation_usd": 54.44819822133432,
+            "impressions": 29387,
+            "valuation": 38163
           },
           "id": 1,
           "name": "desktop"
         }
       ],
-      "total_valuation_usd": 20.942220828111466,
+      "total_valuation_usd": 54.44819822133432,
       "position": {
         "first_scroll": 0.0,
         "second_scroll": 0.0,
         "third_or_more_scroll": 1.0
       },
-      "total_valuation": 15579
+      "total_valuation": 38163
     },
     "campaigns": [
       {
-        "landing_page": "tiendasaranieto.cl",
+        "landing_page": "gympro.cl/deportes-y-fitness/peto-de-entrenamiento-mitre-junior-amarillo.html",
         "description": null,
-        "ad_format": { "id": 154, "name": "brand-day" },
-        "title": "Tienda Sara Nieto",
+        "ad_format": {
+          "id": 154,
+          "name": "brand-day"
+        },
+        "title": "Peto Deportivo, Peto Polera de Entrenamiento - Mitre",
         "date_range": {
-          "start": "2020-12-05T08:01:55.000Z",
-          "end": "2020-12-05T08:01:55.000Z"
+          "start": "2020-11-23T11:06:44.000Z",
+          "end": "2020-11-23T11:06:44.000Z"
         },
         "industry": {
           "id": 204,
           "name": "deportes y tiempo libre - artículos deportivos"
         },
-        "brand": { "id": 142804, "name": "tiendas sara nieto" },
+        "brand": {
+          "id": 141894,
+          "name": "gympro"
+        },
         "countries": [
           {
             "metrics": {
-              "impact": 1572,
-              "count": 2,
-              "valuation_usd": 13.961480552074311,
-              "valuation_by_country": [{ "chile": 10386 }],
-              "impressions": 9158,
-              "valuation": 10386
+              "impact": 8152,
+              "count": 1,
+              "valuation_usd": 54.44819822133432,
+              "valuation_by_country": [
+                {
+                  "chile": 38163
+                }
+              ],
+              "impressions": 29387,
+              "valuation": 38163
             },
             "id": 1,
             "name": "chile"
@@ -291,69 +323,92 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
         "devices": [
           {
             "metrics": {
-              "impact": 1572,
-              "count": 2,
-              "valuation_usd": 13.961480552074311,
-              "valuation_by_country": [{ "chile": 10386 }],
-              "impressions": 9158,
-              "valuation": 10386
+              "impact": 8152,
+              "count": 1,
+              "valuation_usd": 54.44819822133432,
+              "valuation_by_country": [
+                {
+                  "chile": 38163
+                }
+              ],
+              "impressions": 29387,
+              "valuation": 38163
             },
             "id": 1,
             "name": "desktop"
           }
         ],
         "metrics": {
-          "impact": 1572,
-          "count": 2,
-          "valuation_usd": 13.961480552074311,
-          "valuation_by_country": [{ "chile": 10386 }],
-          "impressions": 9158,
-          "valuation": 10386
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
         "websites": [
           {
             "metrics": {
-              "impact": 1572,
-              "count": 2,
-              "valuation_usd": 13.961480552074311,
-              "valuation_by_country": [{ "chile": 10386 }],
-              "impressions": 9158,
-              "valuation": 10386
+              "impact": 8152,
+              "count": 1,
+              "valuation_usd": 54.44819822133432,
+              "valuation_by_country": [
+                {
+                  "chile": 38163
+                }
+              ],
+              "impressions": 29387,
+              "valuation": 38163
             },
-            "domain": "elmostrador.cl",
-            "id": 339
+            "domain": "clarin.com",
+            "id": 365
           }
         ],
         "sold_by": [
           {
             "metrics": {
-              "impact": 1572,
-              "count": 2,
-              "valuation_usd": 13.961480552074311,
-              "valuation_by_country": [{ "chile": 10386 }],
-              "impressions": 9158,
-              "valuation": 10386
+              "impact": 8152,
+              "count": 1,
+              "valuation_usd": 54.44819822133432,
+              "valuation_by_country": [
+                {
+                  "chile": 38163
+                }
+              ],
+              "impressions": 29387,
+              "valuation": 38163
             },
             "id": "google",
             "name": "google"
           }
         ],
         "preview": {
-          "ad_measurements": { "width": 300, "height": 600 },
+          "ad_measurements": {
+            "width": 970,
+            "height": 300
+          },
           "ad_file": {
-            "name": "https://ads.admetricks.com/banner_54ac72545d53be8cc9f2d85c784919e3.jpg"
+            "name": "https://ads.admetricks.com/banner_145e33725b203c379d1e3aaf7bbdf5cf.jpg"
           }
         },
-        "id": 5394307,
+        "id": 7797882,
         "ad_types": [
           {
             "metrics": {
-              "impact": 1572,
-              "count": 2,
-              "valuation_usd": 13.961480552074311,
-              "valuation_by_country": [{ "chile": 10386 }],
-              "impressions": 9158,
-              "valuation": 10386
+              "impact": 8152,
+              "count": 1,
+              "valuation_usd": 54.44819822133432,
+              "valuation_by_country": [
+                {
+                  "chile": 38163
+                }
+              ],
+              "impressions": 29387,
+              "valuation": 38163
             },
             "id": 1,
             "name": "display"
@@ -364,49 +419,61 @@ $response = Requests::post('https://clientela.admetricks.com/industry-report/', 
     "websites": [
       {
         "metrics": {
-          "impact": 2358,
-          "count": 3,
-          "valuation_usd": 20.942220828111466,
-          "valuation_by_country": [{ "chile": 15579 }],
-          "impressions": 13737,
-          "valuation": 15579
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
-        "domain": "elmostrador.cl",
-        "id": 339
+        "domain": "clarin.com",
+        "id": 365
       }
     ],
     "brands_by_date": [
       {
         "metrics_by_date": [
           {
-            "date": "2020-12-05T00:00:00.000Z",
+            "date": "2020-11-23T00:00:00.000Z",
             "metrics": {
-              "impact": 1572,
-              "count": 2,
-              "valuation_usd": 13.961480552074311,
-              "valuation_by_country": [{ "chile": 10386 }],
-              "impressions": 9158,
-              "valuation": 10386
+              "impact": 8152,
+              "count": 1,
+              "valuation_usd": 54.44819822133432,
+              "valuation_by_country": [
+                {
+                  "chile": 38163
+                }
+              ],
+              "impressions": 29387,
+              "valuation": 38163
             },
-            "date_int": 1607126400000
+            "date_int": 1606089600000
           }
         ],
-        "id": 142804,
-        "name": "tiendas sara nieto"
+        "id": 141894,
+        "name": "gympro"
       }
     ],
     "brands": [
       {
         "metrics": {
-          "impact": 1572,
-          "count": 2,
-          "valuation_usd": 13.961480552074311,
-          "valuation_by_country": [{ "chile": 10386 }],
-          "impressions": 9158,
-          "valuation": 10386
+          "impact": 8152,
+          "count": 1,
+          "valuation_usd": 54.44819822133432,
+          "valuation_by_country": [
+            {
+              "chile": 38163
+            }
+          ],
+          "impressions": 29387,
+          "valuation": 38163
         },
-        "id": 142804,
-        "name": "tiendas sara nieto"
+        "id": 141894,
+        "name": "gympro"
       }
     ]
   }

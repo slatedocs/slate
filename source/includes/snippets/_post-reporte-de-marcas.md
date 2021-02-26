@@ -50,7 +50,7 @@ $data = '{"order_by":"valuation","ad_types":{"include":[{"id":1},{"id":3}]},"cou
 $response = Requests::post('https://clientela.admetricks.com/brands-report/', $headers, $data);
 ```
 
-> Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 {
