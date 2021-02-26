@@ -202,13 +202,7 @@ Success: {
 
 This endpoint deals with home energy.
 
-### EndPoint
-
-POST/home-energy
-
-### HTTP Request
-
-`POST https://dynm.herokuapp.com/home-energy`
+`POST https://dynm.herokuapp.com/transportation`
 
 # Transportation
 
@@ -317,12 +311,6 @@ print(response.text)
 
 This endpoint deals with transportation.
 
-### EndPoint
-
-POST/transportation
-
-### HTTP Request
-
 `POST https://dynm.herokuapp.com/transportation`
 
 # Waste
@@ -422,11 +410,5 @@ print(response.text)
 ```
 
 This endpoint deals with waste.
-
-### EndPoint
-
-POST/waste
-
-### HTTP Request
 
 `POST https://dynm.herokuapp.com/waste`
