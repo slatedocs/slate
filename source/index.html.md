@@ -20,11 +20,21 @@ code_clipboard: true
 
 # Introduction
 
-This API.......
-
 HOST: [https://dynm.herokuapp.com/](https://dynm.herokuapp.com/).
 
-This API documentation page was created with [Slate](https://github.com/slatedocs/slate).
+## About
+
+Many of our daily activities - such as using electricity, driving a car, or disposing of waste - cause greenhouse gas emissions. Together these emissions make up a household's carbon footprint.
+
+The calculator estimates your footprint in three areas: home energy, transportation and waste. Everyone's carbon footprint is different depending on their location, habits, and personal choices.
+
+For an explanation of the calculator's assumptions and sources, see the [Assumptions and References](https://www.epa.gov/sites/production/files/signpost/cc.html) page.
+
+## How To
+
+You can get a quick, rough estimate of your carbon footprint by using U.S. average values. They are provided (along with other useful information) in the "tool tips" throughout the calculator.
+
+For a more accurate estimate, use your own numbers. Gather your utility bills (electricity, natural gas, fuel oil, propane) to calculate your average use over a year. You can find your car's rated fuel efficiency at [fueleconomy.gov](https://fueleconomy.gov/), or you can [calculate your car's actual efficiency](https://www.fueleconomy.gov/mpg/MPG.do?action=calcMPG).
 
 # Home Energy
 
@@ -212,9 +222,16 @@ print(data)
 }
 ```
 
-This endpoint deals with home energy.
+Your Current Emissions from Home Energy.
 
 `POST https://dynm.herokuapp.com/transportation`
+
+<aside>We will put a table here with explanation of request params</aside>
+
+Table Header 1 | Table Header 2 | Table Header 3
+-------------- | -------------- | --------------
+Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+Row 2 col 1 | Row 2 col 2 | Row 2 col 3
 
 # Transportation
 
@@ -373,6 +390,13 @@ This endpoint deals with transportation.
 
 `POST https://dynm.herokuapp.com/transportation`
 
+<aside>We will put a table here with explanation of request params</aside>
+
+Table Header 1 | Table Header 2 | Table Header 3
+-------------- | -------------- | --------------
+Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+
 # Waste
 
 > REQUEST
@@ -500,3 +524,10 @@ print(data)
 This endpoint deals with waste.
 
 `POST https://dynm.herokuapp.com/waste`
+
+<aside>We will put a table here with explanation of request params</aside>
+
+Table Header 1 | Table Header 2 | Table Header 3
+-------------- | -------------- | --------------
+Row 1 col 1 | Row 1 col 2 | Row 1 col 3
+Row 2 col 1 | Row 2 col 2 | Row 2 col 3
