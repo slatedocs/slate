@@ -1,9 +1,11 @@
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", function () {
   const goToTop = document.querySelectorAll("a.go-to-top");
 
-  const scrollToParent = (event) => {
+  function scrollToParent(event) {
     event.currentTarget.parentNode.scrollIntoView({ behavior: "smooth" });
-  };
+  }
 
-  Array.from(goToTop).forEach((button) => button.addEventListener("click", scrollToParent));
+  Array.from(goToTop).forEach(function (button) {
+    button.addEventListener("click", scrollToParent);
+  });
 });
