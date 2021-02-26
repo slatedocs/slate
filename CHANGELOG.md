@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.9.1
+
+*February 27, 2021*
+
+* Fix Slate language tabs not working if localStorage is diabled
+
 ## Version 2.9.0
 
 *January 19, 2021*
