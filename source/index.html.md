@@ -32,7 +32,7 @@ For an explanation of the calculator's assumptions and sources, see the [Assumpt
 
 ## How To
 
-You can get a quick, rough estimate of your carbon footprint by using U.S. average values. They are provided (along with other useful information) in the "tool tips" throughout the calculator.
+You can get a quick, rough estimate of your carbon footprint by using U.S. average amounts. They are provided (along with other useful information) in the "tool tips" throughout the calculator.
 
 For a more accurate estimate, use your own numbers. Gather your utility bills (electricity, natural gas, fuel oil, propane) to calculate your average use over a year. You can find your car's rated fuel efficiency at [fueleconomy.gov](https://fueleconomy.gov/), or you can [calculate your car's actual efficiency](https://www.fueleconomy.gov/mpg/MPG.do?action=calcMPG).
 
@@ -51,23 +51,23 @@ curl -X POST \
       "natural_gas": {
         "unit_of_measurement": "Dollars",
         "average_price_per_thousand_cubic_feet": 1000,
-        "value": 1000
+        "amount": 1000
       },
       "electricity": {
         "unit_of_measurement": "Dollars",
         "average_price_per_kilowatt": 1000,
         "green_percentage": 10,
-        "value": 1000
+        "amount": 1000
       },
       "fuel_oil": {
         "unit_of_measurement": "Dollars",
         "average_price_per_gallon": 1000,
-        "value": 1000
+        "amount": 1000
       },
       "propane": {
         "unit_of_measurement": "Dollars",
         "average_price_per_gallon": 1000,
-        "value": 1000
+        "amount": 1000
       }
     }
   }'
@@ -82,23 +82,23 @@ const data = {
     natural_gas: {
       unit_of_measurement: "Dollars",
       average_price_per_thousand_cubic_feet: 1000,
-      value: 1000,
+      amount: 1000,
     },
     electricity: {
       unit_of_measurement: "Dollars",
       average_price_per_kilowatt: 1000,
       green_percentage: 10,
-      value: 1000,
+      amount: 1000,
     },
     fuel_oil: {
       unit_of_measurement: "Dollars",
       average_price_per_gallon: 1000,
-      value: 1000,
+      amount: 1000,
     },
     propane: {
       unit_of_measurement: "Dollars",
       average_price_per_gallon: 1000,
-      value: 1000,
+      amount: 1000,
     },
   },
 };
@@ -132,23 +132,23 @@ payload = {
         "natural_gas": {
             "unit_of_measurement": "Dollars",
             "average_price_per_thousand_cubic_feet": 1000,
-            "value": 1000
+            "amount": 1000
         },
         "electricity": {
             "unit_of_measurement": "Dollars",
             "average_price_per_kilowatt": 1000,
             "green_percentage": 10,
-            "value": 1000
+            "amount": 1000
         },
         "fuel_oil": {
             "unit_of_measurement": "Dollars",
             "average_price_per_gallon": 1000,
-            "value": 1000
+            "amount": 1000
         },
         "propane": {
             "unit_of_measurement": "Dollars",
             "average_price_per_gallon": 1000,
-            "value": 1000
+            "amount": 1000
         }
     }
 }
@@ -172,23 +172,23 @@ print(data)
       "natural_gas" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_thousand_cubic_feet" => 1000,
-        "value" => 1000
+        "amount" => 1000
       ),
       "electricity" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_kilowatt" => 1000,
         "green_percentage" => 10,
-        "value" => 1000
+        "amount" => 1000
       ),
       "fuel_oil" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_gallon" => 1000,
-        "value" => 1000
+        "amount" => 1000
       ),
       "propane" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_gallon" => 1000,
-        "value" => 1000
+        "amount" => 1000
       )
     )
   );
@@ -234,10 +234,12 @@ Your Current Emissions from Home Energy.
 | number_of_people                   | string | true     | the number of people in the household                                                                                       |
 | primary_heating_source             | string | true     | primmary heating source in the household                                                                                    |
 | utility_options                    | object | true     | price or amount of energy you use in the house. The options are natural_gas, electricity, fuel_oil and propane              |
-| natural_gas['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars, Therms and Thousand Cubic Feet |
-| electricity['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Kilowatts                   |
-| fuel_oil['unit_of_measurement']    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
-| propane['unit_of_measurement']     | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| natural_gas ['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars, Therms and Thousand Cubic Feet |
+| electricity ['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Kilowatts                   |
+| fuel_oil ['unit_of_measurement']    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| propane ['unit_of_measurement']     | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| propane ['average_price_ per_gallon']     | string | false | The average price per gallon of propane. If not provided the assumption is 2.47|
+| propane ['amount'] | string | false | The amount of propane consumed whether in price or gallons |
 
 # Transportation
 
@@ -254,14 +256,14 @@ curl -X POST \
       {
         "average_miles_driven": {
           "duration": "Per Week",
-          "value": 23
+          "amount": 23
         },
         "average_gas_mileage": 20
       },
       {
         "average_miles_driven": {
           "duration": "Per Week",
-          "value": 30
+          "amount": 30
         },
         "average_gas_mileage": 30
       }
@@ -279,14 +281,14 @@ const data = {
     {
       average_miles_driven: {
         duration: "Per Week",
-        value: 23,
+        amount: 23,
       },
       average_gas_mileage: 20,
     },
     {
       average_miles_driven: {
         duration: "Per Week",
-        value: 30,
+        amount: 30,
       },
       average_gas_mileage: 30,
     },
@@ -321,14 +323,14 @@ payload={
   "vehicles": [{
     "average_miles_driven": {
       "duration": "Per Week",
-      "value": 23
+      "amount": 23
     },
     "average_gas_mileage": 20
   },
   {
     "average_miles_driven": {
       "duration": "Per Week",
-      "value": 30
+      "amount": 30
     },
     "average_gas_mileage": 30
   }]
@@ -354,14 +356,14 @@ print(data)
       array(
         "average_miles_driven" => array(
           "duration" => "Per Week",
-          "value" => 23
+          "amount" => 23
         ),
         "average_gas_mileage" => 20
       ),
       array(
         "average_miles_driven" => array(
           "duration" => "Per Week",
-          "value" => 30
+          "amount" => 30
         ),
         "average_gas_mileage" => 30
       )
@@ -538,4 +540,4 @@ This endpoint deals with waste.
 | ------------------------ | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | average_waste_per_person | string | true     | the average waste of one person in a household                                                                                                     |
 | number_of_people         | string | true     | the number of people in a household                                                                                                                |
-| materials_recycled       | object | true     | materials to be recycled are metal, plastic, glass,newspaper and magazines. their values are in boolean, they can have a value of "true" or false" |
+| materials_recycled       | object | true     | materials to be recycled are metal, plastic, glass,newspaper and magazines. their amounts are in boolean, they can have a amount of "true" or false" |
