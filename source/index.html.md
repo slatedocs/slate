@@ -109,7 +109,8 @@ fetch("https://dynm.herokuapp.com/home-energy", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify(data),
-}).then((response) => response.json())
+})
+  .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
   })
@@ -226,12 +227,17 @@ Your Current Emissions from Home Energy.
 
 `POST https://dynm.herokuapp.com/transportation`
 
-<aside>We will put a table here with explanation of request params</aside>
+<aside>Request params</aside>
 
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+| Param                              | Type   | Required | Description                                                                                                                 |
+| ---------------------------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| number_of_people                   | string | true     | the number of people in the household                                                                                       |
+| primary_heating_source             | string | true     | primmary heating source in the household                                                                                    |
+| utility_options                    | object | true     | price or amount of energy you use in the house. The options are natural_gas, electricity, fuel_oil and propane              |
+| natural_gas['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars, Therms and Thousand Cubic Feet |
+| electricity['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Kilowatts                   |
+| fuel_oil['unit_of_measurement']    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| propane['unit_of_measurement']     | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
 
 # Transportation
 
@@ -390,12 +396,13 @@ This endpoint deals with transportation.
 
 `POST https://dynm.herokuapp.com/transportation`
 
-<aside>We will put a table here with explanation of request params</aside>
+<aside>Request params</aside>
 
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+| Param                         | Type   | Required | Description                                                                                                                |
+| ----------------------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| current_maintainance          | string | true     | state of maintainance of the vehicle. Options are "Do not Do" and "Already Done"                                           |
+| average_emissions_per_vehicle | string | true     | the average emissions of exhaust per vehicle                                                                               |
+| vehicles                      | object | true     | the average miles driven by a vehicle. it takes a duration of either "Per Week" or "Per Year", and the average gas mileage |
 
 # Waste
 
@@ -525,9 +532,10 @@ This endpoint deals with waste.
 
 `POST https://dynm.herokuapp.com/waste`
 
-<aside>We will put a table here with explanation of request params</aside>
+<aside>Request params</aside>
 
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+| Param                    | Type   | Required | Description                                                                                                                                        |
+| ------------------------ | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| average_waste_per_person | string | true     | the average waste of one person in a household                                                                                                     |
+| number_of_people         | string | true     | the number of people in a household                                                                                                                |
+| materials_recycled       | object | true     | materials to be recycled are metal, plastic, glass,newspaper and magazines. their values are in boolean, they can have a value of "true" or false" |
