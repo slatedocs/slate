@@ -229,17 +229,23 @@ Your Current Emissions from Home Energy.
 
 <aside>Request params</aside>
 
-| Param                              | Type   | Required | Description                                                                                                                 |
-| ---------------------------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------- |
-| number_of_people                   | string | true     | the number of people in the household                                                                                       |
-| primary_heating_source             | string | true     | primmary heating source in the household                                                                                    |
-| utility_options                    | object | true     | price or amount of energy you use in the house. The options are natural_gas, electricity, fuel_oil and propane              |
-| natural_gas ['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars, Therms and Thousand Cubic Feet |
-| electricity ['unit_of_measurement'] | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Kilowatts                   |
-| fuel_oil ['unit_of_measurement']    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
-| propane ['unit_of_measurement']     | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
-| propane ['average_price_ per_gallon']     | string | false | The average price per gallon of propane. If not provided the assumption is 2.47|
-| propane ['amount'] | string | false | The amount of propane consumed whether in price or gallons |
+| Param                                                  | Type   | Required | Description                                                                                                                 |
+| ------------------------------------------------------ | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| number_of_people                                       | string | true     | the number of people in the household                                                                                       |
+| primary_heating_source                                 | string | true     | primmary heating source in the household                                                                                    |
+| utility_options                                        | object | true     | price or amount of energy you use in the house. The options are natural_gas, electricity, fuel_oil and propane              |
+| natural_gas ['unit_of_measurement']                    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars, Therms and Thousand Cubic Feet |
+| natural_gas ['average_price* per_thousand_cubic_feet'] | string | false    | The average price per thousand cubic feet of natural gas. If not provided the assumption is 10.68                           |
+| natural_gas ['amount']                                 | string | false    | The amount of natural_gas consumed whether in price or thousand cubic feet                                                  |
+| electricity ['unit_of_measurement']                    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Kilowatts                   |
+| electricity ['average_price_ per_kilowatt']            | string | false    | The average price per kilowatt of electricity. If not provided the assumption is 0.1188                                     |
+| electricity ['amount']                                 | string | false    | The amount of electricity consumed whether in price or kilowatts                                                            |
+| fuel_oil ['unit_of_measurement']                       | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| fuel_oil ['average_price _per_gallon']                 | string | false    | The average price per gallon of fuel_oil. If not provided the assumption is 4.02                                            |
+| fuel_oil ['amount']                                    | string | false    | The amount of fuel_oil consumed whether in price or gallons                                                                 |
+| propane ['unit_of_measurement']                        | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| propane ['average_price_ per_gallon']                  | string | false    | The average price per gallon of propane. If not provided the assumption is 2.47                                             |
+| propane ['amount']                                     | string | false    | The amount of propane consumed whether in price or gallons                                                                  |
 
 # Transportation
 
@@ -400,11 +406,14 @@ This endpoint deals with transportation.
 
 <aside>Request params</aside>
 
-| Param                         | Type   | Required | Description                                                                                                                |
-| ----------------------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| current_maintainance          | string | true     | state of maintainance of the vehicle. Options are "Do not Do" and "Already Done"                                           |
-| average_emissions_per_vehicle | string | true     | the average emissions of exhaust per vehicle                                                                               |
-| vehicles                      | object | true     | the average miles driven by a vehicle. it takes a duration of either "Per Week" or "Per Year", and the average gas mileage |
+| Param                             | Type   | Required | Description                                                                      |
+| --------------------------------- | ------ | -------- | -------------------------------------------------------------------------------- |
+| current_maintainance              | string | true     | state of maintainance of the vehicle. Options are "Do not Do" and "Already Done" |
+| average_emissions \_per_vehicle   | string | true     | the average emissions of exhaust per vehicle                                     |
+| vehicles                          | object | true     | the vehicles in a household.                                                     |
+| average_miles_driven ['duration'] | string | true     | the duration in which the vehicles are driven. Options are Per Week and Per Year |
+| average_miles_driven ['value']    | string | true     | the average amount of miles driven                                               |
+| average_gas_mileage               | string | true     | average amount of gas used by vehicles per mileage                               |
 
 # Waste
 
@@ -536,8 +545,13 @@ This endpoint deals with waste.
 
 <aside>Request params</aside>
 
-| Param                    | Type   | Required | Description                                                                                                                                        |
-| ------------------------ | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| average_waste_per_person | string | true     | the average waste of one person in a household                                                                                                     |
-| number_of_people         | string | true     | the number of people in a household                                                                                                                |
-| materials_recycled       | object | true     | materials to be recycled are metal, plastic, glass,newspaper and magazines. their amounts are in boolean, they can have a amount of "true" or false" |
+| Param                            | Type    | Required | Description                                                                          |
+| -------------------------------- | ------- | -------- | ------------------------------------------------------------------------------------ |
+| average_waste_per_person         | string  | true     | the average waste of one person in a household                                       |
+| number_of_people                 | string  | true     | the number of people in a household                                                  |
+| materials_recycled               | object  | true     | materials to be recycled. Options are metal, plastic, glass,newspaper and magazines. |
+| materials_recycled ['metal']     | boolean | true     | Metal is the material being recycled. if true, the value of reduction is -89.38      |
+| materials_recycled ['plastic']   | boolean | true     | Plastic is the material being recycled. if true, the value of reduction is -35.50    |
+| materials_recycled ['glass']     | boolean | true     | Glass is the material being recycled. if true, the value of reduction is -25.39      |
+| materials_recycled ['newspaper'] | boolean | true     | Newspaper is the material being recycled. if true, the value of reduction is -113.14 |
+| materials_recycled ['magazines'] | boolean | true     | Magazine is the material being recycled. if true, the value of reduction is -27.46   |
