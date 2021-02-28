@@ -5,7 +5,7 @@ The API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
+400 | Bad Request -- General request error
 401 | Unauthorized -- Your API key is wrong
 403 | Forbidden -- Your API token is not authorized for this operation
 404 | Not Found -- The specified resource could not be found - please check your project_id

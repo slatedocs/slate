@@ -35,7 +35,7 @@ This endpoint retrieves all Attachments for a specific entity .
 
 Parameters* | Description |
 --------- | ------- |
-entity | The entity type: can be one of the following:  requirement, test, testset, instance, step, issue |
+entity | The entity type: can be one of the following:  requirement, test, testset, instance, step, step-run, issue |
 entity-id | the entity id |
 
 
@@ -59,7 +59,7 @@ Parameters* | Description |
 attachment-id | The id that was retrieved from index method |
 
 ### Output
-The output returns an html with redirect so it requires `-L` option (in curl) 
+The output returns an html with redirect so it requires `-L` option (in curl)
 
 <aside class="notice">
 This endpoint is not a json request, and without the "Content-Type:application/json" in the header. Usually it requires an output stream. See the curl example.
