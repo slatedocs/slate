@@ -239,6 +239,7 @@ Your Current Emissions from Home Energy.
 | natural_gas ['amount']                                 | string | false    | The amount of natural_gas consumed whether in price or thousand cubic feet                                                  |
 | electricity ['unit_of_measurement']                    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Kilowatts                   |
 | electricity ['average_price_ per_kilowatt']            | string | false    | The average price per kilowatt of electricity. If not provided the assumption is 0.1188                                     |
+| electricity ['green_percentage']                       | string | false    | the percentage of green electricity used in a household                                                                     |
 | electricity ['amount']                                 | string | false    | The amount of electricity consumed whether in price or kilowatts                                                            |
 | fuel_oil ['unit_of_measurement']                       | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
 | fuel_oil ['average_price _per_gallon']                 | string | false    | The average price per gallon of fuel_oil. If not provided the assumption is 4.02                                            |
