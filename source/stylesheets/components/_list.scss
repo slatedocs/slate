@@ -38,7 +38,18 @@ ul {
         &__child {
           @for $depth from 1 to 10 {
             &#{$depth} {
-              padding-left: #{$depth * 0.9em};
+              min-height: 45px;
+              padding-left: #{$depth * 25px};
+              background: lighten($color: $code-bg, $amount: 1%);
+            }
+          }
+          &1  {
+            margin-top: 10px;
+            & + .param__child2 {
+              margin: 0 !important;
+            }
+            & ~ .param__child1 {
+              margin-top: 10px;
             }
           }
         }

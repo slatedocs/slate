@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function scrollToTop(container) {
-    const [title] = $(container).prev();
+    const title = $(container).prev()[0];
     title.scrollIntoView();
   }
 
