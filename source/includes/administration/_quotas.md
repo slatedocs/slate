@@ -325,5 +325,5 @@ if both `service` and `trial` query parameters are false.
 Optional                | &nbsp;
 ---------------------   | -----------
 `service`<br/>*boolean* | Indicates if this quota should be made the default quota for all organizations assigned this service connection.
-`trial`<br/>>*boolean*  | Indicates if this quota should be made the default quota for all trial organization assigned this service connection. 
+`trial`<br/>*boolean*  | Indicates if this quota should be made the default quota for all trial organization assigned this service connection. 
 
