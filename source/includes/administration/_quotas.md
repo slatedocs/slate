@@ -76,7 +76,10 @@ curl "https://cloudmc_endpoint/api/v2/quotas" \
         "serviceCode": "service-code",
         "name": "service-name",
         "id": "52fb6687-44cb-4db3-9e63-bdfabfe2faf1",
-        "type": "gcp"
+        "type": "gcp",
+        "organization": {
+          "id": "c5305a63-d45c-422e-9b6b-72ed1c60aedc"
+        }
       },
       "defaultForTrial": true
     },
@@ -174,7 +177,10 @@ curl "https://cloudmc_endpoint/api/v2/quotas/:id" \
         "serviceCode": "service-code",
         "name": "service-name",
         "id": "52fb6687-44cb-4db3-9e63-bdfabfe2faf1",
-        "type": "gcp"
+        "type": "gcp",
+        "organization": {
+          "id": "c5305a63-d45c-422e-9b6b-72ed1c60aedc"
+        }
       },
       "defaultForTrial": true
     }
@@ -234,3 +240,89 @@ Optional | &nbsp;
 ---------- | -----------
 `quota_id`<br/>*UUID* | The id of the quota that will be used as a substitution for the quota that is being deleted. 
 
+
+<!-------------------- SET A QUOTA AS DEFAULT -------------------->
+
+### Assign quota to be default quota 
+`POST /quotas/:quota_id?service=true&trial=false`
+
+Makes a quota with :quota_id the default for the a service, trial or both. A quota can only be set as default if the quota is owned by the 
+connection owner. 
+
+```shell
+# Makes a specific quota default 
+curl -X POST "https://cloudmc_endpoint/api/v2/quotas/:id/default?service=true&trial=false" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns the updated quota when it was successfully made a default for service or trial. 
+
+Note: This endpoint only attempts to set the quota as the default, it does not remove the default flag of the quota 
+if both `service` and `trial` query parameters are false. 
+
+```json
+{
+  "data": {
+      "ownerOrganization": {
+        "name": "System",
+        "id": "a21debb5-b4ac-4e4b-9491-d0f4df6cd4f9"
+      },
+      "deleted": false,
+      "quotaDetails": [
+        {
+          "ceiling": 1.0,
+          "deleted": false,
+          "limitSize": 0,
+          "metricIdentifier": "metric-id",
+          "id": "1c005444-6ea2-4ebc-85f7-d75f5b1943d3",
+          "type": "INSTANCE_MEMORY",
+          "labelKey": "quotas.memory",
+          "version": 1
+        },
+        {
+          "ceiling": 1.0,
+          "deleted": false,
+          "limitSize": 0,
+          "metricIdentifier": "metric-id",
+          "id": "674f4755-640b-4697-87bb-8a5d03704552",
+          "type": "DISK_SIZE",
+          "labelKey": "quotas.disk_size",
+          "version": 1
+        },
+        {
+          "ceiling": 1.0,
+          "deleted": false,
+          "limitSize": 0,
+          "metricIdentifier": "metric-id",
+          "id": "691c55b5-ecaf-434d-b509-97c4fb554d1d",
+          "type": "INSTANCE_VCPUS",
+          "labelKey": "quotas.vcpus",
+          "version": 1
+        }
+      ],
+      "name": "Quota Name",
+      "defaultForService": true,
+      "defaultForTrial": false,
+      "description": "Quota Description",
+      "numberOfOrganizationsAppliedTo": 1,
+      "id": "24330f70-9845-4851-acc0-ecd5d9b13613",
+      "creationDate": "2021-01-06T19:17:06.000Z",
+      "version": 1,
+      "serviceConnection": {
+        "serviceCode": "service-code",
+        "name": "service-name",
+        "id": "52fb6687-44cb-4db3-9e63-bdfabfe2faf1",
+        "type": "gcp",
+        "organization": {
+          "id": "c5305a63-d45c-422e-9b6b-72ed1c60aedc"
+        }
+      }
+    }
+}
+```
+
+**Query Parameters**
+
+Optional                | &nbsp;
+---------------------   | -----------
+`service`<br/>*boolean* | Indicates if this quota should be made the default quota for all organizations assigned this service connection.
+`trial`<br/>*boolean*  | Indicates if this quota should be made the default quota for all trial organization assigned this service connection. 
