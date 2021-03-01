@@ -243,7 +243,7 @@ Optional | &nbsp;
 
 <!-------------------- SET A QUOTA AS DEFAULT -------------------->
 
-### Sets a quota to be default 
+### Assign quota to be default quota 
 `POST /quotas/:quota_id?service=true?trial=false`
 
 Makes a quota with :quota_id the default for the a service, trial or both. A quota can only be set as default if the quota is owned by the 
