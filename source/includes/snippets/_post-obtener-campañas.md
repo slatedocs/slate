@@ -78,7 +78,7 @@ $data = '{"order_by":"valuation","search_term":"4x4","industries":{"include":[{"
 $response = Requests::post('https://clientela.admetricks.com/campaigns/', $headers, $data);
 ```
 
-> Ejemplo de respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 {

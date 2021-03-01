@@ -41,8 +41,10 @@ $headers = array(
 $response = Requests::delete('https://clientela.admetricks.com/report/13504/', $headers);
 ```
 
-> Ejemplo de Respuesta (200)
+> Ejemplo de respuesta
 
-```json
-true
+```shell
+# Si la operación es exitosa, recibirás una respuesta con cuerpo vacío y estado 204
+
+# De lo contrario, recibirás el código de error correspondiente y una breve descripción de lo ocurrido
 ```
