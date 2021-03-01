@@ -1,11 +1,21 @@
 window.addEventListener("DOMContentLoaded", function () {
   const goToTop = document.querySelectorAll("a.go-to-top");
 
-  function scrollToParent(event) {
-    event.currentTarget.parentNode.scrollIntoView({ behavior: "smooth" });
+  function getContainer(target) {
+    return target.parentElement;
+  }
+
+  function scrollToTop(container) {
+    const [title] = $(container).prev();
+    title.scrollIntoView();
   }
 
   Array.from(goToTop).forEach(function (button) {
-    button.addEventListener("click", scrollToParent);
+    button.addEventListener("click", function (event) {
+      const container = getContainer(event.currentTarget);
+
+      scrollToTop(container);
+      container.querySelector("summary").click();
+    });
   });
 });
