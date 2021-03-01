@@ -32,7 +32,7 @@ For an explanation of the calculator's assumptions and sources, see the [Assumpt
 
 ## How To
 
-You can get a quick, rough estimate of your carbon footprint by using U.S. average values. They are provided (along with other useful information) in the "tool tips" throughout the calculator.
+You can get a quick, rough estimate of your carbon footprint by using U.S. average amounts. They are provided (along with other useful information) in the "tool tips" throughout the calculator.
 
 For a more accurate estimate, use your own numbers. Gather your utility bills (electricity, natural gas, fuel oil, propane) to calculate your average use over a year. You can find your car's rated fuel efficiency at [fueleconomy.gov](https://fueleconomy.gov/), or you can [calculate your car's actual efficiency](https://www.fueleconomy.gov/mpg/MPG.do?action=calcMPG).
 
@@ -51,23 +51,23 @@ curl -X POST \
       "natural_gas": {
         "unit_of_measurement": "Dollars",
         "average_price_per_thousand_cubic_feet": 1000,
-        "value": 1000
+        "amount": 1000
       },
       "electricity": {
         "unit_of_measurement": "Dollars",
         "average_price_per_kilowatt": 1000,
         "green_percentage": 10,
-        "value": 1000
+        "amount": 1000
       },
       "fuel_oil": {
         "unit_of_measurement": "Dollars",
         "average_price_per_gallon": 1000,
-        "value": 1000
+        "amount": 1000
       },
       "propane": {
         "unit_of_measurement": "Dollars",
         "average_price_per_gallon": 1000,
-        "value": 1000
+        "amount": 1000
       }
     }
   }'
@@ -82,23 +82,23 @@ const data = {
     natural_gas: {
       unit_of_measurement: "Dollars",
       average_price_per_thousand_cubic_feet: 1000,
-      value: 1000,
+      amount: 1000,
     },
     electricity: {
       unit_of_measurement: "Dollars",
       average_price_per_kilowatt: 1000,
       green_percentage: 10,
-      value: 1000,
+      amount: 1000,
     },
     fuel_oil: {
       unit_of_measurement: "Dollars",
       average_price_per_gallon: 1000,
-      value: 1000,
+      amount: 1000,
     },
     propane: {
       unit_of_measurement: "Dollars",
       average_price_per_gallon: 1000,
-      value: 1000,
+      amount: 1000,
     },
   },
 };
@@ -109,7 +109,8 @@ fetch("https://dynm.herokuapp.com/home-energy", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify(data),
-}).then((response) => response.json())
+})
+  .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
   })
@@ -131,23 +132,23 @@ payload = {
         "natural_gas": {
             "unit_of_measurement": "Dollars",
             "average_price_per_thousand_cubic_feet": 1000,
-            "value": 1000
+            "amount": 1000
         },
         "electricity": {
             "unit_of_measurement": "Dollars",
             "average_price_per_kilowatt": 1000,
             "green_percentage": 10,
-            "value": 1000
+            "amount": 1000
         },
         "fuel_oil": {
             "unit_of_measurement": "Dollars",
             "average_price_per_gallon": 1000,
-            "value": 1000
+            "amount": 1000
         },
         "propane": {
             "unit_of_measurement": "Dollars",
             "average_price_per_gallon": 1000,
-            "value": 1000
+            "amount": 1000
         }
     }
 }
@@ -171,23 +172,23 @@ print(data)
       "natural_gas" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_thousand_cubic_feet" => 1000,
-        "value" => 1000
+        "amount" => 1000
       ),
       "electricity" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_kilowatt" => 1000,
         "green_percentage" => 10,
-        "value" => 1000
+        "amount" => 1000
       ),
       "fuel_oil" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_gallon" => 1000,
-        "value" => 1000
+        "amount" => 1000
       ),
       "propane" => array(
         "unit_of_measurement" => "Dollars",
         "average_price_per_gallon" => 1000,
-        "value" => 1000
+        "amount" => 1000
       )
     )
   );
@@ -226,12 +227,26 @@ Your Current Emissions from Home Energy.
 
 `POST https://dynm.herokuapp.com/transportation`
 
-<aside>We will put a table here with explanation of request params</aside>
+<aside>Request params</aside>
 
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+| Param                                                  | Type   | Required | Description                                                                                                                 |
+| ------------------------------------------------------ | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| number_of_people                                       | string | true     | the number of people in the household                                                                                       |
+| primary_heating_source                                 | string | true     | primmary heating source in the household                                                                                    |
+| utility_options                                        | object | true     | price or amount of energy you use in the house. The options are natural_gas, electricity, fuel_oil and propane              |
+| natural_gas ['unit_of_measurement']                    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars, Therms and Thousand Cubic Feet |
+| natural_gas ['average_price* per_thousand_cubic_feet'] | string | false    | The average price per thousand cubic feet of natural gas. If not provided the assumption is 10.68                           |
+| natural_gas ['amount']                                 | string | false    | The amount of natural_gas consumed whether in price or thousand cubic feet                                                  |
+| electricity ['unit_of_measurement']                    | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Kilowatts                   |
+| electricity ['average_price_ per_kilowatt']            | string | false    | The average price per kilowatt of electricity. If not provided the assumption is 0.1188                                     |
+| electricity ['green_percentage']                       | string | false    | the percentage of green electricity used in a household                                                                     |
+| electricity ['amount']                                 | string | false    | The amount of electricity consumed whether in price or kilowatts                                                            |
+| fuel_oil ['unit_of_measurement']                       | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| fuel_oil ['average_price _per_gallon']                 | string | false    | The average price per gallon of fuel_oil. If not provided the assumption is 4.02                                            |
+| fuel_oil ['amount']                                    | string | false    | The amount of fuel_oil consumed whether in price or gallons                                                                 |
+| propane ['unit_of_measurement']                        | string | true     | The unit of measurement you use to determine amount of energy consumed. Options are Dollars and Gallons                     |
+| propane ['average_price_ per_gallon']                  | string | false    | The average price per gallon of propane. If not provided the assumption is 2.47                                             |
+| propane ['amount']                                     | string | false    | The amount of propane consumed whether in price or gallons                                                                  |
 
 # Transportation
 
@@ -248,14 +263,14 @@ curl -X POST \
       {
         "average_miles_driven": {
           "duration": "Per Week",
-          "value": 23
+          "amount": 23
         },
         "average_gas_mileage": 20
       },
       {
         "average_miles_driven": {
           "duration": "Per Week",
-          "value": 30
+          "amount": 30
         },
         "average_gas_mileage": 30
       }
@@ -273,14 +288,14 @@ const data = {
     {
       average_miles_driven: {
         duration: "Per Week",
-        value: 23,
+        amount: 23,
       },
       average_gas_mileage: 20,
     },
     {
       average_miles_driven: {
         duration: "Per Week",
-        value: 30,
+        amount: 30,
       },
       average_gas_mileage: 30,
     },
@@ -315,14 +330,14 @@ payload={
   "vehicles": [{
     "average_miles_driven": {
       "duration": "Per Week",
-      "value": 23
+      "amount": 23
     },
     "average_gas_mileage": 20
   },
   {
     "average_miles_driven": {
       "duration": "Per Week",
-      "value": 30
+      "amount": 30
     },
     "average_gas_mileage": 30
   }]
@@ -348,14 +363,14 @@ print(data)
       array(
         "average_miles_driven" => array(
           "duration" => "Per Week",
-          "value" => 23
+          "amount" => 23
         ),
         "average_gas_mileage" => 20
       ),
       array(
         "average_miles_driven" => array(
           "duration" => "Per Week",
-          "value" => 30
+          "amount" => 30
         ),
         "average_gas_mileage" => 30
       )
@@ -390,12 +405,16 @@ This endpoint deals with transportation.
 
 `POST https://dynm.herokuapp.com/transportation`
 
-<aside>We will put a table here with explanation of request params</aside>
+<aside>Request params</aside>
 
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+| Param                             | Type   | Required | Description                                                                      |
+| --------------------------------- | ------ | -------- | -------------------------------------------------------------------------------- |
+| current_maintainance              | string | true     | state of maintainance of the vehicle. Options are "Do not Do" and "Already Done" |
+| average_emissions \_per_vehicle   | string | true     | the average emissions of exhaust per vehicle                                     |
+| vehicles                          | object | true     | the vehicles in a household.                                                     |
+| average_miles_driven ['duration'] | string | true     | the duration in which the vehicles are driven. Options are Per Week and Per Year |
+| average_miles_driven ['value']    | string | true     | the average amount of miles driven                                               |
+| average_gas_mileage               | string | true     | average amount of gas used by vehicles per mileage                               |
 
 # Waste
 
@@ -525,9 +544,15 @@ This endpoint deals with waste.
 
 `POST https://dynm.herokuapp.com/waste`
 
-<aside>We will put a table here with explanation of request params</aside>
+<aside>Request params</aside>
 
-Table Header 1 | Table Header 2 | Table Header 3
--------------- | -------------- | --------------
-Row 1 col 1 | Row 1 col 2 | Row 1 col 3
-Row 2 col 1 | Row 2 col 2 | Row 2 col 3
+| Param                            | Type    | Required | Description                                                                          |
+| -------------------------------- | ------- | -------- | ------------------------------------------------------------------------------------ |
+| average_waste_per_person         | string  | true     | the average waste of one person in a household                                       |
+| number_of_people                 | string  | true     | the number of people in a household                                                  |
+| materials_recycled               | object  | true     | materials to be recycled. Options are metal, plastic, glass,newspaper and magazines. |
+| materials_recycled ['metal']     | boolean | true     | Metal is the material being recycled. if true, the value of reduction is -89.38      |
+| materials_recycled ['plastic']   | boolean | true     | Plastic is the material being recycled. if true, the value of reduction is -35.50    |
+| materials_recycled ['glass']     | boolean | true     | Glass is the material being recycled. if true, the value of reduction is -25.39      |
+| materials_recycled ['newspaper'] | boolean | true     | Newspaper is the material being recycled. if true, the value of reduction is -113.14 |
+| materials_recycled ['magazines'] | boolean | true     | Magazine is the material being recycled. if true, the value of reduction is -27.46   |
