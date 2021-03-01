@@ -26,12 +26,16 @@ details {
   }
 
   .go-to-top {
-    @include rounded-bottom;
-    background: lighten($code-bg, 5%);
     cursor: pointer;
     display: block;
-    padding: 5px;
-    text-align: center;
+    margin: 0 0 0 auto;
+    width: 25%;
+    position: sticky;
+    bottom: 20px;
+    transition: 200ms;
+    &:active {
+      bottom: -15%;
+    }
   }
 
   p {
