@@ -1,3 +1,5 @@
+> Ejemplo de petición
+
 ```shell
 curl 'https://clientela.admetricks.com/campaigns/' \
   -H 'accept: application/json, text/plain, */*' \
