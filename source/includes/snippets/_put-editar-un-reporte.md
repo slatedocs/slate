@@ -50,8 +50,10 @@ $data = '{"name":"campaigns with data","period":7,"daily_updates":false,"weekly_
 $response = Requests::put('https://clientela.admetricks.com/report/13504/', $headers, $data);
 ```
 
-> Ejemplo de Respuesta (200)
+> Ejemplo de respuesta
 
-```json
-true
+```shell
+# Si la operación es exitosa, recibirás una respuesta con cuerpo vacío y estado 204
+
+# De lo contrario, recibirás el código de error correspondiente y una breve descripción de lo ocurrido
 ```

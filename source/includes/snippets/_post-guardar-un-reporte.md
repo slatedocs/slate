@@ -49,7 +49,7 @@ $data = '{"name":"Reporte de autos Ford","period":30,"weekly_updates_delivery_da
 $response = Requests::post('https://clientela.admetricks.com/report/', $headers, $data);
 ```
 
-> Ejemplo de Respuesta (200)
+> Ejemplo de respuesta exitosa
 
 ```json
 {
