@@ -55,11 +55,17 @@ All responses shall be returned using [JSON](http://www.json.org/), however, if 
 
 # Quick Start
 
-Can't wait to dive in? Follow the 6 steps below to get started.
+Can't wait to dive in? Follow the 5 steps below to get started.
 
-1. [Sign Up](https://app.beyonic.com/signup/) for a Beyonic account.
-2. [Login](https://app.beyonic.com/) and get your API Token by clicking your user name on the bottom left of the left sidebar menu and selecting 'Manage my account' from the dropdown menu. The API Token is shown at the very bottom of the page.
-3. Download the appropriate client library from links in the "Libraries" section of this reference.
+1. Sign Up for a Beyonic account.
+2. [Login](https://app.beyonic.com/) and get your API Token by clicking your user name on the bottom left of the left sidebar menu and selecting ‘Manage my account’ from the dropdown menu. The API Token is shown at the very bottom of the page.
+3. Download the appropriate [client library](https://apidocs.beyonic.com/#client-libraries).
 4. Using your API token and the library, connect to the API endpoint: https://api.beyonic.com/api
-5. Identify the methods you need to use. See the "Methods" section of this reference.
-6. Profit!
+5. Identify the methods you need to use.
+   - [Receiving Money](https://apidocs.beyonic.com/#receiving-money)
+   - [Sending Money](https://apidocs.beyonic.com/#sending-money)
+   - [Other Actions](https://apidocs.beyonic.com/#other-actions)
+
+In client libraries, 
+
+- Zapier - Beyonic provides zapier triggers and actions in “Invite Only” mode. Please [contact us](mailto:enterprise-support@mfsafrica.com) if you would like to use Zapier with Beyonic’s API.
