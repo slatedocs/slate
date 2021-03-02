@@ -109,6 +109,75 @@ Attributes | &nbsp;
 `updatedAt`<br/>*string* | The date on which the site was last updated.
 `services`<br/>*array* | List of services running on the site.
 
+<!-------------------- CREATE A SITE -------------------->
+
+### Create a site
+
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -d "request_body" \
+    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites"
+```
+> Request body example for a site with basic authentication:
+
+```json
+{
+  "domain": "www.rpgfan.com",
+  "services": [
+    "CDN",
+    "SERVERLESS_EDGE_ENGINE",
+    "WAF"
+  ],
+  "protocol": "HTTPS",
+  "hostname": "199.250.204.212",
+  "authMethod": "BASIC",
+  "username": "alavoie",
+  "password": "123456"
+}
+```
+
+> Request body example for a site with no authentication:
+
+```json
+{
+  "domain": "www.rpgfan.com",
+  "services": [
+    "CDN",
+    "SERVERLESS_EDGE_ENGINE",
+    "WAF"
+  ],
+  "protocol": "HTTPS",
+  "hostname": "199.250.204.212"
+}
+```
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites</code>
+
+Create a site in a given [environment](#administration-environments).
+
+Required | &nbsp;
+------- | -----------
+`domain`<br/>*string* | The domain name that will be used for the site.
+`services`<br/>*Array[string]* | Services list that will be used on the site. Possibles values are `CDN`,`SERVERLESS_EDGE_ENGINE` or  `WAF`.
+`protocol`<br/>*string* | Protocol that will be used to communicate with the hostname. Possibles values are `HTTP` or `HTTPS`.
+`hostname`<br/>*string* | The hostname to that will be used to get the information from. The hostname can be an IP or a name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). 
+ 
+ Optional | &nbsp;
+ ------- | -----------
+`authMethod`<br/>*string* | The authentication method to communicate with the hostname. Possibles values are `NONE` or `BASIC`. If not provided, it will default to `NONE` unless the username or password is provided. It would then default to `BASIC`.
+`username`<br/>*Array[Object]* | The username for the basic authentication. Required if authMethod is `BASIC` or if the password id provided. 
+`password`<br/>*string* | The password for the basic authentication. Required if authMethod is `BASIC` or if the password id provided.
+
+
 <!-------------------- DELETE A SITE -------------------->
 
 ### Delete a site
