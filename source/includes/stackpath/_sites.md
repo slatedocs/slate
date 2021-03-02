@@ -169,13 +169,13 @@ Required | &nbsp;
 `domain`<br/>*string* | The domain name that will be used for the site.
 `services`<br/>*Array[string]* | Services list that will be used on the site. Possibles values are `CDN`,`SERVERLESS_EDGE_ENGINE` or  `WAF`.
 `protocol`<br/>*string* | Protocol that will be used to communicate with the hostname. Possibles values are `HTTP` or `HTTPS`.
-`hostname`<br/>*string* | The hostname to that will be used to get the information from. The hostname can be an IP or a name. It may include a specific port and a precise path as well. (e.g. 199.250.204.212:80/test) 
+`hostname`<br/>*string* | The hostname to that will be used to get the information from. The hostname can be an IP or a name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). 
  
  Optional | &nbsp;
  ------- | -----------
 `authMethod`<br/>*string* | The authentication method to communicate with the hostname. Possibles values are `NONE` or `BASIC`. If not provided, it will default to `NONE` unless the username or password is provided. It would then default to `BASIC`.
-`username`<br/>*Array[Object]* | The username for the basic authentication. Required if authMethod is `BASIC` or if the password id provided 
-`password`<br/>*string* | The password for the basic authentication. Required if authMethod is `BASIC` or if the password id provided
+`username`<br/>*Array[Object]* | The username for the basic authentication. Required if authMethod is `BASIC` or if the password id provided. 
+`password`<br/>*string* | The password for the basic authentication. Required if authMethod is `BASIC` or if the password id provided.
 
 
 <!-------------------- DELETE A SITE -------------------->
