@@ -53,7 +53,7 @@ Query Params | &nbsp;
 Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*string* | The delivery domain unique identifier.
-`domain`<br/>*string* | Site's domain name.
+`domain`<br/>*string* | The site's domain name.
 `siteId`<br/>*UUID* | The ID of the site that a the delivery domain belongs to.
 `stackId`<br/>*UUID* | The ID of the stack that the site belongs to.
 `updatedAt`<br/>*string* | The date the domain was validated to be pointing to Stackpath.
