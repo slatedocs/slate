@@ -54,6 +54,6 @@ Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*string* | The delivery domain unique identifier.
 `domain`<br/>*string* | The site's domain name.
-`siteId`<br/>*UUID* | The ID of the site that a the delivery domain belongs to.
+`siteId`<br/>*UUID* | The ID of the site that the delivery domain belongs to.
 `stackId`<br/>*UUID* | The ID of the stack that the site belongs to.
 `updatedAt`<br/>*string* | The date the domain was validated to be pointing to Stackpath.
