@@ -188,6 +188,7 @@ includes:
   - swift/objects
   - stackpath
   - stackpath/workloads
+  - stackpath/sites
   - stackpath/instances
   - stackpath/images
   - stackpath/network_policy_rules
