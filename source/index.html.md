@@ -192,6 +192,7 @@ includes:
   - stackpath/instances
   - stackpath/images
   - stackpath/network_policy_rules
+  - stackpath/delivery_domains
   - aws
   - aws/compute
   - aws/instances
