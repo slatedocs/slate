@@ -204,3 +204,165 @@ Attributes | &nbsp;
 ------- | -----------
 `taskId` <br/>*string* | The task id related to the site deletion.
 `taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- ENABLE CDN -------------------->
+
+### Enable CDN
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_cdn"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites/:id?operation=enable_cdn</code>
+
+Enable CDN for a given site.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site deletion.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- Disable CDN -------------------->
+
+### Disable CDN
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_cdn"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites/:id?operation=disable_cdn</code>
+
+Disable CDN for a given site.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site deletion.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- ENABLE WAF -------------------->
+
+### Enable WAF
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_waf"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites/:id?operation=enable_waf</code>
+
+Enable WAF for a given site.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site deletion.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- Disable WAF -------------------->
+
+### Disable WAF
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_waf"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites/:id?operation=disable_waf</code>
+
+Disable WAF for a given site.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site deletion.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- ENABLE Serverless Scripts -------------------->
+
+### Enable Serverless Scripts
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_scripts"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites/:id?operation=enable_scripts</code>
+
+Enable Serverless Scripts for a given site.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site deletion.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- Disable Serverless Scripts -------------------->
+
+### Disable Serverless Scripts
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_scripts"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sites/:id?operation=disable_scripts</code>
+
+Disable Serverless Scripts for a given site.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site deletion.
+`taskStatus` <br/>*string* | The status of the operation.
