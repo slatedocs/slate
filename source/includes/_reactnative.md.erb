@@ -59,7 +59,7 @@ For iOS, all you need to do is specify the permissions in your `ios/[project]/In
 </manifest>
 ```
 
-For Android, add permissions in `AndroidManifest.xml`. 
+For Android, add permissions in `AndroidManifest.xml`.
 
 ## API
 
@@ -70,24 +70,6 @@ For Android, add permissions in `AndroidManifest.xml`.
 `cluster?: string;`
 
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
-
-#### eventCallbacks
-```jsx
-eventCallbacks={{
-  "*": (event) => {
-    // This function will catch all events
-    console.log(event.event_name);
-  },
-  "my_event_name": (event) => {
-    // This function will catch only events with the specified name (my_event_name)
-    console.log(event.event_name);
-  }
-}}
-```
-
-`eventCallbacks?: { [eventName: string]: (jsEvent: object) => void };`
-
-Used in conjunction with the Chat Transfer Block or Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
 
 #### greeting
 `greeting?: string;`
@@ -150,7 +132,7 @@ import AdaEmbedView from '@ada-support/react-native-sdk';
 
 class MyComponent extends React.Component {
   render() {
-    return <AdaEmbedView 
+    return <AdaEmbedView
             handle="ada-example"
             ref={ref => (this.adaEmbedView = ref)}/>;
   }

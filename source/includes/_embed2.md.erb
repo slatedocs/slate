@@ -235,11 +235,6 @@ The embedStyles option can be used to override default styles inside Embed2 elem
 Setting custom styles based on Embed2 elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
 </aside>
 
-#### eventCallbacks
-`eventCallbacks?: { [eventName: string]: (jsEvent: object) => void };`
-
-Used in conjunction with the Chat Transfer Block or Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
-
 #### greeting
 `greeting?: string;`
 
