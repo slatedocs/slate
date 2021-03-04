@@ -68,6 +68,7 @@ curl -X GET \
    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliverydomains/439b145a-7c55-4a73-8cf2-d8faabfe6d22/test-domain.com"
 ```
 > The above command returns a JSON structured like this:
+
 ```json
 {
   "data": {
