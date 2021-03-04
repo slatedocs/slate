@@ -219,7 +219,7 @@ curl -X POST \
 ```json
 {
   "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
-  "taskStatus": "PENDING"
+  "taskStatus": "SUCCESS"
 }
 ```
 
@@ -246,7 +246,7 @@ curl -X POST \
 ```json
 {
   "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
-  "taskStatus": "PENDING"
+  "taskStatus": "SUCCESS"
 }
 ```
 
@@ -273,7 +273,7 @@ curl -X POST \
 ```json
 {
   "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
-  "taskStatus": "PENDING"
+  "taskStatus": "SUCCESS"
 }
 ```
 
@@ -300,7 +300,7 @@ curl -X POST \
 ```json
 {
   "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
-  "taskStatus": "PENDING"
+  "taskStatus": "SUCCESS"
 }
 ```
 
@@ -327,7 +327,7 @@ curl -X POST \
 ```json
 {
   "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
-  "taskStatus": "PENDING"
+  "taskStatus": "SUCCESS"
 }
 ```
 
@@ -354,7 +354,7 @@ curl -X POST \
 ```json
 {
   "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
-  "taskStatus": "PENDING"
+  "taskStatus": "SUCCESS"
 }
 ```
 
