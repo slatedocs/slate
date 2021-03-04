@@ -31,7 +31,7 @@ The AdaEmbedFramework CocoaPod is public, however use of the Chat interface is g
 
 1. Add the `AdaEmbedFramework` to your Podfile.
 
-2. Install the pod using: 
+2. Install the pod using:
 
 `pod install`
 
@@ -69,11 +69,6 @@ Can be used to pass the scheme name of the host app. This allows for more robust
 `cluster: String = ""`
 
 Specifies the Kubernetes cluster to be used. Unless directed by an Ada team member, you will not need to change this value.
-
-#### eventCallbacks
-`eventCallbacks: [String: (_ event: [String: Any]) -> Void]? = nil`
-
-Used in conjunction with the Chat Transfer Block or Event Trigger block, `eventCallbacks` can be used to trigger callbacks based on Chat events. Requires the `custom_javascript_event_block` feature flag to be turned on.
 
 #### greeting
 `greeting: String = ""`
@@ -166,7 +161,7 @@ Pushes a view containing Ada Chat to the top of your navigational stack.
 #### reset
 `reset()`
 
-Can be used to create a new `chatter` and refresh the Chat window. 
+Can be used to create a new `chatter` and refresh the Chat window.
 
 #### setMetaFields
 
