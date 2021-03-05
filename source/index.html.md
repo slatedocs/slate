@@ -42,7 +42,7 @@ search: true
   - `Taur-Nonce` header is required for private endpoints. See [what is a nonce](#what-is-a-nonce).
   - `Taur-Signature` header is required for private endpoints. See [message signing](#signing-a-message).
 
-- New endpoints for withdrawals:
+- New withdrawal endpoints:
 
   - POST /api/v2/wallets/crypto-withdraw/
   - POST /api/v2/wallets/mxn-withdraw/
@@ -60,7 +60,7 @@ Tauros provides a simple and practical REST API to help you to automatically per
 Before to start developing on the Tauros API consider the following:
 
 - It is recommended to create an account in the [Staging Tauros](https://staging.tauros.io) web app. Staging environment uses testnet coins.
-- Enable the Developer Mode in your profile section to create an API Key and an API Secret.
+- Enable "Developer Mode" in your profile section to create an API Key and an API Secret.
 - The API base url is `https://api.staging.tauros.io/api/` for staging environment and `https://api.tauros.io/api/` for production.
 - All private enpoints requests require message signing.
 - Check the `success` flag to ensure that your API call succeeded.
@@ -71,11 +71,11 @@ Before to start developing on the Tauros API consider the following:
 
 Tauros REST API calls will return a JSON Object.
 
-- A typical successful API call will response a JSON object that looks like:
+- A typical successful API call will send as response a JSON object that looks like:
 
 `{ "success": true, "msg": null, "payload": { RELATED_DATA_HERE } }`
 
-- An unsuccessful API call will response a JSON object that looks like:
+- An unsuccessful API call will send as response a JSON object that looks like:
 
 `{ "success": false, "msg": ERROR_DESCRIPTION }`
 
@@ -90,7 +90,7 @@ Once enabled, you can create and configure as many API Keys as you need. API key
 
 You can restrict the functionality of API keys. Before creating a key, you must choose what permissions you would like the key to have. The permissions are:
 
-- `trading` - Allows a key perform trading operations (read, place or delete orders).
+- `trading` - Allows a key to perform trading operations (read, place or delete orders).
 - `withdraw` - Allows a key to withdraw funds (**Enable with caution**).
 - `reading` - Allows a key to read account data.
 - `check_ips` - Designates wheter the client IP must be validated.
@@ -581,11 +581,11 @@ This API call is used to withdraw MXN to a given CLABE.
 
 ## List Balances
 
-This API call is used to retrieve your wallets balances, including their deposit addresses (if they have been previously generated). There are four types of balances in tauros: `available`, `pending`, `frozen` and `in_orders`.
+This API call is used to retrieve the balances on each of your wallets, including their deposit addresses (if they have been previously generated). There are four types of balances in tauros: `available`, `pending`, `frozen` and `in_orders`.
 
 - `available`: Funds you can spend.
 
-- `pending`: Funds that will be added in your account due to an incoming transfer.
+- `pending`: Funds that will be added to your account due to an incoming transfer.
 
 - `frozen`: Frozen funds that will be removed due to and outgoing withdrawal.
 
