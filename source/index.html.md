@@ -1619,12 +1619,12 @@ Webhook can be configurated to notify if some of the following events occur.
 
 Types of notifications:
 
-- ORDER_PLACED (`OP`)
-- ORDER_FILLED (`OF`)
-- TRADE_HISTORY (`TD`)
-- TRANSACTION_HISTORY (`TR`)
-- ORDER_CLOSED (`OC`)
-- CARD_HISTORY (`CT`)
+- Order placed (`ORDER_PLACED`)
+- Order filled (`ORDER_FILLED`)
+- New trade (`TRADE_HISTORY`)
+- New deposit or withdrawal (`TRANSACTION_HISTORY`)
+- Card Transaction (`CARD_HISTORY`)
+- Order closed (`ORDER_CLOSED`) ([by the user](#close-an-open-order))
 
 The `order`, `trade` or `transfer` object is included in the `object` field.
 
