@@ -758,6 +758,8 @@ In the Asana application, Tasks, Projects, and Portfolios can hold user-specifie
 
 **Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on access control.
 
+`display_value` is a read-only field that will always be a string. For apps that use custom fields, this is a great way to safely display/export the value of a custom field, regardless of its type. We suggest apps use this field in order to future-proof for changes to Custom Fields.
+
 The characteristics of Custom Fields are:
 
 * There is metadata that defines the Custom Field. This metadata can be shared across an entire workspace, or be specific to a Project or Portfolio.
@@ -947,6 +949,7 @@ $result = $client->customfields->createCustomField(array('field' => 'value', 'fi
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
     "description": "Development team priority",
+    "display_value": "blue",
     "enabled": true,
     "enum_options": [
       {
@@ -1129,6 +1132,7 @@ $result = $client->customfields->getCustomField($custom_field_gid, array('param'
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
     "description": "Development team priority",
+    "display_value": "blue",
     "enabled": true,
     "enum_options": [
       {
@@ -1302,6 +1306,7 @@ $result = $client->customfields->updateCustomField($custom_field_gid, array('fie
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
     "description": "Development team priority",
+    "display_value": "blue",
     "enabled": true,
     "enum_options": [
       {
@@ -1591,6 +1596,7 @@ $result = $client->customfields->getCustomFieldsForWorkspace($workspace_gid, arr
       "custom_label": "gold pieces",
       "custom_label_position": "suffix",
       "description": "Development team priority",
+      "display_value": "blue",
       "enabled": true,
       "enum_options": [
         {
@@ -2141,6 +2147,7 @@ $result = $client->customfieldsettings->getCustomFieldSettingsForProject($projec
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -2293,6 +2300,7 @@ $result = $client->customfieldsettings->getCustomFieldSettingsForPortfolio($port
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -3228,6 +3236,7 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
           "custom_label": "gold pieces",
           "custom_label_position": "suffix",
           "description": "Development team priority",
+          "display_value": "blue",
           "enabled": true,
           "enum_options": [
             {
@@ -3444,6 +3453,7 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
           "custom_label": "gold pieces",
           "custom_label_position": "suffix",
           "description": "Development team priority",
+          "display_value": "blue",
           "enabled": true,
           "enum_options": [
             {
@@ -3646,6 +3656,7 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
           "custom_label": "gold pieces",
           "custom_label_position": "suffix",
           "description": "Development team priority",
+          "display_value": "blue",
           "enabled": true,
           "enum_options": [
             {
@@ -5415,6 +5426,7 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -5681,6 +5693,7 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -5919,6 +5932,7 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -6720,6 +6734,7 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -7133,6 +7148,7 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -7364,6 +7380,7 @@ $result = $client->projects->addCustomFieldSettingForProject($project_gid, array
       "custom_label": "gold pieces",
       "custom_label_position": "suffix",
       "description": "Development team priority",
+      "display_value": "blue",
       "enabled": true,
       "enum_options": [
         {
@@ -9975,6 +9992,7 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
     "custom_field": {
       "gid": "12345",
       "resource_type": "custom_field",
+      "display_value": "blue",
       "enabled": true,
       "enum_options": [
         {
@@ -10265,6 +10283,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
     "custom_field": {
       "gid": "12345",
       "resource_type": "custom_field",
+      "display_value": "blue",
       "enabled": true,
       "enum_options": [
         {
@@ -10801,6 +10820,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
     "custom_field": {
       "gid": "12345",
       "resource_type": "custom_field",
+      "display_value": "blue",
       "enabled": true,
       "enum_options": [
         {
@@ -12413,6 +12433,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -12714,6 +12735,7 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -13008,6 +13030,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -14170,6 +14193,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -14482,6 +14506,7 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -18248,8 +18273,7 @@ $result = $client->users->getUsersForWorkspace($workspace_gid, array('param' => 
 </p>
 
 <span class="description">
-Returns the user records for all users in the specified workspace or organization.
-Results are sorted alphabetically by user names.
+Returns the compact records for all users in the specified workspace or organization.
 </span>
 
 <h3 id="get-users-in-a-workspace-or-organization-parameters">Parameters</h3>
@@ -20381,6 +20405,7 @@ A response object returned from a batch request.
 {
   "gid": "12345",
   "resource_type": "custom_field",
+  "display_value": "blue",
   "enabled": true,
   "enum_options": [
     {
@@ -20411,6 +20436,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -20452,6 +20478,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
   "custom_label": "gold pieces",
   "custom_label_position": "suffix",
   "description": "Development team priority",
+  "display_value": "blue",
   "enabled": true,
   "enum_options": [
     {
@@ -20499,6 +20526,7 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
+|display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -20589,6 +20617,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
     "description": "Development team priority",
+    "display_value": "blue",
     "enabled": true,
     "enum_options": [
       {
@@ -20649,6 +20678,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
+|» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -21182,6 +21212,7 @@ This object determines if a user is a member of a portfolio.
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
         "description": "Development team priority",
+        "display_value": "blue",
         "enabled": true,
         "enum_options": [
           {
@@ -21275,6 +21306,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
+|»» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -21551,6 +21583,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     {
       "gid": "12345",
       "resource_type": "custom_field",
+      "display_value": "blue",
       "enabled": true,
       "enum_options": [
         {
@@ -21646,6 +21679,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -22001,6 +22035,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
   "custom_field": {
     "gid": "12345",
     "resource_type": "custom_field",
+    "display_value": "blue",
     "enabled": true,
     "enum_options": [
       {
@@ -22182,6 +22217,7 @@ A story represents an activity associated with an object in the Asana system.
 |custom_field<span class="param-type"> object</span>|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](/docs/asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -22568,6 +22604,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
       "custom_label": "gold pieces",
       "custom_label_position": "suffix",
       "description": "Development team priority",
+      "display_value": "blue",
       "enabled": true,
       "enum_options": [
         {
@@ -22705,6 +22742,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
 |» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
+|» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|

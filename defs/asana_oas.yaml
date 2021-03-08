@@ -194,6 +194,12 @@ tags:
       circumstances, read the section below on access control.
 
 
+      `display_value` is a read-only field that will always be a string. For apps
+      that use custom fields, this is a great way to safely display/export the
+      value of a custom field, regardless of its type. We suggest apps use
+      this field in order to future-proof for changes to Custom Fields.
+
+
       The characteristics of Custom Fields are:
 
 
@@ -1573,6 +1579,15 @@ components:
                 *Conditional*. This string is the value of a text custom field.
               type: string
               example: Some Value
+            display_value:
+              description: >-
+                A string representation for the value of the custom field.
+                Integrations that don't require the underlying type should
+                use this field to read values. Using this field will future-proof
+                an app against new custom field types.
+              type: string
+              readOnly: true
+              example: "blue"
     CustomFieldSettingResponse:
       allOf:
         - $ref: '#/components/schemas/CustomFieldSettingBase'
@@ -10086,10 +10101,8 @@ paths:
       summary: >-
         Get users in a workspace or organization
       description: >-
-        Returns the user records for all users in the specified workspace or
+        Returns the compact records for all users in the specified workspace or
         organization.
-
-        Results are sorted alphabetically by user names.
       tags:
         - Users
       operationId: getUsersForWorkspace
