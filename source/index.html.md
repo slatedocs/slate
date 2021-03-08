@@ -23,7 +23,9 @@ search: true
 
 - Deprecate private websocket.
 
--
+- Update webhook notification types
+
+- Replace public socket.io by native websocket
 
 ## 2020-07-20
 
@@ -1358,6 +1360,7 @@ const channel = "orderbook";
 //or
 const channel = "ticker";
 //or
+const channel = "trades";
 
 // Define the websocket
 const ws = new WebSocket("wss://wsv2-staging.tauros.io");
@@ -1616,11 +1619,12 @@ Webhook can be configurated to notify if some of the following events occur.
 
 Types of notifications:
 
-- Order placed (`OP`)
-- Order filled (`OF`)
-- New trade (`TD`)
-- New deposit or withdrawal (`TR`)
-- Card Transaction (`CT`)
+- ORDER_PLACED (`OP`)
+- ORDER_FILLED (`OF`)
+- TRADE_HISTORY (`TD`)
+- TRANSACTION_HISTORY (`TR`)
+- ORDER_CLOSED (`OC`)
+- CARD_HISTORY (`CT`)
 
 The `order`, `trade` or `transfer` object is included in the `object` field.
 
