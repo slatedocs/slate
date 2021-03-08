@@ -21,7 +21,7 @@ search: true
 
 ## 2021-03-04
 
-- Deprecate private websocket.
+- Private websocket deprecation. We recommend to use webhooks instead for realtime account feed.
 
 - Update webhook notification types
 
@@ -453,17 +453,45 @@ This API call will bring you a deposit address for funding your cryptocurrency w
 
 ### HTTP Request
 
-`GET /v1/data/getdepositaddress/`
+`GET /v2/wallets/address/<coin>/`
 
 > The API call will response this:
 
 ```json
+BTC
 {
   "success": true,
   "msg": null,
   "data": {
-    "coin": "btc",
-    "address": "2NFfxvXpAWjKng7enFougtvtxxCJ2hQEMo4"
+    "coin": "BTC",
+    "address": "2NFfxvXpAWjKng7enFougtvtxxCJ2hQEMo4",
+    "address_state": "READY",
+    "coin_specific_type": null,
+    "coin_specific_value": ""
+  }
+}
+ETH
+{
+  "success": true,
+  "msg": null,
+  "data": {
+    "coin": "ETH",
+    "address": "",
+    "address_state": "CREATING",
+    "coin_specific_type": null,
+    "coin_specific_value": ""
+  }
+}
+XLM
+{
+  "success": true,
+  "msg": null,
+  "data": {
+    "coin": "XLM",
+    "address": "GC435DWBXRSLH3K33ZZR65X4WHMDW6LUZIOTJP4XFY7XJ4NPENZEYFHR",
+    "address_state": "CREATING",
+    "coin_specific_type": "memoId",
+    "coin_specific_value": "8"
   }
 }
 ```
