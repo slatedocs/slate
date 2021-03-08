@@ -130,7 +130,7 @@ curl -X POST \
     "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliverydomains?siteId=a2fefb15-7e31-4c72-87e0-5a892e91c8d9&operation=Create"
 ```
 
-> Request body example for a VM Workload type:
+> Request body example:
 
 ```json
 {
@@ -159,3 +159,8 @@ Required | &nbsp;
 Optional | &nbsp;
 ---------- | -----------
 `validatedAt`<br/>*String* | The date the domain was validated to be pointing to Stackpath.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the site creation.
+`taskStatus` <br/>*string* | The status of the operation.
