@@ -477,7 +477,7 @@ so it will only return first 20 records as a response.
 
 ### Pagination
 
-You can send `page` params to load other records e.g: `/api/v1/purchase_orders?page=2`.
+You can send `orders_page` params to load other records e.g: `/api/v1/purchase_orders?orders_page=2`.
 You can also see `meta` key in the response you get, that will return informations
 like `current_page`, `next_page`, `previous_page`, `total_pages`, and `total_count`
 to help your write your own logic of pagination.
@@ -490,7 +490,7 @@ search and return result accordingly.
 
 ### HTTP Request
 
-`GET https://app.procurementexpress.com/api/v1/purchase_orders?page=1&search=something`
+`GET https://app.procurementexpress.com/api/v1/purchase_orders?orders_page=1&search=something`
 
 ### Query Parameters
 
@@ -498,7 +498,7 @@ search and return result accordingly.
 | -------------------- | ------- | --------------------------------------------------- |
 | authentication_token | header  | Authentication token                                |
 | app_company_id       | header  | Company ID                                          |
-| page                 | integer | Used for Loading records from specified page number |
+| orders_page          | integer | Used for Loading records from specified page number |
 | search               | string  | Used for searching Purchase Order by search keyword |
 
 ## Get Purchase Order details
