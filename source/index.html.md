@@ -27,6 +27,8 @@ search: true
 
 - Replace public socket.io by native websocket
 
+- Update get deposit address endpoint
+
 ## 2020-07-20
 
 - New public endpoint for quering tickers.
