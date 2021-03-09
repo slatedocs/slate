@@ -40,7 +40,7 @@ ul {
             &#{$depth} {
               min-height: 45px;
               padding-left: #{$depth * 25px};
-              background: lighten($color: $code-bg, $amount: 1%);
+              // background: lighten($color: $code-bg, $amount: 1%);
             }
           }
           &1  {
