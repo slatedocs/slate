@@ -135,7 +135,6 @@ curl -X POST \
 ```json
 {
   "domain": "new-domain.com",
-  "validatedAt": "2021-02-26T19:00:15.177411Z"
 }
 ```
 
@@ -155,10 +154,6 @@ Create a delivery domain of a site in a given [environment](#administration-envi
 Required | &nbsp;
 ---------- | -----------
 `domain`<br/>*String* | The site's domain name.
-
-Optional | &nbsp;
----------- | -----------
-`validatedAt`<br/>*String* | The date the domain was validated to be pointing to Stackpath.
 
 Attributes | &nbsp;
 ------- | -----------
