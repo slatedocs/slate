@@ -8,44 +8,40 @@
 
 ```php
 <?php
-use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
+require '../../vendor/autoload.php';
 
-$localDirectories = array(
-    'google',
-    'yelp',
-    'yahoo'
-);
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-$batchId = $batchApi->create();
-if ($batchId) {
-    printf('Created batch ID %d%s', $batchId, PHP_EOL);
-    foreach ($localDirectories as $localDirectory) {
-        $result = $api->call('/v4/ld/fetch-profile-url', array(
-            'batch-id'        => $batchId,
-			'business-names'  => 'La Bernardin\nBernardin Cafe\nBernardin restaraunt',
-			'country'         => 'USA',
-			'city'            => 'New York',
-			'postcode'        => '10019'
-            'local-directory' => $localDirectory            
-        ));
-        if ($result['success']) {
-            printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
-        }
-    }
-    if ($batchApi->commit($batchId)) {
-        echo 'Committed batch successfully.'.PHP_EOL;
-        // poll for results, in a real world example you might
-        // want to do this in a separate process (such as via an
-        // AJAX poll)
-        do {
-            $results = $batchApi->get_results($batchId);
-            sleep(10); // limit how often you poll
-        } while (!in_array($results['status'], array('Stopped', 'Finished')));
-        print_r($results);
+use BrightLocal\Api;
+use BrightLocal\Exceptions\BatchAddJobException;
+
+$directories = ['google', 'yelp', 'yahoo'];
+// setup API wrapper
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+// Step 1: Create a new batch
+$batch = $api->createBatch();
+printf('Created batch ID %d%s', $batch->getId(), PHP_EOL);
+// Step 2: Add directory jobs to batch
+foreach ($directories as $directory) {
+    try {
+        $response = $batch->addJob('/v4/ld/fetch-profile-url', [
+            'local-directory' => $directory,
+            'business-names'  => 'La Bernardin',
+            'country'         => 'USA',
+            'city'            => 'New York',
+            'postcode'        => '10019'
+        ]);
+        printf('Added job with ID %d%s', $response->getResult()['job-id'], PHP_EOL);
+    } catch (BatchAddJobException $exception) {
+        printf('Error, job for directory "%s" not added. Message: %s%s', $directory, $exception->getMessage(), PHP_EOL);
     }
 }
+// Commit batch (to indicate that all jobs have been added and that processing should start)
+$batch->commit();
+printf('Batch committed successfully, awaiting results.%s', PHP_EOL);
+do {
+    sleep(5);
+    $response = $batch->getResults();
+} while (!in_array($response->getResult()['status'], ['Stopped', 'Finished'], true));
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -214,42 +210,38 @@ street-address |
 
 ```php
 <?php
-use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
+require '../../vendor/autoload.php';
 
-$localDirectories = array(
-    'google',
-    'yelp',
-    'yahoo'
-);
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-$batchId = $batchApi->create();
-if ($batchId) {
-    printf('Created batch ID %d%s', $batchId, PHP_EOL);
-    foreach ($localDirectories as $localDirectory) {
-        $result = $api->call(/v4/ld/fetch-profile-url', array(
-            'batch-id'        => $batchId,
-			'telephone'       => '+1 212-554-1515',
-			'search-type'     => 'search-by-phone',			
-            'local-directory' => $localDirectory            
-        ));
-        if ($result['success']) {
-            printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
-        }
-    }
-    if ($batchApi->commit($batchId)) {
-        echo 'Committed batch successfully.'.PHP_EOL;
-        // poll for results, in a real world example you might
-        // want to do this in a separate process (such as via an
-        // AJAX poll)
-        do {
-            $results = $batchApi->get_results($batchId);
-            sleep(10); // limit how often you poll
-        } while (!in_array($results['status'], array('Stopped', 'Finished')));
-        print_r($results);
+use BrightLocal\Api;
+use BrightLocal\Exceptions\BatchAddJobException;
+
+$directories = ['google', 'yelp', 'yahoo'];
+// setup API wrapper
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+// Step 1: Create a new batch
+$batch = $api->createBatch();
+printf('Created batch ID %d%s', $batch->getId(), PHP_EOL);
+// Step 2: Add directory jobs to batch
+foreach ($directories as $directory) {
+    try {
+        $response = $batch->addJob('/v4/ld/fetch-profile-url', [
+            'local-directory' => $directory,
+            'telephone'       => '+1 212-554-1515',
+            'search-type'     => 'search-by-phone'
+        ]);
+        printf('Added job with ID %d%s', $response->getResult()['job-id'], PHP_EOL);
+    } catch (BatchAddJobException $exception) {
+        printf('Error, job for directory "%s" not added. Message: %s%s', $directory, $exception->getMessage(), PHP_EOL);
     }
 }
+// Commit batch (to indicate that all jobs have been added and that processing should start)
+$batch->commit();
+printf('Batch committed successfully, awaiting results.%s', PHP_EOL);
+do {
+    sleep(5);
+    $response = $batch->getResults();
+} while (!in_array($response->getResult()['status'], ['Stopped', 'Finished'], true));
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -379,34 +371,40 @@ search-type | search-by-phone | <span class="label label-required">Required</spa
 
 ```php
 <?php
-use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
+require '../../vendor/autoload.php';
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-$batchId = $batchApi->create();
-if ($batchId) {
-    printf('Created batch ID %d%s', $batchId, PHP_EOL);   
-    $result = $api->call('/v4/ld/fetch-profile-details', array(
-        'batch-id'        => $batchId,
-		'profile-url'  => 'https://www.google.com/search?q="Le+Bernardin"+"10019"',
-		'country'         => 'USA' 
-    ));
-    if ($result['success']) {
-        printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
-    }    
-    if ($batchApi->commit($batchId)) {
-        echo 'Committed batch successfully.'.PHP_EOL;
-        // poll for results, in a real world example you might
-        // want to do this in a separate process (such as via an
-        // AJAX poll)
-        do {
-            $results = $batchApi->get_results($batchId);
-            sleep(10); // limit how often you poll
-        } while (!in_array($results['status'], array('Stopped', 'Finished')));
-        print_r($results);
+use BrightLocal\Api;
+use BrightLocal\Exceptions\BatchAddJobException;
+
+$directories = [
+    'https://local.google.com/place?id=2145618977980482902&use=srp&hl=en',
+    'https://www.yelp.com/biz/le-bernardin-new-york',
+];
+// setup API wrapper
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+// Step 1: Create a new batch
+$batch = $api->createBatch();
+printf('Created batch ID %d%s', $batch->getId(), PHP_EOL);
+// Step 2: Add directory jobs to batch
+foreach ($directories as $directory) {
+    try {
+        $response = $batch->addJob('/v4/ld/fetch-profile-details', [
+            'profile-url' => $directory,
+            'country'     => 'USA'
+        ]);
+        printf('Added job with ID %d%s', $response->getResult()['job-id'], PHP_EOL);
+    } catch (BatchAddJobException $exception) {
+        printf('Error, job for directory "%s" not added. Message: %s%s', $directory, $exception->getMessage(), PHP_EOL);
     }
 }
+// Commit batch (to indicate that all jobs have been added and that processing should start)
+$batch->commit();
+printf('Batch committed successfully, awaiting results.%s', PHP_EOL);
+do {
+    sleep(5);
+    $response = $batch->getResults();
+} while (!in_array($response->getResult()['status'], ['Stopped', 'Finished'], true));
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -520,44 +518,40 @@ country | <span class="label label-required">Required</span>
 
 ```php
 <?php
-use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
+require '../../vendor/autoload.php';
 
-$localDirectories = array(
-    'google',
-    'yelp',
-    'yahoo'
-);
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-$batchId = $batchApi->create();
-if ($batchId) {
-    printf('Created batch ID %d%s', $batchId, PHP_EOL);
-    foreach ($localDirectories as $localDirectory) {
-        $result = $api->call(/v4/ld/fetch-profile-details-by-business-data', array(
-            'batch-id'        => $batchId,
-			'business-names'  => 'La Bernardin\nBernardin Cafe\nBernardin restaraunt',
-			'country'         => 'USA',
-			'city'            => 'New York',
-			'postcode'        => '10019'
-            'local-directory' => $localDirectory            
-        ));
-        if ($result['success']) {
-            printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
-        }
-    }
-    if ($batchApi->commit($batchId)) {
-        echo 'Committed batch successfully.'.PHP_EOL;
-        // poll for results, in a real world example you might
-        // want to do this in a separate process (such as via an
-        // AJAX poll)
-        do {
-            $results = $batchApi->get_results($batchId);
-            sleep(10); // limit how often you poll
-        } while (!in_array($results['status'], array('Stopped', 'Finished')));
-        print_r($results);
+use BrightLocal\Api;
+use BrightLocal\Exceptions\BatchAddJobException;
+
+$directories = ['google', 'yelp', 'yahoo'];
+// setup API wrapper
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+// Step 1: Create a new batch
+$batch = $api->createBatch();
+printf('Created batch ID %d%s', $batch->getId(), PHP_EOL);
+// Step 2: Add directory jobs to batch
+foreach ($directories as $directory) {
+    try {
+        $response = $batch->addJob('/v4/ld/fetch-profile-details-by-business-data', [
+            'local-directory' => $directory,
+            'business-names'  => 'La Bernardin',
+            'country'         => 'USA',
+            'city'            => 'New York',
+            'postcode'        => '10019'
+        ]);
+        printf('Added job with ID %d%s', $response->getResult()['job-id'], PHP_EOL);
+    } catch (BatchAddJobException $exception) {
+        printf('Error, job for directory "%s" not added. Message: %s%s', $directory, $exception->getMessage(), PHP_EOL);
     }
 }
+// Commit batch (to indicate that all jobs have been added and that processing should start)
+$batch->commit();
+printf('Batch committed successfully, awaiting results.%s', PHP_EOL);
+do {
+    sleep(5);
+    $response = $batch->getResults();
+} while (!in_array($response->getResult()['status'], ['Stopped', 'Finished'], true));
+print_r($response->getResult());
 ```
 
 ```csharp

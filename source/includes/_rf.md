@@ -8,21 +8,37 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v4/rf/add', [
-    'location-id'	=> 1,
-    'report-name'       => 'Le Bernardin', 
-	'business-name'     => 'Le Bernardin',
-	'contact-telephone' => '+1 212-554-1515',
-	'address1'          => '155 West 51st Street',
-    'address2'          => '',      
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v4/rf/add', [
+    'location-id'       => 1,
+    'report-name'       => 'Le Bernardin',
+    'business-name'     => 'Le Bernardin',
+    'contact-telephone' => '+1 212-554-1515',
+    'address1'          => '155 West 51st Street',
+    'address2'          => '',
     'city'              => 'New York',
-	'postcode'          => '10019',
-	'country'           => 'USA' // USA only    
+    'postcode'          => '10019',
+    'country'           => 'USA', // USA only
+    'directories'       => [
+        'yellowbot'   => [
+            'url'     => 'https://www.yellowbot.com/le-bernardin-new-york-ny.html',
+            'include' => true,
+        ],
+        'yellowpages' => [
+            'url'     => 'https://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153',
+            'include' => true,
+        ],
+        'yelp'        => [
+            'url'     => 'https://www.yelp.com/biz/le-bernardin-new-york',
+            'include' => true,
+        ],
+    ],
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -63,20 +79,20 @@ var success = request.Post("/v4/rf/add", parameters);
 
 ```php
 <?php
-echo json_encode(array(
-    'yellowbot' => array(
-        'url'     => 'http://www.yellowbot.com/le-bernardin-new-york-ny.html',
-        'include' => true
-    ),
-    'yellowpages' => array(
-        'url'     => 'http://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153',
-        'include' => true
-    ),
-    'yelp' => array(
-        'url'     => 'http://www.yelp.com/biz/le-bernardin-new-york',
-        'include' => true
-    )
-));
+echo json_encode([
+        'yellowbot'   => [
+            'url'     => 'https://www.yellowbot.com/le-bernardin-new-york-ny.html',
+            'include' => true,
+        ],
+        'yellowpages' => [
+            'url'     => 'https://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153',
+            'include' => true,
+        ],
+        'yelp'        => [
+            'url'     => 'https://www.yelp.com/biz/le-bernardin-new-york',
+            'include' => true,
+        ],
+    ]);
 ```
 
 ```csharp
@@ -167,16 +183,18 @@ directories | <p>By default we try and find profile URLs and reviews in all dire
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
+
 $reportId = 1;
-$api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$success = $api->put('/v4/rf/' .$reportId, [
-     -d 'location-id=1' \
-     -d 'report-name=Le Bernardin' \
-     -d 'business-name=Le Bernardin' \
-     -d 'contact-telephone=+1 212-554-1515' \
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->put('/v4/rf/' . $reportId, [
+    'location-id'       => 1,
+    'report-name'       => 'Le Bernardin',
+    'contact-telephone' => '+1 212-554-1855',
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -208,20 +226,20 @@ var success = request.Put("/v4/rf/" + reportId + "", parameters);
 
 ```php
 <?php
-echo json_encode(array(
-    'yellowbot' => array(
-        'url'     => 'http://www.yellowbot.com/le-bernardin-new-york-ny.html',
-        'include' => true
-    ),
-    'yellowpages' => array(
-        'url'     => 'http://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153',
-        'include' => true
-    ),
-    'yelp' => array(
-        'url'     => 'http://www.yelp.com/biz/le-bernardin-new-york',
-        'include' => true
-    )
-));
+echo json_encode([
+    'yellowbot'   => [
+        'url'     => 'https://www.yellowbot.com/le-bernardin-new-york-ny.html',
+        'include' => true,
+    ],
+    'yellowpages' => [
+        'url'     => 'https://www.yellowpages.com/new-york-ny/mip/le-bernardin-9909153',
+        'include' => true,
+    ],
+    'yelp'        => [
+        'url'     => 'https://www.yelp.com/biz/le-bernardin-new-york',
+        'include' => true,
+    ],
+]);
 ```
 
 ```csharp
@@ -283,12 +301,14 @@ directories | <p>If you need to add or change a profile URL you can do so here.<
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v4/rf/' .$reportId);
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/' . $reportId);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -462,15 +482,17 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('/v4/rf/' .$reportId);
-if($success) {
-	echo 'Successfully deleted report.' . PHP_EOL;
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->delete('/v4/rf/' . $reportId);
+var_dump($response->getResult());
+if ($response->isSuccess()) {
+    echo 'Successfully deleted report.' . PHP_EOL;
 }
-print_r($success);
 ```
 
 ```shell
@@ -538,11 +560,13 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v4/rf/');
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -636,13 +660,15 @@ location-id | Filter the list of reports returned by location ID. This ID must c
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v4/rf/search', [
-    'q' => 'Le Bernardin'	 
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/search', [
+    'q' => 'Le Bernardin'
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -717,12 +743,14 @@ q | <span class="label label-required">Required</span> Supply an arbitrary searc
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 141;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$reviews = $api->get('/v4/rf/' .$reportId. '/reviews');
-print_r($reviews);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/' . $reportId . '/reviews');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -845,12 +873,14 @@ hash | Unique identifier based on directory, author and review text. This can be
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 141;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$count = $api->get('/v4/rf/' .$reportId. '/reviews/count');
-print_r($count);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/' . $reportId . '/reviews/count');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -908,12 +938,14 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 141;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$growth = $api->get('/v4/rf/' .$reportId. '/reviews/growth');
-print_r($growth);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/' . $reportId . '/reviews/growth');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -976,12 +1008,14 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 141;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$directories = $api->get('/v4/rf/' .$reportId. '/directories');
-print_r($directories);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/' . $reportId . '/directories');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -1156,12 +1190,14 @@ Fetch stats showing average rating and review count for every directory in a giv
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 141;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$stats = $api->get('/v4/rf/' .$reportId. '/directories/stats');
-print_r($stats);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/' . $reportId . '/directories/stats');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -1249,12 +1285,14 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 141;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$stars = $api->get('/v4/rf/' .$reportId. '/stars/count');
-print_r($stars);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/rf/' . $reportId . '/stars/count');
+print_r($response->getResult());
 ```
 
 ```shell

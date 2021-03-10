@@ -8,14 +8,16 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/clients-and-locations/locations/', [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/clients-and-locations/locations/', [
     'name'                 => 'Le Bernardin',
     'location-reference'   => 'LE-BERNARDIN-10019',
     'url'                  => 'le-bernardin.com',
-    'business-category-id' =>  605,
+    'business-category-id' => 605,
     'country'              => 'USA', // 3 letter iso code
     'address1'             => '155 West 51st Street',
     'address2'             => '',
@@ -23,74 +25,74 @@ $success = $api->post('/v2/clients-and-locations/locations/', [
     'city'                 => 'New York',
     'postcode'             => '10019',
     'telephone'            => '+1 212-554-1515',
-    'opening-hours' => [
+    'opening-hours'        => [
         'regular' => [
             'apply-to-all' => false,
-            'mon' => [
+            'mon'          => [
                 'status' => 'open',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '18:00',
-                    ]
-                ],           
+                        'end'   => '18:00',
+                    ],
+                ],
             ],
-            'tue' => [
+            'tue'          => [
                 'status' => 'split',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '12:00',
+                        'end'   => '12:00',
                     ],
                     [
                         'start' => '13:00',
-                        'end' => '18:00',
+                        'end'   => '18:00',
                     ]
-                ],                  
+                ],
             ],
-            'wed' => [
+            'wed'          => [
                 'status' => '24hrs',
-                'hours' => [],           
+                'hours'  => [],
             ],
-            'thu' => [
+            'thu'          => [
                 'status' => 'open',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '18:00',
-                    ]
-                ],           
+                        'end'   => '18:00',
+                    ],
+                ],
             ],
-            'fri' => [
+            'fri'          => [
                 'status' => 'open',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '18:00',
-                    ]
-                ],           
+                        'end'   => '18:00',
+                    ],
+                ],
             ],
-            'sat' => [
+            'sat'          => [
                 'status' => 'closed',
-                'hours' => [
-                    []
-                ],           
+                'hours'  => [
+                    [],
+                ],
             ],
-            'sun' => [
+            'sun'          => [
                 'status' => 'closed',
-                'hours' => [],           
+                'hours'  => [],
             ],
         ],
         'special' => [
             [
-                'date' => '01-01-2020',
+                'date'   => '2021-01-27',
                 'status' => 'closed',
-                'hours' => [],
+                'hours'  => [],
             ],
         ],
-    ], 
+    ],
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -215,38 +217,40 @@ Update an existing location. Only supply values you want to update. The rest wil
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $locationId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('/v2/clients-and-locations/locations/' .$locationId, [
-    'name'                	 		=> 'Le Bernardin',
-    'url'                  			=> 'le-bernardin.com',
-    'location-reference'			=> 'LE-BERNADIN-10019',
-    'business-category-id' 			=>  605,
-    'country'              			=> 'USA', // 3 letter iso code
-    'address1'             			=> '155 West 51st Street',
-    'address2'             			=> '',
-    'region'               			=> 'NY', // State or Region
-    'city'                 			=> 'New York',
-    'postcode'             			=> '10019',
-    'telephone'            			=> '+1 212-554-1515',
-    'opening-hours' => [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->put('/v2/clients-and-locations/locations/' . $locationId, [
+    'name'                 => 'Le Bernardin',
+    'url'                  => 'le-bernardin.com',
+    'location-reference'   => 'LE-BERNADIN-10019',
+    'business-category-id' => 605,
+    'country'              => 'USA', // 3 letter iso code
+    'address1'             => '155 West 51st Street',
+    'address2'             => '',
+    'region'               => 'NY', // State or Region
+    'city'                 => 'New York',
+    'postcode'             => '10019',
+    'telephone'            => '+1 212-554-1515',
+    'opening-hours'        => [
         'regular' => [
             'apply-to-all' => true,
-            'mon' => [
+            'mon'          => [
                 'status' => 'open',
-                'hours' => [
+                'hours'  => [
                     [
                         'start' => '10:00',
-                        'end' => '18:00',
+                        'end'   => '18:00',
                     ]
-                ],           
+                ],
             ],
         ],
-    ], 
+    ],
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -368,12 +372,15 @@ services-of-products| Array
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $locationId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('/v2/clients-and-locations/locations/' . $locationId);
-if (!empty($result['success'])) {
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->delete('/v2/clients-and-locations/locations/' . $locationId);
+var_dump($response->getResult());
+if ($response->isSuccess()) {
     echo 'Successfully deleted location.' . PHP_EOL;
 }
 ```
@@ -418,12 +425,14 @@ location-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $locationId = 1;
-$api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$location = $api->get('/v2/clients-and-locations/locations/' . $locationId);
-print_r($location);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/clients-and-locations/locations/' . $locationId);
+print_r($response->getResult());
 ```
 
 ```csharp
@@ -503,13 +512,15 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->call('/v2/clients-and-locations/locations/search', [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/clients-and-locations/locations/search', [
     'q' => 'BrightLocal'
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell

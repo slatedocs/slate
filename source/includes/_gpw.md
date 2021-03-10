@@ -8,26 +8,29 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v4/gpw/add', [
-    'location_id'	 => 1,
-    'report_name'    => 'Le Bernardin', 
-	'business_names' => 'Le Bernardin',
-	'schedule'       => 'Adhoc',
-	'day_of_month'   => '2',
-	'report_type'    => 'with',
-	'address1'       => '155 West 51st Street',
-    'address2'       => '',
-    'city'           => 'New York',
-	'state_code'     => 'NY',
-	'postcode'       => '10019',
-	'phone_number'   => '+1 212-554-1515',
-	'country'        => 'USA',
-	'search_terms'   => '["restaurant manhattan","cafe new york"]'
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v4/gpw/add', [
+    'location_id'     => 1,
+    'report_name'     => 'Le Bernardin',
+    'business_names'  => 'Le Bernardin',
+    'schedule'        => 'Adhoc',
+    'day_of_month'    => '2',
+    'report_type'     => 'with',
+    'address1'        => '155 West 51st Street',
+    'address2'        => '',
+    'city'            => 'New York',
+    'state_code'      => 'NY',
+    'google_location' => 'New York, NY',
+    'postcode'        => '10019',
+    'phone_number'    => '+1 212-554-1515',
+    'country'         => 'USA',
+    'search_terms'    => '["restaurant manhattan","cafe new york"]'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -150,15 +153,18 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
+
 $reportId = 1;
-$api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$success = $api->put('/v4/gpw/' .$reportId, [
-    'location_id'	=> 1,
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->put('/v4/gpw/' . $reportId, [
+    'location-id'       => 1,
     'business-name'     => 'Le Bernardin',
     'contact-telephone' => '+1 212-554-1515'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -259,12 +265,14 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v4/gpw/' . $reportId);
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/gpw/' . $reportId);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -361,15 +369,17 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$result = $api->delete('/v4/gpw/' . $reportId);
-if (!empty($result['success'])) {
-	echo 'Successfully deleted report.' . PHP_EOL;
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->delete('/v4/gpw/' . $reportId);
+var_dump($response->getResult());
+if ($response->isSuccess()) {
+    echo 'Successfully deleted report.' . PHP_EOL;
 }
-print_r($success);
 ```
 
 ```shell
@@ -428,11 +438,13 @@ expires | <span class="label label-required">Required</span> [See above for how 
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v4/gpw/');
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/gpw/');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -511,13 +523,15 @@ location-id |
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('/v4/gpw/run', [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v4/gpw/run', [
     'report-id' => 860
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -571,7 +585,7 @@ var success = request.Put("/v4/gpw/run", parameters);
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/run`
+`POST https://tools.brightlocal.com/seo-tools/api/v4/gpw/run`
 
 ### Query Parameters
 
@@ -590,12 +604,14 @@ report-id | <span class="label label-required">Required</span> The unique ID for
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
 $reportId = 1;
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v4/gpw/' . $reportId . '/results');
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v4/gpw/' . $reportId . '/results');
+print_r($response->getResult());
 ```
 
 ```shell

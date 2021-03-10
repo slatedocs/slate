@@ -6,12 +6,14 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>');
 $country = 'USA';
-$results = $api->get('/v1/business-categories/' . $country);
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v1/business-categories/' . $country);
+print_r($response->getResult());
 ```
 
 ```shell

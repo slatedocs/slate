@@ -8,18 +8,20 @@
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/lsrc/add', [
-    'location-id'	    => 1,
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/lsrc/add', [
+    'location-id'       => 1,
     'name'              => 'Le Bernardin',
-	'schedule'          => 'Adhoc',
-	'search-terms'      => "Restaurant\nfood+nyc\ndelivery+midtown+manhattan",
-    'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
-	'search-engines'    => 'google,google-mobile,google-local,bing,bing-local'
+    'schedule'          => 'Adhoc',
+    'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses' => '["le-bernardin.com", "le-bernardin2.com"]',
+    'search-engines'    => 'google,google-mobile,google-local,bing,bing-local'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -105,19 +107,21 @@ is-public | Publish reports on a white label URL. Yes or No. Defaults to No.
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/lsrc/update', [
-    'location-id'	=> 1,
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/lsrc/update', [
+    'location-id'       => 1,
     'campaign-id'       => 9907,
     'name'              => 'Le Bernardin',
-	'schedule'          => 'Adhoc',
-	'search-terms'      => "Restaurant\nfood+nyc\ndelivery+midtown+manhattan",
-    'website-addresses' => '["le-bernardin.com","le-bernardin2.com"]',
-	'search-engines'    => 'google,google-mobile,google-local,bing,bing-local'
+    'schedule'          => 'Adhoc',
+    'search-terms'      => 'Restaurant\nfood+nyc\ndelivery+midtown+manhattan',
+    'website-addresses' => '["le-bernardin.com", "le-bernardin2.com"]',
+    'search-engines'    => 'google,google-mobile,google-local,bing,bing-local'
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -207,14 +211,17 @@ is-public | Publish reports on a white label URL. Yes or No.
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('/v2/lsrc/delete', [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/lsrc/delete', [
     'campaign-id' => 9907
 ]);
-if($success) {
-	echo 'Successfully deleted report.' . PHP_EOL;
+var_dump($response->getResult());
+if ($response->isSuccess()) {
+    echo 'Successfully deleted report.' . PHP_EOL;
 }
 ```
 
@@ -260,11 +267,13 @@ campaign-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v2/lsrc/get-all');
-print_r($results);
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('v2/lsrc/get-all');
+print_r($response->getResult());
 ```
 
 ```shell
@@ -339,13 +348,15 @@ location-id |
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/lsrc/get', [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/lsrc/get', [
     'campaign-id' => 50
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -470,13 +481,15 @@ campaign-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->post('/v2/lsrc/run', [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->post('/v2/lsrc/run', [
     'campaign-id' => 50
 ]);
-print_r($success);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -532,13 +545,15 @@ campaign-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/lsrc/history/get', [
-    'campaign-id' => 50,
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/lsrc/history/get', [
+    'campaign-id' => 50
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell
@@ -614,13 +629,15 @@ campaign-id | <span class="label label-required">Required</span>
 
 ```php
 <?php
+require '../../vendor/autoload.php';
+
 use BrightLocal\Api;
 
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('/v2/lsrc/results/get', [
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+$response = $api->get('/v2/lsrc/results/get', [
     'campaign-id' => 9636
 ]);
-print_r($results);
+print_r($response->getResult());
 ```
 
 ```shell

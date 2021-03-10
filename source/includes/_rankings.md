@@ -8,63 +8,58 @@
 
 ```php
 <?php
-use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
+require '../../vendor/autoload.php';
 
-$searches = array(
-    array(
-        'search-engine'   => 'google',
+use BrightLocal\Api;
+use BrightLocal\Exceptions\BatchAddJobException;
+
+$directory = 'google';
+// setup API wrapper
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+// Step 1: Create a new batch
+$batch = $api->createBatch();
+printf('Created batch ID %d%s', $batch->getId(), PHP_EOL);
+// Step 2: Add directory jobs to batch
+$searches = [
+    [
+        'search-engine'   => $directory,
         'country'         => 'USA',
         'google-location' => 'New York, NY',
         'search-term'     => 'restaurant new york',
-        'urls'            => json_encode(array('le-bernardin.com')),
-        'business-names'  => json_encode(array('Le Bernardin'))
-    ),
-    array(
-        'search-engine'   => 'google',
+        'urls'            => json_encode(['le-bernardin.com']),
+        'business-names'  => json_encode(['Le Bernardin']),
+    ], [
+        'search-engine'   => $directory,
         'country'         => 'USA',
         'google-location' => 'New York, NY',
         'search-term'     => 'restaurant manhattan',
-        'urls'            => json_encode(array('le-bernardin.com')),
-        'business-names'  => json_encode(array('Le Bernardin'))
-    ),
-    array(
-        'search-engine'   => 'google',
+        'urls'            => json_encode(['le-bernardin.com']),
+        'business-names'  => json_encode(['Le Bernardin']),
+    ], [
+        'search-engine'   => $directory,
         'country'         => 'USA',
         'google-location' => 'New York, NY',
         'search-term'     => 'restaurant 10019',
-        'urls'            => json_encode(array('le-bernardin.com')),
-        'business-names'  => json_encode(array('Le Bernardin'))
-    )
-);
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-$batchId = $batchApi->create();
-if ($batchId) {
-    printf('Created batch ID %d%s', $batchId, PHP_EOL);
-    foreach ($searches as $search) {
-        $result = $api->call(
-            '/v4/rankings/search',
-            array_merge(
-                $search, array('batch-id' => $batchId)
-            )
-        );
-        if ($result['success']) {
-            printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
-        }
-    }
-    if ($batchApi->commit($batchId)) {
-        echo 'Committed batch successfully.'.PHP_EOL;
-        // poll for results, in a real world example you might
-        // want to do this in a separate process (such as via an
-        // AJAX poll)
-        do {
-            $results = $batchApi->get_results($batchId);
-            sleep(10); // limit how often you poll
-        } while (!in_array($results['status'], array('Stopped', 'Finished')));
-        print_r($results);
+        'urls'            => json_encode(['le-bernardin.com']),
+        'business-names'  => json_encode(['Le Bernardin'])
+    ],
+];
+foreach ($searches as $search) {
+    try {
+        $response = $batch->addJob('/v4/rankings/search', $search);
+        printf('Added job with ID %d%s', $response->getResult()['job-id'], PHP_EOL);
+    } catch (BatchAddJobException $exception) {
+        printf('Error, job for directory "%s" not added. Message: %s%s', $directory, $exception->getMessage(), PHP_EOL);
     }
 }
+// Commit batch (to indicate that all jobs have been added and that processing should start)
+$batch->commit();
+printf('Batch committed successfully, awaiting results.%s', PHP_EOL);
+do {
+    sleep(5);
+    $response = $batch->getResults();
+} while (!in_array($response->getResult()['status'], ['Stopped', 'Finished'], true));
+print_r($response->getResult());
 ```
 
 ```shell
@@ -406,46 +401,44 @@ screenshots | Determines whether or not to generate SERP screenshots and include
 
 ```php
 <?php
-use BrightLocal\Api;
-use BrightLocal\Batches\V4 as BatchApi;
+require '../../vendor/autoload.php';
 
-$searches = array(
+use BrightLocal\Api;
+use BrightLocal\Exceptions\BatchAddJobException;
+
+$directory = 'google';
+// setup API wrapper
+$api = new Api('<YOUR_API_KEY>', '<YOUR_API_SECRET>');
+// Step 1: Create a new batch
+$batch = $api->createBatch();
+printf('Created batch ID %d%s', $batch->getId(), PHP_EOL);
+// Step 2: Add directory jobs to batch
+$searches = [
     'restaurant new york',
     'restaurant manhattan',
-    'restaurant 10019'
-);
-$api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$batchApi = new BatchApi($api);
-$batchId = $batchApi->create();
-if ($batchId) {
-    printf('Created batch ID %d%s', $batchId, PHP_EOL);
-    $result = $api->call(
-        '/v4/rankings/bulk-search',
-        array(
-            'batch-id' => $batchId,
-            'search-engine'   => 'google',
-            'country'         => 'USA',
-            'google-location' => 'New York, NY',
-            'search-terms'    => json_encode($searches),
-            'urls'            => json_encode(array('le-bernardin.com')),
-            'business-names'  => json_encode(array('Le Bernardin'))
-        )
-    );
-    if ($result['success']) {
-        printf('Added job with ID %d%s', $result['job-id'], PHP_EOL);
-    }
-    if ($batchApi->commit($batchId)) {
-        echo 'Committed batch successfully.'.PHP_EOL;
-        // poll for results, in a real world example you might
-        // want to do this in a separate process (such as via an
-        // AJAX poll)
-        do {
-            $results = $batchApi->get_results($batchId);
-            sleep(10); // limit how often you poll
-        } while (!in_array($results['status'], array('Stopped', 'Finished')));
-        print_r($results);
-    }
+    'restaurant 10019',
+];
+try {
+    $response = $batch->addJob('/v4/rankings/bulk-search', [
+        'search-engine'   => $directory,
+        'country'         => 'USA',
+        'google-location' => 'New York, NY',
+        'search-terms'    => json_encode($searches),
+        'urls'            => json_encode(['le-bernardin.com']),
+        'business-names'  => json_encode(['Le Bernardin'])
+    ]);
+    printf('Added job with ID %d%s', $response->getResult()['job-id'], PHP_EOL);
+} catch (BatchAddJobException $exception) {
+    printf('Error, job for directory "%s" not added. Message: %s%s', $directory, $exception->getMessage(), PHP_EOL);
 }
+// Commit batch (to indicate that all jobs have been added and that processing should start)
+$batch->commit();
+printf('Batch committed successfully, awaiting results.%s', PHP_EOL);
+do {
+    sleep(5);
+    $response = $batch->getResults();
+} while (!in_array($response->getResult()['status'], ['Stopped', 'Finished'], true));
+print_r($response->getResult());
 ```
 
 ```shell
@@ -613,52 +606,3 @@ Taiwan | TWN | Google engines only
 United Kingdom | GBR | All
 United States | USA | All
 United States Minor | UMI | Google engines only
-    
-
-## Check Location
-
-> Location Found (200 OK)
-
-```json
-{
-    "success": true,
-    "response": true
-}
-```
- 
-> Location Not Found (200 OK)
-
-```json
-{
-    "success": true,
-    "response": false
-}
-```
- 
-> Suggestions (Bing only) (200 OK)
-
-```json
-{
-    "success": true,
-    "response": [
-        "lat:40.7145500183105|long:-74.0071182250977|New York, NY",
-        "lat:39.6849212646484|long:-93.9093475341797|New York, MO",
-        "lat:32.1684989929199|long:-95.669189453125|New York, TX"
-    ]
-}
-```
-
-Look up a location that's suitable for use when setting Google or Bing location whilst performing a search using the method above. This method is deprecated for use with Google as there's no longer any need to check if the location you want to set is valid.
-
-### HTTP Request
-
-`POST https://tools.brightlocal.com/seo-tools/api/v4/rankings/check-location`
-
-### Query Parameters
-
-Parameter | Notes
---------- | -----
-api-key | <span class="label label-required">Required</span>
-search-engine | <span class="label label-required">Required</span> One of google or bing.
-country| One of USA, CAN, GBR, AUS, IRL or NZL.
-location | e.g. postcode/ZIP, city and state code
