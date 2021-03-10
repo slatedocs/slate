@@ -16,30 +16,44 @@ includes:
 
 search: true
 ---
+
 # Change Log
+
+## 2021-03-04
+
+- Private websocket deprecation. We recommend to use webhooks instead for realtime account feed.
+
+- Update webhook notification types
+
+- Replace public socket.io by native websocket
+
+- Update get deposit address endpoint
 
 ## 2020-07-20
 
-* New public endpoint for quering tickers.
+- New public endpoint for quering tickers.
 
-* PHP sample code for requests signing fixed.
+- PHP sample code for requests signing fixed.
 
 ## 2020-07-08
 
-* New API Key features:
-  * A trusted IP addresses list can be added to an API Key.
+- New API Key features:
 
-* Authentication layer enhanced. Request signing is now required.
-  * `Taur-Nonce` header is required for private endpoints. See [what is a nonce](#what-is-a-nonce).
-  * `Taur-Signature` header is required for private endpoints. See [message signing](#signing-a-message).
+  - A trusted IP addresses list can be added to an API Key.
 
-* New endpoints for withdrawals:
-  * POST /api/v2/wallets/crypto-withdraw/
-  * POST /api/v2/wallets/mxn-withdraw/
-  * POST /api/v2/wallets/inner-transfer/
+- Authentication layer enhanced. Request signing is now required.
 
-* New endpoint for listing user trades (it allows pagination):
- * GET /api/v2/trading/my-trades/
+  - `Taur-Nonce` header is required for private endpoints. See [what is a nonce](#what-is-a-nonce).
+  - `Taur-Signature` header is required for private endpoints. See [message signing](#signing-a-message).
+
+- New withdrawal endpoints:
+
+  - POST /api/v2/wallets/crypto-withdraw/
+  - POST /api/v2/wallets/mxn-withdraw/
+  - POST /api/v2/wallets/inner-transfer/
+
+- New endpoint for listing user trades (it allows pagination):
+- GET /api/v2/trading/my-trades/
 
 # Introduction
 
@@ -49,34 +63,25 @@ Tauros provides a simple and practical REST API to help you to automatically per
 
 Before to start developing on the Tauros API consider the following:
 
-* It is recommended to create an account in the [Staging Tauros](https://staging.tauros.io) web app. Staging environment uses testnet coins.
-* Enable the Developer Mode in your profile section to create an API Key and an API Secret.
-* The API base url is `https://api.staging.tauros.io/api/` for staging environment and `https://api.tauros.io/api/` for production.
-* All private enpoints requests require message signing.
-* Check the `success` flag to ensure that your API call succeeded.
-* All requests use the `application/json` content type and go over `https`.
-* If something goes wrong look at the `msg` field. There you will find the error description.
+- It is recommended to create an account in the [Staging Tauros](https://staging.tauros.io) web app. Staging environment uses testnet coins.
+- Enable "Developer Mode" in your profile section to create an API Key and an API Secret.
+- The API base url is `https://api.staging.tauros.io/api/` for staging environment and `https://api.tauros.io/api/` for production.
+- All private enpoints requests require message signing.
+- Check the `success` flag to ensure that your API call succeeded.
+- All requests use the `application/json` content type and go over `https`.
+- If something goes wrong look at the `msg` field. There you will find the error description.
 
 ## HTTP API Responses
 
 Tauros REST API calls will return a JSON Object.
 
-* A typical successful API call will response a JSON  object that looks like:
+- A typical successful API call will send as response a JSON object that looks like:
 
-`{
-  "success": true,
-  "msg": null,
-  "payload": {
-    RELATED_DATA_HERE
-    }
-  }`
+`{ "success": true, "msg": null, "payload": { RELATED_DATA_HERE } }`
 
-* An unsuccessful API call will response a JSON  object that looks like:
+- An unsuccessful API call will send as response a JSON object that looks like:
 
-`{
-  "success": false,
-  "msg": ERROR_DESCRIPTION
-}`
+`{ "success": false, "msg": ERROR_DESCRIPTION }`
 
 # Authentication
 
@@ -85,25 +90,24 @@ Tauros REST API calls will return a JSON Object.
 In order to use our platform through API calls you must first enable `Developer Mode` in your profile section.
 Once enabled, you can create and configure as many API Keys as you need. API keys can be configurated with its own level of permissions.
 
-
 ## API Key Permissions
 
 You can restrict the functionality of API keys. Before creating a key, you must choose what permissions you would like the key to have. The permissions are:
 
-* `trading` - Allows a key perform trading operations (read, place or delete orders).
-* `withdraw` - Allows a key to withdraw funds (**Enable with caution**).
-* `reading` - Allows a key to read account data.
-* `check_ips` - Designates wheter the client IP must be validated.
-* `ips` - List of trusted IP addresses (by default is empty). Checking is done only if `check_ips` permission is enabled.
-* `enabled` - Designates wheter the key is enabled to be used.
+- `trading` - Allows a key to perform trading operations (read, place or delete orders).
+- `withdraw` - Allows a key to withdraw funds (**Enable with caution**).
+- `reading` - Allows a key to read account data.
+- `check_ips` - Designates wheter the client IP must be validated.
+- `ips` - List of trusted IP addresses (by default is empty). Checking is done only if `check_ips` permission is enabled.
+- `enabled` - Designates wheter the key is enabled to be used.
 
 ## Creating a Request
 
 All private requests must include the following headers:
 
-* `'Authorization: Bearer API_KEY'` - Authorization header that includes the API Key.
-* `'Taur-Nonce: NONCE'` - A number that uniquely identifies each call to the API (see What is a nonce?).
-* `'Taur-Signature: SIGNATURE'`- The base64-encoded signature (see Signing a Message)
+- `'Authorization: Bearer API_KEY'` - Authorization header that includes the API Key.
+- `'Taur-Nonce: NONCE'` - A number that uniquely identifies each call to the API (see What is a nonce?).
+- `'Taur-Signature: SIGNATURE'`- The base64-encoded signature (see Signing a Message)
 
 All request bodies should have content type `application/json` and be valid JSON.
 
@@ -113,8 +117,8 @@ A nonce is a number that uniquely identifies each API request. A nonce is requir
 
 Our nonce is implemented as a counter that must be unique and must increase with each call to the API. For example, assuming a starting nonce of 0, valid subsequent nonce values would be 1, 2, 3, and so on.
 
-
 ## Signing a Message
+
 ```shell
 API_URL=https://api.staging.tauros.io
 API_KEY="TAUROS_API_KEY"
@@ -194,63 +198,64 @@ server_res.json() # {...}
 ```
 
 ```javascript
-const crypto = require('crypto');
-const fetch = require('node-fetch');
+const crypto = require("crypto");
+const fetch = require("node-fetch");
 
-const URL_API = 'https://api.staging.tauros.io';
+const URL_API = "https://api.staging.tauros.io";
 
-const api_key = 'TAUROS_API_KEY';
-const api_secret = 'TAUROS_API_SECRET';
+const api_key = "TAUROS_API_KEY";
+const api_secret = "TAUROS_API_SECRET";
 
-let path = '/api/v1/trading/placeorder/';
+let path = "/api/v1/trading/placeorder/";
 
-let method = 'POST';
+let method = "POST";
 
 let data = {
-    market: "BTC-MXN",
-    amount: "0.001",
-    side: "SELL",
-    type: "LIMIT",
-    price: "250000"
+  market: "BTC-MXN",
+  amount: "0.001",
+  side: "SELL",
+  type: "LIMIT",
+  price: "250000",
 };
 
 let nonce = Date.now() / 1000;
 nonce = nonce.toString().replace(".", "");
 
 // make signature
-let body = JSON.stringify(data)
+let body = JSON.stringify(data);
 
 let message = nonce + method.toUpperCase() + path + body;
 
-let api_sha256 = crypto.createHash('sha256').update(message).digest();
+let api_sha256 = crypto.createHash("sha256").update(message).digest();
 
 // create a sha512 hmac with the secret
-let hmac = crypto.createHmac('sha512', Buffer.from(api_secret, 'base64'));
+let hmac = crypto.createHmac("sha512", Buffer.from(api_secret, "base64"));
 
-let signature = hmac.update(api_sha256).digest('base64');
+let signature = hmac.update(api_sha256).digest("base64");
 
 let headers = {
-  'Content-Type': 'application/json',
-  'Authorization': 'Bearer ' + api_key,
-  'Taur-Nonce': nonce,
-  'Taur-Signature': signature
+  "Content-Type": "application/json",
+  Authorization: "Bearer " + api_key,
+  "Taur-Nonce": nonce,
+  "Taur-Signature": signature,
 };
 
 let request = {
-    method: method,
-    headers: headers,
-    body: JSON.stringify(data)
+  method: method,
+  headers: headers,
+  body: JSON.stringify(data),
 };
 
-
 fetch(URL_API + path, request)
-.then(res => res.ok ? res.json() : {status_code: res.status, message: res.statusText})
-.then(json => {
-  console.log(json);
-})
-.catch(err => {
-  console.log(err.message);
-});
+  .then((res) =>
+    res.ok ? res.json() : { status_code: res.status, message: res.statusText }
+  )
+  .then((json) => {
+    console.log(json);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 ```
 
 ```php
@@ -309,21 +314,28 @@ curl_close($handler);
 
 The `Taur-Signature` header (message signature) is generated using HMAC-SHA512 of SHA256(`nonce` + `method` + `requestPath` + `body`) and base64 decoded secret API Key. Where + means string concatenation.
 
-* The `nonce` value is the same as the `Taur-Nonce` header.
-* The `body` is the request body string or omitted if there is no request body (for GET requests, mainly).
-* The `method` should be UPPER CASE.
+- The `nonce` value is the same as the `Taur-Nonce` header.
+- The `body` is the request body string or omitted if there is no request body (for GET requests, mainly).
+- The `method` should be UPPER CASE.
 
 ### Example API clients
+
 Below are sample API client code libraries that can be used when writing your own API client.
 
 ### Python
+
 [https://github.com/coinbtr/tauros-api-python](https://github.com/coinbtr/tauros-api-python)
+
 ### Node.js
+
 [https://github.com/coinbtr/tauros-api-nodejs](https://github.com/coinbtr/tauros-api-nodejs)
+
 ### Php
+
 [https://github.com/coinbtr/tauros-api-php](https://github.com/coinbtr/tauros-api-php)
 
 # Currencies [PUBLIC]
+
 <aside class="notice">
 You can access the following endpoints freely, API KEY is not required.
 </aside>
@@ -422,43 +434,75 @@ curl -X GET "https://api.tauros.io/api/v2/coins/"
   }
 }
 ```
+
 This endpoint returns all available currencies in Tauros, cryptocurrencies as well as fiat currencies.
 
 ### HTTP Request
+
 `GET /v2/coins/`
 
 ### Query Parameters
-| Parameter | Type | Required | Description |
-|---|---|---|---|---|
-| coin | String | No | Cryptocurrency symbol (e.g. 'btc'). |
+
+| Parameter | Type   | Required | Description                         |
+| --------- | ------ | -------- | ----------------------------------- |
+| coin      | String | No       | Cryptocurrency symbol (e.g. 'btc'). |
 
 # Wallet Operations
-
 
 ## Get Deposit Address
 
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
 ### HTTP Request
-`GET /v1/data/getdepositaddress/`
+
+`GET /v2/wallets/address/<coin>/`
 
 > The API call will response this:
 
 ```json
+BTC
 {
   "success": true,
   "msg": null,
   "data": {
-    "coin":"btc",
+    "coin": "BTC",
     "address": "2NFfxvXpAWjKng7enFougtvtxxCJ2hQEMo4",
+    "address_state": "READY",
+    "coin_specific_type": null,
+    "coin_specific_value": ""
+  }
+}
+ETH
+{
+  "success": true,
+  "msg": null,
+  "data": {
+    "coin": "ETH",
+    "address": "",
+    "address_state": "CREATING",
+    "coin_specific_type": null,
+    "coin_specific_value": ""
+  }
+}
+XLM
+{
+  "success": true,
+  "msg": null,
+  "data": {
+    "coin": "XLM",
+    "address": "GC435DWBXRSLH3K33ZZR65X4WHMDW6LUZIOTJP4XFY7XJ4NPENZEYFHR",
+    "address_state": "CREATING",
+    "coin_specific_type": "memoId",
+    "coin_specific_value": "8"
   }
 }
 ```
+
 ### Body Parameters
 
-| Parameter | Type | Required | Coins | Description |
-|---|---|---|---|---|
-| coin | String | Yes | All | Cryptocurrency symbol (e.g. 'btc'). |
+| Parameter | Type   | Required | Coins | Description                         |
+| --------- | ------ | -------- | ----- | ----------------------------------- |
+| coin      | String | Yes      | All   | Cryptocurrency symbol (e.g. 'btc'). |
 
 <aside class="warning">
 Extra information is required for certain coins like XEM (Nem) or XLM (Stellar) that need to be included in your transaction for detecting that you're the owner of the funds.
@@ -473,134 +517,147 @@ Most of exchanges or wallets allows you to include this information in your tran
 This API call allows you to send cryptocurrency to a given destination address.
 
 ### HTTP Request
+
 `POST /v2/wallets/crypto-withdraw/`
 
 > The API response will look like this:
 
 ```json
 {
-  "success":true,
-  "payload":{
-    "txid":"ea3b3df941b229c0d30a7c0e825f4507354aec31ebc082ff0c199e476822c04d",
-    "coin":"BTC",
-    "isInnerTransfer":false,
-    "amount_sent":0.0007,
-    "receiver":"2NAzzENWzPk7iJBe8XscDGLJgrr3zjxdcgW",
-    "explorer_link":"https://live.blockcypher.com/btc-testnet/tx/"
+  "success": true,
+  "payload": {
+    "txid": "ea3b3df941b229c0d30a7c0e825f4507354aec31ebc082ff0c199e476822c04d",
+    "coin": "BTC",
+    "isInnerTransfer": false,
+    "amount_sent": 0.0007,
+    "receiver": "2NAzzENWzPk7iJBe8XscDGLJgrr3zjxdcgW",
+    "explorer_link": "https://live.blockcypher.com/btc-testnet/tx/"
   }
 }
 ```
+
 ### Body Parameters
 
-| Parameter | Type | Required | Coins | Description |
-|---|---|---|---|---|
-| nip | String | Yes | All | Transactional NIP (e.g. '1234'). |
-| coin | String | Yes | All | Cryptocurrency symbol (e.g. 'btc'). |
-| address | String | Yes | All | Destination address. |
-| amount | Float | Yes | All | Amount to send. |
-| memoId | Integer | No | XLM | Memo id attached to the transaction. |
-| memoText | String | No | XLM | Memo text attached to the transaction. |
+| Parameter | Type    | Required | Coins | Description                            |
+| --------- | ------- | -------- | ----- | -------------------------------------- |
+| nip       | String  | Yes      | All   | Transactional NIP (e.g. '1234').       |
+| coin      | String  | Yes      | All   | Cryptocurrency symbol (e.g. 'btc').    |
+| address   | String  | Yes      | All   | Destination address.                   |
+| amount    | Float   | Yes      | All   | Amount to send.                        |
+| memoId    | Integer | No       | XLM   | Memo id attached to the transaction.   |
+| memoText  | String  | No       | XLM   | Memo text attached to the transaction. |
 
 <aside class="notice">
 Make sure your API key has permission to perform this action.
 </aside>
 
-
 ## Tauros Transfer®
 
-*Tauros Transfer®* allows you to transfer funds to another user registered in Tauros.
+_Tauros Transfer®_ allows you to transfer funds to another user registered in Tauros.
 Funds are transferred instantly with 0 commission fee.
 
 ### HTTP Request
+
 `POST /v2/wallets/inner-transfer/`
 
 > The API response will look like this:
 
 ```json
 {
-  "success":true,
-  "msg":"0.001 BTC sent to jhon@mail.com.",
-  "payload":{
-    "amount_sent":0.001,
-    "coin":"BTC",
-    "fee_amount":0
+  "success": true,
+  "msg": "0.001 BTC sent to jhon@mail.com.",
+  "payload": {
+    "amount_sent": 0.001,
+    "coin": "BTC",
+    "fee_amount": 0
   }
 }
 ```
+
 ### Body Parameters
 
-| Parameter | Type | Required | Coins | Description |
-|---|---|---|---|---|
-| nip | String | Yes | All | Transactional NIP (e.g. '1234'). |
-| coin | String | Yes | All | Coin symbol (e.g. 'btc'). |
-| recipient | String | Yes | All | Receiver's email. |
-| amount | Float | Yes | All | Amount to send. |
+| Parameter | Type   | Required | Coins | Description                      |
+| --------- | ------ | -------- | ----- | -------------------------------- |
+| nip       | String | Yes      | All   | Transactional NIP (e.g. '1234'). |
+| coin      | String | Yes      | All   | Coin symbol (e.g. 'btc').        |
+| recipient | String | Yes      | All   | Receiver's email.                |
+| amount    | Float  | Yes      | All   | Amount to send.                  |
 
 ## Mexican Pesos Withdraw (SPEI)
+
 > The API response will look like this:
 
 ```json
 {
   "success": true,
-  "msg": "Withdrawal created. Your withdrawal will processed in the next 60 minutes",
+  "msg": "Withdrawal created. Your withdrawal will processed in the next 60 minutes"
 }
 ```
+
 This API call is used to withdraw MXN to a given CLABE.
 
 ### HTTP Request
+
 `POST /v2/wallets/mxn-withdraw/`
 
 ### Body Parameters
-| Parameter | Type | Required | Description |
-|---|---|---|---|---|
-| nip | String | Yes | Transactional NIP (e.g. '1234') |
-| clabe | String | Yes | 18 digits recipient's CLABE (*Clave Bancaria Estandarizada*). |
-| amount | Float | Yes | Two decimal presition amount to send. |
-| recipient | String | Yes | Recipient's full name (e.g. José Arcadio Buendía). |
-| text_ref | String | No | Payment text reference, also known as "*Concepto*" (e.g. Pizzas). |
-| numeric_ref | Integer | No | Seven digits numerical reference, also known as "*Referencia numerica*" (e.g. 1234567). |
+
+| Parameter   | Type    | Required | Description                                                                             |
+| ----------- | ------- | -------- | --------------------------------------------------------------------------------------- |
+| nip         | String  | Yes      | Transactional NIP (e.g. '1234')                                                         |
+| clabe       | String  | Yes      | 18 digits recipient's CLABE (_Clave Bancaria Estandarizada_).                           |
+| amount      | Float   | Yes      | Two decimal presition amount to send.                                                   |
+| recipient   | String  | Yes      | Recipient's full name (e.g. José Arcadio Buendía).                                      |
+| text_ref    | String  | No       | Payment text reference, also known as "_Concepto_" (e.g. Pizzas).                       |
+| numeric_ref | Integer | No       | Seven digits numerical reference, also known as "_Referencia numerica_" (e.g. 1234567). |
 
 ## List Balances
-This API call is used to retrieve your wallets balances, including their deposit addresses (if they have been previously generated). There are four types of balances in tauros: `available`, `pending`, `frozen` and `in_orders`.
 
-* `available`: Funds you can spend.
+This API call is used to retrieve the balances on each of your wallets, including their deposit addresses (if they have been previously generated). There are four types of balances in tauros: `available`, `pending`, `frozen` and `in_orders`.
 
-* `pending`: Funds that will be added in your account due to an incoming transfer.
+- `available`: Funds you can spend.
 
-* `frozen`: Frozen funds that will be removed due to and outgoing withdrawal.
+- `pending`: Funds that will be added to your account due to an incoming transfer.
 
-* `in_orders`: Funds that are compromised in a limit order that you have previously placed.
+- `frozen`: Frozen funds that will be removed due to and outgoing withdrawal.
 
+- `in_orders`: Funds that are compromised in a limit order that you have previously placed.
 
 ### HTTP Request
+
 > The API response will look like this:
 
 ```json
 {
-	"success": true,
-	"msg": null,
-	"data": [{
-			"coin": "LTC",
-			"balance": 0.00000000,
-			"available": 0.00000000,
-			"pending": 0.00000000,
-			"depositAddress": "DLxcEt3AatMyr2NTatzjsfHNoB9NT62HiF"
-		}, {
-			"coin": "BTC",
-			"balance": 14.21549076,
-			"available": 14.21549076,
-			"pending": 0.00000000,
-			"depositAddress": "1Mrcdr6715hjda34pdXuLqXcju6qgwHA31"
-		}
-	]
+  "success": true,
+  "msg": null,
+  "data": [
+    {
+      "coin": "LTC",
+      "balance": 0.0,
+      "available": 0.0,
+      "pending": 0.0,
+      "depositAddress": "DLxcEt3AatMyr2NTatzjsfHNoB9NT62HiF"
+    },
+    {
+      "coin": "BTC",
+      "balance": 14.21549076,
+      "available": 14.21549076,
+      "pending": 0.0,
+      "depositAddress": "1Mrcdr6715hjda34pdXuLqXcju6qgwHA31"
+    }
+  ]
 }
 ```
+
 `GET /v1/data/listbalances/`
 
 ### Body Parameters
+
 None
 
 ## Get Balance
+
 Alternatively you can request your balance for a specific coin.
 
 > The API response will look like this:
@@ -622,12 +679,14 @@ Alternatively you can request your balance for a specific coin.
 ```
 
 ### HTTP Request
+
 `GET /data/getbalance/`
 
 ### Body Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| coin | String | No | Coin symbol (e.g. `btc`). |
+
+| Parameter | Type   | Required | Description               |
+| --------- | ------ | -------- | ------------------------- |
+| coin      | String | No       | Coin symbol (e.g. `btc`). |
 
 ## List transfers
 
@@ -635,9 +694,9 @@ Alternatively you can request your balance for a specific coin.
 
 ```json
 {
-  "count":3,
-  "next":"http://api.staging.tauros.io/api/v2/wallets/transfershistory/?limit=3&offset=8",
-  "previous":null,
+  "count": 3,
+  "next": "http://api.staging.tauros.io/api/v2/wallets/transfershistory/?limit=3&offset=8",
+  "previous": null,
   "results": [
     {
       "sender": null,
@@ -655,7 +714,7 @@ Alternatively you can request your balance for a specific coin.
       "fee_amount": "0",
       "total_amount": 2.0,
       "type": "deposit",
-      "description":  null,
+      "description": null,
       "operation": "transfer",
       "coin_icon": "https://staging-static.coinbtr.com/media/coins/LTC.png",
       "status": "DONE",
@@ -677,7 +736,7 @@ Alternatively you can request your balance for a specific coin.
       "fee_amount": "0",
       "total_amount": 1.1234567,
       "type": "withdrawal",
-      "description":  null,
+      "description": null,
       "operation": "transfer",
       "coin_icon": "https://staging-static.coinbtr.com/media/coins/XLM.png",
       "status": "DONE",
@@ -686,27 +745,31 @@ Alternatively you can request your balance for a specific coin.
   ]
 }
 ```
+
 This API call is used to retrieve your withdraws and deposits history. Both crypto and fiat transfers will be listed here. Tauros Transfers will have the `is_innerTransfer` flag as `true`.
 
 ### HTTP Request
+
 `GET /v2/wallets/transfershistory/`
 
 ### Query Parameters
 
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| limit | Integer | No | Indicates the maximum number of items to return. |
-| offset | Integer | No | Indicates the starting position of the query in relation to the complete set of unpaginated items. |
-| coin | String | No | Allows to filter by coin (e.g. `btc`). |
-| type | String | No | Filters by type of transfer, wich can be `withdrawals` or `deposits`. |
+| Parameter | Type    | Required | Description                                                                                        |
+| --------- | ------- | -------- | -------------------------------------------------------------------------------------------------- |
+| limit     | Integer | No       | Indicates the maximum number of items to return.                                                   |
+| offset    | Integer | No       | Indicates the starting position of the query in relation to the complete set of unpaginated items. |
+| coin      | String  | No       | Allows to filter by coin (e.g. `btc`).                                                             |
+| type      | String  | No       | Filters by type of transfer, wich can be `withdrawals` or `deposits`.                              |
 
 #Trading Operations
+
 <!-- ====================================================================================================== -->
 <aside class="notice">
 Make sure that your API key has permissions to perform these actions.
 </aside>
 
 ## Place a new order
+
 > The API response will look like this:
 
 ```json
@@ -718,80 +781,90 @@ Make sure that your API key has permissions to perform these actions.
   }
 }
 ```
+
 You can place two types of orders: `limit` and `market`. Orders can be placed only if your wallet has enough funds. Once an order is placed, your wallet funds will be frozen. If you cancel your order, the associated funds will be restored. If you cancel an open order that has been partially filled the exchanged funds will not be restored.
+
 ### HTTP Request
+
 `POST /v1/trading/placeorder/`
 
 ### Body Parameters
 
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| market | String | Yes | Market where your order will be placed (e.g. `btc-mxn`). |
-| amount | String or Float | Yes | Amount of coins to trade. |
-| side | String | Yes | `buy` or `sell`. |
-| price | String or Float| Yes* | Order price at which you wish to exchange your coins. |
-| type | String | No | `market` or `limit`. Default is `limit`. |
-| is_amount_value | Boolean | No | Designates whether the provided `amount` is the order amount or order value. |
+| Parameter       | Type            | Required | Description                                                                  |
+| --------------- | --------------- | -------- | ---------------------------------------------------------------------------- |
+| market          | String          | Yes      | Market where your order will be placed (e.g. `btc-mxn`).                     |
+| amount          | String or Float | Yes      | Amount of coins to trade.                                                    |
+| side            | String          | Yes      | `buy` or `sell`.                                                             |
+| price           | String or Float | Yes\*    | Order price at which you wish to exchange your coins.                        |
+| type            | String          | No       | `market` or `limit`. Default is `limit`.                                     |
+| is_amount_value | Boolean         | No       | Designates whether the provided `amount` is the order amount or order value. |
 
-* Required only for limit orders
+- Required only for limit orders
+
 ## List my open orders
+
 > The API response will look like this:
 
 ```json
 {
-  "success":true,
-  "msg":null,
-  "data":[{
-    "market":"LTC-BTC",
-    "side":"BUY",
-    "amount":0.00033699,
-    "initial_amount":0.00033699,
-    "filled":0.0,
-    "value":0.00000508,
-    "initial_value":0.00000508,
-    "price":0.01508999,
-    "fee_decimal":0.00075,
-    "fee_percent":0.075,
-    "fee_amount_paid":0.0,
-    "created_at":"2019-03-25T18:24:35.862824Z",
-    "is_open":true,
-    "amount_received":0.0,
-    "amount_paid":0.0,
-    "left_coin":"LTC",
-    "right_coin":"BTC",
-    "order_id":13
-  },
-  {
-    "market":"DASH-BTC",
-    "side":"SELL",
-    "amount":0.014,
-    "initial_amount":0.014,
-    "filled":0.0,
-    "value":0.00032204,
-    "initial_value":0.00032204,
-    "price":0.023003,
-    "fee_decimal":0.0,
-    "fee_percent":0.0,
-    "fee_amount_paid":0.0,
-    "created_at":"2019-03-27T18:50:52.119514Z",
-    "is_open":true,
-    "amount_received":0.0,
-    "amount_paid":0.0,
-    "left_coin":"DASH",
-    "right_coin":"BTC",
-    "order_id":14
-  }]
+  "success": true,
+  "msg": null,
+  "data": [
+    {
+      "market": "LTC-BTC",
+      "side": "BUY",
+      "amount": 0.00033699,
+      "initial_amount": 0.00033699,
+      "filled": 0.0,
+      "value": 0.00000508,
+      "initial_value": 0.00000508,
+      "price": 0.01508999,
+      "fee_decimal": 0.00075,
+      "fee_percent": 0.075,
+      "fee_amount_paid": 0.0,
+      "created_at": "2019-03-25T18:24:35.862824Z",
+      "is_open": true,
+      "amount_received": 0.0,
+      "amount_paid": 0.0,
+      "left_coin": "LTC",
+      "right_coin": "BTC",
+      "order_id": 13
+    },
+    {
+      "market": "DASH-BTC",
+      "side": "SELL",
+      "amount": 0.014,
+      "initial_amount": 0.014,
+      "filled": 0.0,
+      "value": 0.00032204,
+      "initial_value": 0.00032204,
+      "price": 0.023003,
+      "fee_decimal": 0.0,
+      "fee_percent": 0.0,
+      "fee_amount_paid": 0.0,
+      "created_at": "2019-03-27T18:50:52.119514Z",
+      "is_open": true,
+      "amount_received": 0.0,
+      "amount_paid": 0.0,
+      "left_coin": "DASH",
+      "right_coin": "BTC",
+      "order_id": 14
+    }
+  ]
 }
 ```
+
 This endpoint returns your open orders and their status.
+
 ### HTTP Request
+
 `GET /v1/trading/myopenorders/`
 
 ### Query Parameters
 
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| market | String | No | List your open orders filtering by `market` (e.g. `btc-mxn`). |
+| Parameter | Type   | Required | Description                                                   |
+| --------- | ------ | -------- | ------------------------------------------------------------- |
+| market    | String | No       | List your open orders filtering by `market` (e.g. `btc-mxn`). |
 
 ## Close an open order
 
@@ -799,19 +872,22 @@ This endpoint returns your open orders and their status.
 
 ```json
 {
-  "success":true,
-  "msg":"Order closed"
+  "success": true,
+  "msg": "Order closed"
 }
 ```
+
 This API call allows you to close an open order that you have previously placed. If your order has already been partially filled, that is to say, partially bought or sold, the exchanged funds will not be restored. Full-filled orders will be automatically closed.
 
 ### HTTP Request
+
 `POST /v1/trading/closeorder/`
 
 ### Body Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| id | Integer | Yes | Order id |
+
+| Parameter | Type    | Required | Description |
+| --------- | ------- | -------- | ----------- |
+| id        | Integer | Yes      | Order id    |
 
 ## List my trading history
 
@@ -830,7 +906,7 @@ This API call allows you to close an open order that you have previously placed.
       "amount_paid": 100.0,
       "amount_received": 0.00051077,
       "price": "195000.00",
-      "fee_amount": 2.05e-06,
+      "fee_amount": 2.05e-6,
       "side": "BUY",
       "fee": "0.00400000",
       "created_at": "2020-06-03T07:33:18.233149-05:00"
@@ -848,9 +924,9 @@ This API call allows you to close an open order that you have previously placed.
     {
       "market": "BTC-MXN",
       "amount_paid": 125.0,
-      "amount_received": 1.992e-05,
+      "amount_received": 1.992e-5,
       "price": "160000.00",
-      "fee_amount": 8e-08,
+      "fee_amount": 8e-8,
       "side": "BUY",
       "fee": "0.00200000",
       "created_at": "2020-06-02T17:59:27.426156-05:00"
@@ -868,19 +944,22 @@ This API call allows you to close an open order that you have previously placed.
   ]
 }
 ```
+
 This endpoint retrieves your trading history.
 
 ### HTTP Request
+
 `GET /v2/trading/my-trades/<market>/`
 
 ### Query Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| limit | Integer | No | Indicates the maximum number of items to return. |
-| offset | Integer | No | Indicates the starting position of the query in relation to the complete set of unpaginated items. |
 
+| Parameter | Type    | Required | Description                                                                                        |
+| --------- | ------- | -------- | -------------------------------------------------------------------------------------------------- |
+| limit     | Integer | No       | Indicates the maximum number of items to return.                                                   |
+| offset    | Integer | No       | Indicates the starting position of the query in relation to the complete set of unpaginated items. |
 
 # Market Data [PUBLIC]
+
 The following API calls retrieve information related to markets.
 
 <aside class="notice">
@@ -888,9 +967,11 @@ You can access the following endpoints freely, API KEY is not required.
 </aside>
 
 ## List Markets (Books)
+
 ```shell
 curl -X GET "https://api.tauros.io/api/v1/trading/markets/"
 ```
+
 > The API response will look like this:
 
 ```json
@@ -973,18 +1054,20 @@ curl -X GET "https://api.tauros.io/api/v1/trading/markets/"
     }
   ]
 }
-
 ```
+
 This API call returns all existing markets (also known as "books") in Tauros.
 
 ### HTTP Request
+
 `GET /v2/trading/markets/`
 
 ### Query Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| limit | Integer | No | Indicates the maximum number of items to return. |
-| offset | Integer | No | Indicates the starting position of the query in relation to the complete set of unpaginated items. |
+
+| Parameter | Type    | Required | Description                                                                                        |
+| --------- | ------- | -------- | -------------------------------------------------------------------------------------------------- |
+| limit     | Integer | No       | Indicates the maximum number of items to return.                                                   |
+| offset    | Integer | No       | Indicates the starting position of the query in relation to the complete set of unpaginated items. |
 
 ## List Market Orders (Orderbook)
 
@@ -993,6 +1076,7 @@ MKT="btc-mxn"
 
 curl -X GET "https://api.tauros.io/api/v1/trading/orders/?market=$MKT"
 ```
+
 > The API response will look like this:
 
 ```json
@@ -1060,22 +1144,27 @@ curl -X GET "https://api.tauros.io/api/v1/trading/orders/?market=$MKT"
   }
 }
 ```
+
 This endpoint retrieves the 50 best sell and buy orders (also known as "orderbook") for a given market.
 
 ### HTTP Request
+
 `GET /v1/trading/orders/`
 
 ### Query Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| market | String | Yes | Market name (e.g. `btc-mxn`). |
+
+| Parameter | Type   | Required | Description                   |
+| --------- | ------ | -------- | ----------------------------- |
+| market    | String | Yes      | Market name (e.g. `btc-mxn`). |
 
 ## List last trades
+
 ```shell
 MKT="ltc-btc"
 
 curl -X GET "https://api.tauros.io/api/v1/trading/trades/?market=$MKT"
 ```
+
 > The API response will look like this:
 
 ```json
@@ -1122,29 +1211,34 @@ curl -X GET "https://api.tauros.io/api/v1/trading/trades/?market=$MKT"
   ]
 }
 ```
+
 This endpoint returns the last 50 trades for a given market.
 
 ### HTTP Request
+
 `GET /v1/trading/trades/`
 
 ### Query Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| market | String | No | Market name (e.g. `btc-mxn`). |
+
+| Parameter | Type   | Required | Description                   |
+| --------- | ------ | -------- | ----------------------------- |
+| market    | String | No       | Market name (e.g. `btc-mxn`). |
 
 ## Tickers
+
 Provides a summary market data (ticker) for all markets.
 
 Fields:
 
-* `high`: Last 24h highest price.
-* `low`: Last 24h lowest price.
-* `volume`: Last 24h amount traded.
-* `last`: Last price.
+- `high`: Last 24h highest price.
+- `low`: Last 24h lowest price.
+- `volume`: Last 24h amount traded.
+- `last`: Last price.
 
 ```shell
 curl -X GET "https://api.tauros.io/api/v2/trading/tickers/"
 ```
+
 > The API response will look like this:
 
 ```json
@@ -1155,56 +1249,59 @@ curl -X GET "https://api.tauros.io/api/v2/trading/tickers/"
   "previous": null,
   "count": 5,
   "payload": [
-      {
-        "market": "BTC-MXN",
-        "last": 206140.7,
-        "high": 206980.14,
-        "low": 206018.21,
-        "volume": 0.06895091
-      },
-      {
-        "market": "LTC-MXN",
-        "last": 934.05,
-        "high": 960.78,
-        "low": 934.05,
-        "volume": 9.58559476
-      },
-      {
-        "market": "BCH-MXN",
-        "last": 5040.11,
-        "high": 5129.7,
-        "low": 4980.85,
-        "volume": 0.99706549
-      },
-      {
-        "market": "XLM-MXN",
-        "last": 2.14,
-        "high": 16.8,
-        "low": 2.14,
-        "volume": 1681.0954899
-      },
-      {
-        "market": "DASH-MXN",
-        "last": 1560.43,
-        "high": 1689.77,
-        "low": 890.02,
-        "volume": 4.05001625
-      }
-    ]
+    {
+      "market": "BTC-MXN",
+      "last": 206140.7,
+      "high": 206980.14,
+      "low": 206018.21,
+      "volume": 0.06895091
+    },
+    {
+      "market": "LTC-MXN",
+      "last": 934.05,
+      "high": 960.78,
+      "low": 934.05,
+      "volume": 9.58559476
+    },
+    {
+      "market": "BCH-MXN",
+      "last": 5040.11,
+      "high": 5129.7,
+      "low": 4980.85,
+      "volume": 0.99706549
+    },
+    {
+      "market": "XLM-MXN",
+      "last": 2.14,
+      "high": 16.8,
+      "low": 2.14,
+      "volume": 1681.0954899
+    },
+    {
+      "market": "DASH-MXN",
+      "last": 1560.43,
+      "high": 1689.77,
+      "low": 890.02,
+      "volume": 4.05001625
+    }
+  ]
 }
-
 ```
 
 ### HTTP Request
+
 `GET /v2/trading/tickers/`
 
 ### Query Parameters
+
 None
 
 ## List trading fees
+
 ```shell
 curl -X GET "https://api.tauros.io/api/v1/trading/fees/?market=ltc-btc&user_level=1"
 ```
+
 > The API response will look like this:
 
 ```json
@@ -1267,166 +1364,101 @@ curl -X GET "https://api.tauros.io/api/v1/trading/fees/?market=ltc-btc&user_leve
   }
 ]
 ```
+
 Returns the trading fees. See [Trading fees](https://tauros.io/fees).
 
 ### HTTP Request
+
 `GET /v1/trading/fees/`
 
 ### Query Parameters
-| Parameter | Type | Required |  Description |
-|---|---|---|---|---|
-| market | String | No | Market name (e.g. `btc-mxn`). |
-| user_level | Integer | No | User level (e.g. 1). By default all users are level 1|
 
-#Websocket
+| Parameter  | Type    | Required | Description                                           |
+| ---------- | ------- | -------- | ----------------------------------------------------- |
+| market     | String  | No       | Market name (e.g. `btc-mxn`).                         |
+| user_level | Integer | No       | User level (e.g. 1). By default all users are level 1 |
 
-## Subscribe
-```javascript
-import io from 'socket.io-client';
-// or
-const io = require('socket.io-client');
-
-const ApiKey = 'YOUR_API_KEY';
-
-
-// connect to your websocket
-const socket = io.connect(`wss://private-ws.tauros.io?token=${ApiKey}`);
-
-socket.on('connect', () => {
-  console.log("connected");
-});
-
-// Manage notifications
-socket.on('notification', (notification) => {
-  console.log(notification);
-  /*
-  Place your code here
-  */
-});
-
-```
-
-
-Tauros uses Web-Sockets in order to notify real-time events that occur in your account. The websocket endpoints are the following:
-
-* `private-ws.tauros.io` for production environment.
-* `private-ws-staging.tauros.io` for staging environment.
-
-You need to use a [socket.io] client implementation (https://socket.io) if using JavaScript. Installation:
-
-If using yarn:
-
-`yarn add socket.io-client`
-
-If using npm:
-
-`npm install --save socket.io-client`
-
-or CDN:
-
-`<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>`
-
-<aside class="notice">
-Note that the private websocket requires your JWT for authentication.
-</aside>
-
-## Notifications
-
-> Messages on this channel look like this:
+# Websocket [PUBLIC]
 
 ```javascript
-// Notification standard:
-{
-  "title": "NOTIFICATION_TITLE",
-  "description": "NOTIFICATION_DESCRIPTION"
-  "type": 'TYPE_OF_NOTIFICATION',
-  "date": '2019-02-20T03:05:56.810445Z',
-  "object": OBJECT // Order, Trade or Transfer object
-}
-```
+// Define a market you want to subscribe
+const market = "BTC-MXN";
 
-Notifications are sent if some of the following events occur.
+// Define a channel you want to subscribe
 
-Types of notifications:
+const channel = "orderbook";
+//or
+const channel = "ticker";
+//or
+const channel = "trades";
 
-* Order placed (`OP`)
-* Order filled (`OF`)
-* Order closed (`OC`) ([by the user](#close-an-open-order))
-* New trade (`TD`)
-* New deposit or withdrawal (`TR`)
-
-The `order`, `trade` or `transfer` object is included in the `object` field.
-
-```javascript
-// Order filled  Notification example
-{
-  "title": "Order filled",
-  "description": "Your BUY order has been partially filled"
-  "type": 'OF',
-  "date": '2019-02-20T03:05:56.810445Z',
-  "object": {
-    "amount": "0.0005",
-    "amount_paid": "100",
-    "amount_received": "0.0004995",
-    "closed_at": null,
-    "created_at": "2019-09-23 21:27:06.083978+00:00",
-    "fee_amount_paid": "0.5",
-    "fee_decimal": "0.00100000",
-    "fee_percent": "0.10000000",
-    "filled": "0.0005",
-    "id": 107487,
-    "initial_amount": "0.0010",
-    "initial_value": "200",
-    "is_open": true,
-    "left_coin": "BTC",
-    "market": "BTC-MXN",
-    "price": "200000.00",
-    "right_coin": "MXN",
-    "side": "BUY",
-    "value": "100"
-  }
-}
-```
-
-#Websocket [PUBLIC]
-
-
-```javascript
-import io from 'socket.io-client';
-// or
-let io = require('socket.io-client');
-
+// Define the websocket
+const ws = new WebSocket("wss://wsv2-staging.tauros.io");
 
 // connect to the websocket
-const socket = io.connect('wss://ws.tauros.io');
 
-// Define a market you want to subscribe
-const market = 'btc-mxn';
-
-socket.on('connect', () => {
-  // Subscribe to the market
-  socket.emit('subscribe', market);
-});
-
+ws.onopen = function open() {
+  console.log("connected to native socket");
+  ws.send(
+    JSON.stringify({
+      action: "subscribe",
+      market,
+      channel,
+    })
+  );
+  ws.send(
+    JSON.stringify({
+      action: "subscribe",
+      market,
+      channel,
+    })
+  );
+  ws.send(
+    JSON.stringify({
+      action: "subscribe",
+      market,
+      channel,
+    })
+  );
+};
 
 // Read and manage market data as you want
-socket.on('message', (msg) => {
-  console.log(msg);
-  /*
-  Place your code here
-  */
-});
-
+ws.onmessage = (ev) => {
+  if (ev.data.startsWith("Error")) {
+    //For error declare function "onerror"
+    onerror(ev.data);
+    return;
+  }
+  const data = JSON.parse(ev.data);
+  // subscription response
+  if (data.action === "subscribe") {
+    console.log(data);
+    /*
+          Place your code here
+          */
+  }
+  // create element
+  if (data.channel === channel) {
+    console.log(msg);
+    /*
+        Place your code here
+        */
+  }
+};
+//Function onerror
+const onerror = (error) => {
+  console.log(new Error(`WebSocket error: ${error}`));
+};
 // For unsubscribing
-socket.emit('unsubscribe', market);
-
+ws.onclose = () => {
+  console.log("disconnected");
+};
 ```
-
 
 Tauros implements Web-Sockets in order to provide real-time market data from our trading engine. The websocket public endpoints are the following:
 
-* `ws.tauros.io` for production environment.
-* `ws-staging.tauros.io` for staging environment.
+- `ws.tauros.io` for production environment.
+- `ws-staging.tauros.io` for staging environment.
 
 We recommend to use [socket.io](https://socket.io) JavaScript. Installation:
 
@@ -1442,8 +1474,8 @@ or CDN:
 
 `<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>`
 
-
 ## Order-book Channel
+
 > Messages on this channel look like this:
 
 ```json
@@ -1482,6 +1514,7 @@ or CDN:
   }
 }
 ```
+
 The orderbook channel provides the top ten SELL and BUY limit orders for the orderbook (or market) specified.
 
 ### JSON message returned
@@ -1492,14 +1525,64 @@ The orderbook channel provides the top ten SELL and BUY limit orders for the ord
 
 The `data` field contains an array with `asks` and `bids` orders in the following form:
 
-| Field name | Type | Description |
-|---|---|---|---|---|
-| a | String | Order amount. |
-| p | String | Order price. |
-| v | String | Order value. |
-| t | Integer | UTC timestamp with milliseconds precision. |
+| Field name | Type    | Description                                |
+| ---------- | ------- | ------------------------------------------ |
+| a          | String  | Order amount.                              |
+| p          | String  | Order price.                               |
+| v          | String  | Order value.                               |
+| t          | Integer | UTC timestamp with milliseconds precision. |
+
+## Ticker Channel
+
+> Messages on this channel look like this:
+
+```json
+{
+  "channel": "ticker",
+  "market": "BTC-MXN",
+  "volume": "0.00389249",
+  "high": "1000500.00000000",
+  "low": "490000.00000000",
+  "last": "1000500.00000000",
+  "variation": 0.10004997501249376,
+  "trades": [
+    {
+      "amount": "0.00009995",
+      "value": "100.00",
+      "price": "1000500.00",
+      "side": "BUY",
+      "timestamp": 1614883000932.394
+    }
+  ]
+}
+```
+
+The orderbook channel provides the top ten SELL and BUY limit orders for the orderbook (or market) specified.
+
+### JSON message returned
+
+`volume` field contains **volume** of market.
+
+`high` field contains **hight** price in last 24h.
+
+`low` field contains **low** price in last 24h.
+
+`last` field contains **last** price.
+
+`variation` field contains percentage **variation** price in 24h.
+
+The `trades` field contains lasts **trades** with the following form:
+
+| Field name | Type    | Description                 |
+| ---------- | ------- | --------------------------- |
+| amount     | String  | amount coin.                |
+| value      | String  | amount in mxn.              |
+| price      | String  | price of order.             |
+| side       | String  | type of trade (buy or sell) |
+| timestamp  | Integer | date and time of trade      |
 
 ## Trades Channel
+
 > Messages on this channel look like this:
 
 ```json
@@ -1520,25 +1603,27 @@ The `data` field contains an array with `asks` and `bids` orders in the followin
       "v": "2327.37",
       "s": 0,
       "t": 1553747925659
-    },
+    }
   ]
 }
 ```
+
 The trades channel provides the last ten trades done for the specified market.
 
 ### JSON message returned
 
 The `data` field contains an array with the last trades in the following form:
 
-| Field name | Type | Description |
-|---|---|---|---|---|
-| a | String | Order amount. |
-| p | String | Order price. |
-| v | String | Order value. |
-| s | Integer | Taker side. 1 indicates **BUY**, 0 indicates **SELL**. |
-| t | Integer | UTC timestamp with milliseconds precision. |
+| Field name | Type    | Description                                            |
+| ---------- | ------- | ------------------------------------------------------ |
+| a          | String  | Order amount.                                          |
+| p          | String  | Order price.                                           |
+| v          | String  | Order value.                                           |
+| s          | Integer | Taker side. 1 indicates **BUY**, 0 indicates **SELL**. |
+| t          | Integer | UTC timestamp with milliseconds precision.             |
 
 #Webhooks
+
 ## What is a webhook
 
 Webhooks may be setup to programmatically receive callbacks from Tauros. Webhook notifications are triggered when the specified event occurs, such as an order filled (OF) or a taker trade (TD), among others. You can setup and configure a webhook in the [Tauros Developer Section](https://tauros.io/develop).
@@ -1564,11 +1649,12 @@ Webhook can be configurated to notify if some of the following events occur.
 
 Types of notifications:
 
-* Order placed (`OP`)
-* Order filled (`OF`)
-* Order closed (`OC`) ([by the user](#close-an-open-order))
-* New trade (`TD`)
-* New deposit or withdrawal (`TR`)
+- Order placed (`ORDER_PLACED`)
+- Order filled (`ORDER_FILLED`)
+- New trade (`TRADE_HISTORY`)
+- New deposit or withdrawal (`TRANSACTION_HISTORY`)
+- Card Transaction (`CARD_HISTORY`)
+- Order closed (`ORDER_CLOSED`) ([by the user](#close-an-open-order))
 
 The `order`, `trade` or `transfer` object is included in the `object` field.
 
