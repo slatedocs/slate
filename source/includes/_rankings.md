@@ -76,74 +76,63 @@ curl -X POST \
 ```
 
 ```csharp
-List<RankingsSearch> searches = new List<RankingsSearch>();
-searches.Add(new RankingsSearch()
+List<Parameters> searches = new List<Parameters>
 {
-    search_engine = "google",
-    country = "USA",
-    google_location = "New York, NY",
-    search_term = "restaurant new york",
-    urls = new List<string>() { "le-bernardin.com" },
-    business_names = new List<string>() { "Le Bernardin" }
-});
-
-
-api Api = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-// Create a new batch
-int batchId = batchRequest.Create();
-var parameters = new api.Parameters();
-
-// Add jobs to batch
-foreach (var item in searches)
-{
-    // Convert the searches list into parameters for the web requestt
-    parameters = batchRequest.convertListToParameters(item);
-    parameters.Add("batch-id", batchId);
-
-    var jobId = Api.Post("/v4/rankings/search", parameters);
-
-    if (jobId.ResponseStatus == ResponseStatus.Completed)
+    new Parameters
     {
-        dynamic job = JsonConvert.DeserializeObject(jobId.Content);
-        if (!job.success)
-        {
-            string message = "Error adding job";
-            var batchException = new ApplicationException(message + job.errors, job.ErrorException);
-            throw batchException;
-        }
+        ["search-engine"] = "google",
+        ["country"] = "USA",
+        ["google-location"] = "New York, NY",
+        ["search-term"] = "restaurant new york" ,
+        ["urls"] = new List<string> { "le-bernardin.com" } ,
+        ["business-names"] = new List<string>() { "Le Bernardin" }
+    },
+    new Parameters
+    {
+        ["search-engine"] = "google",
+        ["country"] = "USA",
+        ["google-location"] = "New York, NY",
+        ["search-term"] = "restaurant manhattan",
+        ["urls"] = new List<string> { "le-bernardin.com" },
+        ["business-names"] = new List<string>() { "Le Bernardin" }
+    },
+    new Parameters
+    {
+        ["search-engine"] = "google",
+        ["country"] = "USA",
+        ["google-location"] = "New York, NY",
+        ["search-term"] = "restaurant 10019",
+        ["urls"] = new List<string> { "le-bernardin.com" },
+        ["business-names"] = new List<string>() { "Le Bernardin" }
     }
-    else
+};
+
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.CreateBatch();
+Console.WriteLine("Created batch ID {0}", batch.GetId());
+foreach (Parameters parameters in searches)
+{
+    try
     {
-        throw new ApplicationException(jobId.ErrorMessage);
+        // Add jobs to batch
+        dynamic jobResponse = batch.AddJob("/v4/rankings/search", parameters);
+        Console.WriteLine("Added job with ID {0}", jobResponse["job-id"]);
+    }
+    catch (GeneralException exception)
+    {
+        Console.WriteLine(exception.Message);
     }
 }
-// Commit the batch, resturns true or false
-bool commit = batchRequest.Commit(batchId);
 
-// Poll for results. In a real world example you should do this in a backgroud process, such as HangFire,  or use the Task Parallel Library to create a BackGroundWorker Task.
-// It is bad practice to use Thread.Sleep(). This is only for the example and will actually freeze the UI until the while loop is finished. 
-
-var results = batchRequest.GetResults(batchId);
-dynamic rankingResults = JsonConvert.DeserializeObject(results.Content);
-
-if (rankingResults.success)
+batch.Commit();
+Console.WriteLine("Batch committed successfully, awaiting results.");
+dynamic response;
+do
 {
-    while (rankingResults.status != "Stopped" || rankingResults.status != "Finished")
-    {
-        Thread.Sleep(10000);
-        results = batchRequest.GetResults(batchId);
-        rankingResults = JsonConvert.DeserializeObject(results.Content);
-    }
-    return rankingsResults;
-}
-else
-{
-    const string message = "Error Retrieving batch results ";
-    var batchException = new ApplicationException(message + rankingResults.errors, results.ErrorException);
-    throw batchException;
-}
+    Thread.Sleep(5000);
+    response = batch.GetResults();
+} while (!(new List<string> { "Stopped", "Finished" }).Contains((string)response.status));
+Console.WriteLine(response);
 ```
 
 > Success (201 Created)
@@ -455,69 +444,46 @@ curl -X POST \
 ```
 
 ```csharp
-List<string> searches = new List<string>(
-    new string[] {
-        "restaurant new york'",
-        "restaurant manhattan",
-        "restaurant 10019"
-    }
-);
-api Api = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-// Create a new batch
-int batchId = batchRequest.Create();
-var parameters = new api.Parameters();
-parameters.Add("batch-id", batchId);
-parameters.Add("search-engine", "google");
-parameters.Add("country", "USA");
-parameters.Add("telephone", "+1 212-554-1515");
-parameters.Add("google-location", "New York, NY");
-parameters.Add("search-terms", searches);
-parameters.Add("urls", "['le-bernardin.com']");
-parameters.Add("business-names", "['Le Bernardin']");
-var jobId = Api.Post("/v4/rankings/bulk-search", parameters);
-
-if (jobId.ResponseStatus == ResponseStatus.Completed)
+List<string> searches = new List<string>
 {
-    dynamic job = JsonConvert.DeserializeObject(jobId.Content);
-    if (!job.success)
-    {
-       string message = "Error adding job";
-       var batchException = new ApplicationException(message + job.errors, job.ErrorException);
-       throw batchException;
-    }
+    "restaurant new york",
+    "restaurant manhattan",
+    "restaurant 10019"
+};
+
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.CreateBatch();
+Console.WriteLine("Created batch ID {0}", batch.GetId());
+Parameters parameters = new Parameters
+{
+    ["search-engine"] = "google",
+    ["country"] = "USA",
+    ["google-location"] = "New York, NY",
+    ["search-terms"] = searches,
+    ["urls"] = new List<string> { "le-bernardin.com" },
+    ["business-names"] = new List<string>() { "Le Bernardin" }
+};
+try
+{
+    // Add jobs to batch
+    dynamic jobResponse = batch.AddJob("/v4/rankings/bulk-search", parameters);
+    Console.WriteLine("Added job with IDs {0}", jobResponse["job-ids"]);
 }
-else
+catch (GeneralException exception)
 {
-    throw new ApplicationException(jobId.ErrorMessage);
+    Console.WriteLine(exception.Message);
 }
 
-// Commit the batch, resturns true or false
-bool commit = batchRequest.Commit(batchId);
 
-// Poll for results. In a real world example you should do this in a backgroud process, such as HangFire,  or use the Task Parallel Library to create a BackGroundWorker Task.
-// It is bad practice to use Thread.Sleep(). This is only for the example and will actually freeze the UI until the while loop is finished. 
-
-var results = batchRequest.GetResults(batchId);
-dynamic rankingResults = JsonConvert.DeserializeObject(results.Content);
-
-if (rankingResults.success)
+batch.Commit();
+Console.WriteLine("Batch committed successfully, awaiting results.");
+dynamic response;
+do
 {
-    while (rankingResults.status != "Stopped" || rankingResults.status != "Finished")
-    {
-        Thread.Sleep(10000);
-        results = batchRequest.GetResults(batchId);
-        rankingResults = JsonConvert.DeserializeObject(results.Content);
-    }
-    return rankingsResults;
-}
-else
-{
-    const string message = "Error Retrieving batch results ";
-    var batchException = new ApplicationException(message + rankingResults.errors, results.ErrorException);
-    throw batchException;
-}
+    Thread.Sleep(5000);
+    response = batch.GetResults();
+} while (!(new List<string> { "Stopped", "Finished" }).Contains((string)response.status));
+Console.WriteLine(response);
 ```
 
 > Success (201 Created)

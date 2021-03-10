@@ -31,13 +31,14 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("name", "Le Bernardin");
-parameters.Add("company-url", "http://www.le-bernardin.com");
-
-var success = request.Post("/v1/clients-and-locations/clients", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+    {
+        { "name", "Le Bernardin" },
+        { "company-url", "le-bernardin.com" }
+    };
+Response response = api.Post("/v1/clients-and-locations/clients", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -102,12 +103,14 @@ curl -X PUT \
 ### Update a client
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("name", "Le Bernardin Cafe");
-
-var success = request.Put("/v1/clients-and-locations/clients/<client_id>", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+    {
+        { "name", "Le Bernardin" },
+        { "company-url", "le-bernardin.com" }
+    };
+Response response = api.Put("/v1/clients-and-locations/clients/" + clientId, parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -156,11 +159,18 @@ if ($response->isSuccess()) {
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var client_id = 36447;
-
-var success = request.Delete("/v1/clients-and-locations/clients/" + client_id);
+int clientId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters { };
+Response response = api.Delete($"/v1/clients-and-locations/clients/{clientId}", parameters);
+if (response.IsSuccess())
+{
+    Console.WriteLine("Successfully deleted client");
+}
+else
+{
+    Console.WriteLine(response.GetContent());
+}
 ```
 
 > Success (200 OK)
@@ -205,11 +215,10 @@ print_r($response->getResult());
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-var clientId = 36447;
-var success = request.Get("/v1/clients-and-locations/clients/" + clientId + "", parameters);
+int clientId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Get($"/v1/clients-and-locations/clients/{clientId}");
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -270,12 +279,12 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("q", "BrightLocal");      
-		         
-var success = request.Put("/v1/clients-and-locations/clients/search", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+       { "q", "BrightLocal" }
+};
+Response response = api.Get("/v1/clients-and-locations/clients/search", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)

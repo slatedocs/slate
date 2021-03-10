@@ -51,23 +51,24 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "location-id", 1 },
+    { "report-name", "Le Bernardin" },
+    { "business-name", "Le Bernardin" },
+    { "phone", "+1 212-554-1515" },
+    { "address-1", "155 West 51st Street" },
+    { "business-location", "New York, NY" },
+    { "postcode", "10019" },
+    { "website", "le-bernardin.com" },
+    { "business-type", "Restaurant" },
+    { "state-code", "NY" },
+    { "primary-location", "10019" },
+};
 
-var parameters = new api.Parameters();
-parameters.Add("location-id", 1);
-parameters.Add("report-name", "Sample Citation Tracker Report");
-parameters.Add("business-name", "Le Bernardin");
-parameters.Add("address-1", "155 West 51st Street");
-parameters.Add("address-2", "The Equitable Bldg");
-parameters.Add("business-location", "NY, New York");
-parameters.Add("phone", "+1 212-554-1515");
-parameters.Add("postcode", "10020");
-parameters.Add("website", "le-bernardin.com");
-parameters.Add("business-type", "Restaurant");
-parameters.Add("state-code", "NY");
-parameters.Add("primary-location", "10020");
-
-var success = request.Post("/v2/ct/add", parameters);
+dynamic response = api.Post("v2/ct/add", parameters).GetContent();
+Console.WriteLine(response);
 ```
 
 > Success (200 OK)
@@ -166,22 +167,25 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "location-id", 1 },
+    { "report-id", 682 },
+    { "report-name", "Le Bernardin updated" },
+    { "business-name", "Le Bernardin" },
+    { "phone", "+1 212-554-1515" },
+    { "address-1", "155 West 51st Street" },
+    { "business-location", "New York, NY" },
+    { "postcode", "10019" },
+    { "website", "le-bernardin.com" },
+    { "business-type", "Restaurant" },
+    { "state-code", "NY" },
+    { "primary-location", "10019" },
+};
 
-var parameters = new api.Parameters();
-parameters.Add("location-id", 1);
-parameters.Add("report-id", 682);
-parameters.Add("report-name", "Sample Citation Tracker Report");
-parameters.Add("business-name", "Le Bernardin");
-parameters.Add("address-1", "155 West 51st Street");
-parameters.Add("address-2", "The Equitable Bldg");
-parameters.Add("business-location", "NY, New York");
-parameters.Add("phone", "+1 212-554-1515");
-parameters.Add("website", "le-bernardin.com");
-parameters.Add("business-type", "Restaurant");
-parameters.Add("state-code", "NY");
-
-var success = request.Post("/v2/ct/update", parameters);
+dynamic response = api.Post("v2/ct/update", parameters).GetContent();
+Console.WriteLine(response);
 ```
 
 > Success (200 OK)
@@ -260,12 +264,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-        parameters.Add("report-id", "682");
-
-var results = request.Get("/v2/ct/get", parameters);
+int reportId = 682;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response report = api.Get("v2/ct/get", new Parameters { { "report-id", reportId } });
+Console.WriteLine(report.GetContent());
 ```
 
 > Success (200 OK)
@@ -360,12 +362,14 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-        parameters.Add("report-id", "682");
-
-var success = request.put("/v2/ct/run", parameters);
+int reportId = 682;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "report-id", reportId }
+};
+Response response = api.Post("v2/ct/run", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -423,12 +427,12 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("report-id", "682");
-
-var success = request.Post("/v2/ct/delete", parameters);
+int reportId = 682;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response status = api.Post(
+    "v2/ct/delete",
+    new Parameters { { "report-id", reportId } });
+Console.WriteLine(status.GetContent());
 ```
 
 > Success (200 OK)
@@ -482,13 +486,11 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-
-var results = request.Get("/v2/ct/get-all", parameters);
+int locationId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response reports = api.Get("v2/ct/get-all");
+Console.WriteLine(reports.GetContent());
 ```
-
 
 > Success (200 OK)
 
@@ -632,12 +634,13 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("report-id", "2457");
-
-var results = request.Get("/v2/ct/get-results", parameters);
+int reportId = 2457;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Get("v2/ct/get-results", new Parameters
+{
+    { "report-id", reportId }
+});
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)

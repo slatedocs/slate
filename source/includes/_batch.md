@@ -32,10 +32,9 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-int batchId = batchRequest.Create();
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.CreateBatch();
+Console.WriteLine("Created batch ID '{0}'", batch.GetId());
 ```
 
 > Success - status code 201 Created
@@ -116,11 +115,10 @@ curl -X PUT \
 
 ```csharp
 int batchId = 1;
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-// Commit the batch, resturns true or false
-bool commit = batchRequest.Commit(batchId);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.GetBatch(batchId);
+batch.Commit();
+Console.WriteLine("Batch committed successfully");
 ```
 
 > Success - status code 200 OK
@@ -186,10 +184,9 @@ curl 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=<INSERT_API_K
 
 ```csharp
 int batchId = 1;
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-var results = batchRequest.GetResults(batchId);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.GetBatch(batchId);
+Console.WriteLine(batch.GetResults());    
 ```
 
 > Success - status code 200 OK
@@ -283,10 +280,10 @@ curl -X DELETE 'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=<IN
 
 ```csharp
 int batchId = 1;
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-var success = batchRequest.Delete(batchId);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.GetBatch(batchId);
+batch.Delete();
+Console.WriteLine("Batch deleted successfully");
 ```
 
 > Success - status code 200 Ok
@@ -347,10 +344,10 @@ curl -X PUT
 
 ```csharp
 int batchId = 1;
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-var success = batchRequest.Stop(batchId);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.GetBatch(batchId);
+batch.Stop();
+Console.WriteLine("Batch stoped successfully");
 ```
 
 > Success - status code 200 Ok

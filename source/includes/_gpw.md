@@ -56,26 +56,27 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("location_id", 1);
-parameters.Add("report_name", "Sample SEO Check-Up Report");
-parameters.Add("business_names", "Le Bernardin");
-parameters.Add("schedule", "Adhoc");
-parameters.Add("day_of_month", "2");
-parameters.Add("report_type", "with");
-parameters.Add("address1", "155 Weest 51st Street");
-parameters.Add("address2", "");
-parameters.Add("city", "New York");
-parameters.Add("state_code", "NY");
-parameters.Add("postcode", "10019");
-parameters.Add("phone_number", "+1 212-554-1515");
-parameters.Add("country", "USA");
-parameters.Add("business-category", "Restaurant");
-parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
-
-var success = request.Post("/v4/gpw/add", parameters);
+Api api = new Api(apiKey, apiSecret);
+Parameters parameters = new Parameters
+{
+    { "location_id", 1 },
+    { "report_name", "Le Bernardin" },
+    { "business_names", "Le Bernardin" },
+    { "schedule", "Adhoc" },
+    { "day_of_month", "2" },
+    { "report_type", "with" },
+    { "address1", "155 West 51st Street" },
+    { "address2", "" },
+    { "city", "New York" },
+    { "state_code", "NY" },
+    { "google_location", "New York, NY" },
+    { "postcode", "10019" },
+    { "phone_number", "+1 212-554-1515" },
+    { "country", "USA" },
+    { "search_terms", new List<string> { "restaurant manhattan", "cafe new york" } },
+};
+Response response = api.Post("/v4/gpw/add", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 
@@ -181,27 +182,18 @@ curl -X PUT \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+int reportId = 1;
+Api api = new Api(apiKey, apiSecret);
+Parameters parameters = new Parameters
+{
 
-var reportId = 1;
-var parameters = new api.Parameters();
-parameters.Add("location_id", 1);
-parameters.Add("report_name", "Sample SEO Check-Up Report");
-parameters.Add("business_names", "Le Bernardin");
-parameters.Add("schedule", "Adhoc");
-parameters.Add("day_of_month", "2");
-parameters.Add("report_type", "with");
-parameters.Add("address1", "155 Weest 51st Street");
-parameters.Add("address2", "");
-parameters.Add("city", "New York");
-parameters.Add("state_code", "NY");
-parameters.Add("postcode", "10019");
-parameters.Add("phone_number", "+1 212-554-1515");
-parameters.Add("country", "USA");
-parameters.Add("business-category", "Restaurant");
-parameters.Add("search-terms", "['restaurant manhattan', 'cafe new york']");
+    { "location-id", 1 },
+    { "business-names", "Le Bernardin" },
+    { "contact-telephone", "+1 212-554-1515" },
 
-var success = request.Put("/v4/gpw/" + reportId + "", parameters);
+};
+Response response = api.Put($"/v4/gpw/{reportId}", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -284,12 +276,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var reportId = 1;
-var parameters = new api.Parameters();
-
-var results = request.Get("/v4/gpw/" + reportId + "", parameters);
+int reportId = 1;
+Api api = new Api(apiKey, apiSecret);
+Response response = api.Get($"v4/gpw/{reportId}");
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -391,11 +381,17 @@ curl -X DELETE \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var reportId = 1;
-var parameters = new api.Parameters();
-var success = request.Delete("/v4/gpw/" + reportId + "", parameters);
+int reportId = 1;
+Api api = new Api(apiKey, apiSecret);
+Response response = api.Delete($"/v4/gpw/{reportId}");
+if (response.IsSuccess())
+{
+    Console.WriteLine("Successfully deleted report.");
+}
+else
+{
+    Console.WriteLine(response.GetContent());
+}
 ```
 
 
@@ -456,11 +452,9 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-
-var results = request.Get("/v4/gpw", parameters);
+Api api = new Api(apiKey, apiSecret);
+Response response = api.Get("/v4/gpw/");
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -544,12 +538,10 @@ curl -X PUT \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-        parameters.Add("report-id", "1");
-
-var success = request.Put("/v4/gpw/run", parameters);
+int reportId = 860;
+Api api = new Api(apiKey, apiSecret);
+Response response = api.Put("/v4/gpw/run", new Parameters { ["report-id"] = reportId });
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -623,12 +615,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var reportId = 1;
-var parameters = new api.Parameters();
-
-var results = request.Get("/v4/gpw/" + reportId + "/results", parameters);
+int reportId =1;
+Api api = new Api(apiKey, apiSecret);
+Response response = api.Get($"/v4/gpw/{reportId}/results");
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)

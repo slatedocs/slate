@@ -59,20 +59,31 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Dictionary<string, object> directories = new Dictionary<string, object>()
+{
+    {
+        "yellowbot", new {
+            url = "https://www.yellowbot.com/le-bernardin-new-york-ny.html",
+            include = true
+        }
+    }
+}; 
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "location-id", 1 },
+    { "report-name", "Le Bernardin" },
+    { "business-name", "Le Bernardin" },
+    { "contact-telephone", "+1 212-554-1515" },
+    { "address1", "155 West 51st Street" },
+    { "city", "New York" },
+    { "postcode", "10019" },
+    { "country", "USA" },
+    { "directories", directories }
+};
 
-var parameters = new api.Parameters();
-parameters.Add("location-id", 1);
-parameters.Add("report-name", "Sample Citation Tracker Report");
-parameters.Add("business-name", "Le Bernardin");            
-parameters.Add("contact-telephone", "+1 212-554-1515");
-parameters.Add("address1", "155 Weest 51st Street");
-parameters.Add("address2", "");
-parameters.Add("city", "New York");            
-parameters.Add("postcode", "10019");
-parameters.Add("country", "USA"); // USA only
-
-var success = request.Post("/v4/rf/add", parameters);
+dynamic response = api.Post("v4/rf/add", parameters).GetContent();
+Console.WriteLine(response);         
 ```
 
 > Example of specifying directories
@@ -211,15 +222,31 @@ curl -X PUT \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+int reportId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic directories = new
+{
+    yellowbot = new
+    {
+        url = "https://www.yellowbot.com/le-bernardin-new-york-ny.html",
+        include = true
+    },
+    yelp = new
+    {
+        url = "",
+        include = false
+    }
+};
 
-var reportId = 1;
-var parameters = new api.Parameters();
-parameters.Add("location-id", 1);
-parameters.Add("business-name", "Le Bernardin");
-parameters.Add("contact-telephone", "+1 212-554-1515");
- 
-var success = request.Put("/v4/rf/" + reportId + "", parameters);
+Parameters parameters = new Parameters
+{
+    { "location-id", 1 },
+    { "report-name", "Le Bernardin updated" },
+    { "directories", directories }
+};
+
+dynamic reviews = api.Put($"v4/rf/{reportId}", parameters).GetContent();
+Console.WriteLine(reviews);
 ```
 
 > Example of modifying directories
@@ -320,10 +347,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 1;
-var parameters = new api.Parameters();
-var results = request.Get("v4/rf/" + reportId + "", parameters);
+int reportId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic report = api.Get($"v4/rf/{reportId}").GetContent();
+Console.WriteLine(report);
 ```
 
 > Success (200 OK)
@@ -504,10 +531,10 @@ curl -X DELETE \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 1;
-var parameters = new api.Parameters();
-var success = request.Delete("/v4/rf/" + reportId + "", parameters);
+int reportId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic status = api.Delete($"v4/rf/{reportId}").GetContent();
+Console.WriteLine(status);
 ```
 
 > Success (200 OK)
@@ -578,9 +605,9 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var parameters = new api.Parameters();
-var results = request.Get("/v4/rf", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic report = api.Get("v4/rf").GetContent();
+Console.WriteLine(report);
 ```
 
 > Success (200 OK)
@@ -679,12 +706,15 @@ curl -X GET \
  -d 'q=My+Sample+Query' \	
   https://tools.brightlocal.com/seo-tools/api/v4/rf/search
 ```
+
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 1;
-var parameters = new api.Parameters();
-parameters.Add("q", "Le Bernardin");            
-var results = request.Get("/v4/rf/search", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "q", "Le Bernardin" }
+};
+dynamic report = api.Get("v4/rf/search", parameters).GetContent();
+Console.WriteLine(report);
 ```
 
 
@@ -762,10 +792,14 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 141;
-var parameters = new api.Parameters();
-var results = request.Get(/"v4/rf/" + reportId + "/reviews", parameters);
+int reportId = 141;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "limit", 100 }
+};
+dynamic reviews = api.Get($"v4/rf/{reportId}/reviews", parameters).GetContent();
+Console.WriteLine(reviews);
 ```
 
 > Success (200 OK)
@@ -892,10 +926,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 141;
-var parameters = new api.Parameters();
-var results = request.Get("/v4/rf/" + reportId + "/reviews/count", parameters);
+int reportId = 141;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic response = api.Get($"v4/rf/{reportId}/reviews/count").GetContent();
+Console.WriteLine(response);
 ```
 
 > Success (200 OK)
@@ -957,10 +991,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 141;
-var parameters = new api.Parameters();
-var growth = request.Get("v4/rf/" + reportId + "/reviews/growth", parameters);
+int reportId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic grows = api.Get("v4/rf/{reportId}/reviews/growth").GetContent();
+Console.WriteLine(grows);
 ```
 
 Get count and percentage of new reviews since last report run.
@@ -1027,10 +1061,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 141;
-var parameters = new api.Parameters();
-var directories = request.Get("/v4/rf/" + reportId + "/directories", parameters);
+int reportId = 141;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic directories = api.Get($"v4/rf/{reportId}/directories").GetContent();
+Console.WriteLine(directories);
 ```
 
 > Success (200 OK)
@@ -1209,10 +1243,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 141;
-var parameters = new api.Parameters();
-var stats = request.Get("/v4/rf/" + reportId + "/directories/stats", parameters);
+int reportId = 141;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic response = api.Get("v4/rf/{reportId}/directories/stats").GetContent();
+Console.WriteLine(response);
 ```
 
 > Success (200 OK)
@@ -1304,10 +1338,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var reportId = 141;
-var parameters = new api.Parameters();
-var stars = request.Get("/v4/rf/" + reportId + "/stars/count", parameters);
+int reportId =141;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic response = api.Get($"v4/rf/{reportId}/stars/count").GetContent();
+Console.WriteLine(response);
 ```
 
 > Success (200 OK)

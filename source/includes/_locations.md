@@ -115,22 +115,94 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+dynamic opening_hours = new
+{
+regular = new Dictionary<string, object>()
+    {
+        { "apply-to-all" , false },
+        {  "mon" , new {
+                        status = "open",
+                        hours = new List<object>{
+                            new {
+                                start = "10:00",
+                                end = "18:00"
+                            }
+                        }
+                  }
+        },
+        {  "tue" , new {
+                        status = "split",
+                        hours = new List<object>{
+                            new {
+                                start = "10:00",
+                                end = "12:00"
+                            },
+                            new {
+                                start = "13:00",
+                                end = "18:00"
+                            },
+                        }
+                  }
+        },
+        {  "wed" , new {
+                        status = "24hrs",
+                  }
+        },
+        {  "thu" , new {
+                        status = "open",
+                        hours = new List<object>{
+                            new {
+                                start = "10:00",
+                                end = "18:00"
+                            }
+                        }
+                  }
+        },
+        {  "fri" , new {
+                        status = "open",
+                        hours = new List<object>{
+                            new {
+                                start = "10:00",
+                                end = "18:00"
+                            }
+                        }
+                  }
+        },
+        {  "sat" , new {
+                        status = "closed",
+                  }
+        },
+        {  "sun" , new {
+                        status = "closed",
+                  }
+        },
+    },
+special = new List<object>()
+{
+    new {
+        date = "2021-01-27",
+        status = "closed",
+    }
+}
+};
 
-var parameters = new api.Parameters();
-parameters.Add("name", "Le Bernardin");
-parameters.Add("location-reference", "LE-BERNARDIN-10019");
-parameters.Add("url", "http://le-bernardin.com");
-parameters.Add("business-category-id", "605");
-parameters.Add("country", "USA"); // 3 Letter iso code
-parameters.Add("address1", "155 Weest 51st Street");
-parameters.Add("address2", "");
-parameters.Add("region", "NY"); // State or Region
-parameters.Add("city", "New York");
-parameters.Add("postcode", "10019");
-parameters.Add("telephone", "+1 212-554-1515");
-
-var success = request.Post("/v2/clients-and-locations/locations/", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "name", "Le Bernardin" },
+    { "location-reference", "LE-BERNARDIN-1009969" },
+    { "url", "le-bernardin.com" },
+    { "business-category-id", "605" },
+    { "country", "USA"},
+    { "address1", "155 Weest 51st Street"},
+    { "region", "NY"},
+    { "city", "New York"},
+    { "postcode", "10019"},
+    { "telephone", "+1 212-554-1515"},
+    { "opening-hours", opening_hours }
+};
+Response response = api.Post("v2/clients-and-locations/locations/", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -273,23 +345,33 @@ curl -X PUT \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var locationId = 1;
-var parameters = new api.Parameters();
-parameters.Add("name", "Le Bernardin");
-parameters.Add("location-reference", "LE-BERNADIN-10019");
-parameters.Add("url", "http://le-bernardin.com");
-parameters.Add("business-category-id", "605");
-parameters.Add("country", "USA"); // 3 Letter iso code
-parameters.Add("address1", "155 Weest 51st Street");
-parameters.Add("address2", "");
-parameters.Add("region", "NY"); // State or Region
-parameters.Add("city", "New York");
-parameters.Add("postcode", "10019");
-parameters.Add("telephone", "+1 212-554-1515");
-
-var success = request.Put("/v2/clients-and-locations/locations/" + locationId + "", parameters);
+int locationId =1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "name", "Le Bernardin" },
+    { "location-reference", "LE-BERNARDIN-100999" },
+    { "url", "le-bernardin.com" },
+    { "business-category-id", "605" },
+    { "country", "USA"},
+    { "address1", "155 Weest 51st Street"},
+    { "region", "NY"},
+    { "city", "New York"},
+    { "postcode", "10019"},
+    { "telephone", "+1 212-554-1515"},
+    { "opening-hours",  new
+        { special = new List<object>()
+            {
+                new {
+                    date = "2021-12-31",
+                    status = "closed",
+                }
+            }
+        }
+    }
+};
+Response response = api.Put($"/v2/clients-and-locations/locations/{locationId}", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -386,12 +468,17 @@ if ($response->isSuccess()) {
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var locationId = 1;
-var parameters = new api.Parameters();
-
-var success = request.Delete("/v2/clients-and-locations/locations/" + locationId + "", parameters);
+int locationId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Delete($"/v2/clients-and-locations/locations/{locationId}");
+if (response.IsSuccess())
+{
+    Console.WriteLine("Location successfully deleted.");
+}
+else
+{
+    Console.WriteLine(response.GetContent());
+}
 ```
 
 > Success (200 OK)
@@ -436,12 +523,10 @@ print_r($response->getResult());
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var locationId = 1;
-var parameters = new api.Parameters();
-
-var success = request.Get("/v2/clients-and-locations/locations/" + locationId + "", parameters);
+int locationId = 1;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Get($"/v2/clients-and-locations/locations/{locatonId}");
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -533,10 +618,12 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var parameters = new api.Parameters();
-parameters.Add("q", "BrightLocal");
-var success = request.Get("/v2/clients-and-locations/locations/search", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+       { "q", "BrightLocal" }
+};
+Response response = api.Get("/v2/clients-and-locations/locations/search", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
