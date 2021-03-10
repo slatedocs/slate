@@ -44,58 +44,42 @@ print_r($response->getResult());
 ```
 
 ```csharp
-api Api = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-batchApi batchRequest = new batchApi(Api);
-
-// Create a new batch
-int batchId = batchRequest.Create();
-
-var parameters = new api.Parameters();
-parameters.Add("batch-id", batchId);
-parameters.Add("website-url", "http://le-bernardin.com");   
-
-var jobId = Api.Post("/v4/seo/offsite", parameters);
-
-if (jobId.ResponseStatus == ResponseStatus.Completed)
+List<string> directories = new List<string>
 {
-    dynamic job = JsonConvert.DeserializeObject(jobId.Content);
-    if (!job.success)
+    "http://www.gramercytavern.com/",
+    "https://bodegawinebar.com/"
+};
+
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Batch batch = api.CreateBatch();
+Console.WriteLine("Created batch ID {0}", batch.GetId());
+foreach (string directory in directories)
+{
+    Parameters parameters = new Parameters
     {
-        string message = "Error adding job";
-        var batchException = new ApplicationException(message + job.errors, job.ErrorException);
-        throw batchException;
+        { "website-url", directory }
+    };
+    try
+    {
+        // Add jobs to batch
+        dynamic jobResponse = batch.AddJob("/v4/seo/offsite", parameters);
+        Console.WriteLine("Added job with ID {0}", jobResponse["job-id"]);
+    }
+    catch (GeneralException exception)
+    {
+        Console.WriteLine(exception.Message);
     }
 }
-else
+
+batch.Commit();
+Console.WriteLine("Batch committed successfully, awaiting results.");
+dynamic response;
+do
 {
-    throw new ApplicationException(jobId.ErrorMessage);
-}
-
-// Commit the batch, resturns true or false
-bool commit = batchRequest.Commit(batchId);
-
-// Poll for results. In a real world example you should do this in a background process, such as HangFire, or use the Task Parallel Library to create a BackGroundWorker Task.
-// It is bad practice to use Thread.Sleep(). This is only for the example and will actually freeze the UI until the while loop is finished. 
-
-var results = batchRequest.GetResults(batchId);
-dynamic offsiteResults = JsonConvert.DeserializeObject(results.Content);
-
-if (offsiteResults.success)
-{
-    while (offsiteResults.status != "Stopped" || offsiteResults.status != "Finished")
-    {
-        Thread.Sleep(10000);
-        results = batchRequest.GetResults(batchId);
-        offsiteResults = JsonConvert.DeserializeObject(results.Content);
-    }
-    return results;
-}
-else
-{
-    const string message = "Error Retrieving batch results ";
-    var batchException = new ApplicationException(message, results.ErrorException);
-    throw batchException;
-}
+    Thread.Sleep(5000);
+    response = batch.GetResults();
+} while (!(new List<string> { "Stopped", "Finished" }).Contains((string)response.status));
+Console.WriteLine(response);
 ```
 
 > Success (201 Created)

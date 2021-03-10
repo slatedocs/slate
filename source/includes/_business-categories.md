@@ -23,8 +23,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>");
-var results = request.Get("/seo-tools/api/v1/business-categories/USA");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+string country = "USA";
+Response response = api.Get("/v1/business-categories/" + country);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)

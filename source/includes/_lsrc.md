@@ -39,17 +39,19 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+    {
+        { "location-id", 1},
+        { "name", "Le Bernardin" },
+        { "schedule", "Adhoc" },
+        { "search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan" },
+        { "website-addresses", new List<string> { "le-bernardin.com", "le-bernardin.ca" } },
+        { "search-engines", "google,google-mobile,google-local,bing,bing-local" }
 
-var parameters = new api.Parameters();
-parameters.Add("location-id", 1);
-parameters.Add("name", "Le Bernardin");
-parameters.Add("schedule", "Adhoc");
-parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
-parameters.Add("website-addresses", JsonConvert.SerializeObject("['le-bernardin.com', 'le-bernardin2.com']"));
-parameters.Add("search-engines", "google,google-mobile,google-local,bing,bing-local");
-
-var success = request.Post("/v2/lsrc/add", parameters);
+};
+Response response = api.Post("/v2/lsrc/add", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -140,18 +142,20 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "location-id", 1 },
+    { "campaign-id", 9907 },
+    { "name", "Le Bernardin" },
+    { "schedule", "Adhoc" },
+    { "search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan" },
+    { "website-addresses", new List<string> { "le-bernardin.com", "le-bernardin.ca" } },
+    { "search-engines", "google,google-mobile,google-local,bing,bing-local" }
 
-var parameters = new api.Parameters();
-parameters.Add("location-id", "1");
-parameters.Add("campaign-id", "9907");
-parameters.Add("name", "Le Bernardin");
-parameters.Add("schedule", "Adhoc");
-parameters.Add("search-terms", "Restaurant\nfood+nyc\ndelivery+midtown+manhattan");
-parameters.Add("website-addresses", JsonConvert.SerializeObject("['le-bernardin.com', 'le-bernardin2.com']"));
-parameters.Add("search-engines", "google,google-mobile,google-local,bing, bing-local");
-
-var success = request.Post("/v2/lsrc/update", parameters);
+};
+Response response = api.Post("/v2/lsrc/update", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -226,12 +230,20 @@ if ($response->isSuccess()) {
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("campaign-id", "9907");
-
-var success = request.Delete("/v2/lsrc/delete", parameters);
+int campaignId = 9907;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+   { "campaign-id", campaignId }
+};
+Response response = api.Post("/v2/lsrc/delete", parameters);
+if (response.IsSuccess())
+{
+    Console.WriteLine("Successfully deleted report");
+}
+else
+{
+    Console.WriteLine(response.GetContent());
+}
 ```
 
 > Success (200 OK)
@@ -285,9 +297,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-var parameters = new api.Parameters();
-var results = request.Get("/v2/lsrc/get-all", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters { };
+Response response = api.Get("v2/lsrc/get-all", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -369,12 +382,12 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("campaign-id", "50");
-
-var results = request.Get("/v2/lsrc/get", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+   { "campaign-id", 50 }
+};
+Response response = api.Get("/v2/lsrc/get", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -502,12 +515,12 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("campaign-id", "50");
-
-var success = request.Post("/v2/lsrc/run", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+   { "campaign-id", 50 }
+};
+Response response = api.Post("/v2/lsrc/run", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -566,12 +579,12 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("campaign-id", "50");
-
-var results = request.Get("/v2/lsrc/history/get", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+   { "campaign-id", 50 }
+};
+Response response = api.Get("/v2/lsrc/history/get", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -652,12 +665,12 @@ curl -X GET \
 ### Get Report Results
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("campaign-id", "9636");
-
-var results = request.Get("/v2/lsrc/results/get", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+   { "campaign-id", 9636 }
+};
+Response response = api.Get("/v2/lsrc/results/get", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)

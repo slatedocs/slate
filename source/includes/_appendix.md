@@ -35,11 +35,9 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-
-var success = request.Get("/v1/directories/all", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Get("v1/directories/all" );
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)

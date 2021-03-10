@@ -55,25 +55,25 @@ curl -X POST \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("location_id", 1);
-parameters.Add("report-name", "Sample Local Search Audit Report");
-parameters.Add("business-names", JsonConvert.SerializeObject("['Le Bernardin']"));
-parameters.Add("website-address", "le-bernardin.com");
-parameters.Add("address1", "155 Weest 51st Street");
-parameters.Add("address2", "");
-parameters.Add("city", "New York");
-parameters.Add("state-code", "NY");
-parameters.Add("postcode", "10019");
-parameters.Add("telephone", "+1 212-554-1515");
-parameters.Add("country", "USA");
-parameters.Add("business-category", "Restaurant");
-parameters.Add("primary-business-location", "NY, New York");
-parameters.Add("search-terms", JsonConvert.SerializeObject("['restaurant manhattan', 'cafe new york']"));
-
-var success = request.Post("/v4/lscu", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+{
+    { "report-name", "Le Bernardin" },
+    { "location-id", 1 },
+    { "business-names", new List<string> { "le-bernardin.com" } },
+    { "search-terms", new List<string> { "restaurant manhattan", "cafe new york" } },
+    { "website-address", "le-bernardin.com" },
+    { "country", "USA"},
+    { "address1", "155 Weest 51st Street"},
+    { "region", "NY"},
+    { "city", "New York"},
+    { "state-code", "10019"},
+    { "telephone", "+1 212-554-1515"},
+    { "primary-business-location", "NY, New York"},
+    { "exclude-sections", new List<string> { "social-channels" } },
+};
+Response response = api.Post("v4/lscu", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -233,19 +233,25 @@ curl -X PUT \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters
+    {
+        { "report-id", 1 },
+        { "location-id", 1 },
+        { "business-names", new List<string> { "le-bernardin.com" } },
+        { "search-terms", new List<string> { "restaurant manhattan", "cafe new york" } },
+        { "website-address", "le-bernardin.com" },
+        { "country", "USA"},
+        { "address1", "155 West 51st Street"},
+        { "region", "NY"},
+        { "city", "New York"},
+        { "telephone", "+2 212-554-1515"},
+        { "primary-business-location", "NY, New York"},
+        { "exclude-sections", new List<string> { "social-channels", "local-listings-and-reviews" } },
+    };
+Response response = api.Put("v4/lscu", parameters);
+Console.WriteLine(response.GetContent());
 
-var parameters = new api.Parameters();
-parameters.Add("location_id", "1");
-parameters.Add("report-id", "1");
-parameters.Add("postcode", "10019");
-parameters.Add("telephone", "+1 212-554-1515");
-parameters.Add("country", "USA");
-parameters.Add("business-category", "Restaurant");
-parameters.Add("primary-business-location", "NY, New York");
-parameters.Add("search-terms", JsonConvert.SerializeObject("['restaurant manhattan', 'cafe new york']"));
-
-var success = request.Put("/v4/lscu", parameters);
 ```
 
 > Supplying Local Directory URLs (see local-directory-urls parameter)
@@ -389,12 +395,10 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("report-id", "860");
-
-var results = request.Get("/v4/lscu", parameters);
+int reportId = 860;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Get("v4/lscu", new Parameters { ["report-id"] = reportId });
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -505,12 +509,10 @@ curl -X PUT \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("report-id", "860");
-
-var success = request.Put("/v4/lscu/run", parameters);
+int reportId = 860;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Put("v4/lscu/run", new Parameters { ["report-id"] = reportId });
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
@@ -589,12 +591,17 @@ curl -X DELETE \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("report-id", "860");
-
-var success = request.Delete("/v4/lscu", parameters);
+int reportId = 860;
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Response response = api.Delete("v4/lscu", new Parameters { ["report-id"] = reportId });
+if (response.IsSuccess())
+{
+    Console.WriteLine("Location successfully deleted.");
+}
+else
+{
+    Console.WriteLine(response.GetContent());
+}
 ```
 
 > Success (200 OK)
@@ -671,12 +678,12 @@ curl -X GET \
 ### Search Reports
 
 ```csharp
-api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-
-var parameters = new api.Parameters();
-parameters.Add("q", "Bodega Wine Bar");
-
-var results = request.Get("/v4/lscu/search", parameters);
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
+Parameters parameters = new Parameters {
+       { "q", "Bodega Wine Bar" }
+};
+Response response = api.Get("v4/lscu/search", parameters);
+Console.WriteLine(response.GetContent());
 ```
 
 > Success (200 OK)
