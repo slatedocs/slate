@@ -153,7 +153,7 @@ Create a delivery domain of a site in a given [environment](#administration-envi
 
 Required | &nbsp;
 ---------- | -----------
-`domain`<br/>*String* | The site's domain name.
+`domain`<br/>*string* | The site's domain name.
 
 Attributes | &nbsp;
 ------- | -----------

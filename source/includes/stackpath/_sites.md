@@ -366,3 +366,118 @@ Attributes | &nbsp;
 ------- | -----------
 `taskId` <br/>*string* | The task id related to the site deletion.
 `taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- List WAF Setting for a Site -------------------->
+
+### Retrieve WAF Settings for a Site
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/wafsettings/1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+   "data":{
+      "siteId":"1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36",
+      "stackId":"1415650d-1d02-4097-a79a-8f6e4bb4f483",
+      "apiUrls":[
+         "/test/this/way"
+      ],
+      "ddosSetting":{
+         "globalThreshold":"5000",
+         "burstThreshold":"110",
+         "subSecondBurstThreshold":"50"
+      },
+      "isMonitoring":false,
+      "listPolicyGroups":{
+         "policyGroups":[
+            {
+               "id":"8365e00f-a6c4-43a4-9f07-b830759737b8",
+               "name":"User Agents",
+               "policies":[
+                  {
+                     "id":"S28158056",
+                     "name":"Invalid User Agent Prevention",
+                     "description":"Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid as it does not fit the client's properties.",
+                     "action":"BLOCK",
+                     "enabled":false
+                  },
+                  {
+                     "id":"S28158057",
+                     "name":"Unknown User Agent Prevention",
+                     "description":"Challenge requests in which the HTTP header describing the user-agent (browser and platform) is missing or unknown.",
+                     "action":"HANDSHAKE",
+                     "enabled":false
+                  }
+               ]
+            },
+            {
+               "id":"a1b16009-d417-4c36-90c1-1732dd9f4994",
+               "name":"CSRF Attacks",
+               "policies":[
+                  {
+                     "id":"S28158072",
+                     "name":"CSRF",
+                     "description":"StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.",
+                     "action":"BLOCK",
+                     "enabled":true
+                  }
+               ]
+            },
+            {
+               "id":"379521f9-5d82-499e-a1b2-18f23800af1c",
+               "name":"Allow Known Bots",
+               "policies":[
+                  {
+                     "id":"S28158095",
+                     "name":"Google bot",
+                     "description":"Google bot",
+                     "action":"ALLOW",
+                     "enabled":true
+                  },
+                  {
+                     "id":"S28158196",
+                     "name":"AddSearch Bot",
+                     "description":"AddSearch Bot",
+                     "action":"ALLOW",
+                     "enabled":false
+                  }
+               ]
+            },
+            {
+               "id":"d694f10e-7faf-4517-bc5b-265e95c04442",
+               "name":"SPAM and Abuse",
+               "policies":[
+                  {
+                     "id":"S28158209",
+                     "name":"Form Submission Validation",
+                     "description":"Challenge user sessions and activities that seem to be aggressively using forms on your website to post spam content, generate new accounts, and more.",
+                     "action":"HANDSHAKE",
+                     "enabled":false
+                  }
+               ]
+            }
+         ]
+      }
+   }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/wafsettings/<a href="#administration-sites">:site_id</a></code>
+
+Retrieve the WAF Settings for a site.
+
+Attributes | &nbsp;
+------- | -----------
+`siteId`<br/>*string* | The ID of the site that the WAF settings belongs to.
+`stackId`<br/>*string* | The ID of the stack that a site belongs to.
+`ddosSetting`<br/>*object* | The DDOS Setting containing the different threshold values.
+`apiUrls`<br/>*array* | List of configured API urls.
+`isMonitoring`<br/>*boolean* | If the monitoring mode is enabled.
+`listPolicyGroups`<br/>*object* | An object containing the list of Policy Groups.
+`policyGroups`<br/>*array[object]* | A list of policy group object which contains id, name and list of policies.
+`policies`<br/>*array[object]* | A list of policies which contains id, name, description, action and enabled.
+
