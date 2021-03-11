@@ -118,3 +118,44 @@ Attributes | &nbsp;
 ------- | -----------
 `taskId` <br/>*string* | The task id related to the site deletion.
 `taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- CREATE A DELIVERY DOMAIN -------------------->
+
+### Create a delivery domain
+
+```shell
+curl -X POST \
+    -H "MC-Api-Key: your_api_key" \
+    -d "request_body" \
+    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliverydomains?siteId=a2fefb15-7e31-4c72-87e0-5a892e91c8d9"
+```
+
+> Request body example:
+
+```json
+{
+  "domain": "new-domain.com",
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliverydomains?siteId=:id</code>
+
+Create a delivery domain of a site in a given [environment](#administration-environments).
+
+Required | &nbsp;
+---------- | -----------
+`domain`<br/>*String* | The site's domain name.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the domain creation.
+`taskStatus` <br/>*string* | The status of the operation.
