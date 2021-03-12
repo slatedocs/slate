@@ -416,7 +416,36 @@ curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e30
         "verificationCode": "cmc-verification=8c8f5473-9306-4e16-a820-a747482e85e5",
         "status": "VERIFIED"
       }
-    ]
+    ],
+    "passwordPolicy": {
+      "constraints": [
+        {
+          "name": "min_password_length",
+          "value": 8,
+          "isMandatory": false
+        },
+        {
+          "name": "min_lowercase_letters",
+          "value": 1,
+          "isMandatory": true
+        },
+        {
+          "name": "min_uppercase_letters",
+          "value": 1,
+          "isMandatory": true
+        },
+        {
+          "name": "min_numbers",
+          "value": 1,
+          "isMandatory": true
+        },
+        {
+          "name": "min_special_characters",
+          "value": 1,
+          "isMandatory": true
+        }
+      ]
+    }
   }
 }
 ```
@@ -428,6 +457,12 @@ Attributes | &nbsp;
 `organization`<br/>*[Organization](#administration-organizations)* | The organization to which the verified domain belongs. *includes*:`id`,`name`, `entryPoint`.
 `autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
 `verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
+`passwordPolicy`<br/>*object*  | The password policy assigned to the organization. 
+`passwordPolicy.constraints`<br/>*Array[]* | List of password policy constraints objects with the following fields.
+`name`<br/>*string* | The name of the constraint.
+`value`<br/>*int* | The minimum value for the constraint.
+`isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
+
 
 <!-------------------- UPDATE SECURITY SETTINGS -------------------->
 ### Update security settings
