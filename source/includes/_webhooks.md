@@ -41,6 +41,8 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 | Opportunity  | `opportunity.created`, `opportunity.updated`, `opportunity.deleted`    |
 | Entity File  | `file.created`, `file.deleted`                                         |
 
+The Field Value webhook events do not include enrichment events by default. To enable enrichment webhooks, please contact support@affinity.co.
+
 ## Get all webhook subscriptions
 
 > Example Request
