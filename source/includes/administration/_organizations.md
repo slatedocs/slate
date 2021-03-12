@@ -470,6 +470,149 @@ Optional | &nbsp;
 
 Returns an HTTP status code 200, with an empty response body.
 
+<!-------------------- GET ORGANIZATION PASSWORD POLICY -------------------->
+
+### Get password policy
+`GET /organizations/organization_id/password_policy`
+
+Retrieve the password policy for the organization.
+
+```shell
+# Retrieve the organization's security settings
+curl "https://cloudmc_endpoint/api/v1/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "data": [
+        {
+            "name": "min_password_length",
+            "value": 8,
+            "isMandatory": true
+        },
+        {
+            "name": "min_lowercase_letters",
+            "value": 1,
+            "isMandatory": true
+        },
+        {
+            "name": "min_uppercase_letters",
+            "value": 1,
+            "isMandatory": true
+        },
+        {
+            "name": "min_numbers",
+            "value": 1,
+            "isMandatory": true
+        },
+        {
+            "name": "min_special_characters",
+            "value": 1,
+            "isMandatory": true
+        }
+    ]
+}
+```
+Attributes | &nbsp;
+---- | -----------
+*Array[]*| A list of password policy constraint objects with the following fields.
+`name`<br/>*string* | The name of the constraint.
+`value`<br/>*int* | The minimum value for the constraint.
+`isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
+
+<!-------------------- CREATE/UPDATE ORGANIZATION PASSWORD POLICY -------------------->
+### Create/Update password policy
+`PUT /organizations/:organization_id/security_settings`
+
+```shell
+# Update an organization's security settings
+curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/security_settings" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "request_body"
+```
+> Request body example:
+
+```json
+{
+   "passwordPolicy": {
+      "constraints": [
+         {
+               "name": "min_password_length",
+               "value": 8,
+               "isMandatory": false
+         },
+         {
+               "name": "min_lowercase_letters",
+               "value": 1,
+               "isMandatory": true
+         },
+         {
+               "name": "min_uppercase_letters",
+               "value": 1,
+               "isMandatory": true
+         },
+         {
+               "name": "min_numbers",
+               "value": 1,
+               "isMandatory": true
+         },
+         {
+               "name": "min_special_characters",
+               "value": 1,
+               "isMandatory": true
+         }
+      ]
+   },
+   "autoCreationEnabled": true,
+   "verifiedDomains": [ 
+	 	{ 
+			 "id": "29d66b1d-669a-439b-883a-d7c1e36e1ca6"
+		}
+	],
+	"defaultRole": {
+      "name": "guest",
+      "id": "6e022506-ab89-4676-859d-06d370b67417" 
+	}
+}
+```
+
+Create a new or update an existing password policy for an organization.
+
+This is the same endpoint which is used for creating/updating organization security settings. If the password policy related fields are passed along with the security related fields in the request, it will create or update the password policy along with modifying the security settings. Refer to [update security settings](#administration-update-security-settings) for security settings fields.
+
+Required | &nbsp;
+---- | ----
+`passwordPolicy`<br/>*object*  | The password policy that will be assigned to the organization. 
+`passwordPolicy.constraints`<br/>*Array[]* | List of password policy constraints objects with the following fields.
+`name`<br/>*string* | The name of the constraint.
+`value`<br/>*int* | The minimum value for the constraint.
+`isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
+
+Optional | &nbsp;
+---- | ----
+`defaultRole`<br/>*object*  | The role that will be assigned to new users logging into the organization with an email domain matching that of the organization's security settings. 
+`autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
+`verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of objects containing the ids of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
+
+Returns an HTTP status code 200, with an empty response body.
+
+<!-------------------- DELETE PASSWORD POLICY FOR ORGANIZATION -------------------->
+### Delete password policy
+`DELETE /organizations/:id/password_policy`
+
+Delete a password policy for an organization. Root reseller organization will not be able to delete its password policy. A sub-organization can delete its password policy
+
+```shell
+# Delete an organization
+curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+Returns an HTTP status code 204, with an empty response body.
+
 <!-------------------- GET MANAGEABLE CONNECTIONS OF ORGANIZATION -------------------->
 ### Get manageable connections of an organization
 `GET /organizations/:id/manageable_connections`
