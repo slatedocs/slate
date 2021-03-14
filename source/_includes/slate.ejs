@@ -138,7 +138,7 @@ under the License.
           <div class="lang-selector">
             <% for (var lang in language_tabs) { %>
               <% if (typeof language_tabs[lang] === 'object') { %>
-                <a href="#" data-language-name="<%= Object.keys(language_tabs[lang])[0] %>"><%= language_tabs[lang][Object.keys(language_tabs[lang])[0]]  %></a>
+                <a href="#" data-language-name="<%= Object.keys(language_tabs[lang])[0] %>"><%= language_tabs[lang][Object.values(language_tabs[lang])[0]]  %></a>
               <% } else { %>
                 <a href="#" data-language-name="<%= language_tabs[lang] %>"><%= language_tabs[lang] %></a>
               <% } %>
