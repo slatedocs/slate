@@ -516,7 +516,7 @@ Returns an HTTP status code 200, with an empty response body.
 Retrieve the password policy for the organization.
 
 ```shell
-# Retrieve the organization's security settings
+# Retrieve the organization's own or inherited password policy.
 curl "https://cloudmc_endpoint/api/v1/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
    -H "MC-Api-Key: your_api_key"
 ```
