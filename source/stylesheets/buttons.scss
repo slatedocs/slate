@@ -1,3 +1,10 @@
+$btnClasses: (
+  "danger": #e74c3c,
+  "info": #1e75d5,
+  "success": #2ecc71,
+  "warning": #f1c40f,
+);
+
 @mixin bg($bg) {
   background: $bg;
   &:hover {
@@ -13,7 +20,7 @@
   border-radius: 4px;
 }
 
-@mixin button($bg: #f8f8f8, $textColor: #444) {
+@mixin button($bg: transparent, $textColor: #444) {
   color: $textColor;
   @include bg($bg);
   @include borders($bg);
@@ -33,23 +40,19 @@
   border-bottom-right-radius: $rounded-border;
 }
 
-
 button {
   padding: 0.5em 1em;
   border-radius: 4px;
+  outline: none;
   @include button();
   &.btn {
-    &-success {
-      @include button(#2ecc71);
-    }
-    &-info {
-      @include button(#1e75d5, whitesmoke);
-    }
-    &-warning {
-      @include button(#f1c40f);
-    }
-    &-danger {
-      @include button(#e74c3c);
+    @each $className, $classColor in $btnClasses {
+      &-#{$className} {
+        @include button($classColor, whitesmoke);
+      }
+      &--outline__#{$className} {
+        outline: 1px solid $classColor;
+      }
     }
   }
 }
