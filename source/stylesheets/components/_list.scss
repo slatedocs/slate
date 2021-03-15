@@ -11,18 +11,30 @@ ul {
     }
     &--request-params {
       p {
-        margin: 0
+        margin: 0;
       }
       > li {
         padding: 4px 8px;
       }
       .param {
+        &__toggle {
+          padding: 0 5px;
+          color: white;
+          cursor: pointer;
+          transition: 400ms;
+          &.active {
+            transform: rotate(90deg);
+          }
+        }
         &__desc {
           display: block;
         }
         &__name {
           font-family: monospace;
           margin-right: 1em;
+        }
+        &__hidden {
+          display: none;
         }
         &__type {
           font-size: 0.85rem;
@@ -36,14 +48,16 @@ ul {
           margin: 5px 1.5em;
         }
         &__child {
+          &__active {
+            display: block !important;
+          }
           @for $depth from 1 to 10 {
             &#{$depth} {
-              min-height: 45px;
+              min-height: 35px;
               padding-left: #{$depth * 25px};
-              // background: lighten($color: $code-bg, $amount: 1%);
             }
           }
-          &1  {
+          &1 {
             margin-top: 10px;
             & + .param__child2 {
               margin: 0 !important;
@@ -52,10 +66,6 @@ ul {
               margin-top: 10px;
             }
           }
-        }
-
-        p {
-          margin: 0;
         }
       }
     }
