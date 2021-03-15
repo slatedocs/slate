@@ -458,7 +458,10 @@ Attributes | &nbsp;
 `autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
 `verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
 `passwordPolicy`<br/>*object*  | The password policy assigned to the organization. 
-`passwordPolicy.constraints`<br/>*Array[]* | List of password policy constraints objects with the following fields.
+`passwordPolicy.constraints`<br/>*Array[]* | List of password policy constraints. Each constraint contains -
+- `name`: A string that represents the constraint name.
+- `value`: An integer that represents the minimum value for the constraint.
+- `isMandatory`: A boolean flag to indicate if the constraint is mandatory or not.
 `name`<br/>*string* | The name of the constraint.
 `value`<br/>*int* | The minimum value for the constraint.
 `isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
