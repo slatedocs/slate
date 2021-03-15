@@ -436,7 +436,7 @@ This activity type is added to the feed whenever a settlement counter is added t
   "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
-  "type": "settlement-counter-added",
+  "type": "settlement-counter-updated",
   "claimNumber": "EXAMPLE3",
   "data": {
     "disputed": true,
@@ -452,7 +452,7 @@ This activity type is added to the feed whenever a settlement counter is added t
   "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
-  "type": "settlement-counter-added",
+  "type": "settlement-counter-updated",
   "claimNumber": "EXAMPLE3",
   "data": {
     "disputed": false,
