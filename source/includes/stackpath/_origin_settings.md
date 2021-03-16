@@ -1,6 +1,6 @@
 ## Origin settings
 
-Origin settings allow you to configure your site's primary and backup origin settings.
+Origin settings allow you to configure your site's primary and backup origins.
 
 <!-------------------- RETRIEVE ORIGIN SETTINGS -------------------->
 
@@ -73,8 +73,8 @@ Attributes | &nbsp;
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
 `origin.id` <br/> *UUID* | An origin's unique identifier. 
 `origin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
-`origin.dedicated` <br/> *boolean* | Specifies if an origin is dedicated to a CDN site. 
 `origin.siteId` <br/> *UUID*  | A site's unique identifier. 
+`origin.dedicated` <br/> *boolean* | Specifies if an origin is dedicated to a CDN site. 
 `origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. 
 `origin.username` <br/> *string* | Username to use when authenticating with the origin. 
 `origin.password` <br/> *string* | Password to use when authenticating with the origin. 
@@ -90,8 +90,8 @@ Attributes | &nbsp;
 `backupOrigin` <br/> *Object* | The origin to pull content from when the primary origin is not available.
 `backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
-`backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 
 `backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
+`backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 
 `backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. 
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
@@ -161,8 +161,8 @@ Attributes | &nbsp;
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
 `origin.id` <br/> *UUID* | An origin's unique identifier. 
 `origin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
-`origin.dedicated` <br/> *boolean* | Specifies if an origin is dedicated to a CDN site. 
 `origin.siteId` <br/> *UUID*  | A site's unique identifier. 
+`origin.dedicated` <br/> *boolean* | Specifies if an origin is dedicated to a CDN site. 
 `origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. To update origin.username and origin.password, this property must be set to true.
 `origin.username` <br/> *string* | Username to use when authenticating with the origin. 
 `origin.password` <br/> *string* | Password to use when authenticating with the origin. 
@@ -178,8 +178,8 @@ Attributes | &nbsp;
 `backupOrigin` <br/> *Object* | The secondary origin to pull content from when the primary origin is not available. 
 `backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
-`backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 
 `backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
+`backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 
 `backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. To update backupOrigin.username and backupOrigin.password, this property must be set to true.
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
