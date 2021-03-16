@@ -303,7 +303,7 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
     product_id: 7,
     type: "mark_price",
     price: "0.00401010",
-    annualized_basis: 25.12,    // in %
+    annualized_basis: "25.12",    // in %
     timestamp: 1561634049751430
 }
 ```
@@ -517,7 +517,7 @@ Any of the following events can be tracked by the reason field in this channel
     "client_order_id": ""               // Client order id
     "size": 100,                        // Order size
     "unfilled_size": 55,                // Unfilled size
-    "price": "9000.00"                  // Price of the order
+    "limit_price": "9000.00"                  // Price of the order
     "side": "buy"                       // Order side (buy or sell)
     "cancellation_reason": "cancelled_by_user"        // Cancellation reason in case of cancelled order, null otherwise
     "stop_order_type": "stop_loss_order",             // If a Stop Order -> "stop_loss_order"/"take_profit_order", null otherwise
