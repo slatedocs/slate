@@ -638,7 +638,7 @@ Returns an HTTP status code 200, with an empty response body.
 ### Delete password policy
 `DELETE /organizations/:id/password_policy`
 
-Delete a password policy for an organization. Root reseller organization will not be able to delete its password policy. A sub-organization can delete its password policy
+Delete a password policy for an organization. Root reseller organization will not be able to delete its password policy. A reseller sub-organization can delete its password policy
 
 ```shell
 # Delete an organization
