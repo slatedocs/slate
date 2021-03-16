@@ -458,13 +458,10 @@ Attributes | &nbsp;
 `autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
 `verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
 `passwordPolicy`<br/>*object*  | The password policy assigned to the organization. 
-`passwordPolicy.constraints`<br/>*Array[]* | List of password policy constraints. Each constraint contains -
-- `name`: A string that represents the constraint name.
-- `value`: An integer that represents the minimum value for the constraint.
-- `isMandatory`: A boolean flag to indicate if the constraint is mandatory or not.
-`name`<br/>*string* | The name of the constraint.
-`value`<br/>*int* | The minimum value for the constraint.
-`isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
+`passwordPolicy.constraints`<br/>*Array[Object]* | List of password policy constraints. Each constraint contains -
+`passwordPolicy.constraints.name`<br/>*string* | A string that represents the constraint name.
+`passwordPolicy.constraints.value`<br/>*int* | An integer that represents the minimum value for the constraint.
+`passwordPolicy.constraints.isMandatory`<br/>*boolean* | A boolean flag to indicate if the constraint is mandatory or not.
 
 
 <!-------------------- UPDATE SECURITY SETTINGS -------------------->
@@ -555,7 +552,7 @@ curl "https://cloudmc_endpoint/api/v1/organizations/e8d95716-26a9-4054-833e-81cd
 ```
 Attributes | &nbsp;
 ---- | -----------
-*Array[]*| A list of password policy constraint objects with the following fields.
+*Array[Object]*| A list of password policy constraint objects with the following fields.
 `name`<br/>*string* | The name of the constraint.
 `value`<br/>*int* | The minimum value for the constraint.
 `isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
@@ -624,10 +621,10 @@ This is the same endpoint which is used for creating/updating organization secur
 Required | &nbsp;
 ---- | ----
 `passwordPolicy`<br/>*object*  | The password policy that will be assigned to the organization. 
-`passwordPolicy.constraints`<br/>*Array[]* | List of password policy constraints objects with the following fields.
-`name`<br/>*string* | The name of the constraint.
-`value`<br/>*int* | The minimum value for the constraint.
-`isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
+`passwordPolicy.constraints`<br/>*Array[Object]* | List of password policy constraints objects with the following fields.
+`passwordPolicy.constraints.name`<br/>*string* | A string that represents the constraint name.
+`passwordPolicy.constraints.value`<br/>*int* | An integer that represents the minimum value for the constraint.
+`passwordPolicy.constraints.isMandatory`<br/>*boolean* | A boolean flag to indicate if the constraint is mandatory or not.
 
 Optional | &nbsp;
 ---- | ----
@@ -641,7 +638,7 @@ Returns an HTTP status code 200, with an empty response body.
 ### Delete password policy
 `DELETE /organizations/:id/password_policy`
 
-Delete a password policy for an organization. Root reseller organization will not be able to delete its password policy. A reseller sub-organization can delete its password policy
+Delete a password policy for an organization. Root reseller organization will not be able to delete its password policy. A sub-organization can delete its password policy
 
 ```shell
 # Delete an organization
