@@ -65,7 +65,7 @@ Attributes | &nbsp;
 ------- | -----------
 `siteId`<br/>*UUID*  | A site's unique identifier. 
 `stackId`<br/>*UUID*  | The ID of the stack that a site belongs to.
-`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site the origins are connected to.
+`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site that the origins are connected to.
 `domain`<br/>*string* | The domain of the site.
 `webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server are enabled. 
 `pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
@@ -87,7 +87,7 @@ Attributes | &nbsp;
 `origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured.
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*".
-`backupOrigin` <br/> *Object* | The origin to pull content from when the primary origin is not available.
+`backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available.
 `backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
@@ -151,7 +151,7 @@ Required | &nbsp;
 ------- | -----------
 `siteId`<br/>*UUID*  | A site's unique identifier. 
 `stackId`<br/>*UUID*  | The ID of the stack that a site belongs to.
-`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site the origins are connected to.
+`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site that the origins are connected to.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -175,7 +175,7 @@ Attributes | &nbsp;
 `origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured. To configure backupOrigin's settings, this property must be set to true. 
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
-`backupOrigin` <br/> *Object* | The secondary origin to pull content from when the primary origin is not available. 
+`backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available. 
 `backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
