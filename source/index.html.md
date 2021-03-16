@@ -32,6 +32,7 @@ includes:
   - administration/feedback_settings
   - administration/custom_fields
   - administration/quotas
+  - administration/activity_log
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
