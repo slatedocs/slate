@@ -123,7 +123,7 @@ curl -X PATCH \
 	"pullProtocol": "MATCH",
 	"hostHeader": "marvel.com",
 	"origin": {
-        "id": "d92531f4-28f5-456d-9b5f-d1cbb17ccfee"
+        "id": "d92531f4-28f5-456d-9b5f-d1cbb17ccfee",
 	    "sslValidationEnabled": true, 
         "commonCertificateName": "commonName"
 	}, 
@@ -159,7 +159,7 @@ Attributes | &nbsp;
 `pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
 `hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
-`origin.id` <br/> *UUID* | An origin's unique identifier. 
+`origin.id` <br/> *UUID* | An origin's unique identifier. Required when updating the primary origin's attributes. 
 `origin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `origin.siteId` <br/> *UUID*  | A site's unique identifier. 
 `origin.dedicated` <br/> *boolean* | Specifies if an origin is dedicated to a CDN site. 
@@ -176,7 +176,7 @@ Attributes | &nbsp;
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured. To configure backupOrigin's settings, this property must be set to true. 
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
 `backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available. 
-`backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
+`backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. If the id of the current secondary origin is not provided, a new secondary origin is configured, replacing the existing one which is disconnected from the site's scope.
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
 `backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 
@@ -189,4 +189,4 @@ Attributes | &nbsp;
 `backupOrigin.hostname` <br/> *string* | The backup origin's HTTP request hostname. Can be a valid IPv4 address or a valid domain name. 
 `backupOrigin.port` <br/> *int* | The backup origin's HTTP port. Must be one of [80, 8080, 443, 1935, 9091].
 `backupOrigin.securePort` <br/> *int* | The backup origin's HTTPS port. Must be one of [80, 8080, 443, 1935, 9091].
-`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
+`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority. Priority of a backupOrigin can only be configured while creating a new secondary origin [backupOrigin.id must be set to null]. By default, the priority of a backupOrigin is "ONE". If the priority is set to "ZERO", the backupOrigin replaces the primary origin which is disconnected from the site's scope.  
