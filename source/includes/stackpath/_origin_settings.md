@@ -124,7 +124,7 @@ curl -X PATCH \
 	"hostHeader": "marvel.com",
 	"origin": {
         "id": "d92531f4-28f5-456d-9b5f-d1cbb17ccfee",
-	    "sslValidationEnabled": true, 
+        "sslValidationEnabled": true, 
         "commonCertificateName": "commonName"
 	}, 
     "backupOriginEnabled": true, 
@@ -176,7 +176,7 @@ Attributes | &nbsp;
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured. To configure backupOrigin's settings, this property must be set to true. 
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
 `backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available. 
-`backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. If the id of the current secondary origin is not provided, a new secondary origin is configured, replacing the existing one which is disconnected from the site's scope.
+`backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. If the id of the current secondary origin is not provided, a new secondary gitorigin is configured, replacing the existing one which is disconnected from the site's scope.
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
 `backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 

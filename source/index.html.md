@@ -193,7 +193,11 @@ includes:
   - stackpath/images
   - stackpath/network_policy_rules
   - stackpath/delivery_domains
+<<<<<<< HEAD
   - stackpath/origin_settings
+=======
+  - stackpath/scripts
+>>>>>>> cmc-dev
   - aws
   - aws/compute
   - aws/instances
