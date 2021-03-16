@@ -1,6 +1,6 @@
 ## Origin settings
 
-Origin Settings allow you to configure your site's origin and backup origin settings
+Origin settings allow you to configure your site's primary and backup origin settings.
 
 <!-------------------- RETRIEVE ORIGIN SETTINGS -------------------->
 
@@ -63,18 +63,18 @@ Retrieve origin settings for a site in a given [environment](#administration-env
 
 Attributes | &nbsp;
 ------- | -----------
-`siteId`<br/>*UUID*  | A sites's unique identifier. 
+`siteId`<br/>*UUID*  | A site's unique identifier. 
 `stackId`<br/>*UUID*  | The ID of the stack that a site belongs to.
-`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site.
+`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site the origins are connected to.
 `domain`<br/>*string* | The domain of the site.
-`webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server is enabled. 
-`pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be "HTTP", "HTTPS" or "MATCH" which is equivalent to "HTTP" or "HTTPS".
+`webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server are enabled. 
+`pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
 `hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
 `origin.id` <br/> *UUID* | An origin's unique identifier. 
 `origin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `origin.dedicated` <br/> *boolean* | Specifies if an origin is dedicated to a CDN site. 
-`origin.siteId` <br/> *UUID*  | A sites's unique identifier. 
+`origin.siteId` <br/> *UUID*  | A site's unique identifier. 
 `origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. 
 `origin.username` <br/> *string* | Username to use when authenticating with the origin. 
 `origin.password` <br/> *string* | Password to use when authenticating with the origin. 
@@ -84,14 +84,14 @@ Attributes | &nbsp;
 `origin.hostname` <br/> *string* | The origin's HTTP request hostname. Can be a valid IPv4 address or a valid domain name. 
 `origin.port` <br/> *int* | The origin's HTTP port. Must be one of [80, 8080, 443, 1935, 9091].
 `origin.securePort` <br/> *int* | The origin's HTTPS port. Must be one of [80, 8080, 443, 1935, 9091].
-`origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO" (highest priority), "ONE"].  
+`origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured.
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*".
-`backupOrigin` <br/> *Object* | The secondary origin to pull content from when primary origin is not available.
+`backupOrigin` <br/> *Object* | The origin to pull content from when the primary origin is not available.
 `backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 
-`backupOrigin.siteId` <br/> *UUID*  | A sites's unique identifier. 
+`backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
 `backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. 
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
@@ -101,7 +101,7 @@ Attributes | &nbsp;
 `backupOrigin.hostname` <br/> *string* | The backup origin's HTTP request hostname. Can be a valid IPv4 address or a valid domain name. 
 `backupOrigin.port` <br/> *int* | The backup origin's HTTP port. Must be one of [80, 8080, 443, 1935, 9091].
 `backupOrigin.securePort` <br/> *int* | The backup origin's HTTPS port. Must be one of [80, 8080, 443, 1935, 9091].
-`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO" (highest priority), "ONE"].  
+`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.   
 
 <!-------------------- EDIT ORIGIN SETTINGS -------------------->
 
@@ -149,20 +149,20 @@ Edit origin settings for a site in a given [environment](#administration-environ
 
 Required | &nbsp;
 ------- | -----------
-`siteId`<br/>*UUID*  | A sites's unique identifier. 
+`siteId`<br/>*UUID*  | A site's unique identifier. 
 `stackId`<br/>*UUID*  | The ID of the stack that a site belongs to.
-`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site.
+`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site the origins are connected to.
 
 Attributes | &nbsp;
 ------- | -----------
-`webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server is enabled. 
-`pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be "HTTP", "HTTPS" or "MATCH" which is equivalent to "HTTP" or "HTTPS".
+`webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server are enabled. 
+`pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
 `hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
 `origin.id` <br/> *UUID* | An origin's unique identifier. 
 `origin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `origin.dedicated` <br/> *boolean* | Specifies if an origin is dedicated to a CDN site. 
-`origin.siteId` <br/> *UUID*  | A sites's unique identifier. 
+`origin.siteId` <br/> *UUID*  | A site's unique identifier. 
 `origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. To update origin.username and origin.password, this property must be set to true.
 `origin.username` <br/> *string* | Username to use when authenticating with the origin. 
 `origin.password` <br/> *string* | Password to use when authenticating with the origin. 
@@ -172,14 +172,14 @@ Attributes | &nbsp;
 `origin.hostname` <br/> *string* | The origin's HTTP request hostname. Can be a valid IPv4 address or a valid domain name. 
 `origin.port` <br/> *int* | The origin's HTTP port. Must be one of [80, 8080, 443, 1935, 9091].
 `origin.securePort` <br/> *int* | The origin's HTTPS port. Must be one of [80, 8080, 443, 1935, 9091].
-`origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO" (highest priority), "ONE"]. 
+`origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured. To configure backupOrigin's settings, this property must be set to true. 
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
-`backupOrigin` <br/> *Object* | The secondary origin to pull content from when primary origin is not available. 
+`backupOrigin` <br/> *Object* | The secondary origin to pull content from when the primary origin is not available. 
 `backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
 `backupOrigin.stackId` <br/> *UUID*  | The ID of the stack that a site belongs to.
 `backupOrigin.dedicated` <br/> *boolean* | Specifies if a backup origin is dedicated to a CDN site. 
-`backupOrigin.siteId` <br/> *UUID*  | A sites's unique identifier. 
+`backupOrigin.siteId` <br/> *UUID*  | A site's unique identifier. 
 `backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. To update backupOrigin.username and backupOrigin.password, this property must be set to true.
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
@@ -189,4 +189,4 @@ Attributes | &nbsp;
 `backupOrigin.hostname` <br/> *string* | The backup origin's HTTP request hostname. Can be a valid IPv4 address or a valid domain name. 
 `backupOrigin.port` <br/> *int* | The backup origin's HTTP port. Must be one of [80, 8080, 443, 1935, 9091].
 `backupOrigin.securePort` <br/> *int* | The backup origin's HTTPS port. Must be one of [80, 8080, 443, 1935, 9091].
-`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO" (highest priority), "ONE"].  
+`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
