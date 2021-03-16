@@ -488,9 +488,40 @@ curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-98
 	"defaultRole": {
       "name": "guest",
       "id": "6e022506-ab89-4676-859d-06d370b67417" 
-	}
+	},
+   "passwordPolicy": {
+      "constraints": [
+         {
+               "name": "min_password_length",
+               "value": 8,
+               "isMandatory": false
+         },
+         {
+               "name": "min_lowercase_letters",
+               "value": 1,
+               "isMandatory": true
+         },
+         {
+               "name": "min_uppercase_letters",
+               "value": 1,
+               "isMandatory": true
+         },
+         {
+               "name": "min_numbers",
+               "value": 1,
+               "isMandatory": true
+         },
+         {
+               "name": "min_special_characters",
+               "value": 1,
+               "isMandatory": true
+         }
+      ]
+   }
 }
 ```
+
+Create a new or update an existing security settings for an organization.
 
 Required | &nbsp;
 ---- | ----
@@ -502,8 +533,21 @@ Optional | &nbsp;
 ---- | ----
 `autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
 `verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of objects containing the ids of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
+`passwordPolicy`<br/>*object*  | The password policy that will be assigned to the organization. 
+`passwordPolicy.constraints`<br/>*Array[Object]* | List of password policy constraints objects with the following fields.
+`passwordPolicy.constraints.name`<br/>*string* | A string that represents the constraint name.
+`passwordPolicy.constraints.value`<br/>*int* | An integer that represents the minimum value for the constraint.
+`passwordPolicy.constraints.isMandatory`<br/>*boolean* | A boolean flag to indicate if the constraint is mandatory or not.
 
 Returns an HTTP status code 200, with an empty response body.
+
+- If `defaultRole` is not passed in the request:
+   - The system will assign `Guest`as a default role to the organization.
+- If `passwordPolicy` is passed in the request:
+   - The system will create a new or update the existing password policy for the organization.
+- If `autoCreationEnabled` and/or `verifiedDomains` is passed in the request:
+   - The system will create a new or update the existing security settings for the organization.
+
 
 <!-------------------- GET ORGANIZATION PASSWORD POLICY -------------------->
 
@@ -556,83 +600,6 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the constraint.
 `value`<br/>*int* | The minimum value for the constraint.
 `isMandatory`<br/>*boolean* | Flag to indicate if the constraint is mandatory or not.
-
-<!-------------------- CREATE/UPDATE ORGANIZATION PASSWORD POLICY -------------------->
-### Create/Update password policy
-`PUT /organizations/:organization_id/security_settings`
-
-```shell
-# Update an organization's security settings
-curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/security_settings" \
-   -H "MC-Api-Key: your_api_key" \
-   -H "Content-Type: application/json" \
-   -d "request_body"
-```
-> Request body example:
-
-```json
-{
-   "passwordPolicy": {
-      "constraints": [
-         {
-               "name": "min_password_length",
-               "value": 8,
-               "isMandatory": false
-         },
-         {
-               "name": "min_lowercase_letters",
-               "value": 1,
-               "isMandatory": true
-         },
-         {
-               "name": "min_uppercase_letters",
-               "value": 1,
-               "isMandatory": true
-         },
-         {
-               "name": "min_numbers",
-               "value": 1,
-               "isMandatory": true
-         },
-         {
-               "name": "min_special_characters",
-               "value": 1,
-               "isMandatory": true
-         }
-      ]
-   },
-   "autoCreationEnabled": true,
-   "verifiedDomains": [ 
-	 	{ 
-			 "id": "29d66b1d-669a-439b-883a-d7c1e36e1ca6"
-		}
-	],
-	"defaultRole": {
-      "name": "guest",
-      "id": "6e022506-ab89-4676-859d-06d370b67417" 
-	}
-}
-```
-
-Create a new or update an existing password policy for an organization.
-
-This is the same endpoint which is used for creating/updating organization security settings. If the password policy related fields are passed along with the security related fields in the request, it will create or update the password policy along with modifying the security settings. Refer to [update security settings](#administration-update-security-settings) for security settings fields.
-
-Required | &nbsp;
----- | ----
-`passwordPolicy`<br/>*object*  | The password policy that will be assigned to the organization. 
-`passwordPolicy.constraints`<br/>*Array[Object]* | List of password policy constraints objects with the following fields.
-`passwordPolicy.constraints.name`<br/>*string* | A string that represents the constraint name.
-`passwordPolicy.constraints.value`<br/>*int* | An integer that represents the minimum value for the constraint.
-`passwordPolicy.constraints.isMandatory`<br/>*boolean* | A boolean flag to indicate if the constraint is mandatory or not.
-
-Optional | &nbsp;
----- | ----
-`defaultRole`<br/>*object*  | The role that will be assigned to new users logging into the organization with an email domain matching that of the organization's security settings. 
-`autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
-`verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of objects containing the ids of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
-
-Returns an HTTP status code 200, with an empty response body.
 
 <!-------------------- DELETE PASSWORD POLICY FOR ORGANIZATION -------------------->
 ### Delete password policy
