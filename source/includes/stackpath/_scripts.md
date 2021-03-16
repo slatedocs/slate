@@ -56,9 +56,9 @@ Query Params | &nbsp;
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | The unique identifier for the script.
-`stackId`<br/>*string* | The ID of the stack that the script belongs to.
-`siteId`<br/>*string* | The ID of the site that the script belongs to.
+`id`<br/>*UUID* | The unique identifier for the script.
+`stackId`<br/>*UUID* | The ID of the stack that the script belongs to.
+`siteId`<br/>*UUID* | The ID of the site that the script belongs to.
 `name`<br/>*string* | The display name of the script.
 `createdAt`<br/>*string* | Creation timestamp of the script.
 `updatedAt`<br/>*string* | The date on which the script was last updated.
@@ -103,9 +103,9 @@ Retrieve a script of a site in a given [environment](#administration-environment
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | The unique identifier for the script.
-`stackId`<br/>*string* | The ID of the stack that the script belongs to.
-`siteId`<br/>*string* | The ID of the site that the script belongs to.
+`id`<br/>*UUID* | The unique identifier for the script.
+`stackId`<br/>*UUID* | The ID of the stack that the script belongs to.
+`siteId`<br/>*UUID* | The ID of the site that the script belongs to.
 `name`<br/>*string* | The display name of the script.
 `createdAt`<br/>*string* | Creation timestamp of the script.
 `updatedAt`<br/>*string* | The date on which the script was last updated.
