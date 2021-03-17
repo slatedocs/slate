@@ -324,7 +324,7 @@ passing the parameters as part of a standard form-encoded post body.
 | **client_secret** | *required* The Client Secret belonging to the app, found in the details pane of the developer console. |
 | **token** | *required* The refresh token that should be deauthorized. Bearer tokens will be rejected.  |
 
-The body should inclue a valid refresh token, which will cause the refresh token and any associated bearer tokens to be deauthorized. Bearer tokens are not accepted in the request body since a new bearer token can always be obtained by reusing an authorized refresh token.
+The body should include a valid refresh token, which will cause the refresh token and any associated bearer tokens to be deauthorized. Bearer tokens are not accepted in the request body since a new bearer token can always be obtained by reusing an authorized refresh token.
 
 #### Response
 
