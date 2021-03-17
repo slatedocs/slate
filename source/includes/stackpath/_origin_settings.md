@@ -74,7 +74,7 @@ Attributes | &nbsp;
 `origin.password` <br/> *string* | Password to use when authenticating with the origin. 
 `origin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the origin is enabled. 
 `origin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
-`origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). 
+`origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
 `origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured.
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*".
@@ -88,7 +88,7 @@ Attributes | &nbsp;
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
 `backupOrigin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the backup origin is enabled. 
 `backupOrigin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
-`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). 
+`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
 `backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.   
 
 <!-------------------- EDIT ORIGIN SETTINGS -------------------->
@@ -156,7 +156,7 @@ Attributes | &nbsp;
 `origin.password` <br/> *string* | Password to use when authenticating with the origin. 
 `origin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the origin is enabled. 
 `origin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
-`origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). 
+`origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
 `origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured. To configure backupOrigin's settings, this property must be set to true. 
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
@@ -170,5 +170,5 @@ Attributes | &nbsp;
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
 `backupOrigin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the backup origin is enabled. 
 `backupOrigin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
-`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). 
+`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
 `backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority. Priority of a backupOrigin can only be configured while creating a new secondary origin [backupOrigin.id must be set to null]. By default, the priority of a backupOrigin is "ONE". If the priority is set to "ZERO", the backupOrigin replaces the primary origin which is disconnected from the site's scope.  
