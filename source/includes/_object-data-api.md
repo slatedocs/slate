@@ -1801,6 +1801,7 @@ By default, this request returns the metadata of a released and effective docume
 Parameter | Description
 --------- | -----------
 id|The Intelex UID of the record being accessed
+PdfSecurity| The level of security for pdf. Values: None = 1 or Default = 0
 
 ##### Header Parameters
 
