@@ -322,13 +322,13 @@ passing the parameters as part of a standard form-encoded post body.
 |---|---|
 | **client_id** | *required* The Client ID uniquely identifies the application making the request. |
 | **client_secret** | *required* The Client Secret belonging to the app, found in the details pane of the developer console. |
-| **token** | *required* The refresh token that should be deauthorized. Bearer tokens will be rejected.  |
+| **token** | *required* The Refresh Token that should be deauthorized. Bearer Tokens will be rejected.  |
 
-The body should include a valid refresh token, which will cause the refresh token and any associated bearer tokens to be deauthorized. Bearer tokens are not accepted in the request body since a new bearer token can always be obtained by reusing an authorized refresh token.
+The body should include a valid Refresh Token, which will cause the Refresh Token and any Associated Bearer Tokens to be deauthorized. Bearer Tokens are not accepted in the request body since a new Bearer Token can always be obtained by reusing an authorized Refresh Token.
 
 #### Response
 
-A successful response with a 200 status code indicates that the token was deauthorized or not found. An unsuccessful response with a 400 status code will be returned if the request was malformed due to missing any required fields or specified an invalid token (such as a bearer access token).
+A successful response with a 200 status code indicates that the token was deauthorized or not found. An unsuccessful response with a 400 status code will be returned if the request was malformed due to missing any required fields or specifying an invalid token (such as a bearer access token).
 
 <a name="personal-access-token" class="jump-anchor"></a>
 ## Personal Access Token
