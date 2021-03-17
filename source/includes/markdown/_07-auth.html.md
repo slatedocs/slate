@@ -90,6 +90,7 @@ the Asana API, as well as a Client Secret.
 * Applications can be created from the ["Apps" tab of your account settings](https://app.asana.com/-/account_api), where you will find your Client ID and Client Secret.
 * The endpoint for user authorization is `https://app.asana.com/-/oauth_authorize`
 * The endpoint for token exchange is `https://app.asana.com/-/oauth_token`
+* The endpoint for revoking a token is `https://app.asana.com/-/oauth_revoke`
 * Asana supports the Authorization Code Grant flow.
 * Once an access token has been obtained your application can make calls on behalf of the user
 
@@ -307,6 +308,27 @@ Your application will need to be configured to accept SSL/TLS connections for yo
 for many apps, this will simply require a configuration update of your application server. Instructions for
 [Apache](https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html) and [Nginx](http://nginx.org/en/docs/http/configuring_https_servers.html)
 can be found on their respective websites, and most popular application servers will contain documentation on how to proceed.
+
+<a name="token-deauthorization" class="jump-anchor"></a>
+### Token Deauthorization Endpoint
+#### Request
+
+An authorization token can be deauthorized or invalidated by making a request to Asana's API.
+
+Your app should make a `POST` request to `https://app.asana.com/-/oauth_revoke`,
+passing the parameters as part of a standard form-encoded post body.
+
+| Parameter | Description |
+|---|---|
+| **client_id** | *required* The Client ID uniquely identifies the application making the request. |
+| **client_secret** | *required* The Client Secret belonging to the app, found in the details pane of the developer console. |
+| **token** | *required* The refresh token that should be deauthorized. Bearer tokens will be rejected.  |
+
+The body should inclue a valid refresh token, which will cause the refresh token and any associated bearer tokens to be deauthorized. Bearer tokens are not accepted in the request body since a new bearer token can always be obtained by reusing an authorized refresh token.
+
+#### Response
+
+A successful response with a 200 status code indicates that the token was deauthorized or not found. An unsuccessful response with a 400 status code will be returned if the request was malformed due to missing any required fields or specified an invalid token (such as a bearer access token).
 
 <a name="personal-access-token" class="jump-anchor"></a>
 ## Personal Access Token
