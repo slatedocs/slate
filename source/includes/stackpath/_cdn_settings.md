@@ -16,7 +16,6 @@ curl -X GET \
 
 ```json
 {
-{
   "data": {
     "siteId": "9f236f19-55db-411f-9f05-bd79dc91a69b",
     "cacheExpirePolicy": "SPECIFY_CDN_TTL",
