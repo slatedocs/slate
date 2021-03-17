@@ -858,6 +858,12 @@ OBJECT_MAP_ID | ID of the object map being deleted
             "last_name": "Hire",
             "email": "kathryn.hire@redshift7.com"
           },
+          "requester": {
+            "id": 7,
+            "first_name": "Some",
+            "last_name": "Guy",
+            "email": "someguy@procurify.com"
+          },
           "external_id": null,
           "custom_fields": {},
           "order_description": "Order with Procurify"
