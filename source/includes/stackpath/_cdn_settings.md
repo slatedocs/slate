@@ -124,9 +124,9 @@ curl -X POST \
 
 ```json
 {
-	"items": [
-		{
-			"url": "//<domain_name>/path/to/file",
+  "items": [
+    {
+      "url": "//<domain_name>/path/to/file",
       "recursive": true,
       "purgeAllDynamic": false,
       "headers": [],
@@ -136,8 +136,8 @@ curl -X POST \
         "selectorType": "HEADER",
         "selectorValueDelimiter": ""
       }
-		}
-	]
+    }
+  ]
 }
 ```
 
