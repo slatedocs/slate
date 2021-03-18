@@ -29,8 +29,8 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>");
-var results = request.Get("");
+Api api = new Api("<YOUR_API_KEY>", "<YOUR_API_SECRET>");
+var results = api.get("v1/geo-locations/bing");
 ```
 
 > Success (200 OK)

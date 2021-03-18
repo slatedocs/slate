@@ -212,7 +212,7 @@ Parameters parameters = new Parameters
     { "campaign_city"              , "New York"},
     { "campaign_state"             , "NY"},
     { "business_category_id"       , 605},
-    { "business_categories"        , new List<string>() { "restaurant", "cafe" } },
+    { "extra_business_categories_ids", new List<int>() { 1234,5678,9012 } },
     { "address1"                   , "155 West 51st Street"},
     { "address2"                   , ""},
     { "city"                       , "New York"},
@@ -566,7 +566,7 @@ print_r($response->getResult());
 ```csharp
 int campaignId = 1;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-Response response = api.PostImage($"v2/cb/upload/{campaignId}/logo", @"../../../Brightlocal/logo.jpg");
+Response response = api.PostImage("v2/cb/upload/" + campaignId + "/logo", "../../../Brightlocal/logo.jpg");
 Console.WriteLine(response.GetResponseCode());
 Console.WriteLine(response.IsSuccess());
 Console.WriteLine(response.GetContent());;

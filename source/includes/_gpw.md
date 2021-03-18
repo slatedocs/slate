@@ -192,7 +192,7 @@ Parameters parameters = new Parameters
     { "contact-telephone", "+1 212-554-1515" },
 
 };
-Response response = api.Put($"/v4/gpw/{reportId}", parameters);
+Response response = api.Put("/v4/gpw/"+ reportId, parameters);
 Console.WriteLine(response.GetContent());
 ```
 
@@ -278,7 +278,7 @@ curl -X GET \
 ```csharp
 int reportId = 1;
 Api api = new Api(apiKey, apiSecret);
-Response response = api.Get($"v4/gpw/{reportId}");
+Response response = api.Get("v4/gpw/" + reportId);
 Console.WriteLine(response.GetContent());
 ```
 
@@ -383,7 +383,7 @@ curl -X DELETE \
 ```csharp
 int reportId = 1;
 Api api = new Api(apiKey, apiSecret);
-Response response = api.Delete($"/v4/gpw/{reportId}");
+Response response = api.Delete("/v4/gpw/" + reportId);
 if (response.IsSuccess())
 {
     Console.WriteLine("Successfully deleted report.");
@@ -617,7 +617,7 @@ curl -X GET \
 ```csharp
 int reportId =1;
 Api api = new Api(apiKey, apiSecret);
-Response response = api.Get($"/v4/gpw/{reportId}/results");
+Response response = api.Get("/v4/gpw/" + reportId + "/results");
 Console.WriteLine(response.GetContent());
 ```
 
