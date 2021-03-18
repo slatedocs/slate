@@ -3,7 +3,11 @@ name: Deploy
 on:
   push:
     branches: [ 'main' ]
-
+  pull_request:
+    branches:
+      - main
+    types:
+      - merged
 jobs:
   deploy:
     runs-on: ubuntu-latest
