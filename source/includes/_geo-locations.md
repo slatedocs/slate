@@ -54,7 +54,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-country | <span class="label label-required">Required</span> One of USA, GBR, CAN, AUS.
+country | <span class="label label-required">Required</span> One of USA, GBR, CAN or AUS.
 location | <span class="label label-required">Required</span> Like "new york".
 
 ## Google
@@ -112,5 +112,5 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-country | <span class="label label-required">Required</span> One of USA, GBR, CAN, AUS.
+country | <span class="label label-required">Required</span> One of USA, GBR, CAN or AUS.
 location | <span class="label label-required">Required</span> Like "new york".
