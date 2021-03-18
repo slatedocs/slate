@@ -67,7 +67,7 @@ Attributes | &nbsp;
 `gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values are between `1` to `6`. Only visible is `gzipCompressionEnabled` is enabled.
 `contentPersistenceEnabled`<br/>*Boolean* | Whether or not make cached content available after its expiration time.
 `maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files. Only visible if `contentPersistenceEnabled` is enabled. 
-`varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honor the vary header in a request.
+`varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honoring the vary header in a request.
 `browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets. 
 `corsHeaderEnabled`<br/>*Boolean* | Sets the Access-Control-Allow-Origin header to allow browsers to access this domain from other origins.
 `allowedCorsOrigins`<br/>*String* | The strategy for allowing cors origins. Can be `SPECIFY_ORIGINS` or `ALL_ORIGINS`.
