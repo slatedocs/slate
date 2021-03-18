@@ -536,8 +536,8 @@ Edit the WAF settings for a site in a given [environment](#administration-enviro
 
 Required | &nbsp;
 ------- | -----------
-`siteId`<br/>*UUID*  | A site's unique identifier. 
-`stackId`<br/>*UUID*  | The ID of the stack that a site belongs to.
+`siteId`<br/>*string* | The ID of the site that the WAF settings belongs to.
+`stackId`<br/>*string* | The ID of the stack that a site belongs to.
 
 Attributes | &nbsp;
 ------- | -----------
