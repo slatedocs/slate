@@ -466,7 +466,7 @@ Attributes | &nbsp;
 `ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection
 `ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection
 `apiUrls`<br/>*array* | List of configured API urls.
-`isMonitoring`<br/>*boolean* | If the monitoring mode is enabled.
+`monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
 `listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
 `policyGroups`<br/>*array[object]* | A list of policy group object.
 `policyGroups.id`<br/>*string* | The ID of the policy group.
@@ -478,3 +478,82 @@ Attributes | &nbsp;
 `policyGroups.policies.action`<br/>*string* | The potential actions that the WAF will take when a policy is triggered. It can either be `ALLOW`, `BLOCK`, `HANDSHAKE`, `MONITOR` or `CAPTCHA`.
 `policyGroups.policies.enabled`<br/>*boolean* | If the WAF policy is enabled.
 
+<!-------------------- Edit WAF Settings for a Site -------------------->
+
+### Edit WAF Settings for a Site
+
+```shell
+curl -X PATCH \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/wafsettings/c0ddc1b3-b390-4f39-b200-5c0323ca306e"
+```
+
+> Request body example:
+
+```json
+{
+  "siteId": "c0ddc1b3-b390-4f39-b200-5c0323ca306e",
+  "stackId": "3df12b20-758e-4143-a706-46e724d335fc",
+  "listPolicyGroups": {
+    "policyGroups": [
+      {
+        "id": "8365e00f-a6c4-43a4-9f07-b830759737b8",
+        "name": "User Agents",
+        "policies": [
+          {
+            "name": "Invalid User Agent Prevention",
+            "description": "Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid as it does not fit the client's properties.",
+            "action": "BLOCK",
+            "id": "S28259696",
+            "enabled": false
+          },
+          {
+            "name": "Unknown User Agent Prevention",
+            "description": "Challenge requests in which the HTTP header describing the user-agent (browser and platform) is missing or unknown.",
+            "action": "HANDSHAKE",
+            "id": "S28259697",
+            "enabled": false
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "573ca8fa-c5ad-4b19-a315-8ddbbc78d7c0",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/wafsettings/<a href="#administration-sites">:site_id</a></code>
+
+Edit the WAF settings for a site in a given [environment](#administration-environments).
+
+Required | &nbsp;
+------- | -----------
+`siteId`<br/>*UUID*  | A site's unique identifier. 
+`stackId`<br/>*UUID*  | The ID of the stack that a site belongs to.
+
+Attributes | &nbsp;
+------- | -----------
+`ddosSettings`<br/>*object* | The DDoS Setting containing the different threshold values.
+`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection
+`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection
+`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection
+`apiUrls`<br/>*array* | List of configured API urls.
+`monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
+`listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
+`policyGroups`<br/>*array[object]* | A list of policy group object.
+`policyGroups.id`<br/>*string* | The ID of the policy group.
+`policyGroups.name`<br/>*string* | The name of the policy group.
+`policyGroups.policies`<br/>*array[object]* | A list of policies in a policy group.
+`policyGroups.policies.name`<br/>*string* | A WAF policy's name.
+`policyGroups.policies.id`<br/>*string* | A WAF policy's ID.
+`policyGroups.policies.description`<br/>*string* | A WAF policy's description.
+`policyGroups.policies.action`<br/>*string* | The potential actions that the WAF will take when a policy is triggered. It can either be `ALLOW`, `BLOCK`, `HANDSHAKE`, `MONITOR` or `CAPTCHA`.
+`policyGroups.policies.enabled`<br/>*boolean* | If the WAF policy is enabled.
