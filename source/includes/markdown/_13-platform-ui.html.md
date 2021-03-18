@@ -19,7 +19,7 @@ We will cover the main Workflow App components here.
 > Request to the App Server
 
 ```http
-https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&attachment=45678&asset=56789&expires=1602192507761&resource_url=https%3A%2F%2Fcompany.atlassian.net%2Fissue%2F1254
+https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&attachment=45678&asset=56789&expires_at=2011-10-05T14%3A48%3A00.000Z&resource_url=https%3A%2F%2Fcompany.atlassian.net%2Fissue%2F1254
 ```
 
 > Response from the App Server
@@ -106,7 +106,7 @@ API (See sample on the right).
 > Request to the App Server
 
 ```http
-https://app-server.com/form?workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
+https://app-server.com/form?workspace=12345&task=23456&user=34567&locale=en&expires_at=2011-10-05T14%3A48%3A00.000Z
 ```
 
 > Response from the App Server
@@ -190,7 +190,7 @@ Related References:
 > Request to the App Server
 
 ```http
-https://app-server.com/resource-search?fragment=Cool&workspace=12345&task=23456&user=34567&locale=en&expires=1602192507761
+https://app-server.com/resource-search?fragment=Cool&workspace=12345&task=23456&user=34567&locale=en&expires_at=2011-10-05T14%3A48%3A00.000Z
 ```
 
 > Response from the App Server
@@ -231,7 +231,7 @@ Related References:
 > Request to the App Server
 
 ```http
-https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&action=56789&user=34567&locale=en&expires=1602192507761
+https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&action=56789&user=34567&locale=en&expires_at=2011-10-05T14%3A48%3A00.000Z
 ```
 
 > Response from the App Server
@@ -749,7 +749,7 @@ function forAllRequests(req) {
   }
   
   let now = new Date();
-  if (now.getTime() > req.query["expires"]) {
+  if (now.getTime() > Date.parse(req.query["expires_at"])) {
     reject(req);
     return;
   }
