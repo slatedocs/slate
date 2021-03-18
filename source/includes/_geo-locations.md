@@ -54,9 +54,8 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-country | <span class="label label-required">Required</span> TEXT.
-location | <span class="label label-required">Required</span> TEXT.
-
+country | <span class="label label-required">Required</span> One of USA, GBR, CAN, AUS.
+location | <span class="label label-required">Required</span> Like "new york".
 
 ## Google
 
@@ -87,8 +86,8 @@ curl -X GET \
 ```
 
 ```csharp
-api request = new api("<INSERT_API_KEY>");
-var results = request.Get("");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SIG>");
+var results = api.get("v1/geo-locations/google");
 ```
 
 > Success (200 OK)
@@ -113,4 +112,5 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-location | <span class="label label-required">Required</span> TEXT.
+country | <span class="label label-required">Required</span> One of USA, GBR, CAN, AUS.
+location | <span class="label label-required">Required</span> Like "new york".

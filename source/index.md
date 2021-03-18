@@ -28,6 +28,7 @@ includes:
     - lsrc
     - lscu
     - ct
+    - geo-locations
     - cb
     - rf
     - gpw
