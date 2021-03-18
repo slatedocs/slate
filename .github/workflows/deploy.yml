@@ -2,12 +2,8 @@ name: Deploy
 
 on:
   push:
-    branches: [ 'main' ]
-  pull_request:
-    branches:
-      - main
-    types:
-      - merged
+    branches: [ 'master' ]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
