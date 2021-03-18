@@ -370,7 +370,7 @@ Parameters parameters = new Parameters
         }
     }
 };
-Response response = api.Put($"/v2/clients-and-locations/locations/{locationId}", parameters);
+Response response = api.Put("/v2/clients-and-locations/locations/" + locationId, parameters);
 Console.WriteLine(response.GetContent());
 ```
 
@@ -470,7 +470,7 @@ if ($response->isSuccess()) {
 ```csharp
 int locationId = 1;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-Response response = api.Delete($"/v2/clients-and-locations/locations/{locationId}");
+Response response = api.Delete("/v2/clients-and-locations/locations/" + locationId);
 if (response.IsSuccess())
 {
     Console.WriteLine("Location successfully deleted.");
@@ -525,7 +525,7 @@ print_r($response->getResult());
 ```csharp
 int locationId = 1;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-Response response = api.Get($"/v2/clients-and-locations/locations/{locatonId}");
+Response response = api.Get("/v2/clients-and-locations/locations/" + locatonId);
 Console.WriteLine(response.GetContent());
 ```
 

@@ -245,7 +245,7 @@ Parameters parameters = new Parameters
     { "directories", directories }
 };
 
-dynamic reviews = api.Put($"v4/rf/{reportId}", parameters).GetContent();
+dynamic reviews = api.Put("v4/rf/" + reportId, parameters).GetContent();
 Console.WriteLine(reviews);
 ```
 
@@ -349,7 +349,7 @@ curl -X GET \
 ```csharp
 int reportId = 1;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-dynamic report = api.Get($"v4/rf/{reportId}").GetContent();
+dynamic report = api.Get("v4/rf/" + reportId).GetContent();
 Console.WriteLine(report);
 ```
 
@@ -533,7 +533,7 @@ curl -X DELETE \
 ```csharp
 int reportId = 1;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-dynamic status = api.Delete($"v4/rf/{reportId}").GetContent();
+dynamic status = api.Delete("v4/rf/" + reportId).GetContent();
 Console.WriteLine(status);
 ```
 
@@ -798,7 +798,7 @@ Parameters parameters = new Parameters
 {
     { "limit", 100 }
 };
-dynamic reviews = api.Get($"v4/rf/{reportId}/reviews", parameters).GetContent();
+dynamic reviews = api.Get("v4/rf/" + reportId + "/reviews", parameters).GetContent();
 Console.WriteLine(reviews);
 ```
 
@@ -928,7 +928,7 @@ curl -X GET \
 ```csharp
 int reportId = 141;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-dynamic response = api.Get($"v4/rf/{reportId}/reviews/count").GetContent();
+dynamic response = api.Get("v4/rf/" + reportId + "/reviews/count").GetContent();
 Console.WriteLine(response);
 ```
 
@@ -1063,7 +1063,7 @@ curl -X GET \
 ```csharp
 int reportId = 141;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-dynamic directories = api.Get($"v4/rf/{reportId}/directories").GetContent();
+dynamic directories = api.Get("v4/rf/" + reportId + "/directories").GetContent();
 Console.WriteLine(directories);
 ```
 
@@ -1340,7 +1340,7 @@ curl -X GET \
 ```csharp
 int reportId =141;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-dynamic response = api.Get($"v4/rf/{reportId}/stars/count").GetContent();
+dynamic response = api.Get("v4/rf/" + reportId + "/stars/count").GetContent();
 Console.WriteLine(response);
 ```
 

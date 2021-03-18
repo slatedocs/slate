@@ -162,7 +162,7 @@ if ($response->isSuccess()) {
 int clientId = 1;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 Parameters parameters = new Parameters { };
-Response response = api.Delete($"/v1/clients-and-locations/clients/{clientId}", parameters);
+Response response = api.Delete("/v1/clients-and-locations/clients/" + clientId, parameters);
 if (response.IsSuccess())
 {
     Console.WriteLine("Successfully deleted client");
@@ -217,7 +217,7 @@ print_r($response->getResult());
 ```csharp
 int clientId = 1;
 Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
-Response response = api.Get($"/v1/clients-and-locations/clients/{clientId}");
+Response response = api.Get("/v1/clients-and-locations/clients/" + clientId);
 Console.WriteLine(response.GetContent());
 ```
 
