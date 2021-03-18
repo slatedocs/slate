@@ -86,7 +86,7 @@ curl -X GET \
 ```
 
 ```csharp
-Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SIG>");
+Api api = new Api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var results = api.get("v1/geo-locations/google");
 ```
 
