@@ -55,7 +55,7 @@ Bearer Tokens when the current one expires).
 7. Once the Bearer Token expires, the application can again use the Token Exchange Endpoint to exchange the Refresh
 Token for a new Bearer Token. (This can be repeated for as long as the user has authorized the application.)
 
-We definitely recommend using a library to take care of the nitty-gritty of OAuth, but hopefully this helps demystify
+We definitely recommend using a library to take care of the details of OAuth, but hopefully this helps demystify
 the process somewhat.
 
 <a name="register-an-application" class="jump-anchor"></a>
