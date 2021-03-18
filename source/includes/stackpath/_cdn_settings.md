@@ -67,14 +67,14 @@ Attributes | &nbsp;
 `gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values are between `1` to `6`. Only visible is `gzipCompressionEnabled` is enabled.
 `contentPersistenceEnabled`<br/>*Boolean* | Whether or not make cached content available after its expiration time.
 `maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files. Only visible if `contentPersistenceEnabled` is enabled. 
-`varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honor the vary header in a request.
+`varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honoring the vary header in a request.
 `browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets. 
 `corsHeaderEnabled`<br/>*Boolean* | Sets the Access-Control-Allow-Origin header to allow browsers to access this domain from other origins.
 `allowedCorsOrigins`<br/>*String* | The strategy for allowing cors origins. Can be `SPECIFY_ORIGINS` or `ALL_ORIGINS`.
 `originsToAllowCors`<br/>*Array[String]* | A list of origins to allow cors requests from. Only visible if `allowedCorsOrigins` is set to `SPECIFY_ORIGINS`.
 `http2SupportEnabled`<br/>*Boolean* | Whether or not to enable supporting applications using HTTP/2 protocol.
 `http2ServerPushEnabled`<br/>*Boolean* | Whether or not to push assets to the client or browser (user) in advance (before the user requests these assets) which enables faster load times.
-`linkHeader`<br/>*String* | The link header for http2ServerPush, only visible is `http2ServerPushEnabled`<br/>*Boolean* is enabled. 
+`linkHeader`<br/>*String* | The link header for http2ServerPush, only visible if `http2ServerPushEnabled` is enabled. 
 `canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.
 `canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only visible if `canonicalHeaderEnabled` is enabled. 
 `urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
