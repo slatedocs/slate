@@ -79,3 +79,94 @@ Attributes | &nbsp;
 `canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only visible if `canonicalHeaderEnabled` is enabled. 
 `urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
 `urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only visible if `urlCachingEnabled` is enabled. 
+
+
+<!-------------------- PURGE ALL CDN CACHED CONTENT -------------------->
+
+### Purge all CDN cached content
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b?operation=purgeAll"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "e6c03893-212f-4e28-b7a1-66ed7b554839",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId?operation=purgeAll</a></code>
+
+Purge all CDN cached content of a site in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the purge operation.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- PURGE CUSTOM CDN CACHED CONTENT -------------------->
+
+### Purge custom CDN cached content
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b?operation=purge"
+```
+
+> Request body example:
+
+```json
+{
+  "items": [
+    {
+      "url": "//<domain_name>/path/to/file",
+      "recursive": true,
+      "purgeAllDynamic": false,
+      "headers": [],
+      "purgeSelector": {
+        "selectorName": "(?i)<header_name>",
+        "selectorValue": "<header_value>",
+        "selectorType": "HEADER",
+        "selectorValueDelimiter": ""
+      }
+    }
+  ]
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "e6c03893-212f-4e28-b7a1-66ed7b554839",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId?operation=purge</a></code>
+
+Purge custom CDN cached content of a site in a given [environment](#administration-environments).
+
+Required | &nbsp;
+------- | -----------
+`items`<br/>*Array[Object]* | The items to purge from the CDN.
+`items.url`<br/>*String* | The URL at which to delete content.
+ 
+ Optional | &nbsp;
+ ------- | -----------
+`items.recursive`<br/>*Boolean* | Whether or not to recursively delete content from the CDN.
+`items.invalidateOnly`<br/>*Boolean* | Whether or not to mark the asset as expired and re-validate instead of deleting.
+`items.purgeAllDynamic`<br/>*Boolean* | Whether or not to purge dynamic versions of assets.
+`items.headers`<br/>*Array[String]* | A list of HTTP request headers used to construct a cache key to purge content by. These headers must be configured in the site configuration's DynamicContent.headerFields property.
+`items.purgeSelector`<br/>*Array[Object]* | A key/value pair definition of content to purge from the CDN.
+`items.purgeSelector.selectorType`<br/>*String* | The kinds of content that can be purged from the CDN. One of: HEADER (Purge content based on an HTTP response header), TAG (Purge content based on an X-TAG HTTP header value. Purging by tag can be useful when content on the origin is tagged).
+`items.purgeSelector.selectorName`<br/>*String* | The name of the type of content to purge. For example, the name of the HTTP response header. Names are case sensitive.
+`items.purgeSelector.selectorValue`<br/>*String* | The value of the content to purge. For example, the value of the HTTP response header. Values are case sensitive and may be wild-carded, but cannot match a "/".
+`items.purgeSelector.selectorValueDelimiter`<br/>*String* | The delimiter to separate multiple values with. Defaults to ",".
