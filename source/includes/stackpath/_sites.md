@@ -462,9 +462,9 @@ Attributes | &nbsp;
 `siteId`<br/>*string* | The ID of the site that the WAF settings belongs to.
 `stackId`<br/>*string* | The ID of the stack that a site belongs to.
 `ddosSettings`<br/>*object* | The DDoS Setting containing the different threshold values.
-`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection
-`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection
-`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection
+`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection.
+`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection.
+`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection.
 `apiUrls`<br/>*array* | List of configured API urls.
 `monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
 `listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
@@ -492,8 +492,6 @@ curl -X PATCH \
 
 ```json
 {
-  "siteId": "c0ddc1b3-b390-4f39-b200-5c0323ca306e",
-  "stackId": "3df12b20-758e-4143-a706-46e724d335fc",
   "listPolicyGroups": {
     "policyGroups": [
       {
@@ -534,17 +532,12 @@ curl -X PATCH \
 
 Edit the WAF settings for a site in a given [environment](#administration-environments).
 
-Required | &nbsp;
-------- | -----------
-`siteId`<br/>*string* | The ID of the site that the WAF settings belongs to.
-`stackId`<br/>*string* | The ID of the stack that a site belongs to.
-
 Attributes | &nbsp;
 ------- | -----------
 `ddosSettings`<br/>*object* | The DDoS Setting containing the different threshold values.
-`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection
-`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection
-`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection
+`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection.
+`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection.
+`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection.
 `apiUrls`<br/>*array* | List of configured API urls.
 `monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
 `listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
