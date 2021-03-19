@@ -29,7 +29,6 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
   "name":"Affinity",
   "domain":"affinity.co",
   "domains":["affinity.co"],
-  "crunchbase_uuid":"ca0e6bd5-7de2-0a26-f648-0bf66e88b05c",
   "global":false,
   "person_ids":[89734, 117270, 138123, 274492, 304848, ...]
   "list_entries": [
@@ -118,7 +117,6 @@ the `/organizations/{organization_id}` endpoints.
 | name              | integer     | The name of the organization (see below).                                                                                                                                                                                                                                               |
 | domain            | string      | The website name of the organization. This is used by Affinity to automatically associate person objects with an organization.                                                                                                                                                          |
 | domains           | string[]    | An array of all the websites associated with the organization. These are also used to automatically associate person objects with an organization.                                                                                                                                      |
-| crunchbase_uuid   | string      | The [Crunchbase UUID](https://data.crunchbase.com/docs/uuid) of the organization                                                                                                                                                                                                        |
 | person_ids        | string[]    | An array of unique identifiers of person that are associated with the organization                                                                                                                                                                                                      |
 | global            | boolean     | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.                                                                                                                                 |
 | list_entries      | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.                                                                                                                   |
@@ -174,7 +172,6 @@ curl "https://api.affinity.co/organizations?term=affinity" -u :<API-KEY>
       "name":"Affinity",
       "domain":"affinity.co",
       "domains":["affinity.co"],
-      "crunchbase_uuid":null,
       "global":false
     },
     {
@@ -182,7 +179,6 @@ curl "https://api.affinity.co/organizations?term=affinity" -u :<API-KEY>
       "name":"Brand Affinity Technologies",
       "domain":"brandaffinity.net",
       "domains":["brandaffinity.net"],
-      "crunchbase_uuid":"035ed4bb-7a8c-f713-5032-91a81a4b4bb9",
       "global":true
     },
     ...
@@ -246,7 +242,6 @@ curl "https://api.affinity.co/organizations/64779194" -u :<API-KEY>
   "name":"Affinity",
   "domain":"affinity.co",
   "domains":["affinity.co"],
-  "crunchbase_uuid":"ca0e6bd5-7de2-0a26-f648-0bf66e88b05c",
   "global":false,
   "person_ids":[89734, 117270, 138123, 274492, 304848, ...],
   "list_entries": [
@@ -299,7 +294,6 @@ curl "https://api.affinity.co/organizations" \
   "name": "Acme Corporation",
   "domain": "acme.co",
   "domains": ["acme.co"],
-  "crunchbase_uuid": null,
   "global": false,
   "person_ids": [38706]
 }
@@ -345,7 +339,6 @@ curl "https://api.affinity.co/organizations/120611418" \
   "name": "Acme Corp.",
   "domain": "acme.co",
   "domains": ["acme.co"],
-  "crunchbase_uuid": null,
   "global": false,
   "person_ids": [38706, 89734]
 }
