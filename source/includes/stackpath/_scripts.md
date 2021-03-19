@@ -197,7 +197,7 @@ async function handleRequest(request) {
 ```json
 {
   "taskId": "dfc0b899-ac0f-447b-8f50-74bf78d1c034",
-  "taskStatus": "SUCCESS"
+  "taskStatus": "PENDING"
 }
 ```
 
