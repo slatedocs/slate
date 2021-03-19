@@ -367,9 +367,9 @@ Attributes | &nbsp;
 `taskId` <br/>*string* | The task id related to the site deletion.
 `taskStatus` <br/>*string* | The status of the operation.
 
-<!-------------------- List WAF Setting for a Site -------------------->
+<!-------------------- List WAF Settings -------------------->
 
-### Retrieve WAF Settings for a Site
+### Retrieve WAF Settings
 
 ```shell
 curl -X GET \
@@ -455,7 +455,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/wafsettings/<a href="#administration-sites">:site_id</a></code>
 
-Retrieve the WAF Settings for a site.
+Retrieve WAF Settings.
 
 Attributes | &nbsp;
 ------- | -----------
