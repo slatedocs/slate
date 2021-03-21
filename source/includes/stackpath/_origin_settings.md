@@ -125,7 +125,6 @@ Optional | &nbsp;
 `pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
 `hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
-`origin.id` <br/> *UUID* | An origin's unique identifier.
 `origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
 `origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. To update origin.username and origin.password, this property must be set to true.
 `origin.username` <br/> *string* | Username to use when authenticating with the origin. 
@@ -135,9 +134,8 @@ Optional | &nbsp;
 `backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured. To configure backupOrigin's settings, this property must be set to true. 
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
 `backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available. 
-`backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. If the id of the current secondary origin is not provided, a new secondary origin is configured, replacing the existing one which is disconnected from the site's scope.
 `backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
-`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority. Priority of a backupOrigin can only be configured while creating a new secondary origin [backupOrigin.id must be set to null]. By default, the priority of a backupOrigin is "ONE". If the priority is set to "ZERO", the backupOrigin replaces the primary origin which is disconnected from the site's scope.  
+`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.
 `backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. To update backupOrigin.username and backupOrigin.password, this property must be set to true.
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
