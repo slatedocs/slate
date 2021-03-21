@@ -27,7 +27,6 @@ curl -X GET \
     "origin": {
       "id": "d92531f4-28f5-456d-9b5f-d1cbb17ccfee",
       "address": "www.test.com:80",
-      "priority": "ZERO",
       "authenticationEnabled": false,
       "sslValidationEnabled": true,
       "commonCertificateName": "commonName"
@@ -37,7 +36,6 @@ curl -X GET \
     "backupOrigin": {
       "id": "f6766ee9-680d-4c92-b77c-36c60a251061",
       "address": "1.2.3.4:443/path",
-      "priority": "ONE",
       "authenticationEnabled": false,
       "sslValidationEnabled": false
     }
@@ -61,7 +59,6 @@ Attributes | &nbsp;
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
 `origin.id` <br/> *UUID* | An origin's unique identifier. 
 `origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
-`origin.priority` <br/> *string* | The origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.  
 `origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. 
 `origin.username` <br/> *string* | Username to use when authenticating with the origin. 
 `origin.password` <br/> *string* | Password to use when authenticating with the origin. 
@@ -71,8 +68,7 @@ Attributes | &nbsp;
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*".
 `backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available.
 `backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
-`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
-`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.   
+`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091]. 
 `backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. 
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
@@ -135,7 +131,6 @@ Optional | &nbsp;
 `backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
 `backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available. 
 `backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
-`backupOrigin.priority` <br/> *string* | The backup origin's priority to the scope. Must be one of ["ZERO", "ONE"]. "ZERO" has the highest priority.
 `backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. To update backupOrigin.username and backupOrigin.password, this property must be set to true.
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
