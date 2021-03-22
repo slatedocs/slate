@@ -367,9 +367,9 @@ Attributes | &nbsp;
 `taskId` <br/>*string* | The task id related to the site deletion.
 `taskStatus` <br/>*string* | The status of the operation.
 
-<!-------------------- List WAF Setting for a Site -------------------->
+<!-------------------- List WAF Settings -------------------->
 
-### Retrieve WAF Settings for a Site
+### Retrieve WAF Settings
 
 ```shell
 curl -X GET \
@@ -478,9 +478,9 @@ Attributes | &nbsp;
 `policyGroups.policies.action`<br/>*string* | The potential actions that the WAF will take when a policy is triggered. It can either be `ALLOW`, `BLOCK`, `HANDSHAKE`, `MONITOR` or `CAPTCHA`.
 `policyGroups.policies.enabled`<br/>*boolean* | If the WAF policy is enabled.
 
-<!-------------------- Edit WAF Settings for a Site -------------------->
+<!-------------------- Edit WAF Settings -------------------->
 
-### Edit WAF Settings for a Site
+### Edit WAF Settings
 
 ```shell
 curl -X PATCH \
