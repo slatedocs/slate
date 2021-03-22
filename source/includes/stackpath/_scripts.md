@@ -234,7 +234,7 @@ curl -X PUT \
 ```json
 {
   "taskId": "ef70cafa-0544-4709-a66a-c68595ee105a",
-  "taskStatus": "SUCCESS"
+  "taskStatus": "PENDING"
 }
 ```
 
