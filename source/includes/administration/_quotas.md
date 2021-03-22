@@ -300,7 +300,7 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/quotas" \
 Notes:
 - An existing quotas, owner organization and service connection cannot be changed.
 - The `quotaDetails` in the request will *entirely* replace the previous `quotaDetails`. A quotaDetail for every metric enforced by the plugin must be present. 
-- The default flags of the quota can not be changed via the update endpoint. To update, theese flags the 'quotas/:id/default' should be used. 
+- The default flags of the quota can not be changed via the update endpoint. To update these flags, the 'quotas/:id/default' should be used. 
 - There is an asynchronous portion of this API that will assign the updated quota limits to all currently assigned organizations and organization environments on the backend service. 
 
 
