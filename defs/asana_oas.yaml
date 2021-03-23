@@ -1738,13 +1738,13 @@ components:
               type: string
               example: Low
             enabled:
-              description: The color of the enum option. Defaults to ‘none’.
-              type: boolean
-              example: true
-            color:
               description: >-
                 Whether or not the enum option is a selectable value for the
                 custom field.
+              type: boolean
+              example: true
+            color:
+              description: The color of the enum option. Defaults to ‘none’.
               type: string
               example: blue
     EnumOptionInsertRequest:
