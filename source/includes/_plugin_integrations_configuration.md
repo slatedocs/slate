@@ -5,6 +5,7 @@ The integration plugin provides interfaces to display and store configuration op
 To tell the IntegrationsBundle that this integration has configuration options, tag the integration or support class with `mautic.config_integration` in the plugin's `app/config.php`.
 
 ```php
+<?php
 return [
     // ...
     'services' => [
@@ -28,6 +29,7 @@ return [
 The `ConfigSupport` class must implement `\Mautic\IntegrationsBundle\Integration\Interfaces\ConfigFormInterface`.
 
 ```php
+<?php
 namespace MauticPlugin\HelloBundle\Integration\Support;
 
 use MauticPlugin\HelloWorldBundle\Form\Type\ConfigAuthType;
@@ -70,6 +72,7 @@ These interfaces provide the configuration options for authenticating with the 3
 Used in the example above. This interface provides the Symfony form type class that defines the fields to be stored as the api keys. 
 
 ```php
+<?php
 $apiKeys  = $integrationHelper->get(HelloWorldIntegration::NAME)->getIntegrationConfiguration()->getApiKeys();
 $username = $apiKeys['username'];
 ```
@@ -83,6 +86,7 @@ If the integration leverages an auth provider that requires a callback URL or so
 This interface provides the Symfony form type class that defines the fields to be displayed on the Features tab. These values are not encrypted.
 
 ```php
+<?php
 $featureSettings  = $integrationHelper->get(HelloWorldIntegration::NAME)->getIntegrationConfiguration()->getFeatureSettings();
 $doSomething      = $featureSettings['doSomething'];
 ```

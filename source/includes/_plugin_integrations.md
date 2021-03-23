@@ -35,6 +35,7 @@ All integrations whether it uses the config, auth or sync interfaces must have a
 In the plugin's `Config/config.php`, register the integration using the tag `mautic.basic_integration`.
 
 ```php
+<?php
 return [
     // ...
     'services' => [
@@ -57,6 +58,7 @@ return [
 The `HelloWorldIntegration` will need to implement `\Mautic\IntegrationsBundle\Integration\Interfaces\IntegrationInterface` and `\Mautic\IntegrationsBundle\Integration\Interfaces\BasicInterface` interfaces. Most use cases can simply extend the `\Mautic\IntegrationsBundle\Integration\BasicIntegration` abstract class then define the `getName()`, `getDisplayName()` and `getIcon()` methods.
 
 ```php
+<?php
 namespace MauticPlugin\HelloWorldBundle\Integration;
 
 use MauticPlugin\IntegrationsBundle\Integration\BasicIntegration;

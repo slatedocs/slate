@@ -10,6 +10,7 @@ The sync is initiated using the `mautic:integrations:sync` command. For example:
 To tell the IntegrationsBundle that this integration provides a syncing feature, tag the integration or support class with `mautic.sync_integration` in the plugin's `app/config.php`.
 
 ```php
+<?php
 return [
     // ...
     'services' => [
