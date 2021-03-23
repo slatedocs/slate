@@ -8,18 +8,23 @@ An example HelloWorld plugin is available [here](https://github.com/mautic/plugi
 
 *If the integration requires authentication with the 3rd party service*
 
-1. [Register the integration](#registering-the-integration-for-authentication) to as an integration that requires configuration options.
+1. [Register the integration](#registering-the-integration-for-authentication) as an integration that requires configuration options.
 2. Create a custom Symfony form type for the required credentials and return it as part of the [config interface](#mauticpluginintegrationsbundleintegrationinterfacesconfigformauthinterface).
 3. Create a custom service that builds and configures the Guzzle client required to authenticate and communicate with the 3rd party service. Use an [existing supported factory or create a new one](#authentication-providers).
 
 *If the integration has extra configuration settings for features unique to it*
 
-1. [Register the integration](#registering-the-integration-for-configuration) to as an integration that requires configuration options.
+1. [Register the integration](#registering-the-integration-for-configuration) as an integration that requires configuration options.
 2. Create a custom Symfony form type for the features and return it as part of the [config interface](#mauticpluginintegrationsbundleintegrationinterfacesconfigformfeaturesettingsinterface).
 
 *If the integration syncs with Mautic's contacts and/or companies*
 
 1. Read about [the sync engine](#integration-sync-engine).
+
+*If the integration includes a builder integration (email or landing page)*
+
+1. [Register the integration](#registering-the-integration-for-builders) as an integration that provides a custom builder. 
+2. Configure what featured builders the integration supports (Mautic currently supports "email" and "page" builders).
 
 ### Basics
 Each integration provides its unique name as registered with Mautic, icon, and display name. When an integration is registered, the integration helper classes will manage the `\Mautic\PluginBundle\Entity\Integration` object through `\Mautic\IntegrationsBundle\Integration\Interfaces\IntegrationInterface`. It handles decryption and encryption of the integration's API keys so the implementing code never has to.

@@ -50,6 +50,7 @@ includes:
   - plugin_integrations_authentication
   - plugin_integrations_configuration
   - plugin_integrations_sync
+  - plugin_integrations_builder
   - plugin_manipulating_contacts
   - plugin_extending_intro
   - plugin_extending_api
