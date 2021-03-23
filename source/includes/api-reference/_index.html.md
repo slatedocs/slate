@@ -1010,8 +1010,8 @@ Returns the full record of the newly created custom field.
 |»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
@@ -1364,8 +1364,8 @@ Returns the complete updated custom field record.
 |»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
 |»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
@@ -1772,8 +1772,8 @@ Returns the full record of the newly created enum option.
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to create.|
 |» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
 |»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
@@ -2035,8 +2035,8 @@ Returns the full record of the updated enum option.
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to update|
 |» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
 |»» insert_before<span class="param-type"> string</span>|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
@@ -20441,8 +20441,8 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |name<span class="param-type"> string</span>|The name of the custom field.|
 |number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
@@ -20531,14 +20531,14 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |format<span class="param-type"> string</span>|The format of this custom field.|
 |has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
@@ -20683,14 +20683,14 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» format<span class="param-type"> string</span>|The format of this custom field.|
 |» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
@@ -20770,8 +20770,8 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |name<span class="param-type"> string</span>|The name of the enum option.|
 
 </section><hr>
@@ -21311,14 +21311,14 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
@@ -21684,8 +21684,8 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
@@ -22222,8 +22222,8 @@ A story represents an activity associated with an object in the Asana system.
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
@@ -22269,8 +22269,8 @@ A story represents an activity associated with an object in the Asana system.
 |new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |new_name<span class="param-type"> string</span>|*Conditional*|
 |new_number_value<span class="param-type"> integer</span>|*Conditional*|
@@ -22290,8 +22290,8 @@ A story represents an activity associated with an object in the Asana system.
 |old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
 |old_name<span class="param-type"> string</span>|*Conditional*'|
 |old_number_value<span class="param-type"> integer</span>|*Conditional*|
@@ -22747,14 +22747,14 @@ The *task* is the basic object around which many operations in Asana are centere
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» color<span class="param-type"> string</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»» enabled<span class="param-type"> boolean</span>|The color of the enum option. Defaults to ‘none’.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» format<span class="param-type"> string</span>|The format of this custom field.|
 |» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
