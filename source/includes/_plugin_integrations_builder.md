@@ -5,6 +5,7 @@ Builders can register itself as a "builder" for email and/or landing pages.
 To tell the IntegrationsBundle that this integration has configuration options, tag the integration or support class with `mautic.config_integration` in the plugin's `app/config.php`.
 
 ```php
+<?php
 return [
     // ...
     'services' => [

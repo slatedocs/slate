@@ -5,6 +5,7 @@ The integrations bundle provides factories and helpers to create Guzzle Client c
 If the integration requires the user to authenticate through the web (OAuth2 three legged), the integration needs to tag a service with `mautic.auth_integration` to handle the authentication process (redirecting to login, request the access token, etc). This service will need to implement `\Mautic\IntegrationsBundle\Integration\Interfaces\AuthenticationInterface`.
 
 ```php
+<?php
 return [
     // ...
     'services' => [
@@ -28,6 +29,7 @@ return [
 The `AuthSupport` class must implement `\Mautic\IntegrationsBundle\Integration\Interfaces\AuthenticationInterface`.
 
 ```php
+<?php
 namespace MauticPlugin\HelloWorldBundle\Integration\Support;
 
 use MauticPlugin\HelloWorldBundle\Connection\Client;
@@ -96,6 +98,7 @@ The integrations bundle comes with a number of popular authentication protocols 
 **The examples below use anonymous classes. Of course, use OOP with services and factories to generate credential, configuration, and client classes.** The best way to get configuration values such as username, password, consumer key, consumer secret, etc is by using the `mautic.integrations.helper` (`\Mautic\IntegrationsBundle\Helper\IntegrationsHelper`) service in order to leverage the configuration stored in the `Integration` entity's api keys. 
 
 ```php
+<?php
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Helper\IntegrationsHelper;
 
@@ -119,6 +122,7 @@ Use the `mautic.integrations.auth_provider.api_key` service (`\Mautic\Integratio
 To use the parameter based API key, create a credentials class that implements `\Mautic\IntegrationsBundle\Auth\Provider\ApiKey\Credentials\ParameterCredentialsInterface`. 
 
 ```php
+<?php
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\ApiKey\Credentials\ParameterCredentialsInterface;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\ApiKey\HttpFactory;
@@ -155,6 +159,7 @@ $response = $client->get('https://api-url.com/fetch');
 
 ###### Header Based API Key
 ```php
+<?php
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\ApiKey\Credentials\HeaderCredentialsInterface;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\ApiKey\HttpFactory;
@@ -193,6 +198,7 @@ $response = $client->get('https://api-url.com/fetch');
 Use the `mautic.integrations.auth_provider.basic_auth` service (`\Mautic\IntegrationsBundle\Auth\Provider\BasicAuth\HttpFactory`) to obtain a `GuzzleHttp\ClientInterface` that uses basic auth for all requests.
 
 ```php
+<?php
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Helper\IntegrationsHelper;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\BasicAuth\HttpFactory;
@@ -239,6 +245,7 @@ This has not been implemented yet.
 OAuth1A two legged does not require a user to login as would three legged. 
 
 ```php
+<?php
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Helper\IntegrationsHelper;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\OAuth1aTwoLegged\HttpFactory;
@@ -322,6 +329,7 @@ For most use cases, a token persistence service to fetch and store the access to
 Use the `mautic.integrations.auth_provider.token_persistence_factory` service (`\Mautic\IntegrationsBundle\Auth\Support\Oauth2\Token\TokenPersistenceFactory`) to generate a `TokenFactoryInterface` to be returned by the `\Mautic\IntegrationsBundle\Auth\Support\Oauth2\ConfigAccess\ConfigTokenFactoryInterface` interface. 
  
 ```php
+<?php
 use kamermans\OAuth2\Persistence\TokenPersistenceInterface;
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Auth\Support\Oauth2\ConfigAccess\ConfigTokenPersistenceInterface;
@@ -357,6 +365,7 @@ In some cases, the 3rd party service may return additional values that are not t
 The `IntegrationTokenFactory` can then be returned in a `\Mautic\IntegrationsBundle\Auth\Support\Oauth2\ConfigAccess\ConfigTokenFactoryInterface` when configuring the `Client`. 
 
 ```php
+<?php
 use MauticPlugin\IntegrationsBundle\Auth\Support\Oauth2\ConfigAccess\ConfigTokenFactoryInterface;
 use MauticPlugin\IntegrationsBundle\Auth\Support\Oauth2\Token\IntegrationTokenFactory;
 use MauticPlugin\IntegrationsBundle\Auth\Support\Oauth2\Token\TokenFactoryInterface;
@@ -384,6 +393,7 @@ $config = new class($tokenFactory) implements ConfigTokenFactoryInterface {
 Below is an example of the password grant for a service that uses a scope (optional interface). The use of the token persistence is assuming the access token is valid for a period of time (i.e. an hour). 
 
 ```php
+<?php
 use kamermans\OAuth2\Persistence\TokenPersistenceInterface;
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\Oauth2TwoLegged\Credentials\PasswordCredentialsGrantInterface;
@@ -469,6 +479,7 @@ $response = $client->get('https://api-url.com/fetch');
 Below is an example of the client credentials grant for a service that uses a scope (optional interface). The use of the token persistence is assuming the access token is valid for a period of time (i.e. an hour). 
 
 ```php
+<?php
 use kamermans\OAuth2\Persistence\TokenPersistenceInterface;
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\Oauth2TwoLegged\Credentials\ClientCredentialsGrantInterface;
@@ -542,6 +553,7 @@ Three legged OAuth2 with the code grant is the most complex to implement because
 The first step is to register the integration as a [`\Mautic\IntegrationsBundle\Integration\Interfaces\AuthenticationInterface`](#registering-the-integration-for-authentication). The `authenticateIntegration()` method will be used to initiate the access token process using the `code` returned in the request after the user logs into the 3rd party service. The integrations bundle provides a route that can be used as the redirect or callback URIs through the named route `mautic_integration_public_callback` that requires a `integration` parameter. This redirect URI can be displayed in the UI by using [`ConfigFormCallbackInterface`](https://github.com/mautic/plugin-integrations/wiki/2.-Integration-Configuration#mauticpluginintegrationsbundleintegrationinterfacesconfigformcallbackinterface). This route will find the integration by name from the `AuthIntegrationsHelper` then execute its `authenticateIntegration()`. 
 
 ```php
+<?php
 namespace MauticPlugin\HelloWorldBundle\Integration\Support;
 
 use GuzzleHttp\ClientInterface;
@@ -573,6 +585,7 @@ The trick here is that the `Client`'s `authenticate` method will configure a `Cl
 Here is an example of a client, assuming that the user has already logged in and the code is in the request.
 
 ```php
+<?php
 use kamermans\OAuth2\Persistence\TokenPersistenceInterface;
 use MauticPlugin\HelloWorldBundle\Integration\HelloWorldIntegration;
 use MauticPlugin\IntegrationsBundle\Auth\Provider\Oauth2ThreeLegged\Credentials\CodeInterface;
