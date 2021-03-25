@@ -74,7 +74,7 @@ curl "https://api.affinity.co/notes" -u :<API-KEY>
 
 `GET /notes`
 
-Returns all field values attached to a `person`, `organization`, `opportunity`.
+Returns all notes attached to a `person`, `organization`, `opportunity`.
 
 ### Query Parameters
 
