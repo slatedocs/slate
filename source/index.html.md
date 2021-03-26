@@ -1,18 +1,16 @@
 ---
-title: API Reference
+title: Leah's API Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='mailto:hello@leah.care'>Ask for your API Key</a>
+  - <a href='https://www.leah.care'>Discover Leah</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+ # - errors
 
 search: true
 
@@ -21,221 +19,252 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Leah's API! You can use our API to access different endpoints and make requests on our services.
+Our API allows for the moment to generate sequence of reminders when creating an appointment, but soon, it will also be possible to manage document sharing, offices creation or even invoicing.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+You can directly see the examples of Shell queries in the right column in all our documentation.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
+# Authentification
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+
+curl --location --request POST 'https://myorganization.leah.care/api/end_point' \
+  --header 'LEAH-AUTH-TOKEN: $your_api_key' \
+
 ```
+> Make sure to replace `myorganization` with your organization name and `$your_api_key` with your API key.
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-```
+### Query URL
 
-> Make sure to replace `meowmeowmeow` with your API key.
+As an organization, we've created a dedicated URL for you for white label use or your API access. Use this URL to make your queries. It looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`https://myorganization.leah.care`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>myorganization</code> with your organization name
 </aside>
 
-# Kittens
+### API Key
 
-## Get All Kittens
+Leah uses API keys to allow access to the API. 
+If you have not received a key, you can directly contact your sales representative to obtain it.
+Otherwise, do not hesitate to contact us by [email](mailto:hello@leah.care)
 
-```ruby
-require 'kittn'
+Leah expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+`'LEAH-AUTH-TOKEN: $your_api_key' \`
 
-```python
-import kittn
+<aside class="notice">
+You must replace <code>$your_api_key</code> with your personal API key.
+</aside>
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+# Offices
+
+## Collect offices list
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl --location --requesz GET 'https://myorganization.leah.care/api/offices' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+    "@context":"\/api\/contexts\/Office",
+    "@id":"\/api\/offices",
+    "@type":"hydra:Collection",
+    "hydra:member":
+    [
+        {
+            "@id":"\/api\/offices\/6e229d04-1880-4b6b-a520-36f757f4a531",
+            "@type":"Office","id":"6e229d04-1880-4b6b-a520-36f757f4a531",
+            "slug":"my-office",
+            "organization":"\/api\/organizations\/440b4e01-d3e4-4cbc-afb2-ca62177cd630",
+            "features":["\/api\/features\/1054acd0-b3e7-4420-b01d-d18c1e57fe6a"],
+            "createdAt":"2021-01-22T14:20:48+00:00",
+            "currentMeeting":null
+        }
+    ],
+    "hydra:totalItems":1,
+}
 ```
 
-This endpoint retrieves all kittens.
+Allows you to retrieve all offices of your organization.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://myorganization.leah.care/api/offices`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Attendance | Description
+- | - | -
+healthcareWorker.email | Optional | Filters results for a single healthcare worker via the specified email
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+# Appointment reminder
+
+## Reminders
+
+Creating a new appointment generates two reminders for your organization, which can be configured respectively:
+
++ per day
++ per minutes
+
+<aside class="notice">We will set these values with you when you create your account, and they can be modified on request. To, the API does not allow you to parameterize these values.
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Creating
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl --location --request POST 'https://myorganization.leah.care/api/appointments' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "phoneNumber": "+33612345678",
+    "email":"john.doe@gmail.com",
+    "office":"/api/offices/6e229d04-1880-4b6b-a520-36f757f4a531",
+    "startTime" : "2021-04-25T13:15:00",
+		"external_id" : "000001"
+}'
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> This request returns <code>201</code> with JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "@context": "/api/contexts/Appointment",
+    "@id": "/api/appointments/70cbe776-1de2-48b2-86aa-e9e9410bc711",
+    "@type": "Appointment",
+    "status": "scheduled",
+    "startTime": "2021-03-24T13:15:00+00:00",
+    "email": "john.doe@gmail.com",
+    "phoneNumber": "+33612345678"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Create an appointment.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+<code>POST 'https://myorganization.leah.care/api/appointments'</code>
 
-### URL Parameters
+### Content-type
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+<code>application/json</code>
 
-## Delete a Specific Kitten
+### Query parameters
 
-```ruby
-require 'kittn'
+Parameter | Attendance | Description
+- | - | -
+phoneNumber | Mandatory | Phone number on which the guest will receive the reminder
+email | Mandatory | Email on wich the guest will receive all informations and the reminder
+office | Mandatory | Healthcare work IRI's office
+startTime | Mandatory | Date and time of the appointment. Format <code>yyyy-mm-ddThh:mm:ss</code> UTC
+external_id | Optional | Associate an external <code>ID</code> 
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+<aside class="success">
+A confirmation email is sent to the guest, and reminders are created.
+</aside>
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Edit 
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl --location --request PATCH 'https://myorganization.leah.care/api/appointments/70cbe776-1de2-48b2-86aa-e9e9410bc711' \
+--header 'Content-Type: application/merge-patch+json' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key' \
+--data-raw '{
+    "startTime" : "2021-05-18T09:00:00"
+}'
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> This request returns <code>200</code> with JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "@context": "/api/contexts/Appointment",
+    "@id": "/api/appointments/70cbe776-1de2-48b2-86aa-e9e9410bc711",
+    "@type": "Appointment",
+    "status": "scheduled",
+    "startTime": "2021-05-18T09:00:00+00:00",
+    "email": "john.doe@gmail.com",
+    "phoneNumber": "+33612345678"
 }
 ```
 
-This endpoint deletes a specific kitten.
+Reschedule appointment.
+
+<aside class="notice">
+If you edit an appointment when the reminders have already passed, they will be replayed if they are in the future.
+</aside>
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+<code>PATCH 'https://myorganizationleah.care/api/appointments/@id'</code>
 
-### URL Parameters
+### Content-type
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+<code>application/merge-patch+json </code>
 
+### Query parameters
+
+Parameter | Attendance | Description
+- | - | -
+startTime | Mandatory | New date and time of the appointment. Format <code>yyyy-mm-ddThh:mm:ss</code> UTC
+
+<aside class="success">
+A confirmation email is sent to the guest, and reminders are updated.
+</aside>
+
+## Delete 
+
+```shell
+curl --location --request PATCH 'https://myorganization.leah.care/api/appointments/70cbe776-1de2-48b2-86aa-e9e9410bc711' \
+--header 'Content-Type: application/merge-patch+json' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key' \
+--data-raw '{
+    "status": "cancelled"
+}'
+```
+
+> This request returns <code>200</code> with JSON structured like this:
+
+```json
+{
+    "@context": "/api/contexts/Appointment",
+    "@id": "/api/appointments/70cbe776-1de2-48b2-86aa-e9e9410bc711",
+    "@type": "Appointment",
+    "status": "cancelled",
+    "startTime": "2021-05-18T09:00:00+00:00",
+    "email": "john.doe@gmail.com",
+    "phoneNumber": "+33612345678"
+}
+```
+
+Cancel appointment.
+
+<aside class="warning">
+If you cancel an appointment, it will be permanently deleted and cannot be recovered.
+</aside>
+
+### HTTP Request
+
+<code>PATCH 'https://myorganization.leah.care/api/appointments/@id'</code>
+
+### Content-type
+
+<code>application/merge-patch+json </code>
+
+### Query parameters
+
+Parameter | Attendance | Description
+- | - | -
+status | Mandatory | cancelled
+
+<aside class="success">
+A email is sent to the guest to cancel the appointment
+</aside>
