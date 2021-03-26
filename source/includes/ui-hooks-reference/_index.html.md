@@ -39,7 +39,7 @@ The creation form is displayed when the user starts the flow to create a resourc
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{form_metadata_url} \
+curl -X GET {siteUrl}/{form_metadata_url}?workspace=string&task=string&user=string&locale=string&expires=string \
   -H 'Accept: application/json'
 
 ```
@@ -73,7 +73,7 @@ getFormMetadata
 
 ```json
 {
-  "error": "Create New Issue",
+  "error": "You must provide either a name or a title",
   "fields": [
     {
       "error": "Maximum description length is 256 characters",
@@ -94,7 +94,7 @@ getFormMetadata
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server/form/onchange",
+    "on_change_callback": "https://app-server.com/form/onchange",
     "watched_fields": [
       "description"
     ]
@@ -119,11 +119,11 @@ Get the metadata from the App Server to render a form.
 
 |Name|Description|
 |---|---|
-|?workspace<span class="param-type"> undefined</span>|The workspace gid this hook is coming from.|
-|?task<span class="param-type"> undefined</span>|The task gid this hook is coming from.|
-|?user<span class="param-type"> undefined</span>|The user gid this hook is coming from.|
-|?locale<span class="param-type"> undefined</span>|The locale of the user (i.e. en, fr)|
-|?expires<span class="param-type"> undefined</span>|The time in milliseconds since epoch time when the request should expire|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
+|?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
+|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
+|?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
+|?expires<span class="param-type"> string</span><div class="param-required">required</div>|The time in milliseconds since epoch time when the request should expire|
 
 <h3 id="get-form-metadata-responses">Responses</h3>
 
@@ -181,7 +181,12 @@ onFormChange
 
 ```json
 {
-  "changed_field": "string"
+  "changed_field": "string",
+  "expires": "string",
+  "locale": "string",
+  "task": "string",
+  "user": "string",
+  "workspace": "string"
 }
 ```
 
@@ -189,7 +194,7 @@ onFormChange
 
 ```json
 {
-  "error": "Create New Issue",
+  "error": "You must provide either a name or a title",
   "fields": [
     {
       "error": "Maximum description length is 256 characters",
@@ -210,7 +215,7 @@ onFormChange
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server/form/onchange",
+    "on_change_callback": "https://app-server.com/form/onchange",
     "watched_fields": [
       "description"
     ]
@@ -237,13 +242,18 @@ The callback request made to an App Server when a watched field's value changes 
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to notify of an on change event.|
 |» changed_field<span class="param-type"> string</span>|The name of the changed FormField|
+|» expires<span class="param-type"> string</span>|The time in milliseconds since epoch time when the request should expire|
+|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
+|» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
+|» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
+|» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
 <h3 id="on-change-callback-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Successfully returned the new state of the form.|
-|400<span class="param-type"> None</span>|Bad Request|
+|400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
 |404<span class="param-type"> None</span>|Not Found|
@@ -348,6 +358,7 @@ onFormSubmit
 
 ```json
 {
+  "error": "No resource matched that input",
   "resource_name": "Build the Thing",
   "resource_url": "https://example.atlassian.net/browse/CP-1"
 }
@@ -384,7 +395,7 @@ The callback request made to an App Server when a form is submitted.
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |»»» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
-|»»» type<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
+|»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -410,7 +421,7 @@ The callback request made to an App Server when a form is submitted.
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource created by the form.|
-|400<span class="param-type"> None</span>|Bad Request|
+|400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
 |404<span class="param-type"> None</span>|Not Found|
@@ -479,7 +490,6 @@ runAction
   "expires": "string",
   "locale": "string",
   "target_object": "string",
-  "task": "string",
   "user": "string",
   "workspace": "string"
 }
@@ -489,9 +499,11 @@ runAction
 
 ```json
 {
-  "action_result": "resources_created",
+  "action_result": "ok",
+  "error": "That resource no longer exists",
   "resources_created": [
     {
+      "error": "No resource matched that input",
       "resource_name": "Build the Thing",
       "resource_url": "https://example.atlassian.net/browse/CP-1"
     }
@@ -518,7 +530,6 @@ The request made when an action is triggered.
 |» expires<span class="param-type"> string</span>|The time in milliseconds since epoch time when the request should expire|
 |» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
 |» target_object<span class="param-type"> string</span>|The id of the target object that the Rule is acting on (currently always a Task id)|
-|» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -543,7 +554,7 @@ The request made when an action is triggered.
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{metadata_url} \
+curl -X GET {siteUrl}/{metadata_url}?action_type=string&project=string&workspace=string&user=string&locale=string&expires=string \
   -H 'Accept: application/json'
 
 ```
@@ -577,7 +588,7 @@ getActionMetadata
 
 ```json
 {
-  "error": "Create New Issue",
+  "error": "You must provide either a name or a title",
   "fields": [
     {
       "error": "Maximum description length is 256 characters",
@@ -598,7 +609,7 @@ getActionMetadata
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server/form/onchange",
+    "on_change_callback": "https://app-server.com/form/onchange",
     "watched_fields": [
       "description"
     ]
@@ -623,13 +634,13 @@ When a user has navigated to the Custom Rule Builder UI and selected an App Acti
 
 |Name|Description|
 |---|---|
-|?action<span class="param-type"> undefined</span>|The id of an existing app action that is being edited. Should be omitted when configuring a new app action.|
-|?action_type<span class="param-type"> undefined</span>|The id of the configuration used to create the app action|
-|?workspace<span class="param-type"> undefined</span>|The workspace gid this hook is coming from.|
-|?task<span class="param-type"> undefined</span>|The task gid this hook is coming from.|
-|?user<span class="param-type"> undefined</span>|The user gid this hook is coming from.|
-|?locale<span class="param-type"> undefined</span>|The locale of the user (i.e. en, fr)|
-|?expires<span class="param-type"> undefined</span>|The time in milliseconds since epoch time when the request should expire|
+|?action<span class="param-type"> string</span>|The id of an existing app action that is being edited. Should be omitted when configuring a new app action.|
+|?action_type<span class="param-type"> string</span><div class="param-required">required</div>|The id of the configuration used to create the app action|
+|?project<span class="param-type"> string</span><div class="param-required">required</div>|The project gid this hook is coming from.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
+|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
+|?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
+|?expires<span class="param-type"> string</span><div class="param-required">required</div>|The time in milliseconds since epoch time when the request should expire|
 
 <h3 id="get-action-metadata-responses">Responses</h3>
 
@@ -640,7 +651,6 @@ When a user has navigated to the Custom Rule Builder UI and selected an App Acti
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
 |404<span class="param-type"> None</span>|Not Found|
-|418<span class="param-type"> None</span>|Unauthorized|
 |500<span class="param-type"> None</span>|Server Error|
 
 </section><hr class="half-line">
@@ -690,7 +700,11 @@ onActionFormChange
 {
   "action": "string",
   "action_type": "string",
-  "changed_field": "string"
+  "changed_field": "string",
+  "expires": "string",
+  "locale": "string",
+  "user": "string",
+  "workspace": "string"
 }
 ```
 
@@ -698,7 +712,7 @@ onActionFormChange
 
 ```json
 {
-  "error": "Create New Issue",
+  "error": "You must provide either a name or a title",
   "fields": [
     {
       "error": "Maximum description length is 256 characters",
@@ -719,7 +733,7 @@ onActionFormChange
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server/form/onchange",
+    "on_change_callback": "https://app-server.com/form/onchange",
     "watched_fields": [
       "description"
     ]
@@ -748,13 +762,17 @@ The callback request made to an App Server when a watched field's value changes 
 |» action<span class="param-type"> string</span>|The id of an existing app action that is being edited|
 |» action_type<span class="param-type"> string</span>|The id of the configuration used to create the app action|
 |» changed_field<span class="param-type"> string</span>|The name of the changed FormField|
+|» expires<span class="param-type"> string</span>|The time in milliseconds since epoch time when the request should expire|
+|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
+|» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
+|» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
 <h3 id="on-action-change-callback-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Successfully returned the new state of the form.|
-|400<span class="param-type"> None</span>|Bad Request|
+|400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
 |404<span class="param-type"> None</span>|Not Found|
@@ -771,6 +789,7 @@ The callback request made to an App Server when a watched field's value changes 
 ```shell
 curl -X POST {siteUrl}/{action.on_submit_callback} \
   -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
   -d '{"data": {"field":"value","field":"value"} }'
 
 ```
@@ -857,6 +876,44 @@ onActionFormSubmit
 }
 ```
 
+> 400 Response
+
+```json
+{
+  "error": "You must provide either a name or a title",
+  "fields": [
+    {
+      "error": "Maximum description length is 256 characters",
+      "id": "item-description",
+      "options": [
+        {
+          "icon_url": "some-icon.png",
+          "id": "opt-in",
+          "label": "Opt in to emails."
+        }
+      ],
+      "placeholder": "Type description here...",
+      "required": true,
+      "title": "Item Description",
+      "type": "single_line_text",
+      "value": "It's over 9000",
+      "width": "full"
+    }
+  ],
+  "on_change": {
+    "on_change_callback": "https://app-server.com/form/onchange",
+    "watched_fields": [
+      "description"
+    ]
+  },
+  "on_submit_callback": "www.example.com/on_submit",
+  "submit_button_text": "Create New Issue",
+  "title": "Create New Issue"
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
 <p>
 <code> <span class="post-verb">POST</span> /{action.on_submit_callback}</code>
 </p>
@@ -889,7 +946,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |»»» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
-|»»» type<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
+|»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -915,7 +972,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |Status|Description|
 |---|---|
 |200<span class="param-type"> None</span>|Successfully handled form submission.|
-|400<span class="param-type"> None</span>|Bad Request|
+|400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
 |404<span class="param-type"> None</span>|Not Found|
@@ -944,7 +1001,7 @@ Each typeahead form field contains a typeahead_url to fetch typeahead options ba
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{typeahead_url} \
+curl -X GET {siteUrl}/{typeahead_url}?fragment=string&workspace=string&task=string&user=string&locale=string&expires=string \
   -H 'Accept: application/json'
 
 ```
@@ -1003,12 +1060,12 @@ The typeahead request made to an App Server when a typeahead field changes.
 
 |Name|Description|
 |---|---|
-|?fragment<span class="param-type"> undefined</span>|The text entered into the typeahead input|
-|?workspace<span class="param-type"> undefined</span>|The workspace gid this hook is coming from.|
-|?task<span class="param-type"> undefined</span>|The task gid this hook is coming from.|
-|?user<span class="param-type"> undefined</span>|The user gid this hook is coming from.|
-|?locale<span class="param-type"> undefined</span>|The locale of the user (i.e. en, fr)|
-|?expires<span class="param-type"> undefined</span>|The time in milliseconds since epoch time when the request should expire|
+|?fragment<span class="param-type"> string</span><div class="param-required">required</div>|The text entered into the typeahead input|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
+|?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
+|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
+|?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
+|?expires<span class="param-type"> string</span><div class="param-required">required</div>|The time in milliseconds since epoch time when the request should expire|
 
 <h3 id="typeahead-(ui)-responses">Responses</h3>
 
@@ -1053,7 +1110,7 @@ The widget is displayed when the user views a task with an attachment with a res
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{widget_metadata_url} \
+curl -X GET {siteUrl}/{widget_metadata_url}?resource_url=string&workspace=string&task=string&user=string&locale=string&attachment=string&asset=string&expires=string \
   -H 'Accept: application/json'
 
 ```
@@ -1089,6 +1146,7 @@ getWidgetMetadata
 {
   "data": {
     "comment_count": 2,
+    "error": "The resource cannot be accessed",
     "fields": [
       {
         "color": "gray",
@@ -1121,14 +1179,14 @@ Get the metadata from the App Server to render a widget.
 
 |Name|Description|
 |---|---|
-|?resource_url<span class="param-type"> undefined</span>|The URL of the URL attachment on the task (i.e. Jira issue, Github pull request)|
-|?workspace<span class="param-type"> undefined</span>|The workspace gid this hook is coming from.|
-|?task<span class="param-type"> undefined</span>|The task gid this hook is coming from.|
-|?user<span class="param-type"> undefined</span>|The user gid this hook is coming from.|
-|?locale<span class="param-type"> undefined</span>|The locale of the user (i.e. en, fr)|
-|?attachment<span class="param-type"> undefined</span>|The attachment id of the URL attachment|
-|?asset<span class="param-type"> undefined</span>|The asset id of the asset containing the URL attachment|
-|?expires<span class="param-type"> undefined</span>|The time in milliseconds since epoch time when the request should expire|
+|?resource_url<span class="param-type"> string</span><div class="param-required">required</div>|The URL of the URL attachment on the task (i.e. Jira issue, Github pull request)|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
+|?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
+|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
+|?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
+|?attachment<span class="param-type"> string</span><div class="param-required">required</div>|The attachment id of the URL attachment|
+|?asset<span class="param-type"> string</span><div class="param-required">required</div>|The asset id of the asset containing the URL attachment|
+|?expires<span class="param-type"> string</span><div class="param-required">required</div>|The time in milliseconds since epoch time when the request should expire|
 
 <h3 id="get-widget-metadata-responses">Responses</h3>
 
@@ -1202,6 +1260,7 @@ attachResource
 
 ```json
 {
+  "error": "No resource matched that input",
   "resource_name": "Build the Thing",
   "resource_url": "https://example.atlassian.net/browse/CP-1"
 }
@@ -1261,6 +1320,7 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 
 ```json
 {
+  "error": "No resource matched that input",
   "resource_name": "Build the Thing",
   "resource_url": "https://example.atlassian.net/browse/CP-1"
 }
@@ -1276,6 +1336,7 @@ The response to a successful attach request.
 
 |Name|Description|
 |---|---|
+|error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |resource_name<span class="param-type"> string</span>|The name of the attached resource|
 |resource_url<span class="param-type"> string</span>|The URL of the attached resource|
 
@@ -1290,7 +1351,7 @@ The response to a successful attach request.
 
 ```json
 {
-  "error": "Create New Issue",
+  "error": "You must provide either a name or a title",
   "fields": [
     {
       "error": "Maximum description length is 256 characters",
@@ -1311,7 +1372,7 @@ The response to a successful attach request.
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server/form/onchange",
+    "on_change_callback": "https://app-server.com/form/onchange",
     "watched_fields": [
       "description"
     ]
@@ -1343,7 +1404,7 @@ Contains the metadata that describes how to display and manage a form
 |» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
-|» type<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
+|» type<span class="param-type"> string</span>|The type of field the form field is|
 |» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
 |» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |on_change<span class="param-type"> object</span>|Contains the information to handle whenever watched form fields are changed|
@@ -1380,9 +1441,11 @@ Contains the metadata that describes how to display and manage a form
 
 ```json
 {
-  "action_result": "resources_created",
+  "action_result": "ok",
+  "error": "That resource no longer exists",
   "resources_created": [
     {
+      "error": "No resource matched that input",
       "resource_name": "Build the Thing",
       "resource_url": "https://example.atlassian.net/browse/CP-1"
     }
@@ -1400,8 +1463,10 @@ The response to an action request.
 
 |Name|Description|
 |---|---|
-|action_result<span class="param-type"> string</span>|Specifies any additional information that the app wants to send to Asana on completion of the action.|
+|action_result<span class="param-type"> string</span>|Specifies any additional information that the app wants to send to Asana on completion of the action. Can only be `resources_created` or `ok`.|
+|error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |resources_created<span class="param-type"> [object]</span>|A field with the data corresponding to the action_result value. Each action_result has its own data field shape that Asana expects. `resources_created` expects the name and url of the resources that the action created.|
+|» error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |» resource_name<span class="param-type"> string</span>|The name of the attached resource|
 |» resource_url<span class="param-type"> string</span>|The URL of the attached resource|
 
@@ -1458,6 +1523,7 @@ An object describing a typeahead result
 {
   "data": {
     "comment_count": 2,
+    "error": "The resource cannot be accessed",
     "fields": [
       {
         "color": "gray",
@@ -1488,6 +1554,7 @@ An object containing information about the widget
 |---|---|
 |data<span class="param-type"> object</span>|none|
 |» comment_count<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
+|» error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.|
 |»» color<span class="param-type"> string</span>|The color of the pill.|
 |»» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the text|

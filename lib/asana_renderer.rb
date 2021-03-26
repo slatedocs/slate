@@ -145,7 +145,7 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
         if content.index("?opt_pretty") == 4 || content.index("?opt_fields") == 4 || content.index("?opt_expand") == 4 || content.index("?limit") == 4 || content.index("?offset") == 4
           result_classes[i] += " hidden-row common-item"
           has_common_params = true
-        elsif content.index("400") == 4 || content.index("401") == 4 || content.index("402") == 4 || content.index("403") == 4 || content.index("404") == 4 || content.index("424") == 4 || content.index("500") == 4 || content.index("501") == 4 || content.index("503") == 4 || content.index("504") == 4 || content.index("default<") == 4
+        elsif content.index("400") == 4 || content.index("401") == 4 || content.index("402") == 4 || content.index("403") == 4 || content.index("410") == 4 || content.index("404") == 4 || content.index("424") == 4 || content.index("500") == 4 || content.index("501") == 4 || content.index("503") == 4 || content.index("504") == 4 || content.index("default<") == 4
           result_classes[i] += " hidden-row common-item"
           num_common_responses += 1
         end

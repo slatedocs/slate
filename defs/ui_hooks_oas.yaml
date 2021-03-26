@@ -21,6 +21,7 @@ info:
     - RanActionResponse
     - WidgetMetadataResponse
     - TypeaheadItem
+    - FormValues
 servers:
   - url: "{siteUrl}"
     description: Main endpoint.
@@ -50,56 +51,96 @@ components:
     action:
       name: action
       in: query
+      schema:
+        type: string
       description: >-
         The id of an existing app action that is being edited. Should be omitted when configuring a new app action.
     action_type:
       name: action_type
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The id of the configuration used to create the app action
     asset:
       name: asset
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The asset id of the asset containing the URL attachment
     attachment:
       name: attachment
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The attachment id of the URL attachment
     expires:
       name: expires
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The time in milliseconds since epoch time when the request should expire
     fragment:
       name: fragment
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The text entered into the typeahead input
     locale:
       name: locale
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The locale of the user (i.e. en, fr)
+    project:
+      name: project
+      required: true
+      in: query
+      schema:
+        type: string
+      description: >-
+        The project gid this hook is coming from.
     user:
       name: user
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The user gid this hook is coming from.
     resource_url:
       name: resource_url
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The URL of the URL attachment on the task (i.e. Jira issue, Github pull request)
     task:
       name: task
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The task gid this hook is coming from.
     workspace:
       name: workspace
+      required: true
       in: query
+      schema:
+        type: string
       description: >-
         The workspace gid this hook is coming from.
   responses:
@@ -145,10 +186,6 @@ components:
           type: string
           description: >-
             The user gid this hook is coming from.
-        task:
-          type: string
-          description: >-
-            The task gid this hook is coming from.
         workspace:
           type: string
           description: >-
@@ -160,6 +197,10 @@ components:
           description: >-
             The body of an attach request.
           properties:
+            task:
+              type: string
+              description: >-
+                The task gid this hook is coming from.
             asset:
               type: string
               description: >-
@@ -188,6 +229,11 @@ components:
             The URL of the attached resource
           type: string
           example: 'https://example.atlassian.net/browse/CP-1'
+        error:
+          description: >-
+            The error that should be displayed to the user
+          type: string
+          example: 'No resource matched that input'
     FormField:
       description: >-
         Every form field type has a set of properties to describe what should be rendered on the form. These are the
@@ -197,7 +243,7 @@ components:
       properties:
         type:
           description: >-
-            The URL that Asana should send requests to whenever watched field values are changed
+            The type of field the form field is
           type: string
           enum:
             - single_line_text
@@ -315,7 +361,7 @@ components:
           description: >-
             The error that should be displayed at the footer of the creation form
           type: string
-          example: 'Create New Issue'
+          example: 'You must provide either a name or a title'
     FormOnChangeConfig:
       description: >-
         Contains the information to handle whenever watched form fields are changed
@@ -325,7 +371,7 @@ components:
           description: >-
             The URL that Asana should send requests to whenever watched field values are changed
           type: string
-          example: 'https://app-server/form/onchange'
+          example: 'https://app-server.com/form/onchange'
         watched_fields:
           description: >-
             An array of FormField names to indicate which fields should send requests when their values are changed
@@ -340,6 +386,10 @@ components:
           description: >-
             The body of a form submission.
           properties:
+            task:
+              type: string
+              description: >-
+                The task gid this hook is coming from.
             values:
               type: object
               description: >-
@@ -370,9 +420,9 @@ components:
               type: string
               description: >-
                 The id of the configuration used to create the app action
-    FormOnChangeRequest:
+    FormOnChangeBaseRequest:
       allOf:
-        - $ref: '#/components/schemas/FormSubmission'
+        - $ref: '#/components/schemas/RootWorkflowAppRequest'
         - type: object
           description: >-
             The body of an onchange event.
@@ -381,9 +431,20 @@ components:
               type: string
               description: >-
                 The name of the changed FormField
+    FormOnChangeRequest:
+      allOf:
+        - $ref: '#/components/schemas/FormOnChangeBaseRequest'
+        - type: object
+          description: >-
+            The body of an onchange event.
+          properties:
+            task:
+              type: string
+              description: >-
+                The task gid this hook is coming from.
     ActionFormOnChangeRequest:
       allOf:
-        - $ref: '#/components/schemas/FormOnChangeRequest'
+        - $ref: '#/components/schemas/FormOnChangeBaseRequest'
         - type: object
           description: >-
             The body of an action onchange event.
@@ -416,6 +477,11 @@ components:
       description: >-
         The response to an action request.
       properties:
+        error:
+          description: >-
+            The error that should be displayed to the user
+          type: string
+          example: 'That resource no longer exists'
         action_result:
           type: string
           enum:
@@ -423,6 +489,8 @@ components:
             - ok
           description: >-
             Specifies any additional information that the app wants to send to Asana on completion of the action.
+            Can only be `resources_created` or `ok`.
+          example: 'ok'
         resources_created:
           type: array
           description: >-
@@ -469,6 +537,11 @@ components:
         data:
           type: object
           properties:
+            error:
+              description: >-
+                The error that should be displayed to the user
+              type: string
+              example: 'The resource cannot be accessed'
             title:
               description: >-
                 The text to show in the title of the widget
@@ -675,7 +748,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/FormMetadataResponse'
         400:
-          $ref: '#/components/responses/BadRequest'
+          description: Something was wrong with the form data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
         401:
           $ref: '#/components/responses/Unauthorized'
         403:
@@ -708,7 +785,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/AttachedResourceResponse'
         400:
-          $ref: '#/components/responses/BadRequest'
+          description: Something was wrong with the form data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
         401:
           $ref: '#/components/responses/Unauthorized'
         403:
@@ -787,8 +868,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/action'
       - $ref: '#/components/parameters/action_type'
+      - $ref: '#/components/parameters/project'
       - $ref: '#/components/parameters/workspace'
-      - $ref: '#/components/parameters/task'
       - $ref: '#/components/parameters/user'
       - $ref: '#/components/parameters/locale'
       - $ref: '#/components/parameters/expires'
@@ -818,8 +899,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        418:
-          $ref: '#/components/responses/Unauthorized'
         500:
           $ref: '#/components/responses/InternalServerError'
   /{action.on_change_callback}:
@@ -846,7 +925,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/FormMetadataResponse'
         400:
-          $ref: '#/components/responses/BadRequest'
+          description: Something was wrong with the form data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
         401:
           $ref: '#/components/responses/Unauthorized'
         403:
@@ -879,7 +962,11 @@ paths:
         200:
           description: Successfully handled form submission.
         400:
-          $ref: '#/components/responses/BadRequest'
+          description: Something was wrong with the form data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormMetadataResponse'
         401:
           $ref: '#/components/responses/Unauthorized'
         403:
