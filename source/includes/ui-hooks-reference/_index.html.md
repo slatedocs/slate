@@ -90,14 +90,12 @@ getFormMetadata
       "title": "Item Description",
       "type": "single_line_text",
       "value": "It's over 9000",
+      "watched": true,
       "width": "full"
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange",
-    "watched_fields": [
-      "description"
-    ]
+    "on_change_callback": "https://app-server.com/form/onchange"
   },
   "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
@@ -211,14 +209,12 @@ onFormChange
       "title": "Item Description",
       "type": "single_line_text",
       "value": "It's over 9000",
+      "watched": true,
       "width": "full"
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange",
-    "watched_fields": [
-      "description"
-    ]
+    "on_change_callback": "https://app-server.com/form/onchange"
   },
   "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
@@ -326,6 +322,7 @@ onFormSubmit
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
+        "watched": true,
         "width": "full"
       }
     },
@@ -346,6 +343,7 @@ onFormSubmit
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
+        "watched": true,
         "width": "full"
       }
     }
@@ -397,6 +395,7 @@ The callback request made to an App Server when a form is submitted.
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
+|»»» watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -605,14 +604,12 @@ getActionMetadata
       "title": "Item Description",
       "type": "single_line_text",
       "value": "It's over 9000",
+      "watched": true,
       "width": "full"
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange",
-    "watched_fields": [
-      "description"
-    ]
+    "on_change_callback": "https://app-server.com/form/onchange"
   },
   "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
@@ -729,14 +726,12 @@ onActionFormChange
       "title": "Item Description",
       "type": "single_line_text",
       "value": "It's over 9000",
+      "watched": true,
       "width": "full"
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange",
-    "watched_fields": [
-      "description"
-    ]
+    "on_change_callback": "https://app-server.com/form/onchange"
   },
   "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
@@ -848,6 +843,7 @@ onActionFormSubmit
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
+        "watched": true,
         "width": "full"
       }
     },
@@ -868,6 +864,7 @@ onActionFormSubmit
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
+        "watched": true,
         "width": "full"
       }
     }
@@ -897,14 +894,12 @@ onActionFormSubmit
       "title": "Item Description",
       "type": "single_line_text",
       "value": "It's over 9000",
+      "watched": true,
       "width": "full"
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange",
-    "watched_fields": [
-      "description"
-    ]
+    "on_change_callback": "https://app-server.com/form/onchange"
   },
   "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
@@ -948,6 +943,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
+|»»» watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -1368,14 +1364,12 @@ The response to a successful attach request.
       "title": "Item Description",
       "type": "single_line_text",
       "value": "It's over 9000",
+      "watched": true,
       "width": "full"
     }
   ],
   "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange",
-    "watched_fields": [
-      "description"
-    ]
+    "on_change_callback": "https://app-server.com/form/onchange"
   },
   "on_submit_callback": "www.example.com/on_submit",
   "submit_button_text": "Create New Issue",
@@ -1406,10 +1400,10 @@ Contains the metadata that describes how to display and manage a form
 |» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
 |» type<span class="param-type"> string</span>|The type of field the form field is|
 |» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
+|» watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
 |» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |on_change<span class="param-type"> object</span>|Contains the information to handle whenever watched form fields are changed|
 |» on_change_callback<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
-|» watched_fields<span class="param-type"> [string]</span>|An array of FormField names to indicate which fields should send requests when their values are changed|
 |on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button.<br>If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
 |submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|
 |title<span class="param-type"> string</span>|The title of the form, which is displayed at the top of the creation form|

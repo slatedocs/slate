@@ -297,6 +297,11 @@ components:
           enum:
             - full
             - half
+        watched:
+          description: >-
+            Whether the field should be watched. Fields that are watched send requests to the on_change URL specified
+            in the form metadata to get updated form information.
+          type: boolean
         options:
           description: >-
             *Conditional*. Only relevant for custom fields of type `dropdown`.
@@ -372,13 +377,6 @@ components:
             The URL that Asana should send requests to whenever watched field values are changed
           type: string
           example: 'https://app-server.com/form/onchange'
-        watched_fields:
-          description: >-
-            An array of FormField names to indicate which fields should send requests when their values are changed
-          type: array
-          items:
-            type: string
-            example: 'description'
     FormSubmissionRequest:
       allOf:
         - $ref: '#/components/schemas/RootWorkflowAppRequest'
