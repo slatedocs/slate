@@ -79,14 +79,14 @@ components:
         type: string
       description: >-
         The attachment id of the URL attachment
-    expires:
-      name: expires
+    expires_at:
+      name: expires_at
       required: true
       in: query
       schema:
         type: string
       description: >-
-        The time in milliseconds since epoch time when the request should expire
+        The time (in ISO-8601 date format) when the request should expire
     fragment:
       name: fragment
       required: true
@@ -174,10 +174,10 @@ components:
         The building block of all Workflow App requests.
       type: object
       properties:
-        expires:
+        expires_at:
           type: string
           description: >-
-            The time in milliseconds since epoch time when the request should expire
+            The time (in ISO-8601 date format) when the request should expire
         locale:
           type: string
           description: >-
@@ -631,7 +631,7 @@ paths:
       - $ref: '#/components/parameters/locale'
       - $ref: '#/components/parameters/attachment'
       - $ref: '#/components/parameters/asset'
-      - $ref: '#/components/parameters/expires'
+      - $ref: '#/components/parameters/expires_at'
     get:
       summary: Get widget metadata
       description: >-
@@ -699,7 +699,7 @@ paths:
       - $ref: '#/components/parameters/task'
       - $ref: '#/components/parameters/user'
       - $ref: '#/components/parameters/locale'
-      - $ref: '#/components/parameters/expires'
+      - $ref: '#/components/parameters/expires_at'
     get:
       summary: Get form metadata
       description: >-
@@ -805,7 +805,7 @@ paths:
       - $ref: '#/components/parameters/task'
       - $ref: '#/components/parameters/user'
       - $ref: '#/components/parameters/locale'
-      - $ref: '#/components/parameters/expires'
+      - $ref: '#/components/parameters/expires_at'
     get:
       summary: Typeahead (UI)
       description: >-
@@ -872,7 +872,7 @@ paths:
       - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/user'
       - $ref: '#/components/parameters/locale'
-      - $ref: '#/components/parameters/expires'
+      - $ref: '#/components/parameters/expires_at'
     get:
       summary: Get action metadata
       description: >-
