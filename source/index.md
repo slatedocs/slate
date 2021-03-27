@@ -78,6 +78,7 @@ includes:
   - plugin_misc_events
   - plugin_misc_translated_entities.md
   - plugin_misc_variant_entities.md
+  - marketplace.md
   - themes
   - api_intro
   - api_authorization
