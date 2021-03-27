@@ -34,7 +34,7 @@ In addition to the information you already have in the composer.json for your pl
 - `extra.install-directory-name` specifies the directory name for the bundle. Correct directory name is important for PSR4 autoloading. It must be the same as in the namespace in your PHP classes.
 - `require.php` be sure to specify the PHP version range that you test the plugin against. Ideally it should be the same as the Mautic's [supported PHP versions](https://www.mautic.org/download/requirements). Do not allow users to install the plugin on versions that are not supported.
 - `require.ext-*` if your plugin require some PHP extension, please list them in the require section too. No one knows on what servers your plugin will run on.
-- `require.mautic/core-lib` it's important to specify which Mautic versions your plugin supports. Write only the versions you or your community tested with.
+- `require.mautic/core-lib` it's important to specify which Mautic versions your plugin supports. Include only the versions you or your community have tested and confirmed the plugin works with.
 
 When the composer.json is ready, follow the [Publishing Packages](https://packagist.org) section directly in Packagist.
 
