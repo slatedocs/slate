@@ -32,7 +32,7 @@ Here is an example composer.json file:
 In addition to the information you already have in the composer.json for your plugin add:
 - `type` must have value `mautic-plugin`. The Marketplace is filtering PHP packages by this tag. It is required to show up in the Marketplace.
 - `extra.install-directory-name` specifies the directory name for the bundle. Correct directory name is important for PSR4 autoloading. It must be the same as in the namespace in your PHP classes.
-- `require.php` be sure to specify PHP version range that you test the plugin on. Ideally it should be the same as the Mautic supported PHP versions. But don't let your users install your plugin on versions you do not support.
+- `require.php` be sure to specify the PHP version range that you test the plugin against. Ideally it should be the same as the Mautic's [supported PHP versions](https://www.mautic.org/download/requirements). Do not allow users to install the plugin on versions that are not supported.
 - `require.ext-*` if your plugin require some PHP extension, please list them in the require section too. No one knows on what servers your plugin will run on.
 - `require.mautic/core-lib` it's important to specify which Mautic versions your plugin supports. Write only the versions you or your community tested with.
 
