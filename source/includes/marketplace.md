@@ -6,7 +6,7 @@ Mautic 4 comes with a Marketplace directly in the Mautic administration user int
 
 The Marketplace use [Packagist](https://packagist.org) and [Composer](https://getcomposer.org) v2 under the hood. Packagist API is used to list the Mautic plugins and find the plugin details. Composer v2 is used to install and update the plugins. Composer will take care of the dependencies of your plugin and also compatibility with different Mautic, PHP and other dependecies versions.
 
-## How to enlist a plugin to the Mautic Marketplace
+## How to list a plugin in the Mautic Marketplace
 
 Specify some information in the [composer.json](https://getcomposer.org/doc/04-schema.md) file.
 
