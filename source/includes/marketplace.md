@@ -4,11 +4,11 @@ Mautic 4 comes with a Marketplace directly in the Mautic administration user int
 
 ## Marketplace under the hood
 
-The Marketplace use [Packagist](https://packagist.org) and [Composer](https://getcomposer.org) v2 under the hood. Packagist API is used to list the Mautic plugins and find the plugin details. Composer v2 is used to install and update the plugins. Composer will take care of the dependencies of your plugin and also compatibility with different Mautic versions.
+The Marketplace use [Packagist](https://packagist.org) and [Composer](https://getcomposer.org) v2 under the hood. Packagist API is used to list the Mautic plugins and find the plugin details. Composer v2 is used to install and update the plugins. Composer will take care of the dependencies of your plugin and also compatibility with different Mautic, PHP and other dependecies versions.
 
 ## How to enlist a plugin to the Mautic Marketplace
 
-All you need to do is to specify some information in the [composer.json](https://getcomposer.org/doc/04-schema.md) file.
+Specify some information in the [composer.json](https://getcomposer.org/doc/04-schema.md) file.
 
 Here is an example composer.json file:
 ```json
@@ -31,9 +31,9 @@ Here is an example composer.json file:
 
 In addition to the information you already have in the composer.json for your plugin add:
 - `type` must have value `mautic-plugin`. The Marketplace is filtering PHP packages by this tag. It is required to show up in the Marketplace.
-- `extra.install-directory-name` specifies the directory name for the bundle. Correct directory name is important for PSR4 autoloading. It must be the same as the namespace in your PHP classes.
+- `extra.install-directory-name` specifies the directory name for the bundle. Correct directory name is important for PSR4 autoloading. It must be the same as in the namespace in your PHP classes.
 - `require.php` be sure to specify PHP version range that you test the plugin on. Ideally it should be the same as the Mautic supported PHP versions. But don't let your users install your plugin on versions you do not support.
-- `require.ext-*` if your pluin require some PHP extension, please list them in the require section too. No one knows on what servers your plugin will run.
+- `require.ext-*` if your plugin require some PHP extension, please list them in the require section too. No one knows on what servers your plugin will run on.
 - `require.mautic/core-lib` it's important to specify which Mautic versions your plugin supports. Write only the versions you or your community tested with.
 
 When the composer.json is ready, follow the [Publishing Packages](https://packagist.org) section directly in Packagist.
@@ -45,3 +45,4 @@ When the composer.json is ready, follow the [Publishing Packages](https://packag
 3. Write down changelog to all the GitHub releases. Again, the Marketplace links to all of them. Keep your users informed about what has changed in each version.
 4. Write automatic unit and functional tests and run them automatically with a CI like [GitHub Actions](https://github.com/features/actions). Your users will appreciate the effort you put into stability.
 5. Take an advantage of releasing alpha and beta versions when working on big changes.
+6. Use [semantic versioning](https://semver.org) starting with 1.0. Do not tie your plugin version with Mautic's version. Require section in composer.json specifies which Mautic versions your Plugin supports.
