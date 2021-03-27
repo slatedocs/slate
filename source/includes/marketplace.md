@@ -41,7 +41,7 @@ When the composer.json is ready, follow the [Publishing Packages](https://packag
 ## Best Practices
 
 1. The Marketplace links to the GitHub repository. Make sure you have all the information your users need in the README.md file.
-2. The GitHub repository should have issues enabled so your users could report issues and search for solutions. There is direct link to GitHub issues in the Marketplace.
+2. The GitHub repository should have issues enabled, so that your users are able to report issues and search for solutions. There is direct link to GitHub issues in the Marketplace.
 3. Use GitHub releases. Tag every new version.
 4. Write down changelog to all the GitHub releases. Again, the Marketplace links to all of them. Keep your users informed about what has changed in each version.
 5. Write automatic unit and functional tests and run them automatically with a CI like [GitHub Actions](https://github.com/features/actions). Your users will appreciate the effort you put into stability.
