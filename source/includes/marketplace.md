@@ -42,7 +42,8 @@ When the composer.json is ready, follow the [Publishing Packages](https://packag
 
 1. The Marketplace links to the GitHub repository. Make sure you have all the info your users need in the README.md file.
 2. The GitHub repository should have issues enabled so your users could report issues and search for solutions. There is direct link to GitHub issues in the Marketplace.
-3. Write down changelog to all the GitHub releases. Again, the Marketplace links to all of them. Keep your users informed about what has changed in each version.
-4. Write automatic unit and functional tests and run them automatically with a CI like [GitHub Actions](https://github.com/features/actions). Your users will appreciate the effort you put into stability.
-5. Take an advantage of releasing alpha and beta versions when working on big changes.
-6. Use [semantic versioning](https://semver.org) starting with 1.0. Do not tie your plugin version with Mautic's version. Require section in composer.json specifies which Mautic versions your Plugin supports.
+3. Use GitHub releases. Tag every new version.
+4. Write down changelog to all the GitHub releases. Again, the Marketplace links to all of them. Keep your users informed about what has changed in each version.
+5. Write automatic unit and functional tests and run them automatically with a CI like [GitHub Actions](https://github.com/features/actions). Your users will appreciate the effort you put into stability.
+6. Take an advantage of releasing alpha and beta versions when working on big changes. Example beta version: `1.2.0-beta`.
+7. Use [semantic versioning](https://semver.org) starting with 1.0. Do not tie your plugin version with Mautic's version. Require section in composer.json specifies which Mautic versions your Plugin supports.
