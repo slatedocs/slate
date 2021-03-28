@@ -808,16 +808,16 @@ curl -X PATCH \
 
 ```json
 {
-	"pullProtocol": "MATCH",
-	"hostHeader": "marvel.com",
-    "sslValidationEnabled": true, 
-	"origin": {
-        "commonCertificateName": "commonName"
-	}, 
-    "backupOriginEnabled": true, 
-    "backupOrigin": {
-	    "address": "1.2.3.4:80"
-	}
+  "pullProtocol": "MATCH",
+  "hostHeader": "marvel.com",
+  "sslValidationEnabled": true, 
+  "origin": {
+    "commonCertificateName": "commonName"
+  }, 
+  "backupOriginEnabled": true, 
+  "backupOrigin": {
+    "address": "1.2.3.4:80"
+  }
 }
 ```
 
