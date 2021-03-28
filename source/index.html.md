@@ -195,7 +195,6 @@ includes:
   - stackpath/network_policy_rules
   - stackpath/delivery_domains
   - stackpath/scripts
-  - stackpath/originsettings
   - aws
   - aws/compute
   - aws/instances
