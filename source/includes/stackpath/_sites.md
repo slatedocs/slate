@@ -259,6 +259,177 @@ Attributes | &nbsp;
 `taskId` <br/>*string* | The task id related to the site deletion.
 `taskStatus` <br/>*string* | The status of the operation.
 
+<!-------------------- RETRIEVE CDN SETTINGS -------------------->
+
+### Retrieve CDN settings
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "siteId": "9f236f19-55db-411f-9f05-bd79dc91a69b",
+    "cacheExpirePolicy": "SPECIFY_CDN_TTL",
+    "cacheTtl": 60,
+    "queryStringControl": "CUSTOM",
+    "customCachedQueryStrings": [
+      "customQuery",
+    ],
+    "dynamicCachingByHeaderEnabled": true,
+    "customCachedHeaders": [
+      "mydynamicheader"
+    ],
+    "gzipCompressionEnabled": true,
+    "gzipCompressionLevel": 2,
+    "contentPersistenceEnabled": true,
+    "maximumStaleFileTtl": 30,
+    "varyHeaderEnabled": true,
+    "browserCacheTtl": 60,
+    "corsHeaderEnabled": true,
+    "allowedCorsOrigins": "SPECIFY_ORIGINS",
+    "originsToAllowCors": [
+      "example.org"
+    ],
+    "http2SupportEnabled": true,
+    "http2ServerPushEnabled": true,
+    "linkHeader": "my-link-header",
+    "canonicalHeaderEnabled": true,
+    "canonicalHeader": "my-canonical-header",
+    "urlCachingEnabled": true,
+    "urlCachingTtl": 300
+  }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId</a></code>
+
+Retrieve CDN settings for a site in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`siteId`<br/>*UUID*  | A site's unique identifier. 
+`cacheExpirePolicy`<br/>*String* | A site's cache expiry policy. Can be `ORIGIN_CONTROLLED`, `SPECIFY_CDN_TTL`, `NEVER_EXPIRE`, or `DO_NOT_CACHE`. 
+`cacheTtl`<br/>*Integer*  | The time to live for the cache. Depends on the cache expiry policy.
+`queryStringControl`<br/>*String* | The strategy for caching query strings. Can be `IGNORE`, `CACHE_ALL` or `CUSTOM`. 
+`customCachedQueryStrings`<br/>*Array[String]* | List of custom cached query strings. Only visible if the `queryStringControl` attribute is `CUSTOM`
+`dynamicCachingByHeaderEnabled`<br/>*Boolean* | Whether or not to enable dynamic caching by headers.
+`customCachedHeaders`<br/>*Array[String]*  | A list of custom cached headers. Only visible if `dynamicCachingByHeaderEnabled` is enabled. 
+`gzipCompressionEnabled`<br/>*Boolean* | Whether or not to enable gzip compression.
+`gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values are between `1` to `6`. Only visible is `gzipCompressionEnabled` is enabled.
+`contentPersistenceEnabled`<br/>*Boolean* | Whether or not make cached content available after its expiration time.
+`maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files. Only visible if `contentPersistenceEnabled` is enabled. 
+`varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honoring the vary header in a request.
+`browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets. 
+`corsHeaderEnabled`<br/>*Boolean* | Sets the Access-Control-Allow-Origin header to allow browsers to access this domain from other origins.
+`allowedCorsOrigins`<br/>*String* | The strategy for allowing cors origins. Can be `SPECIFY_ORIGINS` or `ALL_ORIGINS`.
+`originsToAllowCors`<br/>*Array[String]* | A list of origins to allow cors requests from. Only visible if `allowedCorsOrigins` is set to `SPECIFY_ORIGINS`.
+`http2SupportEnabled`<br/>*Boolean* | Whether or not to enable supporting applications using HTTP/2 protocol.
+`http2ServerPushEnabled`<br/>*Boolean* | Whether or not to push assets to the client or browser (user) in advance (before the user requests these assets) which enables faster load times.
+`linkHeader`<br/>*String* | The link header for http2ServerPush, only visible if `http2ServerPushEnabled` is enabled. 
+`canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.
+`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only visible if `canonicalHeaderEnabled` is enabled. 
+`urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
+`urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only visible if `urlCachingEnabled` is enabled. 
+
+
+<!-------------------- PURGE ALL CDN CACHED CONTENT -------------------->
+
+### Purge all CDN cached content
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b?operation=purgeAll"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "e6c03893-212f-4e28-b7a1-66ed7b554839",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId?operation=purgeAll</a></code>
+
+Purge all CDN cached content of a site in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the purge operation.
+`taskStatus` <br/>*string* | The status of the operation.
+
+<!-------------------- PURGE CUSTOM CDN CACHED CONTENT -------------------->
+
+### Purge custom CDN cached content
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b?operation=purge"
+```
+
+> Request body example:
+
+```json
+{
+  "items": [
+    {
+      "url": "//<domain_name>/path/to/file",
+      "recursive": true,
+      "purgeAllDynamic": false,
+      "headers": [],
+      "purgeSelector": {
+        "selectorName": "(?i)<header_name>",
+        "selectorValue": "<header_value>",
+        "selectorType": "HEADER",
+        "selectorValueDelimiter": ""
+      }
+    }
+  ]
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "e6c03893-212f-4e28-b7a1-66ed7b554839",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId?operation=purge</a></code>
+
+Purge custom CDN cached content of a site in a given [environment](#administration-environments).
+
+Required | &nbsp;
+------- | -----------
+`items`<br/>*Array[Object]* | The items to purge from the CDN.
+`items.url`<br/>*String* | The URL at which to delete content.
+ 
+ Optional | &nbsp;
+ ------- | -----------
+`items.recursive`<br/>*Boolean* | Whether or not to recursively delete content from the CDN.
+`items.invalidateOnly`<br/>*Boolean* | Whether or not to mark the asset as expired and re-validate instead of deleting.
+`items.purgeAllDynamic`<br/>*Boolean* | Whether or not to purge dynamic versions of assets.
+`items.headers`<br/>*Array[String]* | A list of HTTP request headers used to construct a cache key to purge content by. These headers must be configured in the site configuration's DynamicContent.headerFields property.
+`items.purgeSelector`<br/>*Array[Object]* | A key/value pair definition of content to purge from the CDN.
+`items.purgeSelector.selectorType`<br/>*String* | The kinds of content that can be purged from the CDN. One of: HEADER (Purge content based on an HTTP response header), TAG (Purge content based on an X-TAG HTTP header value. Purging by tag can be useful when content on the origin is tagged).
+`items.purgeSelector.selectorName`<br/>*String* | The name of the type of content to purge. For example, the name of the HTTP response header. Names are case sensitive.
+`items.purgeSelector.selectorValue`<br/>*String* | The value of the content to purge. For example, the value of the HTTP response header. Values are case sensitive and may be wild-carded, but cannot match a "/".
+`items.purgeSelector.selectorValueDelimiter`<br/>*String* | The delimiter to separate multiple values with. Defaults to ",".
+
+
+
 <!-------------------- ENABLE WAF -------------------->
 
 ### Enable WAF
@@ -367,9 +538,9 @@ Attributes | &nbsp;
 `taskId` <br/>*string* | The task id related to the site deletion.
 `taskStatus` <br/>*string* | The status of the operation.
 
-<!-------------------- List WAF Setting for a Site -------------------->
+<!-------------------- List WAF Settings -------------------->
 
-### Retrieve WAF Settings for a Site
+### Retrieve WAF Settings
 
 ```shell
 curl -X GET \
@@ -455,18 +626,18 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/wafsettings/<a href="#administration-sites">:site_id</a></code>
 
-Retrieve the WAF Settings for a site.
+Retrieve WAF Settings.
 
 Attributes | &nbsp;
 ------- | -----------
 `siteId`<br/>*string* | The ID of the site that the WAF settings belongs to.
 `stackId`<br/>*string* | The ID of the stack that a site belongs to.
 `ddosSettings`<br/>*object* | The DDoS Setting containing the different threshold values.
-`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection
-`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection
-`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection
+`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection.
+`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection.
+`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection.
 `apiUrls`<br/>*array* | List of configured API urls.
-`isMonitoring`<br/>*boolean* | If the monitoring mode is enabled.
+`monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
 `listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
 `policyGroups`<br/>*array[object]* | A list of policy group object.
 `policyGroups.id`<br/>*string* | The ID of the policy group.
@@ -478,3 +649,210 @@ Attributes | &nbsp;
 `policyGroups.policies.action`<br/>*string* | The potential actions that the WAF will take when a policy is triggered. It can either be `ALLOW`, `BLOCK`, `HANDSHAKE`, `MONITOR` or `CAPTCHA`.
 `policyGroups.policies.enabled`<br/>*boolean* | If the WAF policy is enabled.
 
+<!-------------------- Edit WAF Settings for a Site -------------------->
+
+### Edit WAF Settings for a Site
+
+```shell
+curl -X PATCH \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/wafsettings/c0ddc1b3-b390-4f39-b200-5c0323ca306e"
+```
+
+> Request body example:
+
+```json
+{
+  "listPolicyGroups": {
+    "policyGroups": [
+      {
+        "id": "8365e00f-a6c4-43a4-9f07-b830759737b8",
+        "name": "User Agents",
+        "policies": [
+          {
+            "name": "Invalid User Agent Prevention",
+            "description": "Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid as it does not fit the client's properties.",
+            "action": "BLOCK",
+            "id": "S28259696",
+            "enabled": false
+          },
+          {
+            "name": "Unknown User Agent Prevention",
+            "description": "Challenge requests in which the HTTP header describing the user-agent (browser and platform) is missing or unknown.",
+            "action": "HANDSHAKE",
+            "id": "S28259697",
+            "enabled": false
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "573ca8fa-c5ad-4b19-a315-8ddbbc78d7c0",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/wafsettings/<a href="#administration-sites">:site_id</a></code>
+
+Edit the WAF settings for a site in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`ddosSettings`<br/>*object* | The DDoS Setting containing the different threshold values.
+`ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection.
+`ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection.
+`ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection.
+`apiUrls`<br/>*array* | List of configured API urls.
+`monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
+`listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
+`policyGroups`<br/>*array[object]* | A list of policy group object.
+`policyGroups.id`<br/>*string* | The ID of the policy group.
+`policyGroups.name`<br/>*string* | The name of the policy group.
+`policyGroups.policies`<br/>*array[object]* | A list of policies in a policy group.
+`policyGroups.policies.name`<br/>*string* | A WAF policy's name.
+`policyGroups.policies.id`<br/>*string* | A WAF policy's ID.
+`policyGroups.policies.description`<br/>*string* | A WAF policy's description.
+`policyGroups.policies.action`<br/>*string* | The potential actions that the WAF will take when a policy is triggered. It can either be `ALLOW`, `BLOCK`, `HANDSHAKE`, `MONITOR` or `CAPTCHA`.
+`policyGroups.policies.enabled`<br/>*boolean* | If the WAF policy is enabled.
+
+<!-------------------- RETRIEVE ORIGIN SETTINGS -------------------->
+
+### Retrieve origin settings
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/originsettings/eb3ecdbe-d73b-40e6-a263-166accba75ed"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "siteId": "eb3ecdbe-d73b-40e6-a263-166accba75ed",
+    "stackId": "144c3d16-2879-4286-82b6-75e58a6ec1cb",
+    "scopeConfigurationId": "45ab2429-ca8d-4145-acc3-f6aea6e8dbef",
+    "domain": "bluegreen.com",
+    "webSocketsEnabled": false,
+    "pullProtocol": "MATCH",
+    "hostHeader": "Host: marvel.com",
+    "origin": {
+      "id": "d92531f4-28f5-456d-9b5f-d1cbb17ccfee",
+      "address": "www.test.com:80",
+      "authenticationEnabled": false,
+      "sslValidationEnabled": true,
+      "commonCertificateName": "commonName"
+    },
+    "backupOriginEnabled": true,
+    "backupOriginExcludeCodes": "415",
+    "backupOrigin": {
+      "id": "f6766ee9-680d-4c92-b77c-36c60a251061",
+      "address": "1.2.3.4:443/path",
+      "authenticationEnabled": false,
+      "sslValidationEnabled": false
+    }
+  }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/originsettings/:siteId</a></code>
+
+Retrieve origin settings for a site in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`siteId`<br/>*UUID*  | A site's unique identifier. 
+`stackId`<br/>*UUID*  | The ID of the stack that a site belongs to.
+`scopeConfigurationId`<br/>*UUID*  | The ID of the scope of the site that the origins are connected to.
+`domain`<br/>*string* | The domain of the site.
+`webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server are enabled. 
+`pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
+`hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
+`origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
+`origin.id` <br/> *UUID* | An origin's unique identifier. 
+`origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
+`origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. 
+`origin.username` <br/> *string* | Username to use when authenticating with the origin. 
+`origin.password` <br/> *string* | Password to use when authenticating with the origin. 
+`origin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the origin is enabled. 
+`origin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
+`backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured.
+`backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*".
+`backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available.
+`backupOrigin.id` <br/> *UUID* | A backup origin's unique identifier. 
+`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091]. 
+`backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. 
+`backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
+`backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
+`backupOrigin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the backup origin is enabled. 
+`backupOrigin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
+
+<!-------------------- EDIT ORIGIN SETTINGS -------------------->
+
+### Edit origin settings
+
+```shell
+curl -X PATCH \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/originsettings/eb3ecdbe-d73b-40e6-a263-166accba75ed"
+```
+
+> Request body example:
+
+```json
+{
+	"pullProtocol": "MATCH",
+	"hostHeader": "marvel.com",
+	"origin": {
+        "sslValidationEnabled": true, 
+        "commonCertificateName": "commonName"
+	}, 
+    "backupOriginEnabled": true, 
+    "backupOrigin": {
+	    "address": "1.2.3.4:80"
+	}
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "e94d2bb6-059a-4eb6-a14f-7c596a5fdea6",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/originsettings/:siteId</a></code>
+
+Edit origin settings for a site in a given [environment](#administration-environments).
+
+Optional | &nbsp;
+------- | -----------
+`webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server are enabled. 
+`pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
+`hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
+`origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
+`origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
+`origin.authenticationEnabled` <br/> *boolean* | Specifies if the origin is using basic http authentication. To update origin.username and origin.password, this property must be set to true.
+`origin.username` <br/> *string* | Username to use when authenticating with the origin. 
+`origin.password` <br/> *string* | Password to use when authenticating with the origin. 
+`origin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the origin is enabled. 
+`origin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
+`backupOriginEnabled`<br/>*boolean* | Specifies if a backup origin for the site is configured. To configure backupOrigin's settings, this property must be set to true. 
+`backupOriginExcludeCodes` <br/>*string* | Requests are made to the backup origin on any 4xx or 5xx response codes returned from the primary origin. This property specifies the response status codes for which calls to the backup origin must not be made. Multiple response codes can be excluded. e.g: "410, 411, 412".  Asterisks can be used to cover a range of codes. e.g. All the 4xx codes can be covered using "4*". 
+`backupOrigin` <br/> *Object* | The secondary origin that the CDN uses to pull content from when the primary origin is not available. 
+`backupOrigin.address` <br/> *string* | The address of the secondary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
+`backupOrigin.authenticationEnabled` <br/> *boolean* | Specifies if the backup origin is using basic http authentication. To update backupOrigin.username and backupOrigin.password, this property must be set to true.
+`backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
+`backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
+`backupOrigin.sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the backup origin is enabled. 
+`backupOrigin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.

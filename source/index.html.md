@@ -194,8 +194,8 @@ includes:
   - stackpath/images
   - stackpath/network_policy_rules
   - stackpath/delivery_domains
-  - stackpath/origin_settings
   - stackpath/scripts
+  - stackpath/originsettings
   - aws
   - aws/compute
   - aws/instances
