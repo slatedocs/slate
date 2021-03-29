@@ -651,7 +651,7 @@ Attributes | &nbsp;
 `userAgents`<br/>*object* | Block requests with missing or invalid user agent string.
 `userAgents.blockInvalidUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid and cannot be translated to a known legitimate browser. Automated processes (bots) are most likely to have invalid user agents.
 `userAgents.blockUnknownUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) is missing.
-`csrf`<br/>*boolean* |StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
+`csrf`<br/>*boolean* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
 `trafficSources`<br/>*object* | Real-time threat intelligence for IP addresses, source location, and information on malicious IPs.
 `trafficSources.viaTorNodes`<br/>*boolean* | Challenge traffic from The Onion Ring exit nodes to block bots and known bad devices. While TOR is used sometimes purely for web anonymity, it is commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
 `trafficSources.viaProxyNetworks`<br/>*boolean* | Challenge traffic from any known proxy network to block bots and known bad devices. While proxy services are used sometimes purely for web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
@@ -738,7 +738,7 @@ Attributes | &nbsp;
 `userAgents`<br/>*object* | Block requests with missing or invalid user agent string.
 `userAgents.blockInvalidUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid and cannot be translated to a known legitimate browser. Automated processes (bots) are most likely to have invalid user agents.
 `userAgents.blockUnknownUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) is missing.
-`csrf`<br/>*boolean* |StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
+`csrf`<br/>*boolean* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
 `trafficSources`<br/>*object* | Real-time threat intelligence for IP addresses, source location, and information on malicious IPs.
 `trafficSources.viaTorNodes`<br/>*boolean* | Challenge traffic from The Onion Ring exit nodes to block bots and known bad devices. While TOR is used sometimes purely for web anonymity, it is commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
 `trafficSources.viaProxyNetworks`<br/>*boolean* | Challenge traffic from any known proxy network to block bots and known bad devices. While proxy services are used sometimes purely for web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
