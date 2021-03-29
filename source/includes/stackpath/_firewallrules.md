@@ -43,7 +43,7 @@ curl -X GET \
 
 Query Params | &nbsp;
 ---- | -----------
-`siteId`<br/>*UUID* | The ID of the site for which to list the firewall rules. This parameter is required.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule will be applied to. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -82,7 +82,7 @@ curl -X GET \
 
 Query Params | &nbsp;
 ---- | -----------
-`siteId`<br/>*UUID* | The ID of the site for which the firewall rule resides in. This parameter is required.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule will be applied to. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
