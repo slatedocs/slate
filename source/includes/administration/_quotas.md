@@ -219,7 +219,7 @@ QuotaDetail Attributes | &nbsp;
 `POST /quotas`
 
 ```shell
-curl -X GET "https://cloudmc_endpoint/rest/quotas" \
+curl -X POST "https://cloudmc_endpoint/api/v2/quotas" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -269,6 +269,110 @@ Optional | &nbsp;
 `defaultForTrial`<br/>*Boolean* | A flat denoting if this quota is the default quota for a trial. There can only be one default trial quota per connection/organization.
 
 The responses' `data` field contains the created [quota](#administration-quota) with its `id`.
+
+<!------------------- UPDATE QUOTA -------------------->
+
+### Update a quota
+`PUT /quotas/:id`
+
+```shell
+curl -X PUT "https://cloudmc_endpoint/api/v2/quotas" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> Request body example:
+```json
+{
+  "name": "my-quota-name",
+  "description": "Quotas for trials",
+  "quotaDetails": [
+    {
+      "metricIdentifier": "instance.cpu.count",
+      "ceiling": 5
+    },
+    {
+      "metricIdentifier": "disk.size.gb",
+      "ceiling": 300
+    }
+  ],
+}
+```
+Notes:
+- An existing quotas, owner organization and service connection cannot be changed.
+- The `quotaDetails` in the request will *entirely* replace the previous `quotaDetails`. A quotaDetail for every metric enforced by the plugin must be present. 
+- The default flags of the quota can not be changed via the update endpoint. To update these flags, the 'quotas/:id/default' should be used. 
+- There is an asynchronous portion of this API that will assign the updated quota limits to all currently assigned organizations and organization environments on the backend service. 
+
+
+Required | &nbsp;
+-------- | --------
+`name`<br/>*string* | Name of the quota. Must be unique across the connection and organization.
+`quotaDetails`<br/>*Array[QuotaDetails]* | List of `QuotaDetail` making up the quota. A `QuotaDetail` represents a limit on a resource and is directly linked to a `MetricDescriptor`. A `MetricDescriptor` describes a metric offered by the plugin. For more information, consult the SDK documentation.<br/>*required*: `metricIdentifier`, `ceiling`
+`quotaDetail.metricIdentifier`<br/>*string* | A unique identifier used to define a `MetricDescriptor`.
+`quotaDetail.ceiling`<br/>*number* | The ceiling for this particular quota detail.
+
+Optional | &nbsp;
+-------- | --------
+`description`<br/>*String* | The description of this quota
+
+The responses' `data` field contains the updated [quota](#administration-quota).
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "085b008e-7ee4-444b-8092-350190786147",
+  "taskStatus": "PENDING",
+  "data":{
+    "ownerOrganization":{
+      "name":"Cox Communications",
+      "id":"ca785487-5e22-4bac-ab01-187260b0d0cb"
+    },
+    "quotaDetails":[
+        {
+          "ceiling":12.0,
+          "limitSize":12,
+          "metricIdentifier":"workload_cpu_count",
+          "metricDescriptor":{
+            "metricIdentifier":"workload_cpu_count",
+            "nameLabelKey":"metrics.quotas.workload_cpu_count",
+            "unitLabelKey":"metrics.units.unit",
+            "categoryLabelKey":"usage.stackpath.compute",
+            "resourceMetricType":"GAUGE"
+          },
+          "id":"04d7c0cb-455a-42b2-b32a-b914c871a598",
+          "type":"workload_cpu_count",
+          "labelKey":"workload_cpu_count.label"
+        }
+    ],
+    "description":"Trials assigned Edge Cloud should be assigned this quota",
+    "numberOfOrganizationsAppliedTo":0,
+    "creationDate":"2021-03-10T16:37:02.000Z",
+    "defaultForTrial":true,
+    "name":"Trial",
+    "organizations":[],
+    "defaultForService":false,
+    "id":"6c44dc22-abf9-4fa2-b722-751848f1858e",
+    "serviceConnection":{
+      "serviceCode":"edge-cloud-beta",
+      "organization":{
+        "id":"ca785487-5e22-4bac-ab01-187260b0d0cb"
+      },
+      "name":"Edge Cloud Beta",
+      "id":"081ffa1f-1531-4dd5-a7e2-070e560409ce",
+      "type":"stackpath"
+    }
+  }
+},
+
+
+```
+Attributes | &nbsp;
+---------- | -----------
+`taskId`<br/>*UUID* | The id of the asynchronous task
+`taskStatus`<br/>*string* | The current status of the asynchronous task
+`data`<br/>*[Quota](#administration-quotas)* | The updated quota model
+
 
 <!-------------------- DELETE A QUOTA -------------------->
 

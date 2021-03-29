@@ -115,7 +115,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id/?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -141,7 +141,7 @@ Attributes | &nbsp;
 
 Create a new serverless script that allows you to run JavaScript code at the Edge, on all of PoPs with real-time access to each of the requests that come in for your site.
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id/?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-sites">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -191,17 +191,65 @@ async function handleRequest(request) {
 }
 ```
 
-```
 > The above command returns a JSON structured like this:
 
 ```json
 {
   "taskId": "dfc0b899-ac0f-447b-8f50-74bf78d1c034",
-  "taskStatus": "SUCCESS"
+  "taskStatus": "PENDING"
 }
 ```
 
-There following attributes are returned as part of the response.
+The following attributes are returned as part of the response.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to creation of the script.
+`taskStatus` <br/>*string* | The status of the operation.
+
+
+<!-------------------- EDIT A SCRIPT -------------------->
+
+### Edit a script
+
+Edit a script in a given [environment](#administration-environments) for a given site ID.
+
+```shell
+curl -X PUT \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/scripts/dd207010-4570-43ee-9ff2-5421d2306b41?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+```
+> Request body example for editing a script:
+
+```json
+{
+  "routes": ["route"],
+  "code": "console.log('hello')"
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "ef70cafa-0544-4709-a66a-c68595ee105a",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=:siteId</code>
+
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site for which to edit the script. This parameter is required.
+
+Optional | &nbsp;
+------- | -----------
+`routes`<br/>*Array[string]* | At least one route in the form of a URI.
+`code`<br/>*string* | The JavaScript code used for the script or the Base64 encoded contents of the script
+
+The following attributes are returned as part of the response.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -212,6 +260,8 @@ Attributes | &nbsp;
 <!-------------------- DELETE A SCRIPT -------------------->
 
 ### Delete a script
+
+Delete a script in a given [environment](#administration-environments) for a given site ID.
 
 ```shell
 curl -X DELETE \
@@ -229,7 +279,11 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=:siteId</code>
 
-Delete a script in a given [environment](#administration-environments) for a given site ID.
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site for which to delete the script. This parameter is required.
+
+The following attributes are returned as part of the response.
 
 Attributes | &nbsp;
 ------- | -----------
