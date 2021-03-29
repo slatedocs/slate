@@ -306,7 +306,7 @@ fax_number |
 brief_description | <span class="label label-required">Required</span>	
 full_description | <span class="label label-required">Required</span>	
 employees_number | <span class="label label-required">Required</span>	
-formation_date | <span class="label label-required">Required</span>	Month and date formatted ‘mm-yyyy’
+formation_date | Month and date formatted ‘mm-yyyy’
 extra_business_categories_ids | Array. For example, [1234,5678,9012]. [See here for a full list of valid business category IDs.](#business-categories)
 service_name_1 |		
 service_name_2 |		
