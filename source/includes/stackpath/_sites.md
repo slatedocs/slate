@@ -411,9 +411,7 @@ curl -X GET \
       "blockInvalidUserAgents": false,
       "blockUnknownUserAgents": true
     },
-    "csrfAttacks": {
-      "csrf": true
-    },
+    "csrf": true,
     "trafficSources": {
       "viaTorNodes": true,
       "viaProxyNetworks": true,
@@ -428,9 +426,7 @@ curl -X GET \
       "challengeHeadlessBrowsers": false,
       "antiScraping": false
     },
-    "spamAndAbuse": {
-      "formSubmissionValidation": false
-    },
+    "spamAndAbuseForm": false,
     "behavioralWaf": {
       "spamProtection": true,
       "blockProbingAndForcedBrowsing": true,
@@ -484,8 +480,7 @@ Attributes | &nbsp;
 `userAgents`<br/>*object* | Block requests with missing or invalid user agent string.
 `userAgents.blockInvalidUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid and cannot be translated to a known legitimate browser. Automated processes (bots) are most likely to have invalid user agents.
 `userAgents.blockUnknownUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) is missing.
-`csrfAttacks`<br/>*object* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
-`csrfAttacks.csrf`<br/>*boolean* |StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
+`csrf`<br/>*boolean* |StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
 `trafficSources`<br/>*object* | Real-time threat intelligence for IP addresses, source location, and information on malicious IPs.
 `trafficSources.viaTorNodes`<br/>*boolean* | Challenge traffic from The Onion Ring exit nodes to block bots and known bad devices. While TOR is used sometimes purely for web anonymity, it is commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
 `trafficSources.viaProxyNetworks`<br/>*boolean* | Challenge traffic from any known proxy network to block bots and known bad devices. While proxy services are used sometimes purely for web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
@@ -498,8 +493,7 @@ Attributes | &nbsp;
 `antiAutomationBotProtection.challengeAutomatedClients`<br/>*boolean* | Captcha-challenge and block sessions conducted by standard web browsers if there is evidence that these sessions are being automated and not driven by a human user. Such automation is used primarily for screen scraping and other very targeted, site-specific malicious automation.
 `antiAutomationBotProtection.challengeHeadlessBrowsers`<br/>*boolean* | Challenge requests if the user or device behind them uses an automation tool that initiates browsers but is actually an automation tool without real display—such as phantomJS, Selenium, or other. While such tools are favored by programmers, they are also extremely popular with scrapers, hackers and even in sophisticated DDoS attacks to circumvent standard anti-bot measures.
 `antiAutomationBotProtection.antiScraping`<br/>*boolean* | A more hardened anti-automation policy that is meant to stop scrapers by using faster and harsher convictions.
-`spamAndAbuse`<br/>*object* | StackPath's sophisticated user behavior and reputation analysis rules.
-`spamAndAbuse.formSubmissionValidation`<br/>*boolean* | Challenge and prevent automated tools from making HTTP/S Post requests without validating their session first.
+`spamAndAbuseForm`<br/>*boolean* | Challenge and prevent automated tools from making HTTP/S Post requests without validating their session first.
 `cmsProtection`<br/>*object* | Whitelist admin users.
 `cmsProtection.whiteListWordpress`<br/>*boolean* | Enable whitelist WordPress admin logged-in users.
 `cmsProtection.whiteListModx`<br/>*boolean* | Enable whitelist MODX admin logged-in users.
@@ -573,8 +567,7 @@ Attributes | &nbsp;
 `userAgents`<br/>*object* | Block requests with missing or invalid user agent string.
 `userAgents.blockInvalidUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid and cannot be translated to a known legitimate browser. Automated processes (bots) are most likely to have invalid user agents.
 `userAgents.blockUnknownUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) is missing.
-`csrfAttacks`<br/>*object* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
-`csrfAttacks.csrf`<br/>*boolean* |StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
+`csrf`<br/>*boolean* |StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
 `trafficSources`<br/>*object* | Real-time threat intelligence for IP addresses, source location, and information on malicious IPs.
 `trafficSources.viaTorNodes`<br/>*boolean* | Challenge traffic from The Onion Ring exit nodes to block bots and known bad devices. While TOR is used sometimes purely for web anonymity, it is commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
 `trafficSources.viaProxyNetworks`<br/>*boolean* | Challenge traffic from any known proxy network to block bots and known bad devices. While proxy services are used sometimes purely for web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack web applications.
@@ -587,8 +580,7 @@ Attributes | &nbsp;
 `antiAutomationBotProtection.challengeAutomatedClients`<br/>*boolean* | Captcha-challenge and block sessions conducted by standard web browsers if there is evidence that these sessions are being automated and not driven by a human user. Such automation is used primarily for screen scraping and other very targeted, site-specific malicious automation.
 `antiAutomationBotProtection.challengeHeadlessBrowsers`<br/>*boolean* | Challenge requests if the user or device behind them uses an automation tool that initiates browsers but is actually an automation tool without real display—such as phantomJS, Selenium, or other. While such tools are favored by programmers, they are also extremely popular with scrapers, hackers and even in sophisticated DDoS attacks to circumvent standard anti-bot measures.
 `antiAutomationBotProtection.antiScraping`<br/>*boolean* | A more hardened anti-automation policy that is meant to stop scrapers by using faster and harsher convictions.
-`spamAndAbuse`<br/>*object* | StackPath's sophisticated user behavior and reputation analysis rules.
-`spamAndAbuse.formSubmissionValidation`<br/>*boolean* | Challenge and prevent automated tools from making HTTP/S Post requests without validating their session first.
+`spamAndAbuseForm`<br/>*boolean* | Challenge and prevent automated tools from making HTTP/S Post requests without validating their session first.
 `cmsProtection`<br/>*object* | Whitelist admin users.
 `cmsProtection.whiteListWordpress`<br/>*boolean* | Enable whitelist WordPress admin logged-in users.
 `cmsProtection.whiteListModx`<br/>*boolean* | Enable whitelist MODX admin logged-in users.
