@@ -106,7 +106,7 @@ Parameter | Attendance | Description
 - | - | -
 healthcareWorker.email | Optional | Filters results for a single healthcare worker via the specified email
 
-# Appointment reminder
+# Appointment
 
 ## Reminders
 
