@@ -382,7 +382,6 @@ curl -X GET \
 {
   "data": {
     "id": "1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36",
-    "siteId": "1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36",
     "stackId": "1415650d-1d02-4097-a79a-8f6e4bb4f483",
     "domain": "site.com",
     "apiUrls": [
@@ -455,7 +454,6 @@ curl -X GET \
 Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*string* | The ID of the site that the WAF settings belongs to.
-`siteId`<br/>*string* | The ID of the site that the WAF settings belongs to.
 `stackId`<br/>*string* | The ID of the stack that a site belongs to.
 `domain`<br/>*string* | The domain of the site.
 `ddosSettings`<br/>*object* | The DDoS Setting containing the different threshold values.
