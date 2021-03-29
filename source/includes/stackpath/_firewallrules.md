@@ -44,6 +44,7 @@ curl -X GET \
 Query Params | &nbsp;
 ---- | -----------
 `siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to. This parameter is required.
+`action`<br/>*string* | Filter IP addresses, which are either ALLOW or BLOCK. This parameter is optional. If not provided, it will return both the type of IP addresses.
 
 Attributes | &nbsp;
 ------- | -----------
