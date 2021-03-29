@@ -776,7 +776,7 @@ Attributes | &nbsp;
 `webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server are enabled. 
 `sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the origins is enabled.
 `pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
-`hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
+`hostHeader` <br/>*string* | The host header to be used to pull content from the origin. "Dynamic" refers to using the requested domain name `(Host: %client.request.host%)` as the host header.
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
 `origin.id` <br/> *UUID* | An origin's unique identifier. 
 `origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
@@ -839,7 +839,7 @@ Optional | &nbsp;
 `webSocketsEnabled` <br/>*boolean* | Specifies if web socket connections to the origin server are enabled. 
 `sslValidationEnabled` <br/> *boolean* | Specifies if SSL validation for the origins is enabled.
 `pullProtocol` <br/>*string* | The type of protocol used to pull content from the origin. Must be one of ["HTTP", "HTTPS", "MATCH"]. "MATCH" is equivalent to "HTTP or HTTPS".
-`hostHeader` <br/>*string* | The host header to be used to pull content from the origin.
+`hostHeader` <br/>*string* | The host header to be used to pull content from the origin. "Dynamic" refers to using the requested domain name `(Host: %client.request.host%)`  as the host header. 
 `origin` <br/> *Object* | The primary origin that the CDN uses to pull content from. 
 `origin.address` <br/> *string* | The address of the primary origin that the CDN uses to pull content from. Can be a valid IPv4 address or a valid domain name. It may include a specific port and a precise path as well (e.g. 199.250.204.212:80/test). Port must be one of [80, 8080, 443, 1935, 9091].
 `origin.authMethod` <br/> *string* | Specifies the authentication method that the origin uses. Must be one of ["NONE", "BASIC"].
