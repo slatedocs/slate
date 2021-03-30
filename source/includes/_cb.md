@@ -958,7 +958,7 @@ Console.WriteLine(response.GetContent());
                 "4": null,
                 "5": null
             },
-            "working_hours": {
+            "opening_hours": {
                 "apply_to_all": "1",
                 "days": {
                     "mon": {

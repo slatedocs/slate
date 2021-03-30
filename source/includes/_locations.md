@@ -533,45 +533,105 @@ Console.WriteLine(response.GetContent());
 
 ```json
 {
-   "success":true,
-   "location":{
-        "location-name":"BrightLocal HQ",
-        "client-id":1,
-        "location-url":"https://www.brightlocal.com",
-        "business-category-id":650,
-        "country":"GBR",
-        "address1":"The Old Candlemakers",
-        "address2":"West St, Lewes",
-        "region":"East Sussex",
-        "town":"Lewes",
-        "postcode":"BN7 2NZ",
-        "telephone":"80500 050 0505",
-        "location-reference":"BL1",
-        "contact-first-name":"first name",
-        "contact-last-name":"last name",
-        "contact-telephone":"+44 1273 917 374",
-        "contact-fax":"",
-        "contact-mobile":"",
-        "num-of-employees":"50",
-        "formation-date":"11-2009",
-        "extra-business_categories":[
-          "marketing"
-        ],
-        "extra-business-categories-ids":[
-            503,
-            2824
-        ],
-        "payment-methods-accepted":[
-            "visa",
-            "paypal"
-        ],
-        "short-desc":"",
-        "long-desc":"",
-        "services-or-products":[
-            "analytics"
-        ],
-        "external-report-url":"https://www.local-marketing-reports.com/location-dashboard/2c6c2d77e55862b302858746b2ef7a6d50ac6c4f/view"
-   }
+  "success": true,
+  "location": {
+    "location-name": "BrightLocal HQ",
+    "client-id": 1,
+    "location-url": "https://www.brightlocal.com",
+    "business-category-id": 650,
+    "country": "GBR",
+    "address1": "The Old Candlemakers",
+    "address2": "West St, Lewes",
+    "region": "East Sussex",
+    "town": "Lewes",
+    "postcode": "BN7 2NZ",
+    "telephone": "80500 050 0505",
+    "location-reference": "BL1",
+    "contact-first-name": "first name",
+    "contact-last-name": "last name",
+    "contact-telephone": "+44 1273 917 374",
+    "contact-fax": "",
+    "contact-mobile": "",
+    "num-of-employees": "50",
+    "formation-date": "11-2009",
+    "extra-business_categories": [
+      "marketing"
+    ],
+    "extra-business-categories-ids": [
+      503,
+      2824
+    ],
+    "opening-hours": {
+      "regular": {
+        "applyToAll": false,
+        "notSupplied": false,
+        "mon": {
+          "status": "open",
+          "hours": [
+            {
+              "start": "09:00",
+              "end": "17:30"
+            }
+          ]
+        },
+        "tue": {
+          "status": "open",
+          "hours": [
+            {
+              "start": "09:00",
+              "end": "17:30"
+            }
+          ]
+        },
+        "wed": {
+          "status": "open",
+          "hours": [
+            {
+              "start": "09:00",
+              "end": "17:30"
+            }
+          ]
+        },
+        "thu": {
+          "status": "open",
+          "hours": [
+            {
+              "start": "09:00",
+              "end": "17:30"
+            }
+          ]
+        },
+        "fri": {
+          "status": "open",
+          "hours": [
+            {
+              "start": "09:00",
+              "end": "17:30"
+            }
+          ]
+        },
+        "sat": {
+          "status": "closed",
+          "hours": []
+        },
+        "sun": {
+          "status": "closed",
+          "hours": []
+        }
+      },
+      "special": []
+    },
+    "payment-methods-accepted": [
+      "visa",
+      "paypal"
+    ],
+    "short-desc": "",
+    "long-desc": "",
+    "services-or-products": [
+      "analytics"
+    ],
+    "external-report-url": "https://www.local-marketing-reports.com/location-dashboard/2c6c2d77e55862b302858746b2ef7a6d50ac6c4f/view"
+  }
 }
 ```
 
