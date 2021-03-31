@@ -1,6 +1,11 @@
 /**
+<<<<<<< HEAD
  * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 2.3.8
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 2.3.9
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  * @license MIT
  */
 
@@ -54,10 +59,17 @@ var lunr = function (config) {
   return builder.build()
 }
 
+<<<<<<< HEAD
 lunr.version = "2.3.8"
 /*!
  * lunr.utils
  * Copyright (C) 2019 Oliver Nightingale
+=======
+lunr.version = "2.3.9"
+/*!
+ * lunr.utils
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -177,7 +189,11 @@ lunr.FieldRef.prototype.toString = function () {
 }
 /*!
  * lunr.Set
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -211,8 +227,13 @@ lunr.Set.complete = {
     return other
   },
 
+<<<<<<< HEAD
   union: function (other) {
     return other
+=======
+  union: function () {
+    return this
+>>>>>>> upstream/main
   },
 
   contains: function () {
@@ -389,7 +410,11 @@ lunr.Token.prototype.clone = function (fn) {
 }
 /*!
  * lunr.tokenizer
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -465,7 +490,11 @@ lunr.tokenizer = function (obj, metadata) {
 lunr.tokenizer.separator = /[\s\-]+/
 /*!
  * lunr.Pipeline
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -732,7 +761,11 @@ lunr.Pipeline.prototype.toJSON = function () {
 }
 /*!
  * lunr.Vector
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -929,7 +962,11 @@ lunr.Vector.prototype.toJSON = function () {
 /* eslint-disable */
 /*!
  * lunr.stemmer
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  * Includes code from - http://tartarus.org/~martin/PorterStemmer/js.txt
  */
 
@@ -1151,7 +1188,11 @@ lunr.stemmer = (function(){
 lunr.Pipeline.registerFunction(lunr.stemmer, 'stemmer')
 /*!
  * lunr.stopWordFilter
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -1316,7 +1357,11 @@ lunr.stopWordFilter = lunr.generateStopWordFilter([
 lunr.Pipeline.registerFunction(lunr.stopWordFilter, 'stopWordFilter')
 /*!
  * lunr.trimmer
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -1343,7 +1388,11 @@ lunr.trimmer = function (token) {
 lunr.Pipeline.registerFunction(lunr.trimmer, 'trimmer')
 /*!
  * lunr.TokenSet
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -1827,7 +1876,11 @@ lunr.TokenSet.Builder.prototype.minimize = function (downTo) {
 }
 /*!
  * lunr.Index
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**
@@ -1994,7 +2047,11 @@ lunr.Index.prototype.query = function (fn) {
      */
     var clause = query.clauses[i],
         terms = null,
+<<<<<<< HEAD
         clauseMatches = lunr.Set.complete
+=======
+        clauseMatches = lunr.Set.empty
+>>>>>>> upstream/main
 
     if (clause.usePipeline) {
       terms = this.pipeline.runString(clause.term, {
@@ -2319,7 +2376,11 @@ lunr.Index.load = function (serializedIndex) {
 }
 /*!
  * lunr.Builder
+<<<<<<< HEAD
  * Copyright (C) 2019 Oliver Nightingale
+=======
+ * Copyright (C) 2020 Oliver Nightingale
+>>>>>>> upstream/main
  */
 
 /**

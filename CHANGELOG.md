@@ -1,5 +1,43 @@
 # Changelog
 
+<<<<<<< HEAD
+=======
+## Version 2.9.2
+
+*March 30, 2021*
+
+* __[Security]__ Bump kramdown from 2.3.0 to 2.3.1
+* Bump nokogiri from 1.11.1 to 1.11.2
+
+## Version 2.9.1
+
+*February 27, 2021*
+
+* Fix Slate language tabs not working if localStorage is disabled
+
+## Version 2.9.0
+
+*January 19, 2021*
+
+* __Drop support for Ruby 2.3 and 2.4__
+* __[Security]__ Bump nokogiri from 1.10.10 to 1.11.1
+* __[Security]__ Bump redcarpet from 3.5.0 to 3.5.1
+* Specify slate is not supported on Ruby 3.x
+* Bump rouge from 3.24.0 to 3.26.0
+
+## Version 2.8.0
+
+*October 27, 2020*
+
+* Remove last trailing newline when using the copy code button
+* Rework docker image and make available at slatedocs/slate
+* Improve Dockerfile layout to improve caching (thanks @micvbang)
+* Bump rouge from 3.20 to 3.24
+* Bump nokogiri from 1.10.9 to 1.10.10
+* Bump middleman from 4.3.8 to 4.3.11
+* Bump lunr.js from 2.3.8 to 2.3.9
+
+>>>>>>> upstream/main
 ## Version 2.7.1
 
 *August 13, 2020*

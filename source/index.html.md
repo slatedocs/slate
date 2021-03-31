@@ -6,9 +6,19 @@ language_tabs: # must be one of https://git.io/vQNgJ
   
 
 toc_footers:
+<<<<<<< HEAD
   - <a href='https://business.oyindonesia.com/register'>Sign Up for Trial</a>
+=======
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+
+includes:
+  - errors
+>>>>>>> upstream/main
 
 search: true
+
+code_clipboard: true
 ---
 # Home
 
@@ -108,7 +118,11 @@ Below is the list of documentation to be submitted for an upgrade request:
 
 3. Akta Pendirian Perusahaan
 
+<<<<<<< HEAD
 4. Akta Perubahan Terakhir
+=======
+This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+>>>>>>> upstream/main
 
 5. Lembar Pengesahan Men-hakim
 
@@ -218,6 +232,7 @@ Next, send a request body to execute a disbursement request to be sent to our [d
 > Below is an example of the request body for the remit: 
 
 ```shell
+<<<<<<< HEAD
 curl -X POST https://partner.oyindonesia.com/api/remit 
 -H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
 -d '{
@@ -227,6 +242,11 @@ curl -X POST https://partner.oyindonesia.com/api/remit
     "partner_trx_id":"Tx15048563JKFJ", 
     "email" :"budi.s@gmail.com"
     }'
+=======
+# With shell, you can just pass the correct header with each request
+curl "api_endpoint_here" \
+  -H "Authorization: meowmeowmeow"
+>>>>>>> upstream/main
 ```
 
 > Below is the sample response parameters that will be returned:
@@ -322,11 +342,16 @@ You can also [check your balance](https://api-docs.oyindonesia.com/#get-balance)
 > Below is an example of a request body to check the balance:
 
 ```shell
+<<<<<<< HEAD
 curl -X GET 'https://partner.oyindonesia.com/api/balance' 
 -H 'Content-Type: application/json' 
 -H 'Accept: application/json' 
 -H 'X-OY-Username: janedoe' 
 -H 'X-Api-Key: 7654321'
+=======
+curl "http://example.com/api/kittens" \
+  -H "Authorization: meowmeowmeow"
+>>>>>>> upstream/main
 ```
 
 > Below is the sample response parameters that will be returned:
@@ -664,12 +689,17 @@ If you wish to change the details of your VA, you can do so by [updating your VA
 > Below is an example of the request body:
 
 ```shell
+<<<<<<< HEAD
 curl --location --request PUT https://partner.oyindonesia.com/api/static-virtual-account/12345b1-23be-45670-a123-5ca678f12b3e
 --header 'content-type: application/json' \
 --header 'accept: application/json' \
 --header 'x-oy-username: username' \
 --header 'x-api-key: apikey' \
 -d '{"is_open" : true,"amount": 50000,"is_single_use" : false,"expiration_time": 30,"username_display" : "va name","bank_code": "014","trx_expiration_time":5,"partner_trx_id":"TRX0001"}'
+=======
+curl "http://example.com/api/kittens/2" \
+  -H "Authorization: meowmeowmeow"
+>>>>>>> upstream/main
 ```
 
 > Below is the sample of response parameters that will be returned:
@@ -1037,10 +1067,16 @@ An endpoint to check your [payment or invoice data](https://api-docs.oyindonesia
 > Below is an example of a request body to execute your request: 
 
 ```shell
+<<<<<<< HEAD
 curl -X GET \
   https://partner.oyindonesia.com/api/payment-checkout/{payment_link_id_or_partner_tx_id}\
   -H 'cache-control: no-cache' -H 'content-type: application/json' \
   -H 'X-Api-key: apikeymu' -H 'X-Oy-Username: yourusername'
+=======
+curl "http://example.com/api/kittens/2" \
+  -X DELETE \
+  -H "Authorization: meowmeowmeow"
+>>>>>>> upstream/main
 ```
 
 > Below is the sample response parameters that will be returned:
