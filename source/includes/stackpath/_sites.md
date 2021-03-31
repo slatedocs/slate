@@ -315,28 +315,88 @@ Attributes | &nbsp;
 ------- | -----------
 `siteId`<br/>*UUID*  | A site's unique identifier. 
 `cacheExpirePolicy`<br/>*String* | A site's cache expiry policy. Can be `ORIGIN_CONTROLLED`, `SPECIFY_CDN_TTL`, `NEVER_EXPIRE`, or `DO_NOT_CACHE`. 
-`cacheTtl`<br/>*Integer*  | The time to live for the cache. Depends on the cache expiry policy.
+`cacheTtl`<br/>*Integer*  | The time to live for the cache, in seconds. Depends on the cache expiry policy.
 `queryStringControl`<br/>*String* | The strategy for caching query strings. Can be `IGNORE`, `CACHE_ALL` or `CUSTOM`. 
-`customCachedQueryStrings`<br/>*Array[String]* | List of custom cached query strings. Only visible if the `queryStringControl` attribute is `CUSTOM`
+`customCachedQueryStrings`<br/>*Array[String]* | List of custom cached query strings. Only visible if the `queryStringControl` attribute is `CUSTOM`.
 `dynamicCachingByHeaderEnabled`<br/>*Boolean* | Whether or not to enable dynamic caching by headers.
-`customCachedHeaders`<br/>*Array[String]*  | A list of custom cached headers. Only visible if `dynamicCachingByHeaderEnabled` is enabled. 
+`customCachedHeaders`<br/>*Array[String]*  | A list of custom cached headers. Only visible if `dynamicCachingByHeaderEnabled` is true. 
 `gzipCompressionEnabled`<br/>*Boolean* | Whether or not to enable gzip compression.
-`gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values are between `1` to `6`. Only visible is `gzipCompressionEnabled` is enabled.
+`gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values are between `1` to `6`. Only visible is `gzipCompressionEnabled` is true.
 `contentPersistenceEnabled`<br/>*Boolean* | Whether or not make cached content available after its expiration time.
-`maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files. Only visible if `contentPersistenceEnabled` is enabled. 
+`maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files, in seconds. Only visible if `contentPersistenceEnabled` is true.
 `varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honoring the vary header in a request.
-`browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets. 
+`browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets, in seconds. 
 `corsHeaderEnabled`<br/>*Boolean* | Sets the Access-Control-Allow-Origin header to allow browsers to access this domain from other origins.
 `allowedCorsOrigins`<br/>*String* | The strategy for allowing cors origins. Can be `SPECIFY_ORIGINS` or `ALL_ORIGINS`.
 `originsToAllowCors`<br/>*Array[String]* | A list of origins to allow cors requests from. Only visible if `allowedCorsOrigins` is set to `SPECIFY_ORIGINS`.
 `http2SupportEnabled`<br/>*Boolean* | Whether or not to enable supporting applications using HTTP/2 protocol.
 `http2ServerPushEnabled`<br/>*Boolean* | Whether or not to push assets to the client or browser (user) in advance (before the user requests these assets) which enables faster load times.
-`linkHeader`<br/>*String* | The link header for http2ServerPush, only visible if `http2ServerPushEnabled` is enabled. 
+`linkHeader`<br/>*String* | The link header for http2ServerPush, only visible if `http2ServerPushEnabled` is true.
 `canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.
-`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only visible if `canonicalHeaderEnabled` is enabled. 
+`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only visible if `canonicalHeaderEnabled` is true.
 `urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
-`urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only visible if `urlCachingEnabled` is enabled. 
+`urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only visible if `urlCachingEnabled` is true.
 
+<!-------------------- EDIT CDN SETTINGS -------------------->
+
+### Edit CDN settings
+
+```shell
+curl -X PATCH \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b"
+```
+
+> Request body example:
+
+```json
+{
+  "urlCachingEnabled": true,
+  "urlCachingTtl": 1,
+  "canonicalHeaderEnabled": true,
+  "queryStringControl": "CUSTOM",
+  "customCachedQueryStrings": [
+    "help"
+  ]
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "e94d2bb6-059a-4eb6-a14f-7c596a5fdea6",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId</a></code>
+
+Edit CDN settings for a site in a given [environment](#administration-environments).
+
+Optional | &nbsp;
+------- | -----------
+`cacheExpirePolicy`<br/>*String* | A site's cache expiry policy. Can be `ORIGIN_CONTROLLED`, `SPECIFY_CDN_TTL`, `NEVER_EXPIRE`, or `DO_NOT_CACHE`. 
+`cacheTtl`<br/>*Integer*  | The time to live for the cache, in seconds. Only applies when attribute `cacheExpirePolicy` is `SPECIFY_CDN_TTL`.
+`queryStringControl`<br/>*String* | The strategy for caching query strings. Can be `IGNORE`, `CACHE_ALL` or `CUSTOM`. 
+`customCachedQueryStrings`<br/>*Array[String]* | List of custom cached query strings. Only applies when attribute `queryStringControl` is `CUSTOM`.
+`dynamicCachingByHeaderEnabled`<br/>*Boolean* | Whether or not to enable dynamic caching by headers.
+`customCachedHeaders`<br/>*Array[String]*  | A list of custom cached headers. Only applies when attribute `dynamicCachingByHeaderEnabled` is true. 
+`gzipCompressionEnabled`<br/>*Boolean* | Whether or not to enable gzip compression.
+`gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values should be between `1` to `6`, where `6` is the default. Only applies when attribute `gzipCompressionEnabled` is true.
+`contentPersistenceEnabled`<br/>*Boolean* | Whether or not make cached content available after its expiration time.
+`maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files, in seconds. Only applies when attribute `contentPersistenceEnabled` is true.
+`varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honoring the vary header in a request.
+`browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets, in seconds.
+`corsHeaderEnabled`<br/>*Boolean* | Sets the Access-Control-Allow-Origin header to allow browsers to access this domain from other origins.
+`allowedCorsOrigins`<br/>*String* | The strategy for allowing cors origins. Can be `SPECIFY_ORIGINS` or `ALL_ORIGINS`.
+`originsToAllowCors`<br/>*Array[String]* | A list of origins to allow cors requests from. Only applies when attribute `allowedCorsOrigins` is set to `SPECIFY_ORIGINS`.
+`http2SupportEnabled`<br/>*Boolean* | Whether or not to enable supporting applications using HTTP/2 protocol.
+`http2ServerPushEnabled` <br/>*Boolean* | Whether or not to push assets to the client or browser (user) in advance (before the user requests these assets) which enables faster load times.
+`linkHeader`<br/>*String* | The link header for `http2ServerPush`, only visible if `http2ServerPushEnabled` is true.
+`canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only applies when attribute `canonicalHeaderEnabled` is true.
+`urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
+`urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only applies when attribute `urlCachingEnabled` is true.
 
 <!-------------------- PURGE ALL CDN CACHED CONTENT -------------------->
 
