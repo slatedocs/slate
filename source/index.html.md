@@ -192,8 +192,9 @@ includes:
   - stackpath/sites
   - stackpath/instances
   - stackpath/images
-  - stackpath/network_policy_rules
   - stackpath/delivery_domains
+  - stackpath/firewall_rules
+  - stackpath/network_policy_rules
   - stackpath/scripts
   - stackpath/firewallrules
   - aws
