@@ -20,15 +20,19 @@
   $(bind);
 
   function populate() {
+    var beta = getParameterByName('beta', window.location.href);
+    var betaParam = beta && beta.includes('platform-ui');
     var platform_ui_alpha = false;
     $('h1, h2').each(function() {
       var title = $(this);
-      var titleText = title.text();
-      if (titleText.startsWith("Workflow Apps Overview") || titleText.startsWith("App Server")) {
-        platform_ui_alpha = true;
-      }
-      if (titleText.startsWith("API Reference") || titleText.startsWith("News and Changelog")) {
-        platform_ui_alpha = false;
+      if (!betaParam) {
+        var titleText = title.text();
+        if (titleText.startsWith("Workflow Apps Overview") || titleText.startsWith("App Server")) {
+          platform_ui_alpha = true;
+        }
+        if (titleText.startsWith("API Reference") || titleText.startsWith("News and Changelog")) {
+          platform_ui_alpha = false;
+        }
       }
       var body = title.nextUntil('h1, h2');
       if (!platform_ui_alpha) {
@@ -105,6 +109,15 @@
 
   function unhighlight() {
     content.unhighlight(highlightOpts);
+  }
+
+  function getParameterByName(name, url) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
 })();
 
