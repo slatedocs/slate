@@ -1,11 +1,6 @@
 /**
-<<<<<<< HEAD
- * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 2.3.8
- * Copyright (C) 2019 Oliver Nightingale
-=======
  * lunr - http://lunrjs.com - A bit like Solr, but much smaller and not as bright - 2.3.9
  * Copyright (C) 2020 Oliver Nightingale
->>>>>>> upstream/main
  * @license MIT
  */
 

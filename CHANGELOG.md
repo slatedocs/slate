@@ -1,7 +1,6 @@
 # Changelog
 
-<<<<<<< HEAD
-=======
+
 ## Version 2.9.2
 
 *March 30, 2021*
@@ -37,7 +36,6 @@
 * Bump middleman from 4.3.8 to 4.3.11
 * Bump lunr.js from 2.3.8 to 2.3.9
 
->>>>>>> upstream/main
 ## Version 2.7.1
 
 *August 13, 2020*

@@ -22,10 +22,7 @@ build/
 _yardoc
 doc/
 .idea/
-<<<<<<< HEAD
 vendor/
-=======
 
 # Vagrant artifacts
 ubuntu-*-console.log
->>>>>>> upstream/main
