@@ -384,6 +384,14 @@ This action requires the `developer_proactive` feature flag to be turned on.
 Deletes the `chatter` used to fetch conversation logs for an end-user from storage. When a user opens a new Chat window a new `chatter` will be generated.
 
 #### evaluateCampaignConditions
+
+```js
+window.adaEmbed.evaluateCampaignConditions({
+  ignoreStatus: false,
+  ignoreFrequency: false
+});
+```
+
 `evaluateCampaignConditions(options: object): Promise<void>;`
 
 This is similar to `triggerCampaign` - however, instead of triggering a specific Campaign, `evaluateCampaignConditions` evaluates the trigger conditions of the Campaigns in priority order and triggers the first Campaign (if any) whose conditions are matched.
@@ -456,6 +464,14 @@ Removes Embed2 from your page.
 Can be used to programatically open / close the Chat window. This method cannot be used with the `parentElement` option.
 
 #### triggerCampaign
+
+```js
+window.adaEmbed.triggerCampaign("Example_Campaign", {
+  ignoreStatus: false,
+  ignoreFrequency: false
+});
+```
+
 `triggerCampaign(campaignKey: string, options: object): Promise<void>;`
 
 Used to trigger the proactive Campaign with key `campaignKey`.
@@ -467,6 +483,14 @@ An optional second argument `options` can be passed. These options may be helpfu
 This action requires the Ada Engage Campaigns feature.
 
 #### trackEvent
+
+```js
+window.adaEmbed.trackEvent("Example_Event", 2, {
+  productId: "a1b2c3",
+  customerSegment: "premium"
+});
+```
+
 `trackEvent(eventKey: string, value?: number, meta?: object)`
 
 Used to track an Event. The arguments to this function are:
