@@ -17,20 +17,22 @@ curl -X GET \
 {
   "data": [
     {
-        "id": "1533148",
-        "name": "Rule 1 ",
-        "ipStart": "10.10.10.10",
-        "ipEnd": "20.20.20.20",
         "action": "ALLOW",
-        "enabled": "true"
+        "enabled": "true",
+        "id": "1533148",
+        "ipEnd": "20.20.20.20",
+        "ipStart": "10.10.10.10",
+        "name": "Rule 1 ",
+        "siteId": "0a57855b-26d8-4e8f-8b77-429997c7c5fb"
     },
     {
-        "id": "1533345",
-        "name": "Rule 2 ",
-        "ipStart": "192.0.0.1",
-        "ipEnd": "192.1.1.2",
         "action": "BLOCK",
-        "enabled": "true"
+        "enabled": "true",
+        "id": "1533345",
+        "ipEnd": "192.1.1.2",
+        "ipStart": "192.0.0.1",
+        "name": "Rule 2 ",
+        "siteId": "0a57855b-26d8-4e8f-8b77-429997c7c5fb"
     }
   ],
   "metadata": {
@@ -43,17 +45,18 @@ curl -X GET \
 
 Query Params | &nbsp;
 ---- | -----------
-`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 `action`<br/>*string* | Filter IP addresses, which are either ALLOW or BLOCK. This parameter is optional. If not provided, it will return both the type of IP addresses.
+`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The unique identifier for the rule.
-`name`<br/>*string* | The name of the rule.
-`ipStart`<br/>*string* | The start ip adress for the rule.
-`ipEnd`<br/>*string* | There end ip adress for the rule.
 `action`<br/>*string* | Either ALLOW or BLOCK.
-`enabled`<br/>*string* | Whether the rule is enabled or not.
+`enabled`<br/>*boolean* | Whether or not the rule is enabled.
+`id`<br/>*string* | The unique identifier for the rule.
+`ipEnd`<br/>*string* | The end ip adress for the rule.
+`ipStart`<br/>*string* | The start ip adress for the rule.
+`name`<br/>*string* | The name of the rule.
+`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
 
 <!-------------------- RETRIEVE A RULE -------------------->
 
@@ -69,12 +72,13 @@ curl -X GET \
 ```json
 {
   "data":{
-    "id": "1533148",
-    "name": "Rule 1 ",
-    "ipStart": "10.10.10.10",
-    "ipEnd": "20.20.20.20",
     "action": "ALLOW",
-    "enabled": "true"
+    "enabled": "true",
+    "id": "1533148",
+    "ipEnd": "20.20.20.20",
+    "ipStart": "10.10.10.10",
+    "name": "Rule 1 ",
+    "siteId": "0a57855b-26d8-4e8f-8b77-429997c7c5fb"
     },
 }
 ```
@@ -83,36 +87,21 @@ curl -X GET \
 
 Query Params | &nbsp;
 ---- | -----------
-`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to. This parameter is required.
+`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | The unique identifier for the rule.
-`name`<br/>*string* | The name of the rule.
-`ipStart`<br/>*string* | The start ip adress for the rule.
-`ipEnd`<br/>*string* | There end ip adress for the rule.
 `action`<br/>*string* | Either ALLOW or BLOCK.
-`enabled`<br/>*string* | Whether the rule is enabled or not.
+`enabled`<br/>*boolean* | Whether or not the rule is enabled.
+`id`<br/>*string* | The unique identifier for the rule.
+`ipEnd`<br/>*string* | The end ip adress for the rule.
+`ipStart`<br/>*string* | The start ip adress for the rule.
+`name`<br/>*string* | The name of the rule.
+`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
+
+<!-------------------- CREATE A FIREWALL RULE -------------------->
 
 ### Create a firewall rule
-
-Restrict access to a site using allow and block rules.
-
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules?siteId=<a href="#stackpath-sites">:siteId</a></code>
-
-Required Query Params | &nbsp;
----- | -----------
-`siteId`<br/>*UUID* | The ID of the site for which to create the firewall rule. This parameter is required.
-
-Required Body Attribute | &nbsp;
-------------------------| -----------
-`action`<br/>*string* | Either ALLOW or BLOCK.
-`name`<br/>*string* | The name of the rule.
-`ipStart`<br/>*string* | The start ip adress for the rule. When no `ipEnd` attribute is provided, the rule only applies for the ip provided in `ipStart`.
-
-Optional Body Attribute | &nbsp;
------------------------ | -----------
-`ipEnd`<br/>*string* | There end ip adress for the rule.
 
 ```shell
 curl -X POST \
@@ -124,25 +113,90 @@ curl -X POST \
 
 ```json
 {
-    "action": "ALLOW",
-    "name": "firewall rule",
-    "ipStart": "192.168.0.6",
-    "ipEnd": "192.168.0.7"
+  "action": "ALLOW",
+  "enabled": true,
+  "ipEnd": "192.168.0.7",
+  "ipStart": "192.168.0.6",
+  "name": "firewall rule",
+  "siteId": "1c6c127a-bfa4-4c85-a329-13c0581b41eb"
+}
+```
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules?siteId=<a href="#stackpath-sites">:siteId</a></code>
+
+Restrict access to a site using allow and block rules.
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*string* | The ID of the site for which to create the firewall rule. This parameter is required.
+
+Required| &nbsp;
+------------------------| -----------
+`action`<br/>*string* | Either ALLOW or BLOCK.
+`ipStart`<br/>*string* | The start ip adress for the rule. When no `ipEnd` attribute is provided, the rule only applies for the ip provided in `ipStart`.
+`name`<br/>*string* | The name of the rule.
+
+Optional| &nbsp;
+----------------------- | -----------
+`enabled`<br/>*boolean* | Whether or not the rule is enabled. The default value is false.
+`ipEnd`<br/>*string* | The end ip adress for the rule.
+`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
+
+<!-------------------- EDIT A FIREWALL RULE -------------------->
+
+### Edit a firewall rule
+
+```shell
+curl -X PUT \
+  -H "MC-Api-Key: your_api_key" \
+  -d "request_body" \
+  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/firewallrules/1576836?siteId=1c6c127a-bfa4-4c85-a329-13c0581b41eb"
+```
+> Request body example:
+
+```json
+{
+  "action": "ALLOW",
+  "enabled": true,
+  "id": "1576836",
+  "ipEnd": "192.1.1.2",
+  "ipStart": "192.0.0.1",
+  "name": "allow.rule.cloudmc.xzp12",
+  "siteId": "1c6c127a-bfa4-4c85-a329-13c0581b41eb"
 }
 ```
 
-The following attributes are returned as part of the response.
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
+
+Edit a firewall rule.
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
-`taskId` <br/>*string* | The task id related to creation of the firewall rule.
-`taskStatus` <br/>*string* | The status of the operation.
+`action`<br/>*string* | Either ALLOW or BLOCK.
+`ipStart`<br/>*string* | The start ip adress for the rule.
+`name`<br/>*string* | The name of the rule.
+
+Optional | &nbsp;
+------- | -----------
+`enabled`<br/>*boolean* | Whether or not the rule is enabled. The default value is false.
+`id`<br/>*string* | The unique identifier for the rule.
+`ipEnd`<br/>*string* | The end ip adress for the rule.
+`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
 
 <!-------------------- DELETE A FIREWALL RULE -------------------->
 
 ### Delete a firewall rule
-
-Delete a firewall rule in a given [environment](#administration-environments) for a given site ID.
 
 ```shell
 curl -X DELETE \
@@ -159,6 +213,8 @@ curl -X DELETE \
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=:siteId</code>
+
+Delete a firewall rule
 
 Query Params | &nbsp;
 ---- | -----------

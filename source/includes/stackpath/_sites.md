@@ -315,28 +315,88 @@ Attributes | &nbsp;
 ------- | -----------
 `siteId`<br/>*UUID*  | A site's unique identifier. 
 `cacheExpirePolicy`<br/>*String* | A site's cache expiry policy. Can be `ORIGIN_CONTROLLED`, `SPECIFY_CDN_TTL`, `NEVER_EXPIRE`, or `DO_NOT_CACHE`. 
-`cacheTtl`<br/>*Integer*  | The time to live for the cache. Depends on the cache expiry policy.
+`cacheTtl`<br/>*Integer*  | The time to live for the cache, in seconds. Depends on the cache expiry policy.
 `queryStringControl`<br/>*String* | The strategy for caching query strings. Can be `IGNORE`, `CACHE_ALL` or `CUSTOM`. 
-`customCachedQueryStrings`<br/>*Array[String]* | List of custom cached query strings. Only visible if the `queryStringControl` attribute is `CUSTOM`
+`customCachedQueryStrings`<br/>*Array[String]* | List of custom cached query strings. Only visible if the `queryStringControl` attribute is `CUSTOM`.
 `dynamicCachingByHeaderEnabled`<br/>*Boolean* | Whether or not to enable dynamic caching by headers.
-`customCachedHeaders`<br/>*Array[String]*  | A list of custom cached headers. Only visible if `dynamicCachingByHeaderEnabled` is enabled. 
+`customCachedHeaders`<br/>*Array[String]*  | A list of custom cached headers. Only visible if `dynamicCachingByHeaderEnabled` is true. 
 `gzipCompressionEnabled`<br/>*Boolean* | Whether or not to enable gzip compression.
-`gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values are between `1` to `6`. Only visible is `gzipCompressionEnabled` is enabled.
+`gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values are between `1` to `6`. Only visible is `gzipCompressionEnabled` is true.
 `contentPersistenceEnabled`<br/>*Boolean* | Whether or not make cached content available after its expiration time.
-`maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files. Only visible if `contentPersistenceEnabled` is enabled. 
+`maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files, in seconds. Only visible if `contentPersistenceEnabled` is true.
 `varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honoring the vary header in a request.
-`browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets. 
+`browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets, in seconds. 
 `corsHeaderEnabled`<br/>*Boolean* | Sets the Access-Control-Allow-Origin header to allow browsers to access this domain from other origins.
 `allowedCorsOrigins`<br/>*String* | The strategy for allowing cors origins. Can be `SPECIFY_ORIGINS` or `ALL_ORIGINS`.
 `originsToAllowCors`<br/>*Array[String]* | A list of origins to allow cors requests from. Only visible if `allowedCorsOrigins` is set to `SPECIFY_ORIGINS`.
 `http2SupportEnabled`<br/>*Boolean* | Whether or not to enable supporting applications using HTTP/2 protocol.
 `http2ServerPushEnabled`<br/>*Boolean* | Whether or not to push assets to the client or browser (user) in advance (before the user requests these assets) which enables faster load times.
-`linkHeader`<br/>*String* | The link header for http2ServerPush, only visible if `http2ServerPushEnabled` is enabled. 
+`linkHeader`<br/>*String* | The link header for http2ServerPush, only visible if `http2ServerPushEnabled` is true.
 `canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.
-`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only visible if `canonicalHeaderEnabled` is enabled. 
+`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only visible if `canonicalHeaderEnabled` is true.
 `urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
-`urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only visible if `urlCachingEnabled` is enabled. 
+`urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only visible if `urlCachingEnabled` is true.
 
+<!-------------------- EDIT CDN SETTINGS -------------------->
+
+### Edit CDN settings
+
+```shell
+curl -X PATCH \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b"
+```
+
+> Request body example:
+
+```json
+{
+  "urlCachingEnabled": true,
+  "urlCachingTtl": 1,
+  "canonicalHeaderEnabled": true,
+  "queryStringControl": "CUSTOM",
+  "customCachedQueryStrings": [
+    "help"
+  ]
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "e94d2bb6-059a-4eb6-a14f-7c596a5fdea6",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId</a></code>
+
+Edit CDN settings for a site in a given [environment](#administration-environments).
+
+Optional | &nbsp;
+------- | -----------
+`cacheExpirePolicy`<br/>*String* | A site's cache expiry policy. Can be `ORIGIN_CONTROLLED`, `SPECIFY_CDN_TTL`, `NEVER_EXPIRE`, or `DO_NOT_CACHE`. 
+`cacheTtl`<br/>*Integer*  | The time to live for the cache, in seconds. Only applies when attribute `cacheExpirePolicy` is `SPECIFY_CDN_TTL`.
+`queryStringControl`<br/>*String* | The strategy for caching query strings. Can be `IGNORE`, `CACHE_ALL` or `CUSTOM`. 
+`customCachedQueryStrings`<br/>*Array[String]* | List of custom cached query strings. Only applies when attribute `queryStringControl` is `CUSTOM`.
+`dynamicCachingByHeaderEnabled`<br/>*Boolean* | Whether or not to enable dynamic caching by headers.
+`customCachedHeaders`<br/>*Array[String]*  | A list of custom cached headers. Only applies when attribute `dynamicCachingByHeaderEnabled` is true. 
+`gzipCompressionEnabled`<br/>*Boolean* | Whether or not to enable gzip compression.
+`gzipCompressionLevel`<br/>*Integer* | The level for the gzip compression. Values should be between `1` to `6`, where `6` is the default. Only applies when attribute `gzipCompressionEnabled` is true.
+`contentPersistenceEnabled`<br/>*Boolean* | Whether or not make cached content available after its expiration time.
+`maximumStaleFileTtl`<br/>*Integer*  | The maximum time to live for stale files, in seconds. Only applies when attribute `contentPersistenceEnabled` is true.
+`varyHeaderEnabled`<br/>*Boolean* | Whether or not to enable honoring the vary header in a request.
+`browserCacheTtl`<br/>*Integer*  | Sets the default browser expiration time for cached assets, in seconds.
+`corsHeaderEnabled`<br/>*Boolean* | Sets the Access-Control-Allow-Origin header to allow browsers to access this domain from other origins.
+`allowedCorsOrigins`<br/>*String* | The strategy for allowing cors origins. Can be `SPECIFY_ORIGINS` or `ALL_ORIGINS`.
+`originsToAllowCors`<br/>*Array[String]* | A list of origins to allow cors requests from. Only applies when attribute `allowedCorsOrigins` is set to `SPECIFY_ORIGINS`.
+`http2SupportEnabled`<br/>*Boolean* | Whether or not to enable supporting applications using HTTP/2 protocol.
+`http2ServerPushEnabled` <br/>*Boolean* | Whether or not to push assets to the client or browser (user) in advance (before the user requests these assets) which enables faster load times.
+`linkHeader`<br/>*String* | The link header for `http2ServerPush`, only visible if `http2ServerPushEnabled` is true.
+`canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only applies when attribute `canonicalHeaderEnabled` is true.
+`urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
+`urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only applies when attribute `urlCachingEnabled` is true.
 
 <!-------------------- PURGE ALL CDN CACHED CONTENT -------------------->
 
@@ -552,8 +612,9 @@ curl -X GET \
 ```json
 {
   "data": {
-    "siteId": "1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36",
+    "id": "1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36",
     "stackId": "1415650d-1d02-4097-a79a-8f6e4bb4f483",
+    "domain": "site.com",
     "apiUrls": [
       "/test/this/way"
     ],
@@ -563,62 +624,57 @@ curl -X GET \
       "subSecondBurstThreshold": 50
     },
     "monitoringEnabled": false,
-    "listPolicyGroups": {
-      "policyGroups": [
-        {
-          "id": "8365e00f-a6c4-43a4-9f07-b830759737b8",
-          "name": "User Agents",
-          "policies": [
-            {
-              "name": "Invalid User Agent Prevention",
-              "description": "Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid as it does not fit the client's properties.",
-              "action": "BLOCK",
-              "id": "S28158056",
-              "enabled": false
-            },
-            {
-              "name": "Unknown User Agent Prevention",
-              "description": "Challenge requests in which the HTTP header describing the user-agent (browser and platform) is missing or unknown.",
-              "action": "HANDSHAKE",
-              "id": "S28158057",
-              "enabled": false
-            }
-          ]
-        },
-        {
-          "id": "d694f10e-7faf-4517-bc5b-265e95c04442",
-          "name": "SPAM and Abuse",
-          "policies": [
-            {
-              "name": "Form Submission Validation",
-              "description": "Challenge user sessions and activities that seem to be aggressively using forms on your website to post spam content, generate new accounts, and more.",
-              "action": "HANDSHAKE",
-              "id": "S28158209",
-              "enabled": false
-            }
-          ]
-        },
-        {
-          "id": "379521f9-5d82-499e-a1b2-18f23800af1c",
-          "name": "Allow Known Bots",
-          "policies": [
-            {
-              "name": "Google bot",
-              "description": "Google bot",
-              "action": "ALLOW",
-              "id": "S28158095",
-              "enabled": true
-            },
-            {
-              "name": "Google ads bot",
-              "description": "Google ads bot",
-              "action": "ALLOW",
-              "id": "S28158096",
-              "enabled": true
-            }
-          ]
-        }
-      ]
+    "owaspThreats": {
+      "sqlInjection": false,
+      "xssAttack": true,
+      "remoteFileInclusion": true,
+      "wordpressWafRuleset": true,
+      "apacheStrutsExploit": true,
+      "localFileInclusion": false,
+      "commonWebApplicationVulnerabilities": true,
+      "webShellExecutionAttempt": true,
+      "responseHeaderInjection": true,
+      "openRedirect": false,
+      "shellInjection": false
+    },
+    "userAgents": {
+      "blockInvalidUserAgents": false,
+      "blockUnknownUserAgents": true
+    },
+    "csrf": true,
+    "trafficSources": {
+      "viaTorNodes": true,
+      "viaProxyNetworks": true,
+      "viaHostingServices": true,
+      "viaVpn": true,
+      "convictedBotTraffic": true,
+      "suspiciousTrafficByLocalIpFormat": true
+    },
+    "antiAutomationBotProtection": {
+      "forceBrowserValidationOnTrafficAnomalies": true,
+      "challengeAutomatedClients": false,
+      "challengeHeadlessBrowsers": false,
+      "antiScraping": false
+    },
+    "spamAndAbuseForm": false,
+    "behavioralWaf": {
+      "spamProtection": true,
+      "blockProbingAndForcedBrowsing": true,
+      "obfuscatedAttacksAndZeroDayMitigation": true,
+      "repeatedViolations": true,
+      "bruteForceProtection": true
+    },
+    "cmsProtection": {
+      "whiteListWordpress": false,
+      "whiteListModx": false,
+      "whiteListDrupal": false,
+      "whiteListJoomla": false,
+      "whiteMagento": false,
+      "whiteListOriginIp": true,
+      "whiteListUmbraco": false
+    },
+    "allowKnownBots": {
+      "Internet Archive Bot": true,
     }
   }
 }
@@ -626,32 +682,68 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/wafsettings/<a href="#administration-sites">:site_id</a></code>
 
-Retrieve WAF Settings.
+Retrieve WAF Settings for a site in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`siteId`<br/>*string* | The ID of the site that the WAF settings belongs to.
+`id`<br/>*string* | The ID of the site that the WAF settings belongs to.
 `stackId`<br/>*string* | The ID of the stack that a site belongs to.
+`domain`<br/>*string* | The domain of the site.
 `ddosSettings`<br/>*object* | The DDoS Setting containing the different threshold values.
 `ddosSettings.globalThreshold`<br/>*Integer* | The number of overall requests per ten seconds that can trigger DDoS protection.
 `ddosSettings.burstThreshold`<br/>*Integer* | The number of requests per two seconds that can trigger DDoS protection.
 `ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection.
 `apiUrls`<br/>*array* | List of configured API urls.
 `monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
-`listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
-`policyGroups`<br/>*array[object]* | A list of policy group object.
-`policyGroups.id`<br/>*string* | The ID of the policy group.
-`policyGroups.name`<br/>*string* | The name of the policy group.
-`policyGroups.policies`<br/>*array[object]* | A list of policies in a policy group.
-`policyGroups.policies.name`<br/>*string* | A WAF policy's name.
-`policyGroups.policies.id`<br/>*string* | A WAF policy's ID.
-`policyGroups.policies.description`<br/>*string* | A WAF policy's description.
-`policyGroups.policies.action`<br/>*string* | The potential actions that the WAF will take when a policy is triggered. It can either be `ALLOW`, `BLOCK`, `HANDSHAKE`, `MONITOR` or `CAPTCHA`.
-`policyGroups.policies.enabled`<br/>*boolean* | If the WAF policy is enabled.
+`owaspThreats`<br/>*object* | StackPath’s core rule set & OWASP’s most critical Web application security risks.
+`owaspThreats.sqlInjection`<br/>*boolean* | Block requests suspected of being a SQL injection attack attempt. SQL injection attacks attempt to exploit vulnerabilities in a Web application's code and seek to gain access and control over the database. A successful attack would typically result in stolen data or the site being defaced or taken down.
+`owaspThreats.xssAttack`<br/>*boolean* | Block requests suspected of being a Cross-Site-Scripting attack attempt. Cross Site Scripting attacks attempt to exploit vulnerabilities in a Web application and seek to inject a client side script either across an entire site or to a specific user's session. A successful attack would typically allow forbidden access to a user's actions and data.
+`owaspThreats.shellShockAttack`<br/>*boolean* | Block requests suspected of being a Shellshock attack attempt. A Shellshock attack is an attempt to exploit a server's vulnerabilities to gain full access and control over them. A successful attack would typically either abuse a server's resources or hack the website.
+`owaspThreats.remoteFileInclusion`<br/>*boolean* | Block requests suspected of being a Remote File Inclusion attempt. Remote File Inclusion attempts to exploit vulnerabilities in a Web application (typically in PHP) to execute a script from a 3rd party server. RFI attacks provide a backdoor for the hacker to change the behaviour of a server and Web application.
+`owaspThreats.wordpressWafRuleset`<br/>*boolean* | Enable a set of rules designed to block common Wordpress exploits.
+`owaspThreats.apacheStrutsExploit`<br/>*boolean* | Patch known vulnerabilities in the Apache Struts framework by blocking requests suspected of exploiting these vulnerabilities.
+`owaspThreats.localFileInclusion`<br/>*boolean* | Block requests suspected of a Local File Inclusion attempt. Local File Inclusion attempts seek to exploit vulnerabilities in a Web application to execute potentially harmful scripts on your servers.
+`owaspThreats.commonWebApplicationVulnerabilities`<br/>*boolean* | Block attempts to access and potentially harm your servers through common backdoors, such as common control panels, configuration scripts etc. which may be accessible to unwanted users.
+`owaspThreats.webShellExecutionAttempt`<br/>*boolean* | Block requests suspected of Web shell attempts. A Web shell is a script that can be uploaded to a Web server to enable remote administration of the machine. Infected Web servers can either be internet-facing or internal to the network, where the Web shell is used to further pivot to internal hosts.
+`owaspThreats.responseHeaderInjection`<br/>*boolean* | Block requests suspected of Response header injection attempts. Response header injection attempts to inject a header via insufficient user input sanitation.
+`owaspThreats.openRedirect`<br/>*boolean* | Block requests suspected of being an Open Redirect attempt. Open Redirect attempts to exploit vulnerabilities in a Web application to redirect a user to a new website without any validation of the target of redirect.
+`owaspThreats.shellInjection`<br/>*boolean* | Block requests suspected of being a shell injection attack attempt. Shell Injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell.
+`userAgents`<br/>*object* | Block requests with missing or invalid user agent string.
+`userAgents.blockInvalidUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid and cannot be translated to a known legitimate browser. Automated processes (bots) are most likely to have invalid user agents.
+`userAgents.blockUnknownUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) is missing.
+`csrf`<br/>*boolean* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
+`trafficSources`<br/>*object* | Real-time threat intelligence for IP addresses, source location, and information on malicious IPs.
+`trafficSources.viaTorNodes`<br/>*boolean* | Challenge traffic from The Onion Ring exit nodes to block bots and known bad devices. While TOR is used sometimes purely for Web anonymity, it is commonly used by hackers, scrapers, and spammers to crawl or hack Web applications.
+`trafficSources.viaProxyNetworks`<br/>*boolean* | Challenge traffic from any known proxy network to block bots and known bad devices. While proxy services are used sometimes purely for Web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack Web applications.
+`trafficSources.viaHostingServices`<br/>*boolean* | Challenge traffic from IP addresses known to be of hosting service companies. This rule is unlikely to see legitimate human traffic on these IP spaces since they are typically used for server hosting. In most cases, traffic from these IP spaces originate from infected servers that are controlled by hackers.
+`trafficSources.viaVpn`<br/>*boolean* | Challenge traffic from any known VPN to block bots and known bad devices. While VPNs are sometimes used purely for Web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack Web applications.
+`trafficSources.convictedBotTraffic`<br/>*boolean* | Challenge traffic from IP addresses that have been convicted of automated activities (bots) on this site or on others. These IP addresses are used by malicious automated agents while no legitimate traffic has been observed on them.
+`trafficSources.suspiciousTrafficByLocalIpFormat`<br/>*boolean* | Challenge traffic from suspicious NAT ranges.
+`antiAutomationBotProtection`<br/>*object* | Block automated traffic from scanning and browsing your online application.
+`antiAutomationBotProtection.forceBrowserValidationOnTrafficAnomalies`<br/>*boolean* | Challenge and block requests if the user or device behind them does not keep session cookies and does not execute JavaScripts correctly. Most malicious automated activities (bots) do not meet these conditions and will, therefore, effectively be blocked by the JavaScript challenge triggered in any suspected situation. Clients can also be blocked depending on whether they act in an abnormal to the specific domain—by scraping content in a way that most sessions on this domain don't—or clients that try to, for example, avoid detection by switching IPs.
+`antiAutomationBotProtection.challengeAutomatedClients`<br/>*boolean* | Captcha-challenge and block sessions conducted by standard Web browsers if there is evidence that these sessions are being automated and not driven by a human user. Such automation is used primarily for screen scraping and other very targeted, site-specific malicious automation.
+`antiAutomationBotProtection.challengeHeadlessBrowsers`<br/>*boolean* | Challenge requests if the user or device behind them uses an automation tool that initiates browsers but is actually an automation tool without real display—such as phantomJS, Selenium, or other. While such tools are favored by programmers, they are also extremely popular with scrapers, hackers and even in sophisticated DDoS attacks to circumvent standard anti-bot measures.
+`antiAutomationBotProtection.antiScraping`<br/>*boolean* | A more hardened anti-automation policy that is meant to stop scrapers by using faster and harsher convictions.
+`spamAndAbuseForm`<br/>*boolean* | Challenge and prevent automated tools from making HTTP/S Post requests without validating their session first.
+`cmsProtection`<br/>*object* | Whitelist admin users.
+`cmsProtection.whiteListWordpress`<br/>*boolean* | Enable whitelist WordPress admin logged-in users.
+`cmsProtection.whiteListModx`<br/>*boolean* | Enable whitelist MODX admin logged-in users.
+`cmsProtection.whiteListDrupal`<br/>*boolean* | Enable whitelist Drupal admin logged-in users.
+`cmsProtection.whiteListJoomla`<br/>*boolean* | Enable whitelist Joomla admin logged-in users.
+`cmsProtection.whiteMagento`<br/>*boolean* | Enable whitelist Magento admin logged-in users.
+`cmsProtection.whiteListOriginIp`<br/>*boolean* | Enable this policy to whitelist requests coming from the origin for plugin updates and general CMS updates,
+`cmsProtection.whiteListUmbraco`<br/>*boolean* | Enable whitelist Umbraco admin logged-in users.
+`behavioralWaf`<br/>*object* | StackPath's sophisticated user behaviour and reputation analysis rules.
+`behavioralWaf.spamProtection`<br/>*boolean* | Challenge and block user sessions and activities that seem to be aggressively using forms on your website to post spam content, generate new accounts, and more. Also, require a handshake (if not already provided) to clients making POST requests.
+`behavioralWaf.blockProbingAndForcedBrowsing`<br/>*boolean* | Challenge or block sessions and users that seem to make brute-forced requests on random URLs seeking to discover a Web application's structure and hidden directories.
+`behavioralWaf.obfuscatedAttacksAndZeroDayMitigation`<br/>*boolean* | Block clients performing multiple injection attacks.
+`behavioralWaf.repeatedViolations`<br/>*boolean* | Challenge or block clients that failed to answer previous challenges.
+`behavioralWaf.bruteForceProtection`<br/>*boolean* | Challenge and block attempts seeking to guess user names and passwords on Web login forms.
+`allowKnownBots`<br/>*object* | An object containing known bots.
 
-<!-------------------- Edit WAF Settings for a Site -------------------->
+<!-------------------- Edit WAF Settings -------------------->
 
-### Edit WAF Settings for a Site
+### Edit WAF Settings
 
 ```shell
 curl -X PATCH \
@@ -663,30 +755,9 @@ curl -X PATCH \
 
 ```json
 {
-  "listPolicyGroups": {
-    "policyGroups": [
-      {
-        "id": "8365e00f-a6c4-43a4-9f07-b830759737b8",
-        "name": "User Agents",
-        "policies": [
-          {
-            "name": "Invalid User Agent Prevention",
-            "description": "Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid as it does not fit the client's properties.",
-            "action": "BLOCK",
-            "id": "S28259696",
-            "enabled": false
-          },
-          {
-            "name": "Unknown User Agent Prevention",
-            "description": "Challenge requests in which the HTTP header describing the user-agent (browser and platform) is missing or unknown.",
-            "action": "HANDSHAKE",
-            "id": "S28259697",
-            "enabled": false
-          }
-        ]
-      }
-    ]
-  }
+	"owaspThreats": {
+      "localFileInclusion": false
+	}
 }
 ```
 
@@ -711,16 +782,51 @@ Attributes | &nbsp;
 `ddosSettings.subSecondBurstThreshold`<br/>*Integer* | The number of requests per 0.1 seconds that can trigger DDoS protection.
 `apiUrls`<br/>*array* | List of configured API urls.
 `monitoringEnabled`<br/>*boolean* | If the monitoring mode is enabled.
-`listPolicyGroups`<br/>*object* | An object containing the list of policy groups.
-`policyGroups`<br/>*array[object]* | A list of policy group object.
-`policyGroups.id`<br/>*string* | The ID of the policy group.
-`policyGroups.name`<br/>*string* | The name of the policy group.
-`policyGroups.policies`<br/>*array[object]* | A list of policies in a policy group.
-`policyGroups.policies.name`<br/>*string* | A WAF policy's name.
-`policyGroups.policies.id`<br/>*string* | A WAF policy's ID.
-`policyGroups.policies.description`<br/>*string* | A WAF policy's description.
-`policyGroups.policies.action`<br/>*string* | The potential actions that the WAF will take when a policy is triggered. It can either be `ALLOW`, `BLOCK`, `HANDSHAKE`, `MONITOR` or `CAPTCHA`.
-`policyGroups.policies.enabled`<br/>*boolean* | If the WAF policy is enabled.
+`owaspThreats`<br/>*object* | StackPath’s core rule set & OWASP’s most critical Web application security risks.
+`owaspThreats.sqlInjection`<br/>*boolean* | Block requests suspected of being a SQL injection attack attempt. SQL injection attacks attempt to exploit vulnerabilities in a Web application's code and seek to gain access and control over the database. A successful attack would typically result in stolen data or the site being defaced or taken down.
+`owaspThreats.xssAttack`<br/>*boolean* | Block requests suspected of being a Cross-Site-Scripting attack attempt. Cross Site Scripting attacks attempt to exploit vulnerabilities in a Web application and seek to inject a client side script either across an entire site or to a specific user's session. A successful attack would typically allow forbidden access to a user's actions and data.
+`owaspThreats.shellShockAttack`<br/>*boolean* | Block requests suspected of being a Shellshock attack attempt. A Shellshock attack is an attempt to exploit a server's vulnerabilities to gain full access and control over them. A successful attack would typically either abuse a server's resources or hack the website.
+`owaspThreats.remoteFileInclusion`<br/>*boolean* | Block requests suspected of being a Remote File Inclusion attempt. Remote File Inclusion attempts to exploit vulnerabilities in a Web application (typically in PHP) to execute a script from a 3rd party server. RFI attacks provide a backdoor for the hacker to change the behaviour of a server and Web application.
+`owaspThreats.wordpressWafRuleset`<br/>*boolean* | Enable a set of rules designed to block common Wordpress exploits.
+`owaspThreats.apacheStrutsExploit`<br/>*boolean* | Patch known vulnerabilities in the Apache Struts framework by blocking requests suspected of exploiting these vulnerabilities.
+`owaspThreats.localFileInclusion`<br/>*boolean* | Block requests suspected of a Local File Inclusion attempt. Local File Inclusion attempts seek to exploit vulnerabilities in a Web application to execute potentially harmful scripts on your servers.
+`owaspThreats.commonWebApplicationVulnerabilities`<br/>*boolean* | Block attempts to access and potentially harm your servers through common backdoors, such as common control panels, configuration scripts etc. which may be accessible to unwanted users.
+`owaspThreats.webShellExecutionAttempt`<br/>*boolean* | Block requests suspected of Web shell attempts. A Web shell is a script that can be uploaded to a Web server to enable remote administration of the machine. Infected Web servers can either be internet-facing or internal to the network, where the Web shell is used to further pivot to internal hosts.
+`owaspThreats.responseHeaderInjection`<br/>*boolean* | Block requests suspected of Response header injection attempts. Response header injection attempts to inject a header via insufficient user input sanitation.
+`owaspThreats.openRedirect`<br/>*boolean* | Block requests suspected of being an Open Redirect attempt. Open Redirect attempts to exploit vulnerabilities in a Web application to redirect a user to a new website without any validation of the target of redirect.
+`owaspThreats.shellInjection`<br/>*boolean* | Block requests suspected of being a shell injection attack attempt. Shell Injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell.
+`userAgents`<br/>*object* | Block requests with missing or invalid user agent string.
+`userAgents.blockInvalidUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) seems invalid and cannot be translated to a known legitimate browser. Automated processes (bots) are most likely to have invalid user agents.
+`userAgents.blockUnknownUserAgents`<br/>*boolean* | Block requests in which the HTTP header describing the user-agent (browser and platform) is missing.
+`csrf`<br/>*boolean* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
+`trafficSources`<br/>*object* | Real-time threat intelligence for IP addresses, source location, and information on malicious IPs.
+`trafficSources.viaTorNodes`<br/>*boolean* | Challenge traffic from The Onion Ring exit nodes to block bots and known bad devices. While TOR is used sometimes purely for Web anonymity, it is commonly used by hackers, scrapers, and spammers to crawl or hack Web applications.
+`trafficSources.viaProxyNetworks`<br/>*boolean* | Challenge traffic from any known proxy network to block bots and known bad devices. While proxy services are used sometimes purely for Web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack Web applications.
+`trafficSources.viaHostingServices`<br/>*boolean* | Challenge traffic from IP addresses known to be of hosting service companies. This rule is unlikely to see legitimate human traffic on these IP spaces since they are typically used for server hosting. In most cases, traffic from these IP spaces originate from infected servers that are controlled by hackers.
+`trafficSources.viaVpn`<br/>*boolean* | Challenge traffic from any known VPN to block bots and known bad devices. While VPNs are sometimes used purely for Web anonymity, they are also commonly used by hackers, scrapers, and spammers to crawl or hack Web applications.
+`trafficSources.convictedBotTraffic`<br/>*boolean* | Challenge traffic from IP addresses that have been convicted of automated activities (bots) on this site or on others. These IP addresses are used by malicious automated agents while no legitimate traffic has been observed on them.
+`trafficSources.suspiciousTrafficByLocalIpFormat`<br/>*boolean* | Challenge traffic from suspicious NAT ranges.
+`antiAutomationBotProtection`<br/>*object* | Block automated traffic from scanning and browsing your online application.
+`antiAutomationBotProtection.forceBrowserValidationOnTrafficAnomalies`<br/>*boolean* | Challenge and block requests if the user or device behind them does not keep session cookies and does not execute JavaScripts correctly. Most malicious automated activities (bots) do not meet these conditions and will, therefore, effectively be blocked by the JavaScript challenge triggered in any suspected situation. Clients can also be blocked depending on whether they act in an abnormal to the specific domain—by scraping content in a way that most sessions on this domain don't—or clients that try to, for example, avoid detection by switching IPs.
+`antiAutomationBotProtection.challengeAutomatedClients`<br/>*boolean* | Captcha-challenge and block sessions conducted by standard Web browsers if there is evidence that these sessions are being automated and not driven by a human user. Such automation is used primarily for screen scraping and other very targeted, site-specific malicious automation.
+`antiAutomationBotProtection.challengeHeadlessBrowsers`<br/>*boolean* | Challenge requests if the user or device behind them uses an automation tool that initiates browsers but is actually an automation tool without real display—such as phantomJS, Selenium, or other. While such tools are favored by programmers, they are also extremely popular with scrapers, hackers and even in sophisticated DDoS attacks to circumvent standard anti-bot measures.
+`antiAutomationBotProtection.antiScraping`<br/>*boolean* | A more hardened anti-automation policy that is meant to stop scrapers by using faster and harsher convictions.
+`spamAndAbuseForm`<br/>*boolean* | Challenge and prevent automated tools from making HTTP/S Post requests without validating their session first.
+`cmsProtection`<br/>*object* | Whitelist admin users.
+`cmsProtection.whiteListWordpress`<br/>*boolean* | Enable whitelist WordPress admin logged-in users.
+`cmsProtection.whiteListModx`<br/>*boolean* | Enable whitelist MODX admin logged-in users.
+`cmsProtection.whiteListDrupal`<br/>*boolean* | Enable whitelist Drupal admin logged-in users.
+`cmsProtection.whiteListJoomla`<br/>*boolean* | Enable whitelist Joomla admin logged-in users.
+`cmsProtection.whiteMagento`<br/>*boolean* | Enable whitelist Magento admin logged-in users.
+`cmsProtection.whiteListOriginIp`<br/>*boolean* | Enable this policy to whitelist requests coming from the origin for plugin updates and general CMS updates,
+`cmsProtection.whiteListUmbraco`<br/>*boolean* | Enable whitelist Umbraco admin logged-in users.
+`behavioralWaf`<br/>*object* | StackPath's sophisticated user behaviour and reputation analysis rules.
+`behavioralWaf.spamProtection`<br/>*boolean* | Challenge and block user sessions and activities that seem to be aggressively using forms on your website to post spam content, generate new accounts, and more. Also, require a handshake (if not already provided) to clients making POST requests.
+`behavioralWaf.blockProbingAndForcedBrowsing`<br/>*boolean* | Challenge or block sessions and users that seem to make brute-forced requests on random URLs seeking to discover a Web application's structure and hidden directories.
+`behavioralWaf.obfuscatedAttacksAndZeroDayMitigation`<br/>*boolean* | Block clients performing multiple injection attacks.
+`behavioralWaf.repeatedViolations`<br/>*boolean* | Challenge or block clients that failed to answer previous challenges.
+`behavioralWaf.bruteForceProtection`<br/>*boolean* | Challenge and block attempts seeking to guess user names and passwords on Web login forms.
+`allowKnownBots`<br/>*object* | An object containing known bots.
 
 <!-------------------- RETRIEVE ORIGIN SETTINGS -------------------->
 
