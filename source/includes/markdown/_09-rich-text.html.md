@@ -3,6 +3,9 @@
 
 # Rich Text
 
+***Note:***  *we are actively adding new rich texts formats to various objects in Asana. __This may break existing apps. New apps should be built using parsers and display logic that is forward compatible with the forthcoming rich text formats__. More details and ongoing updates can be found in __[this post in the developer forum](https://forum.asana.com/t/changes-are-coming-to-rich-text-html-notes-and-html-text-in-asana/113434)__.*
+
+
 > Example Rich Text
 
 ```html
@@ -26,6 +29,8 @@ The rich text field name for an object is equivalent to it's plain text field na
 
 <a id="reading"></a>
 ## Reading rich text
+
+***Note:***  *we are actively adding new rich texts formats to various objects in Asana. __This may break existing apps. New apps should be built using parsers and display logic that is forward compatible with the forthcoming rich text formats__. More details and ongoing updates can be found in __[this post in the developer forum](https://forum.asana.com/t/changes-are-coming-to-rich-text-html-notes-and-html-text-in-asana/113434)__.*
 
 > Python
 
