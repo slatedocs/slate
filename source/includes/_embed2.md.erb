@@ -467,9 +467,9 @@ An optional second argument `options` can be passed. These options may be helpfu
 This action requires the Ada Engage Campaigns feature.
 
 #### trackEvent
-`trackEvent(trackEventParams: object)`
+`trackEvent(eventKey: string, value?: number, meta?: object)`
 
-Used to track an Event. The object passed to this function can have the following keys:
+Used to track an Event. The arguments to this function are:
 `eventKey: string`: (required) the key of the Event to track.
 `value?: number`: an optional value to assign to the Event.
 `meta?: object`: an option object containing metadata corresponding to the Event.
