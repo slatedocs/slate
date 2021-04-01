@@ -172,6 +172,14 @@ curl -X PUT \
   "siteId": "1c6c127a-bfa4-4c85-a329-13c0581b41eb"
 }
 ```
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
 
@@ -181,7 +189,7 @@ Query Params | &nbsp;
 ---- | -----------
 `siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 
-Attributes | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `action`<br/>*string* | Either ALLOW or BLOCK.
 `ipStart`<br/>*string* | The start ip adress for the rule.
