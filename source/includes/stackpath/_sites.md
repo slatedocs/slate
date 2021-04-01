@@ -394,7 +394,8 @@ Optional | &nbsp;
 `http2SupportEnabled`<br/>*Boolean* | Whether or not to enable supporting applications using HTTP/2 protocol.
 `http2ServerPushEnabled` <br/>*Boolean* | Whether or not to push assets to the client or browser (user) in advance (before the user requests these assets) which enables faster load times.
 `linkHeader`<br/>*String* | The link header for `http2ServerPush`, only visible if `http2ServerPushEnabled` is true.
-`canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only applies when attribute `canonicalHeaderEnabled` is true.
+`canonicalHeaderEnabled`<br/>*Boolean* | Whether or not to enable setting Link: <http://{hostname}/URI>; rel="canonical" header on each response.
+`canonicalHeader`<br/>*String* | The hostname for the canonicalHeader, only applies when attribute `canonicalHeaderEnabled` is true.
 `urlCachingEnabled`<br/>*Boolean* | Whether or not to enable caching of URLs without file extensions.
 `urlCachingTtl`<br/>*Integer* | The time to live for the url cache. Only applies when attribute `urlCachingEnabled` is true.
 
