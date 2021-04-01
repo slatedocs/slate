@@ -65,16 +65,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
     "industries": [
       {
         "metrics": {
-          "impact": 36243,
+          "impact": 49885,
           "count": 142,
-          "valuation_usd": 1209.973305901037,
-          "valuation_by_country": [
-            {
-              "chile": 842018
-            }
-          ],
-          "impressions": 398971,
-          "valuation": 842018
+          "valuation_usd": 1385.7568036367722,
+          "valuation_by_country": [{ "chile": 1010642 }],
+          "impressions": 469092,
+          "valuation": 1010642
         },
         "id": 221,
         "name": "energía - energía domestica"
@@ -87,16 +83,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 27291,
+              "impact": 40936,
               "count": 34,
-              "valuation_usd": 833.8664610353807,
-              "valuation_by_country": [
-                {
-                  "chile": 580286
-                }
-              ],
-              "impressions": 283639,
-              "valuation": 580286
+              "valuation_usd": 1010.1961176972326,
+              "valuation_by_country": [{ "chile": 736743 }],
+              "impressions": 353745,
+              "valuation": 736743
             },
             "date_int": 1609286400000
           }
@@ -111,14 +103,10 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
             "metrics": {
               "impact": 5510,
               "count": 19,
-              "valuation_usd": 185.46827344870198,
-              "valuation_by_country": [
-                {
-                  "chile": 129067
-                }
-              ],
-              "impressions": 88217,
-              "valuation": 129067
+              "valuation_usd": 176.7376667124119,
+              "valuation_by_country": [{ "chile": 128896 }],
+              "impressions": 88103,
+              "valuation": 128896
             },
             "date_int": 1609286400000
           }
@@ -131,16 +119,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 1712,
+              "impact": 1805,
               "count": 75,
-              "valuation_usd": 153.28395894204593,
-              "valuation_by_country": [
-                {
-                  "chile": 106670
-                }
-              ],
-              "impressions": 12992,
-              "valuation": 106670
+              "valuation_usd": 164.68649869528656,
+              "valuation_by_country": [{ "chile": 120107 }],
+              "impressions": 13696,
+              "valuation": 120107
             },
             "date_int": 1609286400000
           }
@@ -153,16 +137,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 80,
+              "impact": 75,
               "count": 1,
-              "valuation_usd": 11.013108290351926,
-              "valuation_by_country": [
-                {
-                  "chile": 7664
-                }
-              ],
-              "impressions": 1022,
-              "valuation": 7664
+              "valuation_usd": 9.768178513369092,
+              "valuation_by_country": [{ "chile": 7124 }],
+              "impressions": 950,
+              "valuation": 7124
             },
             "date_int": 1609286400000
           }
@@ -177,12 +157,8 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
             "metrics": {
               "impact": 108,
               "count": 1,
-              "valuation_usd": 9.892254367273312,
-              "valuation_by_country": [
-                {
-                  "chile": 6884
-                }
-              ],
+              "valuation_usd": 9.439098945260083,
+              "valuation_by_country": [{ "chile": 6884 }],
               "impressions": 1500,
               "valuation": 6884
             },
@@ -197,16 +173,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 441,
+              "impact": 437,
               "count": 2,
-              "valuation_usd": 7.720959139360764,
-              "valuation_by_country": [
-                {
-                  "chile": 5373
-                }
-              ],
-              "impressions": 5718,
-              "valuation": 5373
+              "valuation_usd": 7.289112433614555,
+              "valuation_by_country": [{ "chile": 5316 }],
+              "impressions": 5657,
+              "valuation": 5316
             },
             "date_int": 1609286400000
           }
@@ -219,16 +191,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 502,
+              "impact": 433,
               "count": 2,
-              "valuation_usd": 2.8624884804776927,
-              "valuation_by_country": [
-                {
-                  "chile": 1992
-                }
-              ],
-              "impressions": 2563,
-              "valuation": 1992
+              "valuation_usd": 2.3542900768465373,
+              "valuation_by_country": [{ "chile": 1717 }],
+              "impressions": 2211,
+              "valuation": 1717
             },
             "date_int": 1609286400000
           }
@@ -241,16 +209,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 42,
+              "impact": 41,
               "count": 1,
-              "valuation_usd": 1.3349657622308115,
-              "valuation_by_country": [
-                {
-                  "chile": 929
-                }
-              ],
-              "impressions": 213,
-              "valuation": 929
+              "valuation_usd": 1.2367907101430264,
+              "valuation_by_country": [{ "chile": 902 }],
+              "impressions": 207,
+              "valuation": 902
             },
             "date_int": 1609286400000
           }
@@ -263,16 +227,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 221,
+              "impact": 219,
               "count": 1,
-              "valuation_usd": 1.2458722452681523,
-              "valuation_by_country": [
-                {
-                  "chile": 867
-                }
-              ],
-              "impressions": 1128,
-              "valuation": 867
+              "valuation_usd": 1.1792017857239498,
+              "valuation_by_country": [{ "chile": 860 }],
+              "impressions": 1119,
+              "valuation": 860
             },
             "date_int": 1609286400000
           }
@@ -285,16 +245,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 65,
+              "impact": 58,
               "count": 1,
-              "valuation_usd": 1.1682746659780945,
-              "valuation_by_country": [
-                {
-                  "chile": 813
-                }
-              ],
-              "impressions": 329,
-              "valuation": 813
+              "valuation_usd": 1.0036926827324784,
+              "valuation_by_country": [{ "chile": 732 }],
+              "impressions": 296,
+              "valuation": 732
             },
             "date_int": 1609286400000
           }
@@ -309,12 +265,8 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
             "metrics": {
               "impact": 168,
               "count": 2,
-              "valuation_usd": 0.9441038813623716,
-              "valuation_by_country": [
-                {
-                  "chile": 657
-                }
-              ],
+              "valuation_usd": 0.9008553176984129,
+              "valuation_by_country": [{ "chile": 657 }],
               "impressions": 855,
               "valuation": 657
             },
@@ -331,12 +283,8 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
             "metrics": {
               "impact": 31,
               "count": 1,
-              "valuation_usd": 0.5144432108489025,
-              "valuation_by_country": [
-                {
-                  "chile": 358
-                }
-              ],
+              "valuation_usd": 0.49087702242927217,
+              "valuation_by_country": [{ "chile": 358 }],
               "impressions": 429,
               "valuation": 358
             },
@@ -346,28 +294,6 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "id": 887
       },
       {
-        "domain": "elmorrocotudo.cl",
-        "metrics_by_date": [
-          {
-            "date": "2020-12-30T00:00:00.000Z",
-            "metrics": {
-              "impact": 18,
-              "count": 1,
-              "valuation_usd": 0.3535000834324861,
-              "valuation_by_country": [
-                {
-                  "chile": 246
-                }
-              ],
-              "impressions": 92,
-              "valuation": 246
-            },
-            "date_int": 1609286400000
-          }
-        ],
-        "id": 453
-      },
-      {
         "domain": "enlacejudio.com",
         "metrics_by_date": [
           {
@@ -375,12 +301,8 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
             "metrics": {
               "impact": 54,
               "count": 1,
-              "valuation_usd": 0.30464234832393117,
-              "valuation_by_country": [
-                {
-                  "chile": 212
-                }
-              ],
+              "valuation_usd": 0.29068695182962484,
+              "valuation_by_country": [{ "chile": 212 }],
               "impressions": 274,
               "valuation": 212
             },
@@ -388,21 +310,35 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           }
         ],
         "id": 10423
+      },
+      {
+        "domain": "elmorrocotudo.cl",
+        "metrics_by_date": [
+          {
+            "date": "2020-12-30T00:00:00.000Z",
+            "metrics": {
+              "impact": 10,
+              "count": 1,
+              "valuation_usd": 0.18373609219419684,
+              "valuation_by_country": [{ "chile": 134 }],
+              "impressions": 50,
+              "valuation": 134
+            },
+            "date_int": 1609286400000
+          }
+        ],
+        "id": 453
       }
     ],
     "ad_types": [
       {
         "metrics": {
-          "impact": 36243,
+          "impact": 49885,
           "count": 142,
-          "valuation_usd": 1209.973305901037,
-          "valuation_by_country": [
-            {
-              "chile": 842018
-            }
-          ],
-          "impressions": 398971,
-          "valuation": 842018
+          "valuation_usd": 1385.7568036367722,
+          "valuation_by_country": [{ "chile": 1010642 }],
+          "impressions": 469092,
+          "valuation": 1010642
         },
         "id": 1,
         "name": "display"
@@ -411,16 +347,16 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
     "countries": [
       {
         "metrics": {
-          "impact": 36243,
+          "impact": 49885,
           "count": 142,
-          "valuation_usd": 1209.973305901037,
+          "valuation_usd": 1385.7568036367722,
           "valuation_by_country": [
             {
-              "chile": 842018
+              "chile": 1010642
             }
           ],
-          "impressions": 398971,
-          "valuation": 842018
+          "impressions": 469092,
+          "valuation": 1010642
         },
         "id": 1,
         "name": "chile"
@@ -433,48 +369,36 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
     "sold_by": [
       {
         "metrics": {
-          "impact": 34503,
+          "impact": 48206,
           "count": 130,
-          "valuation_usd": 1172.1229311139978,
-          "valuation_by_country": [
-            {
-              "chile": 815678
-            }
-          ],
-          "impressions": 382511,
-          "valuation": 815678
+          "valuation_usd": 1349.6074130799977,
+          "valuation_by_country": [{ "chile": 984278 }],
+          "impressions": 453003,
+          "valuation": 984278
         },
         "id": "direct",
         "name": "direct"
       },
       {
         "metrics": {
-          "impact": 1465,
+          "impact": 1406,
           "count": 10,
-          "valuation_usd": 36.29986019344729,
-          "valuation_by_country": [
-            {
-              "chile": 25261
-            }
-          ],
-          "impressions": 15058,
-          "valuation": 25261
+          "valuation_usd": 34.679501819221095,
+          "valuation_by_country": [{ "chile": 25292 }],
+          "impressions": 14696,
+          "valuation": 25292
         },
         "id": "unknown",
         "name": "unknown"
       },
       {
         "metrics": {
-          "impact": 275,
+          "impact": 273,
           "count": 2,
-          "valuation_usd": 1.5505145935920834,
-          "valuation_by_country": [
-            {
-              "chile": 1079
-            }
-          ],
-          "impressions": 1402,
-          "valuation": 1079
+          "valuation_usd": 1.4698887375535747,
+          "valuation_by_country": [{ "chile": 1072 }],
+          "impressions": 1393,
+          "valuation": 1072
         },
         "id": "google",
         "name": "google"
@@ -483,32 +407,24 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
     "devices": [
       {
         "metrics": {
-          "impact": 22767,
+          "impact": 22870,
           "count": 41,
-          "valuation_usd": 965.0379838641783,
-          "valuation_by_country": [
-            {
-              "chile": 671568
-            }
-          ],
-          "impressions": 329451,
-          "valuation": 671568
+          "valuation_usd": 938.256581778869,
+          "valuation_by_country": [{ "chile": 684277 }],
+          "impressions": 330589,
+          "valuation": 684277
         },
         "id": 1,
         "name": "desktop"
       },
       {
         "metrics": {
-          "impact": 13476,
+          "impact": 27015,
           "count": 101,
-          "valuation_usd": 244.9353220368588,
-          "valuation_by_country": [
-            {
-              "chile": 170450
-            }
-          ],
-          "impressions": 69520,
-          "valuation": 170450
+          "valuation_usd": 447.5002218579034,
+          "valuation_by_country": [{ "chile": 326365 }],
+          "impressions": 138503,
+          "valuation": 326365
         },
         "id": 2,
         "name": "mobile"
@@ -519,10 +435,10 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         {
           "date": "2020-12-30T00:00:00.000Z",
           "metrics": {
-            "impact": 36243,
-            "valuation_usd": 1209.973305901037,
-            "impressions": 398971,
-            "valuation": 842018
+            "impact": 49885,
+            "valuation_usd": 1385.7568036367722,
+            "impressions": 469092,
+            "valuation": 1010642
           },
           "date_int": 1609286400000
         }
@@ -530,10 +446,10 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
       "ad_types": [
         {
           "metrics": {
-            "impact": 36243,
-            "valuation_usd": 1209.973305901037,
-            "impressions": 398971,
-            "valuation": 842018
+            "impact": 49885,
+            "valuation_usd": 1385.7568036367722,
+            "impressions": 469092,
+            "valuation": 1010642
           },
           "id": 1,
           "name": "display"
@@ -542,46 +458,46 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
       "countries": [
         {
           "metrics": {
-            "impact": 36243,
-            "valuation_usd": 1209.973305901037,
-            "impressions": 398971,
-            "valuation": 842018
+            "impact": 49885,
+            "valuation_usd": 1385.7568036367722,
+            "impressions": 469092,
+            "valuation": 1010642
           },
           "id": 1,
           "name": "chile"
         }
       ],
-      "total_impressions": 398971,
-      "total_impact": 36243,
+      "total_impressions": 469092,
+      "total_impact": 49885,
       "devices": [
         {
           "metrics": {
-            "impact": 22767,
-            "valuation_usd": 965.0379838641783,
-            "impressions": 329451,
-            "valuation": 671568
+            "impact": 22870,
+            "valuation_usd": 938.256581778869,
+            "impressions": 330589,
+            "valuation": 684277
           },
           "id": 1,
           "name": "desktop"
         },
         {
           "metrics": {
-            "impact": 13476,
-            "valuation_usd": 244.9353220368588,
-            "impressions": 69520,
-            "valuation": 170450
+            "impact": 27015,
+            "valuation_usd": 447.5002218579034,
+            "impressions": 138503,
+            "valuation": 326365
           },
           "id": 2,
           "name": "mobile"
         }
       ],
-      "total_valuation_usd": 1209.973305901037,
+      "total_valuation_usd": 1385.7568036367722,
       "position": {
         "first_scroll": 0.2112676056338028,
-        "second_scroll": 0.13028169014084506,
+        "second_scroll": 0.1267605633802817,
         "third_or_more_scroll": 0.6549295774647887
       },
-      "total_valuation": 842018
+      "total_valuation": 1010642
     },
     "campaigns": [
       {
@@ -603,16 +519,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "countries": [
           {
             "metrics": {
-              "impact": 25545,
+              "impact": 39178,
               "count": 33,
-              "valuation_usd": 809.242162540669,
-              "valuation_by_country": [
-                {
-                  "chile": 563150
-                }
-              ],
-              "impressions": 274705,
-              "valuation": 563150
+              "valuation_usd": 986.5846586854112,
+              "valuation_by_country": [{ "chile": 719523 }],
+              "impressions": 344769,
+              "valuation": 719523
             },
             "id": 1,
             "name": "chile"
@@ -621,62 +533,46 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "devices": [
           {
             "metrics": {
-              "impact": 9312,
+              "impact": 22903,
               "count": 32,
-              "valuation_usd": 131.32959197179582,
-              "valuation_by_country": [
-                {
-                  "chile": 91392
-                }
-              ],
-              "impressions": 47648,
-              "valuation": 91392
+              "valuation_usd": 338.0689249778537,
+              "valuation_by_country": [{ "chile": 246556 }],
+              "impressions": 117130,
+              "valuation": 246556
             },
             "id": 2,
             "name": "mobile"
           },
           {
             "metrics": {
-              "impact": 16233,
+              "impact": 16275,
               "count": 1,
-              "valuation_usd": 677.9125705688732,
-              "valuation_by_country": [
-                {
-                  "chile": 471758
-                }
-              ],
-              "impressions": 227057,
-              "valuation": 471758
+              "valuation_usd": 648.5157337075575,
+              "valuation_by_country": [{ "chile": 472967 }],
+              "impressions": 227639,
+              "valuation": 472967
             },
             "id": 1,
             "name": "desktop"
           }
         ],
         "metrics": {
-          "impact": 25545,
+          "impact": 39178,
           "count": 33,
-          "valuation_usd": 809.242162540669,
-          "valuation_by_country": [
-            {
-              "chile": 563150
-            }
-          ],
-          "impressions": 274705,
-          "valuation": 563150
+          "valuation_usd": 986.5846586854112,
+          "valuation_by_country": [{ "chile": 719523 }],
+          "impressions": 344769,
+          "valuation": 719523
         },
         "websites": [
           {
             "metrics": {
-              "impact": 25545,
+              "impact": 39178,
               "count": 33,
-              "valuation_usd": 809.242162540669,
-              "valuation_by_country": [
-                {
-                  "chile": 563150
-                }
-              ],
-              "impressions": 274705,
-              "valuation": 563150
+              "valuation_usd": 986.5846586854112,
+              "valuation_by_country": [{ "chile": 719523 }],
+              "impressions": 344769,
+              "valuation": 719523
             },
             "domain": "biobiochile.cl",
             "id": 448
@@ -685,16 +581,12 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "sold_by": [
           {
             "metrics": {
-              "impact": 25545,
+              "impact": 39178,
               "count": 33,
-              "valuation_usd": 809.242162540669,
-              "valuation_by_country": [
-                {
-                  "chile": 563150
-                }
-              ],
-              "impressions": 274705,
-              "valuation": 563150
+              "valuation_usd": 986.5846586854112,
+              "valuation_by_country": [{ "chile": 719523 }],
+              "impressions": 344769,
+              "valuation": 719523
             },
             "id": "direct",
             "name": "direct"
@@ -713,410 +605,57 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "ad_types": [
           {
             "metrics": {
-              "impact": 25545,
+              "impact": 39178,
               "count": 33,
-              "valuation_usd": 809.242162540669,
-              "valuation_by_country": [
-                {
-                  "chile": 563150
-                }
-              ],
-              "impressions": 274705,
-              "valuation": 563150
+              "valuation_usd": 986.5846586854112,
+              "valuation_by_country": [{ "chile": 719523 }],
+              "impressions": 344769,
+              "valuation": 719523
             },
             "id": 1,
             "name": "display"
           }
         ]
-      },
+      }
+    ],
+    "campaigns_with_websites_by_date": [
       {
-        "landing_page": "enel.cl/es/conoce-enel/prensa/news/d202011-hito-historico-para-enel-lider-del-dow-jones-sustainability-world-index-de-2020.html",
-        "description": "feliz | fotografía | mañana | mundo | paisaje | pie foto | prenda pieza | ropa formal | vestido | viento",
-        "ad_format": {
-          "id": 154,
-          "name": "brand-day"
-        },
-        "title": "Hito histórico para Enel: líder del Dow Jones Sustainability World Index de 2020",
-        "date_range": {
-          "start": "2020-12-30T00:34:01.000Z",
-          "end": "2020-12-30T17:25:27.000Z"
-        },
-        "industry": {
-          "id": 221,
-          "name": "energía - energía domestica"
-        },
+        "landing_page": "7418419",
+        "description": null,
+        "title": "Plan de Invierno - enel.cl",
         "brand": {
           "id": 8968,
           "name": "enel"
         },
-        "countries": [
-          {
-            "metrics": {
-              "impact": 10698,
-              "count": 109,
-              "valuation_usd": 400.7311433603681,
-              "valuation_by_country": [
-                {
-                  "chile": 278868
-                }
-              ],
-              "impressions": 124266,
-              "valuation": 278868
-            },
-            "id": 1,
-            "name": "chile"
-          }
-        ],
-        "devices": [
-          {
-            "metrics": {
-              "impact": 4164,
-              "count": 69,
-              "valuation_usd": 113.60573006506296,
-              "valuation_by_country": [
-                {
-                  "chile": 79058
-                }
-              ],
-              "impressions": 21872,
-              "valuation": 79058
-            },
-            "id": 2,
-            "name": "mobile"
-          },
-          {
-            "metrics": {
-              "impact": 6534,
-              "count": 40,
-              "valuation_usd": 287.1254132953051,
-              "valuation_by_country": [
-                {
-                  "chile": 199810
-                }
-              ],
-              "impressions": 102394,
-              "valuation": 199810
-            },
-            "id": 1,
-            "name": "desktop"
-          }
-        ],
         "metrics": {
-          "impact": 10698,
-          "count": 109,
-          "valuation_usd": 400.7311433603681,
-          "valuation_by_country": [
-            {
-              "chile": 278868
-            }
-          ],
-          "impressions": 124266,
-          "valuation": 278868
+          "impact": 39178,
+          "count": 33,
+          "valuation_usd": 986.5846586854112,
+          "valuation_by_country": [{ "chile": 719523 }],
+          "impressions": 344769,
+          "valuation": 719523
         },
-        "websites": [
+        "websites_by_date": [
           {
-            "metrics": {
-              "impact": 1712,
-              "count": 75,
-              "valuation_usd": 153.28395894204593,
-              "valuation_by_country": [
-                {
-                  "chile": 106670
-                }
-              ],
-              "impressions": 12992,
-              "valuation": 106670
-            },
-            "domain": "duna.cl",
-            "id": 475
-          },
-          {
-            "metrics": {
-              "impact": 5510,
-              "count": 19,
-              "valuation_usd": 185.46827344870198,
-              "valuation_by_country": [
-                {
-                  "chile": 129067
-                }
-              ],
-              "impressions": 88217,
-              "valuation": 129067
-            },
-            "domain": "eldinamo.cl",
-            "id": 495
-          },
-          {
-            "metrics": {
-              "impact": 168,
-              "count": 2,
-              "valuation_usd": 0.9441038813623716,
-              "valuation_by_country": [
-                {
-                  "chile": 657
-                }
-              ],
-              "impressions": 855,
-              "valuation": 657
-            },
-            "domain": "mch.cl",
-            "id": 496
-          },
-          {
-            "metrics": {
-              "impact": 441,
-              "count": 2,
-              "valuation_usd": 7.720959139360764,
-              "valuation_by_country": [
-                {
-                  "chile": 5373
-                }
-              ],
-              "impressions": 5718,
-              "valuation": 5373
-            },
-            "domain": "aqua.cl",
-            "id": 498
-          },
-          {
-            "metrics": {
-              "impact": 502,
-              "count": 2,
-              "valuation_usd": 2.8624884804776927,
-              "valuation_by_country": [
-                {
-                  "chile": 1992
-                }
-              ],
-              "impressions": 2563,
-              "valuation": 1992
-            },
-            "domain": "aciprensa.com",
-            "id": 4839
-          },
-          {
-            "metrics": {
-              "impact": 1746,
-              "count": 1,
-              "valuation_usd": 24.624298494711717,
-              "valuation_by_country": [
-                {
-                  "chile": 17136
-                }
-              ],
-              "impressions": 8934,
-              "valuation": 17136
-            },
             "domain": "biobiochile.cl",
+            "metrics_by_date": [
+              {
+                "date": "2020-12-30T00:00:00.000Z",
+                "metrics": {
+                  "impact": 39178,
+                  "count": 33,
+                  "valuation_usd": 986.5846586854112,
+                  "valuation_by_country": [{ "chile": 719523 }],
+                  "impressions": 344769,
+                  "valuation": 719523
+                },
+                "date_int": 1609286400000
+              }
+            ],
             "id": 448
-          },
-          {
-            "metrics": {
-              "impact": 18,
-              "count": 1,
-              "valuation_usd": 0.3535000834324861,
-              "valuation_by_country": [
-                {
-                  "chile": 246
-                }
-              ],
-              "impressions": 92,
-              "valuation": 246
-            },
-            "domain": "elmorrocotudo.cl",
-            "id": 453
-          },
-          {
-            "metrics": {
-              "impact": 65,
-              "count": 1,
-              "valuation_usd": 1.1682746659780945,
-              "valuation_by_country": [
-                {
-                  "chile": 813
-                }
-              ],
-              "impressions": 329,
-              "valuation": 813
-            },
-            "domain": "df.cl",
-            "id": 464
-          },
-          {
-            "metrics": {
-              "impact": 108,
-              "count": 1,
-              "valuation_usd": 9.892254367273312,
-              "valuation_by_country": [
-                {
-                  "chile": 6884
-                }
-              ],
-              "impressions": 1500,
-              "valuation": 6884
-            },
-            "domain": "elnaveghable.cl",
-            "id": 489
-          },
-          {
-            "metrics": {
-              "impact": 80,
-              "count": 1,
-              "valuation_usd": 11.013108290351926,
-              "valuation_by_country": [
-                {
-                  "chile": 7664
-                }
-              ],
-              "impressions": 1022,
-              "valuation": 7664
-            },
-            "domain": "radioagricultura.cl",
-            "id": 505
-          },
-          {
-            "metrics": {
-              "impact": 42,
-              "count": 1,
-              "valuation_usd": 1.3349657622308115,
-              "valuation_by_country": [
-                {
-                  "chile": 929
-                }
-              ],
-              "impressions": 213,
-              "valuation": 929
-            },
-            "domain": "lared.cl",
-            "id": 722
-          },
-          {
-            "metrics": {
-              "impact": 221,
-              "count": 1,
-              "valuation_usd": 1.2458722452681523,
-              "valuation_by_country": [
-                {
-                  "chile": 867
-                }
-              ],
-              "impressions": 1128,
-              "valuation": 867
-            },
-            "domain": "as.com",
-            "id": 851
-          },
-          {
-            "metrics": {
-              "impact": 31,
-              "count": 1,
-              "valuation_usd": 0.5144432108489025,
-              "valuation_by_country": [
-                {
-                  "chile": 358
-                }
-              ],
-              "impressions": 429,
-              "valuation": 358
-            },
-            "domain": "popsugar.com",
-            "id": 887
-          },
-          {
-            "metrics": {
-              "impact": 54,
-              "count": 1,
-              "valuation_usd": 0.30464234832393117,
-              "valuation_by_country": [
-                {
-                  "chile": 212
-                }
-              ],
-              "impressions": 274,
-              "valuation": 212
-            },
-            "domain": "enlacejudio.com",
-            "id": 10423
           }
         ],
-        "sold_by": [
-          {
-            "metrics": {
-              "impact": 8958,
-              "count": 97,
-              "valuation_usd": 362.8807685733287,
-              "valuation_by_country": [
-                {
-                  "chile": 252528
-                }
-              ],
-              "impressions": 107806,
-              "valuation": 252528
-            },
-            "id": "direct",
-            "name": "direct"
-          },
-          {
-            "metrics": {
-              "impact": 1465,
-              "count": 10,
-              "valuation_usd": 36.29986019344729,
-              "valuation_by_country": [
-                {
-                  "chile": 25261
-                }
-              ],
-              "impressions": 15058,
-              "valuation": 25261
-            },
-            "id": "unknown",
-            "name": "unknown"
-          },
-          {
-            "metrics": {
-              "impact": 275,
-              "count": 2,
-              "valuation_usd": 1.5505145935920834,
-              "valuation_by_country": [
-                {
-                  "chile": 1079
-                }
-              ],
-              "impressions": 1402,
-              "valuation": 1079
-            },
-            "id": "google",
-            "name": "google"
-          }
-        ],
-        "preview": {
-          "ad_measurements": {
-            "width": 300,
-            "height": 250
-          },
-          "ad_file": {
-            "name": "https://ads.admetricks.com/banner_c4420d89bb6b5b5a1d348488ace3f8f0.jpg"
-          }
-        },
-        "id": 7852217,
-        "ad_types": [
-          {
-            "metrics": {
-              "impact": 10698,
-              "count": 109,
-              "valuation_usd": 400.7311433603681,
-              "valuation_by_country": [
-                {
-                  "chile": 278868
-                }
-              ],
-              "impressions": 124266,
-              "valuation": 278868
-            },
-            "id": 1,
-            "name": "display"
-          }
-        ]
+        "id": 7418419
       }
     ],
     "campaigns_by_date": [
@@ -1125,59 +664,29 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
           {
             "date": "2020-12-30T00:00:00.000Z",
             "metrics": {
-              "impact": 25545,
+              "impact": 39178,
               "count": 33,
-              "valuation_usd": 809.242162540669,
-              "valuation_by_country": [
-                {
-                  "chile": 563150
-                }
-              ],
-              "impressions": 274705,
-              "valuation": 563150
+              "valuation_usd": 986.5846586854112,
+              "valuation_by_country": [{ "chile": 719523 }],
+              "impressions": 344769,
+              "valuation": 719523
             },
             "date_int": 1609286400000
           }
         ],
         "id": 7418419,
         "name": "Plan de Invierno - enel.cl"
-      },
-      {
-        "metrics_by_date": [
-          {
-            "date": "2020-12-30T00:00:00.000Z",
-            "metrics": {
-              "impact": 10698,
-              "count": 109,
-              "valuation_usd": 400.7311433603681,
-              "valuation_by_country": [
-                {
-                  "chile": 278868
-                }
-              ],
-              "impressions": 124266,
-              "valuation": 278868
-            },
-            "date_int": 1609286400000
-          }
-        ],
-        "id": 7852217,
-        "name": "Hito histórico para Enel: líder del Dow Jones Sustainability World Index de 2020"
       }
     ],
     "websites": [
       {
         "metrics": {
-          "impact": 27291,
+          "impact": 40936,
           "count": 34,
-          "valuation_usd": 833.8664610353807,
-          "valuation_by_country": [
-            {
-              "chile": 580286
-            }
-          ],
-          "impressions": 283639,
-          "valuation": 580286
+          "valuation_usd": 1010.1961176972326,
+          "valuation_by_country": [{ "chile": 736743 }],
+          "impressions": 353745,
+          "valuation": 736743
         },
         "domain": "biobiochile.cl",
         "id": 448
@@ -1186,46 +695,34 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "metrics": {
           "impact": 5510,
           "count": 19,
-          "valuation_usd": 185.46827344870198,
-          "valuation_by_country": [
-            {
-              "chile": 129067
-            }
-          ],
-          "impressions": 88217,
-          "valuation": 129067
+          "valuation_usd": 176.7376667124119,
+          "valuation_by_country": [{ "chile": 128896 }],
+          "impressions": 88103,
+          "valuation": 128896
         },
         "domain": "eldinamo.cl",
         "id": 495
       },
       {
         "metrics": {
-          "impact": 1712,
+          "impact": 1805,
           "count": 75,
-          "valuation_usd": 153.28395894204593,
-          "valuation_by_country": [
-            {
-              "chile": 106670
-            }
-          ],
-          "impressions": 12992,
-          "valuation": 106670
+          "valuation_usd": 164.68649869528656,
+          "valuation_by_country": [{ "chile": 120107 }],
+          "impressions": 13696,
+          "valuation": 120107
         },
         "domain": "duna.cl",
         "id": 475
       },
       {
         "metrics": {
-          "impact": 80,
+          "impact": 75,
           "count": 1,
-          "valuation_usd": 11.013108290351926,
-          "valuation_by_country": [
-            {
-              "chile": 7664
-            }
-          ],
-          "impressions": 1022,
-          "valuation": 7664
+          "valuation_usd": 9.768178513369092,
+          "valuation_by_country": [{ "chile": 7124 }],
+          "impressions": 950,
+          "valuation": 7124
         },
         "domain": "radioagricultura.cl",
         "id": 505
@@ -1234,12 +731,8 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "metrics": {
           "impact": 108,
           "count": 1,
-          "valuation_usd": 9.892254367273312,
-          "valuation_by_country": [
-            {
-              "chile": 6884
-            }
-          ],
+          "valuation_usd": 9.439098945260083,
+          "valuation_by_country": [{ "chile": 6884 }],
           "impressions": 1500,
           "valuation": 6884
         },
@@ -1248,80 +741,60 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
       },
       {
         "metrics": {
-          "impact": 441,
+          "impact": 437,
           "count": 2,
-          "valuation_usd": 7.720959139360764,
-          "valuation_by_country": [
-            {
-              "chile": 5373
-            }
-          ],
-          "impressions": 5718,
-          "valuation": 5373
+          "valuation_usd": 7.289112433614555,
+          "valuation_by_country": [{ "chile": 5316 }],
+          "impressions": 5657,
+          "valuation": 5316
         },
         "domain": "aqua.cl",
         "id": 498
       },
       {
         "metrics": {
-          "impact": 502,
+          "impact": 433,
           "count": 2,
-          "valuation_usd": 2.8624884804776927,
-          "valuation_by_country": [
-            {
-              "chile": 1992
-            }
-          ],
-          "impressions": 2563,
-          "valuation": 1992
+          "valuation_usd": 2.3542900768465373,
+          "valuation_by_country": [{ "chile": 1717 }],
+          "impressions": 2211,
+          "valuation": 1717
         },
         "domain": "aciprensa.com",
         "id": 4839
       },
       {
         "metrics": {
-          "impact": 42,
+          "impact": 41,
           "count": 1,
-          "valuation_usd": 1.3349657622308115,
-          "valuation_by_country": [
-            {
-              "chile": 929
-            }
-          ],
-          "impressions": 213,
-          "valuation": 929
+          "valuation_usd": 1.2367907101430264,
+          "valuation_by_country": [{ "chile": 902 }],
+          "impressions": 207,
+          "valuation": 902
         },
         "domain": "lared.cl",
         "id": 722
       },
       {
         "metrics": {
-          "impact": 221,
+          "impact": 219,
           "count": 1,
-          "valuation_usd": 1.2458722452681523,
-          "valuation_by_country": [
-            {
-              "chile": 867
-            }
-          ],
-          "impressions": 1128,
-          "valuation": 867
+          "valuation_usd": 1.1792017857239498,
+          "valuation_by_country": [{ "chile": 860 }],
+          "impressions": 1119,
+          "valuation": 860
         },
         "domain": "as.com",
         "id": 851
       },
       {
         "metrics": {
-          "impact": 65,
+          "impact": 58,
           "count": 1,
-          "valuation_usd": 1.1682746659780945,
-          "valuation_by_country": [
-            {
-              "chile": 813
-            }
-          ],
-          "impressions": 329,
-          "valuation": 813
+          "valuation_usd": 1.0036926827324784,
+          "valuation_by_country": [{ "chile": 732 }],
+          "impressions": 296,
+          "valuation": 732
         },
         "domain": "df.cl",
         "id": 464
@@ -1330,12 +803,8 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "metrics": {
           "impact": 168,
           "count": 2,
-          "valuation_usd": 0.9441038813623716,
-          "valuation_by_country": [
-            {
-              "chile": 657
-            }
-          ],
+          "valuation_usd": 0.9008553176984129,
+          "valuation_by_country": [{ "chile": 657 }],
           "impressions": 855,
           "valuation": 657
         },
@@ -1346,12 +815,8 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
         "metrics": {
           "impact": 31,
           "count": 1,
-          "valuation_usd": 0.5144432108489025,
-          "valuation_by_country": [
-            {
-              "chile": 358
-            }
-          ],
+          "valuation_usd": 0.49087702242927217,
+          "valuation_by_country": [{ "chile": 358 }],
           "impressions": 429,
           "valuation": 358
         },
@@ -1360,50 +825,38 @@ $response = Requests::post('https://clientela.admetricks.com/brand-report/', $he
       },
       {
         "metrics": {
-          "impact": 18,
-          "count": 1,
-          "valuation_usd": 0.3535000834324861,
-          "valuation_by_country": [
-            {
-              "chile": 246
-            }
-          ],
-          "impressions": 92,
-          "valuation": 246
-        },
-        "domain": "elmorrocotudo.cl",
-        "id": 453
-      },
-      {
-        "metrics": {
           "impact": 54,
           "count": 1,
-          "valuation_usd": 0.30464234832393117,
-          "valuation_by_country": [
-            {
-              "chile": 212
-            }
-          ],
+          "valuation_usd": 0.29068695182962484,
+          "valuation_by_country": [{ "chile": 212 }],
           "impressions": 274,
           "valuation": 212
         },
         "domain": "enlacejudio.com",
         "id": 10423
+      },
+      {
+        "metrics": {
+          "impact": 10,
+          "count": 1,
+          "valuation_usd": 0.18373609219419684,
+          "valuation_by_country": [{ "chile": 134 }],
+          "impressions": 50,
+          "valuation": 134
+        },
+        "domain": "elmorrocotudo.cl",
+        "id": 453
       }
     ],
     "brands": [
       {
         "metrics": {
-          "impact": 36243,
+          "impact": 49885,
           "count": 142,
-          "valuation_usd": 1209.973305901037,
-          "valuation_by_country": [
-            {
-              "chile": 842018
-            }
-          ],
-          "impressions": 398971,
-          "valuation": 842018
+          "valuation_usd": 1385.7568036367722,
+          "valuation_by_country": [{ "chile": 1010642 }],
+          "impressions": 469092,
+          "valuation": 1010642
         },
         "id": 8968,
         "name": "enel"
