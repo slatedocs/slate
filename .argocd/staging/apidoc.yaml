@@ -10,6 +10,6 @@ spec:
   source:
     repoURL: 'https://github.com/wellium/jarvis'
     path: .deployments/staging
-    targetRevision: master
+    targetRevision: main
     kustomize: {}
   project: documentation
