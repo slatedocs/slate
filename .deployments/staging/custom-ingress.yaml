@@ -1,0 +1,21 @@
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: apidoc
+  annotations:
+    kubernetes.io/ingress.class: nginx-private
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: apidoc
+          servicePort: http
+    host: developer.leah.cloud
+  tls:
+  - hosts:
+    - developer.leah.cloud
+    secretName: apidoc-http-tls

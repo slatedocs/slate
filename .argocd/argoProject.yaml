@@ -1,0 +1,23 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: documentation
+  namespace: argo-cd
+spec:
+  description: The documentation project
+  sourceRepos:
+  - 'https://github.com/wellium/jarvis.git'
+  destinations:
+  - namespace: "*"
+    server: https://kubernetes.default.svc
+  - namespace: "*"
+    server: https://1151E7DD8393344D4A202B1DEA34F263.yl4.eu-west-3.eks.amazonaws.com    
+  clusterResourceWhitelist:
+  - group: "*"
+    kind: "*"
+  roles:
+  - name: GitHubActions
+    description: Sync privileges for documentation applications
+    policies:
+    - p, proj:documentation:GitHubActions, applications, *, documentation/*, allow

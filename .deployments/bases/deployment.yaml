@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apidoc
+  labels:
+    app.kubernetes.io/name: apidoc
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apidoc
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apidoc
+    spec:
+      imagePullSecrets:
+      - name: harbor
+      containers:
+      - name: apidoc
+        image: apidoc
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 2015
+          name: http
+        resources:
+          requests:
+            memory: 1Gi
+            cpu: 1000m
+          limits:
+            memory: 1Gi
+            cpu: 1000m
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: webservers

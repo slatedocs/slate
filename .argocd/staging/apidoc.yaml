@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apidoc-staging
+  namespace: argo-cd
+spec:
+  destination:
+    namespace: documentation
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: 'https://github.com/wellium/jarvis'
+    path: .deployments/staging
+    targetRevision: master
+    kustomize: {}
+  project: documentation

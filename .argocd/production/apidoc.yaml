@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apidoc-production
+  namespace: argo-cd
+spec:
+  destination:
+    namespace: documentation
+    server: https://1151E7DD8393344D4A202B1DEA34F263.yl4.eu-west-3.eks.amazonaws.com
+  source:
+    repoURL: 'https://github.com/wellium/jarvis'
+    path: .deployments/production
+    targetRevision: master
+    kustomize: {}
+  project: documentation
