@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: documentation
+commonLabels:
+  app.kubernetes.io/version: "1.0.0"
+  app.kubernetes.io/part-of: documentation
+  app.kubernetes.io/component: documentation
+  app.kubernetes.io/managed-by: kustomize
+resources:
+- deployment.yaml
+- service.yaml
+- hpa.yaml
+- pdb.yaml
+- ingress.yaml
+images:
+- name: apidoc
+  newName: harbor.leah.cloud/leah/apidoc
+  newTag: v1.0.0

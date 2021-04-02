@@ -1,0 +1,79 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker login
+        env:
+          DOCKER_PRIVATE_REGISTRY_USERNAME: ${{ secrets.DOCKER_PRIVATE_REGISTRY_USERNAME }}
+          DOCKER_PRIVATE_REGISTRY_PASSWORD: ${{ secrets.DOCKER_PRIVATE_REGISTRY_PASSWORD }}
+        run: docker login https://harbor.leah.cloud/v2 --password $DOCKER_PRIVATE_REGISTRY_PASSWORD --username $DOCKER_PRIVATE_REGISTRY_USERNAME
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Build client
+        run: |
+          GIT_BRANCH_NAME=$(echo $GITHUB_REF | sed -e "s/^refs\/heads\///")
+
+          docker build \
+            -t harbor.leah.cloud/leah/apidoc:$(echo "r$GITHUB_SHA" | cut -c1-7) \
+            -t harbor.leah.cloud/leah/apidoc:${GIT_BRANCH_NAME//[^a-zA-Z0-9]/-} \
+            -f Dockerfile.production \
+           .
+
+          docker push harbor.leah.cloud/leah/apidoc:$(echo "r$GITHUB_SHA" | cut -c1-7)
+          docker push harbor.leah.cloud/leah/apidoc:${GIT_BRANCH_NAME//[^a-zA-Z0-9]/-}
+
+  sync-staging:
+    needs: [build]
+    if: github.ref == 'refs/heads/main'
+    name: Sync ArgoCD Staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install ArgoCD CLI
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-linux-amd64
+          chmod +x argocd
+
+      - name: Sync Staging
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          ./argocd app set apidoc-staging \
+            --grpc-web \
+            --kustomize-image harbor.leah.cloud/leah/apidoc:$(echo "r$GITHUB_SHA" | cut -c1-7)
+          ./argocd app --grpc-web sync apidoc-staging
+
+  sync-production:
+    needs: [build]
+    if: contains(github.ref, 'refs/tags')
+    name: Sync ArgoCD Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install ArgoCD CLI
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-linux-amd64
+          chmod +x argocd
+
+      - name: Sync Production
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          ./argocd app set apidoc-production \
+            --grpc-web \
+            --kustomize-image harbor.leah.cloud/leah/apidoc:$(echo "r$GITHUB_SHA" | cut -c1-7)
+          ./argocd app --grpc-web sync apidoc-production
