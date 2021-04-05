@@ -394,7 +394,7 @@ window.adaEmbed.evaluateCampaignConditions({
 
 `evaluateCampaignConditions(options: object): Promise<void>;`
 
-This is similar to `triggerCampaign` - however, instead of triggering a specific Campaign, `evaluateCampaignConditions` evaluates the trigger conditions of the Campaigns in priority order and triggers the first Campaign (if any) whose conditions are matched.
+This is similar to `triggerCampaign` - however, instead of triggering a specific Campaign, `evaluateCampaignConditions` evaluates the trigger conditions of the Campaigns in priority order and triggers the first Campaign (if any) whose conditions are matched. This can be useful, for example, if Embed2 cannot determine that the route has changed and the campaign trigger rules need to be evaluated again.
 
 An optional argument `options` can be passed. These options may be helpful when testing your Campaign. The options are:
 - `ignoreStatus?: boolean`: if `ignoreStatus` is `true`, inactive and draft Campaigns will also have their trigger conditions evaluated and may be triggered.
