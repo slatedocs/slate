@@ -1,3 +1,7 @@
+# Files
+
+The actual documentation files live in the `/source/includes` directory.
+
 # Deployment Process
 
 First, run this command to build the docs:
