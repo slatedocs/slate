@@ -67,7 +67,7 @@ You must replace <code>$your_api_key</code> with your personal API key.
 ## Collect offices list
 
 ```shell
-curl --location --requesz GET 'https://myorganization.leah.care/api/offices' \
+curl --location --request GET 'https://myorganization.leah.care/api/offices' \
 --header 'LEAH-AUTH-TOKEN: $your_api_key'
 ```
 
