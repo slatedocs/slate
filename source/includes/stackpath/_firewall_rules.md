@@ -46,7 +46,7 @@ curl -X GET \
 Query Params | &nbsp;
 ---- | -----------
 `action`<br/>*string* | Filter IP addresses, which are either ALLOW or BLOCK. This parameter is optional. If not provided, it will return both the type of IP addresses.
-`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to. This parameter is required.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -56,7 +56,7 @@ Attributes | &nbsp;
 `ipEnd`<br/>*string* | The end ip adress for the rule.
 `ipStart`<br/>*string* | The start ip adress for the rule.
 `name`<br/>*string* | The name of the rule.
-`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to.
 
 <!-------------------- RETRIEVE A RULE -------------------->
 
@@ -87,7 +87,7 @@ curl -X GET \
 
 Query Params | &nbsp;
 ---- | -----------
-`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to. This parameter is required.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
@@ -97,7 +97,7 @@ Attributes | &nbsp;
 `ipEnd`<br/>*string* | The end ip adress for the rule.
 `ipStart`<br/>*string* | The start ip adress for the rule.
 `name`<br/>*string* | The name of the rule.
-`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to.
 
 <!-------------------- CREATE A FIREWALL RULE -------------------->
 
@@ -135,7 +135,7 @@ Restrict access to a site using allow and block rules.
 
 Query Params | &nbsp;
 ---- | -----------
-`siteId`<br/>*string* | The ID of the site for which to create the firewall rule. This parameter is required.
+`siteId`<br/>*UUID* | The ID of the site for which to create the firewall rule. This parameter is required.
 
 Required| &nbsp;
 ------------------------| -----------
@@ -147,7 +147,7 @@ Optional| &nbsp;
 ----------------------- | -----------
 `enabled`<br/>*boolean* | Whether or not the rule is enabled. The default value is false.
 `ipEnd`<br/>*string* | The end ip adress for the rule.
-`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to.
 
 <!-------------------- EDIT A FIREWALL RULE -------------------->
 
@@ -187,7 +187,7 @@ Edit a firewall rule.
 
 Query Params | &nbsp;
 ---- | -----------
-`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to. This parameter is required.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to. This parameter is required.
 
 Required | &nbsp;
 ------- | -----------
@@ -200,7 +200,7 @@ Optional | &nbsp;
 `enabled`<br/>*boolean* | Whether or not the rule is enabled. The default value is false.
 `id`<br/>*string* | The unique identifier for the rule.
 `ipEnd`<br/>*string* | The end ip adress for the rule.
-`siteId`<br/>*string* | The ID of the site for which the firewall rule is applied to.
+`siteId`<br/>*UUID* | The ID of the site for which the firewall rule is applied to.
 
 <!-------------------- DELETE A FIREWALL RULE -------------------->
 
