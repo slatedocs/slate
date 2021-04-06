@@ -43,7 +43,7 @@ Retrieve a list of all delivery rules in a given [environment](#administration-e
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*UUID* | A deliveryrule's unique identifier. 
+`id`<br/>*UUID* | A delivery rule's unique identifier. 
 `name`<br/>*string* | The name of the delivery rule.
 `slug`<br/>*string* | A delivery rule's programmatic name.
 `stackId`<br/>*string* | The ID of the stack that the delivery rule belongs to.
