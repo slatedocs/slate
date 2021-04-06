@@ -119,6 +119,19 @@ telefono | string | Teléfono.
 direccion | string | Dirección
 
 
+## Receptor
+
+Datos del receptor de un documento.
+
+Parámetro | Tipo | Descripción
+----------|------|------------
+identificacion | string | De 5 a 20 caracteres.
+tipo_identificacion | string | Ver [tabla](#tipo-de-identificacion) de tipos de identificación
+telefono | string | Teléfono.
+email | string | Correo electrónico. Máximo 300 caracteres.
+direccion | string | Dirección
+
+
 ## Total Impuesto
 
 Parámetro | Tipo | Descripción

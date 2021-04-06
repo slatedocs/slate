@@ -1,13 +1,135 @@
-# Consulta de autorización
+# Autorización de comprobantes
+
+## Autorizar comprobante
+
+Autoriza cualquier tipo de comprobante electrónico existente.
+El ID del documento `id-doc` es el ID que obtienes después de crear un documento.
+
+### Operación
+
+`POST /edocs/<id-doc>/issue`
+
+> #### Requerimiento de ejemplo
+
+```shell
+curl -v https://link.datil.co/edocs/<id-doc>/issue \
+-H "Content-Type: application/json" \
+-H "X-Key: <clave-del-api>" \
+-H "X-Password: <clave-certificado-firma>"
+```
+
+```python
+import requests
+cabeceras = {
+    'x-key': '<clave-del-api>',
+    'x-password': '<clave-certificado-firma>',
+    'content-type': 'application/json'}
+respuesta = requests.get(
+    'https://link.datil.co/edocs/<id-factura>/issue',
+    headers = cabeceras)
+```
+
+```csharp
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace DatilClient {
+  class InvoicingServiceClient {
+    static void Main(string[] args) {
+
+      var client = new RestClient("https://link.datil.co/edocs/");
+      var idDocumento = "<id-doc>/issue";
+      var request = new RestRequest("edocs/" + idDocumento, Method.GET);
+      request.AddHeader("X-Key", "<clave-del-api>");
+      request.AddHeader("X-Password", "<clave-certificado-firma>");
+      request.AddHeader("Content-Type", "application/json");
+
+      IRestResponse response = client.Execute(request);
+
+      Console.WriteLine(response.Content);
+    }
+  }
+}
+```
+
+### Requerimiento
+
+Reemplaza en la ruta `<id-doc>` por el ID de la factura que necesitas consultar.
+
+### Respuesta
+
+Parámetro    | Tipo    | Descripción
+------------ | ------- | -----------
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
+estado       | string  | Estado de autorización del comprobante. Posibles valores: `AUTORIZADO`, `NO AUTORIZADO`, `ENVIADO`, `DEVUELTO`, `RECIBIDO`, `ERROR`
+numero | string | Número completo del documento.  Ejm: 001-002-592738007
+url_formato_impresion | url | Esta URL te permite acceder de manera directa al formato de impresión (RIDE) del comprobante
+url_documento_electronico | url | Esta URL te permite acceder de manera directa al documento electrónico (XML)
+tipo         | string  | Código que representa el tipo de documento. Revisa [aquí](#tipos-de-documentos) el código que corresponde a cada tipo de documento
+id | string  | El id del documento consultado
+ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
+receptor | objeto tipo [receptor](#receptor) | Informaci'on del receptor del documento.
+clave_acceso | string  | Clave de acceso del documento.
+autorizacion | Objeto de tipo [autorización SRI](#autorizacion-sri)
+
+> #### Respuesta de ejemplo
+
+```json
+{
+    "emisor": {
+        "provincia": 10,
+        "email": "uan.perez@xyz.com",
+        "categoria": "Software",
+        "ruc": "0992712554001",
+        "obligado_contabilidad": true,
+        "contribuyente_especial": "",
+        "subcategoria": "Sorftware como Servicio",
+        "nombre_comercial": "Datil",
+        "pais": 1,
+        "market_id": null,
+        "razon_social": "XYZ Corporación S.A.",
+        "direccion": "Av. Primera 234 y calle 5ta",
+        "ciudad": "Guayaquil",
+        "exportador": false,
+        "telefono": "099999999",
+        "tipoentidad": "Sociedad Anónima"
+    },
+    "estado": "RECIBIDO",
+    "numero": "001-002-000000001",
+    "url_formato_impresion": "https://app.datil.com/ver/67aa7c650g395cgb16e18df3d8ff18fc/pdf",
+    "url_documento_electronico": "https://app.datil.com/ver/67aa7c650g395cgb16e18df3d8ff18fc/xml",
+    "tipo": "01",
+    "id": "67aa7c650g395cgb16e18df3d8ff18fc",
+    "ambiente": "1",
+    "receptor": {
+        "identificacion": "0987654321001",
+        "telefono": "",
+        "email": "devops@datilmedia.com",
+        "tipo_identificacion": "04",
+        "direccion": "Av. Primera 234 y calle 5ta"
+    },
+    "clave_acceso": "0803202101099271255400110010020000000011994720519",
+    "autorizacion": {
+        "mensajes": []
+    }
+}
+```
+
+## Consulta de autorización
 
 Consulta la información de autorización de cualquier tipo de comprobante electrónico.
 El ID del documento `id-doc` es el ID que obtienes después de emitir un documento.
 
-<h3 id="consulta-comprobante-op">Operación</h3>
+### Operación
 
 `GET /edocs/<id-doc>`
 
-<h3 id="consulta-comprobante-requerimiento">Requerimiento</h3>
+### Requerimiento
+
+Reemplaza en la ruta `<id-doc>` por el ID de la factura que necesitas consultar.
 
 > #### Requerimiento de ejemplo
 
@@ -49,7 +171,7 @@ namespace DatilClient {
 }
 ```
 
-<h3 id="consulta-comprobante-respuesta">Respuesta</h3>
+### Respuesta
 
 Parámetro    | Tipo    | Descripción
 ------------ | ------- | -----------
