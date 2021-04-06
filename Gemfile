@@ -1,4 +1,4 @@
-ruby '~> 2.5'
+ruby '> 2.5'
 source 'https://rubygems.org'
 
 # Middleman
@@ -10,3 +10,4 @@ gem 'rouge', '~> 3.21'
 gem 'redcarpet', '~> 3.5.0'
 gem 'nokogiri', '~> 1.11.0'
 gem 'sass'
+gem 'webrick'
