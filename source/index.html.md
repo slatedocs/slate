@@ -189,7 +189,8 @@ includes:
   - swift/objects
   - stackpath
   - stackpath/workloads
-  - stackpath/sites
+  - stackpath/sites # Sites section
+  - stackpath/edgessl
   - stackpath/instances
   - stackpath/images
   - stackpath/delivery_domains
