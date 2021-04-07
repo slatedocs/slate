@@ -29,7 +29,7 @@ curl -X POST \
 ```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/certificates?siteId=<a href="#stackpath-sites">:siteId</a></code>
 
-Create a certificate that will automatically be assigned to sites based on the hostnames of the certificate. 
+Create a certificate that will automatically be assigned to the site based on the hostnames of the certificate. 
 
 Query Params | &nbsp;
 ---- | -----------
