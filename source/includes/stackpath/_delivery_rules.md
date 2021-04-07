@@ -48,10 +48,6 @@ Attributes | &nbsp;
 `slug`<br/>*string* | A delivery rule's programmatic name.
 `stackId`<br/>*string* | The ID of the stack that the delivery rule belongs to.
 `siteId`<br/>*string* | The ID of the site that the delivery rule is applied to.
-=======
-  "taskId": "2c7429dc-64c2-492d-a767-f18c990af164",
-  "taskStatus": "PENDING"
-}
 
 <!-------------------- DELETE A DELIVERY RULE -------------------->
 
