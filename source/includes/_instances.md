@@ -50,6 +50,7 @@ https://api.practitest.com/api/v2/projects/4566/instances.json?test-ids=1111&set
         "planned-execution": null,
         "version": null,
         "assigned-to-id": null,
+        "assigned-to-type": null,
         "created-at": "2015-11-17T09:29:22+00:00",
         "updated-at": "2015-11-17T09:29:22+00:00"
       }
@@ -74,6 +75,7 @@ https://api.practitest.com/api/v2/projects/4566/instances.json?test-ids=1111&set
         "planned-execution": null,
         "version": null,
         "assigned-to-id": null,
+        "assigned-to-type": null,
         "created-at": "2015-11-17T09:29:22+00:00",
         "updated-at": "2015-11-17T09:29:22+00:00"
       }
@@ -149,10 +151,13 @@ data/attributes/test-id* | Test id (not display id) | true |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/version | string of instance version | false |
 data/attributes/priority | string of instance priority | false |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 
 * Users can create 20 instances (maximum) by sending one request. See a curl example in the dark area to the right.
+* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
+So when assign to a group is wanted, assigned-to-type group must be passed.
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
 
@@ -192,6 +197,7 @@ https://api.practitest.com/api/v2/projects/4566/instances/45893.json
       "planned-execution": null,
       "version": null,
       "assigned-to-id": null,
+      "assigned-to-type": null,
       "created-at": "2015-11-17T09:29:22+00:00",
       "updated-at": "2015-11-17T09:29:22+00:00"
     }
@@ -267,9 +273,12 @@ Available parameters | Description |
 data/attributes/planned-execution | date field of planned-execution |
 data/attributes/version | string of instance version |
 data/attributes/priority | string of instance priority |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 
+* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
+So when assign to a group is wanted, assigned-to-type group must be passed.
 
 You can find at the right area an example of the JSON request and response
 
