@@ -202,7 +202,6 @@ includes:
   - stackpath/instances
   - stackpath/images
   - stackpath/network_policy_rules
-  - stackpath/scripts
   - aws
   - aws/compute
   - aws/instances
