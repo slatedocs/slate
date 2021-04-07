@@ -1,10 +1,10 @@
-## Firewall Rules
+### Firewall Rules
 
 Deploy and manage Firewall Rules used to control and limit access to your sites. 
 
 <!-------------------- LIST FIREWALL RULES -------------------->
 
-### List firewall rules
+#### List firewall rules
 
 ```shell
 curl -X GET \
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A RULE -------------------->
 
-### Retrieve a firewall rule 
+#### Retrieve a firewall rule 
 
 ```shell
 curl -X GET \
@@ -101,7 +101,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A FIREWALL RULE -------------------->
 
-### Create a firewall rule
+#### Create a firewall rule
 
 ```shell
 curl -X POST \
@@ -151,7 +151,7 @@ Optional| &nbsp;
 
 <!-------------------- EDIT A FIREWALL RULE -------------------->
 
-### Edit a firewall rule
+#### Edit a firewall rule
 
 ```shell
 curl -X PUT \
@@ -204,7 +204,7 @@ Optional | &nbsp;
 
 <!-------------------- DELETE A FIREWALL RULE -------------------->
 
-### Delete a firewall rule
+#### Delete a firewall rule
 
 ```shell
 curl -X DELETE \

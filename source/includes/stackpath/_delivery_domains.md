@@ -1,10 +1,10 @@
-## Delivery domains
+### Delivery domains
 
 Delivery domains allow the CDN to recognize an HTTP request and associate it with a site.
 
 <!-------------------- LIST DELIVERY DOMAINS -------------------->
 
-### List delivery domains
+#### List delivery domains
 
 ```shell
 curl -X GET \
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A DELIVERY DOMAIN -------------------->
 
-### Retrieve a delivery domain
+#### Retrieve a delivery domain
 
 ```shell
 curl -X GET \
@@ -94,7 +94,7 @@ Attributes | &nbsp;
 
 <!-------------------- DELETE A DELIVERY DOMAIN -------------------->
 
-### Delete a delivery domain
+#### Delete a delivery domain
 
 ```shell
 curl -X DELETE \
@@ -121,7 +121,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A DELIVERY DOMAIN -------------------->
 
-### Create a delivery domain
+#### Create a delivery domain
 
 ```shell
 curl -X POST \

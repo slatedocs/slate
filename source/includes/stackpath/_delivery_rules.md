@@ -1,10 +1,10 @@
-## Delivery Rules
+### Delivery Rules
 
 Set up delivery rules to improve access, security and set custom rules.
 
 <!-------------------- LIST DELIVERY_RULE -------------------->
 
-### List delivery rules
+#### List delivery rules
 
 ```shell
 curl -X GET \
@@ -51,7 +51,7 @@ Attributes | &nbsp;
 
 <!-------------------- DELETE A DELIVERY RULE -------------------->
 
-### Delete a delivery rule
+#### Delete a delivery rule
 
 ```shell
 curl -X DELETE \

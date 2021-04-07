@@ -1,10 +1,10 @@
-## Scripts
+### Scripts
 
 Deploy and manage Serverless Scripts used to interact with requests made to the site.
 
 <!-------------------- LIST SCIPTS -------------------->
 
-### List scripts
+#### List scripts
 
 ```shell
 curl -X GET \
@@ -67,7 +67,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A SCRIPT --------------------->
 
-### Retrieve a script
+#### Retrieve a script
 
 ```shell
 curl -X GET \
@@ -137,7 +137,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A SCRIPT -------------------->
 
-### Create a script
+#### Create a script
 
 Create a new serverless script that allows you to run JavaScript code at the Edge, on all of PoPs with real-time access to each of the requests that come in for your site.
 
@@ -210,7 +210,7 @@ Attributes | &nbsp;
 
 <!-------------------- EDIT A SCRIPT -------------------->
 
-### Edit a script
+#### Edit a script
 
 Edit a script in a given [environment](#administration-environments) for a given site ID.
 
@@ -259,7 +259,7 @@ Attributes | &nbsp;
 
 <!-------------------- DELETE A SCRIPT -------------------->
 
-### Delete a script
+#### Delete a script
 
 Delete a script in a given [environment](#administration-environments) for a given site ID.
 
