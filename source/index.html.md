@@ -198,6 +198,7 @@ includes:
   - stackpath/network_policy_rules
   - stackpath/scripts
   - stackpath/delivery_rules
+  - stackpath/certificates
   - aws
   - aws/compute
   - aws/instances
