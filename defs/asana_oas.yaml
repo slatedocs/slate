@@ -1413,6 +1413,8 @@ components:
                     *Conditional*. Only relevant for custom fields of type
                     `enum`. This object is the chosen value of an enum custom
                     field.
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
     CustomFieldRequest:
       allOf:
         - $ref: '#/components/schemas/CustomFieldBase'
@@ -1587,7 +1589,7 @@ components:
                 an app against new custom field types.
               type: string
               readOnly: true
-              example: "blue"
+              example: blue
     CustomFieldSettingResponse:
       allOf:
         - $ref: '#/components/schemas/CustomFieldSettingBase'
@@ -2637,6 +2639,7 @@ components:
           enum:
             - members
             - notes
+            - forms
             - task_notes
             - task_assignee
             - task_subtasks
@@ -3221,19 +3224,21 @@ components:
                 The name of the sticker in this story. `null` if there is no sticker.
               type: string
               enum:
-                - "green_checkmark"
-                - "people_dancing"
-                - "dancing_unicorn"
-                - "heart"
-                - "party_popper"
-                - "people_waving_flags"
-                - "splashing_narwhal"
-                - "trophy"
-                - "yeti_riding_unicorn"
-                - "celebrating_people"
-                - "determined_climbers"
-                - "phoenix_spreading_love"
-              example: "dancing_unicorn"
+                - green_checkmark
+                - people_dancing
+                - dancing_unicorn
+                - heart
+                - party_popper
+                - people_waving_flags
+                - splashing_narwhal
+                - trophy
+                - splashing_narwhal
+                - trophy
+                - yeti_riding_unicorn
+                - celebrating_people
+                - determined_climbers
+                - phoenix_spreading_love
+              example: dancing_unicorn
     StoryCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -3607,7 +3612,7 @@ components:
             due_on:
               description: >-
                 The localized date on which this task is due, or null if the task
-                has no due date.  This takes a date with `YYYY-MM-DD` format and
+                has no due date. This takes a date with `YYYY-MM-DD` format and
                 should not be used together with due_at.
               type: string
               format: date
@@ -4001,7 +4006,7 @@ components:
               type: string
               description: >
                 The organization/workspace the team belongs to.
-              example: "123456789"
+              example: '123456789'
     TeamBase:
       $ref: '#/components/schemas/TeamCompact'
     TeamCompact:
@@ -6474,7 +6479,8 @@ paths:
       description: >-
         Returns the compact project records for all projects in the workspace.
 
-        *Note: This endpoint may timeout for large domains. Prefer the `/teams/{team_gid}/projects` endpoint.*
+        *Note: This endpoint may timeout for large domains. Prefer the
+        `/teams/{team_gid}/projects` endpoint.*
       tags:
         - Projects
       operationId: getProjectsForWorkspace
@@ -8243,6 +8249,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
@@ -8286,6 +8294,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
@@ -8330,6 +8340,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
@@ -8367,6 +8379,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
@@ -8413,6 +8427,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
@@ -8458,6 +8474,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
