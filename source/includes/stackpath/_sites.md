@@ -961,4 +961,3 @@ Optional | &nbsp;
 `backupOrigin.username` <br/> *string* | Username to use when authenticating with the backup origin. 
 `backupOrigin.password` <br/> *string* | Password to use when authenticating with the backup origin. 
 `backupOrigin.commonCertificateName` <br/> *string* | Common name to validate SSL origin requests against.
-
