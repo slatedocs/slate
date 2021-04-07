@@ -16,7 +16,7 @@ curl -X POST \
 {
   "certificate": "-----BEGIN CERTIFICATE----- X509 certificate content -----END CERTIFICATE-----",
   "key": "-----BEGIN PRIVATE KEY----- Private key of the certificate -----END PRIVATE KEY-----",
-  "caBundle": "-----BEGIN CERTIFICATE-----Certificate authority bundle  -----END CERTIFICATE-----"
+  "caBundle": "-----BEGIN CERTIFICATE----- Certificate authority bundle  -----END CERTIFICATE-----"
 }
 ```
 > The above commands return a JSON structured like this:
