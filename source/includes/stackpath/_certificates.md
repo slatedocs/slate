@@ -37,7 +37,7 @@ Query Params | &nbsp;
 
 Required| &nbsp;
 ------------------------| -----------
-`certificate`<br/>*string* | The X509 Certificate
+`certificate`<br/>*string* | The X509 certificate.
 `key`<br/>*string* | The Private Key of the Certificate.
 
 Optional| &nbsp;
