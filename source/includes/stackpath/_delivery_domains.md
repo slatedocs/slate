@@ -42,9 +42,9 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliverydomains?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliverydomains?siteId=<a href="#stackpath-site"><a href="#stackpath-site">:siteId</a></a></code>
 
-Retrieve a list of all delivery domains in a given [environment](#administration-environments) for a [site] (#stackpath-sites).
+Retrieve a list of all delivery domains in a given [environment](#administration-environments) for a [site] (#stackpath-site).
 
 Query Params | &nbsp;
 ---- | -----------

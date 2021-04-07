@@ -48,7 +48,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/<a href="#stackpath-site">:siteId</a></a></code>
 
 Retrieve CDN settings for a site in a given [environment](#administration-environments).
 
@@ -111,7 +111,7 @@ curl -X PATCH \
 }
 ```
 
-<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId</a></code>
+<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/<a href="#stackpath-site">:siteId</a></a></code>
 
 Edit CDN settings for a site in a given [environment](#administration-environments).
 
@@ -159,7 +159,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId?operation=purgeAll</a></code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/<a href="#stackpath-site">:siteId</a>?operation=purgeAll</a></code>
 
 Purge all CDN cached content of a site in a given [environment](#administration-environments).
 
@@ -209,7 +209,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/:siteId?operation=purge</a></code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/cdnsettings/<a href="#stackpath-site">:siteId</a>?operation=purge</a></code>
 
 Purge custom CDN cached content of a site in a given [environment](#administration-environments).
 

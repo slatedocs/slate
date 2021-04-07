@@ -48,7 +48,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -115,7 +115,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -141,7 +141,7 @@ Attributes | &nbsp;
 
 Create a new serverless script that allows you to run JavaScript code at the Edge, on all of PoPs with real-time access to each of the requests that come in for your site.
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -237,7 +237,7 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=:siteId</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 
 Query Params | &nbsp;
@@ -277,7 +277,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=:siteId</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
