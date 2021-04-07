@@ -42,7 +42,7 @@ Required| &nbsp;
 
 Optional| &nbsp;
 ----------------------- | -----------
-`caBundle`<br/>*string* | The Certificate Authority Bundle
+`caBundle`<br/>*string* | The certificate authority bundle.
 
 The following attributes are returned as part of the response.
 
