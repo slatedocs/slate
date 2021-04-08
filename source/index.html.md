@@ -199,6 +199,8 @@ includes:
   - stackpath/firewall_rules
   - stackpath/scripts
   - stackpath/edgessl
+  - stackpath/edgessl_settings
+  - stackpath/certificates
   - stackpath/instances
   - stackpath/images
   - stackpath/network_policy_rules
