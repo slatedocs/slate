@@ -1,10 +1,10 @@
-## Scripts
+### Scripts
 
 Deploy and manage Serverless Scripts used to interact with requests made to the site.
 
 <!-------------------- LIST SCIPTS -------------------->
 
-### List scripts
+#### List scripts
 
 ```shell
 curl -X GET \
@@ -48,7 +48,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -67,7 +67,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A SCRIPT --------------------->
 
-### Retrieve a script
+#### Retrieve a script
 
 ```shell
 curl -X GET \
@@ -115,7 +115,7 @@ curl -X GET \
   }
 }
 ```
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -137,11 +137,11 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A SCRIPT -------------------->
 
-### Create a script
+#### Create a script
 
 Create a new serverless script that allows you to run JavaScript code at the Edge, on all of PoPs with real-time access to each of the requests that come in for your site.
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -210,7 +210,7 @@ Attributes | &nbsp;
 
 <!-------------------- EDIT A SCRIPT -------------------->
 
-### Edit a script
+#### Edit a script
 
 Edit a script in a given [environment](#administration-environments) for a given site ID.
 
@@ -237,7 +237,7 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=:siteId</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 
 Query Params | &nbsp;
@@ -259,7 +259,7 @@ Attributes | &nbsp;
 
 <!-------------------- DELETE A SCRIPT -------------------->
 
-### Delete a script
+#### Delete a script
 
 Delete a script in a given [environment](#administration-environments) for a given site ID.
 
@@ -277,7 +277,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=:siteId</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/scripts/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------

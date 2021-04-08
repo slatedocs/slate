@@ -1,10 +1,10 @@
-## Delivery Rules
+### Delivery Rules
 
 Set up delivery rules to improve access, security and set custom rules.
 
 <!-------------------- LIST DELIVERY_RULE -------------------->
 
-### List delivery rules
+#### List delivery rules
 
 ```shell
 curl -X GET \
@@ -37,7 +37,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Retrieve a list of all delivery rules in a given [environment](#administration-environments) within a site.
 
@@ -51,7 +51,7 @@ Attributes | &nbsp;
 
 <!-------------------- DELETE A DELIVERY RULE -------------------->
 
-### Delete a delivery rule
+#### Delete a delivery rule
 
 ```shell
 curl -X DELETE \
@@ -67,7 +67,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules/:id?siteId=:siteId</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Delete a delivery rule.
 

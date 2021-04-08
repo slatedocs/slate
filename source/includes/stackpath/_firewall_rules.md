@@ -1,10 +1,10 @@
-## Firewall Rules
+### Firewall Rules
 
 Deploy and manage Firewall Rules used to control and limit access to your sites. 
 
 <!-------------------- LIST FIREWALL RULES -------------------->
 
-### List firewall rules
+#### List firewall rules
 
 ```shell
 curl -X GET \
@@ -41,7 +41,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A RULE -------------------->
 
-### Retrieve a firewall rule 
+#### Retrieve a firewall rule 
 
 ```shell
 curl -X GET \
@@ -83,7 +83,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Query Params | &nbsp;
 ---- | -----------
@@ -101,7 +101,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A FIREWALL RULE -------------------->
 
-### Create a firewall rule
+#### Create a firewall rule
 
 ```shell
 curl -X POST \
@@ -129,7 +129,7 @@ curl -X POST \
   "taskStatus": "PENDING"
 }
 ```
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Restrict access to a site using allow and block rules.
 
@@ -151,7 +151,7 @@ Optional| &nbsp;
 
 <!-------------------- EDIT A FIREWALL RULE -------------------->
 
-### Edit a firewall rule
+#### Edit a firewall rule
 
 ```shell
 curl -X PUT \
@@ -181,7 +181,7 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Edit a firewall rule.
 
@@ -204,7 +204,7 @@ Optional | &nbsp;
 
 <!-------------------- DELETE A FIREWALL RULE -------------------->
 
-### Delete a firewall rule
+#### Delete a firewall rule
 
 ```shell
 curl -X DELETE \
@@ -220,7 +220,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=:siteId</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Delete a firewall rule
 

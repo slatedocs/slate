@@ -190,15 +190,18 @@ includes:
   - stackpath
   - stackpath/workloads
   - stackpath/sites # Sites section
+  - stackpath/site
+  - stackpath/origin_settings
+  - stackpath/delivery_domains
+  - stackpath/cdn
+  - stackpath/delivery_rules
+  - stackpath/waf
+  - stackpath/firewall_rules
+  - stackpath/scripts
   - stackpath/edgessl
   - stackpath/instances
   - stackpath/images
-  - stackpath/delivery_domains
-  - stackpath/firewall_rules
   - stackpath/network_policy_rules
-  - stackpath/scripts
-  - stackpath/delivery_rules
-  - stackpath/certificates
   - aws
   - aws/compute
   - aws/instances
