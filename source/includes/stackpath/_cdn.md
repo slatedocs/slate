@@ -183,6 +183,7 @@ curl -X POST \
 
 ```json
 {
+  "purgeType":"PATH",
   "items": [
     {
       "url": "//<domain_name>/path/to/file",
@@ -216,10 +217,11 @@ Purge custom CDN cached content of a site in a given [environment](#administrati
 Required | &nbsp;
 ------- | -----------
 `items`<br/>*Array[Object]* | The items to purge from the CDN.
-`items.url`<br/>*String* | The URL at which to delete content.
+`items.url`<br/>*String* | The URL or path at which to delete content.
  
  Optional | &nbsp;
  ------- | -----------
+`purgeType`<br/>*String* | The type of cache purge. Can be `URL` or `PATH`. Default value is `URL`.
 `items.recursive`<br/>*Boolean* | Whether or not to recursively delete content from the CDN.
 `items.invalidateOnly`<br/>*Boolean* | Whether or not to mark the asset as expired and re-validate instead of deleting.
 `items.purgeAllDynamic`<br/>*Boolean* | Whether or not to purge dynamic versions of assets.
