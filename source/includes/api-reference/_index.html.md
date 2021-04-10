@@ -945,6 +945,11 @@ $result = $client->customfields->createCustomField(array('field' => 'value', 'fi
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "currency_code": "EUR",
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
@@ -1128,6 +1133,11 @@ $result = $client->customfields->getCustomField($custom_field_gid, array('param'
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "currency_code": "EUR",
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
@@ -1302,6 +1312,11 @@ $result = $client->customfields->updateCustomField($custom_field_gid, array('fie
   "data": {
     "gid": "12345",
     "resource_type": "custom_field",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "currency_code": "EUR",
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
@@ -1592,6 +1607,11 @@ $result = $client->customfields->getCustomFieldsForWorkspace($workspace_gid, arr
     {
       "gid": "12345",
       "resource_type": "custom_field",
+      "created_by": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "currency_code": "EUR",
       "custom_label": "gold pieces",
       "custom_label_position": "suffix",
@@ -2143,6 +2163,11 @@ $result = $client->customfieldsettings->getCustomFieldSettingsForProject($projec
       "custom_field": {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -2296,6 +2321,11 @@ $result = $client->customfieldsettings->getCustomFieldSettingsForPortfolio($port
       "custom_field": {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -3232,6 +3262,11 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
         "custom_field": {
           "gid": "12345",
           "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
           "currency_code": "EUR",
           "custom_label": "gold pieces",
           "custom_label_position": "suffix",
@@ -3449,6 +3484,11 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
         "custom_field": {
           "gid": "12345",
           "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
           "currency_code": "EUR",
           "custom_label": "gold pieces",
           "custom_label_position": "suffix",
@@ -3652,6 +3692,11 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
         "custom_field": {
           "gid": "12345",
           "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
           "currency_code": "EUR",
           "custom_label": "gold pieces",
           "custom_label_position": "suffix",
@@ -6327,6 +6372,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 |---|---|
 | include|members|
 | include|notes|
+| include|forms|
 | include|task_notes|
 | include|task_assignee|
 | include|task_subtasks|
@@ -7376,6 +7422,11 @@ $result = $client->projects->addCustomFieldSettingForProject($project_gid, array
     "custom_field": {
       "gid": "12345",
       "resource_type": "custom_field",
+      "created_by": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "currency_code": "EUR",
       "custom_label": "gold pieces",
       "custom_label_position": "suffix",
@@ -10473,6 +10524,8 @@ Updates the story and returns the full record for the updated story. Only commen
 | sticker_name|people_waving_flags|
 | sticker_name|splashing_narwhal|
 | sticker_name|trophy|
+| sticker_name|splashing_narwhal|
+| sticker_name|trophy|
 | sticker_name|yeti_riding_unicorn|
 | sticker_name|celebrating_people|
 | sticker_name|determined_climbers|
@@ -11012,6 +11065,8 @@ Returns the full record for the new story added to the task.
 | sticker_name|heart|
 | sticker_name|party_popper|
 | sticker_name|people_waving_flags|
+| sticker_name|splashing_narwhal|
+| sticker_name|trophy|
 | sticker_name|splashing_narwhal|
 | sticker_name|trophy|
 | sticker_name|yeti_riding_unicorn|
@@ -12429,6 +12484,11 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -12526,7 +12586,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
@@ -12731,6 +12791,11 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -13026,6 +13091,11 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -13125,7 +13195,7 @@ Returns the complete updated task record.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
@@ -14189,6 +14259,11 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -14280,7 +14355,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
@@ -14502,6 +14577,11 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
       {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -14708,6 +14788,7 @@ Returns the compact representations of all of the dependencies of a task.
 |200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the specified task's dependencies.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
@@ -14828,6 +14909,7 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 |200<span class="param-type"> Inline</span>|Successfully set the specified dependencies on the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
@@ -14958,6 +15040,7 @@ Unlinks a set of dependencies from this task.
 |200<span class="param-type"> Inline</span>|Successfully unlinked the dependencies from the specified task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
@@ -15074,6 +15157,7 @@ Returns the compact representations of all of the dependents of a task.
 |200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully retrieved the specified dependents of the task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
@@ -15200,6 +15284,7 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 |200<span class="param-type"> [TaskCompact](#schemataskcompact)</span>|Successfully set the specified dependents on the given task.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
@@ -15322,6 +15407,7 @@ Unlinks a set of dependents from this task.
 |200<span class="param-type"> Inline</span>|Successfully unlinked the specified tasks as dependents.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
@@ -17826,6 +17912,7 @@ Results are sorted by user ID.
 |Name|Description|
 |---|---|
 |?workspace<span class="param-type"> string</span>|The workspace or organization ID to filter users on.|
+|?team<span class="param-type"> string</span>|The team ID to filter users on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -17940,7 +18027,6 @@ $result = $client->users->getUser($user_gid, array('param' => 'value', 'param' =
 
 <span class="description">
 Returns the full user record for the single user with the provided ID.
-Results are sorted by user ID.
 </span>
 
 <h3 id="get-a-user-parameters">Parameters</h3>
@@ -18166,6 +18252,7 @@ $result = $client->users->getUsersForTeam($team_gid, array('param' => 'value', '
 
 <span class="description">
 Returns the compact records for all users that are members of the team.
+Results are sorted alphabetically and limited to 2000. For more results use the `/users` endpoint.
 </span>
 
 <h3 id="get-users-in-a-team-parameters">Parameters</h3>
@@ -18175,7 +18262,6 @@ Returns the compact records for all users that are members of the team.
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-users-in-a-team-responses">Responses</h3>
@@ -18274,6 +18360,7 @@ $result = $client->users->getUsersForWorkspace($workspace_gid, array('param' => 
 
 <span class="description">
 Returns the compact records for all users in the specified workspace or organization.
+Results are sorted alphabetically and limited to 2000. For more results use the `/users` endpoint.
 </span>
 
 <h3 id="get-users-in-a-workspace-or-organization-parameters">Parameters</h3>
@@ -18283,7 +18370,6 @@ Returns the compact records for all users in the specified workspace or organiza
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-users-in-a-workspace-or-organization-responses">Responses</h3>
@@ -20474,6 +20560,11 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 {
   "gid": "12345",
   "resource_type": "custom_field",
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
   "currency_code": "EUR",
   "custom_label": "gold pieces",
   "custom_label_position": "suffix",
@@ -20522,6 +20613,10 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
@@ -20613,6 +20708,11 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
   "custom_field": {
     "gid": "12345",
     "resource_type": "custom_field",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "currency_code": "EUR",
     "custom_label": "gold pieces",
     "custom_label_position": "suffix",
@@ -20674,6 +20774,10 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
@@ -21208,6 +21312,11 @@ This object determines if a user is a member of a portfolio.
       "custom_field": {
         "gid": "12345",
         "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
         "currency_code": "EUR",
         "custom_label": "gold pieces",
         "custom_label_position": "suffix",
@@ -21302,6 +21411,10 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
@@ -22349,6 +22462,8 @@ A story represents an activity associated with an object in the Asana system.
 |sticker_name|people_waving_flags|
 |sticker_name|splashing_narwhal|
 |sticker_name|trophy|
+|sticker_name|splashing_narwhal|
+|sticker_name|trophy|
 |sticker_name|yeti_riding_unicorn|
 |sticker_name|celebrating_people|
 |sticker_name|determined_climbers|
@@ -22600,6 +22715,11 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
     {
       "gid": "12345",
       "resource_type": "custom_field",
+      "created_by": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
       "currency_code": "EUR",
       "custom_label": "gold pieces",
       "custom_label_position": "suffix",
@@ -22695,7 +22815,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
 |external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
 |» data<span class="param-type"> string</span>|none|
 |» gid<span class="param-type"> string</span>|none|
@@ -22738,6 +22858,10 @@ The *task* is the basic object around which many operations in Asana are centere
 |custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the task. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
 |» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|

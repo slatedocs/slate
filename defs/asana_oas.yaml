@@ -9940,6 +9940,13 @@ paths:
         schema:
           type: string
         example: '1331'
+      - name: team
+        in: query
+        description: >-
+          The team ID to filter users on.
+        schema:
+          type: string
+        example: '15627'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -9987,8 +9994,6 @@ paths:
       summary: Get a user
       description: >-
         Returns the full user record for the single user with the provided ID.
-
-        Results are sorted by user ID.
       tags:
         - Users
       operationId: getUser
@@ -10075,12 +10080,14 @@ paths:
       - $ref: '#/components/parameters/team_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
       summary: Get users in a team
       description: >-
         Returns the compact records for all users that are members of the team.
+
+        Results are sorted alphabetically and limited to 2000. For more results
+        use the `/users` endpoint.
       tags:
         - Users
       operationId: getUsersForTeam
@@ -10113,7 +10120,6 @@ paths:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
       summary: >-
@@ -10121,6 +10127,9 @@ paths:
       description: >-
         Returns the compact records for all users in the specified workspace or
         organization.
+
+        Results are sorted alphabetically and limited to 2000. For more results
+        use the `/users` endpoint.
       tags:
         - Users
       operationId: getUsersForWorkspace
