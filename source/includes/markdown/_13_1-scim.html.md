@@ -22,4 +22,19 @@ Note that only Service Accounts in Enterprise Domains can access SCIM endpoints.
 |GET /ResourceTypes|Read-only meta information|
 |GET /Schemas|Read-only meta information|
 
+The accepted user attributes are:
+
+|Attribute|Type|Info|
+|---------|----|----|
+|userName|string|Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Each User MUST include a non - empty userName value, and it must  be an email address. REQUIRED.|
+|name|complex|The user's name|
+|name.givenName|string|Unsupported, use `formatted`"|
+|name.familyName|string|Unsupported, use `formatted`"|
+|name.formatted|string|The full name of the user.|
+|emails|complex|Email addresses for the user.|
+|emails.value|string|Email address for the user|
+|email.primary|string|Whether this email address is the preferred email address for this user. `true` may only appear once for this  attribute.|
+|active|boolean|Indicates whether the user's account is active in Asana.|
+|photo|string|URL for the user's profile photo.|
+
 </section>
