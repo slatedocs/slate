@@ -28,8 +28,8 @@ The accepted user attributes are:
 |---------|----|----|
 |userName|string|Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Each User MUST include a non - empty userName value, and it must  be an email address. REQUIRED.|
 |name|complex|The user's name|
-|name.givenName|string|Unsupported, use `formatted`"|
-|name.familyName|string|Unsupported, use `formatted`"|
+|name.givenName|string|Unsupported, use `formatted`|
+|name.familyName|string|Unsupported, use `formatted`|
 |name.formatted|string|The full name of the user.|
 |emails|complex|Email addresses for the user.|
 |emails.value|string|Email address for the user|
