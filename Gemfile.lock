@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/middleman/middleman.git
-  revision: 0c950d82f6f4f540e8572195f80c9a9fb15ab80c
+  revision: d180ca337202873f2601310c74ba2b6b4cf063ec
   branch: 4.x
   specs:
     middleman (4.3.11)
@@ -12,7 +12,7 @@ GIT
     middleman-cli (4.3.11)
       thor (>= 0.17.0, < 2.0)
     middleman-core (4.3.11)
-      activesupport (>= 4.2, < 6.0)
+      activesupport (>= 4.2, < 6.1)
       addressable (~> 2.3)
       backports (~> 3.6)
       bundler (~> 2.0)
@@ -40,11 +40,12 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.5)
+    activesupport (6.0.3.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (9.5.1.1)
@@ -54,14 +55,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     contracts (0.13.0)
     dotenv (2.7.6)
     erubis (2.7.0)
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.2.3)
-    ffi (1.13.1)
+    ffi (1.15.0)
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
@@ -129,6 +130,7 @@ GEM
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     webrick (1.7.0)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
