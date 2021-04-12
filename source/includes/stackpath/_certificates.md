@@ -173,9 +173,60 @@ The following attributes are returned as part of the response.
 
 Attributes | &nbsp;
 ------- | -----------
-`taskId` <br/>*string* | The task id related to creation of the Certificate.
+`taskId` <br/>*string* | The task id related to creation of the certificate.
 `taskStatus` <br/>*string* | The status of the operation.
 
+<!-------------------- REQUEST A CERTIFICATE -------------------->
+
+##### Request a certificate
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/certificates?operation=request&siteId=f9dea588-d7ab-4f42-b6e6-4b85f273f3db"
+```
+> Request body example for requesting a certificate:
+
+```json
+{
+  "hosts": [
+        {"domain": "helloworld.com"},
+        {"domain": "www.helloworld.com"}
+    ],
+    "verificationMethod": "DNS"
+}
+```
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/certificates?operation=request&siteId=<a href="#stackpath-sites">:siteId</a></code>
+
+Request a certificate that will automatically be assigned to the site.
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site. This parameter is required.
+
+Required | &nbsp;
+--- | ---
+`verificationMethod`<br/>*Enum* | The verification method used to validate a requested certificate on a site. Possible values are: `DNS` and `HTTP`.
+
+Optional| &nbsp;
+----------------------- | -----------
+`hosts`<br/>*Array[string]* | A list of delivery domains that will be included as subject alternative names on the certificate. If no hosts are provided, all delivery domains on the site will be included with the first one in the list being used as the common name. If hosts are provided, the first entry will be used as the common name. If the first host in the list is over 63 characters the shortest host provided will be used as the common name.
+
+The following attributes are returned as part of the response.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to creation of the certificate.
+`taskStatus` <br/>*string* | The status of the operation.
 
 <!-------------------- DELETE A CERTIFICATE -------------------->
 
