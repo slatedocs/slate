@@ -329,8 +329,7 @@ data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/tags | an array of tags | false |
 
-* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
-So when assign to a group is wanted, assigned-to-type group must be passed.
+* * For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
 
 
 You can find at the right area an example of the JSON request and response
