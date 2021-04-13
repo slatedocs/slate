@@ -201,6 +201,7 @@ includes:
   - stackpath/edgessl
   - stackpath/edgessl_settings
   - stackpath/certificates
+  - stackpath/predefined_edgerules
   - stackpath/instances
   - stackpath/images
   - stackpath/network_policy_rules
