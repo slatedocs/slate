@@ -155,3 +155,37 @@ Attributes | &nbsp;
 `conditions.header`<br/>*string* | Value of the header. Only for condition operation of type `HEADER`.
 `conditions.value`<br/>*string* | Value for which the condition holds.
 `conditions.endValue`<br/>*string* | Second value of the condition. Only for condition operation of type `IP_RANGE`.
+
+
+<!-------------------- DELETE A SITE -------------------->
+
+#### Delete a custom rule
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "c39f0c66-04a0-40cf-aa2e-485f50a27561",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
+
+Delete a custom rule
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site for which to delete the custom rule. This parameter is required.
+
+The following attributes are returned as part of the response.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the custom rule deletion.
+`taskStatus` <br/>*string* | The status of the operation.
