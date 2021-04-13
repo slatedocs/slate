@@ -129,8 +129,7 @@ data/attributes/custom-fields | a hash of custom-fields with their value | false
 data/attributes/issue-type | issue type | false |
 data/attributes/tags | an array of tags | false |
 
-* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
-So when assign to a group is wanted, assigned-to-type group must be passed.
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
 
 
 You can find at the [right area](#create-an-Issue) (shell) an example of the request
@@ -248,8 +247,7 @@ data/attributes/tags | an array of tags | false |
 data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users) | false |
 
 * updated-by-user-id parameter allows to see changes made via API in history tabs of issues
-* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
-So when assign to a group is wanted, assigned-to-type group must be passed.
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
 
 
 You can find at the right area an example of the JSON request and response

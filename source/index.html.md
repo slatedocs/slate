@@ -70,6 +70,13 @@ Sometimes you may see in the description of resource [BASE_URL]. The reason is t
 If your account is hosted in US servers (url is https://prod.practitest.com), then the BASE_URL should be: https://api.practitest.com
 For EU servers, the BASE_URL is: https://eu1-prod.practitest.app/
 
+## Assigned To
+You can assign an entity to a User or to a Group using the assigned-to-id and assigned-to-type.
+When you want to assign an entity to a Group, you need to make sure "Assign to Group" is enabled in your Project General Settings.
+
+assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
+So when assign to a group is desired, "assigned-to-type: group" must be passed.
+
 
 # Code examples
 We put popular languages code examples under Github. Please feel free to view, and pull request if you have any updates:

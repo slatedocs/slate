@@ -140,8 +140,7 @@ data/attributes/tags | an array of tags | false |
 
 * Steps array includes steps json hash, with these attributes: name (255 char. maximum), description, expected-results.
 To update / view and delete steps, refer to steps resources (to be released)
-* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
-So when assign to a group is wanted, assigned-to-type group must be passed.
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
 
 
 You can find at the [right area](#create-an-test) (shell) an example of the request
@@ -275,8 +274,7 @@ data/attributes/tags | an array of tags | false |
 data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users) | false |
 
 * updated-by-user-id parameter allows to see changes made via API in history tabs of tests
-* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
-So when assign to a group is wanted, assigned-to-type group must be passed.
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
 
 
 You can find at the right area an example of the JSON request and response

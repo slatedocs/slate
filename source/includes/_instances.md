@@ -156,8 +156,7 @@ data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 
 * Users can create 20 instances (maximum) by sending one request. See a curl example in the dark area to the right.
-* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
-So when assign to a group is wanted, assigned-to-type group must be passed.
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
 
@@ -277,8 +276,7 @@ data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) -
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 
-* assigned-to-id and assigned-to-type are not required. If only assigned-to-id is passed, then type will be considered as user.
-So when assign to a group is wanted, assigned-to-type group must be passed.
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
 
 You can find at the right area an example of the JSON request and response
 
