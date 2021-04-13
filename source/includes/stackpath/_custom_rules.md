@@ -71,12 +71,12 @@ Attributes | &nbsp;
 `stackId`<br/>*UUID* | The ID of the stack for which the custom rule is applied to.
 `siteId`<br/>*UUID* | The ID of the site for which the custom rule is applied to.
 `name`<br/>*string* | The name of the rule.
-`notes`<br/>*string* | Notes 
+`notes`<br/>*string* | The description notes of the rule.
 `type`<br/>*string* | Type of custom rule. One of `REQUEST_RATE` or `WAF`. The fields returned are different based on the type, `REQUEST_RATE` will not return a list of conditions.
 `enabled`<br/>*boolean* | Whether or not the rule is enabled.
 `action`<br/>*string* | Either ALLOW or BLOCK.
 `actionDuration`<br/>*string* | How long a rule's block action will apply to subsequent requests.
-`statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request
+`statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request.
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `duration`<br/>*long* | Duration of the session's lifetime for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
@@ -138,12 +138,12 @@ Attributes | &nbsp;
 `stackId`<br/>*UUID* | The ID of the stack for which the custom rule is applied to.
 `siteId`<br/>*UUID* | The ID of the site for which the custom rule is applied to.
 `name`<br/>*string* | The name of the rule.
-`notes`<br/>*string* | Notes 
+`notes`<br/>*string* | The description notes of the rule.
 `type`<br/>*string* | Type of custom rule. One of `REQUEST_RATE` or `WAF`. The fields returned are different based on the type, `REQUEST_RATE` will not return a list of conditions.
 `enabled`<br/>*boolean* | Whether or not the rule is enabled.
 `action`<br/>*string* | Either ALLOW or BLOCK.
 `actionDuration`<br/>*string* | How long a rule's block action will apply to subsequent requests.
-`statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request
+`statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request.
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `duration`<br/>*long* | Duration of the session's lifetime for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
