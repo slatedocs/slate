@@ -8,7 +8,12 @@
     https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/groups.json
 ```
 
-> This command: https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/groups.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN, returns JSON structured like below:
+> This command: https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/groups.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN, <br>
+OR <br>
+ this command: curl -H "Content-Type:application/json" \
+-H "PTToken: YOUR_TOKEN" \
+https://api.practitest.com/api/v2/projects/4566/groups.json , <br>
+returns JSON structured like below:
 
 
 ```json
@@ -54,7 +59,7 @@ This endpoint retrieves all groups for specific project.
 
 ### HTTP Request
 
-`https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/groups`
+`https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/groups.json`
 
 
 
