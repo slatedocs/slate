@@ -194,7 +194,6 @@ curl -X POST \
   "name": "firewall-deny",
   "notes": "Deny rule",
   "type": "REQUEST_RATE",
-  "enabled": true,
   "action": "BLOCK",
   "actionDuration": "0s",
   "statusCode": "TOO_MANY_REQUESTS_429",
