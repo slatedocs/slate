@@ -17,6 +17,7 @@ includes:
   - authentication
   - pagination
   - projects
+  - groups
   - users
   - attachments
   - project_fields
