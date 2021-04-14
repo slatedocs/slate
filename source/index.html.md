@@ -195,6 +195,7 @@ includes:
   - stackpath/delivery_domains
   - stackpath/cdn
   - stackpath/delivery_rules
+  - stackpath/custom_rules
   - stackpath/waf
   - stackpath/firewall_rules
   - stackpath/scripts
