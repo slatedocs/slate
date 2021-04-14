@@ -210,6 +210,10 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules/:id?siteId=<a href="#stackpath-site">:siteId</a>&operation=enable</code>
 
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site for which the rule belongs to. This parameter is required.
+
 The following attributes are returned as part of the response.
 
 Attributes | &nbsp;
@@ -236,6 +240,10 @@ curl -X POST \
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules/:id?siteId=<a href="#stackpath-site">:siteId</a>&operation=disable</code>
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site for which the rule belongs to. This parameter is required.
 
 The following attributes are returned as part of the response.
 
