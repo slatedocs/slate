@@ -277,3 +277,66 @@ Attributes | &nbsp;
 ------- | -----------
 `taskId` <br/>*string* | The task id related to the custom rule deletion.
 `taskStatus` <br/>*string* | The status of the operation.
+
+
+<!-------------------- ENABLE A CUSTOM RULE -------------------->
+
+#### Enable a custom rule
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36&operation=enable"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules/:id?siteId=<a href="#stackpath-site">:siteId</a>&operation=enable</code>
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site for which the rule belongs to. This parameter is required.
+
+The following attributes are returned as part of the response.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the operation.
+`taskStatus` <br/>*string* | The status of the operation.
+
+
+<!-------------------- DISABLE A CUSTOM RULE -------------------->
+
+#### Disable a custom rule
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36&operation=disable"
+```
+> The above command returns a JSON structured like this:
+```json
+{
+  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules/:id?siteId=<a href="#stackpath-site">:siteId</a>&operation=disable</code>
+
+Query Params | &nbsp;
+---- | -----------
+`siteId`<br/>*UUID* | The ID of the site for which the rule belongs to. This parameter is required.
+
+The following attributes are returned as part of the response.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the operation.
+`taskStatus` <br/>*string* | The status of the operation.
