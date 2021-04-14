@@ -78,7 +78,7 @@ Attributes | &nbsp;
 `actionDuration`<br/>*string* | How long a rule's block action will apply to subsequent requests in case of the action `BLOCK`. Format is a string with a integer followed by the unit (s for seconds, m for minutes and h for hours e.g. 30s). Default is `0s`
 `statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request. Possible values are `FORBIDDEN_403` and `TOO_MANY_REQUESTS_429`. Default is `FORBIDDEN_403`. 
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
-`duration`<br/>*long* | Duration of the session's lifetime for the rule to trigger. Only for rule of type `REQUEST_RATE`.
+`duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to.Only for rule of type `REQUEST_RATE`.
@@ -145,7 +145,7 @@ Attributes | &nbsp;
 `actionDuration`<br/>*string* | How long a rule's block action will apply to subsequent requests in case of the action `BLOCK`. Format is a string with a integer followed by the unit (s for seconds, m for minutes and h for hours e.g. 30s). Default is `0s`
 `statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request. Possible values are `FORBIDDEN_403` and `TOO_MANY_REQUESTS_429`. Default is `FORBIDDEN_403`. 
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
-`duration`<br/>*long* | Duration of the session's lifetime for the rule to trigger. Only for rule of type `REQUEST_RATE`.
+`duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to.Only for rule of type `REQUEST_RATE`.
