@@ -37,6 +37,7 @@ https://api.practitest.com/api/v2/projects/4566/sets.json?display-ids=2,4
         "run-status": "FAILED",
         "last-run": "2017-01-27T13:35:25+00:00",
         "assigned-to-id": null,
+        "assigned-to-type": null,
         "planned-execution": null,
         "version": null,
         "priority": null,
@@ -113,7 +114,8 @@ This endpoint creates a TestSet in your project.
 Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/name | name | true |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
+data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/status | string of status (not run status) | false |
 data/attributes/version | string of TestSet version | false |
@@ -123,6 +125,7 @@ data/instances/test-ids | an array of test-ids to add as instances to the new Te
 data/attributes/tags | an array of tags | false |
 
 * To update / view and delete instances, refer to [instances resource](#instances)
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
 
 
 You can find at the [right area](#create-a-Test-Set) (shell) an example of the request
@@ -154,6 +157,7 @@ https://api.practitest.com/api/v2/projects/4566/sets/45893.json
       "run-status": "FAILED",
       "last-run": "2017-01-27T13:35:25+00:00",
       "assigned-to-id": null,
+      "assigned-to-type": null,
       "planned-execution": null,
       "version": null,
       "priority": null,
@@ -232,12 +236,16 @@ This endpoint updates a specific TestSet.
 Available parameters | Description |
 --------- | ------- |
 data/attributes/name | name |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
+data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution |
 data/attributes/version | string of TestSet version |
 data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/tags | an array of tags | false |
+
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
+
 
 You can find at the right area an example of the JSON request and response
 
@@ -286,6 +294,7 @@ curl -H "Content-Type:application/json" \
       "run-status": "NO RUN",
       "last-run": null,
       "assigned-to-id": null,
+      "assigned-to-type": null,
       "planned-execution": "2017-03-01T12:43:31Z",
       "version": null,
       "priority": "highest",
@@ -312,12 +321,16 @@ This clones a single TestSet, with new empty instances. Additional parameters ca
 Available parameters | Description |
 --------- | ------- |
 data/attributes/name | name |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
+data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution |
 data/attributes/version | string of TestSet version |
 data/attributes/priority | string of TestSet priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 data/attributes/tags | an array of tags | false |
+
+* * For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
+
 
 You can find at the right area an example of the JSON request and response
 

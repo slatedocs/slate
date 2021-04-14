@@ -42,6 +42,7 @@ https://api.practitest.com/api/v2/projects/4566/issues.json?relationships=true
         "run-status": "FAILED",
         "last-run": "2017-01-27T13:35:25+00:00",
         "assigned-to-id": null,
+        "assigned-to-type": null,
         "planned-execution": null,
         "version": null,
         "priority": null,
@@ -120,12 +121,16 @@ Parameters | Description | required? |
 data/attributes/title | name | true |
 data/attributes/description | description | false |
 data/attributes/author-id | user-id of author | true (unless using PAT) |
-data/attributes/assigned-to-id | user id of assigned-to user (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
+data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/version | string of the issue's version | false |
 data/attributes/priority | string of the issue's priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/attributes/issue-type | issue type | false |
 data/attributes/tags | an array of tags | false |
+
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
+
 
 You can find at the [right area](#create-an-Issue) (shell) an example of the request
 
@@ -155,6 +160,7 @@ https://api.practitest.com/api/v2/projects/4566/issues/45893.json
       "run-status": "FAILED",
       "last-run": "2017-01-27T13:35:25+00:00",
       "assigned-to-id": null,
+      "assigned-to-type": null,
       "planned-execution": null,
       "version": null,
       "priority": null,
@@ -231,15 +237,18 @@ Available parameters | Description |
 --------- | ------- |
 data/attributes/title | name | true |
 data/attributes/description | description | false |
-data/attributes/assigned-to-id | user assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
+data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/version | string of the issue's version | false |
 data/attributes/priority | string of the issue's priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/attributes/issue-type | issue type | false |
 data/attributes/tags | an array of tags | false |
-data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users)* | false |
+data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users) | false |
 
-* This parameter allows to see changes made via API in history tabs of issues
+* updated-by-user-id parameter allows to see changes made via API in history tabs of issues
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
+
 
 You can find at the right area an example of the JSON request and response
 
