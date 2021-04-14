@@ -128,7 +128,7 @@ Parameters | Description | required? |
 data/attributes/name | name | true |
 data/attributes/author-id | user-id of author - [users list](#users) | true (unless using PAT) |
 data/attributes/description | Test description | false |
-data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/status | string of status (not run status) | false |
@@ -140,7 +140,7 @@ data/attributes/tags | an array of tags | false |
 
 * Steps array includes steps json hash, with these attributes: name (255 char. maximum), description, expected-results.
 To update / view and delete steps, refer to steps resources (to be released)
-* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
 
 
 You can find at the [right area](#create-an-test) (shell) an example of the request
@@ -263,7 +263,7 @@ Available parameters | Description |
 --------- | ------- |
 data/attributes/name | name |
 data/attributes/description | Test description |
-data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution |
 data/attributes/status | string of status (not run status) |
@@ -274,7 +274,7 @@ data/attributes/tags | an array of tags | false |
 data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users) | false |
 
 * updated-by-user-id parameter allows to see changes made via API in history tabs of tests
-* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
 
 
 You can find at the right area an example of the JSON request and response

@@ -151,12 +151,12 @@ data/attributes/test-id* | Test id (not display id) | true |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/version | string of instance version | false |
 data/attributes/priority | string of instance priority | false |
-data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 
 * Users can create 20 instances (maximum) by sending one request. See a curl example in the dark area to the right.
-* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
 
 You can find at the [right area](#create-an-instance) (shell) an example of the request
 
@@ -272,11 +272,11 @@ Available parameters | Description |
 data/attributes/planned-execution | date field of planned-execution |
 data/attributes/version | string of instance version |
 data/attributes/priority | string of instance priority |
-data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users)  | false |
+data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/custom-fields | a hash of custom-fields with their value |
 
-* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](## Assigned To)
+* For more information about assigned-to-id and assigned-to-type, refer to [Assigned To](#assigned-to)
 
 You can find at the right area an example of the JSON request and response
 
