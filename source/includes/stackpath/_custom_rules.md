@@ -154,7 +154,7 @@ Attributes | &nbsp;
 `conditions.operation`<br/>*string* | Operation of the condition, one of: <ul><li>`EQUAL`, `NOT_EQUAL` for all condition type except `IP_RANGE`</li>, <li>`CONTAINS`, `NOT_CONTAINS` for condition type `HEADER`, `URL` and `USER_AGENT`</li><li>`BETWEEN` or `NOT_BETWEEN` only for condition type `IP_RANGE`</li></ul>.
 `conditions.header`<br/>*string* | Value of the header. Only for condition of type `HEADER`.
 `conditions.value`<br/>*string* | Value for which the condition holds.
-`conditions.endValue`<br/>*string* | Second value of the condition. Only for condition operation of type `IP_RANGE`.
+`conditions.endValue`<br/>*string* | Second value of the condition. Only for condition of type `IP_RANGE`.
 
 <!-------------------- CREATE A CUSTOM RULE -------------------->
 
@@ -257,17 +257,11 @@ curl -X DELETE \
 
 ```json
 {
-  "taskId": "57fc8d89-6f13-451b-8b66-fcd96e1fedbd",
   "taskId": "c39f0c66-04a0-40cf-aa2e-485f50a27561",
   "taskStatus": "SUCCESS"
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules/:id?siteId=<a href="#stackpath-site">:siteId</a>&operation=disable</code>
-
-Query Params | &nbsp;
----- | -----------
-`siteId`<br/>*UUID* | The ID of the site for which the rule belongs to. This parameter is required.
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
 
 Delete a custom rule
