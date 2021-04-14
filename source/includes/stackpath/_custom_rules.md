@@ -80,7 +80,7 @@ Attributes | &nbsp;
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
-`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
+`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`. Possible values are: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `PATCH`, `OPTION`, `CONNECT`, `TRACE`.
 `ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `conditions`<br/>*Array[Object]* | The conditions required for the WAF engine to trigger the rule. All conditions must pass for the rule to trigger. Only for rule of type `WAF`.
 `conditions.type`<br/>*string* | Type of condition, one of: `IP`, `IP_RANGE`, `URL`, `USER_AGENT`, `HEADER`, `HTTP_METHOD`, `FILE_EXTENSION`, `CONTENT_TYPE`, `COUNTRY` or `ORGANIZATION`.
@@ -147,7 +147,7 @@ Attributes | &nbsp;
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
-`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
+`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`. Possible values are: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `PATCH`, `OPTION`, `CONNECT`, `TRACE`.
 `ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `conditions`<br/>*Array[Object]* | The conditions required for the WAF engine to trigger the rule. All conditions must pass for the rule to trigger. Only for rule of type `WAF`.
 `conditions.type`<br/>*string* | Type of condition, one of: `IP`, `IP_RANGE`, `URL`, `USER_AGENT`, `HEADER`, `HTTP_METHOD`, `FILE_EXTENSION`, `CONTENT_TYPE`, `COUNTRY` or `ORGANIZATION`.
