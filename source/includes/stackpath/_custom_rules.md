@@ -81,7 +81,7 @@ Attributes | &nbsp;
 `duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
-`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to.Only for rule of type `REQUEST_RATE`.
+`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `conditions`<br/>*Array[Object]* | The conditions required for the WAF engine to trigger the rule. All conditions must pass for the rule to trigger. Only for rule of type `WAF`.
 `conditions.type`<br/>*string* | Type of condition, one of: `IP`, `IP_RANGE`, `URL`, `USER_AGENT`, `HEADER`, `HTTP_METHOD`, `FILE_EXTENSION`, `CONTENT_TYPE`, `COUNTRY` or `ORGANIZATION`.
 `conditions.operation`<br/>*string* | Operation of the condition, one of: <ul><li>`EQUAL`, `NOT_EQUAL` for all condition type except `IP_RANGE`</li>, <li>`CONTAINS`, `NOT_CONTAINS` for condition type `HEADER`, `URL` and `USER_AGENT`</li><li>`BETWEEN` or `NOT_BETWEEN` only for condition type `IP_RANGE`</li></ul>.
@@ -148,7 +148,7 @@ Attributes | &nbsp;
 `duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
-`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to.Only for rule of type `REQUEST_RATE`.
+`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `conditions`<br/>*Array[Object]* | The conditions required for the WAF engine to trigger the rule. All conditions must pass for the rule to trigger. Only for rule of type `WAF`.
 `conditions.type`<br/>*string* | Type of condition, one of: `IP`, `IP_RANGE`, `URL`, `USER_AGENT`, `HEADER`, `HTTP_METHOD`, `FILE_EXTENSION`, `CONTENT_TYPE`, `COUNTRY` or `ORGANIZATION`.
 `conditions.operation`<br/>*string* | Operation of the condition, one of: <ul><li>`EQUAL`, `NOT_EQUAL` for all condition type except `IP_RANGE`</li>, <li>`CONTAINS`, `NOT_CONTAINS` for condition type `HEADER`, `URL` and `USER_AGENT`</li><li>`BETWEEN` or `NOT_BETWEEN` only for condition type `IP_RANGE`</li></ul>.
