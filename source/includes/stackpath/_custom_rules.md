@@ -218,7 +218,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/customrules?siteId=<a href="#stackpath-site">:siteId</a></code>
 
-Create a site in a given [environment](#administration-environments).
+Create a custom rule in a given [environment](#administration-environments).
 
 Query Params | &nbsp;
 ---- | -----------
