@@ -156,6 +156,7 @@ Attributes | &nbsp;
 `conditions.value`<br/>*string* | Value for which the condition holds.
 `conditions.endValue`<br/>*string* | Second value of the condition. Only for condition of type `IP_RANGE`.
 
+
 <!-------------------- CREATE A CUSTOM RULE -------------------->
 
 #### Create a custom rule
@@ -244,6 +245,7 @@ Optional | &nbsp;
 `httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 
+
 <!-------------------- DELETE A CUSTOM RULE -------------------->
 
 #### Delete a custom rule
@@ -274,8 +276,9 @@ The following attributes are returned as part of the response.
 
 Attributes | &nbsp;
 ------- | -----------
-`taskId` <br/>*string* | The task id related to the operation.
+`taskId` <br/>*string* | The task id related to the custom rule deletion.
 `taskStatus` <br/>*string* | The status of the operation.
+
 
 <!-------------------- ENABLE A CUSTOM RULE -------------------->
 
@@ -307,6 +310,7 @@ Attributes | &nbsp;
 ------- | -----------
 `taskId` <br/>*string* | The task id related to the operation.
 `taskStatus` <br/>*string* | The status of the operation.
+
 
 <!-------------------- DISABLE A CUSTOM RULE -------------------->
 
