@@ -171,7 +171,7 @@ curl -X POST \
 
 ```json
 {
-  "name": "firewall-allow",
+  "name": "firewall.allow",
   "notes": "some firewall note",
   "type": "WAF",
   "action": "BLOCK",
@@ -191,7 +191,7 @@ curl -X POST \
 
 ```json
 {
-  "name": "firewall-deny",
+  "name": "firewall.deny",
   "notes": "Deny rule",
   "type": "REQUEST_RATE",
   "action": "BLOCK",
