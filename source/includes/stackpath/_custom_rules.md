@@ -1,6 +1,6 @@
 ### Custom Rules
 
-Deploy and manage Custom Rules used to control and limit access to your sites. 
+Manage custom rules used to control and limit access to your sites. 
 
 <!-------------------- LIST CUSTOM RULES -------------------->
 
@@ -76,12 +76,12 @@ Attributes | &nbsp;
 `enabled`<br/>*boolean* | Whether or not the rule is enabled.
 `action`<br/>*string* | Action to be taken when the rule is met. Possible values are `ALLOW`, `BLOCK`, `CAPTCHA`,`HANDSHAKE` or `MONITOR`.
 `actionDuration`<br/>*string* | How long a rule's block action will apply to subsequent requests in case of the action `BLOCK`. Format is a string with a integer followed by the unit (s for seconds, m for minutes and h for hours e.g. 30s). Default is `0s`
-`statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request. Possible values are `FORBIDDEN_403` and `TOO_MANY_REQUESTS_429`. Default is `FORBIDDEN_403`. 
+`statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request. Possible values are `FORBIDDEN_403` and `TOO_MANY_REQUESTS_429`. Default is `FORBIDDEN_403`.
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
-`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
-`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to.Only for rule of type `REQUEST_RATE`.
+`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`. Possible values are: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `PATCH`, `OPTION`, `CONNECT`, `TRACE`.
+`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `conditions`<br/>*Array[Object]* | The conditions required for the WAF engine to trigger the rule. All conditions must pass for the rule to trigger. Only for rule of type `WAF`.
 `conditions.type`<br/>*string* | Type of condition, one of: `IP`, `IP_RANGE`, `URL`, `USER_AGENT`, `HEADER`, `HTTP_METHOD`, `FILE_EXTENSION`, `CONTENT_TYPE`, `COUNTRY` or `ORGANIZATION`.
 `conditions.operation`<br/>*string* | Operation of the condition, one of: <ul><li>`EQUAL`, `NOT_EQUAL` for all condition type except `IP_RANGE`</li>, <li>`CONTAINS`, `NOT_CONTAINS` for condition type `HEADER`, `URL` and `USER_AGENT`</li><li>`BETWEEN` or `NOT_BETWEEN` only for condition type `IP_RANGE`</li></ul>.
@@ -147,8 +147,8 @@ Attributes | &nbsp;
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `duration`<br/>*long* | Number of seconds that the WAF measures incoming requests over for the rule to trigger. Only for rule of type `REQUEST_RATE`.
 `pathRegExp`<br/>*string* | The regex expression present in the path for the rule to trigger. Only for rule of type `REQUEST_RATE`.
-`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
-`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to.Only for rule of type `REQUEST_RATE`.
+`httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`. Possible values are: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `PATCH`, `OPTION`, `CONNECT`, `TRACE`.
+`ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `conditions`<br/>*Array[Object]* | The conditions required for the WAF engine to trigger the rule. All conditions must pass for the rule to trigger. Only for rule of type `WAF`.
 `conditions.type`<br/>*string* | Type of condition, one of: `IP`, `IP_RANGE`, `URL`, `USER_AGENT`, `HEADER`, `HTTP_METHOD`, `FILE_EXTENSION`, `CONTENT_TYPE`, `COUNTRY` or `ORGANIZATION`.
 `conditions.operation`<br/>*string* | Operation of the condition, one of: <ul><li>`EQUAL`, `NOT_EQUAL` for all condition type except `IP_RANGE`</li>, <li>`CONTAINS`, `NOT_CONTAINS` for condition type `HEADER`, `URL` and `USER_AGENT`</li><li>`BETWEEN` or `NOT_BETWEEN` only for condition type `IP_RANGE`</li></ul>.
@@ -246,5 +246,3 @@ Optional | &nbsp;
 `pathRegExp`<br/>*string* | The regex expression that the path must match for the rule to trigger. Default is '/'. Only for rule of type `REQUEST_RATE`.
 `httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
-
-
