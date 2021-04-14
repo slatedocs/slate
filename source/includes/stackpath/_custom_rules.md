@@ -74,7 +74,7 @@ Attributes | &nbsp;
 `notes`<br/>*string* | The description notes of the rule.
 `type`<br/>*string* | Type of custom rule. One of `REQUEST_RATE` or `WAF`. The fields returned are different based on the type, `REQUEST_RATE` will not return a list of conditions.
 `enabled`<br/>*boolean* | Whether or not the rule is enabled.
-`action`<br/>*string* | Either ALLOW or BLOCK.
+`action`<br/>*string* | Action to be taken when the rule is met. Possible values are `ALLOW`, `BLOCK`, `CAPTCHA`,`HANDSHAKE` or `MONITOR`.
 `actionDuration`<br/>*string* | How long a rule's block action will apply to subsequent requests in case of the action `BLOCK`. Format is a string with a integer followed by the unit (s for seconds, m for minutes and h for hours e.g. 30s). Default is `0s`
 `statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request. Possible values are `FORBIDDEN_403` and `TOO_MANY_REQUESTS_429`. Default is `FORBIDDEN_403`. 
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
@@ -141,7 +141,7 @@ Attributes | &nbsp;
 `notes`<br/>*string* | The description notes of the rule.
 `type`<br/>*string* | Type of custom rule. One of `REQUEST_RATE` or `WAF`. The fields returned are different based on the type, `REQUEST_RATE` will not return a list of conditions.
 `enabled`<br/>*boolean* | Whether or not the rule is enabled.
-`action`<br/>*string* | Either ALLOW or BLOCK.
+`action`<br/>*string* | Action to be taken when the rule is met. Possible values are `ALLOW`, `BLOCK`, `CAPTCHA`,`HANDSHAKE` or `MONITOR`.
 `actionDuration`<br/>*string* | How long a rule's block action will apply to subsequent requests in case of the action `BLOCK`. Format is a string with a integer followed by the unit (s for seconds, m for minutes and h for hours e.g. 30s). Default is `0s`
 `statusCode`<br/>*string* | A custom HTTP status code that the WAF returns if a rule blocks a request. Possible values are `FORBIDDEN_403` and `TOO_MANY_REQUESTS_429`. Default is `FORBIDDEN_403`. 
 `nbRequest`<br/>*long* | Number of dynamic page requests made for the rule to trigger. Only for rule of type `REQUEST_RATE`.
