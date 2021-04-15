@@ -179,15 +179,37 @@ curl -X POST \
    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/cdnsettings/9f236f19-55db-411f-9f05-bd79dc91a69b?operation=purge"
 ```
 
-> Request body example:
+> Request body example for URL purge type:
+
+```json
+{
+  "purgeType":"URL",
+  "items": [
+    {
+      "url": "http://<domain-name>",
+      "recursive": true,
+      "purgeAllDynamic": true,
+      "headers": [],
+      "purgeSelector": {
+        "selectorName": "(?i)<header_name>",
+        "selectorValue": "<header_value>",
+        "selectorType": "HEADER",
+        "selectorValueDelimiter": ""
+      }
+    }
+  ]
+}
+```
+
+> Request body example for PATH purge type:
 
 ```json
 {
   "purgeType":"PATH",
   "items": [
     {
-      "url": "//<domain_name>/path/to/file",
-      "recursive": true,
+      "url": "/path/to/file",
+      "recursive": false,
       "purgeAllDynamic": false,
       "headers": [],
       "purgeSelector": {
