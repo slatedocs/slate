@@ -1240,6 +1240,9 @@ Returns back all the orders.  Default page size is 50.
             "created_at": null,
             "updated_at": "2019-01-07T23:02:55.533Z",
             "purchased_at": "2018-12-14T00:10:56.000+00:00",
+            "ship_by_date": "2018-12-14T00:10:56.000+00:00",
+            "delivery_min_date": "2018-12-16T00:10:56.000+00:00",
+            "delivery_max_date": "2018-12-18T00:10:56.000+00:00"
             "order_status": "shipped",
             "buyer_username": "ellis driver",
             "buyer_email": null,
@@ -1257,6 +1260,9 @@ Returns back all the orders.  Default page size is 50.
                     "order_item_id": "5c33da5a07b6203f81000887",
                     "sku": "S11LPJMI1BZZT",
                     "created_at": null,
+                    "ship_by_date": "2018-12-14T00:10:56.000+00:00",
+                    "delivery_min_date": "2018-12-16T00:10:56.000+00:00",
+                    "delivery_max_date": "2018-12-18T00:10:56.000+00:00"
                     "title": "Premium Rainbow Color Embroidery Floss - Cross Stitch Threads - Friendship Bra..",
                     "weight": {
                         "value": 0,
