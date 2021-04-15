@@ -46,6 +46,7 @@ curl -X GET \
         }
       ],
       "addAnyCastIpAddress": false,
+      "anycastIpAddress": "185.85.196.7",
       "commands": [
         "/bin/sh -c \"sleep 50\""
       ],
@@ -89,6 +90,7 @@ curl -X GET \
       "isRemoteManagementEnabled": false,
       "image": "stackpath-edge/centos-7:v202007311835",
       "addAnyCastIpAddress": false,
+      "anycastIpAddress": "None",
       "firstBootSshKey": "ssh-rsa...",
       "persistenceStorageSize": 2,
       "persistenceStoragePath": "/var/lib/data",
@@ -113,42 +115,43 @@ Retrieve a list of all workloads in a given [environment](#administration-enviro
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | A workload's unique identifier.
-`name`<br/>*string* | The display name of the workload.
-`stackId`<br/>*string* | The ID of the stack that a workload belongs to.
-`slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
-`version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
-`created`<br/>*string* | Creation timestamp of the workload.
-`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
-`network`<br/>*string* | Network interfaces to bind to the workload's instances.
-`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
-`cpu`<br/>*string* | The number of vCPUs for the workload's instance.
-`memory`<br/>*string* | The memory size for the workload's instance.
-`isRemoteManagementEnabled`<br/>*boolean* | Specifies if remote management is enabled on workload instance or not.
-`image`<br/>*string* | The workload's instance operating system image.
-`commands`<br/>*Array[string]* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
 `addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only applicable to workloads of `type` 'CONTAINER'.
-`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
-`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`anycastIpAddress`<br/>*string* | The anycast IP address assigned to a workload. If there is no IP assigned to the workload then the value of this attribute will be `None`.
+`commands`<br/>*Array[string]* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
 `containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
-`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
-`environmentVariables.value` <br/>*string* | An environment variable's value.
-`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
-`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
-`firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
-`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
-`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
-`deployments`<br/>*Array[Object]* | The list of deployment targets.
-`deployments.name`<br/>*string* | The name of the deployment.
-`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
+`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`cpu`<br/>*string* | The number of vCPUs for the workload's instance.
+`created`<br/>*string* | Creation timestamp of the workload.
+`deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
 `deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
-`deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
-`deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
 `deployments.maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
+`deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
+`deployments.name`<br/>*string* | The name of the deployment.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
+`deployments`<br/>*Array[Object]* | The list of deployment targets.
+`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`environmentVariables.value` <br/>*string* | An environment variable's value.
+`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
+`id`<br/>*string* | A workload's unique identifier.
+`image`<br/>*string* | The workload's instance operating system image.
+`isRemoteManagementEnabled`<br/>*boolean* | Specifies if remote management is enabled on workload instance or not.
+`memory`<br/>*string* | The memory size for the workload's instance.
+`name`<br/>*string* | The display name of the workload.
+`network`<br/>*string* | Network interfaces to bind to the workload's instances.
+`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
+`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
+`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
+`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
+`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
+`stackId`<br/>*string* | The ID of the stack that a workload belongs to.
 `status`<br/>*string* | The status of the workload. It can be either `ACTIVE` or `DISABLED`.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
+`version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
 
 
 <!-------------------- RETRIEVE A WORKLOAD -------------------->
@@ -191,6 +194,7 @@ curl -X GET \
       }
     ],
     "addAnyCastIpAddress": false,
+    "anycastIpAddress": "None",
     "commands": [
       "/bin/sh -c \"sleep 50\""
     ],
@@ -229,41 +233,43 @@ Retrieve a workload in a given [environment](#administration-environments).
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | A workload's unique identifier.
-`name`<br/>*string* | The display name of the workload.
-`stackId`<br/>*string* | The ID of the stack that a workload belongs to.
-`slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
-`version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
-`created`<br/>*string* | Creation timestamp of the workload.
-`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
-`network`<br/>*string* | Network interfaces to bind to the workload's instances.
-`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
-`cpu`<br/>*string* | The number of vCPUs for the workload's instance.
-`memory`<br/>*string* | The memory size for the workload's instance.
-`isRemoteManagementEnabled`<br/>*boolean* | Specifies if remote management is enabled on workload instance or not.
-`image`<br/>*string* | The workload's instance operating system image.
+`addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only applicable to workloads of `type` 'CONTAINER'.
+`anycastIpAddress`<br/>*string* | The anycast IP address assigned to a workload. If there is no IP assigned to the workload then the value of this attribute will be `None`.
 `commands`<br/>*Array[string]* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
-`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
-`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
-`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
-`environmentVariables.value` <br/>*string* | An environment variable's value.
-`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
-`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
-`firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
-`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
-`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
-`deployments`<br/>*Array[Object]* | The list of deployment targets.
-`deployments.name`<br/>*string* | The name of the deployment.
-`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
+`containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`containerUsername` <br/>*string* | The username used to authenticate the image pull. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
+`cpu`<br/>*string* | The number of vCPUs for the workload's instance.
+`created`<br/>*string* | Creation timestamp of the workload.
+`deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
 `deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are shown.
 `deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
-`deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
-`deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
 `deployments.maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
-`status`<br/>*string* | The status of the workload. It can be either ACTIVE or DISABLED.
+`deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
+`deployments.name`<br/>*string* | The name of the deployment.
+`deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
+`deployments`<br/>*Array[Object]* | The list of deployment targets.
+`environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`environmentVariables.value` <br/>*string* | An environment variable's value.
+`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`firstBootSshKey`<br/>*string* | The ssh key(s) for the VM image. Keys are delimited by a newline, `\n`. Only applicable to workloads of `type` 'VM'.
+`id`<br/>*string* | A workload's unique identifier.
+`image`<br/>*string* | The workload's instance operating system image.
+`isRemoteManagementEnabled`<br/>*boolean* | Specifies if remote management is enabled on workload instance or not.
+`memory`<br/>*string* | The memory size for the workload's instance.
+`name`<br/>*string* | The display name of the workload.
+`network`<br/>*string* | Network interfaces to bind to the workload's instances.
+`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
+`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
+`secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
+`secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
+`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names.
+`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
+`stackId`<br/>*string* | The ID of the stack that a workload belongs to.
+`status`<br/>*string* | The status of the workload. It can be either `ACTIVE` or `DISABLED`.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
+`version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
 
 <!-------------------- CREATE A WORKLOAD -------------------->
 
@@ -377,43 +383,43 @@ Create a new workload in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
-`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either `VM` or `CONTAINER`.
-`image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
-`firstBootSshKey`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by newlines `\n`.
-`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
-`deployments`<br/>*Array[Object]* | The list of deployment targets.
+`deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
 `deployments.name`<br/>*string* | The name of the deployment.
 `deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
-`deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
+`deployments`<br/>*Array[Object]* | The list of deployment targets.
+`firstBootSshKey`<br/>*string* | If creating a VM-based workload, SSH keys are required. Multiple SSH keys can be separated by newlines `\n`.
+`image`<br/>*string* | Either the location of a Docker image to run as a container or the image to use for the virtual machine. If for a virtual machine, this is in the format of /[:]. If the image tag portion is omitted, 'default' is assumed which is the most recently created, ready, and non-deprecated image of that slug. A set of common images is present on the 'stackpath-edge' stack.
+`name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
+`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload. Supported specifications are `SP-1 (1 vCPU, 2 GB RAM)`,`SP-2 (2 vCPU, 4 GB RAM)`,`SP-3 (2 vCPU, 8GB RAM)`,`SP-4 (4 vCPU, 16 GB RAM)`,`SP-5 (8 vCPU, 32 GB RAM)`.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either `VM` or `CONTAINER`.
  
  Optional | &nbsp;
  ------- | -----------
-`slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name. It must not exceed 18 characters.
 `addAnyCastIpAddress`<br/>*boolean* | Option to AnyCast IP Address.
-`ports` <br/>*Array[Object]* | A list of network interfaces that will be created for each workload instance.
-`ports.publicPort`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535 for which a network policy rule will be created for the workload.
-`ports.protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
-`ports.publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule. Defaults to `0.0.0.0/0` if not specified.
-`ports.publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule. Defaults to an empty string if not provided.
-`commands`<br/>*Array[string]* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'. Commands cannot be updated or removed after workload creation.
-`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
-`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
 `addImagePullCredentialsOption` <br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not.
-`containerUsername` <br/>*string* | The username used to authenticate the image pull.
+`commands`<br/>*Array[string]* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'. Commands cannot be updated or removed after workload creation.
+`containerEmail` <br/>*string* | The email address to use for the docker registry account
 `containerPassword` <br/>*string* | The password used to authenticate the image pull.
 `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set.
-`containerEmail` <br/>*string* | The email address to use for the docker registry account
-`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`containerUsername` <br/>*string* | The username used to authenticate the image pull.
+`deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
+`deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
+`deployments.maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
+`deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
 `environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `environmentVariables.value` <br/>*string* | An environment variable's value.
-`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
+`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
+`ports.protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
+`ports.publicPort`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535 for which a network policy rule will be created for the workload.
+`ports.publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule. Defaults to an empty string if not provided.
+`ports.publicPortSrc`<br/>*string* | A subnet that will define all the IPs allowed by the network policy rule. Defaults to `0.0.0.0/0` if not specified.
+`ports` <br/>*Array[Object]* | A list of network interfaces that will be created for each workload instance.
 `secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
-`deployments.instancesPerPop`<br/>*int* | The number of instances per point of presence. Only applicable if autoscaling is not enabled.
-`deployments.cpuUtilization` <br/>*int* | The percentage of CPU utilization. Only applicable if autoscaling is enabled.
-`deployments.minInstancesPerPop` <br/>*int* | The minimum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
-`deployments.maxInstancesPerPop` <br/>*int* | The maximum number of instances per PoP. Only applicable if autoscaling is enabled. Should be greater than zero and less than 50.
+`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name. It must not exceed 18 characters.
 
 <aside class="notice">
 A workload can be added without any `ports`. However, `ports.publicPort` and `ports.protocol` are required to open a port or port range at workload creation.
@@ -501,32 +507,32 @@ Edit a workload in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
-`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either `VM` or `CONTAINER`.
-`image`<br/>*string* | The location of a Docker image to run as a container. Only editable when `type` is equal to `CONTAINER`.
-`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
-`deployments`<br/>*Array[Object]* | The list of deployment targets.
+`deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
 `deployments.name`<br/>*string* | The name of the deployment.
 `deployments.pops`<br/>*Array[string]* | The points of presence of a deployment. In the regex format `[A-Z]{3, 3}`.
-`deployments.enableAutoScaling` <br/>*boolean* | Specifies if autoscaling is enabled. If enabled, then `cpuUtilization` , `minInstancesPerPop` and `maxInstancesPerPop` are required.
+`deployments`<br/>*Array[Object]* | The list of deployment targets.
+`image`<br/>*string* | The location of a Docker image to run as a container. Only editable when `type` is equal to `CONTAINER`.
+`name`<br/>*string* | The name of the workload. The workload name must not exceed 18 characters.
+`specs`<br/>*string* | Specification type for resources which are allocated to each instance in a workload.
+`type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based. Can be either `VM` or `CONTAINER`.
 
 Optional | &nbsp;
 ------- | -----------
-`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only available when `type` is equal to `CONTAINER`.
+`containerEmail`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
+`containerPassword`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
+`containerServer`<br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only available when `type` is equal to `CONTAINER`.
+`containerUsername`<br/>*string* | The username that should be used for authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
+`deployments.cpuUtilization`<br/>*integer* | The average CPU utlilization threshold to be reached before deploying a new instance. Only required if autoscaling is enabled.
+`deployments.instancesPerPop`<br/>*integer* | The number of deployments per point of presence. Only required if autoscaling is not enabled.
+`deployments.maxInstancesPerPop`<br/>*integer* | The maximum number of instances per point of presence. Only required if autoscaling is enabled.
+`deployments.minInstancesPerPop`<br/>*integer* | The minimum number of instances per point of presence. Only required if autoscaling is enabled.
 `environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `environmentVariables.value` <br/>*string* | An environment variable's value.
-`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
+`environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
 `secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
-`addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only available when `type` is equal to `CONTAINER`.
-`containerUsername`<br/>*string* | The username that should be used for authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
-`containerEmail`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
-`containerServer`<br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only available when `type` is equal to `CONTAINER`.
-`containerPassword`<br/>*string* | The password that should be used to authenticate the image pull. Only available when `type` is equal to `CONTAINER`.
-`deployments.instancesPerPop`<br/>*integer* | The number of deployments per point of presence. Only required if autoscaling is not enabled.
-`deployments.cpuUtilization`<br/>*integer* | The average CPU utlilization threshold to be reached before deploying a new instance. Only required if autoscaling is enabled.
-`deployments.minInstancesPerPop`<br/>*integer* | The minimum number of instances per point of presence. Only required if autoscaling is enabled.
-`deployments.maxInstancesPerPop`<br/>*integer* | The maximum number of instances per point of presence. Only required if autoscaling is enabled.
+`secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
 
 <!-------------------- DELETE A WORKLOAD -------------------->
 
