@@ -1359,7 +1359,7 @@ carrier_code | String | The carrier service used to ship the order (UPS, USPS, F
 
 ## Acknowledge order
 
-Acknowledge an order. If Order status is Awaiting Shipment, they are submitted to the respective marketplace. Supported marketplaces are Google Merchant and Walmart
+Order Acknowledgment. You can acknowledge Google Merchant and Walmart orders, if the order is in Awaiting Shipment status.
 
 URL format:
 
