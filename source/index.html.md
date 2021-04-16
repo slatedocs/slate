@@ -1071,7 +1071,9 @@ curl -X PUT \
         "quantity_available": 2,
         "retail_price": 10.00,
         "cost_price": 3.00,
-        "msrp_price": 15.00
+        "msrp_price": 15.00,
+        "fulfillment_provider_account_id": "5fdc7195e2d895171f9b87ae",
+        "fulfillment_provider_sku": "S123"
     }
 }'
 
@@ -1088,6 +1090,8 @@ retail_price | Float | Product's selling price
 cost_price | Float | Product's cost price
 msrp_price | Float | Product's MSRP
 quantity_available | Integer | Product quantity available for purchase
+fulfillment_provider_account_id | String | ID of Fulfillment Provider account Example: '5fdc7195e2d895171f9b87ae'.
+fulfillment_provider_sku | String | SKU of Fulfillment Provider. Example: S123.
 
 
 ## DELETE product
@@ -1352,3 +1356,25 @@ Name | Data Type | Description
 id | String | The ID of the order to update
 tracking_number | String | The order's tracking number
 carrier_code | String | The carrier service used to ship the order (UPS, USPS, FedEx, etc.)
+
+## Acknowledge order
+
+Acknowledge an order. If Order status is Awaiting Shipment, they are submitted to the respective marketplace. Supported marketplaces are Google Merchant and Walmart
+
+URL format:
+
+/api/orders/ORDER_ID/acknowledge
+
+```shell
+curl --request POST \
+ --url https://sellerchamp.com/api/orders/{order_id}/acknowledge \
+ --header 'Content-Type: application/json' \
+ --header 'cache-control: no-cache,no-cache,no-cache' \
+ --header 'token: YOUR-TOKEN' \
+```
+
+### URL Parameters
+
+Name | Data Type | Description
+-------------- | -------------- | --------------
+ORDER_ID | String | The ID of the order to acknowledge
