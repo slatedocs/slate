@@ -16,6 +16,7 @@ includes:
   - administration/resource_commitments
   - administration/usage
   - administration/monetization
+  - administration/reports_pricing_v2
   - administration/notification_categories
   - administration/notifications
   - administration/products
