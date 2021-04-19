@@ -232,6 +232,11 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#login" class="toc-h2 toc-link" data-title="login">Login</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#geos" class="toc-h1 toc-link" data-title="geos">Geos</a>
@@ -348,6 +353,155 @@
 <aside class="notice">
 You must replace <code>access_token</code> with your personal access_token.
 </aside>
+<h2 id='login'>Login</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/snappy/users/login/password</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre>
+<blockquote>
+<p>Sample params</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0908123123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usertest"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"affiliate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response if success</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"businesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"circulating_cod"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"circulating_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"coupons"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"delivered_balance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"sum_cod_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sum_total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"hotlines"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-09T09:16:13"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_owner"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"is_removed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_payment_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08@gmail.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cff10be4-3966-45b6-b156-a1a01000a6f9"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"permission"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84908123123"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Khách hàng"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"owner_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cff10be4-3966-45b6-b156-a1a01000a6f9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"packages"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"payment_methods"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"pending_balance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"sum_cod_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sum_total_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0908123123"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"secret_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"sny_settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"auto_assign_shipper"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"auto_payment"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"auto_payment_dows"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3,5"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"auto_payment_hour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10h"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"return_cost_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"total_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_payment_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tracking_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unique_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"S09"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08@gmail.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cff10be4-3966-45b6-b156-a1a01000a6f9"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"inserted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-09T09:16:13"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"is_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"is_removed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"permission"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84908123123"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Khách hàng"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fb_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cff10be4-3966-45b6-b156-a1a01000a6f9"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"permission"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+84908123123"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Khách hàng"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signatures"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bạn đã đăng nhập thành công"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user08"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"permission"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cff10be4-3966-45b6-b156-a1a01000a6f9"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /snappy/users/login/password</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>Email of user</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>Phone_number of user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>Password of user</td>
+</tr>
+<tr>
+<td>affiliate_id</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>affiliate_id of user</td>
+</tr>
+</tbody></table>
 <h1 id='geos'>Geos</h1><h2 id='get-provinces'>Get Provinces</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/geo/provinces</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 </code></pre>
 <blockquote>
@@ -385,7 +539,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all provinces.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /geo/provinces</code></p>
 <h2 id='get-districts'>Get Districts</h2><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/geo/districts</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 </code></pre>
@@ -424,9 +578,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all districts of given province.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /geo/districts</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -481,9 +635,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all communes of given district.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /geo/communes</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -557,9 +711,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all businesses and basic user info.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /snappy/users/me</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -620,7 +774,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific business.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /snappy/businesses/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -703,7 +857,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint create an address into your business.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /snappy/businesses/address/create</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -836,7 +990,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint update an address into your business.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /snappy/businesses/address/update</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
@@ -1148,9 +1302,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all trackings into your business.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /snappy/trackings</code></p>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1493,7 +1647,7 @@ You must replace <code>access_token</code> with your personal access_token.
 
 </span></code></pre>
 <p>This endpoint retrieves a tracking.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET /snappy/trackings/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
@@ -1762,9 +1916,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint create a tracking into your business.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /snappy/trackings/create</code></p>
-<h3 id='query-parameters-5'>Query Parameters</h3>
+<h3 id='query-parameters-6'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2012,9 +2166,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint calculate all cost of a tracking.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /snappy/trackings/cal_shipping_cost</code></p>
-<h3 id='query-parameters-6'>Query Parameters</h3>
+<h3 id='query-parameters-7'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2343,9 +2497,9 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint cancel a tracking into your business.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>DELETE /snappy/trackings/cancel</code></p>
-<h3 id='query-parameters-7'>Query Parameters</h3>
+<h3 id='query-parameters-8'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2638,7 +2792,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint create an unique webhook callback url into your business.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST /snappy/businesses/&lt;business_id&gt;/webhook</code></p>
 <h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
@@ -2686,7 +2840,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific webhook callback url into your specific business.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>GET /snappy/businesses/&lt;business_id&gt;/webhook</code></p>
 <h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
@@ -2727,7 +2881,7 @@ You must replace <code>access_token</code> with your personal access_token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific webhook callback url into your specific business.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>PUT /snappy/businesses/&lt;business_id&gt;/webhook</code></p>
 <h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
@@ -3039,7 +3193,7 @@ Please note that <code>changes</code> and <code>updates</code> is important to h
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint create an unique webhook callback url into your business.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>POST /snappy/request</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
@@ -3263,7 +3417,7 @@ Please note that <code>changes</code> and <code>updates</code> is important to h
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific webhook callback url into your specific business.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET /snappy/request</code></p>
 <h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>

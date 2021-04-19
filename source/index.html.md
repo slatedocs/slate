@@ -39,6 +39,134 @@ Snappy expects for the `access_token` to be included in almost API requests to t
 You must replace <code>access_token</code> with your personal access_token.
 </aside>
 
+## Login
+
+```http
+POST /snappy/users/login/password HTTP/1.1
+Content-Type: application/json
+```
+
+> Sample params
+
+```json
+{
+    "phone_number": "0908123123",
+    "email": "user08@gmail.com",
+    "password": "usertest",
+    "affiliate_id": "abc"
+}
+```
+
+> Response if success
+
+```json
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+    "businesses": [
+        {
+            "addresses": [],
+            "circulating_cod": 0,
+            "circulating_cost": 0,
+            "coupons": [],
+            "delivered_balance": {
+                "sum_cod_amount": 0,
+                "sum_total_cost": 0,
+                "total": 0
+            },
+            "hotlines": null,
+            "id": 9,
+            "inserted_at": "2021-04-09T09:16:13",
+            "is_default": true,
+            "is_owner": true,
+            "is_removed": false,
+            "last_payment_at": null,
+            "name": "user08",
+            "owner": {
+                "avatar_url": null,
+                "email": "user08@gmail.com",
+                "fb_id": null,
+                "id": "cff10be4-3966-45b6-b156-a1a01000a6f9",
+                "is_admin": false,
+                "name": "user08",
+                "permission": 1,
+                "phone_number": "+84908123123",
+                "role": "Khách hàng",
+                "signatures": null
+            },
+            "owner_id": "cff10be4-3966-45b6-b156-a1a01000a6f9",
+            "packages": [],
+            "payment_methods": [],
+            "pending_balance": {
+                "sum_cod_amount": 0,
+                "sum_total_cost": 0,
+                "total": 0
+            },
+            "phone_number": "0908123123",
+            "ref": null,
+            "secret_key": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+            "settings": {},
+            "sny_settings": {
+                "auto_assign_shipper": true,
+                "auto_payment": true,
+                "auto_payment_dows": "3,5",
+                "auto_payment_hour": "10h",
+                "return_cost_percentage": 50
+            },
+            "total_balance": 0,
+            "total_payment_amount": 0,
+            "tracking_count": 0,
+            "unique_name": "S09",
+            "users": [
+                {
+                    "avatar_url": null,
+                    "email": "user08@gmail.com",
+                    "fb_id": null,
+                    "id": "cff10be4-3966-45b6-b156-a1a01000a6f9",
+                    "inserted_at": "2021-04-09T09:16:13",
+                    "is_admin": false,
+                    "is_removed": false,
+                    "name": "user08",
+                    "permission": 1,
+                    "phone_number": "+84908123123",
+                    "role": "Khách hàng",
+                    "signatures": null
+                }
+            ]
+        }
+    ],
+    "data": {
+        "avatar_url": null,
+        "email": "user08@gmail.com",
+        "fb_id": null,
+        "id": "cff10be4-3966-45b6-b156-a1a01000a6f9",
+        "is_admin": false,
+        "name": "user08",
+        "permission": 1,
+        "phone_number": "+84908123123",
+        "role": "Khách hàng",
+        "signatures": null
+    },
+    "message": "Bạn đã đăng nhập thành công",
+    "name": "user08",
+    "permission": 1,
+    "success": true,
+    "uid": "cff10be4-3966-45b6-b156-a1a01000a6f9"
+}
+```
+
+### HTTP Request
+
+`POST /snappy/users/login/password`
+
+### Query Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+email | true | string | | Email of user
+phone_number | true | string | | Phone_number of user
+password | true | string | | Password of user
+affiliate_id | false | string | | affiliate_id of user
+
 # Geos
 
 ## Get Provinces
