@@ -17,7 +17,6 @@ curl --header "Authorization: Bearer users-token-goes-here"
   "first": "Bob",
   "last": "Smith",
   "email": "bob.s@wahoofitness.com",
-  "mobile": "7704106437",
   "birth": "1980-10-02",
   "gender": 1,
   "created_at": "2018-10-23T15:38:23.000Z",
@@ -39,7 +38,6 @@ Parameter    | Type    | Required | Description
 user[email]  | String  | no       | Well formed email address, must be unique in the system
 user[first]  | String  | no       | First name
 user[last]   | String  | no       | Last name
-user[mobile] | String  | no       | Mobile number
 user[height] | Decimal | no       | Height in meters
 user[weight] | Decimal | no       | Weight in kilograms
 user[birth ] | Date    | no       | Date of birth formatted as YYYY-MM-DD
