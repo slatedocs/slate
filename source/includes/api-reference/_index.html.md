@@ -17868,7 +17868,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<User> result = client.users.getUsers(workspace)
+List<User> result = client.users.getUsers(team, workspace)
     .option("pretty", true)
     .execute();
 ```
