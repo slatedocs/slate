@@ -16,7 +16,6 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
   "first": "Bob",
   "last": "Smith",
   "email": "sample@test-domain.com",
-  "mobile": null,
   "birth": "1980-10-02",
   "gender": 1,
   "created_at": "2018-10-23T15:38:23.000Z",
@@ -24,7 +23,7 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
 }
 ```
 
-Returns the authenticated user along with power and heart rate zone records.
+Returns the authenticated user along with email if email scope is included.
 
 ### HTTP Request
 

@@ -57,11 +57,7 @@ This diagram shows how the data records are related within the API
 
 # Registration
 
-Create a user account and register your app in our developer portals:
-
-- [Sandbox Developer Portal](http://developers.staging.wahooligan.com).
-
-- [Production Developer Portal](http://developers.wahooligan.com).
+Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to 'Sandbox' or 'Production'. In 'Sandbox' mode, you will be able to test and see your changes to your app's settings immediately, but there are some limitations. To enable production mode on your app, your app will have to go through a review process with Wahoo Fitness, then when approved, your app can be released with no limitations.
 
 # Authentication
 
@@ -91,7 +87,7 @@ OAuth2 Uses the following authentication workflow. The goal is to obtain an **ac
 
 Attribute           | Notes
 -----------         | ----------- 
-_base_url_:         | `api.wahooligan.com` for production; `api.staging.wahooligan.com` for sandbox.
+_base_url_:         | `api.wahooligan.com`
 _client_id_:        | You can get your app's client_id from the developer portal.
 _client_secret_:    | You can get your app's client_secret from the developer portal.
 _redirect_uri_:     | You can set the redirect_uri for your app in the developer portal.

@@ -2,7 +2,7 @@
 
 ```shell
 # With shell, you can append the requested scopes as a space separated list of values
-curl "<base_url>/oauth/authorize?scope=profile_read+profile_write"
+curl "<base_url>/oauth/authorize?scope=user_read+user_write"
   -H "Authorization: Bearer <Token>"
 ```
 
@@ -13,8 +13,9 @@ We support the following OAuth 2.0 permission scopes:
 
 Scope | Description
 ---------- | -------
-profile_read	| Access your user profile data
-profile_write	| Update your user profile data
+email | Access your email address
+user_read	| Access your user data
+user_write	| Update your user data
 workouts_read	| Access your workout history 
 workouts_write	| Update your workout history
 offline_data    | Receive data even when the app is closed
