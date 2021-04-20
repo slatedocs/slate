@@ -1,4 +1,4 @@
-## Workloads
+### Workloads
 
 StackPath Edge Computing uses the concept of workloads to organize different applications. A workload can consist of one container or virtual machine image that is deployed to one or many locations.
 
@@ -7,7 +7,7 @@ Deploy and manage your workloads.
 
 <!-------------------- LIST WORKLOADS -------------------->
 
-### List workloads
+#### List workloads
 
 ```shell
 curl -X GET \
@@ -156,7 +156,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A WORKLOAD -------------------->
 
-### Retrieve a workload
+#### Retrieve a workload
 
 ```shell
 curl -X GET \
@@ -273,7 +273,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A WORKLOAD -------------------->
 
-### Create a workload
+#### Create a workload
 
 ```shell
 curl -X POST \
@@ -427,7 +427,7 @@ A workload can be added without any `ports`. However, `ports.publicPort` and `po
 
 <!-------------------- EDIT A WORKLOAD -------------------->
 
-### Edit a workload
+#### Edit a workload
 
 ```shell
 curl -X PUT \
@@ -536,7 +536,7 @@ Optional | &nbsp;
 
 <!-------------------- DELETE A WORKLOAD -------------------->
 
-### Delete a workload
+#### Delete a workload
 
 ```shell
 curl -X DELETE \

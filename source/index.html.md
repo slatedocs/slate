@@ -188,24 +188,26 @@ includes:
   - swift/containers
   - swift/objects
   - stackpath
+  - stackpath/edge_compute
   - stackpath/workloads
-  - stackpath/sites # Sites section
-  - stackpath/site
+  - stackpath/instances
+  - stackpath/network_policy_rules
+  - stackpath/edge_delivery
+  - stackpath/sites
   - stackpath/origin_settings
   - stackpath/delivery_domains
   - stackpath/cdn
-  - stackpath/delivery_rules
-  - stackpath/custom_rules
   - stackpath/waf
   - stackpath/firewall_rules
   - stackpath/scripts
   - stackpath/edgessl
   - stackpath/edgessl_settings
   - stackpath/certificates
+  - stackpath/edgerules
   - stackpath/predefined_edgerules
-  - stackpath/instances
+  - stackpath/custom_rules
+  - stackpath/delivery_rules
   - stackpath/images
-  - stackpath/network_policy_rules
   - aws
   - aws/compute
   - aws/instances

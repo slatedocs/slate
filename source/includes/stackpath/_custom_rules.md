@@ -1,10 +1,10 @@
-### Custom Rules
+#### Custom Rules
 
 Manage custom rules used to control and limit access to your sites. 
 
 <!-------------------- LIST CUSTOM RULES -------------------->
 
-#### List custom rules
+##### List custom rules
 
 ```shell
 curl -X GET \
@@ -92,7 +92,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A RULE -------------------->
 
-#### Retrieve a custom rule 
+##### Retrieve a custom rule 
 
 ```shell
 curl -X GET \
@@ -159,7 +159,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A CUSTOM RULE -------------------->
 
-#### Create a custom rule
+##### Create a custom rule
 
 ```shell
 curl -X POST \
@@ -246,7 +246,7 @@ Optional | &nbsp;
 
 <!-------------------- EDIT A CUSTOM RULE -------------------->
 
-#### Edit a custom rule
+##### Edit a custom rule
 
 ```shell
 curl -X PUT \
@@ -334,7 +334,7 @@ Optional | &nbsp;
 
 <!-------------------- DELETE A CUSTOM RULE -------------------->
 
-#### Delete a custom rule
+##### Delete a custom rule
 
 ```shell
 curl -X DELETE \
@@ -368,7 +368,7 @@ Attributes | &nbsp;
 
 <!-------------------- ENABLE A CUSTOM RULE -------------------->
 
-#### Enable a custom rule
+##### Enable a custom rule
 
 ```shell
 curl -X POST \
@@ -400,7 +400,7 @@ Attributes | &nbsp;
 
 <!-------------------- DISABLE A CUSTOM RULE -------------------->
 
-#### Disable a custom rule
+##### Disable a custom rule
 
 ```shell
 curl -X POST \

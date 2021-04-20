@@ -1,10 +1,10 @@
-## Network policy rules
+### Network policy rules
 
 Network policy rules allows you to control inbound and outbound traffic to your [workload](#stackpath-workloads).
 
 
 <!-------------------- LIST NETWORK POLICY RULES -------------------->
-### List network policy rules
+#### List network policy rules
 
 ```shell
 curl -X GET \
@@ -72,7 +72,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET A NETWORK POLICY RULE -------------------->
 
-### Retrieve a network policy rule
+#### Retrieve a network policy rule
 
 ```shell
 curl -X GET \
@@ -118,7 +118,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A NETWORK POLICY RULE -------------------->
 
-### Create a network policy rule
+#### Create a network policy rule
 
 ```shell
 curl -X POST \
@@ -156,7 +156,7 @@ Required | &nbsp;
 
 <!-------------------- DELETE A NETWORK POLICY RULE -------------------->
 
-### Delete a network policy rule
+#### Delete a network policy rule
 
 ```shell
 curl -X POST \
@@ -170,7 +170,7 @@ Delete a network policy rule.
 
 <!-------------------- EDIT A NETWORK POLICY RULE -------------------->
 
-### Edit a network policy rule
+#### Edit a network policy rule
 
 ```shell
 curl -X PUT \

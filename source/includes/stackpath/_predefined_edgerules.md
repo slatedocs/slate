@@ -1,10 +1,10 @@
-### Predefined EdgeRules
+#### Predefined EdgeRules
 
 The predefined EdgeRules let you configure how StackPath responds to requests to your website. These predefined EdgeRules only work with domains that resolve to StackPath.
 
 <!-------------------- LIST PREDEFINED EDGERULES -------------------->
 
-#### List predefined EdgeRules
+##### List predefined EdgeRules
 
 ```shell
 curl -X GET \
@@ -53,7 +53,7 @@ Attributes | &nbsp;
 
 <!-------------------- EDIT PREDEFINED EDGERULES  -------------------->
 
-#### Edit a predefined EdgeRules
+##### Edit a predefined EdgeRules
 
 ```shell
 curl -X PATCH \

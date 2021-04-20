@@ -1,10 +1,10 @@
-## Instances
+### Instances
 
 Manage your workload instances.
 
 <!-------------------- LIST INSTANCES -------------------->
 
-### List instances
+#### List instances
 
 ```shell
 curl -X GET \
@@ -59,7 +59,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
-### Retrieve an instance
+#### Retrieve an instance
 
 ```shell
 curl -X GET \
@@ -104,7 +104,7 @@ Attributes | &nbsp;
 
 <!-------------------- RESTART AN INSTANCE -------------------->
 
-### Restart an instance
+#### Restart an instance
 
 ```shell
 curl -X POST \

@@ -1,10 +1,10 @@
-### Delivery Rules
+#### Delivery Rules
 
 Set up delivery rules to improve access, security and set custom rules.
 
 <!-------------------- LIST DELIVERY_RULE -------------------->
 
-#### List delivery rules
+##### List delivery rules
 
 ```shell
 curl -X GET \
@@ -51,7 +51,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A DELIVERY RULE -------------------->
 
-#### Create a delivery rule
+##### Create a delivery rule
 
 ```shell
 curl -X POST \
@@ -101,7 +101,7 @@ Required| &nbsp;
 
 <!-------------------- UPDATE A DELIVERY RULE -------------------->
 
-#### Update a delivery rule
+##### Update a delivery rule
 
 ```shell
 curl -X PUT \
@@ -149,7 +149,7 @@ Required| &nbsp;
 
 <!-------------------- DELETE A DELIVERY RULE -------------------->
 
-#### Delete a delivery rule
+##### Delete a delivery rule
 
 ```shell
 curl -X DELETE \
@@ -181,7 +181,7 @@ Attributes | &nbsp;
 `taskStatus` <br/>*string* | The status of the operation.
 
 
-##### Condition
+###### Condition
 
 Required| &nbsp;
 ------------------------| -----------
@@ -190,7 +190,7 @@ Required| &nbsp;
 `target`<br/>*String* | The target of the condition.
 `httpMethods`<br/>*Array[Enum]* | HTTP methods for the condition. Possible values are: `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `PATCH`, and `OPTIONS`. This fields is only used when `trigger` is set to `HTTP_METHOD`.
 
-##### Action
+###### Action
 
 The action attributes needed to be passed will vary depending on the condition being specified.
 
