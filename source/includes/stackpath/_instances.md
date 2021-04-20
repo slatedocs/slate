@@ -112,6 +112,29 @@ curl -X POST \
    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/instances/workload-id1/instance-name-1?operation=restart"
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=restartt</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=restart</code>
 
 Restart an instance in a given [environment](#administration-environments) with the specific ID.
+
+<!-------------------- ACCESS AN INSTANCE CONSOLE -------------------->
+
+#### Access the console of an instance
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/instances/workload-id1/instance-name-1?operation=accessconsole"
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=accessconsole</code>
+
+Access the console of an instance in a given [environment](#administration-environments) with the specific ID.
+
+For container type instances, the `containerRemoteAccessCommand` is required. For VM type instances, the `vmRemoteAccessType` is required. 
+
+Required | &nbsp;
+------- | -----------
+`id` <br/>*string* | The ID of the instance to be accessed
+`containerRemoteAccessCommand`<br/>*string* | The command to execute on the container instance. ex. /bin/bash
+`vmRemoteAccessType`<br/>*VmRemoteAccessType* | The remote access type. Can be either SERIAL or VNC. 
+
