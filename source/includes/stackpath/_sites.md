@@ -90,7 +90,17 @@ curl -X GET \
       "WAF"
     ],
     "id": "9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5",
-    "status": "ACTIVE"
+    "status": "ACTIVE",
+    "edgeAddress": "v2a4k7y8.stackpathcdn.com",
+    "anycastIp": "151.139.128.10",
+    "deliveryDomains": [
+    {
+      "domain": "v2a4k7y8.stackpathcdn.com",
+      "validatedAt": "2021-02-26T19:00:15.177411Z"
+    },
+    {
+      "domain": "slow-test.com",
+    }],
   }
 }
 ```
@@ -108,6 +118,11 @@ Attributes | &nbsp;
 `createdAt`<br/>*string* | The date on which the site was created.
 `updatedAt`<br/>*string* | The date on which the site was last updated.
 `services`<br/>*array* | List of services running on the site.
+`edgeAddress`<br/>*string* | The edge address of the site.
+`anycastIp`<br/>*string* | The anycast IP address that domains should be pointed to.
+`deliveryDomains`<br/>*array* | List of delivery domains of the site.
+`deliveryDomains.updatedAt`<br/>*string* | A delivery domain of the site.
+`deliveryDomains.updatedAt`<br/>*string* | The date the domain was validated to be pointing to Stackpath.
 
 <!-------------------- CREATE A SITE -------------------->
 
