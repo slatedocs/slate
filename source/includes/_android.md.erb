@@ -1,7 +1,7 @@
 # Android SDK
 The Ada Android SDK is a small framework that is used to embed your Ada Chat bot into your native Android application.
 
-## Installation
+## Android Installation
 The Ada Android SDK can be installed manually or using Gradle.
 
 ### Manual
@@ -32,29 +32,29 @@ Finally, define the implementation for the new local library module.
 allprojects {
     repositories {
         maven {
-            url "https://adasupport.bintray.com/Android-SDK"
+            url "https://gitlab.com/api/v4/projects/25892134/packages/maven"
         }
     }
 }
 ```
 
-The Ada Android SDK can be installed using Gradle from the Ada Support Bintray repository.
+The Ada Android SDK can be installed using Gradle from the Ada Support Gitlab repository.
 
 To integrate the SDK, first add the following code to the project level `build.gradle` file.
 
 > If your project has artifacts within the AndroidX namespace, use:
 
 ```groovy
-implementation 'support.ada.embed:android-sdk-appcompat:1.3.0'
+implementation 'support.ada.embed:android-sdk-appcompat:1.3.7'
 ```
 
 > If your project uses Android Support Library, use:
 
 ```groovy
-implementation 'support.ada.embed:android-sdk-appcompat-legacy:1.3.0'
+implementation 'support.ada.embed:android-sdk-appcompat-legacy:1.3.7'
 ```
 
-> Be sure to get the latest version at https://bintray.com/beta/#/adasupport/Android-SDK?tab=packages.
+> Be sure to get the latest version at [https://gitlab.com/adasupport/androidsdk/-/packages](https://gitlab.com/adasupport/androidsdk/-/packages).
 
 Next, add the dependency to the application level `build.gradle`.
 
