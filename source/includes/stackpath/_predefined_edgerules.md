@@ -34,7 +34,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/predefinededgerules/<a href="#stackpath-site">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/predefinededgerules/<a href="#stackpath-sites">:siteId</a></code>
 
 Retrieve the configuration of all predefined EdgeRules in a given [environment](#administration-environments) within a site.
 

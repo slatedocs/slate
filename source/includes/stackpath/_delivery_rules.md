@@ -37,7 +37,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules?siteId=<a href="#stackpath-site">:siteId</a></code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules?siteId=<a href="#stackpath-sites">:siteId</a></code>
 
 Retrieve a list of all delivery rules in a given [environment](#administration-environments) within a site.
 
@@ -165,7 +165,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules/:id?siteId=<a href="#stackpath-site">:siteId</a></code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/deliveryrules/:id?siteId=<a href="#stackpath-sites">:siteId</a></code>
 
 Delete a delivery rule.
 
