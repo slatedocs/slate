@@ -1,6 +1,6 @@
 ## Reports
 
-Reports using the pricing v2 engine
+Reports using the pricing v2 engine.
 
 <!------------------- GET ORGANIZATION REPORT --------------------->
 
@@ -8,7 +8,7 @@ Reports using the pricing v2 engine
 
 `GET /reports/organization_pricing?organization_id=:id&start_date:=end_date=&end_date=:end_date`
 
-Retrieves a list of usage grouped by currency and containing categories and their products. There is a cost sum at the currency, category and product level of granularity. This will create a report using applied pricings from the closest reseller to the organization.
+Retrieves a list of usage grouped by currency and containing categories and their products. There is a cost sum at the currency, category and product level of granularity. Generates a report using applied pricings from the closest reseller to the organization, not including itself.
 
 **Query Parameters**
 
@@ -78,7 +78,7 @@ Organization Report Attributes | &nbsp;
 `currencies`<br/>*Array[Object]* | Returns an array of currencies for the usage.
 `currencies.currency`<br/>*string* | The short-name of the currency.
 `currencies.total`<br/>*string* | A string containing the total of all usage.
-`currencies.categories`<br/>*Array[Object]* | A array of category objects. Contains all categories that had usage for the period. 
+`currencies.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period. 
 `currencies.categories.name`<br/>*Object* | A map of short language codes to their translated category names. 
 `currencies.categories.subTotal`<br/>*string* | A string with the subtotal of usage for the category. It is the summed up product usage.
 `currencies.categories.products`<br/>*Object* | A map of short language codes to their translated category names. 
@@ -101,7 +101,7 @@ Organization Report Attributes | &nbsp;
 
 `GET /reports/customers?start_date:=end_date=&end_date=:end_date`
 
-Retrieves a list of usage all usages for the provided reseller organization and all of it's suborgs.
+Retrieves a list of all usage for the provided reseller organization and all of it's suborgs.
 
 **Query Parameters**
 
@@ -167,7 +167,7 @@ Customer Report Attributes | &nbsp;
 `organizations`<br/>*Array[Object]* | Returns an array of organizations for the usage. There will be one entry per organization and applied pricing combination found for the time period.
 `organizations.currency`<br/>*string* | The short-name of the currency.
 `organizations.total`<br/>*string* | A string containing the total of all usage.
-`organizations.categories`<br/>*Array[Object]* | A array of category objects. Contains all categories that had usage for the period. 
+`organizations.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period. 
 `organizations.categories.name`<br/>*Object* | A map of short language codes to their translated category names. 
 `organizations.categories.subTotal`<br/>*string* | A string with the subtotal of usage for the category. It is the summed up product usage.
 `organizations.appliedPricing`<br/>*Object* | The applied pricing for this organization entry.
