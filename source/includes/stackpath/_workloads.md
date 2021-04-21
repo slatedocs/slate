@@ -116,7 +116,7 @@ Retrieve a list of all workloads in a given [environment](#administration-enviro
 Attributes | &nbsp;
 ------- | -----------
 `addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only applicable to workloads of `type` 'CONTAINER'.
-`anycastIpAddress`<br/>*string* | The anycast IP address assigned to a workload. If there is no IP assigned to the workload then the value of this attribute will be `None`.
+`anycastIpAddress`<br/>*string* | The Anycast IP address assigned to a workload. If there is no IP assigned to the workload then the value of this attribute will be `None`.
 `commands`<br/>*Array[string]* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
 `containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
@@ -234,7 +234,7 @@ Retrieve a workload in a given [environment](#administration-environments).
 Attributes | &nbsp;
 ------- | -----------
 `addImagePullCredentialsOption`<br/>*boolean* | It is used to indicate if additional credentials to pull container image are provided or not. Only applicable to workloads of `type` 'CONTAINER'.
-`anycastIpAddress`<br/>*string* | The anycast IP address assigned to a workload. If there is no IP assigned to the workload then the value of this attribute will be `None`.
+`anycastIpAddress`<br/>*string* | The Anycast IP address assigned to a workload. If there is no IP assigned to the workload then the value of this attribute will be `None`.
 `commands`<br/>*Array[string]* | The commands that start a container. Only applicable to workloads of `type` 'CONTAINER'.
 `containerEmail` <br/>*string* | The email address to use for the docker registry account. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
 `containerServer` <br/>*string* | The server that the credentials should be used with. This value will default to the docker hub registry when not set. Only applicable to workloads of `type` 'CONTAINER' and `addImagePullCredentialsOption` is 'true'.
