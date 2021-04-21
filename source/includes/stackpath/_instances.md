@@ -130,8 +130,7 @@ curl -X POST \
 
 ```js
 {
-  "vmRemoteAccessType": "SERIAL",
-  "id": "instance-id-1" 
+  "vmRemoteAccessType": "VNC"
 }
 ```
 > The above command(s) return(s) JSON structured like this:
