@@ -121,8 +121,8 @@ Attributes | &nbsp;
 `edgeAddress`<br/>*string* | The edge address of the site.
 `anycastIp`<br/>*string* | The anycast IP address that domains should be pointed to.
 `deliveryDomains`<br/>*array* | List of delivery domains of the site.
-`deliveryDomains.updatedAt`<br/>*string* | A delivery domain of the site.
-`deliveryDomains.updatedAt`<br/>*string* | The date the domain was validated to be pointing to Stackpath.
+`deliveryDomains.domain`<br/>*string* | A delivery domain of the site.
+`deliveryDomains.validatedAt`<br/>*string* | The date the domain was validated to be pointing to Stackpath.
 
 <!-------------------- CREATE A SITE -------------------->
 
