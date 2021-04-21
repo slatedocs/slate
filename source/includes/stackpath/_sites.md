@@ -119,7 +119,7 @@ Attributes | &nbsp;
 `updatedAt`<br/>*string* | The date on which the site was last updated.
 `services`<br/>*array* | List of services running on the site.
 `edgeAddress`<br/>*string* | The edge address of the site.
-`anycastIp`<br/>*string* | The anycast IP address that domains should be pointed to.
+`anycastIp`<br/>*string* | The Anycast IP address that domains should be pointed to.
 `deliveryDomains`<br/>*array* | List of delivery domains of the site.
 `deliveryDomains.domain`<br/>*string* | A delivery domain of the site.
 `deliveryDomains.validatedAt`<br/>*string* | The date the domain was validated to be pointing to Stackpath.
