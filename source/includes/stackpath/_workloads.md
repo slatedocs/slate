@@ -560,3 +560,32 @@ Attributes | &nbsp;
 ------- | -----------
 `taskId` <br/>*string* | The task id related to the workload deletion.
 `taskStatus` <br/>*string* | The status of the operation.
+
+#### Edit workload settings
+
+Change a workload specific settings in a given [environment](#administration-environments). At the moment, only `isRemoteManagementEnabled` is supported for this operation. Any other attributes will be ignored.
+
+```shell
+curl -X PATCH \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+```
+
+> Request body example:
+
+```json
+{
+  "isRemoteManagementEnabled": false
+}
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+
+```
+<code>PATCH /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/workloads/:id</code>
