@@ -1,6 +1,6 @@
 ## Get Authenticated User
 
-Requires `profile_read` scope
+Requires `user_read` scope
 
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/user

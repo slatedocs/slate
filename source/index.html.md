@@ -3,9 +3,6 @@ title: Wahoo Fitness API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='https://developers.wahooligan.com'>Sign Up for a Developer Key</a>
@@ -57,7 +54,17 @@ This diagram shows how the data records are related within the API
 
 # Registration
 
-Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to 'Sandbox' or 'Production'. In 'Sandbox' mode, you will be able to test and see your changes to your app's settings immediately, but there are some limitations. To enable production mode on your app, your app will have to go through a review process with Wahoo Fitness, then when approved, your app can be released with no limitations.
+Create a user account and register your app in our developer portal (https://developers.wahooligan.com). Your app can be set to 'Sandbox' or 'Production'. With 'Sandbox' apps you will be able to test and see your changes immediately but with very limited throughput. Production apps will have to go through a review process with Wahoo Fitness, and when approved your app can be released with a higher rate limit.
+
+## Rate Limiting
+
+The following chart shows how your app will be rate limited. If you require a higher throughput, please contact support to request an increase.
+
+Interval                     | Sandbox Apps        | Production Apps
+-----------                  | -----------         | ------------
+Requests every 5 Min:        | 25                  | 200
+Requests per Hour:           | 100                 | 1000
+Requests per Day:            | 250                 | 5000
 
 # Authentication
 

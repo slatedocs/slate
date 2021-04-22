@@ -1,10 +1,10 @@
 ## Update User
 
-Requires the `profile_write` scope
+Requires the `user_write` scope
 
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"
-     -X PUT -d user[mobile]=7704106437 https://api.wahooligan.com/v1/user
+     -X PUT -d user[gender]=1 https://api.wahooligan.com/v1/user
 ```
 
 > Sample Response:
@@ -41,7 +41,7 @@ user[last]   | String  | no       | Last name
 user[height] | Decimal | no       | Height in meters
 user[weight] | Decimal | no       | Weight in kilograms
 user[birth ] | Date    | no       | Date of birth formatted as YYYY-MM-DD
-user[gender] | 0 or 1  | no       | Use 0 for male, 1 for female
+user[gender] | 0,1,2,3 | no       | Use 0 for male, 1 for female, 2 for other, and 3 for prefer not to say
 
 
 
