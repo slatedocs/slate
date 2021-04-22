@@ -774,7 +774,7 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la nota de crédito que neces
         "total_sin_impuestos": "150.00",
         "impuestos": [
             {
-                "codigo": 2,
+                "codigo": "2",
                 "codigo_porcentaje": "2",
                 "base_imponible": "150.00",
                 "valor": "18.00"

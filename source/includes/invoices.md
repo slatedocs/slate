@@ -1758,7 +1758,7 @@ Reemplaza en la ruta `<invoice-ID>` por el `id` de la factura que necesitas cons
         "propina": "0.00",
         "impuestos": [
             {
-                "codigo": 2,
+                "codigo": "2",
                 "codigo_porcentaje": "2",
                 "base_imponible": "150.00",
                 "valor": "18.00"

@@ -413,11 +413,11 @@ issue_to<p class="dt-data-type">string</p> | Lista facturas a partir de esta fec
 sequence_from<p class="dt-data-type">string</p> | Lista facturas a partir de esta secuencia.
 sequence_to<p class="dt-data-type">string</p> | Lista facturas hasta esta secuencia.
 supplier_locations_codes<p class="dt-data-type">array</p> | Listado de códigos de establecimiento separados por coma, ej: 001,004,005
-supplier_locations_points_of_sale<p class="dt-data-type">array</p> | Listado de códigos de punto de emisión separados por coma, ej: 001,004,005
+supplier_location_points_of_sale_codes<p class="dt-data-type">array</p> | Listado de códigos de punto de emisión separados por coma, ej: 001,004,005
 select_keys<p class="dt-data-type">string</p> | Listado de nombres de atributos de la factura separados por coma que se quisieran obtener en la respuesta. Si no se especifica la respuesta incluye el objeto completo. Ej: number,issue_date,items
 page_size<p class="dt-data-type">integer</p> | Define la cantidad de items por página. Por defecto retorna 30 items por página
 order_by <p class="dt-data-type">string</p> | Listado de nombres de atributos de la factura por los que quisieras ordenar el listado, por ejemplo: "sequence". Para ordenar de forma descendente utiliza un guión "-" como prefijo al nombre del atributo, así: "-sequence"
-environment<p class="dt-data-type">integer</p> | Lista facturas dependiento del ambiente
+environment<p class="dt-data-type">string</p> | Lista facturas dependiento del ambiente. Se usa "live" o 2 para facturas de producción o "test" o 1 para facturas de prueba
 
 
 #### Respuesta
