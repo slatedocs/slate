@@ -5,7 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='http://getquipu.com'>Quipu</a>
+  - <a href='https://getquipu.com'>Quipu</a>
 
 includes:
   - contacts
@@ -68,10 +68,10 @@ Example:
 
 ### [Contacts](#contacts-section)
 
-* `GET    /contacts`  
-* `POST   /contacts`  
-* `GET    /contacts/:id`  
-* `PATCH  /contacts/:id`  
+* `GET    /contacts`
+* `POST   /contacts`
+* `GET    /contacts/:id`
+* `PATCH  /contacts/:id`
 * `DELETE /contacts/:id`
 
 ### [Invoices, tickets and paysheets](#invoices-tickets-and-paysheets-section)
@@ -80,60 +80,60 @@ Example:
 
 ### [Invoices](#invoices-section)
 
-* `GET    /invoices`  
-* `POST   /invoices`  
-* `GET    /invoices/:id`  
-* `PATCH  /invoices/:id`  
+* `GET    /invoices`
+* `POST   /invoices`
+* `GET    /invoices/:id`
+* `PATCH  /invoices/:id`
 * `DELETE /invoices/:id`
 
 ### [Tickets](#tickets-section)
 
-* `GET    /tickets`  
-* `POST   /tickets`  
-* `GET    /tickets/:id`  
-* `PATCH  /tickets/:id`  
+* `GET    /tickets`
+* `POST   /tickets`
+* `GET    /tickets/:id`
+* `PATCH  /tickets/:id`
 * `DELETE /tickets/:id`
 
 ### [Paysheets](#paysheets-section)
 
-* `GET    /paysheets`  
-* `POST   /paysheets`  
-* `GET    /paysheets/:id`  
-* `PATCH  /paysheets/:id`  
+* `GET    /paysheets`
+* `POST   /paysheets`
+* `GET    /paysheets/:id`
+* `PATCH  /paysheets/:id`
 * `DELETE /paysheets/:id`
 
 ### [Numbering series](#numbering-series-section)
 
-* `GET    /numbering_series`  
-* `POST   /numbering_series`  
-* `GET    /numbering_series/:id`  
-* `PATCH  /numbering_series/:id`  
+* `GET    /numbering_series`
+* `POST   /numbering_series`
+* `GET    /numbering_series/:id`
+* `PATCH  /numbering_series/:id`
 * `DELETE /numbering_series/:id`
 
 ### [Analytic categories](#analytic-categories-section)
 
-* `GET    /analytic_categories`  
-* `POST   /analytic_categories`  
-* `GET    /analytic_categories/:id`  
-* `PATCH  /analytic_categories/:id`  
+* `GET    /analytic_categories`
+* `POST   /analytic_categories`
+* `GET    /analytic_categories/:id`
+* `PATCH  /analytic_categories/:id`
 * `DELETE /analytic_categories/:id`
 
 ### [Accounting categories](#accounting-categories-section)
 
-* `GET    /accounting_categories`  
-* `GET    /accounting_categories/:id`  
+* `GET    /accounting_categories`
+* `GET    /accounting_categories/:id`
 
 ### [Accounting subcategories](#accounting-subcategories-section)
 
-* `GET    /accounting_subcategories`  
-* `POST   /accounting_subcategories`  
-* `GET    /accounting_subcategories/:id`  
-* `PATCH  /accounting_subcategories/:id`  
+* `GET    /accounting_subcategories`
+* `POST   /accounting_subcategories`
+* `GET    /accounting_subcategories/:id`
+* `PATCH  /accounting_subcategories/:id`
 * `DELETE /accounting_subcategories/:id`
 
 ### [Attachments](#attachments-section)
 
-* `POST   /attachments`  
+* `POST   /attachments`
 * `GET    /attachments/:id`
 * `DELETE /attachments/:id`
 

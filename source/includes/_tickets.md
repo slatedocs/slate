@@ -355,7 +355,7 @@ curl "https://getquipu.com/tickets" \
 # create a new item with concept "Tuercas",
 # and destroy other items associated to the ticket if any.
 
-curl "http://getquipu.dev:3000/tickets/2682381" \
+curl "https://getquipu.com/tickets/2682381" \
   -X PATCH \
   -H "Authorization: Bearer 818abe1ea4a1813999a47105892d50f3781320c588fb8cd2927885963e621228" \
   -H "Accept: application/vnd.quipu.v1+json" \

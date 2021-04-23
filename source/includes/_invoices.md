@@ -467,7 +467,7 @@ but in the responses we will find the details about items in the `includes` obje
 > Example request
 
 ```shell
-curl "http://getquipu.dev:3000/invoices/2988939" \
+curl "https://getquipu.com/invoices/2988939" \
   -X PATCH \
   -H "Authorization: Bearer 818abe1ea4a1813999a47105892d50f3781320c588fb8cd2927885963e621228" \
   -H "Accept: application/vnd.quipu.v1+json" \

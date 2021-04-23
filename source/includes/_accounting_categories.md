@@ -19,7 +19,7 @@ kind | READ ONLY. `income`, `expenses` or `assets`
 > Example request
 
 ```shell
-curl "http://getquipu.dev:3000/accounting_categories" \
+curl "https://getquipu.com/accounting_categories" \
   -H "Authorization: Bearer 818abe1ea4a1813999a47105892d50f3781320c588fb8cd2927885963e621228" \
   -H "Accept: application/vnd.quipu.v1+json"
 ```
@@ -98,7 +98,7 @@ prefix | filter categories with the given accounting numbers | List of prefixes 
 > Example request
 
 ```shell
-curl "http://getquipu.dev:3000/accounting_categories/132" \
+curl "https://getquipu.com/accounting_categories/132" \
   -H "Authorization: Bearer 818abe1ea4a1813999a47105892d50f3781320c588fb8cd2927885963e621228" \
   -H "Accept: application/vnd.quipu.v1+json"
 ```
