@@ -310,13 +310,6 @@ Specifies where to mount the `<iframe>` if the default side drawer is not desire
   Chat will render immediately inside the `parentElement` provided. It means that the conversation would also get initialized. We do not recommend initializing Embed2 with `parentElement` setting automatically on every page, since it could lead to low engagement rates.
 </aside>
 
-#### preload
-`preload?: boolean;`
-
-By default, Embed2 will only load Web Chat once the user has clicked the Chat button. In this manner, the net Ada bundle size is reduced for users who never engage with Ada Web Chat. However, this will also cause longer wait times for users loading Web Chat, as they must first fetch the Web Chat bundle before the UI can load. On slow internet connections (esp. mobile users), this delay may be exacerbated.
-
-Should you wish, you may preload Web Chat by setting the `preload` option to `true`.
-
 #### privateMode
 `privateMode?: boolean;`
 
