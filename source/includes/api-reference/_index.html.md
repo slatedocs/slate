@@ -18705,6 +18705,15 @@ This is not an exhaustive list, but should cover the most common use cases.
  * Team Membership - added, removed
  * Workspace - added, removed, changed
  * Workspace Memberships - added, removed
+
+#### Webhook Limits
+
+Webhooks have two different limits
+
+ * 1k limit per resource in Asana. (If 10 apps each have 100 webhooks
+   watching the same resource, no more webhooks can be placed on the
+   webhook. `/events` streams count towards this limit)
+ * 10k per user-app (An app can have 10k webhooks for EACH user)
 </span>
 
 </section>
