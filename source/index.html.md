@@ -1121,7 +1121,7 @@ Just like the Payment Checkout via Link, you can access all your payment checkou
 
 **What are bank maintenance schedules? Will partners be informed?**
 
-Banks often have regular maintenance schedules which differ from one bank to another. These regular maintenance schedules prevent the execution of transactions to the respective recipient bank during the set period of time. In the event that an unplanned maintenance or maintenance schedules run for an extended period of time, we will notify our partners.
+Banks often have regular maintenance schedules which differ from one bank to another. These regular maintenance schedules prevent the execution of transactions to the respective recipient bank during the set period of time. To ensure your convenience, we will queue any transaction requests submitted during the maintenance hours and automatically disburse them once the maintenance is over.
 
 **What are the amount limits for disbursements?**
 
@@ -1135,6 +1135,17 @@ DANA | DANA Verified | Rp 1.000.000
 DANA | DANA Premium | Rp 10.000.000
 GoPay | Unverified | Rp 2.000.000
 GoPay | Verified | Rp 10.000.000
+
+**What are the minimum transaction for disbursements?**
+
+_e-wallet:_ Since each e-wallet provide limits to the amount each user can hold at a time, disbursements made to e-wallet accounts have their respective limits. 
+
+Wallet | Maximum Amount
+------ | -------------
+OVO | Rp 20.000
+DANA | Rp 20.000
+GoPay | Rp 10.000
+Linkaja | Rp 10.000
 
 **Is there a cut-off time?**
 
