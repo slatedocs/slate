@@ -74,6 +74,12 @@ curl "https://www.castupload.com/api/v1/actor_profiles" \
 
 This endpoint retrieves all actor profiles available with the access rights of the API key. Most of the time it is scoped to a talent agency.
 
+### Pagination
+
+This API endpoint is paginated, following the proposed [RFC-8288](https://tools.ietf.org/html/rfc8288) standard for Web linking.
+
+The pagination information is included in response HTTP headers, namely `Total` (total entries), `Per-Page` (entries per page) and `Link` (containing links to corresponding pages). The current page can be set using the `page`-parameter.
+
 ### HTTP Request
 
 `GET https://www.castupload.com/api/v1/actor_profiles`
@@ -82,6 +88,7 @@ This endpoint retrieves all actor profiles available with the access rights of t
 
 Parameter | Default | Description
 --------- | ------- | -----------
+page | 1 | Page to display - see "Pagination" above 
 include_picture | false | If set to true, the result will include the profile picture thumbnail in a field named `main_picture_url_tile`.
 picture_version | null | Can be set to `original`, `large` or `thumb` to change the included picture version. The picture will be included in a field named `picture_url`. _(Only applies if `include_picture` is true)_
 fields | name,gender | Can be used to modify the fields included in the response. Possible values are: `age`, `gender`, `first_name`, `last_name`, `name`, `professions`.
