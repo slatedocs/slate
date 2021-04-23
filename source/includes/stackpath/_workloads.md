@@ -4,7 +4,6 @@ StackPath Edge Computing uses the concept of workloads to organize different app
 
 Deploy and manage your workloads.
 
-
 <!-------------------- LIST WORKLOADS -------------------->
 
 #### List workloads
@@ -51,8 +50,12 @@ curl -X GET \
         "/bin/sh -c \"sleep 50\""
       ],
       "specs": "SP-1",
-      "persistenceStoragePath": "/lib/data/newFolder",
-      "persistenceStorageSize": 1,
+      "persistentStorages" : [
+        {
+          "path": "/lib/data/newFolder",
+          "size": 1,
+        }  
+      ],
       "deployments": [
         {
           "name": "deployment-lax",
@@ -92,8 +95,12 @@ curl -X GET \
       "addAnyCastIpAddress": false,
       "anycastIpAddress": "None",
       "firstBootSshKey": "ssh-rsa...",
-      "persistenceStorageSize": 2,
-      "persistenceStoragePath": "/var/lib/data",
+      "persistentStorages" : [
+        {
+          "path": "/lib/data/newFolder",
+          "size": 1,
+        }  
+      ],
       "deploymentName": "deployment-name",
       "deploymentPops": [
         "YYZ"
@@ -141,8 +148,9 @@ Attributes | &nbsp;
 `memory`<br/>*string* | The memory size for the workload's instance.
 `name`<br/>*string* | The display name of the workload.
 `network`<br/>*string* | Network interfaces to bind to the workload's instances.
-`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
-`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
+`persistentStorages`<br/>*Array[Object]* | Persistent storage volumes used by the workload.
+`persistentStorages.path`<br/>*string* | The path in an instance to mount a volume.
+`persistentStorages.size`<br/>*int* | The size of the mounted volume (in GB).
 `secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
@@ -199,8 +207,12 @@ curl -X GET \
       "/bin/sh -c \"sleep 50\""
     ],
     "specs": "SP-1",
-    "persistenceStoragePath": "/lib/data/newFolder",
-    "persistenceStorageSize": 1,
+    "persistentStorages" : [
+      {
+        "path": "/lib/data/newFolder",
+        "size": 1,
+      }  
+    ],
     "deployments": [
       {
         "name": "deployment-lax",
@@ -259,8 +271,9 @@ Attributes | &nbsp;
 `memory`<br/>*string* | The memory size for the workload's instance.
 `name`<br/>*string* | The display name of the workload.
 `network`<br/>*string* | Network interfaces to bind to the workload's instances.
-`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
-`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
+`persistentStorages`<br/>*Array[Object]* | Persistent storage volumes used by the workload.
+`persistentStorages.path`<br/>*string* | The path in an instance to mount a volume.
+`persistentStorages.size`<br/>*int* | The size of the mounted volume (in GB).
 `secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
@@ -299,8 +312,12 @@ curl -X POST \
   ],
   "firstBootSshKey":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcYr9OnzsDfYVW2I1kX/iYJ0mPG490bI5mbxbOAKPLMuWLguxRohX804j1XbwZJ+Sna+9rSfxaYA8vgd1MoYX10l9cnMLx/MMbYp4ZquauN4pGY3WoDeCqsTss3VUMW+7RFBILpU3SJTlDV02FI36D3IXb4A8XymCyU3KC99XXTfTQsuKC+WFRMsTWtklrasqCVd5yEG90i/aJc6A3TZGOYgPFNEeVYvNDaJmIkb3y4FfShoBIMgZRt0ay7SvWZUvyfvyNmK5W9ePdhZZ58R+7tQNmCzjQ4v0suWRuGJ/XL3+03w3HEsDdQx+noL+R+qAjoNFwc0spBBhJK+Q4ADqr nothing@gmail.com \nssh-rsa...",
   "specs":"SP-1",
-  "persistenceStoragePath":"/lib/data/newFolder",
-  "persistenceStorageSize":1,
+  "persistentStorages" : [
+    {
+      "path": "/lib/data/newFolder",
+      "size": 1,
+    }
+  ],
   "deployments": [
     {
       "name": "deployment-name",
@@ -329,8 +346,12 @@ curl -X POST \
     }
   ],
   "specs": "SP-1",
-  "persistenceStoragePath": "/lib/data/newFolder",
-  "persistenceStorageSize": 1,
+  "persistentStorages" : [
+    {
+      "path": "/lib/data/newFolder",
+      "size": 1,
+    }  
+  ],
   "commands": [
     "/bin/sh -c \"sleep 50\""
   ],
@@ -409,8 +430,9 @@ Required | &nbsp;
 `environmentVariables.key` <br/>*string* | The location to obtain a value for an environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `environmentVariables.value` <br/>*string* | An environment variable's value.
 `environmentVariables` <br/>*Array[Object]* | A list of environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`persistenceStoragePath`<br/>*string* | The path in an instance to mount a volume.
-`persistenceStorageSize`<br/>*int* | The size of the mounted volume (in GB).
+`persistentStorages`<br/>*Array[Object]* | Persistent storage volumes used by the workload.
+`persistentStorages.path`<br/>*string* | The path in an instance to mount a volume.
+`persistentStorages.size`<br/>*int* | The size of the mounted volume (in GB).
 `ports.protocol`<br/>*string* | Protocol for the network policy rule. Supported protocols are: `TCP`, `UDP` and `TCP_UDP`.
 `ports.publicPort`<br/>*string* | A single port, such as 80 or a port range, such as 1024-65535 for which a network policy rule will be created for the workload.
 `ports.publicPortDesc`<br/>*string* | A summary of what the network policy rule does or a name for it. It is highly recommended to give a unique description to easily identify a network policy rule. Defaults to an empty string if not provided.
