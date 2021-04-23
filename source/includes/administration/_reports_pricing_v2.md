@@ -20,8 +20,8 @@ Required | &nbsp;
 Optional | &nbsp;
 ---------- | -----------
 `organization_id`<br/>*UUID* | The organization for which you're building the report. If not passed will default to the calling user's organization.
-`environment_id`<br/>*UUID* | Only return usage for the selected environment id.
 `service_connection_id`<br/>*UUID* | Only return usage for the selected service connection id.
+`environment_id`<br/>*UUID* | Only return usage for the selected environment id. Needs to be provided along with the `service_connection_id`.
 
 ```shell
 curl --request GET \
