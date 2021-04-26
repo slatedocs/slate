@@ -1140,7 +1140,7 @@ GoPay | Verified | Rp 10.000.000
 
 _e-wallet:_ Since each e-wallet provide limits to the amount each user can hold at a time, disbursements made to e-wallet accounts have their respective limits. 
 
-Wallet | Maximum Amount
+Wallet | Minimum Amount
 ------ | -------------
 OVO | Rp 20.000
 DANA | Rp 20.000
