@@ -1136,7 +1136,7 @@ DANA | DANA Premium | Rp 10.000.000
 GoPay | Unverified | Rp 2.000.000
 GoPay | Verified | Rp 10.000.000
 
-**What are the minimum transaction for disbursements?**
+**What are the minimum Amount for disbursements?**
 
 _e-wallet:_ Since each e-wallet provide limits to the amount each user can hold at a time, disbursements made to e-wallet accounts have their respective limits. 
 
