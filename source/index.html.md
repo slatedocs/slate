@@ -56,6 +56,7 @@ includes:
   - part_type_replacement_linker
   - part_types
   - payment_commands
+  - product_balance_and_pending_payments
   - product_notes
   - product_parameters
   - product_parts
@@ -112,6 +113,7 @@ includes:
   - enable_tamper_switch
   - disable_tamper_switch
   - send_wakeup
+  - product_balance_and_pending_payments
   - product_parts
   - product_change_states
   - product_locations
@@ -126,6 +128,7 @@ includes:
   - force_connection
   - get_repair
   - suggest_energy_limit
+  - set_dcm_enabled_flag
   - upload_tool_log
 
   - product_data

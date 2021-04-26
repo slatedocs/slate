@@ -29,6 +29,7 @@ __latest_rtc_connection_history_id__ <br><font color="DarkGray">_int_</font> <fo
 __latest_rtc_mo_status_report_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __latest_rtc_mt_status_update_time__ <br><font color="DarkGray">_datetime_</font> <font color="Crimson"></font> | 
 __rtc_enabled_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | 
+__dcm_enabled_flag__ <br><font color="DarkGray">_boolean_</font> <font color="Crimson">(not-null)</font> | boolean value that shows whether a device is DCM enabled or not 
 __assembler__ <br><font color="DarkGray">_string_</font> <font color="Crimson"></font> | 
 __gps_lat__ <br><font color="DarkGray">_float_</font> <font color="Crimson"></font> | 
 __gps_lon__ <br><font color="DarkGray">_float_</font> <font color="Crimson"></font> | 
@@ -69,7 +70,7 @@ __final_balance__ | The associated final_balance
 > We can retrieve the `product` created by specifying its `product_imei` in the request url:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/products/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/products/111010101010101'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.get(url=url, headers=headers)
@@ -79,7 +80,7 @@ __final_balance__ | The associated final_balance
 
     r.json()
     >>> {
-		"product_imei": 1
+		"product_imei": "111010101010101",
 		"analysis_timestamp": "2000-01-01 00:00:00",
 		"current_enable_flag": True,
 		"desired_enable_flag": True,
@@ -102,6 +103,7 @@ __final_balance__ | The associated final_balance
 		"latest_rtc_mo_status_report_time": "2000-01-01 00:00:00",
 		"latest_rtc_mt_status_update_time": "2000-01-01 00:00:00",
 		"rtc_enabled_flag": True,
+		"dcm_enabled_flag": False,
 		"assembler": "test",
 		"gps_lat": 1.0,
 		"gps_lon": 1.0,
@@ -140,7 +142,7 @@ __final_balance__ | The associated final_balance
 > We can edit the newly created `product` with a `PUT` request:
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/products/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/products/111010101010101'
     data = json.dumps({
 		"analysis_timestamp": "2016-07-01 12:34:45",
 		"current_enable_flag": False,
@@ -164,6 +166,7 @@ __final_balance__ | The associated final_balance
 		"latest_rtc_mo_status_report_time": "2016-07-01 12:34:45",
 		"latest_rtc_mt_status_update_time": "2016-07-01 12:34:45",
 		"rtc_enabled_flag": False,
+		"dcm_enabled_flag": False,
 		"assembler": "changed",
 		"gps_lat": 2.0,
 		"gps_lon": 2.0,
@@ -177,7 +180,7 @@ __final_balance__ | The associated final_balance
 
     r.json()
     >>> {
-		"product_imei": 1
+		"product_imei": "111010101010101",
 		"analysis_timestamp": "2016-07-01 12:34:45",
 		"current_enable_flag": False,
 		"desired_enable_flag": False,
@@ -200,6 +203,7 @@ __final_balance__ | The associated final_balance
 		"latest_rtc_mo_status_report_time": "2016-07-01 12:34:45",
 		"latest_rtc_mt_status_update_time": "2016-07-01 12:34:45",
 		"rtc_enabled_flag": False,
+		"dcm_enabled_flag": False,
 		"assembler": "changed",
 		"gps_lat": 2.0,
 		"gps_lon": 2.0,
@@ -213,7 +217,7 @@ __final_balance__ | The associated final_balance
 > If a user has `SYSTEM` permissions they can delete the `product`
 
 ```python
-    url = 'https://smartapi.bboxx.co.uk/v1/products/1'
+    url = 'https://smartapi.bboxx.co.uk/v1/products/111010101010101'
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=A_VALID_TOKEN'}
 
     r = requests.delete(url=url, headers=headers)

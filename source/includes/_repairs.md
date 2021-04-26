@@ -28,6 +28,7 @@ __modified_by__ <br><font color="DarkGray">_text_</font>| user that last modifie
 Relationship | Description
 -------------:|:------------
 __alerts__ | The associated alerts
+__repair_centre_id__ | The associated repair_centre_id
 __repair_symptom_type_linker__ | The associated repair_symptom_type_linker
 __repair_action_type_linker__ | The associated repair_action_type_linker
 __replacements__ | The associated replacements
@@ -63,7 +64,8 @@ __replacements__ | The associated replacements
     r.json()
 
     >>> {
-		"repair_id": 1
+		"repair_id": 1,
+		"repair_centre_id": 1,
 		"product_imei": "000000000000000",
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
@@ -94,7 +96,8 @@ __replacements__ | The associated replacements
 
     r.json()
     >>> {
-		"repair_id": 1
+		"repair_id": 1,
+		"repair_centre_id": 1,
 		"product_imei": "000000000000000",
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
@@ -164,7 +167,8 @@ __replacements__ | The associated replacements
 
     r.json()
     >>> {
-		"repair_id": 1
+		"repair_id": 1,
+		"repair_centre_id": 1,
 		"product_imei": "999999999999999",
 		"arrival_date": "2000-01-01 00:00:00",
 		"refurbishment_date": "2000-01-01 00:00:00",
