@@ -4634,3 +4634,13 @@ socket.on("bo-trade-update", (response) => {
 # API call limits
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
 In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second. -->
+
+# High-Frequency Trading
+
+CoinDCX’s API for High-Frequency Trading (HFT)
+
+<aside class="notice">The base URL for all HFT API calls is `https://hft-api.coindcx.com`.</aside>
+
+CoinDCX provides special access to our HFT APIs for enterprise and specialized clients. These APIs will enable our clients to trade and receive market data with faster API responses and higher API rate limits.
+
+To receive this access, kindly contact our support team. Our team members will request you for a static IP address which we will keep as our Trusted IPs for HFT. Once your IP address has been added as ‘Trusted’, you will receive the required access to our HFT API services.
