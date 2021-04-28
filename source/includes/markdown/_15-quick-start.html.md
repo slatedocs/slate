@@ -42,7 +42,7 @@ As an aside, for clarity `python-asana` will also work with Python 3.x (with sma
 
 All of the built-in functions can be found in the [/gen folder of the client library](https://github.com/Asana/python-asana/tree/master/asana/resources/gen). 
 
-You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/python" target="_blank">Github examples repository</a>
+You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/python" target="_blank">GitHub examples repository</a>
 
 <div>
   <div class="docs-developer-satisfaction-content">
@@ -78,7 +78,7 @@ client.users.me()
 To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
 </span>
 
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Javascript.
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in JavaScript.
 
 Save this file as something descriptive like "hello_world.js"
 
@@ -86,7 +86,7 @@ To run this script in your console, pass it as an argument to the node interpret
 
 All of the built-in functions can be found in the [/gen folder of the client library](https://github.com/Asana/node-asana/tree/master/lib/resources/gen).
 
-You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/javascript" target="_blank">Github examples repository</a>
+You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/javascript" target="_blank">GitHub examples repository</a>
 
 <div>
   <div class="docs-developer-satisfaction-content">
@@ -131,7 +131,7 @@ To run this script in your console, pass it as an argument to the ruby interpret
 
 All of the built-in methods can be found in the [/resources folder of the client library](https://github.com/Asana/ruby-asana/tree/master/lib/asana/resources). 
 
-You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
+You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">GitHub examples repository</a>
 
 ## Workflow automation script
 
@@ -360,7 +360,7 @@ When processes get complex in Asana there can begin to be work about work. This 
 In this guide, we will build a simple triage bot that will assign tasks. This is a common Asana use case with support inboxes or request projects. 
 </span>
 
-If you want to skip ahead and see the code for the triage bot, it’s on Github in the Javascript folder of our [devrel-examples repo](https://github.com/Asana/devrel-examples).
+If you want to skip ahead and see the code for the triage bot, it’s on GitHub in the JavaScript folder of our [devrel-examples repo](https://github.com/Asana/devrel-examples).
 
 For this guide, let’s suppose a design team has a requests project where people from the marketing team fill out an [Asana form](https://asana.com/guide/help/premium/forms) to request graphics from the design team. The form creates a task in the design requests project that needs to be assigned to a designer. 
 
@@ -374,7 +374,7 @@ Before we get started, here are some helpful links for building on the Asana API
 * [Asana API reference docs](/docs/asana)
 * [Asana longform documentation](/docs/why-use-asana-39-s-api)
 * [Asana developer community](https://forum.asana.com/c/developersAPI) -- if you get blocked or have a question about the API, there are devs in our community that are eager to help. We also post API updates and news to the community forum.
-* The [code for this bot on Github](https://github.com/Asana/devrel-examples/tree/master/javascript/triage_bot)
+* The [code for this bot on GitHub](https://github.com/Asana/devrel-examples/tree/master/javascript/triage_bot)
 
 ### Create your bot user in Asana
 Create a new Asana account for your bot ([instructions for inviting users](https://asana.com/guide/help/organizations/members#gl-invite)). You want to create a distinct Asana account for your bot because any action it takes in Asana will be attributed to this user. Give your bot a name and photo that will be recognizable to users in Asana that encounter it. Note that if your bot is a guest member in Asana that it will need to be added to every project you need it to work in. Bots based on guest Asana accounts will also not have access to some API features such as defining new custom fields or modifying their settings.

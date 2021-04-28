@@ -396,7 +396,7 @@ Currently, "Workflow Apps" are separate from "OAuth Apps". To create a Workflow 
 App and request the Workflow App functionliaty onto it via the 
 [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) form.
 
-To create an oauth app, see [Authentication Quick Start](/docs/authentication-quick-start).
+To create an OAuth app, see [Authentication Quick Start](/docs/authentication-quick-start).
 
 To create a Workflow App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 form with the data in the table below.
@@ -484,7 +484,7 @@ described in the [Workflow App Section](/docs/workflow-app). Here is a cheat-she
 provide:
 
  * `authenticationUrl` & `authModalMetadata` is only required if your app needs access to the Asana API and/or needs to 
- oauth with a different application. If you plan to use Asana's API, create an [OAuth App](/docs/oauth) via the [Developer Console](https://app.asana.com/0/developer-console). 
+ OAuth with a different application. If you plan to use Asana's API, create an [OAuth App](/docs/oauth) via the [Developer Console](https://app.asana.com/0/developer-console). 
  The URL you place in `authenticationUrl` should be something like `https://localhost:5000/auth`. This url should redirect
  users to the [User Authorization Endpoint](#user-authorization-endpoint) with the required url parameters for OAuth.
  * `resource_widget` is required if you want to display an [App Widget](/docs/app-widget). Widgets are displayed for 
@@ -514,7 +514,7 @@ things happened:
  1. The button now says "Installed" or "Uninstall". If so, you can close this window and continue.
  2. A new modal popped up. If this happened, an iframe was opened and redirected to your 
  `authenticationUrl`. If your OAuth is set up properly, you should be able to complete this flow. 
-    * If the flow completes but the window doesn't close, ensure the last step of your oauth sends a
+    * If the flow completes but the window doesn't close, ensure the last step of your OAuth sends a
     `postMessage` with the message "success". The origin of this message should be set to the url of 
     the app server. 
 

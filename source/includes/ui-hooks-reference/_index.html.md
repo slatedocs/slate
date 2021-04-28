@@ -1175,7 +1175,7 @@ Get the metadata from the App Server to render a widget.
 
 |Name|Description|
 |---|---|
-|?resource_url<span class="param-type"> string</span><div class="param-required">required</div>|The URL of the URL attachment on the task (i.e. Jira issue, Github pull request)|
+|?resource_url<span class="param-type"> string</span><div class="param-required">required</div>|The URL of the URL attachment on the task (i.e. Jira issue, GitHub pull request)|
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
 |?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|

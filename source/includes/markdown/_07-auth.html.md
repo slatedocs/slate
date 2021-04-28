@@ -5,7 +5,7 @@
 <a id="authentication-basics"></a>
 
 <span class="description">
-Asana supports a few methods of authenticating with the API. Simple cases are usually handled with a Personal Access Token, while multi-user apps utilize oauth.
+Asana supports a few methods of authenticating with the API. Simple cases are usually handled with a Personal Access Token, while multi-user apps utilize OAuth.
 </span>
 
 ```shell
@@ -272,7 +272,7 @@ it [here](https://www.oauth.com/oauth2-servers/pkce/).
 
 Here's what you need to know:
 
-1. Whenever a user wants to oauth with Asana, your app server should generate a random string called the 
+1. Whenever a user wants to OAuth with Asana, your app server should generate a random string called the 
    `code_verifier`. This string should be saved to the user (as every `code_verifier` should be unique per user). This
    should stay on the app server and only be sent to the [Token Exchange Endpoint](/docs/token-exchange-endpoint).
    

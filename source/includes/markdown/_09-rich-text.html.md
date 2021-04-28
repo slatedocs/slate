@@ -60,7 +60,7 @@ for (String userId : userIds) {
 }
 ```
 
-> Javascript
+> JavaScript
 
 ```javascript
 !
