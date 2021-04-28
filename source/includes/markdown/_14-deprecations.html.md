@@ -75,7 +75,7 @@ At this point, your integration has been migrated to the new behavior. At any po
 ## Client library support
 <a name="client-libraries" class="jump-anchor"></a>
 
-The latest version of our [official client libraries](/docs/official-client-libraries) for Python, Java, PHP, and Javascript all support sending custom headers and are able to use our deprecations framework. Consult the individual libraries for how to send headers with each request.
+The latest version of our [official client libraries](/docs/official-client-libraries) for Python, Java, PHP, and JavaScript all support sending custom headers and are able to use our deprecations framework. Consult the individual libraries for how to send headers with each request.
 
 <div>
   <div class="docs-developer-satisfaction-content">

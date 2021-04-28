@@ -126,7 +126,7 @@ components:
       schema:
         type: string
       description: >-
-        The URL of the URL attachment on the task (i.e. Jira issue, Github pull request)
+        The URL of the URL attachment on the task (i.e. Jira issue, GitHub pull request)
     task:
       name: task
       required: true
