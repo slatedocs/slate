@@ -44,6 +44,9 @@ docs_gen:
 serve:
 	bundle exec middleman server
 
+build:
+	bundle exec middleman build
+
 update:
 	cd ../widdershins && git checkout master && git pull
 	cd ../swagger_forks/swagger-parser && git checkout rossgrambo-2.0.17-with-data-wrapper && git pull && mvn clean package && mvn install:install-file -Dfile=modules/swagger-parser-v3/target/swagger-parser-v3-2.0.17.jar -DpomFile=modules/swagger-parser-v3/pom.xml
