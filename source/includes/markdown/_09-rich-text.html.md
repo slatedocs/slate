@@ -30,8 +30,6 @@ The rich text field name for an object is equivalent to it's plain text field na
 <a id="reading"></a>
 ## Reading rich text
 
-***Note:***  *we are actively adding new rich texts formats to various objects in Asana. __This may break existing apps. New apps should be built using parsers and display logic that is forward compatible with the forthcoming rich text formats__. More details and ongoing updates can be found in __[this post in the developer forum](https://forum.asana.com/t/changes-are-coming-to-rich-text-html-notes-and-html-text-in-asana/113434)__.*
-
 > Python
 
 ```python
@@ -63,7 +61,6 @@ for (String userId : userIds) {
 > JavaScript
 
 ```javascript
-!
 var htmlText = '<body>...</body>'
 var parser = new DOMParser()
 var doc = parser.parseFromString(htmlText, "text/html")
@@ -76,7 +73,9 @@ while (node) {
 }
 ```
 
-Rich text in the API is formatted as an HTML fragment, which is wrapped in a root `<body>` tag. Rich text is guaranteed to be valid XML; there will always be a root element, all tags will be closed, balanced, and case-sensitive, and all attribute values will be quoted. The following is a list of all the tags that are currently returned by the API:
+Rich text in the API is formatted as an HTML fragment, which is wrapped in a root `<body>` tag. Rich text is guaranteed 
+to be valid XML; there will always be a root element, all tags will be closed, balanced, and case-sensitive, and all 
+attribute values will be quoted. The following is a list of all the tags that are currently returned by the API:
 
 | Tag        | Meaning in Asana   |
 |------------|--------------------|
@@ -125,6 +124,76 @@ Here's an example of what a complete rich comment might look like in the API:
 <body>All these new tasks are <em>really</em> getting disorganized, so <a href="https://app.asana.com/0/4168466/list" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="user" data-asana-gid="4168112">Tim Bizzaro</a> just made the new <a href="https://app.asana.com/0/5732985/list" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="project" data-asana-gid="5732985">Work Requests</a> project to help keep them organized. <strong>Everyone</strong> should start using the <a href="https://app.asana.com/0/5732985/6489418" data-asana-accessible="true" data-asana-dynamic="true" data-asana-type="task" data-asana-gid="6489418" data-asana-project="5732985">Request template</a> when adding new tasks there.</body>
 `
 
+## Reading defensively
+
+> Custom handling external media `<object>`
+
+```javascript
+!
+const richText = '<body><object style="display:block" type="application/vnd.asana.external_media" data="https://www.youtube.com/embed/VqnMA3K6-e0"><a href="https://www.youtube.com/embed/VqnMA3K6-e0">https://www.youtube.com/embed/VqnMA3K6-e0</a></object></body>'
+const parser = new DOMParser();
+const richTextDocument = parser.parseFromString(richText, "text/html");
+
+const objects = richTextDocument.querySelectorAll("object");
+
+for (let i = 0; i < objects.length; i++) {
+    replacement = null;
+
+    switch(objects[i].type) {
+        case "application/vnd.asana.external_media":
+            replacement = richTextDocument.createElement('iframe');
+            replacement.width = 420;
+            replacement.height = 315;
+            replacement.src = objects[i].data;
+            break;
+        default:
+            replacement = richTextDocument.createElement('div');
+            replacement.innerHtml = objects[i].innerHTML;
+    }
+
+    if (replacement) {
+        objects[i].parentElement.replaceChild(replacement, objects[i]);
+    }
+}
+
+richTextDocument.body.childNodes.forEach (child => {
+    document.body.append(child);
+});
+```
+
+**We are actively adding new rich text formats to various objects in Asana**. An existing app will break if not built 
+defensively. Apps should use parsers and display logic that is forward compatible with unknown future rich text formats. 
+
+To do this, Asana provides two mechanisms to parse and display tags that the app doesn't explicitly support.
+
+ * Defaults that render in a webview
+ * Guidelines for how to handle new tags
+
+You can read more about rich text changes in 
+[this forum post](https://forum.asana.com/t/new-rich-text-tags-in-html-notes-and-html-text/115442).
+
+### Render rich text in a WebView
+
+You can expect the rich text HTML to render reasonably in a webview if you apply the following css style to the 
+wrapping DOM node: `overflow-wrap: break-word; white-space: pre-wrap;`. This won't look exactly like it does in Asana, 
+but it will ensure users read it in the same way.
+
+### How to handle new tags (no WebView)
+
+#### An `<object>` with an unhandled type
+Render the `<object>` tag as a block and render the contained HTML with the same behavior as if it were not inside an 
+`<object>`. We will never send an `<object>` tag nested inside another `<object>` tag.
+
+#### An `<img>`
+[Fall back](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) to the alt text if the image can’t 
+be displayed. Render `\n<alt text>\n` since `<img>` are blocks
+
+#### Empty elements except `<img>`
+It is ok to omit them. Render as a new line if the tag is a block.
+
+#### Other semantic non-terminal tags
+Ignore the tag and render whatever is inside. Follow the html convention 2 for whether it is a block or not.
+
 <a name="writing"></a>
 ## Writing rich text
 
@@ -136,10 +205,29 @@ To keep the contents of your tag and make a custom vanity link, include the prop
 
 If you do not have access to the referenced object when you try to create a link, the API will not generate an `href` for you, but will instead look for an `href` you provide. This allows you to write back `<a>` tags unmodified even if you do not have access to the resource. If you do not have access to the referenced object and no `href` is provided, your request will be rejected with a `400 Bad Request` error. Similarly, if you provide neither a GID nor a valid `href`, the request will be rejected with the same error.
 
+## Writing defensively
+
+### When processing rich text and sending it back
+
+It’s ok to ignore tags or attributes on tags that are unknown for rendering/processing. It’s very important to send 
+everything back (attributes and inner content) to avoid data loss. `<object>` is an exception where it’s ok to not send 
+any inner content back (all inner content in `<object>` will be ignored).
+
+### If you plan to write an editor
+
+If the tag and attributes are known, but it contains unknown attributes, it must be treated as unknown.
+
+If a tag is unknown, first determine if the tag is block or inline and render it as a block or inline atomic and 
+non-copiable (and non-cut&paste-able) editor node (all inner content is non-editable). This is because we don’t know if 
+the unknown node has constraints on inner content or where it can appear. The node must also keep track of all 
+attributes and inner content to be serialized back.
+
+
 <div>
   <div class="docs-developer-satisfaction-content">
       <h4>Was this section helpful? <a class="positiveFeedback-DevSatisfaction" style="cursor:pointer;">Yes </a><a class="negativeFeedback-DevSatisfaction" style="cursor:pointer;">No</a></h4>
   </div>
 </div>
+
 
 </section>
