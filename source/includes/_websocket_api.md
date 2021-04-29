@@ -471,6 +471,8 @@ Channel provides updates for margin blocked for different assets, these updates 
 ## Positions
 Channel provides updates for change in position. Need to pass list of product symbols while subscribing. these updates are provided only on change of position.
 
+A snapshot of current open position will be sent after subscribing a symbol, incremental updates will be sent on trade executions.
+
 ```
 // Position update
 {
@@ -485,6 +487,33 @@ Channel provides updates for change in position. Need to pass list of product sy
     "liquidation_price": "3356.0",      // Liquidation trigger price
     "bankruptcy_price": "3300.0",       // Bankruptcy Price
     "commission": "0.00001212"          // Commissions blocked for closing the position
+}
+
+//Snapshot 
+{
+   "result":[
+      {
+         "adl_level":"4.3335",
+         "auto_topup":false,
+         "bankruptcy_price":"261.82",
+         "commission":"17.6571408",
+         "created_at":"2021-04-29T07:25:59Z",
+         "entry_price":"238.023457888493475682",
+         "liquidation_price":"260.63",
+         "margin":"4012.99",
+         "product_id":357,
+         "product_symbol":"ZECUSDT",
+         "realized_funding":"-3.08",
+         "realized_pnl":"6364.57",
+         "size":-1686,
+         "updated_at":"2021-04-29T10:00:05Z",
+         "user_id":1,
+         "symbol":"ZECUSDT"
+      }
+   ],
+   "success":true,
+   "type":"positions",
+   "action":"snapshot"
 }
 ```
 
