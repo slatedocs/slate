@@ -193,7 +193,7 @@ be displayed. Render `\n<alt text>\n` since `<img>` are blocks
 It is ok to omit them. Render as a new line if the tag is a block.
 
 #### Other semantic non-terminal tags
-Ignore the tag and render whatever is inside. Follow the html convention 2 for whether it is a block or not.
+Ignore the tag and render whatever is inside. Follow the html convention for whether it is a block or not.
 
 <a name="writing"></a>
 ## Writing rich text
