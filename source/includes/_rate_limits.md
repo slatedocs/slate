@@ -6,7 +6,7 @@ after which next API request can be hit.
 
 We throttle unauthenticated api requests by IP and authenticated requests by user ID. 
 
-Default Quota is 5000 for a fixed 5 minute window.
+Default Quota is 10000 for a fixed 5 minute window.
 
 ### REST API Cost Structure
 Every rest endpoint has been assigned a cost (weight). When you make an api call, the cost incurred is deducted from your 5 min quota. So, Apis related to reading public data are cheaper whereas Apis related to writing private data (like placing an order) are the costliest. 
