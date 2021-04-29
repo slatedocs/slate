@@ -165,9 +165,9 @@ richTextDocument.body.childNodes.forEach (child => {
 **We are actively adding new rich text formats to various objects in Asana**. An existing app will break if not built 
 defensively. Apps should use parsers and display logic that is forward compatible with unknown future rich text formats. 
 
-To do this, Asana provides two mechanisms to parse and display tags that the app doesn't explicitly support.
+To do this, Asana provides two mechanisms to parse and display tags that the app doesn't explicitly support:
 
- * Defaults that render in a webview
+ * Defaults that render in a WebView
  * Guidelines for how to handle new tags
 
 You can read more about rich text changes in 
@@ -175,7 +175,7 @@ You can read more about rich text changes in
 
 ### Render rich text in a WebView
 
-You can expect the rich text HTML to render reasonably in a webview if you apply the following css style to the 
+You can expect the rich text HTML to render reasonably in a WebView if you apply the following CSS style to the 
 wrapping DOM node: `overflow-wrap: break-word; white-space: pre-wrap;`. This won't look exactly like it does in Asana, 
 but it will ensure users read it in the same way.
 
@@ -193,7 +193,7 @@ be displayed. Render `\n<alt text>\n` since `<img>` are blocks
 It is ok to omit them. Render as a new line if the tag is a block.
 
 #### Other semantic non-terminal tags
-Ignore the tag and render whatever is inside. Follow the html convention for whether it is a block or not.
+Ignore the tag and render whatever is inside. Follow the HTML convention for whether it is a block or not.
 
 <a name="writing"></a>
 ## Writing rich text
