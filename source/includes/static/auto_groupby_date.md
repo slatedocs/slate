@@ -1,5 +1,5 @@
 | Rango de fechas | `group_by` resultante |
 | --------------- | --------------------- |
-| Hasta 90 días   | `day`                 |
-| Más de 90 días  | `week`                |
-| Más de un año   | `month`               |
+| Hasta 3 meses   | `day`                 |
+| Hasta 6 meses   | `week`                |
+| Más de 6 meses  | `month`               |
