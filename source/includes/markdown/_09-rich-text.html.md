@@ -186,11 +186,12 @@ Render the `<object>` tag as a block and render the contained HTML with the same
 `<object>`. We will never send an `<object>` tag nested inside another `<object>` tag.
 
 #### An `<img>`
-[Fall back](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) to the alt text if the image can’t 
-be displayed. Render `\n<alt text>\n` since `<img>` are blocks
+[Fall back](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) to either the alt text or the src 
+link if the image can’t be displayed. Wrap the text with newlines like `\n<alt text>\n` since `<img>` tags are blocks.
 
 #### Empty elements except `<img>`
-It is ok to omit them. Render as a new line if the tag is a block.
+Empty tags are described [here](https://developer.mozilla.org/en-US/docs/Glossary/Empty_element). It is ok to omit them. 
+Render as a new line if the tag is a block.
 
 #### Other semantic non-terminal tags
 Ignore the tag and render whatever is inside. Follow the HTML convention for whether it is a block or not.
