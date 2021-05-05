@@ -40,7 +40,7 @@ curl -v https://link.datil.co/retentions/issue \
   "items":[
     {
       "base_imponible": 4226.4,
-      "codigo": 1,
+      "codigo": "1",
       "codigo_porcentaje": "312",
       "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
       "numero_documento_sustento": "011-007-000000251",
@@ -88,7 +88,7 @@ retencion = {
   "items":[
     {
       "base_imponible": 4226.4,
-      "codigo": 1,
+      "codigo": "1",
       "codigo_porcentaje": "312",
       "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
       "numero_documento_sustento": "011-007-000000251",
@@ -255,7 +255,7 @@ Remember — a happy kitten is an authenticated kitten!
   "items":[
     {
       "base_imponible": 4226.4,
-      "codigo": 1,
+      "codigo": "1",
       "codigo_porcentaje": "312",
       "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
       "numero_documento_sustento": "011-007-000000251",
@@ -532,7 +532,7 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la retención que necesitas c
     "items":[
       {
         "base_imponible": 4226.4,
-        "codigo": 1,
+        "codigo": "1",
         "codigo_porcentaje": "312",
         "fecha_emision_documento_sustento": "2015-12-04T00:00:00-05:19",
         "numero_documento_sustento": "011007000000251",

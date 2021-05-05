@@ -674,7 +674,7 @@ Reemplaza en la ruta `<receipt-id>` por el `id` de la guía de remisión que nec
         "propina": "0.00",
         "impuestos": [
             {
-                "codigo": 2,
+                "codigo": "2",
                 "codigo_porcentaje": "2",
                 "base_imponible": "150.00",
                 "valor": "18.00"
