@@ -100,15 +100,6 @@ Used to pass meta information about a Chatter. This can be useful for tracking i
 
 External web links now open by default in-app via the SFSafariViewController. To open external links in the Safari browser, pass `openWebLinksInSafari: true` to `AdaWebHost`.
 
-#### styles
-`styles: String = ""`
-
-The styles option can be used to override default styles inside of Web Chat. The value of the string should be the CSS rule-set you wish to apply inside the Web Chat iFrame. Note that the `ui_customization` feature flag is required to use this feature, and may not be available in all packages.
-
-<aside class="warning">
-Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
-</aside>
-
 #### zdChatterAuthCallback
 `zdChatterAuthCallback: ((((_ token: String) -> Void)) -> Void)? = nil`
 
