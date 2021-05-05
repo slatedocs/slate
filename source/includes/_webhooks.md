@@ -15,7 +15,8 @@ Webhooks allow you to be notified of events that happen on your Affinity instanc
     "person.created",
     "organization.created",
     "opportunity.created"
-  ]
+  ],
+  "disabled": false
 }
 ```
 
@@ -26,6 +27,7 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 | id            | integer  | The unique identifier of the webhook subscription object.                                                                                                                                                             |
 | webhook_url   | string   | The URL to which the webhooks are sent to.                                                                                                                                                                            |
 | subscriptions | string[] | An array of webhook events that are enabled for that endpoint. An empty array indicates subscription to all webhook events. See [below](#supported-webhook-events) for the complete list of supported webhook events. |
+| disabled      | boolean  | If the subscription is disabled, this is true. Otherwise, this is false by default. A subscription may be disabled manually via API or automatically if we are not able to process it.|
 
 ## Supported Webhook Events
 
@@ -63,12 +65,14 @@ curl "https://api.affinity.co/webhook" -u :<API-KEY>
       "person.created",
       "organization.created",
       "opportunity.created"
-    ]
+    ],
+    "disabled": false
   },
   {
     "id": 2345,
     "webhook_url": "https://hooks.example.com/webhook-all",
-    "subscriptions": []
+    "subscriptions": [],
+    "disabled": true
   }
 ]
 ```
@@ -96,7 +100,8 @@ curl "https://api.affinity.co/webhook/1234" -u :<API-KEY>
     "person.created",
     "organization.created",
     "opportunity.created"
-  ]
+  ],
+  "disabled": false
 }
 ```
 
@@ -130,7 +135,8 @@ curl "https://api.affinity.co/webhook/subscribe" \
 {
   "id": 1234,
   "webhook_url": "https://hooks.example.com/webhook",
-  "subscriptions": []
+  "subscriptions": [],
+  "disabled": false
 }
 ```
 
@@ -152,6 +158,45 @@ There is currently a limit of 3 webhook subscriptions.
 ### Returns
 
 The webhook subscription object that was just created from this successful request.
+
+## Update a webhook subscription
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/webhook/1234" \
+  -u :<API-KEY> \
+  -d webhook_url="https://hooks.example.com/webhook" \
+  -d disabled=true \
+  -X "PUT"
+```
+
+> Example Response
+
+```json
+{
+  "id": 1234,
+  "webhook_url": "https://hooks.example.com/webhook",
+  "subscriptions": [],
+  "disabled": true
+}
+```
+
+`PUT /webhook/{webhook_subscription_id}`
+
+Update webhook subscription with the supplied parameters. If the endpoint returns an invalid response, the webhook update will fail.
+
+### Payload Parameters
+
+| Parameter     | Type     | Required | Description                                                                                                                                                                                                                                          |
+| ------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| webhook_url   | string   | false     | The URL to which the webhooks will be sent to.                                                                                                                                                                                                       |
+| subscriptions | string[] | false    | An array of webhook events that will be enabled for that endpoint. Leave out this parameter or pass an empty array to subscribe to all webhook events. You can find the complete list of supported webhook events [here](#supported-webhook-events). |
+| disabled      | boolean  | false    | Change the status of a subscription. To enable a subscription, provide the value as `false`. Otherwise, provide the value as `true.` |
+
+### Returns
+
+The webhook subscription object that was just updated from this successful request.
 
 ## Delete a specific webhook subscription
 
