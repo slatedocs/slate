@@ -99,15 +99,6 @@ metaFields={{
 
 Used to pass meta information about a `chatter`. This can be useful for tracking information about your end users, as well as for personalizing their experience. For example, you may wish to track the phone_number and name for conversation attribution. Once set, this information can be accessed in the email attachment from Handoff Form submissions, or via the Chatter modal in the Conversations page of your Ada dashboard. Should you need to programatically change these values after bot setup, you can make use of the [setMetaFields](#setmetafields_-fields-string-any) method below.
 
-#### styles
-`styles?: string;`
-
-The styles option can be used to override default styles inside of Web Chat. The value of the string should be the CSS rule-set you wish to apply inside the Web Chat iFrame. Note that the `ui_customization` feature flag is required to use this feature, and may not be available in all packages.
-
-<aside class="warning">
-Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
-</aside>
-
 #### thirdPartyCookiesEnabled (Android)
 `thirdPartyCookiesEnabled?: boolean;`
 

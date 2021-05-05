@@ -153,7 +153,7 @@ Embed1 Feature | Status | Comments
 `dragAndDrop` | Deprecated |
 `mobileOverlay` | Deprecated |
 `private` | Modified | Renamed to `privateMode`.
-`styles` | Same API | Now requires a feature flag to use.
+`styles` | Deprecated |
 
 Additionally, all actions have been modified to return Promises.
 
@@ -225,15 +225,6 @@ The Embed2 entry and client scripts must all use the same version. If you requir
 `domain?: string;`
 
 Can be used to change the subdomain. Unless directed by an Ada team member, you will not need to change this value.
-
-#### embedStyles
-`embedStyles?: string;`
-
-The embedStyles option can be used to override default styles inside Embed2 elements. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature, and may not be available in all packages.
-
-<aside class="warning">
-Setting custom styles based on Embed2 elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
-</aside>
 
 #### greeting
 `greeting?: string;`
@@ -319,15 +310,6 @@ If set to `true`, this will put Web Chat into "Private" mode. This will cause We
 `rolloutOverride?: number;`
 
 Can be used to override the rollout value set in the dashboard. This can be useful if you need page-specific rollout values. Accepts any number between `0` and `1`.
-
-#### styles
-`styles?: string;`
-
-The styles option can be used to override default styles inside the Web Chat iFrame. The value of the string should be the CSS rule-set you wish to apply inside the iFrame. Note that the `ui_customization` feature flag is required to use this feature, and may not be available in all packages.
-
-<aside class="warning">
-Setting custom styles based on Chat elements is inherently brittle, and can cause your styles to break over time. We do not recommend use of custom styles unless absolutely necessary. If custom styles are used, you should only rely on direct element IDs.
-</aside>
 
 #### testMode
 `testMode?: boolean;`
@@ -503,13 +485,9 @@ Ada now has native support for both iOS and Android apps! Find out more about iO
 
 Ada supports multiple options for button configuration through the dashboard. Without any code, you can customize attributes such as the button colour, size, and icon.
 
-Further customization can be made through the `embedStyles` setting above. CSS selectors can be brittle, and your style customizations may need to be updated from time to time. If this functionality is required, the `ui_customization` feature flag must first be turned on by an Ada ACX team member.
-
 #### How do I customize the look and feel of the Chat window?
 
 Basic branding, including colours and icons, can be configured through the Ada dashboard.
-
-Additional customization of the chat window is available through the `styles` setting, as long as you have the `ui_customization` feature flag enabled. As with `embedStyled` we do not recommend using this feature unless crucial.
 
 #### Ada Embed is rendered as soon as the page loads. How can I delay rendering?
 
