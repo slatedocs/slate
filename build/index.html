@@ -1947,7 +1947,7 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>true</td>
 <td>string</td>
 <td></td>
-<td>Id <code>UUID</code> of one of business address. Get in api <a href="#get-a-specific-business">GET /businesses/<ID></a></td>
+<td>Id <code>UUID</code> of one of business address. Get in api <a href="#get-a-specific-business">GET /businesses/<ID></a> (NOTE: if you don&#39;t want to create one, you have to use alternative data fields, detail is listed in <strong>Extra Fields</strong> part below)</td>
 </tr>
 <tr>
 <td>pickup_note</td>
@@ -1982,28 +1982,28 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>true</td>
 <td>string</td>
 <td></td>
-<td>Address of receiver</td>
+<td>Address of receiver (NOTE: you can use alternative field describe in &#39;alternative for address fields&#39; part below )</td>
 </tr>
 <tr>
 <td>receiver_province_id</td>
 <td>true</td>
 <td>string</td>
 <td></td>
-<td>Id of receiver&#39;s province. Get in api <a href="#get-provinces">GET /geo/provinces</a></td>
+<td>Id of receiver&#39;s province. Get in api <a href="#get-provinces">GET /geo/provinces</a> (NOTE: you can use alternative field describe in <strong>alternative for address fields</strong> part below )</td>
 </tr>
 <tr>
 <td>receiver_district_id</td>
 <td>true</td>
 <td>string</td>
 <td></td>
-<td>Id of receiver&#39;s district. Get in api <a href="#get-districts">GET /geo/districts</a></td>
+<td>Id of receiver&#39;s district. Get in api <a href="#get-districts">GET /geo/districts</a> (NOTE: you can use alternative field describe in <strong>alternative for address fields</strong> part below )</td>
 </tr>
 <tr>
 <td>receiver_commune_id</td>
 <td>false</td>
 <td>string</td>
 <td></td>
-<td>Id of receiver&#39;s commune. Get in api <a href="#get-communes">GET /geo/communes</a></td>
+<td>Id of receiver&#39;s commune. Get in api <a href="#get-communes">GET /geo/communes</a> (NOTE: you can use alternative field describe in <strong>alternative for address fields</strong> part below )</td>
 </tr>
 <tr>
 <td>is_split_pkg</td>
@@ -2115,6 +2115,88 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>integer</td>
 <td></td>
 <td>Quantity of item or product</td>
+</tr>
+</tbody></table>
+<h3 id='extra-fields'>Extra Fields</h3><h3 id='alternative-for-business_address_id'>alternative for business_address_id:</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sender_name</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>name of the sender (shop) who creates tracking</td>
+</tr>
+<tr>
+<td>sender_phone_number</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>phone number of sender Ex: 0332456789</td>
+</tr>
+<tr>
+<td>sender_address</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>address of sender (NOTE: you can use alternative field describe in <strong>alternative for address fields</strong> part below )</td>
+</tr>
+<tr>
+<td>sender_province_id</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>Id of sender&#39;s province. Get in api <a href="#get-provinces">GET /geo/provinces</a> (NOTE: you can use alternative field describe in <strong>alternative for address fields</strong> part below )</td>
+</tr>
+<tr>
+<td>sender_district_id</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>Id of sender&#39;s district. Get in api <a href="#get-districts">GET /geo/districts</a> (NOTE: you can use alternative field describe in <strong>alternative for address fields</strong> part below )</td>
+</tr>
+<tr>
+<td>sender_commune_id</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>Id of receiver&#39;s commune. Get in api <a href="#get-communes">GET /geo/communes</a> (NOTE: you can use alternative field describe in <strong>alternative for address fields</strong> part below )</td>
+</tr>
+</tbody></table>
+<h3 id='alternative-for-address-fields'>alternative for address fields:</h3><h4 id='for-convenience-you-don-39-t-need-to-send-all-the-fields-related-to-address-ex-receiver_province_id-receiver_district_id-receiver_commune_id-instead-you-just-send-all-data-with-only-one-field-like-this'>For convenience, you don&#39;t need to send all the fields related to address (Ex:<code>receiver_province_id, receiver_district_id, receiver_commune_id, ...</code>), instead you just send all data with only one field like this:</h4>
+<p><code>
+{ receiver_full_address: &#39;số 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội&#39; }
+</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>receiver_full_address</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>text describe address of receiver</td>
+</tr>
+<tr>
+<td>sender_full_address</td>
+<td>false</td>
+<td>string</td>
+<td></td>
+<td>text describe address of sender</td>
 </tr>
 </tbody></table>
 <h2 id='calculate-shipping-cost'>Calculate shipping cost</h2><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/snappy/trackings/cal_shipping_cost</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
