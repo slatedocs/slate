@@ -1412,15 +1412,15 @@ Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
-business_address_id | true | string | | Id `UUID` of one of business address. Get in api [GET /businesses/<ID>](#get-a-specific-business)
+business_address_id | true | string | | Id `UUID` of one of business address. Get in api [GET /businesses/<ID>](#get-a-specific-business) (NOTE: if you don't want to create one, you have to use alternative data fields, detail is listed in **Extra Fields** part below)
 pickup_note | false | string | | Pickup note of shop
 delivery_note | false | string | | Delivery note of shop
 receiver_name | true | string | | Name of receiver
 receiver_phone_number | true | string | | Phone number of receiver
-receiver_address | true | string | | Address of receiver
-receiver_province_id | true | string | | Id of receiver's province. Get in api [GET /geo/provinces](#get-provinces)
-receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts)
-receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
+receiver_address | true | string | | Address of receiver (NOTE: you can use alternative field describe in 'alternative for address fields' part below )
+receiver_province_id | true | string | | Id of receiver's province. Get in api [GET /geo/provinces](#get-provinces) (NOTE: you can use alternative field describe in **alternative for address fields** part below )
+receiver_district_id | true | string | | Id of receiver's district. Get in api [GET /geo/districts](#get-districts) (NOTE: you can use alternative field describe in **alternative for address fields** part below )
+receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes) (NOTE: you can use alternative field describe in **alternative for address fields** part below )
 is_split_pkg | false | boolean | false | If `true` use split package feature
 items | true | array | | List of items in tracking package
 service_name | false | string | | Name of service one of `express` or `standard`. Get in api [GET /snappy/trackings/cal_shipping_cost](#calculate-shipping-cost)
@@ -1441,6 +1441,30 @@ name | true | string | | Name of item or product
 weight | true | integer | | Weight of item or product
 quantity | true | integer | | Quantity of item or product
 
+### Extra Fields
+
+### alternative for business_address_id:
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+sender_name | false | string | | name of the sender (shop) who creates tracking
+sender_phone_number | false | string | | phone number of sender Ex: 0332456789
+sender_address | false | string | | address of sender (NOTE: you can use alternative field describe in **alternative for address fields** part below )
+sender_province_id | false | string | | Id of sender's province. Get in api [GET /geo/provinces](#get-provinces) (NOTE: you can use alternative field describe in **alternative for address fields** part below )
+sender_district_id | false | string | | Id of sender's district. Get in api [GET /geo/districts](#get-districts) (NOTE: you can use alternative field describe in **alternative for address fields** part below )
+sender_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes) (NOTE: you can use alternative field describe in **alternative for address fields** part below )
+
+### alternative for address fields:
+#### For convenience, you don't need to send all the fields related to address (Ex:`receiver_province_id, receiver_district_id, receiver_commune_id, ...`), instead you just send all data with only one field like this:
+`
+{ receiver_full_address: 'số 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội' }
+`
+
+####
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+receiver_full_address | false | string | | text describe address of receiver
+sender_full_address | false | string | | text describe address of sender
 ## Calculate shipping cost
 
 ```http
