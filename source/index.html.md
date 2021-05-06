@@ -1457,7 +1457,7 @@ sender_commune_id | false | string | | Id of receiver's commune. Get in api [GET
 ### alternative for address fields:
 #### For convenience, you don't need to send all the fields related to address (Ex:`receiver_province_id, receiver_district_id, receiver_commune_id, ...`), instead you just send all data with only one field like this:
 `
-{ receiver_full_address: 'Nguyên Van A - số 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội' }
+{ receiver_full_address: 'số 58 tố hữu - Phường Trung Văn, Quận Nam Từ Liêm, Hà Nội' }
 `
 
 ####
