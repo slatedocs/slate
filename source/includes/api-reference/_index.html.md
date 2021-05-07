@@ -18996,6 +18996,8 @@ response to your attempt to create it. This means you need to be able to
 receive and complete the webhook *while* the POST request is in-flight
 (in other words, have a server that can handle requests asynchronously).
 
+Invalid hostnames like localhost will recieve a 403 Forbidden status code.
+
 ```
 # Request
 curl -H "Authorization: Bearer <personal_access_token>" \
