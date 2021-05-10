@@ -34,6 +34,8 @@ includes:
   - administration/custom_fields
   - administration/quotas
   - administration/activity_log
+  - administration/billing
+  - administration/billing_providers
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
