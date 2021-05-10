@@ -1,6 +1,6 @@
 ### Billing providers
 
-The billing providers are the different configuration to configure and charge organizations.
+The billing providers are the different payment processing tools that can be used to charge organizations.
 
 <!-------------------- LIST BILLING PROVIDERS -------------------->
 #### List billing providers
@@ -41,7 +41,7 @@ curl "https://cloudmc_endpoint/rest/billing_providers" \
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the billing provider.
-`organization.id`<br/>*UUID* | UUID of the organisation to which belongs the billing provider. This can only be a organization which is root or reseller.
+`organization.id`<br/>*UUID* | UUID of the organization to which belongs the billing provider. This can only be a organization which is root or reseller.
 `name`<br/>*Object* | The name object of the billing provider.
 `type`<br/>*string* | The type of billing provider. Possible values are: `CREDIT_CARD`.
 `providerType`<br/>*string* | The provider for the associated type.
@@ -88,7 +88,7 @@ curl "https://cloudmc_endpoint/rest/billing_providers/f26e66a4-755c-4867-b565-ad
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the billing provider.
-`organization.id`<br/>*UUID* | UUID of the organisation to which belongs the billing provider. This can only be a organization which is root or reseller.
+`organization.id`<br/>*UUID* | UUID of the organization to which belongs the billing provider. This can only be a organization which is root or reseller.
 `name`<br/>*Object* | The name object of the billing provider.
 `type`<br/>*string* | The type of billing provider. Possible values are: `CREDIT_CARD`.
 `providerType`<br/>*string* | The provider for the associated type.
