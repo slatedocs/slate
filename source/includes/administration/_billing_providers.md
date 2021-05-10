@@ -105,3 +105,18 @@ Here are the attributes for the `CREDIT_CARD` providers.
 Provider | Attributes | &nbsp;
 ---- | ---- | -----------
 all | `creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field.
+
+<!-------------------- DELETE BILLING PROVIDER -------------------->
+### Delete a billing provider
+
+`DELETE /billing_providers/:id`
+
+
+```shell
+curl --request DELETE \
+  --url https://cloudmc_endpoint/rest/billing_providers/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
+  --header "Content-Type: application/json" \
+  --header "Mc-Api-Key: your_api_key" 
+```
+
+Delete a billing provider.
