@@ -34,6 +34,7 @@ recipient_town | READ ONLY, *
 recipient_zip_code | READ ONLY, *
 recipient_country_code | READ ONLY, *
 tags | Format: a list of strings separated by comma
+notes | Format: a string
 download_pdf_url | Url to download the pdf document for the ticket. Present only in income tickets. Needs the same authorization header.
 
 \* This fields will be populated and updated each time an invoice is saved from the information of the Quipu account owner and the contact associatied with the book entry.
