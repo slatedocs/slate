@@ -107,7 +107,7 @@ Provider | Attributes | &nbsp;
 all | `creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field.
 
 <!-------------------- DELETE BILLING PROVIDER -------------------->
-### Delete a billing provider
+#### Delete a billing provider
 
 `DELETE /billing_providers/:id`
 
