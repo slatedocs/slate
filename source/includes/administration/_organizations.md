@@ -26,6 +26,7 @@ curl "https://cloudmc_endpoint/api/v1/organizations" \
          "billableStartDate": "2017-08-15T12:00:00.000Z",
          "billingDay": 5,
          "isBillable": true,
+         "billingMode": "CREDIT_CARD",
          "isReseller": false,
          "tags": ["a-tag"],
          "parent": {
@@ -67,6 +68,7 @@ Attributes | &nbsp;
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
 `billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
+`billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 `tags`<br/>*Array[string]* | Tags associated to the organization.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
@@ -104,6 +106,7 @@ curl "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afdd
       "billableStartDate": "2017-08-15T12:00:00.000Z",
       "billingDay": 5,
       "isBillable": true,
+      "billingMode": "CREDIT_CARD",
       "isReseller": false,
       "tags": ["a-tag"],
       "parent": {
@@ -144,6 +147,7 @@ Attributes | &nbsp;
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
 `billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
+`billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 `tags`<br/>*Array[string]* | Tags associated to the organization.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
@@ -200,6 +204,7 @@ Optional | &nbsp;
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
 `billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
+`billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 
 The responses' `data` field contains the created [organization](#administration-organizations) with its `id`.
 
@@ -243,6 +248,7 @@ Optional | &nbsp;
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | An object describing a verified domain. Must have the `Organization: Manage reseller features` permission. <br/>*required* : `id`
 `billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
+`billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 
 The responses' `data` field contains the updated [organization](#administration-organizations).</br>
 **NB :** At this time the API only enables adding access to Service connections but not revoking it. A Service connection can be assigned to an organization only if: 
