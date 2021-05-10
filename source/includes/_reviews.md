@@ -474,11 +474,25 @@ start-page | See [paging](#paging) table below for details.
 
 We support up to 500 reviews per request to a given directory. If you need to retrieve more than 500 reviews you can use the start-page parameter and submit multiple requests to pick up older reviews. For example with Google to fetch 1000 reviews you'd need to make two requests:
 
-1. Without start-page (or with start-page=1) to fetch reviews 1 - 500.
-2. With start-page=51 (Google returns 10 reviews per page) to fetch reviews 501 - 1000.
+1. Without start-page (or with start-page=1) to fetch reviews 1 - 500. In response, you will receive reviews and the 'next-start-page' parameter. It can be integer page number or string token. Use it on your next request.
+2. With start-page='Token from previous request' to fetch reviews next reviews.
 
 ### Supported Directories
 
-Directory | Number Reviews Per Page
+Directory | Number Reviews Per Page or Token
 --------- | -----------------------
-Google    | 10
+google    | token
+trustpilot| 20
+dentist1800| 20
+expedia| 500
+facebook|token
+grubhub| 35
+healthgrades|
+insiderpages| 50
+opentable| 40
+realself| 10
+selfstorage| 3
+tripadvisor| 5 or 10
+yellowpages| 20
+
+
