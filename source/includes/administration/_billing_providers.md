@@ -100,8 +100,8 @@ Attributes | &nbsp;
 <!-------------------- PROVIDER TYPE ATTRIBUTES -------------------->
 #### Provider type configuration attribute
 
-Here are the attributes for the `CREDIT_CARD` providers
+Here are the attributes for the `CREDIT_CARD` providers.
 
 Provider | Attributes | &nbsp;
 ---- | ---- | -----------
-all | `creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field
+all | `creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field.
