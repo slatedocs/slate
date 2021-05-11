@@ -15,6 +15,7 @@ includes:
   - events
   - fields
   - attendee_type
+  - pricing_tier
 
 search: true
 ---

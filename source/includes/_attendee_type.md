@@ -68,7 +68,7 @@ HTTP/1.1 422 Unprocessable Entity
 }
 ```
 
-This endpoint update a event and return it
+This endpoint update an attendee type and return it
 
 ### HTTP Request
 
@@ -119,7 +119,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint destroy a event and return it
+This endpoint destroy an attendee type and return it
 
 ### HTTP Request
 
