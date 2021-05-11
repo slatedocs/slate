@@ -14,6 +14,7 @@ includes:
   - users
   - events
   - fields
+  - attendee_type
 
 search: true
 ---
