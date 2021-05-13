@@ -276,6 +276,20 @@ Meta field keys should not include whitespace, emojis, special characters or per
 
 When `true`, this will prevent the bot from loading until the `adaEmbed.start(...)` method is called.
 
+#### onAdaEmbedLoad
+
+```js
+window.adaSettings = {
+  onAdaEmbedLoad: () => {
+    window.adaEmbed.subscribeEvent("ada:campaigns:message_received", (data) => {
+      console.log("Message received from campaign with key:", data.campaignKey);
+    });
+  }
+};
+```
+
+Called when the embed script has been loaded, and before it is initialized. This is useful for subscribing to events (see `subscribeEvent`) - subscribing here ensures subscriptions are in place before events are triggered.
+
 #### parentElement
 
 ```html
@@ -432,6 +446,64 @@ Used to initialize Embed2 on your page. This action is triggered by default inte
 `stop(): Promise<void>;`
 
 Removes Embed2 from your page.
+
+### subscribeEvent
+`subscribeEvent(eventKey: string, callback: (data: object, context: object) => void): Promise<number>`
+
+```js
+window.adaEmbed.subscribeEvent("ada:campaigns:message_received", (data) => {
+  console.log("Message received from campaign with key:", data.campaignKey);
+});
+```
+
+```js
+window.adaEmbed.subscribeEvent("ada:campaigns", (data, context) => {
+  const { eventKey } = context;
+
+  if (eventKey === "ada:campaigns:message_received") {
+    console.log("Message received from campaign with key:" data.campaignKey);
+  }
+
+  if (eventKey === "ada:campaigns:opened") {
+    console.log("Chat opened after being shown campaign with key:" data.campaignKey);
+  }
+
+  if (eventKey === "ada:campaigns:message_received") {
+    console.log("Message received from campaign with key:" data.campaignKey);
+  }
+});
+```
+
+When certain events happen in Ada, events will be triggered. Each event consists of an event key and a data payload. Using `subscribeEvent`, you can define callbacks that get called when a specific event is triggered.
+
+Callbacks will be triggered whenever an event _starts with_ the `eventKey` provided to `subscribeEvent`. This allows subscribing to all events of a certain category - for example, the callback in a subscription to `ada:campaigns` will be called on `ada:campaigns:message_received`, `ada:campaigns:opened`, and any other events beginning with `ada:campaigns`.
+
+Two arguments will be provided to each callback when it is called: `data` and `context`. `data` is specific to each event (see table below). `context` is an object with a single property `eventKey`, which is the event key of the event that triggered the callback to be called.
+
+`subscribeEvent` returns a number `subscriptionId` which can be used to unsubscribe later (see `unsubscribeEvent` below).
+
+It is strongly recommended that initial subscriptions to events be placed in the `onAdaEmbedLoad` function. This ensures that the embed script has been loaded (so it is available to accept subscriptions), and that subscriptions happen before any events are triggered so that no events are missed.
+
+The following is a list of the currently available events that can be subscribed to. More events may be added in the future.
+
+Event key | Data | Description
+-------------- | -------------- | --------------
+`ada:campaigns:message_received` | `campaignKey` - the key of the campaign which triggered the received message | Triggered when the chat application receives a message that originates from a campaign.
+`ada:campaigns:opened` | `campaignKey` - the key of the last campaign shown before chat was opened | Triggered when chat is opened after a proactive campaign has been shown.
+`ada:campaigns:engaged` | `campaignKey` - the key of the last campaign shown before the conversation was engaged | Triggered when the chatter engages a conversation (sends a message) after being shown a campaign in the same session.
+
+### unsubscribeEvent
+`unsubscribeEvent(subscriptionId: number): void;`
+
+```js
+const subscriptionId = await window.adaEmbed.subscribeEvent("ada:campaigns:message_received", (data) => {
+  console.log("Message received from campaign with key:", data.campaignKey);
+});
+
+window.adaEmbed.unsubscribeEvent(subscriptionId);
+```
+
+This function can be used to remove subscriptions created with the `subscribeEvent` function above. It takes a single parameter `subscriptionId`, which is the id of the subscription to be removed.
 
 #### toggle
 `toggle(): Promise<void>;`
