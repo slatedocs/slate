@@ -556,3 +556,273 @@ This endpoint deals with waste.
 | materials_recycled ['glass']     | boolean | true     | Glass is the material being recycled. if true, the value of reduction is -25.39      |
 | materials_recycled ['newspaper'] | boolean | true     | Newspaper is the material being recycled. if true, the value of reduction is -113.14 |
 | materials_recycled ['magazines'] | boolean | true     | Magazine is the material being recycled. if true, the value of reduction is -27.46   |
+
+# Conversions
+
+## Carbon Dioxide
+
+> REQUEST
+
+```shell
+curl -X POST \
+  https://dynm.herokuapp.com/carbon-dioxide-conversion \
+  -H "Content-type: application/json" \
+  -d '{
+    "fuel_type": "Vegetable Oil",
+    "input": 100,
+    "unit": "gallon"
+  }'
+```
+
+```javascript
+const fetch = require("node-fetch");
+const data = {
+  fuel_type: "Vegetable Oil",
+  input: 100,
+  unit: "gallon",
+};
+
+fetch("https://dynm.herokuapp.com/carbon-dioxide-conversion", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+
+url = "https://dynm.herokuapp.com/carbon-dioxide-conversion"
+
+payload = {
+    "fuel_type": "Vegetable Oil",
+    "input": 100,
+    "unit": "gallon"
+  }
+
+headers = {'Content-Type': 'application/json'}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+data = response.json()
+print(data)
+```
+
+```php
+<?php
+  $url = "https://dynm.herokuapp.com/carbon-dioxide-conversion";
+  $ch = curl_init($url);
+  $postData = array(
+    "fuel_type" => "Vegetable Oil",
+    "input" => 100,
+    "unit" => "gallon"
+  );
+
+  curl_setopt_array($ch, array(
+    CURLOPT_POST => TRUE, // set post data to true
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_POSTFIELDS => json_encode($postData),   // post data
+    CURLOPT_HTTPHEADER => array("Content-Type: application/json")
+  ));
+
+  $response = curl_exec($ch);
+  curl_close ($ch);
+  $data = json_decode($response, true); // decode the json response
+  var_dump($data);
+?>
+```
+
+> RESPONSE
+
+```json
+{
+  "short_ton": 1.0,
+  "btu": 29000000.0,
+  "quad": 2.9e-8,
+  "ej": 3.058e-8,
+  "kwh": 8499.414
+}
+```
+
+Carbon Dioxide Conversion
+
+`POST https://dynm.herokuapp.com/carbon-dioxide-conversion`
+
+<aside>Request params</aside>
+
+| Param     | Type   | Required | Description                                                                                      |
+| --------- | ------ | -------- | ------------------------------------------------------------------------------------------------ |
+| fuel_type | string | true     | The fuel type to convert                                                                         |
+| input     | number | true     | This is the number of units to convert                                                           |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, kgco2, gch4, gn20 |
+
+<aside>Fuel Types</aside>
+
+| Fuel Type                   | Fuel Type                | Fuel Type                |
+| --------------------------- | ------------------------ | ------------------------ |
+| agricultural byproducts     | distillate fuel oil no 1 | petrochemical feedstocks |
+| peat                        | distillate fuel oil no 2 | petroleum coke           |
+| solid byproducts            | distillate fuel oil no 4 | propane                  |
+| wood and wood residuals     | ethane                   | propylne                 |
+| natural gas                 | ethylene                 | residual fuel oil no 5   |
+| blast furnace gas           | heavy gas oils           | residual fuel oil no 6   |
+| coke oven gas               | isobutane                | special naphtha          |
+| fuel gas                    | isobutylene              | still gas                |
+| propane gas                 | kerosene                 | unfished oils            |
+| landfill gas                | kerosene type jet fuel   | used oils                |
+| other biomass gases         | liquefied petroleum gas  | biodiesel 100 percent    |
+| compressed natural gas      | lubricants               | ethanol 100 percent      |
+| asphalt and road oil        | motor gasoline           | rendered animal fat      |
+| aviation gasoline           | naphtha 401 deg f        | diesel fuel              |
+| butane                      | natural gasoline         | liquefied natural gas    |
+| butylene                    | other oil 401 def f      | methanol                 |
+| crude oil                   | pentanes plus            | residual fuel oil        |
+| anthracite coal             | vegetable oil            | bituminous coal          |
+| sub bituminous coal         | lignite coal             | mixed commercial sector  |
+| mixed electric power sector | mixed industrial cooking | coal coke                |
+| municipal solid waste       | petroleum coke solid     | plastics                 |
+| plastics quad short ton     | tires                    | tires short ton          |
+
+## Energy
+
+> REQUEST
+
+```shell
+curl -X POST \
+  https://dynm.herokuapp.com/energy-conversion \
+  -H "Content-type: application/json" \
+  -d '{
+    "fuel_type": "Anthracite coal",
+    "input": 100,
+    "unit": "short ton"
+  }'
+```
+
+```javascript
+const fetch = require("node-fetch");
+const data = {
+  fuel_type: "Anthracite coal",
+  input: 100,
+  unit: "short ton",
+};
+
+fetch("https://dynm.herokuapp.com/energy-conversion", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+
+url = "https://dynm.herokuapp.com/energy-conversion"
+
+payload = {
+    "fuel_type": "Anthracite coal",
+    "input": 100,
+    "unit": "short ton"
+  }
+
+headers = {'Content-Type': 'application/json'}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+data = response.json()
+print(data)
+```
+
+```php
+<?php
+  $url = "https://dynm.herokuapp.com/energy-conversion";
+  $ch = curl_init($url);
+  $postData = array(
+    "fuel_type" => "Anthracite coal",
+    "input" => 100,
+    "unit" => "short ton"
+  );
+
+  curl_setopt_array($ch, array(
+    CURLOPT_POST => TRUE, // set post data to true
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_POSTFIELDS => json_encode($postData),   // post data
+    CURLOPT_HTTPHEADER => array("Content-Type: application/json")
+  ));
+
+  $response = curl_exec($ch);
+  curl_close ($ch);
+  $data = json_decode($response, true); // decode the json response
+  var_dump($data);
+?>
+```
+
+> RESPONSE : <code>200</code>
+
+```json
+{
+  "short_ton": 1.0,
+  "btu": 29000000.0,
+  "quad": 2.9e-8,
+  "ej": 3.058e-8,
+  "kwh": 8499.414
+}
+```
+
+Energy Conversion
+
+`POST https://dynm.herokuapp.com/energy-conversion`
+
+<aside>Request params</aside>
+
+| Param     | Type   | Required | Description                                                                    |
+| --------- | ------ | -------- | ------------------------------------------------------------------------------ |
+| fuel_type | string | true     | The fuel type to convert                                                       |
+| input     | number | true     | This is the number of units to convert                                         |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, kwh and btu |
+
+<aside>Fuel Types</aside>
+
+| Fuel Type                   | Fuel Type                | Fuel Type                |
+| --------------------------- | ------------------------ | ------------------------ |
+| agricultural byproducts     | distillate fuel oil no 1 | petrochemical feedstocks |
+| peat                        | distillate fuel oil no 2 | petroleum coke           |
+| solid byproducts            | distillate fuel oil no 4 | propane                  |
+| wood and wood residuals     | ethane                   | propylne                 |
+| natural gas                 | ethylene                 | residual fuel oil no 5   |
+| blast furnace gas           | heavy gas oils           | residual fuel oil no 6   |
+| coke oven gas               | isobutane                | special naphtha          |
+| fuel gas                    | isobutylene              | still gas                |
+| propane gas                 | kerosene                 | unfished oils            |
+| landfill gas                | kerosene type jet fuel   | used oils                |
+| other biomass gases         | liquefied petroleum gas  | biodiesel 100 percent    |
+| compressed natural gas      | lubricants               | ethanol 100 percent      |
+| asphalt and road oil        | motor gasoline           | rendered animal fat      |
+| aviation gasoline           | naphtha 401 deg f        | diesel fuel              |
+| butane                      | natural gasoline         | liquefied natural gas    |
+| butylene                    | other oil 401 def f      | methanol                 |
+| crude oil                   | pentanes plus            | residual fuel oil        |
+| anthracite coal             | vegetable oil            | bituminous coal          |
+| sub bituminous coal         | lignite coal             | mixed commercial sector  |
+| mixed electric power sector | mixed industrial cooking | coal coke                |
+| municipal solid waste       | petroleum coke solid     | plastics                 |
+| plastics quad short ton     | tires                    | tires short ton          |
