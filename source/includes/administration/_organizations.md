@@ -708,7 +708,7 @@ Mark the organization as a reseller. Returns an HTTP status code 200, with an em
 
 <!-------------------- GET IDENTITY PROVIDERS -------------------->
 ### Get identity providers
-`GET /organizations/organization_id/identity_providers`
+`GET /organizations/:organization_id/identity_providers`
 
 Retrieve the identity providers for the organization.
 
@@ -749,3 +749,58 @@ Attributes | &nbsp;
 `displayName`<br/>*string* | The display name of the identity provider that will appear on the login screen.
 `logo`<br/>*string* | A base64 encoded data URL or URL to an image for the logo to display on the login screen.
 `rank`<br/>*int* | If provided, this integer sorts identity providers on the Login page in ascending order.
+
+
+
+
+<!-------------------- GET BILLING -------------------->
+### Get billing information
+`GET /organizations/:organization_id/billing_info`
+
+Retrieve the billing information for an organization.
+
+```shell
+# Retrieve the organization's billing information
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": "23910576-d29f-4c14-b663-31d728ff49a5",
+    "organization": {
+      "id": "23910576-d29f-4c14-b663-31d728ff49a5"
+    },
+    "billingProvider": {
+      "id": "f26e66a4-755c-4867-b565-ad68aa515237"
+    },
+    "cardType": "Mastercard",
+    "cardMaskedNumber": "************1234",
+    "cardName": "John Doe",
+    "cardExp": "0124",
+    "billingAddressLineOne": "555 SomeStree",
+    "billingAddressLineTwo": "App #2",
+    "billingAddressCity": "SomeCity",
+    "billingAddressProvince": "NY",
+    "billingAddressPostalCode": "555555",
+    "billingAddressCountry": "US"
+  }
+}
+```
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | The id of the billing information.
+`organization`<br/>*[Organization](#administration-organizations)* | The organization to which belongs the billing information.
+`billingProvider`<br/>*[BillingProvier](#administration-billing-providers)* | The billing provider associated to the credit card.
+`cardType`<br/>*string* | The credit card type.
+`cardMaskedNumber`<br/>*string* | The credit card masked number.
+`cardName`<br/>*string* | The name on the credit card 
+`cardExp`<br/>*string* | The credit card expiration ('mmyy' format)
+`billingAddressLineOne`<br/>*string* | The address line 1 of the billing address.
+`billingAddressLineTwo`<br/>*string* | The address line 2 of the billing address.
+`billingAddressCity`<br/>*string* | The city of the billing address.
+`billingAddressProvince`<br/>*string* | The province or state code (2 letters) of the billing address.
+`billingAddressPostalCode`<br/>*string* | The postal/zip code of the billing address.
+`billingAddressCountry`<br/>*string* | The country code (ISO 2 or 3 letter code) of the billing address
