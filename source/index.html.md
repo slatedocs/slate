@@ -75,5 +75,5 @@ data in order to ensure your sensitive information remains secure.
 
 ## Rate Limiting
 
-Each API key is limited to 40K requests per day. Once you hit the quota, all further requests will return an error code of
-429 - this will reset as soon as the next day begins.
+Your account plan tier will limit the number of requests each API key can make per day.
+Once you hit the quota, all further requests will return an error code of 429 - this will reset as soon as the next day begins.
