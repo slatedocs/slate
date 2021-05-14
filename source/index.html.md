@@ -1874,8 +1874,7 @@ access_token | true | string | | Your personal acess_token
     "creator_id": "14d4a1a1-ea42-4164-805d-e240f2561f71",
     "current_status": "Đã khởi tạo",
     "current_status_en": "request_received",
-    "custom_id": "S61180418001",
-    "customer_tracking_id": null,
+    "customer_tracking_id": "S61180418001",
     "department": {
         "address": "127/19 Hoàng Hoa Thám, Phường 13, Tân Bình",
         "district_name": "Quận Tân Bình",
