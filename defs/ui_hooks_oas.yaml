@@ -3,10 +3,10 @@ openapi: 3.0.0
 info:
   description: >-
     This is the interface for handling requests for
-    [Workflow Apps](https://developers.asana.com/docs/workflow-apps). This reference
+    [UI components](https://developers.asana.com/docs/ui-components-overview). This reference
     is generated from an [OpenAPI spec]
     (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
-  title: Workflow Apps
+  title: UI Components
   termsOfService: https://asana.com/terms
   contact:
     name: Asana Support
@@ -26,22 +26,21 @@ servers:
   - url: "{siteUrl}"
     description: Main endpoint.
 tags:
-  - name: Forms
+  - name: App Forms
     description: >-
       The creation form is displayed when the user starts the flow to create a resource. Asana will make a signed
       request to the specified form_metadata_url in the capabilities, and expect a response with the metadata needed to
       create the form. This process is also used for forms within rules.
-  - name: Rules
+  - name: App Rules
     description: >-
-      When a rule containing an app action is triggered, the Rules Engine will make a Workflow App request to the app to
+      When a rule containing an app action is triggered, the Rules Engine will make a request to the app to
       inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine
       whether the action was successfully completed and, if not, specify a cause for the error.
-  - name: Typeahead - Workflow Apps
+  - name: App Resource Searching
     description: >-
-      Each typeahead form field contains a typeahead_url to fetch typeahead options based on input text. While the user
-      inputs text into the field, Asana will periodically (every 700ms) send signed requests to the typeahead_url and
-      expect responses with lists of items matching the given input.
-  - name: Widgets
+      If the app defined a search url, tasks without a widget offer the search functionality. This appears as a text
+      input to the user. When the user submits the text, the app responds with either an attachment or an error.
+  - name: App Widgets
     description: >-
       The widget is displayed when the user views a task with an attachment with a resource URL matching your
       capability’s match_url_pattern. When this happens, Asana will make a signed request to your widget_metadata_url,
@@ -169,9 +168,9 @@ components:
       description: >-
         I'm A Teapot
   schemas:
-    RootWorkflowAppRequest:
+    RootUIComponentRequest:
       description: >-
-        The building block of all Workflow App requests.
+        The building block of all UI component requests.
       type: object
       properties:
         expires_at:
@@ -192,7 +191,7 @@ components:
             The workspace gid this hook is coming from.
     AttachResourceRequest:
       allOf:
-        - $ref: '#/components/schemas/RootWorkflowAppRequest'
+        - $ref: '#/components/schemas/RootUIComponentRequest'
         - type: object
           description: >-
             The body of an attach request.
@@ -379,7 +378,7 @@ components:
           example: 'https://app-server.com/form/onchange'
     FormSubmissionRequest:
       allOf:
-        - $ref: '#/components/schemas/RootWorkflowAppRequest'
+        - $ref: '#/components/schemas/RootUIComponentRequest'
         - type: object
           description: >-
             The body of a form submission.
@@ -420,7 +419,7 @@ components:
                 The id of the configuration used to create the app action
     FormOnChangeBaseRequest:
       allOf:
-        - $ref: '#/components/schemas/RootWorkflowAppRequest'
+        - $ref: '#/components/schemas/RootUIComponentRequest'
         - type: object
           description: >-
             The body of an onchange event.
@@ -457,7 +456,7 @@ components:
                 The id of the configuration used to create the app action
     RunActionRequest:
       allOf:
-        - $ref: '#/components/schemas/RootWorkflowAppRequest'
+        - $ref: '#/components/schemas/RootUIComponentRequest'
         - type: object
           description: >-
             The body of an action request.
@@ -635,7 +634,7 @@ paths:
       description: >-
         Get the metadata from the App Server to render a widget.
       tags:
-        - Widgets
+        - App Widgets
       operationId: getWidgetMetadata
       responses:
         200:
@@ -664,7 +663,7 @@ paths:
         resource_attach_url in the capabilities. Information about the attached resource should be included in the
         response.
       tags:
-        - Widgets
+        - App Widgets
       operationId: attachResource
       requestBody:
         description: >-
@@ -703,7 +702,7 @@ paths:
       description: >-
         Get the metadata from the App Server to render a form.
       tags:
-        - Forms
+        - App Forms
       operationId: getFormMetadata
       responses:
         200:
@@ -728,7 +727,7 @@ paths:
       description: >-
         The callback request made to an App Server when a watched field's value changes within a form.
       tags:
-        - Forms
+        - App Forms
       operationId: onFormChange
       requestBody:
         description: >-
@@ -765,7 +764,7 @@ paths:
       description: >-
         The callback request made to an App Server when a form is submitted.
       tags:
-        - Forms
+        - App Forms
       operationId: onFormSubmit
       requestBody:
         description: >-
@@ -796,33 +795,29 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /{typeahead_url}:
-    parameters:
-      - $ref: '#/components/parameters/fragment'
-      - $ref: '#/components/parameters/workspace'
-      - $ref: '#/components/parameters/task'
-      - $ref: '#/components/parameters/user'
-      - $ref: '#/components/parameters/locale'
-      - $ref: '#/components/parameters/expires_at'
-    get:
-      summary: Typeahead (UI)
+  /{resource_search_url}:
+    post:
+      summary: Resource Search
       description: >-
-        The typeahead request made to an App Server when a typeahead field changes.
+        The search request made to an App Server when the search field is submitted.
       tags:
-        - Typeahead - Workflow Apps
-      operationId: typeaheadUI
+        - App Resource Searching
+      operationId: resourceSearch
+      requestBody:
+        description: >-
+          Request to attach a resource with a user given `value`.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttachResourceRequest'
       responses:
         200:
           description: Successfully attached the resource created by the form.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  items:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TypeaheadItem'
+                $ref: '#/components/schemas/AttachedResourceResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         500:
@@ -833,7 +828,7 @@ paths:
       description: >-
         The request made when an action is triggered.
       tags:
-        - Rules
+        - App Rules
       operationId: runAction
       requestBody:
         description: >-
@@ -875,12 +870,12 @@ paths:
       summary: Get action metadata
       description: >-
         When a user has navigated to the Custom Rule Builder UI and selected an App Action (either through the sidebar
-        or via a Rule Preset), Asana will make a Workflow App request to the app to get the configuration form definition
+        or via a Rule Preset), Asana will make a request to the app to get the configuration form definition
         for the chosen app action. This will initiate the flow to configure a new app action or edit the configuration
         of an existing app action. This is the endpoint and schema for updating app actions; app triggers (V2) will be
         analogous.
       tags:
-        - Rules
+        - App Rules
       operationId: getActionMetadata
       responses:
         200:
@@ -905,7 +900,7 @@ paths:
       description: >-
         The callback request made to an App Server when a watched field's value changes within an action form.
       tags:
-        - Rules
+        - App Rules
       operationId: onActionFormChange
       requestBody:
         description: >-
@@ -946,7 +941,7 @@ paths:
         response if it was successfully created. This is the endpoint and schema for updating app actions; app triggers
         (V2) will be analogous.
       tags:
-        - Rules
+        - App Rules
       operationId: onActionFormSubmit
       requestBody:
         description: >-

@@ -65,7 +65,7 @@ echo 'Hello World';
 ```
 
 An App Server is required for working with [Webhooks](/docs/webhooks)
-and [Workflow Apps](/docs/workflow-apps-overview) (UI Hooks). When we say "App Server", we
+and [UI Components](/docs/ui-components). When we say "App Server", we
 are referring to the server Asana directly sends requests to. This is different
 from the service it may be connecting to in the end (like Slack or Jira).
 
@@ -76,10 +76,9 @@ response codes, and sometimes return valid json bodies to requests from Asana. S
 will be sent from an Asana user's browser, while other requests will be sent from Asana's 
 servers. 
 
-App Servers define their own paths. During the lifecycle of a Webhook or UI Hook, 
-apps will need to declare the endpoints for Asana. For Webhooks, this happens when you create a 
-new webhook. For Workflow Apps, some UI Hooks are declared on App Creation while others are dynamically 
-declared in responses to requests from Asana.
+App Servers define their own paths. Apps will need to declare the endpoints for Asana. For Webhooks, 
+this happens when you create a new webhook. For UI Components, some are declared on App Creation while others are 
+dynamically declared in responses to requests from Asana.
 
 You should test/debug your App Server with a tool like [Postman](https://www.postman.com/) or 
 [Insomnia](https://insomnia.rest/).
@@ -89,7 +88,7 @@ In short:
  * App Servers need to accept `http` requests and be accessible via `url`.
  * Request payloads will be `json` and App Servers should respond with `json` (if a response 
  is needed).
- * Successful requests should respond with either a `200` or `204` status code. Some UI Hooks 
+ * Successful requests should respond with either a `200` or `204` status code. Some UI Components 
  have additional error handling for codes like `400`.
  * If an app server is down or throws a `500`, we will likely retry the request.
 
@@ -97,7 +96,7 @@ In short:
 If we attempt to send a request to an App Server and we receive an error status code, or the 
 request times out, we will retry delivery with exponential backoff. 
 
-The tolerance threshold for retries vary between Webhooks and UI Hooks. Refer to the 
+The tolerance threshold for retries vary between Webhooks and UI Components. Refer to the 
 documentation for each for a deeper understanding.
 
 </section>

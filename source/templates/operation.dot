@@ -1,5 +1,9 @@
 ## {{= data.operationUniqueName}}
 
+{{? data.options.platform_ui}}
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+{{?}}
+
 {{? data.operation.operationId}}
 <a id="opId{{=data.operation.operationId}}"></a>
 {{?}}

@@ -2,7 +2,11 @@
 
 <hr class="full-line">
 <section class="full-section">
-<h1 id="{{=data.title_prefix}}">{{ if (data.title_prefix == "workflow-apps") { }}Workflow App Reference{{ } else { }}API Reference{{ } }}</h1>
+<h1 id="{{=data.title_prefix}}">{{ if (data.options.platform_ui) { }}UI Component Reference{{ } else { }}API Reference{{ } }}</h1>
+
+{{? data.options.platform_ui}}
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+{{?}}
 
 > Scroll down for {{? data.header.language_tabs.length > 1}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length > 1}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
 
@@ -33,6 +37,10 @@ Base URLs:
 <a id="asana-{{=data.utils.slugify(r)}}"></a>
 <h1 id="{{=data.utils.slugify(r)}}">{{= r}}</h1>
 
+{{? data.options.platform_ui}}
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+{{?}}
+
 {{ var first = true; }}
 <pre class="highlight http tab-http">
 <code>{{ for (var m in data.resource.methods) { data.operationUniqueName = m; data.method = data.resource.methods[m]; data.operationUniqueSlug = data.method.slug; data.operation = data.method.operation; }}{{ if (first) { first = false; } else { }}<br>{{ } }}<a href="/docs/{{=data.operationUniqueName.toLowerCase().replaceAll("'","-39-").replaceAll(" ","-")}}"><span class="{{=data.method.verb.toLowerCase()}}-verb">{{=data.method.verb.toUpperCase()}}</span> <span class=""nn>{{=data.method.path}}</span></a>{{ } /* of methods */ }}</code>
@@ -51,7 +59,12 @@ Base URLs:
 {{= data.templates.operation(data) }}
 </section>{{ } /* of methods */ }}{{ } /* of resources */ }}{{? data.api.components && data.api.components.schemas }}<hr class="full-line">
 <section class="full-section">
-# {{ if (data.title_prefix == "workflow-apps") { }}Workflow App Schemas{{ } else { }}Schemas{{ } }}
+# {{ if (data.options.platform_ui) { }}UI Component Schemas{{ } else { }}Schemas{{ } }}
+
+{{? data.options.platform_ui}}
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+{{?}}
+
 <span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
 default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
@@ -65,6 +78,11 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 <a id="tocs{{=s.toLowerCase().replaceAll("response","")}}"></a>
 <a id="tocS_{{=s.replaceAll("Response","")}}"></a>
 <h2 id="{{=s.replaceAll("Response","").replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/([A-Z])([A-Z])(?=[a-z])/g, '$1-$2').toLowerCase()}}">{{=s.replaceAll("Response","")}}</h2>
+
+{{? data.options.platform_ui}}
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+{{?}}
+
 {{? data.options.yaml }}
 ```yaml
 {{=data.utils.yaml.stringify(data.utils.getSample(schema,data.options,{quiet:true},data.api))}}

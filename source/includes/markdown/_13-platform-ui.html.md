@@ -1,20 +1,41 @@
 <hr class="platform-ui-alpha">
 <section class="platform-ui-alpha">
 
-# Workflow Apps Overview
+# UI Components Alpha
 
-Requires an [App Server](/docs/app-server).
+<span class="beta-indicator">ALPHA</span>
 
-Workflow Apps can display customized widgets, forms, and rules within Asana's UI. 
+User interface (UI) components are currently in a **Closed Alpha**. If you want to participate in the UI components alpha program, please 
+complete and submit [this form](https://form-beta.asana.com?k=-pVvfJKSSeboL3ySjdhYSg&d=15793206719). We are limiting 
+the number of apps that can use these features at this time. This will open up more as we move to beta. 
+
+The UI Components Alpha Program is a pre-general-release version of a program developed by Asana that allows developers 
+to develop and test UI components. The UI Component Alpha Program is for development, evaluation, and testing purposes 
+only, and is not for production use or subject to availability or security obligations from Asana. The UI Components 
+Alpha Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be 
+discontinued or modified at any time.
+
+*This Alpha program was previously named the Workflow Apps Alpha.*
+
+# UI Components Overview
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
+To start building, follow our [Quickstart Guide](/docs/have-an-app-server-running-locally-or-remotely)!
+
+Apps can use UI components to display customized widgets, forms, and rules within Asana's UI. 
 Requests go from Asana directly to an App's server. The App Server controls  
-the information within these customized widgets, and the App Server controls what 
+the information within these customized widgets and the App Server controls what 
 happens when a User takes actions within these components.
 
-We will cover the main Workflow App components here.
+A new in-app gallery and install flow, a customizable modal, a widget, and more.
+<img src="../images/UI_Components.gif" />
 
 <hr>
 
 ## App Widget
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 > Request to the App Server
 
@@ -71,19 +92,6 @@ request to the registered App Server. As long as the response from
 the server is valid (like the example on the right), the widget 
 will display.
 
-> Example URL attachment Request
-
-```
-{
-    "data": {
-        "resource_subtype": "external",
-        "name": <string>,
-        "url": <valid_url_string>,
-        "app_identifier": <string>
-    }
-}
-```
-
 How does Asana determine when a widget should be shown? When a task is opened in
 Asana, it checks each attachment on the task. If an attachment has a url 
 that fits with an App's registered `match url` (ex: `https:\/\/.*.atlassian.net\/.*`) 
@@ -93,15 +101,13 @@ URL parameters like `task`, `user`, and `workspace`.
 Related References: 
 
 * [Get widget metadata](/docs/get-widget-metadata)
-
 * [Attach resource](/docs/attach-resource)
-
-* [Upload Attachment](/docs/upload-an-attachment) >> To create a url attachment via the 
-API (See sample on the right).
 
 <hr>
 
 ## App Form
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 > Request to the App Server
 
@@ -124,7 +130,7 @@ https://app-server.com/form?workspace=12345&task=23456&user=34567&locale=en&expi
       "value": "",
       "placeholder": "Enter some text",
       "width": "full",
-      "required": true
+      "is_required": true
     },
     {
       "type": "rich_text",
@@ -132,7 +138,7 @@ https://app-server.com/form?workspace=12345&task=23456&user=34567&locale=en&expi
       "title": "Description",
       "value": "",
       "placeholder": "",
-      "required": true
+      "is_required": true
     },
     {
       "type": "typeahead",
@@ -140,13 +146,13 @@ https://app-server.com/form?workspace=12345&task=23456&user=34567&locale=en&expi
       "title": "Jira project",
       "value": "",
       "placeholder": "Search Jira for a project...",
-      "required": true,
+      "is_required": true,
       "typeahead_url": "https://app-server.com/jira/project/typeahead",
     },
     {
       "type": "checkboxes",
       "name": "attachments",
-      "required": false,
+      "is_required": false,
       "options": [
         {
           "id": "shouldIncludeAttachments",
@@ -170,7 +176,8 @@ the App Server can receive `on_change` requests. These requests include what the
 allow the App Server to respond with an updated form. Apps can build complex branching logic depending
 on changes a user makes.
 
-To take advantage of `on_change` events, you'll supply a list of `watched_fields` and an endpoint to hit with updates. 
+To take advantage of `on_change` events, set some form fields `is_watched` value to `true` and an `on_change_callback` 
+endpoint to hit with updates. 
 See the `on_change` field in the response to the 
 [form metadata request](/docs/get-form-metadata). The request sent to that
 endpoint is the [On change callback request](/docs/on-change-callback).
@@ -178,55 +185,45 @@ endpoint is the [On change callback request](/docs/on-change-callback).
 Related References: 
 
 * [Get form metadata](/docs/get-form-metadata)
-
 * [On change callback](/docs/on-change-callback)
-
 * [On submit callback](/docs/on-submit-callback)
 
 <hr>
 
-## Resource Search
+## Widget Resource Searching
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 > Request to the App Server
 
 ```http
-https://app-server.com/resource-search?fragment=Cool&workspace=12345&task=23456&user=34567&locale=en&expires_at=2011-10-05T14%3A48%3A00.000Z
+https://app-server.com/resource-search?value=Cool&workspace=12345&task=23456&user=34567&locale=en&expires_at=2011-10-05T14%3A48%3A00.000Z
 ```
 
 > Response from the App Server
 
 ```json
 {
-  "items": [
-    {
-      "title": "Cool project!!!",
-      "subtitle": "CP",
-      "value": "CP",
-      "icon_url": "https://jira.com/cool_project_icon.png"
-    },
-    {
-      "title": "Cool Team PF",
-      "subtitle": "OTP",
-      "value": "OTP",
-      "icon_url": "https://jira.com/some_project_icon.png"
-    }
-  ]
+    "resource_name": "Cool Attachment",
+    "resource_url": "https://localhost:5000/attachments/123456789"
 }
 ```
 
 <img style="max-width:658px" src="../images/jira-resource-search.png" />
 
-[App Forms](/docs/app-form) supports typeahead fields. To use these, a typeahead field must be declared within the
-form. When a user types in that field, a request will be sent to the `typeahead_url`. The App Server then responds with
-the applicable objects for their query. The App Server entirely determines what queries mean and how to handle them. 
+Users can send a search term to the app server. The term is often a url or 
+the title of an external resource. The app server then responds with a 
+resource or an error. 
 
 Related References: 
 
-* [Typeahead](/docs/typeahead-workflow-apps)
+* [App Widget](/docs/app-widget)
 
 <hr>
 
 ## App Action
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 > Request to the App Server
 
@@ -241,23 +238,21 @@ https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&acti
   "on_submit_callback": "https://app-server.com/slack/action/onsubmit",
   "on_change": {
     "on_change_callback": "https://app-server.com/slack/action/onchange",
-    "watched_fields": [
-      "typeahead_full_width"
-    ]
   },
   "fields": [
     {
       "title": "Choose a channel",
       "type": "typeahead",
       "id": "typeahead_full_width",
-      "required": true,
+      "is_watched": true,
+      "is_required": true,
       "typeahead_url": "https://app-server.com/slack/typeahead"
     },
     {
       "title": "Write a message",
       "type": "rich_text",
       "name": "description",
-      "required": true
+      "is_required": true
     }
   ]
 }
@@ -268,26 +263,29 @@ https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&acti
 An App Action allows users to customize app actions triggered by Asana's rule engine. They use the same functionality as
 the [App Form](/docs/app-form), as Asana requests a form definition from the App Server. The app controls the form 
 fields, handles `on_change` events, and stores the inputs of the form. When a rule is created, Asana sends a request to 
-the App Server with the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server. 
+the App Server with the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server.
+
+ 
 
 App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
 
 Related References: 
 
 * [Get action metadata](/docs/get-action-metadata)
-
 * [On action change callback](/docs/on-action-change-callback)
-
 * [On action submit callback](/docs/on-action-submit-callback)
 
 <hr class="full-line">
 
-# Workflow App Security
+# UI Components Security
 
-## Workflow App Authorization
+## UI Components Authorization
 
-Authorization is handled by the app. When a Workflow App is added to a project, the user adding it is sent to the App's 
-`authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or perform none!
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
+Authorization is handled by the app. When an app with UI components is added to a project, the user adding it is sent 
+to the App's `authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or 
+perform none!
 
 As long as the app confirms the flow was complete, Asana will successfully add the app to the project. This will allow 
 requests to be sent to the App's pre-defined endpoints.
@@ -301,7 +299,9 @@ might be a good idea to suggest users authenticate with a bot account.
 
 <hr>
 
-## Workflow App Message Integrity
+## UI Components Message Integrity
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
 case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
@@ -314,7 +314,9 @@ Server pretending to be Asana.
 
 <hr>
 
-## Workflow App Timeliness
+## UI Components Timeliness
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
 recorded, such as in logs, could be reused to continue to request information from the app at a later time.
@@ -324,9 +326,11 @@ replay attacks.
 
 <hr class="full-line">
 
-# Workflow Apps
+# UI Components Definition
 
-> Sample of a full Workflow App definiton
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
+> Sample of an app with a full UI components definition
 
 ```json
 
@@ -392,13 +396,13 @@ replay attacks.
 }
 ```
 
-Currently, "Workflow Apps" are separate from "OAuth Apps". To create a Workflow App, you will need to create an OAuth 
-App and request the Workflow App functionliaty onto it via the 
-[Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) form.
+To create an app with UI components, you will need to create an OAuth App and request the 
+UI components functionality onto it via the 
+[Create a UI Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) form.
 
 To create an OAuth app, see [Authentication Quick Start](/docs/authentication-quick-start).
 
-To create a Workflow App you'll need to fill out the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
+To create a UI components app you'll need to fill out the [Create a UI Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 form with the data in the table below.
 
 |Field|Type|Description|
@@ -409,22 +413,22 @@ form with the data in the table below.
 |» `src`                      | String (url) | (Optional) src for image of feature |
 |» `alt`                      | String (url) | (Optional) alt for image of feature |
 |» `text`                     | String (url) | text below image of feature |
-| `siteUrl`                   | String (url) | A URL which informs the Workflow App system where to make requests. |
-| `authenticationUrl`         | String (url) | A URL which informs the Workflow App system where to make requests for authenticating and authorizing users.  This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
+| `siteUrl`                   | String (url) | A URL which informs Asana which domain will handle auth |
+| `authenticationUrl`         | String (url) | A URL which informs Asana where to make requests for authenticating and authorizing users.  This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
 | `icon`                      | Object       | A collection of URLs pointing to icon assets of various sizes. Used to display icons of the app in the Asana UI.<br><br>Note: This field is experimental. We may move to managing uploading and displaying these assets instead of allowing developers to specify them as a url in the app definition. |
 |» `x32`                      | String (url) | 32x32 icon asset |
 |» `x48`                      | String (url) | 48x48 icon asset |
 |» `x64`                      | String (url) | 64x64 icon asset |
 |» `x96`                      | String (url) | 96x96 icon asset |
 |» `x192`                     | String (url) | 192x192 icon asset |
-| `capabilities`              | Object       | A list of Workflow App capabilities supported by the app and their configuration. |
+| `capabilities`              | Object       | A list of capabilities supported by the app and their configuration. |
 |» `resource_widget`          | String (url) | The container for resource widget functionality  |
-|»» `widgetMetadataUrl`       | String (url) | A URL that the Workflow App system uses to make requests for the data needed to load an app widget which displays information about a 3rd party resource. |
-|»» `matchUrlPattern`         | String (url) | A regex which allows Workflow App to compute whether a UrlAttachment is supported by an activated app on the project in order to render an app widget. |
+|»» `widgetMetadataUrl`       | String (url) | A URL that Asana uses to make requests for the data needed to load an app widget which displays information about a 3rd party resource. |
+|»» `matchUrlPattern`         | String (url) | A regex which allows Asana to compute whether a UrlAttachment is supported by an activated app on the project in order to render an app widget. |
 |» `resource_search`          | Object       | The container for typeahead functionality |
-|»» `resourceAttachUrl`       | String (url) | A URL that the Workflow App system will make a request of when a user submits a value to attach. |
+|»» `resourceAttachUrl`       | String (url) | A URL that Asana will make a request of when a user submits a value to attach. |
 |» `create_resource`          | Object       | The container for resource creation functionality |
-|»» `formMetadataUrl`         | String (url) | A URL that the Workflow App system uses to request data from the app about fields it should display in the resource creation modal when the form is first displayed. |
+|»» `formMetadataUrl`         | String (url) | A URL that Asana uses to request data from the app about fields it should display in the resource creation modal when the form is first displayed. |
 |» `automation`               | Object       | The container for automation functionality |
 |»» `app_actions`             | Object[]     | The set of app actions exposed by the app |
 |»»» `identifier`             | String       | The unique identifier for the action on the app. |
@@ -445,20 +449,23 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 <hr class="full-line">
 
-# Workflow Apps Quickstart
+# UI Components Quickstart
 
 ## Have an App Server running locally (or remotely)
 
-Asana will assume your server is running locally at `localhost:5000/`. You should log the request body and url for all 
-requests to your to help get everything setup. For each PlatformUI feature you want to use, you'll need to add some 
-paths. You are in charge of what each path looks like, but here are some provided example paths you can use for now. 
-Add these paths for each feature you want:
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
+For this guide, we will assume your server is running locally at `localhost:5000/`. `localhost` works for requests
+that come from the browser, but won't work for server based requests (like the `run_action_url`). You should log the 
+request body and url for all requests to your server to help get everything setup. For each UI Component feature you 
+want to use, you'll need to supply some endpoints. You are in charge of what each path looks like, but here are some 
+provided example paths you can use for now. Add these paths for each feature you want:
 
 [App Widget](/docs/app-widget) 
 
  * `widgetMetadataUrl` (ex: `GET http://localhost:5000/resource/widget/metadata`)
  
-[Resource Search](/docs/resource-search)
+[Widget Resource Searching](/docs/widget-resource-searching)
 
  * `resourceAttachUrl` (ex: `GET http://localhost:5000/resource/attach`)
 
@@ -471,16 +478,18 @@ Add these paths for each feature you want:
 One or more Automation/[App Actions](/docs/app-action)
 
  * `form_metadata_url` (ex: `GET http://localhost:5000/automation/action/metadata`)
- * `run_action_url` (ex: `POST http://localhost:5000/automation/action`)
+ * `run_action_url` (ex: `POST http://your.server.url/automation/action`)
 
 You will provide Asana these paths in the next step.
 
 <hr>
 
-## Register a Workflow App App
+## Register an App to use UI Components
 
-First, complete the [Create a UI Hook Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
-described in the [Workflow App Section](/docs/workflow-app). Here is a cheat-sheet for what data you need to 
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
+First, complete the [Create a UI Components Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
+described in the [UI Components Section](/docs/ui-components-definition). Here is a cheat-sheet for what data you need to 
 provide:
 
  * `authenticationUrl` & `authModalMetadata` is only required if your app needs access to the Asana API and/or needs to 
@@ -500,6 +509,8 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 <hr>
 
 ## Install your app in a project
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 Login with your user and ensure you're in your sandbox domain (The one you provided in the register form). Open or 
 create an Asana project and open it.
@@ -531,6 +542,8 @@ sent to your Attach endpoint.
 <hr>
 
 ## Form Basics
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 > GET http://localhost:5000/resource/create
 
@@ -583,6 +596,8 @@ attachment matches your `matchUrlPattern` so Asana will try to load the Widget.
 
 ## Widget Basics
 
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
 > GET http://localhost:5000/resource/widget/metadata
 
 ```json
@@ -612,6 +627,8 @@ Asana the data to display in the widget. Clicking on the widget will take you to
 <hr>
 
 ## Typeahead Basics
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 > GET http://localhost:5000/resource/typeahead
 
@@ -667,6 +684,8 @@ resource, a new attachment will be made and attached. Your widget should return!
 
 ## Automation Basics
 
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
 > GET http://localhost:5000/automation/action/metadata
 
 ```json
@@ -718,7 +737,7 @@ debugging this (unless you setup a localhost proxy like ngrok).
 
 Once your server is ready, follow the [Asana Rules_Guide](https://asana.com/guide/help/premium/rules) to create a rule.
 When choosing an action, you should select your app's action. These will only show up if the project has the app installed
-and you submitted app actions when you [registered your Workflow App](/docs/register-a-platform-ui-app). You should 
+and you submitted app actions when you [defined your UI Component endpoints](/docs/register-a-platform-ui-app). You should 
 see your customized form. Feel free to submit it and create the rule.
 
 Sadly, you will be unable to test the action being triggered while hosting locally. To test this, deploy your server 
@@ -727,6 +746,8 @@ or setup something like ngrok to expose your localhost server.
 <hr>
 
 ## Being Secure
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 ```javascript
 function forAllRequests(req) {
@@ -771,7 +792,9 @@ You should read the [UI Hooks Security](/docs/ui-hooks-security) section before 
 <hr>
 
 ## Deploying
- 
+
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+
 To deploy you'll need to host your localhost server to a full [App Server](/docs/app-server).
    
    1. All of your urls need to change to the new hosted location (both in your app definition and your responses).
@@ -781,9 +804,11 @@ To deploy you'll need to host your localhost server to a full [App Server](/docs
 
 ## Publishing
 
-**Publishing is not available during the Alpha**
+<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
-Reach out to the DevS team when your app is ready to publish. You can use any avenue to do this or simply email 
-devrel@asana.com with your app's email and the name of the app you wish to publish. 
+**Publishing is generally not available during the Alpha**
+
+Reach out to the Developer Relations team when your app is ready to publish. You can use any avenue to do this or simply 
+email devrel@asana.com with your app's email and the name of the app you wish to publish. 
 
 </section>

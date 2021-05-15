@@ -34,7 +34,7 @@ api_explorer_gen:
 code_gen: java_gen node_gen php_gen ruby_gen python_gen
 
 platform_ui_docs_gen:
-	node ../widdershins/widdershins.js -e widdershins_config.json --summary defs/ui_hooks_oas.yaml -o source/includes/ui-hooks-reference/_index.html.md
+	node ../widdershins/widdershins.js -e pui_widdershins_config.json --summary defs/ui_hooks_oas.yaml -o source/includes/ui-hooks-reference/_index.html.md
 
 docs_gen:
 	node ../widdershins/widdershins.js -e widdershins_config.json --summary defs/asana_oas.yaml -o source/includes/api-reference/_index.html.md

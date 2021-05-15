@@ -1,0 +1,12 @@
+{
+  "search": true,
+  "language_tabs":  [
+    { "shell": "Shell" }, { "javascript--nodejs": "Node.JS" },
+    { "python": "Python" }, { "ruby": "Ruby" }, { "java":  "Java" },
+    { "php": "PHP" }
+  ],
+  "omitHeader": true,
+  "includes": "markdown/*",
+  "user_templates": "./source/templates",
+  "platform_ui": true
+}

@@ -92,10 +92,10 @@ under the License.
       <ul id="toc" class="toc-list-h1">
         <% platform_ui_alpha = false %>
         <% toc_data(page_content).each do |h1| %>
-          <% if h1[:title].start_with?("Workflow Apps Overview") || h1[:title].start_with?("App Server"); platform_ui_alpha = true; end %>
-          <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("News and Changelog"); platform_ui_alpha = false; end %>
+          <% if h1[:title].start_with?("UI Components Alpha"); platform_ui_alpha = true; end %>
+          <% if h1[:title].start_with?("API Reference"); platform_ui_alpha = false; end %>
           <li<% if platform_ui_alpha %> class="platform-ui-alpha"<% end %>>
-            <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") || h1[:title].start_with?("Developer Sandbox") || h1[:title].start_with?("Workflow Apps Overview") || h1[:title].start_with?("Workflow App Reference") || h1[:title].start_with?("Workflow App Schemas")%>
+            <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") || h1[:title].start_with?("Developer Sandbox") || h1[:title].start_with?("UI Components Alpha")%>
               <hr>
               <% if platform_ui_alpha %><a class="toc-h1 toc-link"><span class="beta-indicator">ALPHA</span></a></li><li class="platform-ui-alpha"><% end %>
             <% end %>
