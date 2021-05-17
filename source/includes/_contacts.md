@@ -96,6 +96,7 @@ q | Search by name | Any | `/contacts?filter[q]=amazon`
 kind | Filter contacts by kind | `employee`, `supplier` and `client` | `contacts?filter[kind]=client`
 tax_id | Filter contacts by their tax id | | `contacts?filter[tax_id]=43456628J`
 country | Filter contacts by one or many countries, separated by commas | any country code, in downcase, under the ISO 3166-1 Alpha-2 | `contacts?filter[country]=es,it`
+email | Filter contacts by email | Any | `contacts?filter[email]=someemail@provider.domain`
 
 ### Sorting
 
