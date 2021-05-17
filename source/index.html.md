@@ -31,6 +31,7 @@ includes:
   - administration/trials
   - administration/email_settings
   - administration/feedback_settings
+  - administration/workspace_settings
   - administration/custom_fields
   - administration/quotas
   - administration/activity_log
