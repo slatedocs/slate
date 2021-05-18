@@ -157,6 +157,7 @@ includes:
   - home
   - auth_login
   - validate_user
+  - current_enable_status
   - validate_user_and_password
   - dashboard2
   - dismiss_alert
