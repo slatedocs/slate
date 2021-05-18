@@ -281,7 +281,7 @@ When `true`, this will prevent the bot from loading until the `adaEmbed.start(..
 ```js
 window.adaSettings = {
   onAdaEmbedLoad: () => {
-    window.adaEmbed.subscribeEvent("ada:campaigns:message_received", (data) => {
+    window.adaEmbed.subscribeEvent("ada:campaigns:shown", (data) => {
       console.log("Message received from campaign with key:", data.campaignKey);
     });
   }
@@ -451,7 +451,7 @@ Removes Embed2 from your page.
 `subscribeEvent(eventKey: string, callback: (data: object, context: object) => void): Promise<number>`
 
 ```js
-window.adaEmbed.subscribeEvent("ada:campaigns:message_received", (data) => {
+window.adaEmbed.subscribeEvent("ada:campaigns:shown", (data) => {
   console.log("Message received from campaign with key:", data.campaignKey);
 });
 ```
@@ -460,7 +460,7 @@ window.adaEmbed.subscribeEvent("ada:campaigns:message_received", (data) => {
 window.adaEmbed.subscribeEvent("ada:campaigns", (data, context) => {
   const { eventKey } = context;
 
-  if (eventKey === "ada:campaigns:message_received") {
+  if (eventKey === "ada:campaigns:shown") {
     console.log("Message received from campaign with key:" data.campaignKey);
   }
 
@@ -468,7 +468,7 @@ window.adaEmbed.subscribeEvent("ada:campaigns", (data, context) => {
     console.log("Chat opened after being shown campaign with key:" data.campaignKey);
   }
 
-  if (eventKey === "ada:campaigns:message_received") {
+  if (eventKey === "ada:campaigns:shown") {
     console.log("Message received from campaign with key:" data.campaignKey);
   }
 });
@@ -476,7 +476,7 @@ window.adaEmbed.subscribeEvent("ada:campaigns", (data, context) => {
 
 When certain events happen in Ada, events will be triggered. Each event consists of an event key and a data payload. Using `subscribeEvent`, you can define callbacks that get called when a specific event is triggered.
 
-Callbacks will be triggered whenever an event _starts with_ the `eventKey` provided to `subscribeEvent`. This allows subscribing to all events of a certain category - for example, the callback in a subscription to `ada:campaigns` will be called on `ada:campaigns:message_received`, `ada:campaigns:opened`, and any other events beginning with `ada:campaigns`.
+Callbacks will be triggered whenever an event _starts with_ the `eventKey` provided to `subscribeEvent`. This allows subscribing to all events of a certain category - for example, the callback in a subscription to `ada:campaigns` will be called on `ada:campaigns:shown`, `ada:campaigns:opened`, and any other events beginning with `ada:campaigns`.
 
 Two arguments will be provided to each callback when it is called: `data` and `context`. `data` is specific to each event (see table below). `context` is an object with a single property `eventKey`, which is the event key of the event that triggered the callback to be called.
 
@@ -488,7 +488,7 @@ The following is a list of the currently available events that can be subscribed
 
 Event key | Data | Description
 -------------- | -------------- | --------------
-`ada:campaigns:message_received` | `campaignKey` - the key of the campaign which triggered the received message | Triggered when the chat application receives a message that originates from a campaign.
+`ada:campaigns:shown` | `campaignKey` - the key of the campaign which triggered the received message | Triggered when the chat application receives a message that originates from a campaign.
 `ada:campaigns:opened` | `campaignKey` - the key of the last campaign shown before chat was opened | Triggered when chat is opened after a proactive campaign has been shown.
 `ada:campaigns:engaged` | `campaignKey` - the key of the last campaign shown before the conversation was engaged | Triggered when the chatter engages a conversation (sends a message) after being shown a campaign in the same session.
 
@@ -496,7 +496,7 @@ Event key | Data | Description
 `unsubscribeEvent(subscriptionId: number): void;`
 
 ```js
-const subscriptionId = await window.adaEmbed.subscribeEvent("ada:campaigns:message_received", (data) => {
+const subscriptionId = await window.adaEmbed.subscribeEvent("ada:campaigns:shown", (data) => {
   console.log("Message received from campaign with key:", data.campaignKey);
 });
 
