@@ -31,7 +31,7 @@ curl "https://cloudmc_endpoint/rest/billing_providers" \
       "updatedDate": "2021-05-07T19:21:20Z",
       "defaultForType": true,
       "configurationAttributes": {
-        "creditCards": "American Express,MasterCard,Visa,Discover"
+        "creditCards": "American Express,Mastercard,Visa,Discover"
       }
     }
   ]
@@ -47,7 +47,7 @@ Attributes | &nbsp;
 `providerType`<br/>*string* | The provider for the associated type.
 `createdDate`<br/>*string* | The date the billing provider was created.
 `updatedDate`<br/>*string* | The last date the billing provider was updated.
-`defaultForType`<br/>*UUID* | If this billing provider is the default for the specified type.
+`defaultForType`<br/>*boolean* | If this billing provider is the default for the specified type.
 `configurationAttributes`<br/>*Object* | The configuration attribute associated to the provider type. [See possible values](#administration-provider-type-configuration-attribute)
 
 
@@ -79,7 +79,7 @@ curl "https://cloudmc_endpoint/rest/billing_providers/f26e66a4-755c-4867-b565-ad
     "updatedDate": "2021-05-07T19:21:20Z",
     "defaultForType": true,
     "configurationAttributes": {
-      "creditCards": "American Express,MasterCard,Visa,Discover"
+      "creditCards": "American Express,Mastercard,Visa,Discover"
     }
   }
 }
@@ -94,17 +94,8 @@ Attributes | &nbsp;
 `providerType`<br/>*string* | The provider for the associated type.
 `createdDate`<br/>*string* | The date the billing provider was created.
 `updatedDate`<br/>*string* | The last date the billing provider was updated.
-`defaultForType`<br/>*UUID* | If this billing provider is the default for the specified type.
+`defaultForType`<br/>*boolean* | If this billing provider is the default for the specified type.
 `configurationAttributes`<br/>*Object* | The configuration attribute associated to the provider type. [See possible values](#administration-provider-type-configuration-attribute) 
-
-<!-------------------- PROVIDER TYPE ATTRIBUTES -------------------->
-#### Provider type configuration attribute
-
-Here are the attributes for the `CREDIT_CARD` providers.
-
-Provider | Attributes | &nbsp;
----- | ---- | -----------
-all | `creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field.
 
 <!-------------------- CREATE BILLING PROVIDER -------------------->
 
@@ -125,14 +116,15 @@ curl -X POST "https://cloudmc_endpoint/rest/billing_providers" \
 ```js
 {
   "name": "Chase Credit Card (Dev)",
-	"organization": {
-			"id": "23910576-d29f-4c14-b663-31d728ff49a5"
-	},
-	"type": "CREDIT_CARD",
+  "organization": {
+    "id": "23910576-d29f-4c14-b663-31d728ff49a5"
+  },
+  "type": "CREDIT_CARD",
   "providerType": "chaseCreditCard",
-	"configurationAttributes": {
-		"creditCards": "Visa, Mastercard, American Express, Discover"
-	} 
+  "defaultForType": false,
+  "configurationAttributes": {
+    "creditCards": "Visa, Mastercard, American Express, Discover"
+  }
 }
 ```
 > The above command return JSON structured like this:
@@ -164,18 +156,21 @@ Required | &nbsp;
 `type`<br/>*string* | The type of billing provider. Possible values are: `CREDIT_CARD`.
 `providerType`<br/>*string* | The provider for the associated type.
 `configurationAttributes`<br/>*Object* | The configuration attribute associated to the provider type. [See possible values](#administration-provider-type-configuration-attribute) 
-`configurationAttributes.creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field.
 
-<!-------------------- UPDATE IDPS -------------------->
+Optional | &nbsp;
+------- | -----------
+`defaultForType`<br/>*UUID* | If this billing provider is the default for the specified type.
+
+<!-------------------- UPDATE BILLING PROVIDER -------------------->
 
 #### Update billing provider
 
 `PUT /billing_providers/:id`
 
-Update an existing identity provider.
+Update an existing billing provider.
 
 ```shell
-# Updates an existing identity provider
+# Updates an existing billing provider
 curl -X PUT "https://cloudmc_endpoint/rest/billing_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
    -H "MC-Api-Key: your_api_key"
 ```
@@ -185,14 +180,15 @@ curl -X PUT "https://cloudmc_endpoint/rest/billing_providers/c84cfe41-929b-47c9-
 ```js
 {
   "name": "Chase Credit Card (Dev)",
-	"organization": {
-			"id": "23910576-d29f-4c14-b663-31d728ff49a5"
-	},
-	"type": "CREDIT_CARD",
+  "organization": {
+    "id": "23910576-d29f-4c14-b663-31d728ff49a5"
+  },
+  "type": "CREDIT_CARD",
   "providerType": "chaseCreditCard",
-	"configurationAttributes": {
-		"creditCards": "Visa, Mastercard, American Express, Discover"
-	} 
+  "defaultForType": false,
+  "configurationAttributes": {
+    "creditCards": "Visa, Mastercard, American Express, Discover"
+  }
 }
 ```
 > The above command return JSON structured like this:
@@ -203,10 +199,10 @@ curl -X PUT "https://cloudmc_endpoint/rest/billing_providers/c84cfe41-929b-47c9-
     "createdDate": "2021-05-17T20:32:07Z",
     "organization": {
       "id": "23910576-d29f-4c14-b663-31d728ff49a5"
-	  },
+    },
     "name": "Chase Credit Card (Dev)",
     "configurationAttributes": {
-      "creditCards": "Visa, MasterCard, American Express"
+      "creditCards": "Visa, Mastercard, American Express"
     },
     "defaultForType": false,
     "id": "c84cfe41-929b-47c9-bde4-b55a10bd2774",
@@ -224,7 +220,28 @@ Required | &nbsp;
 `type`<br/>*string* | The type of billing provider. Possible values are: `CREDIT_CARD`.
 `providerType`<br/>*string* | The provider for the associated type.
 `configurationAttributes`<br/>*Object* | The configuration attribute associated to the provider type. [See possible values](#administration-provider-type-configuration-attribute) 
-`configurationAttributes.creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field.
+
+Optional | &nbsp;
+------- | -----------
+`defaultForType`<br/>*boolean* | If this billing provider is the default for the specified type.
+
+<!-------------------- PROVIDER TYPE ATTRIBUTES -------------------->
+#### Provider type configuration attribute
+
+Here are the attributes for the `CREDIT_CARD` providers.
+
+Provider | Attributes | &nbsp;
+---- | ---- | -----------
+all | `creditCards`<br/>*string* | The type of credit card accepted. This is a comma separated field. Possible values are 'Visa', 'Mastercard', 'American Express', 'Discover.
+chaseCreditCard | `hostname`<br/>*string* | Hosted payment hostname.
+chaseCreditCard | `secureId`<br/>*string* | Unique value identifying the client’s Hosted Payment account.
+chaseCreditCard | `secureToken`<br/>*string* | Unique value associated with Hosted Payment account.
+chaseCreditCard | `cssURL`<br/>*string* | Sets the URL of the CSS file used to style the payment form. This value overrides the URL set in the Hosted Payment Page Admin screen.
+chaseCreditCard | `orbitalHostname`<br/>*string* | Orbital API hostname.
+chaseCreditCard | `orbitalUsername`<br/>*string* | Orbital Connection Username set up on Orbital Gateway.
+chaseCreditCard | `orbitalPassword`<br/>*string* | Orbital Connection Password used in conjunction with Orbital Username.
+chaseCreditCard | `orbitalMerchantTerminal`<br/>*string* | Orbital API merchant terminal ID.
+chaseCreditCard | `orbitalMerchantBin`<br/>*string* | Orbital API merchant BIN number.
 
 <!-------------------- DELETE BILLING PROVIDER -------------------->
 #### Delete a billing provider
