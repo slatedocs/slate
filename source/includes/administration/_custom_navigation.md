@@ -193,7 +193,7 @@ Optional | &nbsp;
 ---------- | -----------
 `reseller.id`<br/>*UUID* | The organization id that the custom field belongs to. If not provided defaults to caller's organization.
 `enabled`<br/>*boolean* | Whether not custom navigation is enabled on the reseller. Defaults to false.
-`tabs`<br/>*Array[Object]* | List of tabs, in the order they should be displayed in a the menu.
+`tabs`<br/>*Array[Object]* | List of tabs, in the order they should be displayed in the menu.
 `tabs.type`<br/>*Object* | *Required* in tab object. Valid values are `SERVICE`, `SYSTEM` and `COMING_SOON`. 
 `tabs.name`<br/>*Object* | *Required* in tab object. Mapped object containing the tab name in different languages. Need to specify all languages for target reseller's branding.
 `tabs.tooltip`<br/>*Object* | Mapped object containing the tab's tooltip name in different languages. Need to specify all languages for target reseller's branding.
