@@ -130,27 +130,27 @@ Attributes | &nbsp;
   --header 'Content-Type: application/json' \
   --header 'Mc-Api-Key: your_api_key' \
   --data '{
-	"enabled": true,
-	"reseller": {
-		"id": "c869e848-6fb3-4850-af3d-42c5666f2c78"
-	},
-	"tabs": [
-		{
-			"type": "SYSTEM",
-			"key": "users",
-			"name": {
-				"en": "Users",
-				"fr": "Usagers"
-			}
-		},
-		{
-			"type": "COMING_SOON",
-			"name": {
-				"en": "hot new feature",
-				"fr": "hot new feature fr"
-			}
-		}
-	]
+  "enabled": true,
+  "reseller": {
+    "id": "c869e848-6fb3-4850-af3d-42c5666f2c78"
+  },
+  "tabs": [
+    {
+      "type": "SYSTEM",
+      "key": "users",
+      "name": {
+        "en": "Users",
+        "fr": "Usagers"
+      }
+    },
+    {
+      "type": "COMING_SOON",
+      "name": {
+        "en": "hot new feature",
+        "fr": "hot new feature fr"
+      }
+    }
+  ]
 }'
 ```
 
