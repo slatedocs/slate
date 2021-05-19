@@ -1,6 +1,6 @@
 ## Custom navigation 
 
-Custom navigation API allows to customize the navigation per-reseller. Most notably it allows to customize what tabs are shown to a user.
+Custom navigation API allows to customize the navigation per-reseller. Most notably it allows to customize what tabs are shown to a user in the main menu.
 
 <!-------------------- List CUSTOM NAV -------------------->
 ### List custom navigation
@@ -112,8 +112,12 @@ Attributes | &nbsp;
 `tabs.name`<br/>*Object* | Mapped object containing the tab name in different languages.
 `tabs.tooltip`<br/>*Object* | Mapped object containing the tab's tooltip name in different languages.
 `tabs.tag`<br/>*Object* | Mapped object containing the tab's tag name in different languages.
-`tabs.rank`<br/>*int* | 
+`tabs.rank`<br/>*int* | The order in which the tab will be displayed in the menu.
 `tabs.type`<br/>*String* | Valid values are `SERVICE`, `SYSTEM` and `COMING_SOON`. 
+`tabs.icon`<br/>*String* | A string representing a css icon class.
+`tabs.serviceConnection`<br/>*UUID* | The service connection id for a tab of type `SERVICE`.
+`tabs.workspace`<br/>*String* | The workspace name for a tab of type `SERVICE`. 
+`tabs.key`<br/>*String* | The view key for a tab of type `SYSTEM`. 
 
 <!-------------------- Create CUSTOM NAV -------------------->
 ### Create custom navigation
@@ -194,6 +198,10 @@ Optional | &nbsp;
 `tabs.name`<br/>*Object* | *Required* in tab object. Mapped object containing the tab name in different languages. Need to specify all languages for target reseller's branding.
 `tabs.tooltip`<br/>*Object* | Mapped object containing the tab's tooltip name in different languages. Need to specify all languages for target reseller's branding.
 `tabs.tag`<br/>*Object* | Mapped object containing the tab's tag name in different languages. Need to specify all languages for target reseller's branding.
+`tabs.icon`<br/>*String* | A string representing a css icon class.
+`tabs.serviceConnection`<br/>*UUID* | *Required* if type `SERVICE`. The service connection id for a tab of type `SERVICE`.
+`tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
+`tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 
 <!-------------------- Update CUSTOM NAV -------------------->
 ### Update custom navigation
@@ -245,6 +253,10 @@ Optional | &nbsp;
 `tabs.name`<br/>*Object* | *Required* in tab object. Mapped object containing the tab name in different languages. Need to specify all languages for target reseller's branding.
 `tabs.tooltip`<br/>*Object* | Mapped object containing the tab's tooltip name in different languages. Need to specify all languages for target reseller's branding.
 `tabs.tag`<br/>*Object* | Mapped object containing the tab's tag name in different languages. Need to specify all languages for target reseller's branding.
+`tabs.icon`<br/>*String* | A string representing a css icon class.
+`tabs.serviceConnection`<br/>*UUID* | *Required* if type `SERVICE`. The service connection id for a tab of type `SERVICE`.
+`tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
+`tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 
 <!-------------------- Delete CUSTOM NAV -------------------->
 
