@@ -40,7 +40,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.0.3.6)
+    activesupport (6.0.3.7)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -48,8 +48,8 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    autoprefixer-rails (9.5.1.1)
-      execjs
+    autoprefixer-rails (10.2.5.0)
+      execjs (< 2.8.0)
     backports (3.21.0)
     coffee-script (2.4.1)
       coffee-script-source
@@ -77,9 +77,9 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     memoist (0.16.2)
-    middleman-autoprefixer (2.10.1)
-      autoprefixer-rails (~> 9.1)
-      middleman-core (>= 3.3.3)
+    middleman-autoprefixer (3.0.0)
+      autoprefixer-rails (~> 10.0)
+      middleman-core (>= 4.0.0)
     middleman-sprockets (4.1.1)
       middleman-core (~> 4.0)
       sprockets (>= 3.0)
@@ -102,7 +102,7 @@ GEM
     public_suffix (4.0.6)
     racc (1.5.2)
     rack (2.2.3)
-    rb-fsevent (0.10.4)
+    rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redcarpet (3.5.1)
@@ -137,7 +137,7 @@ PLATFORMS
 
 DEPENDENCIES
   middleman!
-  middleman-autoprefixer (~> 2.7)
+  middleman-autoprefixer (~> 3.0)
   middleman-sprockets (~> 4.1)
   middleman-syntax (~> 3.2)
   nokogiri (~> 1.11.0)
