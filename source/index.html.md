@@ -37,6 +37,7 @@ includes:
   - administration/activity_log
   - administration/billing
   - administration/billing_providers
+  - administration/connection_settings
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
