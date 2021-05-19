@@ -468,8 +468,8 @@ window.adaEmbed.subscribeEvent("ada:campaigns", (data, context) => {
     console.log("Chat opened after being shown campaign with key:" data.campaignKey);
   }
 
-  if (eventKey === "ada:campaigns:shown") {
-    console.log("Message received from campaign with key:" data.campaignKey);
+  if (eventKey === "ada:campaigns:engaged") {
+    console.log("Chatter engaged with campaign with key:" data.campaignKey);
   }
 });
 ```
