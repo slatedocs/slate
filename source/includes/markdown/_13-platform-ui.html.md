@@ -279,6 +279,23 @@ Related References:
 
 # UI Components Security
 
+## UI Components Security Checklist
+
+When handling requests from Asana, a UI Components app should:
+ 
+ - Reject requests with missing or incorrect signatures.
+ - Reject requests with an "expires" time in the past.
+    - **Note**: Make sure to use the correct units for this. "expires" is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
+
+If an app uses OAuth for authentication, the app should:
+ 
+ - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
+
+If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
+
+ - An attacker can't authenticate themselves as someone else
+ - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
+
 ## UI Components Authorization
 
 <span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
