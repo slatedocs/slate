@@ -804,3 +804,18 @@ Attributes | &nbsp;
 `billingAddressProvince`<br/>*string* | The province or state code (2 letters) of the billing address.
 `billingAddressPostalCode`<br/>*string* | The postal/zip code of the billing address.
 `billingAddressCountry`<br/>*string* | The country code (ISO 2 or 3 letter code) of the billing address
+
+
+
+<!-------------------- DELETE CREDIT CARD -------------------->
+### Clear credit card information
+`DELETE /organizations/:organization_id/billing_info`
+
+Delete the billing information for an organization. Only accessible to system operator.
+
+Returns an HTTP status code 200, with an empty response body.
+
+```shell
+# Retrieve the organization's billing information
+curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
+   -H "MC-Api-Key: your_api_key"
