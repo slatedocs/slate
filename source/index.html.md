@@ -12142,11 +12142,78 @@ http://localhost:8002/api/referrals/?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+[
+{
+        "_id": "60a59ea7f1aff8001a4663ac",
+        "deleted": 0,
+        "schedulableFacilities": [],
+        "schedulableProviders": [],
+        "source": "manual",
+        "status": "active",
+        "fileUploads": [],
+        "attempt": 1,
+        "diagnoses": [],
+        "processedReferralFollowup": "pending",
+        "patient": {
+            "_id": "60a59e95f1aff8001a4660b7",
+            "user": "60a59e9493a0d10012a1ba32",
+            "type": "patient",
+            "name": "Hassan DemoKunde",
+            "firstname": "Hassan",
+            "lastname": "DemoKunde",
+            "contact": [
+                {
+                    "type": "email",
+                    "value": "Jacinthe93.hotmail.com@example.com",
+                    "active": true,
+                    "archived": false,
+                    "archivedReason": "none",
+                    "_id": "60a59e95f1aff8001a4660b8"
+                }
+            ],
+            "dateOfBirth": {
+                "year": 1997,
+                "month": 8,
+                "day": 27
+            }
+        },
+        "expireAt": "2021-05-29T23:26:31.629Z",
+        "referringProvider": "Zachary DemoKoss",
+        "referringProviderId": "60a59ea7f1aff8001a4663a0",
+        "facility": "60a59e95f1aff8001a4660e0",
+        "user": "60a59e9493a0d10012a1ba32",
+        "createdBy": "60a59e9493a0d10012a1ba32",
+        "updatedBy": "60a59e9493a0d10012a1ba32",
+        "startOn": "2021-05-19T23:26:31.631Z",
+        "createdAt": "2021-05-19T23:26:31.632Z",
+        "updatedAt": "2021-05-19T23:26:40.041Z",
+        "schedulableProvidersScope": [],
+        "scheduleStartOn": "2021-05-19T23:26:31.632Z",
+        "__v": 0,
+        "lastAttemptSentAt": "2021-05-19T23:26:40.035Z",
+        "reminders": [
+                "_id": "60a59ea8f2660b001a7affe3",
+                "deleted": 0,
+                "type": "referral",
+                "contact": [],
+                "replied": 0,
+                "partialStatus": [],
+                "user": "60a59e9493a0d10012a1ba32",
+                "patient": "60a59e95f1aff8001a4660b7",
+                "facility": "60a59e95f1aff8001a4660e0",
+                "status": "sent",
+                "referral": "60a59ea7f1aff8001a4663ac",
+                "sendAt": "2021-05-19T23:26:31.631Z",
+                "createdBy": "60a59e9493a0d10012a1ba32",
+                "updatedBy": "60a59e9493a0d10012a1ba32",
+                "createdAt": "2021-05-19T23:26:32.713Z",
+                "updatedAt": "2021-05-19T23:26:40.024Z",
+                "__v": 0,
+                "sentAt": "2021-05-19T23:26:40.011Z",
+                "statusReason": ""        
+        ]
+    }
+]
 ```
 
 Authorization: No Auth / x-access-token
@@ -12155,9 +12222,9 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
+Request query Params | Example
 -------------- | ----------- 
-xxx | yyy
+Any property of an [Referral](#referral) | ex.: ?referringProviderId=60a59ea7f1aff8001a4663a0
 
 ## Post referral
 
@@ -12170,22 +12237,26 @@ http://localhost:8002/api/referrals/?q=xyz \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+    "source" : "manual",
+    "status" : "active",
+    "attempt" : 0,
+    "diagnoses" : [],
+    "processedReferralFollowup" : "pending",
+    "patient" : "604afed1efb03f0013db2079",
+    "expireAt" : "2021-03-22T04:41:11.613Z",
+    "provider" : "604afef6efb03f0013db2343",
+    "referringProviderId" : "604afef6efb03f0013db2343",
+    "facility" :"604afed1efb03f0013db209b",
+    "startOn" : "2021-05-19 23:18:40.829Z",
+    "schedulableProviders": [],
+    "scheduleStartOn": "2021-05-19T23:19:32.033Z",
+    "externalId": {
+        "source" : "genericfhir",
+        "value" : "123456"
+  }
+}'
 ```
 
-> The command above returns a JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
 
 Authorization: No Auth / x-access-token
 
@@ -12193,13 +12264,9 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+Request body: JSON of an [Referral](#referral).
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of the [Referral](#referral) which as created..
 
 ## Get by id
 
@@ -12216,26 +12283,83 @@ http://localhost:8002/api/referrals/:id?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+        "_id": "60a59ea7f1aff8001a4663ac",
+        "deleted": 0,
+        "schedulableFacilities": [],
+        "schedulableProviders": [],
+        "source": "manual",
+        "status": "active",
+        "fileUploads": [],
+        "attempt": 1,
+        "diagnoses": [],
+        "processedReferralFollowup": "pending",
+        "patient": {
+            "_id": "60a59e95f1aff8001a4660b7",
+            "user": "60a59e9493a0d10012a1ba32",
+            "type": "patient",
+            "name": "Hassan DemoKunde",
+            "firstname": "Hassan",
+            "lastname": "DemoKunde",
+            "contact": [
+                {
+                    "type": "email",
+                    "value": "Jacinthe93.hotmail.com@example.com",
+                    "active": true,
+                    "archived": false,
+                    "archivedReason": "none",
+                    "_id": "60a59e95f1aff8001a4660b8"
+                }
+            ],
+            "dateOfBirth": {
+                "year": 1997,
+                "month": 8,
+                "day": 27
+            }
+        },
+        "expireAt": "2021-05-29T23:26:31.629Z",
+        "referringProvider": "Zachary DemoKoss",
+        "referringProviderId": "60a59ea7f1aff8001a4663a0",
+        "facility": "60a59e95f1aff8001a4660e0",
+        "user": "60a59e9493a0d10012a1ba32",
+        "createdBy": "60a59e9493a0d10012a1ba32",
+        "updatedBy": "60a59e9493a0d10012a1ba32",
+        "startOn": "2021-05-19T23:26:31.631Z",
+        "createdAt": "2021-05-19T23:26:31.632Z",
+        "updatedAt": "2021-05-19T23:26:40.041Z",
+        "schedulableProvidersScope": [],
+        "scheduleStartOn": "2021-05-19T23:26:31.632Z",
+        "__v": 0,
+        "lastAttemptSentAt": "2021-05-19T23:26:40.035Z",
+        "reminders": [
+                "_id": "60a59ea8f2660b001a7affe3",
+                "deleted": 0,
+                "type": "referral",
+                "contact": [],
+                "replied": 0,
+                "partialStatus": [],
+                "user": "60a59e9493a0d10012a1ba32",
+                "patient": "60a59e95f1aff8001a4660b7",
+                "facility": "60a59e95f1aff8001a4660e0",
+                "status": "sent",
+                "referral": "60a59ea7f1aff8001a4663ac",
+                "sendAt": "2021-05-19T23:26:31.631Z",
+                "createdBy": "60a59e9493a0d10012a1ba32",
+                "updatedBy": "60a59e9493a0d10012a1ba32",
+                "createdAt": "2021-05-19T23:26:32.713Z",
+                "updatedAt": "2021-05-19T23:26:40.024Z",
+                "__v": 0,
+                "sentAt": "2021-05-19T23:26:40.011Z",
+                "statusReason": ""  
+        ]
+}  
 ```
 
 Authorization: No Auth / x-access-token
 
-Path parameters | Description 
+Request query Params | Example
 -------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Any property of an [Referral](#referral) | ex.: ?referringProviderId=60a59ea7f1aff8001a4663a0
 
 ## Delete by id
 
@@ -12294,40 +12418,13 @@ http://localhost:8002/api/referrals/:id?q=xyz \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The command above returns a JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+        "status": "active"
+    }'
 ```
 
 Authorization: No Auth / x-access-token
 
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Request body: JSON containing any subset of the attributes of an [Referral](#referral).
 
 ## Post approve
 
