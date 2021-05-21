@@ -15,6 +15,9 @@ includes:
   - next/es/ec/core/withholding
   - next/es/ec/catalog/product
   - next/es/ec/catalog/category
+  - next/es/ec/inventory/item
+  - next/es/ec/inventory/stock
+  - next/es/ec/inventory/warehouse
   - next/es/ec/common
   - next/es/ec/sales
   - next/es/ec/sales/invoices
@@ -25,6 +28,7 @@ includes:
   - next/es/ec/purchases/withholdings
   - next/es/ec/catalog/products
   - next/es/ec/catalog/categories
+  - next/es/ec/inventory/inventory
   - next/es/ec/codes
   - errores
 
