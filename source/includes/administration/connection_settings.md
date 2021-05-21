@@ -1,16 +1,17 @@
 ## Connection Settings
 
-<!-------------------- FIND CONNECTION SETTINGS -------------------->
+<!-------------------- SEARCH CONNECTION SETTINGS ASSOCIATED WITH AN ORG AND SERVICE CONNECTION-------------------->
 
-### Find connection settings associated with an organization and service connection
+### Search for a connection setting associated with an organization and service connection
 
-`GET /connection_settings/serviceconnection/{serviceConnectionId}/findForOrganization?organizationId=:id`
+`GET /reseller/connectionSettings/search?organizationId=:orgId&connectionId=:serviceConnectionId`
 
-Retrieve the connection settings associated with an organization and service connection. If the `organizationId` is omitted, the authenticated user's organization will be used.
+Retrieve the connection setting associated with an organization (or its lineage) and service connection. If the `organizationId` is omitted, the authenticated user's organization will be used to return a connection setting associated with the `connectionId`. If both `organizationId` and `connectionId` is omitted all connection settings associated with the
+authenticated user's organization will be returned
 
 ```shell
-# Retrieve the connection settings
-curl "https://cloudmc_endpoint/api/v1/connection_settings/serviceconnection/e0133c59-cfa4-4bd5-9b49-1575aadc4842/findForOrganization?organizationId=10572c3d-16e5-450f-8af8-a01e50dc52d4" \
+# Retrieve a connection setting associated with an organization and service connection
+curl "https://cloudmc_endpoint/api/v1/reseller/connectionSettings/search?organizationId=10572c3d-16e5-450f-8af8-a01e50dc52d4&connectionId=e0133c59-cfa4-4bd5-9b49-1575aadc4842" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -40,14 +41,71 @@ Attributes | &nbsp;
 `version`<br/>*integer* | The connection settings version.
 `supportsMultiStep`<br/>*boolean* | If true the Operation (create/edit) forms for the service connection of an organization will appear in wizard mode.
 
-<!-------------------- GET CONNECTION SETTINGS -------------------->
-### Retrieve connection settings
 
-`GET /connection_settings/:id`
+<!-------------------- SEARCH ALL CONNECTION SETTINGS -------------------->
+
+### Search for all connection settings associated with an organization
+
+`GET /reseller/connectionSettings/search?organizationId=:orgId`
+
+Retrieve the list of connection settings associated with an organization (or its lineage). If the `organizationId` is omitted, the authenticated user's organization will be used to return a list of connection settings.
 
 ```shell
-# Retrieve connection settings
-curl "https://cloudmc_endpoint/api/v1/connection_settings/b3a09847-83e0-4505-b941-c0f565b39686" \
+# Retrieve the list of connection settings associated with an organization
+curl "https://cloudmc_endpoint/api/v1/reseller/connectionSettings/search?organizationId=10572c3d-16e5-450f-8af8-a01e50dc52d4&" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+  "data": [
+    {
+        "organization": {
+        "id": "10572c3d-16e5-450f-8af8-a01e50dc52d4"
+        },
+        "supportsMultiStep": true,
+        "id": "b3a09847-83e0-4505-b941-c0f565b39686",
+        "version": 1,
+        "serviceConnection": {
+        "id": "e0133c59-cfa4-4bd5-9b49-1575aadc4842"
+        }
+    }
+    {
+      "organization": {
+        "id": "56e2219c-2576-48dc-82b1-0ea7cd096d12"
+      },
+      "supportsMultiStep": false,
+      "id": "61c9c620-840b-4a5d-b7b1-cebdac7a4385",
+      "version": 1,
+      "serviceConnection": {
+        "id": "b5f3ba0d-8b37-413f-a257-d1fc8bebb9a6"
+      }
+    }
+  ]
+}    
+```
+
+Attributes | &nbsp;
+---------- | -----------
+`id`<br/>*UUID* | The configured connection settings' id.
+`organization.id`<br/>*UUID* | The organization id that the connection settings is linked to. It cannot be changed.
+`serviceConnection.id`<br/>*UUID* | The service connection id that the connection settings is linked to. It cannot be changed.
+`version`<br/>*integer* | The connection settings version.
+`supportsMultiStep`<br/>*boolean* | If true the Operation (create/edit) forms for the service connection of an organization will appear in wizard mode.
+
+
+
+<!-------------------- GET CONNECTION SETTINGS -------------------->
+### Retrieve a connection setting
+
+`GET /reseller/connectionSettings/:id`
+
+```shell
+# Retrieve a connection setting
+curl "https://cloudmc_endpoint/api/v1/reseller/connectionSettings/b3a09847-83e0-4505-b941-c0f565b39686" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -69,7 +127,7 @@ curl "https://cloudmc_endpoint/api/v1/connection_settings/b3a09847-83e0-4505-b94
 }
 ```
 
-Retrieve the connection settings associated with the connection settings id.
+Retrieve the connection setting associated with the connection setting id.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -80,15 +138,15 @@ Attributes | &nbsp;
 `supportsMultiStep`<br/>*boolean* | If true the Operation (create/edit) forms for the service connection of an organization will appear in wizard mode.
 
 <!-------------------- CREATE CONNECTION SETTINGS -------------------->
-### Create connection settings
+### Create a connection setting
 
-`POST /connection_settings`
+`POST /reseller/connectionSettings`
 
-Create a new connection settings.
+Create a new connection setting.
 
 ```shell
-# Creates a new connection settings
-curl -X POST "https://cloudmc_endpoint/api/v1/connection_settings" \
+# Creates a new connection setting
+curl -X POST "https://cloudmc_endpoint/api/v1/reseller/connectionSettings" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -134,15 +192,15 @@ Optional | &nbsp;
 `supportsMultiStep`<br/>*UUID* | Whether to display the Operation (create/edit) forms for the service connection of an organization in wizard mode. Default is false
 
 <!-------------------- UPDATE CONNECTION SETTINGS -------------------->
-### Update connection settings
+### Update a connection setting
 
-`PUT /connection_settings/:id`
+`PUT /reseller/connectionSettings/:id`
 
-Updates the connection settings associated with the connection settings id.
+Updates the connection setting associated with the connection settings id.
 
 ```shell
-# Updates an existing connection settings for an organization and service connection
-curl -X PUT "https://cloudmc_endpoint/api/v1/connection_settings/b3a09847-83e0-4505-b941-c0f565b39686 \
+# Updates an existing connection setting for an organization and service connection
+curl -X PUT "https://cloudmc_endpoint/api/v1/reseller/connectionSettings/b3a09847-83e0-4505-b941-c0f565b39686 \
    -H "MC-Api-Key: your_api_key"
    -H "Content-Type: application/json" \
    -d "request-body"
@@ -196,14 +254,14 @@ Optional | &nbsp;
 
 
 <!-------------------- DELETE CONNECTION SETTINGS -------------------->
-### Delete connection settings
+### Delete a connection setting
 
-`DELETE /connection_settings/:id`
+`DELETE /reseller/connectionSettings/:id`
 
-Delete an existing connection settings.
+Delete an existing connection setting.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/api/v1/connection_settings/b3a09847-83e0-4505-b941-c0f565b39686" \
+curl -X DELETE "https://cloudmc_endpoint/api/v1/reseller/connectionSettings/b3a09847-83e0-4505-b941-c0f565b39686" \
    -H "MC-Api-Key: your_api_key"
 ```
 
