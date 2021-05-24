@@ -898,7 +898,7 @@ Bank Permata| Yes| Yes |Yes| Yes  | No | Yes
 CIMB Niaga| Yes| Yes |Yes| Yes  | No| Yes
 
 Bank (Virtual Account) | Payment from Teller (Inter and Intra Banks) | SWIFT Payment | Intra bank transfer fees  | 
------- | ----------- | ----------- | ----------- | -----------  | ----------- |
+------ | ----------- | ----------- | ----------- | 
 Bank Mandiri| Yes| No |Rp 0| 
 BRI| Yes| No |Rp 1000|
 BNI| Yes| No |Rp 0| 
@@ -1322,7 +1322,7 @@ Bank Permata| Yes| Yes |Yes| Yes  | No | Yes
 CIMB Niaga| Yes| Yes |Yes| Yes  | No| Yes
 
 Bank (Virtual Account) | Payment from Teller (Inter and Intra Banks) | SWIFT Payment | Intra bank transfer fees  | 
------- | ----------- | ----------- | ----------- | -----------  | ----------- |
+------ | ----------- | ----------- | ----------- | 
 Bank Mandiri| Yes| No |Rp 0| 
 BRI| Yes| No |Rp 1000|
 BNI| Yes| No |Rp 0| 
