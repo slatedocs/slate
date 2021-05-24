@@ -147,6 +147,10 @@ To be able to login to Dashboard;
 1. Make sure the username and password that you input are correct
 2. Click 'Request OTP' button and input the OTP in the PIN Authentication field. The OTP will be sent to the email associated with your username.
 
+![Login OTP](images/Login_OTP.png)
+
+![Email OTP](images/email_otp.png)
+
 If you tick the 'Remember this device' option, you are not required to input an OTP when you log back in next time. Hence, point 2 is required only when you login for the first time after you create your account.
 
 ## Setting Up the Receiving Bank Account
@@ -165,8 +169,14 @@ If you have a Super Admin role, you are able to add account for your team member
 These are the following steps to add new users;
 1.  Login to Dashboard
 2.  Go to Accounts -> User Management
+
+![User Management 1](images/user_management_1.png)
+
 3.  Click the 'Create User' button 
 4.  Fill in the full name, username, email, phone number (optional), and password
+
+![User Management 2](images/user_management_2.png)
+
 5.  Choose the role that you want to assign your team member(s) to. You can choose one from the following available role:
 
 - Admin: Has access to all menu, create and approve bulk disbursement and request, view active feature report, manage user list.
@@ -180,8 +190,8 @@ Aside from adding new users, a Super Admin is also able to edit and delete their
 To increase the security of your account, you can set up 2-factor Authentication. Currently, the security method that OY provides is through an authenticator app
 
 These are the following steps to set up the 2-factor authentication;
-1.  Login to Dashboard
-2.  Go to Accounts -> Authenticator OTP
+1. Login to Dashboard
+2. Go to Accounts -> Authenticator OTP
 3. Download Authenticator App in your smartphone (from Play Store/App Store) or PC (you can download an extension for your browser). Examples of the app: Google Authenticator, Microsoft Authenticator, Authy, etc
 4. Scan the barcode displayed on your OY Dashboard with your Authenticator App OR enter the setup key displayed next to it on your Authenticator App
 5. Please type in the 6-numerical code displayed on your Authenticator App in the 'Authenticator OTP' on OY Dashboard
@@ -198,6 +208,8 @@ Here's how you can access the top-up menu on your dashboard;
 There are 2 ways in which you can top up your OY account:
 - Top Up via Virtual Account
 The Virtual Account number information can be found on 'How to Top Up Balance via VA' tab once you click the 'How To Top Up' button. If you choose to top up via VA, the topped up amount will be credited into your account real-time and you do not need to send any manual confirmation to OY 
+
+![VA Topup](images/va_topup.png)
  
 - Manual Top Up via Bank Transfer
 Aside from Virtual Account, you can also transfer the top up money to OY's giro account. If you choose to top up via this method, you need to perform a manual confirmation in order that your money can be credited into your account.
@@ -205,6 +217,9 @@ Aside from Virtual Account, you can also transfer the top up money to OY's giro 
 After you have completed the fund transfer to OY! Indonesia, you need to perform the following steps;
 
 1. Click the 'Manual Top Up Confirmation' tab on the top-up menu
+
+![Manual Topup](images/manual_topup.png)
+
 2. Fill in the fields with the following information;
 
 Field Name | Description|
@@ -216,7 +231,14 @@ Transfer Receipt Type| Transfer Receipt with Reference Number --> If your upload
 
 3. Click 'Submit Now'
 4. You will receive a receipt of your transaction in your email, stating that your transaction is currently being processed
+
+![Topup Confirmation Dashboard](images/topup_confirmation_dashboard.png)
+
+![Topup Confirmation Email](images/topup_confirmation_email.png)
+
 5. You will receive an email confirming whether your top up is success or failed
+
+![Success Failed Confirmation](images/success_failed_confirmation.png)
 
 
 ## Withdrawal
@@ -226,6 +248,9 @@ When you want to withdraw, do the following steps:
 1.  Go to Transaction Report -> Account Statement
 2.  Click Withdraw
 3.  Fill in the amount that you want to withdraw
+
+![Withdrawal Top Up](images/withdrawal_topup.png)
+
 4.  Choose your withdrawal type. You can pick one from the following options:
 
 	- Instant with admin fee -> This means that your withdrawal will be processed and arrive into your receiving bank real-time. If the amount to be withdrawn is <= IDR 50 million and the receiving banks are BCA, BRI, BNI, Mandiri, Permata, DBS and CIMB Niaga, you can choose this option. You will be charged an admin fee if you choose this option
@@ -235,6 +260,8 @@ When you want to withdraw, do the following steps:
 ### Setting Up Auto Withdrawal Process
 
 If you want to set up an **Auto Withdrawal** periodically, go to Settings -> Auto Withdrawal.
+
+![Auto Withdrawal](images/auto_withdrawal.png)
 
 Here's how you can configure the auto withdrawal settings;
 
@@ -254,6 +281,8 @@ Settlement Report stores the list of transactions corresponding to payment metho
 To access the Settlement report;
 - Login to Dashboard
 - Go to Transaction Report -> Settlement Report
+
+![Settlement Report](images/settlement_report.png)
 
 The Settlement Report consists of the following information;
 
