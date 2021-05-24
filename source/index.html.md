@@ -129,7 +129,7 @@ Once you're ready to execute real money-in and money-out transactions or integra
 
 3. Have your upgrade request approved
 
-4. Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons)
+4. Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons). Receiving bank account is an account to which we will send the withdrawn amount to. You can set this up by going to Accounts -> Bank Account
 
 5. (Required if you want to use our API) Submit your IPs and callback URLs (both for staging and production environment) to your business representative or to partner@oyindonesia.com
 
@@ -153,14 +153,7 @@ To be able to login to Dashboard;
 
 If you tick the 'Remember this device' option, you are not required to input an OTP when you log back in next time. Hence, point 2 is required only when you login for the first time after you create your account.
 
-## Setting Up the Receiving Bank Account
 
-The receiving bank account is an account to which we will disburse the amount withdrawn from the dashboard.
-
-These are the following steps to set up your bank account;
-1.  Login to Dashboard
-2.  Go to Accounts -> Bank Account
-3.  Fill in the receiving account accordingly
 
 ## User Management
 
