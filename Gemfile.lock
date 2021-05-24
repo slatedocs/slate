@@ -143,7 +143,7 @@ DEPENDENCIES
   nokogiri (~> 1.11.0)
   redcarpet (~> 3.5.0)
   rouge (~> 3.21)
-  sass
+  sassc (~> 2.1.0)
   webrick
 
 RUBY VERSION
