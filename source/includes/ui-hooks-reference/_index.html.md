@@ -79,33 +79,36 @@ getFormMetadata
 
 ```json
 {
-  "error": "You must provide either a name or a title",
-  "fields": [
-    {
-      "error": "Maximum description length is 256 characters",
-      "id": "item-description",
-      "options": [
-        {
-          "icon_url": "some-icon.png",
-          "id": "opt-in",
-          "label": "Opt in to emails."
-        }
-      ],
-      "placeholder": "Type description here...",
-      "required": true,
-      "title": "Item Description",
-      "type": "single_line_text",
-      "value": "It's over 9000",
-      "watched": true,
-      "width": "full"
-    }
-  ],
-  "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange"
+  "metadata": {
+    "error": "You must provide either a name or a title",
+    "fields": [
+      {
+        "error": "Maximum description length is 256 characters",
+        "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
+        "options": [
+          {
+            "icon_url": "some-icon.png",
+            "id": "opt-in",
+            "label": "Opt in to emails."
+          }
+        ],
+        "placeholder": "Type description here...",
+        "title": "Item Description",
+        "type": "single_line_text",
+        "value": "It's over 9000",
+        "width": "full"
+      }
+    ],
+    "on_change": {
+      "on_change_callback": "https://app-server.com/form/onchange"
+    },
+    "on_submit_callback": "www.example.com/on_submit",
+    "submit_button_text": "Create New Issue",
+    "title": "Create New Issue"
   },
-  "on_submit_callback": "www.example.com/on_submit",
-  "submit_button_text": "Create New Issue",
-  "title": "Create New Issue"
+  "template": "form_metadata_v0"
 }
 ```
 
@@ -200,33 +203,36 @@ onFormChange
 
 ```json
 {
-  "error": "You must provide either a name or a title",
-  "fields": [
-    {
-      "error": "Maximum description length is 256 characters",
-      "id": "item-description",
-      "options": [
-        {
-          "icon_url": "some-icon.png",
-          "id": "opt-in",
-          "label": "Opt in to emails."
-        }
-      ],
-      "placeholder": "Type description here...",
-      "required": true,
-      "title": "Item Description",
-      "type": "single_line_text",
-      "value": "It's over 9000",
-      "watched": true,
-      "width": "full"
-    }
-  ],
-  "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange"
+  "metadata": {
+    "error": "You must provide either a name or a title",
+    "fields": [
+      {
+        "error": "Maximum description length is 256 characters",
+        "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
+        "options": [
+          {
+            "icon_url": "some-icon.png",
+            "id": "opt-in",
+            "label": "Opt in to emails."
+          }
+        ],
+        "placeholder": "Type description here...",
+        "title": "Item Description",
+        "type": "single_line_text",
+        "value": "It's over 9000",
+        "width": "full"
+      }
+    ],
+    "on_change": {
+      "on_change_callback": "https://app-server.com/form/onchange"
+    },
+    "on_submit_callback": "www.example.com/on_submit",
+    "submit_button_text": "Create New Issue",
+    "title": "Create New Issue"
   },
-  "on_submit_callback": "www.example.com/on_submit",
-  "submit_button_text": "Create New Issue",
-  "title": "Create New Issue"
+  "template": "form_metadata_v0"
 }
 ```
 
@@ -320,6 +326,8 @@ onFormSubmit
       "field_object": {
         "error": "Maximum description length is 256 characters",
         "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -328,11 +336,9 @@ onFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "required": true,
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
-        "watched": true,
         "width": "full"
       }
     },
@@ -341,6 +347,8 @@ onFormSubmit
       "field_object": {
         "error": "Maximum description length is 256 characters",
         "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -349,11 +357,9 @@ onFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "required": true,
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
-        "watched": true,
         "width": "full"
       }
     }
@@ -396,16 +402,16 @@ The callback request made to an App Server when a form is submitted.
 |»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type.|
 |»»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
-|»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`. An array of FieldOption objects|
+|»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
+|»»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
+|»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
 |»»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
 |»»»» id<span class="param-type"> string</span>|The id of the option|
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
-|»»» watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -569,7 +575,7 @@ The request made when an action is triggered.
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{metadata_url}?action_type=string&project=string&workspace=string&user=string&locale=string&expires_at=string \
+curl -X GET {siteUrl}/{metadata_url}?action_type=string&idempotency_key=string&project=string&workspace=string&user=string&locale=string&expires_at=string \
   -H 'Accept: application/json'
 
 ```
@@ -603,33 +609,36 @@ getActionMetadata
 
 ```json
 {
-  "error": "You must provide either a name or a title",
-  "fields": [
-    {
-      "error": "Maximum description length is 256 characters",
-      "id": "item-description",
-      "options": [
-        {
-          "icon_url": "some-icon.png",
-          "id": "opt-in",
-          "label": "Opt in to emails."
-        }
-      ],
-      "placeholder": "Type description here...",
-      "required": true,
-      "title": "Item Description",
-      "type": "single_line_text",
-      "value": "It's over 9000",
-      "watched": true,
-      "width": "full"
-    }
-  ],
-  "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange"
+  "metadata": {
+    "error": "You must provide either a name or a title",
+    "fields": [
+      {
+        "error": "Maximum description length is 256 characters",
+        "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
+        "options": [
+          {
+            "icon_url": "some-icon.png",
+            "id": "opt-in",
+            "label": "Opt in to emails."
+          }
+        ],
+        "placeholder": "Type description here...",
+        "title": "Item Description",
+        "type": "single_line_text",
+        "value": "It's over 9000",
+        "width": "full"
+      }
+    ],
+    "on_change": {
+      "on_change_callback": "https://app-server.com/form/onchange"
+    },
+    "on_submit_callback": "www.example.com/on_submit",
+    "submit_button_text": "Create New Issue",
+    "title": "Create New Issue"
   },
-  "on_submit_callback": "www.example.com/on_submit",
-  "submit_button_text": "Create New Issue",
-  "title": "Create New Issue"
+  "template": "form_metadata_v0"
 }
 ```
 
@@ -649,6 +658,7 @@ When a user has navigated to the Custom Rule Builder UI and selected an App Acti
 |---|---|
 |?action<span class="param-type"> string</span>|The id of an existing app action that is being edited. Should be omitted when configuring a new app action.|
 |?action_type<span class="param-type"> string</span><div class="param-required">required</div>|The id of the configuration used to create the app action|
+|?idempotency_key<span class="param-type"> string</span><div class="param-required">required</div>|A unique key associated with the "Run action" request. App Servers should use this key to implement idempotency.|
 |?project<span class="param-type"> string</span><div class="param-required">required</div>|The project gid this hook is coming from.|
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
@@ -727,33 +737,36 @@ onActionFormChange
 
 ```json
 {
-  "error": "You must provide either a name or a title",
-  "fields": [
-    {
-      "error": "Maximum description length is 256 characters",
-      "id": "item-description",
-      "options": [
-        {
-          "icon_url": "some-icon.png",
-          "id": "opt-in",
-          "label": "Opt in to emails."
-        }
-      ],
-      "placeholder": "Type description here...",
-      "required": true,
-      "title": "Item Description",
-      "type": "single_line_text",
-      "value": "It's over 9000",
-      "watched": true,
-      "width": "full"
-    }
-  ],
-  "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange"
+  "metadata": {
+    "error": "You must provide either a name or a title",
+    "fields": [
+      {
+        "error": "Maximum description length is 256 characters",
+        "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
+        "options": [
+          {
+            "icon_url": "some-icon.png",
+            "id": "opt-in",
+            "label": "Opt in to emails."
+          }
+        ],
+        "placeholder": "Type description here...",
+        "title": "Item Description",
+        "type": "single_line_text",
+        "value": "It's over 9000",
+        "width": "full"
+      }
+    ],
+    "on_change": {
+      "on_change_callback": "https://app-server.com/form/onchange"
+    },
+    "on_submit_callback": "www.example.com/on_submit",
+    "submit_button_text": "Create New Issue",
+    "title": "Create New Issue"
   },
-  "on_submit_callback": "www.example.com/on_submit",
-  "submit_button_text": "Create New Issue",
-  "title": "Create New Issue"
+  "template": "form_metadata_v0"
 }
 ```
 
@@ -851,6 +864,8 @@ onActionFormSubmit
       "field_object": {
         "error": "Maximum description length is 256 characters",
         "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -859,11 +874,9 @@ onActionFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "required": true,
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
-        "watched": true,
         "width": "full"
       }
     },
@@ -872,6 +885,8 @@ onActionFormSubmit
       "field_object": {
         "error": "Maximum description length is 256 characters",
         "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -880,11 +895,9 @@ onActionFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "required": true,
         "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
-        "watched": true,
         "width": "full"
       }
     }
@@ -897,33 +910,36 @@ onActionFormSubmit
 
 ```json
 {
-  "error": "You must provide either a name or a title",
-  "fields": [
-    {
-      "error": "Maximum description length is 256 characters",
-      "id": "item-description",
-      "options": [
-        {
-          "icon_url": "some-icon.png",
-          "id": "opt-in",
-          "label": "Opt in to emails."
-        }
-      ],
-      "placeholder": "Type description here...",
-      "required": true,
-      "title": "Item Description",
-      "type": "single_line_text",
-      "value": "It's over 9000",
-      "watched": true,
-      "width": "full"
-    }
-  ],
-  "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange"
+  "metadata": {
+    "error": "You must provide either a name or a title",
+    "fields": [
+      {
+        "error": "Maximum description length is 256 characters",
+        "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
+        "options": [
+          {
+            "icon_url": "some-icon.png",
+            "id": "opt-in",
+            "label": "Opt in to emails."
+          }
+        ],
+        "placeholder": "Type description here...",
+        "title": "Item Description",
+        "type": "single_line_text",
+        "value": "It's over 9000",
+        "width": "full"
+      }
+    ],
+    "on_change": {
+      "on_change_callback": "https://app-server.com/form/onchange"
+    },
+    "on_submit_callback": "www.example.com/on_submit",
+    "submit_button_text": "Create New Issue",
+    "title": "Create New Issue"
   },
-  "on_submit_callback": "www.example.com/on_submit",
-  "submit_button_text": "Create New Issue",
-  "title": "Create New Issue"
+  "template": "form_metadata_v0"
 }
 ```
 
@@ -954,16 +970,16 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type.|
 |»»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
-|»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`. An array of FieldOption objects|
+|»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
+|»»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
+|»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
 |»»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
 |»»»» id<span class="param-type"> string</span>|The id of the option|
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
-|»»» watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -1057,7 +1073,6 @@ resourceSearch
 
 ```json
 {
-  "asset": "string",
   "attachment": "string",
   "expires_at": "string",
   "locale": "string",
@@ -1093,7 +1108,6 @@ The search request made to an App Server when the search field is submitted.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to attach a resource with a user given `value`.|
-|» asset<span class="param-type"> string</span>|The asset id of the asset containing the URL attachment|
 |» attachment<span class="param-type"> string</span>|The attachment id of the URL attachment|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
 |» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
@@ -1137,7 +1151,7 @@ The widget is displayed when the user views a task with an attachment with a res
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{widget_metadata_url}?resource_url=string&workspace=string&task=string&user=string&locale=string&attachment=string&asset=string&expires_at=string \
+curl -X GET {siteUrl}/{widget_metadata_url}?resource_url=string&workspace=string&task=string&user=string&locale=string&attachment=string&expires_at=string \
   -H 'Accept: application/json'
 
 ```
@@ -1171,8 +1185,7 @@ getWidgetMetadata
 
 ```json
 {
-  "data": {
-    "comment_count": 2,
+  "metadata": {
     "error": "The resource cannot be accessed",
     "fields": [
       {
@@ -1184,6 +1197,7 @@ getWidgetMetadata
       }
     ],
     "footer": "Last updated 19 hours ago",
+    "num_comments": 2,
     "subicon_url": "https://example-icon.png",
     "subtitle": "Custom App Story · Open in Custom App",
     "title": "Status"
@@ -1212,7 +1226,6 @@ Get the metadata from the App Server to render a widget.
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
 |?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
 |?attachment<span class="param-type"> string</span><div class="param-required">required</div>|The attachment id of the URL attachment|
-|?asset<span class="param-type"> string</span><div class="param-required">required</div>|The asset id of the asset containing the URL attachment|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 
 <h3 id="get-widget-metadata-responses">Responses</h3>
@@ -1274,7 +1287,6 @@ attachResource
 
 ```json
 {
-  "asset": "string",
   "attachment": "string",
   "expires_at": "string",
   "locale": "string",
@@ -1310,7 +1322,6 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to attach a resource.|
-|» asset<span class="param-type"> string</span>|The asset id of the asset containing the URL attachment|
 |» attachment<span class="param-type"> string</span>|The attachment id of the URL attachment|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
 |» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
@@ -1387,33 +1398,36 @@ The response to a successful attach request.
 
 ```json
 {
-  "error": "You must provide either a name or a title",
-  "fields": [
-    {
-      "error": "Maximum description length is 256 characters",
-      "id": "item-description",
-      "options": [
-        {
-          "icon_url": "some-icon.png",
-          "id": "opt-in",
-          "label": "Opt in to emails."
-        }
-      ],
-      "placeholder": "Type description here...",
-      "required": true,
-      "title": "Item Description",
-      "type": "single_line_text",
-      "value": "It's over 9000",
-      "watched": true,
-      "width": "full"
-    }
-  ],
-  "on_change": {
-    "on_change_callback": "https://app-server.com/form/onchange"
+  "metadata": {
+    "error": "You must provide either a name or a title",
+    "fields": [
+      {
+        "error": "Maximum description length is 256 characters",
+        "id": "item-description",
+        "is_required": true,
+        "is_watched": true,
+        "options": [
+          {
+            "icon_url": "some-icon.png",
+            "id": "opt-in",
+            "label": "Opt in to emails."
+          }
+        ],
+        "placeholder": "Type description here...",
+        "title": "Item Description",
+        "type": "single_line_text",
+        "value": "It's over 9000",
+        "width": "full"
+      }
+    ],
+    "on_change": {
+      "on_change_callback": "https://app-server.com/form/onchange"
+    },
+    "on_submit_callback": "www.example.com/on_submit",
+    "submit_button_text": "Create New Issue",
+    "title": "Create New Issue"
   },
-  "on_submit_callback": "www.example.com/on_submit",
-  "submit_button_text": "Create New Issue",
-  "title": "Create New Issue"
+  "template": "form_metadata_v0"
 }
 
 ```
@@ -1427,26 +1441,28 @@ Contains the metadata that describes how to display and manage a form
 
 |Name|Description|
 |---|---|
-|error<span class="param-type"> string</span>|The error that should be displayed at the footer of the creation form|
-|fields<span class="param-type"> [object]</span>|An array of FormField objects that are rendered in the order they are in the array.|
-|» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
-|» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
-|» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`. An array of FieldOption objects|
-|»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
-|»» id<span class="param-type"> string</span>|The id of the option|
-|»» label<span class="param-type"> string</span>|The label of the option|
-|» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|» required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
-|» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
-|» type<span class="param-type"> string</span>|The type of field the form field is|
-|» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
-|» watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
-|» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
-|on_change<span class="param-type"> object</span>|Contains the information to handle whenever watched form fields are changed|
-|» on_change_callback<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
-|on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button.<br>If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
-|submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|
-|title<span class="param-type"> string</span>|The title of the form, which is displayed at the top of the creation form|
+|metadata<span class="param-type"> object</span>|none|
+|» error<span class="param-type"> string</span>|The error that should be displayed at the footer of the creation form|
+|» fields<span class="param-type"> [object]</span>|An array of FormField objects that are rendered in the order they are in the array.|
+|»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
+|»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
+|»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
+|»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
+|»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
+|»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
+|»»» id<span class="param-type"> string</span>|The id of the option|
+|»»» label<span class="param-type"> string</span>|The label of the option|
+|»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
+|»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
+|»» type<span class="param-type"> string</span>|The type of field the form field is|
+|»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
+|»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
+|» on_change<span class="param-type"> object</span>|Contains the information to handle whenever watched form fields are changed|
+|»» on_change_callback<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
+|» on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button. If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
+|» submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|
+|» title<span class="param-type"> string</span>|The title of the form, which is displayed at the top of the creation form|
+|template<span class="param-type"> string</span>|none|
 
 #### Enumerated Values
 
@@ -1463,6 +1479,7 @@ Contains the metadata that describes how to display and manage a form
 |type|typeahead|
 |width|full|
 |width|half|
+|template|form_metadata_v0|
 
 </section><hr>
 <section>
@@ -1561,8 +1578,7 @@ An object describing a typeahead result
 
 ```json
 {
-  "data": {
-    "comment_count": 2,
+  "metadata": {
     "error": "The resource cannot be accessed",
     "fields": [
       {
@@ -1574,6 +1590,7 @@ An object describing a typeahead result
       }
     ],
     "footer": "Last updated 19 hours ago",
+    "num_comments": 2,
     "subicon_url": "https://example-icon.png",
     "subtitle": "Custom App Story · Open in Custom App",
     "title": "Status"
@@ -1592,8 +1609,7 @@ An object containing information about the widget
 
 |Name|Description|
 |---|---|
-|data<span class="param-type"> object</span>|none|
-|» comment_count<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
+|metadata<span class="param-type"> object</span>|none|
 |» error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.|
 |»» color<span class="param-type"> string</span>|The color of the pill.|
@@ -1602,6 +1618,7 @@ An object containing information about the widget
 |»» text<span class="param-type"> string</span>|The text to show in the field.|
 |»» type<span class="param-type"> string</span>|The type of widget field (this should be `pill`).|
 |» footer<span class="param-type"> string</span>|The text to show in the title of the widget|
+|» num_comments<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
 |» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
 |» title<span class="param-type"> string</span>|The text to show in the title of the widget|
