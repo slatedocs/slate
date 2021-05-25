@@ -62,14 +62,6 @@ components:
         type: string
       description: >-
         The id of the configuration used to create the app action
-    asset:
-      name: asset
-      required: true
-      in: query
-      schema:
-        type: string
-      description: >-
-        The asset id of the asset containing the URL attachment
     attachment:
       name: attachment
       required: true
@@ -200,10 +192,6 @@ components:
               type: string
               description: >-
                 The task gid this hook is coming from.
-            asset:
-              type: string
-              description: >-
-                The asset id of the asset containing the URL attachment
             attachment:
               type: string
               description: >-
@@ -270,7 +258,7 @@ components:
             The value of the field, the type of which varies based on the particular field. If not provided, the field
             will be empty and the form cannot be submitted if it is required.
           example: "It's over 9000"
-        required:
+        is_required:
           description: >-
             Whether the field is required to submit the form
           type: boolean
@@ -296,14 +284,14 @@ components:
           enum:
             - full
             - half
-        watched:
+        is_watched:
           description: >-
             Whether the field should be watched. Fields that are watched send requests to the on_change URL specified
             in the form metadata to get updated form information.
           type: boolean
         options:
           description: >-
-            *Conditional*. Only relevant for custom fields of type `dropdown`.
+            *Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`.
             An array of FieldOption objects
           items:
             $ref: '#/components/schemas/FieldOption'
@@ -334,38 +322,45 @@ components:
         Contains the metadata that describes how to display and manage a form
       type: object
       properties:
-        title:
-          description: >-
-            The title of the form, which is displayed at the top of the creation form
+        template:
           type: string
-          example: 'Create New Issue'
-        fields:
-          description: >-
-            An array of FormField objects that are rendered in the order they are in the array.
-          type: array
-          items:
-            $ref: '#/components/schemas/FormField'
-        submit_button_text:
-          description: >-
-            The text to display on the form’s submit button. If not provided, the default text “Submit” will be
-            displayed on the button.
-          type: string
-          example: 'Create New Issue'
-        on_submit_callback:
-          description: >-
-            The URL to POST the form to when the user clicks the submit button.
-
-            If this is field is omitted then the submission button will be disabled. This is useful if the user must
-            enter information in a watched field first, such as to show additional fields.
-          type: string
-          example: 'www.example.com/on_submit'
-        on_change:
-          $ref: '#/components/schemas/FormOnChangeConfig'
-        error:
-          description: >-
-            The error that should be displayed at the footer of the creation form
-          type: string
-          example: 'You must provide either a name or a title'
+          enum:
+            - form_metadata_v0
+          example: 'form_metadata_v0'
+        metadata:
+          type: object
+          properties:
+            title:
+              description: >-
+                The title of the form, which is displayed at the top of the creation form
+              type: string
+              example: 'Create New Issue'
+            fields:
+              description: >-
+                An array of FormField objects that are rendered in the order they are in the array.
+              type: array
+              items:
+                $ref: '#/components/schemas/FormField'
+            submit_button_text:
+              description: >-
+                The text to display on the form’s submit button. If not provided, the default text “Submit” will be
+                displayed on the button.
+              type: string
+              example: 'Create New Issue'
+            on_submit_callback:
+              description: >-
+                The URL to POST the form to when the user clicks the submit button.
+                If this is field is omitted then the submission button will be disabled. This is useful if the user must
+                enter information in a watched field first, such as to show additional fields.
+              type: string
+              example: 'www.example.com/on_submit'
+            on_change:
+              $ref: '#/components/schemas/FormOnChangeConfig'
+            error:
+              description: >-
+                The error that should be displayed at the footer of the creation form
+              type: string
+              example: 'You must provide either a name or a title'
     FormOnChangeConfig:
       description: >-
         Contains the information to handle whenever watched form fields are changed
@@ -531,7 +526,7 @@ components:
           enum:
             - summary_with_details_v0
           example: 'summary_with_details_v0'
-        data:
+        metadata:
           type: object
           properties:
             error:
@@ -566,7 +561,7 @@ components:
                 The text to show in the title of the widget
               type: string
               example: 'Last updated 19 hours ago'
-            comment_count:
+            num_comments:
               description: >-
                 The number of comments to display on the lower right corner of the widget. If not provided, no comment
                 count will be shown
@@ -627,7 +622,6 @@ paths:
       - $ref: '#/components/parameters/user'
       - $ref: '#/components/parameters/locale'
       - $ref: '#/components/parameters/attachment'
-      - $ref: '#/components/parameters/asset'
       - $ref: '#/components/parameters/expires_at'
     get:
       summary: Get widget metadata
@@ -861,6 +855,14 @@ paths:
     parameters:
       - $ref: '#/components/parameters/action'
       - $ref: '#/components/parameters/action_type'
+      - name: idempotency_key
+        required: true
+        in: query
+        schema:
+          type: string
+        description: >-
+          A unique key associated with the "Run action" request. App Servers should use
+          this key to implement idempotency.
       - $ref: '#/components/parameters/project'
       - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/user'
