@@ -5,7 +5,7 @@ Custom navigation API allows to customize the navigation per-reseller. Most nota
 <!-------------------- List CUSTOM NAV -------------------->
 ### List custom navigation
 
-`GET /custom_navigation`
+`GET /navigation`
 
 ```shell
 
@@ -47,7 +47,7 @@ Attributes | &nbsp;
 <!-------------------- Get CUSTOM NAV -------------------->
 ### Get custom navigation
 
-`GET /custom_navigation/:id`
+`GET /navigation/:id`
 
 
 ```shell
@@ -123,7 +123,7 @@ Attributes | &nbsp;
 <!-------------------- Create CUSTOM NAV -------------------->
 ### Create custom navigation
 
-`POST /custom_navigation`
+`POST /navigation`
 
 ```shell 
   --request POST \
@@ -208,7 +208,7 @@ Optional | &nbsp;
 <!-------------------- Update CUSTOM NAV -------------------->
 ### Update custom navigation
 
-`PUT /custom_navigation/:id`
+`PUT /navigation/:id`
 
 ```shell 
 curl --request PUT \
@@ -265,7 +265,7 @@ Optional | &nbsp;
 
 ### Delete custom navigation
 
-`DELETE /custom_navigation/:id`
+`DELETE /navigation/:id`
 
 ```shell 
 curl --request DELETE \
