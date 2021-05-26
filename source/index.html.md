@@ -79,7 +79,20 @@ curl -X POST "https://sandbox.f1sales.org/public/api/v1/leads"\
       "created-at": "2008-09-01T10:05:01.183Z",
       "message": "Hi, my name is vader and would like to know more about..",
       "description": "Clicked on header banner"
-    }
+    },
+      "product": {
+        "name": "Tie Fighter"
+    },
+     "included": {
+       "customer": {
+         "name": "Darth Vader",
+         "phone": "11989889988",
+         "email": "darthvader@deathstar.com"
+       },
+       "source": {
+         "name": "Galactic Market - Used Ships"
+       }
+     }
   }
 }
 ```
@@ -105,7 +118,7 @@ description | não | String | Descrição do lead, informação adicional para o
 #### Parametros de `customer`
 Parametro | Obrigatório | Tipo | Descrição
 --------- | ----------- | ---- | ----------
-name | sim | String | Nome do insteressado
+name | sim | String | Nome do interessado
 phone | não | String | Telefone do interessado
 email | não | String | Email do interessado
 
