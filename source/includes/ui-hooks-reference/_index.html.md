@@ -399,7 +399,7 @@ The callback request made to an App Server when a form is submitted.
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» values<span class="param-type"> object</span>|A FormValues object mapping each FormField’s name to its value|
 |»» field_name<span class="param-type"> string</span>|none|
-|»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type.|
+|»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and `dropdown` has a limit of 50.|
 |»»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
 |»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
@@ -409,9 +409,9 @@ The callback request made to an App Server when a form is submitted.
 |»»»» id<span class="param-type"> string</span>|The id of the option|
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
+|»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
-|»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
+|»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -425,6 +425,7 @@ The callback request made to an App Server when a form is submitted.
 | type|static_text|
 | type|dropdown|
 | type|checkboxes|
+| type|radio_button|
 | type|date_input|
 | type|date_time_input|
 | type|typeahead|
@@ -967,7 +968,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» values<span class="param-type"> object</span>|A FormValues object mapping each FormField’s name to its value|
 |»» field_name<span class="param-type"> string</span>|none|
-|»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type.|
+|»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and `dropdown` has a limit of 50.|
 |»»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
 |»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
@@ -977,9 +978,9 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |»»»» id<span class="param-type"> string</span>|The id of the option|
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
+|»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
-|»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
+|»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -993,6 +994,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 | type|static_text|
 | type|dropdown|
 | type|checkboxes|
+| type|radio_button|
 | type|date_input|
 | type|date_time_input|
 | type|typeahead|
@@ -1443,7 +1445,7 @@ Contains the metadata that describes how to display and manage a form
 |---|---|
 |metadata<span class="param-type"> object</span>|none|
 |» error<span class="param-type"> string</span>|The error that should be displayed at the footer of the creation form|
-|» fields<span class="param-type"> [object]</span>|An array of FormField objects that are rendered in the order they are in the array.|
+|» fields<span class="param-type"> [object]</span>|An array of FormField objects that are rendered in the order they are in the array. Limit of 30 fields.|
 |»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
 |»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
@@ -1453,9 +1455,9 @@ Contains the metadata that describes how to display and manage a form
 |»»» id<span class="param-type"> string</span>|The id of the option|
 |»»» label<span class="param-type"> string</span>|The label of the option|
 |»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown.|
+|»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»» type<span class="param-type"> string</span>|The type of field the form field is|
-|»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required.|
+|»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» on_change<span class="param-type"> object</span>|Contains the information to handle whenever watched form fields are changed|
 |»» on_change_callback<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
@@ -1474,6 +1476,7 @@ Contains the metadata that describes how to display and manage a form
 |type|static_text|
 |type|dropdown|
 |type|checkboxes|
+|type|radio_button|
 |type|date_input|
 |type|date_time_input|
 |type|typeahead|
@@ -1611,17 +1614,17 @@ An object containing information about the widget
 |---|---|
 |metadata<span class="param-type"> object</span>|none|
 |» error<span class="param-type"> string</span>|The error that should be displayed to the user|
-|» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.|
+|» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. A widget must contain at least 1 field and no more than 5.|
 |»» color<span class="param-type"> string</span>|The color of the pill.|
 |»» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the text|
 |»» name<span class="param-type"> string</span>|The text to show in the title of the field.|
-|»» text<span class="param-type"> string</span>|The text to show in the field.|
+|»» text<span class="param-type"> string</span>|The text to show in the field. Max size of 40 char.|
 |»» type<span class="param-type"> string</span>|The type of widget field (this should be `pill`).|
 |» footer<span class="param-type"> string</span>|The text to show in the title of the widget|
 |» num_comments<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
 |» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
-|» title<span class="param-type"> string</span>|The text to show in the title of the widget|
+|» title<span class="param-type"> string</span>|The text to show in the title of the widget. Max length of 200 chars.|
 |template<span class="param-type"> string</span>|none|
 
 #### Enumerated Values
