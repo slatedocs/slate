@@ -225,7 +225,8 @@ components:
       description: >-
         Every form field type has a set of properties to describe what should be rendered on the form. These are the
         common properties among every form field type, which should be included in addition to any unique properties of
-        each form field type.
+        each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and
+        `dropdown` has a limit of 50.
       type: object
       properties:
         type:
@@ -239,6 +240,7 @@ components:
             - static_text
             - dropdown
             - checkboxes
+            - radio_button
             - date_input
             - date_time_input
             - typeahead
@@ -250,13 +252,14 @@ components:
           example: 'item-description'
         title:
           description: >-
-            The title displayed on top of the field in the creation form. If not provided, no title will be shown.
+            The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.
           type: string
           example: 'Item Description'
         value:
           description: >-
             The value of the field, the type of which varies based on the particular field. If not provided, the field
-            will be empty and the form cannot be submitted if it is required.
+            will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters
+            while `multi_line_text` and `rich_text` have limits of 3000 characters.
           example: "It's over 9000"
         is_required:
           description: >-
@@ -337,7 +340,7 @@ components:
               example: 'Create New Issue'
             fields:
               description: >-
-                An array of FormField objects that are rendered in the order they are in the array.
+                An array of FormField objects that are rendered in the order they are in the array. Limit of 30 fields.
               type: array
               items:
                 $ref: '#/components/schemas/FormField'
@@ -536,13 +539,15 @@ components:
               example: 'The resource cannot be accessed'
             title:
               description: >-
-                The text to show in the title of the widget
+                The text to show in the title of the widget. Max length of 200 chars.
               type: string
+              required: true
               example: 'Status'
             fields:
               description: >-
-                An array of WidgetField objects. Currently, the most number of fields a widget can contain is 4.
+                An array of WidgetField objects. A widget must contain at least 1 field and no more than 5.
               type: array
+              required: true
               items:
                 $ref: '#/components/schemas/WidgetField'
             subtitle:
@@ -585,7 +590,7 @@ components:
             - icon
           example: 'pill'
         text:
-          description: The text to show in the field.
+          description: The text to show in the field. Max size of 40 char.
           type: string
           example: 'To Do'
         color:
