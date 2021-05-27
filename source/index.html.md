@@ -1423,6 +1423,7 @@ receiver_district_id | true | string | | Id of receiver's district. Get in api [
 receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes) (NOTE: you can use alternative field describe in **Alternative for address fields** part below )
 is_split_pkg | false | boolean | false | If `true` use split package feature
 items | true | array | | List of items in tracking package
+total_weight | true | integer | 200 | Total weight of items (gram)
 service_name | false | string | | Name of service one of `express` or `standard`. Get in api [GET /snappy/trackings/cal_shipping_cost](#calculate-shipping-cost)
 cod | false | integer | | Amount of cod or values of all items in package
 value | false | integer | | Insurance premium value, which is the basis for calculating insurance premiums and compensation when an incident occurs
@@ -1438,7 +1439,6 @@ Params `items`
 Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 name | true | string | | Name of item or product
-weight | true | integer | | Weight of item or product
 quantity | true | integer | | Quantity of item or product
 
 ### Extra Fields
