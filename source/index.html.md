@@ -148,7 +148,7 @@ ID | The ID of the actor profile to retrieve
 Parameter | Default | Description
 --------- | ------- | -----------
 enum | null | If set to `translate` attributes are translated if possible (eg. gender will be `male` or `männlich` instead of `m`).
-locale | en | Translates attributes with closed lists, free text fields are only available in the entry language. Possible values are: `en`, `de`
+locale | en | Translates attributes with closed lists, free text fields are only available in the entry language. Possible values are: `en`, `de`, `fr`, `it`, `es`, `pl`, `ro`, `ru`, `tr`
 
 # Talent agencies
 
