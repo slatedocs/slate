@@ -24,6 +24,7 @@ curl --request GET \
       "reseller": {
         "id": "c869e848-6fb3-4850-af3d-42c5666f2c78"
       },
+      "alwaysShowOrgPicker": false,
       "id": "f8663571-1d84-4d48-bb86-d4e2a14ea9f9",
       "enabled": true
     }
@@ -43,6 +44,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The custom navigations's id.
 `reseller.id`<br/>*UUID* | The organization id that the custom field belongs to.
 `enabled`<br/>*boolean* | Whether not custom navigation is enabled on the reseller.
+`alwaysShowOrgPicker`<br/>*boolean* | Whether or not to always show the organization picker in the sidebar, even when the user has access to only a single organization.
 
 <!-------------------- Get CUSTOM NAV -------------------->
 ### Get custom navigation
@@ -91,6 +93,7 @@ curl --request GET \
         "type": "COMING_SOON"
       }
     ],
+    "alwaysShowOrgPicker": false,
     "id": "f8663571-1d84-4d48-bb86-d4e2a14ea9f9",
     "enabled": true
   }
@@ -108,6 +111,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The custom navigations's id.
 `reseller.id`<br/>*UUID* | The organization id that the custom field belongs to.
 `enabled`<br/>*boolean* | Whether not custom navigation is enabled on the reseller.
+`alwaysShowOrgPicker`<br/>*boolean* | Whether or not to always show the organization picker in the sidebar, even when the user has access to only a single organization.
 `tabs`<br/>*Array[Object]* | List of tabs, the the order they should be displayed in a the menu.
 `tabs.name`<br/>*Object* | Mapped object containing the tab name in different languages.
 `tabs.tooltip`<br/>*Object* | Mapped object containing the tab's tooltip name in different languages.
@@ -184,6 +188,7 @@ Attributes | &nbsp;
         "type": "COMING_SOON"
       }
     ],
+    "alwaysShowOrgPicker": false,
     "id": "e80adf4d-5401-4cff-b393-93a7f10f4d71",
     "enabled": true
   }
@@ -194,6 +199,7 @@ Optional | &nbsp;
 ---------- | -----------
 `reseller.id`<br/>*UUID* | The organization id that the custom field belongs to. If not provided defaults to caller's organization.
 `enabled`<br/>*boolean* | Whether not custom navigation is enabled on the reseller. Defaults to false.
+`alwaysShowOrgPicker`<br/>*boolean* | Whether or not to always show the organization picker in the sidebar, even when the user has access to only a single organization. Defaults to false.
 `tabs`<br/>*Array[Object]* | List of tabs, in the order they should be displayed in the menu.
 `tabs.type`<br/>*Object* | *Required* in tab object. Valid values are `SERVICE`, `SYSTEM` and `COMING_SOON`. 
 `tabs.name`<br/>*Object* | *Required* in tab object. Mapped object containing the tab name in different languages. Need to specify all languages for target reseller's branding.
@@ -234,6 +240,7 @@ curl --request PUT \
       "id": "c869e848-6fb3-4850-af3d-42c5666f2c78"
     },
     "tabs": [],
+    "alwaysShowOrgPicker": false,
     "id": "e80adf4d-5401-4cff-b393-93a7f10f4d71",
     "enabled": false
   }
@@ -250,6 +257,7 @@ Required | &nbsp;
 Optional | &nbsp;
 ---------- | -----------
 `enabled`<br/>*boolean* | Whether not custom navigation is enabled on the reseller. Defaults to false.
+`alwaysShowOrgPicker`<br/>*boolean* | Whether or not to always show the organization picker in the sidebar, even when the user has access to only a single organization. Defaults to false.
 `tabs`<br/>*Array[Object]* | List of tabs, in the order they should be displayed in a the menu. Replaces all tabs currently set on the object.
 `tabs.type`<br/>*Object* | *Required* in tab object. Valid values are `SERVICE`, `SYSTEM` and `COMING_SOON`. 
 `tabs.name`<br/>*Object* | *Required* in tab object. Mapped object containing the tab name in different languages. Need to specify all languages for target reseller's branding.
