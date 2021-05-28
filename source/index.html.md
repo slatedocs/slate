@@ -911,7 +911,7 @@ CIMB Niaga| Yes| Yes |Rp 0|
 
 **Overview**
 
-OY! Payment Checkout/Invoice is a pre-built payment page that allows your business to easily and securely accept payments online. Currently, our payment checkout/invoice page supports Credit Card, Debit Card, Bank Transfer, and QRIS (e-wallet) payment methods. You can create payment checkout/invoice pages through various methods: OY! Dashboard, pre-generated URL, and API.
+OY! Payment Checkout/Invoice is a pre-built payment page that allows your business to easily and securely accept payments online. Currently, our payment checkout/invoice page supports Credit Card, Debit Card, Bank Transfer, E-Wallet (ShopeePay), and QR Code (QRIS) payment methods. You can create payment checkout/invoice pages through various methods: OY! Dashboard, pre-generated URL, and API.
 
 Creating a payment checkout/invoice page is free! You will only be charged when you successfully receive a payment made through that checkout/invoice page.
 
@@ -971,7 +971,7 @@ Below are the things that you can customize:
 
 2. Admin fee (choose whether the admin fee will be borne by your customers or borne by you)
 
-3. Payment method (choose the payment methods displayed to your customers among Bank Transfers, Credit Card, Debit Card, and QR code options. Additionally, you can choose which banks are enabled for Bank Transfer method.)
+3. Payment method (choose the payment methods displayed to your customers among Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay), and QR Code options. Additionally, you can choose which banks are enabled for Bank Transfer method.)
  
 4. Payment checkout page (choose which payment checkout pages are accessible for your users. We offer options to hide pages 1 (Input Amount), 2 (Customer Information), and 3 (Select Payment Method) of our payment checkout.
 
@@ -1048,7 +1048,7 @@ Step by step instructions can be found [here](https://docs.oyindonesia.com/#how-
 | ----------- | ----------- |
 | Amount Type    |You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount|
 | Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
-| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer, Credit Card, Debit Card, and QRIS (e-wallet)|
+| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay), and QR Code |
 | Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
 | Expiration Fee |You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
 | Payment Type |You can choose between "Non Invoice" and "Invoice". By choosing "Invoice", you will be able to upload the invoice PDF or list down the items to be invoiced (item name, description, quantity, purchase date, price per item, and total price). You can also choose whether to assign a static virtual account to the corresponding user.  |
@@ -1098,7 +1098,7 @@ Whether you create the link through URL, dashboard, or API, you can see the deta
 | ----------- | ----------- |
 | Amount Type    |You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount|
 | Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
-| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer, Credit Card, Debit Card, and QRIS (e-wallet)|
+| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay), and QR Code|
 | Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
 | Expiration Fee |You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
 | Payment Type |You can choose between "Non Invoice" and "Invoice". By choosing "Invoice", you will be able to upload the invoice PDF or list down the items to be invoiced (item name, description, quantity, purchase date, price per item, and total price). You can also choose whether to assign a static virtual account to the corresponding user.  |
@@ -1413,9 +1413,9 @@ We support payments via bank transfers, credit card, debit card, and QR code fro
 
 * Bank Transfer via Virtual Account: BCA, BNI, BRI, CIMB Niaga, Mandiri, Permata Bank.
 
-* Credit Card: VISA, Mastercard 
+* Credit Card/Debit Card: VISA, Mastercard 
 
-* Debit Card: Bank BTN, BNI, BRI, CIMB Niaga, digibank by DBS, Jenius (Bank BTPN), Mandiri, Permata.
+* E-Wallet: ShopeePay
 
 * QR Code: Qris
 
