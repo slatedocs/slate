@@ -7,6 +7,7 @@
     "dev": "NODE_ENV=devolopment node server.js",
     "start": "NODE_ENV=production node server.js",
     "setup": "bundle exec middleman build --clean && git add . && git commit -m 'update docs' && git push && pm2 deploy ecosystem.config.js production setup",
+    "deploy-start": "pm2 deploy ecosystem.config.js production run \"PATH=$PATH:/home/v2/.nvm/versions/node/v10.15.1/bin NODE_ENV=production pm2 startOrRestart ecosystem.config.js --env production\"",
     "deploy": "bundle exec middleman build --clean && git add . && git commit -m 'update docs' && git push && pm2 deploy ecosystem.config.js production --force"
   },
   "keywords": [],
