@@ -71,6 +71,7 @@ GEM
     hashie (3.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    io-wait (0.1.0)
     kramdown (2.3.1)
       rexml
     listen (3.0.8)
@@ -86,9 +87,16 @@ GEM
     middleman-syntax (3.2.0)
       middleman-core (>= 3.2)
       rouge (~> 3.2)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.2)
+      net-ftp (~> 0.1)
     minitest (5.14.4)
-    nokogiri (1.11.3)
+    net-ftp (0.1.2)
+      net-protocol
+      time
+    net-protocol (0.1.1)
+      io-wait
+      timeout
+    nokogiri (1.11.4)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     padrino-helpers (0.13.3.4)
@@ -123,6 +131,8 @@ GEM
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    time (0.1.0)
+    timeout (0.1.1)
     toml (0.2.0)
       parslet (~> 1.8.0)
     tzinfo (1.2.9)
@@ -140,7 +150,7 @@ DEPENDENCIES
   middleman-autoprefixer (~> 2.7)
   middleman-sprockets (~> 4.1)
   middleman-syntax (~> 3.2)
-  nokogiri (~> 1.11.0)
+  nokogiri (~> 1.11.4)
   redcarpet (~> 3.5.0)
   rouge (~> 3.21)
   sass
