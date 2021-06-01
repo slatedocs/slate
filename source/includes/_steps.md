@@ -148,6 +148,90 @@ In the right area see the example of the JSON request and response
 ### PAT Support
 Supported - if the user has the permissions to view Tests
 
+## Update a specific step
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PUT https://api.practitest.com/api/v2/projects/4566/steps/45893.json
+-d '{"data": { "type": "steps", "attributes": {"name": "Updated step name", "description": "a new description", "expected-results": "New expected results"}  }}'
+
+```
+
+```json
+{
+  "data": {
+    "id": "45893",
+    "type": "steps",
+    "attributes": {
+      "project-id": 4566,
+      "kind": "ManualStep",
+      "test-id": 9510,
+      "test-to-call-id": null,
+      "name": "Updated step name",
+      "description": "a new description",
+      "expected-results": "New expected results",
+      "position": 8,
+      "created-at": "2021-05-19T15:08:20Z",
+      "updated-at": "2021-05-27T15:08:47Z"
+    }
+  }
+}
+```
+This endpoint updates a specific step.
+
+### HTTP Request
+
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/STEP_ID.json`
+
+In the right area see the example of the JSON request and response
+### Parameters
+
+Available parameters | Description |
+--------- | ------- |
+data/attributes/name | Step name |
+data/attributes/description | Step description |
+data/attributes/expected-results | Expected results of the step |
+
+
+You can find at the right area an example of the JSON request and response
+### PAT Support
+Supported - if the user has the permissions to edit Tests
+
+## Create a step
+```shell
+# create a step
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/steps.json \
+-d '{"data": { "type": "steps", "attributes": {"test-id": 9510, "steps": [{"name": "Step 1 from API", "description":  "New Step description", "expected-results": "Step created"}] }  }}'
+
+# create 3 steps:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/steps.json \
+-d '{"data": { "type": "steps", "attributes":  {"test-id": 9510, "steps": [{"name": "Step 1", "description":  "New description 1", "expected-results": ""}, {"name": "Step 2", "description":  "New description 2", "expected-results": "WOW!"}, {"name": "Step 3", "description":  "New description 3", "expected-results": "my expected results"}] }  }}'
+```
+
+This endpoint creates steps in your project.
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps.json`
+
+### Parameters
+
+Parameters | Description |
+--------- | ------- |
+data/attributes/test-id | Test system-id
+data/attributes/steps | an array of steps |
+
+* Steps array includes steps json hash, with these attributes: name (255 char. maximum), description, expected-results.
+* Users can create 100 steps(maximum) by sending one request. See a curl example in the dark area to the right.
+
+
+### PAT Support
+Supported - if the user has the permissions to edit Tests.
 
 ## Delete a specific step
 ```shell
