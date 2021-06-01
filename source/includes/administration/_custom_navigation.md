@@ -123,6 +123,7 @@ Attributes | &nbsp;
 `tabs.workspace`<br/>*String* | The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* | The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentPicker`<br/>*boolean* | Skip the environment picker if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`. 
+`tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
 
 <!-------------------- Create CUSTOM NAV -------------------->
 ### Create custom navigation
@@ -147,6 +148,19 @@ Attributes | &nbsp;
         "en": "Users",
         "fr": "Usagers"
       }
+    },
+    {
+      "type": "SERVICE",
+      "name": {
+        "en": "Edge compute",
+        "fr": "Edge compute"
+      },
+      "serviceConnection": {
+        "id": "2d49e70f-e4f8-43e3-b730-92328174214sa21"
+      },
+      "workspace": "compute",
+      "promotePanel": true,
+      "skipEnvironmentPicker": true
     },
     {
       "type": "COMING_SOON",
@@ -179,11 +193,27 @@ Attributes | &nbsp;
         "key": "users"
       },
       {
+        "workspace": "compute",
+        "name": {
+          "en": "Edge compute",
+          "fr": "Edge compute"
+        },
+        "icon": "fa fa-server",
+        "rank": 1,
+        "skipEnvironmentPicker": true,
+        "id": "6080bdb2-ceda-4774-aa28-c7f98cd804a4",
+        "promotePanel": true,
+        "type": "SERVICE",
+        "serviceConnection": {
+          "id": "2d49e70f-e4f8-43e3-b730-92328174214sa21"
+        }
+      },
+      {
         "name": {
           "en": "hot new feature",
           "fr": "hot new feature fr"
         },
-        "rank": 1,
+        "rank": 2,
         "id": "cb36c538-6f6b-47af-bfa8-daad56ce58ed",
         "type": "COMING_SOON"
       }
@@ -210,6 +240,8 @@ Optional | &nbsp;
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentPicker`<br/>*boolean* | Skip the environment picker if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
+`tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
+
 
 <!-------------------- Update CUSTOM NAV -------------------->
 ### Update custom navigation
@@ -268,6 +300,7 @@ Optional | &nbsp;
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentPicker`<br/>*boolean* | Skip the environment picker if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
+`tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
 
 <!-------------------- Delete CUSTOM NAV -------------------->
 
