@@ -199,6 +199,7 @@ tags:
       value of a custom field, regardless of its type. We suggest apps use
       this field in order to future-proof for changes to Custom Fields.
 
+
       The characteristics of Custom Fields are:
 
 
@@ -545,9 +546,9 @@ tags:
       A *project status* is an update on the progress of a particular project,
       and is sent out to all project followers when created. These updates
       include both text describing the update and a color code intended to
-      represent the overall state of the project: “green” for projects that
-      are on track, “yellow” for projects at risk, and “red” for projects that
-      are behind.
+      represent the overall state of the project: "green" for projects that
+      are on track, "yellow" for projects at risk, "red" for projects that
+      are behind, and "blue" for projects on hold.
 
 
       Project statuses can be created and deleted, but not modified.
@@ -629,17 +630,6 @@ tags:
   - name: User Task Lists
     description: >-
       A user task list represents the tasks assigned to a particular user.
-
-
-      A user’s “My Tasks” represent all of the tasks assigned to that user.
-      It is visually divided into regions based on the task’s
-      [`assignee_status`](/docs/tocS_Task)
-      for Asana users to triage their tasks based on when they can address
-      them. When building an integration it’s worth noting that tasks with
-      due dates will automatically move through `assignee_status` states as
-      their due dates approach; read up on [task
-      auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote)
-      for more information.
   - name: Webhooks
     description: >-
       Webhooks allow an application to be notified of changes in Asana. They
@@ -788,14 +778,16 @@ tags:
        * Workspace - added, removed, changed
        * Workspace Memberships - added, removed
 
+
       #### Webhook Limits
+
 
       Webhooks have two different limits
 
-      * 1k limit per resource in Asana. (If 10 apps each have 100 webhooks
-        watching the same resource, no more webhooks can be placed on the
-        webhook. `/events` streams count towards this limit)
-      * 10k per user-app (An app can have 10k webhooks for EACH user)
+       * 1k limit per resource in Asana. (If 10 apps each have 100 webhooks
+         watching the same resource, no more webhooks can be placed on the
+         webhook. `/events` streams count towards this limit)
+       * 10k per user-app (An app can have 10k webhooks for EACH user)
 
       #### Example Integration: Webhook Inspector
 
@@ -1770,13 +1762,14 @@ components:
               type: string
               example: Low
             enabled:
-              description: The color of the enum option. Defaults to ‘none’.
+              description: >-
+                Whether or not the enum option is a selectable value for the
+                custom field.
               type: boolean
               example: true
             color:
               description: >-
-                Whether or not the enum option is a selectable value for the
-                custom field.
+                The color of the enum option. Defaults to ‘none’.
               type: string
               example: blue
     EnumOptionInsertRequest:
@@ -2117,8 +2110,11 @@ components:
               items:
                 $ref: '#/components/schemas/CustomFieldSettingResponse'
             due_on:
+              description: >-
+                The localized day on which this portfolio is due. This takes a
+                date with format YYYY-MM-DD.
               type: string
-              format: date
+              format: date-time
               nullable: true
               example: '2019-09-15'
             members:
@@ -2129,6 +2125,12 @@ components:
             owner:
               $ref: '#/components/schemas/UserCompact'
             start_on:
+              description: >-
+                The day on which work for this portfolio begins, or null if the
+                portfolio has no start date. This takes a date with `YYYY-MM-DD`
+                format. *Note: `due_on` must be present in the
+                request when setting or unsetting the `start_on` parameter.
+                Additionally, start_on and due_on cannot be the same date.*
               type: string
               format: date
               nullable: true
@@ -2142,6 +2144,10 @@ components:
                     portfolio belongs to.
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     PortfolioRequest:
       allOf:
         - $ref: '#/components/schemas/PortfolioBase'
@@ -2432,6 +2438,10 @@ components:
               example: chat_bubbles
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     ProjectRequest:
       allOf:
         - $ref: '#/components/schemas/ProjectBase'
@@ -2821,6 +2831,7 @@ components:
                 - green
                 - yellow
                 - red
+                - blue
     ProjectStatusCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -2963,6 +2974,8 @@ components:
         - $ref: '#/components/schemas/StoryBase'
         - type: object
           properties:
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
             is_edited:
               description: >-
                 *Conditional*. Whether the text of the story has been edited
@@ -3189,9 +3202,28 @@ components:
       $ref: '#/components/schemas/StoryBase'
     StoryBase:
       allOf:
-        - $ref: '#/components/schemas/StoryCompact'
+        - $ref: '#/components/schemas/AsanaResource'
         - type: object
+          description: >-
+            A story represents an activity associated with an object in the Asana
+            system.
+          x-docs-overrides:
+            properties.resource_type.example: story
           properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            resource_subtype:
+              description: >-
+                The subtype of this resource. Different subtypes retain many of the
+                same fields and behavior, but may render differently in Asana or
+                represent resources with different semantic meaning.
+              type: string
+              readOnly: true
+              example: comment_added
             text:
               description: The plain text of the comment to add. Cannot be used with
                 html_text.
@@ -3210,6 +3242,26 @@ components:
                 resource.
               type: boolean
               example: false
+            sticker_name:
+              description: >-
+                The name of the sticker in this story. `null` if there is no sticker.
+              type: string
+              enum:
+                - green_checkmark
+                - people_dancing
+                - dancing_unicorn
+                - heart
+                - party_popper
+                - people_waving_flags
+                - splashing_narwhal
+                - trophy
+                - splashing_narwhal
+                - trophy
+                - yeti_riding_unicorn
+                - celebrating_people
+                - determined_climbers
+                - phoenix_spreading_love
+              example: dancing_unicorn
     StoryCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -3285,6 +3337,10 @@ components:
               $ref: '#/components/schemas/WorkspaceCompact'
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     TagRequest:
       allOf:
         - $ref: '#/components/schemas/TagBase'
@@ -3425,6 +3481,10 @@ components:
                     This attribute can only be specified at creation time.
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     TaskRequest:
       allOf:
         - $ref: '#/components/schemas/TaskBase'
@@ -3520,21 +3580,6 @@ components:
                 - rejected
                 - changes_requested
               example: pending
-            assignee_status:
-              description: >-
-                Scheduling status of this task for the user it is assigned to.
-                This field can only be set if the assignee is non-null.
-
-                Setting this field to "inbox" or "upcoming" inserts it at the top
-                of the section, while the other options will insert at the bottom.
-              type: string
-              enum:
-                - today
-                - upcoming
-                - later
-                - new
-                - inbox
-              example: upcoming
             completed:
               description: >-
                 True if the task is currently marked complete, false if not.
@@ -3580,18 +3625,18 @@ components:
               readOnly: true
             due_at:
               description: >-
-                Date and time on which this task is due, or null if the task has
-                no due time. This takes a UTC timestamp and should not be used
-                together with `due_on`.
+                The UTC date and time on which this task is due, or null if the
+                task has no due time. This takes an ISO 8601 date string in UTC
+                and should not be used together with `due_on`.
               type: string
               format: date
               example: '2019-09-15T02:06:58.147Z'
               nullable: true
             due_on:
               description: >-
-                Date on which this task is due, or null if the task has no due
-                date.  This takes a date with `YYYY-MM-DD` format and should not
-                be used together with due_at.
+                The localized date on which this task is due, or null if the task
+                has no due date. This takes a date with `YYYY-MM-DD` format and
+                should not be used together with due_at.
               type: string
               format: date
               example: '2019-09-15'
@@ -3959,8 +4004,32 @@ components:
                     The organization/workspace the team belongs to.
             permalink_url:
               type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
     TeamRequest:
-      $ref: '#/components/schemas/TeamBase'
+      allOf:
+        - $ref: '#/components/schemas/TeamBase'
+        - type: object
+          properties:
+            description:
+              description: >
+                The description of the team.
+              type: string
+              example: All developers should be members of this team.
+            html_description:
+              description: >
+                The description of the team with formatting as HTML.
+              type: string
+              example: >-
+                <body><em>All</em> developers should be members of this
+                team.</body>
+            organization:
+              type: string
+              description: >
+                The organization/workspace the team belongs to.
+              example: '123456789'
     TeamBase:
       $ref: '#/components/schemas/TeamCompact'
     TeamCompact:
@@ -4545,12 +4614,12 @@ paths:
 
           *Note when using curl:*
 
-          Be sure to add an `‘@’` before the file path, and use the `—form`
+          Be sure to add an `‘@’` before the file path, and use the `--form`
           option instead of the `-d` option.
 
           When uploading PDFs with curl, force the content-type to be pdf by
-          appending the content type to the file path: `—form
-          “file=@file.pdf;type=application/pdf”`.
+          appending the content type to the file path: `--form
+          "file=@file.pdf;type=application/pdf"`.
         required: true
         content:
           multipart/form-data:
@@ -6070,6 +6139,8 @@ paths:
         Returns the compact project records for some filtered set of projects.
         Use one or more of the parameters provided to filter the projects
         returned.
+
+        *Note: This endpoint may timeout for large domains. Try filtering by team!*
       tags:
         - Projects
       operationId: getProjects
@@ -6430,6 +6501,9 @@ paths:
       summary: Get all projects in a workspace
       description: >-
         Returns the compact project records for all projects in the workspace.
+
+        *Note: This endpoint may timeout for large domains. Prefer the
+        `/teams/{team_gid}/projects` endpoint.*
       tags:
         - Projects
       operationId: getProjectsForWorkspace
@@ -8013,14 +8087,6 @@ paths:
       summary: Get tasks from a user task list
       description: >-
         Returns the compact list of tasks in a user’s My Tasks list.
-        The returned tasks will be in order within each assignee status
-        group of `Inbox`, `Today`, and `Upcoming`.
-
-        *Note: tasks in `Later` have a different ordering in the Asana
-        web app than the other assignee status groups; this endpoint
-        will still return them in list order in `Later` (differently
-        than they show up in Asana, but the same order as in Asana’s
-        mobile apps).*
 
         *Note: Access control is enforced for this endpoint as with
         all Asana API endpoints, meaning a user’s private tasks will be
@@ -8755,18 +8821,6 @@ paths:
         schema:
           type: string
         example: 12345,23456,34567
-      - name: assignee_status
-        in: query
-        description: >-
-          One of `inbox`, `today`, `upcoming`, or `later`
-        schema:
-          type: string
-          enum:
-            - inbox
-            - today
-            - upcoming
-            - later
-        example: later
       - name: portfolios.any
         in: query
         description: >-
@@ -9454,6 +9508,49 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /teams:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    post:
+      summary: Create a team
+      description: |-
+        Creates a team within the current workspace.
+      tags:
+        - Teams
+      operationId: createTeam
+      requestBody:
+        description: The team to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/TeamRequest'
+      responses:
+        201:
+          description: Successfully created a new team.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}:
     parameters:
       - $ref: '#/components/parameters/team_path_gid'
@@ -9737,6 +9834,22 @@ paths:
         the gid and name fields. Interested in a specific set of fields or all of
         the fields?! Of course you are. Use field selectors to manipulate what
         data is included in a response.
+
+        Resources with type `user` are returned in order of most contacted to
+        least contacted. This is determined by task assignments, adding the user
+        to projects, and adding the user as a follower to tasks, messages,
+        etc.
+
+        Resources with type `project` are returned in order of recency. This is
+        determined when the user visits the project, is added to the project, and
+        completes tasks in the project.
+
+        Resources with type `task` are returned with priority placed on tasks
+        the user is following, but no guarantee on the order of those tasks.
+
+        Leaving the `query` string empty or omitted will give you results, still
+        following the resource ordering above. This could be used to list users or
+        projects that are relevant for the requesting user's api token.
       tags:
         - Typeahead
       operationId: typeaheadForWorkspace
@@ -10035,7 +10148,7 @@ paths:
       summary: >-
         Get users in a workspace or organization
       description: >-
-        Returns the user records for all users in the specified workspace or
+        Returns the compact records for all users in the specified workspace or
         organization.
 
         Results are sorted alphabetically and limited to 2000. For more results
