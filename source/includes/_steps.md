@@ -217,7 +217,7 @@ This endpoint creates steps in your project.
 
 ### HTTP Request
 
-`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/stesps.json`
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps.json`
 
 ### Parameters
 
