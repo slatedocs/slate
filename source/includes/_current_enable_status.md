@@ -1,6 +1,6 @@
 ## `/v1/current_enable_status`
 
-> A GET request to this endpoint will return the enable status of all units except the terminated ones ,so that the ERP can sync the unit status
+> A GET request to this endpoint will return the enable status of all units so that the ERP can sync the unit status
 
 ```python
 url = "https://smartapi.bboxx.co.uk/v1/current_enable_status?page=5&results_per_page=3"
@@ -65,7 +65,7 @@ print(response.json())
 
 ```
 
-This endpoint will return the enable status of all units except the terminated ones,so that the `ERP` can sync the unit status
+This endpoint will return the enable status of all units so that the `ERP` can sync the unit status
 
 The ERP is concerned about units getting `out of sync` with SMARTSolar so once
     every two hours they try to sync all unit statuses. Initially this endpoint only
