@@ -122,7 +122,7 @@ Attributes | &nbsp;
 `tabs.serviceConnection`<br/>*UUID* | The service connection id for a tab of type `SERVICE`.
 `tabs.workspace`<br/>*String* | The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* | The view key for a tab of type `SYSTEM`. 
-`tabs.skipEnvironmentPicker`<br/>*boolean* | Skip the environment picker if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`. 
+`tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
 `tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
 
 <!-------------------- Create CUSTOM NAV -------------------->
@@ -239,7 +239,7 @@ Optional | &nbsp;
 `tabs.serviceConnection`<br/>*UUID* | *Required* if type `SERVICE`. The service connection id for a tab of type `SERVICE`.
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
-`tabs.skipEnvironmentPicker`<br/>*boolean* | Skip the environment picker if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
+`tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
 `tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
 
 
@@ -299,7 +299,7 @@ Optional | &nbsp;
 `tabs.serviceConnection`<br/>*UUID* | *Required* if type `SERVICE`. The service connection id for a tab of type `SERVICE`.
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
-`tabs.skipEnvironmentPicker`<br/>*boolean* | Skip the environment picker if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
+`tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
 `tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
 
 <!-------------------- Delete CUSTOM NAV -------------------->
