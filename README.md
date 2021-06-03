@@ -6,7 +6,10 @@
   <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
 </p>
 
-These docs are live at: https://developers.asana.com/
+These docs are live at: https://developers.asana.com/docs
+
+Middleman requires ruby
+Swagger requires mvn (brew install maven)
 
 OpenAPI Spec
 ------------
@@ -45,7 +48,7 @@ In addition to this repository we're going to clone a sibling repository for a t
 
 ```shell
 pushd .. # To get to parent dir
-git clone git@github.com:Mermade/widdershins.git # Clone the repo
+git clone git@github.com:rossgrambo/widdershins.git # Clone the repo
 cd widdershins # To get to where the node requirements are
 nvm use system # If it ain't broke - we might pin this in the future
 npm install # Install requirements

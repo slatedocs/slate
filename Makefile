@@ -47,8 +47,14 @@ serve:
 build:
 	bundle exec middleman build
 
+first_time_setup:
+	cd .. && git clone git@github.com:rossgrambo/widdershins.git
+	cd .. && mkdir swagger_forks && cd swagger_forks && git clone git@github.com:rossgrambo/swagger-parser.git && git clone git@github.com:rossgrambo/swagger-codegen-generators.git
+	cd .. && git clone git@github.com:rossgrambo/swagger-codegen.git
+	cd .. && mkdir client_libraries && cd client_libraries && git clone git@github.com:Asana/node-asana.git && git clone git@github.com:Asana/php-asana.git && git clone git@github.com:Asana/java-asana.git && git clone git@github.com:Asana/ruby-asana.git && git clone git@github.com:Asana/python-asana.git
+
 update:
-	cd ../widdershins && git checkout master && git pull
+	cd ../widdershins && git checkout master && git pull && npm install
 	cd ../swagger_forks/swagger-parser && git checkout rossgrambo-2.0.17-with-data-wrapper && git pull && mvn clean package && mvn install:install-file -Dfile=modules/swagger-parser-v3/target/swagger-parser-v3-2.0.17.jar -DpomFile=modules/swagger-parser-v3/pom.xml
 	cd ../swagger_forks/swagger-codegen-generators && git checkout rossgrambo-1.0.15-asana-configs && git pull && mvn clean package && mvn install:install-file -Dfile=target/swagger-codegen-generators-1.0.15.jar -DpomFile=pom.xml
 	cd ../swagger-codegen && git checkout v3.0.15 && mvn clean package
