@@ -20305,7 +20305,6 @@ Returns the compact workspace membership records for the workspace.
 </section><hr class="full-line">
 <section class="full-section">
 # Schemas
-
 <span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
 default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
