@@ -8,7 +8,7 @@ const langSettings = {
     path: '../client_libraries/ruby-asana',
     replacements: [
       {
-        file: "version.rb",
+        file: "lib/asana/version.rb",
         regex: "{{version}}"
       }
     ]
