@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      ruby-version: 2.5
+      ruby-version: 3.0
 
     steps:
     - uses: actions/checkout@v2
