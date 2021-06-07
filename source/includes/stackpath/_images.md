@@ -111,3 +111,46 @@ Attributes | &nbsp;
 `createdAt`<br/>*string* | Creation timestamp of the image.
 `description`<br/>*string* | The description of the image.
 `reference`<br/>*string* | The reference of the image.
+
+
+<!-------------------- CREATE AN IMAGE -------------------->
+
+#### Create a custom image
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/images"
+```
+> Request body example for creating a custom image:
+
+```json
+{
+  "family": "Ubuntu",
+  "tag": "v2021-01-01",
+  "workloadId": "c23652ed-0f15-47cf-a9b8-63e1e3aacb3c",
+  "instanceName": "w-john-ahd-wi-john-jsr-phx-0",
+  "description": "Ubuntu OS v4"
+}
+```
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "1f64aefb-f980-400b-bc2d-5300376fa55e",
+  "taskStatus": "PENDING"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/images</code>
+
+Required| &nbsp;
+------------------------| -----------
+`family`<br/>*string* | The family name of the custom image.Family must consist of lower case alphanumeric characters or '-' and must begin and end with an alphanumeric character.
+`tag`<br/>*string* | The tag of the image. A tag must be valid ASCII and may contain lowercase and uppercase letters, digits, underscores, periods and dashes. A tag must not start with a period or a dash and must contain a maximum of 128 characters.
+`workloadId`<br/>*string* | The workloadId of the source workload the image will be created from. Only workloads of type VM are allowed
+`instanceName`<br/>*string* | The name of one of the instance the create the image from. The name of the instance needs to be a valid instance of the workloadId provided.
+
+Optional| &nbsp;
+----------------------- | -----------
+`description`<br/>*string* | The description of the custom image.
