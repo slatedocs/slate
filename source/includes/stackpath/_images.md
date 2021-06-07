@@ -55,7 +55,7 @@ Retrieve a list of all images in a given [environment](#administration-environme
 
 Optional | &nbsp;
 ------ | -----------
-`includeOnlySystemImages`<br/>*boolean* | Setting the query parameter to **true** will return only the default **stackpath images**.
+`imageType`<br/>*string* | This query parameter can either be set to **default** to return the default StackPath images or **custom** to return the created custom images. Anything else will return all images.
 
 Attributes | &nbsp;
 ------- | -----------
