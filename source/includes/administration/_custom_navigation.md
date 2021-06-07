@@ -123,8 +123,7 @@ Attributes | &nbsp;
 `tabs.workspace`<br/>*String* | The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* | The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
-`tabs.showSubTabs`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
-
+`tabs.showSubTabs`<br/>*boolean* | Whether or not to show the subtabs, as defined by the plugin, underneath the menu tab. Configurable for a tab of type `SERVICE`.
 <!-------------------- Create CUSTOM NAV -------------------->
 ### Create custom navigation
 
@@ -240,8 +239,7 @@ Optional | &nbsp;
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
-`tabs.showSubTabs`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
-
+`tabs.showSubTabs`<br/>*boolean* | Whether or not to show the subtabs, as defined by the plugin, underneath the menu tab. Configurable for a tab of type `SERVICE`.
 
 <!-------------------- Update CUSTOM NAV -------------------->
 ### Update custom navigation
@@ -300,8 +298,7 @@ Optional | &nbsp;
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
-`tabs.showSubTabs`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
-
+`tabs.showSubTabs`<br/>*boolean* | Whether or not to show the subtabs, as defined by the plugin, underneath the menu tab. Configurable for a tab of type `SERVICE`.
 <!-------------------- Delete CUSTOM NAV -------------------->
 
 ### Delete custom navigation
