@@ -123,8 +123,7 @@ Attributes | &nbsp;
 `tabs.workspace`<br/>*String* | The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* | The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
-`tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
-
+`tabs.showSubTabs`<br/>*boolean* | Whether or not to show the subtabs, as defined by the plugin, underneath the menu tab. Configurable for a tab of type `SERVICE`.
 <!-------------------- Create CUSTOM NAV -------------------->
 ### Create custom navigation
 
@@ -159,7 +158,7 @@ Attributes | &nbsp;
         "id": "2d49e70f-e4f8-43e3-b730-92328174214sa21"
       },
       "workspace": "compute",
-      "promotePanel": true,
+      "showSubTabs": true,
       "skipEnvironmentPicker": true
     },
     {
@@ -202,7 +201,7 @@ Attributes | &nbsp;
         "rank": 1,
         "skipEnvironmentPicker": true,
         "id": "6080bdb2-ceda-4774-aa28-c7f98cd804a4",
-        "promotePanel": true,
+        "showSubTabs": true,
         "type": "SERVICE",
         "serviceConnection": {
           "id": "2d49e70f-e4f8-43e3-b730-92328174214sa21"
@@ -240,8 +239,7 @@ Optional | &nbsp;
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
-`tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
-
+`tabs.showSubTabs`<br/>*boolean* | Whether or not to show the subtabs, as defined by the plugin, underneath the menu tab. Configurable for a tab of type `SERVICE`.
 
 <!-------------------- Update CUSTOM NAV -------------------->
 ### Update custom navigation
@@ -300,8 +298,7 @@ Optional | &nbsp;
 `tabs.workspace`<br/>*String* | *Required* if type `SERVICE`. The workspace name for a tab of type `SERVICE`. 
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
-`tabs.promotePanel`<br/>*boolean* | Promote the menu items from the tab's workspace to the main menu. Configurable for a tab of type `SERVICE`.
-
+`tabs.showSubTabs`<br/>*boolean* | Whether or not to show the subtabs, as defined by the plugin, underneath the menu tab. Configurable for a tab of type `SERVICE`.
 <!-------------------- Delete CUSTOM NAV -------------------->
 
 ### Delete custom navigation
