@@ -632,10 +632,18 @@ tags:
       A user task list represents the tasks assigned to a particular user.
   - name: Webhooks
     description: >-
-      Webhooks allow an application to be notified of changes in Asana. They
-      are intended to provide an efficient way for integrations which react to
-      changes of state in Asana to take action only when something has actually
-      changed.
+      *Note: Recently, some users have seen intermittent delays with webhook event
+      distributions. We are in the process of transferring the webhooks system to
+      a more reliable infrastructure while also iteratively improving the current
+      system. As such, for the time being we advise against using webhooks for functionality
+      beyond logging (e.g., syncing state with real-time notification data).*
+
+      *If you experience latency issues, we recommend using webhooks in conjunction
+      with fetching the resource periodically (e.g. [GET a task](https://developers.asana.com/docs/get-a-task)).  More
+      details and ongoing updates can be found in [this post](https://forum.asana.com/t/an-update-on-our-webhooks/119684)
+      in the developer forum.*
+
+      Webhooks allow an application to be notified of changes in Asana.
 
 
       This is similar to our [Events](/docs/asana-events) resource, but webhooks
@@ -920,6 +928,16 @@ components:
         type: string
       example: '12345'
       x-env-variable: custom_field
+    goal_path_gid:
+      name: goal_gid
+      in: path
+      description: >-
+        Globally unique identifier for the goal.
+      required: true
+      schema:
+        type: string
+      example: '12345'
+      x-env-variable: goal
     job_path_gid:
       name: job_gid
       in: path
@@ -1984,6 +2002,75 @@ components:
               example:
                 gid: '12345'
                 resource_type: user
+    GoalResponse:
+      allOf:
+        - $ref: '#/components/schemas/GoalBase'
+        - type: object
+          properties:
+            likes:
+              description: >-
+                Array of likes for users who have liked this goal.
+              type: array
+              items:
+                $ref: '#/components/schemas/Like'
+              readOnly: true
+            num_likes:
+              description: >-
+                The number of users who have liked this goal.
+              type: integer
+              readOnly: true
+              example: 5
+    GoalRequest:
+      $ref: '#/components/schemas/GoalBase'
+    GoalBase:
+      allOf:
+        - $ref: '#/components/schemas/GoalCompact'
+        - type: object
+          properties:
+            html_notes:
+              type: string
+            notes:
+              type: string
+            due_on:
+              type: string
+              nullable: true
+            start_on:
+              type: string
+              nullable: true
+            status:
+              type: string
+              nullable: true
+            team:
+              allOf:
+                - $ref: '#/components/schemas/TeamCompact'
+                - type: object
+              nullable: true
+            workspace:
+              allOf:
+                - $ref: '#/components/schemas/WorkspaceCompact'
+                - type: object
+            is_workspace_level:
+              type: boolean
+            followers:
+              type: array
+            liked:
+              description: >-
+                True if the goal is liked by the authorized user, false if not.
+              type: boolean
+              example: false
+    GoalCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          x-docs-overrides:
+            properties.resource_type.example: goal
+          properties:
+            name:
+              type: string
+            owner:
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
     JobResponse:
       $ref: '#/components/schemas/JobBase'
     JobBase:
@@ -3580,6 +3667,21 @@ components:
                 - rejected
                 - changes_requested
               example: pending
+            assignee_status:
+              description: >-
+                *Deprecated* Scheduling status of this task for the user it is assigned
+                to.
+                This field can only be set if the assignee is non-null.
+                Setting this field to "inbox" or "upcoming" inserts it at the top
+                of the section, while the other options will insert at the bottom.
+              type: string
+              enum:
+                - today
+                - upcoming
+                - later
+                - new
+                - inbox
+              example: upcoming
             completed:
               description: >-
                 True if the task is currently marked complete, false if not.
@@ -5201,6 +5303,36 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}:
+    parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a goal
+      description: Get the full record for a single goal.
+      responses:
+        200:
+          description: Successfully retrieved the record for a single goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
