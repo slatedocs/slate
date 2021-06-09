@@ -147,7 +147,7 @@ ID | The ID of the actor profile to retrieve
 
 Parameter | Default | Description
 --------- | ------- | -----------
-enum | null | If set to `translate` attributes are translated if possible (eg. gender will be `male` or `männlich` instead of `m`).
+enum | null | If set to `translate` attributes are translated if possible (eg. gender will be `male` or `männlich` instead of `m`). _Note that hash and array attributes (eg. dances / sports) will be joined to a comma-separated string when translating attributes._
 locale | en | Translates attributes with closed lists, free text fields are only available in the entry language. Possible values are: `en`, `de`, `fr`, `it`, `es`, `pl`, `ro`, `ru`, `tr`. _This parameter only has an effect when `enum` is set to `translate`._
 
 # Talent agencies
