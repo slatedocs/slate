@@ -18,6 +18,172 @@ Base URLs:
 Web: <a href="https://asana.com/support">Asana Support</a> 
 </section><hr class="full-line">
 <section class="full-section">
+<a id="asana-default"></a>
+<h1 id="default">Default</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a></code>
+</pre>
+
+<span class="description">
+
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Get a goal
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/goals/{goal_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+undefined
+
+```
+
+```python
+undefined
+
+```
+
+```ruby
+undefined
+
+```
+
+```java
+undefined
+
+```
+
+```php
+undefined
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "string",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "string",
+    "followers": [],
+    "html_notes": "string",
+    "is_workspace_level": true,
+    "liked": false,
+    "notes": "string",
+    "start_on": "string",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /goals/{goal_gid}</code>
+</p>
+
+<span class="description">
+Get the full record for a single goal.
+</span>
+
+<h3 id="get-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the record for a single goal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="get-a-goal-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [GoalResponse](#schemagoalresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|none|
+| owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| due_on<span class="param-type"> string¦null</span>|none|
+| followers<span class="param-type"> array</span>|none|
+| html_notes<span class="param-type"> string</span>|none|
+| is_workspace_level<span class="param-type"> boolean</span>|none|
+| liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+| notes<span class="param-type"> string</span>|none|
+| start_on<span class="param-type"> string¦null</span>|none|
+| status<span class="param-type"> string¦null</span>|none|
+| team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the team.|
+| workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the workspace.|
+| likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this goal.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+| user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| num_likes<span class="param-type"> integer</span>|The number of users who have liked this goal.|
+
+</section><hr class="full-line">
+<section class="full-section">
 <a id="asana-attachments"></a>
 <h1 id="attachments">Attachments</h1>
 
@@ -12360,6 +12526,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
   "data": {
     "approval_status": "pending",
     "assignee": "12345",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
@@ -12404,6 +12571,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -12581,6 +12749,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
@@ -12623,6 +12792,11 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 | approval_status|approved|
 | approval_status|rejected|
 | approval_status|changes_requested|
+| assignee_status|today|
+| assignee_status|upcoming|
+| assignee_status|later|
+| assignee_status|new|
+| assignee_status|inbox|
 | resource_subtype|default_task|
 | resource_subtype|milestone|
 | resource_subtype|section|
@@ -12711,6 +12885,7 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -12967,6 +13142,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
   "data": {
     "approval_status": "pending",
     "assignee": "12345",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
@@ -13011,6 +13187,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -13190,6 +13367,7 @@ Returns the complete updated task record.
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
@@ -13233,6 +13411,11 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 | approval_status|approved|
 | approval_status|rejected|
 | approval_status|changes_requested|
+| assignee_status|today|
+| assignee_status|upcoming|
+| assignee_status|later|
+| assignee_status|new|
+| assignee_status|inbox|
 | resource_subtype|default_task|
 | resource_subtype|milestone|
 | resource_subtype|section|
@@ -14135,6 +14318,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
   "data": {
     "approval_status": "pending",
     "assignee": "12345",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_by": {
       "name": "Greg Sanchez"
@@ -14179,6 +14363,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -14350,6 +14535,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
+|»» assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |»» completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
@@ -14393,6 +14579,11 @@ The resource_subtype `milestone` represent a single moment in time. This means t
 | approval_status|approved|
 | approval_status|rejected|
 | approval_status|changes_requested|
+| assignee_status|today|
+| assignee_status|upcoming|
+| assignee_status|later|
+| assignee_status|new|
+| assignee_status|inbox|
 | resource_subtype|default_task|
 | resource_subtype|milestone|
 | resource_subtype|section|
@@ -14497,6 +14688,7 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
+    "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "completed_by": {
@@ -18636,7 +18828,9 @@ Returns the full record for a user's task list.
 </pre>
 
 <span class="description">
-Webhooks allow an application to be notified of changes in Asana. They are intended to provide an efficient way for integrations which react to changes of state in Asana to take action only when something has actually changed.
+*Note: Recently, some users have seen intermittent delays with webhook event distributions. We are in the process of transferring the webhooks system to a more reliable infrastructure while also iteratively improving the current system. As such, for the time being we advise against using webhooks for functionality beyond logging (e.g., syncing state with real-time notification data).*
+*If you experience latency issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](https://developers.asana.com/docs/get-a-task)).  More details and ongoing updates can be found in [this post](https://forum.asana.com/t/an-update-on-our-webhooks/119684) in the developer forum.*
+Webhooks allow an application to be notified of changes in Asana.
 
 This is similar to our [Events](/docs/asana-events) resource, but webhooks "push" events via HTTP `POST` rather than expecting integrations to repeatedly "poll" for them. For services that are already accessible on the Internet this is often more convenient and efficient.
 
@@ -20305,6 +20499,7 @@ Returns the compact workspace membership records for the workspace.
 </section><hr class="full-line">
 <section class="full-section">
 # Schemas
+
 <span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
 default and you'll need to use [Input/Output Options](/docs/input-output-options) to include them.
@@ -22650,6 +22845,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
   "resource_type": "task",
   "name": "Buy catnip",
   "approval_status": "pending",
+  "assignee_status": "upcoming",
   "completed": false,
   "completed_at": "2012-02-22T02:06:58.147Z",
   "completed_by": {
@@ -22816,6 +23012,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
+|assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
 |completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -22934,6 +23131,11 @@ The *task* is the basic object around which many operations in Asana are centere
 |approval_status|approved|
 |approval_status|rejected|
 |approval_status|changes_requested|
+|assignee_status|today|
+|assignee_status|upcoming|
+|assignee_status|later|
+|assignee_status|new|
+|assignee_status|inbox|
 |resource_subtype|default_task|
 |resource_subtype|milestone|
 |resource_subtype|section|
