@@ -15,7 +15,6 @@ function toggleVisibility(el) {
     return;
   }
 
-  console.log("Toggle sibling:", el);
   el.classList.toggle("param__child__active");
   toggleVisibility(el.nextElementSibling);
 }
