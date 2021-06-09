@@ -13,7 +13,7 @@ claimId | The LossExpress UUID given to the claim the Activity occurred on
 type | A string containing one of the available Activity Types
 claimNumber | The claim number entered for the claim the Activity occurred on
 data | An object containing relevant information for the Activity
-hash | A SHA256 hash uniquely identifying the activity type
+activityId | A GUID uniquely identifying the activity
 
 ## Fetch Activities
 > This route returns a paginated set of results that looks like this:
@@ -50,7 +50,11 @@ createdAfter | 30 minutes earlier | Allows for filtering activities to only thos
 pageSize | 100 | Sets the size of pages in paginated results. Maximum is currently 500.
 pageNumber | 0 | Sets the zero-indexed page number in paginated results.
 claimId | | Filters the activities to only contain activities for the specific LossExpress Claim ID.
-hash | | Show activity types starting from when the hash's activity and moving into the future
+activityId | | Show activity types starting from the activity and moving into the future.
+
+### Note
+
+You can only supply `activityId` or `createdBefore` in a request, not both.
 
 # Activity Types
 
@@ -81,7 +85,7 @@ settlement-counter-updated | The settlement counter is either accepted or disput
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "account-number-viewed",
@@ -101,7 +105,7 @@ This activity type will appear in the feed whenever an account number is viewed 
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "call-made",
@@ -120,7 +124,7 @@ This activity type will appear in the feed whenever a call was made on behalf of
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "claim-created",
@@ -169,7 +173,7 @@ If desired, we do give carriers the ability to not have account numbers added to
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "claim-updated",
@@ -201,7 +205,7 @@ Note that this activity type could be triggered by actions made by LossExpress. 
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "direct-message-added",
@@ -216,7 +220,7 @@ Note that this activity type could be triggered by actions made by LossExpress. 
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "direct-message-added",
@@ -237,7 +241,7 @@ This activity type will appear in the feed whenever a direct message is added to
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "document-added",
@@ -259,7 +263,7 @@ This activity type will appear in the feed whenever a document has been added to
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "document-sent-to-lender",
@@ -278,7 +282,7 @@ This activity type is added to the feed whenever a document is sent by LossExpre
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "letter-of-guarantee-added",
@@ -299,7 +303,7 @@ This activity type is added to the feed whenever a letter of guarantee is added 
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "letter-of-guarantee-request-created",
@@ -322,7 +326,7 @@ Note that although we _typically_ request letters of guarantee whenever we reach
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "payment-sent",
@@ -353,7 +357,7 @@ This activity type is added to the feed whenever acknowledgement that payment ha
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "payoff-data-added",
@@ -396,7 +400,7 @@ This activity type is added to the feed whenever payoff data is added to a claim
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "payoff-request-created",
@@ -413,7 +417,7 @@ This activity type is added to the feed whenever a payoff request is created on 
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "settlement-counter-added",
@@ -433,7 +437,7 @@ This activity type is added to the feed whenever a settlement counter is added t
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "settlement-counter-updated",
@@ -449,7 +453,7 @@ This activity type is added to the feed whenever a settlement counter is added t
 
 ```json
 {
-  "hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "activityId": "fed62fa0-c048-46b5-b994-6e3e69fb0f37",
   "createdAt": "2021-01-08T22:03:09.598Z",
   "claimId": "c30ae9da-9222-4de5-81fe-fe1ac590fa0f",
   "type": "settlement-counter-updated",

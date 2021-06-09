@@ -32,8 +32,17 @@ Once a token has been received, every request is expected to have a header that 
 
 `Authorization: Bearer exampletokenbutreplacewithyourown`
 
-### HTTP Request
+## HTTP Request
 `POST https://exapi.lossexpress.com/oauth/token`
+
+### Request Body
+
+This route accepts a JSON payload of an object comprising of:
+
+Body Parameter | Description
+-------------- | -----------
+clientId | Your unique identifier in Loss Express systems
+secret | An OAuth secret provided by Loss Express
 
 <aside class="notice">
 You must replace <code>exampletokenbutreplacewithyourown</code> with the access token provided.
