@@ -20,30 +20,11 @@ code_clipboard: true
 
 
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
   -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
@@ -115,7 +96,9 @@ fullName | string | 扫描对象的全称，个体名字或者实体名字
 individualInfo | object | 用户个体的信息, 二选一
 organizationInfo | object | 业务实体的信息, 二选一
 suggestion | string(ENUM) | 系统建议 `SUGGEST_TO_ACCEPT,SUGGEST_TO_REJECT,NO_SUGGESTION`
+suggestion_comment | string | 系统建议的人工备注
 decision | string(ENUM) | 客户决定 `REJECT, ACCEPT`
+decision_comment | string | 客户决定的人工备注
 ogs | bool | 持续性扫描状态
 
 
@@ -246,8 +229,8 @@ curl "https://caas.cabital.com/api/v1/cases/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c
 
 针对特定KYC Case提供最终KYC决定，caseResult为枚举型String：
 
-- Accept
-- Reject
+- ACCEPT
+- REJECT
 
 ### HTTP Request
 
@@ -281,7 +264,7 @@ webhook 预计平均会在 3-5 分钟后到达，但理论上可能需要长达 
 {
     "caseSystemId": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
     "caseSuggestion": "SUGGEST_TO_REJECT",
-    "comment": "User is okay to ",
+    "comment": "User is okay to me.",
     "externalCaseId": "243d19cf-562f-4060-89fa-1d35a7723c3e"
 }
 ```
