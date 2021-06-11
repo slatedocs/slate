@@ -90,7 +90,7 @@ curl -v https://link.datil.co/purchase-settlements/issue \
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ],
@@ -182,7 +182,7 @@ liquidacion_compras = {
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ]
@@ -446,7 +446,7 @@ plazo       | string       | Máximo 14 caracteres.
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ]
@@ -827,7 +827,7 @@ curl -v https://link.datil.co/purchase-settlements/issue \
     {
       "forma_pago": "01",
       "total": 50.00,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ],
@@ -934,7 +934,7 @@ liquidacion_compras = {
     {
       "forma_pago": "01",
       "total": 50.00,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ]
@@ -1236,7 +1236,7 @@ plazo       | string       | Máximo 14 caracteres.
     {
       "forma_pago": "01",
       "total": 50.00,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ]
@@ -1402,7 +1402,7 @@ Reemplaza en la ruta `<purchase-settlement-ID>` por el `id` de la liquidación d
       {
         "forma_pago": "01",
         "total": 168.0,
-        "unidad_tiempo": "10",
+        "unidad_tiempo": "dias",
         "plazo": "30"
       }
     ],
@@ -1616,7 +1616,7 @@ Reemplaza en la ruta `<purchase-settlement-ID>` por el `id` de la liquidación d
       {
         "forma_pago": "01",
         "total": 50.0,
-        "unidad_tiempo": "10",
+        "unidad_tiempo": "dias",
         "plazo": "30"
       }
     ],
@@ -1747,7 +1747,7 @@ curl -v https://link.datil.co/purchase-settlements/<id-liquidacion>/reissue \
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ],
@@ -1839,7 +1839,7 @@ liquidacion_compras = {
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ]
@@ -2072,7 +2072,7 @@ El cuerpo del requerimiento es un objeto retención con los datos corregidos par
     {
       "forma_pago": "01",
       "total": 4882.68,
-      "unidad_tiempo": "10",
+      "unidad_tiempo": "dias",
       "plazo": "30"
     }
   ]
