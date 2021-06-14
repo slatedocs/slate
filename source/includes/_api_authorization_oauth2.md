@@ -26,12 +26,12 @@ if ($auth->validateAccessToken()) {
     }
 }
 ```
+<aside class="warning">
+Mautic supports only the authorization_code, refresh_token and client_credentials grant types.
+</aside>
+
 #### Authorization
 ##### Step One - Obtain Authorization Code
-
-<aside class="warning">
-Mautic supports only the authorization_code and refresh_token grant types.
-</aside>
 
 Redirect the user to the authorize endpoint `oauth/v2/authorize`:
 
@@ -129,6 +129,32 @@ The response returned should be a JSON encoded string:
         token_type: "bearer",
         scope: "",
         refresh_token: "REFRESH_TOKEN"
+    }
+</pre>
+
+#### Client Credentials
+
+The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user.
+
+To obtain a new access token, a POST should be made to the access token's endpoint `oauth/v2/token` using the `client_credentials` grant type.
+
+<pre class="inline">
+POST /oauth/v2/token
+    
+client_id=CLIENT_ID
+    &client_secret=CLIENT_SECRET
+    &grant_type=client_credentials
+</pre>
+(note that the post body has been wrapped for legibility)
+
+The response returned should be a JSON encoded string:
+
+<pre class="inline">
+    {
+        access_token: "NEW_ACCESS_TOKEN",
+        expires_in: 3600,
+        token_type: "bearer",
+        scope: ""
     }
 </pre>
 
