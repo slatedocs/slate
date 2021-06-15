@@ -159,7 +159,7 @@ Attributes | &nbsp;
 `stackId`<br/>*string* | The ID of the stack that a workload belongs to.
 `status`<br/>*string* | The status of the workload. It can be either `ACTIVE` or `DISABLED`.
 `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
-`userData`<br/>*string* | The Cloud-Init user-data to be run on the workload's instances.
+`userData`<br/>*string* | User data compatible with cloud-init to be run on the workload's instances.
 `version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
 
 
@@ -284,7 +284,7 @@ Attributes | &nbsp;
 `stackId`<br/>*string* | The ID of the stack that a workload belongs to.
 `status`<br/>*string* | The status of the workload. It can be either `ACTIVE` or `DISABLED`.
 `type`<br/>*string* | Specify whether a workload is a VM-based workload or container-based.
-`userData`<br/>*string* | The Cloud-Init user-data to be run on the workload's instances.
+`userData`<br/>*string* | User data compatible with cloud-init to be run on the workload's instances.
 `version`<br/>*string* | A version number for the workload. Versions start at 1 when they are created and increment by 1 every time they are updated.
 
 <!-------------------- CREATE A WORKLOAD -------------------->
@@ -447,7 +447,7 @@ Required | &nbsp;
 `secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
 `slug`<br/>*string* | A workload's programmatic name. Workload slugs are used to build its instances names. If not provided, defaults to workload's name. It must not exceed 18 characters.
-`userData`<br/>*string* | The Cloud-Init user-data to be run on the workload's instances. This should only be set for a VM-based workload.
+`userData`<br/>*string* | User data compatible with cloud-init to be run on the workload's instances. This should only be set for a VM-based workload.
 
 <aside class="notice">
 A workload can be added without any `ports`. However, `ports.publicPort` and `ports.protocol` are required to open a port or port range at workload creation.
@@ -562,7 +562,7 @@ Optional | &nbsp;
 `secretEnvironmentVariables.key` <br/>*string* | The location to obtain a value for a secret environment variable. When editing a workload, include keys you wish to preserve. Keys not included in the body will be removed.
 `secretEnvironmentVariables.value` <br/>*string* | A secret environment variable's value. When editing a workload, setting an existing environment variable's value to `[REDACTED]` will preserve the existing secret.
 `secretEnvironmentVariables` <br/>*Array[Object]* | A list of sensitive environment variables. Only applicable to workloads of `type` 'CONTAINER'.
-`userData`<br/>*string* | The Cloud-Init user-data to be run on the workload's instances. This should only be set for a VM-based workload.
+`userData`<br/>*string* | User data compatible with cloud-init to be run on the workload's instances. This should only be set for a VM-based workload.
 
 <!-------------------- DELETE A WORKLOAD -------------------->
 
