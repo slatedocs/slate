@@ -18,172 +18,6 @@ Base URLs:
 Web: <a href="https://asana.com/support">Asana Support</a> 
 </section><hr class="full-line">
 <section class="full-section">
-<a id="asana-default"></a>
-<h1 id="default">Default</h1>
-
-<pre class="highlight http tab-http">
-<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a></code>
-</pre>
-
-<span class="description">
-
-</span>
-
-</section>
-<hr class="half-line">
-<section>
-## Get a goal
-
-> Code samples
-
-```shell
-curl -X GET https://app.asana.com/api/1.0/goals/{goal_gid} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-undefined
-
-```
-
-```python
-undefined
-
-```
-
-```ruby
-undefined
-
-```
-
-```java
-undefined
-
-```
-
-```php
-undefined
-
-```
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "gid": "12345",
-    "resource_type": "goal",
-    "name": "string",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "due_on": "string",
-    "followers": [],
-    "html_notes": "string",
-    "is_workspace_level": true,
-    "liked": false,
-    "notes": "string",
-    "start_on": "string",
-    "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
-    "likes": [
-      {
-        "gid": "12345",
-        "user": {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      }
-    ],
-    "num_likes": 5
-  }
-}
-```
-
-> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
-
-<p>
-<code> <span class="get-verb">GET</span> /goals/{goal_gid}</code>
-</p>
-
-<span class="description">
-Get the full record for a single goal.
-</span>
-
-<h3 id="get-a-goal-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-<h3 id="get-a-goal-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved the record for a single goal.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-a-goal-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [GoalResponse](#schemagoalresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|none|
-| owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-| due_on<span class="param-type"> string¦null</span>|none|
-| followers<span class="param-type"> array</span>|none|
-| html_notes<span class="param-type"> string</span>|none|
-| is_workspace_level<span class="param-type"> boolean</span>|none|
-| liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
-| notes<span class="param-type"> string</span>|none|
-| start_on<span class="param-type"> string¦null</span>|none|
-| status<span class="param-type"> string¦null</span>|none|
-| team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|The name of the team.|
-| workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|The name of the workspace.|
-| likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this goal.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
-| user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-| num_likes<span class="param-type"> integer</span>|The number of users who have liked this goal.|
-
-</section><hr class="full-line">
-<section class="full-section">
 <a id="asana-attachments"></a>
 <h1 id="attachments">Attachments</h1>
 
@@ -2752,6 +2586,421 @@ tasks contained within the project.*
 
 </section><hr class="full-line">
 <section class="full-section">
+<a id="asana-goals"></a>
+<h1 id="goals">Goals</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/create-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals</span></a></code>
+</pre>
+
+<span class="description">
+A `goal` is an object in the goal-tracking system that helps your organization drive measurable results.
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Get a goal
+
+<a id="opIdgetGoal"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/goals/{goal_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.goals.getGoal(goalGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.goals.get_goal(goal_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.goals.get_goal(goal_gid: 'goal_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.goals.getGoal(goalGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "string",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "string",
+    "followers": [],
+    "html_notes": "string",
+    "is_workspace_level": true,
+    "liked": false,
+    "notes": "string",
+    "start_on": "string",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /goals/{goal_gid}</code>
+</p>
+
+<span class="description">
+Get the full record for a single goal.
+</span>
+
+<h3 id="get-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the record for a single goal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="get-a-goal-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [GoalResponse](#schemagoalresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|none|
+| owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| due_on<span class="param-type"> string¦null</span>|none|
+| followers<span class="param-type"> array</span>|none|
+| html_notes<span class="param-type"> string</span>|none|
+| is_workspace_level<span class="param-type"> boolean</span>|none|
+| liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+| notes<span class="param-type"> string</span>|none|
+| start_on<span class="param-type"> string¦null</span>|none|
+| status<span class="param-type"> string¦null</span>|none|
+| team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the team.|
+| workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the workspace.|
+| likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this goal.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+| user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| num_likes<span class="param-type"> integer</span>|The number of users who have liked this goal.|
+
+</section><hr class="half-line">
+<section>
+## Create a goal
+
+<a id="opIdcreateGoals"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/goals \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.goals.createGoals({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.goals.create_goals({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.goals.create_goals(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.goals.createGoals()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->goals->createGoals(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "due_on": "string",
+    "followers": [],
+    "html_notes": "string",
+    "is_workspace_level": true,
+    "liked": false,
+    "name": "string",
+    "notes": "string",
+    "owner": {
+      "name": "Greg Sanchez"
+    },
+    "start_on": "string",
+    "status": "string",
+    "team": {
+      "name": "Marketing"
+    },
+    "workspace": {
+      "name": "My Company Workspace"
+    }
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "string",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "string",
+    "followers": [],
+    "html_notes": "string",
+    "is_workspace_level": true,
+    "liked": false,
+    "notes": "string",
+    "start_on": "string",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /goals</code>
+</p>
+
+<span class="description">
+Create a new goal in a workspace or team.
+</span>
+
+<h3 id="create-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to create.|
+|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» due_on<span class="param-type"> string¦null</span>|none|
+|»» followers<span class="param-type"> array</span>|none|
+|»» html_notes<span class="param-type"> string</span>|none|
+|»» is_workspace_level<span class="param-type"> boolean</span>|none|
+|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+|»» name<span class="param-type"> string</span>|none|
+|»» notes<span class="param-type"> string</span>|none|
+|»» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» start_on<span class="param-type"> string¦null</span>|none|
+|»» status<span class="param-type"> string¦null</span>|none|
+|»» team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="create-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|201<span class="param-type"> Inline</span>|Successfully created a new goal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="create-a-goal-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [GoalResponse](#schemagoalresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|none|
+| owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| due_on<span class="param-type"> string¦null</span>|none|
+| followers<span class="param-type"> array</span>|none|
+| html_notes<span class="param-type"> string</span>|none|
+| is_workspace_level<span class="param-type"> boolean</span>|none|
+| liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+| notes<span class="param-type"> string</span>|none|
+| start_on<span class="param-type"> string¦null</span>|none|
+| status<span class="param-type"> string¦null</span>|none|
+| team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the team.|
+| workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|The name of the workspace.|
+| likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this goal.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+| user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| num_likes<span class="param-type"> integer</span>|The number of users who have liked this goal.|
+
+</section><hr class="full-line">
+<section class="full-section">
 <a id="asana-jobs"></a>
 <h1 id="jobs">Jobs</h1>
 
@@ -3209,7 +3458,7 @@ Status Code **200**
 </pre>
 
 <span class="description">
-A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.
+A `portfolio` gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 </span>
 
@@ -12553,6 +12802,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
       "12345"
     ],
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -12642,6 +12892,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -12767,6 +13018,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -12780,6 +13032,9 @@ The external field allows you to store app-specific metadata on tasks, including
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
+
+**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.
+*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -12956,6 +13211,7 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -13169,6 +13425,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
       "12345"
     ],
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -13258,6 +13515,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -13385,6 +13643,7 @@ Returns the complete updated task record.
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -13399,6 +13658,9 @@ The external field allows you to store app-specific metadata on tasks, including
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
+
+**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.
+*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -14345,6 +14607,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
       "12345"
     ],
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -14434,6 +14697,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -14553,6 +14817,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -14567,6 +14832,9 @@ The external field allows you to store app-specific metadata on tasks, including
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
+
+**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.
+*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -14759,6 +15027,7 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -22916,6 +23185,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
   "num_likes": 5,
   "num_subtasks": 3,
   "resource_subtype": "default_task",
+  "start_at": "2019-09-14T02:06:58.147Z",
   "start_on": "2019-09-14",
   "assignee": {
     "gid": "12345",
@@ -23062,6 +23332,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](/docs/input-output-options). The number of subtasks on this task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.|
+|start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.<br>*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|

@@ -469,6 +469,10 @@ tags:
 
       Sync tokens always expire after 24 hours, but may expire sooner,
       depending on load on the service.
+  - name: Goals
+    description: >-
+      A `goal` is an object in the goal-tracking system that helps your organization
+      drive measurable results.
   - name: Jobs
     description: >-
       Jobs represent processes that handle asynchronous work.
@@ -503,7 +507,7 @@ tags:
       [Enterprise](https://asana.com/enterprise) Organization.*
   - name: Portfolios
     description: >-
-      A 'portfolio' gives a high-level overview of the status of multiple
+      A `portfolio` gives a high-level overview of the status of multiple
       initiatives in Asana. Portfolios provide a dashboard overview of the
       state of multiple projects, including a progress report and the most
       recent [project status](/docs/asana-project-statuses)
@@ -3891,6 +3895,17 @@ components:
                 - section
                 - approval
               example: default_task
+            start_at:
+              description: >-
+                Date and time on which work begins for the task, or null if the task
+                has no start time. This takes a UTC timestamp format.
+
+                *Note: `due_at` must be present in the request when
+                setting or unsetting the `start_at` parameter.*
+              type: string
+              nullable: true
+              format: date
+              example: '2019-09-14T02:06:58.147Z'
             start_on:
               description: >-
                 The day on which work begins for the task , or null if the task
@@ -5317,9 +5332,55 @@ paths:
     get:
       summary: Get a goal
       description: Get the full record for a single goal.
+      operationId: getGoal
+      tags:
+        - Goals
       responses:
         200:
           description: Successfully retrieved the record for a single goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Create a goal
+      description: |-
+        Create a new goal in a workspace or team.
+      tags:
+        - Goals
+      operationId: createGoals
+      requestBody:
+        description: The goal to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        201:
+          description: Successfully created a new goal.
           content:
             application/json:
               schema:
