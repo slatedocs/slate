@@ -1,6 +1,12 @@
 //= require ./lib/_energize
+//= require ./app/_copy
 //= require ./app/_toc
 //= require ./app/_lang
+
+function adjustLanguageSelectorWidth() {
+  const elem = $('.dark-box > .lang-selector');
+  elem.width(elem.parent().width());
+}
 
 $(function() {
   var pathname = window.location.pathname;
@@ -13,7 +19,6 @@ $(function() {
     window.recacheHeights();
     window.refreshToc();
   });
-
 
   $('.positiveFeedback-DevSatisfaction').on('click', function() {
     $(this).parent().html('Thanks!')
@@ -70,6 +75,11 @@ $(function() {
       return false;
     }
   });
+
+  $(window).resize(function() {
+    adjustLanguageSelectorWidth();
+  });
+  adjustLanguageSelectorWidth();
 });
 
 window.onpopstate = function() {

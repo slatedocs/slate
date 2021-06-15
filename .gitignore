@@ -26,3 +26,6 @@ doc/
 # Local cache files for vim
 *.swp
 *.swo
+
+# Vagrant artifacts
+ubuntu-*-console.log
