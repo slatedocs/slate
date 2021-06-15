@@ -1,11 +1,7 @@
 <p align="center">
-<<<<<<< HEAD
   <img src="https://luna1.co/984202.png" alt="Asana: API Documentation" width="264">
   <br>
   <br>
-=======
-  <img src="https://raw.githubusercontent.com/slatedocs/img/main/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
->>>>>>> upstream/main
   <br>
   <a href="https://github.com/slatedocs/slate/actions?query=workflow%3ABuild+branch%3Amain"><img src="https://github.com/slatedocs/slate/workflows/Build/badge.svg?branch=main" alt="Build Status"></a>
   <a href="https://hub.docker.com/r/slatedocs/slate"><img src="https://img.shields.io/docker/v/slatedocs/slate?sort=semver" alt="Docker Version" /></a>
@@ -13,18 +9,10 @@
 
 These docs are live at: https://developers.asana.com/docs
 
-<<<<<<< HEAD
 Middleman requires ruby
 Swagger requires mvn (brew install maven)
 
 OpenAPI Spec
-=======
-<p align="center"><img src="https://raw.githubusercontent.com/slatedocs/img/main/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
-
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
-
-Features
->>>>>>> upstream/main
 ------------
 ### What is it
 The Asana OpenAPI spec is currently used to generate our documentation. You can also use it to generate mock servers, client code, and many other things. You can read more about OpenAPI specs [here](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md).
@@ -42,13 +30,9 @@ The easiest way to work with the tooling is to install some version managers for
 
 For node, we'll use nvm...
 
-<<<<<<< HEAD
 ```shell
 brew install nvm
 ```
-=======
-* **Out-of-the-box syntax highlighting** for [over 100 languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers), no configuration required.
->>>>>>> upstream/main
 
 ... and for Ruby we'll use rbenv
 
@@ -63,7 +47,6 @@ gem install bundler # If we don't have bundler, it's basically the de facto stan
 
 In addition to this repository we're going to clone a sibling repository for a tool called Widdershins that manages the first half of our toolchain. We'll assume it and this repository live in the same directory. We'll clone it and install its prerequisites:
 
-<<<<<<< HEAD
 ```shell
 pushd .. # To get to parent dir
 git clone git@github.com:rossgrambo/widdershins.git # Clone the repo
@@ -72,13 +55,9 @@ nvm use system # If it ain't broke - we might pin this in the future
 npm install # Install requirements
 popd # Done with installation
 ```
-=======
-Getting started with Slate is super easy! Simply press the green "use this template" button above and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](https://slatedocs.github.io/slate/).
->>>>>>> upstream/main
 
 And then lets get our local version of Ruby up to snuff:
 
-<<<<<<< HEAD
 ```shell
 rbenv shell system # We'll use system ruby as well, but just like node we might pin it in the future
 bundle install # Install requirements
@@ -113,60 +92,20 @@ vagrant up
 
 ### Making content changes
 If the content you're changing is static (not generated from the OpenAPI spec), you'll edit the md in source/includes/markdown.
-=======
-To get started with Slate, please check out the [Getting Started](https://github.com/slatedocs/slate/wiki#getting-started)
-section in our [wiki](https://github.com/slatedocs/slate/wiki).
-
-We support running Slate in three different ways:
-* [Natively](https://github.com/slatedocs/slate/wiki/Using-Slate-Natively)
-* [Using Vagrant](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Vagrant)
-* [Using Docker](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Docker)
-
-Companies Using Slate
----------------------------------
-
-* [NASA](https://api.nasa.gov)
-* [Sony](http://developers.cimediacloud.com)
-* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
-* [Travis-CI](https://docs.travis-ci.com/api/)
-* [Greenhouse](https://developers.greenhouse.io/harvest.html)
-* [WooCommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
-* [Dwolla](https://docs.dwolla.com/)
-* [Clearbit](https://clearbit.com/docs)
-* [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
-
-You can view more in [the list on the wiki](https://github.com/slatedocs/slate/wiki/Slate-in-the-Wild).
-
-Questions? Need Help? Found a bug?
---------------------
-
-If you've got questions about setup, deploying, special feature implementation in your fork, or just want to chat with the developer, please feel free to [start a thread in our Discussions tab](https://github.com/slatedocs/slate/discussions)!
-
-Found a bug with upstream Slate? Go ahead and [submit an issue](https://github.com/slatedocs/slate/issues). And, of course, feel free to submit pull requests with bug fixes or changes to the `dev` branch.
->>>>>>> upstream/main
 
 If the content you're changing is in the OpenAPI spec, you should make the changes within codez. However, if you want to quickly test something, you can make the changes in def/asana_oas.yaml. Just remember to put the changes in codez if you want them to not be overridden.
 Then, you should run the `widdershins` command above.
 I prefer to run `git diff` after doing so to see the generated changes.
 Run `bundle exec middleman server` if it's not already running, and go to the url it provides to check out the changes you made.
 
-<<<<<<< HEAD
 Merging these changes into master causes them to be deployed.
-=======
-Slate was built by [Robert Lord](https://lord.io) while at [TripIt](https://www.tripit.com/). The project is now maintained by [Matthew Peveler](https://github.com/MasterOdin) and [Mike Ralphson](https://github.com/MikeRalphson).
->>>>>>> upstream/main
 
 ### Editing styles
 Make changes in source/stylesheets/**\_variables.scss** because the changes here will be valid with future versions of Slate.
 
 If you need to make more complex css changes, edit **screen.css.scss** or **print.css.scss** but keep in mind that these will need to be merged for new versions of Slate.
 
-<<<<<<< HEAD
 ### Deploying to github pages
 This should happen automatically when changes are merged into this repo.
 
 If you need to do this manually, then run the `deploy.sh` script. This will use your local git credentials and local /build folder to push a build to a branch named gh-pages (Where the docs are hosted).
-=======
-Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
->>>>>>> upstream/main

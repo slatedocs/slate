@@ -327,7 +327,6 @@ html, body {
 }
 
 .lang-selector {
-  display: flex;
   background-color: $lang-select-bg;
   font-weight: bold;
   border-radius: 20px;
@@ -335,7 +334,6 @@ html, body {
   margin-top: $spacing-xxs;
 
   a {
-    display: inline;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
@@ -825,10 +823,6 @@ code, pre {
 // This is all the stuff that appears in the right half of the page
 
 .content {
-  &>div.highlight {
-    clear:none;
-  }
-
   pre, blockquote {
     margin: 0;
     width: $examples-width;

@@ -3,11 +3,6 @@
 //= require ./app/_toc
 //= require ./app/_lang
 
-function adjustLanguageSelectorWidth() {
-  const elem = $('.dark-box > .lang-selector');
-  elem.width(elem.parent().width());
-}
-
 $(function() {
   var pathname = window.location.pathname;
   if (pathname.split('/').length > 2) {
@@ -75,11 +70,6 @@ $(function() {
       return false;
     }
   });
-
-  $(window).resize(function() {
-    adjustLanguageSelectorWidth();
-  });
-  adjustLanguageSelectorWidth();
 });
 
 window.onpopstate = function() {
