@@ -31,6 +31,18 @@ Castupload expects the API key to be included in all API requests to the server 
 You must replace <code>API_KEY</code> with your personal API key.
 </aside>
 
+# Cross origin resource sharing
+
+The API supports Cross Origin Resource Sharing (CORS) for AJAX requests from any origin.
+
+Here's a sample request sent from a browser hitting [https://www.example.com/](https://www.example.com/):
+
+```
+$ curl -I https://www.castupload.com/api/v1/actor_profiles -H "Origin: https://www.example.com"
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET
+```
+
 # Rate limits
 
 Rate limits are enforced on a per IP address basis. Currently we allow up to 300 requests within a 5 minute period. If this quota is exceeded your IP will be throttled for the remainder of this period. In this case the API will return an error responses that shows up as status code `429`.
