@@ -55,7 +55,7 @@ Read more about API keys.
 
 ## 资源描述
 
-### KYC Case
+### KYC Create Case
 
 > Sample
 
@@ -76,19 +76,54 @@ Read more about API keys.
 
 客户创建KYC Case，包含有用户个人或业务实体的基本信息。
 
+字段 | 类型 | 必须       | 描述
+--------- | ------- | ---------------| -----------
+externalCaseId | string | true| 客户自己可以选择的外部Id，字符长度最大36位Unicode
+screenType | string(ENUM) | true| Case的扫描类型，为枚举字符串，选择为`INDIVIDUAL, ORGANISATION`
+fullName | string | true| 扫描对象的全称，个体名字或者实体名字,字符长度最大250位Unicode
+individualInfo | object | false| 用户个体的信息, 二选一
+organizationInfo | object | false| 业务实体的信息, 二选一
+
+
+### KYC Get Case
+
+> Sample
+
+```json
+{
+    "externalCaseId": "243d19cf-562f-4060-89fa-1d35a7723c3e",
+    "screenType": "INDIVIDUAL", // INDIVIDUAL, ORGANISATION
+    "fullName": "John Doe",
+    "individualInfo": {
+        "gender": "MALE",
+        "dob": "2002-02-02",
+        "nationality": "JPN",
+        "residentialCountry": "HKG"
+    },
+    "organizationInfo": {},
+    "suggestion": "SUGGEST_TO_ACCEPT",
+    "suggestionComment": "resolve by operator",
+    "decision": "ACCEPT",
+    "decisionComment": "default comment",
+    "status": "COMPLETE"
+}
+```
+
+客户查询KYC Case，包含case的处理意见。
+
 字段 | 类型 | 描述
---------- | ------- | -----------
+--------- | ------- | ---------------| -----------
 externalCaseId | string | 客户自己可以选择的外部Id，字符长度最大36位Unicode
 screenType | string(ENUM) | Case的扫描类型，为枚举字符串，选择为`INDIVIDUAL, ORGANISATION`
 fullName | string | 扫描对象的全称，个体名字或者实体名字
 individualInfo | object | 用户个体的信息, 二选一
 organizationInfo | object | 业务实体的信息, 二选一
 suggestion | string(ENUM) | 系统建议 `SUGGEST_TO_ACCEPT,SUGGEST_TO_REJECT,NO_SUGGESTION`
-suggestion_comment | string | 系统建议的人工备注
+suggestionComment | string | 系统建议的人工备注
 decision | string(ENUM) | 客户决定 `REJECT, ACCEPT`
-decision_comment | string | 客户决定的人工备注
+decisionComment | string | 客户决定的人工备注
+status | string(ENUM) | case状态 `NEW,PENDING,WAITING_APPROVAL,COMPLETE`
 ogs | bool | 持续性扫描状态
-
 
 
 
@@ -96,12 +131,12 @@ ogs | bool | 持续性扫描状态
 
 客户创建客户的个人用户基本信息。
 
-字段 | 类型 | 描述
---------- | --------- | -----------
-gender | string(ENUM) | 性别，为枚举字符串，选择为`MALE, FEMALE`
-dob | 日期 | Date of Birth 生日， yyyy-MM-dd
-nationality | string (alpha-3) | 用户的国籍 (ISO-3166-1 alpha-3)
-residentialCountry | string (alpha-3) | 用户的居住国家 (ISO-3166-1 alpha-3)
+字段 | 类型 | 必须 | 描述
+--------- | --------- | ------- | -----------
+gender | string | false| 性别，为枚举字符串，选择为`MALE, FEMALE`
+dob | string | false| Date of Birth 生日， yyyy-MM-dd
+nationality | string (alpha-3) | false| 用户的国籍 (ISO-3166-1 alpha-3)
+residentialCountry | string (alpha-3) | false| 用户的居住国家 (ISO-3166-1 alpha-3)
 
 ## 创建 KYC Case
 
@@ -115,6 +150,15 @@ curl "http://caas.cabital.com/api/v1/cases" \
 
 > HTTP返回 (201)
 
+> The above command returns JSON structured like this:
+
+```json
+{
+  "caseSystemId": "243d19cf-562f-4060-89fa-1d35a7723c3e", // UUID
+  "status": "NEW"
+}
+```
+
 创建 KYC Case
 
 ### HTTP Request
@@ -122,7 +166,7 @@ curl "http://caas.cabital.com/api/v1/cases" \
 `POST https://caas.cabital.com/api/v1/cases`
 
 <aside class="success">
-客户在打开 _Zero Footprint_ 的配置下，创建 KYC Case 将自动触发一次性扫描!
+客户在打开<Zero Footprint</i> 的配置下，创建 KYC Case 将自动触发一次性扫描!
 </aside>
 
 ## 获取特定的 KYC Case
@@ -149,21 +193,25 @@ curl "http://caas.cabital.com/api/v1/cases/2" \
       "nationality": "JPN",
       "residentialCountry": "HKG"
   },
-  "organizationInfo": {}
-  }
+  "organizationInfo": {},
+  "suggestion": "SUGGEST_TO_ACCEPT",
+  "suggestionComment": "resolve by operator",
+  "decision": "ACCEPT",
+  "decisionComment": "default comment",
+  "status": "COMPLETE"
+}
 ```
 
-This endpoint retrieves a specific kitten.
 
 ### HTTP Request
 
-`GET http://caas.cabital.com/api/v1/cases/<ID>`
+`GET http://caas.cabital.com/api/v1/cases/{caseSystemId}`
 
 ### URL Parameters
 
 参数 | 描述
 --------- | -----------
-UUID | KYC Case UUID
+caseSystemId | KYC Case system UUID
 
 ## 打开特定 KYC Case 的持续性扫描
 
@@ -182,13 +230,13 @@ curl "https://caas.cabital.com/api/v1/cases/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c
 
 ### HTTP Request
 
-`POST https://caas.cabital.com/api/v1/cases/<UUID>/ogs`
+`POST https://caas.cabital.com/api/v1/cases/{caseSystemId}/ogs`
 
 ### URL Parameters
 
 参数 | 描述
 --------- | -----------
-UUID | KYC Case UUID
+caseSystemId | KYC Case system UUID
 
 
 ## 关闭特定 KYC Case 的持续性扫描
@@ -206,13 +254,13 @@ curl "https://caas.cabital.com/api/v1/cases/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c
 
 ### HTTP Request
 
-`POST https://caas.cabital.com/api/v1/cases/<UUID>/ogs`
+`DELETE https://caas.cabital.com/api/v1/cases/{caseSystemId}/ogs`
 
 ### URL Parameters
 
 参数 | 描述
 --------- | -----------
-UUID | KYC Case UUID
+caseSystemId | KYC Case system UUID
 
 
 ## 提供特定 KYC Case 的最终决定
@@ -233,13 +281,13 @@ curl "https://caas.cabital.com/api/v1/cases/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c
 
 ### HTTP Request
 
-`POST https://caas.cabital.com/api/v1/cases/<UUID>/decision`
+`POST https://caas.cabital.com/api/v1/cases/{caseSystemId}/decision`
 
 > Request Body
 
 ```json
 {
-  "caseResult" : "ACCEPT",
+  "decision" : "ACCEPT",
   "comment" : "决策备注"
 }
 ```
@@ -247,7 +295,7 @@ curl "https://caas.cabital.com/api/v1/cases/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c
 
 参数 | 描述
 --------- | -----------
-UUID | KYC Case UUID
+caseSystemId | KYC Case system UUID
 
 # Webhook
 
@@ -262,9 +310,9 @@ webhook 预计平均会在 3-5 分钟后到达，但理论上可能需要长达 
 ```json
 {
     "caseSystemId": "6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c",
-    "caseSuggestion": "SUGGEST_TO_REJECT",
-    "comment": "User is okay to me.",
-    "externalCaseId": "243d19cf-562f-4060-89fa-1d35a7723c3e"
+    "externalCaseId": "243d19cf-562f-4060-89fa-1d35a7723c3e",
+    "suggestion": "SUGGEST_TO_REJECT",
+    "comment": "User is okay to me."
 }
 ```
 case的状态发生变化时，我们将向您发送带有 JSON 负载的 POST 请求到集成时提供给我们的 URL。
