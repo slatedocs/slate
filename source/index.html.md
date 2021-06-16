@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='mail:support@cabital.com'>申请使用</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,26 +18,14 @@ code_clipboard: true
 
 # 简介
 
+欢迎使用Cabital API，Cabital API 使开发人员能够将cabital专业、安全、可靠的筛查服务集成到现有工作流中，以帮助简化KYC的流程。
 
+API 功能简介：
+- 提供个人用户或企业用户的名单筛查能力
+- 根据合作伙伴的合规策略，进行筛查结果排查，提供建议
+- 从行业领先的数据库持续检索筛查存量客户的能力
 
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+您可以根据本文档提供的API来使用服务，支持的全部API请参见KYC Case
 
 # API 认证
 
@@ -119,7 +107,9 @@ residentialCountry | string (alpha-3) | 用户的居住国家 (ISO-3166-1 alpha-
 
 ```shell
 curl "http://caas.cabital.com/api/v1/cases" \
-  -H "Authorization: meowmeowmeow"
+  -H "ACCESS-KEY: YOUR_KEY" \
+  -H "ACCESS-SIGN: SIGN_KEY" \
+  -H "ACCESS-TIMESTAMP: 1623828308" \
   -X POST
 ```
 
@@ -140,7 +130,9 @@ curl "http://caas.cabital.com/api/v1/cases" \
 
 ```shell
 curl "http://caas.cabital.com/api/v1/cases/2" \
-  -H "Authorization: meowmeowmeow"
+  -H "ACCESS-KEY: YOUR_KEY" \
+  -H "ACCESS-SIGN: SIGN_KEY" \
+  -H "ACCESS-TIMESTAMP: 1623828308"
 ```
 
 
@@ -148,12 +140,17 @@ curl "http://caas.cabital.com/api/v1/cases/2" \
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+  "externalCaseId": "243d19cf-562f-4060-89fa-1d35a7723c3e",
+  "screenType": "INDIVIDUAL", // INDIVIDUAL, ORGANISATION
+  "fullName": "John Doe",
+  "individualInfo": {
+      "gender": "MALE",
+      "dob": "2002-02-02",
+      "nationality": "JPN",
+      "residentialCountry": "HKG"
+  },
+  "organizationInfo": {}
+  }
 ```
 
 This endpoint retrieves a specific kitten.
@@ -174,7 +171,9 @@ UUID | KYC Case UUID
 ```shell
 curl "https://caas.cabital.com/api/v1/cases/6d92e7b4-715c-4ce3-a028-19f1c8c9fa6c/ogs" \
   -X POST \
-  -H "Authorization: meowmeowmeow"
+  -H "ACCESS-KEY: YOUR_KEY" \
+  -H "ACCESS-SIGN: SIGN_KEY" \
+  -H "ACCESS-TIMESTAMP: 1623828308" 
 ```
 
 > HTTP返回 (201)
