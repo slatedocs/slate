@@ -334,6 +334,8 @@ html, body {
   margin-top: $spacing-xxs;
 
   a {
+    display: block;
+    float:left;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
