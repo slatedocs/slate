@@ -2,7 +2,7 @@ ruby '>= 2.5'
 source 'https://rubygems.org'
 
 # Middleman
-gem 'middleman', :github => 'middleman/middleman', :branch => '4.x'
+gem 'middleman', '~> 4.4'
 gem 'middleman-syntax', '~> 3.2'
 gem 'middleman-autoprefixer', '~> 3.0'
 gem 'middleman-sprockets', '~> 4.1'
