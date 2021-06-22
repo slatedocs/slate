@@ -33,6 +33,8 @@ info:
     - EnumOption
     - EventResponse
     - ErrorResponse
+    - GoalResponse
+    - GoalCompact
     - JobResponse
     - JobCompact
     - OrganiztaionExportResponse
@@ -469,6 +471,10 @@ tags:
 
       Sync tokens always expire after 24 hours, but may expire sooner,
       depending on load on the service.
+  - name: Goals
+    description: >-
+      A `goal` is an object in the goal-tracking system that helps your organization
+      drive measurable results.
   - name: Jobs
     description: >-
       Jobs represent processes that handle asynchronous work.
@@ -503,7 +509,7 @@ tags:
       [Enterprise](https://asana.com/enterprise) Organization.*
   - name: Portfolios
     description: >-
-      A 'portfolio' gives a high-level overview of the status of multiple
+      A `portfolio` gives a high-level overview of the status of multiple
       initiatives in Asana. Portfolios provide a dashboard overview of the
       state of multiple projects, including a progress report and the most
       recent [project status](/docs/asana-project-statuses)
@@ -2071,6 +2077,82 @@ components:
               nullable: true
               allOf:
                 - $ref: '#/components/schemas/UserCompact'
+    GoalMetricResponse:
+      $ref: '#/components/schemas/GoalMetricBase'
+    GoalMetricRequest:
+      $ref: '#/components/schemas/GoalMetricBase'
+    GoalMetricBase:
+      allOf:
+        - $ref: '#/components/schemas/GoalMetricCompact'
+        - type: object
+          properties:
+            precision:
+              description: >-
+                Only relevant for goal metrics of type ‘Number’. This field
+                dictates the number of places after the decimal to round to, i.e.
+                0 is integer values, 1 rounds to the nearest tenth, and so on.
+                Must be between 0 and 6, inclusive.
+
+                For percentage format, this may be unintuitive, as a value of 0.25
+                has a precision of 0, while a value of 0.251 has a precision of 1.
+                This is due to 0.25 being displayed as 25%.
+              type: integer
+              readOnly: true
+              example: 2
+            unit:
+              description: >-
+                A supported unit of measure for the goal metric, or none.
+              type: string
+              readOnly: true
+              enum:
+                - none
+                - currency
+                - percent
+            currency_code:
+              description: >-
+                ISO 4217 currency code to format this custom field. This will be
+                null if the `format` is not `currency`.
+              type: string
+              readOnly: true
+              nullable: true
+              example: EUR
+            initial_number_value:
+              description: >-
+                *Conditional*. This number is the start value of a goal metric of
+                type number.
+              type: number
+              readOnly: true
+              example: 5.2
+            target_number_value:
+              description: >-
+                *Conditional*. This number is the end value of a goal metric of
+                type number.
+              type: number
+              readOnly: true
+              example: 10.2
+            current_number_value:
+              description: >-
+                *Conditional*. This number is the current value of a goal metric of
+                type number.
+              type: number
+              example: 8.12
+    GoalMetricCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          x-docs-overrides:
+            properties.resource_type.example: goal_metric
+          properties:
+            resource_subtype:
+              description: >-
+                The subtype of this resource. Different subtypes retain many of the
+                same fields and behavior, but may render differently in Asana or
+                represent resources with different semantic meaning.
+              type: string
+              readOnly: true
+              example: number
+              enum:
+                - number
     JobResponse:
       $ref: '#/components/schemas/JobBase'
     JobBase:
@@ -3891,6 +3973,17 @@ components:
                 - section
                 - approval
               example: default_task
+            start_at:
+              description: >-
+                Date and time on which work begins for the task, or null if the task
+                has no start time. This takes a UTC timestamp format.
+
+                *Note: `due_at` must be present in the request when
+                setting or unsetting the `start_at` parameter.*
+              type: string
+              nullable: true
+              format: date
+              example: '2019-09-14T02:06:58.147Z'
             start_on:
               description: >-
                 The day on which work begins for the task , or null if the task
@@ -4171,6 +4264,30 @@ components:
               description: >-
                 Describes if the user is a guest in the team.
               example: false
+    TimePeriodResponse:
+      allOf:
+        - $ref: '#/components/schemas/TimePeriodBase'
+        - type: object
+    TimePeriodBase:
+      allOf:
+        - $ref: '#/components/schemas/TimePeriodCompact'
+        - type: object
+          properties:
+            parent:
+              $ref: '#/components/schemas/TimePeriodCompact'
+    TimePeriodCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          x-docs-overrides:
+            properties.resource_type.example: time_period
+          properties:
+            end_on:
+              type: string
+            start_on:
+              type: string
+            period:
+              type: string
     UserResponse:
       allOf:
         - $ref: '#/components/schemas/UserBase'
@@ -5317,9 +5434,125 @@ paths:
     get:
       summary: Get a goal
       description: Get the full record for a single goal.
+      operationId: getGoal
+      tags:
+        - Goals
       responses:
         200:
           description: Successfully retrieved the record for a single goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      summary: Update a goal
+      description: |-
+        An existing goal can be updated by making a PUT request on the URL for
+        that goal. Only the fields provided in the `data` block will be updated;
+        any unspecified fields will remain unchanged.
+
+        Returns the complete updated goal record.
+      tags:
+        - Goals
+      operationId: updateGoal
+      requestBody:
+        description: The updated fields for the goal.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        200:
+          description: Successfully updated the goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete a goal
+      description: |-
+        Delete a goal.
+      tags:
+        - Goals
+      operationId: deleteGoal
+      responses:
+        200:
+          description: Successfully deleted the specified goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Create a goal
+      description: |-
+        Create a new goal in a workspace or team.
+      tags:
+        - Goals
+      operationId: createGoals
+      requestBody:
+        description: The goal to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        201:
+          description: Successfully created a new goal.
           content:
             application/json:
               schema:
