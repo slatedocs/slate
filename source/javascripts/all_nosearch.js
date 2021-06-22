@@ -1,4 +1,5 @@
 //= require ./lib/_energize
+//= require ./app/_copy
 //= require ./app/_toc
 //= require ./app/_lang
 
@@ -13,7 +14,6 @@ $(function() {
     window.recacheHeights();
     window.refreshToc();
   });
-
 
   $('.positiveFeedback-DevSatisfaction').on('click', function() {
     $(this).parent().html('Thanks!')

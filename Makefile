@@ -42,10 +42,10 @@ docs_gen:
 	node pull_forum_updates.js
 
 serve:
-	bundle exec middleman server
+	exec bundle exec middleman serve --watcher-force-polling
 
 build:
-	bundle exec middleman build
+	bundle exec middleman build --clean
 
 first_time_setup:
 	cd .. && git clone git@github.com:rossgrambo/widdershins.git
