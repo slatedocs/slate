@@ -33,6 +33,8 @@ info:
     - EnumOption
     - EventResponse
     - ErrorResponse
+    - GoalResponse
+    - GoalCompact
     - JobResponse
     - JobCompact
     - OrganiztaionExportResponse
@@ -2075,6 +2077,82 @@ components:
               nullable: true
               allOf:
                 - $ref: '#/components/schemas/UserCompact'
+    GoalMetricResponse:
+      $ref: '#/components/schemas/GoalMetricBase'
+    GoalMetricRequest:
+      $ref: '#/components/schemas/GoalMetricBase'
+    GoalMetricBase:
+      allOf:
+        - $ref: '#/components/schemas/GoalMetricCompact'
+        - type: object
+          properties:
+            precision:
+              description: >-
+                Only relevant for goal metrics of type ‘Number’. This field
+                dictates the number of places after the decimal to round to, i.e.
+                0 is integer values, 1 rounds to the nearest tenth, and so on.
+                Must be between 0 and 6, inclusive.
+
+                For percentage format, this may be unintuitive, as a value of 0.25
+                has a precision of 0, while a value of 0.251 has a precision of 1.
+                This is due to 0.25 being displayed as 25%.
+              type: integer
+              readOnly: true
+              example: 2
+            unit:
+              description: >-
+                A supported unit of measure for the goal metric, or none.
+              type: string
+              readOnly: true
+              enum:
+                - none
+                - currency
+                - percent
+            currency_code:
+              description: >-
+                ISO 4217 currency code to format this custom field. This will be
+                null if the `format` is not `currency`.
+              type: string
+              readOnly: true
+              nullable: true
+              example: EUR
+            initial_number_value:
+              description: >-
+                *Conditional*. This number is the start value of a goal metric of
+                type number.
+              type: number
+              readOnly: true
+              example: 5.2
+            target_number_value:
+              description: >-
+                *Conditional*. This number is the end value of a goal metric of
+                type number.
+              type: number
+              readOnly: true
+              example: 10.2
+            current_number_value:
+              description: >-
+                *Conditional*. This number is the current value of a goal metric of
+                type number.
+              type: number
+              example: 8.12
+    GoalMetricCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          x-docs-overrides:
+            properties.resource_type.example: goal_metric
+          properties:
+            resource_subtype:
+              description: >-
+                The subtype of this resource. Different subtypes retain many of the
+                same fields and behavior, but may render differently in Asana or
+                represent resources with different semantic meaning.
+              type: string
+              readOnly: true
+              example: number
+              enum:
+                - number
     JobResponse:
       $ref: '#/components/schemas/JobBase'
     JobBase:
@@ -4186,6 +4264,30 @@ components:
               description: >-
                 Describes if the user is a guest in the team.
               example: false
+    TimePeriodResponse:
+      allOf:
+        - $ref: '#/components/schemas/TimePeriodBase'
+        - type: object
+    TimePeriodBase:
+      allOf:
+        - $ref: '#/components/schemas/TimePeriodCompact'
+        - type: object
+          properties:
+            parent:
+              $ref: '#/components/schemas/TimePeriodCompact'
+    TimePeriodCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          x-docs-overrides:
+            properties.resource_type.example: time_period
+          properties:
+            end_on:
+              type: string
+            start_on:
+              type: string
+            period:
+              type: string
     UserResponse:
       allOf:
         - $ref: '#/components/schemas/UserBase'
@@ -5345,6 +5447,76 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      summary: Update a goal
+      description: |-
+        An existing goal can be updated by making a PUT request on the URL for
+        that goal. Only the fields provided in the `data` block will be updated;
+        any unspecified fields will remain unchanged.
+
+        Returns the complete updated goal record.
+      tags:
+        - Goals
+      operationId: updateGoal
+      requestBody:
+        description: The updated fields for the goal.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        200:
+          description: Successfully updated the goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete a goal
+      description: |-
+        Delete a goal.
+      tags:
+        - Goals
+      operationId: deleteGoal
+      responses:
+        200:
+          description: Successfully deleted the specified goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
