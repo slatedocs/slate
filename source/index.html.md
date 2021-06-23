@@ -349,11 +349,6 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
 
 This endpoint retrieves a specific actor profile.
 
-#### Notes:
-- It is not guaranteed that the exemplary JSON structure shown is complete. Additional fields may be added without notice.
-- The field `external_showreel` is still supported but deprecated.
-It is recommended to use the array of `external_showreels` instead.
-
 ### HTTP Request
 
 `GET https://www.castupload.com/api/v1/actor_profiles/<ID>`
@@ -370,6 +365,14 @@ Parameter | Default | Description
 --------- | ------- | -----------
 enum | null | If set to `translate` attributes are translated if possible (eg. gender will be `male` or `männlich` instead of `m`). _Note that hash and array attributes (eg. dances / sports) will be joined to a comma-separated string when translating attributes._
 locale | en | Translates attributes with closed lists, free text fields are only available in the entry language. Possible values are: `en`, `de`, `fr`, `it`, `es`, `pl`, `ro`, `ru`, `tr`. _This parameter only has an effect when `enum` is set to `translate`._
+
+### Response fields
+
+See example response to the right for an overview of included fields. Please note:
+
+- It is not guaranteed that the exemplary JSON structure shown is complete. Additional fields may be added without notice.
+- The field `external_showreel` is still supported but deprecated. It is recommended to use the array of `external_showreels` instead.
+
 
 # Talent agencies
 
