@@ -34,7 +34,7 @@ Possui o ID <strong><code>lojateste</code></strong>.
 
 Endpoint da API:
 
-<code>https://<strong>lojateste</strong>.f1lsales.org/public/api/v1/</code>
+<code>https://<strong>lojateste</strong>.f1sales.org/public/api/v1/</code>
 
 <aside class="notice">
 Os exemplos utilizam o endpoint da loja de Sandbox, lembre-se que em produção você tem que utilizar o ID do cliente no endpoint.
