@@ -1,0 +1,36 @@
+name: Build for ECR
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build & Push Docker image
+        id: docker-build
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: web/apidocs
+          IMAGE_BRANCH: ${{ github.ref }}
+        run: |
+          img_tag=$(git log --date="format:%Y%m%d" --format="${IMAGE_BRANCH##refs/heads/}-%ad-%h" -n 1 ${IMAGE_BRANCH##refs/heads/})
+          echo "Image tag is $img_tag"
+          echo "::set-output name=img_tag::$img_tag"
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$img_tag --build-arg NPM_TOKEN=${{ secrets.LUMAHEALTHROBO_TOKEN }} .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$img_tag
