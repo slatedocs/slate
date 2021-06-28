@@ -62,6 +62,49 @@ Leah expects for the API key to be included in all API requests to the server in
 You must replace <code>$your_api_key</code> with your personal API key.
 </aside>
 
+# Healthcare Workers
+
+## Collect Healthcare Workers list
+
+```shell
+curl --location --request GET 'https://myorganization.leah.care/api/healthcare_workers' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "@context":"\/api\/contexts\/HealthcareWorker","
+    @id":"\/api\/healthcare_workers",
+    "@type":"hydra:Collection",
+    "hydra:member":
+        [
+            {
+                "@id":"\/api\/healthcare_workers\/7dd37344-5d8d-4c90-a015-5518ab97adaf",
+                "@type":"HealthcareWorker",
+                "firstname":"John",
+                "lastname":"Doe",
+                "email":"john.doe@gmail.com",
+                "currentOrganization":null
+            },    
+        ],
+        "hydra:totalItems":1,       
+}
+```
+
+Allows you to retrieve all offices of your organization.
+
+### HTTP Request
+
+`GET https://myorganization.leah.care/api/healthcare_workers`
+
+### Query Parameters
+
+Parameter | Attendance | Description
+- | - | -
+email | Optional | Filters results for a single healthcare worker via the specified email
+
 # Offices
 
 ## Collect offices list
@@ -147,7 +190,7 @@ curl --location --request POST 'https://myorganization.leah.care/api/appointment
 }
 ```
 
-Create an appointment.
+Create an appointment. You'll have to get the **office**'s id, as explain [here](#collect-offices-list), first.
 
 ### HTTP Request
 
@@ -267,4 +310,145 @@ status | Mandatory | cancelled
 
 <aside class="success">
 A email is sent to the guest to cancel the appointment
+</aside>
+
+
+# Document sharing
+
+## Sending process
+
+You can send a document to a guest from an healthcare worker account.
+It's a three-step process :
+
+1. [Creating transfer](#creating-transfer)
+2. [Upload files](#upload-files)
+3. [Send the transfer](#send-the-transfer)
+
+## Creating transfer
+
+Create a transfer. You'll have to get the **healthcare worker**'s id, as explain [here](#healthcare-workers), first.
+
+```shell
+curl --location --request POST 'https://myorganization.leah.care/api/transfers' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+     "healthcareWorker" : "/api/healthcare_workers/51176ec8-670b-4fa5-8f15-df21jh23d30ea"
+}'
+```
+
+> This request returns <code>200</code> with JSON structured like this:
+
+```json
+{
+    "@context":"\/api\/contexts\/Transfer",
+    "@id":"\/api\/transfers\/acdca04c-97af-4d20-bcaa-708ceqsdq36b9f",
+    "@type":"Transfer",
+    "id":"acdca04c-97af-4d20-bcaa-708ceqsdq36b9f","hash":"ZmQ3NTFlNmU1NjhhN2FmMjAxMzcyMmRlZjgwNmYxYmQ3Yzg0OTc2ZWQ4ODgxZDJlNDE4MjUzM2ZhNDdlZTFmMg==","expiresAt":"2021-07-05T08:38:44+00:00",
+    "healthcareWorker":"\/api\/healthcare_workers\/51176ec8-670b-4fa5-8f15-df21jh23d30ea",
+    "status":"in_progress",
+    "files":[],
+    "type":"healthcare_worker",
+    "email":null,
+    "firstname":null,
+    "lastname":null
+}
+```
+### HTTP Request
+
+<code>POST 'https://myorganization.leah.care/api/transfers'</code>
+
+### Content-type
+
+<code>application/json</code>
+
+### Query parameters
+
+Parameter | Attendance | Description
+- | - | -
+healthcare_workers | Mandatory | Healthcare worker's id you want to send the files from 
+
+<aside class="notice">
+The transfer automatically expires after 7 days
+</aside>
+
+## Upload files
+Upload files to the transfer
+
+```shell
+curl --location --request POST 'https://myorganization.leah.care/api/transfers/acdca04c-97af-4d20-bcaa-708ceqsdq36b9f/files' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key' \
+--header 'Content-Type: multipart/form-data' \
+--form 'file[]=@"/Users/John_doe/Desktop/prescription_echo.jpg"' 
+```
+
+> This request returns <code>200</code> with JSON structured like this:
+
+```json
+{
+    "@context":"\/api\/contexts\/Transfer",
+    "@id":"\/api\/transfers\/acdca04c-97af-4d20-bcaa-708ceqsdq36b9f",
+    "@type":"Transfer",
+    "id":"acdca04c-97af-4d20-bcaa-708ceqsdq36b9f","hash":"NzM4MzM2MjQ4ODJmOGUzOGE3NzdkNDg0ODUwYWZmY2FiOWQ0NjE3OTQyYjJhM2NiNmFiOWYwZGE4OTg2ODJhOQ==",
+    "expiresAt":"2021-07-05T08:39:25+00:00",
+    "healthcareWorker":"\/api\/healthcare_workers\/51176ec8-670b-4fa5-8f15-df21jh23d30ea",
+    "status":"ready",
+    "files":["\/api\/transfer_files\/5af6e1bb-3182-47cc-bbc4-528aEjdhq442afb"],
+    "type":"healthcare_worker",
+    "email":null,
+    "firstname":null,
+    "lastname":null
+}
+```
+### HTTP Request
+
+<code>POST 'https://myorganization.leah.care/api/transfers/@id/files'</code>
+
+### Content-type
+
+<code>multipart/form-data</code>
+
+### Requirements 
+- Maximum number of files: 10 per transfer
+- Maximum weight: 15 Mo per file
+- Supported file formats: .png/.jpg/.pdf
+
+### Query parameters
+
+Parameter | Attendance | Description
+- | - | -
+file[]=@ | Mandatory | The file path
+
+
+## Send the transfer
+
+Send the files to the email adress provided 
+
+```shell
+curl --location --request POST 'https://myorganization.leah.care/api/transfers/acdca04c-97af-4d20-bcaa-708ceqsdq36b9f/share' \
+--header 'LEAH-AUTH-TOKEN: $your_api_key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "benjamin@leah.care"
+}'
+```
+
+> This request returns <code>200</code> 
+
+### HTTP Request
+
+<code>POST 'https://myorganization.leah.care/api/transfers/@id/share'</code>
+
+### Content-type
+
+<code>application/json</code>
+
+### Query parameters
+
+Parameter | Attendance | Description
+- | - | -
+email | Mandatory | recipient email address 
+
+<aside class="success">
+A email is sent to the guest with a secured linked to download files
 </aside>
