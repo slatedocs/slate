@@ -429,7 +429,7 @@ curl --location --request POST 'https://myorganization.leah.care/api/transfers/a
 --header 'LEAH-AUTH-TOKEN: $your_api_key' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "email": "benjamin@leah.care"
+    "email": "john.doe@gmail.com"
 }'
 ```
 
