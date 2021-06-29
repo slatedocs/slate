@@ -154,3 +154,30 @@ Required| &nbsp;
 Optional| &nbsp;
 ----------------------- | -----------
 `description`<br/>*string* | The description of the custom image.
+
+
+<!-------------------- DELETE AN IMAGE -------------------->
+
+#### Delete a custom image
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/images/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "ef70cafa-0544-4709-a66a-c68595ee105a",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/images/:id</code>
+
+Delete an image in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the image deletion.
+`taskStatus` <br/>*string* | The status of the operation.
