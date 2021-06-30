@@ -66,6 +66,26 @@ curl "https://cloudmc_endpoint/rest/pricings" \
             "sku": "vCPU",
             "categoryId": "fcd8908d-e1a0-41f2-9c38-fed1d1f77f18"
           },
+          "pricingTiers": [
+            {
+              "pricingMode": "FLAT_FEE",
+              "upperBound": 1000.5,
+              "price": {
+                "CAD": 999
+              },
+              "lowerBound": 0.0,
+              "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
+             },
+             {
+              "pricingMode": "FLAT_FEE",
+              "upperBound": 2000.0,
+              "price": {
+                "CAD": 999
+              },
+              "lowerBound": 1000.5,
+              "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
+             }
+           ],
           "cogs": 321.0,
           "currency": "CAD",
           "id": "45425fe6-beb3-4c78-be68-f82eeb3976c6"
@@ -100,6 +120,13 @@ Attributes | &nbsp;
 `pricingProducts.product`<br/>*Object* | The product attached to this product pricing element.
 `pricingProducts.cogs`<br/>*double* | The Cost Of Goods Sold (COGS) of the product.
 `pricingProducts.currency`<br/>*string* | The currency of the pricing.
+`pricingProducts.pricingTiers`<br/>*Array[Object]* | The list of pricing tiers assigned to the product pricings.
+`pricingProducts.pricingTier.id`<br/>*UUID* | UUID of the pricing tier.
+`pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
+`pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound.
+`pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound.
+`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The currencies of the pricing tier.
+`pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size.
 
 
 <!-------------------- GET PRICING -------------------->
@@ -188,6 +215,26 @@ curl "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb
             "en": "sfg",
             "fr": "sdfg"
           },
+          "pricingTiers": [
+            {
+              "pricingMode": "FLAT_FEE",
+              "upperBound": 1000.5,
+              "price": {
+               "CAD": 999
+              },
+             "lowerBound": 0.0,
+             "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
+            },
+            {
+             "pricingMode": "FLAT_FEE",
+             "upperBound": 2000.0,
+             "price": {
+              "CAD": 999
+             },
+             "lowerBound": 1000.5,
+             "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
+            }
+           ],
           "transformer": {
             "type": "PROPORTIONAL_TO_TIME"
           },
@@ -231,6 +278,13 @@ Attributes | &nbsp;
 `pricingProducts.product`<br/>*Object* | The product attached to this product pricing element.
 `pricingProducts.cogs`<br/>*double* | The Cost Of Goods Sold (COGS) of the product.
 `pricingProducts.currency`<br/>*string* | The currency of the pricing.
+`pricingProducts.pricingTiers`<br/>*Array[Object]* | The list of pricing tiers assigned to the product pricings.
+`pricingProducts.pricingTier.id`<br/>*UUID* | UUID of the pricing tier.
+`pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
+`pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound.
+`pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound.
+`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The currencies of the pricing tier.
+`pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size.
 
 <!-------------------- CREATE PRICING -------------------->
 ### Create pricing
@@ -275,7 +329,27 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
 			},
 			"cogs": 4,
 			"unitPrice": 5,
-			"currency": "CAD"
+			"currency": "CAD",
+      "pricingTiers": [
+        {
+         "pricingMode": "FLAT_FEE",
+         "upperBound": 1000.5,
+         "price": {
+         "CAD": 999
+         },
+         "lowerBound": 0.0,
+         "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
+        },
+        {
+         "pricingMode": "FLAT_FEE",
+         "upperBound": 2000.0,
+         "price": {
+          "CAD": 999
+         },
+         "lowerBound": 1000.5,
+         "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
+        }
+      ],
 		},
 		{
 			"product": {
@@ -317,7 +391,35 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
         },
         "cogs": 4,
         "currency": "CAD",
-        "id": "45301951-59cb-461e-b0d0-85c46a7abb69"
+        "id": "45301951-59cb-461e-b0d0-85c46a7abb69",
+        "pricingProducts": [
+		{
+			"product": {
+				"id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
+			},
+			"cogs": 4,
+			"unitPrice": 5,
+			"currency": "CAD",
+      "pricingTiers": [
+        {
+         "pricingMode": "FLAT_FEE",
+         "upperBound": 1000.5,
+         "price": {
+         "CAD": 999
+         },
+         "lowerBound": 0.0,
+         "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
+        },
+        {
+         "pricingMode": "FLAT_FEE",
+         "upperBound": 2000.0,
+         "price": {
+          "CAD": 999
+         },
+         "lowerBound": 1000.5,
+         "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
+        }
+      ]
       },
       {
         "unitPrice": 5,
@@ -363,6 +465,12 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `description` <br/>*Object* | A map of language language keys to the description in the specified language.
+`pricingProducts.pricingTiers`<br/>*Array[Object]* | The list of pricing tiers assigned to the product pricings. Pricing tiers must be contiguous, there cannot be any overlap between tiers, nor can there be gaps in between them.
+`pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT". If a pricing tier is specified, this attribute is mandatory.
+`pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound. The lower bound must be a non-negative value. If a pricing tier is specified, this attribute is mandatory.
+`pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound. The upper bound must be a non-negative value. If a pricing tier is specified, the upper bound must be specified unless it is a part of the last pricing tier. In that case, a null value indicates that there is no upper bound for the given tier. 
+`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The currencies of the pricing tier. All currencies specified must be supported by the pricing. Any missing or invalid currencies will not be accepted. Also, pricings must be non-negative.
+`pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size. The chunk size must be a non-negative value
 
 <!-------------------- UPDATE PRICING -------------------->
 ### Update pricing
