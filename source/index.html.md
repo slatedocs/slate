@@ -151,6 +151,20 @@ Symbol Enums are replacements for the character based instrument name to a short
 
 ### Application Messages
 
+# Protobuf
+
+## Websockets
+
+### Session Management
+
+### Application Messages
+
+## TCP/IP
+
+### Session Management
+
+### Application Messages
+
 # Binary
 
 ## Websockets
@@ -220,19 +234,67 @@ DESCRIPTION
 
 ### Application Messages
 
-# Protobuf
+#### BOTransaction
 
-## Websockets
+BOTransaction message is used to enter new orders, cancel orders and cancel replace orders. The MES (Matching Engine Server) responds to these orders and conveys the results of new orders, cancellations, cancel replaces, partial executions and executions with the BOTransaction message. The message type in the BOTransaction should not be confused with the message type in the message header. The header message type will always be ‘T’ in byte 1 of the header. The sub message types in the table below will always be in byte 5 of the data buﬀer.
 
-### Session Management
+##### Message Types
 
-### Application Messages
+| Enum Name: MessageType   | Enum Value | Notes  |
+| ------------------------ | ---------- | ------ |
+| ORDER_NEW                | 1          |
+| CANCEL_REPLACE           | 2          |
+| MARGIN_CANCEL_REPLACE    | 3          | Note 1 |
+| MARGIN_EXECUTE           | 4          | Note 2 |
+| ORDER_STATUS             | 5          |
+| ORDER_CANCEL             | 6          |
+| MARGIN_CANCEL            | 7          | Note 1 |
+| EXECUTION                | 8          |
+| EXECUTION_PARTIAL        | 9          |
+| MARGIN_EXECUTION         | 10         | Note 2 |
+| MARGIN_PARTIAL_EXECUTION | 11         |
+| REJECT                   | 12         | Note 3 |
+| ORDER_REJECT             | 13         | Note 3 |
+| ORDER_ACK                | 14         |
+| CANCELLED                | 15         |
+| REPLACED                 | 16         |
+| QUOTE_FILL               | 17         | Note 4 |
+| QUOTE_FILL_PARTIAL       | 18         |
+| MARGIN_REPLACED          | 19         | Note 1 |
+| CANCEL_REPLACE_REJECT    | 20         |
 
-## TCP/IP
+###### Notes:
 
-### Session Management
+Note 1: In some instances, the risk engine may ask the matching engine to cancel replace user orders to reduce the desired size to prevent exceeding the available equity.
+Note 2: In the event the user exceeds their available equity the risk engine will reduce their position until the position is within the available equity.
+Note 3: Orders may be rejected by the risk engine or the MES due to equity limits or TIF parameters or missing or wrong data in a message ﬁeld.
+Note 4: QUOTE_FILL and QUOTE_FILL_PARTIAL are executions of user orders which have not been placed on the book (orders placed on the book are commonly called resting orders) and cross the top of book price and interact with a resting order.
 
-### Application Messages
+##### Order Types
+
+| Enum Name: OrdType | Enum Value | Notes                     |
+| ------------------ | ---------- | ------------------------- |
+| LMT                | 1          |
+| MKT                | 2          |
+| STOP_MKT           | 3          |
+| STOP_LMT           | 4          | Not currently implemented |
+| PEG                | 5          |
+| HIDDEN             | 6          |
+| PEG_HIDDEN         | 7          |
+| OCO                | 8          |
+| ICE                | 9          |
+| OCO_ICE            | 10         | Not currently implemented |
+| BRACKET            | 11         | Not currently implemented |
+| SNIPER_MKT         | 12         |
+| SNIPER_LMT         | 13         |
+| TSM                | 14         |
+| TSL                | 15         |
+| TPSL_MARKET        | 16         | Not currently implemented |
+| TPSL_LIMIT         | 17         | Not currently implemented |
+
+###### Attributes
+
+Attributes can be assigned to various orders. Attributes are used to add additional functionality such as display/refresh attributes to aﬀect the volume and order displays at various stages of its execution cycle. The attribute ﬁeld is a character array consisting of 12 slots which can be used to set one of 12 different attributes. A value of ‘Y’ in the attribute array indicates this attribute is to be applied to the order in question. A value of ‘N’ indicates this attribute is to be ignored for the order in question.
 
 # Introduction
 
