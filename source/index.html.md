@@ -60,6 +60,81 @@ Application messages contain the data necessary to perform the operations indica
    12. BOCollateralRequest
    13. BOCollateralUpdate
 
+# Symbol Enums
+
+Symbol Enums are replacements for the character based instrument name to a short integer. Symbols Enums are included in almost all Black Ocean messages pertaining to orders, risk management and reporting. Symbol Enums are used to replace hashing functions necessary to ﬁnd either orders, instrument data or risk information normally associated with instruments in most other trading systems. It is essential they be included in the messages which require them. Failure to include them will result in a reject of the message and wrong symbol Enums will result in undeﬁned behavior. Amer the login is complete, the user can send a BOInstrumentRequest message to the OES (Order Entry Server) and will receive back a BOInstrument message which contains all information for each instrument including the symbol name and the symbol Enum for that symbol name. The BOInstrumentRequest and BOInstrument messages will be covered in detail in a subsequent section.
+
+## Current Instruments supported and their corresponding Symbol Enums
+
+| Instrument Name | Symbol Enum |
+| --------------- | ----------- |
+| BTCUSD          | 1           |
+| USDUSDT         | 2           |
+| FLYUSDT         | 3           |
+| BTCUSDT         | 4           |
+
+# Reject Codes
+
+| Error Code | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| 1          | ORDER_NOT_FOUND                                      |
+| 2          | USER_NOT_FOUND                                       |
+| 3          | ACCOUNT_NOT_FOUND                                    |
+| 4          | INVALID_KEY                                          |
+| 5          | ACCOUNT_DISABLED                                     |
+| 6          | TRADING_SESSION_INVALID                              |
+| 7          | RISK_ACCOUNT_NOT_FOUND                               |
+| 8          | RISK_SYMBOL_NOT_FOUND                                |
+| 9          | MES_NOT_AVAILABLE_TRADING_DISABLED                   |
+| 10         | OES_NOT_AVAILABLE_TRADING_DISABLED                   |
+| 11         | MDS_NOT_AVAILABLE_TRADING_DISABLED                   |
+| 12         | MSG_TYPE_INVALID                                     |
+| 13         | ORD_TYPE_INVALID                                     |
+| 14         | PRICE_INVALID                                        |
+| 15         | SIZE_INVALID                                         |
+| 16         | STOP_PRICE_INVALID                                   |
+| 17         | STOP_SIZE_INVALID                                    |
+| 18         | ORDER_SIDE_INVALID                                   |
+| 19         | ACCOUNT_INVALID                                      |
+| 20         | ORDERID_INVALID                                      |
+| 21         | SENDING_TIME_INVALID                                 |
+| 22         | ORIG_PRICE_INVALID                                   |
+| 23         | ORIG_SIZE_INVALID                                    |
+| 24         | ICE_SIZEINCREMENT_TIMES_LAYERS_NOT_EQUAL_ORDQTY      |
+| 25         | ORIG_ORDER_ID_INVALID                                |
+| 26         | SYMBOL_ENUM_INVALID                                  |
+| 27         | SIZE_INCREMENT_INVALID                               |
+| 28         | PRICE_OFFSET_INVALID                                 |
+| 29         | PRICE_INCREMENT_INVALID                              |
+| 30         | EXCEEDED_MAX_LAYERS                                  |
+| 31         | DISPLAY_SIZE_INVALID                                 |
+| 32         | REFRESH_SIZE_INVALID                                 |
+| 33         | INVALID_SECURITY_KEY                                 |
+| 34         | USER_ALREADY_LOGGED_IN                               |
+| 35         | INVALID_FIELD_VALUE                                  |
+| 36         | PERCENTAGE_MOVE_EXCEEDED_COOLING_OFF_PERIOD_IN_FORCE |
+| 37         | INSTRUMET_WOULD_CAUSE_MARGIN_TO_BE_EXCEEDED          |
+| 38         | INSTRUMENT_MARGIN_EXCEEDED                           |
+| 39         | MARGIN_BUY_ORDER_CANCELLATION_IN_PROGRESS            |
+| 40         | MARGIN_SELL_ORDER_CANCELLATION_IN_PROGRESS           |
+| 41         | MARGIN_LONG_POSITION_LIQUIDATION_IN_PROGRESS         |
+| 42         | MARGIN_SHORT_POSITION_LIQUIDATION_IN_PROGRESS        |
+| 43         | OUTSTANDING_OPEN_REQUESTS_EXCEEDED                   |
+| 44         | NO_RISK_DATA                                         |
+| 45         | DUPLICATE_ORDER_ID                                   |
+| 46         | EXCEEDS_OPEN_ORDER_REQUESTS                          |
+| 47         | NOT_ENOUGH_EQUITY_TO_COMPLETE                        |
+| 48         | MATCHING_ENGINE_REJECTED                             |
+| 49         | NONE                                                 |
+| 50         | ACCEPTED                                             |
+| 51         | KEY_INVALID                                          |
+| 52         | MSG_SEQ_NUM_INVALID                                  |
+| 53         | USER_ALREADY_LGGGED_IN                               |
+| 54         | ORIG_ORDER_NOT_FOUND                                 |
+| 55         | INVALID_LOGON_TYPE                                   |
+| 56         | CANT_EXECUTE_AGAINST_EXCHANGE_ORDER                  |
+| 57         | NO_MARKET_MAKER_VOLUME                               |
+
 # Introduction
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
