@@ -135,6 +135,50 @@ Symbol Enums are replacements for the character based instrument name to a short
 | 56         | CANT_EXECUTE_AGAINST_EXCHANGE_ORDER                  |
 | 57         | NO_MARKET_MAKER_VOLUME                               |
 
+# REST
+
+# JSON
+
+## Websockets
+
+### Session Management
+
+### Application Messages
+
+## TCP/IP
+
+### Session Management
+
+### Application Messages
+
+# Binary
+
+## Websockets
+
+### Session Management
+
+### Application Messages
+
+## TCP/IP
+
+### Session Management
+
+### Application Messages
+
+# Protobuf
+
+## Websockets
+
+### Session Management
+
+### Application Messages
+
+## TCP/IP
+
+### Session Management
+
+### Application Messages
+
 # Introduction
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
