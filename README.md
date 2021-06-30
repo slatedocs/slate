@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://luna1.co/984202.png" alt="Asana: API Documentation" width="264">
+  <img src="https://assets.asana.biz/m/33a0924d61aabd7b/original/Asana-developers-lockup-horizontal.svg" alt="Asana: API Documentation" width="264">
   <br>
   <br>
   <br>
