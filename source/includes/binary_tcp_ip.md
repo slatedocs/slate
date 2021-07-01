@@ -1,10 +1,4 @@
-# Binary
-
-## Binary Overview
-
-Overview
-
-## Binary Websockets
+## Binary TCP/IP
 
 ### Session Management
 

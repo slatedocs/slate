@@ -18,6 +18,7 @@ includes:
   - json
   - protobuf
   - binary
+  - binary_tcp_ip
 
 search: true
 
