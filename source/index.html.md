@@ -174,8 +174,44 @@ Symbol Enums are replacements for the character based instrument name to a short
 #### BOClientLogon -- Client Sending
 
 ```json
-{"msg1":"H","LogonType":1,"Account":100700,"UserName":""BOU7"","TradingSessionID":506,"SendingTime":1624785162815971526,"MsgSeqID":110434,"Key":123456,"LoginStatus":1,"RejectReason":50,"RiskMaster":"N"}
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 18343447,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "RiskMaster": "N"
+}
 ```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 1624785162815971526,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "LoginStatus": 1,
+  "RejectReason": 50,
+  "RiskMaster": "N"
+}
+```
+
+This endpoint retrieves all kittens.
+
+##### HTTP Request
+
+`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
+
+##### Query Parameters
 
 DESCRIPTION
 
