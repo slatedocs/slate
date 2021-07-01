@@ -143,6 +143,222 @@ Symbol Enums are replacements for the character based instrument name to a short
 
 ### Session Management
 
+## Client Logon
+
+```json
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 18343447,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "RiskMaster": "N"
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 1624785162815971526,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "LoginStatus": 1,
+  "RejectReason": 50,
+  "RiskMaster": "N"
+}
+```
+
+<aside class="success">
+Note
+</aside>
+
+## Collateral Data
+
+```json
+{
+  "msg1": "f",
+  "UpdateType": 2,
+  "Account": 100700,
+  "TradingSessionID": 506,
+  "SymbolEnum": 4,
+  "Key": 123456,
+  "MsgSeqID": 500,
+  "SendingTime": 1624821404362542113
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "msg1": "h",
+  "MessageType": 31,
+  "UserName": "BOU7",
+  "Account": 100700,
+  "SymbolEnum": 11021,
+  "BTCEquity": 100.0,
+  "USDTEquity": 10000000.0,
+  "FLYEquity": 50000000.0,
+  "USDEquity": 10000000.0,
+  "ETHEquity": 2000.0,
+  "TradingSessionID": 506,
+  "LastSeqNum": 20101010,
+  "SendingTime": 1624821404365664367
+}
+```
+
+##### HTTP Request
+
+`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
+
+## Risk Symbol Update
+
+```json
+{
+  "msg1": "w",
+  "MessageType": "w",
+  "Account": 100700,
+  "SymbolEnum": 4,
+  "TradingSessionID": 506,
+  "Key": 123456,
+  "MsgSeqID": 500,
+  "SendingTime": 1624821406361022055
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "MessageType": "N",
+  "Account": 100700,
+  "SymbolEnum": 1,
+  "Leverage": 25.0,
+  "LongPosition": 0.0,
+  "ShortPostion": 0.0,
+  "LongCash": 0.0,
+  "ShortCash": 0.0,
+  "TradingDisabled": 0,
+  "ExecLongCash": 0.0,
+  "ExecLongPositon": 0.0,
+  "ExecShortCash": 0.0,
+  "ExecShortPosition": 0.0,
+  "BTCEquity": 100.0,
+  "USDTEquity": 10000000.0,
+  "ETHEquity": 0.0,
+  "USDEquity": 10000000.0,
+  "FLYEquity": 0.0,
+  "TradingSessionID": 506,
+  "LastSeqNum": 200,
+  "UpdateType": 2
+}
+```
+
+##### HTTP Request
+
+`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
+
+## Instrument Data
+
+```json
+{
+  "msg1": "Y",
+  "MessageType": 22,
+  "Account": 100700,
+  "SymbolName": "BTCUSD",
+  "UserName": "BOU7",
+  "SymbolEnum": 4,
+  "TradingSessionID": 506,
+  "Key": 123456,
+  "MsgSeqID": 500,
+  "SendingTime": 1624859180169634284
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "msg1": "Q",
+  "MessageType": "21",
+  "SymbolName": "USDUSDT",
+  "SymbolEnum": 4,
+  "SymbolType": 1,
+  "PriceIncrement": 0.01,
+  "MaxSize": 5000.0,
+  "MinSize": 0.00001,
+  "SendingTime": 1624863069122199720,
+  "LastSeqNum": 505
+}
+```
+
+##### HTTP Request
+
+`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
+
+## Order Entry
+
+```json
+{
+  "msg1": "T",
+  "MessageType": 1,
+  "UpdateType": 2,
+  "Account": 100700,
+  "TraderID": "BOU7",
+  "OrderType": 1,
+  "OrderID": 14333181,
+  "Price,": 35040.5,
+  "Bit24OrderQty": 2,
+  "Bit24Side": 1,
+  "SendingTime": 1681931839281,
+  "MsgSeqID": 500,
+  "Key": 123456,
+  "SymbolEnum": 4,
+  "Symbol": "BTCUSDT",
+  "TradingSessionID": 506,
+  "TIF": 1
+}
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "msg1": "T",
+  "MessageType": 14,
+  "UpdateType": 2,
+  "Account": 100700,
+  "OrderId": 14333181,
+  "SymbolEnum": 4,
+  "OrderType": 1,
+  "Bit24Price": 35040.5,
+  "Side": 1,
+  "Bit24OrderQty": 2.0,
+  "TIF": 1,
+  "DisplaySize": 0.0,
+  "RefreshSize": 0.0,
+  "Bit24Symbol": "BTCUSDT",
+  "TraderID": "BOU7",
+  "SendingTime": 1624781419248402,
+  "TradingSessionID": 506,
+  "Key": 123456,
+  "MsgSeqID": 500
+}
+```
+
+##### HTTP Request
+
+`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
+
 ### Application Messages
 
 ## TCP/IP
