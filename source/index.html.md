@@ -236,65 +236,125 @@ DESCRIPTION
 
 #### BOTransaction
 
-BOTransaction message is used to enter new orders, cancel orders and cancel replace orders. The MES (Matching Engine Server) responds to these orders and conveys the results of new orders, cancellations, cancel replaces, partial executions and executions with the BOTransaction message. The message type in the BOTransaction should not be confused with the message type in the message header. The header message type will always be ‘T’ in byte 1 of the header. The sub message types in the table below will always be in byte 5 of the data buﬀer.
+BOTransaction message is used to enter new orders, cancel orders and cancel replace orders. The MES \(Matching Engine Server\) responds to these orders and conveys the results of new orders, cancellations, cancel replaces, partial executions and executions with the BOTransaction message. The message type in the BOTransaction should not be confused with the message type in the message header. The header message type will always be ‘T’ in byte 1 of the header. The sub message types in the table below will always be in byte 5 of the data buﬀer.
 
 ##### Message Types
 
-| Enum Name: MessageType   | Enum Value | Notes  |
-| ------------------------ | ---------- | ------ |
-| ORDER_NEW                | 1          |
-| CANCEL_REPLACE           | 2          |
-| MARGIN_CANCEL_REPLACE    | 3          | Note 1 |
-| MARGIN_EXECUTE           | 4          | Note 2 |
-| ORDER_STATUS             | 5          |
-| ORDER_CANCEL             | 6          |
-| MARGIN_CANCEL            | 7          | Note 1 |
-| EXECUTION                | 8          |
-| EXECUTION_PARTIAL        | 9          |
-| MARGIN_EXECUTION         | 10         | Note 2 |
-| MARGIN_PARTIAL_EXECUTION | 11         |
-| REJECT                   | 12         | Note 3 |
-| ORDER_REJECT             | 13         | Note 3 |
-| ORDER_ACK                | 14         |
-| CANCELLED                | 15         |
-| REPLACED                 | 16         |
-| QUOTE_FILL               | 17         | Note 4 |
-| QUOTE_FILL_PARTIAL       | 18         |
-| MARGIN_REPLACED          | 19         | Note 1 |
-| CANCEL_REPLACE_REJECT    | 20         |
+| Enum Name: MessageType       | Enum Value | Notes  |
+| :--------------------------- | :--------: | :----: |
+| **ORDER_NEW**                |     1      |        |
+| **CANCEL_REPLACE**           |     2      |        |
+| **MARGIN_CANCEL_REPLACE**    |     3      | Note 1 |
+| **MARGIN_EXECUTE**           |     4      | Note 2 |
+| **ORDER_STATUS**             |     5      |        |
+| **ORDER_CANCEL**             |     6      |        |
+| **MARGIN_CANCEL**            |     7      | Note 1 |
+| **EXECUTION**                |     8      |        |
+| **EXECUTION_PARTIAL**        |     9      |        |
+| **MARGIN_EXECUTION**         |     10     | Note 2 |
+| **MARGIN_PARTIAL_EXECUTION** |     11     |        |
+| **REJECT**                   |     12     | Note 3 |
+| **ORDER_REJECT**             |     13     | Note 3 |
+| **ORDER_ACK**                |     14     |        |
+| **CANCELLED**                |     15     |        |
+| **REPLACED**                 |     16     |        |
+| **QUOTE_FILL**               |     17     | Note 4 |
+| **QUOTE_FILL_PARTIAL**       |     18     |        |
+| **MARGIN_REPLACED**          |     19     | Note 1 |
+| **CANCEL_REPLACE_REJECT**    |     20     |        |
 
 ###### Notes:
 
 Note 1: In some instances, the risk engine may ask the matching engine to cancel replace user orders to reduce the desired size to prevent exceeding the available equity.
+
 Note 2: In the event the user exceeds their available equity the risk engine will reduce their position until the position is within the available equity.
+
 Note 3: Orders may be rejected by the risk engine or the MES due to equity limits or TIF parameters or missing or wrong data in a message ﬁeld.
-Note 4: QUOTE_FILL and QUOTE_FILL_PARTIAL are executions of user orders which have not been placed on the book (orders placed on the book are commonly called resting orders) and cross the top of book price and interact with a resting order.
+
+Note 4: QUOTE_FILL and QUOTE_FILL_PARTIAL are executions of user orders which have not been placed on the book \(orders placed on the book are commonly called resting orders\) and cross the top of book price and interact with a resting order.
 
 ##### Order Types
 
-| Enum Name: OrdType | Enum Value | Notes                     |
-| ------------------ | ---------- | ------------------------- |
-| LMT                | 1          |
-| MKT                | 2          |
-| STOP_MKT           | 3          |
-| STOP_LMT           | 4          | Not currently implemented |
-| PEG                | 5          |
-| HIDDEN             | 6          |
-| PEG_HIDDEN         | 7          |
-| OCO                | 8          |
-| ICE                | 9          |
-| OCO_ICE            | 10         | Not currently implemented |
-| BRACKET            | 11         | Not currently implemented |
-| SNIPER_MKT         | 12         |
-| SNIPER_LMT         | 13         |
-| TSM                | 14         |
-| TSL                | 15         |
-| TPSL_MARKET        | 16         | Not currently implemented |
-| TPSL_LIMIT         | 17         | Not currently implemented |
+| Enum Name: OrdType | Enum Value |           Notes           |
+| :----------------- | :--------: | :-----------------------: |
+| **LMT**            |     1      |                           |
+| **MKT**            |     2      |                           |
+| **STOP_MKT**       |     3      |                           |
+| **STOP_LMT**       |     4      | Not currently implemented |
+| **PEG**            |     5      |                           |
+| **HIDDEN**         |     6      |                           |
+| **PEG_HIDDEN**     |     7      |                           |
+| **OCO**            |     8      |                           |
+| **ICE**            |     9      |                           |
+| **OCO_ICE**        |     10     | Not currently implemented |
+| **BRACKET**        |     11     | Not currently implemented |
+| **SNIPER_MKT**     |     12     |                           |
+| **SNIPER_LMT**     |     13     |                           |
+| **TSM**            |     14     |                           |
+| **TSL**            |     15     |                           |
+| **TPSL_MARKET**    |     16     | Not currently implemented |
+| **TPSL_LIMIT**     |     17     | Not currently implemented |
 
-###### Attributes
+##### Attributes
 
 Attributes can be assigned to various orders. Attributes are used to add additional functionality such as display/refresh attributes to aﬀect the volume and order displays at various stages of its execution cycle. The attribute ﬁeld is a character array consisting of 12 slots which can be used to set one of 12 different attributes. A value of ‘Y’ in the attribute array indicates this attribute is to be applied to the order in question. A value of ‘N’ indicates this attribute is to be ignored for the order in question.
+
+| Attributes                |  Value  |        Notes         |
+| :------------------------ | :-----: | :------------------: |
+| **POPPED_TYPE**           | ‘Y’/’N’ |  Internal use only   |
+| **HIDDEN_ATTRIBUTE**      | ‘Y’/’N’ |        Note 1        |
+| **DISPLAYSIZE_ATTRIBUTE** | ‘Y’/’N’ |        Note 2        |
+| **STOPMKT_ATTRIBUTE**     | ‘Y’/’N’ | Not currently in use |
+| **STOPLMT_ATTRIBUTE**     | ‘Y’/’N’ | Not currently in use |
+| **TSL_ATTRIBUTE**         | ‘Y’/’N’ | Not currently in use |
+| **TSM_ATTRIBUTE**         | ‘Y’/’N’ | Not currently in use |
+| **PEG_ATTRIBUTE**         | ‘Y’/’N’ | Not currently in use |
+| **TPSL_ATTRIBUTE**        | ‘Y’/’N’ | Not currently in use |
+| **STATIC_ATTRIBUTE**      | ‘Y’/’N’ | Not currently in use |
+| **VALIDATED**             | ‘Y’/’N’ | Not currently in use |
+
+###### Notes:
+
+Note 1: The HIDDEN_ATTRIBUTE makes the order hidden on the book. It is not visible.
+
+Note 2: DISPLAYSIZE_ATTRIBUTE instructs the Matching Engine to use the ﬁeld DisplaySize as the initial volume to display on the book. When this size has been exhausted, the order is popped oﬀ the queue and pushed to the back of the price level queue and the size in the RefreshSize ﬁeld of BOTransaction is used until the total volume of the order is exhausted. Amer each depletion of the refresh size, the order is once again popped oﬀ the price level queue and pushed to the back of the queue until such time as the total order quantity in the BOOrderQty ﬁeld is zero or the order is cancelled or cancel replaced.
+
+##### Message Validation
+
+All BOTransaction messages are validated to ensure the required ﬁelds based on the Order Type are present. Further validation is performed in the Risk Engine to ensure the values make sense for the order type. If the message fails either of the two validations, the RejectReason ﬁeld will hold the reason for the reject and the Message type will be set to REJECT and returned to the user.
+
+##### Risk Checking
+
+Black Ocean performs both pre-trade and post trade risk checking as well as constant risk checks for those order types which require it.
+
+##### ICE Orders
+
+Ice orders are intended to allow the user to place up to a maximum of 10 orders on the book at a predeﬁned size and a predeﬁned price oﬀset from the top of the book \(currently 10 layers but this may be increased in a future release\). Ice orders maintain a relationship to the top of the book based on the PriceOﬀset ﬁeld. Example, if the PriceOﬀset = 0.0, then at least one layer of the orders will be equal to the top of book price and the second layer will be above/below that order based on the price oﬀset value and so on according to the number of layers. As the top of book prices move away from the orders, a new order will be placed on the book according to the PriceOﬀset and an order at the bottom of the layer will be removed. As the price moves closer to the ﬁrst layer, the orders hold their positions in anticipation of being executed. As orders are moved, the server does not send cancel replace messages to identify the new layer of the ICE orders \(this would defeat the purpose of Black Ocean performing this for the user since the goal is to reduce both network traffic, programming complexity for the user and time delays in cancel/cancel replacing orders in the layers\). The order quantity ﬁeld BOOrderQty must be equal to the product of the Layers ﬁeld and the SizeIncrement ﬁeld.
+
+**Example:**
+
+SizeIncrement = 1.0
+
+Layers = 9
+
+BOOrdQty = SizeIncrement \* Layers = 9.00
+
+#### Supported Order Types
+
+| **O**rder Types                     |
+| :---------------------------------- |
+| **LMT - \(Limit\)**                 |
+| **MKT - \(Market\)**                |
+| **STOP_MKT - \(Stop Market\)**      |
+| **PEG - \(Pegged\)**                |
+| **HIDDEN - \(Hidden\)**             |
+| **PEG_HIDDEN - \(Pegged Hidden\)**  |
+| **OCO - \(One-Cancels-The-Other\)** |
+| **ICE - \(Iceberg\)**               |
+| **SNIPER_MKT - \(Sniper Market\)**  |
+| **SNIPER_LMT - \(Sniper Limit\)**   |
+| **TSM - \(Trailing Stop Market\)**  |
+| **TSL - \(Trailing Stop Limit\)**   |
 
 # Introduction
 
