@@ -5,9 +5,7 @@
 
 <span class="beta-indicator">ALPHA</span>
 
-User interface (UI) components are currently in a **Closed Alpha**. If you want to participate in the UI components alpha program, please 
-complete and submit [this form](https://form-beta.asana.com?k=-pVvfJKSSeboL3ySjdhYSg&d=15793206719). We are limiting 
-the number of apps that can use these features at this time. This will open up more as we move to beta. 
+At the moment, UI Components can only be deployed in the developer's `workspace`. Upon release, this limitation will be lifted. To get started with UI Components, submit a [UI Components Definition](/docs/ui-components-definition). App deployments may be delayed due to the ongoing development of UI Components.
 
 The UI Components Alpha Program is a pre-general-release version of a program developed by Asana that allows developers 
 to develop and test UI components. The UI Component Alpha Program is for development, evaluation, and testing purposes 
@@ -16,6 +14,8 @@ Alpha Program is made available on an “as is” basis without warranties (expr
 discontinued or modified at any time.
 
 *This Alpha program was previously named the Workflow Apps Alpha.*
+
+<a id="app-components-overview"></a>
 
 # UI Components Overview
 
