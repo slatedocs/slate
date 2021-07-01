@@ -324,8 +324,42 @@ Symbol Enums are replacements for the character based instrument name to a short
 }
 ```
 
+1. The BOClientLogon message must be sent to the AES in order to initiate the logon process \(please contact BO Representative for IP address and port\).
+2. Please refer to the BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
+3. The AES will respond with a BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
+4. Only one login session is permited for a unique account ID and UserName.
+5. Black Ocean requests that if they user is going to close the connec\)on a BOClientLogon message should be sent with the LogonType set to 2 prior to closing the connection in order to allow the OES to close the connec\)on gracefully.
+6. BOClientLogon Example Message - Client Sending
+
+| Field Name           | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |   Notes   |
+| :------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :-------: |
+| **Data1**            |   char    |      1      |       0       |       X        |       H        |       H       |  Header   |
+| **Data2**            |   char    |      1      |       1       |                |                |               |  Header   |
+| **Data3**            |   short   |      2      |       2       |       X        |      143       |      143      |  Header   |
+| **LogonType**        |   short   |      2      |       4       |       X        |                |       1       |   Note1   |
+| **Account**          |    Int    |      4      |       6       |       X        |                |    253336     |   Note2   |
+| **2FA**              | char\[\]  |      6      |      10       |       X        |                |     1F6A      |   Note4   |
+| **UserName**         | char\[\]  |      6      |      16       |       X        |                |     BOU1      |   Note2   |
+| **TradingSessionID** |    Int    |      4      |      22       |       \*       |                |               |   Note2   |
+| **PrimaryOESIP**     | char\[\]  |     24      |      26       |       \*       |                |               |   Note3   |
+| **SecondaryOESIP**   | char\[\]  |     24      |      50       |       \*       |                |               |   Note3   |
+| **PrimaryMDIP**      | char\[\]  |     24      |      74       |                |                |               | Note Used |
+| **SecondaryIP**      | char\[\]  |     24      |      98       |                |                |               | Not Used  |
+| **SendingTime**      |   Long    |      8      |      122      |                |                |               |  Note 5   |
+| **MsgSeqNum**        |    Int    |      4      |      130      |                |                |    1500201    |           |
+| **Key**              |    Int    |      4      |      134      |                |                |    432451     |           |
+| **LoginStatus**      |   short   |      1      |      138      |                |                |               |           |
+| **RejectReason**     |   short   |      2      |      140      |                |                |               |           |
+| **RiskMaster**       |   char    |      1      |      142      |                |                |               |           |
+
 <aside class="success">
 Note
+1. LogonType is a short enum, values: `Login 1`, `Logout 2`
+   - If the value is not one of the values above, a logout message will be sent and the connection closed.
+2. Value assigned by Black Ocean. If this is a logout, the TradingSessionID must be supplied.
+3. IP address and port of the OES will be sent in the server response BOClientLogon message.
+4. 2FA is disabled for the testing phase.
+5. Sending times are in nanoseconds from the epoch, January 1, 1970.
 </aside>
 
 ## Collateral Data
