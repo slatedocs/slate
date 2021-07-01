@@ -608,53 +608,516 @@ BOOrdQty = SizeIncrement \* Layers = 9.00
 | **TSM - \(Trailing Stop Market\)**  |
 | **TSL - \(Trailing Stop Limit\)**   |
 
-# Introduction
+#### LIMIT
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+##### New LIMIT order - Client Sending
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **MessageType**       |   short   |      2      |       4       |                |                |   ORDER_NEW   |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |   46832151    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1       |  Note 3  |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      LMT      |  Note 3  |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |     SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |       X        |                |    50100.5    |  Note 4  |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY      |  Note 5  |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      2.0      |          |
+| **TIF**               |   short   |      2      |      44       |       X        |                |      GTC      |  Note 6  |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |               |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |    BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |                |                |               |          |
+| **BOCancelShares**    |  double   |      8      |      74       |       \*       |                |               |          |
+| **ExecID**            |   long    |      8      |      82       |       \*       |                |               |          |
+| **ExecShares**        |  double   |      8      |      90       |       \*       |                |               |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |               |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |               |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |               |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |               | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |               |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |     1000      |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506      |          |
+| **Key**               |    Int    |      4      |      146      |       X        |                |     42341     |  Note 8  |
+| **DisplaySize**       |  double   |      8      |      150      |       \*       |                |               |          |
+| **RefreshSize**       |  double   |      8      |      158      |       \*       |                |               |          |
+| **Layers**            |   short   |      2      |      166      |                |                |               |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |               |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |               |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |               |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |               |          |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |               |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    7948888    |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |               |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |               |          |
+| **Attributes**        | char\[\]  |     12      |      226      |       \*       |                |               |  Note 7  |
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+**Notes:**
 
-# Authentication
+Note 1: Message types must be valid according to the values listed in the Message Type table above. Since in this example we would like to place a new order on the book, the MsgType ﬁeld must be set to ORDER_NEW.
 
-> To authorize, use this code:
+Note 2: Please see previous sections for valid values for the symbol enum.
 
-```ruby
-require 'kittn'
+Note 3: Order types must be a valid value as deﬁned in the OrdType table above. Since in this example we would like to place a limit order on the book, OrdType ﬁeld should be set to LMT.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Note 4: Price values must be be in a price increment according to the value the user received in the BOInstrument message - PriceIncrement ﬁeld. Example, BTCUSD, symbol enum 1, has a price increment of 0.5. If the user sends a price of 51000.40, this price is invalid since the cents portion of the price is not in a 0.5 increment. The correct price should have been 51000.50 or 51000.00 or 51001.00, all of these are valid values.
 
-```python
-import kittn
+Note 5: The valid side ﬁelds are:
 
-api = kittn.authorize('meowmeowmeow')
-```
+| Enum Name: SIDE | Enum Value |
+| :-------------- | :--------- |
+| **BUY**         | 1          |
+| **SELL**        | 2          |
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
+Note 6: TIF valid values:
 
-```javascript
-const kittn = require("kittn");
+| Enum Name: TIF | Enum Value |
+| :------------- | :--------- |
+| **FOK**        | 1          |
+| **GTC**        | 2          |
+| **IOC**        | 3          |
+| **POO**        | 4          |
+| **RED**        | 5          |
+| **DAY**        | 6          |
 
-let api = kittn.authorize("meowmeowmeow");
-```
+Note 7: Attributes allow an order to exhibit additional behavior. Currently only the HIDDEN_ATTRIBUTE and the DISPLAYSIZE_ATTRIBUTE are available but the other attributes will be available soon. Please see the section above on attribute behavior. In order to set an attribute a user should do something like this: // function accepts the position in the array to set the value and the actual value BOTransaction.setAtrributes\(DISPLAYSIZE, ‘Y’\);
 
-> Make sure to replace `meowmeowmeow` with your API key.
+If the DISPLAYSIZE attribute is set, the DisplaySize and RefreshSize in the message must also be set, if either is not set to a valid value the message will be rejected. If the user sets the HIDDEN_ATTRIBUTE to ‘Y’, this order will be hidden.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Note 8: Currently disabled for testing
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+##### New LIMIT Order - OES Response
 
-`Authorization: meowmeowmeow`
+The OES will respond to the order submitted in the previous example with a BOTransaction message with a MessageType = ORDER_ACK if the message was accepted or MessageType = REJECT if the order was rejected.
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   ORDER_ACK   |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |   46832151    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1       |          |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      LMT      |          |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |     SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |       X        |                |    50100.5    |          |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY      |          |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      2.0      |          |
+| **TIF**               |   short   |      2      |      44       |       X        |                |      GTC      |          |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |               |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |    BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |                |                |               |          |
+| **BOCancelShares**    |  double   |      8      |      74       |                |                |               |          |
+| **ExecID**            |   long    |      8      |      82       |                |                |               |          |
+| **ExecShares**        |  double   |      8      |      90       |                |                |               |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |               |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |               |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |               |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |               | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |               |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |               |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506      |          |
+| **Key**               |    Int    |      4      |      146      |                |                |     42341     |          |
+| **DisplaySize**       |  double   |      8      |      150      |                |                |               |          |
+| **RefreshSize**       |  double   |      8      |      158      |                |                |               |          |
+| **Layers**            |   short   |      2      |      166      |                |                |               |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |               |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |               |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |               |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |               |          |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |               |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    7948888    |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |               |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |               |          |
+| **Attributes**        | char\[\]  |     12      |      226      |       \*       |                |               |          |
+
+**Notes:**
+
+Note 1: If the message was accepted MessageType = MessageType::ORDER_ACK. If the message was rejected the MessageType = MessageType::REJECT and the reject reason will be in the RejectReason ﬁeld of the message.
+
+##### **Cancel Replace LIMIT Order - Client Sending**
+
+User wishes to cancel replace the order sent in the previous section.
+
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **MessageType**       |   short   |      2      |       4       |       \*       |                | CANCEL_REPLACE |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |    46832152    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1        |  Note 2  |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      LMT       |  Note 3  |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |      SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |       X        |                |    50100.5     |  Note 4  |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY       |  Note 5  |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      3.0       |          |
+| **TIF**               |   short   |      2      |      44       |       X        |                |      GTC       |  Note 6  |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |                |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |     BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |                |                |    46832151    |  Note 9  |
+| **BOCancelShares**    |  double   |      8      |      74       |       \*       |                |                |          |
+| **ExecID**            |   long    |      8      |      82       |       \*       |                |                |          |
+| **ExecShares**        |  double   |      8      |      90       |       \*       |                |                |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |                |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |                |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |                |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |                | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |                |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |                |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506       |          |
+| **Key**               |    Int    |      4      |      146      |       X        |                |     42341      |  Note 8  |
+| **DisplaySize**       |  double   |      8      |      150      |       \*       |                |                |          |
+| **RefreshSize**       |  double   |      8      |      158      |       \*       |                |                |          |
+| **Layers**            |   short   |      2      |      166      |                |                |                |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |                |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |                |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |                |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |    50100.5     | Note 10  |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |                |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    7948888     |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |                |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |                |          |
+| **Attributes**        | char\[\]  |     12      |      226      |       \*       |                |                |  Note 7  |
+
+**Notes:**
+
+Note 1: Message types must be valid according to the values listed in the Message Type table above. Since in this example we would like to place a new order on the book, the MsgType ﬁeld must be set to ORDER_NEW.
+
+Note 2: Please see previous sections for valid values for the symbol enum.
+
+Note 3: Order types must be a valid value as deﬁned in the OrdType table above. Since in this example we would like to place a limit order on the book, OrdType ﬁeld should be set to LMT.
+
+Note 4: Price values must be be in a price increment according to the value the user received in the BOInstrument message - PriceIncrement ﬁeld. Example, BTCUSD, symbol enum 1, has a price increment of 0.5. If the user sends a price of 51000.40, this price is invalid since the cents portion of the price is not in a 0.5 increment. The correct price should have been 51000.50 or 51000.00 or 51001.00, all of these are valid values.
+
+Note 5: The valid side ﬁelds are:
+
+| Enum Name: SIDE | Enum Value |
+| :-------------- | :--------- |
+| **BUY**         | 1          |
+| **SELL**        | 2          |
+
+Note 6: TIF valid values:
+
+| Enum Name: TIF | Enum Value |
+| :------------- | :--------- |
+| **FOK**        | 1          |
+| **GTC**        | 2          |
+| **IOC**        | 3          |
+| **POO**        | 4          |
+| **RED**        | 5          |
+| **DAY**        | 6          |
+
+Note 7: Attributes allow an order to exhibit additional behavior. Currently only the HIDDEN_ATTRIBUTE and the DISPLAYSIZE_ATTRIBUTE are available but the other attributes will be available soon. Please see the section above on attribute behavior. In order to set an attribute a user should do something like this: // function accepts the position in the array to set the value and the actual value BOTransaction.setAtrributes\(DISPLAYSIZE, ‘Y’\);
+
+If the DISPLAYSIZE attribute is set, the DisplaySize and RefreshSize in the message must also be set, if either is not set to a valid value the message will be rejected. If the user sets the HIDDEN_ATTRIBUTE to ‘Y’, this order will be hidden.
+
+Note 8: Currently disabled for testing
+
+##### **Cancel Replace LIMIT Order - OES Response**
+
+The OES will respond to the order submitted in the previous example with a BOTransaction message with a MessageType = ORDER_ACK if the message was accepted or MessageType = REJECT if the order was rejected.
+
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   REPLACED    |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |   46832152    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1       |          |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      LMT      |          |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |     SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |       X        |                |    50100.5    |          |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY      |          |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      3.0      |          |
+| **TIF**               |   short   |      2      |      44       |       X        |                |      GTC      |          |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |               |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |    BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |                |                |               |          |
+| **BOCancelShares**    |  double   |      8      |      74       |                |                |               |          |
+| **ExecID**            |   long    |      8      |      82       |                |                |               |          |
+| **ExecShares**        |  double   |      8      |      90       |                |                |               |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |               |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |               |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |               |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |               | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |               |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |               |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506      |          |
+| **Key**               |    Int    |      4      |      146      |                |                |               |          |
+| **DisplaySize**       |  double   |      8      |      150      |                |                |               |          |
+| **RefreshSize**       |  double   |      8      |      158      |                |                |               |          |
+| **Layers**            |   short   |      2      |      166      |                |                |               |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |               |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |               |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |               |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |    50100.5    |          |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |               |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    7948888    |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |               |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |               |          |
+| **Attributes**        | char\[\]  |     12      |      226      |       \*       |                |               |          |
+
+**Notes:**
+
+Note 1: \*\*\*\*If the message was accepted MessageType = MessageType::REPLACED. If the message was rejected the MessageType = MessageType::REJECT and the reject reason will be in the RejectReason ﬁeld of the message.
+
+##### Cancel LIMIT Order - Client Sending
+
+User wishes to cancel replace the order sent in the previous section
+
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_CANCEL  |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |   46832153    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1       |  Note 2  |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      LMT      |  Note 3  |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |     SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |       X        |                |    50100.5    |  Note 4  |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY      |  Note 5  |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      3.0      |          |
+| **TIF**               |   short   |      2      |      44       |       X        |                |      GTC      |  Note 6  |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |               |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |    BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |                |                |   46832152    |  Note 9  |
+| **BOCancelShares**    |  double   |      8      |      74       |       \*       |                |               |          |
+| **ExecID**            |   long    |      8      |      82       |       \*       |                |               |          |
+| **ExecShares**        |  double   |      8      |      90       |       \*       |                |               |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |               |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |               |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |               |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |               | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |               |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |               |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506      |          |
+| **Key**               |    Int    |      4      |      146      |       X        |                |     42341     |  Note 8  |
+| **DisplaySize**       |  double   |      8      |      150      |       \*       |                |               |          |
+| **RefreshSize**       |  double   |      8      |      158      |       \*       |                |               |          |
+| **Layers**            |   short   |      2      |      166      |                |                |               |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |               |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |               |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |               |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |    50100.5    | Note 10  |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |               |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    7948888    |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |               |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |               |          |
+| **Attributes**        | char\[\]  |     12      |      226      |       \*       |                |               |  Note 7  |
+
+**Notes:**
+
+Note 1: Message types must be valid according to the values listed in the Message Type table above. Since in this example we would like to place a new order on the book, the MsgType ﬁeld must be set to ORDER_NEW.
+
+Note 2: Please see previous sections for valid values for the symbol enum.
+
+Note 3: Order types must be a valid value as deﬁned in the OrdType table above. Since in this example we would like to place a limit order on the book, OrdType ﬁeld should be set to LMT.
+
+Note 4: Price values must be be in a price increment according to the value the user received in the BOInstrument message - PriceIncrement ﬁeld. Example, BTCUSD, symbol enum 1, has a price increment of 0.5. If the user sends a price of 51000.40, this price is invalid since the cents portion of the price is not in a 0.5 increment. The correct price should have been 51000.50 or 51000.00 or 51001.00, all of these are valid values.
+
+Note 5: The valid side ﬁelds are:
+
+| Enum Name: SIDE | Enum Value |
+| :-------------- | :--------- |
+| **BUY**         | 1          |
+| **SELL**        | 2          |
+
+Note 6: TIF valid values:
+
+| Enum Name: TIF | Enum Value |
+| :------------- | :--------- |
+| **FOK**        | 1          |
+| **GTC**        | 2          |
+| **IOC**        | 3          |
+| **POO**        | 4          |
+| **RED**        | 5          |
+| **DAY**        | 6          |
+
+Note 7: Attributes allow an order to exhibit additional behavior. Currently only the HIDDEN_ATTRIBUTE and the DISPLAYSIZE_ATTRIBUTE are available but the other attributes will be available soon. Please see the section above on attribute behavior. In order to set an attribute a user should do something like this: // function accepts the position in the array to set the value and the actual value BOTransaction.setAtrributes\(DISPLAYSIZE, ‘Y’\);
+
+If the DISPLAYSIZE attribute is set, the DisplaySize and RefreshSize in the message must also be set, if either is not set to a valid value the message will be rejected. If the user sets the HIDDEN_ATTRIBUTE to ‘Y’, this order will be hidden.
+
+Note 8: Currently disabled for testing
+
+##### Cancel LIMIT Order - OES Response
+
+The OES will respond to the order submitted in the previous example with a BOTransaction message with a MessageType = ORDER_ACK if the message was accepted or MessageType = REJECT if the order was rejected.
+
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **MessageType**       |   short   |      2      |       4       |       \*       |                |   CANCELED    |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |   46832153    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1       |          |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      LMT      |          |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |     SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |       X        |                |    50100.5    |          |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY      |          |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      3.0      |          |
+| **TIF**               |   short   |      2      |      44       |       X        |                |      GTC      |          |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |               |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |    BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |       X        |                |   46832152    |          |
+| **BOCancelShares**    |  double   |      8      |      74       |                |                |               |          |
+| **ExecID**            |   long    |      8      |      82       |                |                |               |          |
+| **ExecShares**        |  double   |      8      |      90       |                |                |               |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |               |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |               |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |               |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |               | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |               |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |               |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506      |          |
+| **Key**               |    Int    |      4      |      146      |                |                |               |          |
+| **DisplaySize**       |  double   |      8      |      150      |                |                |               |          |
+| **RefreshSize**       |  double   |      8      |      158      |                |                |               |          |
+| **Layers**            |   short   |      2      |      166      |                |                |               |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |               |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |               |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |               |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |    50100.5    |          |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |               |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    4248888    |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |               |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |               |          |
+| **Attributes**        | char\[\]  |     12      |      226      |       \*       |                |               |          |
+
+**Notes:**
+
+Note 1: If the message was accepted MessageType = MessageType::CANCELLED. If the message was rejected the MessageType = MessageType::REJECT and the reject reason will be in the RejectReason ﬁeld of the message.
+
+#### MARKET
+
+##### New MARKET order - Client Sending
+
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_NEW   |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |   46832151    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1       |  Note 2  |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      MKT      |  Note 3  |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |     SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |                |                |               |          |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY      |  Note 4  |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      2.0      |          |
+| **TIF**               |   short   |      2      |      44       |                |                |               |          |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |               |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |    BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |                |                |               |          |
+| **BOCancelShares**    |  double   |      8      |      74       |       \*       |                |               |          |
+| **ExecID**            |   long    |      8      |      82       |       \*       |                |               |          |
+| **ExecShares**        |  double   |      8      |      90       |       \*       |                |               |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |               |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |               |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |               |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |               | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |               |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |     1000      |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506      |          |
+| **Key**               |    Int    |      4      |      146      |       X        |                |     42341     |  Note 5  |
+| **DisplaySize**       |  double   |      8      |      150      |       \*       |                |               |          |
+| **RefreshSize**       |  double   |      8      |      158      |       \*       |                |               |          |
+| **Layers**            |   short   |      2      |      166      |                |                |               |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |               |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |               |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |               |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |               |          |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |               |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    7948888    |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |               |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |               |          |
+| **Attributes**        | char\[\]  |     12      |      226      |                |                |               |          |
+
+**Notes:**
+
+Note 1: Message types must be valid according to the values listed in the Message Type table above. Since in this example we would like to place a new order on the book, the MsgType ﬁeld must be set to ORDER_NEW.
+
+Note 2: Please see previous sections for valid values for the symbol enum.
+
+Note 3: Order types must be a valid value as deﬁned in the OrdType table above. Since in this example we would like to place a limit order on the book, OrdType ﬁeld should be set to LMT.
+
+Note 4: The valid side ﬁelds are:
+
+| Enum Name: SIDE | Enum Value |
+| :-------------- | :--------- |
+| **BUY**         | 1          |
+| **SELL**        | 2          |
+
+Note 5: Currently disabled for testing.
+
+##### New MARKET Order - OES Response
+
+The OES will respond to a MKT order only in the case it was rejected, MessageType = REJECT if the order was rejected.
+
+| Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |    REJECT     |  Note 1  |
+| **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
+| **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
+| **OrderID**           |   long    |      8      |      12       |       X        |                |   46832151    |          |
+| **SymbolEnum**        |   short   |      2      |      20       |       X        |                |       1       |          |
+| **OrderType**         |   short   |      2      |      22       |       X        |                |      MKT      |          |
+| **SymbolType**        |   short   |      2      |      24       |       X        |                |     SPOT      |          |
+| **BOPrice**           |  double   |      8      |      26       |                |                |               |          |
+| **BOSide**            |   short   |      2      |      34       |       X        |                |      BUY      |          |
+| **BOOrderQty**        |  double   |      8      |      36       |       X        |                |      2.0      |          |
+| **TIF**               |   short   |      2      |      44       |       X        |                |               |          |
+| **StopLimitPrice**    |  double   |      8      |      46       |                |                |               |          |
+| **BOSymbol**          | char\[\]  |     12      |      54       |       X        |                |    BTCUSD     |          |
+| **OrigOrderID**       |   long    |      8      |      66       |                |                |               |          |
+| **BOCancelShares**    |  double   |      8      |      74       |                |                |               |          |
+| **ExecID**            |   long    |      8      |      82       |                |                |               |          |
+| **ExecShares**        |  double   |      8      |      90       |                |                |               |          |
+| **RemainingQuantity** |  double   |      8      |      98       |                |                |               |          |
+| **ExecFee**           |  double   |      8      |      106      |                |                |               |          |
+| **ExpirationDate**    | char\[\]  |     12      |      114      |                |                |               |          |
+| **TraderID**          | char\[\]  |      6      |      126      |                |                |               | Not used |
+| **RejectReason**      |   short   |      2      |      132      |                |                |               |          |
+| **SendingTime**       | uint64_t  |      8      |      134      |       X        |                |               |          |
+| **TradingSessionID**  |    Int    |      4      |      142      |       X        |                |      506      |          |
+| **Key**               |    Int    |      4      |      146      |                |                |               |          |
+| **DisplaySize**       |  double   |      8      |      150      |                |                |               |          |
+| **RefreshSize**       |  double   |      8      |      158      |                |                |               |          |
+| **Layers**            |   short   |      2      |      166      |                |                |               |          |
+| **SizeIncrement**     |  double   |      8      |      168      |                |                |               |          |
+| **PriceIncrement**    |  double   |      8      |      176      |                |                |               |          |
+| **PriceOffset**       |  double   |      8      |      184      |                |                |               |          |
+| **BOOrigPrice**       |  double   |      8      |      192      |                |                |               |          |
+| **ExecPrice**         |  double   |      8      |      200      |                |                |               |          |
+| **MsgSeqNum**         |   long    |      8      |      208      |       X        |                |    4248888    |          |
+| **TakeProfitPrice**   |  double   |      8      |      216      |                |                |               |          |
+| **TriggerType**       |   short   |      2      |      224      |                |                |               |          |
+| **Attributes**        | char\[\]  |     12      |      226      |       \*       |                |               |          |
+
+**Notes:**
+
+Note 1: If the message was accepted MessageType = MessageType::ORDER_ACK. If the message was rejected the MessageType = MessageType::REJECT and the reject reason will be in the RejectReason ﬁeld of the message.
 
 # Kittens
 
@@ -723,107 +1186,3 @@ This endpoint retrieves all kittens.
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-| Parameter | Description                      |
-| --------- | -------------------------------- |
-| ID        | The ID of the kitten to retrieve |
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require("kittn");
-
-let api = kittn.authorize("meowmeowmeow");
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted": ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| ID        | The ID of the kitten to delete |
