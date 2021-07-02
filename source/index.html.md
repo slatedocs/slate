@@ -27,6 +27,11 @@ An API Token must be passed in inside the headers with every request.  You can g
 <br/>
 Pass it as the header-key 'Token'.
 
+# API URL
+
+The API is located at https://app.sellerchamp.com/api
+
+
 # Marketplace Accounts
 
 ## GET marketplace_accounts
@@ -40,7 +45,7 @@ Url format:
 
 ```shell
 curl --request GET \
-  --url 'https://sellerchamp.com/api/marketplace_accounts \
+  --url 'https://app.sellerchamp.com/api/marketplace_accounts \
   -H 'token: YOUR-TOKEN' \
 
 Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -113,7 +118,7 @@ Url format:
 
 ```shell
 curl --request POST \
-  --url https://sellerchamp.com/api/manifests \
+  --url https://app.sellerchamp.com/api/manifests \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache,no-cache,no-cache' \
   --header 'token: YOUR-TOKEN' \
@@ -323,7 +328,7 @@ Url format:
 
 ```shell
 curl --request GET \
-  --url 'https://sellerchamp.com/api/manifests?marketplace_account_id=5c1902f207b620090a000026&manifest_folder_id=59e0d31f07b6204cc8000000&page=1&page_size=20' \
+  --url 'https://app.sellerchamp.com/api/manifests?marketplace_account_id=5c1902f207b620090a000026&manifest_folder_id=59e0d31f07b6204cc8000000&page=1&page_size=20' \
   -H 'token: YOUR-TOKEN' \
 
 Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -411,7 +416,7 @@ Url format:
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://sellerchamp.com/api/manifests/5e6ec5a5584085af1800013d/product_listings?page=1&page_size=20 \
+  https://app.sellerchamp.com/api/manifests/5e6ec5a5584085af1800013d/product_listings?page=1&page_size=20 \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -586,7 +591,7 @@ Url format:
 
 ```shell
 curl --request POST \
-  --url https://sellerchamp.com/api/manifests/{manifest_id}/product_listings \
+  --url https://app.sellerchamp.com/api/manifests/{manifest_id}/product_listings \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache,no-cache,no-cache' \
   --header 'token: YOUR-TOKEN' \
@@ -812,7 +817,7 @@ tags_array | String (optional) | Returns products that have exactly the specifie
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://sellerchamp.com/api/products.json?marketplace_account_id=5e2fb23d07b62074fe000011&page=1&page_size=20 \
+  https://app.sellerchamp.com/api/products.json?marketplace_account_id=5e2fb23d07b62074fe000011&page=1&page_size=20 \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -925,7 +930,7 @@ Url format:
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://sellerchamp.com/api/products/5e9316fb07b620137a000144.json \
+  https://app.sellerchamp.com/api/products/5e9316fb07b620137a000144.json \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -1062,7 +1067,7 @@ Url format:
 
 ```shell
 curl -X PUT \
-  https://sellerchamp.com/api/products/5e73df57584085c9820002fe.json \
+  https://app.sellerchamp.com/api/products/5e73df57584085c9820002fe.json \
   -H 'content-type: application/json' \
   -H 'token: YOUR-TOKEN' \
   -d '{
@@ -1133,7 +1138,7 @@ Url format:
 
 ```
 curl -X GET \
-  https://sellerchamp.com/api/products/5e73df57584085c9820002fe/product_images \
+  https://app.sellerchamp.com/api/products/5e73df57584085c9820002fe/product_images \
   -H 'content-type: application/json' \
   -H 'token: YOUR-TOKEN' \
 
@@ -1179,7 +1184,7 @@ Url format:
 
 ```
 curl -X POST \
-  https://sellerchamp.com/api/products/5e29634b07b6201e4d0000d2/product_images \
+  https://app.sellerchamp.com/api/products/5e29634b07b6201e4d0000d2/product_images \
   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
   -H 'token: YOUR-TOKEN' \
   -F 'product_image[group_name]=primary' \
@@ -1226,7 +1231,7 @@ Url format:
 ```shell
 # With shell, you can just pass the correct header with each request
 curl -X GET \
-  https://sellerchamp.com/api/orders \
+  https://app.sellerchamp.com/api/orders \
   -H 'token: YOUR-TOKEN' \
 
  Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -1308,7 +1313,7 @@ Url format with filters:
 
 ```shell
 curl --request GET \
-  --url 'https://sellerchamp.com/api/orders?order_status=awaiting_shipment&marketplace_account_id=5e73df8a584085c98200030b&updated_at_start=2015-01-01T00:00:00&updated_at_end=2015-01-08T00:00:00&page=1&page_size=20' \
+  --url 'https://app.sellerchamp.com/api/orders?order_status=awaiting_shipment&marketplace_account_id=5e73df8a584085c98200030b&updated_at_start=2015-01-01T00:00:00&updated_at_end=2015-01-08T00:00:00&page=1&page_size=20' \
   -H 'token: YOUR-TOKEN' \
 
 Make sure to replace `YOUR-TOKEN` with your API key token.
@@ -1342,7 +1347,7 @@ URL format:
 
 ```shell
 curl --request PUT \
- --url https://sellerchamp.com/api/orders/{order_id} \
+ --url https://app.sellerchamp.com/api/orders/{order_id} \
  --header 'Content-Type: application/json' \
  --header 'cache-control: no-cache,no-cache,no-cache' \
  --header 'token: YOUR-TOKEN' \
@@ -1367,7 +1372,7 @@ URL format:
 
 ```shell
 curl --request POST \
- --url https://sellerchamp.com/api/orders/{order_id}/acknowledge \
+ --url https://app.sellerchamp.com/api/orders/{order_id}/acknowledge \
  --header 'Content-Type: application/json' \
  --header 'cache-control: no-cache,no-cache,no-cache' \
  --header 'token: YOUR-TOKEN' \
