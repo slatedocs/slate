@@ -26,7 +26,7 @@ Overview
 2. Please refer to the BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
 3. The AES will respond with a BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
 4. Only one login session is permited for a unique account ID and UserName.
-5. Black Ocean requests that if they user is going to close the connec\)on a BOClientLogon message should be sent with the LogonType set to 2 prior to closing the connection in order to allow the OES to close the connec\)on gracefully.
+5. Black Ocean requests that if they user is going to close the connection a BOClientLogon message should be sent with the LogonType set to 2 prior to closing the connection in order to allow the OES to close the connection gracefully.
 6. BOClientLogon Example Message - Client Sending
 
 | Field Name           | Data Type | Data Length | Required Field | Required Value | Example Value |   Notes   |
