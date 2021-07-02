@@ -29,7 +29,7 @@ Pass it as the header-key 'Token'.
 
 # API URL
 
-The API is located at https://app.sellerchamp.com/api
+The API is located at https://app.sellerchamp.com
 
 
 # Marketplace Accounts
