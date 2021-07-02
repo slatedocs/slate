@@ -86,14 +86,6 @@ components:
         type: string
       description: >-
         The text entered into the typeahead input
-    locale:
-      name: locale
-      required: true
-      in: query
-      schema:
-        type: string
-      description: >-
-        The locale of the user (i.e. en, fr)
     project:
       name: project
       required: true
@@ -169,10 +161,6 @@ components:
           type: string
           description: >-
             The time (in ISO-8601 date format) when the request should expire
-        locale:
-          type: string
-          description: >-
-            The locale of the user (i.e. en, fr)
         user:
           type: string
           description: >-
@@ -196,7 +184,7 @@ components:
               type: string
               description: >-
                 The attachment id of the URL attachment
-            value:
+            query:
               type: string
               description: >-
                 The user’s input in the attach resource text input (this is often a resource url or resource key, such as
@@ -239,10 +227,10 @@ components:
             - rich_text
             - static_text
             - dropdown
-            - checkboxes
+            - checkbox
             - radio_button
-            - date_input
-            - date_time_input
+            - date
+            - datetime
             - typeahead
           example: 'single_line_text'
         id:
@@ -250,7 +238,7 @@ components:
             The id of the field, which is used to reference the field. These should be unique across the entire form
           type: string
           example: 'item-description'
-        title:
+        name:
           description: >-
             The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.
           type: string
@@ -266,11 +254,6 @@ components:
             Whether the field is required to submit the form
           type: boolean
           example: true
-        error:
-          description: >-
-            If present, the field will render as having an error and the error will be displayed under the form field
-          type: string
-          example: 'Maximum description length is 256 characters'
         placeholder:
           description: >-
             *Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`,
@@ -356,24 +339,12 @@ components:
                 If this is field is omitted then the submission button will be disabled. This is useful if the user must
                 enter information in a watched field first, such as to show additional fields.
               type: string
-              example: 'www.example.com/on_submit'
-            on_change:
-              $ref: '#/components/schemas/FormOnChangeConfig'
-            error:
+              example: 'https://www.example.com/on_submit'
+            on_change_callback:
               description: >-
-                The error that should be displayed at the footer of the creation form
+                The URL to POST the form to whenever watched field values are changed.
               type: string
-              example: 'You must provide either a name or a title'
-    FormOnChangeConfig:
-      description: >-
-        Contains the information to handle whenever watched form fields are changed
-      type: object
-      properties:
-        on_change_callback:
-          description: >-
-            The URL that Asana should send requests to whenever watched field values are changed
-          type: string
-          example: 'https://app-server.com/form/onchange'
+              example: 'https://www.example.com/on_change'
     FormSubmissionRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
@@ -463,10 +434,20 @@ components:
               type: string
               description: >-
                 The id of the target object that the Rule is acting on (currently always a Task id)
+            action:
+              type: string
+              description: >-
+                The action id generated from rule creation.
             action_type:
               type: string
               description: >-
                 The id from the configuration used to create the app action. This is a developer-provided string.
+            idempotency_key:
+              required: true
+              type: string
+              description: >-
+                A unique key associated with the "Run action" request. App Servers should use
+                this key to implement idempotency.
     RanActionResponse:
       type: object
       description: >-
@@ -562,19 +543,54 @@ components:
               type: string
               example: 'https://example-icon.png'
             footer:
-              description: >-
-                The text to show in the title of the widget
-              type: string
-              example: 'Last updated 19 hours ago'
+              $ref: '#/components/schemas/WidgetFooter'
             num_comments:
               description: >-
                 The number of comments to display on the lower right corner of the widget. If not provided, no comment
                 count will be shown
               type: integer
               example: 2
+    WidgetFooter:
+      description: >-
+        Contains the information to display a footer on the widget
+      type: object
+      properties:
+        footer_type:
+          description: The type of widget footer.
+          type: string
+          enum:
+            - custom_text
+            - updated
+            - created
+          example: 'custom_text'
+        info:
+          description: >-
+            *Conditional* Only relevant for WidgetFooters of type `custom_text`.
+            The text to show in the footer.
+          type: string
+          example: 'This is a custom footer message'
+        icon_url:
+          description: >-
+            *Conditional* Only relevant for WidgetFooters of type `custom_text`.
+            The icon to show in the footer next to the text. If not provided, no
+            icon will be shown.
+          type: string
+          example: 'https://example-icon.png'
+        last_updated_at:
+          description: >-
+            *Conditional* Only relevant for WidgetFooters of type `updated`.
+            The time (in ISO-8601 date format) to show in the footer.
+          type: string
+          example: '2012-02-22T02:06:58.147Z'
+        created_at:
+          description: >-
+            *Conditional* Only relevant for WidgetFooters of type `created`.
+            The time (in ISO-8601 date format) to show in the footer.
+          type: string
+          example: '2012-02-22T02:06:58.147Z'
     WidgetField:
       description: >-
-        Contains the information to display a pill field on the widget
+        Contains the information to display a field on the widget
       type: object
       properties:
         name:
@@ -583,22 +599,27 @@ components:
           type: string
           example: 'Status'
         type:
-          description: The type of widget field (this should be `pill`).
+          description: The type of widget field.
           type: string
           enum:
             - pill
-            - icon
+            - text_with_icon
+            - datetime_with_icon
           example: 'pill'
         text:
-          description: The text to show in the field. Max size of 40 char.
+          description: >-
+            *Conditional*. Only relevant for WidgetFields of type
+            `pill` and `text_with_icon`. The text to show in the field. Max size of 40 char.
           type: string
           example: 'To Do'
         color:
-          description: The color of the pill.
+          description: >-
+            *Conditional*. Only relevant for WidgetFields of type
+            `pill`. The color of the pill.
           type: string
           enum:
             - none
-            - red"
+            - red
             - orange
             - yellow-orange
             - yellow
@@ -615,9 +636,18 @@ components:
             - cool-gray
           example: 'gray'
         icon_url:
-          description: The URL of the icon to display next to the text
+          description: >-
+            *Conditional*. Only relevant for WidgetFields of type
+            `text_with_icon` and `datetime_with_icon`. The URL of the icon to
+            display next to the text or time.
           type: string
           example: 'https://example-icon.png'
+        timestamp:
+          description: >-
+            *Conditional*. Only relevant for WidgetFields of type `datetime_with_icon`.
+            The time (in ISO-8601 date format) to display next to the icon.
+          type: string
+          example: '2012-02-22T02:06:58.147Z'
 paths:
   /{widget_metadata_url}:
     parameters:
@@ -625,7 +655,6 @@ paths:
       - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/task'
       - $ref: '#/components/parameters/user'
-      - $ref: '#/components/parameters/locale'
       - $ref: '#/components/parameters/attachment'
       - $ref: '#/components/parameters/expires_at'
     get:
@@ -694,7 +723,6 @@ paths:
       - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/task'
       - $ref: '#/components/parameters/user'
-      - $ref: '#/components/parameters/locale'
       - $ref: '#/components/parameters/expires_at'
     get:
       summary: Get form metadata
@@ -856,22 +884,13 @@ paths:
           $ref: '#/components/responses/Gone'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /{metadata_url}:
+  /{action.metadata_url}:
     parameters:
       - $ref: '#/components/parameters/action'
       - $ref: '#/components/parameters/action_type'
-      - name: idempotency_key
-        required: true
-        in: query
-        schema:
-          type: string
-        description: >-
-          A unique key associated with the "Run action" request. App Servers should use
-          this key to implement idempotency.
       - $ref: '#/components/parameters/project'
       - $ref: '#/components/parameters/workspace'
       - $ref: '#/components/parameters/user'
-      - $ref: '#/components/parameters/locale'
       - $ref: '#/components/parameters/expires_at'
     get:
       summary: Get action metadata
