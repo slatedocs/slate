@@ -22,6 +22,40 @@ Overview
 }
 ```
 
+> The above command returns JSON structured like this:
+
+```json
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 1624785162815971526,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "LoginStatus": 1,
+  "RejectReason": 50,
+  "RiskMaster": "N"
+}
+```
+
+```json
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 1624785162815971526,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "LoginStatus": 1,
+  "RejectReason": 50,
+  "RiskMaster": "N"
+}
+```
+
 1. The BOClientLogon message must be sent to the AES in order to initiate the logon process \(please contact BO Representative for IP address and port\).
 2. Please refer to the BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
 3. The AES will respond with a BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
