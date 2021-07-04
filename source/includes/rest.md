@@ -4,7 +4,7 @@
 
 Overview
 
-## BOClientLogon
+## REST BOClientLogon
 
 ### BOClientLogon -- Client Sending
 
@@ -18,6 +18,42 @@ Overview
   "SendingTime": 18343447,
   "MsgSeqID": 110434,
   "Key": 123456,
+  "RiskMaster": "N"
+}
+```
+
+> AES response
+
+```json
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 1624785162815971526,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "LoginStatus": 1,
+  "RejectReason": 50,
+  "RiskMaster": "N"
+}
+```
+
+> OES response
+
+```json
+{
+  "msg1": "H",
+  "LogonType": 1,
+  "Account": 100700,
+  "UserName": "BOU7",
+  "TradingSessionID": 506,
+  "SendingTime": 1624785162815971526,
+  "MsgSeqID": 110434,
+  "Key": 123456,
+  "LoginStatus": 1,
+  "RejectReason": 50,
   "RiskMaster": "N"
 }
 ```
@@ -56,7 +92,7 @@ Overview
 3. IP address and port of the OES will be sent in the server response BOClientLogon message.
 4. Sending times are in nanoseconds from the epoch, January 1, 1970.
 
-## Collateral Data
+## REST Collateral Data
 
 ```json
 {
@@ -95,7 +131,7 @@ Overview
 
 `POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
 
-## Risk Symbol Update
+## REST Risk Symbol Update
 
 ```json
 {
@@ -138,11 +174,26 @@ Overview
 }
 ```
 
+| Field Name           | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value | Notes  |
+| :------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :----: |
+| **Data1**            |   char    |      1      |       0       |       X        |       w        |       w       | Header |
+| **Data2**            |   char    |      1      |       1       |                |                |               | Header |
+| **Data3**            |   short   |      2      |       2       |       X        |       34       |      34       | Header |
+| **MessageType**      |   short   |      2      |       4       |       \*       |       w        |       w       | Note 6 |
+| **ResponseType**     |   short   |      2      |       6       |       X        |                |       2       | Note 1 |
+| **Account**          |    Int    |      4      |       8       |       X        |                |    100700     | Note 2 |
+| **TradingSessionID** |    Int    |      4      |      12       |       X        |                |      506      | Note 3 |
+| **SymbolEnum**       |   short   |      2      |      16       |                |                |       1       | Note 2 |
+| **Key**              |    Int    |      2      |      18       |                |                |               | Note 4 |
+| **MsgSeqNum**        |    Int    |      4      |      22       |       X        |                |    1005231    |        |
+| **SendingTime**      | Uint64_t  |      4      |      26       |       X        |                |               | Note 6 |
+|                      |           | TotalLength |      34       |                |                |               |        |
+
 ##### HTTP Request
 
 `POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
 
-## Instrument Data
+## REST Instrument Data
 
 ```json
 {
@@ -176,11 +227,58 @@ Overview
 }
 ```
 
+| Field Name           | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
+| :------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
+| **Data1**            |   char    |      1      |       0       |       X        |       Y        |       Y       |  Header  |
+| **Data2**            |   char    |      1      |       1       |                |                |               |  Header  |
+| **Data3**            |   short   |      2      |       2       |       X        |       62       |      62       |  Header  |
+| **MessageType**      |   short   |      2      |       4       |                |                |               | Not used |
+| **RejectReason**     |    Int    |      4      |       6       |       \*       |       Y        |       Y       |  Note 7  |
+| **Account**          |    Int    |      4      |       8       |       X        |                |    100700     |  Note 1  |
+| **RequestType**      |   short   |      2      |      12       |       X        |                |       2       |  Note 2  |
+| **Key**              |    Int    |      4      |      14       |       X        |                |               |  Note 2  |
+| **SymbolName**       |  char[]   |     24      |      18       |                |                |               |  Note 3  |
+| **SymbolType**       |   short   |      2      |      42       |                |                |               |  Note 4  |
+| **SymbolEnum**       |   short   |      2      |      44       |                |                |               |  Note 5  |
+| **TradingSessionID** |    Int    |      4      |      46       |                |                |      506      |          |
+| **SendingTime**      |   Long    |      8      |      50       |       X        |                |               |  Note 6  |
+| **MsgSeqNum**        |    Int    |      4      |      58       |       X        |                |    1500201    |          |
+|                      |           | TotalLength |      62       |                |                |               |          |
+
+Note 1: TradingSessionID, UserName and Account number supplied by Black Ocean to the user.
+Note 2: RequestType is an enum with the following values:
+
+| Enum Name       | Enum Value(short int) |                         |
+| :-------------- | :-------------------: | :---------------------: |
+| **ALL**         |           1           | Request all instruments |
+| **SYMBOL_ENUM** |           2           | Individual instruments  |
+
+Note 3: Character string name representation an individual instrument if known, if not known the name will be provided in the BOInstrument response
+Note 4: SymbolType is a short integer enum with the following possible values:
+
+| Enum Name: Symbol Type | Enum Value | Enum Data Type: short |
+| :--------------------- | :--------: | :-------------------: |
+| **SPOT**               |     1      |                       |
+| **FUTURES**            |     2      |                       |
+| **DERIVATIVE**         |            |                       |
+
+Note 5: Symbol Enum is a short integer with the following possible values:
+
+| Enum Name: Symbol Enum | Enum Value |
+| :--------------------- | :--------: |
+| **BTCUSD**             |     1      |
+| **USDUSDT**            |     2      |
+| **FLYUSDT**            |     3      |
+| **BTCUSDT**            |     4      |
+
+Note 6: Sending times are in nanoseconds from the epoch, January 1, 1970
+Note 7: If the request was rejected, the reject reason will be in the ﬁeld RejectReason, see section below for possible values
+
 ##### HTTP Request
 
 `POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
 
-## Order Entry
+## REST Order Entry
 
 ```json
 {
