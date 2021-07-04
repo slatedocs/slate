@@ -133,6 +133,7 @@ Overview
 
 ## JSON Risk Symbol Update
 
+
 ```json
 {
   "msg1": "w",
@@ -174,6 +175,21 @@ Overview
 }
 ```
 
+| Field Name           | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |   Notes   |
+| :------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :-------: |
+| **Data1**            |   char    |      1      |       0       |       X        |        w       |       w       |   Header  |
+| **Data2**            |   char    |      1      |       1       |                |                |               |   Header  |
+| **Data3**            |   short   |      2      |       2       |       X        |       34       |      34       |   Header  |
+| **MessageType**      |   short   |      2      |       4       |       *        |        w       |       w       |   Note 6  |
+| **ResponseType**     |   short   |      2      |       6       |       X        |                |       2       |   Note 1  |
+| **Account**          |    Int    |      4      |       8       |       X        |                |    100700     |   Note 2  |
+| **TradingSessionID** |    Int    |      4      |      12       |       X        |                |      506      |   Note 3  |
+| **SymbolEnum**       |   short   |      2      |      16       |                |                |        1      |   Note 2  |
+| **Key**              |    Int    |      2      |      18       |                |                |               |   Note 4  |
+| **MsgSeqNum**        |    Int    |      4      |      22       |       X        |                |    1005231    |           |
+| **SendingTime**      |  Uint64_t |      4      |      26       |       X        |                |               |   Note 6  |
+|                      |           | TotalLength |      34       |                |                |               |           |
+
 ##### HTTP Request
 
 `POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
@@ -211,6 +227,45 @@ Overview
   "LastSeqNum": 505
 }
 ```
+
+| Field Name           | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |   Notes   |
+| :------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :-------: |
+| **Data1**            |   char    |      1      |       0       |       X        |        Y       |       Y       |   Header  |
+| **Data2**            |   char    |      1      |       1       |                |                |               |   Header  |
+| **Data3**            |   short   |      2      |       2       |       X        |       62       |      62       |   Header  |
+| **MessageType**      |   short   |      2      |       4       |                |                |               |  Not used |
+| **RejectReason**     |    Int    |      4      |       6       |       *        |        Y       |       Y       |   Note 7  |
+| **Account**          |    Int    |      4      |       8       |       X        |                |    100700     |   Note 1  |
+| **RequestType**      |   short   |      2      |      12       |       X        |                |       2       |   Note 2  |
+| **Key**              |    Int    |      4      |      14       |       X        |                |               |   Note 2  |
+| **SymbolName**       |   char[]  |      24     |      18       |                |                |               |   Note 3  |
+| **SymbolType**       |   short   |      2      |      42       |                |                |               |   Note 4  |
+| **SymbolEnum**       |   short   |      2      |      44       |                |                |               |   Note 5  |
+| **TradingSessionID** |    Int    |      4      |      46       |                |                |      506      |           |
+| **SendingTime**      |   Long    |      8      |      50       |       X        |                |               |   Note 6  |
+| **MsgSeqNum**        |    Int    |      4      |      58       |       X        |                |    1500201    |           |
+|                      |           | TotalLength |      62       |                |                |               |           |
+
+
+| Enum Name        | Enum Value(short int) |                         |
+| :--------------- | :-------------------: | :---------------------: |
+| **ALL**          |           1           | Request all instruments |
+| **SYMBOL_ENUM**  |           2           | Individual instruments  |
+
+
+| Enum Name: Symbol Type | Enum Value | Enum Data Type: short |
+| :--------------------- | :--------: | :-------------------: |
+| **SPOT**               |      1     |                       |
+| **FUTURES**            |      2     |                       |
+| **DERIVATIVE**         |            |                       |
+
+
+| Enum Name: Symbol Enum | Enum Value |
+| :--------------------- | :--------: |
+| **BTCUSD**             |      1     |
+| **USDUSDT**            |      2     |
+| **FLYUSDT**            |      3     |
+| **BTCUSDT**            |      4     |
 
 ##### HTTP Request
 
