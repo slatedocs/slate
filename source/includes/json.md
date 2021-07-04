@@ -22,7 +22,7 @@ Overview
 }
 ```
 
-> The above command returns JSON structured like this:
+> AES response
 
 ```json
 {
@@ -39,6 +39,8 @@ Overview
   "RiskMaster": "N"
 }
 ```
+
+> OES response
 
 ```json
 {
