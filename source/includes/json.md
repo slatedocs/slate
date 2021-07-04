@@ -107,7 +107,7 @@ Overview
 }
 ```
 
-> The above command returns JSON structured like this:
+> AES response
 
 ```json
 {
@@ -126,6 +126,41 @@ Overview
   "SendingTime": 1624821404365664367
 }
 ```
+
+> OES response
+
+```json
+{
+  "msg1": "h",
+  "MessageType": 31,
+  "UserName": "BOU7",
+  "Account": 100700,
+  "SymbolEnum": 11021,
+  "BTCEquity": 100.0,
+  "USDTEquity": 10000000.0,
+  "FLYEquity": 50000000.0,
+  "USDEquity": 10000000.0,
+  "ETHEquity": 2000.0,
+  "TradingSessionID": 506,
+  "LastSeqNum": 20101010,
+  "SendingTime": 1624821404365664367
+}
+```
+
+| Field Name           |  Data Type   | Data Length | Required Field | Required Value | Example Value | Notes  |
+| :------------------- | :----------: | :---------: | :------------: | :------------: | :-----------: | :----: |
+| **MsgType**          |     char     |      1      |       X        |       f        |       f       | Header |
+| **MsgType**          |     char     |      1      |                |                |               |        |
+| **Length**           |    short     |      2      |       X        |                |               |        |
+| **MessageType**      |    short     |      2      |       X        |                |               |        |
+| **UpdateType**       |    short     |      2      |       X        |                |               |        |
+| **Account**          |     int      |      4      |       X        |                |               |        |
+| **TradingSessionID** |     int      |      4      |       X        |                |               |        |
+| **SymbolEnum**       |    short     |      2      |       X        |                |               |        |
+| **Key**              |     int      |      4      |       X        |                |               |        |
+| **MsgSeqNum**        |     int      |      4      |       X        |                |               |        |
+| **SendingTime**      |   uint64_t   |      8      |       X        |                |               |        |
+|                      | Total Length |     34      |                |                |               |        |
 
 ##### HTTP Request
 
