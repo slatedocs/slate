@@ -80,6 +80,7 @@ curl "https://cloudmc_endpoint/rest/pricings" \
               "pricingMode": "FLAT_FEE",
               "lowerBound": 1000.5,
               "upperBound": 2000.0,
+              "chunkSize": 500,
               "price": {
                 "CAD": 999
               },
@@ -229,6 +230,7 @@ curl "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb
              "pricingMode": "FLAT_FEE",
              "lowerBound": 1000.5,
              "upperBound": 2000.0,
+             "chunkSize": 500,
              "price": {
               "CAD": 999
              },
@@ -343,7 +345,7 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
         {
          "pricingMode": "FLAT_FEE",
          "lowerBound": 1000.5,
-         "upperBound": 2000.0,
+         "chunkSize": 500,
          "price": {
           "CAD": 999
          },
@@ -413,7 +415,7 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
         {
          "pricingMode": "FLAT_FEE",
          "lowerBound": 1000.5,
-         "upperBound": 2000.0,
+         "chunkSize": 500,
          "price": {
           "CAD": 999
          },
