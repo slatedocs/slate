@@ -126,7 +126,7 @@ Attributes | &nbsp;
 `pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound.
 `pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound.
-`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The currencies of the pricing tier.
+`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The pricing tier's price in each of the pricing product's supported currencies.
 `pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size.
 
 
@@ -285,7 +285,7 @@ Attributes | &nbsp;
 `pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound.
 `pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound.
-`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The currencies of the pricing tier.
+`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The pricing tier's price in each of the pricing product's supported currencies.
 `pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size.
 
 <!-------------------- CREATE PRICING -------------------->
@@ -471,7 +471,7 @@ Optional | &nbsp;
 `pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT". If a pricing tier is specified, this attribute is mandatory.
 `pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound. The lower bound must be a non-negative value. If a pricing tier is specified, this attribute is mandatory.
 `pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound. The upper bound must be a non-negative value. If a pricing tier is specified, the upper bound must be specified unless it is a part of the last pricing tier. In that case, a null value indicates that there is no upper bound for the given tier. 
-`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The currencies of the pricing tier. All currencies specified must be supported by the pricing. Any missing or invalid currencies will not be accepted. Also, pricings must be non-negative.
+`pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The pricing tier's price in each of the pricing product's supported currencies. All currencies specified must be supported by the pricing. Any missing or invalid currencies will not be accepted. Also, pricings must be non-negative.
 `pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size. The chunk size must be a non-negative value
 
 <!-------------------- UPDATE PRICING -------------------->
