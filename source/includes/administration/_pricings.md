@@ -69,20 +69,20 @@ curl "https://cloudmc_endpoint/rest/pricings" \
           "pricingTiers": [
             {
               "pricingMode": "FLAT_FEE",
+              "lowerBound": 0.0,
               "upperBound": 1000.5,
               "price": {
                 "CAD": 999
               },
-              "lowerBound": 0.0,
               "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
              },
              {
               "pricingMode": "FLAT_FEE",
+              "lowerBound": 1000.5,
               "upperBound": 2000.0,
               "price": {
                 "CAD": 999
               },
-              "lowerBound": 1000.5,
               "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
              }
            ],
@@ -218,20 +218,20 @@ curl "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb
           "pricingTiers": [
             {
               "pricingMode": "FLAT_FEE",
+              "lowerBound": 0.0,
               "upperBound": 1000.5,
               "price": {
                "CAD": 999
               },
-             "lowerBound": 0.0,
              "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
             },
             {
              "pricingMode": "FLAT_FEE",
+             "lowerBound": 1000.5,
              "upperBound": 2000.0,
              "price": {
               "CAD": 999
              },
-             "lowerBound": 1000.5,
              "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
             }
            ],
@@ -333,20 +333,20 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
       "pricingTiers": [
         {
          "pricingMode": "FLAT_FEE",
+         "lowerBound": 0.0,
          "upperBound": 1000.5,
          "price": {
          "CAD": 999
          },
-         "lowerBound": 0.0,
          "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
         },
         {
          "pricingMode": "FLAT_FEE",
+         "lowerBound": 1000.5,
          "upperBound": 2000.0,
          "price": {
           "CAD": 999
          },
-         "lowerBound": 1000.5,
          "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
         }
       ],
@@ -403,20 +403,20 @@ curl -X POST "https://cloudmc_endpoint/rest/pricings" \
       "pricingTiers": [
         {
          "pricingMode": "FLAT_FEE",
+         "lowerBound": 0.0,
          "upperBound": 1000.5,
          "price": {
          "CAD": 999
          },
-         "lowerBound": 0.0,
          "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
         },
         {
          "pricingMode": "FLAT_FEE",
+         "lowerBound": 1000.5,
          "upperBound": 2000.0,
          "price": {
           "CAD": 999
          },
-         "lowerBound": 1000.5,
          "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
         }
       ]
