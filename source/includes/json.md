@@ -211,9 +211,9 @@ Overview
 
 | Field Name           | Data Type | Data Length | Required Field | Required Value | Example Value | Notes  |
 | :------------------- | :-------: | :---------: | :------------: | :------------: | :-----------: | :----: |
-| **Data1**            |   char    |      1      |       X        |       w        |       w       | Header |
-| **Data2**            |   char    |      1      |                |                |               | Header |
-| **Data3**            |   short   |      2      |       X        |       34       |      34       | Header |
+| **Msg1**             |   char    |      1      |       X        |       w        |       w       | Header |
+| **Msg2**             |   char    |      1      |                |                |               | Header |
+| **MsgLen**           |   short   |      2      |       X        |       34       |      34       | Header |
 | **MessageType**      |   short   |      2      |       \*       |       w        |       w       | Note 6 |
 | **ResponseType**     |   short   |      2      |       X        |                |       2       | Note 1 |
 | **Account**          |    Int    |      4      |       X        |                |    100700     | Note 2 |
@@ -264,9 +264,9 @@ Overview
 
 | Field Name           | Data Type | Data Length | Required Field | Required Value | Example Value |  Notes   |
 | :------------------- | :-------: | :---------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**            |   char    |      1      |       X        |       Y        |       Y       |  Header  |
-| **Data2**            |   char    |      1      |                |                |               |  Header  |
-| **Data3**            |   short   |      2      |       X        |       62       |      62       |  Header  |
+| **Msg1**             |   char    |      1      |       X        |       Y        |       Y       |  Header  |
+| **Msg2**             |   char    |      1      |                |                |               |  Header  |
+| **MsgLen**           |   short   |      2      |       X        |       62       |      62       |  Header  |
 | **MessageType**      |   short   |      2      |                |                |               | Not used |
 | **RejectReason**     |    Int    |      4      |       \*       |       Y        |       Y       |  Note 7  |
 | **Account**          |    Int    |      4      |       X        |                |    100700     |  Note 1  |

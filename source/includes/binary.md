@@ -13,9 +13,9 @@ Each message in the API is preceded by a 4 byte header. This header conveys the 
 
 | Field Name | Data type | Data Length | Buffer Offset | Example Value |
 | ---------- | --------- | ----------- | ------------- | ------------- |
-| Data1      | char      | 1           | 0             | 'H'           |
-| Data2      | char      | 1           | 1             |
-| Data3      | short     | 2           | 2             | 161           |
+| Msg1       | char      | 1           | 0             | 'H'           |
+| Msg2       | char      | 1           | 1             |
+| MsgLen     | short     | 2           | 2             | 161           |
 
 ### Application Messages
 
@@ -93,7 +93,7 @@ DESCRIPTION
 
 | Field Name       | Data Type | Required | Notes |
 | ---------------- | --------- | -------- | ----- |
-| Data1            | char      | X        |
+| Msg1             | char      | X        |
 | LogonType        | short     | X        |
 | Account          | Int       | X        |
 | UserName         | char[]    | X        |
@@ -108,9 +108,9 @@ DESCRIPTION
 
 | Field Name       | Data Type    | Data Length | Buffer Offset | Required Field | Required Value | Example Value     | Notes    |
 | ---------------- | ------------ | ----------- | ------------- | -------------- | -------------- | ----------------- | -------- |
-| Data1            | char         | 1           | 0             | X              | H              | H                 | Header   |
-| Data2            | char         | 1           | 1             |                |                |                   | Header   |
-| Data3            | short        | 2           | 2             | X              | 143            | 143               | Header   |
+| Msg1             | char         | 1           | 0             | X              | H              | H                 | Header   |
+| Msg2             | char         | 1           | 1             |                |                |                   | Header   |
+| MsgLen           | short        | 2           | 2             | X              | 143            | 143               | Header   |
 | LogonType        | short        | 2           | 4             |                |                | 1                 | Note 1   |
 | Account          | Int          | 4           | 6             | \*             |                | 253336            | Note 2   |
 | 2FA              | char[]       | 6           | 10            | X              |                | 1F6A              | Note 3   |
@@ -268,9 +268,9 @@ BOOrdQty = SizeIncrement \* Layers = 9.00
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |                |                |   ORDER_NEW   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -349,9 +349,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   ORDER_ACK   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -400,9 +400,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | CANCEL_REPLACE |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -481,9 +481,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   REPLACED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -532,9 +532,9 @@ User wishes to cancel replace the order sent in the previous section
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_CANCEL  |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -613,9 +613,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   CANCELED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -664,9 +664,9 @@ Note 1: If the message was accepted MessageType = MessageType::CANCELLED. If the
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_NEW   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -728,9 +728,9 @@ The OES will respond to a MKT order only in the case it was rejected, MessageTyp
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |    REJECT     |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -779,9 +779,9 @@ Note 1: If the message was accepted MessageType = MessageType::ORDER_ACK. If the
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_NEW   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -860,9 +860,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   ORDER_ACK   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -911,9 +911,9 @@ User wishes to cancel replace the order sent in the previous section
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | CANCEL_REPLACE |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -994,9 +994,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |    REPLACE    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -1047,9 +1047,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_CANCEL  |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -1128,9 +1128,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   CANCELED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -1179,9 +1179,9 @@ Note 1: If the message was accepted MessageType = MessageType::CANCELLED. If the
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_NEW    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1258,9 +1258,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   ORDER_ACK    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1309,9 +1309,9 @@ User wishes to cancel replace the order sent in the previous section
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | CANCEL_REPLACE |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1392,9 +1392,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |     **\***     |    REPLACED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1443,9 +1443,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_CANCELED |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1526,9 +1526,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |    CANCELED    |    CANCELED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1577,9 +1577,9 @@ Note 1: If the message was accepted MessageType = MessageType::CANCELLED. If the
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_NEW   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -1658,9 +1658,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   ORDER_ACK   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -1709,9 +1709,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       | ORDER_CANCELED |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1792,9 +1792,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   REPLACED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -1843,9 +1843,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_CANCELED |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -1926,9 +1926,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   CANCELED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -1977,9 +1977,9 @@ Note 1: If the message was accepted MessageType = MessageType::ORDER_ACK. If the
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_NEW   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -2075,9 +2075,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   ORDER_ACK   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -2124,9 +2124,9 @@ Note 1: If the message was accepted MessageType = MessageType::ORDER_ACK. If the
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | CANCEL_REPLACE |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -2222,9 +2222,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   REPLACED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -2273,9 +2273,9 @@ User wishes to cancel replace the order sent in the previous section. Please see
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value  |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T        |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238       |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_CANCELED |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |     100700     |          |
@@ -2354,9 +2354,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   CANCELED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -2405,9 +2405,9 @@ Note 1: If the message was accepted MessageType = MessageType::CANCELLED. If the
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |   Example Value    |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :----------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                    |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                    |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |     ORDER_NEW      |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                    | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |       100700       |          |
@@ -2484,9 +2484,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |   Example Value    |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :----------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                    |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                    |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |     ORDER_ACK      |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                    | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |       100700       |          |
@@ -2535,9 +2535,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |   Example Value    |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :----------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                    |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                    |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_REPLACE    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                    | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |       100700       |          |
@@ -2616,9 +2616,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |   Example Value    |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :----------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                    |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                    |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |      REPLACED      |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                    | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |       100700       |          |
@@ -2667,9 +2667,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |   Example Value    |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :----------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                    |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |         T          |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                    |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |        238         |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |    ORDER_CANCEL    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                    | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |       100700       |          |
@@ -2748,9 +2748,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value      |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :--------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T            |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                        |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238           |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T            |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                        |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238           |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |        CANCELED        |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                        | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |         100700         |          |
@@ -2801,9 +2801,9 @@ TSM order are trailing stop market orders. TSL orders are trailing stop limit or
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |   ORDER_NEW   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -2880,9 +2880,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   ORDER_ACK   |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -2931,9 +2931,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_REPLACE |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -3012,9 +3012,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |   REPLACED    |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -3063,9 +3063,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value | Example Value |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-----------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |       T       |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |      238      |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | ORDER_CANCEL  |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |    100700     |          |
@@ -3144,9 +3144,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value      |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :--------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T            |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                        |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238           |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T            |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                        |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238           |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |        CANCELED        |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                        | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |         100700         |          |
@@ -3197,9 +3197,9 @@ Sniper orders allow a user to wait for a price to reach a certain price and then
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value     |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                       |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                       |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |       ORDER_NEW       |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                       | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |        100700         |          |
@@ -3276,9 +3276,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value     |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                       |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                       |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |       ORDER_ACK       |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                       | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |        100700         |          |
@@ -3327,9 +3327,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value     |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                       |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                       |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |    CANCEL_REPLACE     |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                       | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |        100700         |          |
@@ -3408,9 +3408,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value     |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                       |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                       |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |       REPLACED        |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                       | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |        100700         |          |
@@ -3459,9 +3459,9 @@ User wishes to cancel replace the order sent in the previous section.
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value     |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                       |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                       |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                |    ORDER_CANCELED     |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                       | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |        100700         |          |
@@ -3540,9 +3540,9 @@ The OES will respond to the order submitted in the previous example with a BOTra
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |     Example Value     |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                       |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |           T           |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                       |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |          238          |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       |       CANCELED        |  Note 1  |
 | **Padding**           |   short   |      2      |       6       |                |                |                       | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |        100700         |          |
@@ -3591,9 +3591,9 @@ These two message types are generated when an incoming Quote interacts with a re
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |        Example Value        |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :-------------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |              T              |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                             |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |             238             |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |              T              |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                             |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |             238             |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |       \*       | EXECUTION/EXECUTION_PARTIAL |          |
 | **Padding**           |   short   |      2      |       6       |                |                |                             | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |           100700            |          |
@@ -3638,9 +3638,9 @@ These two message types are generated when an incoming Quote interacts with a re
 
 | Field Name            | Data Type | Data Length | Buffer Offset | Required Field | Required Value |         Example Value         |  Notes   |
 | :-------------------- | :-------: | :---------: | :-----------: | :------------: | :------------: | :---------------------------: | :------: |
-| **Data1**             |   char    |      1      |       0       |       X        |       T        |               T               |  Header  |
-| **Data2**             |   char    |      1      |       1       |                |                |                               |  Header  |
-| **Data3**             |   short   |      2      |       2       |       X        |      238       |              238              |  Header  |
+| **Msg1**              |   char    |      1      |       0       |       X        |       T        |               T               |  Header  |
+| **Msg2**              |   char    |      1      |       1       |                |                |                               |  Header  |
+| **MsgLen**            |   short   |      2      |       2       |       X        |      238       |              238              |  Header  |
 | **MessageType**       |   short   |      2      |       4       |       \*       |                | QUOTE_FILL/QUOTE_FILL_PARTIAL |          |
 | **Padding**           |   short   |      2      |       6       |                |                |                               | Not used |
 | **Account**           |    Int    |      4      |       8       |       X        |                |            100700             |          |
