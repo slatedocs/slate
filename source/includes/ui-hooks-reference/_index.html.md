@@ -45,7 +45,7 @@ The creation form is displayed when the user starts the flow to create a resourc
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{form_metadata_url}?workspace=string&task=string&user=string&locale=string&expires_at=string \
+curl -X GET {siteUrl}/{form_metadata_url}?workspace=string&task=string&user=string&expires_at=string \
   -H 'Accept: application/json'
 
 ```
@@ -80,13 +80,12 @@ getFormMetadata
 ```json
 {
   "metadata": {
-    "error": "You must provide either a name or a title",
     "fields": [
       {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -95,16 +94,13 @@ getFormMetadata
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
       }
     ],
-    "on_change": {
-      "on_change_callback": "https://app-server.com/form/onchange"
-    },
-    "on_submit_callback": "www.example.com/on_submit",
+    "on_change_callback": "https://www.example.com/on_change",
+    "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
     "title": "Create New Issue"
   },
@@ -129,7 +125,6 @@ Get the metadata from the App Server to render a form.
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
 |?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
-|?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 
 <h3 id="get-form-metadata-responses">Responses</h3>
@@ -192,7 +187,6 @@ onFormChange
 {
   "changed_field": "string",
   "expires_at": "string",
-  "locale": "string",
   "task": "string",
   "user": "string",
   "workspace": "string"
@@ -204,13 +198,12 @@ onFormChange
 ```json
 {
   "metadata": {
-    "error": "You must provide either a name or a title",
     "fields": [
       {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -219,16 +212,13 @@ onFormChange
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
       }
     ],
-    "on_change": {
-      "on_change_callback": "https://app-server.com/form/onchange"
-    },
-    "on_submit_callback": "www.example.com/on_submit",
+    "on_change_callback": "https://www.example.com/on_change",
+    "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
     "title": "Create New Issue"
   },
@@ -253,7 +243,6 @@ The callback request made to an App Server when a watched field's value changes 
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to notify of an on change event.|
 |» changed_field<span class="param-type"> string</span>|The name of the changed FormField|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -317,17 +306,16 @@ onFormSubmit
 ```json
 {
   "expires_at": "string",
-  "locale": "string",
   "task": "string",
   "user": "string",
   "values": {
     "property1": {
       "field_name": "string",
       "field_object": {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -336,7 +324,6 @@ onFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
@@ -345,10 +332,10 @@ onFormSubmit
     "property2": {
       "field_name": "string",
       "field_object": {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -357,7 +344,6 @@ onFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
@@ -394,22 +380,20 @@ The callback request made to an App Server when a form is submitted.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to notify of a form submission.|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» values<span class="param-type"> object</span>|A FormValues object mapping each FormField’s name to its value|
 |»» field_name<span class="param-type"> string</span>|none|
 |»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and `dropdown` has a limit of 50.|
-|»»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
 |»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
+|»»» name<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
 |»»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
 |»»»» id<span class="param-type"> string</span>|The id of the option|
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
@@ -424,10 +408,10 @@ The callback request made to an App Server when a form is submitted.
 | type|rich_text|
 | type|static_text|
 | type|dropdown|
-| type|checkboxes|
+| type|checkbox|
 | type|radio_button|
-| type|date_input|
-| type|date_time_input|
+| type|date|
+| type|datetime|
 | type|typeahead|
 | width|full|
 | width|half|
@@ -451,7 +435,7 @@ The callback request made to an App Server when a form is submitted.
 <span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/run-action"><span class="post-verb">POST</span> <span class=""nn>/{run_action_url}</span></a><br><a href="/docs/get-action-metadata"><span class="get-verb">GET</span> <span class=""nn>/{metadata_url}</span></a><br><a href="/docs/on-action-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_change_callback}</span></a><br><a href="/docs/on-action-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_submit_callback}</span></a></code>
+<code><a href="/docs/run-action"><span class="post-verb">POST</span> <span class=""nn>/{run_action_url}</span></a><br><a href="/docs/get-action-metadata"><span class="get-verb">GET</span> <span class=""nn>/{action.metadata_url}</span></a><br><a href="/docs/on-action-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_change_callback}</span></a><br><a href="/docs/on-action-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_submit_callback}</span></a></code>
 </pre>
 
 <span class="description">
@@ -506,9 +490,10 @@ runAction
 
 ```json
 {
+  "action": "string",
   "action_type": "string",
   "expires_at": "string",
-  "locale": "string",
+  "idempotency_key": "string",
   "target_object": "string",
   "user": "string",
   "workspace": "string"
@@ -546,9 +531,10 @@ The request made when an action is triggered.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to notify of an action running.|
+|» action<span class="param-type"> string</span>|The action id generated from rule creation.|
 |» action_type<span class="param-type"> string</span>|The id from the configuration used to create the app action. This is a developer-provided string.|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
+|» idempotency_key<span class="param-type"> string</span>|A unique key associated with the "Run action" request. App Servers should use this key to implement idempotency.|
 |» target_object<span class="param-type"> string</span>|The id of the target object that the Rule is acting on (currently always a Task id)|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -576,7 +562,7 @@ The request made when an action is triggered.
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{metadata_url}?action_type=string&idempotency_key=string&project=string&workspace=string&user=string&locale=string&expires_at=string \
+curl -X GET {siteUrl}/{action.metadata_url}?action_type=string&project=string&workspace=string&user=string&expires_at=string \
   -H 'Accept: application/json'
 
 ```
@@ -611,13 +597,12 @@ getActionMetadata
 ```json
 {
   "metadata": {
-    "error": "You must provide either a name or a title",
     "fields": [
       {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -626,16 +611,13 @@ getActionMetadata
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
       }
     ],
-    "on_change": {
-      "on_change_callback": "https://app-server.com/form/onchange"
-    },
-    "on_submit_callback": "www.example.com/on_submit",
+    "on_change_callback": "https://www.example.com/on_change",
+    "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
     "title": "Create New Issue"
   },
@@ -646,7 +628,7 @@ getActionMetadata
 > See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
 
 <p>
-<code> <span class="get-verb">GET</span> /{metadata_url}</code>
+<code> <span class="get-verb">GET</span> /{action.metadata_url}</code>
 </p>
 
 <span class="description">
@@ -659,11 +641,9 @@ When a user has navigated to the Custom Rule Builder UI and selected an App Acti
 |---|---|
 |?action<span class="param-type"> string</span>|The id of an existing app action that is being edited. Should be omitted when configuring a new app action.|
 |?action_type<span class="param-type"> string</span><div class="param-required">required</div>|The id of the configuration used to create the app action|
-|?idempotency_key<span class="param-type"> string</span><div class="param-required">required</div>|A unique key associated with the "Run action" request. App Servers should use this key to implement idempotency.|
 |?project<span class="param-type"> string</span><div class="param-required">required</div>|The project gid this hook is coming from.|
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
-|?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 
 <h3 id="get-action-metadata-responses">Responses</h3>
@@ -728,7 +708,6 @@ onActionFormChange
   "action_type": "string",
   "changed_field": "string",
   "expires_at": "string",
-  "locale": "string",
   "user": "string",
   "workspace": "string"
 }
@@ -739,13 +718,12 @@ onActionFormChange
 ```json
 {
   "metadata": {
-    "error": "You must provide either a name or a title",
     "fields": [
       {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -754,16 +732,13 @@ onActionFormChange
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
       }
     ],
-    "on_change": {
-      "on_change_callback": "https://app-server.com/form/onchange"
-    },
-    "on_submit_callback": "www.example.com/on_submit",
+    "on_change_callback": "https://www.example.com/on_change",
+    "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
     "title": "Create New Issue"
   },
@@ -790,7 +765,6 @@ The callback request made to an App Server when a watched field's value changes 
 |» action_type<span class="param-type"> string</span>|The id of the configuration used to create the app action|
 |» changed_field<span class="param-type"> string</span>|The name of the changed FormField|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -855,7 +829,6 @@ onActionFormSubmit
   "action": "string",
   "action_type": "string",
   "expires_at": "string",
-  "locale": "string",
   "rule_name": "string",
   "task": "string",
   "user": "string",
@@ -863,10 +836,10 @@ onActionFormSubmit
     "property1": {
       "field_name": "string",
       "field_object": {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -875,7 +848,6 @@ onActionFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
@@ -884,10 +856,10 @@ onActionFormSubmit
     "property2": {
       "field_name": "string",
       "field_object": {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -896,7 +868,6 @@ onActionFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
@@ -912,13 +883,12 @@ onActionFormSubmit
 ```json
 {
   "metadata": {
-    "error": "You must provide either a name or a title",
     "fields": [
       {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -927,16 +897,13 @@ onActionFormSubmit
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
       }
     ],
-    "on_change": {
-      "on_change_callback": "https://app-server.com/form/onchange"
-    },
-    "on_submit_callback": "www.example.com/on_submit",
+    "on_change_callback": "https://www.example.com/on_change",
+    "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
     "title": "Create New Issue"
   },
@@ -962,23 +929,21 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |» action<span class="param-type"> string</span>|The id of an existing app action that is being edited|
 |» action_type<span class="param-type"> string</span>|The id of the configuration used to create the app action|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
 |» rule_name<span class="param-type"> string</span>|The name of the rule being created|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» values<span class="param-type"> object</span>|A FormValues object mapping each FormField’s name to its value|
 |»» field_name<span class="param-type"> string</span>|none|
 |»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and `dropdown` has a limit of 50.|
-|»»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
 |»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
+|»»» name<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
 |»»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
 |»»»» id<span class="param-type"> string</span>|The id of the option|
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
@@ -993,10 +958,10 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 | type|rich_text|
 | type|static_text|
 | type|dropdown|
-| type|checkboxes|
+| type|checkbox|
 | type|radio_button|
-| type|date_input|
-| type|date_time_input|
+| type|date|
+| type|datetime|
 | type|typeahead|
 | width|full|
 | width|half|
@@ -1077,10 +1042,9 @@ resourceSearch
 {
   "attachment": "string",
   "expires_at": "string",
-  "locale": "string",
+  "query": "string",
   "task": "string",
   "user": "string",
-  "value": "string",
   "workspace": "string"
 }
 ```
@@ -1112,10 +1076,9 @@ The search request made to an App Server when the search field is submitted.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to attach a resource with a user given `value`.|
 |» attachment<span class="param-type"> string</span>|The attachment id of the URL attachment|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
+|» query<span class="param-type"> string</span>|The user’s input in the attach resource text input (this is often a resource url or resource key, such as CP-1 or https://abcde.atlassian.net/browse/CP-1)|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
-|» value<span class="param-type"> string</span>|The user’s input in the attach resource text input (this is often a resource url or resource key, such as CP-1 or https://abcde.atlassian.net/browse/CP-1)|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
 <h3 id="resource-search-responses">Responses</h3>
@@ -1153,7 +1116,7 @@ The widget is displayed when the user views a task with an attachment with a res
 > Code samples
 
 ```shell
-curl -X GET {siteUrl}/{widget_metadata_url}?resource_url=string&workspace=string&task=string&user=string&locale=string&attachment=string&expires_at=string \
+curl -X GET {siteUrl}/{widget_metadata_url}?resource_url=string&workspace=string&task=string&user=string&attachment=string&expires_at=string \
   -H 'Accept: application/json'
 
 ```
@@ -1195,10 +1158,17 @@ getWidgetMetadata
         "icon_url": "https://example-icon.png",
         "name": "Status",
         "text": "To Do",
+        "timestamp": "2012-02-22T02:06:58.147Z",
         "type": "pill"
       }
     ],
-    "footer": "Last updated 19 hours ago",
+    "footer": {
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "footer_type": "custom_text",
+      "icon_url": "https://example-icon.png",
+      "info": "This is a custom footer message",
+      "last_updated_at": "2012-02-22T02:06:58.147Z"
+    },
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
     "subtitle": "Custom App Story · Open in Custom App",
@@ -1226,7 +1196,6 @@ Get the metadata from the App Server to render a widget.
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
 |?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
-|?locale<span class="param-type"> string</span><div class="param-required">required</div>|The locale of the user (i.e. en, fr)|
 |?attachment<span class="param-type"> string</span><div class="param-required">required</div>|The attachment id of the URL attachment|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 
@@ -1291,10 +1260,9 @@ attachResource
 {
   "attachment": "string",
   "expires_at": "string",
-  "locale": "string",
+  "query": "string",
   "task": "string",
   "user": "string",
-  "value": "string",
   "workspace": "string"
 }
 ```
@@ -1326,10 +1294,9 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to attach a resource.|
 |» attachment<span class="param-type"> string</span>|The attachment id of the URL attachment|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» locale<span class="param-type"> string</span>|The locale of the user (i.e. en, fr)|
+|» query<span class="param-type"> string</span>|The user’s input in the attach resource text input (this is often a resource url or resource key, such as CP-1 or https://abcde.atlassian.net/browse/CP-1)|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
-|» value<span class="param-type"> string</span>|The user’s input in the attach resource text input (this is often a resource url or resource key, such as CP-1 or https://abcde.atlassian.net/browse/CP-1)|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
 <h3 id="attach-resource-responses">Responses</h3>
@@ -1401,13 +1368,12 @@ The response to a successful attach request.
 ```json
 {
   "metadata": {
-    "error": "You must provide either a name or a title",
     "fields": [
       {
-        "error": "Maximum description length is 256 characters",
         "id": "item-description",
         "is_required": true,
         "is_watched": true,
+        "name": "Item Description",
         "options": [
           {
             "icon_url": "some-icon.png",
@@ -1416,16 +1382,13 @@ The response to a successful attach request.
           }
         ],
         "placeholder": "Type description here...",
-        "title": "Item Description",
         "type": "single_line_text",
         "value": "It's over 9000",
         "width": "full"
       }
     ],
-    "on_change": {
-      "on_change_callback": "https://app-server.com/form/onchange"
-    },
-    "on_submit_callback": "www.example.com/on_submit",
+    "on_change_callback": "https://www.example.com/on_change",
+    "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
     "title": "Create New Issue"
   },
@@ -1444,23 +1407,20 @@ Contains the metadata that describes how to display and manage a form
 |Name|Description|
 |---|---|
 |metadata<span class="param-type"> object</span>|none|
-|» error<span class="param-type"> string</span>|The error that should be displayed at the footer of the creation form|
 |» fields<span class="param-type"> [object]</span>|An array of FormField objects that are rendered in the order they are in the array. Limit of 30 fields.|
-|»» error<span class="param-type"> string</span>|If present, the field will render as having an error and the error will be displayed under the form field|
 |»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
 |»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
 |»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
+|»» name<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
 |»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
 |»»» id<span class="param-type"> string</span>|The id of the option|
 |»»» label<span class="param-type"> string</span>|The label of the option|
 |»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»» title<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
 |»» type<span class="param-type"> string</span>|The type of field the form field is|
 |»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
-|» on_change<span class="param-type"> object</span>|Contains the information to handle whenever watched form fields are changed|
-|»» on_change_callback<span class="param-type"> string</span>|The URL that Asana should send requests to whenever watched field values are changed|
+|» on_change_callback<span class="param-type"> string</span>|The URL to POST the form to whenever watched field values are changed.|
 |» on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button. If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
 |» submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|
 |» title<span class="param-type"> string</span>|The title of the form, which is displayed at the top of the creation form|
@@ -1475,10 +1435,10 @@ Contains the metadata that describes how to display and manage a form
 |type|rich_text|
 |type|static_text|
 |type|dropdown|
-|type|checkboxes|
+|type|checkbox|
 |type|radio_button|
-|type|date_input|
-|type|date_time_input|
+|type|date|
+|type|datetime|
 |type|typeahead|
 |width|full|
 |width|half|
@@ -1589,10 +1549,17 @@ An object describing a typeahead result
         "icon_url": "https://example-icon.png",
         "name": "Status",
         "text": "To Do",
+        "timestamp": "2012-02-22T02:06:58.147Z",
         "type": "pill"
       }
     ],
-    "footer": "Last updated 19 hours ago",
+    "footer": {
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "footer_type": "custom_text",
+      "icon_url": "https://example-icon.png",
+      "info": "This is a custom footer message",
+      "last_updated_at": "2012-02-22T02:06:58.147Z"
+    },
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
     "subtitle": "Custom App Story · Open in Custom App",
@@ -1615,12 +1582,18 @@ An object containing information about the widget
 |metadata<span class="param-type"> object</span>|none|
 |» error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. A widget must contain at least 1 field and no more than 5.|
-|»» color<span class="param-type"> string</span>|The color of the pill.|
-|»» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the text|
+|»» color<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `pill`. The color of the pill.|
+|»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `text_with_icon` and `datetime_with_icon`. The URL of the icon to display next to the text or time.|
 |»» name<span class="param-type"> string</span>|The text to show in the title of the field.|
-|»» text<span class="param-type"> string</span>|The text to show in the field. Max size of 40 char.|
-|»» type<span class="param-type"> string</span>|The type of widget field (this should be `pill`).|
-|» footer<span class="param-type"> string</span>|The text to show in the title of the widget|
+|»» text<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `pill` and `text_with_icon`. The text to show in the field. Max size of 40 char.|
+|»» timestamp<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `datetime_with_icon`. The time (in ISO-8601 date format) to display next to the icon.|
+|»» type<span class="param-type"> string</span>|The type of widget field.|
+|» footer<span class="param-type"> object</span>|Contains the information to display a footer on the widget|
+|»» created_at<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `created`. The time (in ISO-8601 date format) to show in the footer.|
+|»» footer_type<span class="param-type"> string</span>|The type of widget footer.|
+|»» icon_url<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `custom_text`. The icon to show in the footer next to the text. If not provided, no icon will be shown.|
+|»» info<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `custom_text`. The text to show in the footer.|
+|»» last_updated_at<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `updated`. The time (in ISO-8601 date format) to show in the footer.|
 |» num_comments<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
 |» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
@@ -1632,7 +1605,7 @@ An object containing information about the widget
 |Property|Value|
 |---|---|
 |color|none|
-|color|red"|
+|color|red|
 |color|orange|
 |color|yellow-orange|
 |color|yellow|
@@ -1648,7 +1621,11 @@ An object containing information about the widget
 |color|pink|
 |color|cool-gray|
 |type|pill|
-|type|icon|
+|type|text_with_icon|
+|type|datetime_with_icon|
+|footer_type|custom_text|
+|footer_type|updated|
+|footer_type|created|
 |template|summary_with_details_v0|
 
 </section>
