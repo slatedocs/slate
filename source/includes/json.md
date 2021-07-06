@@ -162,10 +162,6 @@ Overview
 | **SendingTime**      |   uint64_t   |      8      |       X        |                |               |        |
 |                      | Total Length |     34      |                |                |               |        |
 
-##### HTTP Request
-
-`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
-
 ## JSON Risk Symbol Update
 
 ```json
@@ -223,10 +219,6 @@ Overview
 | **MsgSeqNum**        |    Int    |      4      |       X        |                |    1005231    |        |
 | **SendingTime**      | Uint64_t  |      4      |       X        |                |               | Note 6 |
 |                      |           | TotalLength |                |                |               |        |
-
-##### HTTP Request
-
-`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
 
 ## JSON Instrument Data
 
@@ -309,14 +301,54 @@ Note 5: Symbol Enum is a short integer with the following possible values:
 Note 6: Sending times are in nanoseconds from the epoch, January 1, 1970
 Note 7: If the request was rejected, the reject reason will be in the ﬁeld RejectReason, see section below for possible values
 
-##### HTTP Request
-
-`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
-
 ## JSON Order Entry
 
-##### HTTP Request
+```json
+{
+  "msg1": "T",
+  "MessageType": 1,
+  "UpdateType": 2,
+  "Account": 100700,
+  "TraderID": "BOU7",
+  "OrderType": 1,
+  "OrderID": 14333181,
+  "Price,": 35040.5,
+  "Bit24OrderQty": 2,
+  "Bit24Side": 1,
+  "SendingTime": 1681931839281,
+  "MsgSeqID": 500,
+  "Key": 123456,
+  "SymbolEnum": 4,
+  "Symbol": "BTCUSDT",
+  "TradingSessionID": 506,
+  "TIF": 1
+}
+```
 
-`POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
+> The above command returns JSON structured like this:
+
+```json
+{
+  "msg1": "T",
+  "MessageType": 14,
+  "UpdateType": 2,
+  "Account": 100700,
+  "OrderId": 14333181,
+  "SymbolEnum": 4,
+  "OrderType": 1,
+  "Bit24Price": 35040.5,
+  "Side": 1,
+  "Bit24OrderQty": 2.0,
+  "TIF": 1,
+  "DisplaySize": 0.0,
+  "RefreshSize": 0.0,
+  "Bit24Symbol": "BTCUSDT",
+  "TraderID": "BOU7",
+  "SendingTime": 1624781419248402,
+  "TradingSessionID": 506,
+  "Key": 123456,
+  "MsgSeqID": 500
+}
+```
 
 ### Application Messages
