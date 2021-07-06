@@ -79,7 +79,6 @@ curl "https://cloudmc_endpoint/rest/pricings" \
              {
               "pricingMode": "FLAT_FEE",
               "lowerBound": 1000.5,
-              "upperBound": 2000.0,
               "chunkSize": 500,
               "price": {
                 "CAD": 999
@@ -125,7 +124,7 @@ Attributes | &nbsp;
 `pricingProducts.pricingTier.id`<br/>*UUID* | UUID of the pricing tier.
 `pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound.
-`pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound.
+`pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
 `pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The pricing tier's price in each of the pricing product's supported currencies.
 `pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size.
 
@@ -229,7 +228,6 @@ curl "https://cloudmc_endpoint/rest/pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb
             {
              "pricingMode": "FLAT_FEE",
              "lowerBound": 1000.5,
-             "upperBound": 2000.0,
              "chunkSize": 500,
              "price": {
               "CAD": 999
@@ -284,7 +282,7 @@ Attributes | &nbsp;
 `pricingProducts.pricingTier.id`<br/>*UUID* | UUID of the pricing tier.
 `pricingProducts.pricingTier.pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `pricingProducts.pricingTier.lowerBound`<br/>*double* | The pricing tier's lower bound.
-`pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound.
+`pricingProducts.pricingTier.upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
 `pricingProducts.pricingTier.price`<br/>*Map[string, double]>* | The pricing tier's price in each of the pricing product's supported currencies.
 `pricingProducts.pricingTier.chunkSize`<br/>*double* | The pricing tier's chunk size.
 
