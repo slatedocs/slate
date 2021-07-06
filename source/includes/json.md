@@ -315,54 +315,6 @@ Note 7: If the request was rejected, the reject reason will be in the ﬁeld Rej
 
 ## JSON Order Entry
 
-```json
-{
-  "msg1": "T",
-  "MessageType": 1,
-  "UpdateType": 2,
-  "Account": 100700,
-  "TraderID": "BOU7",
-  "OrderType": 1,
-  "OrderID": 14333181,
-  "Price,": 35040.5,
-  "Bit24OrderQty": 2,
-  "Bit24Side": 1,
-  "SendingTime": 1681931839281,
-  "MsgSeqID": 500,
-  "Key": 123456,
-  "SymbolEnum": 4,
-  "Symbol": "BTCUSDT",
-  "TradingSessionID": 506,
-  "TIF": 1
-}
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "msg1": "T",
-  "MessageType": 14,
-  "UpdateType": 2,
-  "Account": 100700,
-  "OrderId": 14333181,
-  "SymbolEnum": 4,
-  "OrderType": 1,
-  "Bit24Price": 35040.5,
-  "Side": 1,
-  "Bit24OrderQty": 2.0,
-  "TIF": 1,
-  "DisplaySize": 0.0,
-  "RefreshSize": 0.0,
-  "Bit24Symbol": "BTCUSDT",
-  "TraderID": "BOU7",
-  "SendingTime": 1624781419248402,
-  "TradingSessionID": 506,
-  "Key": 123456,
-  "MsgSeqID": 500
-}
-```
-
 ##### HTTP Request
 
 `POST http://bo.market.com msg1=H&LogonType=2&Account=100700&UserName=BOU7&SendingTime=1681931839281&MsgSeqID=500&Key=123456`
