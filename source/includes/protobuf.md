@@ -4,7 +4,7 @@
 
 Overview
 
-## JSON BOClientLogon
+## Protobuf BOClientLogon
 
 ### BOClientLogon -- Client Sending
 
@@ -114,7 +114,7 @@ message Bit24ClientLogon {
 3. IP address and port of the OES will be sent in the server response BOClientLogon message.
 4. Sending times are in nanoseconds from the epoch, January 1, 1970.
 
-## JSON Collateral Data
+## Protobuf Collateral Data
 
 ```json
 {
