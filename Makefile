@@ -33,7 +33,7 @@ api_explorer_gen:
 
 code_gen: java_gen node_gen php_gen ruby_gen python_gen
 
-platform_ui_docs_gen:
+app_components_docs_gen:
 	node ../widdershins/widdershins.js -e pui_widdershins_config.json --summary defs/ui_hooks_oas.yaml -o source/includes/ui-hooks-reference/_index.html.md
 
 docs_gen:
@@ -95,8 +95,8 @@ local: code_gen docs_gen serve
 latest: update docs_gen serve
 
 # Do everything to sync the openapi spec
-full_openapi_sync: library_prs docs_gen serve
+full_openapi_sync: library_prs docs_gen app_components serve
 
-platform_ui: platform_ui_docs_gen
+app_components: app_components_docs_gen
 
 .DEFAULT_GOAL := latest
