@@ -1,29 +1,29 @@
 <hr class="platform-ui-alpha">
 <section class="platform-ui-alpha">
 
-# UI Components Alpha
+# App Components Alpha
 
 <span class="beta-indicator">ALPHA</span>
 
-At the moment, UI Components can only be deployed in the developer's `workspace`. Upon release, this limitation will be lifted. To get started with UI Components, submit a [UI Components Definition](/docs/ui-components-definition). App deployments may be delayed due to the ongoing development of UI Components.
+App Components are currently in a **Closed Alpha**. If you want to participate in the App Components Alpha Program, please 
+complete and submit [this form](https://form-beta.asana.com?k=-pVvfJKSSeboL3ySjdhYSg&d=15793206719). We are limiting 
+the number of apps that can use these features at this time. This will open up more as we move to beta. 
 
-The UI Components Alpha Program is a pre-general-release version of a program developed by Asana that allows developers 
-to develop and test UI components. The UI Component Alpha Program is for development, evaluation, and testing purposes 
-only, and is not for production use or subject to availability or security obligations from Asana. The UI Components 
+The App Components Alpha Program is a pre-general-release version of a program developed by Asana that allows developers 
+to develop and test App Components. The App Component Alpha Program is for development, evaluation, and testing purposes 
+only, and is not for production use or subject to availability or security obligations from Asana. The App Components 
 Alpha Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be 
 discontinued or modified at any time.
 
 *This Alpha program was previously named the Workflow Apps Alpha.*
 
-<a id="app-components-overview"></a>
+# App Components Overview
 
-# UI Components Overview
-
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 To start building, follow our [Quickstart Guide](/docs/have-an-app-server-running-locally-or-remotely)!
 
-Apps can use UI components to display customized widgets, forms, and rules within Asana's UI. 
+Apps can use App Components to display customized widgets, forms, and rules within Asana's UI. 
 Requests go from Asana directly to an App's server. The App Server controls  
 the information within these customized widgets and the App Server controls what 
 happens when a User takes actions within these components.
@@ -35,7 +35,7 @@ A new in-app gallery and install flow, a customizable modal, a widget, and more.
 
 ## App Widget
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > Request to the App Server
 
@@ -107,7 +107,7 @@ Related References:
 
 ## App Form
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > Request to the App Server
 
@@ -192,7 +192,7 @@ Related References:
 
 ## Widget Resource Searching
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > Request to the App Server
 
@@ -223,7 +223,7 @@ Related References:
 
 ## App Action
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > Request to the App Server
 
@@ -277,11 +277,11 @@ Related References:
 
 <hr class="full-line">
 
-# UI Components Security
+# App Components Security
 
-## UI Components Security Checklist
+## App Components Security Checklist
 
-When handling requests from Asana, a UI Components app should:
+When handling requests from Asana, an App Components app should:
  
  - Reject requests with missing or incorrect signatures.
  - Reject requests with an "expires" time in the past.
@@ -296,11 +296,11 @@ If an app doesn't use OAuth for authentication, the Asana Security Team should m
  - An attacker can't authenticate themselves as someone else
  - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
 
-## UI Components Authorization
+## App Components Authorization
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
-Authorization is handled by the app. When an app with UI components is added to a project, the user adding it is sent 
+Authorization is handled by the app. When an app with App Components is added to a project, the user adding it is sent 
 to the App's `authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or 
 perform none!
 
@@ -316,9 +316,9 @@ might be a good idea to suggest users authenticate with a bot account.
 
 <hr>
 
-## UI Components Message Integrity
+## App Components Message Integrity
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
 case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
@@ -331,9 +331,9 @@ Server pretending to be Asana.
 
 <hr>
 
-## UI Components Timeliness
+## App Components Timeliness
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
 recorded, such as in logs, could be reused to continue to request information from the app at a later time.
@@ -343,11 +343,11 @@ replay attacks.
 
 <hr class="full-line">
 
-# UI Components Definition
+# App Components Definition
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
-> Sample of an app with a full UI components definition
+> Sample of an app with a full App Components definition
 
 ```json
 
@@ -413,13 +413,13 @@ replay attacks.
 }
 ```
 
-To create an app with UI components, you will need to create an OAuth App and request the 
-UI components functionality onto it via the 
-[Create a UI Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) form.
+To create an app with App Components, you will need to create an OAuth App and request the 
+App Components functionality onto it via the 
+[Create an App Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) form.
 
 To create an OAuth app, see [Authentication Quick Start](/docs/authentication-quick-start).
 
-To create a UI components app you'll need to fill out the [Create a UI Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
+To create an App Components app you'll need to fill out the [Create an App Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
 form with the data in the table below.
 
 |Field|Type|Description|
@@ -466,15 +466,15 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 <hr class="full-line">
 
-# UI Components Quickstart
+# App Components Quickstart
 
 ## Have an App Server running locally (or remotely)
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 For this guide, we will assume your server is running locally at `localhost:5000/`. `localhost` works for requests
 that come from the browser, but won't work for server based requests (like the `run_action_url`). You should log the 
-request body and url for all requests to your server to help get everything setup. For each UI Component feature you 
+request body and url for all requests to your server to help get everything setup. For each App Component feature you 
 want to use, you'll need to supply some endpoints. You are in charge of what each path looks like, but here are some 
 provided example paths you can use for now. Add these paths for each feature you want:
 
@@ -501,12 +501,12 @@ You will provide Asana these paths in the next step.
 
 <hr>
 
-## Register an App to use UI Components
+## Register an App to use App Components
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
-First, complete the [Create a UI Components Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
-described in the [UI Components Section](/docs/ui-components-definition). Here is a cheat-sheet for what data you need to 
+First, complete the [Create an App Components Alpha App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
+described in the [App Components Section](/docs/app-components-definition). Here is a cheat-sheet for what data you need to 
 provide:
 
  * `authenticationUrl` & `authModalMetadata` is only required if your app needs access to the Asana API and/or needs to 
@@ -527,7 +527,7 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 ## Install your app in a project
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 Login with your user and ensure you're in your sandbox domain (The one you provided in the register form). Open or 
 create an Asana project and open it.
@@ -560,7 +560,7 @@ sent to your Attach endpoint.
 
 ## Form Basics
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > GET http://localhost:5000/resource/create
 
@@ -613,7 +613,7 @@ attachment matches your `matchUrlPattern` so Asana will try to load the Widget.
 
 ## Widget Basics
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > GET http://localhost:5000/resource/widget/metadata
 
@@ -645,7 +645,7 @@ Asana the data to display in the widget. Clicking on the widget will take you to
 
 ## Typeahead Basics
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > GET http://localhost:5000/resource/typeahead
 
@@ -701,7 +701,7 @@ resource, a new attachment will be made and attached. Your widget should return!
 
 ## Automation Basics
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 > GET http://localhost:5000/automation/action/metadata
 
@@ -754,7 +754,7 @@ debugging this (unless you setup a localhost proxy like ngrok).
 
 Once your server is ready, follow the [Asana Rules_Guide](https://asana.com/guide/help/premium/rules) to create a rule.
 When choosing an action, you should select your app's action. These will only show up if the project has the app installed
-and you submitted app actions when you [defined your UI Component endpoints](/docs/register-a-platform-ui-app). You should 
+and you submitted app actions when you [defined your App Component endpoints](/docs/register-an-app-to-use-app-components). You should 
 see your customized form. Feel free to submit it and create the rule.
 
 Sadly, you will be unable to test the action being triggered while hosting locally. To test this, deploy your server 
@@ -764,7 +764,7 @@ or setup something like ngrok to expose your localhost server.
 
 ## Being Secure
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 ```javascript
 function forAllRequests(req) {
@@ -810,7 +810,7 @@ You should read the [UI Hooks Security](/docs/ui-hooks-security) section before 
 
 ## Deploying
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 To deploy you'll need to host your localhost server to a full [App Server](/docs/app-server).
    
@@ -821,7 +821,7 @@ To deploy you'll need to host your localhost server to a full [App Server](/docs
 
 ## Publishing
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 **Publishing is generally not available during the Alpha**
 
