@@ -398,7 +398,7 @@ Note 5: Symbol Enum is a string integer with the following possible values:
 Note 6: Sending times are in nanoseconds from the epoch, January 1, 1970
 Note 7: If the request was rejected, the reject reason will be in the ﬁeld RejectReason, see section below for possible values
 
-## JSON Order Entry
+## Protobuf Order Entry
 
 ```json
 {
