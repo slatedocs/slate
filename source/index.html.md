@@ -17,6 +17,7 @@ includes:
   - rest
   - json
   - protobuf
+  - protobuf_order_entry
   - binary
   - binary_tcp_ip
 
