@@ -1,7 +1,7 @@
 ## {{= data.operationUniqueName}}
 
 {{? data.options.platform_ui}}
-<span class="beta-indicator">ALPHA</span> - For access, please see [UI Components Alpha](/docs/ui-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 {{?}}
 
 {{? data.operation.operationId}}
