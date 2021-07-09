@@ -3,10 +3,10 @@ openapi: 3.0.0
 info:
   description: >-
     This is the interface for handling requests for
-    [UI components](https://developers.asana.com/docs/ui-components-overview). This reference
+    [App Components](https://developers.asana.com/docs/app-components-overview). This reference
     is generated from an [OpenAPI spec]
     (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
-  title: UI Components
+  title: App Components
   termsOfService: https://asana.com/terms
   contact:
     name: Asana Support
@@ -154,7 +154,7 @@ components:
   schemas:
     RootUIComponentRequest:
       description: >-
-        The building block of all UI component requests.
+        The building block of all App Component requests.
       type: object
       properties:
         expires_at:

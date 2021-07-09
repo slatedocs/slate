@@ -2,7 +2,7 @@
 
 <hr class="full-line">
 <section class="full-section">
-<h1 id="ui-components">App Component Reference</h1>
+<h1 id="app-components">App Component Reference</h1>
 
 <span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
