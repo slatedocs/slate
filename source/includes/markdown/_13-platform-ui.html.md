@@ -19,7 +19,8 @@ discontinued or modified at any time.
 
 # App Components Overview
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-
+             dicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 To start building, follow our [Quickstart Guide](/docs/have-an-app-server-running-locally-or-remotely)!
 
@@ -481,13 +482,13 @@ Before you begin, you'll need a developer sandbox in order to use App Components
 <img src="../images/example-app-gallery-tile.png" />
 <br>
 <br>
-5. Once the example app is installed, create a task in your project. In **{Example}** custom field, go to **{Add Example Resource}** > **{Open form}** to see examples of customizable inputs. Click **Submit**.
+5. Once the example app is installed, create a task in your project. In the task's **{Example}** custom field, go to **{Add Example Resource}** > **{Open form}** to see examples of customizable inputs. Click **Submit**.
 <br>
 <br>
 <img src="../images/example-app-form.gif" />
 <br>
 <br>
-6. View the newly-generated widget on your task. You can begin editing `index.js` to change the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
+6. View the newly-generated widget on your task. You can begin editing `index.js` to modify the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
 <br>
 <br>
 <img src="../images/example-app-widget.png" />
