@@ -637,10 +637,15 @@ As your individual disbursements are executed, the status of your bulk disbursem
 
 ![Bulk Disburse](images/bulk_disburse_in_progress.png)
 
+_Incomplete_
+
+The status of your bulk disbursement will change to incomplete once all of the listed transactions have been executed and the relevant final statuses of Failed or partially Failed have been assigned.
+![Notif Pending - 1  Initial](https://user-images.githubusercontent.com/79620482/125020227-aefbe680-e0a2-11eb-9b92-09e57106c413.png)
+
+
 _Finish_
 
-Once all the listed transactions are executed and reflect their respective statuses, the status of your bulk disbursement campaign will transition to Finish. The recipients should have all received an email detailing an “Incoming Transfer Alert.” You can also download a report of the campaign details directly through the OY! dashboard. 
-
+Once all of the listed transactions have been completed and the final status of success for all transactions has been achieved, the status of your bulk disbursement campaign will change to Finish.  The recipients should have all received an email detailing an “Incoming Transfer Alert.” You can also download a report of the campaign details directly through the OY! dashboard.
 ![Bulk Disburse](images/bulk_disburse_finish.png)
 
 _Cancel_ 
