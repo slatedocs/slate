@@ -19,8 +19,7 @@ discontinued or modified at any time.
 
 # App Components Overview
 
-<span class="beta-
-             dicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
 
 To start building, follow our [Quickstart Guide](/docs/have-an-app-server-running-locally-or-remotely)!
 
