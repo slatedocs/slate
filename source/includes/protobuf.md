@@ -1,6 +1,7 @@
 # Protobuf
 
 ## Protobuf Overview
+Protobuf is a messaging protocol introduced and maintained by Google.  The implementation details are hidden from the user and is popular because the .proto files can be used to generate code for a multitude of languages with the guarantee that both the sender and receiver can process the resulting message.  The resulting messages are much smaller than other formats such as JSON for those interested in reducing bandwidth and reduced processing times due to the protocol being able to send and receive binary data in its native format.
 
 Overview
 
@@ -8,54 +9,68 @@ Overview
 
 ### BOClientLogon -- Client Sending
 
-```json
-{
-  "msg1": "H",
-  "LogonType": 1,
-  "Account": 100700,
-  "UserName": "BOU7",
-  "TradingSessionID": 506,
-  "SendingTime": 18343447,
-  "MsgSeqID": 110434,
-  "Key": 123456,
-  "RiskMaster": "N"
-}
+```proto
+
+  BOMsg::BOClientLogon logon;
+  logon.set_msg1("H");
+  logon.set_logontype(1);
+  logon.set_account(100700);
+  logon.set_username("BOU7");
+  logon.set_tradingsessionid(506);
+  logon.set_sendingtime(1833818393838331);
+  logon.set_msgseqid(500);
+  logon.set_key(123456);
+
+  // prep for sending message
+  int siz = logon.ByteSizeLong() + 8;  // need an extra 8 bytes for the message header
+  char pkt[siz];
+  google::protobuf::io::ArrayOutputStream aos(&pkt, siz);
+  CodedOutputStream coded_output(&aos);
+  coded_output.WriteVarint32(type);
+  coded_output.WriteVarint32(siz);
+  logon.SerializeToCodedStream(&coded_output);
+  // send message
+
 ```
 
 > AES response
 
-```json
-{
-  "msg1": "H",
-  "LogonType": 1,
-  "Account": 100700,
-  "UserName": "BOU7",
-  "TradingSessionID": 506,
-  "SendingTime": 1624785162815971526,
-  "MsgSeqID": 110434,
-  "Key": 123456,
-  "LoginStatus": 1,
-  "RejectReason": 50,
-  "RiskMaster": "N"
-}
+```proto
+
+  BOMsg::BOClientLogon logon;
+  logon.msg1();
+  logon.logontype();
+  logon.account();
+  logon.username();
+  logon.tradingsessionid();
+  logon.primaryorderentryip();
+  logon.secondaryorderentryip();
+  logon.primarymarketdataip();
+  logon.secondaryorderentryip();
+  logon.sendingtime();
+  logon.msgseqid();
+  logon.loginstatus();
+  logon.key();
+  logon.rejectreason();
+
 ```
 
 > OES response
 
-```json
-{
-  "msg1": "H",
-  "LogonType": 1,
-  "Account": 100700,
-  "UserName": "BOU7",
-  "TradingSessionID": 506,
-  "SendingTime": 1624785162815971526,
-  "MsgSeqID": 110434,
-  "Key": 123456,
-  "LoginStatus": 1,
-  "RejectReason": 50,
-  "RiskMaster": "N"
-}
+```proto
+
+  BOMsg::BOClientLogon logon;
+  logon.msg1();
+  logon.logontype();
+  logon.account();
+  logon.username();
+  logon.tradingsessionid();
+  logon.sendingtime();
+  logon.msgseqid();
+  logon.key();
+  logon.loginstatus();
+  logon.rejectreason();
+
 ```
 
 ```proto
@@ -81,30 +96,30 @@ message Bit24ClientLogon {
 ```
 
 1. The BOClientLogon message must be sent to the AES in order to initiate the logon process \(please contact BO Representative for IP address and port\).
-2. Please refer to the BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
-3. The AES will respond with a BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES \(Order Entry Server\).
+2. The AES will respond with a BOClientLogon with logon status and if logon was successful the IP Address and Port of the OES and MDS \(Order Entry Server and Level Based Market Data Server\).
+3.  After a successful logon to the AES the user will proceed to log into the OES and/or MDS using the IP and port information provided in the AES Response to the login.  Upon successful login to either or both of the OES and/or MDS the user may enter orders or subscribe to market data.
 4. Only one login session is permited for a unique account ID and UserName.
 5. Black Ocean requests that if they user is going to close the connection a BOClientLogon message should be sent with the LogonType set to 2 prior to closing the connection in order to allow the OES to close the connection gracefully.
 6. BOClientLogon Example Message - Client Sending
 
-| Field Name           | Data Type  | Data Length | Required Field | Required Value | Example Value |   Notes   |
-| :------------------- | :--------: | :---------: | :------------: | :------------: | :-----------: | :-------: |
-| **Msg1**             |   string   |      1      |       X        |       H        |       H       |  Header   |
-| **LogonType**        |   string   |      2      |       X        |                |       1       |   Note1   |
-| **Account**          |    Int     |      4      |       X        |                |    253336     |   Note2   |
-| **2FA**              | string\[\] |      6      |       X        |                |     1F6A      |   Note4   |
-| **UserName**         | string\[\] |      6      |       X        |                |     BOU1      |   Note2   |
-| **TradingSessionID** |    Int     |      4      |       \*       |                |               |   Note2   |
-| **PrimaryOESIP**     | string\[\] |     24      |       \*       |                |               |   Note3   |
-| **SecondaryOESIP**   | string\[\] |     24      |       \*       |                |               |   Note3   |
-| **PrimaryMDIP**      | string\[\] |     24      |                |                |               | Note Used |
-| **SecondaryIP**      | string\[\] |     24      |                |                |               | Not Used  |
-| **SendingTime**      |    Long    |      8      |                |                |               |  Note 5   |
-| **MsgSeqNum**        |    Int     |      4      |                |                |    1500201    |           |
-| **Key**              |    Int     |      4      |                |                |    432451     |           |
-| **LoginStatus**      |   string   |      1      |                |                |               |           |
-| **RejectReason**     |   string   |      2      |                |                |               |           |
-| **RiskMaster**       |   string   |      1      |                |                |               |           |
+| Field Name           | Data Type  | Required Field | Required Value | Example Value      |   Notes   |
+| :------------------- | :--------: | :------------: | :------------: | :-----------------:| :-------: |
+| **Msg1**             |   string   |       c/s      |       H        |       H            |  Header   |
+| **LogonType**        |   string   |       c/s      |                |       1            |   Note1   |
+| **Account**          |    Int     |       c/s      |                |    253336          |   Note2   |
+| **2FA**              | string\[\] |       c        |                |     1F6A           |   Note4   |
+| **UserName**         | string\[\] |       c        |                |     BOU1           |   Note2   |
+| **TradingSessionID** |    Int     |       s        |                |     506            |   Note2   |
+| **PrimaryOESIP**     | string\[\] |       s        |                | 192.81.32.5:40025  |   Note3   |
+| **SecondaryOESIP**   | string\[\] |       s        |                |                    |   Note3   |
+| **PrimaryMDIP**      | string\[\] |       s        |                |                    | Note Used |
+| **SecondaryIP**      | string\[\] |       s        |                |                    | Not Used  |
+| **SendingTime**      |    Long    |       c/s      |                |                    |  Note 5   |
+| **MsgSeqNum**        |    Int     |       c/s      |                |    1500201         |           |
+| **Key**              |    Int     |       c        |                |    432451          |           |
+| **LoginStatus**      |   string   |       s        |                |                    |           |
+| **RejectReason**     |   string   |       s        |                |                    |           |
+| **RiskMaster**       |   string   |                |                |                    |           |
 
 #### Notes:
 
@@ -116,57 +131,59 @@ message Bit24ClientLogon {
 
 ## Protobuf Collateral Data
 
-```json
-{
-  "msg1": "f",
-  "UpdateType": 2,
-  "Account": 100700,
-  "TradingSessionID": 506,
-  "SymbolEnum": 4,
-  "Key": 123456,
-  "MsgSeqID": 500,
-  "SendingTime": 1624821404362542113
-}
-```
+```proto
 
-> AES response
+  BOMsg::BOCollateralUpdateRequest req;
+  req.set_msg1("f");
+  req.set_updatetype(2);
+  req.set_account(100700);
+  req.set_tradingsessionid(506);
+  req.set_symbolenum(4);
+  req.set_key(123456);
+  req.set_msgseqid(500);
+  req.set_sendingtime(1624821404362542113);
+  // prep for sending message
+  int siz = req.ByteSizeLong() + 8;  // need an extra 8 bytes for the message header
+  char pkt[siz];
+  google::protobuf::io::ArrayOutputStream aos(&pkt, siz);
+  CodedOutputStream coded_output(&aos);
+  int type = (int)'f';
+  coded_output.WriteVarint32(type);
+  coded_output.WriteVarint32(siz);
+  req.SerializeToCodedStream(&coded_output);
+  // send message
 
-```json
-{
-  "msg1": "h",
-  "MessageType": 31,
-  "UserName": "BOU7",
-  "Account": 100700,
-  "SymbolEnum": 11021,
-  "BTCEquity": 100.0,
-  "USDTEquity": 10000000.0,
-  "FLYEquity": 50000000.0,
-  "USDEquity": 10000000.0,
-  "ETHEquity": 2000.0,
-  "TradingSessionID": 506,
-  "LastSeqNum": 20101010,
-  "SendingTime": 1624821404365664367
-}
 ```
 
 > OES response
 
-```json
-{
-  "msg1": "h",
-  "MessageType": 31,
-  "UserName": "BOU7",
-  "Account": 100700,
-  "SymbolEnum": 11021,
-  "BTCEquity": 100.0,
-  "USDTEquity": 10000000.0,
-  "FLYEquity": 50000000.0,
-  "USDEquity": 10000000.0,
-  "ETHEquity": 2000.0,
-  "TradingSessionID": 506,
-  "LastSeqNum": 20101010,
-  "SendingTime": 1624821404365664367
-}
+```proto
+
+  char* buf = msg.buf;                                   // incoming data from the socket reader
+  google::protobuf::uint32 size;
+  google::protobuf::uint32 stype;
+  google::protobuf::io::ArrayInputStream ais(buf, 1000);
+  CodedInputStream coded_input(&ais);
+  coded_input.ReadVarint32(&stype);                      //Decode the HDR and get the type
+  coded_input.ReadVarint32(&size);                       //Decode the HDR and get the size
+  char msgtype = (char)stype;
+
+  BOMsg::BOCollateralData data;
+  data.ParseFromCodedStream(&coded_input);               // this must be done to fill in the message fields
+  data.msg1();
+  data.messagetype();
+  data.username();
+  data.account();
+  data.symbolenum();
+  data.equity();
+  data.usdtequity();
+  data.flyequity();
+  data.usdequity();
+  data.ethequity();
+  data.tradingsessionid();
+  data.lastseqnum();
+  data.sendingtime();
+
 ```
 
 ```proto
@@ -213,45 +230,66 @@ message Bit24CollateralData {
 
 ## Protobuf Risk Symbol Update
 
-```json
+```proto
 {
-  "msg1": "w",
-  "MessageType": "w",
-  "Account": 100700,
-  "SymbolEnum": 4,
-  "TradingSessionID": 506,
-  "Key": 123456,
-  "MsgSeqID": 500,
-  "SendingTime": 1624821406361022055
+  BOMsg::BORiskUpdateReques req;
+  req.set_msg1("w");
+  req.set_updatetype(2);
+  req.set_account(100700);
+  req.set_tradingsessionid(506);
+  req.set_symbolenum(4);
+  req.set_key(123456);
+  req.set_msgseqid(500);
+  req.set_sendingtime(1624821404362542113);
+  // prep for sending message
+  int siz = req.ByteSizeLong() + 8;  // need an extra 8 bytes for the message header
+  char pkt[siz];
+  google::protobuf::io::ArrayOutputStream aos(&pkt, siz);
+  CodedOutputStream coded_output(&aos);
+  int type = (int)'f';
+  coded_output.WriteVarint32(type);
+  coded_output.WriteVarint32(siz);
+  req.SerializeToCodedStream(&coded_output);
+  // send message
 }
 ```
 
 > The above command returns JSON structured like this:
 
-```json
-{
-  "MessageType": "N",
-  "Account": 100700,
-  "SymbolEnum": 1,
-  "Leverage": 25.0,
-  "LongPosition": 0.0,
-  "stringPostion": 0.0,
-  "LongCash": 0.0,
-  "stringCash": 0.0,
-  "TradingDisabled": 0,
-  "ExecLongCash": 0.0,
-  "ExecLongPositon": 0.0,
-  "ExecstringCash": 0.0,
-  "ExecstringPosition": 0.0,
-  "BTCEquity": 100.0,
-  "USDTEquity": 10000000.0,
-  "ETHEquity": 0.0,
-  "USDEquity": 10000000.0,
-  "FLYEquity": 0.0,
-  "TradingSessionID": 506,
-  "LastSeqNum": 200,
-  "UpdateType": 2
-}
+```proto
+
+  char* buf = msg.buf;                                   // incoming data from the socket reader
+  google::protobuf::uint32 size;
+  google::protobuf::uint32 stype;
+  google::protobuf::io::ArrayInputStream ais(buf, 1000);
+  CodedInputStream coded_input(&ais);
+  coded_input.ReadVarint32(&stype);                      //Decode the HDR and get the type
+  coded_input.ReadVarint32(&size);                       //Decode the HDR and get the size
+  char msgtype = (char)stype;
+
+  
+  Bit24Msg::Bit24RiskUserSymbol _res;
+  _res.ParseFromCodedStream(&coded_input);               // this must be done to fill in the message fields
+  _res.account();
+  _res.symbolenum();
+  _res.leverage();
+  _res.longposition();
+  _res.shortposition();
+  _res.longcash();
+  _res.shortcash();
+  _res.executedlongcash();
+  _res.executedlongposition();
+  _res.executedshortcash();
+  _res.executedshortposition();
+  _res.btcequity();
+  _res.usdtequity();
+  _res.ethequity();
+  _res.usdequity();
+  _res.flyequity();
+  _res.tradingsessionid();
+  _res.lastseqnum();
+
+
 ```
 
 ```proto
@@ -300,36 +338,54 @@ message Bit24RiskUserSymbol {
 
 ## Protobuf Instrument Data
 
-```json
+```proto
 {
-  "msg1": "Y",
-  "MessageType": 22,
-  "Account": 100700,
-  "SymbolName": "BTCUSD",
-  "UserName": "BOU7",
-  "SymbolEnum": 4,
-  "TradingSessionID": 506,
-  "Key": 123456,
-  "MsgSeqID": 500,
-  "SendingTime": 1624859180169634284
+  BOMsg::BOBInstrumentRequest req;
+  req.set_msg1("Y");
+  req.set_requesttype(1);
+  req.set_account(100700);
+  req.set_tradingsessionid(506);
+  req.set_symbolenum(4);
+  req.set_symboltype(1);
+  req.set_symbol("BTCUSDT");
+  req.set_key(123456);
+  req.set_msgseqid(500);
+  req.set_sendingtime(1624821404362542113);
+  // prep for sending message
+  int siz = req.ByteSizeLong() + 8;  // need an extra 8 bytes for the message header
+  char pkt[siz];
+  google::protobuf::io::ArrayOutputStream aos(&pkt, siz);
+  CodedOutputStream coded_output(&aos);
+  int type = (int)'f';
+  coded_output.WriteVarint32(type);
+  coded_output.WriteVarint32(siz);
+  req.SerializeToCodedStream(&coded_output);
+  // send message
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a protobuf message which can be read like this:
 
-```json
-{
-  "msg1": "Q",
-  "MessageType": "21",
-  "SymbolName": "USDUSDT",
-  "SymbolEnum": 4,
-  "SymbolType": 1,
-  "PriceIncrement": 0.01,
-  "MaxSize": 5000.0,
-  "MinSize": 0.00001,
-  "SendingTime": 1624863069122199720,
-  "LastSeqNum": 505
-}
+```proto
+
+  char* buf = msg.buf;                                   // incoming data from the socket reader
+  google::protobuf::uint32 size;
+  google::protobuf::uint32 stype;
+  google::protobuf::io::ArrayInputStream ais(buf, 1000);
+  CodedInputStream coded_input(&ais);
+  coded_input.ReadVarint32(&stype);                      //Decode the HDR and get the type
+  coded_input.ReadVarint32(&size);                       //Decode the HDR and get the size
+  char msgtype = (char)stype;
+
+  BOMsg::BOInstrument _data;
+  _data.ParseFromCodedStream(&coded_input);              // this must be done to fill in the message fields
+  short msgtype = _data.messagetype();
+  std::string _symbol = _data.symbol().c_str();
+  short se = _data.symbolenum();
+  double pi = _data.priceincrement();
+  double ms = _data.minsize();
+  double mx = _data.maxsize();
+
 ```
 
 ```proto
