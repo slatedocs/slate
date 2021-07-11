@@ -13,13 +13,13 @@ toc_footers:
 
 includes:
   - overview
-  - reject_code
   - rest
   - json
   - protobuf
   - protobuf_order_entry
   - binary
   - binary_tcp_ip
+  - reject_code
 
 search: true
 
