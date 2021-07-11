@@ -74,7 +74,7 @@ Overview
 ```
 
 ```proto
-message Bit24ClientLogon {
+message BOClientLogon {
   string msg1 = 1;
   string msg2 = 2;
   int32 MsgLen = 3;
@@ -187,7 +187,7 @@ message Bit24ClientLogon {
 ```
 
 ```proto
-message Bit24CollateralData {
+message BOCollateralData {
   string msg1 = 1;
   string msg2 = 2;
   int32 MessageType = 3;
@@ -268,7 +268,7 @@ message Bit24CollateralData {
   char msgtype = (char)stype;
 
   
-  Bit24Msg::Bit24RiskUserSymbol _res;
+  BOMsg::BORiskUserSymbol _res;
   _res.ParseFromCodedStream(&coded_input);               // this must be done to fill in the message fields
   _res.account();
   _res.symbolenum();
@@ -293,7 +293,7 @@ message Bit24CollateralData {
 ```
 
 ```proto
-message Bit24RiskUserSymbol {
+message BORiskUserSymbol {
   string msg1 = 1;
   string msg2 = 2;
   int32 MessageType = 3;
@@ -389,7 +389,7 @@ message Bit24RiskUserSymbol {
 ```
 
 ```proto
-message Bit24InstrumentRequest {
+message BOInstrumentRequest {
   string msg1 = 1;
   string msg2 = 2;
   int32 MsgLen = 3;

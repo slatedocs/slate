@@ -10,8 +10,8 @@
   "OrderType": 1,
   "OrderID": 14333181,
   "Price,": 35040.5,
-  "Bit24OrderQty": 2,
-  "Bit24Side": 1,
+  "BOOrderQty": 2,
+  "BOSide": 1,
   "SendingTime": 1681931839281,
   "MsgSeqID": 500,
   "Key": 123456,
@@ -33,13 +33,13 @@
   "OrderId": 14333181,
   "SymbolEnum": 4,
   "OrderType": 1,
-  "Bit24Price": 35040.5,
+  "BOPrice": 35040.5,
   "Side": 1,
-  "Bit24OrderQty": 2.0,
+  "BOOrderQty": 2.0,
   "TIF": 1,
   "DisplaySize": 0.0,
   "RefreshSize": 0.0,
-  "Bit24Symbol": "BTCUSDT",
+  "BOSymbol": "BTCUSDT",
   "TraderID": "BOU7",
   "SendingTime": 1624781419248402,
   "TradingSessionID": 506,
@@ -49,7 +49,7 @@
 ```
 
 ```proto
-message Bit24Transaction {
+message BOTransaction {
   string msg1 = 1;
   string msg2 = 2;
   int32 MessageType = 3;
@@ -59,14 +59,14 @@ message Bit24Transaction {
   int32 SymbolEnum = 7;
   int32 OrderType = 8;
   int32 SymbolType = 9;
-  double Bit24Price = 10;
+  double BOPrice = 10;
   int32 Side = 11;
-  double Bit24OrderQty = 12;
+  double BOOrderQty = 12;
   int32 TIF = 13;
   double StopLimitPrice = 14;
-  string Bit24Symbol = 15;
+  string BOSymbol = 15;
   int64 OrigOrderId = 16;
-  double Bit24CancelShares = 17;
+  double BOCancelShares = 17;
   int64 ExecID = 18;
   double ExecShares = 19;
   double RemainingQty = 20;
@@ -83,7 +83,7 @@ message Bit24Transaction {
   double SizeIncrement = 31;
   double PriceIncrement = 32;
   double PriceOffset = 33;
-  double Bit24OriginalPrice = 34;
+  double BOOriginalPrice = 34;
   double ExecPrice = 35;
   int64 MsgSeqID = 36;
   double TakeProfitPrice = 37;
