@@ -2794,6 +2794,8 @@ components:
         - $ref: '#/components/schemas/ProjectStatusBase'
         - type: object
           properties:
+            author:
+              $ref: '#/components/schemas/UserCompact'
             created_at:
               description: The time at which this resource was created.
               type: string
@@ -2802,6 +2804,17 @@ components:
               example: '2012-02-22T02:06:58.147Z'
             created_by:
               $ref: '#/components/schemas/UserCompact'
+            modified_at:
+              description: >-
+                The time at which this project status was last modified.
+
+                *Note: This does not currently reflect any changes in
+                associations such as comments that may have been added or
+                removed from the project status.*
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
     ProjectStatusRequest:
       $ref: '#/components/schemas/ProjectStatusBase'
     ProjectStatusBase:
@@ -2812,15 +2825,6 @@ components:
             - text
             - color
           properties:
-            author:
-              $ref: '#/components/schemas/UserCompact'
-            modified_at:
-              description: >-
-                The time at which this project status was last modified.
-
-                *Note: This does not currently reflect any changes in
-                associations such as comments that may have been added or
-                removed from the project status.*
             text:
               description: The text content of the status update.
               type: string

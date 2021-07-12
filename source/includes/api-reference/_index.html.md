@@ -5385,7 +5385,6 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
         "name": "Greg Sanchez"
       },
       "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -5424,21 +5423,21 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
+      "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
-      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
-      }
+      },
+      "modified_at": "2012-02-22T02:06:58.147Z"
     },
     "custom_field_settings": [
       {
@@ -5547,7 +5546,6 @@ Returns the full record of the newly created project.
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
@@ -5565,11 +5563,6 @@ Returns the full record of the newly created project.
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**modified_at**: The time at which this project status was last modified.
-*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -5691,21 +5684,21 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
+      "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
-      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
-      }
+      },
+      "modified_at": "2012-02-22T02:06:58.147Z"
     },
     "custom_field_settings": [
       {
@@ -5891,7 +5884,6 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
         "name": "Greg Sanchez"
       },
       "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -5930,21 +5922,21 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
+      "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
-      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
-      }
+      },
+      "modified_at": "2012-02-22T02:06:58.147Z"
     },
     "custom_field_settings": [
       {
@@ -6051,7 +6043,6 @@ Returns the complete updated project record.
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
@@ -6070,11 +6061,6 @@ Returns the complete updated project record.
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**modified_at**: The time at which this project status was last modified.
-*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -6694,7 +6680,6 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
         "name": "Greg Sanchez"
       },
       "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -6733,21 +6718,21 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
+      "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
-      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
-      }
+      },
+      "modified_at": "2012-02-22T02:06:58.147Z"
     },
     "custom_field_settings": [
       {
@@ -6848,7 +6833,6 @@ Returns the full record of the newly created project.
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
@@ -6867,11 +6851,6 @@ Returns the full record of the newly created project.
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**modified_at**: The time at which this project status was last modified.
-*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -7108,7 +7087,6 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
         "name": "Greg Sanchez"
       },
       "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
@@ -7147,21 +7125,21 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       "gid": "12345",
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
+      "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "modified_at": null,
-      "text": "The project is moving forward according to plan...",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
-      }
+      },
+      "modified_at": "2012-02-22T02:06:58.147Z"
     },
     "custom_field_settings": [
       {
@@ -7265,7 +7243,6 @@ Returns the full record of the newly created project.
 |»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|»»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
@@ -7284,11 +7261,6 @@ Returns the full record of the newly created project.
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**modified_at**: The time at which this project status was last modified.
-*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -8591,21 +8563,21 @@ $result = $client->projectstatuses->getProjectStatus($project_status_gid, array(
     "gid": "12345",
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
+    "color": "green",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "text": "The project is moving forward according to plan...",
     "author": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "color": "green",
-    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-    "modified_at": null,
-    "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
-    }
+    },
+    "modified_at": "2012-02-22T02:06:58.147Z"
   }
 }
 ```
@@ -8929,12 +8901,8 @@ $result = $client->projectstatuses->createProjectStatusForProject($project_gid, 
 ```json
 {
   "data": {
-    "author": {
-      "name": "Greg Sanchez"
-    },
     "color": "green",
     "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-    "modified_at": null,
     "text": "The project is moving forward according to plan...",
     "title": "Status Update - Jun 15"
   }
@@ -8949,21 +8917,21 @@ $result = $client->projectstatuses->createProjectStatusForProject($project_gid, 
     "gid": "12345",
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
+    "color": "green",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "text": "The project is moving forward according to plan...",
     "author": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "color": "green",
-    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-    "modified_at": null,
-    "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
-    }
+    },
+    "modified_at": "2012-02-22T02:06:58.147Z"
   }
 }
 ```
@@ -8985,21 +8953,13 @@ Returns the full record of the newly created project status update.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project status to create.|
 |» data<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|»» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.|
 |»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»» title<span class="param-type"> string</span>|The title of the project status update.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Detailed descriptions
-
-**modified_at**: The time at which this project status was last modified.
-*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*
 
 #### Enumerated Values
 
@@ -21709,21 +21669,21 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     "gid": "12345",
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
+    "color": "green",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "text": "The project is moving forward according to plan...",
     "author": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "color": "green",
-    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-    "modified_at": null,
-    "text": "The project is moving forward according to plan...",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
-    }
+    },
+    "modified_at": "2012-02-22T02:06:58.147Z"
   },
   "custom_field_settings": [
     {
@@ -21816,19 +21776,19 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» title<span class="param-type"> string</span>|The title of the project status update.|
+|» color<span class="param-type"> string</span>|The color associated with the status update.|
+|» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
+|» text<span class="param-type"> string</span>|The text content of the status update.|
 |» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» color<span class="param-type"> string</span>|The color associated with the status update.|
-|» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|» modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
-|» text<span class="param-type"> string</span>|The text content of the status update.|
 |» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -21994,21 +21954,21 @@ A `Compact` object is the same as the [full response object](/docs/tocS_ProjectS
   "gid": "12345",
   "resource_type": "project_status",
   "title": "Status Update - Jun 15",
+  "color": "green",
+  "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+  "text": "The project is moving forward according to plan...",
   "author": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
-  "color": "green",
-  "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-  "modified_at": null,
-  "text": "The project is moving forward according to plan...",
   "created_at": "2012-02-22T02:06:58.147Z",
   "created_by": {
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
-  }
+  },
+  "modified_at": "2012-02-22T02:06:58.147Z"
 }
 
 ```
@@ -22025,19 +21985,19 @@ A *project status* is an update on the progress of a particular project, and is 
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |title<span class="param-type"> string</span>|The title of the project status update.|
+|color<span class="param-type"> string</span>|The color associated with the status update.|
+|html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
+|text<span class="param-type"> string</span>|The text content of the status update.|
 |author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|color<span class="param-type"> string</span>|The color associated with the status update.|
-|html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|modified_at<span class="param-type"> any</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
-|text<span class="param-type"> string</span>|The text content of the status update.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|modified_at<span class="param-type"> string(date-time)</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
 
 #### Enumerated Values
 
