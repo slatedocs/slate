@@ -3,8 +3,23 @@
 ## Protobuf Overview
 Protobuf is a messaging protocol introduced and maintained by Google.  The implementation details are hidden from the user and is popular because the .proto files can be used to generate code for a multitude of languages with the guarantee that both the sender and receiver can process the resulting message.  The resulting messages are much smaller than other formats such as JSON for those interested in reducing bandwidth and reduced processing times due to the protocol being able to send and receive binary data in its native format.
 
-Overview
+Protobuf messages are identical in TCP/IP and in Websockets.  The sending of the messages is the same and the receiving of messages is the same therefore the descriptions of the following messages will work the same for TCP/IP and for Websockets.
 
+## Protobuf Message Header
+   One of the drawbacks of protobuf messages is there is no way to determine how much data was received before processing the message.  Nor is there a way to determine the type of message which was received after determining the data received was enough to create a full message.  In order to alleviate these problems, we send an 8 byte header with each message.  The first integer is the message type and the second integer is the message length.  In order to find the values of these two fields use the following method:
+
+    // _size is the size of the data retrieved from the socket buffer
+    if(_size > 8) {
+      dataPtr = buffer.getData();
+      google::protobuf::uint32 psize;
+      google::protobuf::uint32 stype;
+      google::protobuf::io::ArrayInputStream ais(dataPtr, 1000);
+      CodedInputStream coded_input(&ais);
+      coded_input.ReadVarint32(&stype);        //Decode the header and get the type
+      coded_input.ReadVarint32(&psize);        //Decode the header and get the size
+
+   As can be seen from the code, we don't even try to process the message if it is less than 8 bytes because we don't have a full header.  Once we find the size and we know the type of message, we can then determine if the _size is large enough to continue processing the data.
+      
 ## Protobuf BOClientLogon
 
 ### BOClientLogon -- Client Sending
@@ -74,7 +89,7 @@ Overview
 ```
 
 ```proto
-message BOClientLogon {
+message Bit24ClientLogon {
   string msg1 = 1;
   string msg2 = 2;
   int32 MsgLen = 3;
@@ -105,7 +120,7 @@ message BOClientLogon {
 | Field Name           | Data Type  | Required Field | Required Value | Example Value      |   Notes   |
 | :------------------- | :--------: | :------------: | :------------: | :-----------------:| :-------: |
 | **Msg1**             |   string   |       c/s      |       H        |       H            |  Header   |
-| **LogonType**        |   string   |       c/s      |                |       1            |   Note1   |
+| **LogonType**        |    Int     |       c/s      |                |       1            |   Note1   |
 | **Account**          |    Int     |       c/s      |                |    253336          |   Note2   |
 | **2FA**              | string\[\] |       c        |                |     1F6A           |   Note4   |
 | **UserName**         | string\[\] |       c        |                |     BOU1           |   Note2   |
@@ -123,13 +138,14 @@ message BOClientLogon {
 
 #### Notes:
 
-1. LogonType is a string enum, values: `Login 1`, `Logout 2`
+1. LogonType is an integer enum, values: Login = 1, Logout = 2
    - If the value is not one of the values above, a logout message will be sent and the connection closed.
 2. Value assigned by Black Ocean. If this is a logout, the TradingSessionID must be supplied.
-3. IP address and port of the OES will be sent in the server response BOClientLogon message.
+3. IP address and port of the OES and MDS will be sent in the server response BOClientLogon message.
 4. Sending times are in nanoseconds from the epoch, January 1, 1970.
 
 ## Protobuf Collateral Data
+   Collateral data is the equity maintained by the user.  In order to find out the current balance of any equity on account, the user should send a BOCollateralUpdateRequest with the symbol enum of the instrument in question.  Example, if the user was interested in finding out the equity balance of BTCUSDT then the user would set the symbol enum = 4.  A symbol enum value of 0 will result in the sending of all instruments where the user has an equity balance.
 
 ```proto
 
@@ -187,7 +203,7 @@ message BOClientLogon {
 ```
 
 ```proto
-message BOCollateralData {
+message Bit24CollateralData {
   string msg1 = 1;
   string msg2 = 2;
   int32 MessageType = 3;
@@ -229,10 +245,11 @@ message BOCollateralData {
 |                      | Total Length |     34      |                |                |               |        |
 
 ## Protobuf Risk Symbol Update
+   The BORiskUpdateRequest is very similar to the CollateralData request except it is isolated to the values of equity being used in a particular instrument.  Example, the user might be trading BTCUSD and BTCUSDT.  While the Collateral data message will show the total value of BTC available, the RiskUserSymbol message will show the value of BTC being used for an individual instrument.  In this example if 5 BTC were being used in BTCUSD and 2 BTC were being used in BTCUSDT the collateral data message would show a total of 7 BTC currently in use.  But if the user requested an update for a particular symbol such as BTCUSD, the value of equity shown to being used would be 5.  This message also shows values related to a particular instrument such as executed positions, etc.
 
 ```proto
 {
-  BOMsg::BORiskUpdateReques req;
+  BOMsg::BORiskUpdateRequest req;
   req.set_msg1("w");
   req.set_updatetype(2);
   req.set_account(100700);
@@ -254,7 +271,7 @@ message BOCollateralData {
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a protobuf BORiskUserSymbol.
 
 ```proto
 
@@ -268,7 +285,7 @@ message BOCollateralData {
   char msgtype = (char)stype;
 
   
-  BOMsg::BORiskUserSymbol _res;
+  Bit24Msg::Bit24RiskUserSymbol _res;
   _res.ParseFromCodedStream(&coded_input);               // this must be done to fill in the message fields
   _res.account();
   _res.symbolenum();
@@ -293,7 +310,7 @@ message BOCollateralData {
 ```
 
 ```proto
-message BORiskUserSymbol {
+message Bit24RiskUserSymbol {
   string msg1 = 1;
   string msg2 = 2;
   int32 MessageType = 3;
@@ -337,6 +354,9 @@ message BORiskUserSymbol {
 |                      |           | TotalLength |                |                |               |        |
 
 ## Protobuf Instrument Data
+   Each instrument in the system has associated values such as price increment, symbl enum, min size, max size, etc.  Price increment is especially important as the prices sent in each order must be sent with the correct price increments.  Example, BTCUSD trades with a price increment of 0.5.  Therefore, sending a price of 36000.89 would be rejected since .89 is not an increment of .50. 
+
+   Symbol enums for each instrument must be correct.  Invalid symbol enums can result in rejected messages or undefined behavior.
 
 ```proto
 {
@@ -389,7 +409,7 @@ message BORiskUserSymbol {
 ```
 
 ```proto
-message BOInstrumentRequest {
+message Bit24InstrumentRequest {
   string msg1 = 1;
   string msg2 = 2;
   int32 MsgLen = 3;
