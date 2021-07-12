@@ -1,20 +1,27 @@
 # Overview 
   Welcome to Black Ocean.  Black Ocean offers a diverse array of connection protocols and messaging protocols. 
+
 ## Connection Protocols
+
 1)  REST (HTTP)
 2)  Websockets
 3)  TCP/IP
+
 ## Messaging Protocols
+
 1)  REST
 2)  JSON
 3)  Google Protobuf's
 4)  Black Ocean's Proprietary Binary Protocol
+
 ## Difference between messages through the various delivery protocols
    Once the data has been extracted from the socket buffer, the messages themselves have no differences.  JSON over TCP/IP is the same as JSON over websockets.  The only protocol with a real difference is REST but fortunately, there is only one delivery mechanism for it.  Therefore since every user has their own way of reading data from the socket buffer, we will not delve into that area.  Instead, this document is intended to explain how to parse the data which was received irregardless of the delivery mechanism be it TCP/IP or Websockets.
 
 ## Message Headers
    Most messages in the Black Ocean messaging protocols have a header preceeding the message.  Message headers increase throughput by preventing the processing of data until a full message is received.  The message headers also clearly define the message type received which adds efficiency in the processing of incoming data.  The different message headers will be explained in the appropriate Messaging Protocol Sections.  In Black Oceans messaging protocols, there are two ways to identify the message received, one from the afore mentioned header and the other is from the message itself.  The message types in the header are listed below:
+
 ### Char message types
+
 1) BOClientLogon = 'H'
 2) BORiskUpdateRequest = 'w'
 3) BORiskUserSymbol = 'N'
@@ -43,6 +50,7 @@ Symbol Enums are replacements for the character based instrument name to a short
   Black Ocean offers the most complete set of order types in the crypto market including TRUE ICE orders.  ICE orders allow the user to place up to 10 orders at a specified price offset per layer and a specified size at that price layer which move as the market moves.  Black Ocean also offers Hidden orders, peg orders, hidden peg orders and display and refresh attributes for most order types.  The complete list of order types is as follows:
 
 ##  Current Order Types:
+
 1)  LMT = 1,
 2)  MKT = 2,
 3)  STOP_MKT = 3,
@@ -58,6 +66,7 @@ Symbol Enums are replacements for the character based instrument name to a short
 13) TSL = 15                // TRAILING_STOP_LMT 
 
 # Message Types
+
 1)         ORDER_NEW = 1,
 2)         CANCEL_REPLACE = 2,
 3)         MARGIN_CANCEL_REPLACE = 3,
@@ -147,7 +156,9 @@ Message Type:  ORDER_NEW
 | **Attributes**        | 1 |   |   |   | 1 | 1 | 1 | 1 |   |    |    |    |    |
 
 Note 1:  Attributes currently are used to indicate Hidden or Display Refresh is to be used.  Currently only HIDDEN_TYPE and DISPLY_TYPE are in use.
+
          ATTRIBUTE_TYPES:
+
 1)             RESERVED_TYPE,
 2)             HIDDEN_TYPE = 1,
 3)             DISPLY_TYPE = 2,
@@ -207,7 +218,9 @@ Message Type:  CANCEL_REPLACE
 | **Attributes**        | 1 |   |   |   | 1 | 1 | 1 | 1 |   |    |    |    |    |
 
 Note 1:  Attributes currently are used to indicate Hidden or Display Refresh is to be used.  Currently only HIDDEN_TYPE and DISPLY_TYPE are in use.
+
          ATTRIBUTE_TYPES:
+
 1)             RESERVED_TYPE,
 2)             HIDDEN_TYPE = 1,
 3)             DISPLY_TYPE = 2,
@@ -267,7 +280,9 @@ Message Type:  ORDER_CANCEL
 | **Attributes**        |   |   |   |   |   |   |   |   |   |    |    |    |    |
 
 Note 1:  Attributes currently are used to indicate Hidden or Display Refresh is to be used.  Currently only HIDDEN_TYPE and DISPLY_TYPE are in use.
+
          ATTRIBUTE_TYPES:
+         
 1)             RESERVED_TYPE,
 2)             HIDDEN_TYPE = 1,
 3)             DISPLY_TYPE = 2,

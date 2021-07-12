@@ -12,7 +12,7 @@ toc_footers:
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - overview
+  - overview  
   - rest
   - json
   - protobuf
