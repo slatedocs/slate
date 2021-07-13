@@ -742,19 +742,25 @@ Units that require mass include CO2, CH4 and N2O
 curl -X POST \
   https://dynm.herokuapp.com/energy-conversion \
   -H "Content-type: application/json" \
-  -d '{
-    "fuel_type": "Anthracite coal",
-    "input": 100,
-    "unit": "short ton"
-  }'
+  -d  '{
+    "conversion": {
+      "fuel_type": "Anthracite coal",
+      "input": 123,
+      "unit": "short ton",
+      "category": "transportation"
+    }
+  }
 ```
 
 ```javascript
 const fetch = require("node-fetch");
 const data = {
-  fuel_type: "Anthracite coal",
-  input: 100,
-  unit: "short ton",
+  conversion: {
+    fuel_type: "Anthracite coal",
+    input: 123,
+    unit: "short ton",
+    category: "transportation",
+  },
 };
 
 fetch("https://dynm.herokuapp.com/energy-conversion", {
@@ -779,11 +785,13 @@ import json
 
 url = "https://dynm.herokuapp.com/energy-conversion"
 
-payload = {
+payload = {"conversion": {
     "fuel_type": "Anthracite coal",
-    "input": 100,
-    "unit": "short ton"
+    "input": 123,
+    "unit": "short ton",
+    "category": "transportation"
   }
+}
 
 headers = {'Content-Type': 'application/json'}
 
@@ -798,9 +806,12 @@ print(data)
   $url = "https://dynm.herokuapp.com/energy-conversion";
   $ch = curl_init($url);
   $postData = array(
-    "fuel_type" => "Anthracite coal",
-    "input" => 100,
-    "unit" => "short ton"
+    "conversion" => array(
+      "fuel_type" => "Anthracite coal",
+      "input" => 123,
+      "unit" => "short ton",
+      "category"=> "transportation"
+    )
   );
 
   curl_setopt_array($ch, array(
@@ -821,12 +832,12 @@ print(data)
 
 ```json
 {
-    "BTU": 2900000000.0,
-    "QUAD": 2.9e-06,
-    "EJ": 3.058e-06,
-    "KWH": 849941.4,
-    "SHORT_TON": 100.0
-}
+  "QUAD": 3.567e-6,
+  "EJ": 3.76134e-6,
+  "kWH": 1045428.0,
+  "BTU": 3567000000.0,
+  "SHORT_TON": 123.0,
+  "Category": "transportation"
 }
 ```
 
