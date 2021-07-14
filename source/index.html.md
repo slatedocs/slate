@@ -650,7 +650,8 @@ import json
 
 url = "https://dynm.herokuapp.com/carbon-dioxide-conversion"
 
-payload = {"conversion": {
+payload = {
+  "conversion": {
     "fuel_type": "Vegetable Oil",
     "input": 123,
     "unit": "co2",
@@ -723,13 +724,13 @@ Units that require mass include CO2, CH4 and N2O
 
 <aside>Request params</aside>
 
-| Param     | Type   | Required | Description                                                                                                                                   |
-| --------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| fuel_type | string | true     | The fuel type to convert                                                                                                                      |
-| input     | number | true     | This is the number of units to convert                                                                                                        |
-| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, kgco2, gch4, gn20                                              |
-| mass      | string | true     | This param is only required when the unit type is CO2, CH4 OR N2O                                                                             |
-| category  | string | true     | There are four categories in which conversion cant take place. The categories include: residential, commercial, industrial and transportation |
+| Param     | Type   | Required | Description                                                                                                                                  |
+| --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| fuel_type | string | true     | The fuel type to convert                                                                                                                     |
+| input     | number | true     | This is the number of units to convert                                                                                                       |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, kgco2, gch4, gn20                                             |
+| mass      | string | true     | This param is only required when the unit type is CO2, CH4 OR N2O                                                                            |
+| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
 
 <aside>Fuel Types</aside>
 
@@ -871,12 +872,12 @@ Energy Conversion
 
 <aside>Request params</aside>
 
-| Param     | Type   | Required | Description                                                                                                                                   |
-| --------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| fuel_type | string | true     | The fuel type to convert                                                                                                                      |
-| input     | number | true     | This is the number of units to convert                                                                                                        |
-| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, kwh and btu                                                                |
-| category  | string | true     | There are four categories in which conversion cant take place. The categories include: residential, commercial, industrial and transportation |
+| Param     | Type   | Required | Description                                                                                                                                  |
+| --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| fuel_type | string | true     | The fuel type to convert                                                                                                                     |
+| input     | number | true     | This is the number of units to convert                                                                                                       |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, kwh and btu                                                               |
+| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
 
 <aside>Fuel Types</aside>
 
