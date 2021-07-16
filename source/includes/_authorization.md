@@ -2,7 +2,7 @@
 
 ```shell
 # With shell, you can append the requested scopes as a space separated list of values
-curl "<base_url>/oauth/authorize?scope=user_read+user_write"
+curl "<base_url>/oauth/authorize?scope=user_read%20user_write"
   -H "Authorization: Bearer <Token>"
 ```
 
