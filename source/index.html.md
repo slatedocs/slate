@@ -41,16 +41,18 @@ For a more accurate estimate, use your own numbers. Gather your utility bills (e
 > Adding/Editing conversions
 
 ```ruby
-COAL_MINING_BTU_PER_SHORT_TON = 314200
-COAL_MINING_mmBTU_SHORT_TON = 3.142
-COAL_MINING_CO2_PER_SHORT_TON = 6.14
-COAL_MINING_CH4_PER_SHORT_TON = 0.2892
-COAL_MINING_N2O_PER_SHORT_TON = 14.955
+NEW_FUEL_BTU_PER_SHORT_TON = 314200
+NEW_FUEL_mmBTU_SHORT_TON = 3.142
+NEW_FUEL_CO2_PER_SHORT_TON = 6.14
+NEW_FUEL_CH4_PER_SHORT_TON = 0.2892
+NEW_FUEL_N2O_PER_SHORT_TON = 14.955
 ```
 
 To edit or add fuel types and their conversion constants, open the [models](https://github.com/sunnysanwar/fuel-co2-conv-api.git) folder where you will see the different files named after the endpoints. Edit the file that is specific to the conversion you want to make.
 
-For example, go to carbon_dioxide_conversion.rb to Coal Mining to CO2 with the following conversion constants.
+For example, go to carbon_dioxide_conversion.rb to New Fuel to CO2 with the following conversion constants.
+
+<iframe src="images/dynm-updating-conversions.mp4" height="320" width="560" allowfullscreen="" frameborder="0"></iframe>
 
 
 # Home Energy

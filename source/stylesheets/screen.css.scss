@@ -584,6 +584,8 @@ html, body {
   }
 }
 
+@media (min-width: 800px){.toc-wrapper .logo{transform:scale(5)}}
+
 @media (max-width: $phone-width) {
   .dark-box {
     display: none;
@@ -630,4 +632,8 @@ html, body {
 
 .copy-clipboard:hover {
   opacity: 0.8;
+}
+
+iframe {
+  margin-top: 1.5em;
 }
