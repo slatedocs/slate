@@ -590,6 +590,159 @@ curl -X POST \
     "conversion": {
       "fuel_type": "Vegetable oil",
       "input": 123,
+      "unit": "btu",
+      "category": "residential"
+    }
+  }'
+```
+
+```javascript
+const fetch = require("node-fetch");
+const data = {
+  conversion: {
+    fuel_type: "Vegetable Oil",
+    input: 123,
+    unit: "btu",
+    category: "residential",
+  },
+};
+
+fetch("https://dynm.herokuapp.com/carbon-dioxide-conversion", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+
+url = "https://dynm.herokuapp.com/carbon-dioxide-conversion"
+
+payload = {
+  "conversion": {
+    "fuel_type": "Vegetable Oil",
+    "input": 123,
+    "unit": "btu",
+    "category": "residential"
+  }
+}
+
+headers = {'Content-Type': 'application/json'}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+data = response.json()
+print(data)
+```
+
+```php
+<?php
+  $url = "https://dynm.herokuapp.com/carbon-dioxide-conversion";
+  $ch = curl_init($url);
+  $postData = array(
+    "conversion" => array(
+      "fuel_type" => "Vegetable Oil",
+      "input" => 123,
+      "unit" => "btu",
+      "category"=> "residential"
+    )
+  );
+
+  curl_setopt_array($ch, array(
+    CURLOPT_POST => TRUE, // set post data to true
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_POSTFIELDS => json_encode($postData),   // post data
+    CURLOPT_HTTPHEADER => array("Content-Type: application/json")
+  ));
+
+  $response = curl_exec($ch);
+  curl_close ($ch);
+  $data = json_decode($response, true); // decode the json response
+  var_dump($data);
+?>
+```
+
+> RESPONSE
+
+```json
+{
+  "BTU": 123.0,
+  "mmBTU": 0.000123,
+  "gCH4": 0.00013325,
+  "kgCH4": 1.3325e-7,
+  "lbCH4": 2.937656e-7,
+  "gCO2": 0.01003475,
+  "kgCO2": 1.003475e-5,
+  "lbCO2": 2.212281e-5,
+  "gN2O": 1.025e-5,
+  "kgN2O": 1.025e-8,
+  "lbN2O": 2.259736e-8,
+  "GALLON": 0.001025,
+  "Category": "residential"
+}
+```
+
+`POST https://dynm.herokuapp.com/carbon-dioxide-conversion`
+
+<aside>Request params</aside>
+
+| Param     | Type   | Required | Description                                                                                                                                  |
+| --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| fuel_type | string | true     | The fuel type to convert                                                                                                                     |
+| input     | number | true     | This is the number of units to convert                                                                                                       |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                 |
+| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
+
+<aside>Fuel Types</aside>
+
+| Fuel Type                   | Fuel Type                | Fuel Type                |
+| --------------------------- | ------------------------ | ------------------------ |
+| agricultural byproducts     | distillate fuel oil no 1 | petrochemical feedstocks |
+| peat                        | distillate fuel oil no 2 | petroleum coke           |
+| solid byproducts            | distillate fuel oil no 4 | propane                  |
+| wood and wood residuals     | ethane                   | propylne                 |
+| natural gas                 | ethylene                 | residual fuel oil no 5   |
+| blast furnace gas           | heavy gas oils           | residual fuel oil no 6   |
+| coke oven gas               | isobutane                | special naphtha          |
+| fuel gas                    | isobutylene              | still gas                |
+| propane gas                 | kerosene                 | unfished oils            |
+| landfill gas                | kerosene type jet fuel   | used oils                |
+| other biomass gases         | liquefied petroleum gas  | biodiesel 100 percent    |
+| compressed natural gas      | lubricants               | ethanol 100 percent      |
+| asphalt and road oil        | motor gasoline           | rendered animal fat      |
+| aviation gasoline           | naphtha 401 deg f        | diesel fuel              |
+| butane                      | natural gasoline         | liquefied natural gas    |
+| butylene                    | other oil 401 def f      | methanol                 |
+| crude oil                   | pentanes plus            | residual fuel oil        |
+| anthracite coal             | vegetable oil            | bituminous coal          |
+| sub bituminous coal         | lignite coal             | mixed commercial sector  |
+| mixed electric power sector | mixed industrial cooking | coal coke                |
+| municipal solid waste       | petroleum coke solid     | plastics                 |
+| plastics quad short ton     | tires                    | tires short ton          |
+
+## Carbon Dioxide with mass
+
+> REQUEST
+
+```shell
+curl -X POST \
+  https://dynm.herokuapp.com/carbon-dioxide-conversion \
+  -H "Content-type: application/json" \
+  -d '{
+    "conversion": {
+      "fuel_type": "Vegetable oil",
+      "input": 123,
       "unit": "co2",
       "mass": "kg",
       "category": "residential"
@@ -697,8 +850,6 @@ print(data)
 }
 ```
 
-Carbon Dioxide Conversion
-
 Units that require mass include CO2, CH4 and N2O
 
 `POST https://dynm.herokuapp.com/carbon-dioxide-conversion`
@@ -710,190 +861,9 @@ Units that require mass include CO2, CH4 and N2O
 | fuel_type | string | true     | The fuel type to convert                                                                                                                     |
 | input     | number | true     | This is the number of units to convert                                                                                                       |
 | unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                 |
-| mass      | string | true     | This param is only required when the unit type is CO2, CH4 OR N2O                                                                            |
+| mass      | string | false     | This param is only required when the unit type is CO2, CH4 or N2O. Acceptable mass units are kg, g and lbs. If mass is not provided, the default is pounds   |
 | category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
 
-<aside>Fuel Types</aside>
-
-| Fuel Type                   | Fuel Type                | Fuel Type                |
-| --------------------------- | ------------------------ | ------------------------ |
-| agricultural byproducts     | distillate fuel oil no 1 | petrochemical feedstocks |
-| peat                        | distillate fuel oil no 2 | petroleum coke           |
-| solid byproducts            | distillate fuel oil no 4 | propane                  |
-| wood and wood residuals     | ethane                   | propylne                 |
-| natural gas                 | ethylene                 | residual fuel oil no 5   |
-| blast furnace gas           | heavy gas oils           | residual fuel oil no 6   |
-| coke oven gas               | isobutane                | special naphtha          |
-| fuel gas                    | isobutylene              | still gas                |
-| propane gas                 | kerosene                 | unfished oils            |
-| landfill gas                | kerosene type jet fuel   | used oils                |
-| other biomass gases         | liquefied petroleum gas  | biodiesel 100 percent    |
-| compressed natural gas      | lubricants               | ethanol 100 percent      |
-| asphalt and road oil        | motor gasoline           | rendered animal fat      |
-| aviation gasoline           | naphtha 401 deg f        | diesel fuel              |
-| butane                      | natural gasoline         | liquefied natural gas    |
-| butylene                    | other oil 401 def f      | methanol                 |
-| crude oil                   | pentanes plus            | residual fuel oil        |
-| anthracite coal             | vegetable oil            | bituminous coal          |
-| sub bituminous coal         | lignite coal             | mixed commercial sector  |
-| mixed electric power sector | mixed industrial cooking | coal coke                |
-| municipal solid waste       | petroleum coke solid     | plastics                 |
-| plastics quad short ton     | tires                    | tires short ton          |
-
-## Carbon Dioxide Conversion for fuel types that dont require mass
-
-> REQUEST
-
-```shell
-curl -X POST \
-  https://dynm.herokuapp.com/carbon-dioxide-conversion \
-  -H "Content-type: application/json" \
-  -d '{
-    "conversion": {
-      "fuel_type": "Vegetable oil",
-      "input": 123,
-      "unit": "btu",
-      "category": "residential"
-    }
-  }'
-```
-
-```javascript
-const fetch = require("node-fetch");
-const data = {
-  conversion: {
-    fuel_type: "Vegetable Oil",
-    input: 123,
-    unit: "btu",
-    category: "residential",
-  },
-};
-
-fetch("https://dynm.herokuapp.com/carbon-dioxide-conversion", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    console.log("Success:", data);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
-```
-
-```python
-import requests
-import json
-
-url = "https://dynm.herokuapp.com/carbon-dioxide-conversion"
-
-payload = {
-  "conversion": {
-    "fuel_type": "Vegetable Oil",
-    "input": 123,
-    "unit": "btu",
-    "category": "residential"
-  }
-}
-
-headers = {'Content-Type': 'application/json'}
-
-response = requests.post(url, headers=headers, data=json.dumps(payload))
-
-data = response.json()
-print(data)
-```
-
-```php
-<?php
-  $url = "https://dynm.herokuapp.com/carbon-dioxide-conversion";
-  $ch = curl_init($url);
-  $postData = array(
-    "conversion" => array(
-      "fuel_type" => "Vegetable Oil",
-      "input" => 123,
-      "unit" => "btu",
-      "category"=> "residential"
-    )
-  );
-
-  curl_setopt_array($ch, array(
-    CURLOPT_POST => TRUE, // set post data to true
-    CURLOPT_RETURNTRANSFER => TRUE,
-    CURLOPT_POSTFIELDS => json_encode($postData),   // post data
-    CURLOPT_HTTPHEADER => array("Content-Type: application/json")
-  ));
-
-  $response = curl_exec($ch);
-  curl_close ($ch);
-  $data = json_decode($response, true); // decode the json response
-  var_dump($data);
-?>
-```
-
-> RESPONSE
-
-```json
-{
-  "BTU": 123.0,
-  "mmBTU": 0.000123,
-  "gCH4": 0.00013325,
-  "kgCH4": 1.3325e-7,
-  "lbCH4": 2.937656e-7,
-  "gCO2": 0.01003475,
-  "kgCO2": 1.003475e-5,
-  "lbCO2": 2.212281e-5,
-  "gN2O": 1.025e-5,
-  "kgN2O": 1.025e-8,
-  "lbN2O": 2.259736e-8,
-  "GALLON": 0.001025,
-  "Category": "residential"
-}
-```
-
-Carbon Dioxide Conversion
-
-`POST https://dynm.herokuapp.com/carbon-dioxide-conversion`
-
-<aside>Request params</aside>
-
-| Param     | Type   | Required | Description                                                                                                                                  |
-| --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| fuel_type | string | true     | The fuel type to convert                                                                                                                     |
-| input     | number | true     | This is the number of units to convert                                                                                                       |
-| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                 |
-| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
-
-<aside>Fuel Types</aside>
-
-| Fuel Type                   | Fuel Type                | Fuel Type                |
-| --------------------------- | ------------------------ | ------------------------ |
-| agricultural byproducts     | distillate fuel oil no 1 | petrochemical feedstocks |
-| peat                        | distillate fuel oil no 2 | petroleum coke           |
-| solid byproducts            | distillate fuel oil no 4 | propane                  |
-| wood and wood residuals     | ethane                   | propylne                 |
-| natural gas                 | ethylene                 | residual fuel oil no 5   |
-| blast furnace gas           | heavy gas oils           | residual fuel oil no 6   |
-| coke oven gas               | isobutane                | special naphtha          |
-| fuel gas                    | isobutylene              | still gas                |
-| propane gas                 | kerosene                 | unfished oils            |
-| landfill gas                | kerosene type jet fuel   | used oils                |
-| other biomass gases         | liquefied petroleum gas  | biodiesel 100 percent    |
-| compressed natural gas      | lubricants               | ethanol 100 percent      |
-| asphalt and road oil        | motor gasoline           | rendered animal fat      |
-| aviation gasoline           | naphtha 401 deg f        | diesel fuel              |
-| butane                      | natural gasoline         | liquefied natural gas    |
-| butylene                    | other oil 401 def f      | methanol                 |
-| crude oil                   | pentanes plus            | residual fuel oil        |
-| anthracite coal             | vegetable oil            | bituminous coal          |
-| sub bituminous coal         | lignite coal             | mixed commercial sector  |
-| mixed electric power sector | mixed industrial cooking | coal coke                |
-| municipal solid waste       | petroleum coke solid     | plastics                 |
-| plastics quad short ton     | tires                    | tires short ton          |
 
 ## Energy
 
