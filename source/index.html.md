@@ -704,7 +704,7 @@ Units that require mass include CO2, CH4 and N2O
 | --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | fuel_type | string | true     | The fuel type to convert                                                                                                                     |
 | input     | number | true     | This is the number of units to convert                                                                                                       |
-| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, CO2, CH4, N20                                                 |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                 |
 | mass      | string | true     | This param is only required when the unit type is CO2, CH4 OR N2O                                                                            |
 | category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
 
@@ -860,7 +860,7 @@ Carbon Dioxide Conversion
 | --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | fuel_type | string | true     | The fuel type to convert                                                                                                                     |
 | input     | number | true     | This is the number of units to convert                                                                                                       |
-| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, CO2, CH4, N20                                                 |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                 |
 | category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
 
 <aside>Fuel Types</aside>
