@@ -367,8 +367,8 @@ api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, bing, bing-local.
 country | <span class="label label-required">Required</span> Determines which country specific variant of the specified search engine to use. As defined in "Supported Countries"(#supported-countries) table below.
-google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location](#check-location) method.
-bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location](#check-location) method.
+google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Geo Locations](#geo-locations) method.
+bing-location | Allows you to optionally localize results by specifying your physical location. See [Geo Locations](#geo-locations) method.
 search-term | <span class="label label-required">Required</span> The search term to get ranking information for.
 urls | The URLs to get ranking information for. Encode as a JSON string, e.g. \["www.bluehillfarm.com", "www.candle79.com", "shabutatsu.com", "marea-nyc.com", "www.taorestaurant.com"\] (max 10).
 business-names | A list of possible business names to search for. Encode as a JSON string, e.g. ["The Rose Pub","Rose Pub","The Rose"]. For backwards compatibility this also supports a newline (\n) separated list.
@@ -529,8 +529,8 @@ api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
 search-engine | <span class="label label-required">Required</span> One of google, google-mobile, google-local, bing, bing-local.
 country | <span class="label label-required">Required</span> Determines which country specific variant of the specified search engine to use. As defined in "Supported Countries"(#supported-countries) table below.
-google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Check Location](#check-location) method.
-bing-location | Allows you to optionally localize results by specifying your physical location. See [Check Location](#check-location) method.
+google-location | Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see [Geo Locations](#geo-locations) method.
+bing-location | Allows you to optionally localize results by specifying your physical location. See [Geo Locations](#geo-locations) method.
 search-terms | <span class="label label-required">Required</span> Encode as a JSON string, e.g. \["restaurant new york", "restaurant", "cafe"\] (max 100).
 urls | The URLs to get ranking information for. Encode as a JSON string, e.g. \["www.bluehillfarm.com", "www.candle79.com", "shabutatsu.com", "marea-nyc.com", "www.taorestaurant.com"\] (max 10).
 business-names | A list of possible business names to search for. Encode as a JSON string, e.g. ["The Rose Pub","Rose Pub","The Rose"]. For backwards compatibility this also supports a newline (\n) separated list.
