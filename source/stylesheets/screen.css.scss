@@ -810,12 +810,6 @@ html, body {
     padding-bottom: 2em;
     padding: 2em $main-padding;
     border-radius: 0 0 8px 8px;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
   }
 
   blockquote {
