@@ -1,5 +1,27 @@
 # Changelog
 
+## Version 2.10.0
+
+*April 13, 2021*
+
+* Add support for Ruby 3.0 (thanks @shaun-scale)
+* Add requirement for Git on installing dependencies
+* Bump nokogiri from 1.11.2 to 1.11.3
+* Bump middleman from 4.3.11 to [`d180ca3`](https://github.com/middleman/middleman/commit/d180ca337202873f2601310c74ba2b6b4cf063ec)
+
+## Version 2.9.2
+
+*March 30, 2021*
+
+* __[Security]__ Bump kramdown from 2.3.0 to 2.3.1
+* Bump nokogiri from 1.11.1 to 1.11.2
+
+## Version 2.9.1
+
+*February 27, 2021*
+
+* Fix Slate language tabs not working if localStorage is disabled
+
 ## Version 2.9.0
 
 *January 19, 2021*
