@@ -38,7 +38,7 @@ For a more accurate estimate, use your own numbers. Gather your utility bills (e
 
 ## Adding/Editing conversions
 
-To edit or add fuel types and their conversion constants, open the [model's](/app/models) folder where you will see the different files named after the endpoints. Edit the file that is specific to the conversion you want to make.
+To edit or add fuel types and their conversion constants, open the [models](https://github.com/sunnysanwar/fuel-co2-conv-api.git) folder where you will see the different files named after the endpoints. Edit the file that is specific to the conversion you want to make.
 
 For example, go to carbon_dioxide_conversion.rb to Coal Mining to CO2 with the following conversion constants.
 
