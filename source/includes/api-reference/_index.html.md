@@ -419,7 +419,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-Attachment result = client.attachments.createAttachmentForTask(taskGid)
+Attachment result = client.attachments.createAttachmentForTask(taskGid, file, url, name)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -439,6 +439,9 @@ $result = $client->attachments->createAttachmentForTask($task_gid, array('field'
 
 ```yaml
 file: string
+name: string
+resource_subtype: text
+url: string
 
 ```
 
@@ -495,7 +498,10 @@ in order for the server to reliably and properly handle the request.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The file you want to upload.|
-|» file<span class="param-type"> string(binary)</span>|none|
+|» file<span class="param-type"> string(binary)</span>|Required for file attachments.|
+|» name<span class="param-type"> string</span>|The name of the external resource being attached. Required for attachments of type 'external'.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the attachment. Must be one of the given values. If not specified, a file attachment of type `asana_file_attachments` will be assumed.|
+|» url<span class="param-type"> string</span>|The URL of the external resource being attached. Required for attachments of type 'external'.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -514,6 +520,13 @@ option instead of the `-d` option.
 When uploading PDFs with curl, force the content-type to be pdf by
 appending the content type to the file path: `--form
 "file=@file.pdf;type=application/pdf"`.
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| resource_subtype|asana_file_attachments|
+| resource_subtype|external|
 
 <h3 id="upload-an-attachment-responses">Responses</h3>
 
@@ -18639,7 +18652,7 @@ Returns the full record for a user's task list.
 
 <span class="description">
 *Note: Recently, some users have seen intermittent delays with webhook event distributions. We are in the process of transferring the webhooks system to a more reliable infrastructure while also iteratively improving the current system. As such, for the time being we advise against using webhooks for functionality beyond logging (e.g., syncing state with real-time notification data).*
-*If you experience latency issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](https://developers.asana.com/docs/get-a-task)).  More details and ongoing updates can be found in [this post](https://forum.asana.com/t/an-update-on-our-webhooks/119684) in the developer forum.*
+*If you experience latency issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](https://developers.asana.com/docs/get-a-task)).  More details and ongoing updates can be found in [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570) in the developer forum.*
 Webhooks allow an application to be notified of changes in Asana.
 
 This is similar to our [Events](/docs/asana-events) resource, but webhooks "push" events via HTTP `POST` rather than expecting integrations to repeatedly "poll" for them. For services that are already accessible on the Internet this is often more convenient and efficient.
@@ -18694,6 +18707,8 @@ To reduce the volume of data to transfer, webhooks created on teams, portfolios,
 #### Error Handling and Retry
 
 If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect it to take no longer than approximately an hour after they come back before the paused delivery resumes. However, if we are unable to deliver a message for 24 hours the webhook will be deactivated.
+#### Webhook Heartbeat Events
+Webhooks keep track of the last time that delivery succeeded, and this time is updated with each success. To help facilitate this, webhooks have a “heartbeat” that will deliver an empty payload at the initial handshake, and then every eight hours. This way, even if there is no activity on the resource, the last success time (i.e `last_success_at`) will still be updated continuously.
 #### Resources and Actions
 This is not an exhaustive list, but should cover the most common use cases.
 

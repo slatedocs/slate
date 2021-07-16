@@ -642,7 +642,7 @@ tags:
 
       *If you experience latency issues, we recommend using webhooks in conjunction
       with fetching the resource periodically (e.g. [GET a task](https://developers.asana.com/docs/get-a-task)).  More
-      details and ongoing updates can be found in [this post](https://forum.asana.com/t/an-update-on-our-webhooks/119684)
+      details and ongoing updates can be found in [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570)
       in the developer forum.*
 
       Webhooks allow an application to be notified of changes in Asana.
@@ -768,6 +768,14 @@ tags:
       can expect it to take no longer than approximately an hour after they come
       back before the paused delivery resumes. However, if we are unable to
       deliver a message for 24 hours the webhook will be deactivated.
+
+      #### Webhook Heartbeat Events
+
+      Webhooks keep track of the last time that delivery succeeded, and this time
+      is updated with each success. To help facilitate this, webhooks have a “heartbeat”
+      that will deliver an empty payload at the initial handshake, and then every
+      eight hours. This way, even if there is no activity on the resource, the last
+      success time (i.e `last_success_at`) will still be updated continuously.
 
       #### Resources and Actions
 
@@ -1256,9 +1264,31 @@ components:
     AttachmentRequest:
       type: object
       properties:
+        resource_subtype:
+          description: >
+            The type of the attachment. Must be one of the given values.
+            If not specified, a file attachment of type `asana_file_attachments`
+            will be assumed.
+          type: string
+          example: text
+          enum:
+            - asana_file_attachments
+            - external
         file:
+          description: >
+            Required for file attachments.
           type: string
           format: binary
+        url:
+          description: >
+            The URL of the external resource being attached. Required for
+            attachments of type 'external'.
+          type: string
+        name:
+          description: >
+            The name of the external resource being attached. Required for
+            attachments of type 'external'.
+          type: string
     AttachmentResponse:
       allOf:
         - $ref: '#/components/schemas/AttachmentBase'
