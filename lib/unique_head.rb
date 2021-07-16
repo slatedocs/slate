@@ -5,6 +5,7 @@ class UniqueHeadCounter < Middleman::Renderers::MiddlemanRedcarpetHTML
   def initialize
     super
     @head_count = {}
+    @previous = {}
   end
   def header(text, header_level)
     friendly_text = text.gsub(/<[^>]*>/,"").parameterize
@@ -14,6 +15,14 @@ class UniqueHeadCounter < Middleman::Renderers::MiddlemanRedcarpetHTML
       # URI escape the whole header
       friendly_text = Digest::SHA1.hexdigest(text)[0,10]
     end
+    if (@previous[header_level] == nil )|| (@previous[header_level] != friendly_text)
+      @previous[header_level] = friendly_text
+    end
+
+    if header_level > 1 
+      friendly_text += "-#{@previous[header_level-1]}"
+    end
+
     @head_count[friendly_text] ||= 0
     @head_count[friendly_text] += 1
     if @head_count[friendly_text] > 1

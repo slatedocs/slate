@@ -32,7 +32,7 @@ under the License.
     <title><%= current_page.data.title || "API Documentation" %></title>
 
     <style media="screen">
-      <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
+      <%= Rouge::Themes::OyTheme.render(:scope => '.highlight') %>
     </style>
     <style media="print">
       * {
@@ -40,6 +40,7 @@ under the License.
       }
       <%= Rouge::Themes::Base16::Solarized.render(:scope => '.highlight') %>
     </style>
+    <%= favicon_tag 'favicon.ico' %>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <% if current_page.data.search %>
@@ -47,6 +48,9 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <% if current_page.data.code_clipboard %>
     <script>
@@ -56,15 +60,47 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
-    <a href="#" id="nav-button">
-      <span>
-        NAV
-        <%= image_tag('navbar.png') %>
-      </span>
-    </a>
-    <div class="toc-wrapper">
-      <%= image_tag "logo.png", class: 'logo' %>
-      <% if language_tabs.any? %>
+    <div class="header">
+      <div class="header-section header-logo-container">
+        <%= image_tag "oy-docs.svg", class: 'header-logo' %>
+      </div>
+      <div class="header-section header-action">
+        <% if current_page.data.search %>
+          <div class="search">
+            <input type="text" class="search" id="input-search" placeholder="Search Documentation">
+            <ul class="search-results"></ul>
+          </div>
+        <% end %>
+        <div class="header-section header-action-link">
+          <a href="#home" class="header-link">Home</a>
+          <a href="https://api-docs.oyindonesia.com" class="header-link">API Docs</a>
+          <a href="https://business.oyindonesia.com/register" class="header-linkButton">Daftar Sekarang</a>
+          <a href="#" class="header-linkUnderline">Masuk Dashboard</a>
+        </div>
+      </div>
+      <div class="header-section header-action-mobile">
+        <%= image_tag 'search.svg', id: "search-toggle-mobile" %>
+        <a href="#" id="nav-button">
+          <span>
+            <%= image_tag('menu-outline.svg') %>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="search-bar-mobile">
+      <% if current_page.data.search %>
+          <div class="search">
+            <input type="text" class="search" id="input-search-mobile" placeholder="Search Documentation">
+            <ul class="search-results-mobile"></ul>
+          </div>
+          <%= image_tag "close.svg", id: 'search-bar-close' %>
+        <% end %>
+    </div>
+
+    <% if language_tabs.any? %>
+      <div class="lang-selector__container">
+        <p class="lang-selector__title">Select Language</p>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
             <% if lang.is_a? Hash %>
@@ -74,22 +110,50 @@ under the License.
             <% end %>
           <% end %>
         </div>
-      <% end %>
-      <% if current_page.data.search %>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
-      <% end %>
+      </div>
+    <% end %>
+    
+    <div class="toc-wrapper">
+      <div class="toc-header-mobile">
+        <%= image_tag "oy-docs.png", class: 'header-logo' %>
+        <%= image_tag "close.svg", class: 'header-close' %>
+      </div>
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
-            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
+            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>">
+              <span>
+                <%=image_tag h1[:id]+'.svg' %>
+                <%= h1[:content] %>
+              </span>
+              <% if h1[:children].length > 0 %>
+                <%= image_tag "arrow-bottom.svg",  class: 'icon-arrow' %>
+              <% else %>
+                <%= image_tag "arrow-right.svg", class: 'icon-arrow'%>
+              <% end %>
+            </a>
             <% if h1[:children].length > 0 %>
               <ul class="toc-list-h2">
                 <% h1[:children].each do |h2| %>
                   <li>
-                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
+                    <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>">
+                      <% if h2[:children].length > 0 %>
+                        <%= h2[:content] %> <%= image_tag "arrow-bottom.svg", class: 'active-parent icon-arrow'%>
+                      <% else %>
+                        <%= h2[:content] %> <%= image_tag "arrow-right.svg", class: 'icon-arrow'%>
+                      <% end %>
+                    </a>
+                   <% if h2[:children].length > 0 %>
+                    <ul class="toc-list-h3">
+                      <% h2[:children].each do |h3| %>
+                        <li>
+                          <a href="#<%= h3[:id] %>" class="toc-h3 toc-link" data-title="<%= h3[:title] %>">
+                            <%= h3[:content] %> <%= image_tag "arrow-right.svg", class: 'icon-arrow'%>
+                          </a>
+                        </li>
+                      <% end %>
+                    </ul>
+                   <% end %>
                   </li>
                 <% end %>
               </ul>
@@ -97,29 +161,29 @@ under the License.
           </li>
         <% end %>
       </ul>
-      <% if current_page.data.toc_footers %>
-        <ul class="toc-footer">
-          <% current_page.data.toc_footers.each do |footer| %>
-            <li><%= footer %></li>
-          <% end %>
-        </ul>
-      <% end %>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
+      <% if language_tabs.any? %>
+      <div class="content use-language">
+      <% else %>
       <div class="content">
+      <% end %>
         <%= page_content %>
       </div>
       <div class="dark-box">
         <% if language_tabs.any? %>
-          <div class="lang-selector">
-            <% language_tabs.each do |lang| %>
-              <% if lang.is_a? Hash %>
-                <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
-              <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+          <div class="lang-selector__container">
+            <p class="lang-selector__title">Select Language</p>
+            <div class="lang-selector">
+              <% language_tabs.each do |lang| %>
+                <% if lang.is_a? Hash %>
+                  <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
+                <% else %>
+                  <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
         <% end %>
       </div>
