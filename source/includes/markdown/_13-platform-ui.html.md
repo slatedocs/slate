@@ -279,6 +279,8 @@ Related References:
 
 ## App Components Security Checklist
 
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
 When handling requests from Asana, an App Components app should:
  
  - Reject requests with missing or incorrect signatures.
@@ -463,6 +465,8 @@ form with the data in the table below.
 Once your app is submitted, an Asana Developer will enable your app and notify you via email when it's ready to use. 
 
 # App Components Quick Start
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 This guide offers a quick way for developers to start building on App Components. By following these steps, you'll gain an understanding of how to install App Component apps to your developer sandbox, as well as how an example app communicates with endpoints exposed on a pre-built local server. 
 
