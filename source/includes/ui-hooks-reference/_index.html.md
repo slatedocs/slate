@@ -4,7 +4,7 @@
 <section class="full-section">
 <h1 id="app-components">App Component Reference</h1>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -23,7 +23,7 @@ Web: <a href="https://asana.com/support">Asana Support</a>
 <a id="asana-app-forms"></a>
 <h1 id="app-forms">App Forms</h1>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/get-form-metadata"><span class="get-verb">GET</span> <span class=""nn>/{form_metadata_url}</span></a><br><a href="/docs/on-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_change_callback}</span></a><br><a href="/docs/on-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_submit_callback}</span></a></code>
@@ -38,7 +38,7 @@ The creation form is displayed when the user starts the flow to create a resourc
 <section>
 ## Get form metadata
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdgetFormMetadata"></a>
 
@@ -142,7 +142,7 @@ Get the metadata from the App Server to render a form.
 <section>
 ## On change callback
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdonFormChange"></a>
 
@@ -262,7 +262,7 @@ The callback request made to an App Server when a watched field's value changes 
 <section>
 ## On submit callback
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdonFormSubmit"></a>
 
@@ -432,7 +432,7 @@ The callback request made to an App Server when a form is submitted.
 <a id="asana-app-rules"></a>
 <h1 id="app-rules">App Rules</h1>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/run-action"><span class="post-verb">POST</span> <span class=""nn>/{run_action_url}</span></a><br><a href="/docs/get-action-metadata"><span class="get-verb">GET</span> <span class=""nn>/{action.metadata_url}</span></a><br><a href="/docs/on-action-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_change_callback}</span></a><br><a href="/docs/on-action-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_submit_callback}</span></a></code>
@@ -447,7 +447,7 @@ When a rule containing an app action is triggered, the Rules Engine will make a 
 <section>
 ## Run action
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdrunAction"></a>
 
@@ -555,7 +555,7 @@ The request made when an action is triggered.
 <section>
 ## Get action metadata
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdgetActionMetadata"></a>
 
@@ -661,7 +661,7 @@ When a user has navigated to the Custom Rule Builder UI and selected an App Acti
 <section>
 ## On action change callback
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdonActionFormChange"></a>
 
@@ -783,7 +783,7 @@ The callback request made to an App Server when a watched field's value changes 
 <section>
 ## On action submit callback
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdonActionFormSubmit"></a>
 
@@ -982,7 +982,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 <a id="asana-app-resource-searching"></a>
 <h1 id="app-resource-searching">App Resource Searching</h1>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/resource-search"><span class="post-verb">POST</span> <span class=""nn>/{resource_search_url}</span></a></code>
@@ -997,7 +997,7 @@ If the app defined a search url, tasks without a widget offer the search functio
 <section>
 ## Resource Search
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdresourceSearch"></a>
 
@@ -1094,7 +1094,7 @@ The search request made to an App Server when the search field is submitted.
 <a id="asana-app-widgets"></a>
 <h1 id="app-widgets">App Widgets</h1>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/get-widget-metadata"><span class="get-verb">GET</span> <span class=""nn>/{widget_metadata_url}</span></a><br><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a></code>
@@ -1109,7 +1109,7 @@ The widget is displayed when the user views a task with an attachment with a res
 <section>
 ## Get widget metadata
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdgetWidgetMetadata"></a>
 
@@ -1215,7 +1215,7 @@ Get the metadata from the App Server to render a widget.
 <section>
 ## Attach resource
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <a id="opIdattachResource"></a>
 
@@ -1314,7 +1314,7 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 <section class="full-section">
 # App Component Schemas
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components BETA](/docs/app-components-beta)
 
 <span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
@@ -1330,7 +1330,7 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 <a id="tocS_AttachedResource"></a>
 <h2 id="attached-resource">AttachedResource</h2>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 ```json
 {
@@ -1363,7 +1363,7 @@ The response to a successful attach request.
 <a id="tocS_FormMetadata"></a>
 <h2 id="form-metadata">FormMetadata</h2>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 ```json
 {
@@ -1453,7 +1453,7 @@ Contains the metadata that describes how to display and manage a form
 <a id="tocS_RanAction"></a>
 <h2 id="ran-action">RanAction</h2>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 ```json
 {
@@ -1502,7 +1502,7 @@ The response to an action request.
 <a id="tocS_TypeaheadItem"></a>
 <h2 id="typeahead-item">TypeaheadItem</h2>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 ```json
 {
@@ -1537,7 +1537,7 @@ An object describing a typeahead result
 <a id="tocS_WidgetMetadata"></a>
 <h2 id="widget-metadata">WidgetMetadata</h2>
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 ```json
 {
