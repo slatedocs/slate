@@ -1,25 +1,23 @@
 <hr class="platform-ui-alpha">
 <section class="platform-ui-alpha">
 
-# App Components Alpha
+# App Components Beta
 
-<span class="beta-indicator">ALPHA</span>
+<span class="beta-indicator">BETA</span>
 
-App Components are currently in a **Closed Alpha**. If you want to participate in the App Components Alpha Program, please 
+App Components are currently in a **Closed Beta**. If you want to participate in the App Components Beta Program, please 
 complete and submit [this form](https://form-beta.asana.com?k=-pVvfJKSSeboL3ySjdhYSg&d=15793206719). We are limiting 
 the number of apps that can use these features at this time. This will open up more as we move to beta. 
 
-The App Components Alpha Program is a pre-general-release version of a program developed by Asana that allows developers 
-to develop and test App Components. The App Component Alpha Program is for development, evaluation, and testing purposes 
+The App Components Beta Program is a pre-general-release version of a program developed by Asana that allows developers 
+to develop and test App Components. The App Component Beta Program is for development, evaluation, and testing purposes 
 only, and is not for production use or subject to availability or security obligations from Asana. The App Components 
-Alpha Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be 
+Beta Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be 
 discontinued or modified at any time.
-
-*This Alpha program was previously named the Workflow Apps Alpha.*
 
 # App Components Overview
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 To start building, follow our [Quickstart Guide](/docs/have-an-app-server-running-locally-or-remotely)!
 
@@ -35,7 +33,7 @@ A new in-app gallery and install flow, a customizable modal, a widget, and more.
 
 ## App Widget
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 > Request to the App Server
 
@@ -107,7 +105,7 @@ Related References:
 
 ## App Form
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 > Request to the App Server
 
@@ -192,7 +190,7 @@ Related References:
 
 ## Widget Resource Searching
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 > Request to the App Server
 
@@ -223,7 +221,7 @@ Related References:
 
 ## App Action
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components BETA](/docs/app-components-beta)
 
 > Request to the App Server
 
@@ -298,7 +296,7 @@ If an app doesn't use OAuth for authentication, the Asana Security Team should m
 
 ## App Components Authorization
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 Authorization is handled by the app. When an app with App Components is added to a project, the user adding it is sent 
 to the App's `authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or 
@@ -318,7 +316,7 @@ might be a good idea to suggest users authenticate with a bot account.
 
 ## App Components Message Integrity
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
 case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
@@ -333,7 +331,7 @@ Server pretending to be Asana.
 
 ## App Components Timeliness
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
 recorded, such as in logs, could be reused to continue to request information from the app at a later time.
@@ -345,7 +343,7 @@ replay attacks.
 
 # App Components Definition
 
-<span class="beta-indicator">ALPHA</span> - For access, please see [App Components Alpha](/docs/app-components-alpha)
+<span class="beta-indicator">BET</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 > Sample of an app with a full App Components definition
 
