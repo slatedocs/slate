@@ -3,9 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
+  - php
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -21,167 +19,257 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to FluentCRM API doc. This doc will describe the REST API Endpoints of FluentCRM.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). If you find any typo or would like contribute please send a pull request with improvments.
 
 # Authentication
 
-> To authorize, use this code:
+FluentCRM use WordPress REST API. So you can use any authorization method that supports Wordpress.
 
-```ruby
-require 'kittn'
+### Basic Authorization
+Once you create your Application Password in WordPress, Add Authorization Header to every request.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Example API Call for contacts
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+curl "https://yourdomain.com/wp-json/fluent-crm/v2/subscribers" \
+  -H "Authorization: BASIC API_USERNAME:API_PASSWORD"
 ```
 
-```javascript
-const kittn = require('kittn');
+### Basic Informations
 
-let api = kittn.authorize('meowmeowmeow');
-```
+**API Base URL:** `https://yourdomain.com/wp-json/fluent-crm/v2`
 
-> Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+> Make sure to replace `API_USERNAME` & `API_PASSWORD` with your UserName & API Password.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+# Contacts
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Contacts
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl "https://yourdomain.com/wp-json/fluent-crm/v2/subscribers" \
+  -H "Authorization: BASIC API_USERNAME:API_PASSWORD"
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "current_page": 1,
+  "per_page": 10,
+  "from": 1,
+  "to": 10,
+  "last_page": 493,
+  "total": 9860,
+  "data": [
+    {
+      "id": "9860",
+      "user_id": "5984",
+      "hash": "4a6f1ed89704814c100a954ec403cd2f",
+      "contact_owner": "string",
+      "company_id": "string",
+      "prefix": "string",
+      "first_name": "Kelli",
+      "last_name": "Hand",
+      "email": "sonny.pacocha@example.net",
+      "timezone": "string",
+      "address_line_1": "string",
+      "address_line_2": "string",
+      "postal_code": "string",
+      "city": "string",
+      "state": "string",
+      "country": "string",
+      "ip": "string",
+      "latitude": "string",
+      "longitude": "string",
+      "total_points": "0",
+      "life_time_value": "0",
+      "phone": "string",
+      "status": "subscribed",
+      "contact_type": "lead",
+      "source": "wp_users",
+      "avatar": "string",
+      "date_of_birth": "string",
+      "created_at": {},
+      "last_activity": "string",
+      "updated_at": "string",
+      "photo": "https://www.gravatar.com/avatar/4a6f1ed89704814c100a954ec403cd2f?s=128",
+      "full_name": "Kelli Hand",
+      "tags": [
+        {
+          "id": "2",
+          "title": "Fluent Forms Users",
+          "slug": "fluent-forms-users",
+          "description": "string",
+          "created_at": {},
+          "updated_at": {},
+          "pivot": {
+            "subscriber_id": "9860",
+            "object_id": "2",
+            "object_type": "FluentCrm\\App\\Models\\Tag",
+            "created_at": {},
+            "updated_at": {}
+          }
+        }
+      ],
+      "lists": [
+        {
+          "id": "1",
+          "title": "List Item 1",
+          "slug": "list-item-1",
+          "description": "string",
+          "is_public": "0",
+          "created_at": {},
+          "updated_at": {},
+          "pivot": {
+            "subscriber_id": "9860",
+            "object_id": "1",
+            "object_type": "FluentCrm\\App\\Models\\Lists",
+            "created_at": {},
+            "updated_at": {}
+          }
+        }
+      ]
+    }
+  ]
+}
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all Contact.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://yourdomain.com/wp-json/fluent-crm/v2/subscribers`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Type | Description | Default
+--------- | ------- | ----------- | -------
+| per_page |  int | Records per page | 10 |
+| page |    int   | Page Number for Pagination | 1 |
+| search | string | Search Parameter for filtering contacts | |
+| tags | array | Tag Ids to filter contacts | |
+| lists | array | List Ids to filter contacts | |
+| statuses | array | Status slugs to filter contacts | |
+| order_by | string | Order By contact column Value to sort contacts | id |
+| order_type | string | Order Type contact column Value to sort contacts | DESC |
+| __with_custom_fields | boolean | Flag to get custom contact field values too |  |
+
+***Possible statuses values:***
+- subscribed
+- unsubscribed
+- pending
+- bounced
+- complained
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — Use authentication Headers
 </aside>
 
-## Get a Specific Kitten
+## Get a Specific Contact
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/<ID>" \
+  -H "Authorization: BASIC API_USERNAME:API_PASSWORD"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+   "subscriber":{
+      "id":"7743",
+      "user_id":"1",
+      "hash":"5acfbfb0e8135fe5a1e36bb40d90ad69",
+      "contact_owner":null,
+      "company_id":null,
+      "prefix":null,
+      "first_name":"JeweldddXXX",
+      "last_name":"JewelZZZ",
+      "email":"cep.jewel@gmail.com",
+      "timezone":null,
+      "address_line_1":"283ddd",
+      "address_line_2":"sda",
+      "postal_code":"34521",
+      "city":"New",
+      "state":"ME",
+      "country":"US",
+      "ip":"127.0.0.1",
+      "latitude":null,
+      "longitude":null,
+      "total_points":"0",
+      "life_time_value":"0",
+      "phone":"01723371621",
+      "status":"subscribed",
+      "contact_type":"lead",
+      "source":"woocommerce",
+      "avatar":null,
+      "date_of_birth":null,
+      "created_at":"2021-07-17 21:08:30",
+      "last_activity":"2021-07-18 13:45:42",
+      "updated_at":"2021-07-18 20:22:48",
+      "user_edit_url":"https:\/\/wp.lab\/wp-admin\/profile.php",
+      "stats":{
+         "emails":0,
+         "opens":0,
+         "clicks":0
+      },
+      "custom_values":{
+         "some_number_field":"10",
+         "checkbox":[
+            "Value Option 1"
+         ]
+      },
+      "photo":"https:\/\/www.gravatar.com\/avatar\/5acfbfb0e8135fe5a1e36bb40d90ad69?s=128",
+      "full_name":"JeweldddXXX JewelZZZ",
+      "tags":[
+         {
+            "id":"1",
+            "title":"FluentCRM Users",
+            "slug":"fluentcrm-users",
+            "description":null,
+            "created_at":"2021-07-17 21:06:25",
+            "updated_at":"2021-07-17 21:06:25",
+            "pivot":{
+               "subscriber_id":"7743",
+               "object_id":"1",
+               "object_type":"FluentCrm\\App\\Models\\Tag",
+               "created_at":"2021-07-19 17:30:52",
+               "updated_at":"2021-07-19 17:30:52"
+            }
+         }
+      ],
+      "lists":[
+         {
+            "id":"1",
+            "title":"List Item 1",
+            "slug":"list-item-1",
+            "description":null,
+            "is_public":"0",
+            "created_at":"2021-07-17 21:01:59",
+            "updated_at":"2021-07-17 21:01:59",
+            "pivot":{
+               "subscriber_id":"7743",
+               "object_id":"1",
+               "object_type":"FluentCrm\\App\\Models\\Lists",
+               "created_at":"2021-07-17 21:08:30",
+               "updated_at":"2021-07-17 21:08:30"
+            }
+         }
+      ]
+   }
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves a specific contact.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/<ID>`
 
 ### URL Parameters
 
