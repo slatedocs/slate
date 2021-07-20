@@ -44,7 +44,7 @@ curl "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the discount.
-`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount..
+`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount.
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired product IDs and discounts. To provide a 20 percent discount, set the discount value to 20.
 `durationMonths`<br/>*integer* | Duration of the discount.
 `type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
