@@ -302,7 +302,7 @@ Optional | &nbsp;
 `tabs.key`<br/>*String* |  *Required* if type `SYSTEM`. The view key for a tab of type `SYSTEM`. 
 `tabs.skipEnvironmentList`<br/>*boolean* | Skip the environment list if there is a single environment associated with the service tab. Configurable for a tab of type `SERVICE`.
 `tabs.showSubTabs`<br/>*boolean* | Whether or not to show the subtabs, as defined by the plugin, underneath the menu tab. Configurable for a tab of type `SERVICE`.
-`tabs.retainEnvironment`<br/>*Boolean* | Retain the selected environment when navigating between tabs with the same service connection. Configurable for a tab of type `SERVICE`. 
+`tabs.retainEnvironment`<br/>*boolean* | Retain the selected environment when navigating between tabs with the same service connection. Configurable for a tab of type `SERVICE`. 
 
 <!-------------------- Delete CUSTOM NAV -------------------->
 
