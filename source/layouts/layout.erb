@@ -30,6 +30,9 @@ under the License.
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
+  <link rel="icon" href="./images/cropped-icon-32x32.png" sizes="32x32" />
+  <link rel="icon" href="./images/cropped-icon-192x192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="https://fluentcrm.com/wp-content/uploads/2020/09/cropped-icon-180x180.png" />
 
     <style media="screen">
       <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
@@ -56,6 +59,7 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -63,7 +67,9 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <%= image_tag "logo.png", class: 'logo' %>
+      <div class="logo_holder">
+        <%= image_tag "logo-light.svg", class: 'logo' %>
+      </div>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
