@@ -50,7 +50,7 @@ Attributes | &nbsp;
 `type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
 `packageDiscount`<br/>*BigDecimal* | The discount applied to a package.
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
-`isDeactivated`<br/>*boolean* | Whether or not the discount is deactivated. Defaults to false..
+`isDeactivated`<br/>*boolean* | Whether or not the discount is deactivated. Defaults to false.
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between the desired categories IDs and discounts. To provide a 20 percent discount, set the discount value to 20.
 `name`<br/>*Map[String, String]* | Map of language short codes to name translations for the discount.
 `appliedPricing`<br/>*Object* | The object representing the applied pricing owning the discount.
