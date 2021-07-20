@@ -1,13 +1,14 @@
 ---
-title: API Reference
+title: FluentCRM REST API Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - php
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://fluentcrm.com/docs'>User Documentation</a>
+  - <a href='https://wordpress.org/plugins/fluent-crm/'>Download FluentCRM</a>
+  - <a href='https://fluentcrm.com'>FluentCRM.com</a>
 
 includes:
   - errors
@@ -21,13 +22,12 @@ code_clipboard: true
 
 Welcome to FluentCRM API doc. This doc will describe the REST API Endpoints of FluentCRM.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). If you find any typo or would like contribute please send a pull request with improvments.
+This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). If you find any typo or would like contribute please send a pull request with improvements. Please note that, All endpoints are not added to this doc (Work in progreess). 
 
 # Authentication
 
-FluentCRM use WordPress REST API. So you can use any authorization method that supports Wordpress.
+FluentCRM uses WordPress REST API. So you can use any authorization method that supports WordPress.
 
-### Basic Authorization
 Once you create your Application Password in WordPress, Add Authorization Header to every request.
 
 > Example API Call for contacts
@@ -38,9 +38,23 @@ curl "https://yourdomain.com/wp-json/fluent-crm/v2/subscribers" \
   -H "Authorization: BASIC API_USERNAME:API_PASSWORD"
 ```
 
-### Basic Informations
-
 **API Base URL:** `https://yourdomain.com/wp-json/fluent-crm/v2`
+
+### Creating API Key
+You can either create Application Password using WordPress's user editing Page. Please make sure, the user have access to FluentCRM.
+We recommend creating Application Password from inside FluentCRM. Navigate to `FluentCRM -> Settings -> Managers` and then create a Manager First. Please make sure the manager is not "Administrator" user role. Select the permissions you want to give to that user for FluentCRM.
+
+![Create manager on FluentCRM](images/create_manager.png)
+
+Then Go to `FluentCRM -> Settings > Rest API` and Create the new key corresponding to manager.
+
+![Rest API Screen](images/rest_api_screen.png)
+
+Once you confirm, It will give you the username and application password. Please note that, You can not retrive the Application password later. So save that for the future use.
+
+![Application Create Success](images/rest_api_success_keys.png)
+
+In the background, FluentCRM create REST API in WordPress user.
 
 
 > Make sure to replace `API_USERNAME` & `API_PASSWORD` with your UserName & API Password.
