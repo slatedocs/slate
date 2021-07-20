@@ -173,6 +173,7 @@ Parameter | Type | Description | Default
 | custom_fields | boolean | Flag to get custom contact field values too| false
 
 ***Possible statuses values:***
+
 - subscribed
 - unsubscribed
 - pending
@@ -289,9 +290,9 @@ This endpoint retrieves a specific contact.
 
 Parameter | Type | Description 
 --------- | ----------- | -----
-with | array | Get Additional Contact Meta Properties
+with[] | array | Get Additional Contact Meta Properties
 
-***Possible statuses values:***
+***Possible with parameters:***
 
 - stats
 - custom_fields
@@ -534,11 +535,245 @@ This endpoint deletes a specific contact.
 
 ### HTTP Request
 
-`DELETE https://fcrm.test/wp-json/fluent-crm/v2/subscribers/<ID>`
+`DELETE https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 subscribers[] | The ID of the contact to delete
+
+# Lists
+
+## Get All Lists
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "lists": [
+        {
+            "id": "2",
+            "title": "User Two",
+            "slug": "user-two",
+            "description": null,
+            "is_public": "0",
+            "created_at": "2021-07-19 08:25:22",
+            "updated_at": "2021-07-19 08:25:22",
+            "totalCount": 1,
+            "subscribersCount": 1
+        },
+        {
+            "id": "1",
+            "title": "User One",
+            "slug": "user-one",
+            "description": null,
+            "is_public": "0",
+            "created_at": "2021-07-19 08:25:22",
+            "updated_at": "2021-07-19 08:25:22",
+            "totalCount": 1,
+            "subscribersCount": 1
+        }
+    ]
+}
+```
+
+This endpoint returns all available lists.
+
+### HTTP Request
+`GET https://yourdomain.com/wp-json/fluent-crm/v2/lists`
+
+Parameter | Description
+--------- | -----------
+sort_by | Sort your list by id, title, subscribers
+sort_order | Give a sorting order of the list DESC or ASC
+search | Search by any value
+with[] | Get other additional data
+
+***Possible with parameters:***
+
+- subscribersCount
+
+## Create a new list
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "lists": {
+        "title": "User List",
+        "slug": "user-list",
+        "description": "",
+        "updated_at": "2021-07-20 13:18:19",
+        "created_at": "2021-07-20 13:18:19",
+        "id": 4
+    },
+    "message": "Successfully saved the list."
+}
+```
+
+### HTTP Request
+`POST https://yourdomain.com/wp-json/fluent-crm/v2/lists/`
+
+Parameter | Description
+--------- | -----------
+title | Add name to your list.
+slug | Add slug name to your list.
+description | Add Internal Subtitle.
+
+This endpoint will create a new list.
+
+## Update any list
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "lists": "1",
+  "message": "Successfully saved the list."
+}
+```
+
+### HTTP Request
+`PUT https://yourdomain.com/wp-json/fluent-crm/v2/lists/<ID>`
+
+Parameter | Description
+--------- | -----------
+id | List id
+title | Add name to your list.
+slug | Add slug name to your list.
+description | Add Internal Subtitle.
+
+This endpoint will update a specific list.
+
+
+## Delete a specific list
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "message": "Successfully removed the list."
+}
+```
+
+### HTTP Request
+`DELETE https://yourdomain.com/wp-json/fluent-crm/v2/lists/<ID>`
+
+This endpoint will delete a specific list.
+
+# Tags
+
+## Get All Tags
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "tags": [
+        {
+            "id": "2",
+            "title": "User Two",
+            "slug": "user-two",
+            "description": null,
+            "is_public": "0",
+            "created_at": "2021-07-19 08:25:22",
+            "updated_at": "2021-07-19 08:25:22",
+            "totalCount": 1,
+            "subscribersCount": 1
+        },
+        {
+            "id": "1",
+            "title": "User One",
+            "slug": "user-one",
+            "description": null,
+            "is_public": "0",
+            "created_at": "2021-07-19 08:25:22",
+            "updated_at": "2021-07-19 08:25:22",
+            "totalCount": 1,
+            "subscribersCount": 1
+        }
+    ]
+}
+```
+
+This endpoint returns all available tags.
+
+### HTTP Request
+`GET https://yourdomain.com/wp-json/fluent-crm/v2/tags`
+
+Parameter | Description
+--------- | -----------
+sort_by | Sort your list by id, title, subscribers
+sort_order | Give a sorting order of the list DESC or ASC
+search | Search by any value
+page | Page number Default is 1
+
+## Create a new Tag
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "lists": {
+        "title": "User Tags",
+        "slug": "user-tags",
+        "description": "",
+        "updated_at": "2021-07-20 13:18:19",
+        "created_at": "2021-07-20 13:18:19",
+        "id": 4
+    },
+    "message": "Successfully saved the tag."
+}
+```
+
+### HTTP Request
+`POST https://yourdomain.com/wp-json/fluent-crm/v2/tags/`
+
+Parameter | Description
+--------- | -----------
+title | Add name to your list.
+slug | Add slug name to your list.
+description | Add Internal Subtitle.
+
+This endpoint will create a new tag.
+
+## Update any Tag
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "lists": "1",
+  "message": "Successfully saved the tag."
+}
+```
+
+### HTTP Request
+`PUT https://yourdomain.com/wp-json/fluent-crm/v2/tags/<ID>`
+
+Parameter | Description
+--------- | -----------
+id | List id
+title | Add name to your list.
+slug | Add slug name to your list.
+description | Add Internal Subtitle.
+
+This endpoint will update a specific tag.
+
+
+## Delete a specific Tag
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "message": "Successfully removed the tag."
+}
+```
+
+### HTTP Request
+`DELETE https://yourdomain.com/wp-json/fluent-crm/v2/tags/<ID>`
+
+This endpoint will delete a specific tag.
 
