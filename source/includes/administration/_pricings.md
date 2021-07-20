@@ -238,6 +238,21 @@ Required | &nbsp;
 `cogs`<br/>*Map* | Map from currency code to cogs
 `unitPrice`<br/>*Map* | Map from currency code to unit price
 
+Optional | &nbsp;
+---- | -----------
+`pricingTiers` <br/>*Array<PricingTier>* | List of pricing tiers on priced product
+
+Pricing tier
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
+`pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
+`lowerBound`<br/>*double* | The pricing tier's lower bound.
+`upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
+`price`<br/>*Map<string, double* | The pricing tier's price in each of the pricing product's supported currencies.
+`chunkSize`<br/>*double* | The pricing tier's chunk size.
+
 ```shell
 # Response body example
 ```
@@ -457,7 +472,19 @@ Attributes | &nbsp;
 `product`<br/>*Product* | The product being priced
 `cogs`<br/>*Map* | Map from currency code to cogs
 `unitPrice`<br/>*Map* | Map from currency code to unit price
+`pricingTiers`<br/>*Array<PricingTier>* | Pricing tiers of priced product
 `deprecated`<br/>*Boolean* | True if priced product is deprecated
+
+Pricing tier
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
+`pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
+`lowerBound`<br/>*double* | The pricing tier's lower bound.
+`upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
+`price`<br/>*Map<string, double* | The pricing tier's price in each of the pricing product's supported currencies.
+`chunkSize`<br/>*double* | The pricing tier's chunk size.
 
 
 <!-------------------- List PRICING CHANGES -------------------->
@@ -561,7 +588,44 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/
       "effectiveDate": "2020-09-02T12:00:00Z",
       "missingCurrencies": [],
       "pricingChangeType": "ADD_CURRENCIES"
-    }
+    },
+    {
+      "id": "829ce268-4235-1425-d2g4-8gws49v7dg2",
+      "description": "Modifying a product",
+      "pricingDefinition": {
+        "id": "73eb0d75-03b0-44e2-9cbf-9ad25dff5da5"
+      },
+      "pricedProductsToModify": [
+        {
+          "productId": "dd3fcab9-5b31-4f08-9b50-ed3326bccfb4",
+          "field": "pricingTiers",
+          "pricingTiers": [
+            {
+              "lowerBound": 0,
+              "upperBound": 20,
+              "priceMode": "PER_UNIT",
+              "price": {
+                "CAD": 20,
+                "USD": 17
+              },
+            },
+            {
+              "lowerBound": 20,
+              "upperBound": null,
+              "priceMode": "PER_UNIT",
+              "price": {
+                "CAD": 17,
+                "USD": 13
+              },
+            }
+          ],
+        }
+      ],
+      "creationDate": "2020-09-01T15:08:40Z",
+      "effectiveDate": "2020-09-02T12:00:00Z",
+      "missingCurrencies": [],
+      "pricingChangeType": "MODIFY_PRODUCTS"
+    },
   ]
 }
 ```
@@ -588,6 +652,7 @@ Attributes | &nbsp;
 `product.id`<br/>*UUID* | The id of the product to add prices.
 `cogs`<br/>*Map<string, double>* | Map from currency to price. Must include all currencies in pricing at that point (see Effective pricing API).
 `unitPrice`<br/>*Map<string, double>* | Map from currency to price. Must include all currencies in pricing at that point (see Effective pricing API).
+`pricingTiers` <br/>*Array<PricingTier>* | Pricing tiers for priced product.
 
 
 PricedProductChange
@@ -595,9 +660,21 @@ PricedProductChange
 Attributes | &nbsp;
 ---- | -----------
 `productId`<br/>*UUID* | The id of the product to modify the price.
-`field`<br/>*string* | Field to modify. Either cogs or unitPrice.
-`currency`<br/>*string* | Currency of value to change.
-`value`<br/>*double* | New price for specifified field.
+`field`<br/>*string* | Field to modify. Either 'cogs', 'unitPrice', or 'pricingTiers'.
+`currency`<br/>*string* | Currency of value to change. Only for 'cogs' or 'unitPrice'.
+`value`<br/>*double* | New price for specifified field. Only for 'cogs' or 'unitPrice'.
+`pricingTiers`<br/>*Array<PricingTier>* | New pricing tiers to apply to specified product (the entire tiers, not just changes). Only for 'pricingTiers'.
+
+Pricing tier
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
+`pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
+`lowerBound`<br/>*double* | The pricing tier's lower bound.
+`upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
+`price`<br/>*Map<string, double* | The pricing tier's price in each of the pricing product's supported currencies.
+`chunkSize`<br/>*double* | The pricing tier's chunk size.
 
 
 
@@ -647,6 +724,30 @@ curl -X POST "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25
           "field": "unitPrice",
           "currency": "CAD",
           "value": 13
+        },
+        {
+          "productId": "dd3fcab9-5b31-4f08-9b50-ed3326bccfb4",
+          "field": "pricingTiers",
+          "pricingTiers": [
+            {
+              "lowerBound": 0,
+              "upperBound": 20,
+              "priceMode": "PER_UNIT",
+              "price": {
+                "CAD": 20,
+                "USD": 17
+              },
+            },
+            {
+              "lowerBound": 20,
+              "upperBound": null,
+              "priceMode": "PER_UNIT",
+              "price": {
+                "CAD": 17,
+                "USD": 13
+              },
+            }
+          ],
         }
     ],
     "effectiveDate": "2020-09-02T12:00:00Z",
@@ -737,6 +838,7 @@ Attributes | &nbsp;
 `product.id`<br/>*UUID* | The id of the product to add prices.
 `cogs`<br/>*Map<string, double>* | Map from currency to price. Must include all currencies in pricing at that point (see Effective pricing API).
 `unitPrice`<br/>*Map<string, double>* | Map from currency to price. Must include all currencies in pricing at that point (see Effective pricing API).
+`pricingTiers` <br/>*Array<PricingTier>* | Pricing tiers for priced product.
 
 
 PricedProductChange
@@ -744,9 +846,21 @@ PricedProductChange
 Attributes | &nbsp;
 ---- | -----------
 `productId`<br/>*UUID* | The id of the product to modify the price.
-`field`<br/>*string* | Field to modify. Either cogs or unitPrice.
-`currency`<br/>*string* | Currency of value to change.
-`value`<br/>*double* | New price for specifified field.
+`field`<br/>*string* | Field to modify. Either 'cogs', 'unitPrice', or 'pricingTiers'.
+`currency`<br/>*string* | Currency of value to change. Only for 'cogs' or 'unitPrice'.
+`value`<br/>*double* | New price for specifified field. Only for 'cogs' or 'unitPrice'.
+`pricingTiers`<br/>*Array<PricingTier>* | New pricing tiers to apply to specified product (the entire tiers, not just changes). Only for 'pricingTiers'.
+
+Pricing tier
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
+`pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
+`lowerBound`<br/>*double* | The pricing tier's lower bound.
+`upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
+`price`<br/>*Map<string, double* | The pricing tier's price in each of the pricing product's supported currencies.
+`chunkSize`<br/>*double* | The pricing tier's chunk size.
 
 
 <!-------------------- UPDATE PRICING CHANGES -------------------->
