@@ -279,7 +279,7 @@ Related References:
 
 # App Components Definition
 
-<span class="beta-indicator">BET</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 > Sample of an app with a full App Components definition
 
@@ -402,7 +402,25 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 # App Components QA
 
-<!-- TODO -->
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, there are a number of QA checklist items you can follow.
+
+When submitting an [app definition](/docs/app-components-definition), you should:
+
+* Add necessary images (e.g., feature images, icon, logo, etc.)
+* Add support links (e.g., feedback link, external support URL)
+* Proof-read marketing-related text (e.g., description, extended description, features)
+* Make sure button text has 3-4 words or fewer and start with a verb
+* Use consistent language for similar concepts (where applicable)
+* Use sentence case by default and capitalize proper nouns
+
+When testing your application, you should:
+
+* Try to "break" your forms (e.g., test watched fields, limit invalid submissions, test typeahead fetches, etc.)
+* Test and proof-read any custom error messages
+* Test the auth flow from both the web browser and [desktop app](https://asana.com/download)
+* Test app actions with a variety of trigger combinations
 
 <hr class="full-line">
 
