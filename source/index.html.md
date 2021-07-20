@@ -156,7 +156,7 @@ Parameter | Type | Description | Default
 | statuses | array | Status slugs to filter contacts | |
 | order_by | string | Order By contact column Value to sort contacts | id |
 | order_type | string | Order Type contact column Value to sort contacts | DESC |
-| __with_custom_fields | boolean | Flag to get custom contact field values too |  |
+| custom_fields | boolean | Flag to get custom contact field values too| false
 
 ***Possible statuses values:***
 - subscribed
@@ -273,57 +273,258 @@ This endpoint retrieves a specific contact.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Type | Description 
+--------- | ----------- | -----
+with | array | Get Additional Contact Meta Properties
 
-## Delete a Specific Kitten
+***Possible statuses values:***
 
-```ruby
-require 'kittn'
+- stats
+- custom_fields
+- subscriber.custom_values
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Create a new contact
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+
+curl 'https://fcrm.test/wp-json/fluent-crm/v2/subscribers' \
+  -H "Authorization: BASIC API_USERNAME:API_PASSWORD" \
+  --data-raw 'first_name=Rafi&last_name=Ahmed&email=rafi%40authlab.io&phone=44+078+1961+0398&date_of_birth=2000-03-04&status=subscribed&address_line_1=1+Union+Street&address_line_2=64+Cunnery+Rd&city=Swansea&state=Swansea&postal_code=SA1+3EE&country=GB&tags%5B%5D=1&tags%5B%5D=2&lists%5B%5D=1&lists%5B%5D=2&custom_values%5Bcustom_field%5D=Custom+Field+Value&prefix=Mr&query_timestamp=1626770805540' \
+	 
+```
+> The above command creates a new contact in Fluent CRM and returns the data in JSON.
+ 
+```json 
+{
+    "message": "Successfully added the subscriber.",
+    "contact": {
+        "prefix": "Mr",
+        "first_name": "Rafi",
+        "last_name": "Ahmed",
+        "email": "rafi@authlab.io",
+        "phone": " 44 078 1961 0398",
+        "date_of_birth": "2000-03-04",
+        "address_line_1": "1 Union Street",
+        "address_line_2": "64 Cunnery Rd",
+        "city": "Swansea",
+        "state": "Swansea",
+        "country": "United Kingdom (UK)",
+        "postal_code": "SA1 3EE",
+        "status": "subscribed",
+        "hash": "3f6e19a6d1fcf98c73e031882796091f",
+        "updated_at": "2021-07-19 22:11:48",
+        "created_at": "2021-07-19 22:11:48",
+        "id": 17,
+        "photo": "https://www.gravatar.com/avatar/3f6e19a6d1fcf98c73e031882796091f?s=128",
+        "full_name": "Rafi Ahmed",
+        "tags": [
+            {
+                "id": "1",
+                "title": "User One",
+                "slug": "user-one",
+                "description": null,
+                "created_at": "2021-07-19 08:25:34",
+                "updated_at": "2021-07-19 08:25:34",
+                "pivot": {
+                    "subscriber_id": "17",
+                    "object_id": "1",
+                    "object_type": "FluentCrm\\App\\Models\\Tag",
+                    "created_at": "2021-07-19 22:11:48",
+                    "updated_at": "2021-07-19 22:11:48"
+                }
+            },
+            {
+                "id": "2",
+                "title": "User Two",
+                "slug": "user-two",
+                "description": null,
+                "created_at": "2021-07-19 08:25:34",
+                "updated_at": "2021-07-19 08:25:34",
+                "pivot": {
+                    "subscriber_id": "17",
+                    "object_id": "2",
+                    "object_type": "FluentCrm\\App\\Models\\Tag",
+                    "created_at": "2021-07-19 22:11:48",
+                    "updated_at": "2021-07-19 22:11:48"
+                }
+            }
+        ],
+        "lists": [
+            {
+                "id": "1",
+                "title": "User One",
+                "slug": "user-one",
+                "description": null,
+                "is_public": "0",
+                "created_at": "2021-07-19 08:25:22",
+                "updated_at": "2021-07-19 08:25:22",
+                "pivot": {
+                    "subscriber_id": "17",
+                    "object_id": "1",
+                    "object_type": "FluentCrm\\App\\Models\\Lists",
+                    "created_at": "2021-07-19 22:11:48",
+                    "updated_at": "2021-07-19 22:11:48"
+                }
+            },
+            {
+                "id": "2",
+                "title": "User Two",
+                "slug": "user-two",
+                "description": null,
+                "is_public": "0",
+                "created_at": "2021-07-19 08:25:22",
+                "updated_at": "2021-07-19 08:25:22",
+                "pivot": {
+                    "subscriber_id": "17",
+                    "object_id": "2",
+                    "object_type": "FluentCrm\\App\\Models\\Lists",
+                    "created_at": "2021-07-19 22:11:48",
+                    "updated_at": "2021-07-19 22:11:48"
+                }
+            }
+        ]
+    },
+    "action_type": "created"
+}
 ```
 
-```javascript
-const kittn = require('kittn');
+This endpoint creates a new contact.
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+### HTTP Request
+
+`POST https://yourdomain.com/wp-json/fluent-crm/v2/subscribers`
+
+### URL Parameters
+
+Parameter | Type | Required| Description
+--------- | ---- | ------- | -----------
+prefix | string | no | Add Name Prefix of a Contact
+first_name | string | no | Add Contact's First Name
+last_name | string | no | Add Contact's Last Name
+email | email | yes | Add Contact's Email
+phone | string | no | Add Contact's Phone Number
+date_of_birth | string | no | Add Contact's Date Of Birth ( Format: YYYY-MM-DD )
+address_line_1 | string | no | Add Contact's Address Line 1
+address_line_2 | string | no | Add Contact's Address Line 2
+city | string | no | Add Contact's City
+state | string | no | Add Contact's State
+country | string | no | Add Contact's Country
+postal_code | string | no | Add Contact's ZIP Code
+photo | string | no | Add Contact's Profile Picture
+tags | array | no | Add Contact To One or Multiple Tags ( Tags data type is array & only takes the ID of a tag, e.g. https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/tags[]=1&tags[]=2 )
+lists | array | no | Add Contact To One or Multiple Lists ( List data type is array & only takes the ID of a list e.g. https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/lists[]=1&lists[]=2)
+custom_values | array | no | Add Custom Value To a Contact ( Custom Field data type is array, To add data to custom field you have to define the key & value, key is custom field slug name, e.g. https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/custom_values[custom_field_slug]= Custom Field Value)
+__force_update | boolean | no | If you add this flag as true then contact will be updated if exist
+status | string | yes | Add Contact's Status
+
+
+## Update any user data
+
+```shell
+
+```
+
+>The above command JSON structured like this:
+
+```json
+{
+  "message": "Subscriber successfully updated",
+  "contact": {
+    "id": "22",
+    "user_id": null,
+    "hash": "d76b4b3ba7daf871cc03a6037fbaa019",
+    "contact_owner": null,
+    "company_id": null,
+    "prefix": "Mr",
+    "first_name": "Andres",
+    "last_name": "Alexser",
+    "email": "alex@mail.com",
+    "timezone": null,
+    "address_line_1": "3 Union Street",
+    "address_line_2": "1 Union Street",
+    "postal_code": "SA1 3EE",
+    "city": "Swansea",
+    "state": "Swansea",
+    "country": "GB",
+    "ip": null,
+    "latitude": null,
+    "longitude": null,
+    "total_points": "0",
+    "life_time_value": "0",
+    "phone": "44 098 6726 635",
+    "status": "subscribed",
+    "contact_type": "lead",
+    "source": null,
+    "avatar": null,
+    "date_of_birth": "1995-07-14",
+    "created_at": "2021-07-20 10:39:06",
+    "last_activity": null,
+    "updated_at": "2021-07-20 11:32:43",
+    "photo": "https://www.gravatar.com/avatar/d76b4b3ba7daf871cc03a6037fbaa019?s=128",
+    "full_name": "Andres Alexser"
+  },
+  "isDirty": true
+}
+```
+This endpoint update a specific contact. Make sure you are passing the data in body as raw JSON format. Below there's an example added.<br>
+```
+{
+  "subscriber":{
+    "email": "alex@mail.com",
+    "first_name": "Andres",
+    "last_name": "Alexser"
+  }
+}
+```
+
+
+### HTTP Request
+
+`PUT https://fcrm.test/wp-json/fluent-crm/v2/subscribers/<ID>`
+
+Parameter | Type | Required| Description
+--------- | ---- | ------- | -----------
+prefix | string | no | Add Name Prefix of a Contact
+first_name | string | no | Add Contact's First Name
+last_name | string | no | Add Contact's Last Name
+email | email | yes | Add Contact's Email
+phone | string | no | Add Contact's Phone Number
+date_of_birth | string | no | Add Contact's Date Of Birth ( Format: YYYY-MM-DD )
+address_line_1 | string | no | Add Contact's Address Line 1
+address_line_2 | string | no | Add Contact's Address Line 2
+city | string | no | Add Contact's City
+state | string | no | Add Contact's State
+country | string | no | Add Contact's Country
+postal_code | string | no | Add Contact's ZIP Code
+photo | string | no | Add Contact's Profile Picture
+tags | array | no | Add Contact To One or Multiple Tags ( Tags data type is array & only takes the ID of a tag, e.g. https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/tags[]=1&tags[]=2 )
+lists | array | no | Add Contact To One or Multiple Lists ( List data type is array & only takes the ID of a list e.g. https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/lists[]=1&lists[]=2)
+custom_values | array | no | Add Custom Value To a Contact ( Custom Field data type is array, To add data to custom field you have to define the key & value, key is custom field slug name, e.g. https://yourdomain.com/wp-json/fluent-crm/v2/subscribers/custom_values[custom_field_slug]= Custom Field Value)
+status | string | yes | Add Contact's Status
+
+## Delete a Specific Contact
+
+```shell
+
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "message": "Selected Subscribers has been deleted"
 }
 ```
 
-This endpoint deletes a specific kitten.
+This endpoint deletes a specific contact.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`DELETE https://fcrm.test/wp-json/fluent-crm/v2/subscribers/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+subscribers[] | The ID of the contact to delete
 
