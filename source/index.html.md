@@ -533,6 +533,11 @@ subscribers[] | The ID of the contact to delete
 
 ## Get All Lists
 
+```shell
+curl --location --request GET 'https://yourdomain.com/wp-json/fluent-crm/v2/lists' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -582,6 +587,11 @@ with[] | Get other additional data
 
 ## Create a new list
 
+```shell
+curl --location --request POST 'https://yourdomai.com/wp-json/fluent-crm/v2/lists?title=New List&slug=new-data' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -611,6 +621,11 @@ This endpoint will create a new list.
 
 ## Update any list
 
+```shell
+curl --location --request PUT 'https://yourdomain.com/wp-json/fluent-crm/v2/lists/1?title=New Title' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -635,6 +650,11 @@ This endpoint will update a specific list.
 
 ## Delete a specific list
 
+```shell
+curl --location --request DELETE 'https://yourdomain.com/wp-json/fluent-crm/v2/lists/<ID>' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -651,6 +671,11 @@ This endpoint will delete a specific list.
 # Tags
 
 ## Get All Tags
+
+```shell
+curl --location --request GET 'https://yourdomain.com/wp-json/fluent-crm/v2/tags' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
 
 > The above command returns JSON structured like this:
 
@@ -697,6 +722,11 @@ page | Page number Default is 1
 
 ## Create a new Tag
 
+```shell
+curl --location --request POST 'https://yourdomain.com/wp-json/fluent-crm/v2/tags?title=New List&slug=new-data' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -726,6 +756,11 @@ This endpoint will create a new tag.
 
 ## Update any Tag
 
+```shell
+curl --location --request PUT 'https://yourdomain.com/wp-json/fluent-crm/v2/tags/1?title=New Title' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -749,6 +784,11 @@ This endpoint will update a specific tag.
 
 
 ## Delete a specific Tag
+
+```shell
+curl --location --request DELETE 'https://yourdomain.com/wp-json/fluent-crm/v2/tags/<ID>' \
+-H 'Authorization: Basic API_USERNAME:API_PASSWORD'
+```
 
 > The above command returns JSON structured like this:
 
