@@ -32752,7 +32752,7 @@ Para realizar esta operación es obligatorio utilizar tu <strong><a href="#confi
         <small class="param__type">integer</small>
         <span class="param__required" title="Requerido">*</span>
         
-          <span class="param__desc">Conteo de impresiones</span>
+          <span class="param__desc">Impresiones totales acumuladas</span>
           <div class="param--enums">
             
           </div>
@@ -33104,6 +33104,441 @@ Para realizar esta operación es obligatorio utilizar tu <strong><a href="#confi
       <small class="param__type">string</small>
       <br />
       <span class="param__desc">Dominio del sitio web</span>
+    </li>
+    
+    <li class="param__child1 ">
+      <strong class="param__name">
+        
+        name
+      </strong>
+      <small class="param__type">string</small>
+      <br />
+      <span class="param__desc">Nombre de la etiqueta</span>
+    </li>
+    
+  </ul>
+
+  <a class="tag tag__blue go-to-top">Ocultar</a>
+</details>
+
+<aside class="warning">
+  En caso de errores y otros posibles resultados, Admetricks utiliza códigos HTTP estándar para entregar más información.
+  Más información en la sección <a href="#errores-y-otros-resultados">Errores y otros resultados</a>
+</aside>
+
+<aside class="warning">
+Para realizar esta operación es obligatorio utilizar tu <strong><a href="#configura-tu-token">token de acceso</a></strong>
+</aside>
+<!-- END OP -->
+
+  
+  
+  
+  
+  
+  
+
+<a id="opIdObtener Datos Demográficos"></a>
+### Obtener Datos Demográficos
+
+<%= partial "includes/snippets/post-obtener-datos-demográficos.md" %>
+
+`POST /reach/demographic/`
+
+<!-- Insert code snippets here -->
+
+<ul class="tag--list" >
+  
+  
+  
+  
+</ul>
+
+            Recibe un plan de medios con impresiones por dispositivos.
+            Entrega la información de demográficos.
+
+            Para utilizar este endpoint es necesario que tu plan de usuario cuente con acceso de Reach and Frequency.
+        
+
+<strong style="display: block; margin-top: 15px;">Petición</strong>
+
+<details class="card">
+  <summary>Parámetros</summary>
+
+  <ul class="list--request-params">
+  
+    
+      <li class="param__child0 ">
+        <strong class="param__name">
+          
+          body
+        </strong>
+        <small class="param__type">object</small>
+        
+        
+      </li>
+    
+  
+    
+      <li class="param__child1 ">
+        <strong class="param__name">
+          
+          country
+        </strong>
+        <small class="param__type">string</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Código de dos letras del país que se necesita</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child1 ">
+        <strong class="param__name">
+          
+          date_end
+        </strong>
+        <small class="param__type">string</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Fin del rango de fechas. Formato: `YYYY-MM-DD`</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child1 ">
+        <strong class="param__name">
+          
+          date_start
+        </strong>
+        <small class="param__type">string</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Inicio del rango de fechas. Formato: `YYYY-MM-DD`</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child1 ">
+        <strong class="param__name">
+          
+          device
+        </strong>
+        <small class="param__type">string</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Identifica los dispositivos que componen las impresiones ("desktop", "mobile" o ambos)</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child1 ">
+        <strong class="param__name">
+          
+            
+<button class="param__toggle">►</button>
+
+          
+          labels
+        </strong>
+        <small class="param__type">array</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Lista de etiquetas a procesar (industrias, marcas o campañas)</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child2 param__hidden">
+        <strong class="param__name">
+          
+          days_with_impressions
+        </strong>
+        <small class="param__type">integer</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Resumen de los días con impresiones del sitio web</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child2 param__hidden">
+        <strong class="param__name">
+          
+          domain
+        </strong>
+        <small class="param__type">string</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Dominio del sitio web</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child2 param__hidden">
+        <strong class="param__name">
+          
+          daily_impressions
+        </strong>
+        <small class="param__type">array</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Detalle de los días con impresiones del sitio web</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child3 param__hidden">
+        <strong class="param__name">
+          
+          date
+        </strong>
+        <small class="param__type">string</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Fecha de las impresiones. Formato: `YYYY-MM-DD`</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child3 param__hidden">
+        <strong class="param__name">
+          
+          impressions
+        </strong>
+        <small class="param__type">integer</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Impresiones totales acumuladas</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child2 param__hidden">
+        <strong class="param__name">
+          
+          impressions
+        </strong>
+        <small class="param__type">object</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Impresiones acumuladas por tipo de dispositivo</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child3 param__hidden">
+        <strong class="param__name">
+          
+          desktop
+        </strong>
+        <small class="param__type">string</small>
+        
+        
+          <span class="param__desc">Impresiones acumuladas en equipos de escritorio</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child3 param__hidden">
+        <strong class="param__name">
+          
+          mobile
+        </strong>
+        <small class="param__type">string</small>
+        
+        
+          <span class="param__desc">Impresiones acumuladas en equipos móviles</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child1 ">
+        <strong class="param__name">
+          
+          labels_limit
+        </strong>
+        <small class="param__type">integer</small>
+        
+        
+          <span class="param__desc">Define el número de dominios a partir del cual agrupar el resto de dominios</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+  </ul>
+</details>
+
+<strong style="display: block; margin-top: 15px;">Respuestas</strong>
+
+<details class="card" style="margin-bottom: 5px">
+  <summary>200</summary>
+
+  <ul class="list--request-params">
+    
+    <li class="param__child0 ">
+      <strong class="param__name">
+        
+        body
+      </strong>
+      <small class="param__type">array</small>
+      <br />
+      
+    </li>
+    
+    <li class="param__child1 ">
+      <strong class="param__name">
+        
+        age_share
+      </strong>
+      <small class="param__type">object</small>
+      <br />
+      <span class="param__desc">Porcentaje de alcance por edades</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        age_18_to_24
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a personas de entre 18 y 24 años</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        age_25_to_34
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a personas de entre 25 y 34 años</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        age_35_to_44
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a personas de entre 35 y 44 años</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        age_45_to_54
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a personas de entre 45 y 54 años</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        age_55_to_64
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a personas de entre 55 y 64 años</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        age_65_plus
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a personas mayores de 65 años</span>
+    </li>
+    
+    <li class="param__child1 ">
+      <strong class="param__name">
+        
+        gender_share
+      </strong>
+      <small class="param__type">object</small>
+      <br />
+      <span class="param__desc">Porcentaje de alcance por sexo</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        male
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a hombres</span>
+    </li>
+    
+    <li class="param__child2 ">
+      <strong class="param__name">
+        
+        female
+      </strong>
+      <small class="param__type">integer</small>
+      <br />
+      <span class="param__desc">Porcentaje del alcance correspondiente a mujeres</span>
     </li>
     
     <li class="param__child1 ">
