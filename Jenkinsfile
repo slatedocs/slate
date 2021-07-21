@@ -4,7 +4,7 @@ library(identifier: 'utils@v2.4.5', retriever: modernSCM(
    credentialsId: 'gh-jenkins']))
 
 pipeline {
-  agent { label 'cmc' }
+  agent { label 'api-docs' }
   options { disableConcurrentBuilds() }
 
   environment {
