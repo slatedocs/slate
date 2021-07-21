@@ -15,11 +15,13 @@ only, and is not for production use or subject to availability or security oblig
 Beta Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be 
 discontinued or modified at any time.
 
+<hr class="full-line">
+
 # App Components Overview
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
-To start building, follow our [Quickstart Guide](/docs/have-an-app-server-running-locally-or-remotely)!
+To start building, follow our [Quick Start guide](/docs/app-components-quick-start)!
 
 Apps can use App Components to display customized widgets, forms, and rules within Asana's UI. 
 Requests go from Asana directly to an App's server. The App Server controls  
@@ -275,77 +277,9 @@ Related References:
 
 <hr class="full-line">
 
-# App Components Security
-
-## App Components Security Checklist
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-When handling requests from Asana, an App Components app should:
- 
- - Reject requests with missing or incorrect signatures.
- - Reject requests with an "expires" time in the past.
-    - **Note**: Make sure to use the correct units for this. "expires" is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
-
-If an app uses OAuth for authentication, the app should:
- 
- - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
-
-If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
-
- - An attacker can't authenticate themselves as someone else
- - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
-
-## App Components Authorization
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-Authorization is handled by the app. When an app with App Components is added to a project, the user adding it is sent 
-to the App's `authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or 
-perform none!
-
-As long as the app confirms the flow was complete, Asana will successfully add the app to the project. This will allow 
-requests to be sent to the App's pre-defined endpoints.
-
-If the App wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
-an OAuth flow against Asana (see https://developers.asana.com/docs/oauth). 
-
-Keep in mind, this authorization provides the App Server with a single user's auth token. Multiple users of Asana will
-hit the UI Hooks and send requests to the App Server, but the server will likely only have the token for 1 user. It 
-might be a good idea to suggest users authenticate with a bot account. 
-
-<hr>
-
-## App Components Message Integrity
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
-case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
-calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
-The signature must be on the exact parameter string that will be passed to the app because the signature will change if 
-something as trivial as spacing changes.
-
-The burden of verifying the request is on the app. Without this check, attackers can send requests to the App 
-Server pretending to be Asana.
-
-<hr>
-
-## App Components Timeliness
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
-recorded, such as in logs, could be reused to continue to request information from the app at a later time.
-
-The burden of verifying the request has not expired is on the app. Without this check, the App Server is vulnerable to 
-replay attacks. 
-
-<hr class="full-line">
-
 # App Components Definition
 
-<span class="beta-indicator">BET</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 > Sample of an app with a full App Components definition
 
@@ -463,6 +397,100 @@ form with the data in the table below.
 | `externalSupportUrl`        | String (url) | Link to page where users can learn more about the app, access detailed setup instructions, or get support. | 
 
 Once your app is submitted, an Asana Developer will enable your app and notify you via email when it's ready to use. 
+
+<hr class="full-line">
+
+# App Components Guidelines
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, here are some guidelines you can follow.
+
+When submitting an [app definition](/docs/app-components-definition), you should:
+
+* Add necessary images (e.g., feature images, icon, logo, etc.)
+* Add support links (e.g., feedback link, external support URL)
+* Proof-read marketing-related text (e.g., description, extended description, features)
+* Make sure button text has 3-4 words or fewer and start with a verb
+* Use consistent language for similar concepts (where applicable)
+* Use sentence case by default and capitalize proper nouns
+
+When testing your application, you should:
+
+* Try to "break" your forms (e.g., test watched fields, limit invalid submissions, test typeahead fetches, etc.)
+* Test and proof-read any custom error messages
+* Test the auth flow from both the web browser and [desktop app](https://asana.com/download)
+* Test app actions with a variety of trigger combinations
+
+<hr class="full-line">
+
+# App Components Security
+
+## App Components Security Checklist
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+When handling requests from Asana, an App Components app should:
+ 
+ - Reject requests with missing or incorrect signatures.
+ - Reject requests with an "expires" time in the past.
+    - **Note**: Make sure to use the correct units for this. "expires" is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
+
+If an app uses OAuth for authentication, the app should:
+ 
+ - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
+
+If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
+
+ - An attacker can't authenticate themselves as someone else
+ - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
+
+## App Components Authorization
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+Authorization is handled by the app. When an app with App Components is added to a project, the user adding it is sent 
+to the App's `authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or 
+perform none!
+
+As long as the app confirms the flow was complete, Asana will successfully add the app to the project. This will allow 
+requests to be sent to the App's pre-defined endpoints.
+
+If the App wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
+an OAuth flow against Asana (see https://developers.asana.com/docs/oauth). 
+
+Keep in mind, this authorization provides the App Server with a single user's auth token. Multiple users of Asana will
+hit the UI Hooks and send requests to the App Server, but the server will likely only have the token for 1 user. It 
+might be a good idea to suggest users authenticate with a bot account. 
+
+<hr>
+
+## App Components Message Integrity
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
+case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
+calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
+The signature must be on the exact parameter string that will be passed to the app because the signature will change if 
+something as trivial as spacing changes.
+
+The burden of verifying the request is on the app. Without this check, attackers can send requests to the App 
+Server pretending to be Asana.
+
+<hr>
+
+## App Components Timeliness
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
+recorded, such as in logs, could be reused to continue to request information from the app at a later time.
+
+The burden of verifying the request has not expired is on the app. Without this check, the App Server is vulnerable to 
+replay attacks. 
+
+<hr class="full-line">
 
 # App Components Quick Start
 
