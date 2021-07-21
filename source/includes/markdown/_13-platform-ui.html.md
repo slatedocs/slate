@@ -400,11 +400,11 @@ Once your app is submitted, an Asana Developer will enable your app and notify y
 
 <hr class="full-line">
 
-# App Components QA
+# App Components Guidelines
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
-Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, there are a number of QA checklist items you can follow.
+Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, here are some guidelines you can follow.
 
 When submitting an [app definition](/docs/app-components-definition), you should:
 
