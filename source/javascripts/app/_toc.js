@@ -24,7 +24,7 @@
     $("#nav-button").removeClass('open');
   };
 
-  function loadToc($toc, tocLinkSelector, tocListSelector, scrollOffset) {
+  function loadToc($toc, tocLinkSelector, tocListSelector, tocListSelectorChild, scrollOffset) {
     var headerHeights = {};
     var pageHeight = 0;
     var windowHeight = 0;
@@ -74,9 +74,16 @@
         $toc.find(".active-parent").removeClass("active-parent");
         $best.addClass("active");
         $best.parents(tocListSelector).addClass("active").siblings(tocLinkSelector).addClass('active-parent');
+        $best.parents(tocListSelectorChild).addClass("active").siblings(tocLinkSelector).addClass('active-parent');
         $best.siblings(tocListSelector).addClass("active");
+        if ($best.siblings(tocListSelectorChild).length > 0) {
+          $best.addClass("active-parent");
+          $best.siblings(tocListSelectorChild).addClass("active");
+        }
         $toc.find(tocListSelector).filter(":not(.active)").slideUp(150);
         $toc.find(tocListSelector).filter(".active").slideDown(150);
+        $toc.find(tocListSelectorChild).filter(":not(.active)").slideUp(150);
+        $toc.find(tocListSelectorChild).filter(".active").slideDown(150);
         if (window.history.replaceState) {
           window.history.replaceState(null, "", best);
         }
