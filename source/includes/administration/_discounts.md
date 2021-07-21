@@ -53,11 +53,11 @@ Attributes | &nbsp;
 `packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the package..
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `isDeactivated`<br/>*boolean* | Whether or not the discount is deactivated. Defaults to false.
-`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All products within the categories specified will have the discount value applied to them.
+`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products specified will have the discount value applied to them.
 `name`<br/>*Map[String, String]* | Map of language short codes to name translations for the discount.
 `appliedPricing`<br/>*Object* | The object representing the applied pricing owning the discount.
 `appliedPricing.id`<br/>*UUID* | The UUID of the applied pricing.
 `applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount.
 `startDate`<br/>*date* | The start date of the discount.
-`cutoffDate`<br/>*date* | The end date of the discount availability.
+`cutoffDate`<br/>*date* | The date on which the discount will no longer be available to customers who have not already received it.
 `status`<br/>*enum* | The status of the discount. Possible values are : UPCOMING, CURRENT, ENDED.
