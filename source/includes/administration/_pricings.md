@@ -246,7 +246,7 @@ Pricing tier
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
+`id`<br/>*UUID* | UUID of the pricing tier.
 `pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `lowerBound`<br/>*double* | The pricing tier's lower bound.
 `upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
@@ -479,7 +479,6 @@ Pricing tier
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
 `pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `lowerBound`<br/>*double* | The pricing tier's lower bound.
 `upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
@@ -669,7 +668,6 @@ Pricing tier
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
 `pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `lowerBound`<br/>*double* | The pricing tier's lower bound.
 `upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
@@ -855,7 +853,6 @@ Pricing tier
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | UUID of the pricing tier. (Auto Generated)
 `pricingMode`<br/>*Enum* | The pricing mode of the pricing tier. Must be one of "FLAT_FEE" or "PER_UNIT".
 `lowerBound`<br/>*double* | The pricing tier's lower bound.
 `upperBound`<br/>*double* | The pricing tier's upper bound. A null value indicates that there is no upper bound for the given tier.
