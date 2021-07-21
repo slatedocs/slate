@@ -868,8 +868,9 @@ Units that require mass include CO2, CH4 and N2O
 > REQUEST
 
 ```shell
-curl "https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane"\
-   -H "Content-type: application/json"
+curl -X GET \
+  https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane \
+  -H "Content-type: application/json" \
 ```
 
 ```javascript
@@ -1087,8 +1088,9 @@ Energy Conversion
 > REQUEST
 
 ```shell
-curl "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"\
-  -H "Content-type: application/json"
+curl -X GET \
+  https://dynm.herokuapp.com/energy-conversion?fuel_type=propane \
+  -H "Content-type: application/json" \
 ```
 
 ```javascript
