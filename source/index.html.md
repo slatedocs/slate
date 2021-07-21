@@ -865,21 +865,70 @@ Units that require mass include CO2, CH4 and N2O
 
 ## Carbon Dioxide units
 
+> REQUEST
+
+```shell
+curl "https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane"\
+   -H "Content-type: application/json"
+```
+
+```javascript
+const fetch = require("node-fetch");
+fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+url = "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"
+headers = {
+  'Content-Type': 'application/json'
+}
+response = requests.request("GET", url, headers=headers)
+print(response.text)
+```
+
+```php
+<?php
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?>
+```
+
 > RESPONSE : <code>200</code>
 
-> Headers
-
 ```json
-"Content-Type: application/json"
+["mmBTU", "CO2", "CH4", "N2O", "BTU", "GALLON"]
 ```
 
-> Body
-
-```json
-["mmBTU", "CO2", "CH4", "N2O", "BTU", "SHORT_TON"]
-```
-
-`GET https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=Anthracite_coal`
+`GET https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane`
 
 <aside>Query params</aside>
 | Param     | Type   | Required | Description                                                                                                                                  |
@@ -1035,21 +1084,70 @@ Energy Conversion
 
 ## Energy units
 
+> REQUEST
+
+```shell
+curl "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"\
+  -H "Content-type: application/json"
+```
+
+```javascript
+const fetch = require("node-fetch");
+fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+url = "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"
+headers = {
+  'Content-Type': 'application/json'
+}
+response = requests.request("GET", url, headers=headers)
+print(response.text)
+```
+
+```php
+<?php
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://dynm.herokuapp.com/energy-conversion?fuel_type=propane',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?>
+```
+
 > RESPONSE : <code>200</code>
 
-> Headers
-
 ```json
-"Content-Type: application/json"
+["BTU", "QUAD", "EJ", "kWH", "SCF"]
 ```
 
-> Body
-
-```json
-["BTU", "QUAD", "EJ", "kWH", "SHORT_TON"]
-```
-
-`GET https://dynm.herokuapp.com/energy-conversion?fuel_type=Anthracite_coal`
+`GET https://dynm.herokuapp.com/energy-conversion?fuel_type=propane`
 
 <aside>Query params</aside>
 | Param     | Type   | Required | Description                                                                                                                                  |
