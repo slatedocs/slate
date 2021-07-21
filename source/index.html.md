@@ -36,6 +36,7 @@ includes:
   - administration/quotas
   - administration/activity_log
   - administration/billing
+  - administration/billing_settings
   - administration/billing_providers
   - administration/custom_navigation
   - cloudstack
