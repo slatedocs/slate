@@ -173,3 +173,17 @@ If your settlement is non-real time, for every transaction whose payment method 
 Export: You are able to export/download the settlement report in CSV, PDF, and XLSX.
 
 Filter: You are able to filter the settlement report by transaction date (range), product, payment method, settlement date (range), and settlement status
+
+## Notification
+
+You can enable or disable notification settings for disbursement products if you have a super admin or admin role: 
+1. Login to dashboard https://business.oyindonesia.com/
+2. Go to Settings -> Notification 
+![Notif Disbursement - 1  Initial](https://user-images.githubusercontent.com/79620482/126457509-ca20c24b-9277-4be4-943e-801b79806e65.png)
+
+1. Choose whether or not you want notifications enabled or disabled for Bulk, API, or scheduled disbursements.	
+   a. Enable Notification: Email notification will be sent for pending, failed and success transactions. 
+   b. Disable Success Notification: email notification will only be sent for pending and failed transactions.
+2. The email field:  allows the user to add, remove, and edit email notification receivers in this column, which can hold up to three email addresses.
+3. Click ‘Save Changes’
+
