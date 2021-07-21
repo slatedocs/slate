@@ -987,6 +987,289 @@ curl "https://my.timelline.is/api/v3p/devices/5d1f0bf741092775efbddd71/close_tun
 ```
 
 
+# Agents
+
+## Get Connection History
+
+This endpoint retrieves connection history (limit 50 records) of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/connection_history`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/connection_history" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "connection_history": [
+    {
+      "date": "2021-06-23 14:35:38 +0100",
+      "type": "Connected",
+      "untrusted_ip": "139.162.218.118",
+      "bytes_received": "N/A",
+      "bytes_sent": "N/A",
+      "time_duration": "N/A"
+    },
+    {
+      "date": "2021-06-23 14:35:36 +0100",
+      "type": "Disconnected",
+      "untrusted_ip": "139.162.218.118",
+      "bytes_received": "94.9 MB",
+      "bytes_sent": "82.2 MB",
+      "time_duration": "about 1 month"
+    },
+    {
+      "date": "2021-05-12 17:16:43 +0100",
+      "type": "Connected",
+      "untrusted_ip": "139.162.218.118",
+      "bytes_received": "N/A",
+      "bytes_sent": "N/A",
+      "time_duration": "N/A"
+    }
+  ]
+}
+```
+
+## Get Connection Speed
+
+This endpoint retrieves connection speed of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/connection_speed`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/connection_speed" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "connection_speed": {
+    "download": "425.37 Mbit/s",
+    "upload": "441.53 Mbit/s",
+    "last_run": "2021-06-06T03:39:32.563+01:00"
+  }
+}
+```
+
+## GET External IP
+
+This endpoint retrieves external IP of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/external_ip`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/external_ip" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "external_ip": "88.109.208.22" }
+```
+
+## Get Network Interface Details
+
+This endpoint retrieves network interface details of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/network_interface_details`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/network_interface_details" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "network_interface_details": {
+    "eth0": {
+      "mtu": "1500",
+      "speed": "100",
+      "address": "b8:ae:ed:7b:27:0f",
+      "rx_bytes": "5743225639",
+      "tx_bytes": "41546301",
+      "ips": ["192.168.1.11/24", "192.168.88.100/24"]
+    },
+    "wlp2s0": {
+      "wireless": true,
+      "mtu": "1500",
+      "address": "94:65:9c:d2:2e:e0",
+      "rx_bytes": 0,
+      "tx_bytes": 0,
+      "ips": []
+    },
+    "tun0": {
+      "mtu": "1500",
+      "speed": "10",
+      "address": "be:2a:2b:f0:fa:27",
+      "rx_bytes": "41977529",
+      "tx_bytes": "18039799",
+      "ips": ["10.7.0.97/16"]
+    }
+  }
+}
+```
+
+## Get Uptime
+
+This endpoint retrieves uptime of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/uptime`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/uptime" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "uptime": "2 hours" }
+```
+
+## Get Status
+
+This endpoint retrieves online/offline status of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/status`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/status" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{ "status": "online" }
+```
+
+## recent_reboots
+
+This endpoint retrieves recent reboots of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/recent_reboots`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/recent_reboots" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "recent_reboots": [
+    "reboot   system boot  4.15.0-137-gener 2021-04-01T15:12:49+0100   still running",
+     "reboot   system boot  4.15.0-137-gener 2021-03-29T19:42:43+0100 - 2021-04-01T15:12:38+0100 (2+19:29)",
+     "reboot   system boot  4.15.0-137-gener 2021-03-29T16:39:23+0100 - 2021-03-29T19:42:31+0100  (03:03)",
+     "reboot   system boot  4.15.0-137-gener 2021-03-29T13:37:33+0100 - 2021-03-29T16:39:12+0100  (03:01)",
+     "reboot   system boot  4.15.0-136-gener 2021-03-11T15:25:48+0000 - 2021-03-29T13:37:21+0100 (17+21:11)",
+     "reboot   system boot  4.15.0-135-gener 2021-03-02T16:15:20+0000 - 2021-03-11T15:25:37+0000 (8+23:10)",
+     "reboot   system boot  4.15.0-135-gener 2021-03-02T13:12:07+0000 - 2021-03-02T16:15:09+0000  (03:03)",
+     "reboot   system boot  4.15.0-135-gener 2021-03-02T10:08:56+0000 - 2021-03-02T13:11:56+0000  (03:03)",
+     "reboot   system boot  4.15.0-135-gener 2021-03-02T07:05:39+0000 - 2021-03-02T10:08:45+0000  (03:03)",
+     "reboot   system boot  4.15.0-135-gener 2021-03-02T04:02:28+0000 - 2021-03-02T07:05:28+0000  (03:03)",
+     "reboot   system boot  4.15.0-135-gener 2021-03-02T00:59:13+0000 - 2021-03-02T04:02:17+0000  (03:03)"
+   ]
+}
+```
+
+## devices
+
+This endpoint retrieves devices of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/devices`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/devices" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "devices": [
+    { "device_id": "60c0e29308ad4195d775d9a8", "name": "Device 1" },
+    { "device_id": "6058fe9b08ad41341aa59ab1", "name": "Device 2" }
+  ]
+}
+```
+
+## cameras
+
+This endpoint retrieves cameras of agent.
+
+### HTTP Request
+`GET https://my.timeline.is/api/v3p/agents/:agent_id/cameras`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+```shell
+curl "https://my.timeline.is/api/v3p/agents/\"$AGENT_ID\"/cameras" -H "Authorization: Bearer \"$YOUR_OAUTH_TOKEN\""
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "cameras": [
+    { "camera_id": "60c0e29308ad4195d775d9a9", "name": "Camera 1" },
+    { "camera_id": "6058fea008ad41341aa59b20", "name": "Camera 2" },
+  ]
+}
+```
 
 # Recordings
 
