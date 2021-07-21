@@ -54,7 +54,6 @@ For example, go to carbon_dioxide_conversion.rb to New Fuel to CO2 with the foll
 
 <iframe src="images/dynm-updating-conversions.mp4" height="320" width="560" allowfullscreen="" frameborder="0"></iframe>
 
-
 # Home Energy
 
 > REQUEST
@@ -856,14 +855,86 @@ Units that require mass include CO2, CH4 and N2O
 
 <aside>Request params</aside>
 
+| Param     | Type   | Required | Description                                                                                                                                                |
+| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| fuel_type | string | true     | The fuel type to convert                                                                                                                                   |
+| input     | number | true     | This is the number of units to convert                                                                                                                     |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                               |
+| mass      | string | false    | This param is only required when the unit type is CO2, CH4 or N2O. Acceptable mass units are kg, g and lbs. If mass is not provided, the default is pounds |
+| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation               |
+
+## Carbon Dioxide units
+
+> REQUEST
+
+```shell
+curl -X GET \
+  https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane \
+  -H "Content-type: application/json" \
+```
+
+```javascript
+const fetch = require("node-fetch");
+fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+url = "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"
+headers = {
+  'Content-Type': 'application/json'
+}
+response = requests.request("GET", url, headers=headers)
+print(response.text)
+```
+
+```php
+<?php
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?>
+```
+
+> RESPONSE : <code>200</code>
+
+```json
+["mmBTU", "CO2", "CH4", "N2O", "BTU", "GALLON"]
+```
+
+`GET https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane`
+
+<aside>Query params</aside>
 | Param     | Type   | Required | Description                                                                                                                                  |
 | --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| fuel_type | string | true     | The fuel type to convert                                                                                                                     |
-| input     | number | true     | This is the number of units to convert                                                                                                       |
-| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                 |
-| mass      | string | false     | This param is only required when the unit type is CO2, CH4 or N2O. Acceptable mass units are kg, g and lbs. If mass is not provided, the default is pounds   |
-| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation |
-
+| fuel_type | string | true     | The fuel type to convert          |
 
 ## Energy
 
@@ -1011,3 +1082,76 @@ Energy Conversion
 | mixed electric power sector | mixed industrial cooking | coal coke                |
 | municipal solid waste       | petroleum coke solid     | plastics                 |
 | plastics quad short ton     | tires                    | tires short ton          |
+
+## Energy units
+
+> REQUEST
+
+```shell
+curl -X GET \
+  https://dynm.herokuapp.com/energy-conversion?fuel_type=propane \
+  -H "Content-type: application/json" \
+```
+
+```javascript
+const fetch = require("node-fetch");
+fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+url = "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"
+headers = {
+  'Content-Type': 'application/json'
+}
+response = requests.request("GET", url, headers=headers)
+print(response.text)
+```
+
+```php
+<?php
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://dynm.herokuapp.com/energy-conversion?fuel_type=propane',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json'
+  ),
+));
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?>
+```
+
+> RESPONSE : <code>200</code>
+
+```json
+["BTU", "QUAD", "EJ", "kWH", "SCF"]
+```
+
+`GET https://dynm.herokuapp.com/energy-conversion?fuel_type=propane`
+
+<aside>Query params</aside>
+| Param     | Type   | Required | Description                                                                                                                                  |
+| --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| fuel_type | string | true     | The fuel type to convert          |
