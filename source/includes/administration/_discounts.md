@@ -47,17 +47,17 @@ Optional Query Parameters | &nbsp;
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the discount.
-`discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discounts. To provide a 20 percent discount, set the discount value to 20.
-`durationMonths`<br/>*integer* | Duration of the discount. If not provided the discount will last indefinitely once applied to a customer, or until credit values are reached.
+`discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discounts. All pricing products specified will have the discount value applied to them.
+`durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely once applied to a customer, or until credit values are reached.
 `type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
-`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the package..
+`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the package. .
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `isDeactivated`<br/>*boolean* | Whether or not the discount is deactivated. Defaults to false.
-`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products specified will have the discount value applied to them.
+`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All products within the categories specified will have the discount value applied to them.
 `name`<br/>*Map[String, String]* | Map of language short codes to name translations for the discount.
 `appliedPricing`<br/>*Object* | The object representing the applied pricing owning the discount.
 `appliedPricing.id`<br/>*UUID* | The UUID of the applied pricing.
-`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount.
+`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `startDate`<br/>*date* | The start date of the discount.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be available to customers who have not already received it.
 `status`<br/>*enum* | The status of the discount. Possible values are : UPCOMING, CURRENT, ENDED.
