@@ -39,6 +39,7 @@ under the License.
       <% end %>
     <% end %>
     <title><%= current_page.data.title || "API Documentation" %></title>
+    <%= favicon_tag 'favicon.ico?v=1' %>
 
     <style media="screen">
       <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
