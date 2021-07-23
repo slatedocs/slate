@@ -70,7 +70,7 @@ Attributes | &nbsp;
 
 `POST /applied_pricings/:applied_pricing_id/discounts`
 
-Retrieves the list of discounts associated with an applied pricing.
+Creates a new discount 
 
 ```shell
 # Creates a new discount
