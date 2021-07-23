@@ -55,14 +55,14 @@ Attributes | &nbsp;
 `packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing.
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `isDeactivated`<br/>*boolean* | Whether or not the discount is deactivated. Defaults to false.
-`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within the categories specified will have the discount value applied to them.
+`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them.
 `name`<br/>*Map[String, String]* | The name translations of the discount.
-`appliedPricing`<br/>*Object* | The object representing the applied pricing owning the discount.
+`appliedPricing`<br/>*Object* | The applied pricing being discounted.
 `appliedPricing.id`<br/>*UUID* | The UUID of the applied pricing.
 `applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `startDate`<br/>*date* | The start date of the discount.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be available to customers who have not already received it. If not provided, the discount will always be available after the start date.
-`status`<br/>*enum* | The status of the discount. Possible values are : UPCOMING, CURRENT, ENDED.
+`status`<br/>*enum* | The status of the discount. Possible values are: UPCOMING, CURRENT, ENDED.
 
 
 <!-------------------- CREATE DISCOUNTS -------------------->
@@ -130,12 +130,12 @@ curl -X POST "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-
 Required | &nbsp;
 ------- | -----------
 `name`<br/>*Map[String, String]* | The name translations of the discount.
-`type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
+`type`<br/>*enum* | The type of the discount. It can be either "PERCENTAGE" or "CREDIT".
 `startDate`<br/>*date* | The start date of the discount.
 `applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
-`discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
+`discountScope`<br/>*enum* | The scope of the discount. It can be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
-`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within the categories specified will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
+`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discount values. All pricing products specified will have the discount value applied to them. Required to be non-empty if scope is "PRODUCTS". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 
 Optional | &nbsp;
