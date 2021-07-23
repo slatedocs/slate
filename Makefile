@@ -36,7 +36,14 @@ code_gen: java_gen node_gen php_gen ruby_gen python_gen
 app_components_docs_gen:
 	node ../widdershins/widdershins.js -e pui_widdershins_config.json --summary defs/ui_hooks_oas.yaml -o source/includes/ui-hooks-reference/_index.html.md
 
-docs_gen:
+# Only bring over spec from codez
+# Internal Asanas: See https://app.asana.com/0/0/1200652548580470/f before running
+build_spec: 
+	python $$OPENAPI_DIR/build.py && cp $$OPENAPI_DIR/dist/public_asana_oas.yaml ./defs/asana_oas.yaml
+
+docs_gen: build_spec docs_gen_all
+
+docs_gen_all:
 	node ../widdershins/widdershins.js -e widdershins_config.json --summary defs/asana_oas.yaml -o source/includes/api-reference/_index.html.md
 	node pull_code_samples.js
 	node pull_forum_updates.js
