@@ -26,7 +26,9 @@ curl "https://cloudmc_endpoint/api/v1/feedback/find?organizationId=fcda8d5a-0276
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
     "feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "matomoHost": "https://myUrl-cloudmc.matomo.cloud/",
     "id": "f4be2785-ec67-474c-af3a-38ffecfa4094",
+    "matomoWebsiteId": "1",
     "version": 1,
     "feedbackEmail": "feedback@company.com"
   }
@@ -57,7 +59,9 @@ curl "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38ffecfa4
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
     "feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "matomoHost": "https://myUrl-cloudmc.matomo.cloud/",
     "id": "f4be2785-ec67-474c-af3a-38ffecfa4094",
+    "matomoWebsiteId": "1",
     "version": 1,
     "feedbackEmail": "feedback@company.com"
   }
@@ -74,6 +78,8 @@ Attributes | &nbsp;
 `feedbackSlackWebhookUrl`<br/>*string* | The slack webhook url used for feedback. Please refer to [https://api.slack.com/messaging/webhooks](https://api.slack.com/messaging/webhooks).
 `zendeskWidgetKey`<br/>*string* | The key taken from the Zendesk admin page. Only one of supportEmail and zendeskWidgetKey can be set.
 `widgetZesettings`<br/>*string* | Content of the zeSettings as a JSON for customization. Please refer to [https://developer.zendesk.com/embeddables/docs/widget/settings](https://developer.zendesk.com/embeddables/docs/widget/settings).
+`matomoHost`<br/>*string* | The Matomo analytics subdomain, ending in '.matomo.cloud'.
+`matomoWebsiteId`<br/>*string* | The website ID which Matomo's Javascript pushes events to.
 `version`<br/>*integer* | The feedback settings version.
 
 
@@ -102,7 +108,9 @@ curl -X POST "https://cloudmc_endpoint/api/v1/feedback" \
 	"feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
   "supportEmail": "",
   "widgetZesettings": "{ \"webWidget\": { \"color\": { \"theme\": \"#78a300\" } } }",
-  "zendeskWidgetKey": "YourZendeskWidgetKey"
+  "zendeskWidgetKey": "YourZendeskWidgetKey",
+  "matomoHost": "https://myUrl-cloudmc.matomo.cloud/",
+  "matomoWebsiteId": "1",
 }
 ```
 > The above command return JSON structured like this:
@@ -117,7 +125,9 @@ curl -X POST "https://cloudmc_endpoint/api/v1/feedback" \
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
     "feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "matomoHost": "https://myUrl-cloudmc.matomo.cloud/",
     "id": "f4be2785-ec67-474c-af3a-38ffecfa4094",
+    "matomoWebsiteId": "1",
     "version": 1,
     "feedbackEmail": "feedback@company.com"
   }
@@ -137,6 +147,8 @@ Optional | &nbsp;
 `version`<br/>*integer* | The feedback settings version.
 `zendeskWidgetKey`<br/>*string* | The key taken from the Zendesk admin page. Only one of supportEmail and zendeskWidgetKey can be set.
 `widgetZesettings`<br/>*string* | Content of the zeSettings as a JSON for customization. Please refer to [https://developer.zendesk.com/embeddables/docs/widget/settings](https://developer.zendesk.com/embeddables/docs/widget/settings).
+`matomoHost`<br/>*string* | The Matomo analytics subdomain, ending in '.matomo.cloud'. If specified, both the host and website ID are required.
+`matomoWebsiteId`<br/>*string* | The website ID which Matomo's Javascript pushes events to. If specified, both the host and website ID are required.
 
 
 <!-------------------- UPDATE FEEDBACK SETTINGS -------------------->
@@ -166,7 +178,10 @@ curl -X PUT "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38
 	"feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
   "supportEmail": "support@company.com",
   "widgetZesettings": "",
-  "zendeskWidgetKey": ""
+  "zendeskWidgetKey": "",
+  "matomoHost": "https://myUrl-cloudmc.matomo.cloud/",
+  "id": "f4be2785-ec67-474c-af3a-38ffecfa4094",
+  "matomoWebsiteId": "1",
 }
 ```
 > The above command return JSON structured like this:
@@ -181,7 +196,9 @@ curl -X PUT "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38
       "id": "fcda8d5a-0276-4de3-908f-b3bd0aff2491"
     },
     "feedbackSlackWebhookUrl": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "matomoHost": "https://myUrl-cloudmc.matomo.cloud/",
     "id": "f4be2785-ec67-474c-af3a-38ffecfa4094",
+    "matomoWebsiteId": "1",
     "version": 1,
     "feedbackEmail": "feedback@company.com"
   }
@@ -201,6 +218,8 @@ Optional | &nbsp;
 `version`<br/>*integer* | The feedback settings version.
 `zendeskWidgetKey`<br/>*string* | The key taken from the Zendesk admin page. Only one of supportEmail and zendeskWidgetKey can be set.
 `widgetZesettings`<br/>*string* | Content of the zeSettings as a JSON for customization. Please refer to [https://developer.zendesk.com/embeddables/docs/widget/settings](https://developer.zendesk.com/embeddables/docs/widget/settings).
+`matomoHost`<br/>*string* | The Matomo analytics subdomain, ending in '.matomo.cloud'. If specified, both the host and website ID are required.
+`matomoWebsiteId`<br/>*string* | The website ID which Matomo's Javascript pushes events to. If specified, both the host and website ID are required.
 
 
 <!-------------------- DELETE FEEDBACK SETTINGS -------------------->
