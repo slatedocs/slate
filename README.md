@@ -93,6 +93,8 @@ vagrant up
 *Why did we fork widdershins?* For our use case, we needed things like denormalizing and dereferencing. We tried doing this to the spec & using an unforked widdershins, but as we progressed with client library generation, it made more sense to keep a clean spec and do this doc-specific editing in the tooling. A potential future is pulling out this logic to a "openapi spec transformer" to prep the spec for widdershins, but there will be a trade-offs to consider.
 
 ### Making content changes
+_Internal Asanas: See https://app.asana.com/0/77076599077/1122503737028047/f and https://app.asana.com/0/0/1200652548580470/f before making any updates._
+
 If the content you're changing is static (not generated from the OpenAPI spec), you'll edit the md in source/includes/markdown.
 
 If the content you're changing is in the OpenAPI spec, you should make the changes within codez. However, if you want to quickly test something, you can make the changes in def/asana_oas.yaml. Just remember to put the changes in codez if you want them to not be overridden.
@@ -107,7 +109,7 @@ Make changes in source/stylesheets/**\_variables.scss** because the changes here
 
 If you need to make more complex css changes, edit **screen.css.scss** or **print.css.scss** but keep in mind that these will need to be merged for new versions of Slate.
 
-### Deploying to github pages
+### Deploying to GitHub Pages
 This should happen automatically when changes are merged into this repo.
 
 If you need to do this manually, then run the `deploy.sh` script. This will use your local git credentials and local /build folder to push a build to a branch named gh-pages (Where the docs are hosted).
