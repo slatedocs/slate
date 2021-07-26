@@ -66,7 +66,7 @@ bundle install # Install requirements
 For the rest of this README assume any commands that we list will be run from the root of this repository.
 
 ### How it works
-The public OpenAPI spec is located at /public/public_asana_oas.json
+The public OpenAPI spec is located at /defs/asana_oas.yaml
 
 To generate markdown from the spec, we use a forked [widdershins](https://github.com/rossgrambo/widdershins)
 
@@ -74,12 +74,14 @@ We assume these repos are siblings in your folder
 - widdershins
 - developer-docs
 
-Open a shell within developer-docs and run (we use some relative path in this command):
+Open a shell within developer-docs and ru:
 ```shell
-node ../widdershins/widdershins.js --search true --language_tabs 'shell: curl' --omitHeader true --includes markdown/* --summary defs/asana_oas.yaml --user_templates ./source/templates -o source/includes/api-reference/_index.html.md
+make
 ```
 
-Then to generate the html from the markdown, we use [slate](https://github.com/lord/slate)
+To see what this command does, read the Makefile in this repo.
+
+Then to generate the html from the markdown, we use [slate](https://github.com/lord/slate). This happens automatically when the middleman starts the server.
 ```shell
 # either run this to run locally
 bundle exec middleman server
@@ -96,7 +98,7 @@ _Internal Asanas: See https://app.asana.com/0/77076599077/1122503737028047/f and
 If the content you're changing is static (not generated from the OpenAPI spec), you'll edit the md in source/includes/markdown.
 
 If the content you're changing is in the OpenAPI spec, you should make the changes within codez. However, if you want to quickly test something, you can make the changes in def/asana_oas.yaml. Just remember to put the changes in codez if you want them to not be overridden.
-Then, you should run the `widdershins` command above.
+Then, you should run the `make` command above.
 I prefer to run `git diff` after doing so to see the generated changes.
 Run `bundle exec middleman server` if it's not already running, and go to the url it provides to check out the changes you made.
 
