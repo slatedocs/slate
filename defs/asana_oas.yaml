@@ -3846,17 +3846,6 @@ components:
                 - section
                 - approval
               example: default_task
-            start_at:
-              description: >-
-                Date and time on which work begins for the task, or null if the task
-                has no start time. This takes a UTC timestamp format.
-
-                *Note: `due_at` must be present in the request when
-                setting or unsetting the `start_at` parameter.*
-              type: string
-              nullable: true
-              format: date
-              example: '2019-09-14T02:06:58.147Z'
             start_on:
               description: >-
                 The day on which work begins for the task , or null if the task

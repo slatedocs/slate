@@ -12356,7 +12356,6 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
       "12345"
     ],
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -12446,7 +12445,6 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -12572,7 +12570,6 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -12586,9 +12583,6 @@ The external field allows you to store app-specific metadata on tasks, including
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
-
-**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.
-*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -12765,7 +12759,6 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -12979,7 +12972,6 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
       "12345"
     ],
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -13069,7 +13061,6 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -13197,7 +13188,6 @@ Returns the complete updated task record.
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -13212,9 +13202,6 @@ The external field allows you to store app-specific metadata on tasks, including
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
-
-**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.
-*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -14161,7 +14148,6 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
       "12345"
     ],
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -14251,7 +14237,6 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -14371,7 +14356,6 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
@@ -14386,9 +14370,6 @@ The external field allows you to store app-specific metadata on tasks, including
 
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
-
-**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.
-*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
 
 **start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
@@ -14581,7 +14562,6 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
-    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -22739,7 +22719,6 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
   "num_likes": 5,
   "num_subtasks": 3,
   "resource_subtype": "default_task",
-  "start_at": "2019-09-14T02:06:58.147Z",
   "start_on": "2019-09-14",
   "assignee": {
     "gid": "12345",
@@ -22886,7 +22865,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](/docs/input-output-options). The number of subtasks on this task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.|
-|start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes a UTC timestamp format.<br>*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
