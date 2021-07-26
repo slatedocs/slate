@@ -273,3 +273,23 @@ Optional | &nbsp;
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discount values. All pricing products specified will have the discount value applied to them. Required to be non-empty if scope is "PRODUCTS". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date. 
 `durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
+
+<!-------------------- DELETE DISCOUNT -------------------->
+### Delete discount
+
+`DELETE /applied_pricings/:applied_pricing_id/discounts/:id`
+
+Delete a discount. This operation can only be performed on discounts that have state UPCOMING.
+
+```shell
+curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "85df8dfb-b904-42dc-bb76-4824e6b50c83",
+  "taskStatus": "SUCCESS"
+}
+```
