@@ -99,4 +99,4 @@ full_openapi_sync: library_prs docs_gen app_components serve
 
 app_components: app_components_docs_gen
 
-.DEFAULT_GOAL := latest
+.DEFAULT_GOAL := full_openapi_sync
