@@ -9,7 +9,7 @@
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
 <span class="description">
-This is the interface for handling requests for [App Components](https://developers.asana.com/docs/app-components-overview). This reference is generated from an [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/ui_hooks_oas.yaml).
+This is the interface for handling requests for [App Components](https://developers.asana.com/docs/app-components-overview). This reference is generated from an [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/app_components_oas.yaml).
 </span>
 
 Base URLs:
