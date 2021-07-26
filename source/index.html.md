@@ -22,6 +22,7 @@ includes:
   - administration/products
   - administration/pricings
   - administration/applied_pricings
+  - administration/discounts
   - administration/authentication
   - administration/identity_providers
   - administration/service_providers
