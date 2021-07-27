@@ -7,7 +7,7 @@ The discount allows the assignment of a percentage discount or credit to an appl
 
 `GET /applied_pricings/:applied_pricing_id/discounts?type=:type`
 
-Retrieves the list of discounts associated with an applied pricing.
+Retrieve the list of discounts associated with an applied pricing.
 
 ```shell
 # Retrieve applied pricing list
@@ -69,7 +69,7 @@ Attributes | &nbsp;
 
 `GET /applied_pricings/:applied_pricing_id/discounts/:id`
 
-Retrieves a discount's details.
+Retrieve a discount's details.
 
 ```shell
 # Retrieve applied pricing list
@@ -128,7 +128,7 @@ Attributes | &nbsp;
 
 `POST /applied_pricings/:applied_pricing_id/discounts`
 
-Creates a new discount 
+Create a new discount 
 
 ```shell
 # Creates a new discount
@@ -279,7 +279,7 @@ Optional | &nbsp;
 
 `DELETE /applied_pricings/:applied_pricing_id/discounts/:id`
 
-Delete a discount. This operation can only be performed on discounts that have state UPCOMING.
+Delete a discount. This operation can only be performed on discounts that have status UPCOMING.
 
 ```shell
 curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
@@ -291,5 +291,46 @@ curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45c
 {
   "taskId": "85df8dfb-b904-42dc-bb76-4824e6b50c83",
   "taskStatus": "SUCCESS"
+}
+```
+
+### Deactivate discount
+
+`PUT /applied_pricings/:applied_pricing_id/discounts/:id/deactivate`
+
+Deactivate a discount. This operation can only be performed on discounts that have status CURRENT or ENDED.
+Deactivated is a final state, cannot be reactivated.
+
+```shell
+curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b/deactivate" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+      "applyToNewCustomersOnly": false,
+      "discountedProducts": {},
+      "durationMonths": 4,
+      "type": "PERCENTAGE",
+      "discountScope": "CATEGORIES",
+      "isDeactivated": true,
+      "discountedCategories": {
+        "8cf73cc0-b86e-49b4-a102-6102894f7955": 2, 
+        "00358632-5c9a-4164-a9a9-df271a9c06a9": 22
+      },  
+      "name": {
+        "en": "End of summer Discount",
+        "fr": "Réduction estival fin d'été"
+      },
+      "id": "18db7bc6-8be1-48bb-bab1-77a7d696fa3b",
+      "appliedPricing": {
+        "id": "efd32752-c6f2-45cf-b494-cc6be8a45845"
+      },
+      "startDate": "2020-07-23T00:00:00.000Z",
+      "cutoffDate": "2020-08-24T00:00:00.000Z",
+      "status": "ENDED"
+  }
 }
 ```
