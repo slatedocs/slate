@@ -471,6 +471,14 @@ tags:
 
       Sync tokens always expire after 24 hours, but may expire sooner,
       depending on load on the service.
+  - name: Goals
+    description: >-
+      A `goal` is an object in the goal-tracking system that helps your organization
+      drive measurable results.
+  - name: Goal Metrics
+    description: >-
+      A `goal_metric` is an object in the goal-tracking system that represents measurement
+      data for a goal, such as a percentage, a number, or some currency.
   - name: Jobs
     description: >-
       Jobs represent processes that handle asynchronous work.
@@ -938,6 +946,16 @@ components:
         type: string
       example: '12345'
       x-env-variable: custom_field
+    goal_path_gid:
+      name: goal_gid
+      in: path
+      description: >-
+        Globally unique identifier for the goal.
+      required: true
+      schema:
+        type: string
+      example: '12345'
+      x-env-variable: goal
     job_path_gid:
       name: job_gid
       in: path
@@ -2024,6 +2042,193 @@ components:
               example:
                 gid: '12345'
                 resource_type: user
+    GoalResponse:
+      allOf:
+        - $ref: '#/components/schemas/GoalBase'
+        - type: object
+          properties:
+            likes:
+              description: >-
+                Array of likes for users who have liked this goal.
+              type: array
+              items:
+                $ref: '#/components/schemas/Like'
+              readOnly: true
+            num_likes:
+              description: >-
+                The number of users who have liked this goal.
+              type: integer
+              readOnly: true
+              example: 5
+    GoalRequest:
+      $ref: '#/components/schemas/GoalBase'
+    GoalBase:
+      allOf:
+        - $ref: '#/components/schemas/GoalCompact'
+        - type: object
+          properties:
+            html_notes:
+              type: string
+              description: >-
+                The notes of the goal with formatting as HTML.
+              example: <body>Start building brand awareness.</body>
+            notes:
+              type: string
+              description: >-
+                Free-form textual information associated with the
+                goal (i.e. its description).
+              example: Start building brand awareness.
+            due_on:
+              type: string
+              description: >-
+                The localized day on which this goal is due. This takes a
+                date with format `YYYY-MM-DD`.
+              example: '2019-09-15'
+              nullable: true
+            start_on:
+              type: string
+              description: >-
+                The day on which work for this goal begins, or null if the
+                goal has no start date. This takes a date with `YYYY-MM-DD`
+                format, and cannot be set unless there is an accompanying due date.
+              example: '2019-09-14'
+              nullable: true
+            status:
+              type: string
+              description: >-
+                The current status of this goal. When the goal is open, its status
+                can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk",
+                and "Off Track", respectively. When the goal is closed, the value
+                can be `missed`, `achieved`, `partial`, or `dropped`.
+              nullable: true
+            team:
+              allOf:
+                - $ref: '#/components/schemas/TeamCompact'
+                - type: object
+                  nullable: true
+            metric:
+              allOf:
+                - $ref: '#/components/schemas/GoalMetricBase'
+                - type: object
+                  nullable: true
+            workspace:
+              allOf:
+                - $ref: '#/components/schemas/WorkspaceCompact'
+                - type: object
+            is_workspace_level:
+              type: boolean
+              description: >-
+                Whether the goal belongs to the workspace (and is listed as part of
+                the workspace’s goals) or not. If it isn’t a workspace-level goal,
+                it is a team-level goal, and is associated with the goal’s team.
+              example: true
+            followers:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserCompact'
+              description: >-
+                Array of users following this goal.
+            liked:
+              type: boolean
+              description: >-
+                True if the goal is liked by the authorized user, false if not.
+              example: false
+    GoalCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          x-docs-overrides:
+            properties.resource_type.example: goal
+          properties:
+            name:
+              type: string
+              description: The name of the goal.
+              example: Grow web traffic by 30%
+            owner:
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
+                - type: object
+                  nullable: true
+    GoalMetricCurrentValueRequest:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          properties:
+            current_number_value:
+              description: >-
+                *Conditional*. This number is the current value of a goal metric of
+                type number.
+              type: number
+              example: 8.12
+    GoalMetricResponse:
+      $ref: '#/components/schemas/GoalMetricBase'
+    GoalMetricRequest:
+      $ref: '#/components/schemas/GoalMetricBase'
+    GoalMetricBase:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          properties:
+            resource_subtype:
+              description: >-
+                The subtype of this resource. Different subtypes retain many of the
+                same fields and behavior, but may render differently in Asana or
+                represent resources with different semantic meaning.
+              type: string
+              readOnly: true
+              example: number
+              enum:
+                - number
+            precision:
+              description: >-
+                Only relevant for goal metrics of type ‘Number’. This field
+                dictates the number of places after the decimal to round to, i.e.
+                0 is integer values, 1 rounds to the nearest tenth, and so on.
+                Must be between 0 and 6, inclusive.
+
+                For percentage format, this may be unintuitive, as a value of 0.25
+                has a precision of 0, while a value of 0.251 has a precision of 1.
+                This is due to 0.25 being displayed as 25%.
+              type: integer
+              readOnly: true
+              example: 2
+            unit:
+              description: >-
+                A supported unit of measure for the goal metric, or none.
+              type: string
+              readOnly: true
+              enum:
+                - none
+                - currency
+                - percentage
+            currency_code:
+              description: >-
+                ISO 4217 currency code to format this custom field. This will be
+                null if the `format` is not `currency`.
+              type: string
+              readOnly: true
+              nullable: true
+              example: EUR
+            initial_number_value:
+              description: >-
+                *Conditional*. This number is the start value of a goal metric of
+                type number.
+              type: number
+              readOnly: true
+              example: 5.2
+            target_number_value:
+              description: >-
+                *Conditional*. This number is the end value of a goal metric of
+                type number.
+              type: number
+              readOnly: true
+              example: 10.2
+            current_number_value:
+              description: >-
+                *Conditional*. This number is the current value of a goal metric of
+                type number.
+              type: number
+              example: 8.12
     JobResponse:
       $ref: '#/components/schemas/JobBase'
     JobBase:
@@ -2627,8 +2832,8 @@ components:
               example: '2012-02-22T02:06:58.147Z'
             notes:
               description: >-
-                More detailed, free-form textual information associated with the
-                project.
+                Free-form textual information associated with the
+                project (ie., its description).
               type: string
               example: These are things we need to purchase.
             public:
@@ -3807,8 +4012,8 @@ components:
               example: Buy catnip
             notes:
               description: >-
-                More detailed, free-form textual information associated with the
-                task.
+                Free-form textual information associated with the
+                task (i.e. its description).
               type: string
               example: Mittens really likes the stuff from Humboldt.
             num_hearts:
@@ -5258,6 +5463,425 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}:
+    parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a goal
+      description: Returns the complete goal record for a single goal.
+      operationId: getGoal
+      tags:
+        - Goals
+      responses:
+        200:
+          description: Successfully retrieved the record for a single goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      summary: Update a goal
+      description: |-
+        An existing goal can be updated by making a PUT request on the URL for
+        that goal. Only the fields provided in the `data` block will be updated;
+        any unspecified fields will remain unchanged.
+
+        Returns the complete updated goal record.
+      tags:
+        - Goals
+      operationId: updateGoal
+      requestBody:
+        description: The updated fields for the goal.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        200:
+          description: Successfully updated the goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete a goal
+      description: |-
+        A specific, existing goal can be deleted by making a DELETE request on the URL for that goal.
+
+        Returns an empty data record.
+      tags:
+        - Goals
+      operationId: deleteGoal
+      responses:
+        200:
+          description: Successfully deleted the specified goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get goals
+      description: >-
+        Returns compact goal records.
+      tags:
+        - Goals
+      operationId: getGoals
+      parameters:
+        - name: portfolio
+          in: query
+          description: Globally unique identifier for supporting portfolio.
+          schema:
+            type: string
+          example: '159874'
+        - name: project
+          in: query
+          description: Globally unique identifier for supporting project.
+          schema:
+            type: string
+          example: '512241'
+        - name: is_workspace_level
+          in: query
+          description: Filter to goals with is_workspace_level set to query value.
+            Must be used with the workspace parameter.
+          schema:
+            type: boolean
+          example: false
+        - name: team
+          in: query
+          description: Globally unique identifier for the team.
+          schema:
+            type: string
+          example: '31326'
+        - name: workspace
+          in: query
+          description: Globally unique identifier for the workspace.
+          schema:
+            type: string
+          example: '31326'
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested goals.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GoalCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/setMetric:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Create a goal metric
+      description: >-
+        Creates and adds a goal metric to a specified goal. Note that this replaces
+        an existing goal metric if one already exists.
+      tags:
+        - Goal Metrics
+      operationId: createGoalMetric
+      requestBody:
+        description: The goal metric to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalMetricRequest'
+      responses:
+        200:
+          description: Successfully created a new goal metric.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/setMetricCurrentValue:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Update a goal metric
+      description: |-
+        Updates a goal's existing metric's `current_number_value` if one exists,
+        otherwise responds with a 400 status code.
+
+        Returns the complete updated goal metric record.
+      tags:
+        - Goal Metrics
+      operationId: Update GoalMetric
+      requestBody:
+        description: The updated fields for the goal metric.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalMetricCurrentValueRequest'
+      responses:
+        200:
+          description: Successfully updated the goal metric.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalMetricResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/addSubGoal:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Create a subgoal
+      description: |-
+        Creates a new subgoal and adds it to the parent goal. Returns the full record of the newly created subgoal.
+      tags:
+        - Goals
+      operationId: addSubGoal
+      requestBody:
+        description: The goal to add as a subgoal
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        201:
+          description: Successfully added goal as subgoal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/removeSubGoal:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Remove a subgoal from a goal
+      description: Removes a goal as a subgoal of a specified parent goal.
+      tags:
+        - Goals
+      operationId: removeSubGoal
+      requestBody:
+        description: The goal to be removed as a subgoal
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        201:
+          description: Successfully removed subgoal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/subgoals:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get subgoals from a goal
+      description: Returns a compact representation of all of the subgoals of a goal.
+      tags:
+        - Goals
+      operationId: getSubgoalsForGoal
+      responses:
+        200:
+          description: Successfully retrieved the specified goal's subgoals.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GoalCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/parentgoals:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get parent goals from a goal
+      description: Returns a compact representation of all of the parent goals of
+        a goal.
+      tags:
+        - Goals
+      operationId: getParentgoalsForGoal
+      responses:
+        200:
+          description: Successfully retrieved the specified goal's parent goals.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GoalCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:

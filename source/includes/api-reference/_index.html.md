@@ -2599,6 +2599,1372 @@ tasks contained within the project.*
 
 </section><hr class="full-line">
 <section class="full-section">
+<a id="asana-goals"></a>
+<h1 id="goals">Goals</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/update-a-goal"><span class="put-verb">PUT</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/delete-a-goal"><span class="delete-verb">DELETE</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/get-goals"><span class="get-verb">GET</span> <span class=""nn>/goals</span></a><br><a href="/docs/create-a-subgoal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSubGoal</span></a><br><a href="/docs/remove-a-subgoal-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSubGoal</span></a><br><a href="/docs/get-subgoals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/subgoals</span></a><br><a href="/docs/get-parent-goals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/parentgoals</span></a></code>
+</pre>
+
+<span class="description">
+A `goal` is an object in the goal-tracking system that helps your organization drive measurable results.
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Get a goal
+
+<a id="opIdgetGoal"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/goals/{goal_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+getGoal
+
+```
+
+```python
+getGoal
+
+```
+
+```ruby
+getGoal
+
+```
+
+```java
+getGoal
+
+```
+
+```php
+getGoal
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "Grow web traffic by 30%",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "gid": "12345",
+      "resource_type": "task",
+      "currency_code": "EUR",
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "number",
+      "target_number_value": 10.2,
+      "unit": "none"
+    },
+    "notes": "Start building brand awareness.",
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /goals/{goal_gid}</code>
+</p>
+
+<span class="description">
+Returns the complete goal record for a single goal.
+</span>
+
+<h3 id="get-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Goal](#schemagoal)</span>|Successfully retrieved the record for a single goal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Update a goal
+
+<a id="opIdupdateGoal"></a>
+
+> Code samples
+
+```shell
+curl -X PUT https://app.asana.com/api/1.0/goals/{goal_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+updateGoal
+
+```
+
+```python
+updateGoal
+
+```
+
+```ruby
+updateGoal
+
+```
+
+```java
+updateGoal
+
+```
+
+```php
+updateGoal
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "current_number_value": 8.12
+    },
+    "name": "Grow web traffic by 30%",
+    "notes": "Start building brand awareness.",
+    "owner": {
+      "name": "Greg Sanchez"
+    },
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "name": "Marketing"
+    },
+    "workspace": {
+      "name": "My Company Workspace"
+    }
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "Grow web traffic by 30%",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "gid": "12345",
+      "resource_type": "task",
+      "currency_code": "EUR",
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "number",
+      "target_number_value": 10.2,
+      "unit": "none"
+    },
+    "notes": "Start building brand awareness.",
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="put-verb">PUT</span> /goals/{goal_gid}</code>
+</p>
+
+<span class="description">
+An existing goal can be updated by making a PUT request on the URL for
+that goal. Only the fields provided in the `data` block will be updated;
+any unspecified fields will remain unchanged.
+
+Returns the complete updated goal record.
+</span>
+
+<h3 id="update-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the goal.|
+|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
+|»» is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
+|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+|»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|»» name<span class="param-type"> string</span>|The name of the goal.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
+|»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
+|»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
+|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="update-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Goal](#schemagoal)</span>|Successfully updated the goal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Delete a goal
+
+<a id="opIddeleteGoal"></a>
+
+> Code samples
+
+```shell
+curl -X DELETE https://app.asana.com/api/1.0/goals/{goal_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+deleteGoal
+
+```
+
+```python
+deleteGoal
+
+```
+
+```ruby
+deleteGoal
+
+```
+
+```java
+deleteGoal
+
+```
+
+```php
+deleteGoal
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="delete-verb">DELETE</span> /goals/{goal_gid}</code>
+</p>
+
+<span class="description">
+A specific, existing goal can be deleted by making a DELETE request on the URL for that goal.
+
+Returns an empty data record.
+</span>
+
+<h3 id="delete-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="delete-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified goal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="delete-a-goal-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Get goals
+
+<a id="opIdgetGoals"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/goals \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+getGoals
+
+```
+
+```python
+getGoals
+
+```
+
+```ruby
+getGoals
+
+```
+
+```java
+getGoals
+
+```
+
+```php
+getGoals
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "goal",
+      "name": "Grow web traffic by 30%",
+      "owner": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /goals</code>
+</p>
+
+<span class="description">
+Returns compact goal records.
+</span>
+
+<h3 id="get-goals-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?portfolio<span class="param-type"> string</span>|Globally unique identifier for supporting portfolio.|
+|?project<span class="param-type"> string</span>|Globally unique identifier for supporting project.|
+|?is_workspace_level<span class="param-type"> boolean</span>|Filter to goals with is_workspace_level set to query value. Must be used with the workspace parameter.|
+|?team<span class="param-type"> string</span>|Globally unique identifier for the team.|
+|?workspace<span class="param-type"> string</span>|Globally unique identifier for the workspace.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-goals-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [GoalCompact](#schemagoalcompact)</span>|Successfully retrieved the requested goals.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Create a subgoal
+
+<a id="opIdaddSubGoal"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/goals/{goal_gid}/addSubGoal \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+addSubGoal
+
+```
+
+```python
+addSubGoal
+
+```
+
+```ruby
+addSubGoal
+
+```
+
+```java
+addSubGoal
+
+```
+
+```php
+addSubGoal
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "current_number_value": 8.12
+    },
+    "name": "Grow web traffic by 30%",
+    "notes": "Start building brand awareness.",
+    "owner": {
+      "name": "Greg Sanchez"
+    },
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "name": "Marketing"
+    },
+    "workspace": {
+      "name": "My Company Workspace"
+    }
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "Grow web traffic by 30%",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "gid": "12345",
+      "resource_type": "task",
+      "currency_code": "EUR",
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "number",
+      "target_number_value": 10.2,
+      "unit": "none"
+    },
+    "notes": "Start building brand awareness.",
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /goals/{goal_gid}/addSubGoal</code>
+</p>
+
+<span class="description">
+Creates a new subgoal and adds it to the parent goal. Returns the full record of the newly created subgoal.
+</span>
+
+<h3 id="create-a-subgoal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to add as a subgoal|
+|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
+|»» is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
+|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+|»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|»» name<span class="param-type"> string</span>|The name of the goal.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
+|»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
+|»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
+|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="create-a-subgoal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Goal](#schemagoal)</span>|Successfully added goal as subgoal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Remove a subgoal from a goal
+
+<a id="opIdremoveSubGoal"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/goals/{goal_gid}/removeSubGoal \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+removeSubGoal
+
+```
+
+```python
+removeSubGoal
+
+```
+
+```ruby
+removeSubGoal
+
+```
+
+```java
+removeSubGoal
+
+```
+
+```php
+removeSubGoal
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "current_number_value": 8.12
+    },
+    "name": "Grow web traffic by 30%",
+    "notes": "Start building brand awareness.",
+    "owner": {
+      "name": "Greg Sanchez"
+    },
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "name": "Marketing"
+    },
+    "workspace": {
+      "name": "My Company Workspace"
+    }
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "Grow web traffic by 30%",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "gid": "12345",
+      "resource_type": "task",
+      "currency_code": "EUR",
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "number",
+      "target_number_value": 10.2,
+      "unit": "none"
+    },
+    "notes": "Start building brand awareness.",
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /goals/{goal_gid}/removeSubGoal</code>
+</p>
+
+<span class="description">
+Removes a goal as a subgoal of a specified parent goal.
+</span>
+
+<h3 id="remove-a-subgoal-from-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to be removed as a subgoal|
+|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
+|»» is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
+|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+|»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|»» name<span class="param-type"> string</span>|The name of the goal.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
+|»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
+|»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
+|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="remove-a-subgoal-from-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Goal](#schemagoal)</span>|Successfully removed subgoal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Get subgoals from a goal
+
+<a id="opIdgetSubgoalsForGoal"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/goals/{goal_gid}/subgoals \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+getSubgoalsForGoal
+
+```
+
+```python
+getSubgoalsForGoal
+
+```
+
+```ruby
+getSubgoalsForGoal
+
+```
+
+```java
+getSubgoalsForGoal
+
+```
+
+```php
+getSubgoalsForGoal
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "goal",
+      "name": "Grow web traffic by 30%",
+      "owner": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /goals/{goal_gid}/subgoals</code>
+</p>
+
+<span class="description">
+Returns a compact representation of all of the subgoals of a goal.
+</span>
+
+<h3 id="get-subgoals-from-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-subgoals-from-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [GoalCompact](#schemagoalcompact)</span>|Successfully retrieved the specified goal's subgoals.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Get parent goals from a goal
+
+<a id="opIdgetParentgoalsForGoal"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/goals/{goal_gid}/parentgoals \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+getParentgoalsForGoal
+
+```
+
+```python
+getParentgoalsForGoal
+
+```
+
+```ruby
+getParentgoalsForGoal
+
+```
+
+```java
+getParentgoalsForGoal
+
+```
+
+```php
+getParentgoalsForGoal
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "goal",
+      "name": "Grow web traffic by 30%",
+      "owner": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /goals/{goal_gid}/parentgoals</code>
+</p>
+
+<span class="description">
+Returns a compact representation of all of the parent goals of a goal.
+</span>
+
+<h3 id="get-parent-goals-from-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-parent-goals-from-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [GoalCompact](#schemagoalcompact)</span>|Successfully retrieved the specified goal's parent goals.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="full-line">
+<section class="full-section">
+<a id="asana-goal-metrics"></a>
+<h1 id="goal-metrics">Goal Metrics</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/create-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetric</span></a><br><a href="/docs/update-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetricCurrentValue</span></a></code>
+</pre>
+
+<span class="description">
+A `goal_metric` is an object in the goal-tracking system that represents measurement data for a goal, such as a percentage, a number, or some currency.
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Create a goal metric
+
+<a id="opIdcreateGoalMetric"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/goals/{goal_gid}/setMetric \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+createGoalMetric
+
+```
+
+```python
+createGoalMetric
+
+```
+
+```ruby
+createGoalMetric
+
+```
+
+```java
+createGoalMetric
+
+```
+
+```php
+createGoalMetric
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "current_number_value": 8.12
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "Grow web traffic by 30%",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "gid": "12345",
+      "resource_type": "task",
+      "currency_code": "EUR",
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "number",
+      "target_number_value": 10.2,
+      "unit": "none"
+    },
+    "notes": "Start building brand awareness.",
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /goals/{goal_gid}/setMetric</code>
+</p>
+
+<span class="description">
+Creates and adds a goal metric to a specified goal. Note that this replaces an existing goal metric if one already exists.
+</span>
+
+<h3 id="create-a-goal-metric-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The goal metric to create.|
+|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="create-a-goal-metric-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Goal](#schemagoal)</span>|Successfully created a new goal metric.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Update a goal metric
+
+<a id="opIdUpdate GoalMetric"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/goals/{goal_gid}/setMetricCurrentValue \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+Update GoalMetric
+
+```
+
+```python
+Update GoalMetric
+
+```
+
+```ruby
+Update GoalMetric
+
+```
+
+```java
+Update GoalMetric
+
+```
+
+```php
+Update GoalMetric
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "current_number_value": 8.12
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "task",
+    "currency_code": "EUR",
+    "current_number_value": 8.12,
+    "initial_number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "number",
+    "target_number_value": 10.2,
+    "unit": "none"
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /goals/{goal_gid}/setMetricCurrentValue</code>
+</p>
+
+<span class="description">
+Updates a goal's existing metric's `current_number_value` if one exists,
+otherwise responds with a 400 status code.
+
+Returns the complete updated goal metric record.
+</span>
+
+<h3 id="update-a-goal-metric-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the goal metric.|
+|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="update-a-goal-metric-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully updated the goal metric.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="update-a-goal-metric-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [GoalMetricResponse](#schemagoalmetricresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+| current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+| initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
+| precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+| resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+| target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+| unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|resource_subtype|number|
+|unit|none|
+|unit|currency|
+|unit|percentage|
+
+</section><hr class="full-line">
+<section class="full-section">
 <a id="asana-jobs"></a>
 <h1 id="jobs">Jobs</h1>
 
@@ -5569,7 +6935,7 @@ Returns the full record of the newly created project.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
@@ -6066,7 +7432,7 @@ Returns the complete updated project record.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
@@ -6856,7 +8222,7 @@ Returns the full record of the newly created project.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
@@ -7266,7 +8632,7 @@ Returns the full record of the newly created project.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
@@ -12566,7 +13932,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the task (i.e. its description).|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
@@ -13184,7 +14550,7 @@ Returns the complete updated task record.
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the task (i.e. its description).|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
@@ -14352,7 +15718,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.|
 |»» liked<span class="param-type"> boolean</span>|True if the task is liked by the authorized user, false if not.|
 |»» name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the task (i.e. its description).|
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
@@ -21056,6 +22422,177 @@ an object with the user's `id` and `type`.
 
 </section><hr>
 <section>
+<a id="schemagoalcompact"></a>
+<a id="schema_GoalCompact"></a>
+<a id="tocSgoalcompact"></a>
+<a id="tocsgoalcompact"></a>
+<a id="tocS_GoalCompact"></a>
+<h2 id="goal-compact">GoalCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "goal",
+  "name": "Grow web traffic by 30%",
+  "owner": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  }
+}
+
+```
+
+<span class="description">
+A `Compact` object is the same as the [full response object](/docs/tocS_Goal), but with less fields included by default. See
+[Input/Output Options](/docs/input-output-options) to include more fields.
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the goal.|
+|owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+
+</section><hr>
+<section>
+<a id="schemagoal"></a>
+<a id="schema_Goal"></a>
+<a id="tocSgoal"></a>
+<a id="tocsgoal"></a>
+<a id="tocS_Goal"></a>
+<h2 id="goal">Goal</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "goal",
+  "name": "Grow web traffic by 30%",
+  "owner": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "due_on": "2019-09-15",
+  "followers": [
+    {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  ],
+  "html_notes": "<body>Start building brand awareness.</body>",
+  "is_workspace_level": true,
+  "liked": false,
+  "metric": {
+    "gid": "12345",
+    "resource_type": "task",
+    "currency_code": "EUR",
+    "current_number_value": 8.12,
+    "initial_number_value": 5.2,
+    "precision": 2,
+    "resource_subtype": "number",
+    "target_number_value": 10.2,
+    "unit": "none"
+  },
+  "notes": "Start building brand awareness.",
+  "start_on": "2019-09-14",
+  "status": "string",
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
+  },
+  "workspace": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  },
+  "likes": [
+    {
+      "gid": "12345",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ],
+  "num_likes": 5
+}
+
+```
+
+<span class="description">
+A generic Asana Resource, containing a globally unique identifier.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|The name of the goal.|
+|owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
+|followers<span class="param-type"> [object]</span>|Array of users following this goal.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
+|is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
+|liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+|metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
+|» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
+|notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
+|start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
+|status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
+|team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
+|likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this goal.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|num_likes<span class="param-type"> integer</span>|The number of users who have liked this goal.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|resource_subtype|number|
+|unit|none|
+|unit|currency|
+|unit|percentage|
+
+</section><hr>
+<section>
 <a id="schemajobcompact"></a>
 <a id="schema_JobCompact"></a>
 <a id="tocSjobcompact"></a>
@@ -21797,7 +23334,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
-|notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the project.|
+|notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |public<span class="param-type"> boolean</span>|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
@@ -22860,7 +24397,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
-|notes<span class="param-type"> string</span>|More detailed, free-form textual information associated with the task.|
+|notes<span class="param-type"> string</span>|Free-form textual information associated with the task (i.e. its description).|
 |num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](/docs/input-output-options). The number of subtasks on this task.|
