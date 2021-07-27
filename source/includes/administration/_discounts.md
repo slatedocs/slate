@@ -7,7 +7,7 @@ The discount allows the assignment of a percentage discount or credit to an appl
 
 `GET /applied_pricings/:applied_pricing_id/discounts?type=:type`
 
-Retrieves the list of discounts associated with an applied pricing.
+Retrieve the list of discounts associated with an applied pricing.
 
 ```shell
 # Retrieve applied pricing list
@@ -69,7 +69,7 @@ Attributes | &nbsp;
 
 `GET /applied_pricings/:applied_pricing_id/discounts/:id`
 
-Retrieves a discount's details.
+Retrieve a discount's details.
 
 ```shell
 # Retrieve applied pricing list
@@ -128,7 +128,7 @@ Attributes | &nbsp;
 
 `POST /applied_pricings/:applied_pricing_id/discounts`
 
-Creates a new discount 
+Create a new discount 
 
 ```shell
 # Creates a new discount
@@ -279,7 +279,7 @@ Optional | &nbsp;
 
 `DELETE /applied_pricings/:applied_pricing_id/discounts/:id`
 
-Deletes a discount. This operation can only be performed on discounts that have status UPCOMING.
+Delete a discount. This operation can only be performed on discounts that have status UPCOMING.
 
 ```shell
 curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
@@ -298,7 +298,7 @@ curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45c
 
 `PUT /applied_pricings/:applied_pricing_id/discounts/:id/deactivate`
 
-Deactivates a discount. This operation can only be performed on discounts that have status CURRENT or ENDED.
+Deactivate a discount. This operation can only be performed on discounts that have status CURRENT or ENDED.
 Deactivated is a final state, cannot be reactivated.
 
 ```shell
