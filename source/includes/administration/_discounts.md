@@ -334,16 +334,3 @@ curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b
   }
 }
 ```
-
-Optional | &nbsp;
-------- | -----------
-`name`<br/>*Map[String, String]* | The name translations of the discount.
-`startDate`<br/>*date* | The start date of the discount.
-`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
-`discountScope`<br/>*enum* | The scope of the discount. It can be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
-`isDeactivated`<br/>*boolean* | If true, the discount is deactivated. Deactivated is a final state, it cannot be reactivated.
-`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
-`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
-`discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discount values. All pricing products specified will have the discount value applied to them. Required to be non-empty if scope is "PRODUCTS". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
-`cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date. 
-`durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
