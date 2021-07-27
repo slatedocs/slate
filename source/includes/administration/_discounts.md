@@ -279,7 +279,7 @@ Optional | &nbsp;
 
 `DELETE /applied_pricings/:applied_pricing_id/discounts/:id`
 
-Delete a discount. This operation can only be performed on discounts that have state UPCOMING.
+Deletes a discount. This operation can only be performed on discounts that have status UPCOMING.
 
 ```shell
 curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
@@ -293,3 +293,57 @@ curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45c
   "taskStatus": "SUCCESS"
 }
 ```
+
+### Deactivate discount
+
+`PUT /applied_pricings/:applied_pricing_id/discounts/:id/deactivate`
+
+Deactivates a discount. This operation can only be performed on discounts that have status CURRENT or ENDED.
+Deactivated is a final state, cannot be reactivated.
+
+```shell
+curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b/deactivate" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+      "applyToNewCustomersOnly": false,
+      "discountedProducts": {},
+      "durationMonths": 4,
+      "type": "PERCENTAGE",
+      "discountScope": "CATEGORIES",
+      "isDeactivated": true,
+      "discountedCategories": {
+        "8cf73cc0-b86e-49b4-a102-6102894f7955": 2, 
+        "00358632-5c9a-4164-a9a9-df271a9c06a9": 22
+      },  
+      "name": {
+        "en": "End of summer Discount",
+        "fr": "Réduction estival fin d'été"
+      },
+      "id": "18db7bc6-8be1-48bb-bab1-77a7d696fa3b",
+      "appliedPricing": {
+        "id": "efd32752-c6f2-45cf-b494-cc6be8a45845"
+      },
+      "startDate": "2020-07-23T00:00:00.000Z",
+      "cutoffDate": "2020-08-24T00:00:00.000Z",
+      "status": "ENDED"
+  }
+}
+```
+
+Optional | &nbsp;
+------- | -----------
+`name`<br/>*Map[String, String]* | The name translations of the discount.
+`startDate`<br/>*date* | The start date of the discount.
+`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
+`discountScope`<br/>*enum* | The scope of the discount. It can be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
+`isDeactivated`<br/>*boolean* | If true, the discount is deactivated. Deactivated is a final state, it cannot be reactivated.
+`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
+`discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
+`discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discount values. All pricing products specified will have the discount value applied to them. Required to be non-empty if scope is "PRODUCTS". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
+`cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date. 
+`durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
