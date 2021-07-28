@@ -1,10 +1,10 @@
-### DNS Zones
+## DNS Zones
 
 Create and manage your DNS zones.
 
 <!-------------------- LIST DNS ZONES -------------------->
 
-#### List DNS Zones
+### List DNS Zones
 
 ```shell
 curl -X GET \
@@ -59,7 +59,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A DNS ZONE -------------------->
 
-#### Retrieve a DNS zone
+### Retrieve a DNS zone
 
 ```shell
 curl -X GET \
