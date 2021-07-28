@@ -36,7 +36,7 @@ interactions, there may be no relationship strength resource for the pair.
 
 ## Fetch a relationship strength
 
-`GET /relationship-strengths`
+`GET /relationships-strengths`
 
 > Example Request
 
