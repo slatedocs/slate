@@ -20,9 +20,9 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: vendor/bundle
-        key: gems-${{ runner.os }}-${{ matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+        key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
-          gems-${{ runner.os }}-${{ matrix.ruby-version }}-
+          gems-${{ runner.os }}-${{ env.ruby-version }}-
           gems-${{ runner.os }}-
 
     - run: bundle config set deployment 'true'
