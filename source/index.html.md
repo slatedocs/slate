@@ -17,14 +17,16 @@ search: true
 code_clipboard: true
 ---
 
-# Introduction
+# Rest API
+
+## Introduction
 
 Welcome to Leah's API! You can use our API to access different endpoints and make requests on our services.
 Our API allows for the moment to generate sequence of reminders when creating an appointment, but soon, it will also be possible to manage document sharing, offices creation or even invoicing.
 
 You can directly see the examples of Shell queries in the right column in all our documentation.
 
-# Authentification
+## Authentification
 
 > To authorize, use this code:
 
@@ -62,9 +64,9 @@ Leah expects for the API key to be included in all API requests to the server in
 You must replace <code>$your_api_key</code> with your personal API key.
 </aside>
 
-# Healthcare Workers
+## Healthcare Workers
 
-## Collect Healthcare Workers list
+### Collect Healthcare Workers list
 
 ```shell
 curl --location --request GET 'https://myorganization.leah.care/api/healthcare_workers' \
@@ -95,19 +97,19 @@ curl --location --request GET 'https://myorganization.leah.care/api/healthcare_w
 
 Allows you to retrieve all offices of your organization.
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://myorganization.leah.care/api/healthcare_workers`
 
-### Query Parameters
+#### Query Parameters
 
 Parameter | Attendance | Description
 - | - | -
 email | Optional | Filters results for a single healthcare worker via the specified email
 
-# Offices
+## Offices
 
-## Collect offices list
+### Collect offices list
 
 ```shell
 curl --location --request GET 'https://myorganization.leah.care/api/offices' \
@@ -139,19 +141,19 @@ curl --location --request GET 'https://myorganization.leah.care/api/offices' \
 
 Allows you to retrieve all offices of your organization.
 
-### HTTP Request
+#### HTTP Request
 
 `GET https://myorganization.leah.care/api/offices`
 
-### Query Parameters
+#### Query Parameters
 
 Parameter | Attendance | Description
 - | - | -
 healthcareWorker.email | Optional | Filters results for a single healthcare worker via the specified email
 
-# Appointment
+## Appointment
 
-## Reminders
+### Reminders
 
 Creating a new appointment generates two reminders for your organization, which can be configured respectively:
 
@@ -161,7 +163,7 @@ Creating a new appointment generates two reminders for your organization, which 
 <aside class="notice">We will set these values with you when you create your account, and they can be modified on request. To, the API does not allow you to parameterize these values.
 </aside>
 
-## Creating
+### Creating
 
 ```shell
 curl --location --request POST 'https://myorganization.leah.care/api/appointments' \
@@ -172,7 +174,7 @@ curl --location --request POST 'https://myorganization.leah.care/api/appointment
     "email":"john.doe@gmail.com",
     "office":"/api/offices/6e229d04-1880-4b6b-a520-36f757f4a531",
     "startTime" : "2021-04-25T13:15:00",
-		"external_id" : "000001"
+	"externalId" : "000001"
 }'
 ```
 
@@ -192,15 +194,15 @@ curl --location --request POST 'https://myorganization.leah.care/api/appointment
 
 Create an appointment. You'll have to get the **office**'s id, as explain [here](#collect-offices-list), first.
 
-### HTTP Request
+#### HTTP Request
 
 <code>POST 'https://myorganization.leah.care/api/appointments'</code>
 
-### Content-type
+#### Content-type
 
 <code>application/json</code>
 
-### Query parameters
+#### Query parameters
 
 Parameter | Attendance | Description
 - | - | -
@@ -208,13 +210,13 @@ phoneNumber | Mandatory | Phone number on which the guest will receive the remin
 email | Mandatory | Email on wich the guest will receive all informations and the reminder
 office | Mandatory | Healthcare work IRI's office
 startTime | Mandatory | Date and time of the appointment. Format <code>yyyy-mm-ddThh:mm:ss</code> UTC
-external_id | Optional | Associate an external <code>ID</code> 
+externalId | Optional | Associate an external <code>ID</code> 
 
 <aside class="success">
 A confirmation email is sent to the guest, and reminders are created.
 </aside>
 
-## Edit 
+### Edit 
 
 ```shell
 curl --location --request PATCH 'https://myorganization.leah.care/api/appointments/70cbe776-1de2-48b2-86aa-e9e9410bc711' \
@@ -245,15 +247,15 @@ Reschedule appointment.
 If you edit an appointment when the reminders have already passed, they will be replayed if they are in the future.
 </aside>
 
-### HTTP Request
+#### HTTP Request
 
 <code>PATCH 'https://myorganizationleah.care/api/appointments/@id'</code>
 
-### Content-type
+#### Content-type
 
 <code>application/merge-patch+json </code>
 
-### Query parameters
+#### Query parameters
 
 Parameter | Attendance | Description
 - | - | -
@@ -263,7 +265,7 @@ startTime | Mandatory | New date and time of the appointment. Format <code>yyyy-
 A confirmation email is sent to the guest, and reminders are updated.
 </aside>
 
-## Delete 
+### Delete 
 
 ```shell
 curl --location --request PATCH 'https://myorganization.leah.care/api/appointments/70cbe776-1de2-48b2-86aa-e9e9410bc711' \
@@ -294,15 +296,15 @@ Cancel appointment.
 If you cancel an appointment, it will be permanently deleted and cannot be recovered.
 </aside>
 
-### HTTP Request
+#### HTTP Request
 
 <code>PATCH 'https://myorganization.leah.care/api/appointments/@id'</code>
 
-### Content-type
+#### Content-type
 
 <code>application/merge-patch+json </code>
 
-### Query parameters
+#### Query parameters
 
 Parameter | Attendance | Description
 - | - | -
@@ -313,9 +315,9 @@ A email is sent to the guest to cancel the appointment
 </aside>
 
 
-# Document sharing
+## Document sharing
 
-## Sending process
+### Sending process
 
 You can send a document to a guest from an healthcare worker account.
 It's a three-step process :
@@ -324,7 +326,7 @@ It's a three-step process :
 2. [Upload files](#upload-files)
 3. [Send the transfer](#send-the-transfer)
 
-## Creating transfer
+### Creating transfer
 
 Create a transfer. You'll have to get the **healthcare worker**'s id, as explain [here](#healthcare-workers), first.
 
@@ -354,15 +356,15 @@ curl --location --request POST 'https://myorganization.leah.care/api/transfers' 
     "lastname":null
 }
 ```
-### HTTP Request
+#### HTTP Request
 
 <code>POST 'https://myorganization.leah.care/api/transfers'</code>
 
-### Content-type
+#### Content-type
 
 <code>application/json</code>
 
-### Query parameters
+#### Query parameters
 
 Parameter | Attendance | Description
 - | - | -
@@ -372,7 +374,7 @@ healthcare_workers | Mandatory | Healthcare worker's id you want to send the fil
 The transfer automatically expires after 7 days
 </aside>
 
-## Upload files
+### Upload files
 Upload files to the transfer
 
 ```shell
@@ -400,27 +402,27 @@ curl --location --request POST 'https://myorganization.leah.care/api/transfers/a
     "lastname":null
 }
 ```
-### HTTP Request
+#### HTTP Request
 
 <code>POST 'https://myorganization.leah.care/api/transfers/@id/files'</code>
 
-### Content-type
+#### Content-type
 
 <code>multipart/form-data</code>
 
-### Requirements 
+#### Requirements 
 - Maximum number of files: 10 per transfer
 - Maximum weight: 15 Mo per file
 - Supported file formats: .png/.jpg/.pdf
 
-### Query parameters
+#### Query parameters
 
 Parameter | Attendance | Description
 - | - | -
 file[]=@ | Mandatory | The file path
 
 
-## Send the transfer
+### Send the transfer
 
 Send the files to the email adress provided 
 
@@ -435,15 +437,15 @@ curl --location --request POST 'https://myorganization.leah.care/api/transfers/a
 
 > This request returns <code>200</code> 
 
-### HTTP Request
+#### HTTP Request
 
 <code>POST 'https://myorganization.leah.care/api/transfers/@id/share'</code>
 
-### Content-type
+#### Content-type
 
 <code>application/json</code>
 
-### Query parameters
+#### Query parameters
 
 Parameter | Attendance | Description
 - | - | -
@@ -452,3 +454,55 @@ email | Mandatory | recipient email address
 <aside class="success">
 A email is sent to the guest with a secured linked to download files
 </aside>
+
+
+# Webhook
+
+Webhooks allow Leah to provide and send real-time information to other applications.
+
+Leah Webhooks are designed to notify external system each time an event occurs on an Leah, like when appointment is created, when a guest arrives in a waiting room, when paiement is charged etc.
+
+## Webhook usage
+
+<aside class="notice">
+Make sure your server can receive POST requests, reads JSON format and always answers a 200 HTTP Code!
+</aside>
+
+### Web server
+
+Once the endpoints are registered, a simple web server is needed in order to receive events. Then, Leah will send a `POST` request to the Webhook's URL each time an event occurs with a JSON payload body.
+
+## Register an endpoint
+
+The following steps describe how to register a server endpoint to start receiving Webhook events:
+
+1. Provide a valid URL to Leah in order to receive events
+2. That's it!
+
+<aside class="notice">
+Please note that only securized requests are valid: through SSL connection or behind a VPN 
+</aside>
+
+## Events
+
+### Appointment events
+
+The following events refers to the [appointment](#appointment) events.
+
+#### `appointment.guest.online`
+
+Sent when a guest arrives in the waiting room.
+
+```json
+"event": "appointment.guest.online"
+"payload": 
+    "{
+        "externalId":"1234567",
+        "administrativeFileNumber":"1234567"
+    }"
+```
+
+Attribute | type | Description
+- | - | -
+externalId | string | Consultation's id from your system
+administrativeFileNumber | string | Stay's id when guest is pre-admitted
