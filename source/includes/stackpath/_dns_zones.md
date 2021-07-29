@@ -106,3 +106,32 @@ Attributes | &nbsp;
 `disabled`<br/>*boolean* | Whether or not a zone has been disabled by the user.
 `verified`<br/>*string* | The date a zone's nameservers were last audited by StackPath.
 `status`<br/>*string* | The status of the zone. It can either be `ACTIVE`, `INACTIVE`.
+
+<!-------------------- DELETE A DNS ZONE -------------------->
+
+#### Delete a DNS zone
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnszones/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "ef70cafa-0544-4709-a66a-c68595ee105a",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnszones/:id</code>
+
+Delete a DNS zone
+
+The following attributes are returned as part of the response.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the firewall rule deletion.
+`taskStatus` <br/>*string* | The status of the operation.
