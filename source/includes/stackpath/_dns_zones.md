@@ -133,5 +133,5 @@ The following attributes are returned as part of the response.
 
 Attributes | &nbsp;
 ------- | -----------
-`taskId` <br/>*string* | The task id related to the firewall rule deletion.
+`taskId` <br/>*string* | The task id related to the DNS zone deletion.
 `taskStatus` <br/>*string* | The status of the operation.
