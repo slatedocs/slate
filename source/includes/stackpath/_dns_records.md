@@ -51,7 +51,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords?zoneId=:zoneId</code>
 
-Retrieve a list of all DNS records in a given DNS zone in an [environment](#administration-environments) .
+Retrieve a list of all DNS records in a given DNS zone in an [environment](#administration-environments).
 
 Query Params | &nbsp;
 ---- | -----------
@@ -68,7 +68,7 @@ Attributes | &nbsp;
 `ttl` <br/>*int* | A zone record's time to live. A record's TTL is the number of seconds that the record should be cached by DNS resolvers. Use lower TTL values if you expect zone records to change often. Use higher TTL values for records that won't change to prevent extra DNS lookups by clients.
 `data`<br/>*string* | A zone record's value.
 `weight` <br/>*int* | A zone record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
-`created`<br/>*string* | The date on which the DNS record was created
+`created`<br/>*string* | The date on which the DNS record was created.
 `updated`<br/>*string* | The date on which the DNS record was last updated.
 
 <!-------------------- RETRIEVE A DNS RECORD -------------------->
@@ -100,7 +100,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords/id?zoneId=:zoneId</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords/:id?zoneId=:zoneId</code>
 
 Retrieve a DNS record in a given DNS zone in an [environment](#administration-environments) .
 
@@ -119,5 +119,36 @@ Attributes | &nbsp;
 `ttl` <br/>*int* | A zone record's time to live. A record's TTL is the number of seconds that the record should be cached by DNS resolvers. Use lower TTL values if you expect zone records to change often. Use higher TTL values for records that won't change to prevent extra DNS lookups by clients.
 `data`<br/>*string* | A zone record's value.
 `weight` <br/>*int* | A zone record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
-`created`<br/>*string* | The date on which the DNS record was created
+`created`<br/>*string* | The date on which the DNS record was created.
 `updated`<br/>*string* | The date on which the DNS record was last updated.
+
+<!-------------------- DELETE A DNS RECORD -------------------->
+
+#### Delete a DNS record
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "ef70cafa-0544-4709-a66a-c68595ee105a",
+  "taskStatus": "SUCCESS"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords/:id?zoneId=:zoneId</code>
+
+Delete a DNS record.
+
+Query Params | &nbsp;
+---- | -----------
+`zoneId`<br/>*UUID* | The ID of the zone for which we want to delete the record. This parameter is required.
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the DNS zone deletion.
+`taskStatus` <br/>*string* | The status of the operation.
