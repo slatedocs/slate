@@ -475,10 +475,6 @@ tags:
     description: >-
       A `goal` is an object in the goal-tracking system that helps your organization
       drive measurable results.
-  - name: Goal Metrics
-    description: >-
-      A `goal_metric` is an object in the goal-tracking system that represents measurement
-      data for a goal, such as a percentage, a number, or some currency.
   - name: Jobs
     description: >-
       Jobs represent processes that handle asynchronous work.
@@ -2229,6 +2225,22 @@ components:
                 type number.
               type: number
               example: 8.12
+            current_display_value:
+              description: >-
+                *Conditional*. This string is the current value of a goal metric of
+                type string.
+              type: string
+              example: '8.12'
+    GoalAddSupportingWorkRequest:
+      type: object
+      required:
+        - supporting_work
+      properties:
+        supporting_work:
+          description: >-
+            The project/portfolio gid to add as supporting work for a goal
+          type: string
+          example: '1331'
     JobResponse:
       $ref: '#/components/schemas/JobBase'
     JobBase:
@@ -3842,6 +3854,11 @@ components:
                 - new
                 - inbox
               example: upcoming
+            assignee_section:
+              nullable: true
+              type: object
+              allOf:
+                - $ref: '#/components/schemas/SectionCompact'
             completed:
               description: >-
                 True if the task is currently marked complete, false if not.
@@ -5654,7 +5671,7 @@ paths:
         Creates and adds a goal metric to a specified goal. Note that this replaces
         an existing goal metric if one already exists.
       tags:
-        - Goal Metrics
+        - Goals
       operationId: createGoalMetric
       requestBody:
         description: The goal metric to create.
@@ -5700,7 +5717,7 @@ paths:
 
         Returns the complete updated goal metric record.
       tags:
-        - Goal Metrics
+        - Goals
       operationId: Update GoalMetric
       requestBody:
         description: The updated fields for the goal metric.
@@ -5721,7 +5738,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/GoalMetricResponse'
+                    $ref: '#/components/schemas/GoalResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -5734,7 +5751,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /goals/{goal_gid}/addSubGoal:
+  /goals/{goal_gid}/addSubgoal:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
@@ -5744,7 +5761,7 @@ paths:
         Creates a new subgoal and adds it to the parent goal. Returns the full record of the newly created subgoal.
       tags:
         - Goals
-      operationId: addSubGoal
+      operationId: addSubgoal
       requestBody:
         description: The goal to add as a subgoal
         required: true
@@ -5777,7 +5794,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /goals/{goal_gid}/removeSubGoal:
+  /goals/{goal_gid}/removeSubgoal:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
@@ -5786,7 +5803,7 @@ paths:
       description: Removes a goal as a subgoal of a specified parent goal.
       tags:
         - Goals
-      operationId: removeSubGoal
+      operationId: removeSubgoal
       requestBody:
         description: The goal to be removed as a subgoal
         required: true
@@ -5807,6 +5824,189 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/addFollowers:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Add a collaborator to a goal
+      description: >-
+        Adds followers to a goal. Returns the goal the followers were added to.
+
+        Each goal can be associated with zero or more followers in the system.
+
+        Requests to add/remove followers, if successful, will return the complete
+        updated goal record, described above.
+      tags:
+        - Goals
+      operationId: addFollowers
+      requestBody:
+        description: The followers to be added as collaborators
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/TaskAddFollowersRequest'
+      responses:
+        201:
+          description: Successfully added users as collaborators.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/removeFollowers:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Remove a collaborator from a goal
+      description: "Removes followers from a goal. Returns the goal the followers\
+        \ were removed from.\nEach goal can be associated with zero or more followers\
+        \ in the system.\nRequests to add/remove followers, if successful, will return\
+        \ the complete updated goal record, described above."
+      tags:
+        - Goals
+      operationId: removeFollowers
+      requestBody:
+        description: The followers to be removed as collaborators
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/TaskAddFollowersRequest'
+      responses:
+        201:
+          description: Successfully removed users as collaborators.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/addSupportingWork:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Add a project/portfolio as supporting work for a goal.
+      description: >-
+        Adds a project or portfolio as supporting work for a goal. *A goal can have
+        at most 10 supporting projects/portfolios, and a project/portfolio can support
+        at most 10 goals*.
+      tags:
+        - Goals
+      operationId: addSupportingWorkForGoal
+      requestBody:
+        description: The project/portfolio to set as supporting work
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalAddSupportingWorkRequest'
+      responses:
+        200:
+          description: Successfully set specified project/portfolio as supporting
+            work on the given goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/removeSupportingWork:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Remove a project/portfolio as supporting work for a goal.
+      description: >-
+        Removes a project or portfolio as supporting work for a goal.
+      tags:
+        - Goals
+      operationId: removeSupportingWorkForGoal
+      requestBody:
+        description: The project/portfolio to remove as supporting work
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalAddSupportingWorkRequest'
+      responses:
+        200:
+          description: Successfully removed specified project/portfolio as supporting
+            work on the given goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -5853,7 +6053,51 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /goals/{goal_gid}/parentgoals:
+  /goals/{goal_gid}/supportingWork:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get supporting work from a goal
+      description: Returns any portfolios or projects associated with specified goal.
+      tags:
+        - Goals
+      operationId: supportingWork
+      requestBody:
+        description: The goal whose supporting work will be returned
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        201:
+          description: Successfully returned supporting work.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProjectCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /goals/{goal_gid}/parentGoals:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
@@ -5863,7 +6107,7 @@ paths:
         a goal.
       tags:
         - Goals
-      operationId: getParentgoalsForGoal
+      operationId: getParentGoalsForGoal
       responses:
         200:
           description: Successfully retrieved the specified goal's parent goals.
