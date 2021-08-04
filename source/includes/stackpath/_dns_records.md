@@ -66,7 +66,7 @@ Attributes | &nbsp;
 `type`<br/>*string* | A zone record's type. Zone record types describe the zone record's behavior.
 `classCode`<br/>*string* | A zone record's class code. This is typically "IN" for Internet related resource records.
 `ttl` <br/>*int* | A zone record's time to live. A record's TTL is the number of seconds that the record should be cached by DNS resolvers. Use lower TTL values if you expect zone records to change often. Use higher TTL values for records that won't change to prevent extra DNS lookups by clients.
-`data`<br/>*string* | A zone record's value. MX record data follows the format `<priority>` `<value>`, without <>s.
+`data`<br/>*string* | A zone record's value.
 `weight` <br/>*int* | A zone record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
 `created`<br/>*string* | The date on which the DNS record was created
 `updated`<br/>*string* | The date on which the DNS record was last updated.
@@ -117,7 +117,7 @@ Attributes | &nbsp;
 `type`<br/>*string* | A zone record's type. Zone record types describe the zone record's behavior.
 `classCode`<br/>*string* | A zone record's class code. This is typically "IN" for Internet related resource records.
 `ttl` <br/>*int* | A zone record's time to live. A record's TTL is the number of seconds that the record should be cached by DNS resolvers. Use lower TTL values if you expect zone records to change often. Use higher TTL values for records that won't change to prevent extra DNS lookups by clients.
-`data`<br/>*string* | A zone record's value. MX record data follows the format `<priority>` `<value>`, without <>s.
+`data`<br/>*string* | A zone record's value.
 `weight` <br/>*int* | A zone record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
 `created`<br/>*string* | The date on which the DNS record was created
 `updated`<br/>*string* | The date on which the DNS record was last updated.
