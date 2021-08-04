@@ -146,7 +146,7 @@ Delete a DNS record.
 
 Query Params | &nbsp;
 ---- | -----------
-`zoneId`<br/>*UUID* | The ID of the zone for which we want to get the record. This parameter is required.
+`zoneId`<br/>*UUID* | The ID of the zone for which we want to delete the record. This parameter is required.
 
 Attributes | &nbsp;
 ------- | -----------
