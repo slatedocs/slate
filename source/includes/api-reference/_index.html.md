@@ -988,6 +988,15 @@ $result = $client->customfields->createCustomField(array('field' => 'value', 'fi
     "format": "custom",
     "has_notifications_enabled": true,
     "is_global_to_workspace": true,
+    "multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "name": "Status",
     "number_value": 5.2,
     "precision": 2,
@@ -1063,6 +1072,7 @@ The identifier format will always have a precision of 0.
 | format|none|
 | resource_subtype|text|
 | resource_subtype|enum|
+| resource_subtype|multi_enum|
 | resource_subtype|number|
 
 <h3 id="create-a-custom-field-responses">Responses</h3>
@@ -1176,6 +1186,15 @@ $result = $client->customfields->getCustomField($custom_field_gid, array('param'
     "format": "custom",
     "has_notifications_enabled": true,
     "is_global_to_workspace": true,
+    "multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "name": "Status",
     "number_value": 5.2,
     "precision": 2,
@@ -1355,6 +1374,15 @@ $result = $client->customfields->updateCustomField($custom_field_gid, array('fie
     "format": "custom",
     "has_notifications_enabled": true,
     "is_global_to_workspace": true,
+    "multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "name": "Status",
     "number_value": 5.2,
     "precision": 2,
@@ -1426,6 +1454,7 @@ The identifier format will always have a precision of 0.
 | format|none|
 | resource_subtype|text|
 | resource_subtype|enum|
+| resource_subtype|multi_enum|
 | resource_subtype|number|
 
 <h3 id="update-a-custom-field-responses">Responses</h3>
@@ -1650,6 +1679,15 @@ $result = $client->customfields->getCustomFieldsForWorkspace($workspace_gid, arr
       "format": "custom",
       "has_notifications_enabled": true,
       "is_global_to_workspace": true,
+      "multi_enum_values": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
       "name": "Status",
       "number_value": 5.2,
       "precision": 2,
@@ -2206,6 +2244,15 @@ $result = $client->customfieldsettings->getCustomFieldSettingsForProject($projec
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -2364,6 +2411,15 @@ $result = $client->customfieldsettings->getCustomFieldSettingsForPortfolio($port
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -2603,7 +2659,7 @@ tasks contained within the project.*
 <h1 id="goals">Goals</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/update-a-goal"><span class="put-verb">PUT</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/delete-a-goal"><span class="delete-verb">DELETE</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/get-goals"><span class="get-verb">GET</span> <span class=""nn>/goals</span></a><br><a href="/docs/create-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetric</span></a><br><a href="/docs/update-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetricCurrentValue</span></a><br><a href="/docs/create-a-subgoal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSubgoal</span></a><br><a href="/docs/remove-a-subgoal-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSubgoal</span></a><br><a href="/docs/add-a-collaborator-to-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addFollowers</span></a><br><a href="/docs/remove-a-collaborator-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeFollowers</span></a><br><a href="/docs/add-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSupportingWork</span></a><br><a href="/docs/remove-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSupportingWork</span></a><br><a href="/docs/get-subgoals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/subgoals</span></a><br><a href="/docs/get-supporting-work-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/supportingWork</span></a><br><a href="/docs/get-parent-goals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/parentGoals</span></a></code>
+<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/update-a-goal"><span class="put-verb">PUT</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/delete-a-goal"><span class="delete-verb">DELETE</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/get-goals"><span class="get-verb">GET</span> <span class=""nn>/goals</span></a><br><a href="/docs/create-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetric</span></a><br><a href="/docs/update-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetricCurrentValue</span></a><br><a href="/docs/add-a-subgoal-to-a-parent-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSubgoal</span></a><br><a href="/docs/remove-a-subgoal-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSubgoal</span></a><br><a href="/docs/add-a-collaborator-to-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addFollowers</span></a><br><a href="/docs/remove-a-collaborator-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeFollowers</span></a><br><a href="/docs/add-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSupportingWork</span></a><br><a href="/docs/remove-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSupportingWork</span></a><br><a href="/docs/get-subgoals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/subgoals</span></a><br><a href="/docs/get-supporting-work-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/supportingWork</span></a><br><a href="/docs/get-parent-goals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/parentGoals</span></a></code>
 </pre>
 
 <span class="description">
@@ -3545,7 +3601,7 @@ Returns the complete updated goal metric record.
 
 </section><hr class="half-line">
 <section>
-## Create a subgoal
+## Add a subgoal to a parent goal
 
 <a id="opIdaddSubgoal"></a>
 
@@ -3615,97 +3671,18 @@ $result = $client->goals->addSubgoal(array('field' => 'value', 'field' => 'value
 ```json
 {
   "data": {
-    "due_on": "2019-09-15",
-    "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
-    ],
-    "html_notes": "<body>Start building brand awareness.</body>",
-    "is_workspace_level": true,
-    "liked": false,
-    "metric": {
-      "current_display_value": "8.12",
-      "current_number_value": 8.12
-    },
-    "name": "Grow web traffic by 30%",
-    "notes": "Start building brand awareness.",
-    "owner": {
-      "name": "Greg Sanchez"
-    },
-    "start_on": "2019-09-14",
-    "status": "string",
-    "team": {
-      "name": "Marketing"
-    },
-    "workspace": {
-      "name": "My Company Workspace"
-    }
+    "insert_after": "1331",
+    "insert_before": "1331",
+    "subgoal": "1331"
   }
 }
 ```
 
-> 201 Response
+> 200 Response
 
 ```json
 {
-  "data": {
-    "gid": "12345",
-    "resource_type": "goal",
-    "name": "Grow web traffic by 30%",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
-    "html_notes": "<body>Start building brand awareness.</body>",
-    "is_workspace_level": true,
-    "liked": false,
-    "metric": {
-      "gid": "12345",
-      "resource_type": "task",
-      "currency_code": "EUR",
-      "current_display_value": "8.12",
-      "current_number_value": 8.12,
-      "initial_number_value": 5.2,
-      "precision": 2,
-      "resource_subtype": "number",
-      "target_number_value": 10.2,
-      "unit": "none"
-    },
-    "notes": "Start building brand awareness.",
-    "start_on": "2019-09-14",
-    "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
-    "likes": [
-      {
-        "gid": "12345",
-        "user": {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      }
-    ],
-    "num_likes": 5
-  }
+  "data": {}
 }
 ```
 
@@ -3716,48 +3693,42 @@ $result = $client->goals->addSubgoal(array('field' => 'value', 'field' => 'value
 </p>
 
 <span class="description">
-Creates a new subgoal and adds it to the parent goal. Returns the full record of the newly created subgoal.
+Adds a subgoal to a parent goal. *A goal can have at most 100 subgoals, and a subgoal can have at most 4 parent goals.
+
+Returns an empty data block.
 </span>
 
-<h3 id="create-a-subgoal-parameters">Parameters</h3>
+<h3 id="add-a-subgoal-to-a-parent-goal-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to add as a subgoal|
-|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
-|»» is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
-|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
-|»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
-|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
-|»» name<span class="param-type"> string</span>|The name of the goal.|
-|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
-|»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
-|»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
-|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»»» name<span class="param-type"> string</span>|The name of the team.|
-|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|» data<span class="param-type"> object</span>|none|
+|»» insert_after<span class="param-type"> string</span>|An id of a subgoal of this parent goal. The new subgoal will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» insert_before<span class="param-type"> string</span>|An id of a subgoal of this parent goal. The new subgoal will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
+|»» subgoal<span class="param-type"> string</span><div class="param-required">required</div>|The goal gid to add as subgoal to a parent goal|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
-<h3 id="create-a-subgoal-responses">Responses</h3>
+<h3 id="add-a-subgoal-to-a-parent-goal-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [Goal](#schemagoal)</span>|Successfully added goal as subgoal.|
+|200<span class="param-type"> Inline</span>|Successfully added goal as subgoal.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="add-a-subgoal-to-a-parent-goal-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
 
 </section><hr class="half-line">
 <section>
@@ -3861,67 +3832,11 @@ $result = $client->goals->removeSubgoal(array('field' => 'value', 'field' => 'va
 }
 ```
 
-> 201 Response
+> 200 Response
 
 ```json
 {
-  "data": {
-    "gid": "12345",
-    "resource_type": "goal",
-    "name": "Grow web traffic by 30%",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
-    "html_notes": "<body>Start building brand awareness.</body>",
-    "is_workspace_level": true,
-    "liked": false,
-    "metric": {
-      "gid": "12345",
-      "resource_type": "task",
-      "currency_code": "EUR",
-      "current_display_value": "8.12",
-      "current_number_value": 8.12,
-      "initial_number_value": 5.2,
-      "precision": 2,
-      "resource_subtype": "number",
-      "target_number_value": 10.2,
-      "unit": "none"
-    },
-    "notes": "Start building brand awareness.",
-    "start_on": "2019-09-14",
-    "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
-    "likes": [
-      {
-        "gid": "12345",
-        "user": {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      }
-    ],
-    "num_likes": 5
-  }
+  "data": {}
 }
 ```
 
@@ -3967,13 +3882,21 @@ Removes a goal as a subgoal of a specified parent goal.
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [Goal](#schemagoal)</span>|Successfully removed subgoal.|
+|200<span class="param-type"> Inline</span>|Successfully removed subgoal.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="remove-a-subgoal-from-a-goal-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
 
 </section><hr class="half-line">
 <section>
@@ -5674,6 +5597,15 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
           "format": "custom",
           "has_notifications_enabled": true,
           "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
           "name": "Status",
           "number_value": 5.2,
           "precision": 2,
@@ -5896,6 +5828,15 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
           "format": "custom",
           "has_notifications_enabled": true,
           "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
           "name": "Status",
           "number_value": 5.2,
           "precision": 2,
@@ -6104,6 +6045,15 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
           "format": "custom",
           "has_notifications_enabled": true,
           "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
           "name": "Status",
           "number_value": 5.2,
           "precision": 2,
@@ -9806,6 +9756,15 @@ $result = $client->projects->addCustomFieldSettingForProject($project_gid, array
       "format": "custom",
       "has_notifications_enabled": true,
       "is_global_to_workspace": true,
+      "multi_enum_values": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
       "name": "Status",
       "number_value": 5.2,
       "precision": 2,
@@ -12458,6 +12417,15 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
       "enabled": true,
       "name": "Low"
     },
+    "new_multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "new_name": "This is the New Name",
     "new_number_value": 2,
     "new_resource_subtype": "milestone",
@@ -12482,6 +12450,15 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
       "enabled": true,
       "name": "Low"
     },
+    "old_multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "old_name": "This was the Old Name",
     "old_number_value": 1,
     "old_resource_subtype": "default_task",
@@ -12749,6 +12726,15 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
       "enabled": true,
       "name": "Low"
     },
+    "new_multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "new_name": "This is the New Name",
     "new_number_value": 2,
     "new_resource_subtype": "milestone",
@@ -12773,6 +12759,15 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
       "enabled": true,
       "name": "Low"
     },
+    "old_multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "old_name": "This was the Old Name",
     "old_number_value": 1,
     "old_resource_subtype": "default_task",
@@ -13286,6 +13281,15 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
       "enabled": true,
       "name": "Low"
     },
+    "new_multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "new_name": "This is the New Name",
     "new_number_value": 2,
     "new_resource_subtype": "milestone",
@@ -13310,6 +13314,15 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
       "enabled": true,
       "name": "Low"
     },
+    "old_multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "old_name": "This was the Old Name",
     "old_number_value": 1,
     "old_resource_subtype": "default_task",
@@ -14862,6 +14875,15 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -15183,6 +15205,15 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -15493,6 +15524,15 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -16679,6 +16719,15 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -17011,6 +17060,15 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -22966,9 +23024,11 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 |---|---|
 |resource_subtype|text|
 |resource_subtype|enum|
+|resource_subtype|multi_enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
+|type|multi_enum|
 |type|number|
 
 </section><hr>
@@ -23014,6 +23074,15 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
   "format": "custom",
   "has_notifications_enabled": true,
   "is_global_to_workspace": true,
+  "multi_enum_values": [
+    {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    }
+  ],
   "name": "Status",
   "number_value": 5.2,
   "precision": 2,
@@ -23062,6 +23131,12 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |format<span class="param-type"> string</span>|The format of this custom field.|
 |has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
 |name<span class="param-type"> string</span>|The name of the custom field.|
 |number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
@@ -23082,9 +23157,11 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |format|none|
 |resource_subtype|text|
 |resource_subtype|enum|
+|resource_subtype|multi_enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
+|type|multi_enum|
 |type|number|
 
 </section><hr>
@@ -23162,6 +23239,15 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
     "format": "custom",
     "has_notifications_enabled": true,
     "is_global_to_workspace": true,
+    "multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "name": "Status",
     "number_value": 5.2,
     "precision": 2,
@@ -23223,6 +23309,12 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |» format<span class="param-type"> string</span>|The format of this custom field.|
 |» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
@@ -23252,9 +23344,11 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |format|none|
 |resource_subtype|text|
 |resource_subtype|enum|
+|resource_subtype|multi_enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
+|type|multi_enum|
 |type|number|
 
 </section><hr>
@@ -23939,6 +24033,15 @@ This object determines if a user is a member of a portfolio.
         "format": "custom",
         "has_notifications_enabled": true,
         "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "precision": 2,
@@ -24033,6 +24136,12 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
@@ -24095,9 +24204,11 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |format|none|
 |resource_subtype|text|
 |resource_subtype|enum|
+|resource_subtype|multi_enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
+|type|multi_enum|
 |type|number|
 
 </section><hr>
@@ -24449,9 +24560,11 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |default_view|timeline|
 |resource_subtype|text|
 |resource_subtype|enum|
+|resource_subtype|multi_enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
+|type|multi_enum|
 |type|number|
 |icon|list|
 |icon|board|
@@ -24818,6 +24931,15 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
     "enabled": true,
     "name": "Low"
   },
+  "new_multi_enum_values": [
+    {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    }
+  ],
   "new_name": "This is the New Name",
   "new_number_value": 2,
   "new_resource_subtype": "milestone",
@@ -24842,6 +24964,15 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
     "enabled": true,
     "name": "Low"
   },
+  "old_multi_enum_values": [
+    {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    }
+  ],
   "old_name": "This was the Old Name",
   "old_number_value": 1,
   "old_resource_subtype": "default_task",
@@ -24982,6 +25113,12 @@ A story represents an activity associated with an object in the Asana system.
 |» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
 |» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |» name<span class="param-type"> string</span>|The name of the enum option.|
+|new_multi_enum_values<span class="param-type"> [object]</span>|*Conditional*|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
 |new_name<span class="param-type"> string</span>|*Conditional*|
 |new_number_value<span class="param-type"> integer</span>|*Conditional*|
 |new_resource_subtype<span class="param-type"> string</span>|*Conditional*|
@@ -24998,6 +25135,12 @@ A story represents an activity associated with an object in the Asana system.
 |» due_on<span class="param-type"> string(date)</span>|none|
 |» start_on<span class="param-type"> string(date)</span>|none|
 |old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|old_multi_enum_values<span class="param-type"> [object]</span>|*Conditional*|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
@@ -25065,9 +25208,11 @@ A story represents an activity associated with an object in the Asana system.
 |sticker_name|phoenix_spreading_love|
 |resource_subtype|text|
 |resource_subtype|enum|
+|resource_subtype|multi_enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
+|type|multi_enum|
 |type|number|
 |source|web|
 |source|email|
@@ -25346,6 +25491,15 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
       "format": "custom",
       "has_notifications_enabled": true,
       "is_global_to_workspace": true,
+      "multi_enum_values": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
       "name": "Status",
       "number_value": 5.2,
       "precision": 2,
@@ -25489,6 +25643,12 @@ The *task* is the basic object around which many operations in Asana are centere
 |» format<span class="param-type"> string</span>|The format of this custom field.|
 |» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
@@ -25543,9 +25703,11 @@ The *task* is the basic object around which many operations in Asana are centere
 |format|none|
 |resource_subtype|text|
 |resource_subtype|enum|
+|resource_subtype|multi_enum|
 |resource_subtype|number|
 |type|text|
 |type|enum|
+|type|multi_enum|
 |type|number|
 
 </section><hr>

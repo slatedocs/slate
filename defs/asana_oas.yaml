@@ -1489,6 +1489,14 @@ components:
                     *Conditional*. Only relevant for custom fields of type
                     `enum`. This object is the chosen value of an enum custom
                     field.
+            multi_enum_values:
+              description: >-
+                *Conditional*. Only relevant for custom fields of type
+                `multi_enum`. This object is the chosen values of a multi_enum custom
+                field.
+              type: array
+              items:
+                $ref: '#/components/schemas/EnumOption'
             created_by:
               $ref: '#/components/schemas/UserCompact'
     CustomFieldRequest:
@@ -1620,6 +1628,7 @@ components:
               enum:
                 - text
                 - enum
+                - multi_enum
                 - number
             type:
               description: >
@@ -1631,6 +1640,7 @@ components:
               enum:
                 - text
                 - enum
+                - multi_enum
                 - number
             enum_options:
               description: >-
@@ -2231,6 +2241,32 @@ components:
                 type string.
               type: string
               example: '8.12'
+    GoalAddSubgoalRequest:
+      type: object
+      required:
+        - subgoal
+      properties:
+        subgoal:
+          description: >-
+            The goal gid to add as subgoal to a parent goal
+          type: string
+          example: '1331'
+        insert_before:
+          description: >-
+            An id of a subgoal of this parent goal. The new
+            subgoal will be added before the one specified here.
+            `insert_before` and `insert_after` parameters cannot both
+            be specified.
+          type: string
+          example: '1331'
+        insert_after:
+          description: >-
+            An id of a subgoal of this parent goal. The new
+            subgoal will be added after the one specified here.
+            `insert_before` and `insert_after` parameters cannot both
+            be specified.
+          type: string
+          example: '1331'
     GoalAddSupportingWorkRequest:
       type: object
       required:
@@ -3406,6 +3442,20 @@ components:
               description: >-
                 *Conditional*
               $ref: '#/components/schemas/EnumOption'
+              readOnly: true
+            old_multi_enum_values:
+              description: >-
+                *Conditional*
+              type: array
+              items:
+                $ref: '#/components/schemas/EnumOption'
+              readOnly: true
+            new_multi_enum_values:
+              description: >-
+                *Conditional*
+              type: array
+              items:
+                $ref: '#/components/schemas/EnumOption'
               readOnly: true
             new_approval_status:
               description: >-
@@ -5756,9 +5806,11 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
-      summary: Create a subgoal
+      summary: Add a subgoal to a parent goal
       description: |-
-        Creates a new subgoal and adds it to the parent goal. Returns the full record of the newly created subgoal.
+        Adds a subgoal to a parent goal. *A goal can have at most 100 subgoals, and a subgoal can have at most 4 parent goals.
+
+        Returns an empty data block.
       tags:
         - Goals
       operationId: addSubgoal
@@ -5771,9 +5823,9 @@ paths:
               type: object
               properties:
                 data:
-                  $ref: '#/components/schemas/GoalRequest'
+                  $ref: '#/components/schemas/GoalAddSubgoalRequest'
       responses:
-        201:
+        200:
           description: Successfully added goal as subgoal.
           content:
             application/json:
@@ -5781,7 +5833,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/GoalResponse'
+                    $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -5815,7 +5867,7 @@ paths:
                 data:
                   $ref: '#/components/schemas/GoalRequest'
       responses:
-        201:
+        200:
           description: Successfully removed subgoal.
           content:
             application/json:
@@ -5823,7 +5875,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/GoalResponse'
+                    $ref: '#/components/schemas/EmptyResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
