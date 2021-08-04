@@ -216,6 +216,7 @@ includes:
   - stackpath/delivery_rules
   - stackpath/images
   - stackpath/dns_zones
+  - stackpath/dns_records
   - aws
   - aws/compute
   - aws/instances
