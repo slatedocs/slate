@@ -46,8 +46,6 @@ https://api.in.springverify.com
 
 # Login
 
-> The response looks like this
-
 ```shell
 curl --location --request POST 'https://api-dev.in.springverify.com/v1/auth/login' \
 --header 'Content-Type: application/json' \
@@ -57,71 +55,7 @@ curl --location --request POST 'https://api-dev.in.springverify.com/v1/auth/logi
     }'
 ```
 
-```ruby
-require "uri"
-require "net/http"
-
-url = URI("https://api-dev.in.springverify.com/v1/auth/login")
-
-https = Net::HTTP.new(url.host, url.port);
-https.use_ssl = true
-
-request = Net::HTTP::Post.new(url)
-request["Content-Type"] = "application/json"
-request.body = "{\n\t\"email\":\"jackhym23@gmail.com\",\n      \"password\":\"999999999\"\n}"
-
-response = https.request(request)
-puts response.read_body
-```
-
-```python
-import http.client
-import mimetypes
-conn = http.client.HTTPSConnection("api-dev.in.springverify.com")
-payload = "{\n\t\"email\":\"jackhym23@gmail.com\",\n      \"password\":\"999999999\"\n}"
-headers = {
-  'Content-Type': 'application/json'
-}
-conn.request("POST", "/v1/auth/login", payload, headers)
-res = conn.getresponse()
-data = res.read()
-print(data.decode("utf-8"))
-```
-
-```javascript
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({
-  email: "jackhym23@gmail.com",
-  password: "999999999",
-});
-
-var requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow",
-};
-
-fetch("https://api-dev.in.springverify.com/v1/auth/login", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.log("error", error));
-```
-
-```java
-OkHttpClient client = new OkHttpClient().newBuilder()
-  .build();
-MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\n\t\"email\":\"jackhym23@gmail.com\",\n      \"password\":\"999999999\"\n}");
-Request request = new Request.Builder()
-  .url("https://api-dev.in.springverify.com/v1/auth/login")
-  .method("POST", body)
-  .addHeader("Content-Type", "application/json")
-  .build();
-Response response = client.newCall(request).execute();
-```
+> The response looks like this
 
 ```json
 {
@@ -603,7 +537,7 @@ curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents
 }'
 ```
 
-> example response
+> Response looks like this
 
 ```json
 {
@@ -663,7 +597,7 @@ curl --location --request POST 'https://api-dev.in.springverify.com/v1/documents
 }'
 ```
 
-> Response looks like
+> Response looks like this
 
 ```json
 {
@@ -759,7 +693,7 @@ This API is used to get candidates in bulk. You can provide multiple candidates 
 | 9       | Form submitted             | form_submitted   |
 | 10      | Verified Auto              | verified_auto    |
 
-> Example Response (with all possible fields)
+> Response looks like this (with all possible fields)
 
 ```json
 [
@@ -1153,7 +1087,7 @@ API to fetch all candidates uploaded by the Company, in a sorted fashion. Sortin
   limit and page are optional. If not provided, either, default values are limit 10 and page 0
   </aside>
 
-> Response looks like
+> Response looks like this
 
 ```json
 [
