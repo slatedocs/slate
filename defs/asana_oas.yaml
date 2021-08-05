@@ -2267,6 +2267,16 @@ components:
             be specified.
           type: string
           example: '1331'
+    GoalRemoveSubgoalRequest:
+      type: object
+      required:
+        - subgoal
+      properties:
+        subgoal:
+          description: >-
+            The goal gid to remove as subgoal from the parent goal
+          type: string
+          example: '1331'
     GoalAddSupportingWorkRequest:
       type: object
       required:
@@ -5865,7 +5875,7 @@ paths:
               type: object
               properties:
                 data:
-                  $ref: '#/components/schemas/GoalRequest'
+                  $ref: '#/components/schemas/GoalRemoveSubgoalRequest'
       responses:
         200:
           description: Successfully removed subgoal.
@@ -6115,18 +6125,8 @@ paths:
       tags:
         - Goals
       operationId: supportingWork
-      requestBody:
-        description: The goal whose supporting work will be returned
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                data:
-                  $ref: '#/components/schemas/GoalRequest'
       responses:
-        201:
+        200:
           description: Successfully returned supporting work.
           content:
             application/json:
