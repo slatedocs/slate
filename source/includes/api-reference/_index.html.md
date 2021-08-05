@@ -3802,32 +3802,7 @@ $result = $client->goals->removeSubgoal(array('field' => 'value', 'field' => 'va
 ```json
 {
   "data": {
-    "due_on": "2019-09-15",
-    "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
-    ],
-    "html_notes": "<body>Start building brand awareness.</body>",
-    "is_workspace_level": true,
-    "liked": false,
-    "metric": {
-      "current_display_value": "8.12",
-      "current_number_value": 8.12
-    },
-    "name": "Grow web traffic by 30%",
-    "notes": "Start building brand awareness.",
-    "owner": {
-      "name": "Greg Sanchez"
-    },
-    "start_on": "2019-09-14",
-    "status": "string",
-    "team": {
-      "name": "Marketing"
-    },
-    "workspace": {
-      "name": "My Company Workspace"
-    }
+    "subgoal": "1331"
   }
 }
 ```
@@ -3855,26 +3830,8 @@ Removes a goal as a subgoal of a specified parent goal.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to be removed as a subgoal|
-|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
-|»» is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
-|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
-|»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
-|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
-|»» name<span class="param-type"> string</span>|The name of the goal.|
-|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
-|»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
-|»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
-|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»»» name<span class="param-type"> string</span>|The name of the team.|
-|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|» data<span class="param-type"> object</span>|none|
+|»» subgoal<span class="param-type"> string</span><div class="param-required">required</div>|The goal gid to remove as subgoal from the parent goal|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4625,7 +4582,6 @@ Returns a compact representation of all of the subgoals of a goal.
 
 ```shell
 curl -X GET https://app.asana.com/api/1.0/goals/{goal_gid}/supportingWork \
-  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
@@ -4679,42 +4635,7 @@ $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 $result = $client->goals->supportingWork(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
-> Body parameter
-
-```json
-{
-  "data": {
-    "due_on": "2019-09-15",
-    "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
-    ],
-    "html_notes": "<body>Start building brand awareness.</body>",
-    "is_workspace_level": true,
-    "liked": false,
-    "metric": {
-      "current_display_value": "8.12",
-      "current_number_value": 8.12
-    },
-    "name": "Grow web traffic by 30%",
-    "notes": "Start building brand awareness.",
-    "owner": {
-      "name": "Greg Sanchez"
-    },
-    "start_on": "2019-09-14",
-    "status": "string",
-    "team": {
-      "name": "Marketing"
-    },
-    "workspace": {
-      "name": "My Company Workspace"
-    }
-  }
-}
-```
-
-> 201 Response
+> 200 Response
 
 ```json
 {
@@ -4742,27 +4663,6 @@ Returns any portfolios or projects associated with specified goal.
 
 |Name|Description|
 |---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|The goal whose supporting work will be returned|
-|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
-|»» is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
-|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
-|»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
-|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
-|»» name<span class="param-type"> string</span>|The name of the goal.|
-|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
-|»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
-|»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
-|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»»» name<span class="param-type"> string</span>|The name of the team.|
-|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4770,7 +4670,7 @@ Returns any portfolios or projects associated with specified goal.
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [ProjectCompact](#schemaprojectcompact)</span>|Successfully returned supporting work.|
+|200<span class="param-type"> [ProjectCompact](#schemaprojectcompact)</span>|Successfully returned supporting work.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
