@@ -24,6 +24,7 @@ curl "https://cloudmc_endpoint/api/rest/reseller/settings/billing/find?organizat
     },
     "id": "f7ad28a8-1227-44de-9785-6dbd556f3bda",
     "version": 1,
+    "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
   }
@@ -37,6 +38,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The configured billing settings' id.
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
 `version`<br/>*integer* | The billing settings version.
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 
@@ -61,6 +63,7 @@ curl "https://cloudmc_endpoint/api/rest/reseller/settings/billing/f7ad28a8-1227-
     },
     "id": "f7ad28a8-1227-44de-9785-6dbd556f3bda",
     "version": 1,
+    "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
   }
@@ -74,6 +77,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The configured billing settings' id.
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
 `version`<br/>*integer* | The billing settings version.
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 
@@ -112,6 +116,7 @@ curl -X POST "https://cloudmc_endpoint/api/rest/reseller/settings/billing" \
     },
     "id": "d785ffcb-9b03-478d-a49b-52a2ccedf1b8",
     "version": 1,
+    "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
   }
@@ -120,6 +125,7 @@ curl -X POST "https://cloudmc_endpoint/api/rest/reseller/settings/billing" \
 
 Required | &nbsp;
 ---------- | -----------
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 
@@ -151,6 +157,7 @@ curl -X PUT "https://cloudmc_endpoint/api/rest/reseller/settings/billing/d785ffc
   },
   "id": "d785ffcb-9b03-478d-a49b-52a2ccedf1b8",
   "version": 1,
+   "daysBeforeAutoDraft": 3,
   "daysBeforeAutoApproval": 3,
   "daysBeforeAutoPayment": 5,
 }
@@ -166,6 +173,7 @@ curl -X PUT "https://cloudmc_endpoint/api/rest/reseller/settings/billing/d785ffc
     },
     "id": "d785ffcb-9b03-478d-a49b-52a2ccedf1b8",
     "version": 2,
+    "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
   }
@@ -176,6 +184,7 @@ Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The configured billing settings' id.
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 
