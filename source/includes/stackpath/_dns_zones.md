@@ -107,6 +107,68 @@ Attributes | &nbsp;
 `verified`<br/>*string* | The date a zone's nameservers were last audited by StackPath.
 `status`<br/>*string* | The status of the zone. It can either be `ACTIVE`, `INACTIVE`.
 
+
+
+<!-------------------- CREATE A DNS ZONE -------------------->
+
+### Create a DNS zone
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnszones"
+```
+> Request body example for without DNS records to import:
+
+```json
+{
+  "domain":"my-domain.com"
+}
+```
+> Request body example for with DNS records to import:
+
+```json
+{
+  "domain": "my-domain.com",
+  "records": [
+    {
+      "name": "*",
+      "type": "NS",
+      "ttl": 3600,
+      "data": "ns1.above.com.",
+      "weight": 1
+    }
+  ]
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnszones</code>
+
+Create a DNS zone in a given [environment](#administration-environments).
+
+Required | &nbsp;
+------- | -----------
+`domain`<br/>*String* | The name of the zone.
+
+Optional | &nbsp;
+------- | -----------
+`records`<br/>*Array[Object]* | The list of DNS records to create.
+`records.type`<br/>*String* | A zone record's type. Zone record types describe the zone record's behavior. Supported values are A, AAAA, CAA, CNAME, MX, SRV, TXT or NS.  Required for each record.
+`records.name`<br/>*String* | The name of the record. Use the value "@" to denote current root domain name. Required for each record.
+`records.data`<br/>*String* |  A zone record's value. Required for each record.
+`records.ttl`<br/>*integer* | A zone record's time to live. A record's TTL is the number of seconds that the record should be cached by DNS resolvers. Use lower TTL values if you expect zone records to change often. Use higher TTL values for records that won't change to prevent extra DNS lookups by clients. Required for each record.
+`records.weight`<br/>*integer* | A zone record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
+
 <!-------------------- DELETE A DNS ZONE -------------------->
 
 #### Delete a DNS zone
