@@ -158,7 +158,7 @@ Create a DNS zone in a given [environment](#administration-environments).
 
 Required | &nbsp;
 ------- | -----------
-`domain`<br/>*string* | The name of the zone.
+`domain`<br/>*String* | The name of the zone.
 
 Optional | &nbsp;
 ------- | -----------
