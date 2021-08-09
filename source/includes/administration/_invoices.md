@@ -190,7 +190,7 @@ Attributes | &nbsp;
 
 `PUT /invoices/:invoice_id/approve`
 
-Manually approve a draft invoice and issue the invoice to the customer by email.
+Manually approve an invoice in the 'DRAFT' state and issue the invoice to the customer by email. If the invoice is already in the 'ISSUED' state, an empty response will be returned and an email will not be sent. If the invoice is in any other state, an error will be thrown.
 
 ```shell
 # Approve a draft invoice
@@ -242,9 +242,9 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
-`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*enum* | The status of the invoice. Should be ISSUED upon a successful approval.
 `createdDate`<br/>*date* | The created date of the invoice.
-`draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
+`draftedDate`<br/>*date* | The date the invoice was drafted.
 `issuedDate`<br/>*date* | The date the invoice was issued.
 `dueDate`<br/>*date* | The date the invoice is due.
 `organization.id`<br/>*UUID* | The UUID of the organization the invoice belongs to.
