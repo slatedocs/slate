@@ -190,7 +190,7 @@ Attributes | &nbsp;
 
 `PUT /invoices/:invoice_id/approve`
 
-Manually approve a draft invoice and issue the invoice to the customer.
+Manually approve a draft invoice and issue the invoice to the customer by email.
 
 ```shell
 # Approve a draft invoice
