@@ -360,18 +360,18 @@ In this event, Goji will communicate with the new ISA manager and inform them th
 
 Once the payment is made, a cash transaction should be recorded with type `RESIDUAL_INCOME` and the amount as a negative value.
 
-### Death of Investor
+## Death of Investor
 
 In the event of a death of an Investor, specific tasks need to be carried out. The flow will follow one of the following paths:
 
-1) The investor's cash and/or investments are being transferred to a surviving spouse on the same platform using an Additional Permitted Subscription ('APS').
-2) The investor's cash and/or investments are being transferred to a different ISA Manager for a surviving spouse using an Additional Permitted Subscription ('APS').
-3) The investor's cash and/or investments are being transferred to a beneficiary's ISA on the same platform (not through an APS).
-4) The investor's cash and/or investments are being transferred to a beneficiary's non-ISA account on the same platform (not through an APS).
-5) The investor's cash and/or investments are being transferred to a beneficiary  off-platform (not through an APS).
+1) The investor's cash and/or investments are being transferred to a surviving spouse on the same platform using an Additional Permitted Subscription ('APS').<br/>
+2) The investor's cash and/or investments are being transferred to a different ISA Manager for a surviving spouse using an Additional Permitted Subscription ('APS').<br/>
+3) The investor's cash and/or investments are being transferred to a beneficiary's ISA on the same platform (not through an APS).<br/>
+4) The investor's cash and/or investments are being transferred to a beneficiary's non-ISA account on the same platform (not through an APS).<br/>
+5) The investor's cash and/or investments are being transferred to a beneficiary  off-platform (not through an APS).<br/>
 
 
-##### 1) The investor's cash and/or investments are being transferred to a surviving spouse on the same platform using an Additional Permitted Subscription ('APS')
+### 1) The investor's cash and/or investments are being transferred to a surviving spouse on the same platform using an Additional Permitted Subscription ('APS')
 
 If you want to transfer investments to a surviving spouse, you must make sure you have the appropriate legal paperwork and technical capability in place to transfer investments on your platform.  Alternatively, you can wait for investments to mature and only transfer cash when it becomes available.
 The process flow is:
@@ -389,7 +389,7 @@ The process flow is:
 - After the calls are completed, the cash and investment balances of the deceased account should be 0.
 - Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.
 
-##### 2) The investor's cash and/or investments are being transferred to a different ISA Manager for a surviving spouse using an Additional Permitted Subscription ('APS')
+### 2) The investor's cash and/or investments are being transferred to a different ISA Manager for a surviving spouse using an Additional Permitted Subscription ('APS')
 
 Only cash can be transferred to an alternative ISA Manager as an APS, loans or bonds cannot be transferred in specie.  If a surviving spouse wants to transfer cash and investments to another ISA Manager via an APS, they will need to wait until investments have matured and repaid.
 
@@ -402,7 +402,7 @@ The process flow is:
 - After the call is completed, the cash and investment balances of the deceased account should be 0.
 - Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.
 
-##### 3) The investor's cash and/or investments are being transferred to a beneficiary's ISA on the same platform (not through an APS)
+### 3) The investor's cash and/or investments are being transferred to a beneficiary's ISA on the same platform (not through an APS)
 
 If you want to transfer investments to a beneficiary, you must make sure you have the appropriate legal paperwork and technical capability in place to transfer investments on your platform.  Alternatively, you can wait for investments to mature and only transfer cash when it becomes available.
 
@@ -424,7 +424,7 @@ The process flow is:
 - After the calls are completed, the cash and investment balances of the deceased account should be 0.
 - Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.
 
-##### 4) The investor's cash and/or investments are being transferred to a beneficiary's non-ISA account on the same platform (not through an APS)
+### 4) The investor's cash and/or investments are being transferred to a beneficiary's non-ISA account on the same platform (not through an APS)
 
 If you want to transfer investments to a beneficiary, you must make sure you have the appropriate legal paperwork and technical capability in place to transfer investments on your platform.  Alternatively, you can wait for investments to mature and only transfer cash when it becomes available.
 
@@ -441,7 +441,7 @@ The process flow is:
 - After the calls are completed, the cash and investment balances of the deceased account should be 0.
 - Let Goji know when you have completed the calls by emailing our Ops team at platformsupport@goji.investments. Goji can then record the date the transfers were completed (for HMRC reporting purposes) and close the workflow and ISA account.
 
-##### 5) The investor's cash and/or investments are being transferred to a beneficiary  off-platform (not through an APS)
+### 5) The investor's cash and/or investments are being transferred to a beneficiary  off-platform (not through an APS)
 
 Only cash can be withdrawn off the platform by a beneficiary. If a surviving beneficiary wants to withdraw all cash and investments, they will need to wait until investments have matured and repaid.
 
