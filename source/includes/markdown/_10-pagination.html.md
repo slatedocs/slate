@@ -10,7 +10,7 @@ experience by limiting requests to a smaller number of objects at a time, ultima
 should there be more results, the API will return an offset that will allow you to access the next page.
 </span>
 
-#### Strongly prefer paginated requests {#prefer-pagination}
+#### Strongly prefer paginated requests
 
 For all new features in the Asana API, we're making pagination **required** by
 specifying a value for the **limit** parameter. Though they may return more
