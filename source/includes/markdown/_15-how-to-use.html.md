@@ -187,17 +187,17 @@ data-postman-var-1="17a7f43dbe9c41e7def1"></div>
 </blockquote>
 
 <span class="description">
-You can quickly get started on Asana's API with the [API Explorer](/docs/api-explorer). However, if you want a more robust experience hitting the API, we recommend using Postman. You can get started with the 'Run in Postman' button!
+You can quickly get started on Asana's API with the [API Explorer](/docs/api-explorer). However, if you want a more robust experience hitting the API, we recommend using [Postman](https://learning.postman.com/docs/getting-started/introduction/). You can get started with the 'Run in Postman' button!
 </span>
 
 Once you have the collection, you should [create an environment](https://learning.getpostman.com/docs/postman/environments_and_globals/manage_environments/).
 
 You'll want to set:
 
-1. `authentication_token` to a PAT. If you don't have one yet, visit our [Authentication Quick Start](/docs/authentication-quick-start)
-2. `workspace` to your workspace's gid, you can find via a logged-in browser by going to https://app.asana.com/api/1.0/users/me/workspaces, or you can hit that endpoint using your PAT
-3. any other gids you want to easily access.
-   1. For example, in my Postman. I set `task` to the gid of a task I regularly test with, `project` to a the gid of a private sandbox project, and `user` to the string 'me'.
+1. `authentication_token` to a Personal Access Token (PAT). If you don't have one yet, visit our [Authentication Quick Start](/docs/authentication-quick-start).
+2. `workspace` to your workspace's gid. You can find this value via a logged-in browser by going to [https://app.asana.com/api/1.0/users/me/workspaces](https://app.asana.com/api/1.0/users/me/workspaces), or you can hit that endpoint using your PAT.
+3. Any other gids you want to easily access.
+   1. For example, you can set `task` to the gid of a task that you regularly test with, `project` to the gid of a private sandbox project, and `user` to the string 'me'.
 
 No need to edit your environment for requests on different objects, simply navigate to the endpoint you want to use, and change the `{{object}}` to any gid you want.
 
