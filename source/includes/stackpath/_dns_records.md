@@ -161,12 +161,14 @@ Query Params | &nbsp;
 ---- | -----------
 `zoneId`<br/>*UUID* | The ID of the zone for which we want to delete the record. This parameter is required.
 
-Attributes | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `name`<br/>*string* | The name of the record. Use the value "@" to denote current root domain name.
 `type`<br/>*string* | A DNS record's type. DNS record types describe the record's behavior.
 `ttl` <br/>*int* | A DNS record's time to live. A record's TTL is the number of seconds that the record should be cached by DNS resolvers. Use lower TTL values if you expect zone records to change often. Use higher TTL values for records that won't change to prevent extra DNS lookups by clients.
 `data`<br/>*string* | A DNS record's value.
+
+Optional | &nbsp;
 `weight` <br/>*int* | A DNS record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
 
 <!-------------------- UPDATE A DNS RECORD -------------------->
@@ -174,10 +176,10 @@ Attributes | &nbsp;
 #### Update a DNS record
 
 ```shell
-curl -X POST \
+curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr&operation=edit"
+   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
 ```
 > Request body example for creating a DNS record:
 
@@ -200,7 +202,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords?zoneId=:zoneId&operation=edit</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords?zoneId=:zoneId&operation=edit</code>
 
 Update a DNS record in a given [environment](#administration-environments).
 
@@ -208,12 +210,14 @@ Query Params | &nbsp;
 ---- | -----------
 `zoneId`<br/>*UUID* | The ID of the zone for which we want to delete the record. This parameter is required.
 
-Attributes | &nbsp;
+Required | &nbsp;
 ------- | -----------
 `name`<br/>*string* | The name of the record. Use the value "@" to denote current root domain name.
 `type`<br/>*string* | A DNS record's type. DNS record types describe the record's behavior.
 `ttl` <br/>*int* | A DNS record's time to live. A record's TTL is the number of seconds that the record should be cached by DNS resolvers. Use lower TTL values if you expect zone records to change often. Use higher TTL values for records that won't change to prevent extra DNS lookups by clients.
 `data`<br/>*string* | A DNS record's value.
+
+Optional | &nbsp;
 `weight` <br/>*int* | A DNS record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
 
 <!-------------------- DELETE A DNS RECORD -------------------->
