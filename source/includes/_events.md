@@ -1,30 +1,74 @@
 # Events
 
-## Update Event
+## List Events
 
 ```javascript
-fetch('https://core.eventtia.com/v1/events/<event_uri>', {
-  method: 'PUT',
+fetch('https://core.eventtia.com/v1/events/', {
+  method: 'GET',
   headers: {
     'Authorization': '<your token>',
-  },
-  body: {
-  data: {
-    type: "events",
-    attributes: {
-      name: "Event name",
-      start_date: "2020-04-13 15:54:37 -0500",
-      end_date: "2020-04-15 15:54:57 -0500",
-      location: {
-        coordinates: { lat: 6.2518400, lng: -75.5635900 },
-        address: "Event address",
-        country: "Colombia.",
-        city: "Medellín"
+  }})
+```
+
+> Make sure you replace <your token> with the JWT you get when you authenticate. 
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+[{
+  "data": {
+    "type": "events",
+    "attributes": {
+      "name": "Event name",
+      "description": "description of an event",
+      "start_date": "2020-04-13 15:54:37 -0500",
+      "end_date": "2020-04-15 15:54:57 -0500",
+      "budget": 545.00,
+      "is_template": true,
+      "cloned_from_id": 23121,
+      "event_type": "hybrid",
+      "event_uri": "event_uri",
+      "logo": "url_Image_file",
+      "banner_image": "url_Image_file",
+      "settings": {
+        "currency": 4,
+        "date_format": 'dd/mm/yyyy',
+        "time_format": 'hours_24'
+      },
+      "location": {
+        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
+        "address": "Event address",
+        "country": "Colombia.",
+        "city": "Medellín"
       }
     }
   }
-}
-})
+}],
+"links": {
+        "current_page": 1,
+        "first_page": true,
+        "last_page": false,
+        "prev_page": null,
+        "next_page": 2,
+        "total_pages": 6
+    }
+```
+
+This endpoint return a list of events
+
+### HTTP Request
+
+`GET /v1/events/`
+
+## Get Event
+
+```javascript
+fetch('https://core.eventtia.com/v1/events/<event_uri>', {
+  method: 'GET',
+  headers: {
+    'Authorization': '<your token>',
+  }})
 ```
 
 > Make sure you replace <your token> with the JWT you get when you authenticate. 
@@ -40,8 +84,119 @@ HTTP/1.1 200 OK
     "type": "events",
     "attributes": {
       "name": "Event name",
+      "description": "description of an event",
       "start_date": "2020-04-13 15:54:37 -0500",
       "end_date": "2020-04-15 15:54:57 -0500",
+      "budget": 545.00,
+      "is_template": true,
+      "cloned_from_id": 23121,
+      "event_type": "hybrid",
+      "event_uri": "event_uri",
+      "logo": "url_Image_file",
+      "banner_image": "url_Image_file",
+      "settings": {
+        "currency": 4,
+        "date_format": 'dd/mm/yyyy',
+        "time_format": 'hours_24'
+      },
+      "location": {
+        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
+        "address": "Event address",
+        "country": "Colombia.",
+        "city": "Medellín"
+      }
+    }
+  }
+}
+```
+
+>Example of Event Not Found (404) response: 
+
+```http
+HTTP/1.1 404 Not Found
+{
+    "message": "Couldn't find Event"
+}
+```
+
+This endpoint return an event
+
+### HTTP Request
+
+`GET /v1/events/event_uri`
+
+### Path Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+event_uri | string | The event_uri for the desired event
+
+## Create Event
+
+```javascript
+fetch('https://core.eventtia.com/v1/events/', {
+  method: 'POST',
+  headers: {
+    'Authorization': '<your token>',
+  },
+  body: {
+  data: {
+    type: "events",
+    attributes: {
+      name: "Event name",
+      description: "description of an event",
+      start_date: "2020-04-13 15:54:37 -0500",
+      end_date: "2020-04-15 15:54:57 -0500",
+      budget: 545.00,
+      is_template: true,
+      cloned_from_id: 23121,
+      event_type: "hybrid",
+      event_uri: "event_uri",
+      logo: Image_file,
+      banner_image: Image_file,
+      settings: {
+        currency: 4,
+        date_format: 'dd/mm/yyyy',
+        time_format: 'hours_24'
+      },
+      location: {
+        coordinates: { lat: 6.2518400, lng: -75.5635900 },
+        address: "Event address",
+        country: "Colombia.",
+        city: "Medellín"
+      }
+    }
+  }
+}
+})
+```
+
+> Make sure you replace <your token> with the JWT you get when you authenticate. 
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+  "data": {
+    "type": "events",
+    "attributes": {
+      "name": "Event name",
+      "description": "description of an event",
+      "start_date": "2020-04-13 15:54:37 -0500",
+      "end_date": "2020-04-15 15:54:57 -0500",
+      "budget": 545.00,
+      "is_template": true,
+      "cloned_from_id": 23121,
+      "event_type": "hybrid",
+      "event_uri": "event_uri",
+      "logo": Image_file,
+      "banner_image": Image_file,
+      "settings": {
+        "currency": 4,
+        "date_format": 'dd/mm/yyyy',
+        "time_format": 'hours_24'
+      },
       "location": {
         "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
         "address": "Event address",
@@ -69,7 +224,126 @@ HTTP/1.1 422 Unprocessable Entity
 }
 ```
 
-This endpoint update a event and return it
+This endpoint create an event and return it
+
+### HTTP Request
+
+`POST /v1/events/`
+
+### Available settings
+
+Parameter | Type | Description
+--------- | ---- | -----------
+name | string | name of event. 
+description | string | description of event.
+start_date | date | starting date for event, must be before end date of event.
+budget | float | budget for event.
+is_template | boolean | this event is a template.
+cloned_from_id | integer | event id from this event was cloned
+event_type | string | event type ['virtual', 'physical', 'hybrid']. 
+event_uri| string | event uri must be an unique name.
+logo | file | logo for this event.
+banner_image | file | banner image for this event.
+currency | string | your event currency for payments and invoices ['COP', 'USD', 'EUR', 'ARS', 'BRL', 'CLP', 'MXN', 'PEN', 'GBP', 'JOD', 'UYU', 'PYG', 'AED', 'CAD', 'VND', 'PHP', 'AUD', 'BOB', 'TND', 'SGD', 'CHF', 'CFA', 'ZAR', 'INR']
+date_format | string | event date format ['dd/mm/yyyy', 'mm/dd/yyyy']. 
+time_format | string | event time format ['hours_24', 'am_pm']. 
+
+## Update Event
+
+```javascript
+fetch('https://core.eventtia.com/v1/events/<event_uri>', {
+  method: 'PUT',
+  headers: {
+    'Authorization': '<your token>',
+  },
+  body: {
+  data: {
+    type: "events",
+    attributes: {
+      name: "Event name",
+      description: "description of an event",
+      start_date: "2020-04-13 15:54:37 -0500",
+      end_date: "2020-04-15 15:54:57 -0500",
+      budget: 545.00,
+      is_template: true,
+      cloned_from_id: 23121,
+      event_type: "hybrid",
+      event_uri: "event_uri",
+      logo: Image_file,
+      banner_image: Image_file,
+      settings: {
+        currency: 4,
+        date_format: 'dd/mm/yyyy',
+        time_format: 'hours_24'
+      },
+      location: {
+        coordinates: { lat: 6.2518400, lng: -75.5635900 },
+        address: "Event address",
+        country: "Colombia.",
+        city: "Medellín"
+      }
+    }
+  }
+}
+})
+```
+
+> Make sure you replace <your token> with the JWT you get when you authenticate. 
+
+> Make sure you replace <event uri> with the event uri for the event to update. 
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+  "data": {
+    "type": "events",
+    "attributes": {
+      "name": "Event name",
+      "description": "description of an event",
+      "start_date": "2020-04-13 15:54:37 -0500",
+      "end_date": "2020-04-15 15:54:57 -0500",
+      "budget": 545.00,
+      "is_template": true,
+      "cloned_from_id": 23121,
+      "event_type": "hybrid",
+      "event_uri": "event_uri",
+      "logo": Image_file,
+      "banner_image": Image_file,
+      "settings": {
+        "currency": 4,
+        "date_format": 'dd/mm/yyyy',
+        "time_format": 'hours_24'
+      },
+      "location": {
+        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
+        "address": "Event address",
+        "country": "Colombia.",
+        "city": "Medellín"
+      }
+    }
+  }
+}
+```
+
+>Example of Unprocessable Entity (422) response: 
+
+```http
+HTTP/1.1 422 Unprocessable Entity
+{
+    "message": {
+        "start_date": [
+            "is beyond the end date."
+        ],
+        "name": [
+            "is already in use"
+        ]
+    }
+}
+```
+
+This endpoint update an event and return it
 
 ### HTTP Request
 
@@ -80,6 +354,24 @@ This endpoint update a event and return it
 Parameter | Type | Description
 --------- | ---- | -----------
 event_uri | string | The event_uri for the desired event
+
+### Available settings
+
+Parameter | Type | Description
+--------- | ---- | -----------
+name | string | name of event. 
+description | string | description of event.
+start_date | date | starting date for event, must be before end date of event.
+budget | float | budget for event.
+is_template | boolean | this event is a template.
+cloned_from_id | integer | event id from this event was cloned
+event_type | string | event type ['virtual', 'physical', 'hybrid']. 
+event_uri| string | event uri must be an unique name.
+logo | file | logo for this event.
+banner_image | file | banner image for this event.
+currency | string | your event currency for payments and invoices ['COP', 'USD', 'EUR', 'ARS', 'BRL', 'CLP', 'MXN', 'PEN', 'GBP', 'JOD', 'UYU', 'PYG', 'AED', 'CAD', 'VND', 'PHP', 'AUD', 'BOB', 'TND', 'SGD', 'CHF', 'CFA', 'ZAR', 'INR']
+date_format | string | event date format ['dd/mm/yyyy', 'mm/dd/yyyy']. 
+time_format | string | event time format ['hours_24', 'am_pm']. 
 
 ## Destroy Event
 ```javascript
@@ -104,8 +396,21 @@ HTTP/1.1 200 OK
     "type": "events",
     "attributes": {
       "name": "Event name",
+      "description": "description of an event",
       "start_date": "2020-04-13 15:54:37 -0500",
       "end_date": "2020-04-15 15:54:57 -0500",
+      "budget": 545.00,
+      "is_template": true,
+      "cloned_from_id": 23121,
+      "event_type": "hybrid",
+      "event_uri": "event_uri",
+      "logo": "url_Image_file",
+      "banner_image": "url_Image_file",
+      "settings": {
+        "currency": 4,
+        "date_format": 'dd/mm/yyyy',
+        "time_format": 'hours_24'
+      },
       "location": {
         "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
         "address": "Event address",
