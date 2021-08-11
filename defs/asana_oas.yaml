@@ -3735,6 +3735,21 @@ components:
               nullable: true
               allOf:
                 - $ref: '#/components/schemas/UserCompact'
+            assignee_section:
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/SectionCompact'
+                - description: >-
+                    The *assignee section* is a subdivision of a project that groups  tasks
+                    together in the assignee's "My Tasks" list. It can either be a  header
+                    above a list of tasks in a list view or a column in a board  view
+                    of "My Tasks."
+
+                    The `assignee_section` property will be returned in the response
+                    only  if the request was sent by the user who is the assignee
+                    of the task.  Note that you can only write to `assignee_section`
+                    with the gid of an  existing section visible in the user's "My
+                    Tasks" list.
             custom_fields:
               description: >-
                 Array of custom field values applied to the task. These
@@ -3809,9 +3824,6 @@ components:
         - $ref: '#/components/schemas/TaskBase'
         - type: object
           properties:
-            assignee_section:
-              type: string
-              example: '12345'
             assignee:
               type: string
               readOnly: false
@@ -3820,6 +3832,23 @@ components:
                 Gid of a user.
               example: '12345'
               nullable: true
+            assignee_section:
+              nullable: true
+              type: string
+              allOf:
+                - $ref: '#/components/schemas/SectionCompact'
+                - description: >-
+                    The *assignee section* is a subdivision of a project that groups  tasks
+                    together in the assignee's "My Tasks" list. It can either be a  header
+                    above a list of tasks in a list view or a column in a board  view
+                    of "My Tasks."
+
+                    The `assignee_section` property will be returned in the response
+                    only  if the request was sent by the user who is the assignee
+                    of the task.  Note that you can only write to `assignee_section`
+                    with the gid of an  existing section visible in the user's "My
+                    Tasks" list.
+                - example: '12345'
             custom_fields:
               description: >-
                 An object where each key is a Custom Field gid and each value is
@@ -3917,21 +3946,6 @@ components:
                 - new
                 - inbox
               example: upcoming
-            assignee_section:
-              nullable: true
-              type: object
-              allOf:
-                - $ref: '#/components/schemas/SectionCompact'
-                - description: >-
-                    The *assignee section* is a subdivision of a project that groups  tasks
-                    together in the assignee's "My Tasks" list. It can either be a  header
-                    above a list of tasks in a list view or a column in a board  view
-                    of "My Tasks."
-
-                    The `assignee_section` property will be returned in the response
-                    only  if the request was sent by the user who is the assignee
-                    of the task.  Note that you can only write to `assignee_section`
-                    with an existing  section visible in the user's "My Tasks" list.
             completed:
               description: >-
                 True if the task is currently marked complete, false if not.

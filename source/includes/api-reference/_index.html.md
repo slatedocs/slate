@@ -14657,11 +14657,6 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -14738,6 +14733,11 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
+    },
+    "assignee_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
     },
     "custom_fields": [
       {
@@ -14849,7 +14849,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» assignee_section<span class="param-type"> string</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."|
+|»» assignee_section<span class="param-type"> object</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."|
 |»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |»» assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
@@ -14878,7 +14878,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 #### Detailed descriptions
 
 **assignee_section**: The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."
-The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with an existing  section visible in the user's "My Tasks" list.
+The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with the gid of an  existing section visible in the user's "My Tasks" list.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -14990,11 +14990,6 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -15071,6 +15066,11 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
+    },
+    "assignee_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
     },
     "custom_fields": [
       {
@@ -15307,11 +15307,6 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -15388,6 +15383,11 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
+    },
+    "assignee_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
     },
     "custom_fields": [
       {
@@ -15501,7 +15501,7 @@ Returns the complete updated task record.
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» assignee_section<span class="param-type"> string</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."|
+|»» assignee_section<span class="param-type"> object</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."|
 |»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |»» assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
@@ -15531,7 +15531,7 @@ Returns the complete updated task record.
 #### Detailed descriptions
 
 **assignee_section**: The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."
-The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with an existing  section visible in the user's "My Tasks" list.
+The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with the gid of an  existing section visible in the user's "My Tasks" list.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -16503,11 +16503,6 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -16584,6 +16579,11 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
+    },
+    "assignee_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
     },
     "custom_fields": [
       {
@@ -16689,7 +16689,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |» data<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |»» approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |»» assignee<span class="param-type"> string¦null</span>|Gid of a user.|
-|»» assignee_section<span class="param-type"> string</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."|
+|»» assignee_section<span class="param-type"> object</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."|
 |»»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |»» assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |»» completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
@@ -16719,7 +16719,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 #### Detailed descriptions
 
 **assignee_section**: The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."
-The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with an existing  section visible in the user's "My Tasks" list.
+The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with the gid of an  existing section visible in the user's "My Tasks" list.
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -16847,11 +16847,6 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
     "resource_type": "task",
     "name": "Buy catnip",
     "approval_status": "pending",
-    "assignee_section": {
-      "gid": "12345",
-      "resource_type": "section",
-      "name": "Next Actions"
-    },
     "assignee_status": "upcoming",
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
@@ -16928,6 +16923,11 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
+    },
+    "assignee_section": {
+      "gid": "12345",
+      "resource_type": "section",
+      "name": "Next Actions"
     },
     "custom_fields": [
       {
@@ -25278,11 +25278,6 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
   "resource_type": "task",
   "name": "Buy catnip",
   "approval_status": "pending",
-  "assignee_section": {
-    "gid": "12345",
-    "resource_type": "section",
-    "name": "Next Actions"
-  },
   "assignee_status": "upcoming",
   "completed": false,
   "completed_at": "2012-02-22T02:06:58.147Z",
@@ -25359,6 +25354,11 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
     "gid": "12345",
     "resource_type": "user",
     "name": "Greg Sanchez"
+  },
+  "assignee_section": {
+    "gid": "12345",
+    "resource_type": "section",
+    "name": "Next Actions"
   },
   "custom_fields": [
     {
@@ -25459,10 +25459,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
-|assignee_section<span class="param-type"> object</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."<br>The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with an existing  section visible in the user's "My Tasks" list.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
 |completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this task was completed, or null if the task is incomplete.|
@@ -25518,6 +25514,10 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|assignee_section<span class="param-type"> object</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."<br>The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with the gid of an  existing section visible in the user's "My Tasks" list.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |custom_fields<span class="param-type"> [object]</span>|Array of custom field values applied to the task. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
