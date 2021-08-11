@@ -13,13 +13,25 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
     type: "events",
     attributes: {
       name: "Event name",
+      description: "description of an event",
       start_date: "2020-04-13 15:54:37 -0500",
       end_date: "2020-04-15 15:54:57 -0500",
+      budget: 545.00,
+      is_template: true,
+      cloned_from_id: 23121,
+      event_type: "hybrid",
+      logo: Image_file,
+      banner_image: Image_file,
       location: {
         coordinates: { lat: 6.2518400, lng: -75.5635900 },
         address: "Event address",
         country: "Colombia.",
         city: "Medellín"
+      },
+      settings: {
+        currency: 4,
+        date_format: 'dd/mm/yyyy',
+        time_format: 'hours_24'
       }
     }
   }
