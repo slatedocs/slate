@@ -169,6 +169,7 @@ Required | &nbsp;
 `data`<br/>*string* | A DNS record's value.
 
 Optional | &nbsp;
+------- | -----------
 `weight` <br/>*int* | A DNS record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
 
 <!-------------------- UPDATE A DNS RECORD -------------------->
@@ -218,6 +219,7 @@ Required | &nbsp;
 `data`<br/>*string* | A DNS record's value.
 
 Optional | &nbsp;
+------- | -----------
 `weight` <br/>*int* | A DNS record's priority. A resource record is replicated in StackPath's DNS infrastructure the number of times of the record's weight, giving it a more likely response to queries if a zone has records with the same name and type.
 
 <!-------------------- DELETE A DNS RECORD -------------------->
