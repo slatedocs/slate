@@ -19333,6 +19333,7 @@ $result = $client->teams->addUserForTeam($team_gid, array('field' => 'value', 'f
     "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
     "photo": {
+      "image_1024x1024": "https://...",
       "image_128x128": "https://...",
       "image_21x21": "https://...",
       "image_27x27": "https://...",
@@ -20364,6 +20365,7 @@ $result = $client->users->getUser($user_gid, array('param' => 'value', 'param' =
     "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
     "photo": {
+      "image_1024x1024": "https://...",
       "image_128x128": "https://...",
       "image_21x21": "https://...",
       "image_27x27": "https://...",
@@ -22116,6 +22118,7 @@ $result = $client->workspaces->addUserForWorkspace($workspace_gid, array('field'
     "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
     "photo": {
+      "image_1024x1024": "https://...",
       "image_128x128": "https://...",
       "image_21x21": "https://...",
       "image_27x27": "https://...",
@@ -25832,6 +25835,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_User), b
   "name": "Greg Sanchez",
   "email": "gsanchez@example.com",
   "photo": {
+    "image_1024x1024": "https://...",
     "image_128x128": "https://...",
     "image_21x21": "https://...",
     "image_27x27": "https://...",
@@ -25862,7 +25866,8 @@ A *user* object represents an account in Asana that can be given access to vario
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |email<span class="param-type"> string(email)</span>|The user's email address.|
-|photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, 128, and 1024. All images are in PNG format, except for 1024 (which is in JPEG format).|
+|» image_1024x1024<span class="param-type"> string(uri)</span>|none|
 |» image_128x128<span class="param-type"> string(uri)</span>|none|
 |» image_21x21<span class="param-type"> string(uri)</span>|none|
 |» image_27x27<span class="param-type"> string(uri)</span>|none|

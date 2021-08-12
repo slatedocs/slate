@@ -4464,17 +4464,22 @@ components:
                 image_128x128:
                   type: string
                   format: uri
+                image_1024x1024:
+                  type: string
+                  format: uri
               readOnly: true
               description: >-
                 A map of the user’s profile photo in various sizes, or null if no
-                photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images
-                are in PNG format.
+                photo is set. Sizes provided are 21, 27, 36, 60, 128, and 1024. All
+                images
+                are in PNG format, except for 1024 (which is in JPEG format).
               example:
                 image_21x21: https://...
                 image_27x27: https://...
                 image_36x36: https://...
                 image_60x60: https://...
                 image_128x128: https://...
+                image_1024x1024: https://...
             workspaces:
               description: >-
                 Workspaces and organizations this user may access.
