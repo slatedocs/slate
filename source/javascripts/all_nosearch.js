@@ -16,7 +16,7 @@ $(function() {
   });
 
   $('.positiveFeedback-DevSatisfaction').on('click', function() {
-    $(this).parent().html('Thanks!')
+    $(this).parent().html('Thanks! For the latest in our API, feel free to check out the developer community <a href="https://forum.asana.com/c/developersAPI" target="_blank">forum</a>.')
   });
 
   $('.negativeFeedback-DevSatisfaction').on('click', function() {
