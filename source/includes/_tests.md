@@ -271,7 +271,6 @@ data/attributes/status | string of status (not run status) |
 data/attributes/version | string of test version |
 data/attributes/priority | string of test priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
-data/attributes/automated-fields | a hash of Automation Info fields with their value | false |
 data/attributes/tags | an array of tags | false |
 data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users) | false |
 
