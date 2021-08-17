@@ -159,7 +159,7 @@ Create a DNS record in a given [environment](#administration-environments).
 
 Query Params | &nbsp;
 ---- | -----------
-`zoneId`<br/>*UUID* | The ID of the zone for which we want to delete the record. This parameter is required.
+`zoneId`<br/>*UUID* | The ID of the zone for which we want to create the record. This parameter is required.
 
 Required | &nbsp;
 ------- | -----------
@@ -209,7 +209,7 @@ Update a DNS record in a given [environment](#administration-environments).
 
 Query Params | &nbsp;
 ---- | -----------
-`zoneId`<br/>*UUID* | The ID of the zone for which we want to delete the record. This parameter is required.
+`zoneId`<br/>*UUID* | The ID of the zone for which we want to update the record. This parameter is required.
 
 Required | &nbsp;
 ------- | -----------
