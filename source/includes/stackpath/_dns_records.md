@@ -203,7 +203,7 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords?zoneId=:zoneId</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/dnsrecords/:id?zoneId=:zoneId</code>
 
 Update a DNS record in a given [environment](#administration-environments).
 
