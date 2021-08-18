@@ -620,6 +620,10 @@ tags:
   - name: Team Memberships
     description: >-
       This object determines if a user is a member of a team.
+  - name: Time Periods
+    description: >-
+      A `time_period` is an object that represents a domain-scoped date range that
+      can be set on `Goals`.
   - name: Typeahead
     description: >-
       The typeahead search API provides search for objects from a single
@@ -1078,6 +1082,16 @@ components:
         type: string
       example: '724362'
       x-env-variable: team_membership
+    time_period_path_gid:
+      name: time_period_gid
+      in: path
+      description: >-
+        Globally unique identifier for the time period.
+      required: true
+      schema:
+        type: string
+      example: '917392'
+      x-env-variable: time_period
     user_query_param:
       name: user
       in: query
@@ -2110,6 +2124,11 @@ components:
             team:
               allOf:
                 - $ref: '#/components/schemas/TeamCompact'
+                - type: object
+                  nullable: true
+            time_period:
+              allOf:
+                - $ref: '#/components/schemas/TimePeriodCompact'
                 - type: object
                   nullable: true
             metric:
@@ -4434,6 +4453,48 @@ components:
               description: >-
                 Describes if the user is a guest in the team.
               example: false
+    TimePeriodResponse:
+      allOf:
+        - $ref: '#/components/schemas/TimePeriodBase'
+        - type: object
+    TimePeriodBase:
+      allOf:
+        - $ref: '#/components/schemas/TimePeriodCompact'
+        - type: object
+          properties:
+            parent:
+              $ref: '#/components/schemas/TimePeriodCompact'
+    TimePeriodCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          x-docs-overrides:
+            properties.resource_type.example: time_period
+          properties:
+            end_on:
+              type: string
+              description: >-
+                The localized end date of the time period in `YYYY-MM-DD` format.
+              example: '2019-09-14'
+            start_on:
+              type: string
+              description: >-
+                The localized start date of the time period in `YYYY-MM-DD` format.
+              example: '2019-09-13'
+            period:
+              type: string
+              description: >-
+                The cadence and index of the time period. The value is one of: `FY`,
+                `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.
+              enum:
+                - FY
+                - H1
+                - H2
+                - Q1
+                - Q2
+                - Q3
+                - Q4
+              example: Q1
     UserResponse:
       allOf:
         - $ref: '#/components/schemas/UserBase'
@@ -5727,6 +5788,14 @@ paths:
           schema:
             type: string
           example: '31326'
+        - name: time_periods
+          in: query
+          description: Globally unique identifiers for the time periods.
+          schema:
+            type: array
+            items:
+              type: string
+          example: 221693,506165
       responses:
         200:
           description: >-
@@ -10755,6 +10824,97 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /time_periods/{time_period_gid}:
+    parameters:
+      - $ref: '#/components/parameters/time_period_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a time period
+      description: Get the full record for a single time period.
+      operationId: getTimePeriod
+      tags:
+        - Time Periods
+      responses:
+        200:
+          description: Successfully retrieved the record for a single time period.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TimePeriodResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /time_periods:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get time periods
+      description: >-
+        Returns compact time period records.
+      tags:
+        - Time Periods
+      operationId: getTimePeriods
+      parameters:
+        - name: start_on
+          in: query
+          description: >-
+            ISO 8601 date string
+          schema:
+            type: string
+            format: date
+          example: '2019-09-15'
+        - name: end_on
+          in: query
+          description: >-
+            ISO 8601 date string
+          schema:
+            type: string
+            format: date
+          example: '2019-09-15'
+        - name: workspace
+          in: query
+          required: true
+          description: Globally unique identifier for the workspace.
+          schema:
+            type: string
+          example: '31326'
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested time periods.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TimePeriodCompact'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
