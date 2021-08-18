@@ -1,0 +1,1145 @@
+#Ada’s Data Export API (Early Access Documentation)
+
+
+
+## Overview
+
+Welcome to The Data Export API. This API provides authenticated access to your conversation and message data that you can export into your own data warehouse.
+
+
+### Use cases
+
+
+
+* Perform analysis in your own business intelligence tool
+* Retain copies of conversations for permanent internal storage (compliance)
+* Easily retrieve conversation data when requested by your customer
+
+The Data Export API is designed according to REST principles. The API accepts JSON in request bodies and will respond with either a conversation or message object, depending on which endpoint you’re querying.
+
+
+### What you’ll need to get started
+
+
+
+* Purchase access to the Data Export API via your account manager
+* Your API token (generate through self-serve key generation modal behind feature flag ‘data_api’)
+* Access to your exclusive Ada developer slack channel
+
+
+#### Access to the Data Export API on your account
+
+To get started with the Data Export API, you’ll need to speak with your account manager to have it added to your contract with Ada. We’re currently delivering the API via an Early Access Program, so work with your account manager to ensure that the API is at the right stage of development for your business.
+
+
+#### API authentication tokens
+
+In order to keep your data safe, all requests to the Data Export API must be authenticated when making API calls.
+
+Please request your account manager to enable the feature flag `data_api` for your bot to enable data api access and self-serve authentication key generation modal for Admin and Owner level users to generate authentication keys.
+
+
+#### Self-serve Authentication Token Generation
+
+We offer HTTPS authentication via an API access token. Once logged into Ada, any user with **Admin** and **Owner** permissions can generate an authentication token.
+
+Follow the steps below to create an authentication token: \
+Each account has one active token at a time. Put the token at the Authorization header of your request.
+
+
+
+1. Navigate to Settings → Integrations → API Integrations → Data Export API. Click ‘Configure’.
+
+<%= image_tag "images/data_api_image1.png" %>
+
+
+2. A modal will pop up. Click ‘Generate a new Access Token’.
+
+<%= image_tag "images/data_api_image2.png" %>
+
+
+
+3. The token is created, click the ‘Copy’ button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console.
+
+<%= image_tag "images/data_api_image3.png" %>
+
+You now can use this bearer token as the authorization header to access Data API, following this format:
+
+Headers
+
+
+<table>
+  <tr>
+   <td>Key
+   </td>
+   <td>Value
+   </td>
+  </tr>
+  <tr>
+   <td>Authorization
+   </td>
+   <td>Bearer &lt;your_api_token>
+   </td>
+  </tr>
+</table>
+
+
+
+#### Authentication Token Re-generation
+
+If you have lost the token or need to generate a new token, you will need to regenerate it via the console. We only maintain one token at a time; regeneration means a new token is issued and immediately invalidates the prior token.
+
+Follow the steps below to regenerate a new token:
+
+
+
+
+
+
+
+1. Navigate to Settings → Integrations → API Integrations → Data Export API. Click ‘Configure’. A modal pops up and displays the time and date your existing token was generated. Click ‘Generate a new Access Token’ to generate a new token.
+
+<%= image_tag "images/data_api_image4.png" %>
+
+
+
+
+2. A modal will pop up and asks if you understand ‘Generating a new Access Token will immediately invalidate your previous token. Your API Integrations will stop working until they are updated to use the new token.’ Click ‘I understand, generate a new token’. \
+
+<%= image_tag "images/data_api_image5.png" %>
+
+
+
+
+
+3. The new token is issued, click the ‘Copy’ button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console. Make sure API integrations are updated with this new token.
+
+<%= image_tag "images/data_api_image6.png" %>
+
+{Add Trial token screenshots and descriptions}
+
+
+#### Data API Endpoint
+
+
+```
+https://{bot_handle_name}.ada.support/api/data_api/{version}
+```
+
+
+Replace {bot_handle_name} with your bot’s handle name
+
+{version} is the version number of the endpoint in the format of v{Major}.{Minor} e.g. v1, v1.1
+
+
+#### Ada developer slack channel
+
+Clients with early access to the Data Export API will be provided with an exclusive Ada developer slack channel where your team of developers will have direct access to our team in order to facilitate your implementation of the API.
+
+Slack channel: #data-export-api-users
+
+
+    Clients can be added to this channel using their email address. If you have any technical difficulties with this Slack channel, reach out to Chelsea Bullock.
+
+You can use this channel to ask questions, raise issues, or get advice from the team that built the API.
+
+
+## Rate limits
+
+The Data Export API is subject to rate limiting. If you exceed the rate limit, we may return a **429-“Too many requests”** response status code.
+
+We provide rate limits in order to ensure the stability of our infrastructure for all clients and the best experience for you. When calling the Data Export API you should implement **429** retry logic using exponential backoff and jitter.
+
+The early access API rate limits are: **1 Request / Second per endpoint**
+
+
+## Page size and date range limitations
+
+In addition to rate limits, we’ve implemented page size and date range limitations.
+
+**Page size limitations**: 10,000 record max per page
+
+**Date range limitations:** Exports are limited to records from the previous 60 days
+
+
+## Status Codes
+
+
+<table>
+  <tr>
+   <td>200 - OK
+   </td>
+   <td>The request was successfully processed by Ada
+   </td>
+  </tr>
+  <tr>
+   <td>400 - Bad Request
+   </td>
+   <td>Request timed out / database error
+   </td>
+  </tr>
+  <tr>
+   <td>408 - Request Timeout
+   </td>
+   <td>Request timed out
+   </td>
+  </tr>
+  <tr>
+   <td>429 - Too many requests
+   </td>
+   <td>Too many requests
+   </td>
+  </tr>
+  <tr>
+   <td>422 - Unprocessable entity
+   </td>
+   <td>Missing data for required field
+   </td>
+  </tr>
+  <tr>
+   <td>500 - Bad request
+   </td>
+   <td>Request timed out or there was a database error
+   </td>
+  </tr>
+  <tr>
+   <td>503 - Service Unavailable
+   </td>
+   <td>Server temporarily unable to handle the request
+   </td>
+  </tr>
+  <tr>
+   <td>502 - Bad Gateway
+   </td>
+   <td>Associated with cloudfront error
+   </td>
+  </tr>
+  <tr>
+   <td>504 - Gateway Timeout
+   </td>
+   <td>Associated with cloudfront error
+   </td>
+  </tr>
+</table>
+
+
+
+## Pagination
+
+Both the Conversation endpoint and the Messages endpoint can be paginated using data range arguments and by specifying the number of results you’d like to recieve.
+
+The response will contain the number of results requested, and a next_page_uri. The returned next_page_uri will be the same as the original url you called, but the created_since (or updated_since for Conversations) will be changed to be the timestamp of the last returned.
+
+
+### Pagination example
+
+
+```json
+  "next_page_uri": "/data_api/v1/messages?created_since=2020-09-23T03%3A55%3A03.586000&created_to=2020-09-28T00%3A00%3A00&page_size=100"
+```
+
+
+Or
+
+
+```json
+"next_page_uri": "/data_api/v1/messages?updated_since=2020-09-23T03%3A55%3A03.586000&updated_to=2020-09-28T00%3A00%3A00&page_size=100"
+```
+
+
+
+## API reference
+
+
+### Conversations resource
+
+A conversation object is created any time a new chatter engages with Ada or a returning chatter starts a new conversation in accordance with your persistence settings in Ada.
+
+Conversations are a higher-order object that contain messages (which can be accessed via the Messages endpoint).
+
+
+### Conversation Object Attributes
+
+
+<table>
+  <tr>
+   <td>Attribute
+   </td>
+   <td>Description
+   </td>
+   <td>Type
+   </td>
+   <td>v1.0
+   </td>
+   <td>v1.1
+   </td>
+  </tr>
+  <tr>
+   <td>_id
+   </td>
+   <td>The conversations unique ID
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>date_created
+   </td>
+   <td>The timestamp for when the conversation was created
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>date_updated
+   </td>
+   <td>The timestamp for when the conversation was last updated
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>chatter_id
+   </td>
+   <td>The unique chatter ID
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>platform
+   </td>
+   <td>On which platform did the conversation take place
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>is_engaged
+   </td>
+   <td>Did the chatter send at least one message to start the conversation after a greeting was served by Ada
+   </td>
+   <td>Boolean
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>is_escalated
+   </td>
+   <td>Did the chatter handoff to an integrated CX platform, an email ticket, or otherwise escalate to an agent
+   </td>
+   <td>Boolean
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>csat
+   </td>
+   <td>The associated CSAT score for the conversation
+   </td>
+   <td>JSON Dictionary
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>metavariables
+   </td>
+   <td>Gives the client access to the meta-variables we store
+   </td>
+   <td>JSON Dictionary
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>variables
+   </td>
+   <td>Gives the client access to the unique variable values for the conversation
+   </td>
+   <td>JSON Dictionary
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+</table>
+
+
+
+### Conversations endpoint
+
+GET  /data_api/v1/conversations
+
+
+### Parameters
+
+
+<table>
+  <tr>
+   <td><strong>Params</strong>
+   </td>
+   <td><strong>Required?</strong>
+   </td>
+   <td><strong>Default Value (if param not used)</strong>
+   </td>
+   <td><strong>Type</strong>
+   </td>
+   <td><strong>Example</strong>
+   </td>
+   <td><strong>v1.0</strong>
+   </td>
+   <td><strong>v1.1</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>created_since
+   </td>
+   <td>One of “created_since” or “updated_since” is required
+   </td>
+   <td>NA
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>2020-09-21T00:00:00
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>updated_since
+   </td>
+   <td>One of “created_since” or “updated_since” is required
+   </td>
+   <td>NA
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>2020-09-21T00:00:00
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>created_to
+   </td>
+   <td>No
+   </td>
+   <td>7 days range
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>2020-09-21T00:00:00
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>updated_to
+   </td>
+   <td>No
+   </td>
+   <td>7 days range
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>2020-09-21T00:00:00
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>page_size
+   </td>
+   <td>No
+   </td>
+   <td>10000
+   </td>
+   <td>Integer
+   </td>
+   <td>100
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+</table>
+
+
+
+### Returns
+
+Returns a list Conversation objects along with status message and next page uri if applicable.
+
+
+### Examples
+
+
+### V1
+
+
+#### Get all conversations created_since example
+
+GET  /data_api/v1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+
+200 OK
+
+
+```json
+{
+  "data": [
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
+      "csat": null,
+      "date_created": "2020-09-21T04:30:22.681000+00:00",
+      "date_updated": "2020-09-21T04:33:57.614000+00:00",
+      "is_engaged": true,
+      "is_escalated": false,
+      "metavariables": {
+        "browser": "chrome",
+        "browser_version": "85.0.4183.102",
+        "device": "macos",
+        "introshown": "False",
+        "language": "en",
+        "last_answer_id": "<mongodb_12_byte_object_id>",
+        "last_question_asked": "Ada",
+        "test_user": "1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+      },
+      "platform": "chat",
+      "variables": {
+        "name": "Ada"
+      }
+    }
+  ],
+  "message": "OK",
+  "next_page_uri": "/data_api/v1/conversations?created_since=2020-09-25T15%3A00%3A26.906000&created_to=2020-09-28T00%3A00%3A00&page_size=100"
+}
+```
+
+
+
+#### Get all conversations that were updated after a certain date example
+
+GET  /data_api/v1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+
+200 OK
+
+
+```json
+{
+  "data": [
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
+      "csat": null,
+      "date_created": "2020-09-21T04:30:22.681000+00:00",
+      "date_updated": "2020-09-21T04:33:57.614000+00:00",
+      "is_engaged": true,
+      "is_escalated": false,
+      "metavariables": {
+        "browser": "chrome",
+        "browser_version": "85.0.4183.102",
+        "device": "macos",
+        "introshown": "False",
+        "language": "en",
+        "last_answer_id": "<mongodb_12_byte_object_id>",
+        "last_question_asked": "Ada",
+        "test_user": "1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+      },
+      "platform": "chat",
+      "variables": {
+        "name": "Ada"
+      }
+    }
+  ],
+  "message": "OK",
+  "next_page_uri": "/data_api/v1/conversations?updated_since=2020-09-25T15%3A00%3A26.906000&updated_to=2020-09-28T00%3A00%3A00&page_size=100"
+}
+```
+
+
+
+### V1.1
+
+
+#### Get all conversations created_since example
+
+GET  /data_api/v1.1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+
+200 OK
+
+
+```json
+{
+  "data": [
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
+      "csat": null,
+      "date_created": "2020-09-21T04:30:22.681000+00:00",
+      "date_updated": "2020-09-21T04:33:57.614000+00:00",
+      "is_engaged": true,
+      "is_escalated": false,
+      "metavariables": {
+        "browser": "chrome",
+        "browser_version": "85.0.4183.102",
+        "device": "macos",
+        "introshown": "False",
+        "language": "en",
+        "last_answer_id": "<mongodb_12_byte_object_id>",
+        "last_question_asked": "Ada",
+        "test_user": "1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+      },
+      "platform": "chat",
+      "variables": {
+        "name": "Ada"
+      }
+    }
+  ],
+  "message": "OK",
+  "next_page_uri": "/data_api/v1.1/conversations?created_since=2020-09-25T15%3A00%3A26.906000&created_to=2020-09-28T00%3A00%3A00&page_size=100"
+}
+```
+
+
+
+#### Get all conversations that were updated after a certain date example
+
+GET  /data_api/v1.1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+
+200 OK
+
+
+```json
+{
+  "data": [
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
+      "csat": null,
+      "date_created": "2020-09-21T04:30:22.681000+00:00",
+      "date_updated": "2020-09-21T04:33:57.614000+00:00",
+      "is_engaged": true,
+      "is_escalated": false,
+      "metavariables": {
+        "browser": "chrome",
+        "browser_version": "85.0.4183.102",
+        "device": "macos",
+        "introshown": "False",
+        "language": "en",
+        "last_answer_id": "<mongodb_12_byte_object_id>",
+        "last_question_asked": "Ada",
+        "test_user": "1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36"
+      },
+      "platform": "chat",
+      "variables": {
+        "name": "Ada"
+      }
+    }
+  ],
+  "message": "OK",
+  "next_page_uri": "/data_api/v1.1/conversations?updated_since=2020-09-25T15%3A00%3A26.906000&updated_to=2020-09-28T00%3A00%3A00&page_size=100"
+}
+```
+
+
+
+### Messages resource
+
+A message object is created anytime either Ada or a chatter sends a message. All messages are associated with a conversation by a conversation_id.
+
+
+<table>
+  <tr>
+   <td>Attribute
+   </td>
+   <td>Description
+   </td>
+   <td>Type
+   </td>
+   <td>v1.0
+   </td>
+   <td>v1.1
+   </td>
+  </tr>
+  <tr>
+   <td>_id
+   </td>
+   <td>The message’s unique ID
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>date_created
+   </td>
+   <td>The timestamp for when the message was originally created
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>conversation_id
+   </td>
+   <td>A reference to the conversation object to which the message belongs
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>chatter_id
+   </td>
+   <td>A reference to the chatter object to which the message belongs
+   </td>
+   <td>String
+   </td>
+   <td>✘
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>message_data
+   </td>
+   <td>An object containing the message content. (The message text is in the body property of the object)
+   </td>
+   <td>JSON Dictionary
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>sender
+   </td>
+   <td>The sender of the message (A unique ID if it is a chatter, or “agent” or “bot” otherwise)
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>recipient
+   </td>
+   <td>The recipient of the message (A unique ID if it is a chatter, or “agent” or “bot” otherwise)
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>review
+   </td>
+   <td>Was the answer given a thumbs up or thumbs down?
+   </td>
+   <td>Integer
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>answer_title
+   </td>
+   <td>The title of the answer in the builder interface
+   </td>
+   <td>String
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+</table>
+
+
+
+### Messages endpoint
+
+GET  /data_api/v1/messages
+
+
+### Parameters
+
+
+<table>
+  <tr>
+   <td><strong>Params</strong>
+   </td>
+   <td><strong>Required?</strong>
+   </td>
+   <td><strong>Default Value (if param not used)</strong>
+   </td>
+   <td><strong>Type</strong>
+   </td>
+   <td><strong>Example</strong>
+   </td>
+   <td><strong>v1.0</strong>
+   </td>
+   <td><strong>v1.1</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>created_since
+   </td>
+   <td>Yes
+   </td>
+   <td>NA
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>2020-09-21T00:00:00
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>created_to
+   </td>
+   <td>No
+   </td>
+   <td>7 days
+   </td>
+   <td>UTC Timestamp
+   </td>
+   <td>2020-09-21T00:00:00
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>page_size
+   </td>
+   <td>No
+   </td>
+   <td>10000
+   </td>
+   <td>Integer
+   </td>
+   <td>100
+   </td>
+   <td>✔
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>conversation_id
+   </td>
+   <td>No
+   </td>
+   <td>NA
+   </td>
+   <td>String
+   </td>
+   <td>&lt;mongodb_12_byte_object_id>
+   </td>
+   <td>✘
+   </td>
+   <td>✔
+   </td>
+  </tr>
+  <tr>
+   <td>chatter_id
+   </td>
+   <td>No
+   </td>
+   <td>NA
+   </td>
+   <td>String
+   </td>
+   <td>&lt;mongodb_12_byte_object_id>
+   </td>
+   <td>✘
+   </td>
+   <td>✔
+   </td>
+  </tr>
+</table>
+
+
+
+### Returns
+
+Returns a list messages objects along with a status message and next page uri if applicable.
+
+
+### Examples
+
+
+### V1
+
+
+#### Get all messages created_since example
+
+GET \
+/data_api/v1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+
+
+```json
+200 OK
+
+{
+  "data": [
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "answer_title": null,
+      "conversation_id": "<mongodb_12_byte_object_id>",
+      "date_created": "2020-09-21T04:30:22.268000+00:00",
+      "message_data": {
+        "_type": "greeting",
+        "external_chat_id": "3cf45844-baa0-4172-ad02-797a269d3ba0",
+        "reviewable_message": false
+      },
+      "recipient": "ada",
+      "review": 0,
+      "sender": "1d4f40e5-7942-464e-9d01-112d03156201"
+    },
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "answer_title": null,
+      "conversation_id": "<mongodb_12_byte_object_id>",
+      "date_created": "2020-09-21T04:30:23.256000+00:00",
+      "message_data": {
+        "_type": "meta",
+        "meta_message_data": {
+          "id": "<mongodb_12_byte_object_id>",
+          "name": "browser",
+          "new_value": "chrome",
+          "old_value": null,
+          "scope": "meta"
+        },
+        "meta_message_type": "variable_change"
+      },
+      "recipient": "1d4f40e5-7942-464e-9d01-112d03156201",
+      "review": 0,
+      "sender": "bot"
+    }
+  ],
+  "message": "OK",
+  "next_page_uri": "/data_api/v1/messages?created_since=2020-09-23T03%3A55%3A03.586000&created_to=2020-09-28T00%3A00%3A00&page_size=100"
+}
+```
+
+
+
+### V1.1
+
+
+#### Get all messages created_since example
+
+GET \
+/data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+
+
+```json
+200 OK
+
+{
+  "data": [
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "answer_title": null,
+      "conversation_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
+      "date_created": "2020-09-21T04:30:22.268000+00:00",
+      "message_data": {
+        "_type": "greeting",
+        "external_chat_id": "3cf45844-baa0-4172-ad02-797a269d3ba0",
+        "reviewable_message": false
+      },
+      "recipient": "ada",
+      "review": 0,
+      "sender": "1d4f40e5-7942-464e-9d01-112d03156201"
+    },
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "answer_title": null,
+      "conversation_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
+      "date_created": "2020-09-21T04:30:23.256000+00:00",
+      "message_data": {
+        "_type": "meta",
+        "meta_message_data": {
+          "id": "<mongodb_12_byte_object_id>",
+          "name": "browser",
+          "new_value": "chrome",
+          "old_value": null,
+          "scope": "meta"
+        },
+        "meta_message_type": "variable_change"
+      },
+      "recipient": "1d4f40e5-7942-464e-9d01-112d03156201",
+      "review": 0,
+      "sender": "bot"
+    }
+  ],
+  "message": "OK",
+  "next_page_uri": "/data_api/v1.1/messages?created_since=2020-09-23T03%3A55%3A03.586000&created_to=2020-09-28T00%3A00%3A00&page_size=100"
+}
+```
+
+
+
+#### Get all messages created_since by conversation_id and chatter_id example
+
+GET \
+/data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100&conversation_id=60f6e4b177c2c9b51e74df4b&chatter_id=60f6e4b177c2c9b51e74df4a
+
+
+```json
+200 OK
+
+{
+  "data": [
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "answer_title": null,
+      "conversation_id": "60f6e4b177c2c9b51e74df4b",
+      "chatter_id": "60f6e4b177c2c9b51e74df4a",
+      "date_created": "2020-09-21T04:30:22.268000+00:00",
+      "message_data": {
+        "_type": "greeting",
+        "external_chat_id": "3cf45844-baa0-4172-ad02-797a269d3ba0",
+        "reviewable_message": false
+      },
+      "recipient": "ada",
+      "review": 0,
+      "sender": "1d4f40e5-7942-464e-9d01-112d03156201"
+    },
+    {
+      "_id": "<mongodb_12_byte_object_id>",
+      "answer_title": null,
+      "conversation_id": "60f6e4b177c2c9b51e74df4b",
+      "chatter_id": "60f6e4b177c2c9b51e74df4a",
+      "date_created": "2020-09-21T04:30:23.256000+00:00",
+      "message_data": {
+        "_type": "meta",
+        "meta_message_data": {
+          "id": "<mongodb_12_byte_object_id>",
+          "name": "browser",
+          "new_value": "chrome",
+          "old_value": null,
+          "scope": "meta"
+        },
+        "meta_message_type": "variable_change"
+      },
+      "recipient": "1d4f40e5-7942-464e-9d01-112d03156201",
+      "review": 0,
+      "sender": "bot"
+    }
+  ],
+  "message": "OK",
+  "next_page_uri": "/data_api/v1.1/messages?created_since=2020-09-23T03%3A55%3A03.586000&created_to=2020-09-28T00%3A00%3A00&page_size=100"
+}
+```
+
+
+
+## Data API Changelog
+
+
+### Revision History
+
+
+<table>
+  <tr>
+   <td>Date
+   </td>
+   <td>Description
+   </td>
+  </tr>
+  <tr>
+   <td>2021.02.24
+   </td>
+   <td>Data API v1 first available for early access clients. Message, Conversation endpoints published.
+   </td>
+  </tr>
+  <tr>
+   <td>2021.06.22
+   </td>
+   <td>Added additional request timed out error code (408).
+   </td>
+  </tr>
+  <tr>
+   <td>2021.07.29
+   </td>
+   <td>Added self-serve auth key generation in ui portal under data api feature flag. Beta Release v1 for additional clients.
+   </td>
+  </tr>
+  <tr>
+   <td>2021.08.10
+   </td>
+   <td>Added data api base uri endpoint in Data Export API ui portal under settings/integrations.
+   </td>
+  </tr>
+</table>
