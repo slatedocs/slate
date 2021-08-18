@@ -2774,6 +2774,13 @@ $result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' =
       "resource_type": "team",
       "name": "Marketing"
     },
+    "time_period": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
+    },
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -2919,6 +2926,11 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
     "team": {
       "name": "Marketing"
     },
+    "time_period": {
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
+    },
     "workspace": {
       "name": "My Company Workspace"
     }
@@ -2969,6 +2981,13 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
+    },
+    "time_period": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
     },
     "workspace": {
       "gid": "12345",
@@ -3027,11 +3046,27 @@ Returns the complete updated goal record.
 |»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
 |»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
 |»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» time_period<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+|»»» period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+|»»» start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| period|FY|
+| period|H1|
+| period|H2|
+| period|Q1|
+| period|Q2|
+| period|Q3|
+| period|Q4|
 
 <h3 id="update-a-goal-responses">Responses</h3>
 
@@ -3204,7 +3239,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<JsonElement> result = client.goals.getGoals(workspace, team, isWorkspaceLevel, project, portfolio)
+List<JsonElement> result = client.goals.getGoals(timePeriods, workspace, team, isWorkspaceLevel, project, portfolio)
     .option("pretty", true)
     .execute();
 ```
@@ -3256,6 +3291,7 @@ Returns compact goal records.
 |?is_workspace_level<span class="param-type"> boolean</span>|Filter to goals with is_workspace_level set to query value. Must be used with the workspace parameter.|
 |?team<span class="param-type"> string</span>|Globally unique identifier for the team.|
 |?workspace<span class="param-type"> string</span>|Globally unique identifier for the workspace.|
+|?time_periods<span class="param-type"> array[string]</span>|Globally unique identifiers for the time periods.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -3394,6 +3430,13 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
+    },
+    "time_period": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
     },
     "workspace": {
       "gid": "12345",
@@ -3543,6 +3586,13 @@ Update GoalMetric
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
+    },
+    "time_period": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
     },
     "workspace": {
       "gid": "12345",
@@ -3979,6 +4029,13 @@ $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'val
       "resource_type": "team",
       "name": "Marketing"
     },
+    "time_period": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
+    },
     "workspace": {
       "gid": "12345",
       "resource_type": "workspace",
@@ -4156,6 +4213,13 @@ $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => '
       "gid": "12345",
       "resource_type": "team",
       "name": "Marketing"
+    },
+    "time_period": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
     },
     "workspace": {
       "gid": "12345",
@@ -19995,6 +20059,301 @@ Returns the compact team membership records for the user.
 
 </section><hr class="full-line">
 <section class="full-section">
+<a id="asana-time-periods"></a>
+<h1 id="time-periods">Time Periods</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/get-a-time-period"><span class="get-verb">GET</span> <span class=""nn>/time_periods/{time_period_gid}</span></a><br><a href="/docs/get-time-periods"><span class="get-verb">GET</span> <span class=""nn>/time_periods</span></a></code>
+</pre>
+
+<span class="description">
+A `time_period` is an object that represents a domain-scoped date range that can be set on `Goals`.
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Get a time period
+
+<a id="opIdgetTimePeriod"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/time_periods/{time_period_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.timeperiods.getTimePeriod(timePeriodGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.time_periods.get_time_period(time_period_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.time_periods.get_time_period(time_period_gid: 'time_period_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.timeperiods.getTimePeriod(timePeriodGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->timeperiods->getTimePeriod($time_period_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "time_period",
+    "end_on": "2019-09-14",
+    "period": "Q1",
+    "start_on": "2019-09-13",
+    "parent": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
+    }
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /time_periods/{time_period_gid}</code>
+</p>
+
+<span class="description">
+Get the full record for a single time period.
+</span>
+
+<h3 id="get-a-time-period-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/time_period_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the time period.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-time-period-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the record for a single time period.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="get-a-time-period-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [TimePeriodResponse](#schematimeperiodresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
+| parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|period|FY|
+|period|H1|
+|period|H2|
+|period|Q1|
+|period|Q2|
+|period|Q3|
+|period|Q4|
+
+</section><hr class="half-line">
+<section>
+## Get time periods
+
+<a id="opIdgetTimePeriods"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/time_periods?workspace=31326 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.timeperiods.getTimePeriods({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.time_periods.get_time_periods({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.time_periods.get_time_periods(workspace: '&#x27;workspace_example&#x27;', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.timeperiods.getTimePeriods(endOn, startOn, workspace)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->timeperiods->getTimePeriods(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /time_periods</code>
+</p>
+
+<span class="description">
+Returns compact time period records.
+</span>
+
+<h3 id="get-time-periods-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?start_on<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?end_on<span class="param-type"> string(date)</span>|ISO 8601 date string|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-time-periods-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully retrieved the requested time periods.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="get-time-periods-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [[TimePeriodCompact](#schematimeperiodcompact)]</span>|[A generic Asana Resource, containing a globally unique identifier.]|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|period|FY|
+|period|H1|
+|period|H2|
+|period|Q1|
+|period|Q2|
+|period|Q3|
+|period|Q4|
+
+</section><hr class="full-line">
+<section class="full-section">
 <a id="asana-typeahead"></a>
 <h1 id="typeahead">Typeahead</h1>
 
@@ -23550,6 +23909,13 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Goal), b
     "resource_type": "team",
     "name": "Marketing"
   },
+  "time_period": {
+    "gid": "12345",
+    "resource_type": "time_period",
+    "end_on": "2019-09-14",
+    "period": "Q1",
+    "start_on": "2019-09-13"
+  },
   "workspace": {
     "gid": "12345",
     "resource_type": "workspace",
@@ -23612,6 +23978,12 @@ A generic Asana Resource, containing a globally unique identifier.
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the team.|
+|time_period<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+|» period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+|» start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -23632,6 +24004,13 @@ A generic Asana Resource, containing a globally unique identifier.
 |unit|none|
 |unit|currency|
 |unit|percentage|
+|period|FY|
+|period|H1|
+|period|H2|
+|period|Q1|
+|period|Q2|
+|period|Q3|
+|period|Q4|
 
 </section><hr>
 <section>
