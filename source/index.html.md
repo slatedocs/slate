@@ -120,6 +120,8 @@ last_name | string |
 professions | array of strings | list of professions, eg. `["schauspieler", "synchronsprecher"]`
 main_picture_url_tile | string | profile picture url (thumbnail version)
 picture_url | string | profile picture url of specified version
+castupload_url | string | url of the profile on castupload
+castupload_professional_url | string | url of the profile on castupload professional (only available when connected)
 
 ## Get a specific actor profile
 
@@ -136,6 +138,7 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   "first_name": "John",
   "last_name": "Doe",
   "castupload_url": "https://www.castupload.com/actors/john-doe",
+  "castupload_professional_url": "https://www.pro.castupload.com/profil/castupload/162",
   "acting_age_from": 35,
   "acting_age_to": 45,
   "year_of_birth": 1980,
