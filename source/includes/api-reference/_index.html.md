@@ -2659,7 +2659,7 @@ tasks contained within the project.*
 <h1 id="goals">Goals</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/update-a-goal"><span class="put-verb">PUT</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/delete-a-goal"><span class="delete-verb">DELETE</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/get-goals"><span class="get-verb">GET</span> <span class=""nn>/goals</span></a><br><a href="/docs/create-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetric</span></a><br><a href="/docs/update-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetricCurrentValue</span></a><br><a href="/docs/add-a-subgoal-to-a-parent-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSubgoal</span></a><br><a href="/docs/remove-a-subgoal-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSubgoal</span></a><br><a href="/docs/add-a-collaborator-to-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addFollowers</span></a><br><a href="/docs/remove-a-collaborator-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeFollowers</span></a><br><a href="/docs/add-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSupportingWork</span></a><br><a href="/docs/remove-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSupportingWork</span></a><br><a href="/docs/get-subgoals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/subgoals</span></a><br><a href="/docs/get-supporting-work-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/supportingWork</span></a><br><a href="/docs/get-parent-goals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/parentGoals</span></a></code>
+<code><a href="/docs/get-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/update-a-goal"><span class="put-verb">PUT</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/delete-a-goal"><span class="delete-verb">DELETE</span> <span class=""nn>/goals/{goal_gid}</span></a><br><a href="/docs/get-goals"><span class="get-verb">GET</span> <span class=""nn>/goals</span></a><br><a href="/docs/create-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals</span></a><br><a href="/docs/create-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetric</span></a><br><a href="/docs/update-a-goal-metric"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/setMetricCurrentValue</span></a><br><a href="/docs/add-a-subgoal-to-a-parent-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSubgoal</span></a><br><a href="/docs/remove-a-subgoal-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSubgoal</span></a><br><a href="/docs/add-a-collaborator-to-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addFollowers</span></a><br><a href="/docs/remove-a-collaborator-from-a-goal"><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeFollowers</span></a><br><a href="/docs/add-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/addSupportingWork</span></a><br><a href="/docs/remove-a-project/portfolio-as-supporting-work-for-a-goal."><span class="post-verb">POST</span> <span class=""nn>/goals/{goal_gid}/removeSupportingWork</span></a><br><a href="/docs/get-subgoals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/subgoals</span></a><br><a href="/docs/get-supporting-work-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/supportingWork</span></a><br><a href="/docs/get-parent-goals-from-a-goal"><span class="get-verb">GET</span> <span class=""nn>/goals/{goal_gid}/parentGoals</span></a></code>
 </pre>
 
 <span class="description">
@@ -3033,7 +3033,7 @@ Returns the complete updated goal record.
 |»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
-|»» is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
+|»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
 |»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
 |»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
@@ -3311,6 +3311,254 @@ Returns compact goal records.
 
 </section><hr class="half-line">
 <section>
+## Create a goal
+
+<a id="opIdcreateGoal"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/goals \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.goals.createGoal({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.goals.create_goal({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.goals.create_goal(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.goals.createGoal()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "current_display_value": "8.12",
+      "current_number_value": 8.12
+    },
+    "name": "Grow web traffic by 30%",
+    "notes": "Start building brand awareness.",
+    "owner": {
+      "name": "Greg Sanchez"
+    },
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "name": "Marketing"
+    },
+    "time_period": {
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
+    },
+    "workspace": {
+      "name": "My Company Workspace"
+    }
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "goal",
+    "name": "Grow web traffic by 30%",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "due_on": "2019-09-15",
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "html_notes": "<body>Start building brand awareness.</body>",
+    "is_workspace_level": true,
+    "liked": false,
+    "metric": {
+      "gid": "12345",
+      "resource_type": "task",
+      "currency_code": "EUR",
+      "current_display_value": "8.12",
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "resource_subtype": "number",
+      "target_number_value": 10.2,
+      "unit": "none"
+    },
+    "notes": "Start building brand awareness.",
+    "start_on": "2019-09-14",
+    "status": "string",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "time_period": {
+      "gid": "12345",
+      "resource_type": "time_period",
+      "end_on": "2019-09-14",
+      "period": "Q1",
+      "start_on": "2019-09-13"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "num_likes": 5
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /goals</code>
+</p>
+
+<span class="description">
+Creates a new goal in a workspace or team.
+
+Returns the full record of the newly created goal.
+</span>
+
+<h3 id="create-a-goal-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to create.|
+|» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
+|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
+|»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
+|»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
+|»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
+|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|»» name<span class="param-type"> string</span>|The name of the goal.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
+|»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
+|»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
+|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» time_period<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+|»»» period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+|»»» start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
+|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| period|FY|
+| period|H1|
+| period|H2|
+| period|Q1|
+| period|Q2|
+| period|Q3|
+| period|Q4|
+
+<h3 id="create-a-goal-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Goal](#schemagoal)</span>|Successfully created a new goal.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
 ## Create a goal metric
 
 <a id="opIdcreateGoalMetric"></a>
@@ -3495,7 +3743,7 @@ Creates and adds a goal metric to a specified goal. Note that this replaces an e
 <section>
 ## Update a goal metric
 
-<a id="opIdUpdate GoalMetric"></a>
+<a id="opIdupdateGoalMetric"></a>
 
 > Code samples
 
@@ -3509,28 +3757,53 @@ curl -X POST https://app.asana.com/api/1.0/goals/{goal_gid}/setMetricCurrentValu
 ```
 
 ```javascript--nodejs
-Update GoalMetric
+const asana = require('asana');
 
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.goals.updateGoalMetric({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
 ```
 
 ```python
-Update GoalMetric
+import asana
 
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.goals.update_goal_metric({'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
-Update GoalMetric
+require 'asana'
 
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.goals.update_goal_metric(field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
-Update GoalMetric
+import com.asana.Client;
 
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.goals.updateGoalMetric()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
 ```
 
 ```php
-Update GoalMetric
+<?php
+require 'php-asana/vendor/autoload.php';
 
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -20162,7 +20435,7 @@ $result = $client->timeperiods->getTimePeriod($time_period_gid, array('param' =>
 </p>
 
 <span class="description">
-Get the full record for a single time period.
+Returns the full record for a single time period.
 </span>
 
 <h3 id="get-a-time-period-parameters">Parameters</h3>
@@ -20197,11 +20470,6 @@ Status Code **200**
 | period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 | start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 | parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
-| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
-| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 
 #### Enumerated Values
 
@@ -23958,7 +24226,7 @@ A generic Asana Resource, containing a globally unique identifier.
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
-|is_workspace_level<span class="param-type"> boolean</span>|Whether the goal belongs to the workspace (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
+|is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
 |metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -25893,7 +26161,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|assignee_section<span class="param-type"> object</span>|The *assignee section* is a subdivision of a project that groups  tasks together in the assignee's "My Tasks" list. It can either be a  header above a list of tasks in a list view or a column in a board  view of "My Tasks."<br>The `assignee_section` property will be returned in the response only  if the request was sent by the user who is the assignee of the task.  Note that you can only write to `assignee_section` with the gid of an  existing section visible in the user's "My Tasks" list.|
+|assignee_section<span class="param-type"> object</span>|The *assignee section* is a subdivision of a project that groups tasks together in the assignee's "My Tasks" list. It can either be a header above a list of tasks in a list view or a column in a board view of "My Tasks."<br>The `assignee_section` property will be returned in the response only if the request was sent by the user who is the assignee of the task. Note that you can only write to `assignee_section` with the gid of an existing section visible in the user's "My Tasks" list.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
