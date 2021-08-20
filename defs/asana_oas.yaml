@@ -2126,6 +2126,9 @@ components:
                 - $ref: '#/components/schemas/TeamCompact'
                 - type: object
                   nullable: true
+              description: >-
+                *Conditional*. This property is only present when the `workspace`
+                provided is an organization.
             time_period:
               allOf:
                 - $ref: '#/components/schemas/TimePeriodCompact'
@@ -2143,9 +2146,11 @@ components:
             is_workspace_level:
               type: boolean
               description: >-
-                Whether the goal belongs to the workspace (and is listed as part of
-                the workspace’s goals) or not. If it isn’t a workspace-level goal,
-                it is a team-level goal, and is associated with the goal’s team.
+                *Conditional*. This property is only present when the `workspace`
+                provided is an organization. Whether the goal belongs to the `workspace`
+                (and is listed as part of the workspace’s goals) or not. If it isn’t
+                a workspace-level goal, it is a team-level goal, and is associated
+                with the goal’s team.
               example: true
             followers:
               type: array
@@ -3759,16 +3764,19 @@ components:
               allOf:
                 - $ref: '#/components/schemas/SectionCompact'
                 - description: >-
-                    The *assignee section* is a subdivision of a project that groups  tasks
-                    together in the assignee's "My Tasks" list. It can either be a  header
-                    above a list of tasks in a list view or a column in a board  view
-                    of "My Tasks."
+                    The *assignee section* is a subdivision of a project that groups
+                    tasks together in the assignee's "My Tasks" list. It can either
+                    be a
+                    header above a list of tasks in a list view or a column in a board
+                    view of "My Tasks."
 
                     The `assignee_section` property will be returned in the response
-                    only  if the request was sent by the user who is the assignee
-                    of the task.  Note that you can only write to `assignee_section`
-                    with the gid of an  existing section visible in the user's "My
-                    Tasks" list.
+                    only
+                    if the request was sent by the user who is the assignee of the
+                    task.
+                    Note that you can only write to `assignee_section` with the gid
+                    of an
+                    existing section visible in the user's "My Tasks" list.
             custom_fields:
               description: >-
                 Array of custom field values applied to the task. These
@@ -5821,6 +5829,47 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create a goal
+      description: |-
+        Creates a new goal in a workspace or team.
+
+        Returns the full record of the newly created goal.
+      tags:
+        - Goals
+      operationId: createGoal
+      requestBody:
+        description: The goal to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/GoalRequest'
+      responses:
+        201:
+          description: Successfully created a new goal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/GoalResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/setMetric:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -5878,7 +5927,7 @@ paths:
         Returns the complete updated goal metric record.
       tags:
         - Goals
-      operationId: Update GoalMetric
+      operationId: updateGoalMetric
       requestBody:
         description: The updated fields for the goal metric.
         required: true
@@ -10841,7 +10890,7 @@ paths:
       - $ref: '#/components/parameters/fields'
     get:
       summary: Get a time period
-      description: Get the full record for a single time period.
+      description: Returns the full record for a single time period.
       operationId: getTimePeriod
       tags:
         - Time Periods
