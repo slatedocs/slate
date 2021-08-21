@@ -2220,13 +2220,11 @@ components:
                 has a precision of 0, while a value of 0.251 has a precision of 1.
                 This is due to 0.25 being displayed as 25%.
               type: integer
-              readOnly: true
               example: 2
             unit:
               description: >-
                 A supported unit of measure for the goal metric, or none.
               type: string
-              readOnly: true
               enum:
                 - none
                 - currency
@@ -2236,7 +2234,6 @@ components:
                 ISO 4217 currency code to format this custom field. This will be
                 null if the `format` is not `currency`.
               type: string
-              readOnly: true
               nullable: true
               example: EUR
             initial_number_value:
@@ -2244,14 +2241,12 @@ components:
                 *Conditional*. This number is the start value of a goal metric of
                 type number.
               type: number
-              readOnly: true
               example: 5.2
             target_number_value:
               description: >-
                 *Conditional*. This number is the end value of a goal metric of
                 type number.
               type: number
-              readOnly: true
               example: 10.2
             current_number_value:
               description: >-
