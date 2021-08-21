@@ -2913,8 +2913,13 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
     "is_workspace_level": true,
     "liked": false,
     "metric": {
+      "currency_code": "EUR",
       "current_display_value": "8.12",
-      "current_number_value": 8.12
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "target_number_value": 10.2,
+      "unit": "none"
     },
     "name": "Grow web traffic by 30%",
     "notes": "Start building brand awareness.",
@@ -3036,8 +3041,13 @@ Returns the complete updated goal record.
 |»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
 |»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
 |»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|»»» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
+|»»» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|»»» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |»» name<span class="param-type"> string</span>|The name of the goal.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
 |»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -3056,10 +3066,18 @@ Returns the complete updated goal record.
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
+#### Detailed descriptions
+
+**precision**: Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
+
 #### Enumerated Values
 
 |Parameter|Value|
 |---|---|
+| unit|none|
+| unit|currency|
+| unit|percentage|
 | period|FY|
 | period|H1|
 | period|H2|
@@ -3391,8 +3409,13 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
     "is_workspace_level": true,
     "liked": false,
     "metric": {
+      "currency_code": "EUR",
       "current_display_value": "8.12",
-      "current_number_value": 8.12
+      "current_number_value": 8.12,
+      "initial_number_value": 5.2,
+      "precision": 2,
+      "target_number_value": 10.2,
+      "unit": "none"
     },
     "name": "Grow web traffic by 30%",
     "notes": "Start building brand awareness.",
@@ -3512,8 +3535,13 @@ Returns the full record of the newly created goal.
 |»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
 |»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
 |»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|»»» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
+|»»» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|»»» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |»» name<span class="param-type"> string</span>|The name of the goal.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
 |»» owner<span class="param-type"> object¦null</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -3533,10 +3561,18 @@ Returns the full record of the newly created goal.
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
 
+#### Detailed descriptions
+
+**precision**: Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
+
 #### Enumerated Values
 
 |Parameter|Value|
 |---|---|
+| unit|none|
+| unit|currency|
+| unit|percentage|
 | period|FY|
 | period|H1|
 | period|H2|
@@ -3629,8 +3665,13 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
 ```json
 {
   "data": {
+    "currency_code": "EUR",
     "current_display_value": "8.12",
-    "current_number_value": 8.12
+    "current_number_value": 8.12,
+    "initial_number_value": 5.2,
+    "precision": 2,
+    "target_number_value": 10.2,
+    "unit": "none"
   }
 }
 ```
@@ -3722,10 +3763,28 @@ Creates and adds a goal metric to a specified goal. Note that this replaces an e
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The goal metric to create.|
 |» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
 |»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
 |»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|»» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|»» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**precision**: Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| unit|none|
+| unit|currency|
+| unit|percentage|
 
 <h3 id="create-a-goal-metric-responses">Responses</h3>
 
