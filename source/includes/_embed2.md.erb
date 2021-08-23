@@ -263,13 +263,29 @@ Takes in a language code to programatically set the bot language. Languages must
 </script>
 ```
 
-`metaFields?: object;`
+`metaFields?: { [key: string]: string|number|boolean|null };`
 
 Used to pass meta information about a `chatter`. This can be useful for tracking information about your end users, as well as for personalizing their experience. For example, you may wish to track the `phone_number` and `name` for conversation attribution. Once set, this information can be accessed in the email attachment from Handoff Form submissions, or via the *Chatter Info* modal in the *Conversations* page of your Ada dashboard. Should you need to programatically change these values after bot setup, you can make use of the `setMetaFields` action below.
 
 <aside class="notice">
 Meta field keys should not include whitespace, emojis, special characters or periods.
 </aside>
+
+#### sensitiveMetaFields
+
+```html
+<script type="text/javascript">
+  window.adaSettings = {
+    sensitiveMetaFields: {
+      jwt_token: "xxxxx.yyyyy.zzzzz",
+    }
+  }
+</script>
+```
+
+`sensitiveMetaFields?: { [key: string]: string|number|boolean|null };`
+
+Similar to `metaFields` except the values are not stored in the database and will be deleted after 24 hours.
 
 #### lazy
 `lazy?: boolean;`
@@ -406,7 +422,7 @@ window.adaEmbed.reset({
 
 `reset(resetParams?: ResetParams): Promise<void>;`
 
-Creates a new `chatter` and refreshes the Chat window. `reset` can take an optional object allowing `language`, `metaFields`, and `greeting` to be changed for the new `chatter`.
+Creates a new `chatter` and refreshes the Chat window. `reset` can take an optional object allowing `language`, `metaFields`, `sensitiveMetaFields`, and `greeting` to be changed for the new `chatter`.
 
 To prevent creating a new `chatter` (and maintain conversation history), `resetChatHistory` can be passed to the object with a value of `false`.
 
@@ -419,13 +435,25 @@ window.adaEmbed.setMetaFields({
 });
 ```
 
-`setMetaFields(options: object): Promise<void>;`
+`setMetaFields(fields: { [key: string]: string|number|boolean|null }): Promise<void>;`
 
 Used to update `metaFields` after Chat has been opened. In most situations, the `metaFields` settings object should be enough for user attribution. However, in cases where Ada Chat remains open while page changes occur (like in Single Page Applications), this methods may be useful.
 
 <aside class="notice">
 Meta field keys should not include whitespace, emojis, special characters or periods.
 </aside>
+
+#### setSensitiveMetaFields
+
+```js
+window.adaEmbed.setSensitiveMetaFields({
+  jwt_token: "xxxxx.yyyyy.zzzzz",
+});
+```
+
+`setSensitiveMetaFields(fields: { [key: string]: string|number|boolean|null }): Promise<void>;`
+
+Same as `setMetaFields` except the values are not stored in the database and will be deleted after 24 hours.
 
 #### start
 
