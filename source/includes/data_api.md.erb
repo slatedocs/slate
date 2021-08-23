@@ -115,9 +115,9 @@ https://{bot_handle_name}.ada.support/api/data_api/{version}
 ```
 
 
-Replace {bot_handle_name} with your bot’s handle name
+> Replace `{bot_handle_name}` with your bot’s handle name
 
-{version} is the version number of the endpoint in the format of v{Major}.{Minor} e.g. v1, v1.1
+> `{version}` is the version number of the endpoint in the format of v{Major}.{Minor} e.g. v1, v1.1
 
 
 #### Ada developer slack channel
@@ -177,15 +177,17 @@ The response will contain the number of results requested, and a next_page_uri. 
 
 
 ```json
-  "next_page_uri": "/data_api/v1/messages?created_since=2020-09-23T03%3A55%3A03.586000&created_to=2020-09-28T00%3A00%3A00&page_size=100"
+  {"next_page_uri":
+  "/data_api/v1/messages?created_since=2020-09-23T03%3A55%3A03.586000&created_to=2020-09-28T00%3A00%3A00&page_size=100"}
 ```
 
 
-Or
+> Or
 
 
 ```json
-"next_page_uri": "/data_api/v1/messages?updated_since=2020-09-23T03%3A55%3A03.586000&updated_to=2020-09-28T00%3A00%3A00&page_size=100"
+{"next_page_uri":
+"/data_api/v1/messages?updated_since=2020-09-23T03%3A55%3A03.586000&updated_to=2020-09-28T00%3A00%3A00&page_size=100"}
 ```
 
 
@@ -220,7 +222,7 @@ Conversations are a higher-order object that contain messages (which can be acce
 
 ### Conversations endpoint
 
-GET  /data_api/v1/conversations
+`GET  /data_api/v1/conversations`
 
 
 ### Parameters
@@ -228,8 +230,8 @@ GET  /data_api/v1/conversations
 
 |Params|Required?|Default Value (if param not used)|Type|Example|v1.0|v1.1|
 |--- |--- |--- |--- |--- |--- |--- |
-|created_since|One of “created_since” or “updated_since” is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
-|updated_since|One of “created_since” or “updated_since” is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|created_since|One of `created_since` or `updated_since` is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|updated_since|One of `created_since` or `updated_since` is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
 |created_to|No|7 days range|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
 |updated_to|No|7 days range|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
 |page_size|No|10000|Integer|100|✔|✔|
@@ -243,14 +245,13 @@ Returns a list Conversation objects along with status message and next page uri 
 ### Examples
 
 
-### V1
+#### V1
 
 
-#### Get all conversations created_since example
+#### Get all conversations after`created_since`
 
-GET  /data_api/v1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+`GET  /data_api/v1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
-200 OK
 
 
 ```json
@@ -288,11 +289,9 @@ GET  /data_api/v1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B0
 
 
 
-#### Get all conversations that were updated after a certain date example
+#### Get all conversations that were updated after `updated_since`
 
-GET  /data_api/v1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
-
-200 OK
+`GET  /data_api/v1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
 
 ```json
@@ -330,14 +329,13 @@ GET  /data_api/v1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B0
 
 
 
-### V1.1
+#### V1.1
 
 
-#### Get all conversations created_since example
+#### Get all conversations that were created after `created_since`
 
-GET  /data_api/v1.1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+`GET  /data_api/v1.1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
-200 OK
 
 
 ```json
@@ -375,11 +373,9 @@ GET  /data_api/v1.1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2
 
 
 
-#### Get all conversations that were updated after a certain date example
+#### Get all conversations that were updated after `updated_since`
 
-GET  /data_api/v1.1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
-
-200 OK
+`GET  /data_api/v1.1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
 
 ```json
@@ -438,7 +434,7 @@ A message object is created anytime either Ada or a chatter sends a message. All
 
 ### Messages endpoint
 
-GET  /data_api/v1/messages
+`GET  /data_api/v1/messages`
 
 
 ### Parameters
@@ -461,17 +457,16 @@ Returns a list messages objects along with a status message and next page uri if
 ### Examples
 
 
-### V1
+#### V1
 
 
-#### Get all messages created_since example
+#### Get all messages that were created after `created_since`
 
-GET \
-/data_api/v1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+`GET
+/data_api/v1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
 
 ```json
-200 OK
 
 {
   "data": [
@@ -517,17 +512,16 @@ GET \
 
 
 
-### V1.1
+#### V1.1
 
 
-#### Get all messages created_since example
+#### Get all messages that were created after `created_since`
 
-GET \
-/data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100
+`GET
+/data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
 
 ```json
-200 OK
 
 {
   "data": [
@@ -575,14 +569,15 @@ GET \
 
 
 
-#### Get all messages created_since by conversation_id and chatter_id example
+#### Get all messages that were created after `created_since` by `conversation_id` and `chatter_id`
 
-GET \
-/data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100&conversation_id=60f6e4b177c2c9b51e74df4b&chatter_id=60f6e4b177c2c9b51e74df4a
+`GET
+/data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100 \
+&conversation_id=60f6e4b177c2c9b51e74df4b \
+&chatter_id=60f6e4b177c2c9b51e74df4a`
 
 
 ```json
-200 OK
 
 {
   "data": [
