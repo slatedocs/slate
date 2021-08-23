@@ -1,4 +1,4 @@
-#Ada’s Data Export API (Early Access Documentation)
+#Data Export API
 
 
 
@@ -67,21 +67,9 @@ You now can use this bearer token as the authorization header to access Data API
 
 Headers
 
-
-<table>
-  <tr>
-   <td>Key
-   </td>
-   <td>Value
-   </td>
-  </tr>
-  <tr>
-   <td>Authorization
-   </td>
-   <td>Bearer &lt;your_api_token>
-   </td>
-  </tr>
-</table>
+Key | Value
+--------- | -------
+Authorization | Bearer &lt;your_api_token>
 
 
 
@@ -104,7 +92,7 @@ Follow the steps below to regenerate a new token:
 
 
 
-2. A modal will pop up and asks if you understand ‘Generating a new Access Token will immediately invalidate your previous token. Your API Integrations will stop working until they are updated to use the new token.’ Click ‘I understand, generate a new token’. \
+2. A modal will pop up and asks if you understand ‘Generating a new Access Token will immediately invalidate your previous token. Your API Integrations will stop working until they are updated to use the new token.’ Click ‘I understand, generate a new token’.
 
 <%= image_tag "images/data_api_image5.png" %>
 
@@ -165,63 +153,17 @@ In addition to rate limits, we’ve implemented page size and date range limitat
 ## Status Codes
 
 
-<table>
-  <tr>
-   <td>200 - OK
-   </td>
-   <td>The request was successfully processed by Ada
-   </td>
-  </tr>
-  <tr>
-   <td>400 - Bad Request
-   </td>
-   <td>Request timed out / database error
-   </td>
-  </tr>
-  <tr>
-   <td>408 - Request Timeout
-   </td>
-   <td>Request timed out
-   </td>
-  </tr>
-  <tr>
-   <td>429 - Too many requests
-   </td>
-   <td>Too many requests
-   </td>
-  </tr>
-  <tr>
-   <td>422 - Unprocessable entity
-   </td>
-   <td>Missing data for required field
-   </td>
-  </tr>
-  <tr>
-   <td>500 - Bad request
-   </td>
-   <td>Request timed out or there was a database error
-   </td>
-  </tr>
-  <tr>
-   <td>503 - Service Unavailable
-   </td>
-   <td>Server temporarily unable to handle the request
-   </td>
-  </tr>
-  <tr>
-   <td>502 - Bad Gateway
-   </td>
-   <td>Associated with cloudfront error
-   </td>
-  </tr>
-  <tr>
-   <td>504 - Gateway Timeout
-   </td>
-   <td>Associated with cloudfront error
-   </td>
-  </tr>
-</table>
-
+|Code|Meaning|
+|--- |--- |
+|200 - OK|The request was successfully processed by Ada|
+|400 - Bad Request|Request timed out / database error|
+|408 - Request Timeout|Request timed out|
+|429 - Too many requests|Too many requests|
+|422 - Unprocessable entity|Missing data for required field|
+|500 - Bad request|Request timed out or there was a database error|
+|503 - Service Unavailable|Server temporarily unable to handle the request|
+|502 - Bad Gateway|Associated with cloudfront error|
+|504 - Gateway Timeout|Associated with cloudfront error|
 
 
 ## Pagination
@@ -261,140 +203,18 @@ Conversations are a higher-order object that contain messages (which can be acce
 ### Conversation Object Attributes
 
 
-<table>
-  <tr>
-   <td>Attribute
-   </td>
-   <td>Description
-   </td>
-   <td>Type
-   </td>
-   <td>v1.0
-   </td>
-   <td>v1.1
-   </td>
-  </tr>
-  <tr>
-   <td>_id
-   </td>
-   <td>The conversations unique ID
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>date_created
-   </td>
-   <td>The timestamp for when the conversation was created
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>date_updated
-   </td>
-   <td>The timestamp for when the conversation was last updated
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>chatter_id
-   </td>
-   <td>The unique chatter ID
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>platform
-   </td>
-   <td>On which platform did the conversation take place
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>is_engaged
-   </td>
-   <td>Did the chatter send at least one message to start the conversation after a greeting was served by Ada
-   </td>
-   <td>Boolean
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>is_escalated
-   </td>
-   <td>Did the chatter handoff to an integrated CX platform, an email ticket, or otherwise escalate to an agent
-   </td>
-   <td>Boolean
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>csat
-   </td>
-   <td>The associated CSAT score for the conversation
-   </td>
-   <td>JSON Dictionary
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>metavariables
-   </td>
-   <td>Gives the client access to the meta-variables we store
-   </td>
-   <td>JSON Dictionary
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>variables
-   </td>
-   <td>Gives the client access to the unique variable values for the conversation
-   </td>
-   <td>JSON Dictionary
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-</table>
+|Attribute|Description|Type|v1.0|v1.1|
+|--- |--- |--- |--- |--- |
+|_id|The conversations unique ID|String|✔|✔|
+|date_created|The timestamp for when the conversation was created|UTC Timestamp|✔|✔|
+|date_updated|The timestamp for when the conversation was last updated|UTC Timestamp|✔|✔|
+|chatter_id|The unique chatter ID|String|✔|✔|
+|platform|On which platform did the conversation take place|String|✔|✔|
+|is_engaged|Did the chatter send at least one message to start the conversation after a greeting was served by Ada|Boolean|✔|✔|
+|is_escalated|Did the chatter handoff to an integrated CX platform, an email ticket, or otherwise escalate to an agent|Boolean|✔|✔|
+|csat|The associated CSAT score for the conversation|JSON Dictionary|✔|✔|
+|metavariables|Gives the client access to the meta-variables we store|JSON Dictionary|✔|✔|
+|variables|Gives the client access to the unique variable values for the conversation|JSON Dictionary|✔|✔|
 
 
 
@@ -406,105 +226,13 @@ GET  /data_api/v1/conversations
 ### Parameters
 
 
-<table>
-  <tr>
-   <td><strong>Params</strong>
-   </td>
-   <td><strong>Required?</strong>
-   </td>
-   <td><strong>Default Value (if param not used)</strong>
-   </td>
-   <td><strong>Type</strong>
-   </td>
-   <td><strong>Example</strong>
-   </td>
-   <td><strong>v1.0</strong>
-   </td>
-   <td><strong>v1.1</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>created_since
-   </td>
-   <td>One of “created_since” or “updated_since” is required
-   </td>
-   <td>NA
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>2020-09-21T00:00:00
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>updated_since
-   </td>
-   <td>One of “created_since” or “updated_since” is required
-   </td>
-   <td>NA
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>2020-09-21T00:00:00
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>created_to
-   </td>
-   <td>No
-   </td>
-   <td>7 days range
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>2020-09-21T00:00:00
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>updated_to
-   </td>
-   <td>No
-   </td>
-   <td>7 days range
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>2020-09-21T00:00:00
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>page_size
-   </td>
-   <td>No
-   </td>
-   <td>10000
-   </td>
-   <td>Integer
-   </td>
-   <td>100
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-</table>
-
+|Params|Required?|Default Value (if param not used)|Type|Example|v1.0|v1.1|
+|--- |--- |--- |--- |--- |--- |--- |
+|created_since|One of “created_since” or “updated_since” is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|updated_since|One of “created_since” or “updated_since” is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|created_to|No|7 days range|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|updated_to|No|7 days range|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|page_size|No|10000|Integer|100|✔|✔|
 
 
 ### Returns
@@ -694,128 +422,17 @@ GET  /data_api/v1.1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2
 A message object is created anytime either Ada or a chatter sends a message. All messages are associated with a conversation by a conversation_id.
 
 
-<table>
-  <tr>
-   <td>Attribute
-   </td>
-   <td>Description
-   </td>
-   <td>Type
-   </td>
-   <td>v1.0
-   </td>
-   <td>v1.1
-   </td>
-  </tr>
-  <tr>
-   <td>_id
-   </td>
-   <td>The message’s unique ID
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>date_created
-   </td>
-   <td>The timestamp for when the message was originally created
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>conversation_id
-   </td>
-   <td>A reference to the conversation object to which the message belongs
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>chatter_id
-   </td>
-   <td>A reference to the chatter object to which the message belongs
-   </td>
-   <td>String
-   </td>
-   <td>✘
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>message_data
-   </td>
-   <td>An object containing the message content. (The message text is in the body property of the object)
-   </td>
-   <td>JSON Dictionary
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>sender
-   </td>
-   <td>The sender of the message (A unique ID if it is a chatter, or “agent” or “bot” otherwise)
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>recipient
-   </td>
-   <td>The recipient of the message (A unique ID if it is a chatter, or “agent” or “bot” otherwise)
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>review
-   </td>
-   <td>Was the answer given a thumbs up or thumbs down?
-   </td>
-   <td>Integer
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>answer_title
-   </td>
-   <td>The title of the answer in the builder interface
-   </td>
-   <td>String
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-</table>
+|Attribute|Description|Type|v1.0|v1.1|
+|--- |--- |--- |--- |--- |
+|_id|The message’s unique ID|String|✔|✔|
+|date_created|The timestamp for when the message was originally created|UTC Timestamp|✔|✔|
+|conversation_id|A reference to the conversation object to which the message belongs|String|✔|✔|
+|chatter_id|A reference to the chatter object to which the message belongs|String|✘|✔|
+|message_data|An object containing the message content. (The message text is in the body property of the object)|JSON Dictionary|✔|✔|
+|sender|The sender of the message (A unique ID if it is a chatter, or “agent” or “bot” otherwise)|String|✔|✔|
+|recipient|The recipient of the message (A unique ID if it is a chatter, or “agent” or “bot” otherwise)|String|✔|✔|
+|review|Was the answer given a thumbs up or thumbs down?|Integer|✔|✔|
+|answer_title|The title of the answer in the builder interface|String|✔|✔|
 
 
 
@@ -827,105 +444,13 @@ GET  /data_api/v1/messages
 ### Parameters
 
 
-<table>
-  <tr>
-   <td><strong>Params</strong>
-   </td>
-   <td><strong>Required?</strong>
-   </td>
-   <td><strong>Default Value (if param not used)</strong>
-   </td>
-   <td><strong>Type</strong>
-   </td>
-   <td><strong>Example</strong>
-   </td>
-   <td><strong>v1.0</strong>
-   </td>
-   <td><strong>v1.1</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>created_since
-   </td>
-   <td>Yes
-   </td>
-   <td>NA
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>2020-09-21T00:00:00
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>created_to
-   </td>
-   <td>No
-   </td>
-   <td>7 days
-   </td>
-   <td>UTC Timestamp
-   </td>
-   <td>2020-09-21T00:00:00
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>page_size
-   </td>
-   <td>No
-   </td>
-   <td>10000
-   </td>
-   <td>Integer
-   </td>
-   <td>100
-   </td>
-   <td>✔
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>conversation_id
-   </td>
-   <td>No
-   </td>
-   <td>NA
-   </td>
-   <td>String
-   </td>
-   <td>&lt;mongodb_12_byte_object_id>
-   </td>
-   <td>✘
-   </td>
-   <td>✔
-   </td>
-  </tr>
-  <tr>
-   <td>chatter_id
-   </td>
-   <td>No
-   </td>
-   <td>NA
-   </td>
-   <td>String
-   </td>
-   <td>&lt;mongodb_12_byte_object_id>
-   </td>
-   <td>✘
-   </td>
-   <td>✔
-   </td>
-  </tr>
-</table>
-
+|Params|Required?|Default Value (if param not used)|Type|Example|v1.0|v1.1|
+|--- |--- |--- |--- |--- |--- |--- |
+|created_since|Yes|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|created_to|No|7 days|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
+|page_size|No|10000|Integer|100|✔|✔|
+|conversation_id|No|NA|String|<mongodb_12_byte_object_id>|✘|✔|
+|chatter_id|No|NA|String|<mongodb_12_byte_object_id>|✘|✔|
 
 
 ### Returns
@@ -1111,35 +636,9 @@ GET \
 ### Revision History
 
 
-<table>
-  <tr>
-   <td>Date
-   </td>
-   <td>Description
-   </td>
-  </tr>
-  <tr>
-   <td>2021.02.24
-   </td>
-   <td>Data API v1 first available for early access clients. Message, Conversation endpoints published.
-   </td>
-  </tr>
-  <tr>
-   <td>2021.06.22
-   </td>
-   <td>Added additional request timed out error code (408).
-   </td>
-  </tr>
-  <tr>
-   <td>2021.07.29
-   </td>
-   <td>Added self-serve auth key generation in ui portal under data api feature flag. Beta Release v1 for additional clients.
-   </td>
-  </tr>
-  <tr>
-   <td>2021.08.10
-   </td>
-   <td>Added data api base uri endpoint in Data Export API ui portal under settings/integrations.
-   </td>
-  </tr>
-</table>
+|Date|Description|
+|--- |--- |
+|2021.02.24|Data API v1 first available for early access clients. Message, Conversation endpoints published.|
+|2021.06.22|Added additional request timed out error code (408).|
+|2021.07.29|Added self-serve auth key generation in ui portal under data api feature flag. Beta Release v1 for additional clients.|
+|2021.08.10|Added data api base uri endpoint in Data Export API ui portal under settings/integrations.|
