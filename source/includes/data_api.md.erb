@@ -43,25 +43,23 @@ Please request your account manager to enable the feature flag `data_api` for yo
 
 We offer HTTPS authentication via an API access token. Once logged into Ada, any user with **Admin** and **Owner** permissions can generate an authentication token.
 
-Follow the steps below to create an authentication token: \
+Follow the steps below to create an authentication token:
+
 Each account has one active token at a time. Put the token at the Authorization header of your request.
 
 
 
-1. Navigate to Settings → Integrations → API Integrations → Data Export API. Click ‘Configure’.
+1. Navigate to Settings → Integrations → API Integrations → Data Export API. Click `Configure`.
+   <%= image_tag "images/data_api_image1.png" %>
 
-<%= image_tag "images/data_api_image1.png" %>
 
-
-2. A modal will pop up. Click ‘Generate a new Access Token’.
-
-<%= image_tag "images/data_api_image2.png" %>
+2. A modal will pop up. Click `Generate a new Access Token`.
+   <%= image_tag "images/data_api_image2.png" %>
 
 
 
-3. The token is created, click the ‘Copy’ button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console.
-
-<%= image_tag "images/data_api_image3.png" %>
+3. The token is created, click the `Copy` button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console.
+   <%= image_tag "images/data_api_image3.png" %>
 
 You now can use this bearer token as the authorization header to access Data API, following this format:
 
@@ -85,24 +83,20 @@ Follow the steps below to regenerate a new token:
 
 
 
-1. Navigate to Settings → Integrations → API Integrations → Data Export API. Click ‘Configure’. A modal pops up and displays the time and date your existing token was generated. Click ‘Generate a new Access Token’ to generate a new token.
-
-<%= image_tag "images/data_api_image4.png" %>
-
+1. Navigate to Settings → Integrations → API Integrations → Data Export API. Click `Configure`. A modal pops up and displays the time and date your existing token was generated. Click `Generate a new Access Token` to generate a new token.
+   <%= image_tag "images/data_api_image4.png" %>
 
 
 
-2. A modal will pop up and asks if you understand ‘Generating a new Access Token will immediately invalidate your previous token. Your API Integrations will stop working until they are updated to use the new token.’ Click ‘I understand, generate a new token’.
-
-<%= image_tag "images/data_api_image5.png" %>
+2. A modal will pop up and asks if you understand `Generating a new Access Token will immediately invalidate your previous token. Your API Integrations will stop working until they are updated to use the new token.`. Click `I understand, generate a new token`.
+   <%= image_tag "images/data_api_image5.png" %>
 
 
 
 
 
-3. The new token is issued, click the ‘Copy’ button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console. Make sure API integrations are updated with this new token.
-
-<%= image_tag "images/data_api_image6.png" %>
+3. The new token is issued, click the `Copy` button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console. Make sure API integrations are updated with this new token.
+   <%= image_tag "images/data_api_image6.png" %>
 
 {Add Trial token screenshots and descriptions}
 
