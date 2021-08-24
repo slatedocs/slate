@@ -19,6 +19,14 @@ search: true
 
 # Change Log
 
+## 2021-08-24
+
+- Update endpoint for query markets orderbooks
+
+- Update endpoint for query markets trades
+
+- Update webhook notification types
+
 ## 2021-03-04
 
 - Private websocket deprecation. We recommend to use webhooks instead for realtime account feed.
@@ -1072,76 +1080,92 @@ This API call returns all existing markets (also known as "books") in Tauros.
 ## List Market Orders (Orderbook)
 
 ```shell
-MKT="btc-mxn"
 
-curl -X GET "https://api.tauros.io/api/v1/trading/orders/?market=$MKT"
+curl -X GET "https://api.tauros.io/api/v2/trading/btc-mxn/orderbook/"
 ```
 
 > The API response will look like this:
 
 ```json
-
-  "success": true,
-  "msg": null,
-  "data": {
-    "market": "BTC-MXN",
-    "asks": [
-      {
-        "market": "BTC-MXN",
-        "side": "SELL",
-        "initial_amount": 0.16743,
-        "amount": 0.16743,
-        "filled": 0.0,
-        "value": 12724.68,
-        "initial_value": 12724.68,
-        "price": 76000.0,
-        "left_coin": "BTC",
-        "right_coin": "MXN",
-        "created_at": "2019-03-27T20:40:14.686939Z"
-      },
-      {
-        "market": "BTC-MXN",
-        "side": "SELL",
-        "initial_amount": 0.252654,
-        "amount": 0.252654,
-        "filled": 0.0,
-        "value": 19226.96,
-        "initial_value": 19226.96,
-        "price": 76100.0,
-        "left_coin": "BTC",
-        "right_coin": "MXN",
-        "created_at": "2019-03-27T20:40:33.609201Z"
-      }
-    ],
-    "bids": [
-      {
-        "market": "BTC-MXN",
-        "side": "BUY",
-        "initial_amount": 0.00269,
-        "amount": 0.00269,
-        "filled": 0.0,
-        "value": 200.4,
-        "initial_value": 200.4,
-        "price": 74500.0,
-        "left_coin": "BTC",
-        "right_coin": "MXN",
-        "created_at": "2019-03-27T20:42:09.944029Z"
-      },
-      {
-        "market": "BTC-MXN",
-        "side": "BUY",
-        "initial_amount": 0.002,
-        "amount": 0.002,
-        "filled": 0.0,
-        "value": 148.0,
-        "initial_value": 148.0,
-        "price": 74000.0,
-        "left_coin": "BTC",
-        "right_coin": "MXN",
-        "created_at": "2019-03-27T20:41:09.127862Z"
-      }
-    ]
-  }
+{
+    "success": true,
+    "msg": null,
+    "payload": {
+        "bids": [
+            {
+                "amount": 0.01522842,
+                "value": 14999.99,
+                "price": "985000.01000000",
+                "created_at": "2021-08-24T12:35:22.840257-05:00",
+                "id": 2701717
+            },
+            {
+                "amount": 0.01922451,
+                "value": 18936.14,
+                "price": "985000.00000000",
+                "created_at": "2021-08-24T12:33:46.955389-05:00",
+                "id": 2700005
+            },
+            {
+                "amount": 0.01103708,
+                "value": 10860.48,
+                "price": "984000.00000000",
+                "created_at": "2021-08-24T12:28:11.791097-05:00",
+                "id": 2701221
+            },
+            {
+                "amount": 0.02118121,
+                "value": 20780.88,
+                "price": "981100.03000000",
+                "created_at": "2021-08-24T12:31:16.513011-05:00",
+                "id": 2701518
+            },
+            {
+                "amount": 0.00989374,
+                "value": 9701.81,
+                "price": "980600.04000000",
+                "created_at": "2021-08-24T12:35:15.486083-05:00",
+                "id": 2701669
+            }
+        ],
+        "asks": [
+            {
+                "amount": 0.00143773,
+                "value": 1437.72,
+                "price": "999998.99000000",
+                "created_at": "2021-08-24T12:25:04.948124-05:00",
+                "id": 2701679
+            },
+            {
+                "amount": 0.00288181,
+                "value": 2881.8,
+                "price": "999999.00000000",
+                "created_at": "2021-08-24T12:25:03.421039-05:00",
+                "id": 2701705
+            },
+            {
+                "amount": 0.00453321,
+                "value": 4533.2,
+                "price": "999999.00000000",
+                "created_at": "2021-08-24T12:25:46.939925-05:00",
+                "id": 2701707
+            },
+            {
+                "amount": 0.00704473,
+                "value": 7044.73,
+                "price": "1000000.00000000",
+                "created_at": "2021-08-24T11:53:44.788155-05:00",
+                "id": 2701491
+            },
+            {
+                "amount": 0.00180851,
+                "value": 1824.78,
+                "price": "1009000.00000000",
+                "created_at": "2021-08-24T12:23:33.689378-05:00",
+                "id": 2701703
+            }
+        ]
+    }
 }
 ```
 
@@ -1149,66 +1173,99 @@ This endpoint retrieves the 50 best sell and buy orders (also known as "orderboo
 
 ### HTTP Request
 
-`GET /v1/trading/orders/`
+`GET /v2/trading/<market>/orderbook/`
 
-### Query Parameters
+### URL Parameters
 
 | Parameter | Type   | Required | Description                   |
 | --------- | ------ | -------- | ----------------------------- |
 | market    | String | Yes      | Market name (e.g. `btc-mxn`). |
 
-## List last trades
+## List recent trades
 
 ```shell
-MKT="ltc-btc"
 
-curl -X GET "https://api.tauros.io/api/v1/trading/trades/?market=$MKT"
+curl -X GET "https://api.tauros.io/api/v2/trading/btc-mxn/trades/"
 ```
 
 > The API response will look like this:
 
 ```json
 {
-  "success": true,
-  "msg": null,
-  "data": [
-    {
-      "created_at": "2019-02-20T03:20:53.549954Z",
-      "price": "0.01276979",
-      "amount": 1.0,
-      "value": 0.01278
-    },
-    {
-      "created_at": "2019-02-20T03:20:25.106036Z",
-      "price": "0.01276979",
-      "amount": 1.0,
-      "value": 0.01278
-    },
-    {
-      "created_at": "2019-02-20T03:20:05.758377Z",
-      "price": "0.01276979",
-      "amount": 1.0,
-      "value": 0.01278
-    },
-    {
-      "created_at": "2019-02-20T03:19:41.953355Z",
-      "price": "0.01273489",
-      "amount": 1.0,
-      "value": 0.01277
-    },
-    {
-      "created_at": "2019-02-20T03:07:43.574070Z",
-      "price": "0.01270000",
-      "amount": 1.0,
-      "value": 0.01276979
-    },
-    {
-      "created_at": "2019-02-20T03:05:56.810445Z",
-      "price": "0.00426700",
-      "amount": 0.1,
-      "value": 0.00127697
-    }
-  ]
+    "success": true,
+    "msg": null,
+    "payload": [
+        {
+            "amount": "0.00010010",
+            "price": "998991.99000000",
+            "created_at": "2021-08-24T12:42:03.347801-05:00",
+            "id": 871104,
+            "side": "BUY"
+        },
+        {
+            "amount": "0.00035605",
+            "price": "983000.01000000",
+            "created_at": "2021-08-24T12:28:05.825866-05:00",
+            "id": 871102,
+            "side": "SELL"
+        },
+        {
+            "amount": "0.00453866",
+            "price": "983000.01000000",
+            "created_at": "2021-08-24T12:24:34.072911-05:00",
+            "id": 871101,
+            "side": "SELL"
+        },
+        {
+            "amount": "0.00288759",
+            "price": "983000.01000000",
+            "created_at": "2021-08-24T12:24:33.991741-05:00",
+            "id": 871100,
+            "side": "SELL"
+        },
+        {
+            "amount": "0.00040816",
+            "price": "980000.01000000",
+            "created_at": "2021-08-24T12:15:40.850063-05:00",
+            "id": 871096,
+            "side": "SELL"
+        },
+        {
+            "amount": "0.00050000",
+            "price": "1000000.00000000",
+            "created_at": "2021-08-24T12:13:22.922192-05:00",
+            "id": 871094,
+            "side": "BUY"
+        },
+        {
+            "amount": "0.00103130",
+            "price": "980000.01000000",
+            "created_at": "2021-08-24T12:13:22.870316-05:00",
+            "id": 871093,
+            "side": "SELL"
+        },
+        {
+            "amount": "0.01067598",
+            "price": "1000000.00000000",
+            "created_at": "2021-08-24T12:11:34.027581-05:00",
+            "id": 871092,
+            "side": "BUY"
+        },
+        {
+            "amount": "0.01837467",
+            "price": "999999.00000000",
+            "created_at": "2021-08-24T12:11:33.924747-05:00",
+            "id": 871091,
+            "side": "BUY"
+        },
+        {
+            "amount": "0.02367620",
+            "price": "999999.00000000",
+            "created_at": "2021-08-24T12:11:33.857104-05:00",
+            "id": 871090,
+            "side": "BUY"
+        }
+    ]
 }
 ```
 
@@ -1216,13 +1273,13 @@ This endpoint returns the last 50 trades for a given market.
 
 ### HTTP Request
 
-`GET /v1/trading/trades/`
+`GET /v2/trading/<market>/trades/`
 
-### Query Parameters
+### URL Parameters
 
 | Parameter | Type   | Required | Description                   |
 | --------- | ------ | -------- | ----------------------------- |
-| market    | String | No       | Market name (e.g. `btc-mxn`). |
+| market    | String | Yes       | Market name (e.g. `btc-mxn`). |
 
 ## Tickers
 
@@ -1434,15 +1491,15 @@ ws.onmessage = (ev) => {
   if (data.action === "subscribe") {
     console.log(data);
     /*
-          Place your code here
-          */
+      Place your code here
+    */
   }
   // create element
   if (data.channel === channel) {
     console.log(msg);
     /*
-        Place your code here
-        */
+      Place your code here
+    */
   }
 };
 //Function onerror
@@ -1455,26 +1512,13 @@ ws.onclose = () => {
 };
 ```
 
-Tauros implements Web-Sockets in order to provide real-time market data from our trading engine. The websocket public endpoints are the following:
+Tauros implements native WebSockets in order to provide real-time market data from our trading engine. The websocket public endpoints are the following:
 
-- `ws.tauros.io` for production environment.
-- `ws-staging.tauros.io` for staging environment.
+- `wsv2.tauros.io` for production environment.
+- `wsv2-staging.tauros.io` for staging environment.
 
-We recommend to use [socket.io](https://socket.io) JavaScript. Installation:
 
-If using yarn:
-
-`yarn add socket.io-client`
-
-If using npm:
-
-`npm install --save socket.io-client`
-
-or CDN:
-
-`<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>`
-
-## Order-book Channel
+## Orderbook Channel
 
 > Messages on this channel look like this:
 
@@ -1626,7 +1670,7 @@ The `data` field contains an array with the last trades in the following form:
 
 ## What is a webhook
 
-Webhooks may be setup to programmatically receive callbacks from Tauros. Webhook notifications are triggered when the specified event occurs, such as an order filled (OF) or a taker trade (TD), among others. You can setup and configure a webhook in the [Tauros Developer Section](https://tauros.io/develop).
+Webhooks may be setup to programmatically receive callbacks from Tauros. Webhook notifications are triggered when the specified event occurs, such as a bitcoin withdrawal (`TRANSACTION_HISTORY`) or a SPEI deposit (`CARD_HISTORY`), among others. You can setup and configure a webhook in the [Tauros Developer Section](https://tauros.io/develop).
 
 Tauros servers will make a POST http request to the specified URL with a JSON payload, and expect a HTTP 200 OK.
 
@@ -1634,67 +1678,30 @@ Tauros servers will make a POST http request to the specified URL with a JSON pa
 
 > Messages on this channel look like this:
 
-```javascript
+```json
 // Notification standard:
 {
   "title": "NOTIFICATION_TITLE",
-  "description": "NOTIFICATION_DESCRIPTION"
-  "type": 'TYPE_OF_NOTIFICATION',
-  "date": '2019-02-20T03:05:56.810445Z',
+  "description": "NOTIFICATION_DESCRIPTION",
+  "type": "TYPE_OF_NOTIFICATION",
+  "date": "2019-02-20T03:05:56.810445Z",
   "object": OBJECT // Order, Trade or Transfer object
 }
 ```
 
-Webhook can be configurated to notify if some of the following events occur.
+Webhooks can be configurated to notify if some of the following events occur.
 
 Types of notifications:
 
-- Order placed (`ORDER_PLACED`)
-- Order filled (`ORDER_FILLED`)
-- New trade (`TRADE_HISTORY`)
-- New deposit or withdrawal (`TRANSACTION_HISTORY`)
-- Card Transaction (`CARD_HISTORY`)
-- Order closed (`ORDER_CLOSED`) ([by the user](#close-an-open-order))
+- New crypto deposit, crypto withdrawal or transfer to portfolio (`TRANSACTION_HISTORY`)
+- Card Transaction (Purchase, Spei transfer, transfer to portfolio, among others) (`CARD_HISTORY`)
 
-The `order`, `trade` or `transfer` object is included in the `object` field.
-
-```javascript
-// Order partially filled notification sample
-{
-  "title": "Order filled",
-  "description": "Your BUY order has been partially filled"
-  "type": 'OF',
-  "date": '2019-02-20T03:05:56.810445Z',
-  "object": {
-    "amount": "0.0005",
-    "amount_paid": "100",
-    "amount_received": "0.0004995",
-    "closed_at": null,
-    "created_at": "2019-09-23 21:27:06.083978+00:00",
-    "fee_amount_paid": "0.5",
-    "fee_decimal": "0.00100000",
-    "fee_percent": "0.10000000",
-    "filled": "0.0005",
-    "id": 107487,
-    "initial_amount": "0.0010",
-    "initial_value": "200",
-    "is_open": true,
-    "left_coin": "BTC",
-    "market": "BTC-MXN",
-    "price": "200000.00",
-    "right_coin": "MXN",
-    "side": "BUY",
-    "value": "100"
-  }
-}
-```
-
-```javascript
-// Withdrawal notification sample
+```json
+// Tauros transfer notification sample for sender
 {
   "title": "New BTC withdrawal",
    "description": "You have sent 0.001 BTC via Tauros Transfer",
-   "type": "TR",
+   "type": "TRANSACTION_HISTORY",
    "date": "2020-02-23 19:34:15.004078+00:00",
    "object": {
       "sender": "example1@mail.com",
@@ -1717,24 +1724,3 @@ The `order`, `trade` or `transfer` object is included in the `object` field.
 }
 ```
 
-```javascript
-// Taker trade notification sample
-{"title": "New trade",
- "description": "New trade in BTC-MXN orderbook",
- "type": "TD",
- "date": "2020-02-23 19:38:49.679603+00:00",
- "object": {
-    "market": "BTC-MXN",
-    "side": "BUY",
-    "amount_paid": "1990",
-    "amount_received": "0.00996",
-    "price": "199000.00",
-    "fee_amount": "0.00004",
-    "created_at": "2020-02-23 19:38:49.161057+00:00",
-    "left_coin": "BTC",
-    "right_coin": "MXN",
-    "filled_as": "taker",
-    "closed_at": "2020-02-23 19:38:49.161057+00:00"
-  }
-}
-```
