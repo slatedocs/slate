@@ -8180,7 +8180,7 @@ Returns the full record of the newly created project.
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -8677,7 +8677,7 @@ Returns the complete updated project record.
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -9467,7 +9467,7 @@ Returns the full record of the newly created project.
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -9877,7 +9877,7 @@ Returns the full record of the newly created project.
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -10712,7 +10712,7 @@ $result = $client->projects->addFollowersForProject($project_gid, array('field' 
 </p>
 
 <span class="description">
-Adds the specified list of users as followers to the project. Followers are a subset of members, therefore if the users are not already members of the project they will also become members as a result of this operation.
+Adds the specified list of users as followers to the project. Followers are a subset of members who have opted in to receive "tasks added"  notifications for a project. Therefore, if the users are not already members of the project, they will also become members as a result of this operation.
 Returns the updated project record.
 </span>
 
@@ -25122,7 +25122,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
 |» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
 |» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|followers<span class="param-type"> [object]</span>|Array of users following this project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
