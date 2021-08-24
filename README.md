@@ -232,8 +232,6 @@ sub_source | String | - | `google_display`, `google_search`, `facebook_brands`, 
 placement |  String | - | `utm_campaign` , `affiliate_name` e.g. taboola, nestoria, polyvalent, times_of_india, `portal_name` e.g. 99acres, magicbricks, housing  - this should tell exact campaign details be it google facebook etc. generally you should pass utm_campaign in this
 extra_details | JSON | - | key-value pair which will contain any extra details for lead e.g. {"utm_medium: "something", "utm_source": "something", "keyword": "targetted keyword on google for the campaign"}
 campaign_id | String | True | The is a unique identifier for the project you are sending the lead for. Should be collected from point of contact in ANAROCK team. Without this lead attribution will be incorrect.
-source_id | Integer | True | This is mandatory field for sending any lead. This helps categorization of leads based on different sources. Refer to <a href="/leads?#lead-source-and-sub-sources-api"> Lead Source Sub Source API</a>
-sub_source_id | Integer | True | This is mandatory field for sending any lead. This helps categorization of leads based on different sub_sources. Refer to <a href="/leads?#lead-source-and-sub-sources-api"> Lead Source Sub Source API</a>
 
 
 > Remember — without proper __campaign_id__, leads will not be attributed to the correct project team. Always check with your point of contact that leads are attributed to the desired project only.
