@@ -2699,9 +2699,9 @@ components:
                 $ref: '#/components/schemas/CustomFieldCompact'
             followers:
               description: >-
-                Array of users following this project. Followers are a subset of
-                members who receive all notifications for a project, the default
-                notification setting when adding members to a project in-product.
+                Array of users following this project. Followers are a subset
+                of members who have opted in to receive "tasks added"
+                notifications for a project.
               type: array
               items:
                 $ref: '#/components/schemas/UserCompact'
@@ -2783,10 +2783,9 @@ components:
                 4578152156: Not Started
             followers:
               description: >-
-                *Create-only*. Comma separated string of users. Followers are a subset
-                of
-                members who receive all notifications for a project, the default
-                notification setting when adding members to a project in-product.
+                *Create-only*. Comma separated string of users. Followers
+                are a subset of members who have opted in to receive "tasks
+                added" notifications for a project.
               type: string
               example: 12345,23456
             owner:
@@ -7924,9 +7923,10 @@ paths:
       summary: Add followers to a project
       description: >-
         Adds the specified list of users as followers to the project. Followers
-        are a subset of members, therefore if the users are not already members
-        of the project they will also become members as a result of this
-        operation.
+        are a subset of members who have opted in to receive "tasks added"  notifications
+        for a project. Therefore, if the users are not already
+        members of the project, they will also become members as a result of
+        this operation.
 
         Returns the updated project record.
       tags:
