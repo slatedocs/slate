@@ -52,10 +52,10 @@ These are the following steps to set up the 2-factor authentication;
 
 Top up is used to add balance to your OY account. 
 
-Here's how you can access the top-up menu on your dashboard;
-1.  Login to Dashboard
-2.  Go to Transaction Report -> Account Statement
-3.  Click the 'How To Top Up' button 
+Here's how you can access the top-up menu on your dashboard;  
+1.  Login to Dashboard. 
+2.  Go to Transaction Report -> Account Statement. 
+3.  Click the 'How To Top Up' button. 
 
 There are 2 ways in which you can top up your OY account:
 - Top Up via Virtual Account
