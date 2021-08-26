@@ -437,7 +437,7 @@ A message object is created anytime either Ada or a chatter sends a message. All
 ### Parameters
 
 
-|Params|Required?|Default Value (if param not used)|Type|Example|v1.0|v1.1|
+|Params|Required?|Default Value|Type|Example|v1.0|v1.1|
 |--- |--- |--- |--- |--- |--- |--- |
 |created_since|Yes|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
 |created_to|No|7 days|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
@@ -457,7 +457,7 @@ Returns a list messages objects along with a status message and next page uri if
 #### V1
 
 
-#### Get all messages that were created 1 week after `created_since`
+#### Get all messages that were created within 1 week of `created_since`
 
 `GET
 /data_api/v1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
@@ -512,7 +512,7 @@ Returns a list messages objects along with a status message and next page uri if
 #### V1.1
 
 
-#### Get all messages that were created 1 week after `created_since`
+#### Get all messages that were created within 1 week of `created_since`
 
 `GET
 /data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
@@ -566,7 +566,7 @@ Returns a list messages objects along with a status message and next page uri if
 
 
 
-#### Get all messages that were created 1 week after `created_since` by `chatter_id`
+#### Get all messages that were created within 1 week of `created_since` with a specific `chatter_id`
 
 `GET
 /data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100&chatter_id=<mongodb_12_byte_object_id>`
@@ -631,4 +631,4 @@ Returns a list messages objects along with a status message and next page uri if
 |2021.02.24|Data API v1 first available for early access clients. Message, Conversation endpoints published.|
 |2021.06.22|Added additional request timed out error code (408).|
 |2021.07.29|Added self-serve auth key generation in UI portal under Data API feature flag. Beta Release v1 for additional clients.|
-|2021.08.10|Added Data API base uri endpoint in Data Export API UI portal under settings/integrations.|
+|2021.08.10|Added Data API base URI endpoint in Data Export API UI portal under settings/integrations.|
