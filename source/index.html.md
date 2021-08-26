@@ -41,6 +41,7 @@ includes:
   - administration/billing_settings
   - administration/billing_providers
   - administration/custom_navigation
+  - administration/metrics
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
