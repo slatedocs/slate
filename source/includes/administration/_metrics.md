@@ -1,6 +1,6 @@
 ## Metrics
 
-The metrics API can be queried to obtain data related to different organizations, environments, or workloads
+The metrics API can be queried to obtain metrics data rthat is pushed by the service to CloudMC metric data store.
 
 ### Retrieve Metrics for a Specified Interval
 
@@ -64,8 +64,8 @@ Optional Query Parameters | &nbsp;
 ---- | -----------
 `environment`<br/>*string* | The name of the environment to query metrics for.
 `aggregationType`<br/>*string* | How the queried metrics should be aggregated. The possible values are sum, count, min, max, avg (average). When not provided, the default value used is `average`.
-`size`<br/>*integer* | The size of the granularity used to aggregate data points. The size must be a positive integer value. When combined with `unit`, this forms an expression similar to `1 hour`, or `1 day`, etc. When not provided, the default value used is `5`.
-`unit`<br/>*string* | The unit of the granularity used to aggregate data points. The unit must be a valid Java Chronounit. When not provided, the default value is `minutes`. 
+`size`<br/>*integer* | The size of the data points granularity in the response. The size must be a positive integer value. When combined with `unit`, this forms an expression similar to `1 hour`, or `1 day`, etc. The default value used is `5`.
+`unit`<br/>*string* | The unit of the data points granularity in the response. The unit must be a valid Java Chronounit. The default value is `MINUTES`.
 `entityType`<br/>*string* | the type of entity to query metrics for.
 `entityId`<br/>*UUID* | The id of the entity to query metrics for.
 `groupBy`<br/>*string* | .
@@ -73,5 +73,5 @@ Optional Query Parameters | &nbsp;
 
 Attributes | &nbsp;
 ---- | -----------
-`label`<br/>*UUID* | The timestamp used to label the value returned by the query.
+`label`<br/>*UUID* | The UTC timestamp used to label the value returned by the query.
 `value`<br/>*Object* | The value of the metric at the given timestamp.
