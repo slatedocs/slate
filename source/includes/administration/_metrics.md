@@ -66,9 +66,6 @@ Optional Query Parameters | &nbsp;
 `aggregationType`<br/>*string* | How the queried metrics should be aggregated. The possible values are sum, count, min, max, avg (average). When not provided, the default value used is `average`.
 `size`<br/>*integer* | The size of the data points granularity in the response. The size must be a positive integer value. When combined with `unit`, this forms an expression similar to `1 hour`, or `1 day`, etc. The default value used is `5`.
 `unit`<br/>*string* | The unit of the data points granularity in the response. The unit must be a valid Java Chronounit. The default value is `MINUTES`.
-`entityType`<br/>*string* | the type of entity to query metrics for.
-`entityId`<br/>*UUID* | The id of the entity to query metrics for.
-`groupBy`<br/>*string* | .
 
 
 Attributes | &nbsp;
