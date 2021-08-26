@@ -244,6 +244,55 @@ Optional | &nbsp;
 `httpMethods`<br/>*Array[string]* | List of HTTP methods that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 `ipAddresses`<br/>*Array[string]* | List of IP addresses that the rule will apply to. Only for rule of type `REQUEST_RATE`.
 
+<!-- CREATE A CUSTOM RULE BASED ON A WAF REQUEST -->
+
+##### Create a WAF rule based on a request made to an existing site
+
+```
+POST "https://cloudmc_endpoint/api/v1/services/{serviceCode}/{environment}/wafrequests/{wafrequestId}?operation=create_rule&siteId={siteId}"
+```
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+  -d "request_body" \
+  "https://cloudmc_endpoint/api/v1/services/stackpath-aaaa/env-1/wafrequests/197d190d415bea5ea1385a0de6f3bceb-452444?operation=create_rule&siteId=5ea00192-30f0-4da0-b9d9-461baa3dde89"
+```
+> Request body example for the custom rule:
+
+```json
+{
+    "action": "MONITOR",
+    "clientIp": "66.249.82.90"
+}
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+Path Params | &nbsp;
+---- | -----------
+`serviceCode`<br/>*string* | The globally unique serviceCode that identifies the service connection.
+`wafrequestId`<br/>*UUID* | The ID of the WAF request made to the site. The WAF rule created must map to an existing request made to the site.
+`environment`<br/>*UUID* | The name of the environment containing the site.
+
+Query Params | &nbsp;
+---- | -----------
+`operation`<br/>*string* | The operation executed. This must be `create_rule`.
+`siteId`<br/>*UUID* | The ID of the site for which the custom rule is applied to. This parameter is required.
+
+Required | &nbsp;
+------- | -----------
+`action`<br/>*string* | The action to be taken on the provided IP address. The action must be one of ALLOW, BLOCK, MONITOR, CAPTCHA, or HANDSHAKE.
+`clientIp`<br/>*string* | The IP address the WAF request specified was made from.
+
+
 <!-------------------- EDIT A CUSTOM RULE -------------------->
 
 ##### Edit a custom rule
