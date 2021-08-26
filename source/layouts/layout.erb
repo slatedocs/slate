@@ -122,9 +122,11 @@ under the License.
         <% toc_data(page_content).each do |h1| %>
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>">
-              <span>
+              <span class="toc-link-content-image">
                 <%=image_tag h1[:id]+'.svg' %>
-                <%= h1[:content] %>
+                <span class="toc-link-content">
+                  <%= h1[:content] %>
+                </span>
               </span>
               <% if h1[:children].length > 0 %>
                 <%= image_tag "arrow-bottom.svg",  class: 'icon-arrow' %>
@@ -137,10 +139,13 @@ under the License.
                 <% h1[:children].each do |h2| %>
                   <li>
                     <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>">
+                      <span class="toc-link-content">
+                        <%= h2[:content] %>
+                      </span>
                       <% if h2[:children].length > 0 %>
-                        <%= h2[:content] %> <%= image_tag "arrow-bottom.svg", class: 'active-parent icon-arrow'%>
+                         <%= image_tag "arrow-bottom.svg", class: 'active-parent icon-arrow'%>
                       <% else %>
-                        <%= h2[:content] %> <%= image_tag "arrow-right.svg", class: 'icon-arrow'%>
+                        <%= image_tag "arrow-right.svg", class: 'icon-arrow'%>
                       <% end %>
                     </a>
                    <% if h2[:children].length > 0 %>
@@ -148,7 +153,10 @@ under the License.
                       <% h2[:children].each do |h3| %>
                         <li>
                           <a href="#<%= h3[:id] %>" class="toc-h3 toc-link" data-title="<%= h3[:title] %>">
-                            <%= h3[:content] %> <%= image_tag "arrow-right.svg", class: 'icon-arrow'%>
+                            <span class="toc-link-content">
+                              <%= h3[:content] %>
+                            </span> 
+                            <%= image_tag "arrow-right.svg", class: 'icon-arrow'%>
                           </a>
                         </li>
                       <% end %>

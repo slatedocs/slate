@@ -6,13 +6,27 @@ def toc_data(page_content)
   # get a flat list of headers
   headers = []
   html_doc.css('h1, h2, h3').each do |header|
-    headers.push({
-      id: header.attribute('id').to_s,
-      content: header.children,
-      title: header.children.to_s.gsub(/<[^>]*>/, ''),
-      level: header.name[1].to_i,
-      children: []
-    })
+    if header.attribute('type').to_s == 'beta'
+      idxTrim = header.children.to_s.index("<span")
+      content = header.children.to_s[0,idxTrim] + "<span class='tags beta'>BETA</span>" 
+      headers.push({
+        id: header.attribute('id').to_s,
+        content: content,
+        title: header.children.to_s.gsub(/<[^>]*>/, ''),
+        level: header.name[1].to_i,
+        releases: true,
+        children: []
+      })
+    else
+      headers.push({
+        id: header.attribute('id').to_s,
+        content: header.children,
+        title: header.children.to_s.gsub(/<[^>]*>/, ''),
+        level: header.name[1].to_i,
+        releases: false,
+        children: []
+      })
+    end
   end
 
   [3,2].each do |header_level|

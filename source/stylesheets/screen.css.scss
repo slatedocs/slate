@@ -39,6 +39,22 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
+.tags{
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  padding: 4px 8px;
+  color: white;
+  border-radius: 4px;
+  text-transform: capitalize;
+  font-weight: normal;
+  &.beta{
+    background-color: #F38827;
+  }
+  &.new{
+    background-color: #0D47A1;
+  }
+}
 
 .search {
   position: relative;
@@ -345,19 +361,32 @@ html, body {
     }
   }
 
-  // This is the currently selected ToC entry
-  .toc-link.active {
-    background-color: $nav-active-bg;
-    color: $nav-active-text;
-    border-radius: 10px;
-    &:hover{
-      color: lighten($color: $main-color, $amount: 10);
+  .toc-link{
+    // This is the currently selected ToC entry
+    &.active {
+      background-color: $nav-active-bg;
+      color: $nav-active-text;
+      border-radius: 10px;
+      &:hover{
+        color: lighten($color: $main-color, $amount: 10);
+      }
     }
-  }
-  // this is parent links of the currently selected ToC entry
-  .toc-link.active-parent {
-    background-color: $nav-active-parent-bg;
-    color: $nav-active-parent-text;
+    // this is parent links of the currently selected ToC entry
+    &.active-parent {
+      background-color: $nav-active-parent-bg;
+      color: $nav-active-parent-text;
+    }
+    .toc-link-content{
+      flex:1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .toc-link-content-image{
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
   }
 
   .toc-list-h2 {
@@ -831,6 +860,13 @@ html, body {
 // These are the styles for phones and tablets
 // There are also a couple styles disperesed
 @media (max-width: $desktop-width){
+  .content{
+    &>h1, &>h2, &>h3, &>h4, &>h5, &>h6 {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
   .header{
     &-logo {
       &-container{
