@@ -15,7 +15,7 @@ Welcome to The Data Export API. This API provides authenticated access to your c
 * Retain copies of conversations for permanent internal storage (compliance)
 * Easily retrieve conversation data when requested by your customer
 
-The Data Export API is designed according to REST principles. The API accepts JSON in request bodies and will respond with either a conversation or message object, depending on which endpoint you’re querying.
+The Data Export API is designed according to REST principles. The API accepts JSON in request bodies and will respond with a list of conversation/message objects, depending on which endpoint you’re querying.
 
 
 ### What you’ll need to get started
@@ -23,20 +23,26 @@ The Data Export API is designed according to REST principles. The API accepts JS
 
 
 * Purchase access to the Data Export API via your account manager
-* Your API token (generate through self-serve key generation modal behind feature flag ‘data_api’)
-* Access to your exclusive Ada developer slack channel
+* Generate Your API token (generate through self-serve key generation modal behind feature flag `data_api`)
+* Get Access to your exclusive Ada developer slack channel
 
 
 #### Access to the Data Export API on your account
 
 To get started with the Data Export API, you’ll need to speak with your account manager to have it added to your contract with Ada. We’re currently delivering the API via an Early Access Program, so work with your account manager to ensure that the API is at the right stage of development for your business.
 
+####Data Export API Trial
+
+A 30 day trial for Data  API is available (feature flag: `data_api_trial`). The trial will begin once the first API access token is generated. Any regenerated API access tokens will have the same expiration date as the first API access token. Migrating to a paid Data Export API feature will require regenerating a new API access token to remove the initial expiration date.
+
+<aside class="notice">If you're on trial, the expiry date will be shown in your pop up window like this: </aside>
+<%= image_tag "images/data_api_image6.png" %>
 
 #### API authentication tokens
 
-In order to keep your data safe, all requests to the Data Export API must be authenticated when making API calls.
+In order to keep your data safe, all requests to the Data Export API must be authenticated.
 
-Please request your account manager to enable the feature flag `data_api` for your bot to enable data api access and self-serve authentication key generation modal for Admin and Owner level users to generate authentication keys.
+Please request your account manager to enable the feature flag `data_api` for your bot to enable Data API access and self-serve authentication key generation modal for Admin and Owner level users to generate authentication keys.
 
 
 #### Self-serve Authentication Token Generation
@@ -61,7 +67,7 @@ Each account has one active token at a time. Put the token at the Authorization 
 3. The token is created, click the `Copy` button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console.
    <%= image_tag "images/data_api_image3.png" %>
 
-You now can use this bearer token as the authorization header to access Data API, following this format:
+You now can use this Bearer token as the authorization header to access Data API, following this format:
 
 Headers
 
@@ -71,9 +77,9 @@ Authorization | Bearer &lt;your_api_token>
 
 
 
-#### Authentication Token Re-generation
+#### Authentication Token Regeneration
 
-If you have lost the token or need to generate a new token, you will need to regenerate it via the console. We only maintain one token at a time; regeneration means a new token is issued and immediately invalidates the prior token.
+If you have lost the token or need to generate a new token, you will need to regenerate it via the console. We currently support one Access Token at a time; regeneration means a new token is issued and immediately invalidates the prior token.
 
 Follow the steps below to regenerate a new token:
 
@@ -88,7 +94,7 @@ Follow the steps below to regenerate a new token:
 
 
 
-2. A modal will pop up and asks if you understand `Generating a new Access Token will immediately invalidate your previous token. Your API Integrations will stop working until they are updated to use the new token.`. Click `I understand, generate a new token`.
+2. A modal will pop up. Click `I understand, generate a new token`.
    <%= image_tag "images/data_api_image5.png" %>
 
 
@@ -96,10 +102,6 @@ Follow the steps below to regenerate a new token:
 
 
 3. The new token is issued, click the `Copy` button to copy the authentication token and store it in a secure place. The access token will be shown once at the time of generation. The next time you log in, the token will not be accessible through the console. Make sure API integrations are updated with this new token.
-
-
-<aside class="notice">If you're on trial, the expiry date will be shown in your pop up window like this: </aside>
-<%= image_tag "images/data_api_image6.png" %>
 
 
 #### Data API Endpoint
@@ -284,7 +286,7 @@ Returns a list Conversation objects along with status message and next page uri 
 
 
 
-#### Get all conversations that were updated after `updated_since`
+#### Get all conversations that were updated 1 week after `updated_since`
 
 `GET  /data_api/v1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
@@ -327,7 +329,7 @@ Returns a list Conversation objects along with status message and next page uri 
 #### V1.1
 
 
-#### Get all conversations that were created after `created_since`
+#### Get all conversations that were created 1 week after `created_since`
 
 `GET  /data_api/v1.1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
@@ -368,7 +370,7 @@ Returns a list Conversation objects along with status message and next page uri 
 
 
 
-#### Get all conversations that were updated after `updated_since`
+#### Get all conversations that were updated 1 week after `updated_since`
 
 `GET  /data_api/v1.1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
@@ -440,8 +442,8 @@ A message object is created anytime either Ada or a chatter sends a message. All
 |created_since|Yes|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
 |created_to|No|7 days|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
 |page_size|No|10000|Integer|100|✔|✔|
-|conversation_id|No|NA|String|<mongodb_12_byte_object_id>|✘|✔|
-|chatter_id|No|NA|String|<mongodb_12_byte_object_id>|✘|✔|
+|conversation_id|No|NA|String|\<mongodb_12_byte_object_id>|✘|✔|
+|chatter_id|No|NA|String|\<mongodb_12_byte_object_id>|✘|✔|
 
 
 ### Returns
@@ -455,7 +457,7 @@ Returns a list messages objects along with a status message and next page uri if
 #### V1
 
 
-#### Get all messages that were created after `created_since`
+#### Get all messages that were created 1 week after `created_since`
 
 `GET
 /data_api/v1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
@@ -510,7 +512,7 @@ Returns a list messages objects along with a status message and next page uri if
 #### V1.1
 
 
-#### Get all messages that were created after `created_since`
+#### Get all messages that were created 1 week after `created_since`
 
 `GET
 /data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
@@ -564,12 +566,12 @@ Returns a list messages objects along with a status message and next page uri if
 
 
 
-#### Get all messages that were created after `created_since` by `conversation_id` and `chatter_id`
+#### Get all messages that were created 1 week after `created_since` by `chatter_id`
 
 `GET
 /data_api/v1.1/messages?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100 \
-&conversation_id=60f6e4b177c2c9b51e74df4b \
-&chatter_id=60f6e4b177c2c9b51e74df4a`
+&conversation_id=<mongodb_12_byte_object_id> \
+&chatter_id=<mongodb_12_byte_object_id>`
 
 
 ```json
@@ -579,8 +581,8 @@ Returns a list messages objects along with a status message and next page uri if
     {
       "_id": "<mongodb_12_byte_object_id>",
       "answer_title": null,
-      "conversation_id": "60f6e4b177c2c9b51e74df4b",
-      "chatter_id": "60f6e4b177c2c9b51e74df4a",
+      "conversation_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
       "date_created": "2020-09-21T04:30:22.268000+00:00",
       "message_data": {
         "_type": "greeting",
@@ -594,8 +596,8 @@ Returns a list messages objects along with a status message and next page uri if
     {
       "_id": "<mongodb_12_byte_object_id>",
       "answer_title": null,
-      "conversation_id": "60f6e4b177c2c9b51e74df4b",
-      "chatter_id": "60f6e4b177c2c9b51e74df4a",
+      "conversation_id": "<mongodb_12_byte_object_id>",
+      "chatter_id": "<mongodb_12_byte_object_id>",
       "date_created": "2020-09-21T04:30:23.256000+00:00",
       "message_data": {
         "_type": "meta",
@@ -630,5 +632,5 @@ Returns a list messages objects along with a status message and next page uri if
 |--- |--- |
 |2021.02.24|Data API v1 first available for early access clients. Message, Conversation endpoints published.|
 |2021.06.22|Added additional request timed out error code (408).|
-|2021.07.29|Added self-serve auth key generation in ui portal under data api feature flag. Beta Release v1 for additional clients.|
-|2021.08.10|Added data api base uri endpoint in Data Export API ui portal under settings/integrations.|
+|2021.07.29|Added self-serve auth key generation in UI portal under Data API feature flag. Beta Release v1 for additional clients.|
+|2021.08.10|Added Data API base uri endpoint in Data Export API UI portal under settings/integrations.|
