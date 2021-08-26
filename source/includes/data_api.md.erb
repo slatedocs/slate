@@ -23,8 +23,8 @@ The Data Export API is designed according to REST principles. The API accepts JS
 
 
 * Purchase access to the Data Export API via your account manager
-* Generate Your API token (generate through self-serve key generation modal behind feature flag `data_api`)
-* Get Access to your exclusive Ada developer slack channel
+* Generate your API token (generate through self-serve key generation modal behind feature flag `data_api`)
+* Get access to your exclusive Ada developer Slack channel
 
 
 #### Access to the Data Export API on your account
@@ -131,20 +131,20 @@ You can use this channel to ask questions, raise issues, or get advice from the 
 
 ## Rate limits
 
-The Data Export API is subject to rate limiting. If you exceed the rate limit, we may return a **429-“Too many requests”** response status code.
+The Data Export API is subject to rate limiting. If you exceed the rate limit, we may return a **429-Too Many Requests** response status code.
 
 We provide rate limits in order to ensure the stability of our infrastructure for all clients and the best experience for you. When calling the Data Export API you should implement **429** retry logic using exponential backoff and jitter.
 
-The early access API rate limits are: **1 Request / Second per endpoint**
+The early access API rate limits are: **1 request / second for each endpoint**
 
 
 ## Page size and date range limitations
 
 In addition to rate limits, we’ve implemented page size and date range limitations.
 
-**Page size limitations**: 10,000 record max per page
+**Page size limitations**: maximum of 10,000 records per page
 
-**Date range limitations:** Exports are limited to records from the previous 60 days
+**Date range limitations:** the end date of the query must be **60 days** or less from the start date
 
 
 ## Status Codes
