@@ -225,7 +225,7 @@ Conversations are a higher-order object that contain messages (which can be acce
 ### Parameters
 
 
-|Params|Required?|Default Value (if param not used)|Type|Example|v1.0|v1.1|
+|Params|Required?|Default Value|Type|Example|v1.0|v1.1|
 |--- |--- |--- |--- |--- |--- |--- |
 |created_since|One of `created_since` or `updated_since` is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
 |updated_since|One of `created_since` or `updated_since` is required|NA|UTC Timestamp|2020-09-21T00:00:00|✔|✔|
@@ -236,7 +236,7 @@ Conversations are a higher-order object that contain messages (which can be acce
 
 ### Returns
 
-Returns a list Conversation objects along with status message and next page uri if applicable.
+Returns a list Conversation objects along with a status message and `next_page_uri` if applicable.
 
 
 ### Examples
@@ -245,7 +245,7 @@ Returns a list Conversation objects along with status message and next page uri 
 #### V1
 
 
-#### Get all conversations after`created_since`
+#### Get all conversations that were created within 1 week of `created_since`
 
 `GET  /data_api/v1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
@@ -286,7 +286,7 @@ Returns a list Conversation objects along with status message and next page uri 
 
 
 
-#### Get all conversations that were updated 1 week after `updated_since`
+#### Get all conversations that were updated within 1 week of `updated_since`
 
 `GET  /data_api/v1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
@@ -329,7 +329,7 @@ Returns a list Conversation objects along with status message and next page uri 
 #### V1.1
 
 
-#### Get all conversations that were created 1 week after `created_since`
+#### Get all conversations that were created within 1 week of `created_since`
 
 `GET  /data_api/v1.1/conversations?created_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
@@ -370,7 +370,7 @@ Returns a list Conversation objects along with status message and next page uri 
 
 
 
-#### Get all conversations that were updated 1 week after `updated_since`
+#### Get all conversations that were updated within 1 week of `updated_since`
 
 `GET  /data_api/v1.1/conversations?updated_since=2020-09-21T04%3A30%3A22.681000%2B00%3A00&page_size=100`
 
