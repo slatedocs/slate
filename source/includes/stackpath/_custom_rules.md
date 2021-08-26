@@ -249,7 +249,7 @@ Optional | &nbsp;
 ##### Create a WAF rule based on a request made to an existing site
 
 ```
-GET "https://cloudmc_endpoint/api/v1/services/{serviceCode}/{environment}/wafrequests/{wafrequestId}?operation=create_rule&siteId={siteId}"
+POST "https://cloudmc_endpoint/api/v1/services/{serviceCode}/{environment}/wafrequests/{wafrequestId}?operation=create_rule&siteId={siteId}"
 ```
 
 ```shell
