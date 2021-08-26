@@ -52,8 +52,8 @@ curl "https://cloudmc_endpoint/api/v1/metrics/stackpath-cox-dev/ingress_bandwidt
 
 Path Parameters | &nbsp;
 ---- | -----------
-`serviceCode`<br/>*String* | A globally unique code that identifies this service connection..
-`metricId`<br/>*String* | A unique identifier used to define a `MetricDescriptor`.
+`serviceCode`<br/>*string* | A globally unique code that identifies this service connection..
+`metricId`<br/>*string* | A unique identifier used to define a `MetricDescriptor`.
 
 Required Query Parameters | &nbsp;
 ---- | -----------
@@ -62,13 +62,13 @@ Required Query Parameters | &nbsp;
 
 Optional Query Parameters | &nbsp;
 ---- | -----------
-`environment`<br/>*String* | The name of the environment to query metrics for.
-`aggregationType`<br/>*String* | How the queried metrics should be aggregated. The possible values are sum, count, min, max, avg (average). When not provided, the default value used is `average`.
-`size`<br/>*Int* | The size of the granularity used to aggregate data points. The size must be a positive integer value. When combined with `unit`, this forms an expression similar to `1 hour`, or `1 day`, etc. When not provided, the default value used is `5`.
-`unit`<br/>*String* | The unit of the granularity used to aggregate data points. The unit must be a valid Java Chronounit. When not provided, the default value is `minutes`. 
-`entityType`<br/>*String* | the type of entity to query metrics for.
+`environment`<br/>*string* | The name of the environment to query metrics for.
+`aggregationType`<br/>*string* | How the queried metrics should be aggregated. The possible values are sum, count, min, max, avg (average). When not provided, the default value used is `average`.
+`size`<br/>*integer* | The size of the granularity used to aggregate data points. The size must be a positive integer value. When combined with `unit`, this forms an expression similar to `1 hour`, or `1 day`, etc. When not provided, the default value used is `5`.
+`unit`<br/>*string* | The unit of the granularity used to aggregate data points. The unit must be a valid Java Chronounit. When not provided, the default value is `minutes`. 
+`entityType`<br/>*string* | the type of entity to query metrics for.
 `entityId`<br/>*UUID* | The id of the entity to query metrics for.
-`groupBy`<br/>*String* | .
+`groupBy`<br/>*string* | .
 
 
 Attributes | &nbsp;
