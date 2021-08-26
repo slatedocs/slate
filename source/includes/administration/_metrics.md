@@ -1,6 +1,6 @@
 ## Metrics
 
-The metrics API can be queried to obtain metrics data rthat is pushed by the service to CloudMC metric data store.
+The metrics API can be queried to obtain metrics data that is pushed by the service to CloudMC metric data store.
 
 ### Retrieve Metrics for a Specified Interval
 
@@ -72,7 +72,7 @@ Optional Query Parameters | &nbsp;
 `aggregationType`<br/>*string* | How the queried metrics should be aggregated. The possible values are sum, count, min, max, avg (average). When not provided, the default value used is `average`.
 `size`<br/>*integer* | The size of the data points granularity in the response. The size must be a positive integer value. When combined with `unit`, this forms an expression similar to `1 hour`, or `1 day`, etc. The default value used is `5`.
 `unit`<br/>*string* | The unit of the data points granularity in the response. The unit must be a valid Java Chronounit. The default value is `MINUTES`.
-`entityType`<br/>*String* | the type of entity to query metrics for. When provided, only those metric records that have the provided `entityType` are aggregated.
+`entityType`<br/>*String* | The type of entity to query metrics for. When provided, only those metric records that have the provided `entityType` are aggregated.
 `entityId`<br/>*UUID* | The id of the entity to query metrics for. When provided, only those metric records that have the provided `entityId` are aggregated.
 
 
