@@ -2,6 +2,8 @@
 
 The metrics API can be queried to obtain data related to different organizations, environments, or workloads
 
+### Retrieve Metrics for a Specified Interval
+
 <!-- GET METRICS FOR INTERVAL -->
 
 `GET /metrics/{serviceCode}/{metricId}`
