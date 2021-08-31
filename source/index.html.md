@@ -11,11 +11,12 @@ toc_footers:
 
 includes:
   - intro
-  - users
+  - attendees
+  - attendee_type
   - events
   - fields
-  - attendee_type
   - pricing_tier
+  - users
 
 search: true
 ---
