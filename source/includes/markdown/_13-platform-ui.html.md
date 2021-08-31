@@ -190,7 +190,7 @@ Related References:
 
 <hr>
 
-## Widget Resource Searching
+## App Resource Search
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 

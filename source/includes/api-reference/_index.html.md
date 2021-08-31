@@ -478,7 +478,7 @@ Upload an attachment.
 
 This method uploads an attachment to a task and returns the compact
 record for the created attachment object. It is not possible to attach
-files from third party services such as Dropbox, Box & Google Drive via
+files from third party services such as Dropbox, Box, Vimeo & Google Drive via
 the API. You must download the file content first and then upload it as
 any other attachment.
 
@@ -23457,7 +23457,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
-|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
+|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
 
 </section><hr>
 <section>
@@ -23499,10 +23499,10 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
-|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
+|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
-|host<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
+|download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/) and will be null if the attachment is a Video Message hosted by [Vimeo](https://vimeo.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
+|host<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `box`, and `vimeo`.|
 |parent<span class="param-type"> object</span>|The task this attachment is attached to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
