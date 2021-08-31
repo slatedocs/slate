@@ -474,12 +474,12 @@ Returns a list of Messages objects along with a status message and `next_page_ur
       "date_created": "2020-09-21T04:30:22.268000+00:00",
       "message_data": {
         "_type": "greeting",
-        "external_chat_id": "3cf45844-baa0-4172-ad02-797a269d3ba0",
+        "external_chat_id": "<uuid_v4_id>",
         "reviewable_message": false
       },
       "recipient": "ada",
       "review": 0,
-      "sender": "1d4f40e5-7942-464e-9d01-112d03156201"
+      "sender": "<uuid_v4_id>"
     },
     {
       "_id": "<mongodb_12_byte_object_id>",
@@ -497,7 +497,7 @@ Returns a list of Messages objects along with a status message and `next_page_ur
         },
         "meta_message_type": "variable_change"
       },
-      "recipient": "1d4f40e5-7942-464e-9d01-112d03156201",
+      "recipient": "<uuid_v4_id>",
       "review": 0,
       "sender": "bot"
     }
@@ -530,12 +530,12 @@ Returns a list of Messages objects along with a status message and `next_page_ur
       "date_created": "2020-09-21T04:30:22.268000+00:00",
       "message_data": {
         "_type": "greeting",
-        "external_chat_id": "3cf45844-baa0-4172-ad02-797a269d3ba0",
+        "external_chat_id": "<uuid_v4_id>",
         "reviewable_message": false
       },
       "recipient": "ada",
       "review": 0,
-      "sender": "1d4f40e5-7942-464e-9d01-112d03156201"
+      "sender": "<uuid_v4_id>"
     },
     {
       "_id": "<mongodb_12_byte_object_id>",
@@ -554,7 +554,7 @@ Returns a list of Messages objects along with a status message and `next_page_ur
         },
         "meta_message_type": "variable_change"
       },
-      "recipient": "1d4f40e5-7942-464e-9d01-112d03156201",
+      "recipient": "<uuid_v4_id>",
       "review": 0,
       "sender": "bot"
     }
@@ -584,12 +584,12 @@ Returns a list of Messages objects along with a status message and `next_page_ur
       "date_created": "2020-09-21T04:30:22.268000+00:00",
       "message_data": {
         "_type": "greeting",
-        "external_chat_id": "3cf45844-baa0-4172-ad02-797a269d3ba0",
+        "external_chat_id": "<uuid_v4_id>",
         "reviewable_message": false
       },
       "recipient": "ada",
       "review": 0,
-      "sender": "1d4f40e5-7942-464e-9d01-112d03156201"
+      "sender": "<uuid_v4_id>"
     },
     {
       "_id": "<mongodb_12_byte_object_id>",
@@ -608,7 +608,7 @@ Returns a list of Messages objects along with a status message and `next_page_ur
         },
         "meta_message_type": "variable_change"
       },
-      "recipient": "1d4f40e5-7942-464e-9d01-112d03156201",
+      "recipient": "<uuid_v4_id>",
       "review": 0,
       "sender": "bot"
     }
@@ -632,3 +632,4 @@ Returns a list of Messages objects along with a status message and `next_page_ur
 |2021.06.22|Added additional request timed out error code (408).|
 |2021.07.29|Added self-serve auth key generation in UI portal under Data API feature flag. Beta Release v1 for additional clients.|
 |2021.08.10|Added Data API base URI endpoint in Data Export API UI portal under settings/integrations.|
+|2021.08.30|Data API v1.1 release, the following are the changes available for v1.1<ul><li>`chatter_id` field available in messages endpoint response field</li><li>filter by `chatter_id` or `conversation_id` for messages endpoint</li></ul>Added 30 days expiration token for trial accounts.|
