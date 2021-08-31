@@ -6,7 +6,7 @@ To be able to login to Dashboard;
 1. Make sure the username and password that you input are correct
 2. Click 'Request OTP' button and input the OTP in the PIN Authentication field. The OTP will be sent to the email associated with your username.
 
-![Login OTP](images/Login_OTP.png)
+![Login OTP](images/Login_OTP.jpg)
 
 ![Email OTP](images/email_otp.png)
 
