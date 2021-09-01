@@ -21682,7 +21682,7 @@ Returns the full record for a user's task list.
 <h1 id="webhooks">Webhooks</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-multiple-webhooks"><span class="get-verb">GET</span> <span class=""nn>/webhooks</span></a><br><a href="/docs/establish-a-webhook"><span class="post-verb">POST</span> <span class=""nn>/webhooks</span></a><br><a href="/docs/get-a-webhook"><span class="get-verb">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="/docs/delete-a-webhook"><span class="delete-verb">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></a></code>
+<code><a href="/docs/get-multiple-webhooks"><span class="get-verb">GET</span> <span class=""nn>/webhooks</span></a><br><a href="/docs/establish-a-webhook"><span class="post-verb">POST</span> <span class=""nn>/webhooks</span></a><br><a href="/docs/get-a-webhook"><span class="get-verb">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="/docs/update-a-webhook"><span class="put-verb">PUT</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="/docs/delete-a-webhook"><span class="delete-verb">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></a></code>
 </pre>
 
 <span class="description">
@@ -22243,6 +22243,164 @@ Returns the full record for the given webhook.
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [Webhook](#schemawebhook)</span>|Successfully retrieved the requested webhook.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Update a webhook
+
+<a id="opIdupdateWebhook"></a>
+
+> Code samples
+
+```shell
+curl -X PUT https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.webhooks.updateWebhook(webhookGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.webhooks.update_webhook(webhook_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.webhooks.update_webhook(webhook_gid: 'webhook_gid', field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+Webhook result = client.webhooks.updateWebhook(webhookGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->webhooks->updateWebhook($webhook_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "filters": [
+      {
+        "action": "changed",
+        "fields": [
+          "due_at",
+          "due_on",
+          "dependencies"
+        ],
+        "resource_subtype": "milestone",
+        "resource_type": "task"
+      }
+    ]
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "webhook",
+    "active": false,
+    "resource": {
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    },
+    "target": "https://example.com/receive-webhook/7654",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "filters": [
+      {
+        "action": "changed",
+        "fields": [
+          "due_at",
+          "due_on",
+          "dependencies"
+        ],
+        "resource_subtype": "milestone",
+        "resource_type": "task"
+      }
+    ],
+    "last_failure_at": "2012-02-22T02:06:58.147Z",
+    "last_failure_content": "500 Server Error\\n\\nCould not complete the request",
+    "last_success_at": "2012-02-22T02:06:58.147Z"
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="put-verb">PUT</span> /webhooks/{webhook_gid}</code>
+</p>
+
+<span class="description">
+An existing webhook's filters can be updated by making a PUT request on the URL for that webhook. Note that the webhook's previous `filters` array will be completely overwritten by the `filters` sent in the PUT request. 
+</span>
+
+<h3 id="update-a-webhook-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The updated filters for the webhook.|
+|» data<span class="param-type"> object</span>|none|
+|»» filters<span class="param-type"> [object]</span>|An array of WebhookFilter objects to specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered; otherwise no event will be sent to the receiving server.|
+|»»» action<span class="param-type"> string</span>|The type of change on the **resource** to pass through the filter. For more information refer to `Event.action` in the [Event](/docs/tocS_Event) schema. This can be one of `changed`, `added`, `removed`, `deleted`, and `undeleted` depending on the nature of what has occurred on the resource.|
+|»»» fields<span class="param-type"> [string]</span>|*Conditional.* A whitelist of fields for events which will pass the filter when the resource is changed. These can be any combination of the fields on the resources themselves. This field is only valid for `action` of type `changed`|
+|»»» resource_subtype<span class="param-type"> string</span>|The resource subtype of the resource that the filter applies to. This should be set to the same value as is returned on the `resource_subtype` field on the resources themselves.|
+|»»» resource_type<span class="param-type"> string</span>|The type of the resource which created the event when modified; for example, to filter to changes on regular tasks this field should be set to `task`.|
+|/webhook_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the webhook.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="update-a-webhook-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Webhook](#schemawebhook)</span>|Successfully updated the webhook.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
