@@ -20529,23 +20529,11 @@ Status Code **200**
 | period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 | start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 | parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
-| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
-| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|period|FY|
-|period|H1|
-|period|H2|
-|period|Q1|
-|period|Q2|
-|period|Q3|
-|period|Q4|
 |period|FY|
 |period|H1|
 |period|H2|
