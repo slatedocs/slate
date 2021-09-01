@@ -29,6 +29,15 @@ under the License.
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <% if current_page.data.key?('meta') %>
+      <% current_page.data.meta.each do |meta| %>
+        <meta
+          <% meta.each do |key, value| %>
+            <%= "#{key}=\"#{value}\"" %>
+          <% end %>
+        >
+      <% end %>
+    <% end %>
     <title><%= current_page.data.title || "API Documentation" %></title>
 
     <style media="screen">
