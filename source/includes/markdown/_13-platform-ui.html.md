@@ -8,7 +8,7 @@
 App Components are currently in **Closed Beta**. At this time, we are limiting the number of app submissions to be published
 in the in-product app gallery for the official launch. If you are interested in having your app published, please
 [visit the forum](https://forum.asana.com/c/developersapi/app-components-beta/150) for instructions on participating in the
-App Components Beta program. 
+App Components Beta Program. 
 
 The App Components Beta Program is a pre-general-release version of a program developed by Asana that allows developers 
 to develop and test App Components. The App Component Beta Program is for development, evaluation, and testing purposes 
