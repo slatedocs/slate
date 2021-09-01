@@ -4708,6 +4708,23 @@ components:
       required:
         - resource
         - target
+    WebhookUpdateRequest:
+      type: object
+      properties:
+        filters:
+          type: array
+          description: >-
+            An array of WebhookFilter objects to specify a whitelist of filters
+            to apply to events from this webhook. If a webhook event passes any
+            of the filters the event will be delivered; otherwise no event will
+            be sent to the receiving server.
+          items:
+            allOf:
+              - $ref: '#/components/schemas/WebhookFilter'
+              - description: >-
+                  A set of filters to specify a whitelist for what types of
+                  events will be delivered.
+              - type: object
     WebhookCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -11553,6 +11570,46 @@ paths:
       responses:
         200:
           description: Successfully retrieved the requested webhook.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/WebhookResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      summary: >-
+        Update a webhook
+      description: >-
+        An existing webhook's filters can be updated by making a PUT request on the
+        URL for that webhook. Note that the webhook's previous `filters` array will
+        be completely overwritten by the `filters` sent in the PUT request. 
+      tags:
+        - Webhooks
+      operationId: updateWebhook
+      requestBody:
+        description: The updated filters for the webhook.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/WebhookUpdateRequest'
+      responses:
+        200:
+          description: Successfully updated the webhook.
           content:
             application/json:
               schema:
