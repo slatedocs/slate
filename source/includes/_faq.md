@@ -25,8 +25,8 @@ _e-wallet:_ Since each e-wallet provide limits to the amount each user can hold 
 
 Wallet | Minimum Amount
 ------ | -------------
-OVO | Rp 20.000
-DANA | Rp 20.000
+OVO | Rp 10.000
+DANA | Rp 10.000
 GoPay | Rp 10.000
 Linkaja | Rp 10.000
 
