@@ -271,3 +271,20 @@ Attributes | &nbsp;
 `detail.categories.products.unit`<br/>*Object* | The unit object of the product.
 `detail.categories.products.unit.unit`<br/>*Object* | The unit value of the product.
 `detail.categories.products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom units.
+
+<!-------------------- DOWNLOAD INVOICE -------------------->
+### Download invoice
+
+`GET /invoices/download?invoice_id=:invoice_id`
+
+Download an invoice as a PDF file.
+
+```shell
+# Download an invoice
+curl  -X GET 'https://cloudmc_endpoint/rest/invoices/download?invoice_id=3f7b7cca-d440-4c70-8ea7-ff23fe88b152' \
+  -H 'MC-Api-Key: your_api_key'
+```
+
+| Required | &nbsp; |
+| --- | --- |
+| `invoice_id`<br/>*UUID* | The id of the invoice. |
