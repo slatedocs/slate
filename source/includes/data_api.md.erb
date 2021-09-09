@@ -193,13 +193,13 @@ The response will contain the results requested and a `next_page_uri`. If there 
 
 Continuously send GET requests until `next_page_uri` is null
 
->NodeJS
+#### Javascript Example
 
 ```javascript
 import fetch from "node-fetch"
 
 async function fetchMessages() {
-    const API_KEY = "<client_api_key>"
+    const API_KEY = "<YOUR-API-KEY>"
 
     const startOfYesterday = new Date(), endOfYesterday = new Date()
 
@@ -217,7 +217,7 @@ async function fetchMessages() {
     let endpoint = `/data_api/v1/messages?created_since=${startOfYesterday.toISOString()}&created_to=${endOfYesterday.toISOString()}`
 
     while (endpoint) {
-        const res = await fetch(`https://<client_handle>.ada.support/api${endpoint}`,
+        const res = await fetch(`https://<YOUR-BOT-HANDLE>.ada.support/api${endpoint}`,
             {
                 headers: {
                     Authorization: `Bearer ${API_KEY}`
@@ -232,26 +232,30 @@ async function fetchMessages() {
 }
 ```
 
->Python
+> Be sure to replace <YOUR-BOT-HANDLE> with your own bot handle, and <YOUR-API-KEY> with the key generated previously.
+
+#### Python Example
 
 ```python
 from datetime import timedelta, date
 from requests import get
 
 def fetch_messages():
-    API_KEY = "<client_api_key>"
+    API_KEY = "<YOUR-API-KEY>"
     yesterday = date.today() - timedelta(days=1)
 
     headers = {"Authorization": f"Bearer {API_KEY}"}
     endpoint = f"/data_api/v1/messages?created_since={yesterday}T00:00:00&created_to={yesterday}T23:59:59"
 
     while endpoint:
-        res = get(f"https://<client_handle>.ada.support/api{endpoint}", headers=headers)      
+        res = get(f"https://<YOUR-BOT-HANDLE>.ada.support/api{endpoint}", headers=headers)      
         json = res.json()
 
         save_to_database(json["data"])
         endpoint = json["next_page_uri"]
 ```
+
+> Be sure to replace <YOUR-BOT-HANDLE> with your own bot handle, and <YOUR-API-KEY> with the key generated previously.
 
 
 ## API reference
