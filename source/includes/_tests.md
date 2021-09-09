@@ -135,7 +135,7 @@ data/attributes/status | string of status (not run status) | false |
 data/attributes/version | string of test version | false |
 data/attributes/priority | string of test priority | false |
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
-data/attributes/automated-fields | a hash of Automation Info fields(automated_test_design, script_repository) with their value | false |
+data/attributes/automated-fields | a hash of Automation Info fields with their value. available fields: automated_test_design, script_repository, num_of_results, suite_path, client_type, script_path, results_path, script_name | false |
 data/steps/data* | an array of steps override the exit code | false |
 data/attributes/tags | an array of tags | false |
 
@@ -271,6 +271,7 @@ data/attributes/status | string of status (not run status) |
 data/attributes/version | string of test version |
 data/attributes/priority | string of test priority |
 data/attributes/custom-fields | a hash of custom-fields with their value |
+data/attributes/automated-fields | a hash of Automation Info fields with their value. available fields: automated_test_design, script_repository, num_of_results, suite_path, client_type, script_path, results_path, script_name |
 data/attributes/tags | an array of tags | false |
 data/attributes/updated-by-user-id | ID (not Display ID) of the user who made a change - [users list](#users) | false |
 
