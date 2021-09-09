@@ -187,6 +187,75 @@ The response will contain the results requested and a `next_page_uri`. If there 
 "/data_api/v1/conversations?updated_since=2020-09-23T03%3A55%3A03.586000&updated_to=2020-09-28T00%3A00%3A00&page_size=100"}
 ```
 
+## Example Usage
+
+### Grabbing all of the messages from yesterday
+
+Continuously send GET requests until `next_page_uri` is null
+
+#### Javascript Example
+
+```javascript
+import fetch from "node-fetch"
+
+async function fetchMessages() {
+    const API_KEY = "<YOUR-API-KEY>"
+
+    const startOfYesterday = new Date(), endOfYesterday = new Date()
+
+    startOfYesterday.setDate(new Date().getDate() - 1)
+    startOfYesterday.setHours(0)
+    startOfYesterday.setMinutes(0)
+    startOfYesterday.setSeconds(0)
+
+    endOfYesterday.setDate(new Date().getDate() - 1)
+    endOfYesterday.setHours(23)
+    endOfYesterday.setMinutes(59)
+    endOfYesterday.setSeconds(59)
+
+
+    let endpoint = `/data_api/v1/messages?created_since=${startOfYesterday.toISOString()}&created_to=${endOfYesterday.toISOString()}`
+
+    while (endpoint) {
+        const res = await fetch(`https://<YOUR-BOT-HANDLE>.ada.support/api${endpoint}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${API_KEY}`
+                }
+            }
+        )
+
+        const json = await res.json()
+        saveToDatabase(json.data)
+        endpoint = json.next_page_uri
+    }
+}
+```
+
+> Be sure to replace &lt;YOUR-BOT-HANDLE&gt; with your own bot handle, and &lt;YOUR-API-KEY&gt; with the key generated previously.
+
+#### Python Example
+
+```python
+from datetime import timedelta, date
+from requests import get
+
+def fetch_messages():
+    API_KEY = "<YOUR-API-KEY>"
+    yesterday = date.today() - timedelta(days=1)
+
+    headers = {"Authorization": f"Bearer {API_KEY}"}
+    endpoint = f"/data_api/v1/messages?created_since={yesterday}T00:00:00&created_to={yesterday}T23:59:59"
+
+    while endpoint:
+        res = get(f"https://<YOUR-BOT-HANDLE>.ada.support/api{endpoint}", headers=headers)      
+        json = res.json()
+
+        save_to_database(json["data"])
+        endpoint = json["next_page_uri"]
+```
+
+> Be sure to replace &lt;YOUR-BOT-HANDLE&gt; with your own bot handle, and &lt;YOUR-API-KEY&gt; with the key generated previously.
 
 
 ## API reference
@@ -452,7 +521,6 @@ Returns a list of Messages objects along with a status message and `next_page_ur
 
 
 ### Examples
-
 
 #### V1
 
