@@ -172,6 +172,8 @@ curl --location --request POST 'https://myorganization.leah.care/api/appointment
 --data-raw '{
     "phoneNumber": "+33612345678",
     "email":"john.doe@gmail.com",
+    "firstname":"john",
+    "lastname":"doe",
     "office":"/api/offices/6e229d04-1880-4b6b-a520-36f757f4a531",
     "startTime" : "2021-04-25T13:15:00",
 	"externalId" : "000001"
@@ -188,6 +190,8 @@ curl --location --request POST 'https://myorganization.leah.care/api/appointment
     "status": "scheduled",
     "startTime": "2021-03-24T13:15:00+00:00",
     "email": "john.doe@gmail.com",
+    "firstname":"john",
+    "lastname":"doe",    
     "phoneNumber": "+33612345678"
 }
 ```
@@ -208,6 +212,8 @@ Parameter | Attendance | Description
 - | - | -
 phoneNumber | Mandatory | Phone number on which the guest will receive the reminder
 email | Mandatory | Email on wich the guest will receive all informations and the reminder
+firstname | Optional | Patient's firstname
+lastname | Optional | Patient's lastname
 office | Mandatory | Healthcare work IRI's office
 startTime | Mandatory | Date and time of the appointment. Format <code>yyyy-mm-ddThh:mm:ss</code> UTC
 externalId | Optional | Associate an external <code>ID</code> 
@@ -237,6 +243,8 @@ curl --location --request PATCH 'https://myorganization.leah.care/api/appointmen
     "status": "scheduled",
     "startTime": "2021-05-18T09:00:00+00:00",
     "email": "john.doe@gmail.com",
+    "firstname":"john",
+    "lastname":"doe",
     "phoneNumber": "+33612345678"
 }
 ```
@@ -286,6 +294,8 @@ curl --location --request PATCH 'https://myorganization.leah.care/api/appointmen
     "status": "cancelled",
     "startTime": "2021-05-18T09:00:00+00:00",
     "email": "john.doe@gmail.com",
+    "firstname":"john",
+    "lastname":"doe",    
     "phoneNumber": "+33612345678"
 }
 ```
