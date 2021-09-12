@@ -36,6 +36,9 @@ configure :build do
   activate :minify_css
   activate :minify_javascript
   set :css_dir, '//pt-public.practitest.com/api/slate-apiv2/stylesheets'
+  set :js_dir, '//pt-public.practitest.com/api/slate-apiv2/assets'
+  set :images_dir, '//pt-public.practitest.com/api/slate-apiv2/assets'
+
   # activate :relative_assets
   # activate :asset_hash
   # activate :gzip
