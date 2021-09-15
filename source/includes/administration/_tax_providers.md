@@ -10,7 +10,7 @@ on the billing details (i.e. billing address) and mapping of tax codes to produc
 
 Retrieves a list of tax providers configured for a reseller.
 
-> Note: You must have the Reseller billing permission on the target reseller. If the caller does not have the correct permissions or the reseller with the ID provided does not exist a 404 Not Found will be returned  
+> Note: You must have the Reseller billing permission on the target reseller. If the caller does not have the correct permissions or the reseller with the ID provided does not exist then a `404 Not Found` response will be returned.
 
 ```shell
 # Retrieve tax providers
@@ -43,9 +43,9 @@ curl "https://cloudmc_endpoint/rest/tax_providers?reseller_id=23910576-d29f-4c14
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the tax provider.
-`reseller.id`<br/>*UUID* | UUID of the reseller to which the tax provider belongs. (AKA an organization id that is a reseller)
+`reseller.id`<br/>*UUID* | UUID of the reseller to which the tax provider belongs (AKA an organization id that is a reseller).
 `type`<br/>*string* | The type of tax provider. Possible values are: `AVALARA`.
-`state`<br/>*enum"  | The state of the tax provider. Possible values are: `CONFIGURED`, `CONFIGURING`, `ERROR`
+`state`<br/>*enum"  | The state of the tax provider. Possible values are: `CONFIGURED`, `CONFIGURING`, `ERROR`.
 `createdDate`<br/>*string* | The date the tax provider was created.
 `updatedDate`<br/>*string* | The last date the tax provider was updated.
 `configurationAttributes`<br/>*Object* | The configuration attributes associated to the provider type. This depends on the provider type.
@@ -58,7 +58,7 @@ Attributes | &nbsp;
 
 Retrieves a list of tax providers configured for a reseller.
 
-> Note: You must have the Reseller billing permission on the owner of the tax provider requested. If the caller does not have the correct permissions or the tax provider for the given ID does not exist a 404 Not Found will be returned
+> Note: You must have the Reseller billing permission on the owner of the tax provider requested. If the caller does not have the correct permissions or the tax provider for the given ID does not exist, then a `404 Not Found` response will be returned.
 
 ```shell
 # Retrieve a specific tax provider
@@ -89,9 +89,9 @@ curl "https://cloudmc_endpoint/rest/tax_providers/f26e66a4-755c-4867-b565-ad68aa
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the tax provider.
-`reseller.id`<br/>*UUID* | UUID of the reseller to which the tax provider belongs. (AKA an organization id that is a reseller)
+`reseller.id`<br/>*UUID* | UUID of the reseller to which the tax provider belongs (AKA an organization id that is a reseller).
 `type`<br/>*string* | The type of tax provider. Possible values are: `AVALARA`.
-`state`<br/>*enum"  | The state of the tax provider. Possible values are: `CONFIGURED`, `CONFIGURING`, `ERROR`
+`state`<br/>*enum"  | The state of the tax provider. Possible values are: `CONFIGURED`, `CONFIGURING`, `ERROR`.
 `createdDate`<br/>*string* | The date the tax provider was created.
 `updatedDate`<br/>*string* | The last date the tax provider was updated.
 `configurationAttributes`<br/>*Object* | The configuration attributes associated to the provider type. This depends on the provider type.
