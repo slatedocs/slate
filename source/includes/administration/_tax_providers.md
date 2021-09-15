@@ -1,7 +1,7 @@
 ### Tax providers
 
-A tax provider enables a reseller to map tax codes to monetization products. The tax code provider type will ensure that invoices include taxes based 
-on the billing details (i.e. billing address) provided by the reseller. 
+A tax provider enables a reseller to map tax codes to monetization products. The tax code provider will ensure that invoices include taxes based 
+on the billing details (i.e. billing address) and mapping of tax codes to product offerings provided by the reseller. 
 
 <!-------------------- LIST TAX PROVIDERS -------------------->
 #### List tax providers
