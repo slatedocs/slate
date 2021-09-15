@@ -10,9 +10,11 @@ on the billing details (i.e. billing address) provided by the reseller.
 
 Retrieves a list of tax providers configured for a reseller.
 
+> Note: You must have the Reseller billing permission on the target reseller. If the caller does not have the correct permissions or the reseller with the ID provided does not exist a 404 Not Found will be returned  
+
 ```shell
 # Retrieve tax providers
-curl "https://cloudmc_endpoint/rest/tax_providers" \
+curl "https://cloudmc_endpoint/rest/tax_providers?reseller_id=23910576-d29f-4c14-b663-31d728ff49a5" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -55,6 +57,8 @@ Attributes | &nbsp;
 `GET /tax_providers/:id`
 
 Retrieves a list of tax providers configured for a reseller.
+
+> Note: You must have the Reseller billing permission on the owner of the tax provider requested. If the caller does not have the correct permissions or the tax provider for the given ID does not exist a 404 Not Found will be returned
 
 ```shell
 # Retrieve a specific tax provider
