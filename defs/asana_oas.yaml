@@ -440,6 +440,15 @@ tags:
       application-specific handling of that custom field.
   - name: Events
     description: >-
+      *Note: The Events architecture uses the same infrastructure as Webhooks. That
+      is, the two
+      resources differ only in the delivery mechanism for events (i.e., pull vs. push).
+      Recently,
+      some users have seen intermittent delays with event distributions. For more
+      information,
+      see [Webhooks](/docs/webhooks).*
+
+
       An *event* is an object representing a change to a resource that was
       observed by an event subscription.
 
@@ -643,15 +652,20 @@ tags:
   - name: Webhooks
     description: >-
       *Note: Recently, some users have seen intermittent delays with webhook event
-      distributions. We are in the process of transferring the webhooks system to
-      a more reliable infrastructure while also iteratively improving the current
-      system. As such, for the time being we advise against using webhooks for functionality
-      beyond logging (e.g., syncing state with real-time notification data).*
-
-      *If you experience latency issues, we recommend using webhooks in conjunction
-      with fetching the resource periodically (e.g. [GET a task](https://developers.asana.com/docs/get-a-task)).  More
-      details and ongoing updates can be found in [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570)
+      distributions. We are
+      in the process of transferring the webhooks system to a more reliable infrastructure
+      while also
+      iteratively improving the current system. As such, for the time being we advise
+      against using
+      webhooks for functionality beyond logging (e.g., syncing state with real-time
+      notification data).
+      If you experience issues, we recommend using webhooks in conjunction with fetching
+      the resource
+      periodically (e.g. [GET a task](/docs/get-a-task)). More details and ongoing
+      updates can be found in
+      [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570)
       in the developer forum.*
+
 
       Webhooks allow an application to be notified of changes in Asana.
 
@@ -2081,8 +2095,49 @@ components:
               type: integer
               readOnly: true
               example: 5
+            team:
+              allOf:
+                - $ref: '#/components/schemas/TeamCompact'
+                - type: object
+                  nullable: true
+              description: >-
+                *Conditional*. This property is only present when the `workspace`
+                provided is an organization.
+            workspace:
+              allOf:
+                - $ref: '#/components/schemas/WorkspaceCompact'
+                - type: object
+            followers:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserCompact'
+              description: >-
+                Array of users following this goal.
     GoalRequest:
-      $ref: '#/components/schemas/GoalBase'
+      allOf:
+        - $ref: '#/components/schemas/GoalBase'
+        - type: object
+          properties:
+            team:
+              type: string
+              description: >-
+                *Conditional*. This property is only present when the `workspace`
+                provided is an organization.
+              example: '12345'
+              nullable: true
+            workspace:
+              type: string
+              description: >-
+                The `gid` of a workspace.
+              example: '12345'
+            followers:
+              type: array
+              items:
+                type: string
+                description: >-
+                  The `gid` of a user.
+              example:
+                - '12345'
     GoalBase:
       allOf:
         - $ref: '#/components/schemas/GoalCompact'
@@ -2122,14 +2177,6 @@ components:
                 and "Off Track", respectively. When the goal is closed, the value
                 can be `missed`, `achieved`, `partial`, or `dropped`.
               nullable: true
-            team:
-              allOf:
-                - $ref: '#/components/schemas/TeamCompact'
-                - type: object
-                  nullable: true
-              description: >-
-                *Conditional*. This property is only present when the `workspace`
-                provided is an organization.
             time_period:
               allOf:
                 - $ref: '#/components/schemas/TimePeriodCompact'
@@ -2140,10 +2187,6 @@ components:
                 - $ref: '#/components/schemas/GoalMetricBase'
                 - type: object
                   nullable: true
-            workspace:
-              allOf:
-                - $ref: '#/components/schemas/WorkspaceCompact'
-                - type: object
             is_workspace_level:
               type: boolean
               description: >-
@@ -2153,12 +2196,6 @@ components:
                 a workspace-level goal, it is a team-level goal, and is associated
                 with the goal’s team.
               example: true
-            followers:
-              type: array
-              items:
-                $ref: '#/components/schemas/UserCompact'
-              description: >-
-                Array of users following this goal.
             liked:
               type: boolean
               description: >-
@@ -2191,8 +2228,6 @@ components:
                 type number.
               type: number
               example: 8.12
-    GoalMetricResponse:
-      $ref: '#/components/schemas/GoalMetricBase'
     GoalMetricRequest:
       $ref: '#/components/schemas/GoalMetricBase'
     GoalMetricBase:
@@ -2212,7 +2247,8 @@ components:
                 - number
             precision:
               description: >-
-                Only relevant for goal metrics of type ‘Number’. This field
+                *Conditional*. Only relevant for goal metrics of type ‘Number’. This
+                field
                 dictates the number of places after the decimal to round to, i.e.
                 0 is integer values, 1 rounds to the nearest tenth, and so on.
                 Must be between 0 and 6, inclusive.
@@ -2233,33 +2269,34 @@ components:
             currency_code:
               description: >-
                 ISO 4217 currency code to format this custom field. This will be
-                null if the `format` is not `currency`.
+                null if the `unit` is not `currency`.
               type: string
               nullable: true
               example: EUR
             initial_number_value:
               description: >-
-                *Conditional*. This number is the start value of a goal metric of
+                This number is the start value of a goal metric of
                 type number.
               type: number
               example: 5.2
             target_number_value:
               description: >-
-                *Conditional*. This number is the end value of a goal metric of
-                type number.
+                This number is the end value of a goal metric of
+                type number. This number cannot equal `initial_number_value`.
               type: number
               example: 10.2
             current_number_value:
               description: >-
-                *Conditional*. This number is the current value of a goal metric of
+                This number is the current value of a goal metric of
                 type number.
               type: number
               example: 8.12
             current_display_value:
               description: >-
-                *Conditional*. This string is the current value of a goal metric of
+                This string is the current value of a goal metric of
                 type string.
               type: string
+              readOnly: true
               example: '8.12'
     GoalAddSubgoalRequest:
       type: object
@@ -4498,6 +4535,11 @@ components:
                 - Q3
                 - Q4
               example: Q1
+            display_name:
+              type: string
+              description: >-
+                A string representing the cadence code and the fiscal year.
+              example: Q1 FY22
     UserResponse:
       allOf:
         - $ref: '#/components/schemas/UserBase'
