@@ -2484,6 +2484,8 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 </pre>
 
 <span class="description">
+*Note: The Events architecture uses the same infrastructure as Webhooks. That is, the two resources differ only in the delivery mechanism for events (i.e., pull vs. push). Recently, some users have seen intermittent delays with event distributions. For more information, see [Webhooks](/docs/webhooks).*
+
 An *event* is an object representing a change to a resource that was observed by an event subscription.
 
 In general, requesting events on a resource is faster and subject to higher rate limits than requesting the resource itself. Additionally, change events bubble up - listening to events on a project would include when stories are added to tasks in the project, even on subtasks.
@@ -2744,13 +2746,6 @@ $result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' =
       "name": "Greg Sanchez"
     },
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
@@ -2769,23 +2764,21 @@ $result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' =
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "likes": [
       {
         "gid": "12345",
@@ -2796,7 +2789,17 @@ $result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' =
         }
       }
     ],
-    "num_likes": 5
+    "num_likes": 5,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
   }
 }
 ```
@@ -2905,16 +2908,13 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
   "data": {
     "due_on": "2019-09-15",
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      "12345"
     ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
     "metric": {
       "currency_code": "EUR",
-      "current_display_value": "8.12",
       "current_number_value": 8.12,
       "initial_number_value": 5.2,
       "precision": 2,
@@ -2928,17 +2928,14 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
     },
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "name": "Marketing"
-    },
+    "team": "12345",
     "time_period": {
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "name": "My Company Workspace"
-    }
+    "workspace": "12345"
   }
 }
 ```
@@ -2957,13 +2954,6 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
       "name": "Greg Sanchez"
     },
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
@@ -2982,23 +2972,21 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "likes": [
       {
         "gid": "12345",
@@ -3009,7 +2997,17 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
         }
       }
     ],
-    "num_likes": 5
+    "num_likes": 5,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
   }
 }
 ```
@@ -3035,18 +3033,16 @@ Returns the complete updated goal record.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the goal.|
 |» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
 |»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» followers<span class="param-type"> [string]</span>|none|
 |»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
 |»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
 |»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
-|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
-|»»» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
-|»»» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `unit` is not `currency`.|
+|»»» current_number_value<span class="param-type"> number</span>|This number is the current value of a goal metric of type number.|
+|»»» initial_number_value<span class="param-type"> number</span>|This number is the start value of a goal metric of type number.|
+|»»» precision<span class="param-type"> integer</span>|*Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» target_number_value<span class="param-type"> number</span>|This number is the end value of a goal metric of type number. This number cannot equal `initial_number_value`.|
 |»»» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |»» name<span class="param-type"> string</span>|The name of the goal.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
@@ -3054,21 +3050,20 @@ Returns the complete updated goal record.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
 |»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
-|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» team<span class="param-type"> string¦null</span>|*Conditional*. This property is only present when the `workspace` provided is an organization.|
 |»» time_period<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
 |»»» end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
 |»»» period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 |»»» start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
-|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|»» workspace<span class="param-type"> string</span>|The `gid` of a workspace.|
 |/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
-**precision**: Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+**precision**: *Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
 For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
@@ -3401,16 +3396,13 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
   "data": {
     "due_on": "2019-09-15",
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      "12345"
     ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
     "metric": {
       "currency_code": "EUR",
-      "current_display_value": "8.12",
       "current_number_value": 8.12,
       "initial_number_value": 5.2,
       "precision": 2,
@@ -3424,17 +3416,14 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
     },
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "name": "Marketing"
-    },
+    "team": "12345",
     "time_period": {
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "name": "My Company Workspace"
-    }
+    "workspace": "12345"
   }
 }
 ```
@@ -3453,13 +3442,6 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
       "name": "Greg Sanchez"
     },
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
@@ -3478,23 +3460,21 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "likes": [
       {
         "gid": "12345",
@@ -3505,7 +3485,17 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
         }
       }
     ],
-    "num_likes": 5
+    "num_likes": 5,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
   }
 }
 ```
@@ -3529,18 +3519,16 @@ Returns the full record of the newly created goal.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to create.|
 |» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
 |»» due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
-|»» followers<span class="param-type"> [object]</span>|Array of users following this goal.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» followers<span class="param-type"> [string]</span>|none|
 |»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
 |»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
 |»» metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
-|»»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
-|»»» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
-|»»» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»»» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|»»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `unit` is not `currency`.|
+|»»» current_number_value<span class="param-type"> number</span>|This number is the current value of a goal metric of type number.|
+|»»» initial_number_value<span class="param-type"> number</span>|This number is the start value of a goal metric of type number.|
+|»»» precision<span class="param-type"> integer</span>|*Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» target_number_value<span class="param-type"> number</span>|This number is the end value of a goal metric of type number. This number cannot equal `initial_number_value`.|
 |»»» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |»» name<span class="param-type"> string</span>|The name of the goal.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
@@ -3548,14 +3536,13 @@ Returns the full record of the newly created goal.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
 |»» status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
-|»» team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»»» name<span class="param-type"> string</span>|The name of the team.|
+|»» team<span class="param-type"> string¦null</span>|*Conditional*. This property is only present when the `workspace` provided is an organization.|
 |»» time_period<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
+|»»» display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
 |»»» end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
 |»»» period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 |»»» start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
-|»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» name<span class="param-type"> string</span>|The name of the workspace.|
+|»» workspace<span class="param-type"> string</span>|The `gid` of a workspace.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 |?limit<span class="param-type"> integer</span>|Results per page.|
@@ -3563,7 +3550,7 @@ Returns the full record of the newly created goal.
 
 #### Detailed descriptions
 
-**precision**: Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+**precision**: *Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
 For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
@@ -3666,7 +3653,6 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
 {
   "data": {
     "currency_code": "EUR",
-    "current_display_value": "8.12",
     "current_number_value": 8.12,
     "initial_number_value": 5.2,
     "precision": 2,
@@ -3690,13 +3676,6 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
       "name": "Greg Sanchez"
     },
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
@@ -3715,23 +3694,21 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "likes": [
       {
         "gid": "12345",
@@ -3742,7 +3719,17 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
         }
       }
     ],
-    "num_likes": 5
+    "num_likes": 5,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
   }
 }
 ```
@@ -3763,19 +3750,18 @@ Creates and adds a goal metric to a specified goal. Note that this replaces an e
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The goal metric to create.|
 |» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
-|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
-|»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
-|»» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
-|»» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `unit` is not `currency`.|
+|»» current_number_value<span class="param-type"> number</span>|This number is the current value of a goal metric of type number.|
+|»» initial_number_value<span class="param-type"> number</span>|This number is the start value of a goal metric of type number.|
+|»» precision<span class="param-type"> integer</span>|*Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» target_number_value<span class="param-type"> number</span>|This number is the end value of a goal metric of type number. This number cannot equal `initial_number_value`.|
 |»» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
 #### Detailed descriptions
 
-**precision**: Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
+**precision**: *Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
 For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
 
 #### Enumerated Values
@@ -3889,13 +3875,6 @@ $result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 
       "name": "Greg Sanchez"
     },
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
@@ -3914,23 +3893,21 @@ $result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "likes": [
       {
         "gid": "12345",
@@ -3941,7 +3918,17 @@ $result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 
         }
       }
     ],
-    "num_likes": 5
+    "num_likes": 5,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
   }
 }
 ```
@@ -4331,13 +4318,6 @@ $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'val
       "name": "Greg Sanchez"
     },
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
@@ -4356,23 +4336,21 @@ $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'val
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "likes": [
       {
         "gid": "12345",
@@ -4383,7 +4361,17 @@ $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'val
         }
       }
     ],
-    "num_likes": 5
+    "num_likes": 5,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
   }
 }
 ```
@@ -4516,13 +4504,6 @@ $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => '
       "name": "Greg Sanchez"
     },
     "due_on": "2019-09-15",
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
@@ -4541,23 +4522,21 @@ $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => '
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "string",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    },
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
     },
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
     "likes": [
       {
         "gid": "12345",
@@ -4568,7 +4547,17 @@ $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => '
         }
       }
     ],
-    "num_likes": 5
+    "num_likes": 5,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    },
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    }
   }
 }
 ```
@@ -20473,12 +20462,14 @@ $result = $client->timeperiods->getTimePeriod($time_period_gid, array('param' =>
   "data": {
     "gid": "12345",
     "resource_type": "time_period",
+    "display_name": "Q1 FY22",
     "end_on": "2019-09-14",
     "period": "Q1",
     "start_on": "2019-09-13",
     "parent": {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
@@ -20525,6 +20516,7 @@ Status Code **200**
 | data<span class="param-type"> [TimePeriodResponse](#schematimeperiodresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
 | gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 | resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
 | end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
 | period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 | start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
@@ -20613,6 +20605,7 @@ $result = $client->timeperiods->getTimePeriods(array('param' => 'value', 'param'
     {
       "gid": "12345",
       "resource_type": "time_period",
+      "display_name": "Q1 FY22",
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
@@ -20663,6 +20656,7 @@ Status Code **200**
 | data<span class="param-type"> [[TimePeriodCompact](#schematimeperiodcompact)]</span>|[A generic Asana Resource, containing a globally unique identifier.]|
 | gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 | resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
 | end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
 | period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 | start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
@@ -21686,8 +21680,8 @@ Returns the full record for a user's task list.
 </pre>
 
 <span class="description">
-*Note: Recently, some users have seen intermittent delays with webhook event distributions. We are in the process of transferring the webhooks system to a more reliable infrastructure while also iteratively improving the current system. As such, for the time being we advise against using webhooks for functionality beyond logging (e.g., syncing state with real-time notification data).*
-*If you experience latency issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](https://developers.asana.com/docs/get-a-task)).  More details and ongoing updates can be found in [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570) in the developer forum.*
+*Note: Recently, some users have seen intermittent delays with webhook event distributions. We are in the process of transferring the webhooks system to a more reliable infrastructure while also iteratively improving the current system. As such, for the time being we advise against using webhooks for functionality beyond logging (e.g., syncing state with real-time notification data). If you experience issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](/docs/get-a-task)). More details and ongoing updates can be found in [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570) in the developer forum.*
+
 Webhooks allow an application to be notified of changes in Asana.
 
 This is similar to our [Events](/docs/asana-events) resource, but webhooks "push" events via HTTP `POST` rather than expecting integrations to repeatedly "poll" for them. For services that are already accessible on the Internet this is often more convenient and efficient.
@@ -24364,13 +24358,6 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Goal), b
     "name": "Greg Sanchez"
   },
   "due_on": "2019-09-15",
-  "followers": [
-    {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    }
-  ],
   "html_notes": "<body>Start building brand awareness.</body>",
   "is_workspace_level": true,
   "liked": false,
@@ -24389,23 +24376,21 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Goal), b
   "notes": "Start building brand awareness.",
   "start_on": "2019-09-14",
   "status": "string",
-  "team": {
-    "gid": "12345",
-    "resource_type": "team",
-    "name": "Marketing"
-  },
   "time_period": {
     "gid": "12345",
     "resource_type": "time_period",
+    "display_name": "Q1 FY22",
     "end_on": "2019-09-14",
     "period": "Q1",
     "start_on": "2019-09-13"
   },
-  "workspace": {
-    "gid": "12345",
-    "resource_type": "workspace",
-    "name": "My Company Workspace"
-  },
+  "followers": [
+    {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
+  ],
   "likes": [
     {
       "gid": "12345",
@@ -24416,7 +24401,17 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Goal), b
       }
     }
   ],
-  "num_likes": 5
+  "num_likes": 5,
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
+  },
+  "workspace": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  }
 }
 
 ```
@@ -24438,41 +24433,34 @@ A generic Asana Resource, containing a globally unique identifier.
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |due_on<span class="param-type"> string¦null</span>|The localized day on which this goal is due. This takes a date with format `YYYY-MM-DD`.|
-|followers<span class="param-type"> [object]</span>|Array of users following this goal.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
 |is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
 |metric<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|» current_display_value<span class="param-type"> string</span>|*Conditional*. This string is the current value of a goal metric of type string.|
-|» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
-|» initial_number_value<span class="param-type"> number</span>|*Conditional*. This number is the start value of a goal metric of type number.|
-|» precision<span class="param-type"> integer</span>|Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
+|» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `unit` is not `currency`.|
+|» current_display_value<span class="param-type"> string</span>|This string is the current value of a goal metric of type string.|
+|» current_number_value<span class="param-type"> number</span>|This number is the current value of a goal metric of type number.|
+|» initial_number_value<span class="param-type"> number</span>|This number is the start value of a goal metric of type number.|
+|» precision<span class="param-type"> integer</span>|*Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.|
 |» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|» target_number_value<span class="param-type"> number</span>|*Conditional*. This number is the end value of a goal metric of type number.|
+|» target_number_value<span class="param-type"> number</span>|This number is the end value of a goal metric of type number. This number cannot equal `initial_number_value`.|
 |» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
 |start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
 |status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
-|team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the team.|
 |time_period<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
 |» end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
 |» period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 |» start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
-|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|followers<span class="param-type"> [object]</span>|Array of users following this goal.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» name<span class="param-type"> string</span>|The name of the workspace.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this goal.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
 |» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -24480,6 +24468,14 @@ A generic Asana Resource, containing a globally unique identifier.
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this goal.|
+|team<span class="param-type"> object¦null</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
+|workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
 
 #### Enumerated Values
 
