@@ -19,7 +19,7 @@ appropriate error if the field doesn't support historical tracking.
 | ----- | ----------------------- |
 | 0     | Person                  |
 | 1     | Organization            |
-| 2     | Old Text _(deprecated)_ |
+| 2     | Dropdown                |
 | 3     | Number                  |
 | 5     | Location                |
 
@@ -29,7 +29,7 @@ appropriate error if the field doesn't support historical tracking.
 | ----- | ----------------------- |
 | 0     | Person                  |
 | 1     | Organization            |
-| 2     | Old Text _(deprecated)_ |
+| 2     | Dropdown                |
 | 3     | Number                  |
 | 4     | Date                    |
 | 5     | Location                |
