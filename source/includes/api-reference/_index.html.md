@@ -24542,7 +24542,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|status<span class="param-type"> string</span>|none|
+|status<span class="param-type"> string</span>|The current status of this job. The value is one of: `not_started`, `in_progress`, `completed`, or `failed`.|
 
 #### Enumerated Values
 
@@ -24602,7 +24602,7 @@ A *job* is an object representing a process that handles asynchronous work.
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|status<span class="param-type"> string</span>|none|
+|status<span class="param-type"> string</span>|The current status of this job. The value is one of: `not_started`, `in_progress`, `completed`, or `failed`.|
 
 #### Enumerated Values
 
