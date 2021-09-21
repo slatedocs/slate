@@ -2367,6 +2367,9 @@ components:
               readOnly: true
               example: duplicate_task
             status:
+              description: >-
+                The current status of this job. The value is one of: `not_started`,
+                `in_progress`, `completed`, or `failed`.
               type: string
               enum:
                 - not_started
