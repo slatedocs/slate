@@ -1800,7 +1800,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('https://api.delta.exchange/v2/orders/leverage', params={
+r = requests.post('https://api.delta.exchange/v2/products/{product_id}/orders/leverage', params={
 
 }, headers = headers)
 
@@ -1810,7 +1810,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST https://api.delta.exchange/v2/orders/leverage \
+curl -X POST https://api.delta.exchange/v2/products/{product_id}/orders/leverage \
   -H 'Content-Type: application/json' \
   -H 'Accept: */*' \
   -H 'api-key: ****' \
@@ -1831,7 +1831,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'https://api.delta.exchange/v2/orders/leverage',
+result = RestClient.post 'https://api.delta.exchange/v2/products/{product_id}/orders/leverage',
   params: {
   }, headers: headers
 
@@ -1839,13 +1839,12 @@ p JSON.parse(result)
 
 ```
 
-`POST /orders/leverage`
+`POST /products/{product_id}/orders/leverage`
 
 > Body parameter
 
 ```json
 {
-  "product_id": 0,
   "leverage": "string"
 }
 ```
@@ -1854,8 +1853,8 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
+|product_id|path|integer|true|none|
 |body|body|object|true|none|
-|» product_id|body|integer|true|none|
 |» leverage|body|string|true|none|
 
 > Example responses
@@ -1890,8 +1889,8 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.get('https://api.delta.exchange/v2/orders/leverage', params={
-  'product_id': '0'
+r = requests.get('https://api.delta.exchange/v2/products/{product_id}/orders/leverage', params={
+
 }, headers = headers)
 
 print r.json()
@@ -1900,7 +1899,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/v2/orders/leverage?product_id=0 \
+curl -X GET https://api.delta.exchange/v2/products/{product_id}/orders/leverage \
   -H 'Accept: */*' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -1919,22 +1918,21 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.get 'https://api.delta.exchange/v2/orders/leverage',
+result = RestClient.get 'https://api.delta.exchange/v2/products/{product_id}/orders/leverage',
   params: {
-  'product_id' => 'integer'
-}, headers: headers
+  }, headers: headers
 
 p JSON.parse(result)
 
 ```
 
-`GET /orders/leverage`
+`GET /products/{product_id}/orders/leverage`
 
 <h3 id="get-order-leverage-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_id|query|integer|true|none|
+|product_id|path|integer|true|none|
 
 > Example responses
 

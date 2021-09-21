@@ -827,7 +827,7 @@
         }
       }
     },
-    "/orders/leverage": {
+    "/products/{product_id}/orders/leverage": {
       "post": {
         "tags": [
           "Orders"
@@ -849,18 +849,20 @@
             "schema": {
               "type": "object",
               "required": [
-                "product_id",
                 "leverage"
               ],
               "properties": {
-                "product_id": {
-                  "type": "integer"
-                },
                 "leverage": {
                   "type": "string"
                 }
               }
             }
+          },
+          {
+            "in": "path",
+            "name": "product_id",
+            "type": "integer",
+            "required": true
           }
         ],
         "responses": {
@@ -905,7 +907,7 @@
         ],
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "product_id",
             "type": "integer",
             "required": true
