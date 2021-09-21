@@ -268,7 +268,8 @@ The post params posted at any update in a particular leads are as follows
       "id": 121,
       "agent_name": "name",
       "disposition_type": "followup",
-      "created_at": 1558080727
+      "created_at": 1558080727,
+      "reason": "failure reason"
     }
   ],
   "status_changes": {
