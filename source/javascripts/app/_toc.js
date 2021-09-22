@@ -38,7 +38,7 @@
       $toc.find(tocLinkSelector).each(function() {
         var targetId = $(this).attr('href');
         if (targetId[0] === "#") {
-          headerHeights[targetId] = $("#" + $.escapeSelector(targetId.substring(1))).offset().top;
+          headerHeights[targetId] = $(targetId).offset().top;
         }
       });
     };
@@ -80,9 +80,9 @@
         if (window.history.replaceState) {
           window.history.replaceState(null, "", best);
         }
-        var thisTitle = $best.data("title");
+        var thisTitle = $best.data("title")
         if (thisTitle !== undefined && thisTitle.length > 0) {
-          document.title = thisTitle.replace(htmlPattern, "") + " – " + originalTitle;
+          document.title = thisTitle + " – " + originalTitle;
         } else {
           document.title = originalTitle;
         }

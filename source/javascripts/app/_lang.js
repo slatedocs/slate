@@ -129,16 +129,11 @@ under the License.
     history.pushState({}, '', '?' + generateNewQueryString(language) + '#' + hash);
 
     // save language as next default
-    if (localStorage) {
-      localStorage.setItem("language", language);
-    }
+    localStorage.setItem("language", language);
   }
 
   function setupLanguages(l) {
-    var defaultLanguage = null;
-    if (localStorage) {
-      defaultLanguage = localStorage.getItem("language");
-    }
+    var defaultLanguage = localStorage.getItem("language");
 
     languages = l;
 
@@ -147,9 +142,7 @@ under the License.
       // the language is in the URL, so use that language!
       activateLanguage(presetLanguage);
 
-      if (localStorage) {
-        localStorage.setItem("language", presetLanguage);
-      }
+      localStorage.setItem("language", presetLanguage);
     } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, languages) != -1)) {
       // the language was the last selected one saved in localstorage, so use that language!
       activateLanguage(defaultLanguage);

@@ -145,9 +145,3 @@ body {
     @extend %icon-ok-sign;
   }
 }
-
-.copy-clipboard {
-  @media print {
-    display: none
-  }
-}

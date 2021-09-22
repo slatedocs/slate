@@ -1,5 +1,5 @@
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.network :forwarded_port, guest: 4567, host: 4567
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "2048"
@@ -8,14 +8,12 @@ Vagrant.configure(2) do |config|
   config.vm.provision "bootstrap",
     type: "shell",
     inline: <<-SHELL
-      # add nodejs v12 repository
-      curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-
+      sudo apt-add-repository ppa:brightbox/ruby-ng
       sudo apt-get update
-      sudo apt-get install -yq ruby ruby-dev
+      sudo apt-get install -yq ruby2.4 ruby2.4-dev
       sudo apt-get install -yq pkg-config build-essential nodejs git libxml2-dev libxslt-dev
       sudo apt-get autoremove -yq
-      gem install --no-ri --no-rdoc bundler
+      gem2.4 install --no-ri --no-rdoc bundler
     SHELL
 
   # add the local user git config to the vm
@@ -28,7 +26,6 @@ Vagrant.configure(2) do |config|
       echo "=============================================="
       echo "Installing app dependencies"
       cd /vagrant
-      sudo gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" 
       bundle config build.nokogiri --use-system-libraries
       bundle install
     SHELL
