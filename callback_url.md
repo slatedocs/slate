@@ -93,6 +93,9 @@ The post params posted at any update in a particular leads are as follows
       "event_status": "cancelled",
       "event_created_at": 1558080630,
       "event_updated_at": 1558080804,
+      "metadata": {
+        "type": "virtual", // quick automatic in_person virtual
+      },
       "notes": [
         {
           "note_id": 757661,
