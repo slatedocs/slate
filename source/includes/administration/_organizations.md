@@ -819,3 +819,125 @@ Returns an HTTP status code 200, with an empty response body.
 # Retrieve the organization's billing information
 curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
    -H "MC-Api-Key: your_api_key"
+```
+
+
+<!-------------------- UPDATE BILLABLE ORGANIZATION INFORMATION -------------------->
+### Set billable organization information
+`PUT /organizations/:organization_id/billable`
+
+Update the applied pricing packages of an organization, or set an organization as billable. If the organization does not have a billable organization info, it creates one and and applies the pricing package on it.
+
+```shell
+# Update billable organization info
+curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billable" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "request_body"
+```
+> Request body example:
+
+```json
+{
+   "id": "39f6260d-f0ca-4be9-93c4-46405d471c04",
+   "billableStart": "2015-01-18",
+	"pricingPackage": {
+		"id": "58bad1de-1f87-422b-b44f-27ed58889272"
+	}
+}
+```
+
+Required | &nbsp;
+---- | ----
+`id`<br/>*UUID* | The id of the udpated billable organization information.
+`billableStart`<br/>*string*  | The date the organization became billable, in YYYY-MM-DD format.
+`pricingPackage.id`<br/>*UUID* | The id of the pricing package applied on the organization.
+
+The responses' `data` field contains the updated billable organizaiton info with its `id`, as well as with the `organizationId` and `pricingPackage`.
+
+<!-------------------- LIST APPLICABLE PRICING PACKAGES TO ORG -------------------->
+### List applicable pricing packages to an organization
+
+`GET /organizations/:organization_id/pricing_packages`
+
+Retrieves a list of applicable pricing packages to an organization.
+
+```shell
+# Retrieve visible organizations
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/pricing_packages" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "offerType": "30-day-trial",
+      "pricingDefinition": {
+        "id": "c9a396f1-690a-4201-a3bf-b1da37221acc"
+      },
+      "scopeOrganization": {
+        "id": "de6cf332-14b2-4da8-8522-3dfe12fcd0da"
+      },
+      "endDate": "2022-09-14T00:00:00Z",
+      "organization": {
+        "id": "de6cf332-14b2-4da8-8522-3dfe12fcd0da"
+      },
+      "name": {
+        "en": "Applied Pricing",
+        "fr": "Applied Pricing"
+      },
+      "currency": "CAD",
+      "id": "92041aa8-7784-45b0-aa85-76376ede784d",
+      "creationDate": "2021-09-13T15:18:38.000Z",
+      "scopeQualifier": "ORG_TREE",
+      "startDate": "2021-09-22T20:09:32.084Z"
+    },
+    {
+      "pricingDefinition": {
+        "id": "c9a396f1-690a-4201-a3bf-b1da37221acc"
+      },
+      "scopeOrganization": {
+        "id": "de6cf332-14b2-4da8-8522-3dfe12fcd0da"
+      },
+      "endDate": "2022-09-14T00:00:00Z",
+      "organization": {
+        "id": "de6cf332-14b2-4da8-8522-3dfe12fcd0da"
+      },
+      "name": {
+        "en": "Applied Pricing 5",
+        "fr": "Applied Pricing"
+      },
+      "currency": "CAD",
+      "id": "e9b3a643-8518-4aeb-a82e-3e89983f4321",
+      "creationDate": "2021-09-13T15:11:16.000Z",
+      "scopeQualifier": "ORG_TREE",
+      "startDate": "2021-09-22T20:10:07.140Z"
+    }
+  ]
+}
+```
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | The UUID of the applied pricing.
+`pricingDefinition`<br/>*Object* | The pricing definition associated with the applied pricing.
+`pricingDefinition.id`<br/>*UUID* | The UUID of the pricing.
+`pricingDefinition.supportedCurrencies`<br/>*Array[string]* | The list of currencies associated to the pricing.
+`pricingDefinition.organization.id`<br/>*UUID* | The UUID of the organization owning of the pricing definition.
+`pricingDefinition.name`<br/>*Object* | Mapped object containing the pricing name in different languages.
+`pricingDefinition.description`<br/>*Object* | Mapped object containing the pricing description in different languages.
+`pricingDefinition.effectiveDate`<br/>*date* | The date to which the pricing will be applicable from.
+`organization`<br/>*Object* | The object representing the organization owning the applied pricing.
+`organization.id`<br/>*UUID* | The UUID of the organization.
+`organization.name`<br/>*string* | The name of the organization.
+`startDate`<br/>*date* | The start date of the applied pricing.
+`endDate`<br/>*date* | The end date of the applied pricing. If it is not present, there is no end date defined.
+`currency`<br/>*string* | The currency associated to the applied pricing.
+`scopeQualifier`<br/>*string* | Scope qualifier of the applied pricing. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
+`scopeOrganization`<br/>*Object* | The organization to which the scope is applied to.
+`scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
+`scopeOrganization.name`<br/>*string* | The name of the organization.
+`creationDate`<br/>*Object* | The date the applied pricing was created.
+`status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, FUTURE.
