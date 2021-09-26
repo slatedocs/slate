@@ -23,7 +23,7 @@ GEM
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.2.4)
-    ffi (1.15.0)
+    ffi (1.15.4)
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
@@ -142,4 +142,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.20
+   2.2.22
