@@ -1079,6 +1079,7 @@ curl -X PUT \
         "msrp_price": 15.00,
         "fulfillment_provider_account_id": "5fdc7195e2d895171f9b87ae",
         "fulfillment_provider_sku": "S123"
+        "tags_array": ['tag1','tag2']
     }
 }'
 
@@ -1097,7 +1098,7 @@ msrp_price | Float | Product's MSRP
 quantity_available | Integer | Product quantity available for purchase
 fulfillment_provider_account_id | String | ID of Fulfillment Provider account Example: '5fdc7195e2d895171f9b87ae'.
 fulfillment_provider_sku | String | SKU of Fulfillment Provider. Example: S123.
-
+tags_array | Array | Product tags to apply (will replace existing tags)
 
 ## DELETE product
 
