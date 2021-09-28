@@ -341,7 +341,7 @@ credito | Object of type [credito](#cr-dito) | Información about the credit gra
 Parameter           | Type                    | Description
 ------------------- | ----------------------- |-----------
 total_sin_impuestos | float | Total before taxes. __Required__
-descuento_adicional | float | Additional discount applied to the invoice subtotal, expressed in monetary value.
+descuento_adicional | float | Additional discount applied to the invoice subtotal, expressed in monetary value. <span style="color: red">__Obsoleto__</span> *utiliza el parámetro descuento_adicional de Total Impuesto*
 descuento           | float | Sum of each line item discount and the additiona discount. __Required__
 propina             | float | Tip or gratuity. __Required__
 importe_total       | float | Total including taxes. __Required__

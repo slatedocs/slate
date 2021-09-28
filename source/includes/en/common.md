@@ -80,6 +80,7 @@ codigo | string | [tax type](#invoice-tax-types) code. __Required__
 codigo_porcentaje | string | Invoice [rate code](#invoice-rate-code).
 base_imponible | float | Taxable amount.
 valor | float | Total tax amount.
+descuento_adicional | float | Global discount applied to the invoice, expressed in monetary value. It only applies to VAT type taxes.
 
 
 ## Tax item

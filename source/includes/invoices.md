@@ -432,7 +432,7 @@ exportacion | Objeto de tipo [exportacion](#exportacion) | __Solo__ para factura
 Parámetro           | Tipo                    | Descripción
 ------------------- | ----------------------- |------------
 total_sin_impuestos | float (hasta 2 cifras decimales) | Total antes de los impuestos. __Requerido__
-descuento_adicional | float (hasta 2 cifras decimales) | Descuento aplicado al subtotal de la factura expresado en valor monetario.
+descuento_adicional | float (hasta 2 cifras decimales) | Descuento aplicado al subtotal de la factura expresado en valor monetario. <span style="color: red">__Obsoleto__</span> *utiliza el parámetro descuento_adicional incluído en Total Impuesto*
 descuento           | float (hasta 2 cifras decimales) | Suma de los descuentos de cada ítem y del descuento adicional. __Requerido__
 propina             | float (hasta 2 cifras decimales) | Propina total, llamado también servicio. __Requerido__
 importe_total       | float (hasta 2 cifras decimales) | Total incluyendo impuestos. __Requerido__
@@ -1647,7 +1647,7 @@ namespace DatilClient {
 }
 ```
 
-Para la emisión de una factura con descuentos se debe enviar la información completa del comprobante en el cuerpo del requerimiento en formato JSON. Se debe considerar el descuento para las bases imponibles de los items. 
+Para la emisión de una factura con descuentos se debe enviar la información completa del comprobante en el cuerpo del requerimiento en formato JSON. Se debe considerar el descuento para las bases imponibles de los items.
 
 <h3 id="totales-reembolso"> Totales </h3>
 
