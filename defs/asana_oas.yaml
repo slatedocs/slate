@@ -1308,11 +1308,13 @@ components:
       properties:
         resource_subtype:
           description: >
-            The type of the attachment. Must be one of the given values.
+            The type of the attachment. Must be one of the [given values](/docs/attachment).
             If not specified, a file attachment of type `asana_file_attachments`
-            will be assumed.
+            will be assumed. Note that if the value of `resource_subtype` is `external`,
+            a
+            `parent`, `name`, and `url` must also be provided.
           type: string
-          example: text
+          example: external
           enum:
             - asana_file_attachments
             - external
@@ -1321,15 +1323,20 @@ components:
             Required for file attachments.
           type: string
           format: binary
+        parent:
+          description: >
+            Globally unique identifier of the parent task, as a string. Required for
+            attachments of type `external`.
+          type: string
         url:
           description: >
             The URL of the external resource being attached. Required for
-            attachments of type 'external'.
+            attachments of type `external`.
           type: string
         name:
           description: >
             The name of the external resource being attached. Required for
-            attachments of type 'external'.
+            attachments of type `external`.
           type: string
     AttachmentResponse:
       allOf:
@@ -1402,9 +1409,8 @@ components:
               description: >-
                 The service hosting the attachment. Valid values are `asana`,
                 `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.
-
-                `external` attachments are a beta feature currently limited to
-                specific integrations.
+              type: string
+              example: dropbox
     BatchRequest:
       description: A request object for use in a batch request.
       type: object
@@ -5087,10 +5093,11 @@ paths:
         Upload an attachment.
 
         This method uploads an attachment to a task and returns the compact
-        record for the created attachment object. It is not possible to attach
-        files from third party services such as Dropbox, Box, Vimeo & Google Drive via
-        the API. You must download the file content first and then upload it as
-        any other attachment.
+        record for the created attachment object. This is possible by either:
+
+        - Providing the URL of the external resource being attached, or
+        - Downloading the file content first and then uploading it as any other attachment. Note that it is not possible to attach
+        files from third party services such as Dropbox, Box, Vimeo & Google Drive via the API
 
         The 100MB size limit on attachments in Asana is enforced on this endpoint.
 
@@ -5690,9 +5697,13 @@ paths:
                       $ref: '#/components/schemas/EventResponse'
                   sync:
                     description: A sync token to be used with the next call to the
-                      events endpoint.
+                      /events endpoint.
                     type: string
                     example: de4774f6915eae04714ca93bb2f5ee81
+                  has_more:
+                    description: Indicates whether there are more events to pull.
+                    type: boolean
+                    example: true
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -6131,7 +6142,7 @@ paths:
                 data:
                   $ref: '#/components/schemas/TaskAddFollowersRequest'
       responses:
-        201:
+        200:
           description: Successfully added users as collaborators.
           content:
             application/json:
@@ -6176,7 +6187,7 @@ paths:
                 data:
                   $ref: '#/components/schemas/TaskAddFollowersRequest'
       responses:
-        201:
+        200:
           description: Successfully removed users as collaborators.
           content:
             application/json:

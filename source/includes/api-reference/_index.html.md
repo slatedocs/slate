@@ -101,7 +101,7 @@ $result = $client->attachments->getAttachment($attachment_gid, array('param' => 
     "gid": "12345",
     "resource_type": "attachment",
     "name": "Screenshot.png",
-    "resource_subtype": null,
+    "resource_subtype": "dropbox",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "host": "dropbox",
@@ -331,7 +331,7 @@ $result = $client->attachments->getAttachmentsForTask($task_gid, array('param' =
       "gid": "12345",
       "resource_type": "attachment",
       "name": "Screenshot.png",
-      "resource_subtype": null
+      "resource_subtype": "dropbox"
     }
   ]
 }
@@ -419,7 +419,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-Attachment result = client.attachments.createAttachmentForTask(taskGid, file, url, name)
+Attachment result = client.attachments.createAttachmentForTask(taskGid, file, parent, url, name)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -440,7 +440,8 @@ $result = $client->attachments->createAttachmentForTask($task_gid, array('field'
 ```yaml
 file: string
 name: string
-resource_subtype: text
+parent: string
+resource_subtype: external
 url: string
 
 ```
@@ -453,7 +454,7 @@ url: string
     "gid": "12345",
     "resource_type": "attachment",
     "name": "Screenshot.png",
-    "resource_subtype": null,
+    "resource_subtype": "dropbox",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "host": "dropbox",
@@ -477,10 +478,11 @@ url: string
 Upload an attachment.
 
 This method uploads an attachment to a task and returns the compact
-record for the created attachment object. It is not possible to attach
-files from third party services such as Dropbox, Box, Vimeo & Google Drive via
-the API. You must download the file content first and then upload it as
-any other attachment.
+record for the created attachment object. This is possible by either:
+
+- Providing the URL of the external resource being attached, or
+- Downloading the file content first and then uploading it as any other attachment. Note that it is not possible to attach
+files from third party services such as Dropbox, Box, Vimeo & Google Drive via the API
 
 The 100MB size limit on attachments in Asana is enforced on this endpoint.
 
@@ -499,9 +501,10 @@ in order for the server to reliably and properly handle the request.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The file you want to upload.|
 |» file<span class="param-type"> string(binary)</span>|Required for file attachments.|
-|» name<span class="param-type"> string</span>|The name of the external resource being attached. Required for attachments of type 'external'.|
-|» resource_subtype<span class="param-type"> string</span>|The type of the attachment. Must be one of the given values. If not specified, a file attachment of type `asana_file_attachments` will be assumed.|
-|» url<span class="param-type"> string</span>|The URL of the external resource being attached. Required for attachments of type 'external'.|
+|» name<span class="param-type"> string</span>|The name of the external resource being attached. Required for attachments of type `external`.|
+|» parent<span class="param-type"> string</span>|Globally unique identifier of the parent task, as a string. Required for attachments of type `external`.|
+|» resource_subtype<span class="param-type"> string</span>|The type of the attachment. Must be one of the [given values](/docs/attachment). If not specified, a file attachment of type `asana_file_attachments` will be assumed. Note that if the value of `resource_subtype` is `external`, a `parent`, `name`, and `url` must also be provided.|
+|» url<span class="param-type"> string</span>|The URL of the external resource being attached. Required for attachments of type `external`.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -2607,7 +2610,8 @@ $result = $client->events->getEvents(array('param' => 'value', 'param' => 'value
       }
     }
   ],
-  "sync": "de4774f6915eae04714ca93bb2f5ee81"
+  "sync": "de4774f6915eae04714ca93bb2f5ee81",
+  "has_more": true
 }
 ```
 
@@ -4304,7 +4308,7 @@ $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'val
 }
 ```
 
-> 201 Response
+> 200 Response
 
 ```json
 {
@@ -4402,7 +4406,7 @@ Requests to add/remove followers, if successful, will return the complete update
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [Goal](#schemagoal)</span>|Successfully added users as collaborators.|
+|200<span class="param-type"> [Goal](#schemagoal)</span>|Successfully added users as collaborators.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
@@ -4490,7 +4494,7 @@ $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => '
 }
 ```
 
-> 201 Response
+> 200 Response
 
 ```json
 {
@@ -4588,7 +4592,7 @@ Requests to add/remove followers, if successful, will return the complete update
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> [Goal](#schemagoal)</span>|Successfully removed users as collaborators.|
+|200<span class="param-type"> [Goal](#schemagoal)</span>|Successfully removed users as collaborators.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
@@ -23592,7 +23596,7 @@ A generic Asana Resource, containing a globally unique identifier.
   "gid": "12345",
   "resource_type": "attachment",
   "name": "Screenshot.png",
-  "resource_subtype": null
+  "resource_subtype": "dropbox"
 }
 
 ```
@@ -23609,7 +23613,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
-|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
+|resource_subtype<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.|
 
 </section><hr>
 <section>
@@ -23625,7 +23629,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
   "gid": "12345",
   "resource_type": "attachment",
   "name": "Screenshot.png",
-  "resource_subtype": null,
+  "resource_subtype": "dropbox",
   "created_at": "2012-02-22T02:06:58.147Z",
   "download_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
   "host": "dropbox",
@@ -23651,7 +23655,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |name<span class="param-type"> string</span>|The name of the file.|
-|resource_subtype<span class="param-type"> any</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.<br>`external` attachments are a beta feature currently limited to specific integrations.|
+|resource_subtype<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |download_url<span class="param-type"> string(uri)¦null</span>|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/) and will be null if the attachment is a Video Message hosted by [Vimeo](https://vimeo.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
 |host<span class="param-type"> string</span>|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `box`, and `vimeo`.|
