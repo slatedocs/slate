@@ -38,6 +38,7 @@ RestClient.get(
     "company_id": 1,
     "label": "Sample Template",
     "text": "Dear John Snow, \r\n\n this is a sample template",
+    "template_name": "Sample Template",
     "is_default": true
   }
 ]
@@ -70,7 +71,7 @@ curl --request POST \
     "note": "Thank you for subscribing",
     "save_template": true,
     "email_subject": "Thank you for subscribing",
-    "template_label": "woo hoo!!",
+    "template_name": "woo hoo!!",
     "uploads": [1,2],
   }'
 ```
@@ -86,7 +87,7 @@ RestClient.post(
     note: "Thank you for subscribing",
     save_template: true,
     email_subject: "Thank you for subscribing",
-    template_label: "woo hoo!!",
+    template_name: "woo hoo!!",
     uploads: [1,2]
   },
   headers = {
@@ -146,7 +147,7 @@ In [Purchase Order Details](/slate/#get-purchase-order-details) you will get `cr
 | cc                   | string  | CC email address                               |
 | notes                | text    | template body                                  |
 | email_subject        | string  | Email subject                                  |
-| template_label       | string  | Template Label                                 |
+| template_name        | string  | Template Name                                 |
 | save_template        | boolean | `true` if you want to save template            |
 | is_default           | boolean | `true` if you want to mark template as default |
 | update_template      | boolean | `true` if you want to update template          |
