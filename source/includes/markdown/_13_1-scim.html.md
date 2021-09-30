@@ -65,10 +65,7 @@ The accepted user attributes are:
 |photo|string|URL for the user's profile photo.|
 |title|string|The user's title, such as "Vice President".|
 |preferredLanguage|string|The user's preferred language. Used for selecting the localized user interface.|
-|"urn:ietf:params:scim:
-schemas:extension:
-enterprise:2.0:User.
-department"|string|The department the user belongs to.|
+|"urn:ietf:params:scim: schemas:extension: enterprise:2.0: User.department"|string|The department the user belongs to.|
 
 
 <br>
