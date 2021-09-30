@@ -9,7 +9,7 @@ Asana supports SCIM operations at `https://app.asana.com/api/1.0/scim`. Okta pro
 
 Note that only Service Accounts in Enterprise Domains can access SCIM endpoints.
 
-<br>
+<br />
 
 ## Service Provider Configuration Endpoints
 
@@ -19,7 +19,7 @@ Note that only Service Accounts in Enterprise Domains can access SCIM endpoints.
 |GET /ResourceTypes|Read-only meta information|
 |GET /Schemas|Read-only meta information|
 
-<br>
+<br />
 
 ## SCIM Endpoints
 
@@ -34,7 +34,7 @@ Note that only Service Accounts in Enterprise Domains can access SCIM endpoints.
 |PATCH /Users/:id|Deprovision user (zombify) in Asana upon active=false.|
 |DELETE /Users/:id|Deprovision user (zombify) in Asana.|
 
-<br>
+<br />
 
 ### Group Resource
 Note that SCIM groups are equivalent to Asana Teams.
@@ -48,7 +48,7 @@ Note that SCIM groups are equivalent to Asana Teams.
 |PATCH /Groups/:id|Update the team's attributes.|
 |DELETE /Groups/:id|Remove a team in Asana.|
 
-<br>
+<br />
 The accepted user attributes are:
 
 |Attribute|Type|Info|
@@ -68,7 +68,7 @@ The accepted user attributes are:
 |"urn:ietf:params:scim:schemas: extension:enterprise:2.0: User.department"|string|The department the user belongs to.|
 
 
-<br>
+<br />
 The accepted group attributes are:
 
 |Attribute|Type|Info|
