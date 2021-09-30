@@ -41,10 +41,10 @@ Note that SCIM groups are equivalent to Asana Teams.
 
 |API call|Asana Behavior|
 |--------|--------------|
-|GET /Groups|Return full list of teams in the domain, including private teams.|
-|GET /Groups/:id|Return specific team in the domain. |
-|POST /Groups|Creates new team.|
-|PUT /Groups/:id|Update / remove attributes for a team.|
+|GET /Groups|Return full list of teams in the domain, including private teams|
+|GET /Groups/:id|Return specific team in the domain |
+|POST /Groups|Creates new team|
+|PUT /Groups/:id|Update / remove attributes for a team|
 |PATCH /Groups/:id|Update the team's attributes|
 |DELETE /Groups/:id|Remove a team in Asana|
 
@@ -63,9 +63,9 @@ The accepted user attributes are:
 |email.primary|string|Whether this email address is the preferred email address for this user. `true` may only appear once for this  attribute.|
 |active|boolean|Indicates whether the user's account is active in Asana.|
 |photo|string|URL for the user's profile photo.|
-|title|string|The user's title, such as "Vice President"|
-|preferredLanguage|string|The user's preferred language. Used for selecting a localized user interface|
-|urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.department|string|The department the user belongs to.|
+|title|string|The user's title, such as "Vice President".|
+|preferredLanguage|string|The user's preferred language. Used for selecting the localized user interface.|
+|"urn:ietf:params:scim:schemas: extension:enterprise:2.0: User.department"|string|The department the user belongs to.|
 
 
 <br>
@@ -75,6 +75,6 @@ The accepted group attributes are:
 |---------|----|----|
 |displayName|string|Unique identifier for the Team. REQUIRED.|
 |members|complex|The members of a team.|
-|members.value|string|The ID of the users to be added to the team.|
+|members.value|string|The ID of the members in the team.|
 
 </section>
