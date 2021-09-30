@@ -669,11 +669,11 @@ How to customize the UI:
 - Go to Payment Checkout section in the dashboard
 - Click the 'Settings" icon
 
-20.06
+![Payment Checkout](images/ui_customization_settings_icon.png)
 
 - You will be redirected to the Settings page
 
-21.25
+![Payment Checkout](images/ui_customization_settings_page.png)
 
 - Input the URL for your logo (If you’re using  [snipboard.io](https://snipboard.io/), the correct URL should be in “https://snipboard.io/image.jpg” format. If you’re using  [imgbb.com](https://imgbb.com/), the correct URL should be in “https://i.ibb.co/abcdef/image.jpg” format)
 
@@ -681,7 +681,7 @@ How to customize the UI:
 
 - Select your secondary color (you can select from our available color picker tools or you can input the 6 digit #HEX code). This secondary color will be the color of CTA button in your payment checkout link and the color of the text outside the header
 
-21.33
+![Payment Checkout](images/ui_customization_color_logo.png)
 
 - Click "Save Changes"
 
@@ -693,9 +693,13 @@ Illustration;
 
 If we pick green (#HEX code #067610) as the primary color and black (#HEX code #000000) as the secondary color, the look and feel will be as follows;
 
-19.50.11
-19.50.20
-19.50.24
+![Payment Checkout](images/ui_customization_result_1.png)
+
+
+![Payment Checkout](images/ui_customization_result_2.png)
+
+
+![Payment Checkout](images/ui_customization_result_3.png)
 
 ### VA Bank Details
 
