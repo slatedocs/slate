@@ -216,7 +216,7 @@ This endpoint updates a specific step.
 
 ### HTTP Request
 
-`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/tests/STEP_ID.json`
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/steps/STEP_ID.json`
 
 In the right area see the example of the JSON request and response
 ### Parameters
