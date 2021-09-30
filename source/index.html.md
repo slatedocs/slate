@@ -2094,7 +2094,6 @@ Please note that <code>changes</code> and <code>updates</code> is important to h
 Tag | Translate
 -----| ------------------
 `1`| GẤP
-`2`| Quan trọng
 
 ## Create Request
 
