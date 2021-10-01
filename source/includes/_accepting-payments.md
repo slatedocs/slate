@@ -674,7 +674,7 @@ How to customize the UI:
 
 ![Payment Checkout](images/ui_customization_settings_page.png)
 
-- Input the URL for your logo (If you’re using  [snipboard.io](https://snipboard.io/), the correct URL should be in “https://snipboard.io/image.jpg” format. If you’re using  [imgbb.com](https://imgbb.com/), the correct URL should be in “https://i.ibb.co/abcdef/image.jpg” format)
+- Input the URL for your logo (If you’re using  [snipboard.io](https://snipboard.io/), the correct URL should be in “https://i.snipboard.io/image.jpg” format. If you’re using  [imgbb.com](https://imgbb.com/), the correct URL should be in “https://i.ibb.co/abcdef/image.jpg” format)
 
 - Select your primary color (you can select from our available color picker tools or you can input the 6 digit #HEX code). This primary color will be the main theme color in your payment checkout link and the color of the text in the header
 
