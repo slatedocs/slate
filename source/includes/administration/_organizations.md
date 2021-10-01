@@ -853,8 +853,6 @@ Required | &nbsp;
 `billableStart`<br/>*string*  | The date the organization became billable, in YYYY-MM-DD format.
 `pricingPackage.id`<br/>*UUID* | The id of the pricing package applied on the organization.
 
-The responses' `data` field contains the updated billable organizaiton info with its `id`, as well as with the `organizationId` and `pricingPackage`.
-
 <!-------------------- LIST APPLICABLE PRICING PACKAGES TO ORG -------------------->
 ### List applicable pricing packages to an organization
 
