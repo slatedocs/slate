@@ -240,6 +240,7 @@ chaseCreditCard | `cssURL`<br/>*string* | Sets the URL of the CSS file used to s
 chaseCreditCard | `orbitalHostname`<br/>*string* | Orbital API hostname.
 chaseCreditCard | `orbitalUsername`<br/>*string* | Orbital Connection Username set up on Orbital Gateway.
 chaseCreditCard | `orbitalPassword`<br/>*string* | Orbital Connection Password used in conjunction with Orbital Username.
+chaseCreditCard | `orbitalMerchantId`<br/>*string* | Orbital API merchant ID.
 chaseCreditCard | `orbitalMerchantTerminal`<br/>*string* | Orbital API merchant terminal ID.
 chaseCreditCard | `orbitalMerchantBin`<br/>*string* | Orbital API merchant BIN number.
 

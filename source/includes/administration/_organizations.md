@@ -785,7 +785,11 @@ curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e30
     "billingAddressCity": "SomeCity",
     "billingAddressProvince": "NY",
     "billingAddressPostalCode": "555555",
-    "billingAddressCountry": "US"
+    "billingAddressCountry": "US",
+    "customAttribute" : {
+      "uid": "774B145528524D7C65590CE77B933135",
+      "customerRefNumber": "208523664"
+    }
   }
 }
 ```
@@ -804,7 +808,13 @@ Attributes | &nbsp;
 `billingAddressProvince`<br/>*string* | The province or state code (2 letters) of the billing address.
 `billingAddressPostalCode`<br/>*string* | The postal/zip code of the billing address.
 `billingAddressCountry`<br/>*string* | The country code (ISO 2 or 3 letter code) of the billing address
+`billingAddressCountry`<br/>*string* | The country code (ISO 2 or 3 letter code) of the billing address
+`customAttribute` <br/>*Object*| The custom attributes associated to the billing provider
 
+Chase attributes | &nbsp;
+---- | -----------
+`customAttribute.uid` <br/>*string* | Chase registration id 
+`customAttribute.customerRefNum` <br/>*string* | Chase customer reference number/profile id
 
 
 <!-------------------- DELETE CREDIT CARD -------------------->
