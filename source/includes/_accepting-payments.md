@@ -655,6 +655,51 @@ Just like the Payment Checkout via Link, you can access all your payment checkou
 
 ![Payment Checkout](images/payment_checkout_list.png)
 
+### Customizing the UI of Payment Checkout Link
+
+In order to maintain a consistent brand experience for your users, you can customize the look and feel of your payment checkout link in the Dashboard, where you can do the following things;
+
+-  Upload a logo
+-  Choose the button and the theme color of the payment checkout link
+
+How to customize the UI:
+
+- Log onto business.oyindonesia.com 
+- Go to Payment Checkout section in the dashboard
+- Click the 'Settings" icon
+
+![Payment Checkout](images/ui_customization_settings_icon.png)
+
+- You will be redirected to the Settings page
+
+![Payment Checkout](images/ui_customization_settings_page.png)
+
+- Input the URL for your logo (If you’re using  [snipboard.io](https://snipboard.io/), the correct URL should be in “https://i.snipboard.io/image.jpg” format. If you’re using  [imgbb.com](https://imgbb.com/), the correct URL should be in “https://i.ibb.co/abcdef/image.jpg” format)
+
+- Select your primary color (you can select from our available color picker tools or you can input the 6 digit #HEX code). This primary color will be the main theme color in your payment checkout link and the color of the text in the header
+
+- Select your secondary color (you can select from our available color picker tools or you can input the 6 digit #HEX code). This secondary color will be the color of CTA button in your payment checkout link and the color of the text outside the header
+
+![Payment Checkout](images/ui_customization_color_logo.png)
+
+- Click "Save Changes"
+
+Note:
+-   By saving the change, the colours will be applied to the payment links previously created (before saving) as well as the payment links created after saving.
+-   Please create new payment link after you successfully save changes to check the difference
+
+Illustration;
+
+If we pick green (#HEX code #067610) as the primary color and black (#HEX code #000000) as the secondary color, the look and feel will be as follows;
+
+![Payment Checkout](images/ui_customization_result_1.png)
+
+
+![Payment Checkout](images/ui_customization_result_2.png)
+
+
+![Payment Checkout](images/ui_customization_result_3.png)
+
 ### VA Bank Details
 
 Bank (Virtual Account) | SKN Supported | RTGS Supported | Payment from ATM  | Payment from m-banking / i-banking (intra bank) | Payment from business account (m-banking/i-banking) | Payment from m-banking/i-banking (inter bank) 
