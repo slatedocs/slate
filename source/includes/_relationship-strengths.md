@@ -9,7 +9,7 @@ the strength as an estimate.
 
 Relationship strengths are usually recalculated daily.
 
-## The relationship strength resource
+## The Relationship Strength Resource
 
 > Example Response
 
@@ -34,7 +34,7 @@ interactions, there may be no relationship strength resource for the pair.
 | external_id | integer | The external person associated with this relationship strength.                                             |
 | strength    | float   | The actual relationship strength. This is currently a number between 0 and 1, but may change in the future. |
 
-## Fetch a relationship strength
+## Get Relationship Strength
 
 `GET /relationships-strengths`
 
@@ -42,7 +42,7 @@ interactions, there may be no relationship strength resource for the pair.
 
 ```shell
 # Returns an array relationship strengths matching the criteria.
-curl "https://api.affinity.co/relationships-strengths?external_id=1234&internal_id=2345" -u :<API-KEY>
+curl "https://api.affinity.co/relationships-strengths?external_id=1234&internal_id=2345" -u :$APIKEY
 ```
 
 > Example Response
@@ -61,7 +61,7 @@ curl "https://api.affinity.co/relationships-strengths?external_id=1234&internal_
 
 ```shell
 # Returns an array relationship strengths matching the criteria.
-curl "https://api.affinity.co/relationships-strengths?external_id=1234" -u :<API-KEY>
+curl "https://api.affinity.co/relationships-strengths?external_id=1234" -u :$APIKEY
 ```
 
 > Example Response

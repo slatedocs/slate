@@ -12,14 +12,15 @@ To make the data quality as good as possible, we have our own proprietary databa
 organizations that we have developed through third-party partnerships and web scraping.
 We use this database to minimize data entry for you as you use Affinity's CRM products.
 
-**Note:**
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>If you are looking to add or remove an organization from a list, please check out the <a href="#list-entries">List Entries</a> section of the API.</li>
+    <li>If you are looking to modify a field value (one of the cells on Affinity's spreadsheet), please check out the <a href="#field-values">Field Values</a> section of the API.</li>
+  </ul>
+</aside>
 
-1.  If you are looking to add or remove an organization from a list, please check out the
-    [List Entries](#list-entries) section of the API.
-2.  If you are looking to modify a field value (one of the cells on Affinity's
-    spreadsheet), please check out the [Field Values](#field-values) section of the API.
-
-## The organization resource
+## The Organization Resource
 
 > Example Response
 
@@ -108,8 +109,8 @@ modified and the organization can be deleted.
 
 Dates of the most recent and upcoming interactions with an organization are available in the
 `interaction_dates` field. This data is only included when passing
-`with_interaction_dates=true` as a query parameter to the `/organizations` or
-the `/organizations/{organization_id}` endpoints.
+`with_interaction_dates=true` as a query parameter to the [`GET /organizations`](#search-for-organizations) or
+the [`GET /organizations/{organization_id}`](#get-a-specific-organization) endpoints.
 
 | Attribute         | Type        | Description                                                                                                                                                                                                                                                                             |
 | ----------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -123,7 +124,7 @@ the `/organizations/{organization_id}` endpoints.
 | interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date`, and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
 | interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event (people only returned if passing `with_interaction_persons=true`).  Only returned when passing `with_interaction_dates=true`. |
 
-## Search for organizations
+## Search for Organizations
 
 `GET /organizations`
 
@@ -159,7 +160,7 @@ filter the dataset. If a timestamp is not provided, the system will use the defa
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/organizations?term=affinity" -u :<API-KEY>
+curl "https://api.affinity.co/organizations?term=affinity" -u :$APIKEY
 ```
 
 > Example Response
@@ -192,7 +193,7 @@ curl "https://api.affinity.co/organizations?term=affinity" -u :<API-KEY>
 ```shell
 # To get the second page of results, issue the following query:
 curl --request GET  "https://api.affinity.co/organizations" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -d page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9
 ```
 
@@ -201,7 +202,7 @@ curl --request GET  "https://api.affinity.co/organizations" \
 ```shell
 # To get the results between min_last_email_interaction_date and max_last_email_interaction_date, issue the following query:
 curl --request GET "https://api.affinity.co/organizations" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -d min_last_email_date=2021-01-01T00:00:00 \
   -d with_interaction_dates=true \
   -d max_last_email_date=2021-01-12T23:59:59
@@ -226,12 +227,12 @@ an array of all the organization resources that match the search criteria.
 `page_token` parameter to fetch the next page of results. When `with_interaction_dates` is
 passed in the returned resources will have `interaction_dates` fields.
 
-## Get a specific organization
+## Get a Specific Organization
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/organizations/64779194" -u :<API-KEY>
+curl "https://api.affinity.co/organizations/64779194" -u :$APIKEY
 ```
 
 > Example Response
@@ -274,16 +275,15 @@ conjunction with `with_interaction_dates` |
 
 The organization object corresponding to the `organization_id`.
 
-## Create a new organization
+## Create a New Organization
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/organizations" \
-  -u :<API-KEY> \
-  -d name="Acme Corporation" \
-  -d domain="acme.co" \
-  -d person_ids[]=38706
+curl -X POST "https://api.affinity.co/organizations" \
+   -u :$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"name": "Acme Corporation", "domain": "acme.co", "person_ids": [38706]}'
 ```
 
 > Example Response
@@ -303,9 +303,6 @@ curl "https://api.affinity.co/organizations" \
 
 Creates a new organization with the supplied parameters.
 
-**Note:** If you are looking to add an existing organization to a list, please check
-the [List Entries](#list-entries) section of the API.
-
 ### Payload Parameters
 
 | Parameter  | Type      | Required | Description                                                                                  |
@@ -318,17 +315,20 @@ the [List Entries](#list-entries) section of the API.
 
 The organization resource that was just created by a successful request.
 
-## Update an organization
+<aside class="notice">
+  <h6>Notes</h6>
+  <p>If you are looking to add an existing organization to a list, please check the <a href="#list-entries">List Entries</a> section of the API.</p>
+</aside>
+
+## Update an Organization
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/organizations/120611418" \
-  -u :<API-KEY> \
-  -d name="Acme Corp." \
-  -d person_ids[]=38706 \
-  -d person_ids[]=89734 \
-  -X "PUT"
+curl -X PUT "https://api.affinity.co/organizations/120611418" \
+   -u :$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"name": "Acme Corp.", "person_ids": [38706, 89734]}'
 ```
 
 > Example Response
@@ -348,14 +348,6 @@ curl "https://api.affinity.co/organizations/120611418" \
 
 Updates an existing organization with `organization_id` with the supplied parameters.
 
-**Note:**
-
-If you are looking to add an existing organization to a list, please check the
-[List Entries](#list-entries) section of the API.
-
-If you are trying to add a person to an organization, the existing values for
-`person_ids` must also be passed into the endpoint.
-
 ### Path Parameters
 
 | Parameter       | Type    | Required | Description                                      |
@@ -374,13 +366,21 @@ If you are trying to add a person to an organization, the existing values for
 
 The organization resource that was just updated through a successful request.
 
-## Delete an organization
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>If you are looking to add an existing organization to a list, please check the <a href="#list-entries">List Entries</a> section of the API.</li>
+    <li>If you are trying to add a person to an organization, the existing values for <code>person_ids</code> must also be passed into the endpoint.</li>
+  </ul>
+</aside>
+
+## Delete an Organization
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/organizations/120611418" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -X "DELETE"
 ```
 
@@ -394,12 +394,6 @@ curl "https://api.affinity.co/organizations/120611418" \
 
 Deletes an organization with a specified `organization_id`.
 
-**Note:**
-
-1.  An appropriate error will be returned if you are trying to delete a `global` organization.
-2.  This will also delete all the field values, if any, associated with the organization.
-    Such field values exist linked to either global or list-specific fields.
-
 ### Path Parameters
 
 | Parameter       | Type    | Required | Description                                                 |
@@ -410,12 +404,20 @@ Deletes an organization with a specified `organization_id`.
 
 `{success: true}`.
 
-## Get global fields
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>An appropriate error will be returned if you are trying to delete a <code>global</code> organization.</li>
+    <li>This will also delete all the field values, if any, associated with the organization. Such field values exist linked to either global or list-specific fields.</li>
+  </ul>
+</aside>
+
+## Get Global Organizations Fields
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/organizations/fields" -u :<API-KEY>
+curl "https://api.affinity.co/organizations/fields" -u :$APIKEY
 ```
 
 > Example Response

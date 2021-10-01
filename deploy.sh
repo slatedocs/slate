@@ -15,9 +15,14 @@ Options:
                            deploy branch.
   -n, --no-hash            Don't append the source commit's hash to the deploy
                            commit's message.
+      --source-only        Only build but not push
+      --push-only          Only push but not build
 "
 
-bundle exec middleman build --clean
+
+run_build() {
+  bundle exec middleman build --clean
+}
 
 parse_args() {
   # Set args from a local environment file.
@@ -31,7 +36,7 @@ parse_args() {
   while : ; do
     if [[ $1 = "-h" || $1 = "--help" ]]; then
       echo "$help_message"
-      return 0
+      exit 0
     elif [[ $1 = "-v" || $1 = "--verbose" ]]; then
       verbose=true
       shift
@@ -44,10 +49,21 @@ parse_args() {
     elif [[ $1 = "-n" || $1 = "--no-hash" ]]; then
       GIT_DEPLOY_APPEND_HASH=false
       shift
+    elif [[ $1 = "--source-only" ]]; then
+      source_only=true
+      shift
+    elif [[ $1 = "--push-only" ]]; then
+      push_only=true
+      shift
     else
       break
     fi
   done
+
+  if [ ${source_only} ] && [ ${push_only} ]; then
+    >&2 echo "You can only specify one of --source-only or --push-only"
+    exit 1
+  fi
 
   # Set internal option vars from the environment and arg flags. All internal
   # vars should be declared here, with sane defaults if applicable.
@@ -68,8 +84,6 @@ parse_args() {
 }
 
 main() {
-  parse_args "$@"
-
   enable_expanded_output
 
   if ! git diff --exit-code --quiet --cached; then
@@ -97,7 +111,7 @@ main() {
     return 1
   fi
 
-  # must use short form of flag in ls for compatibility with OS X and BSD
+  # must use short form of flag in ls for compatibility with macOS and BSD
   if [[ -z `ls -A "$deploy_directory" 2> /dev/null` && -z $allow_empty ]]; then
     echo "Deploy directory '$deploy_directory' is empty. Aborting. If you're sure you want to deploy an empty tree, use the --allow-empty / -e flag." >&2
     return 1
@@ -140,7 +154,7 @@ incremental_deploy() {
     0) echo No changes to files in $deploy_directory. Skipping commit.;;
     1) commit+push;;
     *)
-      echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to master, use: git symbolic-ref HEAD refs/heads/master && git reset --mixed >&2
+      echo git diff exited with code $diff. Aborting. Staying on branch $deploy_branch so you can debug. To switch back to main, use: git symbolic-ref HEAD refs/heads/main && git reset --mixed >&2
       return $diff
       ;;
   esac
@@ -200,4 +214,13 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
-[[ $1 = --source-only ]] || main "$@"
+parse_args "$@"
+
+if [[ ${source_only} ]]; then
+  run_build
+elif [[ ${push_only} ]]; then
+  main "$@"
+else
+  run_build
+  main "$@"
+fi

@@ -21,7 +21,7 @@ This list would have 25 "list entries". Each list entry would be associated with
 person entity. Furthermore, the list would have two "fields" with the names
 "Title" and "Industry".
 
-## The list resource
+## The List Resource
 
 > Example Response
 
@@ -45,7 +45,7 @@ person entity. Furthermore, the list would have two "fields" with the names
 | owner_id  | integer | The unique id of the internal person who created this list.                                                   |
 | list_size | integer | The number of list entries contained within the list.                                                         |
 
-### List types
+### List Types
 
 | List Type    | Value | Description                              |
 | ------------ | ----- | ---------------------------------------- |
@@ -53,13 +53,13 @@ person entity. Furthermore, the list would have two "fields" with the names
 | organization | 1     | Type specifying a list of organizations. |
 | opportunity  | 8     | Type specifying a list of opportunities. |
 
-## Get all lists
+## Get All Lists
 
 > Example Request
 
 ```shell
 # Returns an array of all lists that you have access to.
-curl "https://api.affinity.co/lists" -u :<API-KEY>
+curl "https://api.affinity.co/lists" -u :$APIKEY
 ```
 
 > Example Response
@@ -94,13 +94,13 @@ An array of all the list resources for lists visible to you. Each list resource 
 array includes the `id`, `name`, and `type` (refer to the
 [list resource](#the-list-resource) above for further help).
 
-## Get a specific list
+## Get a Specific List
 
 > Example Request
 
 ```shell
 # Returns the list with the specified `list_id`
-curl "https://api.affinity.co/lists/450" -u :<API-KEY>
+curl "https://api.affinity.co/lists/450" -u :$APIKEY
 ```
 
 > Example Response

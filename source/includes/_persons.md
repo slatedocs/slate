@@ -6,14 +6,15 @@ the people that your team has added to Affinity either manually or through the A
 Affinity's data model also guarantees that only one person in your team's shared contact
 list has a given email address.
 
-**Note:**
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>If you are looking to add or remove a person from a list, please check out the <a href="#list-entries">List Entries</a> section of the API.</li>
+    <li>If you are looking to modify a person's field values (one of the cells on Affinity's spreadsheet), please check out the <a href="#field-values">Field Values</a> section of the API.</li>
+  </ul>
+</aside>
 
-1.  If you are looking to add or remove a person from a list, please check out the
-    [List Entries](#list-entries) section of the API.
-2.  If you are looking to modify a person's field values (one of the cells on Affinity's
-    spreadsheet), please check out the [Field Values](#field-values) section of the API.
-
-## The person resource
+## The Person Resource
 
 > Example Response
 
@@ -125,7 +126,7 @@ the `/persons/{person_id}` endpoints.
 | emails            | string[]    | The email addresses of the person.                                                                                                                                                                                                                                                |
 | primary_email     | string      | The email (automatically computed) that is most likely to the current active email address of the person.                                                                                                                                                                         |
 | organization_ids  | integer[]   | An array of unique identifiers of organizations that the person is associated with.                                                                                                                                                                                               |
-| list_entries      | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a specific person](#get-a-specific-person) endpoint.                                                                                                                               |
+| list_entries      | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a Specific Person](#get-a-specific-person) endpoint.                                                                                                                               |
 | interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
 | interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event.  Only returned when passing `with_interaction_dates=true`. |
 
@@ -136,7 +137,7 @@ the `/persons/{person_id}` endpoints.
 | external | 0     | Default value. All people that your team has spoken with externally have this type. |
 | internal | 1     | All people on your team that have Affinity accounts will have this type.            |
 
-## Search for persons
+## Search for Persons
 
 `GET /persons`
 
@@ -168,7 +169,7 @@ be ISO 8601 formatted date strings.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/persons?term=doe" -u :<API-KEY>
+curl "https://api.affinity.co/persons?term=doe" -u :$APIKEY
 ```
 
 > Example Response
@@ -209,7 +210,7 @@ curl "https://api.affinity.co/persons?term=doe" -u :<API-KEY>
 
 ```shell
 # To get the second page of results, issue the following query:
-curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :$APIKEY
 ```
 
 ### Query Parameters
@@ -232,12 +233,12 @@ with the next request as the `page_token` parameter to fetch the next page of re
 When `with_interaction_dates` is passed in the returned resources will have
 `interaction_dates` fields.
 
-## Get a specific person
+## Get a Specific Person
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/persons/38706" -u :<API-KEY>
+curl "https://api.affinity.co/persons/38706" -u :$APIKEY
 ```
 
 > Example Response
@@ -285,17 +286,15 @@ Fetches a person with a specified `person_id`.
 
 The person resource corresponding to the `person_id`.
 
-## Create a new person
+## Create a New Person
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/persons" \
-  -u :<API-KEY> \
-  -d first_name="Alice" \
-  -d last_name="Doe" \
-  -d emails[]="alice@affinity.co" \
-  -d organization_ids[]=1687449
+curl -X POST "https://api.affinity.co/persons" \
+   -u :$APIKEY \
+   -H "Content-Type: application/json" \
+   -d {"first_name": "Alice", "last_name": "Doe", "emails": ["alice@affinity.co"], "organization_ids": [1687449]}
 ```
 
 > Example Response
@@ -316,13 +315,6 @@ curl "https://api.affinity.co/persons" \
 
 Creates a new person with the supplied parameters.
 
-**Note:**
-
-1.  If one of the supplied email addresses conflicts with another person object, this
-    request will fail and an appropriate error will be returned.
-2.  If you are looking to add an existing person to a list, please check the [List Entries](#list-entries) section
-    of the API.
-
 ### Payload Parameters
 
 | Parameter        | Type      | Required | Description                                                                                        |
@@ -336,17 +328,23 @@ Creates a new person with the supplied parameters.
 
 The person resource was newly created from this successful request.
 
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>If one of the supplied email addresses conflicts with another person object, this request will fail and an appropriate error will be returned.</li>
+    <li>If you are looking to add an existing person to a list, please check the <a href="#list-entries">List Entries</a> section of the API.</li>
+  </ul>
+</aside>
+
 ## Update a person
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/persons/860197" \
-  -u :<API-KEY> \
-  -d emails[]="allison@example.com" \
-  -d emails[]="allison@gmail.com" \
-  -d first_name="Allison" \
-  -X "PUT"
+curl -X PUT "https://api.affinity.co/persons/860197" \
+   -u :$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"first_name": "Allison", "emails": ["allison@affinity.co", "allison@gmail.com"]}'
 ```
 
 > Example Response
@@ -368,14 +366,6 @@ curl "https://api.affinity.co/persons/860197" \
 Updates an existing person with `person_id` with the supplied parameters. Only attributes
 that need to be changed must be passed in.
 
-**Note:**
-
-If you are looking to add an existing person to a list, please check the
-[List Entries](#list-entries) section of the API.
-
-If you are trying to add a new email or organization to a person, the
-existing values for `emails` and `organization_ids` must also be supplied as parameters.
-
 ### Path Parameters
 
 | Parameter | Type    | Required | Description                                           |
@@ -395,13 +385,21 @@ existing values for `emails` and `organization_ids` must also be supplied as par
 
 The person object that was just updated through this request.
 
-## Delete a person
+<aside class="notice">
+  <h6>Note</h6>
+  <ul>
+    <li>If you are looking to add an existing person to a list, please check the <a href="#list-entries">List Entries</a> section of the API.</li>
+    <li>If you are trying to add a new email or organization to a person, the existing values for <code>emails</code> and <code>organization_ids</code> must also be supplied as parameters.</li>
+  </ul>
+</aside>
+
+## Delete a Person
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/persons/860197" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -X "DELETE"
 ```
 
@@ -415,9 +413,6 @@ curl "https://api.affinity.co/persons/860197" \
 
 Deletes a person with a specified `person_id`.
 
-**Note:** This will also delete all the field values, if any, associated with the person.
-Such field values exist linked to either global or list-specific fields.
-
 ### Path Parameters
 
 | Parameter | Type    | Required | Description                                           |
@@ -428,18 +423,23 @@ Such field values exist linked to either global or list-specific fields.
 
 `{success: true}`.
 
-## Get global fields
+<aside class="notice">
+  <h6>Note</h6>
+  <p>This will also delete all the field values, if any, associated with the person. Such field values exist linked to either global or list-specific fields.</p>
+</aside>
+
+## Get Global Person Fields
 
 `GET /persons/fields`
 
 Fetches an array of all the global fields that exist on people. If you aren't sure
-about what fields are, please read the [fields](#fields)
+about what fields are, please read the [Fields](#fields)
 section first.
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/persons/fields" -u :<API-KEY>
+curl "https://api.affinity.co/persons/fields" -u :$APIKEY
 ```
 
 > Example Response

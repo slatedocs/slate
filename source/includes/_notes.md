@@ -19,7 +19,7 @@ Just like field values, notes are used to keep track of state on an entity. They
 notes manually taken from due diligence, a meeting, or a call. Or, notes could be used to
 store logged activity from a prospect's visit to your website.
 
-## The note resource
+## The Note Resource
 
 A note object contains `content`, which is a string containing the note body. In
 addition, a note can be associated with multiple people, organizations, or opportunities.
@@ -36,12 +36,12 @@ Each person, organization, or opportunity will display linked notes on their pro
 | content          | string    | The string containing the content of the note.                                                                                                                                                                                                                                                                                            |
 | created_at       | datetime  | The string representing the time when the note was created.                                                                                                                                                                                                                                                                               |
 
-## Get all notes
+## Get All Notes
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/notes" -u :<API-KEY>
+curl "https://api.affinity.co/notes" -u :$APIKEY
 ```
 
 > Example Response
@@ -89,13 +89,13 @@ Returns all notes attached to a `person`, `organization`, `opportunity`.
 
 An array of all the note resources available to you.
 
-## Get a specific note
+## Get a Specific Note
 
 > Example Request
 
 ```shell
 # Returns the note with the specified `note_id`
-curl "https://api.affinity.co/notes/22984" -u :<API-KEY>
+curl "https://api.affinity.co/notes/22984" -u :$APIKEY
 ```
 
 > Example Response
@@ -128,20 +128,15 @@ Gets the details for a specific note given the existing note id.
 The details of the note resource corresponding to the note id specified in the path
 parameter. An appropriate error is returned if an invalid note is supplied.
 
-## Create a new note
+## Create a New Note
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/notes" \
-  -u :<API-KEY> \
-  -d person_ids[]=38706 \
-  -d person_ids[]=624289 \
-  -d organization_ids[]=120611418 \
-  -d opportunity_ids[]=167 \
-  -d content="Had a lunch meeting with Jane and \
-              John today. They want to invest in \
-              Acme Corp."
+curl -X POST "https://api.affinity.co/notes" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -d '{"person_ids": [38706, 624289], "organization_ids": [120611418], "opportunity_ids": [167], "content": "Had a lunch meeting with Jane and John today. They want to invest in Acme Corp."}'
 ```
 
 > Example Response
@@ -190,16 +185,15 @@ Note that either `content` or `gmail_id` must be specified.
 
 The note resource created through this request.
 
-## Update a note
+## Update a Note
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/notes/22984" \
-  -u :<API-KEY> \
-  -d content="Had another meeting with Jane and \
-              John today."
-  -X "PUT"
+curl -X POST "https://api.affinity.co/22984" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -d '{"content": "Had another meeting with Jane and John today"}'
 ```
 
 > Example Response
@@ -221,11 +215,6 @@ curl "https://api.affinity.co/notes/22984" \
 
 Updates the content of an existing note with `note_id` with the supplied `content` parameter.
 
-**Note:**
-
-You cannot update the content of a note that has mentions. You also cannot update the content
-of a note associated with an email.
-
 ### Path Parameters
 
 | Parameter | Type    | Required | Description                                         |
@@ -242,13 +231,18 @@ of a note associated with an email.
 
 The note object that was just updated through this request.
 
-## Delete a note
+<aside class="notice">
+  <h6>Note</h6>
+  <p>You cannot update the content of a note that has mentions. You also cannot update the content of a note associated with an email.</p>
+</aside>
+
+## Delete a Note
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/notes/22984" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -X "DELETE"
 ```
 
@@ -262,9 +256,6 @@ curl "https://api.affinity.co/notes/22984" \
 
 Deletes a note with a specified `note_id`.
 
-**Note:** An appropriate error will be returned if you are not the creator of the note you
-are trying to delete.
-
 ### Path Parameters
 
 | Parameter | Type    | Required | Description                                         |
@@ -274,3 +265,9 @@ are trying to delete.
 ### Returns
 
 `{success: true}`.
+
+<aside class="notice">
+  <h6>Note</h6>
+  <p>An appropriate error will be returned if you are not the creator of the note you are trying to delete.</p>
+</aside>
+

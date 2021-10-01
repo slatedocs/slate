@@ -2,7 +2,7 @@
 
 Webhooks allow you to be notified of events that happen on your Affinity instance. For example, your app can be notified when a list is created, a field value is updated, a person is deleted, and more. These events will fire immediately after the corresponding action takes place.
 
-## The webhook subscription resource
+## The Webhook Subscription Resource
 
 > Example Response
 
@@ -31,6 +31,33 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 
 ## Supported Webhook Events
 
+> Example Responses
+
+```json
+{
+  "type": "list_entry.created",
+  "body": {
+    "id": 388,
+    "list_id": 26,
+    "creator_id": 38603,
+    "entity_id": 38706,
+    "entity_type": 0,
+    "created_at": "2021-09-08 09:55:50 -0700",
+    "entity": {
+      "id": 70796737,
+      "type": 0,
+      "first_name": "John",
+      "last_name": "Doe",
+      "primary_email": "john@affinity.co",
+      "emails": [
+        "john@affinity.co"
+      ]
+    }
+  },
+  "sent_at": 1631120151
+}
+```
+
 | Object Type  | Events                                                                 |
 | ------------ | ---------------------------------------------------------------------- |
 | List         | `list.created`, `list.updated`, `list.deleted`                         |
@@ -43,14 +70,15 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 | Opportunity  | `opportunity.created`, `opportunity.updated`, `opportunity.deleted`    |
 | Entity File  | `file.created`, `file.deleted`                                         |
 
-The Field Value webhook events do not include enrichment events by default. To enable enrichment webhooks, please contact support@affinity.co.
+The Field Value webhook events do not include enrichment events by default. To enable enrichment webhooks, please contact [support@affinity.co](support@affinity.co).
 
-## Get all webhook subscriptions
+
+## Get All Webhook Subscriptions
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/webhook" -u :<API-KEY>
+curl "https://api.affinity.co/webhook" -u :$APIKEY
 ```
 
 > Example Response
@@ -81,12 +109,12 @@ curl "https://api.affinity.co/webhook" -u :<API-KEY>
 
 Returns all of your organization's webhook subscriptions.
 
-## Get a specific webhook subscription
+## Get a Specific Webhook Subscription
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/webhook/1234" -u :<API-KEY>
+curl "https://api.affinity.co/webhook/1234" -u :$APIKEY
 ```
 
 > Example Response
@@ -119,13 +147,13 @@ Gets the details for a specific webhook subscription given the specified `webhoo
 
 The webhook subscription object corresponding to the `webhook_subscription_id`.
 
-## Create a new webhook subscription
+## Create a New Webhook Subscription
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/webhook/subscribe" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -d webhook_url="https://hooks.example.com/webhook"
 ```
 
@@ -144,10 +172,6 @@ curl "https://api.affinity.co/webhook/subscribe" \
 
 Creates a new webhook subscription with the supplied parameters. If the endpoint returns an invalid response, the webhook creation will fail.
 
-**Note:**
-
-There is currently a limit of 3 webhook subscriptions.
-
 ### Payload Parameters
 
 | Parameter     | Type     | Required | Description                                                                                                                                                                                                                                          |
@@ -157,15 +181,20 @@ There is currently a limit of 3 webhook subscriptions.
 
 ### Returns
 
-The webhook subscription object that was just created from this successful request.
+The webhook subscription object that was just created from this successful request per organization.
 
-## Update a webhook subscription
+<aside class="notice">
+  <h6>Note</h6>
+  <p>There is a limit of three webhook subscriptions per Affinity instance.</p>
+</aside>
+
+## Update a Webhook Subscription
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/webhook/1234" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -d webhook_url="https://hooks.example.com/webhook" \
   -d disabled=true \
   -X "PUT"
@@ -198,13 +227,13 @@ Update webhook subscription with the supplied parameters. If the endpoint return
 
 The webhook subscription object that was just updated from this successful request.
 
-## Delete a specific webhook subscription
+## Delete a Specific Webhook Subscription
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/webhook/1234" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -X "DELETE"
 ```
 
@@ -227,7 +256,3 @@ Deletes a webhook subscription with a specified `webhook_subscription_id`.
 ### Returns
 
 `{success: true}`.
-
-## Limitations
-
-There is a limit of three webhook subscriptions per Affinity instance. If you have any questions at all regarding webhooks, please reach out to <support@affinity.co>.

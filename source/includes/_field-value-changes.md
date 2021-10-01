@@ -8,11 +8,6 @@ This is especially useful for tracking progress through statuses (e.g. Lead --> 
 Not all fields can track historical changes. The following field types support tracking of
 historical changes.
 
-**Note:**
-You can also see if a field does so by looking at the
-`track_changes` attribute in the [field resource](#get-fields). The API will return an
-appropriate error if the field doesn't support historical tracking.
-
 ### Multi-valued Fields
 
 | Value | Type                    |
@@ -35,7 +30,12 @@ appropriate error if the field doesn't support historical tracking.
 | 5     | Location                |
 | 7     | Ranked Dropdown         |
 
-## The field value change resource
+<aside class="notice">
+  <h6>Note</h6>
+  <p>You can also see if a field does so by looking at the <code>track_changes</code> attribute in the <a href="#get-fields">Field Resource</a>. The API will return an appropriate error if the field doesn't support historical tracking.</p>
+</aside>
+
+## The Field Value Change Resource
 
 > Example Response
 
@@ -69,10 +69,6 @@ Each field value change object has a unique `id`.
 A field value change also has `field_id`, `entity_id`, `list_entry_id` attributes that give it the
 appropriate associations, as noted in the example above.
 
-**Note:**
-There are some extra attributes returned by this endpoint; they will be deprecated soon and
-should not be used.
-
 | Attribute     | Type           | Description                                                                                                                                                                                                                 |
 | ------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id            | integer        | The unique identifier of the field value change object.                                                                                                                                                                     |
@@ -95,12 +91,17 @@ will represent when a field value has been created.
 | 1           | Delete |
 | 2           | Update |
 
-## Get field values changes
+<aside class="notice">
+  <h6>Note</h6>
+  <p>There are some extra attributes returned by this endpoint; they will be deprecated soon and should not be used.</p>
+</aside>
+
+## Get Field Values Changes
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/field-value-changes?field_id=236333" -u :<API-KEY>
+curl "https://api.affinity.co/field-value-changes?field_id=236333" -u :$APIKEY
 ```
 
 > Example Response

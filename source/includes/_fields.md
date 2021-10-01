@@ -24,7 +24,16 @@ For people, the global fields include Location, Job Titles, and Industries.
 For organizations, the global fields include Stage, Industry, Location, and
 more.
 
-## The field resource
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>Global field IDs for persons are returned from <code><a href="#get-global-person-fields">GET /persons/fields</a></code></li>
+    <li>Global field IDs for organizations are returned from <code><a href="#get-global-organizations-fields">GET /organizations/fields</a></code></li>
+    <li>List-specific field IDs are also returned from <code><a href="#get-a-specific-list">GET /lists/{list_id}</a></code></li>
+  </ul>
+</aside>
+
+## The Field Resource
 
 Each field object has a unique `id`. It also has a `name`, which determines the name of the field,
 and `allows_multiple`, which determines whether multiple values can be added to a single cell for that field.
@@ -46,34 +55,30 @@ sort, or filter all of them.
 
 All the Types listed below can be referred through looking at the Affinity web app as well.
 
-**Note:**
-
-The API currently only supports fetching field data for field value creation.
-It does not support updating, deleting, or creating fields. Modifying or
-creating an field must be done through the web product.
-
-For accessing person global fields, see the [Person Fields](#get-global-fields) endpoint.
-For accessing organization global fields, see the [Organization Fields](#get-global-fields33) endpoint.
-For accessing list specific fields on a list, see the [Specific List](#get-a-specific-list) endpoint.
-
 | Value | Type                    | Description                                                                                                                                                                                 |
 | ----- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0     | Person                  | This type enables you to add person objects as a value. Eg: External Source, Owner, Friends                                                                                                 |
 | 1     | Organization            | This type enables you to add organization objects as a value. Eg: Place of work, Co-Investors                                                                                               |
-| 2     | Dropdown                | This type allows you to add text values into a single cell. This is best used when you want to store information that is unique to a person or organization. Eg: Interests, Stage, Industry |
+| 2     | Dropdown | This type allows you to add text values into a single cell. This is best used when you want to store information that is unique to a person or organization. Eg: Interests, Stage, Industry                |
 | 3     | Number                  | This type enables you to add number as a value. Eg: Deal Size, Check Size, Revenue                                                                                                          |
 | 4     | Date                    | This type enables you to add date as a value. Eg: Date of Event, Birthday                                                                                                                   |
 | 5     | Location                | This type enables you to add a smart Google Maps location as a value. Eg: Address                                                                                                           |
 | 6     | Text                    | This type enables you to add a long text block as a value. Eg: Summary                                                                                                                      |
 | 7     | Ranked Dropdown         | This type allows you to add values in a particular order as well as assign colors to them. This is the equivalent of a pick list. Eg: Status, Priority, Ranking                             |
+| 8     | Opportunity             | This type enables you to add an opportunity object.                                                                                                                                         |
 
-## Get fields
+<aside class="notice">
+  <h6>Note</h6>
+  <p>The API currently does not support updating and modifying fields. This must be done through the web product.</p>
+</aside>
+
+## Get Fields
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/fields" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -d with_modified_names=true
 ```
 
@@ -107,11 +112,16 @@ curl "https://api.affinity.co/fields" \
 
 Returns all fields based on the parameters provided.
 
-Pass the `list_id` to only fetch fields that are specific to that list. Otherwise, all global and list specific fields will be returned.
+Pass the `list_id` to only fetch fields that are specific to that list. Otherwise, all global and list-specific fields will be returned.
 
 Pass the `value_type` to fetch fields of specific value types. Otherwise, all fields of any type will be returned.
 
 Pass the `with_modified_names` flag to return the fields such that the names have the list name prepended to them in the format `[List Name] Field Name` (i.e. `[Deals] Status`).
+
+<aside class="notice">
+  <h6>Note</h6>
+    <p>Results returned with <code>list_id: null</code> mean they do not belong to a specific list and thus are global fields.</p>
+</aside>
 
 ### Query Parameters
 
@@ -125,13 +135,66 @@ Pass the `with_modified_names` flag to return the fields such that the names hav
 
 An array of all the fields requested.
 
-## Delete a field
+## Create Field
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/field" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -d '{"name": "[Deals] Amount", "list_id": 11, "model_type": 1, "value_type": 3, "allows_multiple": false, "dropdown_options":[]}'
+```
+
+> Example Response
+
+```json
+{
+  "id": 59,
+  "name": "[Deals] Amount",
+  "list_id": 11,
+  "value_type": 3,
+  "allows_multiple": false,
+  "track_changes": false,
+  "dropdown_options": []
+}
+```
+
+`POST /fields`
+
+Creates a new field with the supplied parameters.
+
+### Payload Parameters
+
+| Parameter | Type | Required | Description |
+| --------- | --- | --- | --- |
+| name | string | true | The name of the field. |
+| model_type | integer | true | This describes what type of list this field will be associated with the field. This can be one of three values, see below for all value types. |
+| value_type | integer | true | This describes what values can be associated with the field. This can be one of many values, see the [Field Resource](#the-field-resource) section for all value types. |
+| list_id | integer | false | The unique identifier of the list that the field object belongs to if it is specific to a list. This is `null` if the field is global. |
+| allows_multiple | boolean | false | This determines whether multiple values can be added to a single cell for the field. |
+| is_list_specific | boolean | false | This determines whether the field object belongs to a specific list. If set to `true`, you must pass in the appropriate `list_id`. |
+| is_required | boolean | false | This determines whether the field object is required. |
+
+### Field Model Types
+
+| Parameter | Type | Description |
+| --------- | --- | --- | --- |
+| person | 0 | Type specifying a list of people. |
+| organization | 1 | Type specifying a list of organizations. |
+| opportunity | 8 | Type specifying a list of opportunities. |
+
+### Returns
+
+The field resource that was just created through this request.
+
+## Delete a Field
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/fields/1234" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -X "DELETE"
 ```
 

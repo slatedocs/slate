@@ -1,76 +1,68 @@
 @font-face {
-  font-family: "Proxima Nova";
-  font-weight: 100;
-  font-style: normal;
-  src: font-url("proxima-nova-thin.eot");
-  src: font-url("proxima-nova-thin.eot?#iefix") format("embedded-opentype"),
-      font-url("proxima-nova-thin.woff2") format("woff2"),
-      font-url("proxima-nova-thin.woff") format("woff"),
-      font-url("proxima-nova-thin.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Proxima Nova";
-  font-weight: 300;
-  font-style: normal;
-  src: font-url("proxima-nova-light.eot");
-  src: font-url("proxima-nova-light.eot?#iefix") format("embedded-opentype"),
-      font-url("proxima-nova-light.woff2") format("woff2"),
-      font-url("proxima-nova-light.woff") format("woff"),
-      font-url("proxima-nova-light.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Proxima Nova";
-  font-weight: 400;
-  font-style: normal;
-  src: font-url("proxima-nova-regular.eot");
-  src: font-url("proxima-nova-regular.eot?#iefix") format("embedded-opentype"),
-      font-url("proxima-nova-regular.woff2") format("woff2"),
-      font-url("proxima-nova-regular.woff") format("woff"),
-      font-url("proxima-nova-regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Proxima Nova";
-  font-weight: 600;
-  font-style: normal;
-  src: font-url("proxima-nova-semibold.eot");
-  src: font-url("proxima-nova-semibold.eot?#iefix") format("embedded-opentype"),
-      font-url("proxima-nova-semibold.woff2") format("woff2"),
-      font-url("proxima-nova-semibold.woff") format("woff"),
-      font-url("proxima-nova-semibold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Proxima Nova";
+  font-family: "LL Circular";
+  src: url("/fonts/circular/lineto-circular-bold.eot");
+  src: url("/fonts/circular/lineto-circular-bold.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/circular/lineto-circular-bold.woff2") format("woff2"),
+    url("/fonts/circular/lineto-circular-bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
-  src: font-url("proxima-nova-bold.eot");
-  src: font-url("proxima-nova-bold.eot?#iefix") format("embedded-opentype"),
-      font-url("proxima-nova-bold.woff2") format("woff2"),
-      font-url("proxima-nova-bold.woff") format("woff"),
-      font-url("proxima-nova-bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Proxima Nova";
-  font-weight: 800;
-  font-style: normal;
-  src: font-url("proxima-nova-extrabold.eot");
-  src: font-url("proxima-nova-extrabold.eot?#iefix") format("embedded-opentype"),
-      font-url("proxima-nova-extrabold.woff2") format("woff2"),
-      font-url("proxima-nova-extrabold.woff") format("woff"),
-      font-url("proxima-nova-extrabold.ttf") format("truetype");
+  font-family: "LL Circular";
+  src: url("/fonts/circular/lineto-circular-bolditalic.eot");
+  src: url("/fonts/circular/lineto-circular-bolditalic.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/circular/lineto-circular-bolditalic.woff2") format("woff2"),
+    url("/fonts/circular/lineto-circular-bolditalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
 }
 
 @font-face {
-  font-family: "Proxima Nova";
-  font-weight: 900;
+  font-family: "Inter";
   font-style: normal;
-  src: font-url("proxima-nova-black.eot");
-  src: font-url("proxima-nova-black.eot?#iefix") format("embedded-opentype"),
-      font-url("proxima-nova-black.woff2") format("woff2"),
-      font-url("proxima-nova-black.woff") format("woff"),
-      font-url("proxima-nova-black.ttf") format("truetype");
+  font-weight: 400;
+  src: url("/fonts/inter/Inter-Regular.woff2") format("woff2"),
+    url("/fonts/inter/Inter-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/fonts/inter/Inter-Italic.woff2") format("woff2"),
+    url("/fonts/inter/Inter-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/inter/Inter-Medium.woff2") format("woff2"),
+    url("/fonts/inter/Inter-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 500;
+  src: url("/fonts/inter/Inter-MediumItalic.woff2") format("woff2"),
+    url("/fonts/inter/Inter-MediumItalic.woff") format("woff");
+}
+
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/inter/Inter-SemiBold.woff2") format("woff2"),
+    url("/fonts/inter/Inter-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 600;
+  src: url("/fonts/inter/Inter-SemiBoldItalic.woff2") format("woff2"),
+    url("/fonts/inter/Inter-SemiBoldItalic.woff") format("woff");
 }

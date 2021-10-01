@@ -1,6 +1,6 @@
 # List Entries
 
-## The list entry resource
+## The List Entry Resource
 
 > Example Response
 
@@ -28,14 +28,6 @@ list (people or organizations).
 Operations like adding and removing entities from a list can be accomplished using the
 list entry abstraction.
 
-**Note:**
-Although list entries correspond to rows in an Affinity spreadsheet, the values
-associated with the entity are not stored inside the list entry resource. If you are
-trying to update, create, or delete a value in one of the custom columns for this list
-entry, please refer to the [Field Values](#field-values) section. The list entry API
-is only used for getting, adding, or removing entities from a list. It does not
-handle updating individual cells in columns.
-
 | Attribute  | Type     | Description                                                                                                                                                                       |
 | ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id         | integer  | The unique identifier of the list entry object.                                                                                                                                   |
@@ -44,13 +36,17 @@ handle updating individual cells in columns.
 | entity_id  | integer  | The unique identifier of the entity corresponding to the list entry.                                                                                                              |
 | entity     | object   | Object containing entity-specific details like name, email address, domain etc. for the entity corresponding to `entity_id`.                                                      |
 | created_at | datetime | The time when the list entry was created.                                                                                                                                         |
+<aside class="notice">
+  <h6>Note</h6>
+  <p>Although list entries correspond to rows in an Affinity spreadsheet, the values associated with the entity are not stored inside the list entry resource. If you are trying to update, create, or delete a value in one of the custom columns for this list entry, please refer to the <a href="#field-values">Field Values</a> section. The list entry API is only used for getting, adding, or removing entities from a list. It does not handle updating individual cells in columns.</p>
+</aside>
 
-## Get all list entries
+## Get All List Entries
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/lists/450/list-entries" -u :<API-KEY>
+curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
 ```
 
 > Example Response
@@ -159,9 +155,9 @@ and `next_page_token` are returned. `list_entries` maps to an array of up to `pa
 list entries. `next_page_token` includes a token to be sent along with the next request
 as the `page_token` parameter to fetch the next page of results.
 Each list entry in the both cases includes all the attributes as specified in the
-[list entry resource](#the-list-entry-resource) section above.
+[List Entry Resource](#the-list-entry-resource) section above.
 
-## Get a specific list entry
+## Get a Specific List Entry
 
 `GET /lists/{list_id}/list-entries/{list_entry_id}`
 
@@ -170,7 +166,7 @@ Fetches a list entry with a specified id.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/lists/450/list-entries/16367" -u :<API-KEY>
+curl "https://api.affinity.co/lists/450/list-entries/16367" -u :$APIKEY
 ```
 
 > Example Response
@@ -203,14 +199,15 @@ curl "https://api.affinity.co/lists/450/list-entries/16367" -u :<API-KEY>
 
 The list entry object corresponding to the `list_entry_id`.
 
-## Create a new list entry
+## Create a New List Entry
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/lists/450/list-entries" \
-   -u :<API-KEY> \
-   -d entity_id=38706
+curl -X POST “https://api.affinity.co/lists/450/list-entries” \
+   -u :$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"entity_id": 38706}'
 ```
 
 > Example Response
@@ -236,9 +233,6 @@ curl "https://api.affinity.co/lists/450/list-entries" \
 
 Creates a new list entry in the list with the supplied list id.
 
-**Note:** A list can contain the same entity multiple times. Depending on your use case, before you add an entry,
-you might want to make sure that it does not exist in the list already.
-
 ### Path Parameters
 
 | Parameter  | Type    | Required | Description                                                                                                                                                                                     |
@@ -249,20 +243,28 @@ you might want to make sure that it does not exist in the list already.
 
 | Parameter        | Type      | Required | Description                                                                                        |
 | ---------------- | --------- | -------- | -------------------------------------------------------------------------------------------------- |
-| entity_id  | integer | true     | The unique id of the entity (person, organization, or opportunity) to add to this list.                                                                                                         |
+| entity_id  | integer | true     | The unique id of the person or organization to add to this list. Opportunities **cannot** be created using this endpoint. See note below.                                                                                                         |
 | creator_id | integer | false    | The id of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key. |
+
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>Opportunities <span class="bold">cannot</span> be created using this endpoint. Instead use the <code><a href="#create-a-new-opportunity">POST /opportunities</a></code> endpoint.</li>
+    <li>Person and company lists can contain the same entity multiple times. Depending on your use case, before you add an entry, you might want to make sure that it does not exist in the list already.</li>
+  </ul>
+</aside>
 
 ### Returns
 
 The list entry resource that was just created through this request.
 
-## Delete a specific list entry
+## Delete a Specific List Entry
 
 > Example Request
 
 ```shell
 curl "https://api.affinity.co/lists/450/list-entries/56517" \
-   -u :<API-KEY> \
+   -u :$APIKEY \
    -X "DELETE"
 ```
 
@@ -276,13 +278,6 @@ curl "https://api.affinity.co/lists/450/list-entries/56517" \
 
 Deletes a list entry with a specified `list_entry_id`.
 
-**Note:**
-
-1.  This will also delete all the field values, if any, associated with the list entry.
-    Such field values will only exist in fields specific to this list.
-2.  If the list entry belongs to an Opportunity list, then the opportunity that the list
-    entry is associated with will also be deleted.
-
 ### Path Parameters
 
 | Parameter     | Type    | Required | Description                                                            |
@@ -293,3 +288,11 @@ Deletes a list entry with a specified `list_entry_id`.
 ### Returns
 
 The JSON object `{"success": true}`.
+
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>This will also delete all the field values, if any, associated with the list entry. Such field values will only exist in fields specific to this list.</li>
+    <li>If the list entry belongs to an Opportunity list, then the opportunity that the list entry is associated with will also be deleted.</li>
+  </ul>
+</aside>

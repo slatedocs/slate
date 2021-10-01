@@ -11,22 +11,22 @@ If the list or list entry containing the opportunity gets deleted, then the oppo
 deleted. If a user does not have permission to access a list with opportunities, the user cannot view
 any of those opportunities.
 
-**Note:**
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>If you are looking to remove an opportunity from a list, note that deleting an opportunity is the same as removing an opportunity from a list because an opportunity can only exist on a single list with a single list entry.</li>
+    <li>If you are looking to modify a field value (one of the cells on Affinity's spreadsheet), please check out the <a href="#field-values">Field Values</a> section of the API.</li>
+  </ul>
+</aside>
 
-1.  If you are looking to remove an opportunity from a list, note that deleting an opportunity
-    is the same as removing an opportunity from a list because an opportunity can only exist on
-    a single list with a single list entry.
-2.  If you are looking to modify a field value (one of the cells on Affinity's
-    spreadsheet), please check out the [Field Values](#field-values) section of the API.
-
-## The opportunity resource
+## The Opportunity Resource
 
 > Example Response
 
 ```json
 {
   "id": 117,
-  "name": "Affinity Opp",
+  "name": "Affinity Opportunity",
   "person_ids": [38706],
   "organization_ids": [21442],
   "list_entries": [
@@ -57,7 +57,7 @@ Of course, all fields can be modified and the opportunity can be deleted.
 | organization_ids | number[]    | An array of unique identifiers for organizations that are associated with the opportunity       |
 | list_entries     | ListEntry[] | An array of list entry resources associated with the opportunity (at most 1 list entry). If the user corresponding to the API key does not have access to the list, this will be empty. |
 
-## Search for opportunities
+## Search for Opportunities
 
 `GET /opportunities`
 
@@ -89,7 +89,7 @@ curl "https://api.affinity.co/opportunities?term=affinity" -u :<API-KEY>
   "opportunities": [
     {
       "id": 121,
-      "name": "Affinity Opp",
+      "name": "Affinity Opportunity",
       "person_ids": [3526824],
       "organization_ids": [128367168],
       "list_entries": [
@@ -105,7 +105,7 @@ curl "https://api.affinity.co/opportunities?term=affinity" -u :<API-KEY>
     },
     {
       "id": 150,
-      "name": "Affinity Opp 2",
+      "name": "Affinity Opportunity 2",
       "person_ids": [5326214],
       "organization_ids": [128367168],
       "list_entries": [
@@ -147,7 +147,7 @@ an array of all the opportunity resources that match the search criteria.
 `next_page_token` includes a token to be sent along with the next request as the
 `page_token` parameter to fetch the next page of results.
 
-## Get a specific opportunity
+## Get a Specific Opportunity
 
 > Example Request
 
@@ -160,7 +160,7 @@ curl "https://api.affinity.co/opportunities/117" -u :<API-KEY>
 ```json
 {
   "id": 121,
-  "name": "Affinity Opp",
+  "name": "Affinity Opportunity",
   "person_ids": [3526824],
   "organization_ids": [128367168],
   "list_entries": [
@@ -190,24 +190,22 @@ Fetches an opportunity with a specified `opportunity_id`.
 
 The opportunity object corresponding to the `opportunity_id`.
 
-## Create a new opportunity
+## Create a New Opportunity
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/opportunities" \
-  -u :<API-KEY> \
-  -d name="Penny Opportunity" \
-  -d list_id=6645 \
-  -d person_ids[]=38706 \
-  -d organization_ids[]=21442
+curl -X POST "https://api.affinity.co/opportunities" \
+   -u :$APIKEY \
+   -H "Content-Type: application/json" \
+   -d '{"name": "Penny Opportunity", "list_id": 6645, "person_ids": [38706], "organization_ids": [21442]}'
 ```
 
 > Example Response
 
 ```json
 {
-  "id": 50,
+  "id": 120611418,
   "name": "Penny Opportunity",
   "person_ids": [38706],
   "organization_ids": [21442],
@@ -241,24 +239,22 @@ Creates a new opportunity with the supplied parameters.
 
 The opportunity resource that was just created by a successful request (without `person_ids` and `organization_ids`).
 
-## Update an opportunity
+## Update an Opportunity
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/opportunities/120611418" \
-  -u :<API-KEY> \
-  -d name="Penny Opp" \
-  -d person_ids[]=38706 \
-  -d person_ids[]=89734 \
-  -X "PUT"
+curl -X POST "https://api.affinity.co/opportunities/120611418" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Penny Opp", "person_ids": [38706, 89734]}'
 ```
 
 > Example Response
 
 ```json
 {
-  "id": 50,
+  "id": 120611418,
   "name": "Penny Opp",
   "person_ids": [38706, 89734],
   "organization_ids": [21442],
@@ -279,14 +275,6 @@ curl "https://api.affinity.co/opportunities/120611418" \
 
 Updates an existing opportunity with `opportunity_id` with the supplied parameters.
 
-**Note:**
-
-If you are trying to add a person to an opportunity, the existing values for
-`person_ids` must also be passed into the endpoint.
-
-If you are trying to add an organization to an opportunity, the existing values for
-`organization_ids` must also be passed into the endpoint.
-
 ### Path Parameters
 
 | Parameter      | Type    | Required | Description                                     |
@@ -305,7 +293,15 @@ If you are trying to add an organization to an opportunity, the existing values 
 
 The opportunity resource that was just updated through a successful request.
 
-## Delete an opportunity
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>If you are trying to add a person to an opportunity, the existing values for <code>person_ids</code> must also be passed into the endpoint.</li>
+    <li>If you are trying to add an organization to an opportunity, the existing values for <code>organization_ids</code> must also be passed into the endpoint.</li>
+  </ul>
+</aside>
+
+## Delete an Opportunity
 
 > Example Request
 
@@ -325,10 +321,6 @@ curl "https://api.affinity.co/opportunities/120611418" \
 
 Deletes an opportunity with a specified `opportunity_id`.
 
-**Note:**
-
-1.  This will also delete all the field values, if any, associated with the opportunity.
-
 ### Path Parameters
 
 | Parameter      | Type    | Required | Description                                                |
@@ -338,3 +330,8 @@ Deletes an opportunity with a specified `opportunity_id`.
 ### Returns
 
 `{success: true}`.
+
+<aside class="notice">
+  <h6>Note</h6>
+  <p>This will also delete all the field values, if any, associated with the opportunity.</p>
+</aside>

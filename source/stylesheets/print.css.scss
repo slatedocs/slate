@@ -86,7 +86,7 @@ body {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-top: 1em;
-    margin-bottom: $h1-margin-bottom;
+    margin-bottom: 0.5em;
     border: 2px solid $print-color-light;
     border-width: 2px 0;
     text-align: center;
@@ -143,5 +143,11 @@ body {
 
   aside.success:before {
     @extend %icon-ok-sign;
+  }
+}
+
+.copy-clipboard {
+  @media print {
+    display: none
   }
 }

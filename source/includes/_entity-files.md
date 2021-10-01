@@ -2,7 +2,7 @@
 
 Entity files are files uploaded to a relevant entity. Possible files, for example, would be a pitch deck for an opportunity or a physical mail correspondence for a person.
 
-## The entity file resource
+## The Entity File Resource
 
 > Example Response
 
@@ -30,12 +30,12 @@ Entity files are files uploaded to a relevant entity. Possible files, for exampl
 | uploader_id     | integer  | The unique identifier of the user who created the entity file.              |
 | created_at     | datetime | The time when the entity file was created.                                  |
 
-## Get all files
+## Get All Files
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/entity-files" -u :<API-KEY>
+curl "https://api.affinity.co/entity-files" -u :$APIKEY
 ```
 
 > Example Response
@@ -73,7 +73,7 @@ curl "https://api.affinity.co/entity-files" -u :<API-KEY>
 
 ```shell
 # To get the second page of results, issue the following query:
-curl "https://api.affinity.co/entity-files?page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+curl "https://api.affinity.co/entity-files?page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :$APIKEY
 ```
 
 `GET /entity-files`
@@ -108,12 +108,12 @@ Can optionally be filtered to return only entity files associated with a specifi
 An object with two fields: `entity_files` and `next_page_token`. `entity_files` maps to an
 array of all the entity file resources. See description for more details on pagination.
 
-## Get a specific file
+## Get a Specific File
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/entity-files/43212" -u :<API-KEY>
+curl "https://api.affinity.co/entity-files/43212" -u :$APIKEY
 ```
 
 > Example Response
@@ -151,7 +151,7 @@ The entity file resource corresponding to the `entity_file_id`.
 
 ```shell
 curl "https://api.affinity.co/entity-files/download/12345" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   --location place_to_store_file.png
 ```
 
@@ -169,16 +169,15 @@ Downloads an entity file with a specified `entity_file_id`
 
 The actual entity file corresponding to the `entity_file_id`.
 
-## Upload files
+## Upload Files
 
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/entity-files" \
-  -u :<API-KEY> \
-  -F files[]=@Pitch.pdf \
-  -F files[]=@10_01_18_meeting.txt \
-  -F person_id=4113456
+curl -X POST "https://api.affinity.co/entity-files" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -F '{"files": ["@Pitch.pdf", "@10_01_18_meeting.txt", "person_id": 4113456]}'
 ```
 
 > Example Response
@@ -203,11 +202,14 @@ The file will display on the entity's profile, provided that the entity is not a
 | organization_id | integer | false    | The unique identifier of the organization object to attach the file(s) to.      |
 | opportunity_id  | integer | false    | The unique identifier of the opportunity object to attach the file(s) to.       |
 
-**Note:**
-
-1.  Files must be attached to a single entity, specified using one of the three entity id parameters (`person_id`, `organization_id`, and `opportunity_id`).
-2.  At least one file must be uploaded using the `file` or `files` parameters.
-
 ### Returns
 
 `{"success": true}`
+
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>Files must be attached to a single entity, specified using one of the three entity id parameters (<code>person_id</code>, <code>organization_id</code>, and <code>opportunity_id</code>).</li>
+    <li>At least one file must be uploaded using the <code>file</code> or <code>files</code> parameters.</li>
+  </ul>
+</aside>
