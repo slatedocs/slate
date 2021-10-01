@@ -826,7 +826,7 @@ curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc
 ### Set billable organization information
 `PUT /organizations/:organization_id/billable`
 
-Update the applied pricing packages of an organization, or set an organization as billable. If the organization does not have a billable organization info, it creates one and and applies the pricing package on it.
+Set the organization to billable and update the billable organization information.
 
 ```shell
 # Update billable organization info
