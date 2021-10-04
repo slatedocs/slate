@@ -1,6 +1,9 @@
-app:
-  build: .
-  ports:
-    - 4567:4567
-  volumes:
-    - .:/usr/src/app
+version: "3.9"
+
+services:
+  api-docs:
+    build: .
+    ports:
+      - 4567:4567
+    volumes:
+      - .:/usr/src/app

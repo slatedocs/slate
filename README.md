@@ -22,7 +22,7 @@ Option 1: use docker
 
 ```shell
 cd /path/to/repo/cloudmc-api-docs/
-docker-compose up -d
+docker compose up -d
 ```
 
 Option 2: local or vagrant
