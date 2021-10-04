@@ -898,7 +898,7 @@ curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e30
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the pricing package.
-`offerTyoe`<br/>*string* | The offer type of the pricing package.
+`offerType`<br/>*string* | The offer type of the pricing package.
 `pricingDefinition`<br/>*Object* | The pricing definition associated with the pricing package.
 `pricingDefinition.id`<br/>*UUID* | The UUID of the pricing.
 `organization`<br/>*Object* | The object representing the organization owning the pricing package.
