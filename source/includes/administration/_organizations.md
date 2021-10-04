@@ -829,3 +829,91 @@ Returns an HTTP status code 200, with an empty response body.
 # Retrieve the organization's billing information
 curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
    -H "MC-Api-Key: your_api_key"
+```
+
+
+<!-------------------- UPDATE BILLABLE ORGANIZATION INFORMATION -------------------->
+### Set billable organization information
+`PUT /organizations/:organization_id/billable`
+
+Set the organization to billable and update the billable organization information.
+
+```shell
+# Update billable organization info
+curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billable" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "request_body"
+```
+> Request body example:
+
+```json
+{
+   "id": "39f6260d-f0ca-4be9-93c4-46405d471c04",
+   "billableStart": "2015-01-18",
+	"pricingPackage": {
+		"id": "58bad1de-1f87-422b-b44f-27ed58889272"
+	}
+}
+```
+
+Required | &nbsp;
+---- | ----
+`id`<br/>*UUID* | The id of the udpated billable organization information.
+`billableStart`<br/>*string*  | The date the organization became billable, in YYYY-MM-DD format.
+`pricingPackage.id`<br/>*UUID* | The id of the pricing package applied on the organization.
+
+Optional | &nbsp;
+---- | ----
+`billableEnd`<br/>*string*  | The date the organization stops being billable, in YYYY-MM-DD format.
+
+<!-------------------- LIST APPLICABLE PRICING PACKAGES TO ORG -------------------->
+### List applicable pricing packages to an organization
+
+`GET /organizations/:organization_id/pricing_packages`
+
+Retrieves a list of applicable pricing packages to an organization.
+
+```shell
+# Retrieve visible organizations
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/pricing_packages" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "offerType": "30-day-trial",
+      "pricingDefinition": {
+        "id": "c9a396f1-690a-4201-a3bf-b1da37221acc"
+      },
+      "endDate": "2022-09-14T00:00:00Z",
+      "organization": {
+        "id": "de6cf332-14b2-4da8-8522-3dfe12fcd0da"
+      },
+      "name": {
+        "en": "Applied Pricing",
+        "fr": "Applied Pricing"
+      },
+      "id": "92041aa8-7784-45b0-aa85-76376ede784d",
+      "creationDate": "2021-09-13T15:18:38.000Z",
+      "startDate": "2021-09-22T20:09:32.084Z"
+    }
+  ]
+}
+```
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | The UUID of the pricing package.
+`offerType`<br/>*string* | The offer type of the pricing package.
+`pricingDefinition`<br/>*Object* | The pricing definition associated with the pricing package.
+`pricingDefinition.id`<br/>*UUID* | The UUID of the pricing.
+`organization`<br/>*Object* | The object representing the organization owning the pricing package.
+`organization.id`<br/>*UUID* | The UUID of the organization.
+`startDate`<br/>*date* | The start date of the pricing package.
+`endDate`<br/>*date* | The end date of the pricing package. If it is not present, there is no end date defined.
+`creationDate`<br/>*Object* | The date the pricing package was created.
+`name` <br/>*Object* | A map of language keys to the name of the pricing package in the specified language. 
