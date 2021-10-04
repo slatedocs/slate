@@ -99,7 +99,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET TAX CODES FROM PROVIDER -------------------->
 
-#### Get a tax codes
+#### Get tax codes for a given reseller organization
 
 `GET /tax_providers/:id/tax-codes`
 
