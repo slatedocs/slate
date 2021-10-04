@@ -431,7 +431,7 @@ It is optional to specify each of the parameter listed above.
 
 Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
 
-### How to Use Payment Checkout/Invoice via Dashboard
+### How to Use Payment Checkout via Dashboard
 
 1. Log on your OY! dashboard
 2. Choose "Production" environment
@@ -445,14 +445,42 @@ Whether you create the link through URL, dashboard, or API, you can see the deta
 | Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
 | Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QR Code|
 | Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
-| Expiration Fee |You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
-| Payment Type |You can choose between "Non Invoice" and "Invoice". By choosing "Invoice", you will be able to upload the invoice PDF or list down the items to be invoiced (item name, description, quantity, purchase date, price per item, and total price). You can also choose whether to assign a static virtual account to the corresponding user.  |
+| Payment Link Expiration Date | You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
+| Transaction Due Date  |Due date of a transaction. You can choose between "Same with Payment Link Expiration Date" and "Custom". Your customer will get reminders to pay on D-1, D-Day, and D+7 from the transaction due date.  A transaction can exceed the due date, but the link can still be opened (because transaction due date and link expiration time are 2 separate things).|
 | Description   |The description of the payment link. Usually this is used to describe the purpose of the payment checkout page|
-|Customer Detail |Details that can be specified: Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link to the specified email address (if email address is filled in)|
+|Customer Detail |Details that can be specified: Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link as well as the payment success receipt to the specified email address (if email address is filled in)|
 
 Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
 
-### How to Use Payment Checkout via API 
+Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
+
+### How to Use Invoice via Dashboard
+
+1. Log on your OY! dashboard
+2. Choose "Production" environment
+3. Click "Request Money" menu, and choose "Invoice"
+4. Click "Create Invoice"
+5. Fill in the necessary details
+
+| Parameter     | Description |
+| ----------- | ----------- |
+| Amount Type    |You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount|
+| Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
+| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QR Code|
+| Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
+| Payment Link Expiration Date | You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
+| Transaction Due Date  |Due date of a transaction. You can choose between "Same with Payment Link Expiration Date" and "Custom". Your customer will get reminders to pay on D-1, D-Day, and D+7 from the transaction due date.  A transaction can exceed the due date, but the link can still be opened (because transaction due date and link expiration time are 2 separate things).|
+| Partner User ID   | ID assigned for a specific user/customer|
+| VA Static  | You can choose between "Disable" and "Enable". 'Disable" means a new VA number will be assigned for the respective Partner User ID (if the user chooses to pay via VA). "Enable" means we will assign a static VA for the respective Partner User ID (if the user chooses to pay via VA). The VA number assigned will be the same for the respective partner user ID|
+| Customer Full Name | Full name of your customer that will be displayed in the invoice link. |
+| Invoice Detail | You can choose between attaching the PDF file of your invoice and input the item list (such as Item Name, Price, and Quantity). Note that the subtotal of price and quantity inputted here must be the same with the total amount inputted in he field above. |
+| Description   |The description of the payment link. Usually this is used to describe the purpose of the payment checkout page|
+|Customer Detail |Details that can be specified: Customer Phone Number, Email, and Notes. We will send the payment checkout page link as well as the payment success receipt to the specified email address (if email address is filled in).|
+
+Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
+
+
+### How to Use Payment Checkout/Invoice via API 
 
 We provide 3 different payment checkout endpoints depending on your requirements and needs. We provide payment checkout, invoicing, and recurring invoice.  
 
