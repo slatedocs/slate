@@ -372,3 +372,92 @@ If you choose not to approve your disbursement campaign, the status of your bulk
 ![Bulk Disburse](images/bulk_disburse_cancel.png)
 
 You can also double check each of your transactions by navigating to the account statement page on the OY! dashboard. 
+
+
+## Claim Fund
+Claim Fund product enable you to do disbursement without knowing your recipient bank account at first. You will simply create a link for them to fill-out bank account information and the payment will be processed by our system.
+This feature will remove you from the hassle of collecting your customer information manually then doing multiple bank transfer.
+Best use of this feature is : refunds, reimbursement claim, any disburse transaction in which the destination is not your regular partner.
+
+At the moment, Claim Fund product is available only on OY! Business Dashboard.
+
+### Transaction Flow
+
+![Transacation Flow](../images/claim-fund-flow.png)
+
+### Use Case
+1. Refund for purchase transaction 
+2. Any money transfer transaction where you don't have recipient bank information
+
+### Registration and Set Up
+
+**Prerequisites** 
+
+* Register an account on the OY! dashboard (https://business.oyindonesia.com/register?)
+* Activate your account through the activation link sent via email
+* Upgrade your account
+* Upgrade request is approved
+
+
+### Testing
+1. Log on your OY! dashboard
+2. Choose "Staging" environment
+3. Click "Send Money" menu, and choose "Claim Fund"
+4. Click "Create Claim Fund"
+5. Fill in the necessary details by following the steps explained in the “How to Use” section
+
+### How to Use
+In order to execute claim fund transaction successfully, a sufficient available OY! balance is required in the account. However, if there is an insufficient available balance, claim fund transaction can still be created but the approval will failed.
+
+**1. Business Dashboard - Create Claim Fund**
+
+* Create Claim Fund: On the OY! dashboard, navigate to Send Money > Claim Fund on your left menu bar. Click `Create Claim Fund` button on the far righthand side of that page to create a new claim fund transaction.
+![Claim Fund Landing Page](../images/claim-fund-landing.png)
+![Create Claim Fund - input data](../images/claim-fund-create.png)
+
+* Please fill-out the information accordingly. Below table is the description of each fields:
+
+| Column                                 | Description                                                                                                                                                           | Example                |
+|------------------------------------    |-------------------------------------------------------------------------------------------------------------------------------------------------------------------    |--------------------    |
+| Amount to Claim                        | Amount of money to be sent                                                                                                                                            | 1000000                |
+| Expiration Duration                    | How long does this claim link be active. After expiration time, customer will not be able to submit their information then new claim fund link has to be created.     | 12 Hours               |
+| Set as default expiration duration     | Select this option to make it default expiration time for the next claim fund transaction.                                                                            | -                      |
+| Partner Transaction ID                 | Unique identifier for the recipient.                                                                                                                                  | CF00001                |
+| Note                                   | additional remarks for recipient                                                                                                                                      | Refund transaction     |
+| Recipient Name                         | Recipient Name                                                                                                                                                        | Dwiki Dermawan         |
+| Email                                  | Recipient Email                                                                                                                                                       | dwiki@gmail.com        |
+
+* Click `Create Claim Fund` button to submit the transaction. Your recipient will get notified of this claim fund transaction through email. Transaction link will be attached on this email.
+
+* Successful claim fund transaction will be listed on the claim fund transaction listing with INITIATED status.
+![Create Claim Fund - Success](../images/claim-fund-create-success.png)
+
+* Please be noted that this transaction still need account detail to be filled-out by the recipient.
+
+**2. Fund Recipient - Input Account Information**
+
+* On the notification email, user click the `Ajukan Klaim Dana` link to get into claim fund input page. 
+![Create Claim Fund - Email](../images/claim-fund-user-email.png)
+
+* User should fill-out the detail information so that OY! system can continue with the approval process. 
+![Create Claim Fund - input detail](../images/claim-fund-input-detail.png)
+![Create Claim Fund - input submitted](../images/claim-fund-input-submitted.png)
+
+**3. Business Dashboard - Approve Transaction**
+
+Transaction need to go through approval process to ensure that the money will be delivered to correct recipient and sufficient amount is available.
+
+* Approve claim fund transaction: On the OY! dashboard, navigate to Send Money > Claim Fund on your left menu bar. Transactions that already have user detail will be marked with `WAITING APPROVAL` status. 
+![Create Claim Fund - partner approval](../images/claim-fund-partner-approval1.png)
+
+* You can approve the transaction directly from this screen by clicking Approve button, or go to detail transaction to see more information before approve.
+![Create Claim Fund - partner approval](../images/claim-fund-partner-approval2.png)
+
+* Click approve button to release the transaction to user.
+
+* The transaction is now marked as `IN PROGRESS`
+
+* Your recipient should get the money delivered to their account immediately.
+
+* In parallel, your customer will also get email notification about successful claim fund transaction.
+![Create Claim Fund - user success](../images/claim-fund-user-success.png)
