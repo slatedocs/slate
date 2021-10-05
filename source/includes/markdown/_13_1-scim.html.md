@@ -31,7 +31,7 @@ Note that only Service Accounts in Enterprise Domains can access SCIM endpoints.
 |GET /Users/:id|Return specific user in the domain.  Does not return Asana guest users.|
 |POST /Users|Create a new user if the user does not exist.|
 |PUT /Users/:id|Update / remove attributes for a user. Deprovision user (zombify) in Asana upon active=false.|
-|PATCH /Users/:id|Deprovision user (zombify) in Asana upon active=false.|
+|PATCH /Users/:id|Add / update attributes for a user. Deprovision user (zombify) in Asana upon active=false.|
 |DELETE /Users/:id|Deprovision user (zombify) in Asana.|
 
 <br />
@@ -46,7 +46,6 @@ Note that SCIM groups are equivalent to Asana Teams.
 |POST /Groups|Create a new team.|
 |PUT /Groups/:id|Update / remove attributes for a team.|
 |PATCH /Groups/:id|Update the team's attributes.|
-|DELETE /Groups/:id|Remove a team in Asana.|
 
 <br />
 The accepted user attributes are:
@@ -75,6 +74,6 @@ The accepted group attributes are:
 |---------|----|----|
 |displayName|string|Unique identifier for the team. REQUIRED.|
 |members|multi-valued complex|The members of a team.|
-|members.value|string|The team member's ID.|
+|members.value|string|The team member's user ID.|
 
 </section>
