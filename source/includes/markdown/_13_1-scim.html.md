@@ -9,45 +9,42 @@ Asana supports SCIM operations at `https://app.asana.com/api/1.0/scim`. Okta pro
 
 Note that only Service Accounts in Enterprise Domains can access SCIM endpoints.
 
-<br />
+
 
 ## Service Provider Configuration Endpoints
 
-|API call|Asana Behavior|
-|--------|--------------|
-|GET /ServiceProviderConfig|Read-only meta information|
-|GET /ResourceTypes|Read-only meta information|
-|GET /Schemas|Read-only meta information|
+|HTTP Method|API Endpoint|Asana Behavior|
+|---------|--------|--------------|
+|GET|/ServiceProviderConfig|Read-only meta information|
+|GET|/ResourceTypes|Read-only meta information|
+|GET|/Schemas|Read-only meta information|
 
-<br />
 
 ## SCIM Endpoints
 
 ### User Resource
 
-|API call|Asana Behavior|
-|--------|--------------|
-|GET /Users|Return full list of users in the domain.  Does not return Asana guest users.|
-|GET /Users/:id|Return specific user in the domain.  Does not return Asana guest users.|
-|POST /Users|Create a new user if the user does not exist.|
-|PUT /Users/:id|Update / remove attributes for a user. Deprovision user (zombify) in Asana upon active=false.|
-|PATCH /Users/:id|Add / update attributes for a user. Deprovision user (zombify) in Asana upon active=false.|
-|DELETE /Users/:id|Deprovision user (zombify) in Asana.|
-
-<br />
+|HTTP Method|API Endpoint|Asana Behavior|
+|---|--------|--------------|
+|GET|/Users|Return full list of users in the domain.  Does not return Asana guest users.|
+|GET|/Users/:id|Return specific user in the domain.  Does not return Asana guest users.|
+|POST|/Users|Create a new user if the user does not exist.|
+|PUT|/Users/:id|Update / remove attributes for a user. Deprovision user (zombify) in Asana upon active=false.|
+|PATCH|/Users/:id|Add / update attributes for a user. Deprovision user (zombify) in Asana upon active=false.|
+|DELETE|/Users/:id|Deprovision user (zombify) in Asana.|
 
 ### Group Resource
 Note that SCIM groups are equivalent to Asana Teams.
 
-|API call|Asana Behavior|
-|--------|--------------|
-|GET /Groups|Return full list of teams in the domain, including private teams.|
-|GET /Groups/:id|Return specific team in the domain. |
-|POST /Groups|Create a new team.|
-|PUT /Groups/:id|Update / remove attributes for a team.|
-|PATCH /Groups/:id|Update the team's attributes.|
+|HTTP Method|API Endpoint|Asana Behavior|
+|---------|------|--------------|
+|GET|/Groups|Return full list of teams in the domain, including private teams.|
+|GET|/Groups/:id|Return specific team in the domain. |
+|POST|/Groups|Create a new team.|
+|PUT|/Groups/:id|Update / remove attributes for a team.|
+|PATCH|/Groups/:id|Update the team's attributes.|
 
-<br />
+
 The accepted user attributes are:
 
 |Attribute|Type|Info|
@@ -68,7 +65,6 @@ The accepted user attributes are:
 |"urn:ietf:params:scim:<br>schemas:extension:enterprise:<br>2.0:User.department"|string|The department the user belongs to.|
 
 
-<br />
 The accepted group attributes are:
 
 |Attribute|Type|Info|
