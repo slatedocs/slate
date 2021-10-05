@@ -393,7 +393,7 @@ At the moment, Claim Fund product is available only on OY! Business Dashboard.
 
 **Prerequisites** 
 
-* Register an account on the OY! dashboard (https://business.oyindonesia.com/register?)
+* Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
 * Activate your account through the activation link sent via email
 * Upgrade your account
 * Upgrade request is approved
