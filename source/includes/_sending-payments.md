@@ -255,6 +255,10 @@ When you first create an account, your account will be assigned as a Super Admin
 
 Detailed step-by-step instructions on setting up user management and the different role types coming soon. 
 
+**Multi-Layer Approval** 
+
+Multi-layer Approval will improve your control over your bulk disburse transaction especially for big amount of money. You can setup up to 3 layers of approver before the transaction instruction is executed. By assigning proper approver and amount limitation, you can avoid a huge trouble on your business operational caused by incorrect transfer amount.
+
 **Overall Campaign Summary**
 
 Keep track of all the details of the entire campaign such as the total amount of disbursement, total number of transactions, and the maker and approver related information of a campaign.
@@ -332,19 +336,23 @@ If there is no issue with the details uploaded, a validate and submit button wil
 ![Create Bulk - 6a  All data inquired without Name Matching](https://user-images.githubusercontent.com/79620482/128454982-b1ab6dfc-c279-4baf-a0e6-a2983a069488.png)
 
 
-*5. Approve/Cancel Campaign**: Once the bulk disbursement campaign is created, a new status of `waiting approval` will appear. Approve the campaign by clicking the “Approve” button. If you want to cancel a campaign, click the “...” button and select “Cancel”. 
+*5. Approve/Cancel Campaign**: Once the bulk disbursement campaign is created, a new status of `waiting approval` will appear. Approve the campaign by clicking the “Approve” button. If you want to cancel a campaign, click the “...” button and select “Cancel”.
 
-![Bulk Disburse](images/bulk_disburse_4.png)
+![Bulk Disburse](../images/bulk_disburse_4.png)
 
-Once the bulk disbursement campaign is approved, details regarding the campaign can no longer be changed. This includes changes made to individual transactions and their respective recipient information. 
+Once the bulk disbursement campaign is approved, details regarding the campaign can no long er be changed. This includes changes made to individual transactions and their respective recipient information. 
 
 The balances will also immediately reflect changes. For more information about the different types of balances, click here. You will also receive an email with the campaign information summary (“Outgoing Transfer Alert”) when transactions are executed.
 
-*Note: Multiple campaigns can be approved at a time as long as there is sufficient available balance to complete campaigns that have already been approved but are still in queue to be processed.*
+*Note:* 
+- *Depend on the approval layer that you configured, this transaction should be approved by all layer before it can be executed by the system.*
+![Bulk Disburse](../images/multi-layer-approval.png)
+
+- *Multiple campaigns can be approved at a time as long as there is sufficient available balance to complete campaigns that have already been approved but are still in queue to be processed.*
 
 *6. Keep Track of Campaign Details**: To check the details of the bulk disbursement campaign, click on the campaign name to find the campaign summary and its recipient list. Keep track of the both the overall campaign status and the status of individual transactions through the page. 
 
-![Bulk Disburse](images/bulk_disburse_5.png)
+![Bulk Disburse](../images/bulk_disburse_5.png)
 
 *7. Status: In-Progress, Finish, and Cancel**: Congratulations! You just made your first bulk disbursement with OY! Below are a list of statuses you will find on the OY! dashboard. 
 
@@ -352,7 +360,7 @@ _In-Progress_
 
 As your individual disbursements are executed, the status of your bulk disbursement campaign will indicate an in-progress status. 
 
-![Bulk Disburse](images/bulk_disburse_in_progress.png)
+![Bulk Disburse](../images/bulk_disburse_in_progress.png)
 
 _Incomplete_
 
@@ -363,13 +371,13 @@ The status of your bulk disbursement will change to incomplete once all of the l
 _Finish_
 
 Once all of the listed transactions have been completed and the final status of success for all transactions has been achieved, the status of your bulk disbursement campaign will change to Finish.  The recipients should have all received an email detailing an “Incoming Transfer Alert.” You can also download a report of the campaign details directly through the OY! dashboard.
-![Bulk Disburse](images/bulk_disburse_finish.png)
+![Bulk Disburse](../images/bulk_disburse_finish.png)
 
 _Cancel_ 
 
 If you choose not to approve your disbursement campaign, the status of your bulk disbursement campaign will indicate a cancelled status. 
 
-![Bulk Disburse](images/bulk_disburse_cancel.png)
+![Bulk Disburse](../images/bulk_disburse_cancel.png)
 
 You can also double check each of your transactions by navigating to the account statement page on the OY! dashboard. 
 
@@ -393,7 +401,7 @@ At the moment, Claim Fund product is available only on OY! Business Dashboard.
 
 **Prerequisites** 
 
-* Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
+* Register an account on the OY! dashboard (https://business.oyindonesia.com/register?)
 * Activate your account through the activation link sent via email
 * Upgrade your account
 * Upgrade request is approved
