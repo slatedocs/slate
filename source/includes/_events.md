@@ -16,43 +16,64 @@ fetch('https://core.eventtia.com/v1/events/', {
 
 ```http
 HTTP/1.1 200 OK
-[{
-  "data": {
-    "type": "events",
-    "attributes": {
-      "name": "Event name",
-      "description": "description of an event",
-      "start_date": "2020-04-13 15:54:37 -0500",
-      "end_date": "2020-04-15 15:54:57 -0500",
-      "budget": 545.00,
-      "is_template": true,
-      "cloned_from_id": 23121,
-      "event_type": "hybrid",
-      "event_uri": "event_uri",
-      "logo": "url_Image_file",
-      "banner_image": "url_Image_file",
-      "settings": {
-        "currency": 4,
-        "date_format": 'dd/mm/yyyy',
-        "time_format": 'hours_24'
+{
+  "data": [
+    {
+      id:, #ver que id pasar
+      "type": "events",
+      "attributes": {
+        "name": "Event name",
+        "description": "description of an event",
+        "start_date": "2020-04-13 15:54:37 -0500",
+        "end_date": "2020-04-15 15:54:57 -0500",
+        "active_modules": null,
+        "fields_data": null,
+        "budget": 0.0,
+        "event_type": "virtual",
+        "is_template": false,
+        "event_uri": "event_uri",
+        "timezone": "America/Bogota",
+        "location": null,
+        "default_language": "es",
+        "virtual_timezone": null,
+        "total_attendees": 0,
+        "banner": {
+          "filename": "file_name",
+          "thumb": "url_image",
+          "small":  "url_image",
+          "medium": "url_image",
+          "large": "url_image",
+        },
+        logo: {
+        "filename": "file_name",
+          "thumb": "url_image",
+          "small":  "url_image",
+          "medium": "url_image",
+          "large": "url_image",
+        } 
       },
-      "location": {
-        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
-        "address": "Event address",
-        "country": "Colombia.",
-        "city": "Medellín"
+      "relationships": {
+        "settings": {
+          "data": {
+            "id": "108",
+            "type": "settings"
+          }
+        }
       }
     }
+  ],
+  "meta": {
+    "has_events": true,
+    "has_templates": true
+  },
+  "links": {
+    "current_page": ,
+    "first_page": ,
+    "last_page": ,
+    "prev_page": ,
+    "next_page": 
   }
-}],
-"links": {
-        "current_page": 1,
-        "first_page": true,
-        "last_page": false,
-        "prev_page": null,
-        "next_page": 2,
-        "total_pages": 6
-    }
+}
 ```
 
 This endpoint return a list of events
@@ -81,32 +102,83 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
 HTTP/1.1 200 OK
 {
   "data": {
+    id: , #ver que id pasar
     "type": "events",
     "attributes": {
       "name": "Event name",
       "description": "description of an event",
       "start_date": "2020-04-13 15:54:37 -0500",
       "end_date": "2020-04-15 15:54:57 -0500",
-      "budget": 545.00,
-      "is_template": true,
-      "cloned_from_id": 23121,
-      "event_type": "hybrid",
+      "active_modules": null,
+      "fields_data": null,
+      "budget": 0.0,
+      "event_type": "virtual",
+      "is_template": false,
       "event_uri": "event_uri",
-      "logo": "url_Image_file",
-      "banner_image": "url_Image_file",
-      "settings": {
-        "currency": 4,
-        "date_format": 'dd/mm/yyyy',
-        "time_format": 'hours_24'
+      "timezone": "America/Bogota",
+      "location": null,
+      "default_language": "es",
+      "virtual_timezone": null,
+      "total_attendees": 0,
+      "cloned_from_id": null,
+      "banner": {
+        "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
       },
-      "location": {
-        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
-        "address": "Event address",
-        "country": "Colombia.",
-        "city": "Medellín"
+      logo: {
+       "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
+      } 
+    },
+    "relationships": {
+      "settings": {
+        "data": {
+          "id": "",
+          "type": "settings"
+        }
+      }
+    }    
+  },
+  "included": [
+    {
+      "id": ,
+      "type": "event_settings",
+      "attributes": {
+        "payment_method": null,
+        "paypal_production_key": null,
+        "paypal_sandbox_key": null,
+        "paypal_test_mode": null,
+        "stripe_secret_api_key": null,
+        "stripe_publishable_api_key": null,
+        "pay_u_api_key": null,
+        "pay_u_merchant_id": null,
+        "pay_u_account_id": null,
+        "pay_u_api_login": null,
+        "pay_u_test_mode": null,
+        "currency": null,
+        "vat_alias": null,
+        "vat_value": null,
+        "date_format": "dd/mm/yyyy",
+        "time_format": "am_pm",
+        "google_analytics_tracking_code": null,
+        "google_tag_manager_code": null
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "id": "",
+            "type": "event"
+          }
+        }
       }
     }
-  }
+  ]
 }
 ```
 
@@ -115,7 +187,7 @@ HTTP/1.1 200 OK
 ```http
 HTTP/1.1 404 Not Found
 {
-    "message": "Couldn't find Event"
+  "message": "Couldn't find Event"
 }
 ```
 
@@ -141,33 +213,41 @@ fetch('https://core.eventtia.com/v1/events/', {
   },
   body: {
   data: {
+    id:, 
     type: "events",
     attributes: {
       name: "Event name",
       description: "description of an event",
       start_date: "2020-04-13 15:54:37 -0500",
       end_date: "2020-04-15 15:54:57 -0500",
+      active_modules: null,
+      fields_data: null,
       budget: 545.00,
-      is_template: true,
-      cloned_from_id: 23121,
-      event_type: "hybrid",
+      event_type: "virtual",
+      is_template: false,
       event_uri: "event_uri",
-      logo: Image_file,
-      banner_image: Image_file,
-      settings: {
-        currency: 4,
-        date_format: 'dd/mm/yyyy',
-        time_format: 'hours_24'
-      },
-      location: {
-        coordinates: { lat: 6.2518400, lng: -75.5635900 },
-        address: "Event address",
-        country: "Colombia.",
-        city: "Medellín"
+      timezone: "America/Bogota",
+      location: null,
+      default_language: "es",
+      virtual_timezone: null,
+      total_attendees: 0,
+      banner: {
+        filename: "file_name",
+        thumb: "url_image",
+        small:  "url_image",
+        medium: "url_image",
+        large: "url_image",
       }
+      logo: {
+        filename: "file_name",
+        thumb: "url_image",
+        small: "url_image",
+        medium: "url_image",
+        large: "url_image",
+      }  
     }
   }
-}
+  }
 })
 ```
 
@@ -179,29 +259,45 @@ fetch('https://core.eventtia.com/v1/events/', {
 HTTP/1.1 200 OK
 {
   "data": {
+    id:, #ver que id pasar
     "type": "events",
     "attributes": {
       "name": "Event name",
       "description": "description of an event",
       "start_date": "2020-04-13 15:54:37 -0500",
       "end_date": "2020-04-15 15:54:57 -0500",
-      "budget": 545.00,
-      "is_template": true,
-      "cloned_from_id": 23121,
-      "event_type": "hybrid",
+      "active_modules": null,
+      "fields_data": null,
+      "budget": 0.0,
+      "event_type": "virtual",
+      "is_template": false,
       "event_uri": "event_uri",
-      "logo": Image_file,
-      "banner_image": Image_file,
-      "settings": {
-        "currency": 4,
-        "date_format": 'dd/mm/yyyy',
-        "time_format": 'hours_24'
+      "timezone": "America/Bogota",
+      "location": null,
+      "default_language": "es",
+      "virtual_timezone": null,
+      "total_attendees": 0,
+      "banner": {
+        "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
       },
-      "location": {
-        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
-        "address": "Event address",
-        "country": "Colombia.",
-        "city": "Medellín"
+      logo: {
+       "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
+      } 
+    },
+    "relationships": {
+      "settings": {
+        "data": {
+          "id": "108",
+          "type": "settings"
+        }
       }
     }
   }
@@ -213,14 +309,14 @@ HTTP/1.1 200 OK
 ```http
 HTTP/1.1 422 Unprocessable Entity
 {
-    "message": {
-        "start_date": [
-            "is beyond the end date."
-        ],
-        "name": [
-            "is already in use"
-        ]
-    }
+  "message": {
+    "start_date": [
+      "is beyond the end date."
+    ],
+    "name": [
+      "is already in use"
+    ]
+  }
 }
 ```
 
@@ -264,27 +360,43 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
       description: "description of an event",
       start_date: "2020-04-13 15:54:37 -0500",
       end_date: "2020-04-15 15:54:57 -0500",
+      active_modules: null,
+      fields_data: null,
       budget: 545.00,
-      is_template: true,
-      cloned_from_id: 23121,
-      event_type: "hybrid",
+      event_type: "virtual",
+      is_template: false,
       event_uri: "event_uri",
-      logo: Image_file,
-      banner_image: Image_file,
-      settings: {
-        currency: 4,
-        date_format: 'dd/mm/yyyy',
-        time_format: 'hours_24'
+      timezone: "America/Bogota",
+      location: null,
+      default_language: "es",
+      virtual_timezone: null,
+      total_attendees: 0,
+      cloned_from_id: null,
+      banner: {
+        filename: "file_name",
+        thumb: "url_image",
+        small:  "url_image",
+        medium: "url_image",
+        large: "url_image",
       },
-      location: {
-        coordinates: { lat: 6.2518400, lng: -75.5635900 },
-        address: "Event address",
-        country: "Colombia.",
-        city: "Medellín"
+      logo: {
+        filename: "file_name",
+        thumb: "url_image",
+        small: "url_image",
+        medium: "url_image",
+        large: "url_image",
+      }  
+    }, 
+    relationships: {
+      settings: {
+        data: {
+          id: "89",
+          type: "settings"
+        }
       }
-    }
+    }  
   }
-}
+  }
 })
 ```
 
@@ -304,25 +416,41 @@ HTTP/1.1 200 OK
       "description": "description of an event",
       "start_date": "2020-04-13 15:54:37 -0500",
       "end_date": "2020-04-15 15:54:57 -0500",
-      "budget": 545.00,
-      "is_template": true,
-      "cloned_from_id": 23121,
-      "event_type": "hybrid",
+      "active_modules": null,
+      "fields_data": null,
+      "budget": 0.0,
+      "event_type": "virtual",
+      "is_template": false,
       "event_uri": "event_uri",
-      "logo": Image_file,
-      "banner_image": Image_file,
-      "settings": {
-        "currency": 4,
-        "date_format": 'dd/mm/yyyy',
-        "time_format": 'hours_24'
+      "timezone": "America/Bogota",
+      "location": null,
+      "default_language": "es",
+      "virtual_timezone": null,
+      "total_attendees": 0,
+      "cloned_from_id": null,
+      "banner": {
+        "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
       },
-      "location": {
-        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
-        "address": "Event address",
-        "country": "Colombia.",
-        "city": "Medellín"
+      logo: {
+       "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
+      } 
+    },
+    "relationships": {
+      "settings": {
+        "data": {
+          "id": "",
+          "type": "settings"
+        }
       }
-    }
+    } 
   }
 }
 ```
@@ -332,14 +460,14 @@ HTTP/1.1 200 OK
 ```http
 HTTP/1.1 422 Unprocessable Entity
 {
-    "message": {
-        "start_date": [
-            "is beyond the end date."
-        ],
-        "name": [
-            "is already in use"
-        ]
-    }
+  "message": {
+    "start_date": [
+      "is beyond the end date."
+      ],
+    "name": [
+      "is already in use" 
+    ]
+  }
 }
 ```
 
@@ -393,29 +521,45 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
 HTTP/1.1 200 OK
 {
   "data": {
+    id:, #ver que id pasar
     "type": "events",
     "attributes": {
       "name": "Event name",
       "description": "description of an event",
       "start_date": "2020-04-13 15:54:37 -0500",
       "end_date": "2020-04-15 15:54:57 -0500",
-      "budget": 545.00,
-      "is_template": true,
-      "cloned_from_id": 23121,
-      "event_type": "hybrid",
+      "active_modules": null,
+      "fields_data": null,
+      "budget": 0.0,
+      "event_type": "virtual",
+      "is_template": false,
       "event_uri": "event_uri",
-      "logo": "url_Image_file",
-      "banner_image": "url_Image_file",
-      "settings": {
-        "currency": 4,
-        "date_format": 'dd/mm/yyyy',
-        "time_format": 'hours_24'
+      "timezone": "America/Bogota",
+      "location": null,
+      "default_language": "es",
+      "virtual_timezone": null,
+      "total_attendees": 0,
+      "banner": {
+        "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
       },
-      "location": {
-        "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
-        "address": "Event address",
-        "country": "Colombia.",
-        "city": "Medellín"
+      logo: {
+       "filename": "file_name",
+        "thumb": "url_image",
+        "small":  "url_image",
+        "medium": "url_image",
+        "large": "url_image",
+      } 
+    },
+    "relationships": {
+      "settings": {
+        "data": {
+          "id": "108",
+          "type": "settings"
+        }
       }
     }
   }
@@ -447,15 +591,27 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/settings', {
     data: {
       type: "event_settings",
       attributes: {
-        payment_method: "payu",
-        paypal_production_key: "ABCDE1234",
-        paypal_sandbox_key: "12345ABCDE",
-        paypal_test_mode: false,
+        payment_method: null,
+        paypal_production_key: null,
+        paypal_sandbox_key: null,
+        paypal_test_mode: null,
+        stripe_secret_api_key: null,
+        stripe_publishable_api_key: null,
+        pay_u_api_key: null,
+        pay_u_merchant_id: null,
+        pay_u_account_id: null,
+        pay_u_api_login: null,
+        pay_u_test_mode: null,
+        currency: null,
         vat_alias: "Recaudo",
-        vat_value: 19
+        vat_value: 19,
+        date_format: "dd/mm/yyyy",
+        time_format: "am_pm",
+        google_analytics_tracking_code: null,
+        google_tag_manager_code: null
       }
     }
-}
+  }
 })
 ```
 
@@ -466,34 +622,38 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/settings', {
 ```http
 HTTP/1.1 200 OK
 {
-    "data": {
-        "id": "3",
-        "type": "event_settings",
-        "attributes": {
-            "payment_method": "payu",
-            "paypal_production_key": "ABCDE1234",
-            "paypal_sandbox_key": "12345ABCDE",
-            "paypal_test_mode": false,
-            "stripe_secret_api_key": null,
-            "stripe_publishable_api_key": null,
-            "pay_u_api_key": null,
-            "pay_u_merchant_id": null,
-            "pay_u_account_id": null,
-            "pay_u_api_login": null,
-            "pay_u_test_mode": null,
-            "currency": null,
-            "vat_alias": "Recaudo",
-            "vat_value": 19
-        },
-        "relationships": {
-            "event": {
-                "data": {
-                    "id": "2195",
-                    "type": "event"
-                }
-            }
+  "data": {
+    "id": "3",
+    "type": "event_settings",
+    "attributes": {
+      "payment_method": null,
+      "paypal_production_key": null,
+      "paypal_sandbox_key": null,
+      "paypal_test_mode": null,
+      "stripe_secret_api_key": null,
+      "stripe_publishable_api_key": null,
+      "pay_u_api_key": null,
+      "pay_u_merchant_id": null,
+      "pay_u_account_id": null,
+      "pay_u_api_login": null,
+      "pay_u_test_mode": null,
+      "currency": null,
+      "vat_alias": "Recaudo",
+      "vat_value": 19,
+      "date_format": "dd/mm/yyyy",
+      "time_format": "am_pm",
+      "google_analytics_tracking_code": null,
+      "google_tag_manager_code": null
+    },
+    "relationships": {
+      "event": {
+        "data": {
+          "id": "2195",
+          "type": "event"
         }
+      }
     }
+  }
 }
 ```
 
@@ -503,9 +663,9 @@ HTTP/1.1 200 OK
 HTTP/1.1 500
 {
   "message": {
-      "payment_method": [
-          "must be one of these: stripe, payu, and paypal"
-      ]
+    "payment_method": [
+      "must be one of these: stripe, payu, and paypal"
+    ]
   }
 }
 ```
