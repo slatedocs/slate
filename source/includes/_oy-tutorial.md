@@ -187,3 +187,76 @@ You can enable or disable notification settings for disbursement products if you
 2. The email field:  allows the user to add, remove, and edit email notification receivers in this column, which can hold up to three email addresses.
 3. Click ‘Save Changes’
 
+## Multi Account Management
+
+Multi Account Management (Subsidiaries) is a feature that can help you handle complex relations between entities in your business in the Oy! Dashboard. Please contact our Sales or Account Management if you’re interested to use this feature.  
+With this feature you will be able to :
+
+1. Have a detailed report on transactions performed by all of subsidiary account
+2. Distribute balance between the parent account to subsidiaries account
+3. Use subsidiary balance to disburse funds
+4. Free admin fee to disburse between related user
+
+### **Registration & Setup**
+
+**Prerequisites**
+
+Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
+Activate your account through the activation link sent via email
+Upgrade your account
+Upgrade request is approved
+Contact our sales or account manager representatives to enable the feature
+
+### **How To Use**
+
+To properly used Multi Account Management, we required several accounts to be linked together. Each account can be used independently, and each account needs to pass the KYB to be used fully.
+
+**A. Link to Subsidiary Account**
+
+1. **For Parent Account**
+
+To add a new subsidiary as a parent account please 1) Log in to Dashboard with parent credential 2) Go to Subsidiaries → List of Subsidiaries
+
+![As Parent - Subs - 1. Initial.png](../images/As_Parent_Subs_1_Initial(2).png)
+
+1. Click the “+ Add Subsidiary”
+2. Fill in the username for the subsidiary you wished to connect. You can find your username from the menu Accounts → User Profile in the Username section
+3. Click Add and then if the account is found in the system you can confirm by clicking Connect in the confirmation window
+
+![Image: As Parent - Subs - 6. Add Subsidiary - Type Username](../images/As_Parent_Subs_6_Add_Subsidiary_Type_Username.png) ![Image: As Parent - Subs - 7a. Existing Username - Not Connected with any parent](../images/As_Parent_Subs_Existing_Username_Not_Connected_with_any_parent.png)
+After confirming, the request will be sent to the respective account to be accepted
+
+1. **For Subsidiary Account**
+
+To receive a request from a parent company, please 1) Log in to dashboard with subsidiary credential 2) Go to Transaction Report → Account Statement
+![Image: As Child - AccState - 2b. Waiting approval](../images/As_Child_AccState_2b_Waiting_approval.png)
+
+1. Click the “Check All request” button that can be found near the top right corner of the page
+2. You will see the incoming request to be the parent account for your account, then you can choose which account is the correct account for the parent by click Accept in the respective account and confirmation window
+
+![Image: As Child - AccState - 4b. 2 Requests to connect.png](../images/As_Child_AccState_4b_2_Requests_to_connect.png)![Image: As Child - AccState - 4e. Confirmation to connect](../images/As_Child_AccState_4e_Confirmation_to_connect.png)
+1. After successfully received the parent request to connect, you will find your parent information near the top right corner of your page, and you are now connected as a parent-subsidiary account
+
+![Image: As Child - AccState - 4h. Success add new head company](../images/As_Child_AccState_4h_Success_add_new_head_company.png)
+
+**B. Topup money to a subsidiary account**
+
+After having a working parent-subsidiary account, you can transfer money to the subsidiary account by accessing the menu Subsidiaries → List of Subsidiaries
+
+1. Find the account that you wished to top-up
+2. Click the “+ Top Up” button
+3. Fill in the amount you wish to top-up
+4. Click the “Top Up Now” button to proceed
+5. You can also do Top Up by transfer to one of the VA provided (see “How to Top Up Balance via VA”
+
+![Image: As Parent - Subs - 5a. Top Up.png](../images/As_Parent_Subs_5a_Top_Up.png)
+
+**C. Disburse Money using subsidiary balance**
+
+In Multi Account Management, you will be able to do disbursement using your subsidiary account on their behalf. To do this you could
+
+1. Access the Bulk Disbursement menu and clicking on “+ Create Disbursement” button
+2. Select your subsidiary balance as a source of fund to do disbursement by selecting “My Subsdiary Balance” and choose the appropriate account.
+3. After choosing the balance you could proceed to do disbursement just like regular disbursement
+
+![Image: Choose SoF - 2. Choose SoF subsidiary.png](../images/Choose_SoF_2_Choose_SoF_subsidiary.png) ![Image: Choose SoF - 4. Type or search sub.png](../images/Choose_SoF_4_Type_or_search_sub.png)
