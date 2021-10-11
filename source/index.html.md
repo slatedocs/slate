@@ -4255,7 +4255,7 @@ def connect_error(data):
 ```javascript
 import io from 'socket.io-client';
 
-const socketEndpoint = "wss://stream.coindcx.com";
+const socketEndpoint = "https://stream.coindcx.com";
 
 const socket = io(socketEndpoint, {
   transports: ['websocket']
