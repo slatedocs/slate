@@ -4223,7 +4223,10 @@ Refer to the right panel.
 ```python
 import socketio
 
-socketEndpoint = 'wss://stream.coindcx.com'
+def my_headers():
+    return {"origin": "*"}
+
+socketEndpoint = 'https://stream.coindcx.com'
 sio = socketio.Client()
 
 sio.connect(socketEndpoint, transports = 'websocket')
@@ -4237,12 +4240,22 @@ def on_message(response):
 # leave a channel
 sio.emit('leave', { 'channelName' : channelName })
 
+# Successfull connection
+@sio.event
+def connect():
+    print("I'm connected!")
+
+# Connection error
+@sio.event
+def connect_error(data):
+    print("The connection failed!")
+
 ```
 
 ```javascript
 import io from 'socket.io-client';
 
-const socketEndpoint = "wss://stream.coindcx.com";
+const socketEndpoint = "https://stream.coindcx.com";
 
 const socket = io(socketEndpoint, {
   transports: ['websocket']
@@ -4283,8 +4296,7 @@ socket.emit('leave', {
 ```python
 @sio.on('depth-update')
 def on_message(response):
-    print(response.data.a) # asks
-    print(response.data.b) # bids
+    print(response['data'])
 ```
 
 ```javascript
