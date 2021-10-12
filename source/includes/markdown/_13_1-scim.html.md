@@ -24,15 +24,52 @@ Only Service Accounts in Enterprise Domains can access SCIM endpoints.
 
 ### User Resource
 
-> Example
+> Examples
 
 ```
-POST https://app.asana.com/api/1.0/scim/Groups
+Request: GET https://app.asana.com/api/1.0/scim/Users?filter=userName eq "johnsmith@example.com"
+
+Response: 200 OK
+{
+    "Resources": [
+        {
+            "id": "1",
+            "name": {
+                "familyName": "John",
+                "givenName": "Smith",
+                "formatted": "John Smith"
+            },
+            "userName": "joinsmith@example.com",
+            "emails": [
+                {
+                    "value": "johnsmith@example.com",
+                    "primary": true,
+                    "type": "work"
+                }
+            ],
+            "active": true,
+            "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:User",
+                "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
+            ],
+            "title": "Software Engineer",
+            "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+                "department": "R&D"
+            }
+        }
+    ],
+    "totalResults": 1,
+    "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+    ]
+}
+```
+
+```
+Request: POST https://app.asana.com/api/1.0/scim/Users
 {
     "userName": "johnsmith@example.com",
     "name": {
-        "givenName": "John",
-        "familyName": "Smith",
         "formatted": "John Smith"
     },
     "emails": [{
@@ -46,9 +83,8 @@ POST https://app.asana.com/api/1.0/scim/Groups
         "department": "R&D"
     }
 }
-```
-```
-201 Created
+
+Response: 201 Created
 {
     "id": "1",
     "name": {
@@ -77,6 +113,49 @@ POST https://app.asana.com/api/1.0/scim/Groups
 }
 ```
 
+```
+Request: PATCH https://app.asana.com/api/1.0/scim/Users/1
+{
+    "Operations": [
+        {
+            "op": "replace",
+            "value": {
+                "title": "Senior Software Engineer"
+            }
+        }
+    ]
+}
+
+Response: 200 OK
+{
+    "id": "1",
+    "name": {
+        "familyName": "John",
+        "givenName": "Smith",
+        "formatted": "John Smith"
+    },
+    "userName": "johnsmith@example.com",
+    "emails": [
+        {
+            "primary": true,
+            "value": "johnsmith@example.com",
+            "type": "work"
+        }
+    ],
+    "active": true,
+    "preferredLanguage": en,
+    "title": "Senior Software Engineer",
+    "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+        "department": "R&D"
+    },
+    "schemas": [
+        "urn:ietf:params:scim:schemas:core:2.0:User",
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"
+    ]
+}
+
+```
+
 |HTTP Method|API Endpoint|Asana Behavior|
 |---|--------|--------------|
 |GET|/Users|Return full list of users in the domain.  Does not return Asana guest users.|
@@ -93,8 +172,8 @@ Accepted attributes:
 |---------|----|----|
 |userName|string|Unique identifier for the User, typically used by the user to directly authenticate to the service provider. Each User MUST include a non - empty userName value, and it must  be an email address. REQUIRED.|
 |name|complex|The user's name|
-|name.givenName|string|Unsupported, use `formatted`.|
-|name.familyName|string|Unsupported, use `formatted`.|
+|name.givenName|string|Unsupported for PATCH request, use `name.formatted`.|
+|name.familyName|string|Unsupported for PATCH request, use `name.formatted`.|
 |name.formatted|string|The full name of the user.|
 |emails|multi-valued complex|Email addresses for the user.|
 |emails.value|string|Email address for the user.|
@@ -108,21 +187,46 @@ Accepted attributes:
 
 ### Group Resource
 
-> Example
+> Examples
 
 ```
-POST https://app.asana.com/api/1.0/scim/Users
+Request: GET https://app.asanac.om/api/1.0/scim/Groups?filter=displayName eq "Marketing"
+
+Response: 200 OK
 {
-    "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
+    "Resources": [
+        {
+            "id": "1",
+            "displayName": "Marketing",
+            "schemas": [
+                "urn:ietf:params:scim:schemas:core:2.0:Group"
+            ],
+            "meta": {
+                "resourceType": "Group"
+            }
+        }
+    ],
+    "totalResults": 1,
+    "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:ListResponse"
+    ]
+}
+```
+
+```
+Request: POST https://app.asana.com/api/1.0/scim/Groups
+{
+    "schemas": [
+        "urn:ietf:params:scim:schemas:core:2.0:Group"
+    ],
     "displayName": "Marketing",
-        "members": [
+    "members": [
         {"value": "1"},
         {"value": "2"}
     ]
 }
-```
-```
-201 Created
+
+Response: 201 Created
 {
     "id": 1,
     "displayName": "Marketing",
@@ -139,12 +243,34 @@ POST https://app.asana.com/api/1.0/scim/Users
 }
 ```
 
+```
+request: PATCH https://app.asana.com/api/1.0/scim/Groups/1
+{
+    "schemas": [
+        "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+    ],
+    "Operations": [
+        {
+            "op": "add",
+            "path": "members",
+            "value": [
+                {
+                    "value": 3
+                }
+            ]
+        }
+    ]
+}
+
+Response: 204 No Content
+```
+
 SCIM groups are equivalent to Asana Teams.
 
 |HTTP Method|API Endpoint|Asana Behavior|
 |---------|------|--------------|
 |GET|/Groups|Return full list of teams in the domain, including private teams.|
-|GET|/Groups/:id|Return specific team in the domain. |
+|GET|/Groups/:id|Return a specific team in the domain. |
 |POST|/Groups|Create a new team.|
 |PUT|/Groups/:id|Update / remove attributes for a team.|
 |PATCH|/Groups/:id|Update the team's attributes.|
