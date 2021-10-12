@@ -201,11 +201,11 @@ With this feature you will be able to :
 
 **Prerequisites**
 
-Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
-Activate your account through the activation link sent via email
-Upgrade your account
-Upgrade request is approved
-Contact our sales or account manager representatives to enable the feature
+- Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
+- Activate your account through the activation link sent via email
+- Upgrade your account
+- Upgrade request is approved
+- Contact our sales or account manager representatives to enable the feature
 
 ### **How To Use**
 
