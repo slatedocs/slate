@@ -14,7 +14,7 @@ Wallet | Account Type | Maximum Amount
 ------ | ------------ | --------------
 OVO | OVO Club | Rp 2.000.000
 OVO | OVO Premier | Rp 10.000.000
-DANA | DANA Verified | Rp 1.000.000
+DANA | DANA Verified | Rp 2.000.000
 DANA | DANA Premium | Rp 10.000.000
 GoPay | Unverified | Rp 2.000.000
 GoPay | Verified | Rp 10.000.000
