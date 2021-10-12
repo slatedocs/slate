@@ -158,7 +158,7 @@ Response: 200 OK
 
 |HTTP Method|API Endpoint|Asana Behavior|
 |---|--------|--------------|
-|GET|/Users|Return full list of users in the domain.  Does not return Asana guest users.|
+|GET|/Users|Return full list of users in the domain.  Does not return Asana guest users. <br>The accepted query parameters are:<br> 1. filter for `userName`; <br>2. startIndex and count.|
 |GET|/Users/:id|Return specific user in the domain.  Does not return Asana guest users.|
 |POST|/Users|Create a new user if the user does not exist.|
 |PUT|/Users/:id|Update / remove attributes for a user. Deprovision user (zombify) in Asana upon active=false.|
@@ -244,7 +244,7 @@ Response: 201 Created
 ```
 
 ```
-request: PATCH https://app.asana.com/api/1.0/scim/Groups/1
+Request: PATCH https://app.asana.com/api/1.0/scim/Groups/1
 {
     "schemas": [
         "urn:ietf:params:scim:api:messages:2.0:PatchOp"
@@ -269,7 +269,7 @@ SCIM groups are equivalent to Asana Teams.
 
 |HTTP Method|API Endpoint|Asana Behavior|
 |---------|------|--------------|
-|GET|/Groups|Return full list of teams in the domain, including private teams.|
+|GET|/Groups|Return full list of teams in the domain, including private teams. <br>The accepted query parameters are:<br> 1. filter for `displayName`; <br>2. startIndex and count.|
 |GET|/Groups/:id|Return a specific team in the domain. |
 |POST|/Groups|Create a new team.|
 |PUT|/Groups/:id|Update / remove attributes for a team.|
