@@ -4,7 +4,7 @@
 
 ```shell
 curl http://api.handshq.com/v1/projects \
-  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]" \
   --request POST \
   -d "[json_payload]"

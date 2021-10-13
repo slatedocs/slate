@@ -4,8 +4,8 @@
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://api.handshq.com/v1/auth" \
-  -H "Content-Type: application/json"  \
+curl "https://api.handshq.com/v1/authentication" \
+  -H "Accept: application/json"  \
   -H "Authorization: bearer [api_token]"
 ```
 
@@ -28,7 +28,7 @@ If you need to test that you have a valid API key use the following endpoint:
 
 ### HTTP Request
 
-`GET https://api.handshq.com/v1/auth`
+`GET https://api.handshq.com/v1/authentication`
 
 ### Response
 

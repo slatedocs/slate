@@ -6,7 +6,7 @@ HandsHQ projects are created with a number of fields which can change depending 
 
 ```shell
 curl https://api.handshq.com/v1/fields \
-  -H "Content-Type: application/json"  \
+  -H "Accept: application/json"  \
   -H "Authorization: bearer [api_token]"
 ```
 
