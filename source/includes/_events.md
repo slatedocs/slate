@@ -19,7 +19,7 @@ HTTP/1.1 200 OK
 {
   "data": [
     {
-      id:, #ver que id pasar
+      id: "21",
       "type": "events",
       "attributes": {
         "name": "Event name",
@@ -102,7 +102,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
 HTTP/1.1 200 OK
 {
   "data": {
-    id: , #ver que id pasar
+    id: "21",
     "type": "events",
     "attributes": {
       "name": "Event name",
@@ -144,41 +144,7 @@ HTTP/1.1 200 OK
         }
       }
     }    
-  },
-  "included": [
-    {
-      "id": "21",
-      "type": "event_settings",
-      "attributes": {
-        "payment_method": null,
-        "paypal_production_key": null,
-        "paypal_sandbox_key": null,
-        "paypal_test_mode": null,
-        "stripe_secret_api_key": null,
-        "stripe_publishable_api_key": null,
-        "pay_u_api_key": null,
-        "pay_u_merchant_id": null,
-        "pay_u_account_id": null,
-        "pay_u_api_login": null,
-        "pay_u_test_mode": null,
-        "currency": null,
-        "vat_alias": null,
-        "vat_value": null,
-        "date_format": "dd/mm/yyyy",
-        "time_format": "am_pm",
-        "google_analytics_tracking_code": null,
-        "google_tag_manager_code": null
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "id": "",
-            "type": "event"
-          }
-        }
-      }
-    }
-  ]
+  }
 }
 ```
 
@@ -202,6 +168,18 @@ This endpoint return an event
 Parameter | Type | Description
 --------- | ---- | -----------
 event_uri | string | The event_uri for the desired event
+
+
+### HTTP Request for optional include settings
+
+`GET /v1/events/event_uri/include=settings`
+
+### Path Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+include   | string | the value settings give informations for each relationships (settings or attendees)
+ 
 
 ## Create Event
 

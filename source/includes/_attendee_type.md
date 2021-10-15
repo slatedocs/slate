@@ -109,35 +109,7 @@ HTTP/1.1 200 OK
         ]
       }
     }
-  },
-  "included": [
-    {
-      "id": "331",
-      "type": "fields",
-      "attributes": {
-        "name": {
-          "en": "326 name, locale: en",
-          "es": "326 name, locale: es",
-          "fr": "326 name, locale: fr"
-        },
-        "values": null,
-        "settings": {
-            "available_public_listings": true
-        },
-        "type": "Fields::TextField",
-        "validations": {
-            "letters": true
-        },
-        "order": 1,
-        "entity_id": 62374,
-        "maximum_characters": null,
-        "validation_type": null,
-        "repeat_value": null,
-        "allowed_values": null,
-        "terms_file": null
-      }
-    }
-  ]   
+  }
 }
 ```
 
@@ -164,6 +136,17 @@ Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
    id     | integer | The id for the desired attendee type
+
+### HTTP Request for optional include fields
+
+`GET /v1/events/event_uri/attendee_types/id/include=fields`
+
+### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+include   | string  | this value give informations for each new fields
+
 
 ## Create Attendee Type
 
