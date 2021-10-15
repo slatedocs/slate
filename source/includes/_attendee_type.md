@@ -20,21 +20,33 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/', {
 ```http
 HTTP/1.1 200 OK
 {
-  "data": {
-    "id": "62527",
-    "type": "attendee_types",
-    "attributes": {
-      "name": "Attendee type name",
-      "description": "Attendee type description",
-      "price": "34",
-      "limit": 25,
-      "confirmation_required": false,
-      "allow_public_registration": false,
-      "valid_if_no_payments": true,
-      "updated_by_id": 192,
-      "archived": false
+  "data": [
+    {
+      "id": "62527",
+      "type": "attendee_types",
+      "attributes": {
+        "name": "Attendee type name",
+        "description": "attendee_type_description",
+        "price": "34",
+        "limit": 25,
+        "confirmation_required": false,
+        "allow_public_registration": false,
+        "valid_if_no_payments": true,
+        "updated_by_id": 192,
+        "archived": false
+      },
+      "relationships": {
+        "fields": {
+          "data": [
+            {
+              "id": "331",
+              "type": "field"
+            }
+          ]
+        }
+      }
     }
-  }
+  ]
 }
 ```
 
@@ -77,7 +89,7 @@ HTTP/1.1 200 OK
     "id": "62527",
     "type": "attendee_types",
     "attributes": {
-      "name": "Attendee type name",
+      "name": "Attendee type name last",
       "description": "Attendee type description",
       "price": "34",
       "limit": 25,
@@ -86,8 +98,46 @@ HTTP/1.1 200 OK
       "valid_if_no_payments": true,
       "updated_by_id": 192,
       "archived": false
+    },
+    "relationships": {
+      "fields": {
+        "data": [
+          {
+            "id": "331",
+            "type": "field"
+          }
+        ]
+      }
     }
-  }
+  },
+  "included": [
+    {
+      "id": "331",
+      "type": "fields",
+      "attributes": {
+        "name": {
+          "en": "326 name, locale: en",
+          "es": "326 name, locale: es",
+          "fr": "326 name, locale: fr"
+        },
+        "values": null,
+        "settings": {
+            "available_public_listings": true
+        },
+        "type": "Fields::TextField",
+        "validations": {
+            "letters": true
+        },
+        "order": 1,
+        "entity_id": 62374,
+        "maximum_characters": null,
+        "validation_type": null,
+        "repeat_value": null,
+        "allowed_values": null,
+        "terms_file": null
+      }
+    }
+  ]   
 }
 ```
 
@@ -125,6 +175,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/', {
   },
   body: {
   data: {
+    id: 62527
     type: "attendee_type",
     attributes: {
       name: "Attendee type name",
@@ -134,7 +185,8 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/', {
       confirmation_required: false,
       allow_public_registration: false,
       valid_if_no_payments: true,
-			allow_printing_without_payment: false
+			update_by_id:
+      archived: false
     }
   }
 }
@@ -163,6 +215,16 @@ HTTP/1.1 200 OK
       "valid_if_no_payments": true,
       "updated_by_id": 192,
       "archived": false
+    },
+    "relationships": {
+      "fields": {
+        "data": [
+          {
+            "id": "331",
+            "type": "field"
+          }
+        ]
+      }
     }
   }
 }
@@ -233,6 +295,16 @@ HTTP/1.1 200 OK
       "valid_if_no_payments": true,
       "updated_by_id": 192,
       "archived": false
+    },
+    "relationships": {
+      "fields": {
+        "data": [
+          {
+            "id": "331",
+            "type": "field"
+          }
+        ]
+      }
     }
   }
 }
@@ -297,6 +369,16 @@ HTTP/1.1 200 OK
       "allow_public_registration": true,
       "valid_if_no_payments": true,
       "archived": true
+    },
+    "relationships": {
+      "fields": {
+        "data": [
+          {
+            "id": "331",
+            "type": "field"
+          }
+        ]
+      }
     }
   }
 }

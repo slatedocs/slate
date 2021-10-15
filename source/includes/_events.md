@@ -147,7 +147,7 @@ HTTP/1.1 200 OK
   },
   "included": [
     {
-      "id": ,
+      "id": "21",
       "type": "event_settings",
       "attributes": {
         "payment_method": null,
@@ -213,7 +213,7 @@ fetch('https://core.eventtia.com/v1/events/', {
   },
   body: {
   data: {
-    id:, 
+    id: "21", 
     type: "events",
     attributes: {
       name: "Event name",
@@ -259,7 +259,7 @@ fetch('https://core.eventtia.com/v1/events/', {
 HTTP/1.1 200 OK
 {
   "data": {
-    id:, #ver que id pasar
+    id: "21", 
     "type": "events",
     "attributes": {
       "name": "Event name",
@@ -521,7 +521,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
 HTTP/1.1 200 OK
 {
   "data": {
-    id:, #ver que id pasar
+    id: "21",
     "type": "events",
     "attributes": {
       "name": "Event name",

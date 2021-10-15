@@ -20,22 +20,28 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
 ```http
 HTTP/1.1 200 OK
 {
-  "data": {
-    "id": "62527",
-    "type": "attendees",
-    "attributes": {
-     "first_name": "Mary",
-      "last_name": "perez ossa",
-      "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
-      "archived": false,
-      "fields_data": {
-          "281": "george",
-          "282": "downtown"
-      },
-      "photo_url": "url_Image_file"     
+  "data": [
+    {
+      "id": "6264284",
+      "type": "attendees",
+      "attributes": {
+        "first_name": "Rosa Maria",
+        "last_name": "Rosales Rojas",
+        "email": "rosales@email.com",
+        "telephone": null,
+        "updated_by_id": 10461,
+        "archived": false,
+        "fields_data": {},
+        "photo_url": null
+      }
     }
+  ],
+  "links": {
+    "current_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
+    "first_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
+    "last_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
+    "prev_page": null,
+    "next_page": null
   }
 }
 ```
@@ -75,22 +81,28 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/<id>', {
 ```http
 HTTP/1.1 200 OK
 {
-  "data": {
-    "id": "62527",
-    "type": "attendees",
-    "attributes": {
-     "first_name": "Mary",
-      "last_name": "perez ossa",
-      "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
-      "archived": false,
-      "fields_data": {
-          "281": "george",
-          "282": "downtown"
-      },
-      "photo_url": "url_Image_file"     
+  "data": [
+    {
+      "id": "6264284",
+      "type": "attendees",
+      "attributes": {
+        "first_name": "Rosa Maria",
+        "last_name": "Rosales Rojas",
+        "email": "rosales@email.com",
+        "telephone": null,
+        "updated_by_id": 10461,
+        "archived": false,
+        "fields_data": {},
+        "photo_url": null
+      }
     }
+  ],
+  "links": {
+    "current_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
+    "first_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
+    "last_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
+    "prev_page": null,
+    "next_page": null
   }
 }
 ```
@@ -138,14 +150,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
         telephone: 555 3434,
         updated_by_id: 192,
         archived: false,
-        fields_data: {
-            "f281": "george",
-            "f282": "downtown"
-        },
-        photo_url: "url_Image_file" 
+        fields_data: {},
+        photo_url: null
       }
+    }
   }
-}
 })
 ```
 
@@ -159,20 +168,17 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
 HTTP/1.1 200 OK
 {
   "data": {
-    "id": "62527",
+    "id": "6264284",
     "type": "attendees",
     "attributes": {
-     "first_name": "Mary",
-      "last_name": "perez ossa",
-      "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
+      "first_name": "Rosa Maria",
+      "last_name": "Rosales Rojas",
+      "email": "rosales@email.com",
+      "telephone": null,
+      "updated_by_id": 10461,
       "archived": false,
-      "fields_data": {
-          "281": "george",
-          "282": "downtown"
-      },
-      "photo_url": "url_Image_file"     
+      "fields_data": {},
+      "photo_url": null
     }
   }
 }
@@ -202,8 +208,8 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/<id>', {
     'Authorization': '<your token>',
   },
   body: {
-  data: {
-    type: "attendees",
+    data: {
+      type: "attendees",
       attributes: {
         attendee_type_id: 34,
         first_name: "Mary",
@@ -212,12 +218,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/<id>', {
         telephone: 555 3434,
         updated_by_id: 192,
         archived: false,
-        fields_data: {
-            "f281": "george",
-            "f282": "downtown"
-        },
-        photo_url: "url_Image_file" 
+        fields_data: {},
+        photo_url: null
       }
+    }
+  }
 }
 })
 ```
