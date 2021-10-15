@@ -152,7 +152,8 @@ The entity file resource corresponding to the `entity_file_id`.
 ```shell
 curl "https://api.affinity.co/entity-files/download/12345" \
   -u :$APIKEY \
-  --location place_to_store_file.png
+  -L \
+  -o Downloads/file.png
 ```
 
 `GET /entity-files/download/{entity_file_id}`
@@ -168,6 +169,12 @@ Downloads an entity file with a specified `entity_file_id`
 ### Returns
 
 The actual entity file corresponding to the `entity_file_id`.
+
+<aside class="notice">
+  <h6>Notes</h6>
+  <p>The download location of entity files is provided via a redirect from our endpoint and requires the <code>-L</code> flag.</p>
+</aside>
+
 
 ## Upload Files
 

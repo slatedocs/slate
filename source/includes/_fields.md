@@ -77,9 +77,7 @@ All the Types listed below can be referred through looking at the Affinity web a
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/fields" \
-  -u :$APIKEY \
-  -d with_modified_names=true
+curl "https://api.affinity.co/fields?with_modified_names=true" -u :$APIKEY
 ```
 
 > Example Response
@@ -87,22 +85,22 @@ curl "https://api.affinity.co/fields" \
 ```json
 [
   {
-    "id":1234,
-    "name":"[Deals] Amount",
-    "list_id":11,
-    "value_type":3,
-    "allows_multiple":false,
-    "track_changes":true,
-    "dropdown_options":[]
+    "id": 1234,
+    "name": "[Deals] Amount",
+    "list_id": 11,
+    "value_type": 3,
+    "allows_multiple": false,
+    "track_changes": true,
+    "dropdown_options": []
   },
   {
-    "id":5678,
-    "name":"[Events] Amount",
-    "list_id":16,
-    "value_type":3,
-    "allows_multiple":false,
-    "track_changes":true,
-    "dropdown_options":[]
+    "id": 5678,
+    "name": "[Events] Amount",
+    "list_id": 16,
+    "value_type": 3,
+    "allows_multiple": false,
+    "track_changes": true,
+    "dropdown_options": []
   },
   ...
 ]
@@ -140,7 +138,7 @@ An array of all the fields requested.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/field" \
+curl -X POST "https://api.affinity.co/field" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
   -d '{"name": "[Deals] Amount", "list_id": 11, "model_type": 1, "value_type": 3, "allows_multiple": false, "dropdown_options":[]}'

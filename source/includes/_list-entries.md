@@ -23,7 +23,7 @@
 
 Each list comprises a number of entries. Each list entry has a creator, a list
 that it belongs to, and the underlying entity it represents depending on the type of the
-list (people or organizations).
+list (people, organizations or opportunities).
 
 Operations like adding and removing entities from a list can be accomplished using the
 list entry abstraction.
@@ -143,6 +143,11 @@ list with the supplied list id.
 | Parameter  | Type    | Required | Description                                                                                     |
 | ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
 | list_id    | integer | true     | The unique id of the list whose list entries are to be retrieved.                               |
+
+### Query Parameters
+
+| Parameter  | Type    | Required | Description                                                                                     |
+| ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
 | page_size  | integer | false    | How many results to return per page. (Default is to return all results.)                        |
 | page_token | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results. |
 
@@ -217,7 +222,7 @@ curl -X POST “https://api.affinity.co/lists/450/list-entries” \
   "id": 53510,
   "list_id": 222,
   "creator_id": 38596,
-  "entity_id": 241576,
+  "entity_id": 38706,
   "created_at": "2017-02-22 15:22:21 -0800",
   "entity": {
     "type": 0,
@@ -250,7 +255,7 @@ Creates a new list entry in the list with the supplied list id.
   <h6>Notes</h6>
   <ul>
     <li>Opportunities <span class="bold">cannot</span> be created using this endpoint. Instead use the <code><a href="#create-a-new-opportunity">POST /opportunities</a></code> endpoint.</li>
-    <li>Person and company lists can contain the same entity multiple times. Depending on your use case, before you add an entry, you might want to make sure that it does not exist in the list already.</li>
+    <li>Person and company lists can contain the same entity multiple times. Depending on your use case, before you add an entry, you may want to verify whether or not it exists in the list already.</li>
   </ul>
 </aside>
 

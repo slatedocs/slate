@@ -266,6 +266,10 @@ html, body {
 
   padding-bottom: 1px; // prevent margin overflow
 
+  @media (max-width: $phone-width) {
+    width: 100%;
+  }
+
   // The dark box is what gives the code samples their dark background.
   // It sits essentially under the actual content block, which has a
   // transparent background.
@@ -348,7 +352,7 @@ html, body {
   }
 
   &>ul, &>ol {
-    padding-left: $main-padding + 16px;
+    padding: $main-padding;
   }
 
   // the div is the tocify hidden div for placeholding stuff
@@ -394,6 +398,17 @@ html, body {
   // fix for header spacing 
   h1 + h2, h2 + h3 {
     margin-top: -1.6rem;
+  }
+
+  // fix for changelog
+  h2 + ul {
+    margin-top: -3.2rem;
+    margin-left: 2.4rem;
+  }
+
+  // fix for changelog
+  ul + h2 {
+    margin-top: -6.4rem;
   }
 
   a, a:visited {
@@ -451,14 +466,6 @@ html, body {
 
     tr:last-child td:last-child {
       border-bottom-right-radius: 8px;
-    }
-
-    tr:nth-child(odd)>td {
-      // background-color: $COLOR_GRAY_97;
-    }
-
-    tr:nth-child(even)>td {
-      // background-color: $COLOR_GRAY_93;
     }
   }
 
@@ -673,7 +680,8 @@ html, body {
   }
 
   %left-col {
-    margin-right: 0;
+    margin-left: 8px;
+    margin-right: 8px;
   }
 
   .toc-wrapper .lang-selector {
@@ -723,8 +731,11 @@ html, body {
   display: flex;
   margin-right: $examples-width;
   padding: 0 $main-padding;
-
-
+  overflow: auto;
+  @media (max-width: $phone-width) {
+    margin-right: 0;
+  }
+  
   h3 {
     padding: 12px 16px 10px;
     border-bottom: 3px solid $COLOR_GRAY_93;
@@ -739,6 +750,10 @@ html, body {
     li {
       padding: 8px 16px;
     }
+  }
+
+  .column {
+    min-width: 175px;
   }
 }
 
@@ -759,7 +774,7 @@ html, body {
     background-color: $COLOR_GRAY_97;
     border-radius: 12px;
     margin-top: 16px;
-    width: auto;
+    width: 100%;
   }
 
   .bold {
@@ -782,9 +797,14 @@ html, body {
 }
 
 .container-pills {
-    margin-right: $examples-width;
-    padding: 0 $main-padding;
-    display: flex;
+  margin-right: $examples-width;
+  padding: 0 $main-padding;
+  display: flex;
+  overflow: auto;
+
+  @media (max-width: $phone-width) {
+    width: 100%;
+  }
 }
 
 .pill {
@@ -796,6 +816,10 @@ html, body {
   flex: 1 1 auto;
   text-align: center;
   margin: 8px 4px 8px;
+
+  @media (max-width: $phone-width) {
+    font-size: 12px;
+  }
 
   &.list-specific-field {
     background-color: $COLOR_GRAY_97;

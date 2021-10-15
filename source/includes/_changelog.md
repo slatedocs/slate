@@ -1,11 +1,20 @@
 # Changelog
 
+## 2021-10-15
+
+- Minor content updates
+
+## 2021-10-04
+
+- Updates to Example Responses
+- Responsive tweaks
+
 ## 2021-09-07
 
 - Revamped API documentation
   - Added [Common Use Cases](#common-use-cases) section
   - Added [Rate Limits](#rate-limits) section
-  - Updated `PUT` and `POST` cURL examples to use JSON objects
+  - Updates to `PUT` and `POST` cURL examples
 
 ## 2021-08-18
 

@@ -79,7 +79,7 @@ confirm that there are no more resources).
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/opportunities?term=affinity" -u :<API-KEY>
+curl "https://api.affinity.co/opportunities?term=affinity" -u :$APIKEY
 ```
 
 > Example Response
@@ -129,7 +129,7 @@ curl "https://api.affinity.co/opportunities?term=affinity" -u :<API-KEY>
 
 ```shell
 # To get the second page of results, issue the following query:
-curl "https://api.affinity.co/opportunities?term=affinity&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+curl "https://api.affinity.co/opportunities?term=affinity&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :$APIKEY
 ```
 
 ### Query Parameters
@@ -152,14 +152,14 @@ an array of all the opportunity resources that match the search criteria.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/opportunities/117" -u :<API-KEY>
+curl "https://api.affinity.co/opportunities/117" -u :$APIKEY
 ```
 
 > Example Response
 
 ```json
 {
-  "id": 121,
+  "id": 117,
   "name": "Affinity Opportunity",
   "person_ids": [3526824],
   "organization_ids": [128367168],
@@ -168,7 +168,7 @@ curl "https://api.affinity.co/opportunities/117" -u :<API-KEY>
       "id": 442313,
       "creator_id": 1124736,
       "list_id": 4974,
-      "entity_id": 121,
+      "entity_id": 117,
       "entity_type": 8,
       "created_at": "2018-03-03T23:02:46.412-08:00"
     },
@@ -307,7 +307,7 @@ The opportunity resource that was just updated through a successful request.
 
 ```shell
 curl "https://api.affinity.co/opportunities/120611418" \
-  -u :<API-KEY> \
+  -u :$APIKEY \
   -X "DELETE"
 ```
 

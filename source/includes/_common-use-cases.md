@@ -285,18 +285,20 @@ Use the common use cases below to learn how Affinity API endpoints work.
 <pre>
 <span>GET /organizations/7133202 Response:</span>
 {
-  "id":7133202,
-  "name":"Affinity",
-  "domain":"affinity.co",
-  "domains":["affinity.co"],
-  "global":false,
-  "person_ids":[<span class="bold">89734, 117270, 138123, 274492, 304848, ...</span>],
+  "id": 7133202,
+  "name": "Affinity",
+  "domain": "affinity.co",
+  "domains": ["affinity.co"],
+  "crunchbase_uuid": null,
+  "global": false,
+  "person_ids": [<span class="bold">89734, 117270, 138123, 274492, 304848, ...</span>],
   "list_entries": [
     {
       "id": 389,
       "list_id": 26,
       "creator_id": 38603,
       "entity_id": 7133202,
+      "entity_type": 0,
       "created_at": "2020-12-11T02:26:56.537-08:00",
     }
     ...
@@ -323,7 +325,7 @@ Use the common use cases below to learn how Affinity API endpoints work.
 ## Useful Resources
 
 <ul>
-  <li><a target="_blank" href="https://www.getpostman.com/collections/b40911c8c6bb75cade3e">Postman Collection (JSON)</a></li>
+  <li><a target="_blank" href="https://www.getpostman.com/collections/b40911c8c6bb75cade3e">Postman Collection</a> (Right-click and save as JSON then import into <a href="https://www.postman.com/" target="_blank">Postman</a>)</li>
   <li><a target="_blank" href="https://zapier.com/apps/affinity/integrations">Affinity Zapier Integrations</a></li>
   <li><a target="_blank" href="https://tray.io/documentation/connectors/service/affinity">Affinity Tray Connectors</a></li>
 </ul>

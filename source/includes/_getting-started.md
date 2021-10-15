@@ -9,7 +9,9 @@ curl "https://api.affinity.co/api_endpoint" -u :$APIKEY
 ```
 
 To use the API, you will need to generate an API secret key. This can be done easily through
-the Settings Panel that is accessible through the left sidebar on the Affinity web app.
+the Settings Panel that is accessible through the left sidebar on the Affinity web app. For more 
+support, visit the [How to obtain your API Key](https://support.affinity.co/hc/en-us/articles/360032633992-How-to-obtain-your-API-Key) 
+article in our Help Center.
 
 Requests are authenticated using [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication).
 Provide your API key as the basic auth password. You do not need to provide a username.

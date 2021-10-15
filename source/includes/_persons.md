@@ -206,11 +206,21 @@ curl "https://api.affinity.co/persons?term=doe" -u :$APIKEY
 }
 ```
 
-> Example pagination
+> Example Pagination
 
 ```shell
 # To get the second page of results, issue the following query:
 curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :$APIKEY
+```
+
+> Example with Interaction Date
+
+```shell
+# To get the results between min_last_email_interaction_date and max_last_email_interaction_date, issue the following query:
+curl "https://api.affinity.co/persons" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -d '{"min_last_email_date": "2021-01-01T00:00:00", "with_interaction_dates": true, "max_last_email_date": "2021-01-12T23:59:59"}'
 ```
 
 ### Query Parameters
@@ -294,7 +304,7 @@ The person resource corresponding to the `person_id`.
 curl -X POST "https://api.affinity.co/persons" \
    -u :$APIKEY \
    -H "Content-Type: application/json" \
-   -d {"first_name": "Alice", "last_name": "Doe", "emails": ["alice@affinity.co"], "organization_ids": [1687449]}
+   -d '{"first_name": "Alice", "last_name": "Doe", "emails": ["alice@affinity.co"], "organization_ids": [1687449]}'
 ```
 
 > Example Response
@@ -447,25 +457,25 @@ curl "https://api.affinity.co/persons/fields" -u :$APIKEY
 ```json
 [
   {
-    "id":125,
-    "name":"Use Case",
-    "value_type":2,
-    "allows_multiple":true,
-    "dropdown_options":[]
+    "id": 125,
+    "name": "Use Case",
+    "value_type": 2,
+    "allows_multiple": true,
+    "dropdown_options": []
   },
   {
-    "id":198,
-    "name":"Referrers",
-    "value_type":0,
-    "allows_multiple":true,
-    "dropdown_options":[]
+    "id": 198,
+    "name": "Referrers",
+    "value_type": 0,
+    "allows_multiple": true,
+    "dropdown_options": []
   },
   {
-    "id":1615,
-    "name":"Address",
-    "value_type":5,
-    "allows_multiple":false,
-    "dropdown_options":[]
+    "id": 1615,
+    "name": "Address",
+    "value_type": 5,
+    "allows_multiple": false,
+    "dropdown_options": []
   },
   ...
 ]

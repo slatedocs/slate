@@ -1,12 +1,12 @@
 # Lists
 
 Lists are the primary data structure that you can interact with in Affinity. Each list
-manages a collection of either people or organizations. We call people or organizations
-"entities".
+manages a collection of either people, organizations or opportunities. We call people, 
+organizations and opportunities "entities".
 
 A list in Affinity is easily represented as a spreadsheet. The rows of the spreadsheet
 are the list entries, and each list entry corresponds to a single person in a list of
-people, or organization in a list of organizations.
+people, an organization in a list of organizations or an opportunity in a list of opportunities.
 
 Lists in Affinity can also have any number of custom attributes. These attributes allow
 you to fully customize your workflow and model the data for your use case. We call these
@@ -68,13 +68,19 @@ curl "https://api.affinity.co/lists" -u :$APIKEY
 [
   {
     "id": 450,
-    "name": "My List of People",
     "type": 0,
+    "name": "My List of People",
+    "public": true,
+    "owner_id": 38706,
+    "list_size": 67
   },
   {
     "id": 383,
-    "name": "My List of Organizations",
     "type": 1,
+    "name": "My List of Organizations",
+    "public": true,
+    "owner_id": 38706,
+    "list_size": 50
   },
   ...
 ]

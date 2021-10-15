@@ -152,7 +152,7 @@ The webhook subscription object corresponding to the `webhook_subscription_id`.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/webhook/subscribe" \
+curl -X POST "https://api.affinity.co/webhook/subscribe" \
   -u :$APIKEY \
   -d webhook_url="https://hooks.example.com/webhook"
 ```

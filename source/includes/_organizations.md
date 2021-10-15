@@ -26,12 +26,12 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
 
 ```json
 {
-  "id":64779194,
-  "name":"Affinity",
-  "domain":"affinity.co",
-  "domains":["affinity.co"],
-  "global":false,
-  "person_ids":[89734, 117270, 138123, 274492, 304848, ...]
+  "id": 64779194,
+  "name": "Affinity",
+  "domain": "affinity.co",
+  "domains": ["affinity.co"],
+  "global": false,
+  "person_ids": [89734, 117270, 138123, 274492, 304848, ...]
   "list_entries": [
     {
       "id": 389,
@@ -169,18 +169,18 @@ curl "https://api.affinity.co/organizations?term=affinity" -u :$APIKEY
 {
   "organizations": [
     {
-      "id":64779194,
-      "name":"Affinity",
-      "domain":"affinity.co",
-      "domains":["affinity.co"],
-      "global":false
+      "id": 64779194,
+      "name": "Affinity",
+      "domain": "affinity.co",
+      "domains": ["affinity.co"],
+      "global": false
     },
     {
-      "id":1513682,
-      "name":"Brand Affinity Technologies",
-      "domain":"brandaffinity.net",
-      "domains":["brandaffinity.net"],
-      "global":true
+      "id": 1513682,
+      "name": "Brand Affinity Technologies",
+      "domain": "brandaffinity.net",
+      "domains": ["brandaffinity.net"],
+      "global": true
     },
     ...
   ],
@@ -188,24 +188,23 @@ curl "https://api.affinity.co/organizations?term=affinity" -u :$APIKEY
 }
 ```
 
-> Example pagination
+> Example Pagination
 
 ```shell
 # To get the second page of results, issue the following query:
-curl --request GET  "https://api.affinity.co/organizations" \
+curl "https://api.affinity.co/organizations" \
   -u :$APIKEY \
   -d page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9
 ```
 
-> Example with interaction date
+> Example with Interaction Date
 
 ```shell
 # To get the results between min_last_email_interaction_date and max_last_email_interaction_date, issue the following query:
-curl --request GET "https://api.affinity.co/organizations" \
+curl "https://api.affinity.co/organizations" \
   -u :$APIKEY \
-  -d min_last_email_date=2021-01-01T00:00:00 \
-  -d with_interaction_dates=true \
-  -d max_last_email_date=2021-01-12T23:59:59
+  -H "Content-Type: application/json" \
+  -d '{"min_last_email_date": "2021-01-01T00:00:00", "with_interaction_dates": true, "max_last_email_date": "2021-01-12T23:59:59"}'
 ```
 
 ### Query Parameters
@@ -239,12 +238,12 @@ curl "https://api.affinity.co/organizations/64779194" -u :$APIKEY
 
 ```json
 {
-  "id":64779194,
-  "name":"Affinity",
-  "domain":"affinity.co",
-  "domains":["affinity.co"],
-  "global":false,
-  "person_ids":[89734, 117270, 138123, 274492, 304848, ...],
+  "id": 64779194,
+  "name": "Affinity",
+  "domain": "affinity.co",
+  "domains": ["affinity.co"],
+  "global": false,
+  "person_ids": [89734, 117270, 138123, 274492, 304848, ...],
   "list_entries": [
     {
       "id": 389,
@@ -268,8 +267,7 @@ Fetches an organization with a specified `organization_id`.
 | ----------------------   | ------- | -------- | ----------------------------------------------------------------------- |
 | organization_id          | integer | true     | The unique id of the organization that needs to be retrieved.           |
 | with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources. |
-| with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in
-conjunction with `with_interaction_dates` |
+| with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates` |
 
 ### Returns
 
@@ -425,25 +423,25 @@ curl "https://api.affinity.co/organizations/fields" -u :$APIKEY
 ```json
 [
   {
-    "id":662,
-    "name":"Potential Users",
-    "value_type":3,
-    "allows_multiple":false,
-    "dropdown_options":[]
+    "id": 662,
+    "name": "Potential Users",
+    "value_type": 3,
+    "allows_multiple": false,
+    "dropdown_options": []
   },
   {
-    "id":700,
-    "name":"Leads",
-    "value_type":0,
-    "allows_multiple":true,
-    "dropdown_options":[]
+    "id": 700,
+    "name": "Leads",
+    "value_type": 0,
+    "allows_multiple": true,
+    "dropdown_options": []
   },
   {
-    "id":2988,
-    "name":"Last Funding Date",
-    "value_type":4,
-    "allows_multiple":false,
-    "dropdown_options":[]
+    "id": 2988,
+    "name": "Last Funding Date",
+    "value_type": 4,
+    "allows_multiple": false,
+    "dropdown_options": []
   },
   ...
 ]

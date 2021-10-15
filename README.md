@@ -20,6 +20,8 @@ Visit <http://localhost:4567/> to check the result.
 
 ## Building and deploying
 
+** Please update the changelog for any changes in the External API or useful changes our customers may want to know **
+
 Build the site into static files in `build/`:\
 `$ bundle exec middleman build --clean`
 

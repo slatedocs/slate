@@ -20,38 +20,41 @@ As an example for how a field value is created:
 
 ## The Field Value Resource
 
-> Example Response
+> Example Response (Global Location Field Value)
 
 ```json
-# Global Location Field Value
 {
-  "id":250616,
-  "field_id":337,
-  "list_entry_id":null,
-  "entity_id":38706,
-  "value":{
-    "city":"San Francisco",
-    "state":"California",
-    "country":"United States",
-    "continent":null,
-    "street_address":null
-  }
-}
-
-# List Specific Dropdown Field Value
-{
-  "id":177634,
-  "field_id":751,
-  "list_entry_id":605,
-  "entity_id":38706,
-  "value":{
-    "id":71,
-    "text":"Low",
-    "rank":1,
-    "color":4
+  "id": 250616,
+  "field_id": 337,
+  "list_entry_id": null,
+  "entity_id": 38706,
+  "value": {
+    "city": "San Francisco",
+    "state": "California",
+    "country": "United States",
+    "continent": null,
+    "street_address": null
   }
 }
 ```
+
+> Example Response (List Specific Dropdown Field Value)
+
+```json
+{
+  "id": 177634,
+  "field_id": 751,
+  "list_entry_id": 605,
+  "entity_id": 38706,
+  "value": {
+    "id": 71,
+    "text": "Low",
+    "rank": 1,
+    "color": 4
+  }
+}
+```
+
 
 Each field value object has a unique `id`.
 
@@ -102,42 +105,42 @@ curl "https://api.affinity.co/field-values?person_id=38706" -u :$APIKEY
 ```json
 [
   {
-    "id":250616,
-    "field_id":337,
-    "list_entry_id":null,
-    "entity_id":38706,
-    "value":{
-      "city":"San Francisco",
-      "state":"California",
-      "country":"United States",
-      "continent":null,
-      "street_address":null
+    "id": 250616,
+    "field_id": 337,
+    "list_entry_id": null,
+    "entity_id": 38706,
+    "value": {
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "continent": null,
+      "street_address": null
     }
   },
   {
-    "id":250615,
-    "field_id":1284,
-    "list_entry_id":null,
-    "entity_id":38706,
-    "value":"Computer Software"
+    "id": 250615,
+    "field_id": 1284,
+    "list_entry_id": null,
+    "entity_id": 38706,
+    "value": "Computer Software"
   },
   {
-    "id":32760,
-    "field_id":198,
-    "list_entry_id":null,
-    "entity_id":38706,
-    "value":38659
+    "id": 32760,
+    "field_id": 198,
+    "list_entry_id": null,
+    "entity_id": 38706,
+    "value": 38659
   },
   {
-    "id":177634,
-    "field_id":751,
-    "list_entry_id":605,
-    "entity_id":38706,
-    "value":{
-      "id":71,
-      "text":"Low",
-      "rank":1,
-      "color":4
+    "id": 177634,
+    "field_id": 751,
+    "list_entry_id": 605,
+    "entity_id": 38706,
+    "value": {
+      "id": 71,
+      "text": "Low",
+      "rank": 1,
+      "color": 4
     }
   },
   ...
@@ -179,7 +182,7 @@ An array of all the field values associated with the supplied `person`,
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/field-values" \
+curl -X POST "https://api.affinity.co/field-values" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
   -d '{"field_id": 1284, "value": "Architecture", "entity_id": 38706}'

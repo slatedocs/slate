@@ -49,24 +49,24 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
 ```json
 [
   {
-    "id":22984,
-    "creator_id":860197,
-    "person_ids":[38706,89734],
-    "organization_ids":[64779194],
-    "opportunity_ids":[117],
-    "parent_id": null,
-    "content":"Had a lunch meeting with Jane ... ",
-    "created_at":"2017-03-28 00:38:41 -0700"
+    "id": 22984,
+    "creator_id": 860197,
+    "person_ids": [38706,89734],
+    "organization_ids": [64779194],
+    "opportunity_ids": [117],
+    "parent_id":  null,
+    "content": "Had a lunch meeting with Jane ... ",
+    "created_at": "2017-03-28 00:38:41 -0700"
   },
   {
-    "id":22983,
-    "creator_id":860196,
-    "person_ids":[],
-    "organization_ids":[64779194],
-    "opportunity_ids":[115],
-    "parent_id": null,
-    "content":"Had a lunch meeting @ Google ... ",
-    "created_at":"2018-03-28 00:38:41 -0700"
+    "id": 22983,
+    "creator_id": 860196,
+    "person_ids": [],
+    "organization_ids": [64779194],
+    "opportunity_ids": [115],
+    "parent_id":  null,
+    "content": "Had a lunch meeting @ Google ... ",
+    "created_at": "2018-03-28 00:38:41 -0700"
   },
   ...
 ]
@@ -102,14 +102,14 @@ curl "https://api.affinity.co/notes/22984" -u :$APIKEY
 
 ```json
 {
-  "id":22984,
-  "creator_id":860197,
-  "person_ids":[38706,89734],
-  "organization_ids":[64779194],
-  "opportunity_ids":[117],
-  "parent_id": null,
-  "content":"Had a lunch meeting with Jane ... ",
-  "created_at":"2017-03-28 00:38:41 -0700"
+  "id": 22984,
+  "creator_id": 860197,
+  "person_ids": [38706,89734],
+  "organization_ids": [64779194],
+  "opportunity_ids": [117],
+  "parent_id":  null,
+  "content": "Had a lunch meeting with Jane ... ",
+  "created_at": "2017-03-28 00:38:41 -0700"
 },
 ```
 
