@@ -178,7 +178,7 @@ event_uri | string | The event_uri for the desired event
 
 Parameter | Type | Description
 --------- | ---- | -----------
-include   | string | the value settings give informations for each relationships (settings or attendees)
+include   | string | the value settings gives informations for each relationships (settings or attendees)
  
 
 ## Create Event

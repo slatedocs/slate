@@ -145,7 +145,7 @@ event_uri | string  | The event_uri for the desired event
 
 Parameter |  Type   | Description
 --------- | ------- | -----------
-include   | string  | this value give informations for each new fields
+include   | string  | this value gives informations for each new fields
 
 
 ## Create Attendee Type
