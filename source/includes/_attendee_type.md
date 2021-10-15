@@ -89,7 +89,7 @@ HTTP/1.1 200 OK
     "id": "62527",
     "type": "attendee_types",
     "attributes": {
-      "name": "Attendee type name last",
+      "name": "Attendee type name",
       "description": "Attendee type description",
       "price": "34",
       "limit": 25,
@@ -145,7 +145,7 @@ event_uri | string  | The event_uri for the desired event
 
 Parameter |  Type   | Description
 --------- | ------- | -----------
-include   | string  | this value gives informations for each new fields
+include   | string  | this value gives informations for each relationships
 
 
 ## Create Attendee Type

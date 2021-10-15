@@ -28,21 +28,17 @@ HTTP/1.1 200 OK
         "first_name": "Rosa Maria",
         "last_name": "Rosales Rojas",
         "email": "rosales@email.com",
-        "telephone": null,
+        "telephone": "+56912345678",
         "updated_by_id": 10461,
         "archived": false,
-        "fields_data": {},
-        "photo_url": null
+        "fields_data": {
+          "281": "george",
+          "282": "downtown"
+        },
+        "photo_url": "url_Image_file"
       }
     }
-  ],
-  "links": {
-    "current_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
-    "first_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
-    "last_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
-    "prev_page": null,
-    "next_page": null
-  }
+  ]
 }
 ```
 
@@ -89,21 +85,17 @@ HTTP/1.1 200 OK
         "first_name": "Rosa Maria",
         "last_name": "Rosales Rojas",
         "email": "rosales@email.com",
-        "telephone": null,
+        "telephone": "+56912345678",
         "updated_by_id": 10461,
         "archived": false,
-        "fields_data": {},
-        "photo_url": null
+        "fields_data": {
+          "281": "george",
+          "282": "downtown"
+        },
+        "photo_url": "url_Image_file"
       }
     }
-  ],
-  "links": {
-    "current_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
-    "first_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
-    "last_page": "http://localhost:3000/es/v1/events/event4-probando-con-img/attendees?page=1",
-    "prev_page": null,
-    "next_page": null
-  }
+  ]
 }
 ```
 
@@ -147,11 +139,14 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
         first_name: "Mary",
         last_name: "perez ossa",
         email: "maryperez@email.com",
-        telephone: 555 3434,
+        telephone: "+56912345678",
         updated_by_id: 192,
         archived: false,
-        fields_data: {},
-        photo_url: null
+        fields_data: {
+          "281": "george",
+          "282": "downtown"
+        },
+        photo_url: "url_Image_file"
       }
     }
   }
@@ -174,11 +169,14 @@ HTTP/1.1 200 OK
       "first_name": "Rosa Maria",
       "last_name": "Rosales Rojas",
       "email": "rosales@email.com",
-      "telephone": null,
+      "telephone": "+56912345678",
       "updated_by_id": 10461,
       "archived": false,
-      "fields_data": {},
-      "photo_url": null
+      "fields_data": {
+        "281": "george",
+        "282": "downtown"
+      },
+      "photo_url": "url_Image_file"
     }
   }
 }
@@ -215,11 +213,14 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/<id>', {
         first_name: "Mary",
         last_name: "perez ossa",
         email: "maryperez@email.com",
-        telephone: 555 3434,
+        telephone: "+56912345678",
         updated_by_id: 192,
         archived: false,
-        fields_data: {},
-        photo_url: null
+        fields_data: {
+          "281": "george",
+          "282": "downtown"
+        },
+        photo_url: "url_Image_file"
       }
     }
   }
@@ -245,12 +246,12 @@ HTTP/1.1 200 OK
      "first_name": "Mary",
       "last_name": "perez ossa",
       "email": "maryperez@email.com",
-      "telephone": "555 3434",
+      "telephone": "+56912345678",
       "updated_by_id": 192,
       "archived": false,
       "fields_data": {
-          "281": "george",
-          "282": "downtown"
+        "281": "george",
+        "282": "downtown"
       },
       "photo_url": "url_Image_file"     
     }
@@ -312,12 +313,12 @@ HTTP/1.1 200 OK
      "first_name": "Mary",
       "last_name": "perez ossa",
       "email": "maryperez@email.com",
-      "telephone": "555 3434",
+      "telephone": "+56912345678",
       "updated_by_id": 192,
       "archived": true,
       "fields_data": {
-          "281": "george",
-          "282": "downtown"
+        "281": "george",
+        "282": "downtown"
       },
       "photo_url": "url_Image_file"     
     }
