@@ -1163,7 +1163,7 @@ echo $response;
 > REQUEST
 
 ```shell
-curl --location --request POST 'http://localhost:3000/solutions' \
+curl --location --request POST 'https://dynm.herokuapp.com/solutions' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "fuel_type": "wood waste",
@@ -1217,7 +1217,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https =>//dynm.herokuapp.com/transportation";
+  $url = "https =>//dynm.herokuapp.com/solutions";
   $ch = curl_init($url);
   $postData = array(
     "fuel_type" => "wood waste",
