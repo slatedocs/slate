@@ -577,6 +577,8 @@ This endpoint deals with waste.
 
 # Conversions
 
+<!-- ......here -->
+
 ## Carbon Dioxide
 
 > REQUEST
@@ -855,13 +857,13 @@ Units that require mass include CO2, CH4 and N2O
 
 <aside>Request params</aside>
 
-| Param     | Type   | Required | Description                                                                                                                                                |
-| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fuel_type | string | true     | The fuel type to convert                                                                                                                                   |
-| input     | number | true     | This is the number of units to convert                                                                                                                     |
-| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                               |
+| Param     | Type   | Required | Description                                                                                                                                                     |
+| --------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| fuel_type | string | true     | The fuel type to convert                                                                                                                                        |
+| input     | number | true     | This is the number of units to convert                                                                                                                          |
+| unit      | string | true     | The unit of measurement. Common units are gallon, short_tons, scf, mmbtu, btu, co2, ch4, n2o                                                                    |
 | mass      | string | false    | This param is only required when the unit type is CO2, CH4 or N2O. Acceptable mass units are kg, g and lbs. If mass is not provided, it defaults to pounds(lbs) |
-| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation               |
+| category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation                    |
 
 ## Carbon Dioxide units
 
@@ -1155,3 +1157,106 @@ echo $response;
 | Param     | Type   | Required | Description                                                                                                                                  |
 | --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | fuel_type | string | true     | The fuel type to convert          |
+
+# Solutions
+
+> REQUEST
+
+```shell
+curl --location --request POST 'http://localhost:3000/solutions' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "fuel_type": "wood waste",
+    "input": 20
+}'
+```
+
+```javascript
+const fetch = require("node-fetch");
+
+const data = {
+  fuel_type: "wood waste",
+  input: 20,
+};
+
+fetch("https://dynm.herokuapp.com/solutions", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+```python
+import requests
+import json
+
+url = "https://dynm.herokuapp.com/solutions"
+
+payload={
+  "fuel_type": "wood waste",
+  "input": 20,
+}
+
+headers = {'Content-Type': 'application/json'}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+data = response.json()
+print(data)
+
+```
+
+```php
+<?php
+  $url = "https =>//dynm.herokuapp.com/transportation";
+  $ch = curl_init($url);
+  $postData = array(
+    "fuel_type" => "wood waste",
+    "input" => 20
+  );
+
+  curl_setopt_array($ch, array(
+    CURLOPT_POST => TRUE, // set post data to true
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_POSTFIELDS => json_encode($postData),   // post data
+    CURLOPT_HTTPHEADER => array("Content-Type: application/json")
+  ));
+
+  $response = curl_exec($ch);
+  curl_close ($ch);
+  $data = json_decode($response, true); // decode the json response
+  var_dump(json_encode($postData));
+?>
+
+```
+
+> RESPONSE : <code>200</code>
+
+```json
+{
+  "GHGS_MONTH": 39.0,
+  "NO_OF_CARS": 101.03626943005182
+}
+```
+
+This endpoint deals with solutions. it estimates the impact of your waste reduction practices, expressed in tons of carbon dioxide saved, or cars taken off the road.
+
+Each time you recycle or compost materials instead of discarding them, you help reduce greenhouse gas (GHG) emissions and protect the climate. Over time these emission reductions add up to significant amounts! In fact, GHG reductions from recycling and composting are often so considerable that they can be compared to avoided tailpipe emissions from vehicles, or cars taken off the road.
+
+`POST https://dynm.herokuapp.com/solutions`
+
+<aside>Request params</aside>
+
+| Param     | Type   | Required | Description                                   |
+| --------- | ------ | -------- | --------------------------------------------- |
+| fuel_type | string | true     | fuel type to be recycled                      |
+| input     | number | true     | no of tons/month of fuel type to be converted |
