@@ -23,6 +23,7 @@ includes:
   - administration/pricings
   - administration/applied_pricings
   - administration/invoices
+  - administration/payments
   - administration/discounts
   - administration/authentication
   - administration/identity_providers
