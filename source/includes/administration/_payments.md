@@ -76,13 +76,13 @@ Attributes | &nbsp;
 `invoice.id`<br/>*UUID* | The UUID of the invoice.
 `invoice.invoiceId`<br/>*String* | The human readable invoice id.
 `invoice.createdDate`<br/>*date* | The created date of the invoice.
-`paymentReference`*String* | Payment reference send to the payment provider to indentify the transaction.
+`paymentReference`*String* | Payment reference sent to the payment provider to indentify the transaction.
 `paymentTraceReference`*String* | Additional reference used to find a payment on the payment provider side.
 `errorMsg`<br/>*String* | The error message returned by the payment provider if the payment failed.
 `totalAmount`<br/>*BigDecimal* | The total amount of the invoice charged on the card.
 `taxAmount`<br/>*BigDecimal* | The tax amount that was included in the charge.
-`confirmationNumber`<br/>*String* | Confirmation number return returned from the payment provider.
-`paymentDate`<br/>*date* | The date on which the payment was send to the provider.
+`confirmationNumber`<br/>*String* | Confirmation number returned from the payment provider.
+`paymentDate`<br/>*date* | The date on which the payment was sent to the provider.
 `currencyCode`<br/>*String* | The currency of the payment.
 `status`<br/>*String* | Status of the payment. One of `SUCCESS`, `PENDING`, `FAIL`.
 `extraInfo`</br>*String*| Additional information set in the payment transaction.
@@ -138,13 +138,13 @@ Attributes | &nbsp;
 `invoice.id`<br/>*UUID* | The UUID of the invoice.
 `invoice.invoiceId`<br/>*String* | The human readable invoice id.
 `invoice.createdDate`<br/>*date* | The created date of the invoice.
-`paymentReference`*String* | Payment reference send to the payment provider to indentify the transaction.
+`paymentReference`*String* | Payment reference sent to the payment provider to indentify the transaction.
 `paymentTraceReference`*String* | Additional reference used to find a payment on the payment provider side.
 `errorMsg`<br/>*String* | The error message returned by the payment provider if the payment failed.
 `totalAmount`<br/>*BigDecimal* | The total amount of the invoice charged on the card.
 `taxAmount`<br/>*BigDecimal* | The tax amount that was included in the charge.
-`confirmationNumber`<br/>*String* | Confirmation number return returned from the payment provider.
-`paymentDate`<br/>*date* | The date on which the payment was send to the provider.
+`confirmationNumber`<br/>*String* | Confirmation number returned from the payment provider.
+`paymentDate`<br/>*date* | The date on which the payment was sent to the provider.
 `currencyCode`<br/>*String* | The currency of the payment.
 `status`<br/>*String* | Status of the payment. One of `SUCCESS`, `PENDING`, `FAIL`.
 `extraInfo`</br>*String*| Additional information set in the payment transaction.
