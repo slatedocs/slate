@@ -76,8 +76,8 @@ Attributes | &nbsp;
 `invoice.id`<br/>*UUID* | The UUID of the invoice.
 `invoice.invoiceId`<br/>*String* | The human readable invoice id.
 `invoice.createdDate`<br/>*date* | The created date of the invoice.
-`paymentReference`*String* | Payment reference sent to the payment provider to indentify the transaction.
-`paymentTraceReference`*String* | Additional reference used to find a payment on the payment provider side.
+`paymentReference`<br/>*String* | Payment reference sent to the payment provider to indentify the transaction.
+`paymentTraceReference`<br/>*String* | Additional reference used to find a payment on the payment provider side.
 `errorMsg`<br/>*String* | The error message returned by the payment provider if the payment failed.
 `totalAmount`<br/>*BigDecimal* | The total amount of the invoice charged on the card.
 `taxAmount`<br/>*BigDecimal* | The tax amount that was included in the charge.
@@ -138,8 +138,8 @@ Attributes | &nbsp;
 `invoice.id`<br/>*UUID* | The UUID of the invoice.
 `invoice.invoiceId`<br/>*String* | The human readable invoice id.
 `invoice.createdDate`<br/>*date* | The created date of the invoice.
-`paymentReference`*String* | Payment reference sent to the payment provider to indentify the transaction.
-`paymentTraceReference`*String* | Additional reference used to find a payment on the payment provider side.
+`paymentReference`<br/>*String* | Payment reference sent to the payment provider to indentify the transaction.
+`paymentTraceReference`<br/>*String* | Additional reference used to find a payment on the payment provider side.
 `errorMsg`<br/>*String* | The error message returned by the payment provider if the payment failed.
 `totalAmount`<br/>*BigDecimal* | The total amount of the invoice charged on the card.
 `taxAmount`<br/>*BigDecimal* | The tax amount that was included in the charge.
