@@ -80,11 +80,10 @@ Attributes | &nbsp;
 `totalAmount`<br/>*BigDecimal* | The total amount of the invoice charged on the card.
 `taxAmount`<br/>*BigDecimal* | The tax amount that was included in the charge.
 `confirmationNumber`<br/>*String* | Confirmation number return returned from the payment provider.
-`deleted`<br/>*String* | Whether the payment has been deleted. Payment is deleted if it was unsucessful and the transaction not found on the payment provider side.
 `paymentDate`<br/>*date* | The date on which the payment was send to the provider.
 `currencyCode`<br/>*String* | The currency of the payment.
 `status`<br/>*String* | Status of the payment. One of `SUCCESS`, `PENDING`, `FAIL`.
-`extraInfo`</br>*String*| Extra information set in the payment transaction.
+`extraInfo`</br>*String*| Additional information set in the payment transaction.
 
 
 <!-------------------- RETRIEVE A PAYMENT -------------------->
@@ -141,8 +140,7 @@ Attributes | &nbsp;
 `totalAmount`<br/>*BigDecimal* | The total amount of the invoice charged on the card.
 `taxAmount`<br/>*BigDecimal* | The tax amount that was included in the charge.
 `confirmationNumber`<br/>*String* | Confirmation number return returned from the payment provider.
-`deleted`<br/>*String* | Whether the payment has been deleted. Payment is deleted if it was unsucessful and the transaction not found on the payment provider side.
 `paymentDate`<br/>*date* | The date on which the payment was send to the provider.
 `currencyCode`<br/>*String* | The currency of the payment.
 `status`<br/>*String* | Status of the payment. One of `SUCCESS`, `PENDING`, `FAIL`.
-`extraInfo`</br>*String*| Extra information set in the payment transaction.
+`extraInfo`</br>*String*| Additional information set in the payment transaction.
