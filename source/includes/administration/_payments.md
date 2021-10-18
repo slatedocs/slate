@@ -1,10 +1,10 @@
-### Payments
+## Payments
 
 Retreive the history of payment transactions for an organization.
 
 <!-------------------- LIST PAYMENTS -------------------->
 
-#### List payments
+### List payments
 
 ```shell
 curl -X GET \
@@ -90,7 +90,7 @@ Attributes | &nbsp;
 
 <!-------------------- RETRIEVE A PAYMENT -------------------->
 
-#### Retrieve a payment
+### Retrieve a payment
 
 ```shell
 curl -X GET \
