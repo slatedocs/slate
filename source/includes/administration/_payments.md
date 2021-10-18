@@ -73,6 +73,9 @@ Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*UUID* | A payment's unique identifier.
 `invoice`<br/>*Object* | The invoice associated to the payment.
+`invoice.id`<br/>*UUID* | The UUID of the invoice.
+`invoice.invoiceId`<br/>*String* | The human readable invoice id.
+`invoice.createdDate`<br/>*date* | The created date of the invoice.
 `paymentReference`*String* | Payment reference send to the payment provider to indentify the transaction.
 `paymentTraceReference`*String* | Additional reference used to find a payment on the payment provider side.
 `errorMsg`<br/>*String* | The error message returned by the payment provider if the payment failed.
@@ -132,6 +135,9 @@ Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*UUID* | A payment's unique identifier.
 `invoice`<br/>*Object* | The invoice associated to the payment.
+`invoice.id`<br/>*UUID* | The UUID of the invoice.
+`invoice.invoiceId`<br/>*String* | The human readable invoice id.
+`invoice.createdDate`<br/>*date* | The created date of the invoice.
 `paymentReference`*String* | Payment reference send to the payment provider to indentify the transaction.
 `paymentTraceReference`*String* | Additional reference used to find a payment on the payment provider side.
 `errorMsg`<br/>*String* | The error message returned by the payment provider if the payment failed.
