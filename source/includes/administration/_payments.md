@@ -46,7 +46,6 @@ curl -X GET \
       "errorMsg": "Transport error: 412 Error: Precondition Failed",
       "totalAmount": 5338.72,
       "confirmationNumber": "6155D9A173DE0841F48B291C2A24BE80AFB153WE",
-      "deleted": false,
       "id": "a8139387-b286-49e4-a458-afbaf1c604f7",
       "invoice": {
         "createdDate": "2021-09-01T14:21:11Z",
@@ -104,7 +103,6 @@ curl -X GET \
     "paymentReference": "20210930033702-qfm04yt",
     "totalAmount": 5338.72,
     "confirmationNumber": "6155D9A173DE0841F48B291C2A24BE80AFB153CD",
-    "deleted": false,
     "id": "07d88499-a17f-4a68-8560-bbec953ert1d",
     "invoice": {
       "createdDate": "2021-09-01T14:21:11Z",
