@@ -4289,8 +4289,15 @@ socket.emit('leave', {
 
 ### Response
 <ul>
-  <li>a stand for asks</li>
-  <li>b stand for bids</li>
+  <li>e is the Event type</li>
+  <li>E is the Event time</li>
+  <li>s is the symbol(currency)</li>
+  <li>U is the first update ID from last stream</li>
+  <li>u is the last update ID from last stream</li>
+  <li>a stand for Asks to be updated</li>
+  <li>b stand for Bids to be updated</li>
+  <li>type</li>
+  <li>channel</li>
 </ul>
 
 ```python
@@ -4301,8 +4308,7 @@ def on_message(response):
 
 ```javascript
 socket.on("depth-update", (response) => {
-  console.log(response.data.a); //asks
-  console.log(response.data.b); //bids
+  console.log(response.data);
 });
 ```
 
@@ -4310,8 +4316,25 @@ socket.on("depth-update", (response) => {
 
 ```json
 {
-  "a": [["251005.00000000", 0.019]],
-  "b": [["251009.00000000", 0.029]]
+  "e": "depthUpdate",
+  "E": 1634554090549,
+  "s": "BTCUSDT",
+  "U": 14413233916,
+  "u": 14413233992,
+  "b": [
+    [
+      "61139.63000000",
+      "0.02000000"
+    ]
+  ],
+  "a": [
+    [
+      "61181.01000000",
+      "2.52715000"
+    ]
+  ],
+  "type": "depth-update",
+  "channel": "B-BTC_USDT"
 }
 ```
 
