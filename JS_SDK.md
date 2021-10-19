@@ -63,6 +63,8 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
 | requireOTP | boolean | false | - | possible values are `true` or `false` |
+| enableCaptcha | boolean | false | - | possible values are `true` or `false` |
+| captchaKey | string | false | - | Need to be generated from this link https://www.google.com/recaptcha/admin/create |
 | options | object | null | - | possible keys are `showRemarks` or `remarksTitle`,`remarksMandatory`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`, `dnc_agree_text`, `custom_tnc`, `custom_tnc_text`,`source`, `sub_source`, `placement`, `form_name`|
 
 
