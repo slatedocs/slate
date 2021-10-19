@@ -57,7 +57,19 @@ curl --request GET \
                 "unit": {
                   "unit": "HOUR",
                   "name": {}
-                }
+                },
+                "pricingTiers": [
+                  {
+                    "cost": "216",
+                    "usage": "100",
+                    "price": "2.16"
+                  },
+                  {
+                    "cost": "216",
+                    "usage": "100",
+                    "price": "2.16"
+                  }
+                ]
               }
             ],
             "subTotal": "432.00"
@@ -91,6 +103,10 @@ Organization Report Attributes | &nbsp;
 `currencies.categories.products.unit`<br/>*Object* | The unit object of the product.
 `currencies.categories.products.unit.unit`<br/>*Object* | The unit value of the product.
 `currencies.categories.products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom units.
+`currencies.categories.products.pricingTiers` <br/> *Array[Object]* | The list of usage statistics gathered per configured pricing tier on the product.
+`currencies.categories.products.pricingTiers.usage` <br/> *string* | The total usage gathered for the given pricing tier configured on the product.
+`currencies.categories.products.pricingTiers.cost` <br/> *string* | The total cost incurred for the given pricing tier configured on the product.
+`currencies.categories.products.pricingTiers.price` <br/> *string* | The unit price charged per usage unit for the given pricing tier configured on the product.
 `startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the report.
 `endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the report.
 `reportGenerated`<br/>*boolean* | Whether or not a report could be generated for this time period.
