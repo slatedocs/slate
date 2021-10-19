@@ -152,7 +152,7 @@ Response: 200 OK
         }
     ],
     "active": true,
-    "preferredLanguage": en,
+    "preferredLanguage": "en",
     "title": "Senior Software Engineer",
     "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
         "department": "R&D"
@@ -264,7 +264,7 @@ Request: PATCH https://app.asana.com/api/1.0/scim/Groups/1
             "path": "members",
             "value": [
                 {
-                    "value": 3
+                    "value": "3"
                 }
             ]
         }
