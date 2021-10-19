@@ -82,10 +82,10 @@ HTTP/1.1 200 OK
         },
         "order": 1,
         "entity_id": 62374,
-        "maximum_characters": null,
-        "validation_type": null,
-        "repeat_value": null,
-        "allowed_values": null,
+        "maximum_characters": "10",
+        "validation_type": "numbers",
+        "repeat_value": "10",
+        "allowed_values": ["one","one"],
         "terms_file": null
       }
     }

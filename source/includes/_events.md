@@ -138,7 +138,7 @@ HTTP/1.1 200 OK
     "relationships": {
       "settings": {
         "data": {
-          "id": "",
+          "id": "108",
           "type": "settings"
         }
       }
@@ -382,7 +382,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
     relationships: {
       settings: {
         data: {
-          id: "89",
+          id: "108",
           type: "settings"
         }
       }
@@ -443,7 +443,7 @@ HTTP/1.1 200 OK
     "relationships": {
       "settings": {
         "data": {
-          "id": "",
+          "id": "108",
           "type": "settings"
         }
       }
@@ -595,11 +595,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/settings', {
       attributes: {
         payment_method: "credit card",
         paypal_production_key: "12345ABCDE",
-        paypal_sandbox_key: "12345ABCDE",
+        paypal_sandbox_key: "ABCDEHGIKN",
         paypal_test_mode: false,
-        stripe_secret_api_key: "12345ABCDE",
-        stripe_publishable_api_key: "12345ABCDE",
-        pay_u_api_key: "12345ABCDE",
+        stripe_secret_api_key: "1A2G3R4FTT",
+        stripe_publishable_api_key: "LA778GHGD6",
+        pay_u_api_key: "99IIOYNTRE",
         pay_u_merchant_id: "12",
         pay_u_account_id: "13",
         pay_u_api_login: "33445ABCDE",
@@ -609,7 +609,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/settings', {
         vat_value: 19,
         date_format: "dd/mm/yyyy",
         time_format: "am_pm",
-        google_analytics_tracking_code: "33445ABCDE",
+        google_analytics_tracking_code: "A78Y55ABCD",
         google_tag_manager_code: "11223ABCDE"
       }
     }

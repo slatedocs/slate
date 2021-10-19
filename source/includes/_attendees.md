@@ -29,8 +29,8 @@ HTTP/1.1 200 OK
         "last_name": "Rosales Rojas",
         "email": "rosales@email.com",
         "telephone": "+56912345678",
-        "updated_by_id": 10461,
-        "archived": false,
+        "updated_by_id": "10461",
+        "archived": "false",
         "fields_data": {
           "281": "george",
           "282": "downtown"
@@ -86,8 +86,8 @@ HTTP/1.1 200 OK
         "last_name": "Rosales Rojas",
         "email": "rosales@email.com",
         "telephone": "+56912345678",
-        "updated_by_id": 10461,
-        "archived": false,
+        "updated_by_id": "10461",
+        "archived": "false",
         "fields_data": {
           "281": "george",
           "282": "downtown"
@@ -170,8 +170,8 @@ HTTP/1.1 200 OK
       "last_name": "Rosales Rojas",
       "email": "rosales@email.com",
       "telephone": "+56912345678",
-      "updated_by_id": 10461,
-      "archived": false,
+      "updated_by_id": "10461",
+      "archived": "false",
       "fields_data": {
         "281": "george",
         "282": "downtown"
@@ -247,8 +247,8 @@ HTTP/1.1 200 OK
       "last_name": "perez ossa",
       "email": "maryperez@email.com",
       "telephone": "+56912345678",
-      "updated_by_id": 192,
-      "archived": false,
+      "updated_by_id": "192",
+      "archived": "false",
       "fields_data": {
         "281": "george",
         "282": "downtown"
@@ -314,8 +314,8 @@ HTTP/1.1 200 OK
       "last_name": "perez ossa",
       "email": "maryperez@email.com",
       "telephone": "+56912345678",
-      "updated_by_id": 192,
-      "archived": true,
+      "updated_by_id": "192",
+      "archived": "true",
       "fields_data": {
         "281": "george",
         "282": "downtown"
