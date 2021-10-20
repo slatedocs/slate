@@ -14,6 +14,13 @@ includes:
 
   - deauthorize
 
+  - power_zones/overview
+  - power_zones/create
+  - power_zones/show
+  - power_zones/update
+  - power_zones/index
+  - power_zones/delete
+
   - users/overview
   - users/show
   - users/update
@@ -84,11 +91,11 @@ OAuth2 Uses the following authentication workflow. The goal is to obtain an **ac
 
     `https://<base_url>/oauth/token?client_secret=<client_secret>&code=<code>&redirect_uri=<redirect_uri>&grant_type=authorization_code&client_id=<client_id>`
 
-**Step 4.** When the access_token expires you can use the refresh_token to get a new access_token
+**Step 4.** When the access_token expires after 2 hours you can use the refresh_token to get a new access_token and a new refresh_token
 
     `https://<base_url>/oauth/token?client_secret=<client_secret>&client_id=<client_id>&grant_type=refresh_token&refresh_token=<refresh_token>`
 
-**Step 5.** You are now ready to send requests to our API by putting the **access_token** within the following HTTP Header:
+**Step 5.** You are now ready to send requests to our API by putting the new **access_token** within the following HTTP Header:
 
     `"Authorization": "Bearer <access_token>"`
 
@@ -103,4 +110,6 @@ _access_token_:     | Returned in Step 3; Used for API calls to view/manage user
 _refresh_token_:    | Returned in Step 3; Used to refresh the access_token.
 _expires_in_:       | Returned in Step 3; Indicates when the access_token will expire.
 
+**Our API returns strings for decimal data types in our responses. This is because our API uses JSON for responses and requests. Please be sure to use headers for Content-Type as application/JSON:**
 
+**`Content-Type: application/json`**
