@@ -115,7 +115,7 @@ Parameters | Description | required? |
 --------- | ------- |------- |
 data/attributes/name | name | true |
 data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
-data/attributes/author-id | author user id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
+data/attributes/author-id | author user id (not Display ID) - [users list](#users) | false |
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution | false |
 data/attributes/status | string of status (not run status) | false |
