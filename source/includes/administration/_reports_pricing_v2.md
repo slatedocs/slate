@@ -51,13 +51,24 @@ curl --request GET \
                   "fr": "Public IP"
                 },
                 "cost": "432.00",
-                "usage": "432.0",
-                "price": "1.0",
+                "usage": "465.0000",
                 "period": "HOUR",
                 "unit": {
                   "unit": "HOUR",
                   "name": {}
-                }
+                },
+                "pricingTiers": [
+                  {
+                    "usage": "300.0000",
+                    "price": "1.00",
+                    "cost": "300.00"
+                  },
+                  {
+                    "usage": "165.0000",
+                    "price": "0.80",
+                    "cost": "132.00"
+                  }
+                ]
               }
             ],
             "subTotal": "432.00"
@@ -91,6 +102,10 @@ Organization Report Attributes | &nbsp;
 `currencies.categories.products.unit`<br/>*Object* | The unit object of the product.
 `currencies.categories.products.unit.unit`<br/>*Object* | The unit value of the product.
 `currencies.categories.products.unit.name`<br/>*Object* | The name of the unit of the product in the required language. Only present when defining custom units.
+`currencies.categories.products.pricingTiers` <br/> *Array[Object]* | The cost and usage breakdown per pricing tier configured on the product. Only pricing tiers with usage for the period are shown.
+`currencies.categories.products.pricingTiers.usage` <br/> *string* | The total usage gathered for the given pricing tier configured on the product.
+`currencies.categories.products.pricingTiers.cost` <br/> *string* | The total cost incurred for the given pricing tier configured on the product.
+`currencies.categories.products.pricingTiers.price` <br/> *string* | The unit price charged per usage unit for the given pricing tier configured on the product.
 `startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the report.
 `endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the report.
 `reportGenerated`<br/>*boolean* | Whether or not a report could be generated for this time period.
