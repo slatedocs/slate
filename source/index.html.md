@@ -106,7 +106,7 @@ Other Terms:
 ```javascript
 const request = require('request')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
 request.get(baseurl + "/exchange/ticker",function(error, response, body) {
 	console.log(body);
@@ -160,7 +160,7 @@ print(data)
 ```javascript
 const request = require('request')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
 request.get(baseurl + "/exchange/v1/markets",function(error, response, body) {
 	console.log(body);
@@ -199,7 +199,7 @@ Returns an array of strings of currently active markets.
 ```javascript
 const request = require('request')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
 request.get(baseurl + "/exchange/v1/markets_details",function(error, response, body) {
 	console.log(body);
@@ -276,7 +276,7 @@ print(data)
 ```javascript
 const request = require('request')
 
-var baseurl = "https://public.coindcx.com"
+const baseurl = "https://public.coindcx.com"
 
 // Replace the "B-BTC_USDT" with the desired market pair.
 request.get(baseurl + "/market_data/trade_history?pair=B-BTC_USDT&limit=50",function(error, response, body) {
@@ -323,7 +323,7 @@ This API provides with a sorted list of most recent 30 trades by default if limi
 ```javascript
 const request = require('request')
 
-var baseurl = "https://public.coindcx.com"
+const baseurl = "https://public.coindcx.com"
 
 // Replace the "B-BTC_USDT" with the desired market pair.
 request.get(baseurl + "/market_data/orderbook?pair=B-BTC_USDT",function(error, response, body) {
@@ -388,7 +388,7 @@ This API provides with a sorted list (in descending order) of bids and asks.
 ```javascript
 const request = require('request')
 
-var baseurl = "https://public.coindcx.com"
+const baseurl = "https://public.coindcx.com"
 
 // Replace the "B-BTC_USDT" with the desired market pair.
 request.get(baseurl + "/market_data/candles?pair=B-BTC_USDT&interval=1m",function(error, response, body) {
@@ -566,16 +566,16 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-	body = {
+const	body = {
 		"side": "buy",	//Toggle between 'buy' or 'sell'.
 		"order_type": "limit_order", //Toggle between a 'market_order' or 'limit_order'.
 		"market": "SNTBTC", //Replace 'SNTBTC' with your desired market pair.
@@ -681,18 +681,18 @@ print(data);
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = ""
+const key = "";
+const secret = ""
 
 
-body = {
+const body = {
 	"timestamp": timeStamp
 }
 
@@ -790,18 +790,18 @@ print(data);
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = ""
+const key = "";
+const secret = ""
 
 
-body = {
+const body = {
   "timestamp": timeStamp
 }
 
@@ -918,16 +918,16 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
 	"side": "buy",	//Toggle between 'buy' or 'sell'.
 	"order_type": "limit_order", //Toggle between a 'market_order' or 'limit_order'.
 	"market": "SNTBTC", //Replace 'SNTBTC' with your desired market.
@@ -1079,16 +1079,16 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {"orders": [{
+const body = {"orders": [{
           "side": "buy",  //Toggle between 'buy' or 'sell'.
           "order_type": "limit_order", //Toggle between a 'market_order' or 'limit_order'.
           "market": "BTCINR", //Replace 'SNTBTC' with your desired market.
@@ -1225,18 +1225,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
 	"id": "qwd19992-43fd-14e8-b027-bb815bnb14ed", //Replace it with your Order ID.
 	"timestamp": timeStamp
 }
@@ -1349,18 +1349,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"],
   "timestamp": timeStamp
 }
@@ -1477,18 +1477,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
 	"side": "buy", //Toggle between 'buy' or 'sell'.
 	"market": "SNTBTC", //Replace 'SNTBTC' with your desired market pair.
 	"timestamp": timeStamp
@@ -1601,18 +1601,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "from_id": 352622,
   "limit": 50,
   "timestamp": timestamp
@@ -1724,18 +1724,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
 	"side": "buy", //Toggle between 'buy' or 'sell'.
 	"market": "SNTBTC", //Replace 'SNTBTC' with your desired market pair.
 	"timestamp": timeStamp
@@ -1837,18 +1837,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-	body = {
+const	body = {
 		"side": "buy", //Toggle between 'buy' or 'sell'. Not compulsory
 		"market": "SNTBTC", //Replace 'SNTBTC' with your desired market pair.
 		"timestamp": timeStamp
@@ -1957,18 +1957,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-  body = {
+const body = {
     ids: ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"]
   }
 
@@ -2066,18 +2066,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
 	"id": "ead19992-43fd-11e8-b027-bb815bcb14ed", //Replace this with your Order ID.
 	"timestamp": timeStamp
 }
@@ -2173,17 +2173,17 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "XXXX";
-secret = "YYYY";
+const key = "XXXX";
+const secret = "YYYY";
 
-body = {
+const body = {
   "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Enter your Order ID here.
   "timestamp": timeStamp,
   "price_per_unit": 123.45 // Enter the new-price here
@@ -2314,18 +2314,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "timestamp": timeStamp
 }
 
@@ -2448,16 +2448,16 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "currency_short_name": "BTC",
   "duration": 20,
   "amount": 0.5,
@@ -2575,18 +2575,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",
   "timestamp": timeStamp
 }
@@ -2719,16 +2719,16 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "side": "buy",
   "order_type": "limit_order",
   "market": "XRPBTC",
@@ -2896,18 +2896,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id": "qwd19992-43fd-14e8-b027-bb815bnb14ed",
   "timestamp": timeStamp
 }
@@ -3014,18 +3014,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id": "ead19992-43fd-11e8-b027-bb815bcb14ed",
   "timestamp": timeStamp
 }
@@ -3132,18 +3132,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id": "8a2f4284-c895-11e8-9e00-5b2c002a6ff4",
   "target_price": 0.6,
   "timestamp": timeStamp
@@ -3251,18 +3251,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id": "",
   "target_price": 0.00026,
   "itpo_id": "",
@@ -3367,18 +3367,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id" : "",
   "sl_price": 0.06,
   "timestamp": timeStamp
@@ -3480,18 +3480,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id" : "",
   "sl_price": 0.06,
   "timestamp": timeStamp
@@ -3591,18 +3591,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id" : "",
   "amount": 0.06,
   "timestamp": timeStamp
@@ -3701,18 +3701,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "id" : "",
   "amount": 0.06,
   "timestamp": timeStamp
@@ -3818,18 +3818,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "details": true,
   "market": "LTCBTC",
   "timestamp": timeStamp
@@ -4030,18 +4030,18 @@ print(data)
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "details": true,
   "id": "30b5002f-d9c1-413d-8a8d-0fd32b054c9c",
   "timestamp": timeStamp
@@ -4143,18 +4143,18 @@ Get the pagination details in the response header
 const request = require('request')
 const crypto = require('crypto')
 
-var baseurl = "https://api.coindcx.com"
+const baseurl = "https://api.coindcx.com"
 
-var timeStamp = Math.floor(Date.now());
+const timeStamp = Math.floor(Date.now());
 // To check if the timestamp is correct
 console.log(timeStamp);
 
 // Place your API key and secret below. You can generate it from the website.
-key = "";
-secret = "";
+const key = "";
+const secret = "";
 
 
-body = {
+const body = {
   "details": true,
   "market": "LTCBTC",
   "page": 2,
@@ -4256,11 +4256,11 @@ def connect_error(data):
 import io from 'socket.io-client';
 
 const socketEndpoint = "https://stream.coindcx.com";
-
-const socket = io(socketEndpoint, {
-  transports: ['websocket']
+    
+const socket = io.connect(socketEndpoint, {
+  transports: ['websocket'],
+  origin: '*',
 });
-
 
 //Join Channel
 socket.emit('join', {
@@ -4272,9 +4272,16 @@ socket.on('eventName', (response) => {
   console.log(response.data);
 });
 
+socket.connect();
+
+// client-side
+socket.on("connect", () => {
+  console.log(socket.id,'coindcx'); // x8WIv7-mJelg7on_ALbx
+});
+
 // leave a channel
 socket.emit('leave', {
-  'channelName': channelName
+  'channelName': "channelName"
 });
 ```
 
@@ -4289,8 +4296,15 @@ socket.emit('leave', {
 
 ### Response
 <ul>
-  <li>a stand for asks</li>
-  <li>b stand for bids</li>
+  <li>e is the Event type</li>
+  <li>E is the Event time</li>
+  <li>s is the symbol(currency)</li>
+  <li>U is the first update ID from last stream</li>
+  <li>u is the last update ID from last stream</li>
+  <li>a stand for Asks to be updated</li>
+  <li>b stand for Bids to be updated</li>
+  <li>type</li>
+  <li>channel</li>
 </ul>
 
 ```python
@@ -4301,8 +4315,7 @@ def on_message(response):
 
 ```javascript
 socket.on("depth-update", (response) => {
-  console.log(response.data.a); //asks
-  console.log(response.data.b); //bids
+  console.log(response.data);
 });
 ```
 
@@ -4310,8 +4323,25 @@ socket.on("depth-update", (response) => {
 
 ```json
 {
-  "a": [["251005.00000000", 0.019]],
-  "b": [["251009.00000000", 0.029]]
+  "e": "depthUpdate",
+  "E": 1634554090549,
+  "s": "BTCUSDT",
+  "U": 14413233916,
+  "u": 14413233992,
+  "b": [
+    [
+      "61139.63000000",
+      "0.02000000"
+    ]
+  ],
+  "a": [
+    [
+      "61181.01000000",
+      "2.52715000"
+    ]
+  ],
+  "type": "depth-update",
+  "channel": "B-BTC_USDT"
 }
 ```
 
@@ -4353,7 +4383,9 @@ socket.on("new-trade", (response) => {
   "p": 0.9634e-4,
   "q": 0.1e1,
   "s": "XRPBTC",
-  "m": true
+  "m": true,
+  "type":"new-trade",
+  "channel":"B-BTC_USDT"
 }
 ```
 
