@@ -85,16 +85,18 @@ GEM
     mime-types (3.0)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2015.1120)
-    mini_portile2 (2.0.0)
+    mini_portile2 (2.5.3)
     minitest (5.8.4)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.11.7)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     padrino-helpers (0.13.1)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.13.1)
       tilt (~> 1.4.1)
     padrino-support (0.13.1)
       activesupport (>= 3.1)
+    racc (1.5.2)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -131,4 +133,4 @@ DEPENDENCIES
   rouge (~> 1.10.1)
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
