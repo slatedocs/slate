@@ -22,6 +22,7 @@ includes:
   - markdown/12_0-news-and-changelog.html.md
   - markdown/12_1-news-and-changelog.html.md
   - markdown/12_2-news-and-changelog.html.md
+  - markdown/17-audit-log.html.md
   - markdown/13_1-scim.html.md
   - markdown/14-deprecations.html.md
   - markdown/14-publish-your-app.html.md

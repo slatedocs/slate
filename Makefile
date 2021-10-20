@@ -39,7 +39,7 @@ app_components_docs_gen:
 # Only bring over spec from codez
 # Internal Asanas: See https://app.asana.com/0/0/1200652548580470/f before running
 build_spec:
-	python $$OPENAPI_DIR/build.py && cp $$OPENAPI_DIR/dist/public_asana_oas.yaml ./defs/asana_oas.yaml && $$OPENAPI_DIR/app_components_oas.yaml ./defs/app_components_oas.yaml
+	python $$OPENAPI_DIR/build.py && cp $$OPENAPI_DIR/dist/public_asana_oas.yaml ./defs/asana_oas.yaml
 
 docs_gen: build_spec docs_gen_all
 
@@ -102,7 +102,7 @@ local: code_gen docs_gen serve
 latest: update docs_gen serve
 
 # Do everything to sync the openapi spec
-full_openapi_sync: library_prs api_explorer_pr docs_gen app_components serve
+full_openapi_sync: library_prs docs_gen serve
 
 app_components: app_components_docs_gen
 
