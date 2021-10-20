@@ -544,6 +544,192 @@ appending the content type to the file path: `--form
 
 </section><hr class="full-line">
 <section class="full-section">
+<a id="asana-audit-log-api"></a>
+<h1 id="audit-log-api">Audit Log API</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/get-audit-log-events"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/audit_log_events</span></a></code>
+</pre>
+
+<span class="description">
+Asana's Audit Log is an immutable log of [important events](/docs/supported-auditlogevents) in your organization's Asana instance.
+
+The Audit Log API allows you to monitor and act upon important security and compliance-related changes. Organizations might use this API endpoint to:
+
+* Set up proactive alerting with a Security Information and Event Management (SIEM) tool like [Splunk](https://asana.com/guide/help/api/splunk)
+* Conduct reactive investigations when a security incident takes place
+* Visualize key domain data in aggregate to identify security trends
+
+Note that since the API provides insight into what is happening in an Asana instance, the data is [read-only](/docs/get-audit-log-events). That is, there are no "write" or "update" endpoints for audit log events.
+
+Only [Service Accounts](https://asana.com/guide/help/premium/service-accounts) in [Enterprise Domains](https://asana.com/enterprise) can access Audit Log API endpoints. Authentication with a Service Account's [Personal Access Token](/docs/personal-access-token) is required. 
+
+For a full list of supported events, see [Supported AuditLogEvents](/docs/supported-auditlogevents).
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Get audit log events
+
+<a id="opIdgetAuditLogEvents"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/audit_log_events \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.auditlogapi.getAuditLogEvents(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.audit_log_api.get_audit_log_events(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.audit_log_api.get_audit_log_events(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.auditlogapi.getAuditLogEvents(workspaceGid, resourceGid, actorGid, actorType, eventType, endAt, startAt)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->auditlogapi->getAuditLogEvents($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "actor": {
+        "actor_type": "user",
+        "email": "gregsanchez@example.com",
+        "gid": "1111",
+        "name": "Greg Sanchez"
+      },
+      "context": {
+        "api_authentication_method": "cookie",
+        "client_ip_address": "1.1.1.1",
+        "context_type": "web",
+        "oauth_app_name": "string",
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+      },
+      "created_at": "2021-01-01T00:00:00.000Z",
+      "details": {},
+      "event_category": "deletion",
+      "event_type": "task_deleted",
+      "resource": {
+        "email": "string",
+        "gid": "1111",
+        "name": "Example Task",
+        "resource_subtype": "milestone",
+        "resource_type": "task"
+      }
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/audit_log_events</code>
+</p>
+
+<span class="description">
+Retrieve the audit log events that have been captured in your domain.
+
+This endpoint will return a list of [AuditLogEvent](/docs/audit-log-event) objects, sorted by creation time in ascending order. Note that the Audit Log API captures events from October 8th, 2021 and later. Queries for events before this date will not return results.
+
+There are a number of query parameters (below) that can be used to filter the set of [AuditLogEvent](/docs/audit-log-event) objects that are returned in the response. Any combination of query parameters is valid. When no filters are provided, all of the events that have been captured in your domain will match.
+
+The list of events will always be [paginated](/docs/pagination). The default limit is 1000 events. The next set of events can be retrieved using the `offset` from the previous response. If there are no events that match the provided filters in your domain, the endpoint will return `null` for the `next_page` field. Querying again with the same filters may return new events if they were captured after the last request. Once a response includes a `next_page` with an `offset`, subsequent requests can be made with the latest `offset` to poll for new events that match the provided filters.
+
+When no `offset` is provided, the response will begin with the oldest events that match the provided filters. It is important to note that [AuditLogEvent](/docs/audit-log-event) objects will be permanently deleted from our systems after 90 days. If you wish to keep a permanent record of these events, we recommend using a SIEM tool to ingest and store these logs.
+</span>
+
+<h3 id="get-audit-log-events-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?start_at<span class="param-type"> string(date-time)</span>|Filter to events created after this time (inclusive).|
+|?end_at<span class="param-type"> string(date-time)</span>|Filter to events created before this time (exclusive).|
+|?event_type<span class="param-type"> string</span>|Filter to events of this type.|
+|?actor_type<span class="param-type"> string</span>|Filter to events with an actor of this type.|
+|?actor_gid<span class="param-type"> string</span>|Filter to events triggered by the actor with this ID.|
+|?resource_gid<span class="param-type"> string</span>|Filter to events with this resource ID.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+#### Detailed descriptions
+
+**event_type**: Filter to events of this type.
+Refer to the [Supported AuditLogEvents](/docs/supported-auditlogevents) for a full list of values.
+
+**actor_type**: Filter to events with an actor of this type.
+This only needs to be included if querying for actor types without an ID. If `actor_gid` is included, this should be excluded.
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|actor_type|user|
+|actor_type|asana|
+|actor_type|asana_support|
+|actor_type|anonymous|
+|actor_type|external_administrator|
+
+<h3 id="get-audit-log-events-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [AuditLogEvent](#schemaauditlogevent)</span>|AuditLogEvents were successfully retrieved.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="full-line">
+<section class="full-section">
 <a id="asana-batch-api"></a>
 <h1 id="batch-api">Batch API</h1>
 
@@ -2767,7 +2953,7 @@ $result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' =
     },
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -2931,7 +3117,7 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
       "name": "Greg Sanchez"
     },
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "team": "12345",
     "time_period": {
       "display_name": "Q1 FY22",
@@ -2975,7 +3161,7 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
     },
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -3069,6 +3255,9 @@ Returns the complete updated goal record.
 
 **precision**: *Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
 For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
+
+**status**: The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.
+*Note* you can only write to this property if `metric` is set.
 
 #### Enumerated Values
 
@@ -3419,7 +3608,7 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
       "name": "Greg Sanchez"
     },
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "team": "12345",
     "time_period": {
       "display_name": "Q1 FY22",
@@ -3463,7 +3652,7 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
     },
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -3556,6 +3745,9 @@ Returns the full record of the newly created goal.
 
 **precision**: *Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.
 For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.
+
+**status**: The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.
+*Note* you can only write to this property if `metric` is set.
 
 #### Enumerated Values
 
@@ -3697,7 +3889,7 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
     },
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -3896,7 +4088,7 @@ $result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 
     },
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -4339,7 +4531,7 @@ $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'val
     },
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -4525,7 +4717,7 @@ $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => '
     },
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
-    "status": "string",
+    "status": "green",
     "time_period": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -13927,6 +14119,7 @@ $result = $client->tags->createTag(array('field' => 'value', 'field' => 'value')
       "42563"
     ],
     "name": "Stuff to buy",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "workspace": "12345"
   }
 }
@@ -13940,6 +14133,7 @@ $result = $client->tags->createTag(array('field' => 'value', 'field' => 'value')
     "gid": "12345",
     "resource_type": "tag",
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "followers": [
       {
         "gid": "12345",
@@ -13948,6 +14142,7 @@ $result = $client->tags->createTag(array('field' => 'value', 'field' => 'value')
       }
     ],
     "name": "Stuff to buy",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
@@ -13984,6 +14179,7 @@ Returns the full record of the newly created tag.
 |»» color<span class="param-type"> string</span>|Color of the tag.|
 |»» followers<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the tag (i.e. its description).|
 |»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -14093,6 +14289,7 @@ $result = $client->tags->getTag($tag_gid, array('param' => 'value', 'param' => '
     "gid": "12345",
     "resource_type": "tag",
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "followers": [
       {
         "gid": "12345",
@@ -14101,6 +14298,7 @@ $result = $client->tags->getTag($tag_gid, array('param' => 'value', 'param' => '
       }
     ],
     "name": "Stuff to buy",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
@@ -14216,6 +14414,7 @@ $result = $client->tags->updateTag($tag_gid, array('field' => 'value', 'field' =
     "gid": "12345",
     "resource_type": "tag",
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "followers": [
       {
         "gid": "12345",
@@ -14224,6 +14423,7 @@ $result = $client->tags->updateTag($tag_gid, array('field' => 'value', 'field' =
       }
     ],
     "name": "Stuff to buy",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
@@ -14675,6 +14875,7 @@ $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 
   "data": {
     "color": "light-green",
     "name": "Stuff to buy",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "workspace": {
       "name": "My Company Workspace"
     }
@@ -14690,6 +14891,7 @@ $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 
     "gid": "12345",
     "resource_type": "tag",
     "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
     "followers": [
       {
         "gid": "12345",
@@ -14698,6 +14900,7 @@ $result = $client->tags->createTagForWorkspace($workspace_gid, array('field' => 
       }
     ],
     "name": "Stuff to buy",
+    "notes": "Mittens really likes the stuff from Humboldt.",
     "permalink_url": "https://app.asana.com/0/resource/123456789/list",
     "workspace": {
       "gid": "12345",
@@ -14733,6 +14936,7 @@ Returns the full record of the newly created tag.
 |» data<span class="param-type"> [TagResponse](#schematagresponse)</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |»» color<span class="param-type"> string</span>|Color of the tag.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the tag (i.e. its description).|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»» name<span class="param-type"> string</span>|The name of the workspace.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
@@ -20525,11 +20729,24 @@ Status Code **200**
 | period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
 | start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 | parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
+| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
+|period|FY|
+|period|H1|
+|period|H2|
+|period|Q1|
+|period|Q2|
+|period|Q3|
+|period|Q4|
 |period|FY|
 |period|H1|
 |period|H2|
@@ -23667,6 +23884,101 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 </section><hr>
 <section>
+<a id="schemaauditlogevent"></a>
+<a id="schema_AuditLogEvent"></a>
+<a id="tocSauditlogevent"></a>
+<a id="tocsauditlogevent"></a>
+<a id="tocS_AuditLogEvent"></a>
+<h2 id="audit-log-event">AuditLogEvent</h2>
+
+```json
+{
+  "gid": "12345",
+  "actor": {
+    "actor_type": "user",
+    "email": "gregsanchez@example.com",
+    "gid": "1111",
+    "name": "Greg Sanchez"
+  },
+  "context": {
+    "api_authentication_method": "cookie",
+    "client_ip_address": "1.1.1.1",
+    "context_type": "web",
+    "oauth_app_name": "string",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
+  },
+  "created_at": "2021-01-01T00:00:00.000Z",
+  "details": {},
+  "event_category": "deletion",
+  "event_type": "task_deleted",
+  "resource": {
+    "email": "string",
+    "gid": "1111",
+    "name": "Example Task",
+    "resource_subtype": "milestone",
+    "resource_type": "task"
+  }
+}
+
+```
+
+<span class="description">
+An object representing a single event within an Asana domain.
+
+Every audit log event is comprised of an `event_type`, `actor`, `resource`, and `context`. Some events will include additional metadata about the event under `details`. See our [currently supported list of events](/docs/supported-auditlogevents) for more details.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the `AuditLogEvent`, as a string.|
+|actor<span class="param-type"> object</span>|The entity that triggered the event. Will typically be a user.|
+|» actor_type<span class="param-type"> string</span>|The type of actor.<br>Can be one of `user`, `asana`, `asana_support`, `anonymous`, or `external_administrator`.|
+|» email<span class="param-type"> string</span>|The email of the actor, if it is a user.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the actor, if it is a user.|
+|» name<span class="param-type"> string</span>|The name of the actor, if it is a user.|
+|context<span class="param-type"> object</span>|The context from which this event originated.|
+|» api_authentication_method<span class="param-type"> string</span>|The authentication method used in the context of an API request.<br>Only present if the `context_type` is `api`. Can be one of `cookie`, `oauth`, `personal_access_token`, or `service_account`.|
+|» client_ip_address<span class="param-type"> string</span>|The IP address of the client that initiated the event, if applicable.|
+|» context_type<span class="param-type"> string</span>|The type of context.<br>Can be one of `web`, `desktop`, `mobile`, `asana_support`, `asana`, `email`, or `api`.|
+|» oauth_app_name<span class="param-type"> string</span>|The name of the OAuth App that initiated the event.<br>Only present if the `api_authentication_method` is `oauth`.|
+|» user_agent<span class="param-type"> string</span>|The user agent of the client that initiated the event, if applicable.|
+|created_at<span class="param-type"> string(date-time)</span>|The time the event was created.|
+|details<span class="param-type"> object</span>|Event specific details. The schema will vary depending on the `event_type`.|
+|event_category<span class="param-type"> string</span>|The category that this `event_type` belongs to.|
+|event_type<span class="param-type"> string</span>|The type of the event.|
+|resource<span class="param-type"> object</span>|The primary object that was affected by this event.|
+|» email<span class="param-type"> string</span>|The email of the resource, if applicable.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource.|
+|» name<span class="param-type"> string</span>|The name of the resource.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of resource. Most resources will not have a subtype.|
+|» resource_type<span class="param-type"> string</span>|The type of resource.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|actor_type|user|
+|actor_type|asana|
+|actor_type|asana_support|
+|actor_type|anonymous|
+|actor_type|external_administrator|
+|api_authentication_method|cookie|
+|api_authentication_method|oauth|
+|api_authentication_method|personal_access_token|
+|api_authentication_method|service_account|
+|context_type|web|
+|context_type|desktop|
+|context_type|mobile|
+|context_type|asana_support|
+|context_type|asana|
+|context_type|email|
+|context_type|api|
+
+</section><hr>
+<section>
 <a id="schemabatch"></a>
 <a id="schema_Batch"></a>
 <a id="tocSbatch"></a>
@@ -24379,7 +24691,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Goal), b
   },
   "notes": "Start building brand awareness.",
   "start_on": "2019-09-14",
-  "status": "string",
+  "status": "green",
   "time_period": {
     "gid": "12345",
     "resource_type": "time_period",
@@ -24453,7 +24765,7 @@ A generic Asana Resource, containing a globally unique identifier.
 |» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
 |notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
 |start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
-|status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.|
+|status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.<br>*Note* you can only write to this property if `metric` is set.|
 |time_period<span class="param-type"> object¦null</span>|A generic Asana Resource, containing a globally unique identifier.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -26032,6 +26344,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Tag), bu
   "gid": "12345",
   "resource_type": "tag",
   "color": "light-green",
+  "created_at": "2012-02-22T02:06:58.147Z",
   "followers": [
     {
       "gid": "12345",
@@ -26040,6 +26353,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Tag), bu
     }
   ],
   "name": "Stuff to buy",
+  "notes": "Mittens really likes the stuff from Humboldt.",
   "permalink_url": "https://app.asana.com/0/resource/123456789/list",
   "workspace": {
     "gid": "12345",
@@ -26062,11 +26376,13 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |color<span class="param-type"> string</span>|Color of the tag.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |followers<span class="param-type"> [object]</span>|Array of users following this tag.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|notes<span class="param-type"> string</span>|Free-form textual information associated with the tag (i.e. its description).|
 |permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
 |workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|

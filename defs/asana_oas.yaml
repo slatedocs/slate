@@ -23,6 +23,7 @@ info:
   x-docs-schema-whitelist:
     - AsanaResource
     - AsanaNamedResource
+    - AuditLogEvent
     - AttachmentResponse
     - AttachmentCompact
     - BatchResponse
@@ -84,6 +85,38 @@ tags:
       An *attachment* object represents any file attached to a task in Asana,
       whether it’s an uploaded file or one associated via a third-party service
       such as Dropbox or Google Drive.
+  - name: Audit Log API
+    description: >-
+      Asana's Audit Log is an immutable log of [important events](/docs/supported-auditlogevents)
+      in your organization's Asana instance.
+
+
+      The Audit Log API allows you to monitor and act upon important security
+      and compliance-related changes. Organizations might use this API endpoint to:
+      
+
+
+      * Set up proactive alerting with a Security Information and Event Management
+      (SIEM) tool like [Splunk](https://asana.com/guide/help/api/splunk)
+
+      * Conduct reactive investigations when a security incident takes place
+
+      * Visualize key domain data in aggregate to identify security trends
+
+
+      Note that since the API provides insight into what is happening in an Asana
+      instance, the data is [read-only](/docs/get-audit-log-events). That is, there
+      are no "write" or "update" endpoints for audit log events.
+
+
+      Only [Service Accounts](https://asana.com/guide/help/premium/service-accounts)
+      in [Enterprise Domains](https://asana.com/enterprise) can access Audit Log API
+      endpoints. Authentication with a Service Account's
+      [Personal Access Token](/docs/personal-access-token) is required. 
+
+
+      For a full list of
+      supported events, see [Supported AuditLogEvents](/docs/supported-auditlogevents).
   - name: Batch API
     description: >-
       There are many cases where you want to accomplish a variety of work in
@@ -1173,6 +1206,65 @@ components:
         type: string
       example: '12345'
       x-env-variable: workspace_membership
+    audit_log_start_at:
+      name: start_at
+      in: query
+      description: Filter to events created after this time (inclusive).
+      required: false
+      schema:
+        type: string
+        format: date-time
+    audit_log_end_at:
+      name: end_at
+      in: query
+      description: Filter to events created before this time (exclusive).
+      required: false
+      schema:
+        type: string
+        format: date-time
+    audit_log_event_type:
+      name: event_type
+      in: query
+      description: >-
+        Filter to events of this type.
+
+        Refer to the [Supported AuditLogEvents](/docs/supported-auditlogevents) for
+        a full list of values.
+      required: false
+      schema:
+        type: string
+    audit_log_actor_type:
+      name: actor_type
+      in: query
+      description: >-
+        Filter to events with an actor of this type.
+
+        This only needs to be included if querying for actor types without an ID.
+        If `actor_gid` is included, this should be excluded.
+      required: false
+      schema:
+        type: string
+        enum:
+          - user
+          - asana
+          - asana_support
+          - anonymous
+          - external_administrator
+    audit_log_actor_gid:
+      name: actor_gid
+      in: query
+      description: >-
+        Filter to events triggered by the actor with this ID.
+      required: false
+      schema:
+        type: string
+    audit_log_resource_gid:
+      name: resource_gid
+      in: query
+      description: Filter to events with this resource ID.
+      required: false
+      schema:
+        type: string
   responses:
     GenericErrorResponse:
       description: >-
@@ -1411,6 +1503,153 @@ components:
                 `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.
               type: string
               example: dropbox
+    AuditLogEventActor:
+      description: >-
+        The entity that triggered the event. Will typically be a user.
+      type: object
+      properties:
+        actor_type:
+          description: >-
+            The type of actor.
+
+            Can be one of `user`, `asana`, `asana_support`, `anonymous`, or `external_administrator`.
+          type: string
+          enum:
+            - user
+            - asana
+            - asana_support
+            - anonymous
+            - external_administrator
+          example: user
+        gid:
+          description: >-
+            Globally unique identifier of the actor, if it is a user.
+          type: string
+          example: '1111'
+        name:
+          description: The name of the actor, if it is a user.
+          type: string
+          example: Greg Sanchez
+        email:
+          description: The email of the actor, if it is a user.
+          type: string
+          example: gregsanchez@example.com
+    AuditLogEventContext:
+      description: The context from which this event originated.
+      type: object
+      properties:
+        context_type:
+          description: >-
+            The type of context.
+
+            Can be one of `web`, `desktop`, `mobile`, `asana_support`, `asana`, `email`,
+            or `api`.
+          type: string
+          enum:
+            - web
+            - desktop
+            - mobile
+            - asana_support
+            - asana
+            - email
+            - api
+          example: web
+        api_authentication_method:
+          description: >-
+            The authentication method used in the context of an API request.
+
+            Only present if the `context_type` is `api`. Can be one of `cookie`, `oauth`,
+            `personal_access_token`, or `service_account`.
+          type: string
+          enum:
+            - cookie
+            - oauth
+            - personal_access_token
+            - service_account
+        client_ip_address:
+          description: The IP address of the client that initiated the event, if applicable.
+          type: string
+          example: 1.1.1.1
+        user_agent:
+          description: The user agent of the client that initiated the event, if applicable.
+          type: string
+          example: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like
+            Gecko) Chrome/51.0.2704.103 Safari/537.36
+        oauth_app_name:
+          description: >-
+            The name of the OAuth App that initiated the event.
+
+            Only present if the `api_authentication_method` is `oauth`.
+          type: string
+    AuditLogEventDetails:
+      description: Event specific details. The schema will vary depending on the `event_type`.
+      type: object
+    AuditLogEventResource:
+      description: The primary object that was affected by this event.
+      type: object
+      properties:
+        resource_type:
+          description: The type of resource.
+          type: string
+          example: task
+        resource_subtype:
+          description: The subtype of resource. Most resources will not have a subtype.
+          type: string
+          example: milestone
+        gid:
+          description: Globally unique identifier of the resource.
+          type: string
+          example: '1111'
+        name:
+          description: The name of the resource.
+          type: string
+          example: Example Task
+        email:
+          description: The email of the resource, if applicable.
+          type: string
+    AuditLogEvent:
+      description: >-
+        An object representing a single event within an Asana domain.
+
+
+        Every audit log event is comprised of an `event_type`, `actor`, `resource`,
+        and `context`.
+        Some events will include additional metadata about the event under `details`.
+        See our [currently supported list of events](/docs/supported-auditlogevents)
+        for more details.
+      type: object
+      properties:
+        gid:
+          description: >-
+            Globally unique identifier of the `AuditLogEvent`, as a string.
+          type: string
+          example: '12345'
+          x-insert-after: false
+        created_at:
+          description: The time the event was created.
+          type: string
+          format: date-time
+          example: '2021-01-01T00:00:00.000Z'
+        event_type:
+          description: The type of the event.
+          type: string
+          example: task_deleted
+        event_category:
+          description: The category that this `event_type` belongs to.
+          type: string
+          example: deletion
+        actor:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventActor'
+        resource:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventResource'
+        details:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventDetails'
+        context:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventContext'
     BatchRequest:
       description: A request object for use in a batch request.
       type: object
@@ -2182,6 +2421,9 @@ components:
                 can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk",
                 and "Off Track", respectively. When the goal is closed, the value
                 can be `missed`, `achieved`, `partial`, or `dropped`.
+
+                *Note* you can only write to this property if `metric` is set.
+              example: green
               nullable: true
             time_period:
               allOf:
@@ -3711,6 +3953,12 @@ components:
         - $ref: '#/components/schemas/TagBase'
         - type: object
           properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
             followers:
               description: Array of users following this tag.
               type: array
@@ -3774,6 +4022,12 @@ components:
                 - light-purple
                 - light-warm-gray
               example: light-green
+            notes:
+              description: >-
+                Free-form textual information associated with the
+                tag (i.e. its description).
+              type: string
+              example: Mittens really likes the stuff from Humboldt.
     TagCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -5138,6 +5392,89 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/AttachmentResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /workspaces/{workspace_gid}/audit_log_events:
+    parameters:
+      - $ref: '#/components/parameters/workspace_path_gid'
+      - $ref: '#/components/parameters/audit_log_start_at'
+      - $ref: '#/components/parameters/audit_log_end_at'
+      - $ref: '#/components/parameters/audit_log_event_type'
+      - $ref: '#/components/parameters/audit_log_actor_type'
+      - $ref: '#/components/parameters/audit_log_actor_gid'
+      - $ref: '#/components/parameters/audit_log_resource_gid'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get audit log events
+      description: >-
+        Retrieve the audit log events that have been captured in your domain.
+
+
+        This endpoint will return a list of [AuditLogEvent](/docs/audit-log-event)
+        objects,
+        sorted by creation time in ascending order. Note that the Audit Log API captures
+        events
+        from October 8th, 2021 and later. Queries for events before this date will
+        not return
+        results.
+
+
+        There are a number of query parameters (below) that can be used to filter
+        the set of
+        [AuditLogEvent](/docs/audit-log-event) objects that are returned in the response.
+        Any
+        combination of query parameters is valid. When no filters are provided, all
+        of the events
+        that have been captured in your domain will match.
+
+
+        The list of events will always be [paginated](/docs/pagination). The default
+        limit
+        is 1000 events. The next set of events can be retrieved using the `offset`
+        from the
+        previous response. If there are no events that match the provided filters
+        in your domain, the endpoint will return `null` for the `next_page` field.
+        Querying
+        again with the same filters may return new events if they were captured after
+        the
+        last request. Once a response includes a `next_page` with an `offset`, subsequent
+        requests can be made with the latest `offset` to poll for new events that
+        match
+        the provided filters.
+
+
+        When no `offset` is provided, the response will begin with the oldest events
+        that match the provided filters. It is important to note that
+        [AuditLogEvent](/docs/audit-log-event) objects will be permanently deleted
+        from our systems
+        after 90 days. If you wish to keep a permanent record of these events, we
+        recommend using a
+        SIEM tool to ingest and store these logs.
+      tags:
+        - Audit Log API
+      operationId: getAuditLogEvents
+      responses:
+        200:
+          description: >-
+            AuditLogEvents were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuditLogEvent'
         400:
           $ref: '#/components/responses/BadRequest'
         401:

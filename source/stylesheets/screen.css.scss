@@ -673,11 +673,12 @@ html, body {
             td:nth-child(2) {
               font-family: Consolas, Menlo, monospace;
               color: #FF5263;
-              white-space: nowrap;
+              // white-space: nowrap;
               font-size: 13px;
               line-height: 22px;
               font-weight: 400;
               width: 150px;
+              max-width: 200px;
 
               @media (max-width: $tablet-width) {
                 width: auto;
