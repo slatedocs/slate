@@ -27,6 +27,7 @@ curl "https://cloudmc_endpoint/api/rest/reseller/settings/billing/find?organizat
     "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
+    "daysBeforeCardWarnings": [30],
     "customerInformation": ["accountId"],
     "address": ["Address line 1", "Address line 2", "etc."],
     "termsAndConditions": "My terms and conditions...",
@@ -44,6 +45,7 @@ Attributes | &nbsp;
 `daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
+`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
 `termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
@@ -73,6 +75,7 @@ curl "https://cloudmc_endpoint/api/rest/reseller/settings/billing/f7ad28a8-1227-
     "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
+    "daysBeforeCardWarnings": [30],
     "customerInformation": ["accountId"],
     "address": ["Address line 1", "Address line 2", "etc."],
     "termsAndConditions": "My terms and conditions..."
@@ -90,6 +93,7 @@ Attributes | &nbsp;
 `daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
+`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
 `termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
@@ -117,6 +121,7 @@ curl -X POST "https://cloudmc_endpoint/api/rest/reseller/settings/billing" \
   "daysBeforeAutoApproval": 3,
   "daysBeforeAutoPayment": 5,
   "daysBeforeAutoDraft": 3,
+  "daysBeforeCardWarnings": [30],
   "customerInformation": ["accountId"],
   "address": ["Address line 1", "Address line 2", "etc."],
   "termsAndConditions": "My terms and conditions..."
@@ -136,6 +141,7 @@ curl -X POST "https://cloudmc_endpoint/api/rest/reseller/settings/billing" \
     "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
+    "daysBeforeCardWarnings": [30],
     "customerInformation": ["accountId"],
     "address": ["Address line 1", "Address line 2", "etc."],
     "termsAndConditions": "My terms and conditions..."
@@ -148,6 +154,7 @@ Required | &nbsp;
 `daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
+`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 
 Optional | &nbsp;
 ---------- | -----------
@@ -183,6 +190,7 @@ curl -X PUT "https://cloudmc_endpoint/api/rest/reseller/settings/billing/d785ffc
    "daysBeforeAutoDraft": 3,
   "daysBeforeAutoApproval": 3,
   "daysBeforeAutoPayment": 5,
+  "daysBeforeCardWarnings": [30],
   "customerInformation": ["accountId"],
   "address": ["Address line 1", "Address line 2", "etc."],
   "termsAndConditions": "My terms and conditions..."
@@ -202,6 +210,7 @@ curl -X PUT "https://cloudmc_endpoint/api/rest/reseller/settings/billing/d785ffc
     "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
+    "daysBeforeCardWarnings": [30],
     "customerInformation": ["accountId"],
     "address": ["Address line 1", "Address line 2", "etc."],
     "termsAndConditions": "My terms and conditions..."
@@ -216,6 +225,7 @@ Required | &nbsp;
 `daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
+`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 
 Optional | &nbsp;
 ---------- | -----------
