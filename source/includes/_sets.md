@@ -97,6 +97,12 @@ curl -H "Content-Type:application/json" \
 -X POST https://api.practitest.com/api/v2/projects/4566/sets.json \
 -d '{"data": { "type": "sets", "attributes": {"name": "one", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
+# create a Test Set with author
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/sets.json \
+-d '{"data": { "type": "sets", "attributes": {"name": "New TestSet with author", "author-id": 4370, "priority": "highest"}  } }'
+
 # create a Test Set with 2 test-ids to become instances:
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
