@@ -917,3 +917,61 @@ Attributes | &nbsp;
 `endDate`<br/>*date* | The end date of the pricing package. If it is not present, there is no end date defined.
 `creationDate`<br/>*Object* | The date the pricing package was created.
 `name` <br/>*Object* | A map of language keys to the name of the pricing package in the specified language. 
+
+<!-------------------- LIST ORG BILLING EMAILS -------------------->
+### List billing emails
+
+`GET /organizations/:organization_id/billing_emails`
+
+Retrieves a list of billing emails configured on the org. These emails will also receive billing related emails along with users that have the Admin:Billing role.
+
+```shell
+# Retrieve billing emails
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_emails" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "billingEmails": {
+      "example@email.com": "John",
+      "billing@company.com": "Billing team"
+    }
+  }
+}
+```
+
+Attributes | &nbsp;
+---- | -----------
+`billingEmails`<br/>*map* | A map of billing emails and names associated with them.
+
+<!-------------------- Update ORG BILLING EMAILS -------------------->
+### Update billing emails
+
+`PUT /organizations/:organization_id/billing_emails`
+
+Update the list of billing emails configured on the org. These emails will also receive billing related emails along with users that have the Admin:Billing role.
+
+```shell
+# Update billing emails
+curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_emails" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "request_body"
+```
+> Request body example:
+
+```json
+{
+   "billingEmails": {
+      "example@email.com": "John",
+      "billing@company.com": "Billing team"
+   }
+}
+```
+
+Required | &nbsp;
+---- | ----
+`billingEmails`<br/>*map* | A map of billing emails and names associated with them. There is a maximum of three emails that can be configured. Each entry must have a valid email specified along with a name.
