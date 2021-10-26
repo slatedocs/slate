@@ -149,7 +149,7 @@ We use OAuth2 to authorize the requests.
 curl "https://getquipu.com/oauth/token" \
   -H "Authorization: Basic UHROeGZDc0drbGltRXJRcVZUZUFGRFVUVWpkTVZDcmpORklsclJlS..." \
   -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
-  -d "scope=ecommerce"
+  -d "scope=ecommerce" \
   -d "grant_type=client_credentials"
 ```
 
