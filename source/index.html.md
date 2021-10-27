@@ -64,6 +64,14 @@ Example:
 
 <code>GET /invoices?**sort=-issued_at,total_amount** # => order_by issued_at desc, total_amount asc;</code>
 
+## Rate limiting
+
+In order to guarantee a fair usage of the platform by all users, we set a maximum of 200 requests every 15 minutes, for a specific pair of credentials.
+
+We implement the standard `RateLimit` headers defined in section 3 of [this document](https://tools.ietf.org/id/draft-polli-ratelimit-headers-00.html) so the API user can know the limit, how much usage there is left, and when will this usage be reset.
+
+In the event that a request surpasses the allocated limit for that account, a 429 status code will be returned.
+
 ## Endpoints summary
 
 ### [Contacts](#contacts-section)
@@ -149,7 +157,7 @@ We use OAuth2 to authorize the requests.
 curl "https://getquipu.com/oauth/token" \
   -H "Authorization: Basic UHROeGZDc0drbGltRXJRcVZUZUFGRFVUVWpkTVZDcmpORklsclJlS..." \
   -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
-  -d "scope=ecommerce"
+  -d "scope=ecommerce" \
   -d "grant_type=client_credentials"
 ```
 
