@@ -4283,6 +4283,19 @@ socket.on("connect", () => {
 socket.emit('leave', {
   'channelName': "channelName"
 });
+
+//These examples has been tested on the following socket.io versions :
+// 1. socket.io-2.3.1.slim.dev.js
+// 2. socket.io-2.3.1.slim.js
+// 3. socket.io-2.3.1.dev.js
+// 4. socket.io-2.3.1.js
+// 5. socket.io-2.3.0.slim.dev.js
+// 6. socket.io-2.3.0.slim.js
+// 7. socket.io-2.3.0.dev.js
+// 8. socket.io-2.3.0.js
+// 9. socket.io-2.2.0.slim.dev.js
+// 10. socket.io-2.2.0.slim.js
+// 11. socket.io-1.0.0.js
 ```
 
 ## Order book
