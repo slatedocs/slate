@@ -1,2 +1,12 @@
-build/
+.git/
 .github/
+build/
+.editorconfig
+.gitattributes
+.gitignore
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+deploy.sh
+font-selection.json
+README.md
+Vagrantfile
