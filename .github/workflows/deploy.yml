@@ -5,6 +5,9 @@ on:
     branches: [ 'main' ]
 
 jobs:
+  permissions:
+    contents: write
+
   deploy:
     runs-on: ubuntu-latest
     env:

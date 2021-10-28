@@ -5,7 +5,25 @@ on:
     branches: [ 'dev' ]
 
 jobs:
-  deploy:
+  push_to_registry:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_ACCESS_KEY }}
+        repository: slatedocs/slate
+        tag_with_ref: true
+  
+  deploy_gh:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
     env:
       ruby-version: 2.5
@@ -32,14 +50,6 @@ jobs:
         bundle install --jobs 4 --retry 3
 
     - run: bundle exec middleman build
-
-    - name: Push to Docker Hub
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_ACCESS_KEY }}
-        repository: slatedocs/slate
-        tag_with_ref: true
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3.7.0-8
