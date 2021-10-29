@@ -19294,15 +19294,12 @@ Searching for multiple exact matches of a custom field is not supported.
 |?tags.not<span class="param-type"> string</span>|Comma-separated list of tag IDs|
 |?tags.all<span class="param-type"> string</span>|Comma-separated list of tag IDs|
 |?teams.any<span class="param-type"> string</span>|Comma-separated list of team IDs|
-|?followers.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?followers.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?created_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?created_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?assigned_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?assigned_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
-|?liked_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?liked_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
-|?commented_on_by.any<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?commented_on_by.not<span class="param-type"> string</span>|Comma-separated list of user identifiers|
 |?due_on.before<span class="param-type"> string(date)</span>|ISO 8601 date string|
 |?due_on.after<span class="param-type"> string(date)</span>|ISO 8601 date string|
@@ -19922,24 +19919,18 @@ $result = $client->teams->addUserForTeam($team_gid, array('field' => 'value', 'f
 {
   "data": {
     "gid": "12345",
-    "resource_type": "user",
-    "name": "Greg Sanchez",
-    "email": "gsanchez@example.com",
-    "photo": {
-      "image_1024x1024": "https://...",
-      "image_128x128": "https://...",
-      "image_21x21": "https://...",
-      "image_27x27": "https://...",
-      "image_36x36": "https://...",
-      "image_60x60": "https://..."
+    "resource_type": "team_membership",
+    "is_guest": false,
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
     },
-    "workspaces": [
-      {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
-    ]
+    "user": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    }
   }
 }
 ```
@@ -19952,6 +19943,8 @@ $result = $client->teams->addUserForTeam($team_gid, array('field' => 'value', 'f
 
 <span class="description">
 The user making this call must be a member of the team in order to add others. The user being added must exist in the same organization as the team.
+
+Returns the complete team membership record for the newly added user.
 </span>
 
 <h3 id="add-a-user-to-a-team-parameters">Parameters</h3>
@@ -19969,7 +19962,7 @@ The user making this call must be a member of the team in order to add others. T
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [User](#schemauser)</span>|Returns the full user record for the added user.|
+|200<span class="param-type"> [TeamMembership](#schemateammembership)</span>|Successfully added user to the team.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
