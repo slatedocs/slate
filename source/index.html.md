@@ -101,7 +101,7 @@ Esse endpoint insere um lead.
 
 ### HTTP Request
 
-`POST http://sandbox.f1sales.org/api/public/leads`
+`POST https://sandbox.f1sales.org/public/api/v1/leads`
 
 ### Paremetros da Query
 
