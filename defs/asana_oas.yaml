@@ -10435,13 +10435,6 @@ paths:
         schema:
           type: string
         example: 12345,23456,34567
-      - name: followers.any
-        in: query
-        description: >-
-          Comma-separated list of user identifiers
-        schema:
-          type: string
-        example: 12345,23456,34567
       - name: followers.not
         in: query
         description: >-
@@ -10477,21 +10470,7 @@ paths:
         schema:
           type: string
         example: 12345,23456,34567
-      - name: liked_by.any
-        in: query
-        description: >-
-          Comma-separated list of user identifiers
-        schema:
-          type: string
-        example: 12345,23456,34567
       - name: liked_by.not
-        in: query
-        description: >-
-          Comma-separated list of user identifiers
-        schema:
-          type: string
-        example: 12345,23456,34567
-      - name: commented_on_by.any
         in: query
         description: >-
           Comma-separated list of user identifiers
@@ -11216,6 +11195,9 @@ paths:
         The user making this call must be a member of the team in order to add
         others. The user being added must exist in the same organization as the
         team.
+
+
+        Returns the complete team membership record for the newly added user.
       tags:
         - Teams
       operationId: addUserForTeam
@@ -11232,14 +11214,14 @@ paths:
       responses:
         200:
           description: >-
-            Returns the full user record for the added user.
+            Successfully added user to the team.
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/UserResponse'
+                    $ref: '#/components/schemas/TeamMembershipResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
