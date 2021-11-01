@@ -748,7 +748,7 @@ BCA| Yes (Teller BCA); No (Teller from other banks)| No|Rp 0|
 Bank Permata| Yes| No |Rp 5000| 
 CIMB Niaga| Yes| Yes |Rp 0|
 
-# E-Wallet API
+## E-Wallet API
 
 E-Wallet API allows partners to  charge and receive payments directly from top e-wallet issuers. With one integration, they are able to get access to all of OY’s available e-wallets and the upcoming e-wallet integrations.
 
