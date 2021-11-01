@@ -747,3 +747,70 @@ BNI| Yes| No |Rp 0|
 BCA| Yes (Teller BCA); No (Teller from other banks)| No|Rp 0| 
 Bank Permata| Yes| No |Rp 5000| 
 CIMB Niaga| Yes| Yes |Rp 0|
+
+# E-Wallet API
+
+E-Wallet API allows partners to  charge and receive payments directly from top e-wallet issuers. With one integration, they are able to get access to all of OY’s available e-wallets and the upcoming e-wallet integrations.
+
+### E-Wallet Product Flow
+
+![E-Wallet API](images/ewallet_product_flow.png)
+
+### Key Features
+1.  **Support multiple e-wallets**  - Currently, we support ShopeePay and LinkAja e-wallets. OVO and DANA are coming soon
+2.  **Transaction tracking and monitoring capability**  - You can track all created e-wallet transactions, incoming payments, and their respective details through our API callback or OY! dashboard. You will receive a callback for all incoming transactions.
+3.  **Check Status capability**  - We have a Check Status endpoint available for you to regularly check the status of an e-wallet transaction
+
+### Registration and Setup
+
+Follow the below check-list to ensure you're all set up to use our E-Wallet API service:
+
+1.  Create an account
+2.  Upgrade your account by submitting the required documentations
+3.  Have your upgrade request approved
+4.  Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons)
+5.  Submit your IPs and callback URLs to your business representative or to partner@oyindonesia.com
+6.  Receive an API Key from us (note: it is required for API authorization purpose)
+7.  Integrate with our E-Wallet API
+
+### Testing
+
+Once you successfully create an OY! account, you can immediately simulate E-Wallet payments via API.
+
+Follow the below steps to test the E-Wallet flow:
+
+1.  Create an account
+    
+2.  Send a request to activate API E-Wallet product and obtain staging API Key to your business representative
+    
+3.  Create a VA number by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/e-wallet-aggregator/create-transaction using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#create-e-wallet-transaction-api-e-wallet-aggregator-coming-soon)
+    
+4.  After an E-Wallet transaction is generated, partner can simulate E-Wallet payment through your dashboard (in Staging environment) by going to Settings, and choose "E-wallet Callback"
+    
+5.  Fill in the e-wallet name, the generated ref number (you can fetch the ref number information through a Create E-Wallet Transaction response or through a Check Status response), and amount in the E-Wallet Callback section
+
+![E-Wallet API](images/ewallet_testing.png)
+    
+6.  If a payment is successful, we will send a callback to the registered staging callback URL destination
+    
+7.  The payment made to the e-wallet transaction can be monitored through OY! dashboard, in the "E-Wallet" sidebar
+
+### How to Use
+
+We provide 2 endpoints for you to use:
+
+-   [Create E-Wallet Transaction](https://api-docs.oyindonesia.com/#create-e-wallet-transaction-api-e-wallet-aggregator-coming-soon): Use this API to create an e-wallet transaction for your user
+-   [Check E-Wallet Transaction Status](https://api-docs.oyindonesia.com/#check-e-wallet-transaction-status-api-e-wallet-aggregator-coming-soon): Use this API to check the status of an e-wallet transaction. We highly recommend that you implement this endpoint.
+
+All details regarding your created e-wallet and its payments can be retrieved via our API endpoint (Check E-Wallet Transaction Status) or can be monitored directly from the OY! dashboard (through the E-Wallet sidebar)
+
+![E-Wallet API](images/ewallet_dashboard.png)
+
+### E-Wallet Details
+
+E-Wallet Issuer | E-Wallet Code| Minimum Expiration Time | Maximum Expiration Time | Redirection Feature
+--------- | ---- | -------- | ------- | ------- |
+OVO | ovo_ewallet | Parameter is ignored, always set to 55 seconds | Parameter is ignored, always set to 55 seconds | Not supported
+ShopeePay | shopeepay_ewallet | 1 minute | 60 minutes | Support
+Linkaja | linkaja_ewallet | Parameter is ignored, always set to 5 minutes | Parameter is ignored, always set to 5 minutes | Support
+DANA | dana_ewallet | 1 minute | 60 minutes | Support
