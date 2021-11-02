@@ -39,7 +39,7 @@ app_components_docs_gen:
 # Only bring over spec from codez
 # Internal Asanas: See https://app.asana.com/0/0/1200652548580470/f before running
 build_spec:
-	python $$OPENAPI_DIR/build.py && cp $$OPENAPI_DIR/dist/public_asana_oas.yaml ./defs/asana_oas.yaml && $$OPENAPI_DIR/app_components_oas.yaml ./defs/app_components_oas.yaml
+	python $$OPENAPI_DIR/build.py && cp $$OPENAPI_DIR/dist/public_asana_oas.yaml ./defs/asana_oas.yaml && cp $$OPENAPI_DIR/app_components_oas.yaml ./defs/app_components_oas.yaml
 
 docs_gen: build_spec docs_gen_all
 
@@ -57,7 +57,7 @@ build:
 first_time_setup:
 	cd .. && git clone git@github.com:rossgrambo/widdershins.git
 	cd .. && mkdir swagger_forks && cd swagger_forks && git clone git@github.com:rossgrambo/swagger-parser.git && git clone git@github.com:rossgrambo/swagger-codegen-generators.git
-	cd .. && git clone git@github.com:rossgrambo/swagger-codegen.git
+	cd .. && git clone git@github.com:swagger-api/swagger-codegen.git
 	cd .. && mkdir client_libraries && cd client_libraries && git clone git@github.com:Asana/node-asana.git && git clone git@github.com:Asana/php-asana.git && git clone git@github.com:Asana/java-asana.git && git clone git@github.com:Asana/ruby-asana.git && git clone git@github.com:Asana/python-asana.git
 
 update:
