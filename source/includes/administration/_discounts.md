@@ -22,7 +22,7 @@ curl "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6
     {
       "applyToNewCustomersOnly": true,
       "discountedProducts": {},
-      "durationMonths": 22354,
+      "durationDays": 60,
       "type": "PERCENTAGE",
       "packageDiscount": 20.0,
       "discountScope": "ALL_PRODUCTS",
@@ -50,7 +50,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the discount.
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discounts. All pricing products specified will have the discount value applied to them.
-`durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
+`durationDays`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
 `type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
 `packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing.
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
@@ -84,7 +84,7 @@ curl "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b494-cc6
     {
       "applyToNewCustomersOnly": true,
       "discountedProducts": {},
-      "durationMonths": 22354,
+      "durationDays": 60,
       "type": "PERCENTAGE",
       "packageDiscount": 20.0,
       "discountScope": "ALL_PRODUCTS",
@@ -109,7 +109,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the discount.
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discounts. All pricing products specified will have the discount value applied to them.
-`durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
+`durationDays`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
 `type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
 `packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing.
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
@@ -145,7 +145,7 @@ curl -X POST "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-
   },
   "startDate": "2021-07-23T00:00:00.000Z",
   "type": "PERCENTAGE",
-  "durationMonths": 4,
+  "durationDays": 60,
   "discountedProducts": {},
   "discountedCategories": {
     "8cf73cc0-b86e-49b4-a102-6102894f7955": 2, 
@@ -164,7 +164,7 @@ curl -X POST "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-
   "data": {
       "applyToNewCustomersOnly": false,
       "discountedProducts": {},
-      "durationMonths": 4,
+      "durationDays": 60,
       "type": "PERCENTAGE",
       "discountScope": "CATEGORIES",
       "discountedCategories": {
@@ -199,7 +199,7 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date. 
-`durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
+`durationDays`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
 
 <!-------------------- EDIT DISCOUNT -------------------->
 ### Edit discount
@@ -221,7 +221,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b
     "en": "End of summer Discount",
     "fr": "Réduction estival fin d'été"
   },
-  "durationMonths": 4,
+  "durationDays": 60,
   "discountedProducts": {},
   "discountedCategories": {
     "8cf73cc0-b86e-49b4-a102-6102894f7955": 2, 
@@ -240,7 +240,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b
   "data": {
       "applyToNewCustomersOnly": false,
       "discountedProducts": {},
-      "durationMonths": 4,
+      "durationDays": 60,
       "type": "PERCENTAGE",
       "discountScope": "CATEGORIES",
       "discountedCategories": {
@@ -272,7 +272,7 @@ Optional | &nbsp;
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discount values. All pricing products specified will have the discount value applied to them. Required to be non-empty if scope is "PRODUCTS". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date. 
-`durationMonths`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
+`durationDays`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
 
 <!-------------------- DELETE DISCOUNT -------------------->
 ### Delete discount
@@ -312,7 +312,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/efd32752-c6f2-45cf-b
   "data": {
       "applyToNewCustomersOnly": false,
       "discountedProducts": {},
-      "durationMonths": 4,
+      "durationDays": 60,
       "type": "PERCENTAGE",
       "discountScope": "CATEGORIES",
       "isDeactivated": true,

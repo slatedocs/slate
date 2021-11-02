@@ -136,7 +136,7 @@ curl "https://cloudmc_endpoint/rest/invoices/find/efd32752-c6f2-45cf-b494-cc6be8
               "source": {
                 "applyToNewCustomersOnly": false,
                 "discountedProducts": {},
-                "durationMonths": 6,
+                "durationDays": 60,
                 "type": "PERCENTAGE",
                 "cutoffDate": "2021-09-16T00:00:00Z",
                 "adjustmentReferenceId": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
@@ -187,7 +187,7 @@ curl "https://cloudmc_endpoint/rest/invoices/find/efd32752-c6f2-45cf-b494-cc6be8
               "source": {
                 "applyToNewCustomersOnly": false,
                 "discountedProducts": {},
-                "durationMonths": 12,
+                "durationDays": 60,
                 "type": "PERCENTAGE",
                 "packageDiscount": 23.0,
                 "cutoffDate": "2021-08-29T00:00:00Z",
@@ -558,7 +558,7 @@ curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-
               "source": {
                 "applyToNewCustomersOnly": false,
                 "discountedProducts": {},
-                "durationMonths": 6,
+                "durationDays": 60,
                 "type": "PERCENTAGE",
                 "cutoffDate": "2021-09-16T00:00:00Z",
                 "adjustmentReferenceId": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
@@ -609,7 +609,7 @@ curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-
               "source": {
                 "applyToNewCustomersOnly": false,
                 "discountedProducts": {},
-                "durationMonths": 12,
+                "durationDays": 60,
                 "type": "PERCENTAGE",
                 "packageDiscount": 23.0,
                 "cutoffDate": "2021-08-29T00:00:00Z",
@@ -980,7 +980,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
               "source": {
                 "applyToNewCustomersOnly": false,
                 "discountedProducts": {},
-                "durationMonths": 6,
+                "durationDays": 60,
                 "type": "PERCENTAGE",
                 "cutoffDate": "2021-09-16T00:00:00Z",
                 "adjustmentReferenceId": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
@@ -1031,7 +1031,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
               "source": {
                 "applyToNewCustomersOnly": false,
                 "discountedProducts": {},
-                "durationMonths": 12,
+                "durationDays": 60,
                 "type": "PERCENTAGE",
                 "packageDiscount": 23.0,
                 "cutoffDate": "2021-08-29T00:00:00Z",
