@@ -386,19 +386,26 @@ Step by step instructions can be found [here](https://docs.oyindonesia.com/#how-
 1. Log on your OY! dashboard
 2. Choose "Staging" environment
 3. Click "Request Money" menu, and choose "Payment Checkout"
-4. Click "Create Payment Checkout Link"
+4. Click "Create Payment Link"
 5. Fill in the necessary details
 
-| Parameter     | Description |
-| ----------- | ----------- |
-| Amount Type    |You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount|
-| Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
-| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QR Code |
-| Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
-| Expiration Fee |You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
-| Payment Type |You can choose between "Non Invoice" and "Invoice". By choosing "Invoice", you will be able to upload the invoice PDF or list down the items to be invoiced (item name, description, quantity, purchase date, price per item, and total price). You can also choose whether to assign a static virtual account to the corresponding user.  |
-| Description   |The description of the payment link. Usually this is used to describe the purpose of the payment checkout page|
-|Customer Detail |Details that can be specified: Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link to the specified email address (if email address is filled in)|
+Payment Checkout consists of 3 parameter types: Transaction-related, Customer Detail, and General Payment Checkout Configuration.
+
+Parameter Type   | Parameter Name| Definition|
+| ----------- | ----------- |----------- |
+| Transaction-related|Amount | The payment amount that will be displayed in the payment checkout page  | 
+| Transaction-related|Description | The description of the payment link. Usually this is used to describe the purpose of the payment checkout page  | 
+| Transaction-related|Partner Transaction ID| A unique transaction ID that you can assign to a transaction | 
+| Customer Detail| Customer details that can be specified (optional): Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link to the specified email address (if email address is filled in)| Customer Name, Phone Number, Email, and Notes |
+| Payment Checkout Configuration| Amount Type | You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount |
+| Payment Checkout Configuration| Payment Method | The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QRIS |
+| Payment Checkout Configuration| Admin Fee Method | You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
+| Payment Checkout Configuration| Payment Link Expiration Date | You can choose (specify the day(s) and/or hour(s)) of when the payment link will expire after it is created. For example, if you want the link to expire 1 day after it is created, fill 1 day 0 hour in the Payment Link Expiration Date field |
+
+Note: For Payment Checkout Configuration-related fields (Amount Type, Payment Method, Admin Fee Method, Payment Link Expiration Date), you can choose to save your selected configuration for the future transactions by ticking the "Use this configuration for future transaction(s) option. By saving it, you will no longer need to fill in the fields again the next time you create a payment link.
+
+
+
 
 **Creating API-generated test links** 
 
@@ -433,26 +440,25 @@ Whether you create the link through URL, dashboard, or API, you can see the deta
 
 ### How to Use Payment Checkout via Dashboard
 
-1. Log on your OY! dashboard
-2. Choose "Production" environment
-3. Click "Request Money" menu, and choose "Payment Checkout"
-4. Click "Create Payment Checkout Link"
-5. Fill in the necessary details
+1.  Log on your OY! dashboard
+2.  Choose "Production" environment
+3.  Click "Request Money" menu, and choose "Payment Checkout"
+4.  Click "Create Payment Checkout Link"
+5.  Fill in the necessary details
 
-| Parameter     | Description |
-| ----------- | ----------- |
-| Amount Type    |You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount|
-| Partner Transaction ID    |A unique transaction ID that you can assign for a transaction|
-| Payment Method   |The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QR Code|
-| Admin Fee Method  |You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
-| Payment Link Expiration Date | You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached |
-| Transaction Due Date  |Due date of a transaction. You can choose between "Same with Payment Link Expiration Date" and "Custom". Your customer will get reminders to pay on D-1, D-Day, and D+7 from the transaction due date.  A transaction can exceed the due date, but the link can still be opened (because transaction due date and link expiration time are 2 separate things).|
-| Description   |The description of the payment link. Usually this is used to describe the purpose of the payment checkout page|
-|Customer Detail |Details that can be specified: Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link as well as the payment success receipt to the specified email address (if email address is filled in)|
+Payment Checkout consists of 3 parameter types: Transaction-related, Customer Detail, and General Payment Checkout Configuration.
 
-Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
+Parameter Type   | Parameter Name| Definition|
+| ----------- | ----------- |----------- |
+| Transaction-related|Amount | The payment amount that will be displayed in the payment checkout page  | 
+| Transaction-related|Description | The description of the payment link. Usually this is used to describe the purpose of the payment checkout page  | 
+| Transaction-related|Partner Transaction ID| A unique transaction ID that you can assign to a transaction | 
+| Customer Detail| Customer details that can be specified (optional): Customer Name, Phone Number, Email, and Notes. We will send the payment checkout page link to the specified email address (if email address is filled in)| Customer Name, Phone Number, Email, and Notes |
+| Payment Checkout Configuration| Amount Type | You can choose between Open Amount and Closed Amount.  Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount |
+| Payment Checkout Configuration| Payment Method | The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QRIS |
+| Payment Checkout Configuration| Admin Fee Method | You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
+| Payment Checkout Configuration| Payment Link Expiration Date | You can choose (specify the day(s) and/or hour(s)) of when the payment link will expire after it is created. For example, if you want the link to expire 1 day after it is created, fill 1 day 0 hour in the Payment Link Expiration Date field |
 
-Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
 
 ### How to Use Invoice via Dashboard
 
