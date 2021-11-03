@@ -748,7 +748,7 @@ BCA| Yes (Teller BCA); No (Teller from other banks)| No|Rp 0|
 Bank Permata| Yes| No |Rp 5000| 
 CIMB Niaga| Yes| Yes |Rp 0|
 
-## E-Wallet API
+## API E-Wallet Aggregator
 
 E-Wallet API allows partners to  charge and receive payments directly from top e-wallet issuers. With one integration, they are able to get access to all of OY’s available e-wallets and the upcoming e-wallet integrations.
 
@@ -810,7 +810,7 @@ All details regarding your created e-wallet and its payments can be retrieved vi
 
 E-Wallet Issuer | E-Wallet Code| Minimum Expiration Time | Maximum Expiration Time | Redirection Feature
 --------- | ---- | -------- | ------- | ------- |
-OVO | ovo_ewallet | Parameter is ignored, always set to 55 seconds | Parameter is ignored, always set to 55 seconds | Not supported
+OVO (coming soon)| ovo_ewallet | Parameter is ignored, always set to 55 seconds | Parameter is ignored, always set to 55 seconds | Not supported
 ShopeePay | shopeepay_ewallet | 1 minute | 60 minutes | Support
 Linkaja | linkaja_ewallet | Parameter is ignored, always set to 5 minutes | Parameter is ignored, always set to 5 minutes | Support
-DANA | dana_ewallet | 1 minute | 60 minutes | Support
+DANA (coming soon)| dana_ewallet | 1 minute | 60 minutes | Support
