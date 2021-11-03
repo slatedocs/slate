@@ -404,8 +404,11 @@ Parameter Type   | Parameter Name| Definition|
 
 Note: For Payment Checkout Configuration-related fields (Amount Type, Payment Method, Admin Fee Method, Payment Link Expiration Date), you can choose to save your selected configuration for the future transactions by ticking the "Use this configuration for future transaction(s) option. By saving it, you will no longer need to fill in the fields again the next time you create a payment link.
 
+![Payment Checkout](images/create_payment_link_1.png)
 
+![Payment Checkout](images/create_payment_link_2.png)
 
+![Payment Checkout](images/create_payment_link_3.png)
 
 **Creating API-generated test links** 
 
@@ -458,6 +461,15 @@ Parameter Type   | Parameter Name| Definition|
 | Payment Checkout Configuration| Payment Method | The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QRIS |
 | Payment Checkout Configuration| Admin Fee Method | You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)|
 | Payment Checkout Configuration| Payment Link Expiration Date | You can choose (specify the day(s) and/or hour(s)) of when the payment link will expire after it is created. For example, if you want the link to expire 1 day after it is created, fill 1 day 0 hour in the Payment Link Expiration Date field |
+
+Note: For Payment Checkout Configuration-related fields (Amount Type, Payment Method, Admin Fee Method, Payment Link Expiration Date), you can choose to save your selected configuration for the future transactions by ticking the "Use this configuration for future transaction(s) option. By saving it, you will no longer need to fill in the fields again the next time you create a payment link.
+
+![Payment Checkout](images/create_payment_link_4.png)
+
+![Payment Checkout](images/create_payment_link_5.png)
+
+![Payment Checkout](images/create_payment_link_6.png)
+
 
 
 ### How to Use Invoice via Dashboard
