@@ -46,7 +46,7 @@ Attributes | &nbsp;
 `daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending email to customers upon billing exceptions.
+`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
 `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
@@ -96,7 +96,7 @@ Attributes | &nbsp;
 `daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending email to customers upon billing exceptions.
+`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
 `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
@@ -168,7 +168,7 @@ Optional | &nbsp;
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
 `termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending email to customers upon billing exceptions.
+`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
 
 <!-------------------- UPDATE BILLING SETTINGS -------------------->
 #### Update billing settings
@@ -241,7 +241,7 @@ Optional | &nbsp;
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
 `termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending email to customers upon billing exceptions.
+`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
 
 <!-------------------- DELETE BILLING SETTINGS -------------------->
 #### Delete billing settings
