@@ -7,74 +7,96 @@
   <a href="https://hub.docker.com/r/slatedocs/slate"><img src="https://img.shields.io/docker/v/slatedocs/slate?sort=semver" alt="Docker Version" /></a>
 </p>
 
-These docs are live at: https://developers.asana.com/docs
+This documentation is live at: https://developers.asana.com/docs
 
-Middleman requires ruby
-Swagger requires mvn (brew install maven)
+# OpenAPI Spec
 
-OpenAPI Spec
-------------
-### What is it
+## What is it?
 The Asana OpenAPI spec is currently used to generate our documentation. You can also use it to generate mock servers, client code, and many other things. You can read more about OpenAPI specs [here](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md).
 
-### Where is it
-The up-to-date Asana OpenAPI spec is in this repo. Here's a [link](https://github.com/Asana/developer-docs/blob/master/defs/asana_oas.yaml).
+## Where is it?
+The up-to-date Asana OpenAPI spec is in this repository. Here's a [link](https://github.com/Asana/developer-docs/blob/master/defs/asana_oas.yaml).
 
-### Contribute/Raise issues
+## Contribute/Raise issues
 If you find any issues or have any suggestions for our OpenAPI spec. Please create an issue in this repo or create a PR with the changes!
 
-Getting Started with Asana Docs
-------------------------------
-### Prerequisites
-The easiest way to work with the tooling is to install some version managers for some languages used in our toolchain.
+# Getting Started with Asana Docs
 
-For node, we'll use nvm...
+## Prerequisites
+
+Swagger is used to implement our OpenAPI specification and requires `mvn`, so be sure to first install Maven (`brew install maven`). 
+
+Beyond that, Node and Ruby are required to get started with documentation. The easiest way to work with the tooling is to install some version managers for some languages used in our toolchain.
+
+For Node, we'll use [nvm](https://github.com/nvm-sh/nvm):
 
 ```shell
 brew install nvm
 ```
 
-... and for Ruby we'll use rbenv
+For Ruby, we'll use [rbenv](https://github.com/rbenv/rbenv):
 
 ```shell
 brew install rbenv # This is a ruby version manager, which could prove useful in the future. For now we use system.
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile # Init rbenv on every shell
-echo 'export GEM_HOME=$HOME/.gem' >> ~/.bash_profile # Set the ruby gem install to a non-system directory so we don't need sudo
-echo 'export PATH="$GEM_HOME/bin:$PATH"' >> ~/.bash_profile # Needed if any gems have executables associated
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile # Init rbenv on every shell.
+echo 'export GEM_HOME=$HOME/.gem' >> ~/.bash_profile # Set the Ruby gem install to a non-system directory so we don't need sudo.
+echo 'export PATH="$GEM_HOME/bin:$PATH"' >> ~/.bash_profile # Needed if any gems have executables associated.
 source ~/.bash_profile # Let's pick up those changes.
-gem install bundler # If we don't have bundler, it's basically the de facto standard for dependency management. Install it system-wide
+gem install bundler # Bundler is the standard for dependency management. Install it system-wide.
 ```
 
-In addition to this repository we're going to clone a sibling repository for a tool called Widdershins that manages the first half of our toolchain. We'll assume it and this repository live in the same directory. We'll clone it and install its prerequisites:
+Afterwards, clone this repository and install dependencies:
 
 ```shell
-pushd .. # To get to parent dir
-git clone git@github.com:rossgrambo/widdershins.git # Clone the repo
-cd widdershins # To get to where the node requirements are
-nvm use system # If it ain't broke - we might pin this in the future
-npm install # Install requirements
-popd # Done with installation
+nvm use system # If it ain't broke - we might pin this in the future.
+npm install
+
+rbenv shell system # We'll use system Ruby as well, but just like Node, we might pin it in the future.
+bundle install
 ```
 
-And then lets get our local version of Ruby up to snuff:
+For the rest of this README, assume any commands that we list will be run from the root of this repository.
 
-```shell
-rbenv shell system # We'll use system ruby as well, but just like node we might pin it in the future
-bundle install # Install requirements
+## How to build and run documentation locally
+
+To generate and view documentation on your local machine, follow the steps below:
+
+1. Navigate to the root directory of this project. Then, run the "first time setup" command (see other commands in the [Makefile](https://github.com/Asana/developer-docs/blob/master/Makefile)):
+
+```
+make first_time_setup
 ```
 
-For the rest of this README assume any commands that we list will be run from the root of this repository.
+2. Update build tools and client libraries:
 
-### How it works
-The public OpenAPI spec is located at /defs/asana_oas.yaml
+```
+make update
+```
 
-To generate markdown from the spec, we use a forked [widdershins](https://github.com/rossgrambo/widdershins)
+3. Generate documentation (internal Asanas: see [this task](https://app.asana.com/0/0/1200652548580470/f) before running):
+
+```
+make docs_gen
+```
+
+4. Serve documentation locally:
+
+```
+make serve
+```
+
+5. View documentation in your browser by visiting **http://localhost:4567** (or **http://127.0.0.1:4567**).
+
+## Reference (how it works)
+The public OpenAPI spec is located at **/defs/asana_oas.yaml**
+
+To generate markdown from the spec, we use a forked [widdershins](https://github.com/rossgrambo/widdershins).
 
 We assume these repos are siblings in your folder
 - widdershins
 - developer-docs
 
-Open a shell within developer-docs and ru:
+Open a shell within developer-docs and run:
 ```shell
 make
 ```
@@ -92,10 +114,10 @@ vagrant up
 
 *Why did we fork widdershins?* For our use case, we needed things like denormalizing and dereferencing. We tried doing this to the spec & using an unforked widdershins, but as we progressed with client library generation, it made more sense to keep a clean spec and do this doc-specific editing in the tooling. A potential future is pulling out this logic to a "openapi spec transformer" to prep the spec for widdershins, but there will be a trade-offs to consider.
 
-### Making content changes
+## Making content changes
 _Internal Asanas: See https://app.asana.com/0/77076599077/1122503737028047/f and https://app.asana.com/0/0/1200652548580470/f before making any updates._
 
-If the content you're changing is static (not generated from the OpenAPI spec), you'll edit the md in source/includes/markdown.
+If the content you're changing is static (not generated from the OpenAPI spec), you'll edit the `.md` files in source/includes/markdown.
 
 If the content you're changing is in the OpenAPI spec, you should make the changes within codez. However, if you want to quickly test something, you can make the changes in def/asana_oas.yaml. Just remember to put the changes in codez if you want them to not be overridden.
 Then, you should run the `make` command above.
@@ -104,12 +126,12 @@ Run `bundle exec middleman server` if it's not already running, and go to the ur
 
 Merging these changes into master causes them to be deployed.
 
-### Editing styles
+## Editing styles
 Make changes in source/stylesheets/**\_variables.scss** because the changes here will be valid with future versions of Slate.
 
 If you need to make more complex css changes, edit **screen.css.scss** or **print.css.scss** but keep in mind that these will need to be merged for new versions of Slate.
 
-### Deploying to GitHub Pages
+## Deploying to GitHub Pages
 This should happen automatically when changes are merged into this repo.
 
 If you need to do this manually, then run the `deploy.sh` script. This will use your local git credentials and local /build folder to push a build to a branch named gh-pages (Where the docs are hosted).
