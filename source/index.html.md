@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - format
   - authentication
+  - event_subscriptions
   - projects
   - fields
   - errors
