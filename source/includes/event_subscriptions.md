@@ -25,7 +25,8 @@ curl https://api.handshq.com/v1/event_subscriptions \
 
 This endpoint allows you to be notified of certain events. Those currently supported are:
 
-- `version_pdf_created` - this is fired after we have generated and stored a PDF, which is now ready to be downloaded.
+- `version_pdf_created` - this is fired after we have generated and stored a project version PDF, which is now ready to be downloaded.
+
 <aside class="notice">
   Please note that the `version_pdf_created` event is scoped to look for subscriptions which were created by the same division that the project belongs to.
 </aside>

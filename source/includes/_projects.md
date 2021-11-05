@@ -35,8 +35,8 @@ This endpoint allows you to create a project for the company who is registered w
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 name | String | Yes | Name of your project, used for document titles, names of PDF documents etc.
-start_date | DateTime | No | To denote when your project starts, used in conjunciton with `end_time` to denote whether project is still active.
-end_date | DateTime | No | To denote when your project starts, used in conjunciton with `start_time` to denote whether project is still active.
+start_date | DateTime | No | To denote when your project starts, used in conjunction with `end_time` to denote whether project is still active.
+end_date | DateTime | No | To denote when your project ends, used in conjunction with `start_time` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'
 
 In order to set further details we need a reference to which fields you would like to set a value for, these can differ for each company if you are using custom templates. You can find these references with our `fields` endpoint.

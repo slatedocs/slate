@@ -12,7 +12,7 @@ curl "https://api.handshq.com/v1/authentication" \
 > In all subsequent examples make sure to replace `[api_token]` with your API key.
 
 HandsHQ uses API keys to allow access to the API. You can find your API key in the API tab of your settings page
-[here.](https://app.handshq.com/settings/api)
+[here.](https://app.handshq.com/settings/api_configuration)
 
 
 HandsHQ expects for the API key to be included in all API requests to the server in a header that looks like the following:
@@ -33,4 +33,3 @@ If you need to test that you have a valid API key use the following endpoint:
 ### Response
 
 Successful authentication with return a `200` response, otherwise a `401` will be returned when supplied with an invalid API key.
-
