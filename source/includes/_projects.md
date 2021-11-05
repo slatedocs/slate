@@ -3,7 +3,7 @@
 ## Creating a project
 
 ```shell
-curl http://api.handshq.com/v1/projects \
+curl https://api.handshq.com/v1/projects \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]" \
   --request POST \
