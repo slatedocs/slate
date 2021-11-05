@@ -91,7 +91,7 @@ You retrieve an ordered list of fields which you are currently using for your pr
 
 ### Fields information
 - `label` - Label on project forms and end documents, e.g. 'Address 1'
-- `requred` - Whether or not the field is required for project creation.
+- `required` - Whether or not the field is required for project creation.
 - `value` - The default value that will be immediately be applied to fields.
 - `data_type` - How the value of the field will be stored and the type of field provided to the user for editing. Will one of the following:
   - `string`
