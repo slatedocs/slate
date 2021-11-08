@@ -70,7 +70,7 @@ Follow the steps below to upgrade your account:
 
 After you upload the required supporting documents, you need to choose which products that you want to use.
 
-**3. Submit your Request**: CClick “Submit”, and a new status of “Waiting for Approval” should appear on Home page, indicating that your request has been submitted along with your supporting documents.
+**3. Submit your Request**: Click “Submit”, and a new status of “Waiting for Approval” should appear on Home page, indicating that your request has been submitted along with your supporting documents.
 
 ![Upgrade](images/upgrade_3.png)
 
