@@ -362,7 +362,7 @@ Attributes | &nbsp;
 `detail`<br/>*Object* | The invoice detail contains a currency and a list of categories. Each category has a list of products.
 `detail.currency`<br/>*string* | The short-name of the currency.
 `detail.subTotal`<br/>*string* | A string containing the total before taxes and credits.
-`detail.total`<br/>*string* | The invoice total after discounts, taxes and credits.
+`detail.total`<br/>*string* | The invoice total after discounts, taxes, and credits.
 `detail.startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the invoice detail report.
 `detail.endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the invoice detail report.
 `detail.adjustments`<br/>*Array[Object]* | The adjustments applied to the invoice. An adjustment tracks the application of a discount, a credit or a tax.
@@ -783,7 +783,7 @@ Attributes | &nbsp;
 `detail`<br/>*Object* | The invoice detail contains a currency and a list of categories. Each category has a list of products.
 `detail.currency`<br/>*string* | The short-name of the currency.
 `detail.subTotal`<br/>*string* | A string containing the total before taxes and credits.
-`detail.total`<br/>*string* | The invoice total after discounts, taxes and credits.
+`detail.total`<br/>*string* | The invoice total after discounts, taxes, and credits.
 `detail.startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the invoice detail report.
 `detail.endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the invoice detail report.
 `detail.adjustments`<br/>*Array[Object]* | The adjustments applied to the invoice. An adjustment tracks the application of a discount, a credit or a tax.
@@ -1199,7 +1199,7 @@ Attributes | &nbsp;
 `detail`<br/>*Object* | The invoice detail contains a currency and a list of categories. Each category has a list of products.
 `detail.currency`<br/>*string* | The short-name of the currency.
 `detail.subTotal`<br/>*string* | A string containing the total before taxes and credits.
-`detail.total`<br/>*string* | The invoice total after discounts, taxes and credits.
+`detail.total`<br/>*string* | The invoice total after discounts, taxes, and credits.
 `detail.startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the invoice detail report.
 `detail.endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the invoice detail report.
 `detail.adjustments`<br/>*Array[Object]* | The adjustments applied to the invoice. An adjustment tracks the application of a discount, a credit or a tax.
