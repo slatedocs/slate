@@ -56,6 +56,19 @@ html, body {
   }
 }
 
+a.lottie#learn-more {
+  margin-right: 35%;
+  padding-right: 28px;
+  box-sizing: border-box;
+  display: block;
+  width: 200px;
+  margin-top: 0;
+  line-height: 1.6;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
 .search {
   position: relative;
 

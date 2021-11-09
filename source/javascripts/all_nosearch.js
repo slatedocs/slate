@@ -19,8 +19,20 @@ $(function () {
   $(window).resize(function () {
     adjustLanguageSelectorWidth();
   });
+
+  bodymovin.loadAnimation({
+    container: document.getElementById('learn-more'), // required
+    path: '/images/lottie/learn-more.json', // required
+    renderer: 'svg', // required
+    loop: true, // optional
+    autoplay: true, // optional
+    name: "Learn more", // optional
+  });
+
   adjustLanguageSelectorWidth();
 });
+
+
 
 window.onpopstate = function () {
   activateLanguage(getLanguageFromQueryString());

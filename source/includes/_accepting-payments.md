@@ -701,6 +701,14 @@ Just like the Payment Checkout via Link, you can access all your payment checkou
 
 ![Payment Checkout](images/payment_checkout_list.png)
 
+### Pop!: Seamless Payment Experience
+
+With Pop!, displaying our payment checkout page on your front-end web environment is now made easier than ever. Our payment checkout offers a seamless user experience in a way that can be catered to your UI needs.
+
+Click the button below to see a demonstration and a snippet code on how to display a payment checkout page in 4 styles/locations: Center, Right, Left, and Slide Right.
+
+<a class="lottie" id="learn-more" href="https://api-docs.oyindonesia.com/#pop-seamless-payment-experience-fund-acceptance"></a>
+
 ### Customizing the UI of Payment Checkout Link
 
 In order to maintain a consistent brand experience for your users, you can customize the look and feel of your payment checkout link in the Dashboard, where you can do the following things;
