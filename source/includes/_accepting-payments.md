@@ -420,6 +420,20 @@ Note: For Payment Checkout Configuration-related fields (Amount Type, Payment Me
 
 Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
 
+**Mock Amount Values for Testing**
+
+During testing, you can set the transaction amount to a certain mock value to simulate a specific scenario.
+
+| Payment Method |	Scenario |	Criteria |	Expected Result |
+| ----------- | ----------- |----------- |----------- |
+|E-Wallet - ShopeePay|	Payment already successful on E-Wallet issuer side but failed on OY side (can be due to callback timeout reasons). The transaction is refunded to the end-user's balance	|Amount is between 55,000 and 66,000|	Refund Successful|
+|QRIS |	Payment already successful on E-Wallet issuer side but failed on OY side (can be due to callback timeout reasons). The transaction is refunded to the end-user's balance|	Amount is between 55,000 and 66,000	|Refund Successful|
+|E-Wallet - LinkAja|	Payment already successful on E-Wallet issuer side but failed on OY side (can be due to callback timeout reasons). The transaction is refunded to the end-user's balance |	Amount is between 55,000 and 66,000	| Refund Successful|
+|E-Wallet - ShopeePay |	Failure during refund process |	Amount is less than 55,000 or greater than 66,000 |	Refund Failed|
+|QRIS |	Failure during refund process |	Amount is less than 55,000 or greater than 66,000 |	Refund Failed|
+|E-Wallet - LinkAja |	Failure during refund process |	Amount is less than 55,000 or greater than 66,000 | Refund Failed |
+
+
 ### How to Use Payment Checkout/Invoice via Link/URL
 
 *Note:* Our payment link includes parameters that are easily adjustable according to your needs. You can send the link to multiple customers using the same link (please refer to the steps below) and we will take care the rest.
