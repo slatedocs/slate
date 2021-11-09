@@ -984,7 +984,7 @@ Required | &nbsp;
 Retrieves the billing cycle for the organization.
 
 ```shell
-# Retrieve billing emails
+# Retrieve billing cycle
 curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728823309a4/billing_cycles/8259182d-5234-4a78-adf6-7edc11db2e3b" \
    -H "MC-Api-Key: your_api_key"
 ```
