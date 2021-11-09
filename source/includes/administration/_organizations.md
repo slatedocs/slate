@@ -975,3 +975,79 @@ curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e30
 Required | &nbsp;
 ---- | ----
 `billingEmails`<br/>*map* | A map of billing emails and names associated with them. There is a maximum of three emails that can be configured. Each entry must have a valid email specified along with a name.
+
+<!-------------------- FIND BILLING CYCLE -------------------->
+### Get a billing cycle for an org
+
+`GET /organizations/:organization_id/billing_cycles/:billing_cycle_id`
+
+Retrieves the billing cycle for the organization.
+
+```shell
+# Retrieve billing emails
+curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728823309a4/billing_cycles/8259182d-5234-4a78-adf6-7edc11db2e3b" \
+   -H "MC-Api-Key: your_api_key"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "pricingPackages": [
+      {
+        "endDate": "2021-12-01",
+        "packageId": "508a1f5f-2504-41ac-b48f-b87e757840a4",
+        "name": {
+          "en": "Cox Pricing Package"
+        },
+        "startDate": "2021-11-01"
+      }
+    ],
+    "deferred": false,
+    "invoices": [],
+    "discounts": [
+      {
+        "endDate": "2021-11-11",
+        "name": {
+          "en": "Credit 01"
+        },
+        "discountId": "e6ada5f6-9806-466c-8522-314da152a8e7",
+        "type": "CREDIT",
+        "startDate": "2021-11-01",
+        "remaining": {
+          "discountedProducts": {},
+          "discountedCategories": {},
+          "packageDiscount": 10.0,
+          "labels": {}
+        }
+      },
+    ],
+    "endDate": "2021-12-01",
+    "currency": "USD",
+    "id": "8259182d-5234-4a78-adf6-7edc11db2e3b",
+    "state": "IN_PROGRESS",
+    "startDate": "2021-11-01"
+  }
+}
+```
+
+Attributes | &nbsp;
+---- | -----------
+`id`<br/>*UUID* | The id of the billing cycle.
+`startDate`<br/>*string* | The start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the billing cyle.
+`endDate`<br/>*string* | The end date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the billing cyle.
+`currency`<br/>*string* | The currency associated to the organization.
+`deferred`<br/>*boolean* | Indicated whether the billing cycle is deferred or not.
+`invoices`<br/>*Array[[Invoice](#administration-invoices)]* | List of invoices associated with the billing cycle.
+`pricingPackages.endDate`<br/>*string* | The start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of when the pricing package was applied to the billing cycle.
+`pricingPackages.startDate`<br/>*string* | The end date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the pricing package associated with the billing cycle.
+`pricingPackages.name`<br/>*Map[String, String]* | The name translations of the pricing package.
+`pricingPackages`<br/>*Array[BillingCycle.BillingCyclePackage]* | List of pricing packages associated with the billing cycle.
+`discounts`<br/>*Array[BillingCycle.BillingCycleDiscounts]* | List of discounts applied during the billing cycle.
+`discounts.endDate`<br/>*date* | The end date of the discount.
+`discounts.startDate`<br/>*date* | The start date of the discount.
+`discounts.name`<br/>*Map[String, String]* | The name translations of the discount.
+`discounts.type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
+`discounts.remaining`<br/>*BillingCycle.CreditTracking* | Tracking of the credits remaining and used for the billing cycle.
+`discounts.discountId`<br/>*UUID* | The UUID of the discount.
+`state`<br/>*enum* | The state of the billing cycle. It could be "NONE", "WAITING_INVOICE", "WAITING_PAYMENT", "PAID", "IN_PROGRESS", or "FUTURE".
