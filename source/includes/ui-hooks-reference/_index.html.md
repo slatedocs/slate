@@ -1166,8 +1166,8 @@ getWidgetMetadata
       "created_at": "2012-02-22T02:06:58.147Z",
       "footer_type": "custom_text",
       "icon_url": "https://example-icon.png",
-      "info": "This is a custom footer message",
-      "last_updated_at": "2012-02-22T02:06:58.147Z"
+      "last_updated_at": "2012-02-22T02:06:58.147Z",
+      "text": "This is a custom footer message"
     },
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
@@ -1557,8 +1557,8 @@ An object describing a typeahead result
       "created_at": "2012-02-22T02:06:58.147Z",
       "footer_type": "custom_text",
       "icon_url": "https://example-icon.png",
-      "info": "This is a custom footer message",
-      "last_updated_at": "2012-02-22T02:06:58.147Z"
+      "last_updated_at": "2012-02-22T02:06:58.147Z",
+      "text": "This is a custom footer message"
     },
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
@@ -1592,8 +1592,8 @@ An object containing information about the widget
 |»» created_at<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `created`. The time (in ISO-8601 date format) to show in the footer.|
 |»» footer_type<span class="param-type"> string</span>|The type of widget footer.|
 |»» icon_url<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `custom_text`. The icon to show in the footer next to the text. If not provided, no icon will be shown.|
-|»» info<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `custom_text`. The text to show in the footer.|
 |»» last_updated_at<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `updated`. The time (in ISO-8601 date format) to show in the footer.|
+|»» text<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `custom_text`. The text to show in the footer.|
 |» num_comments<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
 |» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|

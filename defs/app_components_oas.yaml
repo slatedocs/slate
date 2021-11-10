@@ -563,7 +563,7 @@ components:
             - updated
             - created
           example: 'custom_text'
-        info:
+        text:
           description: >-
             *Conditional* Only relevant for WidgetFooters of type `custom_text`.
             The text to show in the footer.
