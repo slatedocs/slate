@@ -2358,6 +2358,21 @@ components:
                 $ref: '#/components/schemas/UserCompact'
               description: >-
                 Array of users following this goal.
+            time_period:
+              allOf:
+                - $ref: '#/components/schemas/TimePeriodCompact'
+                - type: object
+                  nullable: true
+            metric:
+              allOf:
+                - $ref: '#/components/schemas/GoalMetricBase'
+                - type: object
+                  nullable: true
+            owner:
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
+                - type: object
+                  nullable: true
     GoalRequest:
       allOf:
         - $ref: '#/components/schemas/GoalBase'
@@ -2383,11 +2398,35 @@ components:
                   The `gid` of a user.
               example:
                 - '12345'
+            time_period:
+              type: string
+              description: >-
+                The `gid` of a time period.
+              example: '12345'
+              nullable: true
+            metric:
+              type: string
+              description: >-
+                The `gid` of a goal metric.
+              example: '12345'
+              nullable: true
+            owner:
+              type: string
+              description: >-
+                The `gid` of a user.
+              example: '12345'
+              nullable: true
     GoalBase:
       allOf:
-        - $ref: '#/components/schemas/GoalCompact'
+        - $ref: '#/components/schemas/AsanaResource'
         - type: object
+          x-docs-overrides:
+            properties.resource_type.example: goal
           properties:
+            name:
+              type: string
+              description: The name of the goal.
+              example: Grow web traffic by 30%
             html_notes:
               type: string
               description: >-
@@ -2425,16 +2464,6 @@ components:
                 *Note* you can only write to this property if `metric` is set.
               example: green
               nullable: true
-            time_period:
-              allOf:
-                - $ref: '#/components/schemas/TimePeriodCompact'
-                - type: object
-                  nullable: true
-            metric:
-              allOf:
-                - $ref: '#/components/schemas/GoalMetricBase'
-                - type: object
-                  nullable: true
             is_workspace_level:
               type: boolean
               description: >-
@@ -3203,9 +3232,7 @@ components:
               example: These are things we need to purchase.
             public:
               description: >-
-                True if the project is public to the organization. If false, do
-                not share this project with other users in this organization
-                without explicitly checking to see if they have access.
+                True if the project is public to its team.
               type: boolean
               example: false
             start_on:
