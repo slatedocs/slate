@@ -981,7 +981,7 @@ Required | &nbsp;
 
 `GET /organizations/:organization_id/billing_cycles/:billing_cycle_id`
 
-Retrieves the billing cycle for the organization.
+Retrieves a billing cycle for the organization.
 
 ```shell
 # Retrieve billing cycle
@@ -1037,17 +1037,17 @@ Attributes | &nbsp;
 `startDate`<br/>*string* | The start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the billing cyle.
 `endDate`<br/>*string* | The end date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the billing cyle.
 `currency`<br/>*string* | The currency associated to the organization.
-`deferred`<br/>*boolean* | Indicated whether the billing cycle is deferred or not.
-`invoices`<br/>*Array[[Invoice](#administration-invoices)]* | List of invoices associated with the billing cycle.
-`pricingPackages.endDate`<br/>*string* | The start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of when the pricing package was applied to the billing cycle.
-`pricingPackages.startDate`<br/>*string* | The end date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the pricing package associated with the billing cycle.
+`deferred`<br/>*boolean* | Indicates whether the billing cycle is deferred or not.
+`invoices`<br/>*Array[UUID]* | Array of UUIDs of the invoices associated with the billing cycle.
+`pricingPackages`<br/>*Array[Object]* | List of pricing packages associated with the billing cycle.
+`pricingPackages.endDate`<br/>*string* | The end date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of when the pricing package was applied to the billing cycle.
+`pricingPackages.startDate`<br/>*string* | The start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the pricing package associated with the billing cycle.
 `pricingPackages.name`<br/>*Map[String, String]* | The name translations of the pricing package.
-`pricingPackages`<br/>*Array[BillingCycle.BillingCyclePackage]* | List of pricing packages associated with the billing cycle.
-`discounts`<br/>*Array[BillingCycle.BillingCycleDiscounts]* | List of discounts applied during the billing cycle.
+`discounts`<br/>*Array[Object]* | List of discounts applied during the billing cycle.
 `discounts.endDate`<br/>*date* | The end date of the discount.
 `discounts.startDate`<br/>*date* | The start date of the discount.
 `discounts.name`<br/>*Map[String, String]* | The name translations of the discount.
 `discounts.type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
-`discounts.remaining`<br/>*BillingCycle.CreditTracking* | Tracking of the credits remaining and used for the billing cycle.
+`discounts.remaining`<br/>*Object* | Tracking of the credits remaining and used for the billing cycle.
 `discounts.discountId`<br/>*UUID* | The UUID of the discount.
 `state`<br/>*enum* | The state of the billing cycle. It could be "NONE", "WAITING_INVOICE", "WAITING_PAYMENT", "PAID", "IN_PROGRESS", or "FUTURE".
