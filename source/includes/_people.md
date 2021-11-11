@@ -153,7 +153,7 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
                 "founded_year": 2015,
                 "publicly_traded_symbol": null,
                 "publicly_traded_exchange": null,
-                "logo_url": "https://zenprospect-production.s3.amazonaws.com/uploads/pictures/6188c0967ae1c20001869130/picture",
+                "logo_url": "https://apollo-server.com/uploads/pictures/6188cXXXXXXXXXXXXXXXXXXX/picture",
                 "crunchbase_url": null,
                 "primary_domain": "apollo.io",
                 "persona_counts": {}
@@ -179,7 +179,7 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
                 "founded_year": 2015,
                 "publicly_traded_symbol": null,
                 "publicly_traded_exchange": null,
-                "logo_url": "https://zenprospect-production.s3.amazonaws.com/uploads/pictures/6188c0967ae1c20001869130/picture",
+                "logo_url": "https://apollo-server.com/uploads/pictures/6188cXXXXXXXXXXXXXXXXXXX/picture",
                 "crunchbase_url": null,
                 "primary_domain": "apollo.io",
                 "persona_counts": {},

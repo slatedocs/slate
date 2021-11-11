@@ -34,7 +34,7 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "ht
         "founded_year": 2015,
         "publicly_traded_symbol": null,
         "publicly_traded_exchange": null,
-        "logo_url": "https://zenprospect-production.s3.amazonaws.com/uploads/pictures/61824ff04db2a60001eedb85/picture",
+        "logo_url": "https://apollo-server.com/uploads/pictures/61824XXXXXXXXXXXXXXXXXXX/picture",
         "crunchbase_url": null,
         "primary_domain": "apollo.io",
         "persona_counts": {},
