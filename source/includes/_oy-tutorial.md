@@ -197,6 +197,20 @@ With this feature you will be able to :
 3. Use subsidiary balance to disburse funds
 4. Free admin fee to disburse between related user
 
+## Dashboard Analytics
+Analytic feature allows you get some insights about your cash in and cash out activities in OY!. In this feature, you can get information about how much money you have spent and how much money you have earned in a month in a time interval. You can compare your cash in and cash out activity month-over-month. Therefore, you will also get insights about the trend of your transaction. It can be one healthiness indicator of your business. Also, this feature can help you to generate new business decision to grow your business.
+
+![Dashboard Analytics Image](https://user-images.githubusercontent.com/25644098/141372041-d4a74e19-bdc5-459d-a145-6128e257781c.png)
+
+* You can select which start month and end month you want to see in the graph. However, the maximum time range we provide is 6 months interval. 
+* You can choose the starting month in ‘From’ field or ending month in ‘To’ field. Once you select a month in a field, the month options in the other field will follows. Keep in mind that the maximum  time range is 6 month interval.
+    * For instances:
+        * You select ‘January’ in ‘From’ field. The ‘To’ field will only display ‘January’, ‘February’, ‘March’, ‘April’, ‘May’, ‘June’ options. You can only select from those options.
+
+
+* If you put your cursor in a bar, the actual number will be displayed.
+* Note : For the running month, you only see transaction of maximum D-1. For example, today is 4th November and you select June to November in the date-picker section. You won’t see data of transaction that happen today. Instead, you will see data from 1st June to 3rd November.
+
 ### **Registration & Setup**
 
 **Prerequisites**
