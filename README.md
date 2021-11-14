@@ -1,5 +1,7 @@
 ### Mautic Developer Documentation ###
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/mautic/developer-documentation-new)
+
 Developer documentation for Mautic.
 
 The content is published at https://developer.mautic.org.
