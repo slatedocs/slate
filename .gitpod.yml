@@ -1,7 +1,0 @@
-tasks:
-  - init: pip3 install -r docs/requirements.txt
-
-vscode:
-  extensions:
-    - lextudio.restructuredtext
-    - trond-snekvik.simple-rst
