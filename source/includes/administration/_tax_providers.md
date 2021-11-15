@@ -318,7 +318,7 @@ curl "https://cloudmc_endpoint/rest/tax_providers/961a2b96-0a6a-4bb4-9e32-59a3dc
 
 `GET /tax_providers/:id/tax-provider-configured`
 
-This endpoing verifies whether or not a given organization's reseller parent organization has configured a tax provider.
+This endpoint verifies whether or not a given organization's reseller parent organization has configured a tax provider.
 
 ```shell
 # Verify an organization's reseller tax configuration
@@ -333,7 +333,7 @@ curl "https://cloudmc_endpoint/rest/tax_providers/961a2b96-0a6a-4bb4-9e32-59a3dc
 }
 ```
 
-| Query Parameters                 | &nbsp;                           |
+| Path Parameters                 | &nbsp;                           |
 | -------------------------- | -------------------------------- |
 | `id`<br/>_UUID_        | The id of the organization to verify the tax configuration for.             |
 
