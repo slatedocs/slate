@@ -18,16 +18,16 @@ curl "https://cloudmc_endpoint/rest/invoices/find/efd32752-c6f2-45cf-b494-cc6be8
 
 ```json
 {
-	"data": [{
-		"draftedDate": "2021-07-27T00:00:00Z",
-		"createdDate": "2021-07-27T00:00:00Z",
-		"status": "DRAFT",
-		"organization": {
-			"name": "org_name",
-			"id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
-		},
-		"id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
-		"detail": {
+ "data": [{
+  "draftedDate": "2021-07-27T00:00:00Z",
+  "createdDate": "2021-07-27T00:00:00Z",
+  "status": "DRAFT",
+  "organization": {
+   "name": "org_name",
+   "id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
+  },
+  "id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
+  "detail": {
       "total": 138.98,
       "adjustments": [],
       "adjustmentAggregations": [
@@ -338,7 +338,7 @@ curl "https://cloudmc_endpoint/rest/invoices/find/efd32752-c6f2-45cf-b494-cc6be8
       ],
       "startDate": "2021-09-08T00:00:00Z",
     }
-	}]
+ }]
 }
 ```
 
@@ -378,8 +378,8 @@ Attributes | &nbsp;
 `detail.adjustmentAggregations.before`<br/>*string* | The invoice total before the adjustments were applied.
 `detail.adjustmentAggregations.after`<br/>*string* | The invoice total after the adjustments were applied.
 `detail.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the invoice, its categories and their products.
-`detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period. 
-`detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names. 
+`detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period.
+`detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.subTotal`<br/>*string* | A string with the category subtotal, before taxes and credits.
 `detail.categories.total`<br/>*string* | A string with the category subtotal, after taxes and credits.
 `detail.adjustments`<br/>*Array[Object]* | The adjustments applied to the category. An adjustment tracks the application of a discount, a credit or a tax.
@@ -396,7 +396,7 @@ Attributes | &nbsp;
 `detail.categories.adjustmentAggregations.before`<br/>*string* | The category total before the adjustments were applied.
 `detail.categories.adjustmentAggregations.after`<br/>*string* | The category total after the adjustments were applied.
 `detail.categories.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the category and its products.
-`detail.categories.products`<br/>*Object* | A map of short language codes to their translated category names. 
+`detail.categories.products`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.products.sku`<br/>*string* | A unique string representing the sku for a product.
 `detail.categories.products.name`<br/>*Object* | The name object in each language for the product name.
 `detail.categories.products.cost`<br/>*string* | A string of the summed up total cost for the product.
@@ -435,20 +435,21 @@ Retrieve the list of invoices associated with an organization.
 curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-bca8-777a691e23c7&billingCycle=07-2021" \
    -H "MC-Api-Key: your_api_key"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
 {
-	"data": [{
-		"draftedDate": "2021-07-27T00:00:00Z",
-		"createdDate": "2021-07-27T00:00:00Z",
-		"status": "ISSUED",
-		"organization": {
-			"name": "org_name",
-			"id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
-		},
-		"id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
-		"detail": {
+  "data": [{
+  "draftedDate": "2021-07-27T00:00:00Z",
+  "createdDate": "2021-07-27T00:00:00Z",
+  "status": "ISSUED",
+  "organization": {
+   "name": "org_name",
+   "id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
+  },
+  "id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
+  "detail": {
       "total": 138.98,
       "adjustments": [],
       "adjustmentAggregations": [
@@ -759,10 +760,11 @@ curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-
       ],
       "startDate": "2021-09-08T00:00:00Z",
     }
-	}]
+ }]
 }
 
 ```
+
 Optional Query Parameters | &nbsp;
 ---------- | -----------
 `organization_id`<br/>*UUID* | The UUID of the organization the invoice belongs to.
@@ -799,8 +801,8 @@ Attributes | &nbsp;
 `detail.adjustmentAggregations.before`<br/>*string* | The invoice total before the adjustments were applied.
 `detail.adjustmentAggregations.after`<br/>*string* | The invoice total after the adjustments were applied.
 `detail.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the invoice, its categories and their products.
-`detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period. 
-`detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names. 
+`detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period.
+`detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.subTotal`<br/>*string* | A string with the category subtotal, before taxes and credits.
 `detail.categories.total`<br/>*string* | A string with the category subtotal, after taxes and credits.
 `detail.adjustments`<br/>*Array[Object]* | The adjustments applied to the category. An adjustment tracks the application of a discount, a credit or a tax.
@@ -856,20 +858,21 @@ Manually approve an invoice in the 'DRAFT' state and issue the invoice to the cu
 curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/approve" \
    -H "MC-Api-Key: your_api_key"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
 {
-	"data": {
-		"draftedDate": "2021-07-27T00:00:00Z",
-		"createdDate": "2021-07-27T00:00:00Z",
-		"status": "ISSUED",
-		"organization": {
-			"name": "org_name",
-			"id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
-		},
-		"id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
-		"detail": {
+ "data": {
+  "draftedDate": "2021-07-27T00:00:00Z",
+  "createdDate": "2021-07-27T00:00:00Z",
+  "status": "ISSUED",
+  "organization": {
+   "name": "org_name",
+   "id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
+  },
+  "id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
+  "detail": {
       "total": 138.98,
       "adjustments": [],
       "adjustmentAggregations": [
@@ -1180,7 +1183,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
       ],
       "startDate": "2021-09-08T00:00:00Z",
     }
-	}
+ }
 }
 ```
 
@@ -1215,8 +1218,8 @@ Attributes | &nbsp;
 `detail.adjustmentAggregations.before`<br/>*string* | The invoice total before the adjustments were applied.
 `detail.adjustmentAggregations.after`<br/>*string* | The invoice total after the adjustments were applied.
 `detail.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the invoice, its categories and their products.
-`detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period. 
-`detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names. 
+`detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period.
+`detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.subTotal`<br/>*string* | A string with the category subtotal, before taxes and credits.
 `detail.categories.total`<br/>*string* | A string with the category subtotal, after taxes and credits.
 `detail.adjustments`<br/>*Array[Object]* | The adjustments applied to the category. An adjustment tracks the application of a discount, a credit or a tax.
@@ -1233,7 +1236,7 @@ Attributes | &nbsp;
 `detail.categories.adjustmentAggregations.before`<br/>*string* | The category total before the adjustments were applied.
 `detail.categories.adjustmentAggregations.after`<br/>*string* | The category total after the adjustments were applied.
 `detail.categories.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the category and its products.
-`detail.categories.products`<br/>*Object* | A map of short language codes to their translated category names. 
+`detail.categories.products`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.products.sku`<br/>*string* | A unique string representing the sku for a product.
 `detail.categories.products.name`<br/>*Object* | The name object in each language for the product name.
 `detail.categories.products.cost`<br/>*string* | A string of the summed up total cost for the product.
