@@ -2,7 +2,7 @@
 
 Note: Creating, deleting and updating invoices is not supported.
 
-<!-------------------- GET INVOICE -------------------->
+<!-------------------- GET CUSTOMER INVOICES -------------------->
 ### Get customer invoices by reseller ID
 
 `GET /invoices/find/:reseller_id/customer_invoices`
@@ -845,6 +845,58 @@ Attributes | &nbsp;
 `detail.categories.products.adjustmentAggregations.before`<br/>*string* | The product total before the adjustments were applied.
 `detail.categories.products.adjustmentAggregations.after`<br/>*string* | The product total after the adjustments were applied.
 `detail.categories.products.adjustmentAggregations.cumulativeAmount`<br/>*string* | The adjustment amount applied to the product total.
+
+### List invoices of organization as a csv
+
+`GET /invoices?organization_id=:organization_id&billingCycle=MM-YYYY`
+
+Retrieve the list of invoices associated with an organization as a csv report
+
+```shell
+# Retrieve list of invoices of an organization
+curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-bca8-777a691e23c7&billingCycle=07-2021" \
+   -H "MC-Api-Key: your_api_key"
+   -H "Accept: text/csv"
+```
+
+The response is a list of priced products, with the first line as a header, for the given organization and billing cycle.
+
+The format of the response is a CSV with `,` used as the delimiter.
+
+```csv
+organization,custom_field_1,custom_field_2,category,sku,usage,unit,currency,total_before_tax,tax_code,total_tax,tax_name1,tax_amount1,tax_name2,tax_amount2,invoice_number,status,due_date,credit_card_transaction_id,billing_start_date,billing_end_date,
+AcmeCorp,null,null,Networking,BANDWIDTH,0.0043,GIGABYTE,USD,$0.00,SW056003,$0.00,QUEBEC QST/TVQ,$0.00,CANADA GST/TPS,$0.00,NFROFNGWHU,DRAFT,null,null,9/20/21,10/20/21,
+AcmeCorp,null,null,Compute,CCM-1M02,295.935,GIGABYTE,USD,$21.90,SW056003,$3.28,QUEBEC QST/TVQ,$2.18,CANADA GST/TPS,$1.10,NFROFNGWHU,DRAFT,null,null,9/20/21,10/20/21,%         
+```
+
+**Query Parameters**
+
+Optional | &nbsp;
+---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------
+`billingCycle`<br/>*String*  | The cycle which the invoice belongs to. Format is `MM-YYYY`. Defaults to the latest billing cycle.
+`organization_id`<br/>*UUID* | The reseller for which you're building the report. If not passed will default to the calling user's organization.
+`language`<br/>*UUID*        | Language to use for the report fields (but not the headers). Expected values are "en" (English), "fr" (French) or "es" (Spanish). Defaults to "en".
+
+Report Attributes | &nbsp;
+----------------- | ------
+`organization`<br/>*String* | The organization name.
+`custom_field_1`<br/>*String* | The organization custom field (ex: account ID). Configured in the reseller billing settings. <b>There can be more than one custom field<b>.
+`category`<br/>*String* | The product category.
+`sku`<br/>*String* | The SKU of the product.
+`usage`<br/>*String* | The total usage of the product.
+`unit`<br/>*String* | The name of the unit of the product.
+`currency`<br/>*String* | The short-name of the currency.
+`total_before_tax`<br/>*String* | The total cost before taxes are applied.
+`tax_code`<br/>*String* | The code of the tax.
+`total_tax`<br/>*String* | The total tax.
+`tax_name1`<br/>*String* | The name of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax name<b>.
+`tax_amount1`<br/>*String* | The amount of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax amount<b>.
+`invoice_number`<br/>*String* | The human-readable number of the invoice.
+`status`<br/>*String* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
+`due_date`<br/>*String* | The date the invoice is due.
+`credit_card_transaction_id`<br/>*String* | The confirmation number returned from the payment provider for the invoice.
+`billing_start_date`<br/>*String* | The billing start date of the invoice.
+`billing_end_date`<br/>*String* | The billing end date of the invoice.
 
 <!-------------------- APPROVE INVOICE -------------------->
 ### Approve invoice
