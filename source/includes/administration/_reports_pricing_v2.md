@@ -198,7 +198,7 @@ Customer Report Attributes | &nbsp;
 
 The response is a list of priced products, with the first line as a header, across all the customers of the given reseller and billing cycle.
 
-The format of the response is a CSV with `;` used as the delimiter.
+The format of the response is a CSV with `,` used as the delimiter.
 
 **Query Parameters**
 
@@ -206,7 +206,7 @@ Optional | &nbsp;
 ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------
 `billingCycle`<br/>*String*  | The cycle which the invoice belongs to. Format is `MM-YYYY`. Defaults to the latest billing cycle.
 `organization_id`<br/>*UUID* | The reseller for which you're building the report. If not passed will default to the calling user's organization. This organization must be a reseller.
-`language`<br/>*UUID*        | Language to use for the report labels (headers). Expected values are "en" (English), "fr" (French) or "es" (Spanish). Defaults to "en".
+`language`<br/>*UUID*        | Language to use for the report fields (but not the headers). Expected values are "en" (English), "fr" (French) or "es" (Spanish). Defaults to "en".
 
 ```shell
 curl -X GET \
@@ -215,9 +215,9 @@ curl -X GET \
 ```
 
 ```csv
-organization;custom_field_1;custom_field_2;category;sku;usage;unit;currency;total_before_tax;tax_code;total_tax;tax_name1;tax_amount1;tax_name2;tax_amount2;invoice_number;status;due_date;credit_card_transaction_id;billing_start_date;billing_end_date;
-AcmeCorp;null;null;Networking;BANDWIDTH;0.0043;GIGABYTE;USD;$0.00;SW056003;$0.00;QUEBEC QST/TVQ;$0.00;CANADA GST/TPS;$0.00;NFROFNGWHU;DRAFT;null;null;9/20/21;10/20/21;
-AcmeCorp;null;null;Compute;CCM-1M02;295.935;GIGABYTE;USD;$21.90;SW056003;$3.28;QUEBEC QST/TVQ;$2.18;CANADA GST/TPS;$1.10;NFROFNGWHU;DRAFT;null;null;9/20/21;10/20/21;%         
+organization,custom_field_1,custom_field_2,category,sku,usage,unit,currency,total_before_tax,tax_code,total_tax,tax_name1,tax_amount1,tax_name2,tax_amount2,invoice_number,status,due_date,credit_card_transaction_id,billing_start_date,billing_end_date,
+AcmeCorp,null,null,Networking,BANDWIDTH,0.0043,GIGABYTE,USD,$0.00,SW056003,$0.00,QUEBEC QST/TVQ,$0.00,CANADA GST/TPS,$0.00,NFROFNGWHU,DRAFT,null,null,9/20/21,10/20/21,
+AcmeCorp,null,null,Compute,CCM-1M02,295.935,GIGABYTE,USD,$21.90,SW056003,$3.28,QUEBEC QST/TVQ,$2.18,CANADA GST/TPS,$1.10,NFROFNGWHU,DRAFT,null,null,9/20/21,10/20/21,%         
 ```
 
 Report Attributes | &nbsp;
