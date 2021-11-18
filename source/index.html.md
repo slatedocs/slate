@@ -17,6 +17,121 @@ includes:
 
 search: true
 ---
+# Terms and Conditions
+
+These API License Terms and Conditions (“Terms”) shall govern the use of any ‘Market Data’ and Application Programming Interface (API) of CoinDCX by you, either an individual, association of persons, company, or any legal entity and its respective affiliates (hereinafter referred to as “User”). 
+For the purpose of these Terms, ‘Market Data’ shall mean and include all data related to the trading activity on any website, applications or platform owned and operated by Primestack Pte. Limited and/or Neblio Technologies Private Limited or any of their parent company, subsidiaries, or affiliates (collectively referred to as “CoinDCX”) including any data, information made available to the User through the application programming interface of CoinDCX (“CoinDCX API”). The Market Data may include, without limitation, the prices and quantities of orders and transactions executed on any platform/ application of CoinDCX.
+ 
+The User hereby agrees and acknowledges that upon accessing any CoinDCX API (defined hereinafter), Market Data and/or any other information, service, feature governed by terms contained herein, the User shall be bound by these Terms, as updated, modified, and/or replaced from time to time. The User is required to check for any such amendment, replacement or changes to the terms contained herein and any future use or access to any services covered herein.
+
+### 1. DEFINITIONS
+
+<ul style="list-style-type:none;">
+<li>1.1. “Affiliate” shall mean any person or entity who is controlled by, under common control with, or controlling the other party. For the purposes of the foregoing, “control” means;
+<ul style="list-style-type:none;">
+<li>(a) the ownership of more than fifty percent (50%) of the voting stock, shares or interests or voting rights of a person or entity, and</li>
+<li>(b) the power to direct or cause the direction of the management and policies of a person or entity through the ownership of voting securities, by contract or otherwise.</li>
+</ul></li>
+<li>1.2.  “Applicable Law(s)” shall mean the governing law to which these Terms are subject to and includes but is not limited to all the statutes (including common law statutes), legislations, rules, regulations, treaties, directives, decisions, ordinances, by-laws, notices, injunctions, demands, judgement, circular and any direction, notification issued by statutory authority, regulatory authority, or any judicial/ quasi-judicial authority. Applicable Law shall include any law, regulation, directive or guidelines to which CoinDCX may be subject to.<li>
+<li>1.3.  “Application Programming Interface” or “API” is a software intermediary which enables the interaction between two or more applications/ platforms.</li>
+<li>1.4. “Algorithmic Trading” (also called automated trading, black-box trading, or algo-trading) means a method which uses a computer program following a defined set of instructions or algorithm to place a trade.</li>
+<li>1.5.  “CoinDCX API” shall mean and include the public API and/or any data, information related to the trading activity on the CoinDCX platforms made available through https://docs.coindcx.com/ (including Market Data and Data Packages) as amended, modified, replaced at the sole discretion of CoinDCX from time to time.</li>
+<li>1.6.  “Company Data” means anonymized transactional data pertaining to contracts and other financial instruments, which is accessible through the CoinDCX API.</li>
+<li>1.7.  “Data Packages” means and includes all the data feeds, tiers, or packages of the Market Data or any other data as may be identified and included by CoinDCX as a part of the CoinDCX API.</li>
+<li>1.8.  “Intellectual Property Rights” means any patent, copyright, trademark, word mark, service mark, logo, corporate name, internet domain name, industrial design, trade secrets, proprietary rights in any software, application, goodwill of the brand. 
+</li>
+<li>1.9.  “Licensee” shall mean the User and any person accessing any CoinDCX API or any services or products governed by these Terms.</li>
+<li>1.10. “Licensee Data” shall mean and inter alia include all the data, information owned/ controlled by the Licensee in whatever form.</li>
+<li>1.11. “High-Frequency Trading” is a type of Algorithmic Trading characterized by high speeds, high turnover rates, and high order-to-trade ratios that leverages high-frequency financial data and electronic trading tools.</li>
+</ul>
+
+### 2. LICENSE GRANT AND AUTHORISED USE
+<ul style="list-style-type:none;">
+<li>2.1. User hereby understands and acknowledges that upon agreeing to the terms contained herein, the User is granted a non-exclusive, non-transferable, non-assignable, non-sublicensable, revocable, restricted license for usage purpose only in accordance with the Applicable Law(s).</li>
+<li>2.2.  User hereby agrees that the License granted as per these Terms is only for the authorized use of the CoinDCX API, Market Data and any software provided as per the terms contained herein.</li>
+<li>2.3.  The User shall always ensure that:</li>
+<ul style="list-style-type:none;">
+<li>a) 	The User does not alter, manipulate, or misrepresent any CoinDCX API or Market Data</li>
+<li>b)	The User shall not copy, reverse engineer, decompile, disassemble, or attempt to derive the source code, algorithm, structure, of the CoinDCX API or any software provided to the User hereunder.</li>
+<li>c) 	The User shall not redistribute, display, or disseminate the Market Data or any data, charts, analytics, research, or other works based on, referring to, or derived from the Market Data to any third party.</li>
+<li>d)  Any use by the Affiliates of User shall be disclosed to CoinDCX and it may involve additional pricing. </li>
+</ul>
+</ul>
+
+### 3. FEES AND CHARGES
+<ul style="list-style-type:none;">
+<li>3.1.  The User hereby agrees and acknowledges that presently no fees or charges are levied by CoinDCX for the use of CoinDCX API. However, nothing contained in this section, or these Terms shall restrict or limit the right of CoinDCX to charge fees or levy charges for use of the services captured herein including the CoinDCX APIs.</li>
+
+<li>3.2. CoinDCX shall have a right to waive any fee/ charges based on the use of the CoinDCX API / Market Data by the User(s). 
+The User hereby understands and acknowledges that rates/ charges/ fees may differ for Users on account of several factors including but not limited to jurisdiction, scale of use, type of entity etc. and the User waives the right to claim against CoinDCX in this regard.</li>
+</ul>
+
+### 4. OWNERSHIP AND RIGHTS
+<ul style="list-style-type:none;">
+<li>4.1. The User hereby agrees and acknowledges that CoinDCX shall retain the ownership and the Intellectual Property Rights in all the Company Data, CoinDCX API and Market Data including any software or service provided or granted to the User as per the terms contained herein.</li>
+<li>4.2. The User hereby agrees that it shall use the Intellectual Property Rights belonging to CoinDCX strictly according to the terms contained herein and the written instructions as may be provided or published by CoinDCX from time to time. The User may not delete, remove, alter, hide, move any Intellectual Property Rights belonging to CoinDCX which may or may not appear in the CoinDCX API or Market Data. All representations by the User of any Intellectual Property Rights as originally distributed and intended by CoinDCX.</li>
+</ul>
+
+### 5.  TERM AND TERMINATION
+<ul style="list-style-type:none;">
+<li>5.1. These Terms shall be valid unless terminated as per the terms contained hereunder. Any amendment to the pricing terms may be introduced by the parties upon execution of a pricing schedule to incorporate additional terms. </li>
+<li>5.2.  These Terms may be terminated by CoinDCX without any notice to the User and without assigning any reason. The User understands and agrees that this could affect the User’s right to use any of the services or benefits granted by virtue of these Terms. The User hereby waives any and all rights to claim under this section. </li>
+<li>5.3.  Termination for breach:</li>
+<ul style="list-style-type:none;">
+<li>User’s access to the CoinDCX API or any Market Data shall be terminated/ revoked by CoinDCX forthwith without any notice to the User in the following cases:</li>
+<li>a) 	Breach of any Intellectual Property Rights of CoinDCX or its Affiliates.</li>
+<li>b)	Breach of any terms contained herein.</li>
+<li>c) 	Use of the CoinDCX API for any fraudulent, illegal, immoral, or any activity not authorized by CoinDCX.</li>
+</ul>
+</ul>
+
+### 6.  REPRESENTATIONS AND WARRANTIES OF THE USER
+<ul style="list-style-type:none;">
+<li>The User hereby represents and warrants the following:</li>
+<li>6.1.   The User has the requisite power, authority, consents, licenses, and authorizations to comply with the Terms.</li>
+<li>6.2.   Any data, information, material, documents provided to CoinDCX is accurate, true, updated. Further, the User agrees to promptly inform CoinDCX in case of any changes to the document, information or material provided.</li>
+<li>6.3.  The User shall comply with the Applicable Law(s)</li>
+<li>6.4.   It has the relevant licenses to conduct any High Frequency Trading or Algorithmic Trading and shall ensure that relevant licenses/ approvals/ consents are obtained if the same is required under any Applicable Law(s).</li>
+<li>6.5.  The User represents and warrants that it shall comply with the Terms of Use.</li>
+<li>6.6.  The User hereby represents and warrants that it shall preserve and maintain the information, data and relevant records pertaining to the use of the CoinDCX API/ Market Data for a period of 5 years post termination or expiry of these Terms.</li>
+<li>6.7.  The User understands and agrees that Company is not acting as an advisor or fiduciary with respect to Licensee and is not providing investment advice, tax advice, legal advice, or other professional advice by allowing Licensee to use the Company API and Company Data. Licensee shall be solely responsible, and Company shall have no responsibility, for any decisions of Licensee or its use of the Company API or Company Data and for Licensee’s compliance with applicable laws and regulations. Without limiting the foregoing, the Company makes no recommendation regarding the purchase or sale of digital assets or any other asset, or any other investment decision or action, taken by Licensee.</li>
+</ul>
+
+### 9.  DISCLAIMER
+THE COINDCX API, MARKET DATA (INCLUDING DATA PACKAGES) AND ANY OTHER SERVICE/ SOFTWARE PROVIDED BY COINDCX TO THE USER IS PROVIDED ON AN “AS IS'' AND “AS AVAILABLE” BASIS WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED. COINDCX DOES NOT WARRANT THAT THE COINDCX API OR ANY SERVICES PROVIDED HEREUNDER WILL BE SAFE, UNINTERRUPTED, ERROR FREE, OR PROTECT AGAINST ANY HACK, CYBER CRIME OR OTHER THREATS. COINDCX DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE FITNESS, QUALITY, PERFORMANCE, NON-INFRINGEMENT, PURPOSE OF THE COINDCX API OR MARKET DATA OR ANY SOFTWARE OR SERVICE PROVIDED TO THE USER. ACCESS ANY USE OF ANY COINDCX API OR MARKET DATA IS AT THE SOLE RISK OF THE USER AND COINDCX SHALL NOT BE RESPONSIBLE FOR ANY ACTIONS TAKEN BASED ON ANY SOFTWARE OR SERVICE PROVIDED HEREUNDER.
+
+### 10. SECURITY
+The user shall ensure that the information received through APIs, including personally identifiable information is protected from unauthorized access or use and shall promptly report to CoinDCX of any unauthorized access or use of such information to the extent required by applicable law. The User must ensure secure operation of CoinDCX APIs by employing reasonable security measures. The Users shall report any security deficiencies or intrusions at legal@coindcx.com. 
+
+### 11.  LIMITATION OF LIABILITY
+In no event, whether in tort, contract or otherwise, shall CoinDCX or its Affiliates be liable towards the User for any indirect, special, consequential, incidental, punitive, business loss. Under no circumstances or event shall the maximum aggregate liability of CoinDCX towards the User or any of its Affiliates shall exceed INR 1,00,000/- (Rupees One lakh only).
+
+### 12. INDEMNITY
+<ul style="list-style-type:none;">
+<li>The User shall be liable to indemnify, hold harmless and keep CoinDCX and its Affiliates always indemnified for and against any liability, costs, expenses, damages, charges/ fees (including reasonable attorney and legal fees), claims arising or relating to:</li>
+<li>a) 	Use of the CoinDCX API/ Market Data or any software provided hereunder</li>
+<li>b)	Breach of any Confidentiality terms or any Intellectual Property Rights of CoinDCX and its Affiliates.</li>
+<li>c) 	Any fraudulent use of the CoinDCX API by the User or its Affiliates</li>
+<li>d)	Breach of the terms contained herein</li>
+</ul>
+
+### 13. ARBITRATION
+<ul style="list-style-type:none;">
+<li>13.1 Any dispute, claim, difference or controversy arising out of, relating to or having any connection with the Terms, including any dispute as to its existence, validity, interpretation, performance, breach or termination or the consequences of its nullity and any dispute relating to any non-contractual obligations arising out of or in connection with it shall be referred to and finally resolved by arbitration administered by the Arbitration Tribunal in accordance with the Arbitration & Reconciliation Act, 1996 as amended, updated, re-enacted from time to time.</li>
+<li>13.2. The Language of arbitration shall be English and Mumbai, India shall be the seat and place of Arbitration.</li>
+</ul>
+
+### 14.	GOVERNING LAW AND JURISDICTION
+Subject to the Arbitration clause above, these Terms shall be governed by the laws of India and the courts at Mumbai, India shall have exclusive jurisdiction. 
+ 
+### 15.	MISCELLANEOUS
+<ul style="list-style-type:none;">
+<li>15.1.    The User shall not assign any of its obligations, rights under these Terms to any third party. Assignment to Affiliates shall be only after obtaining the prior written consent of CoinDCX.</li>
+<li>15.2. Force Majeure - CoinDCX shall not be held responsible for any failure, delay, interruption caused by circumstances outside its control, such as network failure, network connection failure, earthquake, flooding, strikes, embargoes, or any act(s) of the government or any regulatory/ statutory authority.</li>
+<li>15.3. The User agrees to pay all the necessary taxes as may be imposed under the Applicable Laws.</li>
+<li>15.4. Failure by CoinDCX to exercise or enforce any rights hereunder shall not amount to waiver of those rights. </li>
+<li>15.5. Each party is an independent contractor and there shall not be any principal-agent relationship between CoinDCX and the User.</li> 
+</ul>
 
 # Introduction
 
