@@ -19,17 +19,17 @@ Our virtual accounts are adjustable according to your needs. We offer options of
 ![API VA Aggregator](images/va_diagram_2.png)
 
 ### Key Features
-* **Create VA number via API** - Create VA automatically by integrating your applications with our API VA. For more information, visit our [API Docs](https://api-docs.oyindonesia.com/).
+1. **Create VA number via API** - Create VA automatically by integrating your applications with our API VA. For more information, visit our [API Docs](https://api-docs.oyindonesia.com/).
 
-1. **Create VA number via Dashboard** - Do not have enough resources to integrate with API VA? Do not worry, you can create a VA number easily via OY! Dashboard. No need to write some codes!
+2. **Create VA number via Dashboard** - Do not have enough resources to integrate with API VA? Do not worry, you can create a VA number easily via OY! Dashboard. No need to write some codes!
 
-2. **Support multiple banks** - Currently, we support virtual accounts (VA) at 6 7 banks: BCA, BNI, Mandiri, BRI, Permata, CIMB Niaga, and BTPN
+3. **Support multiple banks** - Currently, we support virtual accounts (VA) at 7 banks: BCA, BNI, Mandiri, BRI, Permata, CIMB Niaga, and BTPN
 
-3. **Real-time settlement for majority of the banks** - Payment into a VA will settle in your OY! dashboard on a real-time basis for the majority of the banks (note: for BCA, the settlement will take place H+2 after payment is made into the VA)
+4. **Real-time settlement for majority of the banks** - Payment into a VA will settle in your OY! dashboard on a real-time basis for the majority of the banks (note: for BCA, the settlement will take place H+2 after payment is made into the VA)
 
-4. **Transaction tracking and monitoring capability** - You can track all created VA, incoming payments, and their respective details through our API callback or the OY! dashboard. You will receive a callback all incoming transactions.
+5. **Transaction tracking and monitoring capability** - You can track all created VA, incoming payments, and their respective details through our API callback or the OY! dashboard. You will receive a callback all incoming transactions.
 
-5. **Customizable VA types** - You can customize the VA numbers you want to create. Each VA would consist of three categories you can define in the creation process. Refer to the table below for more information on various types of VA:
+6. **Customizable VA types** - You can customize the VA numbers you want to create. Each VA would consist of three categories you can define in the creation process. Refer to the table below for more information on various types of VA:
 
     Category      | Type/Feature      | Description |
     ----------- | ----------- | ----------- |
@@ -40,7 +40,7 @@ Our virtual accounts are adjustable according to your needs. We offer options of
     Usage Frequency | Single Use Virtual Account    | VA that expires after a single payment. A single use configuration can only be set up for a dynamic VA      |
     Usage Frequency | Multiple Use Virtual Account | VA that only expires when expiration date is reached or when it is manually deactivated        |
 
-6. **Capability to update VA** Attribute that can be updated:
+7. **Capability to update VA** Attribute that can be updated:
     * amount
     * is_single_use
     * email
