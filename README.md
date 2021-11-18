@@ -2,7 +2,7 @@
 
 ## Introduction
 - Generate API keys at https://coindcx.com/api-dashboard
-- Read documentation at https://coindcx-official.github.io/rest-api/
+- Read documentation at https://docs.coindcx.com/
 
 ## Development/Local
 - `git clone https://github.com/coindcx-official/rest-api.git`
