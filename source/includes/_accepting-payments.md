@@ -1,6 +1,6 @@
 # Accepting Payments
 
-## API VA Aggregator 
+## VA Aggregator 
 
 Businesses are struggling to manage hundreds or even thousands of physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the amount of account maintenance and man hours needed for reporting and reconciliation purposes, combining different information from different accounts. 
 
@@ -18,39 +18,39 @@ Our virtual accounts are adjustable according to your needs. We offer options of
 
 ![API VA Aggregator](images/va_diagram_2.png)
 
-**VA Payment Flow**
-
-Your users will be able to pay into a Virtual Account through ATM, Mobile Banking, and Internet Banking.
-
 ### Key Features
+* **Create VA number via API** - Create VA automatically by integrating your applications with our API VA. For more information, visit our [API Docs](https://api-docs.oyindonesia.com/).
 
-1. **Support multiple banks** - Currently, we support virtual accounts (VA) at 6 banks: BCA, BNI, Mandiri, BRI, Permata, and CIMB Niaga
-2. **Real-time settlement for majority of the banks** - Payment into a VA will settle in your OY! dashboard on a real-time basis for the majority of the banks (note: for BCA, the settlement will take place H+2 after payment is made into the VA)
-3. **Transaction tracking and monitoring capability** - You can track all created VA, incoming payments, and their respective details through our API callback or the OY! dashboard. You will receive a callback all incoming transactions.
-4. **Customizable VA types** - Refer to the table below for more informations on various types of VA:
+1. **Create VA number via Dashboard** - Do not have enough resources to integrate with API VA? Do not worry, you can create a VA number easily via OY! Dashboard. No need to write some codes!
 
-| Type/Feature      | Description |
-| ----------- | ----------- |
-| Static Virtual Account     | VA that has a lifetime validity. It will always be active until it is manually deactivated   |
-| Dynamic Virtual Account  | VA that has a specific validity period. It will always be active until it is expired or manually deactivated       |
-| Closed Amount Virtual Account   | VA that only accepts payment of a specific amount/declared amount     |
-| Opened Amount Virtual Account  |  VA that accepts payment of any amount        |
-| Single Use Virtual Account    | VA that expires after a single payment. A single use configuration can only be set up for a dynamic VA      |
-| Multiple Use Virtual Account | VA that only expires when expiration date is reached or when it is manually deactivated        |
+2. **Support multiple banks** - Currently, we support virtual accounts (VA) at 6 7 banks: BCA, BNI, Mandiri, BRI, Permata, CIMB Niaga, and BTPN
 
-5. **Capability to update VA** 
+3. **Real-time settlement for majority of the banks** - Payment into a VA will settle in your OY! dashboard on a real-time basis for the majority of the banks (note: for BCA, the settlement will take place H+2 after payment is made into the VA)
 
-Attribute that can be updated:
+4. **Transaction tracking and monitoring capability** - You can track all created VA, incoming payments, and their respective details through our API callback or the OY! dashboard. You will receive a callback all incoming transactions.
 
-* amount
-* is_single_use
-* email
-* trx_counter
-* expired_time
-* trx_expired_time
-* username_display
+5. **Customizable VA types** - You can customize the VA numbers you want to create. Each VA would consist of three categories you can define in the creation process. Refer to the table below for more information on various types of VA:
+
+    Category      | Type/Feature      | Description |
+    ----------- | ----------- | ----------- |
+    Validity Period | Static Virtual Account     | VA that has a lifetime validity. It will always be active until it is manually deactivated   |
+    Validity Period | Dynamic Virtual Account  | VA that has a specific validity period. It will always be active until it is expired or manually deactivated       |
+    Amount Type | Closed Amount Virtual Account   | VA that only accepts payment of a specific amount/declared amount     |
+    Amount Type | Opened Amount Virtual Account  |  VA that accepts payment of any amount        |
+    Usage Frequency | Single Use Virtual Account    | VA that expires after a single payment. A single use configuration can only be set up for a dynamic VA      |
+    Usage Frequency | Multiple Use Virtual Account | VA that only expires when expiration date is reached or when it is manually deactivated        |
+
+6. **Capability to update VA** Attribute that can be updated:
+    * amount
+    * is_single_use
+    * email
+    * trx_counter
+    * expired_time
+    * trx_expired_time
+    * username_display
 
 Example:
+
 * A static VA with a closed amount can be updated with a new closed amount hence it can work as a bill to be paid for a particular customer
 * A static VA can be updated to a single use so it will be the last payment received from a particular customer
 * A dynamic VA with a closed amount is updated to an opened amount so that it can accept payments for any amount
@@ -74,6 +74,8 @@ Follow the below check-list to ensure you're all set up to use our VA Aggregator
 
 ### Testing 
 
+#### Create VA number via API
+
 Once you successfully create an OY! account, you can immediately simulate VA payments via API.
 
 Follow the below steps to test the VA flow:
@@ -82,7 +84,7 @@ Follow the below steps to test the VA flow:
 
 2. Send a request to activate API VA Aggregator product and obtain staging API Key to your business representative
 
-3. Create a VA number by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/generate-static-va using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#create-va)
+3. Create a VA number by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/generate-static-va using your staging API key. Enter the required and optional fields, as referenced in the [API reference docs](https://api-docs.oyindonesia.com/#create-va)
 
 4. After VA number is generated, partner can simulate VA payment through your dashboard (in Staging environment) by going to Settings, and choose "VA Callback"
 
@@ -92,9 +94,33 @@ Follow the below steps to test the VA flow:
 
 7. The payment made to the VA can be monitored through OY! dashboard. Go to "Virtual Account" menu, and choose "Incoming Payment"
 
+#### Create VA via Dashboard
+
+Once you successfully create an OY! account, you can immediately create VA number and simulate VA payments via Dashboard. 
+
+Follow the instruction below:
+
+1. Create an Account.
+
+2. Select ‘Staging’ environment.
+
+3. Click menu Virtual Account, then click ‘Create VA’.
+
+4. In the top right, click ‘Create Virtual Account’ button.
+
+5. You can choose between creating VA by uploading a CSV file (template available) or creating manually one by one.
+
+6. Fill out the requirements: Partner User ID, Partner Transaction ID, Bank Name, VA Name, VA Type, Amount, usage, Usage Limit, VA Expiration Type,  VA Expiration Date & Time, Transaction Expiration Date & Time, and Email.
+
+7. Validate and Submit your request.
+
+8. VA number(s) that you created will appear in the Create VA menu.
+
+9. To simulate VA payment and see status changing, tap ‘Send Callback’ button in the right section of the table
+
 ### How to Use
 
-Send us instructions to generate a new VA number.
+Send us instructions to generate a new VA number, or create a VA number via dashboard.
 
 > Below is an example of a request body to execute your request:
 
@@ -141,11 +167,12 @@ curl --location --request POST https://partner.oyindonesia.com/api/generate-stat
 
 >
 
-Once a VA is created, its details can be seen and monitored through the OY! dashboard. 
+Once a VA is created, its details can be seen and monitored through the OY! dashboard.
+
+- For Create VA via API, an endpoint to [check your VA information](https://api-docs.oyindonesia.com/#get-va-info) is also available and can be accessed at any time.
+- If you wish to change the details of your VA, you can do so by [updating your VA](https://api-docs.oyindonesia.com/#update-va) at any time.
 
 ![API VA Aggregator](images/va_waiting_payment.png)
-
-An endpoint to [check your VA information](https://api-docs.oyindonesia.com/#get-va-info) is also available and can be accessed at anytime.
 
 > Below is an example of the request body:
 
@@ -183,8 +210,6 @@ curl --location --request GET https://partner.oyindonesia.com/api/static-virtual
 
 >
 
-If you wish to change the details of your VA, you can do so by [updating your VA](https://api-docs.oyindonesia.com/#update-va) at any time.
-
 > Below is an example of the request body:
 
 ```shell
@@ -221,11 +246,15 @@ curl --location --request PUT https://partner.oyindonesia.com/api/static-virtual
 
 >
 
-All details regarding your [created VA](https://api-docs.oyindonesia.com/#get-list-of-created-va) and its payments can be retrieved via our API endpoint or can be monitored directly from the OY! dashboard.
+All details regarding your [created VA](https://api-docs.oyindonesia.com/#get-list-of-created-va) and its payments can be monitored directly from the OY! dashboard.
+
+- Additionally, Create VA via API can be retrieved via our API endpoint.
 
 ![API VA Aggregator](images/va_created_va.png)
 
-Similarly, all the details regarding [incoming transactions](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va) for specific va numbers can be retrived via our API endpoint or can be monitored directly from the OY! dashboard.
+Similarly, all the details regarding [incoming transactions](https://api-docs.oyindonesia.com/#get-list-of-transaction-for-va) can be monitored directly from the OY! dashboard.
+
+- Additionally, Create VA via API can be retrieved via our API endpoint.
 
 ![API VA Aggregator](images/va_incoming.png)
 
@@ -827,9 +856,7 @@ Follow the below steps to test the E-Wallet flow:
     
 4.  After an E-Wallet transaction is generated, partner can simulate E-Wallet payment through your dashboard (in Staging environment) by going to Settings, and choose "E-wallet Callback"
     
-5.  Fill in the e-wallet name, the generated ref number (you can fetch the ref number information through a Create E-Wallet Transaction response or through a Check Status response), and amount in the E-Wallet Callback section
-
-![E-Wallet API](images/ewallet_testing.png)
+5.  Fill in the e-wallet name, the generated ref number (you can fetch the ref number information through a Create E-Wallet Transaction response or through a Check Status response), and amount in the E-Wallet Callback section ![E-Wallet API](images/ewallet_testing.png)
     
 6.  If a payment is successful, we will send a callback to the registered staging callback URL destination
     
