@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-11-19
+
+- Updated [GET field values changes](#get-field-values-changes) to be filterable by `action_type`, `person`, `organization`, `opportunity` or `list_entry` by passing in the appropriate parameter.
+
 ## 2021-10-15
 
 - Minor content updates

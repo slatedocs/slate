@@ -135,15 +135,28 @@ curl "https://api.affinity.co/field-value-changes?field_id=236333" -u :$APIKEY
 
 `GET /field-value-changes`
 
-Returns all field values changes attached to a specific field.
+Returns all field values changes attached to a specific field. Field value changes can be filtered by `action_type`, `person`, `organization`, `opportunity` or `list_entry` by passing in the appropriate parameter.
 
 ### Query Parameters
 
-| Parameter   | Type    | Required | Description                                                                                               |
-| ----------- | ------- | -------- | --------------------------------------------------------------------------------------------------------- |
-| field_id    | integer | true     | A unique id that represents a field object whose field values changes are to be retrieved.                |
-| action_type | integer | false    | An integer that filters field value changes that were created with this specific action type (see above). |
+| Parameter       | Type    | Required | Description                                                                                               |
+| --------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| field_id        | integer | true     | A unique id that represents a field object whose field values changes are to be retrieved.                |
+| action_type     | integer | false    | An integer that filters field value changes that were created with this specific action type (see above). |
+| person_id       | integer | false    | A unique id that represents a person object whose field value changes are to be retrieved.                |
+| organization_id | integer | false    | A unique id that represents an organization object whose field value changes are to be retrieved.         |
+| opportunity_id  | integer | false    | A unique id that represents an opportunity object whose field value changes are to be retrieved.          |
+| list_entry_id   | integer | false    | A unique id that represents a list entry object whose field value changes are to be retrieved.            |
 
 ### Returns
 
-An array of all the field values changes associated with the supplied field.
+An array of all the field values changes associated with the supplied field and `person`, `organization`, `opportunity` or `list_entry` if specified.
+
+<aside class="notice">
+  <h6>Notes</h6>
+  <ul>
+    <li>Only one of <code>person_id</code>, <code>organization_id</code>, <code>opportunity_id</code>, or <code>list_entry_id</code> can be specified to the endpoint.</li>
+    <li>If a <code>person_id</code>, <code>organization_id</code>, or <code>opportunity_id</code> is specified, the endpoint returns all field value changes tied to these entities.</li>
+    <li>If a <code>list_entry_id</code> is specified, the result is filtered by the <code>person_id</code>, <code>organization_id</code> or <code>opportunity_id</code> which is tied to the specified <code>list_entry_id</code>.</li>
+  </ul>
+</aside>
