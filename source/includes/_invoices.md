@@ -356,7 +356,8 @@ curl "https://getquipu.com/invoices/2988939" \
       "retention_amount":"0.0"
       "total_amount":"49.709"
       "vat_percent":"10.0"
-      "retention_percent":"0.0"
+      "retention_percent":"0.0",
+      "description": "item description"
     }
   }, {
     "id":"3298862"
@@ -369,7 +370,8 @@ curl "https://getquipu.com/invoices/2988939" \
       "retention_amount":"0.0"
       "total_amount":"372.438"
       "vat_percent":"10.0"
-      "retention_percent":"0.0"
+      "retention_percent":"0.0",
+      "description": "item description"
     }
   }, {
     "id":"3298863"
@@ -382,7 +384,8 @@ curl "https://getquipu.com/invoices/2988939" \
       "retention_amount":"0.0"
       "total_amount":"42.504"
       "vat_percent":"10.0"
-      "retention_percent":"0.0"
+      "retention_percent":"0.0",
+      "description": "item description"
     }
   }]
 }
