@@ -6,7 +6,7 @@ Creates a workout summary and associates it with a workout. If a workout summary
 
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" -X POST
-  -d workout_summary[data]="Friday afternoon workout" https://api.wahooligan.com/v1/workouts/56519/workout_summary
+  -d workout_summary[power_avg]="240.52" https://api.wahooligan.com/v1/workouts/56519/workout_summary
 ```
 
 > Sample Response:

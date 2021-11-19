@@ -42,4 +42,4 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
 
 ### HTTP Request
 
-`GET http://api.wahooligan.com/v1/power_zones`
+`GET https://api.wahooligan.com/v1/power_zones`
