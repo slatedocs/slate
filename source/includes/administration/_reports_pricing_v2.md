@@ -110,6 +110,62 @@ Organization Report Attributes | &nbsp;
 `endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the report.
 `reportGenerated`<br/>*boolean* | Whether or not a report could be generated for this time period.
 
+
+<!------------------- GET ORGANIZATION REPORT AS CSV--------------------->
+
+### Get an organization report as a csv
+
+`GET /reports/organization_pricing?organization_id=:id&start_date:=end_date=&end_date=:end_date&language=:language&currency=:currency`
+
+Retrieves a flat list of product with usage and cost along with other details in a csv format.
+
+```shell
+# Retrieve organizatio usage
+curl  --request GET \
+  --url "https://cloudmc_endpoint/api/v2/reports/organization_pricing?start_date=2021-07-01T00%3A00%3A00.000Z&end_date=2021-07-31T23%3A59%3A59.999Z&organization_id=a01716d0-f748-447d-94e9-60ba46753d1a&language=en&currency=CAD" \
+  -H 'Accept: text/csv ' \
+  -H "MC-Api-Key: your_api_key"
+```
+
+The response is a list of products with their usage and cost, with the first line as a header, for the given organization and period.
+
+The format of the response is a CSV with `,` used as the delimiter.
+
+```csv
+organization,account_id,category,sku,product_name,usage,unit,currency,cost,start_date,end_date
+organizationName,12345,Compute,container_memory,Container memory,1097.272800,HOUR,CAD,2194.55,2021-07-01T00:00:00Z,2021-07-31T23:59:59.999Z       
+```
+
+**Query Parameters**
+
+Required | &nbsp;
+---------- | -----------
+`start_date`<br/>*String* | An ISO-8601 instant format string representing the start of the usage. This will included any usage who's usage start date is greater than the provided instant inclusively.
+`end_date`<br/>*String* | An ISO-8601 instant format string representing the end of the usage. This will include any usage who's usage end date is less than, non-inclusively, the provided instant.
+`language`<br/>*UUID* | Language to use for the report fields (but not the headers). Expected values are "en" (English), "fr" (French) or "es" (Spanish).
+
+Optional | &nbsp;
+---------- | -----------
+`organization_id`<br/>*UUID* | The organization for which the report will be built. If not passed will default to the calling user's organization.
+`service_connection_id`<br/>*UUID* | Only return usage for the selected service connection id.
+`environment_id`<br/>*UUID* | Only return usage for the selected environment id. Needs to be provided along with the `service_connection_id`.
+`currency`<br/>*String* | The currency of usage.
+
+Report Attributes | &nbsp;
+----------------- | ------
+`organization`<br/>*String* | The organization name.
+`custom_field_1`<br/>*String* | The organization custom field (ex: account ID). Configured in the reseller billing settings. <b>There can be more than one custom field<b>.
+`category`<br/>*String* | The product category.
+`sku`<br/>*String* | The SKU of the product.
+`product_name`<br/>*Object* | The name object in each language for the product name.
+`usage`<br/>*String* | The total usage of the product.
+`unit`<br/>*String* | The name of the unit of the product.
+`currency`<br/>*String* | The short-name of the currency.
+`cost` <br/> *string* | The total cost of the product.
+`startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the report.
+`endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the report.
+
+
 <!------------------- GET CUSTOMER REPORT --------------------->
 
 ### Get a customer's report
