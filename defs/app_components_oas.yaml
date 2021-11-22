@@ -305,15 +305,19 @@ components:
           example: 'some-icon.png'
     FormMetadataResponse:
       description: >-
-        Contains the metadata that describes how to display and manage a form
+        Contains the metadata that describes how to display and manage a form.
       type: object
       properties:
         template:
+          description: >- 
+            The interface name and version of a distinct form UI layout. A `template` is directly associated with a particular `metadata` schema.
           type: string
           enum:
             - form_metadata_v0
           example: 'form_metadata_v0'
         metadata:
+          description: >- 
+            The metadata (i.e., underlying definition) of a form. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.
           type: object
           properties:
             title:
@@ -502,15 +506,19 @@ components:
           example: 'https://example-icon.png'
     WidgetMetadataResponse:
       description: >-
-        An object containing information about the widget
+        An object containing information about the widget.
       type: object
       properties:
         template:
+          description: >-  
+            The interface name and version of a distinct widget UI layout. A `template` is directly associated with a particular `metadata` schema.
           type: string
           enum:
             - summary_with_details_v0
           example: 'summary_with_details_v0'
         metadata:
+          description: >- 
+            The metadata (i.e., underlying definition) of a widget. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.
           type: object
           properties:
             error:

@@ -696,7 +696,7 @@ tags:
       the resource
       periodically (e.g. [GET a task](/docs/get-a-task)). More details and ongoing
       updates can be found in
-      [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570)
+      [this post](https://forum.asana.com/t/update-on-upcoming-improvements-to-our-webhooks-system/143305)
       in the developer forum.*
 
 
@@ -3116,6 +3116,18 @@ components:
               description: >-
                 *Create-only*. The team that this project is shared with.
                 This field only exists for projects in organizations.
+              type: string
+              example: '12345'
+    CreateProjectFromAsanaTemplateRequest:
+      allOf:
+        - $ref: '#/components/schemas/ProjectRequest'
+        - type: object
+          properties:
+            project_template:
+              description: >-
+                The string ID of the Asana-created template to create the project
+                from.
+              nullable: false
               type: string
               example: '12345'
     ProjectBase:
@@ -8440,6 +8452,57 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /projects/createFromAsanaTemplate:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Create a project from an Asana template
+      description: |-
+        Create a new project from an Asana template in a workspace or team.
+
+        Every project is required to be created in a specific workspace or
+        organization, and this cannot be changed once set. Note that you can use
+        the `workspace` parameter regardless of whether or not it is an
+        organization.
+
+        If the workspace for your project is an organization, you must also
+        supply a `team` to share the project with.
+
+        Returns the full record of the newly created project.
+      tags:
+        - Projects
+      operationId: createProjectFromAsanaTemplate
+      requestBody:
+        description: The project to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/CreateProjectFromAsanaTemplateRequest'
+      responses:
+        201:
+          description: Successfully created a project.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProjectResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:

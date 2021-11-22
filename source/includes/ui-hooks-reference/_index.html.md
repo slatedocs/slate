@@ -1398,7 +1398,7 @@ The response to a successful attach request.
 ```
 
 <span class="description">
-Contains the metadata that describes how to display and manage a form
+Contains the metadata that describes how to display and manage a form.
 
 </span>
 
@@ -1406,7 +1406,7 @@ Contains the metadata that describes how to display and manage a form
 
 |Name|Description|
 |---|---|
-|metadata<span class="param-type"> object</span>|none|
+|metadata<span class="param-type"> object</span>|The metadata (i.e., underlying definition) of a form. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
 |» fields<span class="param-type"> [object]</span>|An array of FormField objects that are rendered in the order they are in the array. Limit of 30 fields.|
 |»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
 |»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
@@ -1424,7 +1424,7 @@ Contains the metadata that describes how to display and manage a form
 |» on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button. If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
 |» submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|
 |» title<span class="param-type"> string</span>|The title of the form, which is displayed at the top of the creation form|
-|template<span class="param-type"> string</span>|none|
+|template<span class="param-type"> string</span>|The interface name and version of a distinct form UI layout. A `template` is directly associated with a particular `metadata` schema.|
 
 #### Enumerated Values
 
@@ -1571,7 +1571,7 @@ An object describing a typeahead result
 ```
 
 <span class="description">
-An object containing information about the widget
+An object containing information about the widget.
 
 </span>
 
@@ -1579,7 +1579,7 @@ An object containing information about the widget
 
 |Name|Description|
 |---|---|
-|metadata<span class="param-type"> object</span>|none|
+|metadata<span class="param-type"> object</span>|The metadata (i.e., underlying definition) of a widget. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
 |» error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. A widget must contain at least 1 field and no more than 5.|
 |»» color<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `pill`. The color of the pill.|
@@ -1598,7 +1598,7 @@ An object containing information about the widget
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
 |» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
 |» title<span class="param-type"> string</span>|The text to show in the title of the widget. Max length of 200 chars.|
-|template<span class="param-type"> string</span>|none|
+|template<span class="param-type"> string</span>|The interface name and version of a distinct widget UI layout. A `template` is directly associated with a particular `metadata` schema.|
 
 #### Enumerated Values
 
