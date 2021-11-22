@@ -216,7 +216,7 @@ Entrega una lista de marcas filtradas (opcionalmente) por nombre y país.
           name_autocomplete
         </strong>
         <small class="param__type">string</small>
-        
+        <span class="param__required" title="Requerido">*</span>
         
       </li>
     
@@ -1271,7 +1271,7 @@ Entrega una lista de industrias filtradas por nombre.
           name_autocomplete
         </strong>
         <small class="param__type">string</small>
-        
+        <span class="param__required" title="Requerido">*</span>
         
       </li>
     
@@ -2356,7 +2356,7 @@ Entrega una lista de sitios web filtrados (opcionalmente) por nombre y país.
           domain_autocomplete
         </strong>
         <small class="param__type">string</small>
-        
+        <span class="param__required" title="Requerido">*</span>
         
       </li>
     
@@ -17090,6 +17090,78 @@ Entrega la información referente a un mercado.
       </li>
     
   
+    
+      <li class="param__child1 ">
+        <strong class="param__name">
+          
+            
+<button class="param__toggle">►</button>
+
+          
+          industries
+        </strong>
+        <small class="param__type">object</small>
+        
+        
+          <span class="param__desc">Industrias a incluir</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child2 param__hidden">
+        <strong class="param__name">
+          
+          include
+        </strong>
+        <small class="param__type">array</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Objetos a incluir</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child3 param__hidden">
+        <strong class="param__name">
+          
+          id
+        </strong>
+        <small class="param__type">integer</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+          <span class="param__desc">Identificador del objeto</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
+    
+      <li class="param__child3 param__hidden">
+        <strong class="param__name">
+          
+          name
+        </strong>
+        <small class="param__type">string</small>
+        
+        
+          <span class="param__desc">Nombre del objeto</span>
+          <div class="param--enums">
+            
+          </div>
+        
+      </li>
+    
+  
   </ul>
 </details>
 
@@ -31130,7 +31202,7 @@ Puedes utilizar el siguiente reporte para exportar todos los datos de un mercado
           ad_type
         </strong>
         <small class="param__type">integer</small>
-        
+        <span class="param__required" title="Requerido">*</span>
         
       </li>
     
@@ -31142,7 +31214,7 @@ Puedes utilizar el siguiente reporte para exportar todos los datos de un mercado
           country
         </strong>
         <small class="param__type">integer</small>
-        
+        <span class="param__required" title="Requerido">*</span>
         
       </li>
     
@@ -31154,7 +31226,7 @@ Puedes utilizar el siguiente reporte para exportar todos los datos de un mercado
           day
         </strong>
         <small class="param__type">string</small>
-        
+        <span class="param__required" title="Requerido">*</span>
         
       </li>
     
@@ -31166,6 +31238,18 @@ Puedes utilizar el siguiente reporte para exportar todos los datos de un mercado
           device
         </strong>
         <small class="param__type">integer</small>
+        <span class="param__required" title="Requerido">*</span>
+        
+      </li>
+    
+  
+    
+      <li class="param__childundefined ">
+        <strong class="param__name">
+          
+          industries
+        </strong>
+        <small class="param__type">array</small>
         
         
       </li>

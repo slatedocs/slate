@@ -17,9 +17,9 @@ headers = {
     'content-type': 'application/json;charset=UTF-8',
 }
 
-data = '{"country": "cl","date_end": "2021-06-08","date_start": "2021-05-08","device": "all","group_by": "day","labels_limit": 10,"labels": [{"name": "Coca-Cola - Inicio | Facebook","media_plan": [{"days_with_impressions": 4,"domain": "facebook.com","daily_impressions": [{ "date": "2021-05-20", "impressions": 246954 }]}]}]}'
+data = '{"accumulated_reach": 0.119059494,"country": "cl","date_start": "2021-05-09","website_limit": 5,"websites_with_reach": [{ "domain": "youtube.com", "relative_reach": 0.11828468514207159 },{ "domain": "dailymotion.com", "relative_reach": 0.0006256090382416021 },{ "domain": "facebook.com", "relative_reach": 0.00014919990441392876 }]}'
 
-response = requests.post('https://clientela.admetricks.com/reach/', headers=headers, data=data)
+response = requests.post('https://clientela.admetricks.com/reach/incremental/', headers=headers, data=data)
 ```
 
 ```javascript
