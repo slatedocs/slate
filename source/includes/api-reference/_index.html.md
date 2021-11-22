@@ -7906,7 +7906,7 @@ Returns the compact portfolio membership records for the portfolio.
 <h1 id="projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="/docs/create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="/docs/get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="/docs/get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="/docs/get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="/docs/remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="/docs/get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="/docs/add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addMembers</span></a><br><a href="/docs/remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="/docs/add-followers-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="/docs/remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a></code>
+<code><a href="/docs/get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="/docs/create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="/docs/get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="/docs/get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="/docs/get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="/docs/remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="/docs/get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="/docs/add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addMembers</span></a><br><a href="/docs/remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="/docs/add-followers-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="/docs/remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a><br><a href="/docs/create-a-project-from-an-asana-template"><span class="post-verb">POST</span> <span class=""nn>/projects/createFromAsanaTemplate</span></a></code>
 </pre>
 
 <span class="description">
@@ -10970,6 +10970,287 @@ Status Code **200**
 |Name|Description|
 |---|---|
 | data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Create a project from an Asana template
+
+<a id="opIdcreateProjectFromAsanaTemplate"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/projects/createFromAsanaTemplate \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+createProjectFromAsanaTemplate
+
+```
+
+```python
+createProjectFromAsanaTemplate
+
+```
+
+```ruby
+createProjectFromAsanaTemplate
+
+```
+
+```java
+createProjectFromAsanaTemplate
+
+```
+
+```php
+createProjectFromAsanaTemplate
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "archived": false,
+    "color": "light-green",
+    "current_status": {
+      "author": {
+        "name": "Greg Sanchez"
+      },
+      "color": "green",
+      "created_by": {
+        "name": "Greg Sanchez"
+      },
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
+    },
+    "custom_fields": {
+      "4578152156": "Not Started",
+      "5678904321": "On Hold"
+    },
+    "default_view": "calendar",
+    "due_date": "2019-09-15",
+    "due_on": "2019-09-15",
+    "followers": "12345,23456",
+    "html_notes": "<body>These are things we need to purchase.</body>",
+    "is_template": false,
+    "name": "Stuff to buy",
+    "notes": "These are things we need to purchase.",
+    "owner": "12345",
+    "project_template": "12345",
+    "public": false,
+    "start_on": "2019-09-14",
+    "team": "12345"
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy",
+    "archived": false,
+    "color": "light-green",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "current_status": {
+      "gid": "12345",
+      "resource_type": "project_status",
+      "title": "Status Update - Jun 15",
+      "color": "green",
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "text": "The project is moving forward according to plan...",
+      "author": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "created_by": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      },
+      "modified_at": "2012-02-22T02:06:58.147Z"
+    },
+    "custom_field_settings": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field_setting"
+      }
+    ],
+    "default_view": "calendar",
+    "due_date": "2019-09-15",
+    "due_on": "2019-09-15",
+    "html_notes": "<body>These are things we need to purchase.</body>",
+    "is_template": false,
+    "members": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "modified_at": "2012-02-22T02:06:58.147Z",
+    "notes": "These are things we need to purchase.",
+    "public": false,
+    "start_on": "2019-09-14",
+    "workspace": {
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "My Company Workspace"
+    },
+    "custom_fields": [
+      {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "display_value": "blue",
+        "enabled": true,
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "name": "Status",
+        "number_value": 5.2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
+      }
+    ],
+    "followers": [
+      {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    ],
+    "icon": "chat_bubbles",
+    "owner": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+    "team": {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    }
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/createFromAsanaTemplate</code>
+</p>
+
+<span class="description">
+Create a new project from an Asana template in a workspace or team.
+
+Every project is required to be created in a specific workspace or
+organization, and this cannot be changed once set. Note that you can use
+the `workspace` parameter regardless of whether or not it is an
+organization.
+
+If the workspace for your project is an organization, you must also
+supply a `team` to share the project with.
+
+Returns the full record of the newly created project.
+</span>
+
+<h3 id="create-a-project-from-an-asana-template-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The project to create.|
+|» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
+|»» color<span class="param-type"> string¦null</span>|Color of the project.|
+|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
+|»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
+|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
+|»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
+|»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
+|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
+|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
+|»» project_template<span class="param-type"> string</span>|The string ID of the Asana-created template to create the project from.|
+|»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
+| color|green|
+| color|yellow|
+| color|red|
+| color|blue|
+| default_view|list|
+| default_view|board|
+| default_view|calendar|
+| default_view|timeline|
+
+<h3 id="create-a-project-from-an-asana-template-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [Project](#schemaproject)</span>|Successfully created a project.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -21808,7 +22089,7 @@ Returns the full record for a user's task list.
 </pre>
 
 <span class="description">
-*Note: Recently, some users have seen intermittent delays with webhook event distributions. We are in the process of transferring the webhooks system to a more reliable infrastructure while also iteratively improving the current system. As such, for the time being we advise against using webhooks for functionality beyond logging (e.g., syncing state with real-time notification data). If you experience issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](/docs/get-a-task)). More details and ongoing updates can be found in [this post](https://forum.asana.com/t/upcoming-improvements-to-our-webhooks-system/126570) in the developer forum.*
+*Note: Recently, some users have seen intermittent delays with webhook event distributions. We are in the process of transferring the webhooks system to a more reliable infrastructure while also iteratively improving the current system. As such, for the time being we advise against using webhooks for functionality beyond logging (e.g., syncing state with real-time notification data). If you experience issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](/docs/get-a-task)). More details and ongoing updates can be found in [this post](https://forum.asana.com/t/update-on-upcoming-improvements-to-our-webhooks-system/143305) in the developer forum.*
 
 Webhooks allow an application to be notified of changes in Asana.
 
