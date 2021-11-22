@@ -18,327 +18,576 @@ curl "https://cloudmc_endpoint/rest/invoices/find/efd32752-c6f2-45cf-b494-cc6be8
 
 ```json
 {
- "data": [{
-  "draftedDate": "2021-07-27T00:00:00Z",
-  "createdDate": "2021-07-27T00:00:00Z",
-  "status": "DRAFT",
-  "organization": {
-   "name": "org_name",
-   "id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
-  },
-  "id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
-  "detail": {
-      "total": 138.98,
-      "adjustments": [],
-      "adjustmentAggregations": [
+    "data": [
         {
-          "amount": 0,
-          "before": 120.88,
-          "cumulativeAmount": -599.14,
-          "after": 120.88,
-          "type": "PERCENTAGE",
-        },
-        {
-          "amount": 0,
-          "subtype": "QUEBEC QST/TVQ",
-          "before": 138.98,
-          "cumulativeAmount": 12.06,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "subtype": "CANADA GST/TPS",
-          "before": 138.98,
-          "cumulativeAmount": 6.04,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "before": 138.98,
-          "cumulativeAmount": 18.1,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "before": 138.97,
-          "cumulativeAmount": 0,
-          "after": 138.98,
-          "type": "CREDIT",
-        },
-      ],
-      "endDate": "2021-10-08T00:00:00Z",
-      "currency": "CAD",
-      "subTotal": 120.87,
-      "categories": [
-        {
-          "total": 138.97,
-          "adjustments": [
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -72.0,
-              "before": 720.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "packageDiscount": 10.0,
-                "adjustmentReferenceId": "625b78d8-ed4c-4004-8f8c-ab8073979714",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "all product discount",
-                },
-                "subtype": "",
-                "id": "625b78d8-ed4c-4004-8f8c-ab8073979714",
-                "credit": false,
-                "startDate": "2021-10-06T00:00:00Z",
-              },
-              "after": 648.0,
-              "type": "PERCENTAGE",
+            "createdDate": "2021-11-22T17:22:49Z",
+            "billingCycle": {
+                "id": "7c10604c-3045-40ef-9890-1bd5a23d5a7b"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -162.0,
-              "before": 648.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "cutoffDate": "2022-01-20T00:00:00Z",
-                "adjustmentReferenceId": "cc8b2e31-0050-4e09-9f76-7fa2f9c86381",
-                "discountScope": "CATEGORIES",
-                "discountedCategories": {
-                  "5e111681-3025-4fc0-9890-b85512f7cb97": 5,
-                  "d88a106d-608f-48f4-a6be-a97f9f6c29c5": 25,
-                  "f989c36f-ca07-43eb-90e4-b263446a0e51": 10,
-                  "ceb6e3b8-36bf-4e10-a309-671d65bab26b": 12,
-                  "b740f674-0594-49fb-9b0a-f3e0f91b2aa5": 30,
-                  "b4fefd4a-f447-4a72-9c2d-34e35232b89d": 15,
-                },
-                "name": {
-                  "en": "Category discount",
-                },
-                "subtype": "",
-                "id": "cc8b2e31-0050-4e09-9f76-7fa2f9c86381",
-                "credit": false,
-                "startDate": "2021-07-07T00:00:00Z",
-              },
-              "after": 486.0,
-              "type": "PERCENTAGE",
+            "organization": {
+                "name": "System",
+                "id": "c869e848-6fb3-4850-af3d-42c5666f2c78"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -24.3,
-              "before": 486.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "durationDays": 60,
-                "type": "PERCENTAGE",
-                "cutoffDate": "2021-09-16T00:00:00Z",
-                "adjustmentReferenceId": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
-                "discountScope": "CATEGORIES",
-                "discountedCategories": {
-                  "5e111681-3025-4fc0-9890-b85512f7cb97": 5,
-                  "d88a106d-608f-48f4-a6be-a97f9f6c29c5": 5,
-                  "f989c36f-ca07-43eb-90e4-b263446a0e51": 10,
+            "invoiceId": "X5GDVRKGCY",
+            "id": "504735ce-cdc1-4adf-b59c-b4e43d1eefa4",
+            "detail": {
+                "adjustments": [
+                    {
+                        "amount": -41650.89,
+                        "dailyDeltas": {
+                            "2021-10-06": 0.0,
+                            "2021-10-07": -1352.01792,
+                            "2021-10-08": -899.184845,
+                            "2021-10-02": -422.4,
+                            "2021-10-03": -422.4,
+                            "2021-10-04": -686.35776,
+                            "2021-10-05": -2015.18592,
+                            "2021-09-30": -422.4,
+                            "2021-10-01": -422.4,
+                            "2021-09-25": -422.4,
+                            "2021-09-28": -422.4,
+                            "2021-09-29": -422.4,
+                            "2021-09-26": -422.4,
+                            "2021-09-27": -422.4
+                        },
+                        "before": 189322.23,
+                        "after": 147671.34,
+                        "source": {
+                            "endDate": "2021-10-15",
+                            "subtype": "",
+                            "scope": "ALL_PRODUCTS",
+                            "typeString": "PERCENTAGE",
+                            "discount": {
+                                "applyToNewCustomersOnly": false,
+                                "discountedProducts": {},
+                                "type": "PERCENTAGE",
+                                "packageDiscount": 22.0,
+                                "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                "subtype": "",
+                                "discountedCategories": {},
+                                "scope": "ALL_PRODUCTS",
+                                "name": {
+                                    "en": "discount",
+                                    "fr": "escompte"
+                                },
+                                "id": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                "credit": false,
+                                "startDate": "2021-05-08T00:00:00Z"
+                            },
+                            "discountId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                            "type": "PERCENTAGE",
+                            "startDate": "2021-09-15",
+                            "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29"
+                        },
+                        "type": "PERCENTAGE"
+                    },
+                    {
+                        "amount": 0.0,
+                        "dailyDeltas": {
+                            "2021-09-25": 0.0
+                        },
+                        "before": 147671.34,
+                        "after": 147671.34,
+                        "source": {
+                            "endDate": "2021-10-15",
+                            "subtype": "",
+                            "scope": "ALL_PRODUCTS",
+                            "typeString": "CREDIT",
+                            "discount": {
+                                "applyToNewCustomersOnly": false,
+                                "discountedProducts": {},
+                                "type": "CREDIT",
+                                "packageDiscount": 250000.0,
+                                "cutoffDate": "2021-09-27T00:00:00Z",
+                                "referenceId": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                                "durationDays": 90,
+                                "subtype": "",
+                                "discountedCategories": {},
+                                "scope": "ALL_PRODUCTS",
+                                "name": {
+                                    "en": "bbbb",
+                                    "fr": "bb"
+                                },
+                                "id": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                                "credit": true,
+                                "startDate": "2021-05-08T00:00:00Z"
+                            },
+                            "used": {
+                                "packageDiscount": 0.0
+                            },
+                            "discountId": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                            "type": "CREDIT",
+                            "startDate": "2021-09-15",
+                            "remaining": {
+                                "discountedProducts": {},
+                                "discountedCategories": {},
+                                "packageDiscount": 0.0
+                            },
+                            "referenceId": "532067ee-c194-4463-b5a1-a161e5c9388c"
+                        },
+                        "type": "CREDIT"
+                    }
+                ],
+                "adjustmentAggregations": [
+                    {
+                        "scopedBefore": 189322.23,
+                        "scopedAmount": -41650.89,
+                        "subtype": "",
+                        "before": 251748.98,
+                        "cumulativeAmount": -104077.64,
+                        "after": 147671.34,
+                        "type": "PERCENTAGE",
+                        "scopedAfter": 147671.34
+                    },
+                    {
+                        "scopedBefore": 147671.34,
+                        "scopedAmount": 0.0,
+                        "subtype": "",
+                        "before": 147671.34,
+                        "cumulativeAmount": 0.0,
+                        "after": 147671.34,
+                        "type": "CREDIT",
+                        "scopedAfter": 147671.34
+                    }
+                ],
+                "endDate": "2021-10-15T00:00:00Z",
+                "inclusiveEndDate": "2021-10-14T00:00:00Z",
+                "subTotal": 147671.34,
+                "dateToSubTotalCost": {
+                    "2021-10-06": 34144.890624,
+                    "2021-10-07": 32116.48128,
+                    "2021-10-08": 21359.336693999998,
+                    "2021-10-02": 1497.6,
+                    "2021-10-03": 1497.6,
+                    "2021-10-04": 12766.995072,
+                    "2021-10-05": 33805.234943999996,
+                    "2021-09-30": 1497.6,
+                    "2021-10-01": 1497.6,
+                    "2021-09-25": 1497.6,
+                    "2021-09-28": 1497.6,
+                    "2021-09-29": 1497.6,
+                    "2021-09-26": 1497.6,
+                    "2021-09-27": 1497.6
                 },
-                "name": {
-                  "en": "test-categories",
+                "dateToTotalCost": {
+                    "2021-10-06": 34144.890624,
+                    "2021-10-07": 32116.48128,
+                    "2021-10-08": 21359.336693999998,
+                    "2021-10-02": 1497.6,
+                    "2021-10-03": 1497.6,
+                    "2021-10-04": 12766.995072,
+                    "2021-10-05": 33805.234943999996,
+                    "2021-09-30": 1497.6,
+                    "2021-10-01": 1497.6,
+                    "2021-09-25": 1497.6,
+                    "2021-09-28": 1497.6,
+                    "2021-09-29": 1497.6,
+                    "2021-09-26": 1497.6,
+                    "2021-09-27": 1497.6
                 },
-                "subtype": "",
-                "id": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
-                "credit": false,
-                "startDate": "2021-09-16T00:00:00Z",
-              },
-              "after": 461.7,
-              "type": "PERCENTAGE",
+                "total": 147671.34,
+                "currency": "CAD",
+                "categories": [
+                    {
+                        "dateToTotalCost": {
+                            "2021-10-06": 34144.890624,
+                            "2021-10-07": 32116.48128,
+                            "2021-10-08": 21359.336693999998,
+                            "2021-10-02": 1497.6,
+                            "2021-10-03": 1497.6,
+                            "2021-10-04": 12766.995072,
+                            "2021-10-05": 33805.234943999996,
+                            "2021-09-30": 1497.6,
+                            "2021-10-01": 1497.6,
+                            "2021-09-25": 1497.6,
+                            "2021-09-28": 1497.6,
+                            "2021-09-29": 1497.6,
+                            "2021-09-26": 1497.6,
+                            "2021-09-27": 1497.6
+                        },
+                        "total": 147671.34,
+                        "adjustments": [
+                            {
+                                "itemId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                                "amount": -47330.56,
+                                "dailyDeltas": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": -1536.384,
+                                    "2021-10-08": -1021.80096,
+                                    "2021-10-02": -480.0,
+                                    "2021-10-03": -480.0,
+                                    "2021-10-04": -779.952,
+                                    "2021-10-05": -2289.984,
+                                    "2021-09-30": -480.0,
+                                    "2021-10-01": -480.0,
+                                    "2021-09-25": -480.0,
+                                    "2021-09-28": -480.0,
+                                    "2021-09-29": -480.0,
+                                    "2021-09-26": -480.0,
+                                    "2021-09-27": -480.0
+                                },
+                                "before": 236652.79,
+                                "after": 189322.23,
+                                "source": {
+                                    "endDate": "2021-10-15",
+                                    "subtype": "",
+                                    "scope": "CATEGORIES",
+                                    "typeString": "PERCENTAGE",
+                                    "discount": {
+                                        "applyToNewCustomersOnly": false,
+                                        "discountedProducts": {},
+                                        "type": "PERCENTAGE",
+                                        "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                        "subtype": "",
+                                        "discountedCategories": {
+                                            "950d5a79-f6df-4770-995a-5144e6feb6b0": 20
+                                        },
+                                        "scope": "CATEGORIES",
+                                        "name": {
+                                            "en": "compute-20-percent",
+                                            "fr": "compute-20-percent"
+                                        },
+                                        "id": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                        "credit": false,
+                                        "startDate": "2021-05-08T00:00:00Z"
+                                    },
+                                    "discountId": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                    "type": "PERCENTAGE",
+                                    "startDate": "2021-09-15",
+                                    "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889"
+                                },
+                                "type": "PERCENTAGE"
+                            },
+                            {
+                                "itemId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                                "amount": -41650.89,
+                                "dailyDeltas": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": -1352.01792,
+                                    "2021-10-08": -899.184845,
+                                    "2021-10-02": -422.4,
+                                    "2021-10-03": -422.4,
+                                    "2021-10-04": -686.35776,
+                                    "2021-10-05": -2015.18592,
+                                    "2021-09-30": -422.4,
+                                    "2021-10-01": -422.4,
+                                    "2021-09-25": -422.4,
+                                    "2021-09-28": -422.4,
+                                    "2021-09-29": -422.4,
+                                    "2021-09-26": -422.4,
+                                    "2021-09-27": -422.4
+                                },
+                                "before": 189322.23,
+                                "after": 147671.34,
+                                "source": {
+                                    "endDate": "2021-10-15",
+                                    "subtype": "",
+                                    "scope": "ALL_PRODUCTS",
+                                    "typeString": "PERCENTAGE",
+                                    "discount": {
+                                        "applyToNewCustomersOnly": false,
+                                        "discountedProducts": {},
+                                        "type": "PERCENTAGE",
+                                        "packageDiscount": 22.0,
+                                        "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                        "subtype": "",
+                                        "discountedCategories": {},
+                                        "scope": "ALL_PRODUCTS",
+                                        "name": {
+                                            "en": "discount",
+                                            "fr": "escompte"
+                                        },
+                                        "id": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                        "credit": false,
+                                        "startDate": "2021-05-08T00:00:00Z"
+                                    },
+                                    "discountId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                    "type": "PERCENTAGE",
+                                    "startDate": "2021-09-15",
+                                    "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29"
+                                },
+                                "type": "PERCENTAGE"
+                            }
+                        ],
+                        "adjustmentAggregations": [
+                            {
+                                "scopedBefore": 236652.79,
+                                "scopedAmount": -88981.45,
+                                "subtype": "",
+                                "before": 251748.98,
+                                "cumulativeAmount": -104077.64,
+                                "after": 147671.34,
+                                "type": "PERCENTAGE",
+                                "scopedAfter": 147671.34
+                            }
+                        ],
+                        "name": {
+                            "en": "compute",
+                            "fr": "dancer"
+                        },
+                        "subTotal": 147671.34,
+                        "dateToSubTotalCost": {
+                            "2021-10-06": 34144.890624,
+                            "2021-10-07": 32116.48128,
+                            "2021-10-08": 21359.336693999998,
+                            "2021-10-02": 1497.6,
+                            "2021-10-03": 1497.6,
+                            "2021-10-04": 12766.995072,
+                            "2021-10-05": 33805.234943999996,
+                            "2021-09-30": 1497.6,
+                            "2021-10-01": 1497.6,
+                            "2021-09-25": 1497.6,
+                            "2021-09-28": 1497.6,
+                            "2021-09-29": 1497.6,
+                            "2021-09-26": 1497.6,
+                            "2021-09-27": 1497.6
+                        },
+                        "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                        "products": [
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 49740.6,
+                                        "cumulativeAmount": -18702.47,
+                                        "after": 31038.13,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "1f656184-df81-47c7-964f-eb9e27743d7b",
+                                "usage": 497.406048,
+                                "pricingTiers": [],
+                                "subTotal": 31038.13,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": 4793.51808,
+                                    "2021-10-08": 3188.018995,
+                                    "2021-10-02": 1497.6,
+                                    "2021-10-03": 1497.6,
+                                    "2021-10-04": 2433.450239999999,
+                                    "2021-10-05": 7144.75008,
+                                    "2021-09-30": 1497.6,
+                                    "2021-10-01": 1497.6,
+                                    "2021-09-25": 1497.6,
+                                    "2021-09-28": 1497.6,
+                                    "2021-09-29": 1497.6,
+                                    "2021-09-26": 1497.6,
+                                    "2021-09-27": 1497.6
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": 4793.51808,
+                                    "2021-10-08": 3188.018995,
+                                    "2021-10-02": 1497.6,
+                                    "2021-10-03": 1497.6,
+                                    "2021-10-04": 2433.450239999999,
+                                    "2021-10-05": 7144.75008,
+                                    "2021-09-30": 1497.6,
+                                    "2021-10-01": 1497.6,
+                                    "2021-09-25": 1497.6,
+                                    "2021-09-28": 1497.6,
+                                    "2021-09-29": 1497.6,
+                                    "2021-09-26": 1497.6,
+                                    "2021-09-27": 1497.6
+                                },
+                                "total": 31038.13,
+                                "unit": {
+                                    "unit": "UNIT",
+                                    "name": {}
+                                },
+                                "price": "100.000000",
+                                "name": {
+                                    "en": "specification",
+                                    "fr": "specification"
+                                },
+                                "sku": "SPEC_PRODUCT",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 160493.81,
+                                        "cumulativeAmount": -60345.67,
+                                        "after": 100148.14,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "3c2bb895-4282-41a1-8db4-2269037dc561",
+                                "usage": 8024.690304,
+                                "pricingTiers": [],
+                                "subTotal": 100148.14,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 29951.640576,
+                                    "2021-10-07": 23967.500544,
+                                    "2021-10-08": 15939.734353999998,
+                                    "2021-10-04": 8630.129664,
+                                    "2021-10-05": 21659.129856
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 29951.640576,
+                                    "2021-10-07": 23967.500544,
+                                    "2021-10-08": 15939.734353999998,
+                                    "2021-10-04": 8630.129664,
+                                    "2021-10-05": 21659.129856
+                                },
+                                "total": 100148.14,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "20.000000",
+                                "name": {
+                                    "en": "storage",
+                                    "fr": "storage"
+                                },
+                                "sku": "STORAGE",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 11322.18,
+                                        "cumulativeAmount": -4257.14,
+                                        "after": 7065.04,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "6b94a874-9f85-4a14-9437-d5df30c8191d",
+                                "usage": 377.406048,
+                                "pricingTiers": [],
+                                "subTotal": 7065.04,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 1797.12,
+                                    "2021-10-07": 1438.055424,
+                                    "2021-10-08": 956.405699,
+                                    "2021-10-04": 730.0350719999999,
+                                    "2021-10-05": 2143.4250239999997
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 1797.12,
+                                    "2021-10-07": 1438.055424,
+                                    "2021-10-08": 956.405699,
+                                    "2021-10-04": 730.0350719999999,
+                                    "2021-10-05": 2143.4250239999997
+                                },
+                                "total": 7065.04,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "30.000000",
+                                "name": {
+                                    "en": "vm cpu",
+                                    "fr": "dancer"
+                                },
+                                "sku": "VM_CPU",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [
+                                    {
+                                        "itemId": "a36933e3-697a-4093-9057-18aed07479ea",
+                                        "amount": -15096.19,
+                                        "dailyDeltas": {
+                                            "2021-10-06": -3839.952,
+                                            "2021-10-07": -3072.768,
+                                            "2021-10-08": -2043.55392,
+                                            "2021-10-04": -1559.904,
+                                            "2021-10-05": -4580.016
+                                        },
+                                        "before": 30192.39,
+                                        "after": 15096.2,
+                                        "source": {
+                                            "endDate": "2021-10-15",
+                                            "subtype": "",
+                                            "scope": "PRODUCTS",
+                                            "typeString": "PERCENTAGE",
+                                            "discount": {
+                                                "applyToNewCustomersOnly": false,
+                                                "discountedProducts": {
+                                                    "a36933e3-697a-4093-9057-18aed07479ea": 50
+                                                },
+                                                "type": "PERCENTAGE",
+                                                "referenceId": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                                "subtype": "",
+                                                "discountedCategories": {},
+                                                "scope": "PRODUCTS",
+                                                "name": {
+                                                    "en": "vm-ram-50-percent",
+                                                    "fr": "vm-ram-50-percent"
+                                                },
+                                                "id": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                                "credit": false,
+                                                "startDate": "2021-05-08T00:00:00Z"
+                                            },
+                                            "discountId": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                            "type": "PERCENTAGE",
+                                            "startDate": "2021-09-15",
+                                            "referenceId": "455feefb-0270-42ab-b9a1-ce87a430fd99"
+                                        },
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "adjustmentAggregations": [
+                                    {
+                                        "scopedBefore": 30192.39,
+                                        "scopedAmount": -15096.19,
+                                        "subtype": "",
+                                        "before": 30192.39,
+                                        "cumulativeAmount": -20772.36,
+                                        "after": 9420.03,
+                                        "type": "PERCENTAGE",
+                                        "scopedAfter": 15096.2
+                                    }
+                                ],
+                                "productId": "a36933e3-697a-4093-9057-18aed07479ea",
+                                "usage": 754.809696,
+                                "pricingTiers": [],
+                                "subTotal": 9420.03,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 2396.1300479999995,
+                                    "2021-10-07": 1917.407231999999,
+                                    "2021-10-08": 1275.1776459999996,
+                                    "2021-10-04": 973.380096,
+                                    "2021-10-05": 2857.929984
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 2396.1300479999995,
+                                    "2021-10-07": 1917.407231999999,
+                                    "2021-10-08": 1275.1776459999996,
+                                    "2021-10-04": 973.380096,
+                                    "2021-10-05": 2857.929984
+                                },
+                                "total": 9420.03,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "40.000000",
+                                "name": {
+                                    "en": "ram",
+                                    "fr": "ram"
+                                },
+                                "sku": "VM_RAM",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            }
+                        ]
+                    }
+                ],
+                "startDate": "2021-09-15T00:00:00Z"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -304.72,
-              "before": 461.7,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "packageDiscount": 66.0,
-                "adjustmentReferenceId": "ebb7f584-7bb2-4a41-90e7-9cc1eb428b95",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "gui's special",
-                },
-                "subtype": "",
-                "id": "ebb7f584-7bb2-4a41-90e7-9cc1eb428b95",
-                "credit": false,
-                "startDate": "2021-08-23T00:00:00Z",
-              },
-              "after": 156.98,
-              "type": "PERCENTAGE",
-            },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -36.11,
-              "before": 156.98,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "durationDays": 60,
-                "type": "PERCENTAGE",
-                "packageDiscount": 23.0,
-                "cutoffDate": "2021-08-29T00:00:00Z",
-                "adjustmentReferenceId": "f3b579a2-b37f-4a55-bfbe-bc07973eb242",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "new-discount",
-                },
-                "subtype": "",
-                "id": "f3b579a2-b37f-4a55-bfbe-bc07973eb242",
-                "credit": false,
-                "startDate": "2021-08-13T00:00:00Z",
-              },
-              "after": 120.87,
-              "type": "PERCENTAGE",
-            },
-          ],
-          "adjustmentAggregations": [
-            {
-              "amount": -599.13,
-              "before": 720.0,
-              "cumulativeAmount": -599.13,
-              "after": 120.87,
-              "type": "PERCENTAGE",
-            },
-            {
-              "amount": 0,
-              "subtype": "QUEBEC QST/TVQ",
-              "before": 138.97,
-              "cumulativeAmount": 12.06,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "subtype": "CANADA GST/TPS",
-              "before": 138.97,
-              "cumulativeAmount": 6.04,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "before": 138.97,
-              "cumulativeAmount": 18.1,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "before": 138.97,
-              "cumulativeAmount": 0,
-              "after": 138.97,
-              "type": "CREDIT",
-            },
-          ],
-          "name": {
-            "en": "Compute",
-          },
-          "subTotal": 120.87,
-          "categoryId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-          "products": [
-            {
-              "total": 738.1,
-              "unit": {
-                "unit": "UNIT",
-                "name": {},
-              },
-              "adjustments": [
-                {
-                  "itemId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-                  "amount": 6.04,
-                  "before": 720.0,
-                  "source": {
-                    "discountScope": "PRODUCTS",
-                    "type": "TAX",
-                    "adjustmentReferenceId": "",
-                  },
-                  "after": 726.04,
-                  "type": "TAX",
-                },
-                {
-                  "itemId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-                  "amount": 12.06,
-                  "before": 726.04,
-                  "source": {
-                    "discountScope": "PRODUCTS",
-                    "type": "TAX",
-                    "adjustmentReferenceId": "",
-                  },
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-              ],
-              "adjustmentAggregations": [
-                {
-                  "amount": 0,
-                  "before": 720.0,
-                  "cumulativeAmount": 0,
-                  "after": 720.0,
-                  "type": "PERCENTAGE",
-                },
-                {
-                  "amount": 12.06,
-                  "subtype": "QUEBEC QST/TVQ",
-                  "before": 726.04,
-                  "cumulativeAmount": 12.06,
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 6.04,
-                  "subtype": "CANADA GST/TPS",
-                  "before": 720.0,
-                  "cumulativeAmount": 6.04,
-                  "after": 726.04,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 18.1,
-                  "before": 720.0,
-                  "cumulativeAmount": 18.1,
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 0,
-                  "before": 738.1,
-                  "cumulativeAmount": 0,
-                  "after": 738.1,
-                  "type": "CREDIT",
-                },
-              ],
-              "productId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-              "price": "1.00",
-              "usage": 720.0,
-              "name": {
-                "en": "Container (1 vCPU, 2Gi RAM, 5Gi Root Disk)",
-              },
-              "subTotal": 720.0,
-              "sku": "CCM-1M02",
-              "taxCode": "SW053000",
-              "categoryId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-            },
-          ],
-        },
-      ],
-      "startDate": "2021-09-08T00:00:00Z",
-    }
- }]
+            "status": "USAGE_PENDING"
+        }
+    ]
 }
 ```
 
@@ -370,13 +619,16 @@ Attributes | &nbsp;
 `detail.adjustments.amount`<br/>*string* | The adjustment amount applied to the invoice total.
 `detail.adjustments.before`<br/>*string* | The invoice total before the adjustment was applied.
 `detail.adjustments.after`<br/>*string* | The invoice total after the adjustment was applied.
+`detail.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the invoice total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.adjustmentAggregations.before`<br/>*string* | The invoice total before the adjustments were applied.
 `detail.adjustmentAggregations.after`<br/>*string* | The invoice total after the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the invoice, its categories and their products.
 `detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period.
 `detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names.
@@ -388,22 +640,25 @@ Attributes | &nbsp;
 `detail.categories.adjustments.amount`<br/>*string* | The adjustment amount applied to the category total.
 `detail.categories.adjustments.before`<br/>*string* | The category total before the adjustment was applied.
 `detail.categories.adjustments.after`<br/>*string* | The category total after the adjustment was applied.
+`detail.categories.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.categories.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.categories.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.categories.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.categories.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.categories.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the category total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.adjustmentAggregations.before`<br/>*string* | The category total before the adjustments were applied.
 `detail.categories.adjustmentAggregations.after`<br/>*string* | The category total after the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the category and its products.
 `detail.categories.products`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.products.sku`<br/>*string* | A unique string representing the sku for a product.
 `detail.categories.products.name`<br/>*Object* | The name object in each language for the product name.
 `detail.categories.products.cost`<br/>*string* | A string of the summed up total cost for the product.
-`detail.categories.products.subTotal`<br/>*string* | A string with the product subtotal, before taxes and credits.
-`detail.categories.products.total`<br/>*string* | A string with the product total, after taxes and credits.
 `detail.categories.products.usage`<br/>*Object* | A string of the summed up total usage for the product.
 `detail.categories.products.price`<br/>*Object* | A string representing the *average* unit price over the period.
+`detail.categories.products.subTotal`<br/>*string* | A string with the product subtotal, before taxes and credits.
+`detail.categories.products.total`<br/>*string* | A string with the product total, after taxes and credits.
 `detail.categories.products.period`<br/>*string* | The period for the product capture. Possible values: HOURS, MONTH.
 `detail.categories.products.unit`<br/>*Object* | The unit object of the product.
 `detail.categories.products.unit.unit`<br/>*Object* | The unit value of the product.
@@ -414,12 +669,15 @@ Attributes | &nbsp;
 `detail.categories.products.adjustments.amount`<br/>*string* | The adjustment amount applied to the product total.
 `detail.categories.products.adjustments.before`<br/>*string* | The product total before the adjustment was applied.
 `detail.categories.products.adjustments.after`<br/>*string* | The product total after the adjustment was applied.
+`detail.categories.products.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.categories.products.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.categories.products.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.categories.products.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.categories.products.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.categories.products.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the product total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.products.adjustmentAggregations.before`<br/>*string* | The product total before the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.products.adjustmentAggregations.after`<br/>*string* | The product total after the adjustments were applied.
 `detail.categories.products.adjustmentAggregations.cumulativeAmount`<br/>*string* | The adjustment amount applied to the product total.
 
@@ -440,329 +698,577 @@ curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-
 
 ```json
 {
-  "data": [{
-  "draftedDate": "2021-07-27T00:00:00Z",
-  "createdDate": "2021-07-27T00:00:00Z",
-  "status": "ISSUED",
-  "organization": {
-   "name": "org_name",
-   "id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
-  },
-  "id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
-  "detail": {
-      "total": 138.98,
-      "adjustments": [],
-      "adjustmentAggregations": [
+    "data": [
         {
-          "amount": 0,
-          "before": 120.88,
-          "cumulativeAmount": -599.14,
-          "after": 120.88,
-          "type": "PERCENTAGE",
-        },
-        {
-          "amount": 0,
-          "subtype": "QUEBEC QST/TVQ",
-          "before": 138.98,
-          "cumulativeAmount": 12.06,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "subtype": "CANADA GST/TPS",
-          "before": 138.98,
-          "cumulativeAmount": 6.04,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "before": 138.98,
-          "cumulativeAmount": 18.1,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "before": 138.97,
-          "cumulativeAmount": 0,
-          "after": 138.98,
-          "type": "CREDIT",
-        },
-      ],
-      "endDate": "2021-10-08T00:00:00Z",
-      "currency": "CAD",
-      "subTotal": 120.87,
-      "categories": [
-        {
-          "total": 138.97,
-          "adjustments": [
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -72.0,
-              "before": 720.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "packageDiscount": 10.0,
-                "adjustmentReferenceId": "625b78d8-ed4c-4004-8f8c-ab8073979714",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "all product discount",
-                },
-                "subtype": "",
-                "id": "625b78d8-ed4c-4004-8f8c-ab8073979714",
-                "credit": false,
-                "startDate": "2021-10-06T00:00:00Z",
-              },
-              "after": 648.0,
-              "type": "PERCENTAGE",
+            "createdDate": "2021-11-22T17:22:49Z",
+            "billingCycle": {
+                "id": "7c10604c-3045-40ef-9890-1bd5a23d5a7b"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -162.0,
-              "before": 648.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "cutoffDate": "2022-01-20T00:00:00Z",
-                "adjustmentReferenceId": "cc8b2e31-0050-4e09-9f76-7fa2f9c86381",
-                "discountScope": "CATEGORIES",
-                "discountedCategories": {
-                  "5e111681-3025-4fc0-9890-b85512f7cb97": 5,
-                  "d88a106d-608f-48f4-a6be-a97f9f6c29c5": 25,
-                  "f989c36f-ca07-43eb-90e4-b263446a0e51": 10,
-                  "ceb6e3b8-36bf-4e10-a309-671d65bab26b": 12,
-                  "b740f674-0594-49fb-9b0a-f3e0f91b2aa5": 30,
-                  "b4fefd4a-f447-4a72-9c2d-34e35232b89d": 15,
-                },
-                "name": {
-                  "en": "Category discount",
-                },
-                "subtype": "",
-                "id": "cc8b2e31-0050-4e09-9f76-7fa2f9c86381",
-                "credit": false,
-                "startDate": "2021-07-07T00:00:00Z",
-              },
-              "after": 486.0,
-              "type": "PERCENTAGE",
+            "organization": {
+                "name": "System",
+                "id": "c869e848-6fb3-4850-af3d-42c5666f2c78"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -24.3,
-              "before": 486.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "durationDays": 60,
-                "type": "PERCENTAGE",
-                "cutoffDate": "2021-09-16T00:00:00Z",
-                "adjustmentReferenceId": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
-                "discountScope": "CATEGORIES",
-                "discountedCategories": {
-                  "5e111681-3025-4fc0-9890-b85512f7cb97": 5,
-                  "d88a106d-608f-48f4-a6be-a97f9f6c29c5": 5,
-                  "f989c36f-ca07-43eb-90e4-b263446a0e51": 10,
+            "invoiceId": "X5GDVRKGCY",
+            "id": "504735ce-cdc1-4adf-b59c-b4e43d1eefa4",
+            "detail": {
+                "adjustments": [
+                    {
+                        "amount": -41650.89,
+                        "dailyDeltas": {
+                            "2021-10-06": 0.0,
+                            "2021-10-07": -1352.01792,
+                            "2021-10-08": -899.184845,
+                            "2021-10-02": -422.4,
+                            "2021-10-03": -422.4,
+                            "2021-10-04": -686.35776,
+                            "2021-10-05": -2015.18592,
+                            "2021-09-30": -422.4,
+                            "2021-10-01": -422.4,
+                            "2021-09-25": -422.4,
+                            "2021-09-28": -422.4,
+                            "2021-09-29": -422.4,
+                            "2021-09-26": -422.4,
+                            "2021-09-27": -422.4
+                        },
+                        "before": 189322.23,
+                        "after": 147671.34,
+                        "source": {
+                            "endDate": "2021-10-15",
+                            "subtype": "",
+                            "scope": "ALL_PRODUCTS",
+                            "typeString": "PERCENTAGE",
+                            "discount": {
+                                "applyToNewCustomersOnly": false,
+                                "discountedProducts": {},
+                                "type": "PERCENTAGE",
+                                "packageDiscount": 22.0,
+                                "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                "subtype": "",
+                                "discountedCategories": {},
+                                "scope": "ALL_PRODUCTS",
+                                "name": {
+                                    "en": "discount",
+                                    "fr": "escompte"
+                                },
+                                "id": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                "credit": false,
+                                "startDate": "2021-05-08T00:00:00Z"
+                            },
+                            "discountId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                            "type": "PERCENTAGE",
+                            "startDate": "2021-09-15",
+                            "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29"
+                        },
+                        "type": "PERCENTAGE"
+                    },
+                    {
+                        "amount": 0.0,
+                        "dailyDeltas": {
+                            "2021-09-25": 0.0
+                        },
+                        "before": 147671.34,
+                        "after": 147671.34,
+                        "source": {
+                            "endDate": "2021-10-15",
+                            "subtype": "",
+                            "scope": "ALL_PRODUCTS",
+                            "typeString": "CREDIT",
+                            "discount": {
+                                "applyToNewCustomersOnly": false,
+                                "discountedProducts": {},
+                                "type": "CREDIT",
+                                "packageDiscount": 250000.0,
+                                "cutoffDate": "2021-09-27T00:00:00Z",
+                                "referenceId": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                                "durationDays": 90,
+                                "subtype": "",
+                                "discountedCategories": {},
+                                "scope": "ALL_PRODUCTS",
+                                "name": {
+                                    "en": "bbbb",
+                                    "fr": "bb"
+                                },
+                                "id": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                                "credit": true,
+                                "startDate": "2021-05-08T00:00:00Z"
+                            },
+                            "used": {
+                                "packageDiscount": 0.0
+                            },
+                            "discountId": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                            "type": "CREDIT",
+                            "startDate": "2021-09-15",
+                            "remaining": {
+                                "discountedProducts": {},
+                                "discountedCategories": {},
+                                "packageDiscount": 0.0
+                            },
+                            "referenceId": "532067ee-c194-4463-b5a1-a161e5c9388c"
+                        },
+                        "type": "CREDIT"
+                    }
+                ],
+                "adjustmentAggregations": [
+                    {
+                        "scopedBefore": 189322.23,
+                        "scopedAmount": -41650.89,
+                        "subtype": "",
+                        "before": 251748.98,
+                        "cumulativeAmount": -104077.64,
+                        "after": 147671.34,
+                        "type": "PERCENTAGE",
+                        "scopedAfter": 147671.34
+                    },
+                    {
+                        "scopedBefore": 147671.34,
+                        "scopedAmount": 0.0,
+                        "subtype": "",
+                        "before": 147671.34,
+                        "cumulativeAmount": 0.0,
+                        "after": 147671.34,
+                        "type": "CREDIT",
+                        "scopedAfter": 147671.34
+                    }
+                ],
+                "endDate": "2021-10-15T00:00:00Z",
+                "inclusiveEndDate": "2021-10-14T00:00:00Z",
+                "subTotal": 147671.34,
+                "dateToSubTotalCost": {
+                    "2021-10-06": 34144.890624,
+                    "2021-10-07": 32116.48128,
+                    "2021-10-08": 21359.336693999998,
+                    "2021-10-02": 1497.6,
+                    "2021-10-03": 1497.6,
+                    "2021-10-04": 12766.995072,
+                    "2021-10-05": 33805.234943999996,
+                    "2021-09-30": 1497.6,
+                    "2021-10-01": 1497.6,
+                    "2021-09-25": 1497.6,
+                    "2021-09-28": 1497.6,
+                    "2021-09-29": 1497.6,
+                    "2021-09-26": 1497.6,
+                    "2021-09-27": 1497.6
                 },
-                "name": {
-                  "en": "test-categories",
+                "dateToTotalCost": {
+                    "2021-10-06": 34144.890624,
+                    "2021-10-07": 32116.48128,
+                    "2021-10-08": 21359.336693999998,
+                    "2021-10-02": 1497.6,
+                    "2021-10-03": 1497.6,
+                    "2021-10-04": 12766.995072,
+                    "2021-10-05": 33805.234943999996,
+                    "2021-09-30": 1497.6,
+                    "2021-10-01": 1497.6,
+                    "2021-09-25": 1497.6,
+                    "2021-09-28": 1497.6,
+                    "2021-09-29": 1497.6,
+                    "2021-09-26": 1497.6,
+                    "2021-09-27": 1497.6
                 },
-                "subtype": "",
-                "id": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
-                "credit": false,
-                "startDate": "2021-09-16T00:00:00Z",
-              },
-              "after": 461.7,
-              "type": "PERCENTAGE",
+                "total": 147671.34,
+                "currency": "CAD",
+                "categories": [
+                    {
+                        "dateToTotalCost": {
+                            "2021-10-06": 34144.890624,
+                            "2021-10-07": 32116.48128,
+                            "2021-10-08": 21359.336693999998,
+                            "2021-10-02": 1497.6,
+                            "2021-10-03": 1497.6,
+                            "2021-10-04": 12766.995072,
+                            "2021-10-05": 33805.234943999996,
+                            "2021-09-30": 1497.6,
+                            "2021-10-01": 1497.6,
+                            "2021-09-25": 1497.6,
+                            "2021-09-28": 1497.6,
+                            "2021-09-29": 1497.6,
+                            "2021-09-26": 1497.6,
+                            "2021-09-27": 1497.6
+                        },
+                        "total": 147671.34,
+                        "adjustments": [
+                            {
+                                "itemId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                                "amount": -47330.56,
+                                "dailyDeltas": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": -1536.384,
+                                    "2021-10-08": -1021.80096,
+                                    "2021-10-02": -480.0,
+                                    "2021-10-03": -480.0,
+                                    "2021-10-04": -779.952,
+                                    "2021-10-05": -2289.984,
+                                    "2021-09-30": -480.0,
+                                    "2021-10-01": -480.0,
+                                    "2021-09-25": -480.0,
+                                    "2021-09-28": -480.0,
+                                    "2021-09-29": -480.0,
+                                    "2021-09-26": -480.0,
+                                    "2021-09-27": -480.0
+                                },
+                                "before": 236652.79,
+                                "after": 189322.23,
+                                "source": {
+                                    "endDate": "2021-10-15",
+                                    "subtype": "",
+                                    "scope": "CATEGORIES",
+                                    "typeString": "PERCENTAGE",
+                                    "discount": {
+                                        "applyToNewCustomersOnly": false,
+                                        "discountedProducts": {},
+                                        "type": "PERCENTAGE",
+                                        "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                        "subtype": "",
+                                        "discountedCategories": {
+                                            "950d5a79-f6df-4770-995a-5144e6feb6b0": 20
+                                        },
+                                        "scope": "CATEGORIES",
+                                        "name": {
+                                            "en": "compute-20-percent",
+                                            "fr": "compute-20-percent"
+                                        },
+                                        "id": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                        "credit": false,
+                                        "startDate": "2021-05-08T00:00:00Z"
+                                    },
+                                    "discountId": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                    "type": "PERCENTAGE",
+                                    "startDate": "2021-09-15",
+                                    "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889"
+                                },
+                                "type": "PERCENTAGE"
+                            },
+                            {
+                                "itemId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                                "amount": -41650.89,
+                                "dailyDeltas": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": -1352.01792,
+                                    "2021-10-08": -899.184845,
+                                    "2021-10-02": -422.4,
+                                    "2021-10-03": -422.4,
+                                    "2021-10-04": -686.35776,
+                                    "2021-10-05": -2015.18592,
+                                    "2021-09-30": -422.4,
+                                    "2021-10-01": -422.4,
+                                    "2021-09-25": -422.4,
+                                    "2021-09-28": -422.4,
+                                    "2021-09-29": -422.4,
+                                    "2021-09-26": -422.4,
+                                    "2021-09-27": -422.4
+                                },
+                                "before": 189322.23,
+                                "after": 147671.34,
+                                "source": {
+                                    "endDate": "2021-10-15",
+                                    "subtype": "",
+                                    "scope": "ALL_PRODUCTS",
+                                    "typeString": "PERCENTAGE",
+                                    "discount": {
+                                        "applyToNewCustomersOnly": false,
+                                        "discountedProducts": {},
+                                        "type": "PERCENTAGE",
+                                        "packageDiscount": 22.0,
+                                        "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                        "subtype": "",
+                                        "discountedCategories": {},
+                                        "scope": "ALL_PRODUCTS",
+                                        "name": {
+                                            "en": "discount",
+                                            "fr": "escompte"
+                                        },
+                                        "id": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                        "credit": false,
+                                        "startDate": "2021-05-08T00:00:00Z"
+                                    },
+                                    "discountId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                    "type": "PERCENTAGE",
+                                    "startDate": "2021-09-15",
+                                    "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29"
+                                },
+                                "type": "PERCENTAGE"
+                            }
+                        ],
+                        "adjustmentAggregations": [
+                            {
+                                "scopedBefore": 236652.79,
+                                "scopedAmount": -88981.45,
+                                "subtype": "",
+                                "before": 251748.98,
+                                "cumulativeAmount": -104077.64,
+                                "after": 147671.34,
+                                "type": "PERCENTAGE",
+                                "scopedAfter": 147671.34
+                            }
+                        ],
+                        "name": {
+                            "en": "compute",
+                            "fr": "dancer"
+                        },
+                        "subTotal": 147671.34,
+                        "dateToSubTotalCost": {
+                            "2021-10-06": 34144.890624,
+                            "2021-10-07": 32116.48128,
+                            "2021-10-08": 21359.336693999998,
+                            "2021-10-02": 1497.6,
+                            "2021-10-03": 1497.6,
+                            "2021-10-04": 12766.995072,
+                            "2021-10-05": 33805.234943999996,
+                            "2021-09-30": 1497.6,
+                            "2021-10-01": 1497.6,
+                            "2021-09-25": 1497.6,
+                            "2021-09-28": 1497.6,
+                            "2021-09-29": 1497.6,
+                            "2021-09-26": 1497.6,
+                            "2021-09-27": 1497.6
+                        },
+                        "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                        "products": [
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 49740.6,
+                                        "cumulativeAmount": -18702.47,
+                                        "after": 31038.13,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "1f656184-df81-47c7-964f-eb9e27743d7b",
+                                "usage": 497.406048,
+                                "pricingTiers": [],
+                                "subTotal": 31038.13,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": 4793.51808,
+                                    "2021-10-08": 3188.018995,
+                                    "2021-10-02": 1497.6,
+                                    "2021-10-03": 1497.6,
+                                    "2021-10-04": 2433.450239999999,
+                                    "2021-10-05": 7144.75008,
+                                    "2021-09-30": 1497.6,
+                                    "2021-10-01": 1497.6,
+                                    "2021-09-25": 1497.6,
+                                    "2021-09-28": 1497.6,
+                                    "2021-09-29": 1497.6,
+                                    "2021-09-26": 1497.6,
+                                    "2021-09-27": 1497.6
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 0.0,
+                                    "2021-10-07": 4793.51808,
+                                    "2021-10-08": 3188.018995,
+                                    "2021-10-02": 1497.6,
+                                    "2021-10-03": 1497.6,
+                                    "2021-10-04": 2433.450239999999,
+                                    "2021-10-05": 7144.75008,
+                                    "2021-09-30": 1497.6,
+                                    "2021-10-01": 1497.6,
+                                    "2021-09-25": 1497.6,
+                                    "2021-09-28": 1497.6,
+                                    "2021-09-29": 1497.6,
+                                    "2021-09-26": 1497.6,
+                                    "2021-09-27": 1497.6
+                                },
+                                "total": 31038.13,
+                                "unit": {
+                                    "unit": "UNIT",
+                                    "name": {}
+                                },
+                                "price": "100.000000",
+                                "name": {
+                                    "en": "specification",
+                                    "fr": "specification"
+                                },
+                                "sku": "SPEC_PRODUCT",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 160493.81,
+                                        "cumulativeAmount": -60345.67,
+                                        "after": 100148.14,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "3c2bb895-4282-41a1-8db4-2269037dc561",
+                                "usage": 8024.690304,
+                                "pricingTiers": [],
+                                "subTotal": 100148.14,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 29951.640576,
+                                    "2021-10-07": 23967.500544,
+                                    "2021-10-08": 15939.734353999998,
+                                    "2021-10-04": 8630.129664,
+                                    "2021-10-05": 21659.129856
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 29951.640576,
+                                    "2021-10-07": 23967.500544,
+                                    "2021-10-08": 15939.734353999998,
+                                    "2021-10-04": 8630.129664,
+                                    "2021-10-05": 21659.129856
+                                },
+                                "total": 100148.14,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "20.000000",
+                                "name": {
+                                    "en": "storage",
+                                    "fr": "storage"
+                                },
+                                "sku": "STORAGE",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 11322.18,
+                                        "cumulativeAmount": -4257.14,
+                                        "after": 7065.04,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "6b94a874-9f85-4a14-9437-d5df30c8191d",
+                                "usage": 377.406048,
+                                "pricingTiers": [],
+                                "subTotal": 7065.04,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 1797.12,
+                                    "2021-10-07": 1438.055424,
+                                    "2021-10-08": 956.405699,
+                                    "2021-10-04": 730.0350719999999,
+                                    "2021-10-05": 2143.4250239999997
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 1797.12,
+                                    "2021-10-07": 1438.055424,
+                                    "2021-10-08": 956.405699,
+                                    "2021-10-04": 730.0350719999999,
+                                    "2021-10-05": 2143.4250239999997
+                                },
+                                "total": 7065.04,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "30.000000",
+                                "name": {
+                                    "en": "vm cpu",
+                                    "fr": "dancer"
+                                },
+                                "sku": "VM_CPU",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [
+                                    {
+                                        "itemId": "a36933e3-697a-4093-9057-18aed07479ea",
+                                        "amount": -15096.19,
+                                        "dailyDeltas": {
+                                            "2021-10-06": -3839.952,
+                                            "2021-10-07": -3072.768,
+                                            "2021-10-08": -2043.55392,
+                                            "2021-10-04": -1559.904,
+                                            "2021-10-05": -4580.016
+                                        },
+                                        "before": 30192.39,
+                                        "after": 15096.2,
+                                        "source": {
+                                            "endDate": "2021-10-15",
+                                            "subtype": "",
+                                            "scope": "PRODUCTS",
+                                            "typeString": "PERCENTAGE",
+                                            "discount": {
+                                                "applyToNewCustomersOnly": false,
+                                                "discountedProducts": {
+                                                    "a36933e3-697a-4093-9057-18aed07479ea": 50
+                                                },
+                                                "type": "PERCENTAGE",
+                                                "referenceId": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                                "subtype": "",
+                                                "discountedCategories": {},
+                                                "scope": "PRODUCTS",
+                                                "name": {
+                                                    "en": "vm-ram-50-percent",
+                                                    "fr": "vm-ram-50-percent"
+                                                },
+                                                "id": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                                "credit": false,
+                                                "startDate": "2021-05-08T00:00:00Z"
+                                            },
+                                            "discountId": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                            "type": "PERCENTAGE",
+                                            "startDate": "2021-09-15",
+                                            "referenceId": "455feefb-0270-42ab-b9a1-ce87a430fd99"
+                                        },
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "adjustmentAggregations": [
+                                    {
+                                        "scopedBefore": 30192.39,
+                                        "scopedAmount": -15096.19,
+                                        "subtype": "",
+                                        "before": 30192.39,
+                                        "cumulativeAmount": -20772.36,
+                                        "after": 9420.03,
+                                        "type": "PERCENTAGE",
+                                        "scopedAfter": 15096.2
+                                    }
+                                ],
+                                "productId": "a36933e3-697a-4093-9057-18aed07479ea",
+                                "usage": 754.809696,
+                                "pricingTiers": [],
+                                "subTotal": 9420.03,
+                                "dateToSubTotalCost": {
+                                    "2021-10-06": 2396.1300479999995,
+                                    "2021-10-07": 1917.407231999999,
+                                    "2021-10-08": 1275.1776459999996,
+                                    "2021-10-04": 973.380096,
+                                    "2021-10-05": 2857.929984
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-10-06": 2396.1300479999995,
+                                    "2021-10-07": 1917.407231999999,
+                                    "2021-10-08": 1275.1776459999996,
+                                    "2021-10-04": 973.380096,
+                                    "2021-10-05": 2857.929984
+                                },
+                                "total": 9420.03,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "40.000000",
+                                "name": {
+                                    "en": "ram",
+                                    "fr": "ram"
+                                },
+                                "sku": "VM_RAM",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            }
+                        ]
+                    }
+                ],
+                "startDate": "2021-09-15T00:00:00Z"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -304.72,
-              "before": 461.7,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "packageDiscount": 66.0,
-                "adjustmentReferenceId": "ebb7f584-7bb2-4a41-90e7-9cc1eb428b95",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "gui's special",
-                },
-                "subtype": "",
-                "id": "ebb7f584-7bb2-4a41-90e7-9cc1eb428b95",
-                "credit": false,
-                "startDate": "2021-08-23T00:00:00Z",
-              },
-              "after": 156.98,
-              "type": "PERCENTAGE",
-            },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -36.11,
-              "before": 156.98,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "durationDays": 60,
-                "type": "PERCENTAGE",
-                "packageDiscount": 23.0,
-                "cutoffDate": "2021-08-29T00:00:00Z",
-                "adjustmentReferenceId": "f3b579a2-b37f-4a55-bfbe-bc07973eb242",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "new-discount",
-                },
-                "subtype": "",
-                "id": "f3b579a2-b37f-4a55-bfbe-bc07973eb242",
-                "credit": false,
-                "startDate": "2021-08-13T00:00:00Z",
-              },
-              "after": 120.87,
-              "type": "PERCENTAGE",
-            },
-          ],
-          "adjustmentAggregations": [
-            {
-              "amount": -599.13,
-              "before": 720.0,
-              "cumulativeAmount": -599.13,
-              "after": 120.87,
-              "type": "PERCENTAGE",
-            },
-            {
-              "amount": 0,
-              "subtype": "QUEBEC QST/TVQ",
-              "before": 138.97,
-              "cumulativeAmount": 12.06,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "subtype": "CANADA GST/TPS",
-              "before": 138.97,
-              "cumulativeAmount": 6.04,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "before": 138.97,
-              "cumulativeAmount": 18.1,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "before": 138.97,
-              "cumulativeAmount": 0,
-              "after": 138.97,
-              "type": "CREDIT",
-            },
-          ],
-          "name": {
-            "en": "Compute",
-          },
-          "subTotal": 120.87,
-          "categoryId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-          "products": [
-            {
-              "total": 738.1,
-              "unit": {
-                "unit": "UNIT",
-                "name": {},
-              },
-              "adjustments": [
-                {
-                  "itemId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-                  "amount": 6.04,
-                  "before": 720.0,
-                  "source": {
-                    "discountScope": "PRODUCTS",
-                    "type": "TAX",
-                    "adjustmentReferenceId": "",
-                  },
-                  "after": 726.04,
-                  "type": "TAX",
-                },
-                {
-                  "itemId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-                  "amount": 12.06,
-                  "before": 726.04,
-                  "source": {
-                    "discountScope": "PRODUCTS",
-                    "type": "TAX",
-                    "adjustmentReferenceId": "",
-                  },
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-              ],
-              "adjustmentAggregations": [
-                {
-                  "amount": 0,
-                  "before": 720.0,
-                  "cumulativeAmount": 0,
-                  "after": 720.0,
-                  "type": "PERCENTAGE",
-                },
-                {
-                  "amount": 12.06,
-                  "subtype": "QUEBEC QST/TVQ",
-                  "before": 726.04,
-                  "cumulativeAmount": 12.06,
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 6.04,
-                  "subtype": "CANADA GST/TPS",
-                  "before": 720.0,
-                  "cumulativeAmount": 6.04,
-                  "after": 726.04,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 18.1,
-                  "before": 720.0,
-                  "cumulativeAmount": 18.1,
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 0,
-                  "before": 738.1,
-                  "cumulativeAmount": 0,
-                  "after": 738.1,
-                  "type": "CREDIT",
-                },
-              ],
-              "productId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-              "price": "1.00",
-              "usage": 720.0,
-              "name": {
-                "en": "Container (1 vCPU, 2Gi RAM, 5Gi Root Disk)",
-              },
-              "subTotal": 720.0,
-              "sku": "CCM-1M02",
-              "taxCode": "SW053000",
-              "categoryId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-            },
-          ],
-        },
-      ],
-      "startDate": "2021-09-08T00:00:00Z",
-    }
- }]
+            "status": "USAGE_PENDING"
+        }
+    ]
 }
-
 ```
 
 Optional Query Parameters | &nbsp;
@@ -793,13 +1299,16 @@ Attributes | &nbsp;
 `detail.adjustments.amount`<br/>*string* | The adjustment amount applied to the invoice total.
 `detail.adjustments.before`<br/>*string* | The invoice total before the adjustment was applied.
 `detail.adjustments.after`<br/>*string* | The invoice total after the adjustment was applied.
+`detail.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the invoice total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.adjustmentAggregations.before`<br/>*string* | The invoice total before the adjustments were applied.
 `detail.adjustmentAggregations.after`<br/>*string* | The invoice total after the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the invoice, its categories and their products.
 `detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period.
 `detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names.
@@ -811,13 +1320,16 @@ Attributes | &nbsp;
 `detail.categories.adjustments.amount`<br/>*string* | The adjustment amount applied to the category total.
 `detail.categories.adjustments.before`<br/>*string* | The category total before the adjustment was applied.
 `detail.categories.adjustments.after`<br/>*string* | The category total after the adjustment was applied.
+`detail.categories.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.categories.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.categories.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.categories.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.categories.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.categories.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the category total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.adjustmentAggregations.before`<br/>*string* | The category total before the adjustments were applied.
 `detail.categories.adjustmentAggregations.after`<br/>*string* | The category total after the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the category and its products.
 `detail.categories.products`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.products.sku`<br/>*string* | A unique string representing the sku for a product.
@@ -837,12 +1349,15 @@ Attributes | &nbsp;
 `detail.categories.products.adjustments.amount`<br/>*string* | The adjustment amount applied to the product total.
 `detail.categories.products.adjustments.before`<br/>*string* | The product total before the adjustment was applied.
 `detail.categories.products.adjustments.after`<br/>*string* | The product total after the adjustment was applied.
+`detail.categories.products.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.categories.products.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.categories.products.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.categories.products.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.categories.products.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.categories.products.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the product total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.products.adjustmentAggregations.before`<br/>*string* | The product total before the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.products.adjustmentAggregations.after`<br/>*string* | The product total after the adjustments were applied.
 `detail.categories.products.adjustmentAggregations.cumulativeAmount`<br/>*string* | The adjustment amount applied to the product total.
 
@@ -915,327 +1430,608 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
 
 ```json
 {
- "data": {
-  "draftedDate": "2021-07-27T00:00:00Z",
-  "createdDate": "2021-07-27T00:00:00Z",
-  "status": "ISSUED",
-  "organization": {
-   "name": "org_name",
-   "id": "289ec5fb-0970-44e3-bca8-777a691e23c7"
-  },
-  "id": "20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb",
-  "detail": {
-      "total": 138.98,
-      "adjustments": [],
-      "adjustmentAggregations": [
+    "data": [
         {
-          "amount": 0,
-          "before": 120.88,
-          "cumulativeAmount": -599.14,
-          "after": 120.88,
-          "type": "PERCENTAGE",
-        },
-        {
-          "amount": 0,
-          "subtype": "QUEBEC QST/TVQ",
-          "before": 138.98,
-          "cumulativeAmount": 12.06,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "subtype": "CANADA GST/TPS",
-          "before": 138.98,
-          "cumulativeAmount": 6.04,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "before": 138.98,
-          "cumulativeAmount": 18.1,
-          "after": 138.98,
-          "type": "TAX",
-        },
-        {
-          "amount": 0,
-          "before": 138.97,
-          "cumulativeAmount": 0,
-          "after": 138.98,
-          "type": "CREDIT",
-        },
-      ],
-      "endDate": "2021-10-08T00:00:00Z",
-      "currency": "CAD",
-      "subTotal": 120.87,
-      "categories": [
-        {
-          "total": 138.97,
-          "adjustments": [
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -72.0,
-              "before": 720.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "packageDiscount": 10.0,
-                "adjustmentReferenceId": "625b78d8-ed4c-4004-8f8c-ab8073979714",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "all product discount",
-                },
-                "subtype": "",
-                "id": "625b78d8-ed4c-4004-8f8c-ab8073979714",
-                "credit": false,
-                "startDate": "2021-10-06T00:00:00Z",
-              },
-              "after": 648.0,
-              "type": "PERCENTAGE",
+            "draftedDate": "2021-11-19T17:14:44Z",
+            "createdDate": "2021-11-19T17:14:44Z",
+            "billingCycle": {
+                "id": "bf5d38ba-74f4-459a-be5f-2fd771cf0a68"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -162.0,
-              "before": 648.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "cutoffDate": "2022-01-20T00:00:00Z",
-                "adjustmentReferenceId": "cc8b2e31-0050-4e09-9f76-7fa2f9c86381",
-                "discountScope": "CATEGORIES",
-                "discountedCategories": {
-                  "5e111681-3025-4fc0-9890-b85512f7cb97": 5,
-                  "d88a106d-608f-48f4-a6be-a97f9f6c29c5": 25,
-                  "f989c36f-ca07-43eb-90e4-b263446a0e51": 10,
-                  "ceb6e3b8-36bf-4e10-a309-671d65bab26b": 12,
-                  "b740f674-0594-49fb-9b0a-f3e0f91b2aa5": 30,
-                  "b4fefd4a-f447-4a72-9c2d-34e35232b89d": 15,
-                },
-                "name": {
-                  "en": "Category discount",
-                },
-                "subtype": "",
-                "id": "cc8b2e31-0050-4e09-9f76-7fa2f9c86381",
-                "credit": false,
-                "startDate": "2021-07-07T00:00:00Z",
-              },
-              "after": 486.0,
-              "type": "PERCENTAGE",
+            "organization": {
+                "customFields": {},
+                "name": "System",
+                "id": "c869e848-6fb3-4850-af3d-42c5666f2c78"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -24.3,
-              "before": 486.0,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "durationDays": 60,
-                "type": "PERCENTAGE",
-                "cutoffDate": "2021-09-16T00:00:00Z",
-                "adjustmentReferenceId": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
-                "discountScope": "CATEGORIES",
-                "discountedCategories": {
-                  "5e111681-3025-4fc0-9890-b85512f7cb97": 5,
-                  "d88a106d-608f-48f4-a6be-a97f9f6c29c5": 5,
-                  "f989c36f-ca07-43eb-90e4-b263446a0e51": 10,
+            "invoiceId": "ZASBNWS5IH",
+            "id": "150006dd-697c-4021-82ab-483f5a132c2c",
+            "detail": {
+                "adjustments": [
+                    {
+                        "amount": -28891.86,
+                        "dailyDeltas": {
+                            "2021-08-11": 2111.974656,
+                            "2021-08-10": 2111.974656,
+                            "2021-08-13": 2111.974656,
+                            "2021-08-12": 4223.949312,
+                            "2021-08-04": 4223.949312,
+                            "2021-08-14": 2111.974656,
+                            "2021-08-06": 2111.974656,
+                            "2021-08-05": 0.0,
+                            "2021-08-08": 2111.974656,
+                            "2021-08-07": 2111.974656,
+                            "2021-08-09": 2111.974656
+                        },
+                        "before": 131326.62,
+                        "after": 102434.76,
+                        "source": {
+                            "endDate": "2021-08-15",
+                            "subtype": "",
+                            "scope": "ALL_PRODUCTS",
+                            "typeString": "PERCENTAGE",
+                            "discount": {
+                                "applyToNewCustomersOnly": false,
+                                "discountedProducts": {},
+                                "type": "PERCENTAGE",
+                                "packageDiscount": 22.0,
+                                "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                "subtype": "",
+                                "discountedCategories": {},
+                                "scope": "ALL_PRODUCTS",
+                                "name": {
+                                    "en": "discount",
+                                    "fr": "escompte"
+                                },
+                                "id": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                "credit": false,
+                                "startDate": "2021-05-08T00:00:00Z"
+                            },
+                            "discountId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                            "type": "PERCENTAGE",
+                            "startDate": "2021-08-04",
+                            "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29"
+                        },
+                        "type": "PERCENTAGE"
+                    },
+                    {
+                        "amount": -101934.76,
+                        "dailyDeltas": {
+                            "2021-08-11": 8536.230144,
+                            "2021-08-10": 8536.230144,
+                            "2021-08-13": 8536.230144,
+                            "2021-08-12": 17072.460288,
+                            "2021-08-04": 16572.460288,
+                            "2021-08-14": 8536.230144,
+                            "2021-08-06": 8536.230144,
+                            "2021-08-05": 0.0,
+                            "2021-08-08": 8536.230144,
+                            "2021-08-07": 8536.230144,
+                            "2021-08-09": 8536.230144
+                        },
+                        "before": 101934.76,
+                        "after": 0.0,
+                        "source": {
+                            "endDate": "2021-08-15",
+                            "subtype": "",
+                            "scope": "ALL_PRODUCTS",
+                            "typeString": "CREDIT",
+                            "discount": {
+                                "applyToNewCustomersOnly": false,
+                                "discountedProducts": {},
+                                "type": "CREDIT",
+                                "packageDiscount": 250000.0,
+                                "cutoffDate": "2021-09-27T00:00:00Z",
+                                "referenceId": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                                "durationDays": 90,
+                                "subtype": "",
+                                "discountedCategories": {},
+                                "scope": "ALL_PRODUCTS",
+                                "name": {
+                                    "en": "3 month credit",
+                                    "fr": "3 month credit fr"
+                                },
+                                "id": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                                "credit": true,
+                                "startDate": "2021-05-08T00:00:00Z"
+                            },
+                            "used": {
+                                "packageDiscount": -101934.76
+                            },
+                            "discountId": "532067ee-c194-4463-b5a1-a161e5c9388c",
+                            "type": "CREDIT",
+                            "startDate": "2021-08-04",
+                            "remaining": {
+                                "discountedProducts": {},
+                                "discountedCategories": {},
+                                "packageDiscount": 250000.0
+                            },
+                            "referenceId": "532067ee-c194-4463-b5a1-a161e5c9388c"
+                        },
+                        "type": "CREDIT"
+                    }
+                ],
+                "adjustmentAggregations": [
+                    {
+                        "scopedBefore": 131326.62,
+                        "scopedAmount": -28891.86,
+                        "subtype": "",
+                        "before": 175678.27,
+                        "cumulativeAmount": -73243.51,
+                        "after": 102434.76,
+                        "type": "PERCENTAGE",
+                        "scopedAfter": 102434.76
+                    },
+                    {
+                        "scopedBefore": 101934.76,
+                        "scopedAmount": -101934.76,
+                        "subtype": "",
+                        "before": 102434.76,
+                        "cumulativeAmount": -102434.76,
+                        "after": 0.0,
+                        "type": "CREDIT",
+                        "scopedAfter": 0.0
+                    }
+                ],
+                "endDate": "2021-08-15T00:00:00Z",
+                "inclusiveEndDate": "2021-08-14T00:00:00Z",
+                "subTotal": 102434.76,
+                "dateToSubTotalCost": {
+                    "2021-08-11": 8536.230144,
+                    "2021-08-10": 8536.230144,
+                    "2021-08-13": 8536.230144,
+                    "2021-08-12": 17072.460288,
+                    "2021-08-04": 17072.460288,
+                    "2021-08-14": 8536.230144,
+                    "2021-08-06": 8536.230144,
+                    "2021-08-05": 0.0,
+                    "2021-08-08": 8536.230144,
+                    "2021-08-07": 8536.230144,
+                    "2021-08-09": 8536.230144
                 },
-                "name": {
-                  "en": "test-categories",
+                "dateToTotalCost": {
+                    "2021-08-11": 0.0,
+                    "2021-08-10": 0.0,
+                    "2021-08-13": 0.0,
+                    "2021-08-12": 0.0,
+                    "2021-08-04": 0.0,
+                    "2021-08-14": 0.0,
+                    "2021-08-06": 0.0,
+                    "2021-08-05": 0.0,
+                    "2021-08-08": 0.0,
+                    "2021-08-07": 0.0,
+                    "2021-08-09": 0.0
                 },
-                "subtype": "",
-                "id": "dfbe71e2-113d-4212-a315-b8d755ef02d4",
-                "credit": false,
-                "startDate": "2021-09-16T00:00:00Z",
-              },
-              "after": 461.7,
-              "type": "PERCENTAGE",
+                "total": 0.0,
+                "currency": "CAD",
+                "categories": [
+                    {
+                        "dateToTotalCost": {
+                            "2021-08-11": 8536.230144,
+                            "2021-08-10": 8536.230144,
+                            "2021-08-13": 8536.230144,
+                            "2021-08-12": 17072.460288,
+                            "2021-08-04": 16572.460288,
+                            "2021-08-14": 8536.230144,
+                            "2021-08-06": 8536.230144,
+                            "2021-08-05": 0.0,
+                            "2021-08-08": 8536.230144,
+                            "2021-08-07": 8536.230144,
+                            "2021-08-09": 8536.230144
+                        },
+                        "total": 101934.76,
+                        "adjustments": [
+                            {
+                                "itemId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                                "amount": -32831.65,
+                                "dailyDeltas": {
+                                    "2021-08-11": 2399.9712,
+                                    "2021-08-10": 2399.9712,
+                                    "2021-08-13": 2399.9712,
+                                    "2021-08-12": 4799.9424,
+                                    "2021-08-04": 4799.9424,
+                                    "2021-08-14": 2399.9712,
+                                    "2021-08-06": 2399.9712,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 2399.9712,
+                                    "2021-08-07": 2399.9712,
+                                    "2021-08-09": 2399.9712
+                                },
+                                "before": 164158.27,
+                                "after": 131326.62,
+                                "source": {
+                                    "endDate": "2021-08-15",
+                                    "subtype": "",
+                                    "scope": "CATEGORIES",
+                                    "typeString": "PERCENTAGE",
+                                    "discount": {
+                                        "applyToNewCustomersOnly": false,
+                                        "discountedProducts": {},
+                                        "type": "PERCENTAGE",
+                                        "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                        "subtype": "",
+                                        "discountedCategories": {
+                                            "950d5a79-f6df-4770-995a-5144e6feb6b0": 20
+                                        },
+                                        "scope": "CATEGORIES",
+                                        "name": {
+                                            "en": "compute-20-percent",
+                                            "fr": "compute-20-percent"
+                                        },
+                                        "id": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                        "credit": false,
+                                        "startDate": "2021-05-08T00:00:00Z"
+                                    },
+                                    "discountId": "6ee154d1-4318-47bb-bb18-2e605c227889",
+                                    "type": "PERCENTAGE",
+                                    "startDate": "2021-08-04",
+                                    "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889"
+                                },
+                                "type": "PERCENTAGE"
+                            },
+                            {
+                                "itemId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                                "amount": -28891.86,
+                                "dailyDeltas": {
+                                    "2021-08-11": 2111.974656,
+                                    "2021-08-10": 2111.974656,
+                                    "2021-08-13": 2111.974656,
+                                    "2021-08-12": 4223.949312,
+                                    "2021-08-04": 4223.949312,
+                                    "2021-08-14": 2111.974656,
+                                    "2021-08-06": 2111.974656,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 2111.974656,
+                                    "2021-08-07": 2111.974656,
+                                    "2021-08-09": 2111.974656
+                                },
+                                "before": 131326.62,
+                                "after": 102434.76,
+                                "source": {
+                                    "endDate": "2021-08-15",
+                                    "subtype": "",
+                                    "scope": "ALL_PRODUCTS",
+                                    "typeString": "PERCENTAGE",
+                                    "discount": {
+                                        "applyToNewCustomersOnly": false,
+                                        "discountedProducts": {},
+                                        "type": "PERCENTAGE",
+                                        "packageDiscount": 22.0,
+                                        "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                        "subtype": "",
+                                        "discountedCategories": {},
+                                        "scope": "ALL_PRODUCTS",
+                                        "name": {
+                                            "en": "discount",
+                                            "fr": "escompte"
+                                        },
+                                        "id": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                        "credit": false,
+                                        "startDate": "2021-05-08T00:00:00Z"
+                                    },
+                                    "discountId": "9b245d40-ba94-4e05-af51-89979d37fb29",
+                                    "type": "PERCENTAGE",
+                                    "startDate": "2021-08-04",
+                                    "referenceId": "9b245d40-ba94-4e05-af51-89979d37fb29"
+                                },
+                                "type": "PERCENTAGE"
+                            },
+                            {
+                                "itemId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                                "amount": -500.0,
+                                "dailyDeltas": {
+                                    "2021-08-04": 500.0
+                                },
+                                "before": 102434.76,
+                                "after": 101934.76,
+                                "source": {
+                                    "endDate": "2021-08-15",
+                                    "subtype": "",
+                                    "scope": "CATEGORIES",
+                                    "typeString": "CREDIT",
+                                    "discount": {
+                                        "applyToNewCustomersOnly": false,
+                                        "discountedProducts": {},
+                                        "type": "CREDIT",
+                                        "referenceId": "85d5fc06-142a-4e04-9a27-2bf08b3c1be0",
+                                        "durationDays": 600,
+                                        "subtype": "",
+                                        "discountedCategories": {
+                                            "950d5a79-f6df-4770-995a-5144e6feb6b0": 500
+                                        },
+                                        "scope": "CATEGORIES",
+                                        "name": {
+                                            "en": "compute-500-bucks",
+                                            "fr": "compute-500-bucks"
+                                        },
+                                        "id": "85d5fc06-142a-4e04-9a27-2bf08b3c1be0",
+                                        "credit": true,
+                                        "startDate": "2021-05-08T00:00:00Z"
+                                    },
+                                    "used": {
+                                        "discountedCategories": {
+                                            "950d5a79-f6df-4770-995a-5144e6feb6b0": -500.0
+                                        }
+                                    },
+                                    "discountId": "85d5fc06-142a-4e04-9a27-2bf08b3c1be0",
+                                    "type": "CREDIT",
+                                    "startDate": "2021-08-04",
+                                    "remaining": {
+                                        "discountedProducts": {},
+                                        "discountedCategories": {
+                                            "950d5a79-f6df-4770-995a-5144e6feb6b0": 500
+                                        }
+                                    },
+                                    "referenceId": "85d5fc06-142a-4e04-9a27-2bf08b3c1be0"
+                                },
+                                "type": "CREDIT"
+                            }
+                        ],
+                        "adjustmentAggregations": [
+                            {
+                                "scopedBefore": 164158.27,
+                                "scopedAmount": -61723.51,
+                                "subtype": "",
+                                "before": 175678.27,
+                                "cumulativeAmount": -73243.51,
+                                "after": 102434.76,
+                                "type": "PERCENTAGE",
+                                "scopedAfter": 102434.76
+                            },
+                            {
+                                "scopedBefore": 102434.76,
+                                "scopedAmount": -500.0,
+                                "subtype": "",
+                                "before": 102434.76,
+                                "cumulativeAmount": -500.0,
+                                "after": 101934.76,
+                                "type": "CREDIT",
+                                "scopedAfter": 101934.76
+                            }
+                        ],
+                        "name": {
+                            "en": "compute",
+                            "fr": "compute"
+                        },
+                        "subTotal": 102434.76,
+                        "dateToSubTotalCost": {
+                            "2021-08-11": 8536.230144,
+                            "2021-08-10": 8536.230144,
+                            "2021-08-13": 8536.230144,
+                            "2021-08-12": 17072.460288,
+                            "2021-08-04": 17072.460288,
+                            "2021-08-14": 8536.230144,
+                            "2021-08-06": 8536.230144,
+                            "2021-08-05": 0.0,
+                            "2021-08-08": 8536.230144,
+                            "2021-08-07": 8536.230144,
+                            "2021-08-09": 8536.230144
+                        },
+                        "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0",
+                        "products": [
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 143998.27,
+                                        "cumulativeAmount": -54143.35,
+                                        "after": 89854.92,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "3c2bb895-4282-41a1-8db4-2269037dc561",
+                                "usage": 7199.9136,
+                                "pricingTiers": [],
+                                "subTotal": 89854.92,
+                                "dateToSubTotalCost": {
+                                    "2021-08-11": 7487.910144,
+                                    "2021-08-10": 7487.910144,
+                                    "2021-08-13": 7487.910144,
+                                    "2021-08-12": 14975.820288,
+                                    "2021-08-04": 14975.820288,
+                                    "2021-08-14": 7487.910144,
+                                    "2021-08-06": 7487.910144,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 7487.910144,
+                                    "2021-08-07": 7487.910144,
+                                    "2021-08-09": 7487.910144
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-08-11": 7487.910144,
+                                    "2021-08-10": 7487.910144,
+                                    "2021-08-13": 7487.910144,
+                                    "2021-08-12": 14975.820288,
+                                    "2021-08-04": 14975.820288,
+                                    "2021-08-14": 7487.910144,
+                                    "2021-08-06": 7487.910144,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 7487.910144,
+                                    "2021-08-07": 7487.910144,
+                                    "2021-08-09": 7487.910144
+                                },
+                                "total": 89854.92,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "20.000000",
+                                "name": {
+                                    "en": "storage",
+                                    "fr": "storage"
+                                },
+                                "sku": "STORAGE",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [],
+                                "adjustmentAggregations": [
+                                    {
+                                        "subtype": "",
+                                        "before": 8640.0,
+                                        "cumulativeAmount": -3248.64,
+                                        "after": 5391.36,
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "productId": "6b94a874-9f85-4a14-9437-d5df30c8191d",
+                                "usage": 288.0,
+                                "pricingTiers": [],
+                                "subTotal": 5391.36,
+                                "dateToSubTotalCost": {
+                                    "2021-08-11": 449.28,
+                                    "2021-08-10": 449.28,
+                                    "2021-08-13": 449.28,
+                                    "2021-08-12": 898.56,
+                                    "2021-08-04": 898.56,
+                                    "2021-08-14": 449.28,
+                                    "2021-08-06": 449.28,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 449.28,
+                                    "2021-08-07": 449.28,
+                                    "2021-08-09": 449.28
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-08-11": 449.28,
+                                    "2021-08-10": 449.28,
+                                    "2021-08-13": 449.28,
+                                    "2021-08-12": 898.56,
+                                    "2021-08-04": 898.56,
+                                    "2021-08-14": 449.28,
+                                    "2021-08-06": 449.28,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 449.28,
+                                    "2021-08-07": 449.28,
+                                    "2021-08-09": 449.28
+                                },
+                                "total": 5391.36,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "30.000000",
+                                "name": {
+                                    "en": "vm cpu",
+                                    "fr": "vm cpu"
+                                },
+                                "sku": "VM_CPU",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            },
+                            {
+                                "adjustments": [
+                                    {
+                                        "itemId": "a36933e3-697a-4093-9057-18aed07479ea",
+                                        "amount": -11520.0,
+                                        "dailyDeltas": {
+                                            "2021-08-11": 960.0,
+                                            "2021-08-10": 960.0,
+                                            "2021-08-13": 960.0,
+                                            "2021-08-12": 1920.0,
+                                            "2021-08-04": 1920.0,
+                                            "2021-08-14": 960.0,
+                                            "2021-08-06": 960.0,
+                                            "2021-08-05": 0.0,
+                                            "2021-08-08": 960.0,
+                                            "2021-08-07": 960.0,
+                                            "2021-08-09": 960.0
+                                        },
+                                        "before": 23040.0,
+                                        "after": 11520.0,
+                                        "source": {
+                                            "endDate": "2021-08-15",
+                                            "subtype": "",
+                                            "scope": "PRODUCTS",
+                                            "typeString": "PERCENTAGE",
+                                            "discount": {
+                                                "applyToNewCustomersOnly": false,
+                                                "discountedProducts": {
+                                                    "a36933e3-697a-4093-9057-18aed07479ea": 50
+                                                },
+                                                "type": "PERCENTAGE",
+                                                "referenceId": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                                "subtype": "",
+                                                "discountedCategories": {},
+                                                "scope": "PRODUCTS",
+                                                "name": {
+                                                    "en": "vm-ram-50-percent",
+                                                    "fr": "vm-ram-50-percent"
+                                                },
+                                                "id": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                                "credit": false,
+                                                "startDate": "2021-05-08T00:00:00Z"
+                                            },
+                                            "discountId": "455feefb-0270-42ab-b9a1-ce87a430fd99",
+                                            "type": "PERCENTAGE",
+                                            "startDate": "2021-08-04",
+                                            "referenceId": "455feefb-0270-42ab-b9a1-ce87a430fd99"
+                                        },
+                                        "type": "PERCENTAGE"
+                                    }
+                                ],
+                                "adjustmentAggregations": [
+                                    {
+                                        "scopedBefore": 23040.0,
+                                        "scopedAmount": -11520.0,
+                                        "subtype": "",
+                                        "before": 23040.0,
+                                        "cumulativeAmount": -15851.52,
+                                        "after": 7188.48,
+                                        "type": "PERCENTAGE",
+                                        "scopedAfter": 11520.0
+                                    }
+                                ],
+                                "productId": "a36933e3-697a-4093-9057-18aed07479ea",
+                                "usage": 576.0,
+                                "pricingTiers": [],
+                                "subTotal": 7188.48,
+                                "dateToSubTotalCost": {
+                                    "2021-08-11": 599.04,
+                                    "2021-08-10": 599.04,
+                                    "2021-08-13": 599.04,
+                                    "2021-08-12": 1198.08,
+                                    "2021-08-04": 1198.08,
+                                    "2021-08-14": 599.04,
+                                    "2021-08-06": 599.04,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 599.04,
+                                    "2021-08-07": 599.04,
+                                    "2021-08-09": 599.04
+                                },
+                                "taxCode": "SW056003",
+                                "dateToTotalCost": {
+                                    "2021-08-11": 599.04,
+                                    "2021-08-10": 599.04,
+                                    "2021-08-13": 599.04,
+                                    "2021-08-12": 1198.08,
+                                    "2021-08-04": 1198.08,
+                                    "2021-08-14": 599.04,
+                                    "2021-08-06": 599.04,
+                                    "2021-08-05": 0.0,
+                                    "2021-08-08": 599.04,
+                                    "2021-08-07": 599.04,
+                                    "2021-08-09": 599.04
+                                },
+                                "total": 7188.48,
+                                "unit": {
+                                    "unit": "HOUR",
+                                    "name": {}
+                                },
+                                "price": "40.000000",
+                                "name": {
+                                    "en": "ram",
+                                    "fr": "ram"
+                                },
+                                "sku": "VM_RAM",
+                                "categoryId": "950d5a79-f6df-4770-995a-5144e6feb6b0"
+                            }
+                        ]
+                    }
+                ],
+                "startDate": "2021-08-04T00:00:00Z"
             },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -304.72,
-              "before": 461.7,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "type": "PERCENTAGE",
-                "packageDiscount": 66.0,
-                "adjustmentReferenceId": "ebb7f584-7bb2-4a41-90e7-9cc1eb428b95",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "gui's special",
-                },
-                "subtype": "",
-                "id": "ebb7f584-7bb2-4a41-90e7-9cc1eb428b95",
-                "credit": false,
-                "startDate": "2021-08-23T00:00:00Z",
-              },
-              "after": 156.98,
-              "type": "PERCENTAGE",
-            },
-            {
-              "itemId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-              "amount": -36.11,
-              "before": 156.98,
-              "source": {
-                "applyToNewCustomersOnly": false,
-                "discountedProducts": {},
-                "durationDays": 60,
-                "type": "PERCENTAGE",
-                "packageDiscount": 23.0,
-                "cutoffDate": "2021-08-29T00:00:00Z",
-                "adjustmentReferenceId": "f3b579a2-b37f-4a55-bfbe-bc07973eb242",
-                "discountScope": "ALL_PRODUCTS",
-                "discountedCategories": {},
-                "name": {
-                  "en": "new-discount",
-                },
-                "subtype": "",
-                "id": "f3b579a2-b37f-4a55-bfbe-bc07973eb242",
-                "credit": false,
-                "startDate": "2021-08-13T00:00:00Z",
-              },
-              "after": 120.87,
-              "type": "PERCENTAGE",
-            },
-          ],
-          "adjustmentAggregations": [
-            {
-              "amount": -599.13,
-              "before": 720.0,
-              "cumulativeAmount": -599.13,
-              "after": 120.87,
-              "type": "PERCENTAGE",
-            },
-            {
-              "amount": 0,
-              "subtype": "QUEBEC QST/TVQ",
-              "before": 138.97,
-              "cumulativeAmount": 12.06,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "subtype": "CANADA GST/TPS",
-              "before": 138.97,
-              "cumulativeAmount": 6.04,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "before": 138.97,
-              "cumulativeAmount": 18.1,
-              "after": 138.97,
-              "type": "TAX",
-            },
-            {
-              "amount": 0,
-              "before": 138.97,
-              "cumulativeAmount": 0,
-              "after": 138.97,
-              "type": "CREDIT",
-            },
-          ],
-          "name": {
-            "en": "Compute",
-          },
-          "subTotal": 120.87,
-          "categoryId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-          "products": [
-            {
-              "total": 738.1,
-              "unit": {
-                "unit": "UNIT",
-                "name": {},
-              },
-              "adjustments": [
-                {
-                  "itemId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-                  "amount": 6.04,
-                  "before": 720.0,
-                  "source": {
-                    "discountScope": "PRODUCTS",
-                    "type": "TAX",
-                    "adjustmentReferenceId": "",
-                  },
-                  "after": 726.04,
-                  "type": "TAX",
-                },
-                {
-                  "itemId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-                  "amount": 12.06,
-                  "before": 726.04,
-                  "source": {
-                    "discountScope": "PRODUCTS",
-                    "type": "TAX",
-                    "adjustmentReferenceId": "",
-                  },
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-              ],
-              "adjustmentAggregations": [
-                {
-                  "amount": 0,
-                  "before": 720.0,
-                  "cumulativeAmount": 0,
-                  "after": 720.0,
-                  "type": "PERCENTAGE",
-                },
-                {
-                  "amount": 12.06,
-                  "subtype": "QUEBEC QST/TVQ",
-                  "before": 726.04,
-                  "cumulativeAmount": 12.06,
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 6.04,
-                  "subtype": "CANADA GST/TPS",
-                  "before": 720.0,
-                  "cumulativeAmount": 6.04,
-                  "after": 726.04,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 18.1,
-                  "before": 720.0,
-                  "cumulativeAmount": 18.1,
-                  "after": 738.1,
-                  "type": "TAX",
-                },
-                {
-                  "amount": 0,
-                  "before": 738.1,
-                  "cumulativeAmount": 0,
-                  "after": 738.1,
-                  "type": "CREDIT",
-                },
-              ],
-              "productId": "b0ba5102-10fe-44b6-841b-19457a8bb29e",
-              "price": "1.00",
-              "usage": 720.0,
-              "name": {
-                "en": "Container (1 vCPU, 2Gi RAM, 5Gi Root Disk)",
-              },
-              "subTotal": 720.0,
-              "sku": "CCM-1M02",
-              "taxCode": "SW053000",
-              "categoryId": "d88a106d-608f-48f4-a6be-a97f9f6c29c5",
-            },
-          ],
-        },
-      ],
-      "startDate": "2021-09-08T00:00:00Z",
-    }
- }
+            "status": "ISSUED"
+        }
+    ]
 }
 ```
 
@@ -1243,9 +2039,9 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
 `invoiceId`<br/>*string* | The human readable id.
-`status`<br/>*enum* | The status of the invoice. Should be ISSUED upon a successful approval.
+`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
 `createdDate`<br/>*date* | The created date of the invoice.
-`draftedDate`<br/>*date* | The date the invoice was drafted.
+`draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
 `issuedDate`<br/>*date* | The date the invoice was issued.
 `dueDate`<br/>*date* | The date the invoice is due.
 `organization.id`<br/>*UUID* | The UUID of the organization the invoice belongs to.
@@ -1262,13 +2058,16 @@ Attributes | &nbsp;
 `detail.adjustments.amount`<br/>*string* | The adjustment amount applied to the invoice total.
 `detail.adjustments.before`<br/>*string* | The invoice total before the adjustment was applied.
 `detail.adjustments.after`<br/>*string* | The invoice total after the adjustment was applied.
+`detail.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the invoice total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.adjustmentAggregations.before`<br/>*string* | The invoice total before the adjustments were applied.
 `detail.adjustmentAggregations.after`<br/>*string* | The invoice total after the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the invoice, its categories and their products.
 `detail.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period.
 `detail.categories.name`<br/>*Object* | A map of short language codes to their translated category names.
@@ -1280,13 +2079,16 @@ Attributes | &nbsp;
 `detail.categories.adjustments.amount`<br/>*string* | The adjustment amount applied to the category total.
 `detail.categories.adjustments.before`<br/>*string* | The category total before the adjustment was applied.
 `detail.categories.adjustments.after`<br/>*string* | The category total after the adjustment was applied.
+`detail.categories.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.categories.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.categories.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.categories.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.categories.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.categories.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the category total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.adjustmentAggregations.before`<br/>*string* | The category total before the adjustments were applied.
 `detail.categories.adjustmentAggregations.after`<br/>*string* | The category total after the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.adjustmentAggregations.cumulativeAmount`<br/>*string* | The cumulative adjustment amount applied to the category and its products.
 `detail.categories.products`<br/>*Object* | A map of short language codes to their translated category names.
 `detail.categories.products.sku`<br/>*string* | A unique string representing the sku for a product.
@@ -1306,12 +2108,15 @@ Attributes | &nbsp;
 `detail.categories.products.adjustments.amount`<br/>*string* | The adjustment amount applied to the product total.
 `detail.categories.products.adjustments.before`<br/>*string* | The product total before the adjustment was applied.
 `detail.categories.products.adjustments.after`<br/>*string* | The product total after the adjustment was applied.
+`detail.categories.products.adjustments.dailyDeltas`<br/>*Object* | A map of the local date to the change in daily cost due to the adjustment.
 `detail.categories.products.adjustments.source`<br/>*Object* | The model of the adjustment. Can be a discount or a tax model.
 `detail.categories.products.adjustmentAggregations`<br/>*Array[Object]* | The adjustment aggregations. An aggregation summarizes the application of discounts, taxes or credits.
 `detail.categories.products.adjustmentAggregations.type`<br/>*string* | The type of adjustment being aggregated. Possible values are: PERCENTAGE, CREDIT, TAX.
 `detail.categories.products.adjustmentAggregations.subtype`<br/>*string* | The optional type used for sub-aggregations, like tax breakdowns.
-`detail.categories.products.adjustmentAggregations.amount`<br/>*string* | The adjustment amount applied to the product total.
+`detail.categories.products.adjustmentAggregations.scopedAmount`<br/>*string* | The adjustment amount applied to the product total. Only includes adjustments with the same scope as the item.
+`detail.categories.products.adjustmentAggregations.scopedBefore`<br/>*string* | The product total before the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.products.adjustmentAggregations.before`<br/>*string* | The product total before the adjustments were applied.
+`detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.products.adjustmentAggregations.after`<br/>*string* | The product total after the adjustments were applied.
 `detail.categories.products.adjustmentAggregations.cumulativeAmount`<br/>*string* | The adjustment amount applied to the product total.
 
