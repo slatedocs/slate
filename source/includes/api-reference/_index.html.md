@@ -7906,7 +7906,7 @@ Returns the compact portfolio membership records for the portfolio.
 <h1 id="projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="/docs/create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="/docs/get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="/docs/get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="/docs/get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="/docs/remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="/docs/get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="/docs/add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addMembers</span></a><br><a href="/docs/remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="/docs/add-followers-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="/docs/remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a><br><a href="/docs/create-a-project-from-an-asana-template"><span class="post-verb">POST</span> <span class=""nn>/projects/createFromAsanaTemplate</span></a></code>
+<code><a href="/docs/get-multiple-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="/docs/create-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="/docs/get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="/docs/duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="/docs/get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="/docs/get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="/docs/get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="/docs/add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="/docs/remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="/docs/get-task-count-of-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/task_counts</span></a><br><a href="/docs/add-users-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addMembers</span></a><br><a href="/docs/remove-users-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeMembers</span></a><br><a href="/docs/add-followers-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addFollowers</span></a><br><a href="/docs/remove-followers-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeFollowers</span></a></code>
 </pre>
 
 <span class="description">
@@ -8169,7 +8169,67 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -8430,7 +8490,67 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -8668,7 +8788,67 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -9464,7 +9644,67 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -9871,7 +10111,67 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -10970,287 +11270,6 @@ Status Code **200**
 |Name|Description|
 |---|---|
 | data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
-
-</section><hr class="half-line">
-<section>
-## Create a project from an Asana template
-
-<a id="opIdcreateProjectFromAsanaTemplate"></a>
-
-> Code samples
-
-```shell
-curl -X POST https://app.asana.com/api/1.0/projects/createFromAsanaTemplate \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}' \
-  -d '{"data": {"field":"value","field":"value"} }'
-
-```
-
-```javascript--nodejs
-createProjectFromAsanaTemplate
-
-```
-
-```python
-createProjectFromAsanaTemplate
-
-```
-
-```ruby
-createProjectFromAsanaTemplate
-
-```
-
-```java
-createProjectFromAsanaTemplate
-
-```
-
-```php
-createProjectFromAsanaTemplate
-
-```
-
-> Body parameter
-
-```json
-{
-  "data": {
-    "archived": false,
-    "color": "light-green",
-    "current_status": {
-      "author": {
-        "name": "Greg Sanchez"
-      },
-      "color": "green",
-      "created_by": {
-        "name": "Greg Sanchez"
-      },
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "text": "The project is moving forward according to plan...",
-      "title": "Status Update - Jun 15"
-    },
-    "custom_fields": {
-      "4578152156": "Not Started",
-      "5678904321": "On Hold"
-    },
-    "default_view": "calendar",
-    "due_date": "2019-09-15",
-    "due_on": "2019-09-15",
-    "followers": "12345,23456",
-    "html_notes": "<body>These are things we need to purchase.</body>",
-    "is_template": false,
-    "name": "Stuff to buy",
-    "notes": "These are things we need to purchase.",
-    "owner": "12345",
-    "project_template": "12345",
-    "public": false,
-    "start_on": "2019-09-14",
-    "team": "12345"
-  }
-}
-```
-
-> 201 Response
-
-```json
-{
-  "data": {
-    "gid": "12345",
-    "resource_type": "project",
-    "name": "Stuff to buy",
-    "archived": false,
-    "color": "light-green",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "current_status": {
-      "gid": "12345",
-      "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "text": "The project is moving forward according to plan...",
-      "author": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "modified_at": "2012-02-22T02:06:58.147Z"
-    },
-    "custom_field_settings": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field_setting"
-      }
-    ],
-    "default_view": "calendar",
-    "due_date": "2019-09-15",
-    "due_on": "2019-09-15",
-    "html_notes": "<body>These are things we need to purchase.</body>",
-    "is_template": false,
-    "members": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
-    "modified_at": "2012-02-22T02:06:58.147Z",
-    "notes": "These are things we need to purchase.",
-    "public": false,
-    "start_on": "2019-09-14",
-    "workspace": {
-      "gid": "12345",
-      "resource_type": "workspace",
-      "name": "My Company Workspace"
-    },
-    "custom_fields": [
-      {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "display_value": "blue",
-        "enabled": true,
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          }
-        ],
-        "name": "Status",
-        "number_value": 5.2,
-        "resource_subtype": "text",
-        "text_value": "Some Value",
-        "type": "text"
-      }
-    ],
-    "followers": [
-      {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
-    ],
-    "icon": "chat_bubbles",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    }
-  }
-}
-```
-
-> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
-
-<p>
-<code> <span class="post-verb">POST</span> /projects/createFromAsanaTemplate</code>
-</p>
-
-<span class="description">
-Create a new project from an Asana template in a workspace or team.
-
-Every project is required to be created in a specific workspace or
-organization, and this cannot be changed once set. Note that you can use
-the `workspace` parameter regardless of whether or not it is an
-organization.
-
-If the workspace for your project is an organization, you must also
-supply a `team` to share the project with.
-
-Returns the full record of the newly created project.
-</span>
-
-<h3 id="create-a-project-from-an-asana-template-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|The project to create.|
-|» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
-|»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
-|»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
-|»»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
-|»»» title<span class="param-type"> string</span>|The title of the project status update.|
-|»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
-|»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
-|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
-|»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
-|»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
-|»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
-|»» project_template<span class="param-type"> string</span>|The string ID of the Asana-created template to create the project from.|
-|»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-| color|dark-pink|
-| color|dark-green|
-| color|dark-blue|
-| color|dark-red|
-| color|dark-teal|
-| color|dark-brown|
-| color|dark-orange|
-| color|dark-purple|
-| color|dark-warm-gray|
-| color|light-pink|
-| color|light-green|
-| color|light-blue|
-| color|light-red|
-| color|light-teal|
-| color|light-brown|
-| color|light-orange|
-| color|light-purple|
-| color|light-warm-gray|
-| color|green|
-| color|yellow|
-| color|red|
-| color|blue|
-| default_view|list|
-| default_view|board|
-| default_view|calendar|
-| default_view|timeline|
-
-<h3 id="create-a-project-from-an-asana-template-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|201<span class="param-type"> [Project](#schemaproject)</span>|Successfully created a project.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -25643,7 +25662,67 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   "custom_field_settings": [
     {
       "gid": "12345",
-      "resource_type": "custom_field_setting"
+      "resource_type": "custom_field_setting",
+      "custom_field": {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "display_value": "blue",
+        "enabled": true,
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
+      },
+      "is_important": false,
+      "parent": {
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
+      },
+      "project": {
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
+      }
     }
   ],
   "default_view": "calendar",
@@ -25747,6 +25826,55 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
+|»» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
+|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
+|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
+|» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
@@ -25821,6 +25949,21 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |color|yellow|
 |color|red|
 |color|blue|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
+|format|currency|
+|format|identifier|
+|format|percentage|
+|format|custom|
+|format|none|
+|resource_subtype|text|
+|resource_subtype|enum|
+|resource_subtype|multi_enum|
+|resource_subtype|number|
+|type|text|
+|type|enum|
+|type|multi_enum|
+|type|number|
 |default_view|list|
 |default_view|board|
 |default_view|calendar|
