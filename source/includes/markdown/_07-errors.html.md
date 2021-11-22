@@ -70,7 +70,7 @@ HTTP/1.1 500 Server Error
 | <span>200</span> | **Success** | If data was requested, it will be available in the `data` field at the top level of the response body. |
 | <span>201</span> | **Created** <br> <small>(for object creation)</small> | Its information is available in the data field at the top level of the response body. The API URL where the object can be retrieved is also returned in the `Location` header of the response. |
 | <span>400</span> | **Bad Request** | This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again. |
-| <span>401</span> | **Unauthorized** | A valid authentication token was not provided with the request, so the API could not associate a user with the request. |
+| <span>401</span> | **Unauthorized** | A valid authentication token was not provided with the request, so the API could not associate a user with the request. This error also occurs if an app makes a request to a workspace that has disabled that particular app. |
 | <span>402</span> | **Payment Required** | The request was valid, but the queried object or object mutation specified in the request is only available to premium organizations and workspaces. |
 | <span>403</span> | **Forbidden** | The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to. |
 | <span>404</span> | **Not Found** | Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist. |
