@@ -14,6 +14,7 @@ curl https://api.handshq.com/v1/projects \
 
 ```json
   {
+    "user_email": "maddox@daystrom.com",
     "project": {
       "name": "My project with extra details",
       "fields_attributes": {
@@ -28,9 +29,15 @@ This endpoint allows you to create a project for the company who is registered w
 
 ### HTTP Request
 
-`POST https://api.handshq.com/v1/projects`
+`POST https://api.handshq.com/v1/projects?user_email=#{user_email}`
+
+### Required Query Parameters
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+user_email | String | Yes | The email of the HandsHQ user who will be marked as the author of the project
 
 ### Allowed Project Parameters
+All parameters must be nested within `project`
 
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
