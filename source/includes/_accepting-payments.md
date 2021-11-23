@@ -852,11 +852,11 @@ Follow the below steps to test the E-Wallet flow:
     
 2.  Send a request to activate API E-Wallet product and obtain staging API Key to your business representative
     
-3.  Create a VA number by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/e-wallet-aggregator/create-transaction using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#create-e-wallet-transaction-api-e-wallet-aggregator-coming-soon)
+3.  Create a transaction by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/e-wallet-aggregator/create-transaction using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#create-e-wallet-transaction-api-e-wallet-aggregator-coming-soon)
     
-4.  After an E-Wallet transaction is generated, partner can simulate E-Wallet payment through your dashboard (in Staging environment) by going to Settings, and choose "E-wallet Callback"
+4.  After an E-Wallet transaction is generated, partner can simulate an E-Wallet payment through their dashboard (in Staging environment) by going to the "E-Wallet" sidebar, look for the newly created transaction row on the table (should be at the top), then click on the "Pay" button on the very right of that row. ![E-Wallet Table](images/ewallet_testing_2.png)
     
-5.  Fill in the e-wallet name, the generated ref number (you can fetch the ref number information through a Create E-Wallet Transaction response or through a Check Status response), and amount in the E-Wallet Callback section ![E-Wallet API](images/ewallet_testing.png)
+5.  Fill in the e-wallet name, the ref number and amount should be prefilled from the transaction in the previous step, then click on "Send Callback" ![E-Wallet API](images/ewallet_testing.png)
     
 6.  If a payment is successful, we will send a callback to the registered staging callback URL destination
     
