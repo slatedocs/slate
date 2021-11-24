@@ -2263,7 +2263,7 @@ POST /snappy/request?access_token=<access_token> HTTP/1.1
 }
 ```
 
-This endpoint create an unique webhook callback url into your business.
+This endpoint create an request to Snappy when a tracking need modify information, report abuse, etc..
 
 ### HTTP Request
 
