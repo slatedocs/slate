@@ -3,7 +3,7 @@
 ;(function () {
   'use strict';
 
-  var htmlPattern = /<[^>]*>/g;  
+  var htmlPattern = /<[^>]*>/g;
   var loaded = false;
 
   var debounce = function(func, waitTime) {
@@ -38,7 +38,7 @@
       $toc.find(tocLinkSelector).each(function() {
         var targetId = $(this).attr('href');
         if (targetId[0] === "#") {
-          headerHeights[targetId] = $(targetId).offset().top;
+          headerHeights[targetId] = $("#" + $.escapeSelector(targetId.substring(1))).offset().top;
         }
       });
     };
@@ -67,7 +67,6 @@
       }
 
       var $best = $toc.find("[href='" + best + "']").first();
-      var joinedTitle = $best.data("title") + " – " + originalTitle;
       if (!$best.hasClass("active")) {
         // .active is applied to the ToC link we're currently on, and its parent <ul>s selected by tocListSelector
         // .active-expanded is applied to the ToC links that are parents of this one
@@ -81,8 +80,12 @@
         if (window.history.replaceState) {
           window.history.replaceState(null, "", best);
         }
-        // TODO remove classnames
-        document.title = joinedTitle.replace(htmlPattern, '');
+        var thisTitle = $best.data("title");
+        if (thisTitle !== undefined && thisTitle.length > 0) {
+          document.title = thisTitle.replace(htmlPattern, "") + " – " + originalTitle;
+        } else {
+          document.title = originalTitle;
+        }
       }
     };
 

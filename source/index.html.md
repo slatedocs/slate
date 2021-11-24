@@ -6,12 +6,18 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 <!-- includes:
   - errors -->
 
 search: true
+
+code_clipboard: true
+
+meta:
+  - name: description
+    content: Documentation for the Kittn API
 ---
 
 # Introduction
@@ -25,7 +31,6 @@ We have language bindings in Http and you can view code examples in the dark are
 ## Environment
 
 * Production base url: **https://pos.pages.fm/api/v1**
-
 
 # Authentication
 

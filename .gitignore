@@ -23,3 +23,6 @@ _yardoc
 doc/
 .idea/
 node_modules/
+
+# Vagrant artifacts
+ubuntu-*-console.log
