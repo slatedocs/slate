@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-11-22
+
+- Added link out to <a href="https://support.affinity.co/hc/en-us/articles/4413976035085-Webhook-Responses">Help Center</a> for webhook responses
+
 ## 2021-11-19
 
 - Updated [GET field values changes](#get-field-values-changes) to be filterable by `action_type`, `person`, `organization`, `opportunity` or `list_entry` by passing in the appropriate parameter.

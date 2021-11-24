@@ -72,6 +72,10 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 
 The Field Value webhook events do not include enrichment events by default. To enable enrichment webhooks, please contact [support@affinity.co](support@affinity.co).
 
+<aside class="notice">
+  <h6>Note</h6>
+  <p>Examples of our webhook responses can be found in the <a href="https://support.affinity.co/hc/en-us/articles/4413976035085-Webhook-Responses">Help Center</a>.</p>
+</aside>
 
 ## Get All Webhook Subscriptions
 
