@@ -29,18 +29,21 @@ curl "https://cloudmc_endpoint/api/v1/organizations" \
          "billingMode": "CREDIT_CARD",
          "isReseller": false,
          "tags": ["a-tag"],
+         "deleted": false,
          "parent": {
             "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
             "name": "Capcom"
          },
          "environments": [
             {
-               "id": "9df14056-51e2-4000-ab14-beeaa488500d"
+               "id": "9df14056-51e2-4000-ab14-beeaa488500d",
+               "deleted": false
             }
          ],
          "roles": [
             {
-               "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8"
+               "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8",
+               "deleted": false
             }
          ],
          "serviceConnections":[
@@ -52,13 +55,17 @@ curl "https://cloudmc_endpoint/api/v1/organizations" \
          "users": [
             {
                "id":"0c3ffcce-a98d-4159-b6fc-04edd34e89b7",
-               "userName":"wbirkin"
+               "userName":"wbirkin",
+               "deleted": false
             }
          ]
       }
    ]
 }
 ```
+Optional Query Parameters | &nbsp;
+---------- | -----------
+`include_deleted`<br/>*boolean* | Whether or not to include deleted organizations and resources in the response.
 
 Attributes | &nbsp;
 ---- | -----------
