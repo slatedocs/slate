@@ -739,3 +739,74 @@ These are:
 (2) ALLOCATED - a terminal status. This status is set when an allocation instruction towards a nominee been approved and actioned.
   
 (3) CANCELLED - a terminal status. This status is set when an allocation instruction towards a nominee has been rejected and actioned.
+
+ 
+
+## INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED
+```json
+{
+  "id": "cc84c538-0c7f-41f7-8362-c6115c1df6f7",
+  "type": "INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED",
+  "dateTime": "2021-11-26T15:07:05.786408723Z",
+  "content": {
+    "repaymentBatchReference": "REPAYMENT-2b86a1bb-fe9d-4476-9e6b-0e29477e251d",
+    "totalRepayments": 10,
+    "totalAmount": {
+      "amount": 0.3,
+      "currency": "GBP"
+    },
+    "overallStatus": "PENDING",
+    "postedAt": "2021-11-26T15:07:05.765271497Z",
+    "clearedAt": null
+  }
+}
+```
+This webhook is fired when the system has successfully recorded a repayment request.
+
+
+## INVESTMENT_REPAYMENT_CLEARING
+```json
+{
+  "id": "d6adb525-adac-4cc0-a86f-a9c0e68a7bb8",
+  "type": "INVESTMENT_REPAYMENT_CLEARING",
+  "dateTime": "2021-11-26T21:51:32.574621Z",
+  "content": {
+    "repaymentBatchReference": "REPAYMENT-2b86a1bb-fe9d-4476-9e6b-0e29477e251d",
+    "repaymentId": "REPAYMENT_ID",
+    "investmentId": "INVESTMENT_CLIENT_ID",
+    "amount": {
+      "amount": 10,
+      "currency": "GBP"
+    },
+    "type": "INTEREST",
+    "status": "CLEARED",
+    "postedAt": "2021-11-26T21:51:32.542533Z",
+    "clearedAt": "2021-11-26T21:51:32.543340Z"
+  }
+}
+```
+This webhook is fired whenever the system marks a single repayment as cleared.
+I.e. the money movement for the singular investor repayment has occurred.
+
+
+## INVESTMENT_REPAYMENT_BATCH_COMPLETE
+```json
+{
+  "id": "cc84c538-0c7f-41f7-8362-c6115c1df6f7",
+  "type": "INVESTMENT_REPAYMENT_BATCH_COMPLETE",
+  "dateTime": "2021-11-26T15:07:05.786408723Z",
+  "content": {
+    "repaymentBatchReference": "REPAYMENT-2b86a1bb-fe9d-4476-9e6b-0e29477e251d",
+    "totalRepayments": 10,
+    "totalAmount": {
+      "amount": 0.3,
+      "currency": "GBP"
+    },
+    "overallStatus": "PENDING",
+    "postedAt": "2021-11-26T15:07:05.765271497Z",
+    "clearedAt": "2021-11-26T15:15:10.765271497Z"
+  }
+}
+```
+This webhook is fired when the system marks the full repayment request as complete.
+I.e. all associated money movements have occurred.

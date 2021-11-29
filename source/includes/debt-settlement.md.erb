@@ -174,7 +174,7 @@ Content-Type: application/json
 }
 ```
 ### Description
-Lists payment destinations. 
+Lists payment destinations.
 
 <aside class="warning">
 Deprecated and replaced with <a href="#payments-manager-get-platformapi-bankaccountdetails">general bank account details</a>.
@@ -211,7 +211,7 @@ Content-Type: application/json
 ```
 ### Description
 Adds a payment destination.
- 
+
 <aside class="warning">
 Deprecated and replaced with <a href="#payments-manager-post-platformapi-bankaccountdetails">general bank account details</a>.
 </aside>
@@ -257,7 +257,7 @@ Content-Type: application/json
 ```
 ### Description
 Updates a payment destination.
- 
+
 <aside class="warning">
 Deprecated and replaced with <a href="#payments-manager-put-platformapi-bankaccountdetails-id">general bank account details</a>.
 </aside>
@@ -374,7 +374,7 @@ Authorization: Basic ...
       "currency" : "currency"
     },
     "newInvestmentId" : "newInvestmentId",
-    "dateTime": "2019-01-01T12:33:00Z", 
+    "dateTime": "2019-01-01T12:33:00Z",
     "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)"
   },
   "sellSide" : {
@@ -611,6 +611,198 @@ This endpoint is the only call required to repay investments for any platform on
 | Name                     | Type   | Description                                  |
 | ------------------------ | ------ | -------------------------------------------- |
 | repaymentBatchReference  | string | The unique ID for this repayment request     |
+
+## `GET /investor-repayment`
+
+```http
+
+GET /investor-repayment HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
+
+{
+  "REPAYMENT-c931d903-bd8a-4907-9dfa-68aeab4b86a8": {
+    "totalRepayments": 50,
+    "totalAmount": {
+      "amount": 1.000000000000,
+      "currency": "GBP"
+    },
+    "overallStatus": "PENDING",
+    "postedAt": "2021-11-11T16:14:57.165Z",
+    "clearedAt": null
+  },
+  "REPAYMENT-421ec28f-3484-4278-bdd9-6fa781574af2": {
+    "totalRepayments": 50,
+    "totalAmount": {
+      "amount": 1.000000000000,
+      "currency": "GBP"
+    },
+    "overallStatus": "PENDING",
+    "postedAt": "2021-11-11T16:47:57.073Z",
+    "clearedAt": null
+  }
+}
+```
+### Description
+Returns a map of repayment overviews for the last 20 repayment requests made.
+
+
+### Response
+| Name                       | Type   | Value Type                  | Value Description                                                                                                              |
+| -------------------------- | ------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| repaymentBatchReference    | string | RepaymentBatchReferenceId   | A unique identifier for a repayment request                                                                                    |
+| .totalRepayments           | Number | Number                      | The total number of repayments in the repayment request with id `repaymentBatchReference`.                                     |
+| .totalAmount.amount        | Number | Number                      | The total amount to be paid out associated with the `repaymentBatchReference`.                                                 |
+| .totalAmount.currency      | String | ISO 4217                    | The currency that the `totalAmount.amount` is in.                                                                            |
+| .overallStatus             | String | Enum                        | The overall status of the repayment request. Possible values are: </br>`PENDING` </br> `CLEARED`.</br>                         |
+| .postedAt                  | String | ISO 8601                    | The time at which the repayment request was recorded in the system.                                                            |
+| .clearedAt                 | String | ISO 8601                    | The time at which the repayment request was marked as cleared in the system. Null where the `overallStatus` is not `CLEARED`.  |
+
+
+
+## `GET /investor-repayment/{repaymentBatchReference}`
+
+```http
+
+GET /investor-repayment/{repaymentBatchReference} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
+
+
+{
+  "repaymentBatchReference": "REPAYMENT-2b86a1bb-fe9d-4476-9e6b-0e29477e251d",
+  "investorRepayments": [
+    {
+      "repaymentId": "01180666-234b-4bf4-a879-60196e4f781b",
+      "amount": {
+        "amount": 0.020000000000,
+        "currency": "GBP"
+      },
+      "tax": {
+        "amount": 0.010000000000,
+        "currency": "GBP"
+      },
+      "type": "INTEREST",
+      "status": "PENDING",
+      "investmentId": "5ab5df55-8e5e-4380-a94c-6fcac3a9a6ac"
+    },
+    {
+      "repaymentId": "18529cda-b32a-4053-bd0e-4140c0a9da42",
+      "amount": {
+        "amount": 0.020000000000,
+        "currency": "GBP"
+      },
+      "tax": {
+        "amount": 0.010000000000,
+        "currency": "GBP"
+      },
+      "type": "INTEREST",
+      "status": "CLEARED",
+      "investmentId": "fcc23a87-7a90-4bfc-85e5-b214bb1db68f"
+    }
+  ]
+}
+```
+### Description
+Returns the repayment request associated with the unique `repaymentBatchReference` supplied.
+
+
+### Response
+| Name                                 | Type   | Value Type                  | Value Description                                                                                  |
+| ------------------------------------ | ------ | --------------------------- | -------------------------------------------------------------------------------------------------- |
+| repaymentBatchReference              | String | RepaymentBatchReferenceId   | The unique identifier for a repayment request.                                                     |
+| investorRepayments                   | Array  | Array                       | The array of investor repayments included in the repayment request.                                |
+| investorRepayments[].investmentId    | String | InvestmentId                | The client-specified investment ID that the repayment was for.                                     |
+| investorRepayments[].type            | String | Enum                        | The repayment type. Possible values are: </br> `INTEREST` </br> `CAPITAL` </br>                    |
+| investorRepayments[].status          | String | Enum                        | The repayment status. Possible values are: </br> `PENDING` </br> `CLEARED` </br>                   |
+| investorRepayments[].amount          | Object | Object                      | Describes the amount repaid/ to be repaid.                                                         |
+| investorRepayments[].amount.amount   | Number | Number                      | The amount to be repaid in `amount.currency`.                                                      |
+| investorRepayments[].amount.currency | String | ISO 4217                    | The currency that `amount.amount` is expressed in.                                                 |
+| investorRepayments[].tax             | Object | Object                      |  The amount of tax withheld from this repayment. May be null.                                      |
+| investorRepayments[].tax.amount      | Number | Number                      | The amount to be taxed in `tax.currency`.                                                          |
+| investorRepayments[].tax.currency    | String | ISO 4217                    | The currency that `tax.amount` is expressed in.                                                    |
+
+
+## `GET /investment/{clientInvestmentId}`
+
+```http
+
+GET /investment/{clientInvestmentId} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-GOJI-CLIENT-ID: 79f33f3c-86e0-4613-ba49-9fac3c6f0eac
+
+
+{
+  "investmentId": "5ab5df55-8e5e-4380-a94c-6fcac3a9a6ac",
+  "amount": {
+    "amount": 0.020000000000,
+    "currency": "GBP"
+  },
+  "postedAt": "2021-11-26T15:07:02Z",
+  "investorRepayments": [
+    {
+      "repaymentId": "01180666-234b-4bf4-a879-60196e4f781b",
+      "amount": {
+        "amount": 0.020000000000,
+        "currency": "GBP"
+      },
+      "tax": {
+        "amount": 0.010000000000,
+        "currency": "GBP"
+      },
+      "type": "INTEREST",
+      "status": "PENDING",
+      "investmentId": "5ab5df55-8e5e-4380-a94c-6fcac3a9a6ac"
+    }
+  ]
+}
+```
+### Description
+Returns all repayments associated with the specified investment.
+
+
+### Response
+| Name                                 | Type   | Value Type                  | Value Description                                                                                  |
+| ------------------------------------ | ------ | --------------------------- | -------------------------------------------------------------------------------------------------- |
+| investmentId                         | String | InvestmentId                | The unique, client-specified investment ID                                                         |
+| amount.amount                        | Number | Number                      | The total amount invested                                                                          |
+| amount.currency                      | String | ISO 4217                    | The currency that the `amount.amount` is in.                                                     |
+| postedAt                             | String | ISO 8601                    | The time at which the investment was originally recorded.                                          |
+| investorRepayments                   | Array  | Array                       | The array of investor repayments associated with the investment                                    |
+| investorRepayments[].investmentId    | String | InvestmentId                | The client-specified investment ID that the repayment was for.                                     |
+| investorRepayments[].type            | String | Enum                        | The repayment type. Possible values are: </br> `INTEREST` </br> `CAPITAL` </br>                    |
+| investorRepayments[].status          | String | Enum                        | The repayment status. Possible values are: </br> `PENDING` </br> `CLEARED` </br>                   |
+| investorRepayments[].amount          | Object | Object                      | Describes the amount repaid/ to be repaid.                                                         |
+| investorRepayments[].amount.amount   | Number | Number                      | The amount to be repaid in `amount.currency`.                                                      |
+| investorRepayments[].amount.currency | String | ISO 4217                    | The currency that `amount.amount` is expressed in.                                                 |
+| investorRepayments[].tax             | Object | Object                      |  The amount of tax withheld from this repayment. May be null.                                      |
+| investorRepayments[].tax.amount      | Number | Number                      | The amount to be taxed in `tax.currency`.                                                          |
+| investorRepayments[].tax.currency    | String | ISO 4217                    | The currency that `tax.amount` is expressed in.                                                    |
+
 
 ## `GET /platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments`
 
