@@ -1192,7 +1192,8 @@ Content-Type: application/json
         }
     ],
     "cod": 500000,
-    "value" : 600000
+    "value": 600000,
+    "affiliate_id": "snappy"
 }
 ```
 
@@ -1438,6 +1439,7 @@ is_receiver_pay | false | boolean | false | If `true` all cost of the tracking w
 is_allow_checking_good | false | boolean | false | If `true` means to allow the receiver to see the product
 is_allow_try_out | false | boolean | false | If `true` means to allow the receiver to try the product
 shop_note | false | string | false | Private note of shop
+affiliate_id | false | string |  | Use for calculate commission base of shipping cost with partner
 
 Params `items`
 
