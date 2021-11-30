@@ -1773,7 +1773,6 @@ components:
                 $ref: '#/components/schemas/EnumOption'
             created_by:
               $ref: '#/components/schemas/UserCompact'
-              nullable: true
     CustomFieldRequest:
       allOf:
         - $ref: '#/components/schemas/CustomFieldBase'
@@ -2403,12 +2402,6 @@ components:
               type: string
               description: >-
                 The `gid` of a time period.
-              example: '12345'
-              nullable: true
-            metric:
-              type: string
-              description: >-
-                The `gid` of a goal metric.
               example: '12345'
               nullable: true
             owner:
@@ -3119,41 +3112,6 @@ components:
                 This field only exists for projects in organizations.
               type: string
               example: '12345'
-    CreateProjectFromAsanaTemplateRequest:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          properties:
-            team:
-              description: >-
-                *Create-only*. The team that this project is shared with.
-                This field only exists for projects in organizations.
-              type: string
-              example: '12345'
-            workspace:
-              allOf:
-                - $ref: '#/components/schemas/WorkspaceCompact'
-                - type: object
-                  readOnly: true
-                  description: >-
-                    *Create-only*. The workspace or organization this project is
-                    associated with. Once created, projects cannot be moved to a
-                    different workspace. This attribute can only be specified at
-                    creation time.
-            project_template:
-              description: >-
-                The string ID of the Asana-created template to create the project
-                from.
-              nullable: false
-              type: string
-              example: bug_tracking
-            name:
-              description: >-
-                Name of the project. This is generally a short sentence fragment
-                that fits on a line in the UI for maximum readability. However, it
-                can be longer.
-              type: string
-              example: Stuff to buy
     ProjectBase:
       allOf:
         - $ref: '#/components/schemas/ProjectCompact'
@@ -3205,7 +3163,7 @@ components:
               readOnly: true
               type: array
               items:
-                $ref: '#/components/schemas/CustomFieldSettingResponse'
+                $ref: '#/components/schemas/CustomFieldSettingCompact'
             default_view:
               description: The default view (list, board, calendar, or timeline) of
                 a project.

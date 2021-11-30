@@ -3103,7 +3103,6 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
-    "metric": "12345",
     "name": "Grow web traffic by 30%",
     "notes": "Start building brand awareness.",
     "owner": "12345",
@@ -3213,7 +3212,6 @@ Returns the complete updated goal record.
 |»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
 |»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
-|»» metric<span class="param-type"> string¦null</span>|The `gid` of a goal metric.|
 |»» name<span class="param-type"> string</span>|The name of the goal.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
 |»» owner<span class="param-type"> string¦null</span>|The `gid` of a user.|
@@ -3551,7 +3549,6 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
     "html_notes": "<body>Start building brand awareness.</body>",
     "is_workspace_level": true,
     "liked": false,
-    "metric": "12345",
     "name": "Grow web traffic by 30%",
     "notes": "Start building brand awareness.",
     "owner": "12345",
@@ -3659,7 +3656,6 @@ Returns the full record of the newly created goal.
 |»» html_notes<span class="param-type"> string</span>|The notes of the goal with formatting as HTML.|
 |»» is_workspace_level<span class="param-type"> boolean</span>|*Conditional*. This property is only present when the `workspace` provided is an organization. Whether the goal belongs to the `workspace` (and is listed as part of the workspace’s goals) or not. If it isn’t a workspace-level goal, it is a team-level goal, and is associated with the goal’s team.|
 |»» liked<span class="param-type"> boolean</span>|True if the goal is liked by the authorized user, false if not.|
-|»» metric<span class="param-type"> string¦null</span>|The `gid` of a goal metric.|
 |»» name<span class="param-type"> string</span>|The name of the goal.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
 |»» owner<span class="param-type"> string¦null</span>|The `gid` of a user.|
@@ -8169,67 +8165,7 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "custom_field": {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "created_by": {
-            "gid": "12345",
-            "resource_type": "user",
-            "name": "Greg Sanchez"
-          },
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "description": "Development team priority",
-          "display_value": "blue",
-          "enabled": true,
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          },
-          "format": "custom",
-          "has_notifications_enabled": true,
-          "is_global_to_workspace": true,
-          "multi_enum_values": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "name": "Status",
-          "number_value": 5.2,
-          "precision": 2,
-          "resource_subtype": "text",
-          "text_value": "Some Value",
-          "type": "text"
-        },
-        "is_important": false,
-        "parent": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "project": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -8490,67 +8426,7 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "custom_field": {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "created_by": {
-            "gid": "12345",
-            "resource_type": "user",
-            "name": "Greg Sanchez"
-          },
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "description": "Development team priority",
-          "display_value": "blue",
-          "enabled": true,
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          },
-          "format": "custom",
-          "has_notifications_enabled": true,
-          "is_global_to_workspace": true,
-          "multi_enum_values": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "name": "Status",
-          "number_value": 5.2,
-          "precision": 2,
-          "resource_subtype": "text",
-          "text_value": "Some Value",
-          "type": "text"
-        },
-        "is_important": false,
-        "parent": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "project": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -8788,67 +8664,7 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "custom_field": {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "created_by": {
-            "gid": "12345",
-            "resource_type": "user",
-            "name": "Greg Sanchez"
-          },
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "description": "Development team priority",
-          "display_value": "blue",
-          "enabled": true,
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          },
-          "format": "custom",
-          "has_notifications_enabled": true,
-          "is_global_to_workspace": true,
-          "multi_enum_values": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "name": "Status",
-          "number_value": 5.2,
-          "precision": 2,
-          "resource_subtype": "text",
-          "text_value": "Some Value",
-          "type": "text"
-        },
-        "is_important": false,
-        "parent": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "project": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -9644,67 +9460,7 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "custom_field": {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "created_by": {
-            "gid": "12345",
-            "resource_type": "user",
-            "name": "Greg Sanchez"
-          },
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "description": "Development team priority",
-          "display_value": "blue",
-          "enabled": true,
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          },
-          "format": "custom",
-          "has_notifications_enabled": true,
-          "is_global_to_workspace": true,
-          "multi_enum_values": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "name": "Status",
-          "number_value": 5.2,
-          "precision": 2,
-          "resource_subtype": "text",
-          "text_value": "Some Value",
-          "type": "text"
-        },
-        "is_important": false,
-        "parent": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "project": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -10111,67 +9867,7 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "custom_field": {
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "created_by": {
-            "gid": "12345",
-            "resource_type": "user",
-            "name": "Greg Sanchez"
-          },
-          "currency_code": "EUR",
-          "custom_label": "gold pieces",
-          "custom_label_position": "suffix",
-          "description": "Development team priority",
-          "display_value": "blue",
-          "enabled": true,
-          "enum_options": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "enum_value": {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          },
-          "format": "custom",
-          "has_notifications_enabled": true,
-          "is_global_to_workspace": true,
-          "multi_enum_values": [
-            {
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "color": "blue",
-              "enabled": true,
-              "name": "Low"
-            }
-          ],
-          "name": "Status",
-          "number_value": 5.2,
-          "precision": 2,
-          "resource_subtype": "text",
-          "text_value": "Some Value",
-          "type": "text"
-        },
-        "is_important": false,
-        "parent": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "project": {
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
+        "resource_type": "custom_field_setting"
       }
     ],
     "default_view": "calendar",
@@ -25662,67 +25358,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   "custom_field_settings": [
     {
       "gid": "12345",
-      "resource_type": "custom_field_setting",
-      "custom_field": {
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "created_by": {
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        },
-        "currency_code": "EUR",
-        "custom_label": "gold pieces",
-        "custom_label_position": "suffix",
-        "description": "Development team priority",
-        "display_value": "blue",
-        "enabled": true,
-        "enum_options": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          }
-        ],
-        "enum_value": {
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "color": "blue",
-          "enabled": true,
-          "name": "Low"
-        },
-        "format": "custom",
-        "has_notifications_enabled": true,
-        "is_global_to_workspace": true,
-        "multi_enum_values": [
-          {
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "color": "blue",
-            "enabled": true,
-            "name": "Low"
-          }
-        ],
-        "name": "Status",
-        "number_value": 5.2,
-        "precision": 2,
-        "resource_subtype": "text",
-        "text_value": "Some Value",
-        "type": "text"
-      },
-      "is_important": false,
-      "parent": {
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      },
-      "project": {
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      "resource_type": "custom_field_setting"
     }
   ],
   "default_view": "calendar",
@@ -25826,55 +25462,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
-|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
-|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
-|»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
-|»» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
-|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
-|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» format<span class="param-type"> string</span>|The format of this custom field.|
-|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
-|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
-|»» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
-|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
-|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
-|»»» name<span class="param-type"> string</span>|The name of the enum option.|
-|»» name<span class="param-type"> string</span>|The name of the custom field.|
-|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
-|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
-|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
-|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
-|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
-|» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
@@ -25949,21 +25536,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |color|yellow|
 |color|red|
 |color|blue|
-|custom_label_position|prefix|
-|custom_label_position|suffix|
-|format|currency|
-|format|identifier|
-|format|percentage|
-|format|custom|
-|format|none|
-|resource_subtype|text|
-|resource_subtype|enum|
-|resource_subtype|multi_enum|
-|resource_subtype|number|
-|type|text|
-|type|enum|
-|type|multi_enum|
-|type|number|
 |default_view|list|
 |default_view|board|
 |default_view|calendar|
