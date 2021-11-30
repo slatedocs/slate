@@ -802,7 +802,7 @@ I.e. the money movement for the singular investor repayment has occurred.
       "amount": 0.3,
       "currency": "GBP"
     },
-    "overallStatus": "PENDING",
+    "overallStatus": "CLEARED",
     "postedAt": "2021-11-26T15:07:05.765271497Z",
     "clearedAt": "2021-11-26T15:15:10.765271497Z"
   }
