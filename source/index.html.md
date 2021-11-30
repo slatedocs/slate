@@ -16,6 +16,7 @@ includes:
   - events
   - fields
   - pricing_tier
+  - speakers
   - users
 
 search: true
