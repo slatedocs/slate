@@ -881,3 +881,61 @@ OVO (coming soon)| ovo_ewallet | Parameter is ignored, always set to 55 seconds 
 ShopeePay | shopeepay_ewallet | 1 minute | 60 minutes | Support
 Linkaja | linkaja_ewallet | Parameter is ignored, always set to 5 minutes | Parameter is ignored, always set to 5 minutes | Support
 DANA (coming soon)| dana_ewallet | 1 minute | 60 minutes | Support
+
+
+
+
+
+
+
+
+## API Payment Routing
+
+Some business have some use cases that require them to receive and disburse the fund. Often times, the operation team is struggling to manage this use case. Limited resource makes it harder to disburse the fund received. Therefore, API Payment Routing is the best solutions to cater this needs. 
+
+### Description about Payment Routing
+
+Payment Routing is an API that combines receive money and disburse money features. It allows you to immediately disburse the money once you receive from your customers. By integrating to this API, you will get the end-to-end solutions for your business needs.
+
+For now, you can use API Payment Checkout or API Virtual Account for the receive money part. 
+
+### Flow
+![Payment Routing Flow](/images/Payment_Routing_Flow.png)
+
+## Key Features
+1. **Accept and disburse money in a real time manner** - By integrating to this API, you will get end-to-end solutions from receive to disburse money. All in real time manner. Note : Some payment methods have H+1 or H+2 settlement period. You have to keep some balance to cater the settlement from the payment methods.
+1. **You can select API Payment Checkout or API VA to receive money** - See Payment Checkout or Virtual Account for more information. More channels are coming soon. Note : Payment Routing only allows closed amount type.
+1. **Transaction tracking and monitoring capability** - You can track all payment routing transactions details through our callback or the OY! dashboard. You will receive callbacks two times, for the receive money part and for the disburse money part.
+
+### Use Cases
+Below are few examples of Payment Routing usage.
+
+1. Mutual Fund Investment - Accept investment money from users and directly disburse to each custodian banks.
+1. Borrower and Lender - Accept money from Lender/Borrower and disburse them directly to Rekening Penampungan Lender/Rekening Penampungan Borrower.
+1. Put money directly to Your Business Account- Receive money from your customers/buyers and directly put them to your business bank account in order to secure the money and prevent fraud.
+
+### Registration and Setup
+Follow the below check-list to ensure you're all set up to use our Payment Routing API service:
+
+1. Create an account
+1. Upgrade your account by submitting the required documentations
+1. Have your upgrade request approved
+1. Set up your receiving bank account information (note: ensure that the receiving bank account information is accurate as it cannot be changed via OY! dashboard for security reasons)
+1. Submit your IPs and callback URLs to your business representative or to partner@oyindonesia.com
+1. Receive an API Key from us (note: it is required for API authorization purpose)
+1. Integrate with our Payment Routing API
+
+### Testing
+
+Once you successfully create an OY! account, you can immediately simulate VA payments via API.
+Follow the below steps to test the Payment Routing flow:
+
+1. Create an account
+1. Send a request to activate API Payment Routing product and obtain staging API Key to your business representative
+1. Send a ‘POST’ request _https://partner.oyindonesia.com/api/payment-routing/create-transaction_ (https://partner.oyindonesia.com/api/payment-routing/create-transaction) using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#create-payment-routing).
+1. If you use VA as the payment method, after VA number is generated, you can simulate the payment through your dashboard (in Staging environment) by going to Settings, and choose "VA Callback".
+1. If you use Payment Checkout as the payment method, you can open the link and simulate payment from there.
+1. If payment is successful, we will send a callback to the registered staging callback URL destination.
+1. You can monitor Payment Routing transaction through OY! Dashboard or call the endpoint API. Go to “Payment Routing” menu to monitor your transactions.
+
+
