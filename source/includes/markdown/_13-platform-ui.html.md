@@ -450,19 +450,53 @@ If an app doesn't use OAuth for authentication, the Asana Security Team should m
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
-Authorization is handled by the app. When an app with App Components is added to a project, the user adding it is sent 
-to the App's `authenticationUrl`. The App may perform OAuth with Asana, OAuth with a different app, perform both, or 
-perform none!
+```html
+<!-- Example: An app might return this HTML in response to the 
+authenticationUrl request after the Oauth flow is completed:
+ -->
 
-As long as the app confirms the flow was complete, Asana will successfully add the app to the project. This will allow 
-requests to be sent to the App's pre-defined endpoints.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>You have successfully connected Asana to the app</title>
+  </head>
+  <body>
+    Success!
+    <script>
+      window.opener.postMessage("success", "ORIGIN");
+      window.close();
+    </script>
+  </body>
+</html>
+```
 
-If the App wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
-an OAuth flow against Asana (see https://developers.asana.com/docs/oauth). 
+### Overview
 
-Keep in mind, this authorization provides the App Server with a single user's auth token. Multiple users of Asana will
-hit the UI Hooks and send requests to the App Server, but the server will likely only have the token for 1 user. It 
-might be a good idea to suggest users authenticate with a bot account. 
+The Asana platform needs confirmation from the App Components app that authentication has completed successfully. When 
+an app is added to a project, the user adding it is sent to the app's `authenticationUrl`. The app may perform OAuth with Asana,
+OAuth with a different app, perform both, or perform none. As long as the app confirms the flow was complete, Asana will
+successfully add the app to the project. This will allow requests to be sent to the app's predefined endpoints.
+
+### How it works
+
+Under the hood, we carry this out by listening for a message from the authentication popup window containing the string "success".
+When we make a request to the app's `authenticationUrl`, the browser opens a popup or "child" window and waits for it to respond
+with "success"  using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). The target window
+for this `postMessage` call should be the opener, accessible via
+[window.opener](https://developer.mozilla.org/en-US/docs/Web/API/Window/opener).
+
+Note that for security purposes, the _origin_ included in the event needs to match the `serverUrl` registered to the app. That is,
+the origin serving the `authenticationUrl` response must match the app's configured `serverUrl`.
+
+### Additional notes
+
+If the app wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
+an [OAuth flow](https://developers.asana.com/docs/oauth) against Asana. 
+
+Keep in mind that this authorization provides the app server with a single user's auth token. Multiple users of Asana will
+hit the UI hooks and send requests to the app server, but the server will likely only have the token for one user. You may want
+to suggest users to authenticate with a bot account. 
 
 <hr>
 
