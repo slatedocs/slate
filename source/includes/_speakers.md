@@ -191,7 +191,7 @@ Parameter | Type | Description
 name | string | name of speaker. 
 last_name | string | last name of speaker.
 email | string | email of speaker.
-biography | text | biogrphy of speaker.
+biography | text | biography of speaker.
 twitter | string | speaker twitter account.
 website | string| speaker website.
 photo | file | image for this speaker. 
@@ -277,7 +277,7 @@ Parameter | Type | Description
 name | string | name of speaker. 
 last_name | string | last name of speaker.
 email | string | email of speaker.
-biography | text | biogrphy of speaker.
+biography | text | biography of speaker.
 twitter | string | speaker twitter account.
 website | string| speaker website.
 photo | file | image for this speaker. 
