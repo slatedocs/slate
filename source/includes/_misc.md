@@ -8,6 +8,25 @@
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/users/search?api_key=YOUR_API_KEY_HERE"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/users/search"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -242,6 +261,25 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "ht
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/email_accounts?api_key=YOUR_API_KEY_HERE"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/email_accounts"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -282,6 +320,25 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "ht
 
 ```shell
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/labels?api_key=YOUR_API_KEY_HERE"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/labels"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -336,6 +393,25 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "ht
 
 ```shell
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/typed_custom_fields?api_key=YOUR_API_KEY_HERE"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/typed_custom_fields"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -531,6 +607,25 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "ht
 
 ```shell
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/opportunity_stages?api_key=YOUR_API_KEY_HERE"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/opportunity_stages"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:

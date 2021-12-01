@@ -19,6 +19,31 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 }' "https://app.apollo.io/api/v1/opportunities"
 ```
 
+```python
+import requests
+
+url = "https://app.apollo.io/api/v1/opportunities"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "owner_id":"5c10XXXXXXXXXXXXXXXXXXXX",
+    "name":"Opportunity Name",
+    "amount":"200",
+    "opportunity_stage_id":"5c14XXXXXXXXXXXXXXXXXXXX",
+    "closed_date":"2020-12-18",
+    "account_id":"5f06XXXXXXXXXXXXXXXXXXXX"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -62,6 +87,25 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 
 ```shell
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/opportunities/search?api_key=YOUR_API_KEY_HERE"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/opportunities/search"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -196,6 +240,25 @@ This endpoint returns all opportunities you have Created.
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/opportunities/REPLACE_WITH_OPPORTUNITY_ID?api_key=YOUR_API_KEY_HERE"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/opportunities/REPLACE_WITH_OPPORTUNITY_ID"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -241,6 +304,26 @@ curl -X PATCH -H "Content-Type: application/json" -H "Cache-Control: no-cache" -
     "api_key": "YOUR API KEY HERE",
     "name": "Opportunity Name Updated",
 }' "https://api.apollo.io/v1/opportunities"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/opportunities"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "name": "Opportunity Name Updated",
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.patch(url, headers=headers, data=data)
+
+print(response.text)
 ```
 
 > Sample response:

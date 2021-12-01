@@ -21,6 +21,35 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 }' "https://api.apollo.io/v1/tasks/bulk_create"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/tasks/bulk_create"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "priority": "medium",
+    "user_id": "5c10XXXXXXXXXXXXXXXXXXXX",
+    "due_at": "2020-12-21T16:16:48.311Z",
+    "type": "call",
+    "contact_ids": [
+        "5cd9XXXXXXXXXXXXXXXXXXXX",
+        "5cd9XXXXXXXXXXXXXXXXXXXX"
+    ],
+    "note": "Note to be attached to the task",
+    "status": "scheduled"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -54,6 +83,30 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d 
         "task_types"
     ]
 }' "https://api.apollo.io/v1/tasks/search"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/tasks/search"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE",
+    "sort_by_field": "task_created_at",
+    "per_page": 200,
+    "open_factor_names": [
+        "task_types"
+    ]
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:
