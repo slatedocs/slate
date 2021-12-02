@@ -261,6 +261,11 @@ html, body {
   // transparent background.
   // I know, it's hackish, but it's the simplist way to make the left
   // half of the content always this background color.
+  .content {
+
+    border-left: #333 1px;
+  }
+  
   .dark-box {
     width: $examples-width;
     background-color: $examples-bg;
