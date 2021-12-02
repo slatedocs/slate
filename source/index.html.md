@@ -23,7 +23,7 @@ meta:
 
 # Introduction
 
-Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, marketplaces, and tools.
+Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, marketplaces, and tools. This is work in progress. 
 
 # Authentication
 
