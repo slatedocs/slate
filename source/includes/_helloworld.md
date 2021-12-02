@@ -1,7 +1,7 @@
 # Hello world example
 
 
-> Example of Pricing component usage:
+> Example of complete working Data Product specification instance:
 
 ```javascript
 {
