@@ -29,7 +29,7 @@ meta:
 
 Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, marketplaces, and tools. 
 
-**Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard
+**Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
 This is work in progress. 
 
