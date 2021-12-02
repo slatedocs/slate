@@ -11,7 +11,7 @@ toc_footers:
 
 includes:
   - pricing
-  - errors
+  - helloworld
 
 search: true
 
