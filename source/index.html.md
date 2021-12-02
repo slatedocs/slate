@@ -10,6 +10,7 @@ toc_footers:
 
 
 includes:
+  - pricing
   - errors
 
 search: true
