@@ -1,5 +1,9 @@
 # Hello world example
 
+
+> Example of Pricing component usage:
+
+```javascript
 {
    "name":"Hello World Data Product",
    "description":"Product catalogs published by standardization organizations.",
@@ -120,3 +124,4 @@
         }
    ]
 }
+```
