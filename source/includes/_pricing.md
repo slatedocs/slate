@@ -1,7 +1,5 @@
 # Pricing
 
-<aside class="notice">
-
 Pricing component.....
 
 
