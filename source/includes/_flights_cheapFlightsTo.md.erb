@@ -1,31 +1,27 @@
-## Cheap Flights To supported parameters Schema
+## Cheap Flights To View Schema
 
-```
+```txt
 /flights/cheap-flights-to
 ```
 
-| Property                    | Type     | Required     | Nullable | Defined by                                          |
-| --------------------------- | -------- | ------------ | -------- | --------------------------------------------------- |
-| [currency](#currency)       | `string` | Optional     | No       | Cheap Flights To supported parameters (this schema) |
-| [destination](#destination) | `string` | **Required** | No       | Cheap Flights To supported parameters (this schema) |
-| [locale](#locale)           | `string` | Optional     | No       | Cheap Flights To supported parameters (this schema) |
-| [market](#market)           | `string` | Optional     | No       | Cheap Flights To supported parameters (this schema) |
-| `*`                         | any      | Additional   | Yes      | this schema _allows_ additional properties          |
+A schema definition for the cheap flights to microsite supported parameters
 
-### currency
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
 
-The desired currency for the page. Examples: GBP, EUR, USD  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
+### Cheap Flights To View Type
 
-`currency`
+`object` ([Cheap Flights To View](cheapflightsto.md))
 
-- is optional
-- type: `string`
-- defined in this schema
+## Cheap Flights To View Properties
 
-#### currency Type
-
-`string`
+| Property                    | Type     | Required | Nullable       |
+| :-------------------------- | :------- | :------- | :------------- |
+| [destination](#destination) | `string` | Required | cannot be null |
+| [market](#market)           | `string` | Optional | cannot be null |
+| [locale](#locale)           | `string` | Optional | cannot be null |
+| [currency](#currency)       | `string` | Optional | cannot be null |
 
 ### destination
 
@@ -33,40 +29,76 @@ Location code for the destination
 
 `destination`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([Destination](cheapflightsto-properties-destination.md))
+
+*   cannot be null
 
 #### destination Type
 
-`string`
+`string` ([Destination](cheapflightsto-properties-destination.md))
 
-### locale
+#### destination Constraints
 
-The desired locale for the page. Examples: es-ES, en-GB, ru-RU  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`locale`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### locale Type
-
-`string`
+**unknown format**: the value of this string must follow the format: `place`
 
 ### market
 
-The market of the user. Examples: UK, US, ES  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
+The market of the user. Examples: UK, US, ES
 
 `market`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Market](cheapflightsto-properties-market.md))
+
+*   cannot be null
 
 #### market Type
 
-`string`
+`string` ([Market](cheapflightsto-properties-market.md))
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` ([Locale](cheapflightsto-properties-locale.md))
+
+*   cannot be null
+
+#### locale Type
+
+`string` ([Locale](cheapflightsto-properties-locale.md))
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` ([Currency](cheapflightsto-properties-currency.md))
+
+*   cannot be null
+
+#### currency Type
+
+`string` ([Currency](cheapflightsto-properties-currency.md))
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`

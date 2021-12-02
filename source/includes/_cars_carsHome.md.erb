@@ -1,57 +1,83 @@
-## Carhire Home page supported parameters Schema
+## Carhire Home View Schema
 
-```
+```txt
 /cars/home
 ```
 
-| Property              | Type     | Required   | Nullable | Defined by                                           |
-| --------------------- | -------- | ---------- | -------- | ---------------------------------------------------- |
-| [currency](#currency) | `string` | Optional   | No       | Carhire Home page supported parameters (this schema) |
-| [locale](#locale)     | `string` | Optional   | No       | Carhire Home page supported parameters (this schema) |
-| [market](#market)     | `string` | Optional   | No       | Carhire Home page supported parameters (this schema) |
-| `*`                   | any      | Additional | Yes      | this schema _allows_ additional properties           |
+A schema definition for the carhire home page microsite supported parameters
 
-### currency
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
 
-The desired currency for the page. Examples: GBP, EUR, USD  
-Please try to avoid using `locale`, `market`, and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
+### Carhire Home View Type
 
-`currency`
+`object` ([Carhire Home View](carshome.md))
 
-- is optional
-- type: `string`
-- defined in this schema
+## Carhire Home View Properties
 
-#### currency Type
-
-`string`
-
-### locale
-
-The desired locale for the page. Examples: es-ES, en-GB, ru-RU  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`locale`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### locale Type
-
-`string`
+| Property              | Type     | Required | Nullable       |
+| :-------------------- | :------- | :------- | :------------- |
+| [market](#market)     | `string` | Optional | cannot be null |
+| [locale](#locale)     | `string` | Optional | cannot be null |
+| [currency](#currency) | `string` | Optional | cannot be null |
 
 ### market
 
-The market of the user. Examples: UK, US, ES  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
+The market of the user. Examples: UK, US, ES
 
 `market`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Market](carshome-properties-market.md))
+
+*   cannot be null
 
 #### market Type
 
-`string`
+`string` ([Market](carshome-properties-market.md))
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` ([Locale](carshome-properties-locale.md))
+
+*   cannot be null
+
+#### locale Type
+
+`string` ([Locale](carshome-properties-locale.md))
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` ([Currency](carshome-properties-currency.md))
+
+*   cannot be null
+
+#### currency Type
+
+`string` ([Currency](carshome-properties-currency.md))
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`

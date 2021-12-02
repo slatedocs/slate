@@ -1,158 +1,37 @@
-## Flights Browse View supported parameters Schema
+## Flights Browse View Schema
 
-```
+```txt
 /flights/browse-view
 ```
 
-| Property                        | Type      | Required     | Nullable | Defined by                                             |
-| ------------------------------- | --------- | ------------ | -------- | ------------------------------------------------------ |
-| [adultsv2](#adultsv2)           | `integer` | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [childrenv2](#childrenv2)       | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [currency](#currency)           | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [destination](#destination)     | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [inboundDate](#inbounddate)     | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [infants](#infants)             | `integer` | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [iym](#iym)                     | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [locale](#locale)               | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [market](#market)               | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [origin](#origin)               | `string`  | **Required** | No       | Flights Browse View supported parameters (this schema) |
-| [outboundDate](#outbounddate)   | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [oym](#oym)                     | `string`  | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [preferDirects](#preferdirects) | `boolean` | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| [rtn](#rtn)                     | `enum`    | Optional     | No       | Flights Browse View supported parameters (this schema) |
-| `*`                             | any       | Additional   | Yes      | this schema _allows_ additional properties             |
+A schema definition for the flights browse view microsite supported parameters
 
-### adultsv2
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
 
-Number of adult passengers. Adults have to be 16 years old or older.
+### Flights Browse View Type
 
-`adultsv2`
+`object` ([Flights Browse View](browseview.md))
 
-- is optional
-- type: `integer`
-- defined in this schema
+## Flights Browse View Properties
 
-#### adultsv2 Type
-
-`integer`
-
-- minimum value: `1`
-
-### childrenv2
-
-Number of child passengers. The value must be in the format integer|integer.. where each number is the age of the child
-passenger
-
-`childrenv2`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### childrenv2 Type
-
-`string`
-
-### currency
-
-The desired currency for the page. Examples: GBP, EUR, USD  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`currency`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### currency Type
-
-`string`
-
-### destination
-
-Location code for the destination
-
-`destination`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### destination Type
-
-`string`
-
-### inboundDate
-
-Inbound date in the format YYYY-MM-DD
-
-`inboundDate`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### inboundDate Type
-
-`string`
-
-### infants
-
-Number of infant passengers. An infant is 1 year old or younger.
-
-`infants`
-
-- is optional
-- type: `integer`
-- defined in this schema
-
-#### infants Type
-
-`integer`
-
-### iym
-
-Arrival date in the format: YYYY-MM
-
-`iym`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### iym Type
-
-`string`
-
-### locale
-
-The desired locale for the page. Examples: es-ES, en-GB, ru-RU  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`locale`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### locale Type
-
-`string`
-
-### market
-
-The market of the user. Examples: UK, US, ES  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`market`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### market Type
-
-`string`
+| Property                        | Type      | Required | Nullable       |
+| :------------------------------ | :-------- | :------- | :------------- |
+| [origin](#origin)               | `string`  | Required | cannot be null |
+| [destination](#destination)     | `string`  | Optional | cannot be null |
+| [outboundDate](#outbounddate)   | `string`  | Optional | cannot be null |
+| [inboundDate](#inbounddate)     | `string`  | Optional | cannot be null |
+| [adultsv2](#adultsv2)           | `integer` | Optional | cannot be null |
+| [childrenv2](#childrenv2)       | `string`  | Optional | cannot be null |
+| [infants](#infants)             | `integer` | Optional | cannot be null |
+| [oym](#oym)                     | `string`  | Optional | cannot be null |
+| [iym](#iym)                     | `string`  | Optional | cannot be null |
+| [rtn](#rtn)                     | `string`  | Optional | cannot be null |
+| [preferDirects](#preferdirects) | `boolean` | Optional | cannot be null |
+| [market](#market)               | `string`  | Optional | cannot be null |
+| [locale](#locale)               | `string`  | Optional | cannot be null |
+| [currency](#currency)           | `string`  | Optional | cannot be null |
 
 ### origin
 
@@ -160,13 +39,39 @@ Location code for the origin
 
 `origin`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([Origin](browseview-properties-origin.md))
+
+*   cannot be null
 
 #### origin Type
 
-`string`
+`string` ([Origin](browseview-properties-origin.md))
+
+#### origin Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### destination
+
+Location code for the destination
+
+`destination`
+
+*   is optional
+
+*   Type: `string` ([Destination](browseview-properties-destination.md))
+
+*   cannot be null
+
+#### destination Type
+
+`string` ([Destination](browseview-properties-destination.md))
+
+#### destination Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
 
 ### outboundDate
 
@@ -174,13 +79,95 @@ Outbound date in the format YYYY-MM-DD
 
 `outboundDate`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Outbound date](browseview-properties-outbound-date.md))
+
+*   cannot be null
 
 #### outboundDate Type
 
-`string`
+`string` ([Outbound date](browseview-properties-outbound-date.md))
+
+#### outboundDate Constraints
+
+**unknown format**: the value of this string must follow the format: `date-as-provided`
+
+### inboundDate
+
+Inbound date in the format YYYY-MM-DD
+
+`inboundDate`
+
+*   is optional
+
+*   Type: `string` ([Inbound date](browseview-properties-inbound-date.md))
+
+*   cannot be null
+
+#### inboundDate Type
+
+`string` ([Inbound date](browseview-properties-inbound-date.md))
+
+#### inboundDate Constraints
+
+**unknown format**: the value of this string must follow the format: `date-as-provided`
+
+### adultsv2
+
+Number of adult passengers. Adults have to be 16 years old or older.
+
+`adultsv2`
+
+*   is optional
+
+*   Type: `integer` ([Adult passengers. Adults have to be 16 years old or older.](browseview-properties-adult-passengers-adults-have-to-be-16-years-old-or-older.md))
+
+*   cannot be null
+
+#### adultsv2 Type
+
+`integer` ([Adult passengers. Adults have to be 16 years old or older.](browseview-properties-adult-passengers-adults-have-to-be-16-years-old-or-older.md))
+
+#### adultsv2 Constraints
+
+**minimum**: the value of this number must greater than or equal to: `1`
+
+### childrenv2
+
+Number of child passengers. The value must be in the format integer|integer.. where each number is the age of the child passenger
+
+`childrenv2`
+
+*   is optional
+
+*   Type: `string` ([Child passengers. Add a child and specify the age (must be from 2 to 15).](browseview-properties-child-passengers-add-a-child-and-specify-the-age-must-be-from-2-to-15.md))
+
+*   cannot be null
+
+#### childrenv2 Type
+
+`string` ([Child passengers. Add a child and specify the age (must be from 2 to 15).](browseview-properties-child-passengers-add-a-child-and-specify-the-age-must-be-from-2-to-15.md))
+
+#### childrenv2 Constraints
+
+**unknown format**: the value of this string must follow the format: `delimited-ages`
+
+### infants
+
+Number of infant passengers. An infant is 1 year old or younger.
+
+`infants`
+
+*   is optional
+
+*   Type: `integer` ([Infant passengers. An infant is 1 year old or younger.](browseview-properties-infant-passengers-an-infant-is-1-year-old-or-younger.md))
+
+*   cannot be null
+
+#### infants Type
+
+`integer` ([Infant passengers. An infant is 1 year old or younger.](browseview-properties-infant-passengers-an-infant-is-1-year-old-or-younger.md))
 
 ### oym
 
@@ -188,13 +175,64 @@ Departure date in the format: YYYY-MM
 
 `oym`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Departure date](browseview-properties-departure-date.md))
+
+*   cannot be null
 
 #### oym Type
 
-`string`
+`string` ([Departure date](browseview-properties-departure-date.md))
+
+#### oym Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yymm`
+
+### iym
+
+Arrival date in the format: YYYY-MM
+
+`iym`
+
+*   is optional
+
+*   Type: `string` ([Arrival date](browseview-properties-arrival-date.md))
+
+*   cannot be null
+
+#### iym Type
+
+`string` ([Arrival date](browseview-properties-arrival-date.md))
+
+#### iym Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yymm`
+
+### rtn
+
+Trip type: 0 if oneway or 1 if return or multicity trip
+
+`rtn`
+
+*   is optional
+
+*   Type: `string` ([Trip type](browseview-properties-trip-type.md))
+
+*   cannot be null
+
+#### rtn Type
+
+`string` ([Trip type](browseview-properties-trip-type.md))
+
+#### rtn Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value | Explanation |
+| :---- | :---------- |
+| `"0"` |             |
+| `"1"` |             |
 
 ### preferDirects
 
@@ -202,29 +240,72 @@ Will search only for direct flights if the value is true
 
 `preferDirects`
 
-- is optional
-- type: `boolean`
-- defined in this schema
+*   is optional
+
+*   Type: `boolean` ([Direct flights preferred](browseview-properties-direct-flights-preferred.md))
+
+*   cannot be null
 
 #### preferDirects Type
 
-`boolean`
+`boolean` ([Direct flights preferred](browseview-properties-direct-flights-preferred.md))
 
-### rtn
+### market
 
-Trip type: 0 if oneway or 1 if return trip
+The market of the user. Examples: UK, US, ES
 
-`rtn`
+`market`
 
-- is optional
-- type: `enum`
-- defined in this schema
+*   is optional
 
-The value of this property **must** be equal to one of the [known values below](#rtn-known-values).
+*   Type: `string` ([Market](browseview-properties-market.md))
 
-#### rtn Known Values
+*   cannot be null
 
-| Value | Description |
-| ----- | ----------- |
-| `0`   |             |
-| `1`   |             |
+#### market Type
+
+`string` ([Market](browseview-properties-market.md))
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` ([Locale](browseview-properties-locale.md))
+
+*   cannot be null
+
+#### locale Type
+
+`string` ([Locale](browseview-properties-locale.md))
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` ([Currency](browseview-properties-currency.md))
+
+*   cannot be null
+
+#### currency Type
+
+`string` ([Currency](browseview-properties-currency.md))
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`

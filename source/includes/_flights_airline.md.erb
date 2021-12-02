@@ -1,17 +1,28 @@
-## Flights Airline supported parameters Schema
+## Flights Airline Schema
 
-```
+```txt
 /flights/flights-airline
 ```
 
-| Property                    | Type     | Required     | Nullable | Defined by                                         |
-| --------------------------- | -------- | ------------ | -------- | -------------------------------------------------- |
-| [airlineCode](#airlinecode) | `string` | **Required** | No       | Flights Airline supported parameters (this schema) |
-| [airlineName](#airlinename) | `string` | Optional     | No       | Flights Airline supported parameters (this schema) |
-| [currency](#currency)       | `string` | Optional     | No       | Flights Airline supported parameters (this schema) |
-| [locale](#locale)           | `string` | Optional     | No       | Flights Airline supported parameters (this schema) |
-| [market](#market)           | `string` | Optional     | No       | Flights Airline supported parameters (this schema) |
-| `*`                         | any      | Additional   | Yes      | this schema _allows_ additional properties         |
+A schema definition for the flights airline microsite supported parameters
+
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
+
+### Flights Airline Type
+
+`object` ([Flights Airline](flightsairline.md))
+
+## Flights Airline Properties
+
+| Property                    | Type     | Required | Nullable       |
+| :-------------------------- | :------- | :------- | :------------- |
+| [airlineCode](#airlinecode) | `string` | Required | cannot be null |
+| [airlineName](#airlinename) | `string` | Optional | cannot be null |
+| [market](#market)           | `string` | Optional | cannot be null |
+| [locale](#locale)           | `string` | Optional | cannot be null |
+| [currency](#currency)       | `string` | Optional | cannot be null |
 
 ### airlineCode
 
@@ -19,13 +30,19 @@ The airline code.
 
 `airlineCode`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([The airline code.](flightsairline-properties-the-airline-code.md))
+
+*   cannot be null
 
 #### airlineCode Type
 
-`string`
+`string` ([The airline code.](flightsairline-properties-the-airline-code.md))
+
+#### airlineCode Constraints
+
+**unknown format**: the value of this string must follow the format: `airline-code`
 
 ### airlineName
 
@@ -33,55 +50,76 @@ The airline name.
 
 `airlineName`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([The airline name.](flightsairline-properties-the-airline-name.md))
+
+*   cannot be null
 
 #### airlineName Type
 
-`string`
+`string` ([The airline name.](flightsairline-properties-the-airline-name.md))
 
-### currency
+#### airlineName Constraints
 
-The desired currency for the page. Examples: GBP, EUR, USD  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`currency`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### currency Type
-
-`string`
-
-### locale
-
-The desired locale for the page. Examples: es-ES, en-GB, ru-RU  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`locale`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### locale Type
-
-`string`
+**unknown format**: the value of this string must follow the format: `airline-name`
 
 ### market
 
-The market of the user. Examples: UK, US, ES  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
+The market of the user. Examples: UK, US, ES
 
 `market`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Market](flightsairline-properties-market.md))
+
+*   cannot be null
 
 #### market Type
 
-`string`
+`string` ([Market](flightsairline-properties-market.md))
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` ([Locale](flightsairline-properties-locale.md))
+
+*   cannot be null
+
+#### locale Type
+
+`string` ([Locale](flightsairline-properties-locale.md))
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` ([Currency](flightsairline-properties-currency.md))
+
+*   cannot be null
+
+#### currency Type
+
+`string` ([Currency](flightsairline-properties-currency.md))
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`

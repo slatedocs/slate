@@ -1,318 +1,48 @@
 ## Flights Day View for multicity search Schema
 
-```
+```txt
 /flights/multicity
 ```
 
-| Property                      | Type      | Required     | Nullable | Default                                    | Defined by                                          |
-| ----------------------------- | --------- | ------------ | -------- | ------------------------------------------ | --------------------------------------------------- |
-| [adultsv2](#adultsv2)         | `integer` | **Required** | No       | `1`                                        | Flights Day View for multicity search (this schema) |
-| [cabinclass](#cabinclass)     | `enum`    | **Required** | No       | `"economy"`                                | Flights Day View for multicity search (this schema) |
-| [childrenv2](#childrenv2)     | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [currency](#currency)         | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [date0](#date0)               | `string`  | **Required** | No       |                                            | Flights Day View for multicity search (this schema) |
-| [date1](#date1)               | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [date2](#date2)               | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [date3](#date3)               | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [date4](#date4)               | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [date5](#date5)               | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [destination0](#destination0) | `string`  | **Required** | No       |                                            | Flights Day View for multicity search (this schema) |
-| [destination1](#destination1) | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [destination2](#destination2) | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [destination3](#destination3) | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [destination4](#destination4) | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [destination5](#destination5) | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [infants](#infants)           | `integer` | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [locale](#locale)             | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [market](#market)             | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [origin0](#origin0)           | `string`  | **Required** | No       |                                            | Flights Day View for multicity search (this schema) |
-| [origin1](#origin1)           | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [origin2](#origin2)           | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [origin3](#origin3)           | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [origin4](#origin4)           | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| [origin5](#origin5)           | `string`  | Optional     | No       |                                            | Flights Day View for multicity search (this schema) |
-| `*`                           | any       | Additional   | Yes      | this schema _allows_ additional properties |
-
-### adultsv2
-
-Number of adult passengers. Adults have to be 16 years old or older.
-
-`adultsv2`
-
-- is **required**
-- type: `integer`
-- default: `1`
-- defined in this schema
-
-#### adultsv2 Type
-
-`integer`
-
-- minimum value: `1`
-
-### cabinclass
-
-Cabin class for the flight, possible values are: economy, premiumeconomy, business and first
-
-`cabinclass`
-
-- is **required**
-- type: `enum`
-- default: `"economy"`
-- defined in this schema
-
-The value of this property **must** be equal to one of the [known values below](#cabinclass-known-values).
-
-#### cabinclass Known Values
-
-| Value            | Description |
-| ---------------- | ----------- |
-| `economy`        |             |
-| `premiumeconomy` |             |
-| `business`       |             |
-| `first`          |             |
-
-### childrenv2
-
-Number of child passengers. The value must be in the format integer|integer.. where each number is the age of the child
-passenger
-
-`childrenv2`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### childrenv2 Type
-
-`string`
-
-### currency
-
-The desired currency for the page. Examples: GBP, EUR, USD  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`currency`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### currency Type
-
-`string`
-
-### date0
-
-Outbound date of the first flight in the format YYYY-MM-DD
-
-`date0`
-
-- is **required**
-- type: `string`
-- defined in this schema
-
-#### date0 Type
-
-`string`
-
-### date1
-
-Outbound date of the second flight in the format YYYY-MM-DD
-
-`date1`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### date1 Type
-
-`string`
-
-### date2
-
-Outbound date of the third flight in the format YYYY-MM-DD
-
-`date2`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### date2 Type
-
-`string`
-
-### date3
-
-Outbound date of the fourth flight in the format YYYY-MM-DD
-
-`date3`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### date3 Type
-
-`string`
-
-### date4
-
-Outbound date of the fifth flight in the format YYYY-MM-DD
-
-`date4`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### date4 Type
-
-`string`
-
-### date5
-
-Outbound date of the sixth flight in the format YYYY-MM-DD
-
-`date5`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### date5 Type
-
-`string`
-
-### destination0
-
-Location code for the destination of the first flight
-
-`destination0`
-
-- is **required**
-- type: `string`
-- defined in this schema
-
-#### destination0 Type
-
-`string`
-
-### destination1
-
-Location code for the destination of the second flight
-
-`destination1`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### destination1 Type
-
-`string`
-
-### destination2
-
-Location code for the destination of the third flight
-
-`destination2`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### destination2 Type
-
-`string`
-
-### destination3
-
-Location code for the destination of the fourth flight
-
-`destination3`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### destination3 Type
-
-`string`
-
-### destination4
-
-Location code for the destination of the fifth flight
-
-`destination4`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### destination4 Type
-
-`string`
-
-### destination5
-
-Location code for the destination of the sixth flight
-
-`destination5`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### destination5 Type
-
-`string`
-
-### infants
-
-Number of infant passengers. An infant is 1 year old or younger.
-
-`infants`
-
-- is optional
-- type: `integer`
-- defined in this schema
-
-#### infants Type
-
-`integer`
-
-### locale
-
-The desired locale for the page. Examples: es-ES, en-GB, ru-RU  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`locale`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### locale Type
-
-`string`
-
-### market
-
-The market of the user. Examples: UK, US, ES  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`market`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### market Type
-
-`string`
+A schema definition for the flights day-view microsite supported query parameters
+
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
+
+### Flights Day View for multicity search Type
+
+`object` ([Flights Day View for multicity search](multicity.md))
+
+## Flights Day View for multicity search Properties
+
+| Property                      | Type      | Required | Nullable       |
+| :---------------------------- | :-------- | :------- | :------------- |
+| [origin0](#origin0)           | `string`  | Required | cannot be null |
+| [date0](#date0)               | `string`  | Required | cannot be null |
+| [destination0](#destination0) | `string`  | Required | cannot be null |
+| [origin1](#origin1)           | `string`  | Optional | cannot be null |
+| [date1](#date1)               | `string`  | Optional | cannot be null |
+| [destination1](#destination1) | `string`  | Optional | cannot be null |
+| [origin2](#origin2)           | `string`  | Optional | cannot be null |
+| [date2](#date2)               | `string`  | Optional | cannot be null |
+| [destination2](#destination2) | `string`  | Optional | cannot be null |
+| [origin3](#origin3)           | `string`  | Optional | cannot be null |
+| [date3](#date3)               | `string`  | Optional | cannot be null |
+| [destination3](#destination3) | `string`  | Optional | cannot be null |
+| [origin4](#origin4)           | `string`  | Optional | cannot be null |
+| [date4](#date4)               | `string`  | Optional | cannot be null |
+| [destination4](#destination4) | `string`  | Optional | cannot be null |
+| [origin5](#origin5)           | `string`  | Optional | cannot be null |
+| [date5](#date5)               | `string`  | Optional | cannot be null |
+| [destination5](#destination5) | `string`  | Optional | cannot be null |
+| [adultsv2](#adultsv2)         | `integer` | Required | cannot be null |
+| [childrenv2](#childrenv2)     | `string`  | Optional | cannot be null |
+| [infants](#infants)           | `integer` | Optional | cannot be null |
+| [cabinclass](#cabinclass)     | `string`  | Required | cannot be null |
+| [market](#market)             | `string`  | Optional | cannot be null |
+| [locale](#locale)             | `string`  | Optional | cannot be null |
+| [currency](#currency)         | `string`  | Optional | cannot be null |
 
 ### origin0
 
@@ -320,13 +50,59 @@ Location code for the origin of the first flight
 
 `origin0`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([First flight origin](multicity-properties-first-flight-origin.md))
+
+*   cannot be null
 
 #### origin0 Type
 
-`string`
+`string` ([First flight origin](multicity-properties-first-flight-origin.md))
+
+#### origin0 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### date0
+
+Outbound date of the first flight in the format YYYY-MM-DD
+
+`date0`
+
+*   is required
+
+*   Type: `string` ([Outbound Date of the first flight](multicity-properties-outbound-date-of-the-first-flight.md))
+
+*   cannot be null
+
+#### date0 Type
+
+`string` ([Outbound Date of the first flight](multicity-properties-outbound-date-of-the-first-flight.md))
+
+#### date0 Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### destination0
+
+Location code for the destination of the first flight
+
+`destination0`
+
+*   is required
+
+*   Type: `string` ([First flight destination](multicity-properties-first-flight-destination.md))
+
+*   cannot be null
+
+#### destination0 Type
+
+`string` ([First flight destination](multicity-properties-first-flight-destination.md))
+
+#### destination0 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
 
 ### origin1
 
@@ -334,13 +110,59 @@ Location code for the origin of the second flight
 
 `origin1`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Second flight origin](multicity-properties-second-flight-origin.md))
+
+*   cannot be null
 
 #### origin1 Type
 
-`string`
+`string` ([Second flight origin](multicity-properties-second-flight-origin.md))
+
+#### origin1 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### date1
+
+Outbound date of the second flight in the format YYYY-MM-DD
+
+`date1`
+
+*   is optional
+
+*   Type: `string` ([Outbound Date of the second flight](multicity-properties-outbound-date-of-the-second-flight.md))
+
+*   cannot be null
+
+#### date1 Type
+
+`string` ([Outbound Date of the second flight](multicity-properties-outbound-date-of-the-second-flight.md))
+
+#### date1 Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### destination1
+
+Location code for the destination of the second flight
+
+`destination1`
+
+*   is optional
+
+*   Type: `string` ([Second flight destination](multicity-properties-second-flight-destination.md))
+
+*   cannot be null
+
+#### destination1 Type
+
+`string` ([Second flight destination](multicity-properties-second-flight-destination.md))
+
+#### destination1 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
 
 ### origin2
 
@@ -348,13 +170,59 @@ Location code for the origin of the third flight
 
 `origin2`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Third flight origin](multicity-properties-third-flight-origin.md))
+
+*   cannot be null
 
 #### origin2 Type
 
-`string`
+`string` ([Third flight origin](multicity-properties-third-flight-origin.md))
+
+#### origin2 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### date2
+
+Outbound date of the third flight in the format YYYY-MM-DD
+
+`date2`
+
+*   is optional
+
+*   Type: `string` ([Outbound Date of the third flight](multicity-properties-outbound-date-of-the-third-flight.md))
+
+*   cannot be null
+
+#### date2 Type
+
+`string` ([Outbound Date of the third flight](multicity-properties-outbound-date-of-the-third-flight.md))
+
+#### date2 Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### destination2
+
+Location code for the destination of the third flight
+
+`destination2`
+
+*   is optional
+
+*   Type: `string` ([Third flight destination](multicity-properties-third-flight-destination.md))
+
+*   cannot be null
+
+#### destination2 Type
+
+`string` ([Third flight destination](multicity-properties-third-flight-destination.md))
+
+#### destination2 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
 
 ### origin3
 
@@ -362,13 +230,59 @@ Location code for the origin of the fourth flight
 
 `origin3`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Fourth flight origin](multicity-properties-fourth-flight-origin.md))
+
+*   cannot be null
 
 #### origin3 Type
 
-`string`
+`string` ([Fourth flight origin](multicity-properties-fourth-flight-origin.md))
+
+#### origin3 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### date3
+
+Outbound date of the fourth flight in the format YYYY-MM-DD
+
+`date3`
+
+*   is optional
+
+*   Type: `string` ([Outbound Date of the fourth flight](multicity-properties-outbound-date-of-the-fourth-flight.md))
+
+*   cannot be null
+
+#### date3 Type
+
+`string` ([Outbound Date of the fourth flight](multicity-properties-outbound-date-of-the-fourth-flight.md))
+
+#### date3 Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### destination3
+
+Location code for the destination of the fourth flight
+
+`destination3`
+
+*   is optional
+
+*   Type: `string` ([Fourth flight destination](multicity-properties-fourth-flight-destination.md))
+
+*   cannot be null
+
+#### destination3 Type
+
+`string` ([Fourth flight destination](multicity-properties-fourth-flight-destination.md))
+
+#### destination3 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
 
 ### origin4
 
@@ -376,13 +290,59 @@ Location code for the origin of the fifth flight
 
 `origin4`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Fifth flight origin](multicity-properties-fifth-flight-origin.md))
+
+*   cannot be null
 
 #### origin4 Type
 
-`string`
+`string` ([Fifth flight origin](multicity-properties-fifth-flight-origin.md))
+
+#### origin4 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### date4
+
+Outbound date of the fifth flight in the format YYYY-MM-DD
+
+`date4`
+
+*   is optional
+
+*   Type: `string` ([Outbound Date of the fifth flight.](multicity-properties-outbound-date-of-the-fifth-flight.md))
+
+*   cannot be null
+
+#### date4 Type
+
+`string` ([Outbound Date of the fifth flight.](multicity-properties-outbound-date-of-the-fifth-flight.md))
+
+#### date4 Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### destination4
+
+Location code for the destination of the fifth flight
+
+`destination4`
+
+*   is optional
+
+*   Type: `string` ([Fifth flight destination](multicity-properties-fifth-flight-destination.md))
+
+*   cannot be null
+
+#### destination4 Type
+
+`string` ([Fifth flight destination](multicity-properties-fifth-flight-destination.md))
+
+#### destination4 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
 
 ### origin5
 
@@ -390,10 +350,215 @@ Location code for the origin of the sixth flight
 
 `origin5`
 
-- is optional
-- type: `string`
-- defined in this schema
+*   is optional
+
+*   Type: `string` ([Sixth flight origin](multicity-properties-sixth-flight-origin.md))
+
+*   cannot be null
 
 #### origin5 Type
 
-`string`
+`string` ([Sixth flight origin](multicity-properties-sixth-flight-origin.md))
+
+#### origin5 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### date5
+
+Outbound date of the sixth flight in the format YYYY-MM-DD
+
+`date5`
+
+*   is optional
+
+*   Type: `string` ([Outbound Date of the sixth flight](multicity-properties-outbound-date-of-the-sixth-flight.md))
+
+*   cannot be null
+
+#### date5 Type
+
+`string` ([Outbound Date of the sixth flight](multicity-properties-outbound-date-of-the-sixth-flight.md))
+
+#### date5 Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### destination5
+
+Location code for the destination of the sixth flight
+
+`destination5`
+
+*   is optional
+
+*   Type: `string` ([Sixth flight destination](multicity-properties-sixth-flight-destination.md))
+
+*   cannot be null
+
+#### destination5 Type
+
+`string` ([Sixth flight destination](multicity-properties-sixth-flight-destination.md))
+
+#### destination5 Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### adultsv2
+
+Number of adult passengers. Adults have to be 16 years old or older.
+
+`adultsv2`
+
+*   is required
+
+*   Type: `integer` ([Adult passengers. Adults have to be 16 years old or older.](multicity-properties-adult-passengers-adults-have-to-be-16-years-old-or-older.md))
+
+*   cannot be null
+
+#### adultsv2 Type
+
+`integer` ([Adult passengers. Adults have to be 16 years old or older.](multicity-properties-adult-passengers-adults-have-to-be-16-years-old-or-older.md))
+
+#### adultsv2 Constraints
+
+**minimum**: the value of this number must greater than or equal to: `1`
+
+#### adultsv2 Default Value
+
+The default value is:
+
+```json
+1
+```
+
+### childrenv2
+
+Number of child passengers. The value must be in the format integer|integer.. where each number is the age of the child passenger
+
+`childrenv2`
+
+*   is optional
+
+*   Type: `string` ([Child passengers. Add a child and specify the age (must be from 2 to 15).](multicity-properties-child-passengers-add-a-child-and-specify-the-age-must-be-from-2-to-15.md))
+
+*   cannot be null
+
+#### childrenv2 Type
+
+`string` ([Child passengers. Add a child and specify the age (must be from 2 to 15).](multicity-properties-child-passengers-add-a-child-and-specify-the-age-must-be-from-2-to-15.md))
+
+#### childrenv2 Constraints
+
+**unknown format**: the value of this string must follow the format: `delimited-ages`
+
+### infants
+
+Number of infant passengers. An infant is 1 year old or younger.
+
+`infants`
+
+*   is optional
+
+*   Type: `integer` ([Infant passengers. An infant is 1 year old or younger.](multicity-properties-infant-passengers-an-infant-is-1-year-old-or-younger.md))
+
+*   cannot be null
+
+#### infants Type
+
+`integer` ([Infant passengers. An infant is 1 year old or younger.](multicity-properties-infant-passengers-an-infant-is-1-year-old-or-younger.md))
+
+### cabinclass
+
+Cabin class for the flight, possible values are: economy, premiumeconomy, business and first
+
+`cabinclass`
+
+*   is required
+
+*   Type: `string` ([Cabin Class](multicity-properties-cabin-class.md))
+
+*   cannot be null
+
+#### cabinclass Type
+
+`string` ([Cabin Class](multicity-properties-cabin-class.md))
+
+#### cabinclass Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value              | Explanation |
+| :----------------- | :---------- |
+| `"economy"`        |             |
+| `"premiumeconomy"` |             |
+| `"business"`       |             |
+| `"first"`          |             |
+
+#### cabinclass Default Value
+
+The default value is:
+
+```json
+"economy"
+```
+
+### market
+
+The market of the user. Examples: UK, US, ES
+
+`market`
+
+*   is optional
+
+*   Type: `string` ([Market](multicity-properties-market.md))
+
+*   cannot be null
+
+#### market Type
+
+`string` ([Market](multicity-properties-market.md))
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` ([Locale](multicity-properties-locale.md))
+
+*   cannot be null
+
+#### locale Type
+
+`string` ([Locale](multicity-properties-locale.md))
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` ([Currency](multicity-properties-currency.md))
+
+*   cannot be null
+
+#### currency Type
+
+`string` ([Currency](multicity-properties-currency.md))
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`

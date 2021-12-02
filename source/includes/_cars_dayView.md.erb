@@ -1,107 +1,31 @@
-## Carhire Day View supported parameters Schema
+## Carhire Day View Schema
 
-```
+```txt
 /cars/day-view
 ```
 
-| Property                      | Type      | Required     | Nullable | Defined by                                          |
-| ----------------------------- | --------- | ------------ | -------- | --------------------------------------------------- |
-| [currency](#currency)         | `string`  | Optional     | No       | Carhire Day View supported parameters (this schema) |
-| [driverAge](#driverage)       | `integer` | **Required** | No       | Carhire Day View supported parameters (this schema) |
-| [dropoffPlace](#dropoffplace) | `string`  | Optional     | No       | Carhire Day View supported parameters (this schema) |
-| [dropoffTime](#dropofftime)   | `string`  | **Required** | No       | Carhire Day View supported parameters (this schema) |
-| [locale](#locale)             | `string`  | Optional     | No       | Carhire Day View supported parameters (this schema) |
-| [market](#market)             | `string`  | Optional     | No       | Carhire Day View supported parameters (this schema) |
-| [pickupPlace](#pickupplace)   | `string`  | **Required** | No       | Carhire Day View supported parameters (this schema) |
-| [pickupTime](#pickuptime)     | `string`  | **Required** | No       | Carhire Day View supported parameters (this schema) |
-| `*`                           | any       | Additional   | Yes      | this schema _allows_ additional properties          |
+A schema definition for the carhire day-view microsite supported parameters
 
-### currency
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
 
-The desired currency for the page. Examples: GBP, EUR, USD    
-Please try to avoid using `locale`, `market` and `currency` as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
+### Carhire Day View Type
 
-`currency`
+`object` ([Carhire Day View](dayview.md))
 
-- is optional
-- type: `string`
-- defined in this schema
+## Carhire Day View Properties
 
-#### currency Type
-
-`string`
-
-### driverAge
-
-Driver age between 21 and 99
-
-`driverAge`
-
-- is **required**
-- type: `integer`
-- defined in this schema
-
-#### driverAge Type
-
-`integer`
-
-### dropoffPlace
-
-Pick up IATA code / hotel or city entity id
-
-`dropoffPlace`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### dropoffPlace Type
-
-`string`
-
-### dropoffTime
-
-Drop Off Datetime in ISO 8601 standard. I.e YYYY-MM-DDTHH:MM
-
-`dropoffTime`
-
-- is **required**
-- type: `string`
-- defined in this schema
-
-#### dropoffTime Type
-
-`string`
-
-### locale
-
-The desired locale for the page. Examples: es-ES, en-GB, ru-RU
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`locale`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### locale Type
-
-`string`
-
-### market
-
-The market of the user. Examples: UK, US, ES  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`market`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### market Type
-
-`string`
+| Property                      | Type      | Required | Nullable       |
+| :---------------------------- | :-------- | :------- | :------------- |
+| [pickupPlace](#pickupplace)   | `string`  | Required | cannot be null |
+| [dropoffPlace](#dropoffplace) | `string`  | Optional | cannot be null |
+| [pickupTime](#pickuptime)     | `string`  | Required | cannot be null |
+| [dropoffTime](#dropofftime)   | `string`  | Required | cannot be null |
+| [driverAge](#driverage)       | `integer` | Required | cannot be null |
+| [market](#market)             | `string`  | Optional | cannot be null |
+| [locale](#locale)             | `string`  | Optional | cannot be null |
+| [currency](#currency)         | `string`  | Optional | cannot be null |
 
 ### pickupPlace
 
@@ -109,13 +33,39 @@ Pick up IATA code / hotel or city entity id
 
 `pickupPlace`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([Pickup](dayview-properties-pickup.md))
+
+*   cannot be null
 
 #### pickupPlace Type
 
-`string`
+`string` ([Pickup](dayview-properties-pickup.md))
+
+#### pickupPlace Constraints
+
+**unknown format**: the value of this string must follow the format: `carhire-place`
+
+### dropoffPlace
+
+Pick up IATA code / hotel or city entity id
+
+`dropoffPlace`
+
+*   is optional
+
+*   Type: `string` ([Drop off](dayview-properties-drop-off.md))
+
+*   cannot be null
+
+#### dropoffPlace Type
+
+`string` ([Drop off](dayview-properties-drop-off.md))
+
+#### dropoffPlace Constraints
+
+**unknown format**: the value of this string must follow the format: `carhire-place`
 
 ### pickupTime
 
@@ -123,10 +73,116 @@ Pick Up Datetime in ISO 8601 standard. I.e YYYY-MM-DDTHH:MM
 
 `pickupTime`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([Pickup time](dayview-properties-pickup-time.md))
+
+*   cannot be null
 
 #### pickupTime Type
 
-`string`
+`string` ([Pickup time](dayview-properties-pickup-time.md))
+
+#### pickupTime Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-ddThh:mm`
+
+### dropoffTime
+
+Drop Off Datetime in ISO 8601 standard. I.e YYYY-MM-DDTHH:MM
+
+`dropoffTime`
+
+*   is required
+
+*   Type: `string` ([Drop off time](dayview-properties-drop-off-time.md))
+
+*   cannot be null
+
+#### dropoffTime Type
+
+`string` ([Drop off time](dayview-properties-drop-off-time.md))
+
+#### dropoffTime Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-ddThh:mm`
+
+### driverAge
+
+Driver age between 21 and 99
+
+`driverAge`
+
+*   is required
+
+*   Type: `integer` ([Driver's age](dayview-properties-drivers-age.md))
+
+*   cannot be null
+
+#### driverAge Type
+
+`integer` ([Driver's age](dayview-properties-drivers-age.md))
+
+#### driverAge Constraints
+
+**unknown format**: the value of this string must follow the format: `driver-age`
+
+### market
+
+The market of the user. Examples: UK, US, ES
+
+`market`
+
+*   is optional
+
+*   Type: `string` ([Market](dayview-properties-market.md))
+
+*   cannot be null
+
+#### market Type
+
+`string` ([Market](dayview-properties-market.md))
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` ([Locale](dayview-properties-locale.md))
+
+*   cannot be null
+
+#### locale Type
+
+`string` ([Locale](dayview-properties-locale.md))
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` ([Currency](dayview-properties-currency.md))
+
+*   cannot be null
+
+#### currency Type
+
+`string` ([Currency](dayview-properties-currency.md))
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`

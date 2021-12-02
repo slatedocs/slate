@@ -1,293 +1,46 @@
-## Flights Day View supported parameters Schema
+## Flights Day View Schema
 
-```
+```txt
 /flights/day-view
 ```
 
 A schema definition for the flights day-view microsite supported parameters
 
-| Abstract            | Extensible | Status       | Identifiable | Custom Properties | Additional Properties | Defined In                   |
-| ------------------- | ---------- | ------------ | ------------ | ----------------- | --------------------- | ---------------------------- |
-| Can be instantiated | No         | Experimental | No           | Forbidden         | Permitted             |  |
-
-## Flights Day View supported parameters Properties
-
-For more details, please see our [Examples](#examples) 
-
-| Property                                            | Type       | Required     | Nullable | Default                                    | Defined by                                          |
-| --------------------------------------------------- | ---------- | ------------ | -------- | ------------------------------------------ | --------------------------------------------------- |
-| [adultsv2](#adultsv2)                               | `integer`  | **Required** | No       | `1`                                        | Flights Day View supported parameters (this schema) |
-| [airlines](#airlines)                               | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [alliances](#alliances)                             | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [alternativedestinations](#alternativedestinations) | `string[]` | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [alternativeorigins](#alternativeorigins)           | `string[]` | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [cabinclass](#cabinclass)                           | `enum`     | **Required** | No       | `"economy"`                                | Flights Day View supported parameters (this schema) |
-| [childrenv2](#childrenv2)                           | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [currency](#currency)                               | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [departure-times](#departure-times)                 | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [destination](#destination)                         | `string`   | **Required** | No       |                                            | Flights Day View supported parameters (this schema) |
-| [duration](#duration)                               | `integer`  | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [inboundDate](#inbounddate)                         | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [inboundaltsenabled](#inboundaltsenabled)           | `boolean`  | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [infants](#infants)                                 | `integer`  | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [locale](#locale)                                   | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [market](#market)                                   | `string`   | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [origin](#origin)                                   | `string`   | **Required** | No       |                                            | Flights Day View supported parameters (this schema) |
-| [outboundDate](#outbounddate)                       | `string`   | **Required** | No       |                                            | Flights Day View supported parameters (this schema) |
-| [outboundaltsenabled](#outboundaltsenabled)         | `boolean`  | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [preferDirects](#preferdirects)                     | `boolean`  | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [showDirectDays](#showdirectdays)                   | `boolean`  | Optional     | No       | `true`                                     | Flights Day View supported parameters (this schema) |
-| [rtn](#rtn)                                         | `enum`     | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| [sortby](#sortby)                                   | `enum`     | Optional     | No       |                                            | Flights Day View supported parameters (this schema) |
-| `*`                                                 | any        | Additional   | Yes      | this schema _allows_ additional properties |
-
-### adultsv2
-
-Number of adult passengers. Adults have to be 16 years old or older.
-
-`adultsv2`
-
-- is **required**
-- type: `integer`
-- default: `1`
-- defined in this schema
-
-#### adultsv2 Type
-
-`integer`
-
-- minimum value: `1`
-
-### airlines
-
-A list of comma-separated IATA carrier codes to be passed to the dayview filters. For example: &airlines=AA,KL,LH. To
-unselect airline from the filters, the code must be specified with an exclamation mark. For example: &airlines=AA,!KL,!LH  
-You can search for IATA airline codes at the IATA website [here](https://www.iata.org/publications/pages/code-search.aspx)
-
-`airlines`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### airlines Type
-
-`string`
-
-### alliances
-
-A comma-separated list of alliance names passed to the dayview filters. For example: &alliances=oneworld,Star%20Alliance
-
-`alliances`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### alliances Type
-
-`string`
-
-### alternativedestinations
-
-An array of location codes which will be used as alternative destinations
-
-`alternativedestinations`
-
-- is optional
-- type: `string[]`
-- defined in this schema
-
-#### alternativedestinations Type
-
-Array type: `string[]`
-
-All items must be of the type: `string`
-
-### alternativeorigins
-
-An array of location codes which will be used as alternative origins
-
-`alternativeorigins`
-
-- is optional
-- type: `string[]`
-- defined in this schema
-
-#### alternativeorigins Type
-
-Array type: `string[]`
-
-All items must be of the type: `string`
-
-### cabinclass
-
-Cabin class for the flight, possible values are: `economy`, `premiumeconomy`, `business` and `first`
-
-`cabinclass`
-
-- is **required**
-- type: `enum`
-- default: `"economy"`
-- defined in this schema
-
-The value of this property **must** be equal to one of the [known values below](#cabinclass-known-values).
-
-#### cabinclass Known Values
-
-| Value            | Description |
-| ---------------- | ----------- |
-| `economy`        |             |
-| `premiumeconomy` |             |
-| `business`       |             |
-| `first`          |             |
-
-### childrenv2
-
-Number of child passengers. The value must be in the format integer|integer.. where each number is the age of the child
-passenger
-
-`childrenv2`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### childrenv2 Type
-
-`string`
-
-### currency
-
-The desired currency for the page. Examples: GBP, EUR, USD  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-The desired currency for the page. Examples: GBP, EUR, USD
-
-`currency`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### currency Type
-
-`string`
-
-### departure-times
-
-Sets the dayview departure time filters in minutes. For example: &departure-times=00-90,30-990 (first leg departs
-between 00 and 1:30 and second leg departs between 00:30 and 16:30).
-
-`departure-times`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### departure-times Type
-
-`string`
-
-### destination
-
-Location code for the destination
-
-`destination`
-
-- is **required**
-- type: `string`
-- defined in this schema
-
-#### destination Type
-
-`string`
-
-### duration
-
-Sets the dayview duration filters in minutes. For example: &duration=1320 (22 hours)
-
-`duration`
-
-- is optional
-- type: `integer`
-- defined in this schema
-
-#### duration Type
-
-`integer`
-
-### inboundDate
-
-Inbound date in the format YYYY-MM-DD
-
-`inboundDate`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### inboundDate Type
-
-`string`
-
-### inboundaltsenabled
-
-Including nearby airports as an inbound place
-
-`inboundaltsenabled`
-
-- is optional
-- type: `boolean`
-- defined in this schema
-
-#### inboundaltsenabled Type
-
-`boolean`
-
-### infants
-
-Number of infant passengers. An infant is 1 year old or younger.
-
-`infants`
-
-- is optional
-- type: `integer`
-- defined in this schema
-
-#### infants Type
-
-`integer`
-
-### locale
-
-The desired locale for the page. Examples: es-ES, en-GB, ru-RU  
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`locale`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### locale Type
-
-`string`
-
-### market
-
-The market of the user. Examples: UK, US, ES
-Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
-
-`market`
-
-- is optional
-- type: `string`
-- defined in this schema
-
-#### market Type
-
-`string`
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
+
+### Flights Day View Type
+
+`object` ([Flights Day View](dayview.md))
+
+## Flights Day View Properties
+
+| Property                                            | Type      | Required | Nullable       |
+| :-------------------------------------------------- | :-------- | :------- | :------------- |
+| [origin](#origin)                                   | `string`  | Required | cannot be null |
+| [destination](#destination)                         | `string`  | Required | cannot be null |
+| [outboundDate](#outbounddate)                       | `string`  | Required | cannot be null |
+| [inboundDate](#inbounddate)                         | `string`  | Optional | cannot be null |
+| [adultsv2](#adultsv2)                               | `integer` | Required | cannot be null |
+| [childrenv2](#childrenv2)                           | `string`  | Optional | cannot be null |
+| [infants](#infants)                                 | `integer` | Optional | cannot be null |
+| [cabinclass](#cabinclass)                           | `string`  | Required | cannot be null |
+| [rtn](#rtn)                                         | `string`  | Optional | cannot be null |
+| [preferDirects](#preferdirects)                     | `boolean` | Optional | cannot be null |
+| [showDirectDays](#showdirectdays)                   | `boolean` | Optional | cannot be null |
+| [outboundaltsenabled](#outboundaltsenabled)         | `boolean` | Optional | cannot be null |
+| [inboundaltsenabled](#inboundaltsenabled)           | `boolean` | Optional | cannot be null |
+| [alternativeorigins](#alternativeorigins)           | `array`   | Optional | cannot be null |
+| [alternativedestinations](#alternativedestinations) | `array`   | Optional | cannot be null |
+| [market](#market)                                   | `string`  | Optional | cannot be null |
+| [locale](#locale)                                   | `string`  | Optional | cannot be null |
+| [currency](#currency)                               | `string`  | Optional | cannot be null |
+| [sortby](#sortby)                                   | `string`  | Optional | cannot be null |
+| [airlines](#airlines)                               | `string`  | Optional | cannot be null |
+| [alliances](#alliances)                             | `string`  | Optional | cannot be null |
+| [departure-times](#departure-times)                 | `string`  | Optional | cannot be null |
+| [duration](#duration)                               | `integer` | Optional | cannot be null |
 
 ### origin
 
@@ -295,13 +48,39 @@ Location code for the origin
 
 `origin`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([Origin](dayview-properties-origin.md))
+
+*   cannot be null
 
 #### origin Type
 
-`string`
+`string` ([Origin](dayview-properties-origin.md))
+
+#### origin Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
+
+### destination
+
+Location code for the destination
+
+`destination`
+
+*   is required
+
+*   Type: `string` ([Destination](dayview-properties-destination.md))
+
+*   cannot be null
+
+#### destination Type
+
+`string` ([Destination](dayview-properties-destination.md))
+
+#### destination Constraints
+
+**unknown format**: the value of this string must follow the format: `place`
 
 ### outboundDate
 
@@ -309,55 +88,138 @@ Outbound date in the format YYYY-MM-DD
 
 `outboundDate`
 
-- is **required**
-- type: `string`
-- defined in this schema
+*   is required
+
+*   Type: `string` ([Outbound Date](dayview-properties-outbound-date.md))
+
+*   cannot be null
 
 #### outboundDate Type
 
-`string`
+`string` ([Outbound Date](dayview-properties-outbound-date.md))
 
-### outboundaltsenabled
+#### outboundDate Constraints
 
-Including nearby airports as an outbound place
+**unknown format**: the value of this string must follow the format: `date-yymmdd`
 
-`outboundaltsenabled`
+### inboundDate
 
-- is optional
-- type: `boolean`
-- defined in this schema
+Inbound date in the format YYYY-MM-DD
 
-#### outboundaltsenabled Type
+`inboundDate`
 
-`boolean`
+*   is optional
 
-### preferDirects
+*   Type: `string` ([Inbound Date](dayview-properties-inbound-date.md))
 
-Will search only for direct flights if the value is true
+*   cannot be null
 
-`preferDirects`
+#### inboundDate Type
 
-- is optional
-- type: `boolean`
-- defined in this schema
+`string` ([Inbound Date](dayview-properties-inbound-date.md))
 
-#### preferDirects Type
+#### inboundDate Constraints
 
-`boolean`
+**unknown format**: the value of this string must follow the format: `date-yymmdd`
 
-### showDirectDays
+### adultsv2
 
-Controls the visibility of the day view screen, which presents the user with options for different dates with direct flights, when there are no direct flights for the currently selected dates.
+Number of adult passengers. Adults have to be 16 years old or older.
 
-`showDirectDays`
+`adultsv2`
 
-- is optional
-- type: `boolean`
-- defined in this schema
+*   is required
 
-#### showDirectDays Type
+*   Type: `integer` ([Adult passengers. Adults have to be 16 years old or older.](dayview-properties-adult-passengers-adults-have-to-be-16-years-old-or-older.md))
 
-`boolean`
+*   cannot be null
+
+#### adultsv2 Type
+
+`integer` ([Adult passengers. Adults have to be 16 years old or older.](dayview-properties-adult-passengers-adults-have-to-be-16-years-old-or-older.md))
+
+#### adultsv2 Constraints
+
+**minimum**: the value of this number must greater than or equal to: `1`
+
+#### adultsv2 Default Value
+
+The default value is:
+
+```json
+1
+```
+
+### childrenv2
+
+Number of child passengers. The value must be in the format integer|integer.. where each number is the age of the child passenger
+
+`childrenv2`
+
+*   is optional
+
+*   Type: `string` ([Child passengers. Add a child and specify the age (must be from 2 to 15).](dayview-properties-child-passengers-add-a-child-and-specify-the-age-must-be-from-2-to-15.md))
+
+*   cannot be null
+
+#### childrenv2 Type
+
+`string` ([Child passengers. Add a child and specify the age (must be from 2 to 15).](dayview-properties-child-passengers-add-a-child-and-specify-the-age-must-be-from-2-to-15.md))
+
+#### childrenv2 Constraints
+
+**unknown format**: the value of this string must follow the format: `delimited-ages`
+
+### infants
+
+Number of infant passengers. An infant is 1 year old or younger.
+
+`infants`
+
+*   is optional
+
+*   Type: `integer` ([Infant passengers. An infant is 1 year old or younger.](dayview-properties-infant-passengers-an-infant-is-1-year-old-or-younger.md))
+
+*   cannot be null
+
+#### infants Type
+
+`integer` ([Infant passengers. An infant is 1 year old or younger.](dayview-properties-infant-passengers-an-infant-is-1-year-old-or-younger.md))
+
+### cabinclass
+
+Cabin class for the flight, possible values are: economy, premiumeconomy, business and first
+
+`cabinclass`
+
+*   is required
+
+*   Type: `string` ([Cabin Class](dayview-properties-cabin-class.md))
+
+*   cannot be null
+
+#### cabinclass Type
+
+`string` ([Cabin Class](dayview-properties-cabin-class.md))
+
+#### cabinclass Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value              | Explanation |
+| :----------------- | :---------- |
+| `"economy"`        |             |
+| `"premiumeconomy"` |             |
+| `"business"`       |             |
+| `"first"`          |             |
+
+#### cabinclass Default Value
+
+The default value is:
+
+```json
+"economy"
+```
 
 ### rtn
 
@@ -365,18 +227,188 @@ Trip type: 0 if oneway or 1 if return or multicity trip
 
 `rtn`
 
-- is optional
-- type: `enum`
-- defined in this schema
+*   is optional
 
-The value of this property **must** be equal to one of the [known values below](#rtn-known-values).
+*   Type: `string` ([Trip Type](dayview-properties-trip-type.md))
 
-#### rtn Known Values
+*   cannot be null
 
-| Value | Description |
-| ----- | ----------- |
-| `0`   |             |
-| `1`   |             |
+#### rtn Type
+
+`string` ([Trip Type](dayview-properties-trip-type.md))
+
+#### rtn Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value | Explanation |
+| :---- | :---------- |
+| `"0"` |             |
+| `"1"` |             |
+
+### preferDirects
+
+Will search only for direct flights if the value is true
+
+`preferDirects`
+
+*   is optional
+
+*   Type: `boolean` ([Direct Flights Preferred](dayview-properties-direct-flights-preferred.md))
+
+*   cannot be null
+
+#### preferDirects Type
+
+`boolean` ([Direct Flights Preferred](dayview-properties-direct-flights-preferred.md))
+
+### showDirectDays
+
+Show days with direct flights
+
+`showDirectDays`
+
+*   is optional
+
+*   Type: `boolean` ([Show days with direct flights](dayview-properties-show-days-with-direct-flights.md))
+
+*   cannot be null
+
+#### showDirectDays Type
+
+`boolean` ([Show days with direct flights](dayview-properties-show-days-with-direct-flights.md))
+
+#### showDirectDays Default Value
+
+The default value is:
+
+```json
+true
+```
+
+### outboundaltsenabled
+
+Including nearby airports as an outbound place
+
+`outboundaltsenabled`
+
+*   is optional
+
+*   Type: `boolean` ([Including nearby airports as an outbound place](dayview-properties-including-nearby-airports-as-an-outbound-place.md))
+
+*   cannot be null
+
+#### outboundaltsenabled Type
+
+`boolean` ([Including nearby airports as an outbound place](dayview-properties-including-nearby-airports-as-an-outbound-place.md))
+
+### inboundaltsenabled
+
+Including nearby airports as an inbound place
+
+`inboundaltsenabled`
+
+*   is optional
+
+*   Type: `boolean` ([Including nearby airports as an inbound place](dayview-properties-including-nearby-airports-as-an-inbound-place.md))
+
+*   cannot be null
+
+#### inboundaltsenabled Type
+
+`boolean` ([Including nearby airports as an inbound place](dayview-properties-including-nearby-airports-as-an-inbound-place.md))
+
+### alternativeorigins
+
+An array of location codes which will be used as alternative origins
+
+`alternativeorigins`
+
+*   is optional
+
+*   Type: `string[]`
+
+*   cannot be null
+
+#### alternativeorigins Type
+
+`string[]`
+
+### alternativedestinations
+
+An array of location codes which will be used as alternative destinations
+
+`alternativedestinations`
+
+*   is optional
+
+*   Type: `string[]`
+
+*   cannot be null
+
+#### alternativedestinations Type
+
+`string[]`
+
+### market
+
+The market of the user. Examples: UK, US, ES
+
+`market`
+
+*   is optional
+
+*   Type: `string` ([Market](dayview-properties-market.md))
+
+*   cannot be null
+
+#### market Type
+
+`string` ([Market](dayview-properties-market.md))
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` ([Locale](dayview-properties-locale.md))
+
+*   cannot be null
+
+#### locale Type
+
+`string` ([Locale](dayview-properties-locale.md))
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` ([Currency](dayview-properties-currency.md))
+
+*   cannot be null
+
+#### currency Type
+
+`string` ([Currency](dayview-properties-currency.md))
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`
 
 ### sortby
 
@@ -384,16 +416,98 @@ Sets the sorting order for the results. Possible values are: best, cheapest and 
 
 `sortby`
 
-- is optional
-- type: `enum`
-- defined in this schema
+*   is optional
 
-The value of this property **must** be equal to one of the [known values below](#sortby-known-values).
+*   Type: `string` ([Sorting](dayview-properties-sorting.md))
 
-#### sortby Known Values
+*   cannot be null
 
-| Value      | Description |
-| ---------- | ----------- |
-| `best`     |             |
-| `cheapest` |             |
-| `fastest`  |             |
+#### sortby Type
+
+`string` ([Sorting](dayview-properties-sorting.md))
+
+#### sortby Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value        | Explanation |
+| :----------- | :---------- |
+| `"best"`     |             |
+| `"cheapest"` |             |
+| `"fastest"`  |             |
+
+### airlines
+
+List of comma separated IATA carrier codes to be passed to the dayview filters. For example: \&airlines=AA,KL,LH. To unselect airline from the filters, the code must be specified with exclamation mark. For example: \&airlines=AA,!KL,!LH
+
+`airlines`
+
+*   is optional
+
+*   Type: `string` ([Sets the dayview airlines filters.](dayview-properties-sets-the-dayview-airlines-filters.md))
+
+*   cannot be null
+
+#### airlines Type
+
+`string` ([Sets the dayview airlines filters.](dayview-properties-sets-the-dayview-airlines-filters.md))
+
+#### airlines Constraints
+
+**unknown format**: the value of this string must follow the format: `airlines`
+
+### alliances
+
+Comma separated list of alliance names passed to the dayview filters. For example: \&alliances=OneWorld,Star%20Alliance. Valid values are 'OneWorld', 'Star Alliance', 'SkyTeam' and 'Value Alliance'
+
+`alliances`
+
+*   is optional
+
+*   Type: `string` ([Sets the dayview alliances filters.](dayview-properties-sets-the-dayview-alliances-filters.md))
+
+*   cannot be null
+
+#### alliances Type
+
+`string` ([Sets the dayview alliances filters.](dayview-properties-sets-the-dayview-alliances-filters.md))
+
+#### alliances Constraints
+
+**unknown format**: the value of this string must follow the format: `alliances`
+
+### departure-times
+
+Sets the dayview departure time filters in minutes. For example: \&departure-times=00-90,30-990 (first leg departs between 00 and 1:30 and second leg departs between 00:30 and 16:30).
+
+`departure-times`
+
+*   is optional
+
+*   Type: `string` ([Sets the dayview departure time filters.](dayview-properties-sets-the-dayview-departure-time-filters.md))
+
+*   cannot be null
+
+#### departure-times Type
+
+`string` ([Sets the dayview departure time filters.](dayview-properties-sets-the-dayview-departure-time-filters.md))
+
+#### departure-times Constraints
+
+**unknown format**: the value of this string must follow the format: `departure-times`
+
+### duration
+
+Sets the dayview duration filters in minutes. For example: \&duration=1320 (22 hours)
+
+`duration`
+
+*   is optional
+
+*   Type: `integer` ([Sets the dayview duration filters.](dayview-properties-sets-the-dayview-duration-filters.md))
+
+*   cannot be null
+
+#### duration Type
+
+`integer` ([Sets the dayview duration filters.](dayview-properties-sets-the-dayview-duration-filters.md))

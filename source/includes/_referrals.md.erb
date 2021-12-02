@@ -1,9 +1,10 @@
 # Referrals
 
-The referral service is used to provide partner redirects
-to Skyscanner pages based on provided request parameters. 
-It can redirect to different pages within Skyscanner based on the provided {pagetype} parameter 
-(for the full list of page types and examples see below).
+The referral service is used to provide partner redirects to Skyscanner pages based on provided
+request parameters.
+
+It can redirect to different pages within Skyscanner based on the provided {pagetype} parameter.
+For the full list of page types and examples see the sections below.
 
 *API endpoint*
 
@@ -11,24 +12,31 @@ The API is accessible at **https://skyscanner.net/g/referrals/v1**
 
 There is one main endpoint with the following URL structure:
 
-`https://skyscanner.net/g/referrals/v1/{vertical}/{pagetype}?associateid={associateId}`
+`https://skyscanner.net/g/referrals/v1/{vertical}/{pagetype}`
 
 The endpoint serves only GET requests and responds with HTTP status 301 redirecting to the desired Skyscanner page.
 
 For the different possible values of the parameters and additional query parameters check the tables below.
 
+We use [Impact](https://impact.com/) to track the redirects and associate them with the referral source.
+You will need to include the 3 Impact tracking parameters as query parameters in your requests. Please
+check the `TRACKING QUERY PARAMETERS` section below for more details on the parameters. Although the
+parameters are optional, the redirects will not be correctly tracked without them.
+
+If you already have your tracking integration using the legacy `associateid` parameter, we will still
+support this and map the legacy parameter to the new Impact parameters automatically. However, we discourage
+using it for new referral links, as it will become fully deprecated eventually.
+
 *TRY IT OUT*
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/84b89b3a51c23e6230d7)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/18538161-5f231ad5-0a03-4d55-a5c7-843974ab85d7?action=collection%2Ffork&collection-url=entityId%3D18538161-5f231ad5-0a03-4d55-a5c7-843974ab85d7%26entityType%3Dcollection%26workspaceId%3D8e0f947f-e0b9-4761-86da-2a878f98110b)
 
 *REQUEST PARAMETERS*
 
 | Parameter | Description |
 | --------- | ------- |
 | ```vertical``` <br><span class="required">REQUIRED</span> | The vertical you want to redirect to. Allowed values: flights, cars|
-| ```pagetype``` <br><span class="required">OPTIONAL</span> | Page type supported by each vertical. E.g. for flights -> day-view, browse-view... take a look at the next table|
-| ```associateid``` <br><span class="required">OPTIONAL</span> | Associate partner id to attribute traffic to|
-| ```utm_term``` <br><span class="required">OPTIONAL</span> | Used to send through a unique variable that you can track back to your campaigns.|
+| ```pagetype``` <br><span class="required">REQUIRED</span> | Page type supported by each vertical. E.g. for flights -> day-view, browse-view... take a look at the next table|
 
 *PAGE TYPES*
 
@@ -37,34 +45,43 @@ For the different possible values of the parameters and additional query paramet
 | flights | home, day-view, calendar-month-view, browse-view, multicity, cheap-flights-to, flights-airline |
 | cars | home, day-view |
 
+*TRACKING QUERY PARAMETERS*
+
+| Parameter | Description |
+| --------- | ------- |
+| ```mediaPartnerId``` <br><span class="required">OPTIONAL</span> | The ID associated with the partner in Impact |
+| ```adId``` <br><span class="required">OPTIONAL</span> | The ID associated with the ad type in Impact |
+| ```campaignId``` <br><span class="required">OPTIONAL</span> | The ID associated with the campaign in Impact |
+| ```utm_term``` <br><span class="required">OPTIONAL</span> | Used to send through a unique variable that you can track back to your campaigns.|
+
 ## Examples
 
 An example including some of the parameters looks like:
 
 Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
 
-`GET https://skyscanner.net/g/referrals/v1/flights/day-view/?origin=cdg&destination=edi&outboundDate=2019-10-14&utm_term=summer&associateid=MY_ID_123`
+`GET https://skyscanner.net/g/referrals/v1/flights/day-view/?origin=cdg&destination=edi&outboundDate=<%= config[:fullenddate] %>&utm_term=summer&mediaPartnerId=2796596&campaignId=13416&adId=1100662`
 
-`GET https://skyscanner.net/g/referrals/v1/flights/calendar-month-view/?origin=cdg&destination=edi&iym=1910&utm_term=summer&associateid=MY_ID_123`
+`GET https://skyscanner.net/g/referrals/v1/flights/calendar-month-view/?origin=cdg&destination=edi&iym=1910&utm_term=summer&mediaPartnerId=2796596&campaignId=13416&adId=1100662`
 
-`GET https://skyscanner.net/g/referrals/v1/cars/day-view/?pickupPlace=BCN&dropoffPlace=BCN&pickupTime=2019-09-10T10:00&dropoffTime=2019-09-15T10:00&driverAge=42&associateid=MY_ID_123`
+`GET https://skyscanner.net/g/referrals/v1/cars/day-view/?pickupPlace=BCN&dropoffPlace=BCN&pickupTime=<%= config[:fullstartdate] %>T10:00&dropoffTime=<%= config[:fullenddate] %>T10:00&driverAge=42&mediaPartnerId=2796596&campaignId=13416&adId=1100662`
 
-Preferred airlines:  
+Preferred airlines:
 You can find IATA airline codes [here](https://www.iata.org/publications/pages/code-search.aspx)
 
-`GET https://skyscanner.net/g/referrals/v1/flights/day-view?airlines=AA,!FB&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=2020-10-14&inboundDate=2020-10-21`
+`GET https://skyscanner.net/g/referrals/v1/flights/day-view?airlines=AA,!FB&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=<%= config[:fullstartdate] %>&inboundDate=<%= config[:fullenddate] %>`
 
 Preferred alliances:
 
-`GET https://skyscanner.net/g/referrals/v1/flights/day-view?alliances=oneworld,Star%20Alliance&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=2020-10-14&inboundDate=2020-10-21`
+`GET https://skyscanner.net/g/referrals/v1/flights/day-view?alliances=oneworld,Star%20Alliance&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=<%= config[:fullstartdate] %>&inboundDate=<%= config[:fullenddate] %>`
 
 Departure times - in this example, the query parameter configures the filters to have the first leg's departure time as default (-), and the second leg between 0 (00:00) and 990 minutes (16:30).
 
-`GET https://skyscanner.net/g/referrals/v1/flights/day-view?departure-times=-%7C0-990&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=2020-10-14&inboundDate=2020-10-21`
+`GET https://skyscanner.net/g/referrals/v1/flights/day-view?departure-times=-%7C0-990&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=<%= config[:fullstartdate] %>&inboundDate=<%= config[:fullenddate] %>`
 
 Duration:
 
-`GET https://skyscanner.net/g/referrals/v1/flights/day-view?duration=1320&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=2020-10-14&inboundDate=2020-10-21`
+`GET https://skyscanner.net/g/referrals/v1/flights/day-view?duration=1320&market=UK&currency=GBP&locale=en-GB&origin=cdg&destination=edi&outboundDate=<%= config[:fullstartdate] %>&inboundDate=<%= config[:fullenddate] %>`
 
 
 Specific request query parameters are provided in the tables below.
@@ -84,15 +101,15 @@ Please refer to our <a href="#response-codes">response codes</a> in case of unsu
 
 | Page type | Description  |
 | --- | ---|
+| [home](#flights-home-page-supported-parameters-schema) | Skyscanner's Home [Example Link](https://www.skyscanner.net/)|
 | [day-view](#flights-day-view-supported-parameters-schema) | Flights Day View [Example Link](https://www.skyscanner.net/transport/flights/sof/ams/<%= config[:startdate] %>/<%= config[:enddate] %>/?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home#/)|
 | [calendar-month-view](#flights-calendar-month-view-supported-parameters-schema) | Flights MonthView [Example Link](https://www.skyscanner.net/transport/flights/sof/ams/?adults=1&children=2&adultsv2=1&childrenv2=3%7C2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=<%= config[:startmonth] %>&iym=<%= config[:endmonth] %>&ref=home&selectedoday=01&selectediday=01)|
 | [browse-view](#flights-browse-view-supported-parameters-schema) | Flights BrowseView [Example Link](https://www.skyscanner.net/transport/flights-from/edi/?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=<%= config[:startmonth] %>&iym=<%= config[:endmonth] %>&ref=home)|
 | [multicity](#flights-day-view-for-multicity-search-schema) | Flights Multicity [Example Link](https://www.skyscanner.net/transport/d/sof/<%= config[:fullstartdate] %>/ams/ams/<%= config[:fullenddate] %>/lond/lond/<%= config[:fullenddate] %>/sof?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&ref=home#/)|
-| [home](#flights-home-page-supported-parameters-schema) | Skyscanner's Home [Example Link](https://www.skyscanner.net/)|
 | [cheap-flights-to](#cheap-flights-to-supported-parameters-schema) | Cheap Flights To [Example Link](https://www.skyscanner.net/za/en-gb/zar/flights-to/bom/cheap-flights-to-mumbai-airport.html)|
 | [flights-airline](#flights-airline-supported-parameters-schema) | Flights Airline [Example Link](https://www.skyscanner.net/airline/airline-emirates-ek.html)|
 
-For more details, please see our [Examples](#examples) 
+For more details, please see our [Examples](#examples)
 
 ## Cars Parameters
 
@@ -100,5 +117,5 @@ For more details, please see our [Examples](#examples)
 
 | API endpoint | Description  |
 | --- | ---|
-| [day-view](#carhire-day-view-supported-parameters-schema) | CarHire DayView [Example Link](https://www.skyscanner.net/carhire/results/95565041/95565041/<%= config[:fullstartdate] %>T10:00/<%= config[:fullenddate] %>T10:00/30)|
 | [home](#carhire-home-page-supported-parameters-schema) | CarHire Home [Example Link](https://www.skyscanner.net/carhire) |
+| [day-view](#carhire-day-view-supported-parameters-schema) | CarHire DayView [Example Link](https://www.skyscanner.net/carhire/results/95565041/95565041/<%= config[:fullstartdate] %>T10:00/<%= config[:fullenddate] %>T10:00/30)|
