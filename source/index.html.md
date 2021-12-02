@@ -25,11 +25,11 @@ meta:
 
 Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, marketplaces, and tools. This is work in progress. 
 
-# Principles and components
+## Middle column: Principles and components
 
 The middle column contains detailed information about the included components and related options. This is the theory part. 
 
-# Examples 
+## Right column: Examples
 
 The right column contains JSON formatted examples of how the specification is used. 
 
