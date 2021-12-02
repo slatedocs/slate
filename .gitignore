@@ -25,3 +25,7 @@ doc/
 
 # Vagrant artifacts
 ubuntu-*-console.log
+*.lock
+Gemfile
+Gemfile
+*.lock
