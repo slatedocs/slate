@@ -7,6 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://www.dataproductbusiness.com/'>Data Product Business</a>
+  - License: TBD
 
 
 includes:
@@ -46,7 +47,7 @@ The right column contains JSON formatted examples of how the specification is us
 ```
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+The JSON examples are not based on any real data product, but exemplify the usage of Open Data Product Specification. 
 </aside>
 
 
