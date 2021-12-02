@@ -11,6 +11,8 @@ toc_footers:
 
 includes:
   - pricing
+  - pipeline
+  - quality
   - helloworld
 
 search: true
