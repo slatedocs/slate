@@ -27,7 +27,11 @@ meta:
 
 # Open Data Product Specification
 
-Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, marketplaces, and tools. This is work in progress. 
+Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, marketplaces, and tools. 
+
+**Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard
+
+This is work in progress. 
 
 ## Middle column: Principles and components
 
