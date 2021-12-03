@@ -63,6 +63,7 @@ under the License.
       $(function() { setupCodeCopy(); });
     </script>
     <% end %>
+    <script defer data-domain="apidocs.simplyprint.io" src="https://plausible.io/js/plausible.js"></script>
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
