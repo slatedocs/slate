@@ -58,5 +58,5 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
 |---|---|---|---|
 |  minPrice | string  | -  | The highest price if the price is a range. If dynamic pricing is used with this product, this is the lowest price allowed. |
 |  maxPrice | string  | -  | The lowest price if the price is a range. If dynamic pricing is used with this product, this is the highest price allowed. |
+| valueAddedTaxIncluded  | boolean  | true/false  | Specifies whether the applicable value-added tax (VAT) is included in the price specification or not.  |
 |   |   |   |   |
-
