@@ -3,6 +3,7 @@ title: Open Data Product Specification by Data Product Business
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - JSON
+  - XML
 
 
 toc_footers:
