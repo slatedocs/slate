@@ -1,171 +1,89 @@
-# Kittens
+# Printers
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get printer(s)
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl --request GET \
+  --url http://api.simplyprint.io/v1/actions/printers/get \
+  --header 'Authorization: Bearer {YOUR_TOKEN_HERE}'
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```php
+<?php
+//Coming soon...
+?>
 ```
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Success return:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "data": {
+    "printers": [
+      {
+        "id": 1,
+        "name": "My Ender-3",
+        "org_id": 1,
+        "printer_status": "operational",
+        "active_print_job": 0,
+        "online": true
+      },
+      {
+        "id": 2,
+        "name": "My Prusa Mini",
+        "org_id": 1,
+        "printer_status": "printing",
+        "active_print_job": 189,
+        "online": true
+      }
+    ]
+  }
 }
+```
+
+This endpoint retrieves one, or multiple printers.
+
+### Request
+
+`GET /v1/printers/get`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | false | A single, or multiple _(comma separated)_ printer ID's
+org_id | false | If you're a member of multiple organizations, and only wish to get printers from one
+
+## Preheat
+
+```shell
+curl --request GET \
+  --url http://api.simplyprint.io/v1/actions/printers/preheat?id={PRINTER_ID(S)} \
+  --header 'Authorization: Bearer {YOUR_TOKEN_HERE}'
+```
+
+```php
+<?php
+//Coming soon...
+?>
+```
+
+> Success return:
+
+```json
+...
 ```
 
 This endpoint retrieves a specific kitten.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET /v1/actions/printers/preheat?id={PRINTER_ID(S)}`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Parameter | Required | Description
+--------- | ------- | -----------
+id | true | A single, or multiple _(comma separated)_ printer ID's
+temp | false | Target temperature for the printer(s). Defaults to `200`
+type | false | Whether to heat the nozzle, bed or both. Options are; `nozzle` _(default)_, `bed`, `both`
