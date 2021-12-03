@@ -34,12 +34,6 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
 
 ### Optional attributes and elements
 
-| <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
-|---|---|---|---|
-|  minPrice | string  | -  | The highest price if the price is a range. If dynamic pricing is used with this product, this is the lowest price allowed. |
-|  maxPrice | string  | -  | The lowest price if the price is a range. If dynamic pricing is used with this product, this is the highest price allowed. |
-|   |   |   |   |
-
 > Example of Pricing component usage with some of the optional elements and attributes:
 
 ```javascript
@@ -59,3 +53,10 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
        }
    ]
 ```
+
+| <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
+|---|---|---|---|
+|  minPrice | string  | -  | The highest price if the price is a range. If dynamic pricing is used with this product, this is the lowest price allowed. |
+|  maxPrice | string  | -  | The lowest price if the price is a range. If dynamic pricing is used with this product, this is the highest price allowed. |
+|   |   |   |   |
+
