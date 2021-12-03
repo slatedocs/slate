@@ -2,12 +2,12 @@
 
 Pricing component.....
 
-Mandatory elements and attributes are marked with **bolded names**. 
+Mandatory elements and attributes are marked with **bolded names** and asterix **\***. 
 
 | Element name  | Type  | Options  | Description  |
 |---|---|---|---|
-| **name**  | string  | text content, max length 256 chars  | Attribute is the name of the data product.  | 
-| **currency**  | string  | One of official [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency names. Three letters in capslock.  | The primary currency used in pricing. Platforms are assumed to use this as primary currency if currency conversions are used to display product pricing in different locations for various currencies  |
+| **name** **\*** | string  | text content, max length 256 chars  | Attribute is the name of the data product.  | 
+| **currency** **\*** | string  | One of official [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency names. Three letters in capslock.  | The primary currency used in pricing. Platforms are assumed to use this as primary currency if currency conversions are used to display product pricing in different locations for various currencies  |
 |   |   |   |   |
 
 > Example of Pricing component usage:
