@@ -49,7 +49,8 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
          "name":"Premium Package",
          "priceCurrency":"EUR",
          "price":"10.00",
-         "maxPrice":"20.00"
+         "maxPrice":"20.00",
+         "valueAddedTaxIncluded": false
        }
    ]
 ```
