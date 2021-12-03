@@ -3,6 +3,12 @@
 Pricing component.....
 
 
+| Element name  | Type  | Options  | Description  |
+|---|---|---|---|
+| name  | string  | text content, max length 256 chars  | Attribute is the name of the data product.  | 
+|   |   |   |   |
+|   |   |   |   |
+
 > Example of Pricing component usage:
 
 ```javascript
