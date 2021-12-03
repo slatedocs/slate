@@ -2,7 +2,7 @@
 
 Pricing component.....
 
-Mandatory elements and attributes are marked with **bolded names**. 
+Mandatory elements and attributes are marked with **bolded names** and asterix **\***. 
 
 | Element name  | Type  | Options  | Description  |
 |---|---|---|---|
