@@ -15,6 +15,7 @@ includes:
   - pipeline
   - quality
   - license
+  - provider
   - helloworld
 
 search: true
