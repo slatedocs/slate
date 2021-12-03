@@ -14,6 +14,7 @@ includes:
   - pricing
   - pipeline
   - quality
+  - license
   - helloworld
 
 search: true
