@@ -2,7 +2,8 @@
 title: SimplyPrint API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - php
+  - shell: cURL
+  - php: PHP
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key <i>(coming soon)</i></a>
