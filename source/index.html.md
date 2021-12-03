@@ -8,6 +8,7 @@ toc_footers:
   - <a href='#'>Sign Up for a Developer Key <i>(coming soon)</i></a>
 
 includes:
+  - printers
   - errors
 
 search: true
