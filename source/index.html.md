@@ -39,6 +39,8 @@ This is work in progress.
 
 The middle column contains detailed information about the included components and related options. This is the theory part. 
 
+Note! Mandatory elements and attributes are marked with **bold names** and **\*** in the definition tables. 
+
 ## Right column: Examples
 
 The right column contains JSON formatted examples of how the specification is used. 
