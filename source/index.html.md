@@ -68,3 +68,15 @@ The JSON examples are not based on any real data product, but exemplify the usag
 </aside>
 
 
+# Document level objects
+
+Here's list of attributes and elements which can occur at the document root level. 
+
+Mandatory attributes are listed in separate table and marked with **bolded names** and asterix **\***. Next to the mandatory attributes is an example. The same logic applies to the optional attributes as well. Optional attributes are listed in own table and examples are given on the right column. 
+
+| <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
+|---|---|---|---|
+| **valueProposition** **\*** | string  | text content, max length 512 chars  | This is the product's value proposition. Often one or two sentences and crystallizes the value for the customer. |
+|  |  |  |  |
+
+<button class="button-5" role="button">Raise an issue</button>
