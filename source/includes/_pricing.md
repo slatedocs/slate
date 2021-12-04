@@ -1,6 +1,6 @@
 # Pricing
 
-Pricing is the process whereby a business sets the price at which it will sell its products and services. Pricing **ELEMENT** consists of mandatory and optional attributes.  
+Pricing is the process whereby a business sets the price at which it will sell its products and services. Pricing **ELEMENT** consists of mandatory and optional attributes. This element contains pricing plans related data to be used for example in displaying the items in a marketplace. If needed the standard metadata is converted to marketplace internal format. We encourage all data product owners to enforce usage of this standard.  
 
 Mandatory attributes are listed in separate table and marked with **bolded names** and asterix **\***. Next to the mandatory attributes is an example. 
 
