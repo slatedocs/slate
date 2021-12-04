@@ -38,21 +38,21 @@ Technical specification of a machine-readable data product metadata model, which
 
 This is work in progress. 
 
-## Structure
+## Document structure
 
-**Left column: Navigation**
+**LEFT COLUMN: Navigation**
 
 The left column is navigation which enables fluent and easy movement around the specification. 
 
-**Middle column: Principles and components**
+**MIDDLE COLUMN: Principles and components**
 
 The middle column contains detailed information about the included components and related options. This is the theory part. 
 
 Note! Mandatory elements and attributes are marked with **bold names** and **\*** in the definition tables. https://schema.org provided ready-made definitions are applied when ever possible instead of re-inventing the wheel. 
 
-**Right column: Examples**
+**RIGHT COLUMN: Examples**
 
-The right column contains JSON formatted examples of how the specification is used. 
+The right column contains JSON formatted examples of how the specification is used. In the future other output formats are added on request basis. 
 
 > Example of JSON formatted snippet from the Open Data Product specification:
 
