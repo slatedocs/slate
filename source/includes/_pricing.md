@@ -12,6 +12,7 @@ Supported pricing models include:
 2. one time payments plans
 3. pay-as-you-go plans
 
+<button class="button-5" role="button">Raise an issue</button>
 
 ## Mandatory attributes and elements
 
