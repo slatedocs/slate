@@ -52,7 +52,7 @@ Note! Mandatory elements and attributes are marked with **bold names** and **\**
 
 **RIGHT COLUMN: Examples**
 
-The right column contains JSON formatted examples of how the specification is used. 
+The right column contains JSON formatted examples of how the specification is used. In the future other output formats are added on request basis. 
 
 > Example of JSON formatted snippet from the Open Data Product specification:
 
