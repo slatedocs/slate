@@ -29,6 +29,7 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
 | **name** **\*** | string  | text content, max length 256 chars  | Attribute is the name of the data product.  | 
 | **priceCurrency** **\*** | string  | Use standard formats: [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency format e.g. "USD"; Ticker symbol for cryptocurrencies e.g. "BTC"  | The primary currency used in pricing. Platforms are assumed to use this as primary currency if currency conversions are used to display product pricing in different locations for various currencies  |
 |  **price** **\*** | string  | -  | The offer price of a product, or of a price component. Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator. Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.  |
+| **billingDuration** **\*** | Duration  | day, week, month, year  | Specifies for how long this price (or price component) will be billed. Can be used, for example, to model the contractual duration of a subscription or payment plan.  |
 |   |   |   |   |
 
 
@@ -43,7 +44,8 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
          "priceCurrency":"EUR",
          "price":"10.00",
          "minPrice":"5.00",
-         "maxPrice":"15.000"
+         "maxPrice":"15.000", 
+         "billingDuration": "month"
       },
       {
          "name":"Premium Package",
