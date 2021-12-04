@@ -30,19 +30,27 @@ meta:
 
 # Open Data Product Specification
 
-Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, marketplaces, and tools. 
+## Purpose
+
+Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, data platforms, marketplaces, and tools. Additional purpose is to reduce data model conversions between systems and organisatons, increase the speed of designing, testing and implementing data products. The specification is shared under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license. 
 
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
 This is work in progress. 
 
-## Middle column: Principles and components
+## Structure
+
+**Left column: Navigation**
+
+The left column is navigation which enables fluent and easy movement around the specification. 
+
+**Middle column: Principles and components**
 
 The middle column contains detailed information about the included components and related options. This is the theory part. 
 
 Note! Mandatory elements and attributes are marked with **bold names** and **\*** in the definition tables. https://schema.org provided ready-made definitions are applied when ever possible instead of re-inventing the wheel. 
 
-## Right column: Examples
+**Right column: Examples**
 
 The right column contains JSON formatted examples of how the specification is used. 
 
