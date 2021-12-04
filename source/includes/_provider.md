@@ -30,6 +30,8 @@ The same logic applies to the optional attributes as well. Optional attributes a
 |  **businessID** **\*** | string  | -  | The business identifier code of the company. Often this is given to the company by authorized public sector organization managing register of businesses.  |
 | **email** **\*** | string | - | Email to be used in contacting the organization. |
 
+<button class="button-5" role="button">Raise an issue</button>
+
 
 
 ## Optional attributes and elements
@@ -62,3 +64,5 @@ The same logic applies to the optional attributes as well. Optional attributes a
 | taxID | string  | - | The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain. |
 | vatID | string | - | The Value-added Tax ID of the organization or person. |
 |  |  |  |  |
+
+<button class="button-5" role="button">Raise an issue</button>
