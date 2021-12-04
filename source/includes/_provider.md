@@ -65,4 +65,4 @@ The same logic applies to the optional attributes as well. Optional attributes a
 | vatID | string | - | The Value-added Tax ID of the organization or person. |
 |  |  |  |  |
 
-<button class="button-5" role="button">Raise an issue</button>
+<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5"><button class="button-5" role="button">Raise an issue</button></a>
