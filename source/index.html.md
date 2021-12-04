@@ -81,12 +81,23 @@ Here's the list of attributes which can occur at the document root level. Mandat
 > Example of document level attribute usage and structure:
 
 ```javascript
-   .....
+"Product": {
+  "name":"Pets of the year",
+  "description":"",
+  "visibility":"private",
+  "status":"draft",
+  "version":"0.1"
+}
+
 ```
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
 | **valueProposition** **\*** | string  | text content, max length 512 chars  | This is the product's value proposition. Often one or two sentences and crystallizes the value for the customer. |
-|  |  |  |  |
+| **name** **\*** | string | max length 256 chars | The name of the product. |
+| **description** **\*** | string | - | The description of the product. Text only. |
+| **visibility** **\*** | one of | one of: private, organisation, public | The publicity level eg who can see this product. Private - just the creator. Organisation - visible to all in your organisation. Public - visible to all publicly |
+| **status** **\*** | one of | one of: announcement, draft, development, testing, acceptance, production, retired | The status of the product. Lifecycle model discussed in details in here (link). |
+| **version** **\*** | string | The versioning scheme is **major.minor.**. Examples: 1.0, 2.1, 3.5 | The version of the product. |
 
 <button class="button-5" role="button">Raise an issue</button>
