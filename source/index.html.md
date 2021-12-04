@@ -36,7 +36,10 @@ Technical specification of a machine-readable data product metadata model, which
 
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
-This is work in progress. 
+This is work in progress. If you see something missing, described inaccurately or plain wrong, or you need other comment the specification, click the button below and proceed forward. 
+
+<button class="button-5" role="button">Raise an issue</button>
+
 
 ## Document structure
 
@@ -69,11 +72,17 @@ The JSON examples are not based on any real data product, but exemplify the usag
 </aside>
 
 
-# Document level objects
+# Document level attributes
 
-Here's list of attributes and elements which can occur at the document root level. 
+Here's the list of attributes which can occur at the document root level. Mandatory attributes are listed in separate table and marked with **bolded names** and asterix **\***. Next to the mandatory attributes is an example. The same logic applies to the optional attributes as well. Optional attributes are listed in own table and examples are given on the right column. 
 
-Mandatory attributes are listed in separate table and marked with **bolded names** and asterix **\***. Next to the mandatory attributes is an example. The same logic applies to the optional attributes as well. Optional attributes are listed in own table and examples are given on the right column. 
+## Mandatory attributes
+
+> Example of document level attribute usage and structure:
+
+```javascript
+   .....
+```
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
