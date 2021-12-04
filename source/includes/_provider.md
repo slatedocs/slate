@@ -30,7 +30,8 @@ The same logic applies to the optional attributes as well. Optional attributes a
 |  **businessID** **\*** | string  | -  | The business identifier code of the company. Often this is given to the company by authorized public sector organization managing register of businesses.  |
 | **email** **\*** | string | - | Email to be used in contacting the organization. |
 
-<button class="button-5" role="button">Raise an issue</button>
+<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5" target="new"><button class="button-5" role="button">Raise an issue</button></a>
+
 
 
 
@@ -65,4 +66,4 @@ The same logic applies to the optional attributes as well. Optional attributes a
 | vatID | string | - | The Value-added Tax ID of the organization or person. |
 |  |  |  |  |
 
-<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5"><button class="button-5" role="button">Raise an issue</button></a>
+<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5" target="new"><button class="button-5" role="button">Raise an issue</button></a>

@@ -38,7 +38,7 @@ Technical specification of a machine-readable data product metadata model, which
 
 This is work in progress. If you see something missing, described inaccurately or plain wrong, or you need other comment the specification, click the button below and proceed forward. 
 
-<button class="button-5" role="button">Raise an issue</button>
+<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5" target="new"><button class="button-5" role="button">Raise an issue</button></a>
 
 
 ## Document structure
@@ -102,4 +102,4 @@ Here's the list of attributes which can occur at the document root level. Mandat
 | **version** **\*** | string | The versioning scheme is **major.minor.**. Examples: 1.0, 2.1, 3.15 | The version of the product. |
 | **logo** **\*** | URL | - | URL of the logo. See more from [wikipedia](https://en.wikipedia.org/wiki/URL). |
 
-<button class="button-5" role="button">Raise an issue</button>
+<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5" target="new"><button class="button-5" role="button">Raise an issue</button></a>
