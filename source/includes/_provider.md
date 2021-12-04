@@ -7,6 +7,10 @@ Mandatory attributes are listed in separate table and marked with **bolded names
 The same logic applies to the optional attributes as well. Optional attributes are listed in own table and an example is given in the right column. 
 
 
+
+## Mandatory attributes and elements
+
+
 > Example of Provider component mandatory attributes usage:
 
 ```javascript
@@ -18,8 +22,6 @@ The same logic applies to the optional attributes as well. Optional attributes a
       }
       
 ```
-
-## Mandatory attributes and elements
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
