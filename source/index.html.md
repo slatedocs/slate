@@ -98,7 +98,7 @@ Here's the list of attributes which can occur at the document root level. Mandat
 | **description** **\*** | string | - | The description of the product. Text only. |
 | **visibility** **\*** | one of | one of: private, organisation, public | The publicity level eg who can see this product. Private - just the creator. Organisation - visible to all in your organisation. Public - visible to all publicly |
 | **status** **\*** | one of | one of: announcement, draft, development, testing, acceptance, production, retired | The status of the product. Lifecycle model discussed in details in here (link). |
-| **version** **\*** | string | The versioning scheme is **major.minor.**. Examples: 1.0, 2.1, 3.5 | The version of the product. |
+| **version** **\*** | string | The versioning scheme is **major.minor.**. Examples: 1.0, 2.1, 3.15 | The version of the product. |
 | **logo** **\*** | URL | - | URL of the logo. See more from [wikipedia](https://en.wikipedia.org/wiki/URL). |
 
 <button class="button-5" role="button">Raise an issue</button>
