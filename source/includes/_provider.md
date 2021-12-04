@@ -6,8 +6,6 @@ Mandatory attributes are listed in separate table and marked with **bolded names
 
 The same logic applies to the optional attributes as well. Optional attributes are listed in own table and an example is given in the right column. 
 
-
-
 ## Mandatory attributes and elements
 
 
@@ -30,7 +28,7 @@ The same logic applies to the optional attributes as well. Optional attributes a
 |  **businessID** **\*** | string  | -  | The business identifier code of the company. Often this is given to the company by authorized public sector organization managing register of businesses.  |
 | **email** **\*** | string | - | Email to be used in contacting the organization. |
 
-<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5" target="new"><button class="button-5" role="button">Raise an issue</button></a>
+<button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
 
 
 ## Optional attributes and elements
@@ -64,4 +62,4 @@ The same logic applies to the optional attributes as well. Optional attributes a
 | vatID | string | - | The Value-added Tax ID of the organization or person. |
 |  |  |  |  |
 
-<a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5" target="new"><button class="button-5" role="button">Raise an issue</button></a>
+<button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
