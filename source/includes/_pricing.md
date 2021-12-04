@@ -3,6 +3,7 @@
 Pricing is the process whereby a business sets the price at which it will sell its products and services. Pricing **ELEMENT** consists of mandatory and optional attributes. Mandatory attributes are listed in separate table and marked with **bolded names** and asterix **\***. Next to the mandatory attributes is an example. The same logic applies to the optional attributes as well. Optional attributes are listed in own table and an example is given in the right column. 
 
 Supported pricing models include:
+
 1. recurring time period based (day, week, month, year) plans
 2. one time payments plans
 3. pay-as-you-go plans
