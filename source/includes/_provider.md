@@ -33,8 +33,6 @@ The same logic applies to the optional attributes as well. Optional attributes a
 <a href="https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5" target="new"><button class="button-5" role="button">Raise an issue</button></a>
 
 
-
-
 ## Optional attributes and elements
 
 > Example of Provider component with some of the voluntary attributes:
