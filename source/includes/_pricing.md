@@ -14,12 +14,14 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
       {
          "name":"Premium subscription 1 year",
          "priceCurrency":"EUR",
-         "price":"10.00"
+         "price":"50.00",
+         "billingDuration": "year"
       },
       {
-         "name":"Premium Package",
+         "name":"Premium Package Monthly",
          "priceCurrency":"EUR",
-         "price":"10.00"
+         "price":"5.00", 
+         "billingDuration": "month"
        }
    ]
 ```
@@ -44,8 +46,7 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
          "priceCurrency":"EUR",
          "price":"10.00",
          "minPrice":"5.00",
-         "maxPrice":"15.000", 
-         "billingDuration": "month"
+         "maxPrice":"15.000"
       },
       {
          "name":"Premium Package",
