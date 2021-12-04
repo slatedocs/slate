@@ -87,6 +87,7 @@ Here's the list of attributes which can occur at the document root level. Mandat
   "visibility":"private",
   "status":"draft",
   "version":"0.1",
+  "category":"",
   "logo":"https://data-product-business.github.io/open-data-product-spec/images/logo-dps-ebd5a97d.png"
 }
 
