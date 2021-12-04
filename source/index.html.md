@@ -28,7 +28,7 @@ meta:
     content: Open Data Product Specification
 ---
 
-# Open Data Product Specification
+# OPEN DATA PRODUCT SPECIFICATION
 
 ## Purpose
 
