@@ -35,7 +35,7 @@ Mandatory elements and attributes are marked with **bolded names** and asterix *
 |  **price** **\*** | string  | -  | The offer price of a product, or of a price component. Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator. Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.  |
 | **billingDuration** **\*** | Duration  | instant, day, week, month, year  | Specifies for how long this price (or price component) will be billed. Can be used, for example, to model the contractual duration of a subscription or payment plan. |
 | **unit** **\*** | string | one-time-payment, pay-per-use, recurring | One-time-payment is for single time purchase purposes, further purchaces are not intended to continue under same agreement. Pay-per-use is intended for continuous usage and price set is for each successful usage action. Recurrring is intended for continuous time period plans|
-| **maxQuantity** **\*** | Integer | - | The maximum transaction count for the period. Use this to define for example monthly (or any other period) request limit to the data product |
+| **maxTransactionQuantity** **\*** | Integer | - | The maximum transaction quantity for the given billing duration. Use this to define for example monthly (or any other period) request limit to the data product |
 |  |  |  |  |
 
 
