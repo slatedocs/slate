@@ -57,6 +57,7 @@ Supported pricing models include:
 | **maxTransactionQuantity** **\*** | string | either "unlimited" or a number (Integer) | The maximum transaction quantity for the given billing duration. Use this to define for example monthly (or any other period) request limit to the data product |
 |  |  |  |  |
 
+<button class="button-5" role="button">Raise an issue</button>
 
 ## Optional attributes and elements
 
@@ -90,3 +91,5 @@ Supported pricing models include:
 | validTo  | DateTime  | A combination of date and time in [ISO 8601](https://www.ionos.com/digitalguide/websites/web-development/iso-8601/) format yyyy-MM-dd'T'HH:mm:ss.SSSZ.  | The date after when the item is not valid. |
 | additionalPrice  | string  | -  | This is used to define fees for usage which exceeds the defined max transaction quantity. This value is for each additional transaction. Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator. Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols. |
 |   |   |   |   |
+
+<button class="button-5" role="button">Raise an issue</button>
