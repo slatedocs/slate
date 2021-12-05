@@ -34,6 +34,13 @@ meta:
 
 Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, data platforms, marketplaces, and tools. Additional purpose is to reduce data model conversions between systems and organisatons, increase the speed of designing, testing and implementing data products. The specification is shared under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license. 
 
+Open Data Product Specification aims to:
+
+* enable interoperability between organizations, data platforms,  marketplaces, and tools. 
+* reduce data product metadata conversions and errors between systems and organizations, 
+* increase the speed of designing, testing, and implementing data products. 
+* enable creation of automated data product deployment with standard methods (DataOps)
+
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
 This is work in progress. If you see something missing, described inaccurately or plain wrong, or you need other comment the specification, click the button below and proceed forward. 
