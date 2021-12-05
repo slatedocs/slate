@@ -32,7 +32,7 @@ meta:
 
 ## Purpose
 
-Technical specification of a machine-readable data product metadata model, which enables interoperability between operators, data platforms, marketplaces, and tools. Additional purpose is to reduce data model conversions between systems and organisatons, increase the speed of designing, testing and implementing data products. The specification is shared under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license. 
+Technical specification of a machine-readable data product metadata model. It defines the objects and attributes as well as the structure of digital data products. The work is based on existing standards and best practices. For is example schema.org definitions are used whenever it makes sense. The reasoning is that we reuse and proudly copy instead of reinventing the wheel. The specification is shared under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license. 
 
 Open Data Product Specification aims to:
 
