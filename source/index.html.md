@@ -43,7 +43,7 @@ Open Data Product Specification aims to:
 
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
-This is work in progress. If you see something missing, described inaccurately or plain wrong, or you need other comment the specification, click the button below and proceed forward. 
+This is work in progress. If you see something missing, described inaccurately or plain wrong, or you want to comment the specification, click the button below and proceed forward. 
 
 <button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
 
