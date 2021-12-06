@@ -11,6 +11,7 @@ includes:
   - introduction
   - authentication
   - ratelimits
+  - enrichment
   - people
   - organizations
   - opportunities
