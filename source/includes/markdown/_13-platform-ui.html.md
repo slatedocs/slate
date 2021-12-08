@@ -375,7 +375,7 @@ authenticationUrl request after the Oauth flow is completed:
   <body>
     Success!
     <script>
-      window.opener.postMessage("success", "ORIGIN");
+      window.opener.postMessage("success", "https://app.asana.com");
       window.close();
     </script>
   </body>
@@ -397,8 +397,9 @@ with "success"  using [window.postMessage](https://developer.mozilla.org/en-US/d
 for this `postMessage` call should be the opener, accessible via
 [window.opener](https://developer.mozilla.org/en-US/docs/Web/API/Window/opener).
 
-Note that for security purposes, the _origin_ included in the event needs to match the `serverUrl` registered to the app. That is,
-the origin serving the `authenticationUrl` response must match the app's configured `serverUrl`.
+Note that for security purposes, the _origin_ of the event (which is added to the event by the browser) needs to match the `serverUrl`
+registered to the app. That is, the origin serving the `authenticationUrl` response must match the app's configured `serverUrl`.
+This is different from the `targetOrigin` of the `window.opener.postMessage` call, which must be exactly `"https://app.asana.com"`.
 
 ### Additional notes
 
