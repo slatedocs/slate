@@ -28,7 +28,7 @@ includes:
   - markdown/14-publish-your-app.html.md
   - markdown/15-how-to-use.html.md
   - markdown/15-why-use-asanas-api.html.md
-  - markdown/15-quick-start.html.md
+  - markdown/15-library-quick-start.html.md
   - markdown/16-official-client-libs.html.md
   - markdown/13-platform-ui.html.md
   - helpers/platform-ui-wrapper.html.md

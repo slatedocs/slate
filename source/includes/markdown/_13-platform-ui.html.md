@@ -1,12 +1,21 @@
 <hr class="platform-ui-alpha">
 <section class="platform-ui-alpha">
 
-# App Components Beta
+# Overview of App Components
 
 <span class="beta-indicator">BETA</span>
 
-App Components are currently in **Closed Beta**. At this time, we are limiting the number of app submissions to be published
-in the in-product app gallery for the official launch. If you are interested in having your app published, please
+An important step in maintaining flow at work is having all the information you need in one place. Asana is for teams to track 
+projects, to provide clarity on *who* is doing *what* by *when*, and to automate repetitive processes. Now, it's easier than ever to 
+see key work information from other tools on the surface of tasks, and automate cross-tool processes.
+
+Apps can use App Components to display customized widgets, forms, and rules within Asana's user interface. Requests go from
+Asana directly to an App Server. The App Server controls the information within these customized widgets and the App Server controls what happens when a User takes actions within these components.
+
+<img src="../images/UI_Components.gif" />
+
+Note that App Components are currently in **Closed Beta**. At this time, we are limiting the number of app submissions to be 
+published in the in-product app gallery for the official launch. If you are interested in having your app published, please 
 [visit the forum](https://forum.asana.com/c/developersapi/app-components-beta/150) for instructions on participating in the
 App Components Beta Program. 
 
@@ -16,27 +25,11 @@ only, and is not for production use or subject to availability or security oblig
 Beta Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be 
 discontinued or modified at any time.
 
-<hr class="full-line">
-
-# App Components Overview
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-To start building, follow our [Quick Start guide](/docs/app-components-quick-start)!
-
-Apps can use App Components to display customized widgets, forms, and rules within Asana's UI. 
-Requests go from Asana directly to an App's server. The App Server controls  
-the information within these customized widgets and the App Server controls what 
-happens when a User takes actions within these components.
-
-A new in-app gallery and install flow, a customizable modal, a widget, and more.
-<img src="../images/UI_Components.gif" />
-
 <hr>
 
 ## App Widget
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 > Request to the App Server
 
@@ -108,7 +101,7 @@ Related References:
 
 ## App Form
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 > Request to the App Server
 
@@ -193,7 +186,7 @@ Related References:
 
 ## App Resource Search
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 > Request to the App Server
 
@@ -224,7 +217,7 @@ Related References:
 
 ## App Action
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components BETA](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 > Request to the App Server
 
@@ -278,11 +271,190 @@ Related References:
 
 <hr class="full-line">
 
-# App Components Definition
+# Quick Start
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-> Sample of an app with a full App Components definition
+This guide offers a quick way for developers to start building on App Components. By following these steps, you'll gain an understanding of how to install App Component apps to your developer sandbox, as well as how an example app communicates with endpoints exposed on a pre-built local server. 
+
+Note that for the App Components apps [that you create](/docs/configurations), you'll be able to define your own icons, images, descriptions, and other content. Many of the values for these fields are marked by **{curly braces}** in the example app.
+
+Before you begin, you'll need a developer sandbox in order to use App Components in your application. [Click here to request a sandbox](/docs/developer-sandbox) if you don't already have one.
+
+1. Clone [this repository](https://github.com/Asana/app-components-example-app) containing an example Express server.
+2. Follow the instructions in the [README](https://github.com/Asana/app-components-example-app/blob/main/README.md) to run the server. This server needs to remain on as you use the example app.
+3. Open the developer sandbox in your browser.
+4. In an existing project, go to **Customize** > **Apps** > **{Example}** to install the App Components example app.
+<br>
+<br>
+<img src="../images/example-app-gallery-tile.png" />
+<br>
+<br>
+5. Once the example app is installed, create a task in your project. In the task's **{Example}** custom field, go to **{Add Example Resource}** > **{Open form}** to see examples of customizable inputs. Click **Submit**.
+<br>
+<br>
+<img src="../images/example-app-form.gif" />
+<br>
+<br>
+6. View the newly-generated widget on your task. You can begin editing `index.js` to modify the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
+<br>
+<br>
+<img src="../images/example-app-widget.png" />
+<br>
+<br>
+That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's widget. Once you're ready to define an app, [click here to create your own app](/docs/configurations) with App Components.
+
+<hr class="full-line">
+
+# Publishing an App
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, here are some guidelines you can follow.
+
+<hr>
+
+## General Guidelines
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+When submitting an [app configuration](/docs/configurations), you should:
+
+* Add necessary images (e.g., feature images, icon, logo, etc.)
+* Add support links (e.g., feedback link, external support URL)
+* Proofread marketing-related text (e.g., description, extended description, features)
+* Make sure button text has 3-4 words or fewer and start with a verb
+* Use consistent language for similar concepts where applicable
+* Use sentence case by default and capitalize proper nouns
+
+When testing your application, you should:
+
+* Try to "break" your forms (e.g., test watched fields, limit invalid submissions, test typeahead fetches, etc.)
+* Test and proof-read any custom error messages
+* Test the auth flow from both the web browser and [desktop app](https://asana.com/download)
+* Test app actions with a variety of trigger combinations
+
+<hr>
+
+## Security
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+When handling requests from Asana, an App Components app should:
+ 
+ - Reject requests with missing or incorrect signatures.
+ - Reject requests with an "expires" time in the past.
+    - **Note**: Make sure to use the correct units for this. "expires" is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
+
+If an app uses [OAuth for authentication](/docs/oauth), the app should:
+ 
+ - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
+
+If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
+
+ - An attacker can't authenticate themselves as someone else
+ - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
+
+ <hr>
+
+## Authorization
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```html
+<!-- Example: An app might return this HTML in response to the 
+authenticationUrl request after the Oauth flow is completed:
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>You have successfully connected Asana to the app</title>
+  </head>
+  <body>
+    Success!
+    <script>
+      window.opener.postMessage("success", "ORIGIN");
+      window.close();
+    </script>
+  </body>
+</html>
+```
+
+### Overview
+
+The Asana platform needs confirmation from the App Components app that authentication has completed successfully. When 
+an app is added to a project, the user adding it is sent to the app's `authenticationUrl`. The app may perform OAuth with Asana,
+OAuth with a different app, perform both, or perform none. As long as the app confirms the flow was complete, Asana will
+successfully add the app to the project. This will allow requests to be sent to the app's predefined endpoints.
+
+### How it works
+
+Under the hood, we carry this out by listening for a message from the authentication popup window containing the string "success".
+When we make a request to the app's `authenticationUrl`, the browser opens a popup or "child" window and waits for it to respond
+with "success"  using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). The target window
+for this `postMessage` call should be the opener, accessible via
+[window.opener](https://developer.mozilla.org/en-US/docs/Web/API/Window/opener).
+
+Note that for security purposes, the _origin_ included in the event needs to match the `serverUrl` registered to the app. That is,
+the origin serving the `authenticationUrl` response must match the app's configured `serverUrl`.
+
+### Additional notes
+
+If the app wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
+an [OAuth flow](/docs/oauth) against Asana. 
+
+Keep in mind that this authorization provides the app server with a single user's auth token. Multiple users of Asana will
+hit the UI hooks and send requests to the app server, but the server will likely only have the token for one user. You may want
+to suggest users to authenticate with a bot account. 
+
+<hr>
+
+## Message Integrity
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
+case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
+calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
+The signature must be on the exact parameter string that will be passed to the app because the signature will change if 
+something as trivial as spacing changes.
+
+The burden of verifying the request is on the app. Without this check, attackers can send requests to the App 
+Server pretending to be Asana.
+
+<hr>
+
+## Timeliness
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
+recorded, such as in logs, could be reused to continue to request information from the app at a later time.
+
+The burden of verifying the request has not expired is on the app. Without this check, the App Server is vulnerable to 
+replay attacks.
+
+<hr>
+
+## Submit for Review
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+After you have completed development of your app (and you have addressed the guidelines above), you can begin the process
+to have your app published on Asana. To do so, please complete and submit the
+[App Components Review form](https://form-beta.asana.com/?k=x08gUU-Hh2RYzjoEcckpkQ&d=15793206719).
+
+<hr class="full-line">
+
+# Additional Resources
+
+## Configurations
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+> Sample of a "full" App Components configuration
 
 ```json
 
@@ -348,14 +520,9 @@ Related References:
 }
 ```
 
-To create an app with App Components, you will need to create an OAuth App and request the 
-App Components functionality onto it via the 
-[Create an App Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) form.
+The following table lists the configurations you can make to define your App Components app.
 
-To create an OAuth app, see [Authentication Quick Start](/docs/authentication-quick-start).
-
-To create an App Components app you'll need to fill out the [Create an App Components App](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719)
-form with the data in the table below.
+To create an app with App Components functionality, you'll first need to [create an app](docs/authentication-quick-start), then fill out the [App Components Configuration form](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) with the data described in the table below. Note that certain fields, such as the app name and icon, are directly customizable in the developer console and will also be used by the App Components system.
 
 |Field|Type|Description|
 |---|---|---|
@@ -397,167 +564,43 @@ form with the data in the table below.
 | `feedbackLink`              | String (url) | Link to a form for collecting feedback about the app. |
 | `externalSupportUrl`        | String (url) | Link to page where users can learn more about the app, access detailed setup instructions, or get support. | 
 
-Once your app is submitted, an Asana Developer will enable your app and notify you via email when it's ready to use. 
-
-<hr class="full-line">
-
-# App Components Guidelines
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, here are some guidelines you can follow.
-
-When submitting an [app definition](/docs/app-components-definition), you should:
-
-* Add necessary images (e.g., feature images, icon, logo, etc.)
-* Add support links (e.g., feedback link, external support URL)
-* Proof-read marketing-related text (e.g., description, extended description, features)
-* Make sure button text has 3-4 words or fewer and start with a verb
-* Use consistent language for similar concepts (where applicable)
-* Use sentence case by default and capitalize proper nouns
-
-When testing your application, you should:
-
-* Try to "break" your forms (e.g., test watched fields, limit invalid submissions, test typeahead fetches, etc.)
-* Test and proof-read any custom error messages
-* Test the auth flow from both the web browser and [desktop app](https://asana.com/download)
-* Test app actions with a variety of trigger combinations
-
-<hr class="full-line">
-
-# App Components Security
-
-## App Components Security Checklist
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-When handling requests from Asana, an App Components app should:
- 
- - Reject requests with missing or incorrect signatures.
- - Reject requests with an "expires" time in the past.
-    - **Note**: Make sure to use the correct units for this. "expires" is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
-
-If an app uses OAuth for authentication, the app should:
- 
- - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
-
-If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
-
- - An attacker can't authenticate themselves as someone else
- - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
-
-## App Components Authorization
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-```html
-<!-- Example: An app might return this HTML in response to the 
-authenticationUrl request after the Oauth flow is completed:
- -->
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>You have successfully connected Asana to the app</title>
-  </head>
-  <body>
-    Success!
-    <script>
-      window.opener.postMessage("success", "ORIGIN");
-      window.close();
-    </script>
-  </body>
-</html>
-```
-
-### Overview
-
-The Asana platform needs confirmation from the App Components app that authentication has completed successfully. When 
-an app is added to a project, the user adding it is sent to the app's `authenticationUrl`. The app may perform OAuth with Asana,
-OAuth with a different app, perform both, or perform none. As long as the app confirms the flow was complete, Asana will
-successfully add the app to the project. This will allow requests to be sent to the app's predefined endpoints.
-
-### How it works
-
-Under the hood, we carry this out by listening for a message from the authentication popup window containing the string "success".
-When we make a request to the app's `authenticationUrl`, the browser opens a popup or "child" window and waits for it to respond
-with "success"  using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). The target window
-for this `postMessage` call should be the opener, accessible via
-[window.opener](https://developer.mozilla.org/en-US/docs/Web/API/Window/opener).
-
-Note that for security purposes, the _origin_ included in the event needs to match the `serverUrl` registered to the app. That is,
-the origin serving the `authenticationUrl` response must match the app's configured `serverUrl`.
-
-### Additional notes
-
-If the app wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
-an [OAuth flow](https://developers.asana.com/docs/oauth) against Asana. 
-
-Keep in mind that this authorization provides the app server with a single user's auth token. Multiple users of Asana will
-hit the UI hooks and send requests to the app server, but the server will likely only have the token for one user. You may want
-to suggest users to authenticate with a bot account. 
+Once your app is submitted, an Asana developer will configure and enable your app, then notify you via email when the app is ready to use. 
 
 <hr>
 
-## App Components Message Integrity
+## Toolkit
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span>
 
-Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
-case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
-calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
-The signature must be on the exact parameter string that will be passed to the app because the signature will change if 
-something as trivial as spacing changes.
+Our [App Components Toolkit](https://www.figma.com/file/my7DKSUnuVjEiNSnJuMFcI/App-Components-Toolkit?node-id=5%3A0) provides
+a visual documentation of App Components. You'll see at-a-glance how the different features and capabilities surface within
+Asana, including how they fit together and what you can do with them. Feel free to use the toolkit to supplement the process
+of designing and building your apps with App Components.
 
-The burden of verifying the request is on the app. Without this check, attackers can send requests to the App 
-Server pretending to be Asana.
+<img src="../images/ac-toolkit-screenshot.png" />
 
 <hr>
 
-## App Components Timeliness
+## Example App
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
-recorded, such as in logs, could be reused to continue to request information from the app at a later time.
+After you have obtained a [developer sandbox](/docs/developer-sandbox), you will have access to the "External Example App"
+in the app gallery.
 
-The burden of verifying the request has not expired is on the app. Without this check, the App Server is vulnerable to 
-replay attacks. 
-
-<hr class="full-line">
-
-# App Components Quick Start
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-This guide offers a quick way for developers to start building on App Components. By following these steps, you'll gain an understanding of how to install App Component apps to your developer sandbox, as well as how an example app communicates with endpoints exposed on a pre-built local server. 
-
-Note that for the App Components apps [that you create](https://developers.asana.com/docs/app-components-definition), you'll be able to define your own icons, images, descriptions, and other content. Many of the values for these fields are marked by **{curly braces}** in the example app.
-
-Before you begin, you'll need a developer sandbox in order to use App Components in your application. [Click here to request a sandbox](https://developers.asana.com/docs/developer-sandbox) if you don't already have one.
-
-1. Clone [this repository](https://github.com/Asana/app-components-example-app) containing an example Express server.
-2. Follow the instructions in the [README](https://github.com/Asana/app-components-example-app/blob/main/README.md) to run the server. This server needs to remain on as you use the example app.
-3. Open the developer sandbox in your browser.
-4. In an existing project, go to **Customize** > **Apps** > **{Example}** to install the App Components example app.
-<br>
-<br>
 <img src="../images/example-app-gallery-tile.png" />
-<br>
-<br>
-5. Once the example app is installed, create a task in your project. In the task's **{Example}** custom field, go to **{Add Example Resource}** > **{Open form}** to see examples of customizable inputs. Click **Submit**.
-<br>
-<br>
-<img src="../images/example-app-form.gif" />
-<br>
-<br>
-6. View the newly-generated widget on your task. You can begin editing `index.js` to modify the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
-<br>
-<br>
-<img src="../images/example-app-widget.png" />
-<br>
-<br>
-That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's widget. Once you're ready to define an app, [click here to create your own app](https://developers.asana.com/docs/app-components-definition) with App Components.
+
+To test out the features of App Components, feel free to install the app into any project in your sandbox. Note that
+the corresponding [Express server](https://github.com/Asana/app-components-example-app) must be running at the same
+time as well. For more information on the example app, visit the [App Components Quick Start](/docs/quick-start) guide.
+
+<hr>
+
+## Forum
+
+<span class="beta-indicator">BETA</span>
+
+For the latest news on App Components, as well as opportunity to engage with other developers in the community,
+feel free to visit our [App Components forum](https://forum.asana.com/c/developersapi/app-components-beta/150).
 
 </section>

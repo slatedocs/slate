@@ -92,12 +92,12 @@ under the License.
       <ul id="toc" class="toc-list-h1">
         <% platform_ui_alpha = false %>
         <% toc_data(page_content).each do |h1| %>
-          <% if h1[:title].start_with?("App Components Beta"); platform_ui_alpha = true; end %>
+          <% if h1[:title].start_with?("Overview of App Components"); platform_ui_alpha = true; end %>
           <% if h1[:title].start_with?("API Reference"); platform_ui_alpha = false; end %>
           <li<% if platform_ui_alpha %> class="platform-ui-alpha"<% end %>>
-            <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") || h1[:title].start_with?("Developer Sandbox") || h1[:title].start_with?("App Components Beta")%>
+            <% if h1[:title].start_with?("API Reference") || h1[:title].start_with?("Schemas") || h1[:title].start_with?("Developer Sandbox") || h1[:title].start_with?("Overview of App Components") %>
               <hr>
-              <% if platform_ui_alpha %><a class="toc-h1 toc-link"><span class="beta-indicator">BETA</span></a></li><li class="platform-ui-alpha"><% end %>
+              <% if platform_ui_alpha %><a class="toc-h1 toc-link"><span class="beta-indicator">App Components</span></a></li><li class="platform-ui-alpha"><% end %>
             <% end %>
             <a href="/docs/<%= h1[:id] %>" class="toc-h1 toc-link<% if h1[:title].start_with?("Overview") %> active<% end %>" data-title="<%= h1[:title] %>"><%= h1[:content] %><% if platform_ui_alpha && h1[:title].start_with?("App Server") %><span class="beta-indicator"> - ALPHA</span><% end %></a>
             <% if h1[:children].length > 0 %>
