@@ -3,7 +3,7 @@
 
 # Overview of App Components
 
-<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+<span class="beta-indicator">BETA</span>
 
 An important step in maintaining flow at work is having all the information you need in one place. Asana is for teams to track 
 projects, to provide clarity on *who* is doing *what* by *when*, and to automate repetitive processes. Now, it's easier than ever to 
@@ -346,7 +346,7 @@ When handling requests from Asana, an App Components app should:
  - Reject requests with an "expires" time in the past.
     - **Note**: Make sure to use the correct units for this. "expires" is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
 
-If an app uses OAuth for authentication, the app should:
+If an app uses [OAuth for authentication](/docs/oauth), the app should:
  
  - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
 
@@ -522,7 +522,7 @@ to have your app published on Asana. To do so, please complete and submit the
 
 The following table lists the configurations you can make to define your App Components app.
 
-To create an App Components app, you'll need to first [create an OAuth app](docs/authentication-quick-start), then fill out the [App Components Configuration form](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) with the data described in the table below.
+To create an app with App Components functionality, you'll first need to [create an app](docs/authentication-quick-start), then fill out the [App Components Configuration form](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) with the data described in the table below. Note that certain fields, such as the app name and icon, are directly customizable in the developer console and will also be used by the App Components system.
 
 |Field|Type|Description|
 |---|---|---|
