@@ -14,7 +14,7 @@ toc_footers:
 includes:
   - pricing
   - pipeline
-  - quality
+  - sla
   - license
   - provider
   - helloworld
@@ -40,6 +40,8 @@ Open Data Product Specification aims to:
 * reduce data product metadata conversions and errors between systems and organizations, 
 * increase the speed of designing, testing, and implementing data products. 
 * enable creation of automated data product deployment with standard methods (DataOps)
+
+Just like Data Product in Data Mesh concept, Open Data Product dessribes..... self-sovereign 
 
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
