@@ -1,4 +1,4 @@
-# Quality
+# Service Level Agreement
 
 Quality ELEMENT contains attributes which define the desired and promised quality of the data product. 
 
@@ -25,6 +25,28 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
          "unit": "milliseconds",
          "value": 200
       }
+      "support": 
+      {
+         "company": 
+         {
+            "phonenumber":"",
+            "email":"",
+            "documentationURL":"",
+            "guidesURL":""
+         },
+         "community": 
+         {
+            "stackoverflowURL": "",
+            "forumURL": "" 
+            "facebookURL":"", 
+            "slackURL":"",
+            "twitterURL":""
+         }
+      }
+      "monitoring":
+      {
+
+      }   
    }
 ```
 
