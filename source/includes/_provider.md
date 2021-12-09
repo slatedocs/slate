@@ -24,7 +24,6 @@ The same logic applies to the optional attributes as well. Optional attributes a
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
 | **legalName** **\*** | string  | text content, max length 256 chars  | The official name of the organization, e.g. the registered company name.  | 
-| 
 |  **businessID** **\*** | string  | -  | The business identifier code of the company. Often this is given to the company by authorized public sector organization managing register of businesses.  |
 | **email** **\*** | string | - | Email to be used in contacting the organization. |
 
