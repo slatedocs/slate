@@ -587,26 +587,29 @@ Content-Type: application/json
 }
 ```
 ### Description
-Adds repayments to investments from a specified wallet.
+Adds repayments to investments from a specified flexible payments wallet.
 
  - On receiving the API call, the system will reserve money in the wallet and start the distribution process provided the "sourceWalletId" has enough funds.
- - There is no need to manually move money to the receiving account.
- - The system will publish a <a href="/#webhooks-batch_update">BATCH_UPDATE</a> webhook with a type of `REPAYMENTS` to provide an update on the progress of the distribution.
+ - There is no need to manually move money from a wallet to the receiving account.
+ - The system will publish a <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.
+ - The system will then publish "n" webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, where "n" is the size of the investorRepayments array, as each repayment in the batch is cleared.
+ - Finally the system will publish a <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.
+ - All these webhooks will reference `repaymentBatchReference` so you are required to store this value for reconciling repayments as they clear.
 
 <aside class="notice">
 This endpoint is the only call required to repay investments for any platform onboarded from 1st November 2021.
 </aside>
 
 ### Request
-| Name                              | Type   | Description                                                                    | Required |
-| --------------------------------- | ------ | ------------------------------------------------------------------------------ | -------- |
-| reference                         | string | The payment reference used for the repayment of funds. Will also be present on `INVESTOR_FUNDS_RECEIVED` webhook | required |
-| sourceWalletId                    | string | The wallet this distribution should be made from                               | required |
-| investorRepayments                | array  | The repayments per investor.                                                   | required |
-| investorRepayments[].investmentId | string | The ID of the of the investment                                                | required |
-| investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br> | required |
-| investorRepayments[].amount       | ref    | The amount being repaid                                                        | required |
-| investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment                           | optional |
+| Name                              | Type   | Description                                                                                            | Required |
+| --------------------------------- | ------ | ------------------------------------------------------------------------------------------------------ | -------- |
+| reference                         | string | The payment reference used for the repayment of funds. This will be present on the wallet statement.   | required |
+| sourceWalletId                    | string | The wallet this distribution should be made from                                                       | required |
+| investorRepayments                | array  | The repayments per investor.                                                                           | required |
+| investorRepayments[].investmentId | string | The ID of the of the investment                                                                        | required |
+| investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br>                         | required |
+| investorRepayments[].amount       | ref    | The amount being repaid                                                                                | required |
+| investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment                                                   | optional |
 ### Response
 | Name                     | Type   | Description                                  |
 | ------------------------ | ------ | -------------------------------------------- |
