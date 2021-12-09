@@ -583,7 +583,7 @@ Note: For Payment Checkout Configuration-related fields (Amount Type, Payment Me
 ![Payment Checkout](images/create_reusable_3.png)
 
 
-## Monitoring the payment checkout transactions
+### Monitoring the payment checkout transactions
 
 One-time Link
 
