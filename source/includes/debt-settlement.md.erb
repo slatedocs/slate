@@ -19,7 +19,7 @@ record of the investment against the investors' accounts and also move the funds
 The investment manager will calculate repayments and any withholding tax that are due to the investors in the bond. The investment manager will
 record the due repayment via the API. This will start distribution of funds from the specified wallet to each investor account. The system will publish webhooks on every individual repayment clearing as well as the acceptance and the clearing of the batch.
 
-![](/images/settlement/images/new_repayments_flow_high_level.png "high level wallet based repayment flow")
+![](/images/settlement/images/repayments_flow_high_level.png "high level wallet based repayment flow")
 
 ## Investor repayments without using wallets
 
@@ -325,18 +325,18 @@ Content-Type: application/json
 ### Description
 Records an investment and triggers a transfer of funds to the Investment Manager.
 ### Request
-| Name                              | Type   | Description                                                                                                                 | Required |
-| --------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- | -------- |
-| id                                | string | The unique ID for this tranche of investment                                                                                | required |
-| productId                         | string | The ID of the investment product as preciously registered in the system                                                     | required |
-| paymentDestinationId (Deprecated) | string | The ID of the payment destination to be used for this tranche. This has been deprecated, please use the bankAccountId field | optional |
-| bankAccountId                     | string | The ID of the bank account details to be used for this tranche.                                                             | required |
-| reference                         | string | The bank reference for the funds transfer                                                                                   | required |
-| investments                       | array  |                                                                                                                             | required |
-| investments[].id                  | string | The unique ID for this clients investment                                                                                   | required |
-| investments[].clientId            | string | The ID of the investor                                                                                                      | required |
-| investments[].amount              | ref    | The amount being invested                                                                                                   | required |
-| investments[].accountType         | string | The account making the investment. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                  | required |
+| Name                              | Type   | Description                                                                                                                       | Required |
+| --------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| id                                | string | The unique ID for this tranche of investment                                                                                      | required |
+| productId                         | string | The ID of the investment product as preciously registered in the system                                                           | required |
+| paymentDestinationId (Deprecated) | string | The ID of the payment destination to be used for this tranche. This has been deprecated, please use the bankAccountId field       | optional |
+| bankAccountId                     | string | The ID of the bank account details to be used for this tranche.                                                                   | required |
+| reference                         | string | The bank reference for the funds transfer                                                                                         | required |
+| investments                       | array  |                                                                                                                                   | required |
+| investments[].id                  | string | The unique ID for this clients investment as registered <a href="/#settlement-debt-post-platformapi-settlement-tranche">here</a>  | required |
+| investments[].clientId            | string | The ID of the investor                                                                                                            | required |
+| investments[].amount              | ref    | The amount being invested                                                                                                         | required |
+| investments[].accountType         | string | The account making the investment. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                        | required |
 ### Response
 | Name                 | Type   | Description                                  |
 | -------------------- | ------ | -------------------------------------------- |
@@ -588,11 +588,12 @@ Content-Type: application/json
 ### Description
 Adds repayments to investments from a specified flexible payments wallet.
 
- - On receiving the API call, the system will reserve money in the wallet and start the distribution process provided the "sourceWalletId" has enough funds.
+ - On receiving the API call, the system will reserve money in the wallet and start the distribution process provided the `sourceWalletId` has enough funds.
  - There is no need to manually move money from a wallet to the receiving account.
- - The system will publish a <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.
- - The system will then publish "n" webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, where "n" is the size of the investorRepayments array, as each repayment in the batch is cleared.
- - Finally the system will publish a <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.
+ - The system will publish an <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a> webhook once the repayment batch has been accepted.
+ - The system will then publish "n" webhooks of type <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, where "n" is the size of the `investorRepayments` array, as each repayment in the batch is cleared.
+ - Finally the system will publish an <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a> webhook when the batch in considered complete. This is a batch process and therefore might be sent later than the last repayment to clear.
+ - These webhooks should provide coverage of all stages of the batch clearing. When using <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>, it might be relevant to ignore all `CAPITAL_REPAYMENT` and `INTEREST_REPAYMENT` <a href="/#webhooks-investor_funds_received">INVESTOR_FUNDS_RECEIVED</a> webhooks.
  - All these webhooks will reference `repaymentBatchReference` so you are required to store this value for reconciling repayments as they clear.
 
 <aside class="notice">
@@ -616,11 +617,11 @@ This endpoint is the only call required to repay investments for any platform on
 
 ### Possible HTTP Statuses 
 
-| HTTP Status Code | Description                                      | Body                                      | Content-Type     |                 
-|------------------|--------------------------------------------------|------------------------------------------ |------------------| 
-| 200 Ok           | Batch accepted to be instructed                  | See above                                 | application/json |                 
-| 400 Bad Request  | The request was malformed.                       | <a href="/#errors-bad-request">Error</a>  | application/json |                  
-| 401 Unauthorized | No auth provided, auth failed, or not authorized | <a href="/#errors-unauthorised">Error</a> | application/json |       
+| HTTP Status Code | Description                                                                                                                                                                                                                                                                                                | Body                                      | Content-Type     |                 
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------ |------------------| 
+| 200 Ok           | Batch accepted to be instructed. Note that this does not indicate completion or success. Subsequent processing is asynchronous, so the caller should listen to the webhooks detailed above to determine progress.                                                                                          | See above                                 | application/json |                 
+| 400 Bad Request  | The request was malformed. See body for more information                                                                                                                                                                                                                                                   | <a href="/#errors-bad-request">Error</a>  | application/json |        
+| 50x Unauthorized | Unknown errors and timeouts. The caller should not assume that the request has failed. Listen for any subsequent webhooks indicating processing may have started, and ensure any automated retries use the X-CLIENT-REQUEST-ID header and repeat within a maximum of 24 hours to prevent double-processing | <a href="/#errors-unauthorised">Error</a> | application/json |       
 
 ## `GET /investor-repayment`
 

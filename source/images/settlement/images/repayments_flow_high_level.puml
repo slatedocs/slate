@@ -26,7 +26,7 @@ end note
 ...  ...
 
 hnote right other
-<b>(1) [NEW WEBHOOKS]</b>
+<b>(1) [WEBHOOKS]</b>
 The following webhooks will be
 sent back to the platform as the
 repayment progresses.
@@ -48,7 +48,7 @@ api -[#007500]-> other : <b>INVESTMENT_REPAYMENT_BATCH_COMPLETE</b> webhook
 ... ...
 
 hnote over other
-<b>(2) [NEW ENDPOINTS]</b>
+<b>(2) [ENDPOINTS]</b>
 The following endpoints can also
 be used to retrieve various data on
 a given repayment call.

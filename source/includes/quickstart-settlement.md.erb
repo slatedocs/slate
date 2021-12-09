@@ -229,8 +229,8 @@ This applies if you are using our flexible payments (wallets) functionality.
 
 [POST https://api-sandbox.goji.investments/platformApi/settlement/investor-repayment](/#settlement-debt-post-platformapi-settlement-investor-repayment)
 
- - The system will move money from the wallet specified referenced by "sourceWalletId" to all the investors specified in the investorRepayments array.
- - It is not guaranteed that there will be as many money movements as there are investors in the investorRepayments array so your system should not rely on it.
+ - The system will move money from the wallet specified referenced by `sourceWalletId` to all the investors specified in the `investorRepayments` array.
+ - It is not guaranteed that there will be exactly as many money movements as there are investors in the `investorRepayments` array so your system should not rely on it. Reasons for this could include repayments larger than the underlying payment scheme limit or a bulk movement from the wallet to the client money account.
  - We publish a set of webhooks to update your system on the status of the repayment batch going from accepted all the way through to completed.
  - These webhooks should allow full visibility of the repayment batch throughout the course of the instruction being carried out.
 
