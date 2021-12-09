@@ -44,7 +44,6 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
          {
             "stackoverflowURL": "",
             "forumURL": "" 
-            "facebookURL":"", 
             "slackURL":"",
             "twitterURL":""
          }
@@ -72,6 +71,12 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
 | emailResponseTime | string | - | Describes aimed maximum delay in responding to email support requests. This doesn't normally guarantee a resolution to the problem.  |
 | documentationURL | URL | - | URL to the documentation of the product. |
 | guidesURL | URL | - | URL to the guides offering more information and examples about how to use the data product. Guides might be platform specific. |
+| community | Element | - | Element that contains community based support function information |  
+| stackoverflowURL | URL | - | URL to the Stack Overflow. Could be for example list of resolved issues related to the product |  
+| forumURL | URL | - | URL to the community forum in which product related support requests can be raised |  
+| slackURL | URL | - | URL to the Slack workspace in which product related support requests can be raised |  
+| twitterURL | URL | - | URL to the Twitter account for which product related support requests can be raised |  
+| monitoring | Element | - | Element containing product monitoring related information. One of the common monitoring services used by consumers is uptime information providing application. |  
 
 
 <button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
