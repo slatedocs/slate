@@ -59,8 +59,8 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
-| updateFrequency | element  | options for *unit* are: milliseconds, seconds, minutes, days, weeks, months, years, never, null. *Value* attribute is Integer.  | name of the quality attribute indicating the timely interval how often data is updated. |
-| uptime | element | options for *unit* are: percentage, string, null. The value attribute can be integer or string "best effort". | Uptime is the amount of time that a service is online available and operational. Guaranteed uptime is expressed as SLA level and is generally the most important metric to measure the quality of a hosting provider. An SLA level of 99.99% for example equates to 52 minutes and 36 seconds of downtime per year. in this context uptime is SLA.  |
+| updateFrequency | element  | options for *unit* are: milliseconds, seconds, minutes, days, weeks, months, years, never, null. <br/><br/> *Value* attribute is Integer.  | name of the quality attribute indicating the timely interval how often data is updated. |
+| uptime | element | options for *unit* are: percentage, string, null. <br/><br/> The *value* attribute can be integer or string "best effort". | Uptime is the amount of time that a service is online available and operational. Guaranteed uptime is expressed as SLA level and is generally the most important metric to measure the quality of a hosting provider. An SLA level of 99.99% for example equates to 52 minutes and 36 seconds of downtime per year. in this context uptime is SLA.  |
 |  responseTime| element | unit options are: milliseconds, seconds, null. Value can be integer or null | Response time is the total amount of time it takes to respond to a request for service. |
 | support | element | - | Support element describes how the customer can reach for help in case of difficulties in usage, billing, or otherwise. Support can be based on company provided support and community driven support. |
 | phoneNumber | string | - | The support phone number |
