@@ -33,10 +33,10 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
             "phoneServiceHours":""
             "chatURL":"",
             "chatServiceHours":"",
-            "chatResponseTime:"",
+            "chatResponseTime":"",
             "email":"",
             "emailServiceHours":"",
-            "emailResponseTime:"",
+            "emailResponseTime":"",
             "documentationURL":"",
             "guidesURL":"",
          },
@@ -65,5 +65,13 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
 | phoneNumber | string | - | The support phone number |
 | phoneServiceHours | string | - | Describes the service hours company provides. Contains information often in week level eg Mon-Fri at 8am - 4pm |
 | chatURL | URL | - | The URL of chat service to use. Service hours and response time defined in other attributes. |
+| chatServiceHours | string | - | Describes the chat service hours company provides. Contains information often in week level eg Mon-Fri at 8am - 4pm |
+| chatResponseTime | string | - | Describes aimed maximum delay in responding to chat support requests. This doesn't normally guarantee a resolution to the problem.  |
+| email | string | - | Email information for support requests |
+| emailServiceHours | string | - | Describes the email service hours company provides. Contains information often in week level eg Mon-Fri at 8am - 4pm |
+| emailResponseTime | string | - | Describes aimed maximum delay in responding to email support requests. This doesn't normally guarantee a resolution to the problem.  |
+|  |  |  |  |
+|  |  |  |  |
+
 
 <button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
