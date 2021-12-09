@@ -92,6 +92,7 @@ Here's the list of attributes which can occur at the document root level. Mandat
 ```javascript
 "Product": {
   "name":"Pets of the year",
+  "productID":"123456are",
   "description":"",
   "visibility":"private",
   "status":"draft",
@@ -106,6 +107,7 @@ Here's the list of attributes which can occur at the document root level. Mandat
 |---|---|---|---|
 | **valueProposition** **\*** | string  | text content, max length 512 chars  | This is the product's value proposition. Often one or two sentences and crystallizes the value for the customer. |
 | **name** **\*** | string | max length 256 chars | The name of the product. |
+| **productID** **\*** | string | max length 256 chars | Product identifier. |
 | **description** **\*** | string | - | The description of the product. Text only. |
 | **visibility** **\*** | one of | one of: private, organisation, public | The publicity level eg who can see this product. Private - just the creator. Organisation - visible to all in your organisation. Public - visible to all publicly |
 | **status** **\*** | one of | one of: announcement, draft, development, testing, acceptance, production, retired | The status of the product. Lifecycle model discussed in details in here (link). |
