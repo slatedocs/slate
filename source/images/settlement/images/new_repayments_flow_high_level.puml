@@ -1,0 +1,86 @@
+@startuml
+
+title Typical Flow
+skinparam responseMessageBelowArrow true
+actor "Platform" as other
+participant "Goji API Gateway" as api
+
+other -> api : <b>HTTP POST</b> /investor-repayment (example size = 10)
+hnote left api
+The <b> sourceWalletId </b> describing where
+ the funds are located <i>must</i> be specified
+ in this POST request.
+
+ The expectation is that funds already
+ exist in the wallet before making this call.
+
+end note
+api -> other : 200 Response {<b>repaymentBatchReference</b>}
+hnote over other
+A <b> repaymentBatchReference </b>
+will be returned in the response body.
+end note
+
+
+...  ...
+...  ...
+
+hnote right other
+<b>(1) [NEW WEBHOOKS]</b>
+The following webhooks will be
+sent back to the platform as the
+repayment progresses.
+
+end note
+
+api -[#007500]-> other : <b>INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</b> webhook
+... ...
+api -[#007500]-> other : <b>INVESTMENT_REPAYMENT_CLEARING</b> webhook (1/10)
+api -[#007500]-> other : INVESTMENT_REPAYMENT_CLEARING webhook (2/10)
+api -[#007500]-> other : ...
+api -[#007500]-> other : ...
+api -[#007500]-> other : ...
+api -[#007500]-> other : INVESTMENT_REPAYMENT_CLEARING webhook (10/10)
+... ...
+api -[#007500]-> other : <b>INVESTMENT_REPAYMENT_BATCH_COMPLETE</b> webhook
+
+... ...
+... ...
+
+hnote over other
+<b>(2) [NEW ENDPOINTS]</b>
+The following endpoints can also
+be used to retrieve various data on
+a given repayment call.
+
+The <b>repaymentBatchReference</b> is
+the unique identifier for [1] and [2].
+
+end note
+
+== GET a specific repayment with statuses ==
+other -[#007500]> api : HTTP GET /investor-repayment/{<b>repaymentBatchReference</b>}
+api -> other : 200 Response
+
+... ...
+
+
+== GET an overview of the last 20 repayments made ==
+other -[#007500]> api : HTTP GET/investor-repayment
+api -> other : 200 Response
+
+... ...
+
+== GET all repayments against a specific investment ==
+other -[#007500]> api : HTTP GET /investment/{<b>clientInvestmentId</b>}
+api -> other : 200 Response
+
+... ...
+
+
+
+
+
+
+
+@enduml 

@@ -12,23 +12,22 @@ they will be made available in the ISA.
 The investment manager will periodically record an investment in the Goji platform via the API. This will trigger a
 record of the investment against the investors' accounts and also move the funds from the client money account to the investment manager.
 
-![](/images/settlement/images/client-money-investment.png "")
+![](/images/settlement/images/client-money-investment.png "performing an investment flow")
 
-## Bond repayments
+## Investor repayments using wallets
+
+The investment manager will calculate repayments and any withholding tax that are due to the investors in the bond. The investment manager will
+record the due repayment via the API. This will start distribution of funds from the specified wallet to each investor account. The system will publish webhooks on every individual repayment clearing as well as the acceptance and the clearing of the batch.
+
+![](/images/settlement/images/new_repayments_flow_high_level.png "high level wallet based repayment flow")
+
+## Investor repayments without using wallets
 
 The investment manager will calculate repayments and any withholding tax that are due to the investors in the bond. The investment manager will
 record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
 be returned to the investment manager to the specified payment destination
 
-![](/images/settlement/images/client-money-repayment.png "")
-
-## Bond maturity
-
-When the bond matures, the investment manager will calculate repayments that are due to the investors in the bond. The investment manager will
-record the due repayment via the API. Once the funds are received, they will be distributed to the appropriate investors and any tax or fees specified will
-be returned to the investment manager to the specified payment destination.
-
-![](/images/settlement/images/client-money-maturity.png "")
+![](/images/settlement/images/client-money-repayment.png "high level non wallet based repayment flow")
 
 ## Secondary market
 
@@ -36,7 +35,7 @@ When the investment manager wishes to transfer ownership of a loan (or part ther
 to the Goji platform. If appropriate funds are available in the buyer's account in the Goji platform, the appropriate
 transactions are recorded and funds are moved to the seller's account.
 
-![](/images/settlement/images/client-money-secondary-market.png "")
+![](/images/settlement/images/client-money-secondary-market.png "high level secondary market flow")
 
 
 ## `GET /platformApi/settlement/product`
