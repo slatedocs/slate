@@ -65,19 +65,19 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
 | support | element | - | Support element describes how the customer can reach for help in case of difficulties in usage, billing, or otherwise. Support can be based on company provided support and community driven support. |
 | phoneNumber | string | - | The support phone number |
 | phoneServiceHours | string | - | Describes the service hours company provides. Contains information often in week level eg Mon-Fri at 8am - 4pm |
-| chatURL | URL | - | The URL of chat service to use. Service hours and response time defined in other attributes. |
+| chatURL | URL | Valid URL | The URL of chat service to use. Service hours and response time defined in other attributes. |
 | chatServiceHours | string | - | Describes the chat service hours company provides. Contains information often in week level eg Mon-Fri at 8am - 4pm |
 | chatResponseTime | string | - | Describes aimed maximum delay in responding to chat support requests. This doesn't normally guarantee a resolution to the problem.  |
 | email | string | - | Email information for support requests |
 | emailServiceHours | string | - | Describes the email service hours company provides. Contains information often in week level eg Mon-Fri at 8am - 4pm |
 | emailResponseTime | string | - | Describes aimed maximum delay in responding to email support requests. This doesn't normally guarantee a resolution to the problem.  |
 | documentationURL | URL | - | URL to the documentation of the product. |
-| guidesURL | URL | - | URL to the guides offering more information and examples about how to use the data product. Guides might be platform specific. |
+| guidesURL | URL | Valid URL | URL to the guides offering more information and examples about how to use the data product. Guides might be platform specific. |
 | community | Element | - | Element that contains community based support function information |  
-| stackoverflowURL | URL | - | URL to the Stack Overflow. Could be for example list of resolved issues related to the product |  
-| forumURL | URL | - | URL to the community forum in which product related support requests can be raised |  
-| slackURL | URL | - | URL to the Slack workspace in which product related support requests can be raised |  
-| twitterURL | URL | - | URL to the Twitter account for which product related support requests can be raised |  
+| stackoverflowURL | URL | Valid URL | URL to the Stack Overflow. Could be for example list of resolved issues related to the product |  
+| forumURL | URL | Valid URL | URL to the community forum in which product related support requests can be raised |  
+| slackURL | URL | Valid URL | URL to the Slack workspace in which product related support requests can be raised |  
+| twitterURL | URL | Valid URL | URL to the Twitter account for which product related support requests can be raised |  
 | observability | element | - | Observability is a superset of monitoring. It provides not only high-level overviews of the system’s health but also highly granular insights into the implicit failure modes of the system. In addition, an observable system furnishes ample context about its inner workings, unlocking the ability to uncover deeper, systemic issues. | 
 | logsURL | URL | Valid URL | URL to service which offers access to event logs including errors, response times, call information. | 
 | dashboardURL | URL | Valid URL | URL to dashboard application which visualizes product behaviour. This service should support at least part of the given product quality indicators | 
