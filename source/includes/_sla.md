@@ -48,10 +48,12 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
             "twitterURL":""
          }
       }
-      "monitoring":
+      "observability":
       {
-
-      }   
+         "logsURL":"https://logs.com"
+         "dashboardURL":"https://dashboard.com",
+         "uptimeURL":"https://uptime.com"
+      } 
    }
 ```
 
@@ -76,7 +78,9 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
 | forumURL | URL | - | URL to the community forum in which product related support requests can be raised |  
 | slackURL | URL | - | URL to the Slack workspace in which product related support requests can be raised |  
 | twitterURL | URL | - | URL to the Twitter account for which product related support requests can be raised |  
-| monitoring | Element | - | Element containing product monitoring related information. One of the common monitoring services used by consumers is uptime information providing application. |  
-
+| observability | element | - | Observability is a superset of monitoring. It provides not only high-level overviews of the system’s health but also highly granular insights into the implicit failure modes of the system. In addition, an observable system furnishes ample context about its inner workings, unlocking the ability to uncover deeper, systemic issues. | 
+| logsURL | URL | Valid URL | URL to service which offers access to event logs including errors, response times, call information. | 
+| dashboardURL | URL | Valid URL | URL to dashboard application which visualizes product behaviour. This service should support at least part of the given product quality indicators | 
+| uptimeURL | URL | Valid URL | URL to service which shows uptime statistics as well as other statistical information. This service should support at least part of the given product quality indicators | 
 
 <button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
