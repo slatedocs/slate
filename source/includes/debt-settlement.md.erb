@@ -605,7 +605,7 @@ This endpoint is the only call required to repay investments for any platform on
 | reference                         | string | The payment reference used for the repayment of funds. This will be present on the wallet statement.   | required |
 | sourceWalletId                    | string | The wallet this distribution should be made from                                                       | required |
 | investorRepayments                | array  | The repayments per investor.                                                                           | required |
-| investorRepayments[].investmentId | string | The ID of the of the investment                                                                        | required |
+| investorRepayments[].investmentId | string | The ID of the of the investment as specified in the original investment creation call                  | required |
 | investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br>                         | required |
 | investorRepayments[].amount       | ref    | The amount being repaid                                                                                | required |
 | investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment                                                   | optional |
@@ -613,6 +613,14 @@ This endpoint is the only call required to repay investments for any platform on
 | Name                     | Type   | Description                                  |
 | ------------------------ | ------ | -------------------------------------------- |
 | repaymentBatchReference  | string | The unique ID for this repayment request     |
+
+### Possible HTTP Statuses 
+
+| HTTP Status Code | Description                                      | Body                                      | Content-Type     |                 
+|------------------|--------------------------------------------------|------------------------------------------ |------------------| 
+| 200 Ok           | Batch accepted to be instructed                  | See above                                 | application/json |                 
+| 400 Bad Request  | The request was malformed.                       | <a href="/#errors-bad-request">Error</a>  | application/json |                  
+| 401 Unauthorized | No auth provided, auth failed, or not authorized | <a href="/#errors-unauthorised">Error</a> | application/json |       
 
 ## `GET /investor-repayment`
 
