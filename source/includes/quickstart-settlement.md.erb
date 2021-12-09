@@ -193,6 +193,8 @@ The investor's investment can be queried by calling:
 
 ## Repaying the Investment
 
+This applies if you are not using our flexible payments (wallets) functionality.
+
 > Repaying Investment
 
 ```json
@@ -239,8 +241,55 @@ when making the API call.
  - The system will publish a <a href="/#webhooks-batch_update">BATCH_UPDATE</a> webhook with a type of `REPAYMENTS` to update you on the progress of the distribution.
 
 <aside class="notice">
-This behaviour is the default for newly integrating clients, if you wish to enable this feature please contact customer support. Prior to this
+This behaviour is the default for newly integrating clients who are not using our flexible payments integration. If you wish to enable this feature please contact customer support. Prior to this
 the system will validate the funds are already present matching the reference and amount and will return an error otherwise.
+</aside>
+
+## Repaying the Investment (customers using wallets)
+
+This applies if you are using our flexible payments (wallets) functionality.
+
+> Record Repayment
+
+```json
+{
+  "reference" : "reference",
+  "sourceWalletId": "sourceWalletId",
+  "investorRepayments" : [ {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "investmentId" : "investmentId",
+    "tax" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "type" : "CAPITAL"
+  }, {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "investmentId" : "investmentId",
+    "tax" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "type" : "CAPITAL"
+  } ]
+}
+```
+
+[POST https://api-sandbox.goji.investments/platformApi/settlement/investor-repayment](/#settlement-debt-post-platformapi-settlement-investor-repayment)
+
+ - The system will move money from the wallet specified referenced by "sourceWalletId" to all the investors specified in the investorRepayments array.
+ - It is not guaranteed that there will be as many money movements as there are investors in the investorRepayments array so your system should not rely on it.
+ - We publish a set of webhooks to update your system on the status of the repayment batch going from accepted all the way through to completed.
+ - These webhooks should allow full visibility of the repayment batch throughout the course of the instruction being carried out.
+
+<aside class="notice">
+This behaviour is the default for clients who are using our flexible payments functionality alongside the Settlement module.
 </aside>
 
 ## Withdrawing Funds
