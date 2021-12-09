@@ -9,7 +9,7 @@ No mandatory attributes at the moment. Optional attributes are listed in own tab
 > Example of Quality component usage:
 
 ```javascript
-   "quality": {
+   "SLA: {
       "updateFrequency": 
       {
          "unit": "hours",
