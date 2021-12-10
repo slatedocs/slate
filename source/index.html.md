@@ -41,8 +41,6 @@ Open Data Product Specification aims to:
 * increase the speed of designing, testing, and implementing data products. 
 * enable creation of automated data product deployment with standard methods (DataOps)
 
-Just like Data Product in Data Mesh concept, Open Data Product dessribes..... self-sovereign 
-
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
 This is work in progress. If you see something missing, described inaccurately or plain wrong, or you want to comment the specification, click the button below and proceed forward. 
@@ -54,7 +52,8 @@ This is work in progress. If you see something missing, described inaccurately o
 As a strategic resource for companies, data is considered an asset that, like any other material good, has a financial
 value and whose management generates costs. Data created, collected or used in individual business processes can be sold to other organisations as raw or processed data, so that it no longer serves as an enabler of products, but is the product itself. This leads to the paradigm that data assets can be monetised by exchanging and trading data between organisations as data products and services. 
 
-There are multiple definitions for data product, but in this specification we adopt Simon O'Regan's definition as *a product whose primary objective is to use data to facilitate and end goal*. 
+
+There are multiple definitions for data product. In an [article authored by Jian Pei (2020)](https://arxiv.org/abs/2009.04462), data products "*refer to data sets as products and information services derived from data sets.*" Simon O'Regan's defines data product as *a product whose primary objective is to use data to facilitate and end goal*. From the academic literature we have found several subtypes of data products: raw data, derived data, data sets, reports, analytic views, 3D visualisations, algorithms, decision support and automated decision-making. 
 
 While many of the standard Product Development Rules apply — solve a customer need, learn from feedback, prioritise relentlessly, etc. — data has different characteristics compared to tangible products that prevent the direct transfer of established processes and rules of trading goods, especially in terms of pricing mechanisms.
 
@@ -113,7 +112,8 @@ Here's the list of attributes which can occur at the document root level. Mandat
   "visibility":"private",
   "status":"draft",
   "version":"0.1",
-  "category":"",
+  "category":"pets",
+  "type":"dataset",
   "logo":"https://data-product-business.github.io/open-data-product-spec/images/logo-dps-ebd5a97d.png"
 }
 
@@ -128,6 +128,7 @@ Here's the list of attributes which can occur at the document root level. Mandat
 | **visibility** **\*** | one of | one of: private, organisation, public | The publicity level eg who can see this product. Private - just the creator. Organisation - visible to all in your organisation. Public - visible to all publicly |
 | **status** **\*** | one of | one of: announcement, draft, development, testing, acceptance, production, retired | The status of the product. Lifecycle model discussed in details in here (link). |
 | **version** **\*** | string | The versioning scheme is **major.minor.**. Examples: 1.0, 2.1, 3.15 | The version of the product. |
+| **type** **\*** | one of |  Options: raw data, derived data, dataset, reports, analytic view, 3D visualisation, algorithm, decision support, automated decision-making, bi-directional | The type of the product. Options are derived from examples and lists found from academic literature  | 
 | **logo** **\*** | URL | - | URL of the logo. See more from [wikipedia](https://en.wikipedia.org/wiki/URL). |
 
 <button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
