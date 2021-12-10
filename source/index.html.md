@@ -41,8 +41,6 @@ Open Data Product Specification aims to:
 * increase the speed of designing, testing, and implementing data products. 
 * enable creation of automated data product deployment with standard methods (DataOps)
 
-Just like Data Product in Data Mesh concept, Open Data Product dessribes..... self-sovereign 
-
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
 This is work in progress. If you see something missing, described inaccurately or plain wrong, or you want to comment the specification, click the button below and proceed forward. 
