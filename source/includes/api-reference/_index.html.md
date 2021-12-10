@@ -14086,7 +14086,7 @@ Returns the full record of the newly created tag.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
 |» data<span class="param-type"> object</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»» color<span class="param-type"> string</span>|Color of the tag.|
+|»» color<span class="param-type"> string¦null</span>|Color of the tag.|
 |»» followers<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the tag (i.e. its description).|
@@ -14844,7 +14844,7 @@ Returns the full record of the newly created tag.
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The tag to create.|
 |» data<span class="param-type"> [TagResponse](#schematagresponse)</span>|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»» color<span class="param-type"> string</span>|Color of the tag.|
+|»» color<span class="param-type"> string¦null</span>|Color of the tag.|
 |»» name<span class="param-type"> string</span>|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the tag (i.e. its description).|
 |»» workspace<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
@@ -19374,7 +19374,8 @@ $result = $client->teams->createTeam(array('field' => 'value', 'field' => 'value
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
-    "permalink_url": "https://app.asana.com/0/resource/123456789/list"
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+    "visibility": "secret"
   }
 }
 ```
@@ -19493,7 +19494,8 @@ $result = $client->teams->getTeam($team_gid, array('param' => 'value', 'param' =
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
-    "permalink_url": "https://app.asana.com/0/resource/123456789/list"
+    "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+    "visibility": "secret"
   }
 }
 ```
@@ -19522,7 +19524,7 @@ Returns the full record for a single team.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Team](#schemateam)</span>|Successsfully retrieved the record for a single team.|
+|200<span class="param-type"> [Team](#schemateam)</span>|Successfully retrieved the record for a single team.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
@@ -26278,7 +26280,7 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|color<span class="param-type"> string</span>|Color of the tag.|
+|color<span class="param-type"> string¦null</span>|Color of the tag.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |followers<span class="param-type"> [object]</span>|Array of users following this tag.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -26846,7 +26848,8 @@ This object represents a user's connection to a team.
     "resource_type": "workspace",
     "name": "My Company Workspace"
   },
-  "permalink_url": "https://app.asana.com/0/resource/123456789/list"
+  "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+  "visibility": "secret"
 }
 
 ```
@@ -26870,6 +26873,15 @@ A *team* is used to group related projects and people together within an organiz
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
 |permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
+|visibility<span class="param-type"> string</span>|The visibility of the team to users in the same organization|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|visibility|secret|
+|visibility|request_to_join|
+|visibility|public|
 
 </section><hr>
 <section>
