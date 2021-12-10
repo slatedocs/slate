@@ -54,7 +54,7 @@ This is work in progress. If you see something missing, described inaccurately o
 As a strategic resource for companies, data is considered an asset that, like any other material good, has a financial
 value and whose management generates costs. Data created, collected or used in individual business processes can be sold to other organisations as raw or processed data, so that it no longer serves as an enabler of products, but is the product itself. This leads to the paradigm that data assets can be monetised by exchanging and trading data between organisations as data products and services. 
 
-There are multiple definitions for data product, but in this specification it is understood as *a product whose primary objective is to use data to facilitate and end goal*. 
+There are multiple definitions for data product, but in this specification we adopt Simon O'Regan's definition as *a product whose primary objective is to use data to facilitate and end goal*. 
 
 While many of the standard Product Development Rules apply — solve a customer need, learn from feedback, prioritise relentlessly, etc. — data has different characteristics compared to tangible products that prevent the direct transfer of established processes and rules of trading goods, especially in terms of pricing mechanisms.
 
