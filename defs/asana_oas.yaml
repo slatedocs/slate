@@ -4023,6 +4023,7 @@ components:
             color:
               type: string
               description: Color of the tag.
+              nullable: true
               enum:
                 - dark-pink
                 - dark-green
@@ -4716,6 +4717,14 @@ components:
               description: >-
                 A url that points directly to the object within Asana.
               example: https://app.asana.com/0/resource/123456789/list
+            visibility:
+              description: >
+                The visibility of the team to users in the same organization
+              type: string
+              enum:
+                - secret
+                - request_to_join
+                - public
     TeamRequest:
       allOf:
         - $ref: '#/components/schemas/TeamBase'
@@ -11103,7 +11112,7 @@ paths:
       operationId: getTeam
       responses:
         200:
-          description: Successsfully retrieved the record for a single team.
+          description: Successfully retrieved the record for a single team.
           content:
             application/json:
               schema:
