@@ -137,7 +137,7 @@ Here's the list of attributes which can occur at the document root level. Mandat
 | **productID** **\*** | string | max length 256 chars | Product identifier. |
 | **description** **\*** | string | - | The description of the product. Text only. |
 | **visibility** **\*** | one of | one of: private, organisation, public | The publicity level eg who can see this product. Private - just the creator. Organisation - visible to all in your organisation. Public - visible to all publicly |
-| **status** **\*** | one of | one of: announcement, draft, development, testing, acceptance, production, retired | The status of the product. Lifecycle model discussed in details in here (link). |
+| **status** **\*** | one of | one of: announcement, draft, development, testing, acceptance, production, sunset, retired | The status of the product. Lifecycle model discussed in details in here (link). |
 | **version** **\*** | string | The versioning scheme is **major.minor.**. Examples: 1.0, 2.1, 3.15 | The version of the product. |
 | **type** **\*** | one of |  Options: raw data, derived data, dataset, reports, analytic view, 3D visualisation, algorithm, decision support, automated decision-making, bi-directional | The type of the product. Options are derived from examples and lists found from academic literature  | 
 | **logo** **\*** | URL | - | URL of the logo. See more from [wikipedia](https://en.wikipedia.org/wiki/URL). |
