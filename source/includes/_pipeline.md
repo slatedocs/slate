@@ -15,7 +15,7 @@ Data Pipeline is the process whereby a data product is technically deployed or a
   },
   "apiDoc": {
      "docType": "oas",
-    "url": "http://192.168.10.1/test/petstore"
+    "url": "http://192.168.10.2/test/petstore"
   }
   
 ```
