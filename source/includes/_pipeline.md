@@ -18,8 +18,6 @@ Data Pipeline is the process whereby a data product is technically deployed or a
     "url": "http://192.168.10.1/test/petstore"
   }
 
-
-
     
 ```
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
