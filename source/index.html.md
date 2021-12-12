@@ -17,6 +17,7 @@ includes:
   - sla
   - license
   - provider
+  - extensions
   - helloworld
 
 search: true
