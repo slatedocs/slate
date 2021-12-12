@@ -1,19 +1,27 @@
 # Data Pipeline
 
-Pipeline component.....
+Data Pipeline is the process whereby a data product is technically deployed or access to the API documentation (e.g. Open Api Specification - OAS) is defined. 
 
 
-> Example of Pipeline component usage:
+> Example of Data Pipeline component usage:
 
 ```javascript
-    "pipeline":
-      {
-         "packageManager":"Kubenetes",
-         "scriptType":"yaml",
-         "url":"http://192.168.10.1/test/runpipeline.yml",
-         "status":"production"               
-      }
+   
+  "Pipeline": {
+    "packageManager": "Kubernet",
+    "scriptType": "yaml",
+    "status": "dev",
+    "url": "http://192.168.10.1/test/runpipeline.yml"
+  },
+  "ApiDocumentation": {
+     "documentType": "OAS",
+    "Url": "http://192.168.10.1/test/petstore"
+  }
+
+
 
     
 ```
-```
+| <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
+|---|---|---|---|
+|  ^x- | any  |  | Allows pipelines to the Open Data Product Schema. The field name MUST begin with x-, for example, x-internal-id. The value can be null, a primitive, an array or an object. Can have any valid JSON format value. |
