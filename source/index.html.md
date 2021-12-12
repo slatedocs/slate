@@ -17,7 +17,6 @@ includes:
   - sla
   - license
   - provider
-  - schemas
   - extensions
   - helloworld
 
