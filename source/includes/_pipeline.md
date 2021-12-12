@@ -8,14 +8,14 @@ Data Pipeline is the process whereby a data product is technically deployed or a
 ```javascript
    
   "Pipeline": {
-    "packageManager": "Kubernet",
+    "packageManager": "kubernet",
     "scriptType": "yaml",
     "status": "dev",
     "url": "http://192.168.10.1/test/runpipeline.yml"
   },
-  "ApiDocumentation": {
-     "documentType": "OAS",
-    "Url": "http://192.168.10.1/test/petstore"
+  "apiDoc": {
+     "docType": "oas",
+    "url": "http://192.168.10.1/test/petstore"
   }
 
 
