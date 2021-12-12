@@ -6,10 +6,6 @@ Pipeline component.....
 > Example of Pipeline component usage:
 
 ```javascript
-<<<<<<< Updated upstream
-   .....
-```
-=======
     "pipeline":
       {
          "packageManager":"Kubenetes",
@@ -20,5 +16,4 @@ Pipeline component.....
 
     
 ```
-Edited
->>>>>>> Stashed changes
+
