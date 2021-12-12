@@ -75,7 +75,7 @@ Supported pricing models include:
          "price":"10.00",
          "minPrice":"5.00",
          "maxPrice":"15.000"
-         "exceedingTransactionCost":0.02
+         "additionalPrice":0.02
       },
       {
          "name":"Premium Package",
