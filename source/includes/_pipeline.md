@@ -3,8 +3,7 @@
 Pipeline component.....
 
 
-> Example of Pipeline component usage:
-Testing out
+> 1st example of Pipeline component usage:
 
 ```javascript
    .....
