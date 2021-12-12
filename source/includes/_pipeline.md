@@ -10,13 +10,15 @@ Data Pipeline is a process whereby a data product pipeline deployment method is 
     "packageManager": "helm",
     "scriptType": "yaml",
     "status": "dev",
-    "URL": "http://192.168.10.1/test/runpipeline.yml"
+    "DeploymentScriptURL": "http://192.168.10.1/test/runDataPipeline.yml"
+    "DeploymentDocumentationURL": "http://192.168.10.1/test/docs/DocsDataPipeline.html"
   }
   
 ```
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
-  | packageManager | string | any | Name of the package manager, e.g. Kubernetes Helm. |
-  | scriptType | string  | any |  Data serialization language that is used for writing configuration files, e.g. yaml|
-  | status | string  | Options for unit are: dev, test, prod. | .... |
-  | URL | URL | Valid URL  | 	The URL of the deployment script. |
+  | packageManager | string | any | A name of the package manager or tool |
+  | scriptType | string  | any |  Type of script language|
+  | status | string  | Options for unit are: dev, test, prod. | a phase of deployment. |
+  | DeploymentScriptURL | URL | Valid URL  | 	The URL of the deployment script. |
+  | DeploymentDocumentationURL | URL | Valid URL  | 	The URL of the deployment documentation |
