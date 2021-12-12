@@ -6,5 +6,6 @@ Pipeline component.....
 > Example of Pipeline component usage:
 
 ```javascript
+testing
    .....
 ```
