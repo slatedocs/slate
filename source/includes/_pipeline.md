@@ -7,7 +7,7 @@ Data Pipeline is a process whereby a data product is technically deployed or acc
 
 ```javascript
    
-  "Pipeline": {
+  "pipelineDeployment": {
     "packageManager": "kubernet",
     "scriptType": "yaml",
     "status": "dev",
