@@ -1,6 +1,6 @@
 # Data Pipeline
 
-Data Pipeline is the process whereby a data product is technically deployed or access to the API documentation (e.g. Open Api Specification - OAS) is defined. 
+Data Pipeline is a process whereby a data product is technically deployed or access to the API documentation (e.g. Open Api Specification - OAS) is available. 
 
 
 > Example of Data Pipeline component usage:
@@ -15,6 +15,7 @@ Data Pipeline is the process whereby a data product is technically deployed or a
   },
   "apiDoc": {
      "docType": "oas",
+     "status": "dev",
     "url": "http://192.168.10.2/test/petstore"
   }
   
