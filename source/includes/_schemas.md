@@ -25,7 +25,7 @@ The schemas can be defined as referenced (URL or local file systen path). In the
    }
 
 ```
-### Properties of inline schemas
+### Properties of schemas
 
 The following properties are taken directly from the JSON Schema definition and follow the same specifications:
 
