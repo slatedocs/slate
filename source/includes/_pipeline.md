@@ -6,7 +6,7 @@ Data Pipeline is a process whereby a data product pipeline deployment method is 
 
 ```javascript
    
-  "DataPipeline": {
+  "dataPipeline": {
     "packageManager": "helm",
     "scriptType": "yaml",
     "status": "dev",
@@ -16,7 +16,7 @@ Data Pipeline is a process whereby a data product pipeline deployment method is 
 ```
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
-  | packageManager | string | any | Name of the package manager that allows developers to deploy the data product and data pipeline, e.g. Helm for Kubernetes |
-  |scriptType | string  | any |  Data serialization language that is used for writing configuration files, e.g. yaml|
+  | packageManager | string | any | Name of the package manager, e.g. Kubernetes Helm. |
+  | scriptType | string  | any |  Data serialization language that is used for writing configuration files, e.g. yaml|
   | status | string  | Options for unit are: dev, test, prod. | .... |
   | URL | URL | Valid URL  | 	The URL of the deployment script. |
