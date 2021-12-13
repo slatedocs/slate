@@ -1,12 +1,11 @@
 # Data Pipeline
 
-Pipeline component.....
+Data Pipeline is a process whereby a data product pipeline deployment method is defined.
 
-
-> Example of Pipeline component usage:
+> Example of Data Pipeline component usage:
 
 ```javascript
-   
+  
 "dataPipeline": {
   "infrastructure":{
     "composer": "helm",
@@ -33,3 +32,4 @@ Pipeline component.....
 | status | string  | Options for unit are: dev, test, prod. | a phase of deployment. |
 | DeploymentScriptURL | URL | Valid URL  | 	The URL of the deployment script. |
 | DeploymentDocumentationURL | URL | Valid URL  | 	The URL of the deployment documentation |
+
