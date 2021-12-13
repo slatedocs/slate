@@ -285,7 +285,7 @@ Before you begin, you'll need a developer sandbox in order to use App Components
 2. Follow the instructions in the [README](https://github.com/Asana/app-components-example-app/blob/main/README.md) to run the server. This server needs to remain on as you use the example app.
 3. Open the developer sandbox in your browser.
 4. In an existing project, go to **Customize** > **Apps** > **{Example}** to install the App Components example app. 
-    - **Important**: to see the installation experience again after insalling the app for the first time, navigate to 
+    - **Important**: The installation flow this takes you through is only shown once per user. To see it a second time, navigate to 
       `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`.
 <br>
 <br>
