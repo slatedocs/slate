@@ -8,8 +8,8 @@ language_tabs:
 
 toc_footers:
   - <a href="https://tools.brightlocal.com/seo-tools/admin/api">Sign Up for a Developer Key</a>
-  - <a href="https://github.com/BrightLocal/BrightLocal-API-Helper">PHP API Wrapper</a>
-  - <a href="https://github.com/BrightLocal/C-Sharp-Api-Wrapper">C# API Wrapper</a>
+  - <a href="https://github.com/BrightLocal/apiclient-php">PHP API Wrapper</a>
+  - <a href="https://github.com/BrightLocal/apiclient-csharp">C# API Wrapper</a>
   - <a href="http://www.brightlocal.com/">Visit BrightLocal.com</a>
 
 includes:
