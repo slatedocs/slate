@@ -6,14 +6,30 @@ Pipeline component.....
 > Example of Pipeline component usage:
 
 ```javascript
-    "pipeline":
-      {
-         "packageManager":"Kubenetes",
-         "scriptType":"yaml",
-         "url":"http://192.168.10.1/test/runpipeline.yml",
-         "status":"production"               
-      }
+   
+"dataPipeline": {
+  "infrastructure":{
+    "composer": "helm",
+    "format": "yaml",
+    "status": "development",
+    "scriptURL": "http://192.168.10.1/test/runDataPipeline.yml"
+    "documentationURL": "http://192.168.10.1/test/docs/DocsDataPipeline.html"
+  },
+  "dataAccess"{
+    "type": "API",
+    "specification":"OAS",
+    "format":"JSON",
+    "specURL":"https://swagger.com/petstore.json",
+    "documentationURL":""
+  }
+}
 
-    
+  
 ```
-
+| <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
+|---|---|---|---|
+  | composer | string | any | A name of the package manager, composer or tool |
+  | format | string  | any |  Type of script language|
+  | status | string  | Options for unit are: dev, test, prod. | a phase of deployment. |
+  | DeploymentScriptURL | URL | Valid URL  | 	The URL of the deployment script. |
+  | DeploymentDocumentationURL | URL | Valid URL  | 	The URL of the deployment documentation |
