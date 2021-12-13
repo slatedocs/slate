@@ -401,7 +401,7 @@ for this `postMessage` call should be the opener, accessible via
 [window.opener](https://developer.mozilla.org/en-US/docs/Web/API/Window/opener).
 
 Note that for security purposes, the _origin_ of the event (which is added to the event by the browser) needs to match the root of the 
-`authenticationUrl` registered to the app. That is, the authentication response must be served from the same origin that receives the 
+`authenticationUrl` registered to the app. That is, the authentication success message must be initiated from the same origin that receives the 
 authentication request. This is different from the `targetOrigin` of the `window.opener.postMessage` call, which must be exactly 
 `"https://app.asana.com"`.
 
