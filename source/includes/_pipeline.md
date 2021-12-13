@@ -30,6 +30,6 @@ Pipeline component.....
 |---|---|---|---|
 | composer | string | any | A name of the package manager, composer or tool |
 | format | string  | any |  Type of script language|
-| status | string  | Options for unit are: dev, test, prod. | a phase of deployment. |
+| status | string  | Options for unit are: announcement, draft, development, testing, acceptance, production, sunset, retired |
 | DeploymentScriptURL | URL | Valid URL  | 	The URL of the deployment script. |
 | DeploymentDocumentationURL | URL | Valid URL  | 	The URL of the deployment documentation |
