@@ -18,6 +18,7 @@ includes:
   - license
   - provider
   - extensions
+  - terms
   - helloworld
 
 search: true
