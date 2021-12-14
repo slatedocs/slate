@@ -39,15 +39,14 @@ The data product may be exploited by licensing its use and exploitation to third
          ]
                 
             }
-   "Governing": {
-      "dpa": "",
-      "audit": "",
-      "forceMajure": "",
-      "damages": "",
-      "disclaimer": ""
-      
+   "Governance": {
+         "dpa": "",
+         "audit": "",
+         "forceMajure": "",
+         "damages": "",
+         "disclaimer": ""
+     
    }
-
   }
 }
 
