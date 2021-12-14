@@ -32,7 +32,7 @@ The data product may be exploited by licensing its use and exploitation to third
          "affiliatesRights": "",
          "subContractorRights": "",
          "modificationRights": "",
-         "Distribution": "",
+         "distribution": "",
          "ownership":"".
          "usageRights": [
               "globalUsage"
