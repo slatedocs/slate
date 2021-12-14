@@ -6,6 +6,6 @@ Here's list of terms used and what we mean with them. The meaning of terms is mo
 |---|---|
 | Data point  |   |
 | Data product  |   |
-| Data as a service  |   |
+| Data as a service  | Some people use the term data product in a meaning which contains also data commodities which have more service alike attributes than product attributes. In those cases we prefer to use the term *data as a service* and call the creation process as *data servitization*. The term *productizement* is reserved for the process which creates data products as end result. |
 | Data pipeline  |   |
 |  |   |
