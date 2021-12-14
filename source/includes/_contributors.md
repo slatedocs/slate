@@ -4,5 +4,5 @@ This specification is openly developed and a lot of the work comes from communit
 
 ## List of community contributors 
 
-* your name here
+* Toni Luhti
 
