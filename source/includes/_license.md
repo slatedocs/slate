@@ -21,7 +21,7 @@ The data product may be exploited by licensing its use and exploitation to third
          "addressCountry":"Finland"
    }
    "scope":{
-         "expiracy":24,
+         "expiracyMonths":24,
          "Restrictions": "The license holder agrees not to, directly or indirectly, participate in the unauthorized use, disclosure or conversion of any confidential information.",
          "transferability": true,
          "GeographicalArea": [ 
