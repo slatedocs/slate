@@ -20,6 +20,7 @@ includes:
   - extensions
   - terms
   - helloworld
+  - Editors and contributors
 
 search: true
 
