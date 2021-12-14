@@ -7,7 +7,7 @@ The data product may be exploited by licensing its use and exploitation to third
 ```javascript
   
 "license": {
-  "Licensor":{
+  "licensor":{
          "taxID":"12243434-12",
          "vatID":"12243434-12",
          "logoURL":"https://mindmote.fi/logo.png",
@@ -39,7 +39,7 @@ The data product may be exploited by licensing its use and exploitation to third
          ]
                 
             }
-   "Governance": {
+   "governance": {
          "dpa": "",
          "audit": "",
          "forceMajure": "",
