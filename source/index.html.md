@@ -20,6 +20,7 @@ includes:
   - extensions
   - terms
   - helloworld
+  - contributors
 
 search: true
 
@@ -46,36 +47,6 @@ Open Data Product Specification aims to:
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
 
 This is work in progress. If you see something missing, described inaccurately or plain wrong, or you want to comment the specification, click the button below and proceed forward. 
-
-<button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
-
-## What is a data product?
-
-As a strategic resource for companies, data is considered an asset that, like any other material good, has a financial
-value and whose management generates costs. Data created, collected or used in individual business processes can be sold to other organisations as raw or processed data, so that it no longer serves as an enabler of products, but is the product itself. This leads to the paradigm that data assets can be monetised by exchanging and trading data between organisations as data products and services. 
-
-
-There are multiple definitions for data product. In an [article authored by Jian Pei (2020)](https://arxiv.org/abs/2009.04462), data products "*refer to data sets as products and information services derived from data sets.*" Simon O'Regan's defines data product as *a product whose primary objective is to use data to facilitate an end goal*. From the academic literature we have found several subtypes of data products: 
-
-* raw data, 
-* derived data, 
-* data sets, 
-* reports, 
-* analytic views, 
-* 3D visualisations, 
-* algorithms, 
-* decision support (dashboards) and 
-* automated decision-making (Netflix product recommendations or Spotify’s Discover Weekly would be common examples). 
-
-Typically raw data, derived data and algorithms have technical users. Most often they tend to be internal products in an organisation. 
-
-While many of the standard Product Development Rules apply — solve a customer need, learn from feedback, prioritise relentlessly, etc. — data has different characteristics compared to tangible products that prevent the direct transfer of established processes and rules of trading goods, especially in terms of pricing mechanisms.
-
-In trading data, there is less willingness to pay. For example, data buyers often do not recognise the potential value of data items because it cannot be fully disclosed prior to purchase (known as the ‘Arrow paradox’). 
-
-In addition, there is often a lack of notion that the creation, processing, storage and distribution of high-quality data is a major cost factor for the data provider. Another obstacle is the lack of trust and security causing potential data providers to fear that competitors could benefit from disclosure of in-house data.
-
-One of the aims of this specification is to tackle above mentioned issues which hinder the growth of data ecosystem and market volatility. 
 
 <button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
 
