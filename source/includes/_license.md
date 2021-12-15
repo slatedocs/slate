@@ -26,7 +26,7 @@ The data product may be exploited e.g. by licensing its use and exploitation to 
          "permanent": false,
          "expiracyMonths": 12,
          "expiracyDate": "2022-12-15T00:00:00+02:00",
-         "termitationContitions": "a written cancellation before 30 days is mandatory",
+         "termitationContitions": "Cancellation before 30 days.",
          "continuityConditions": "Expired license will automatically continued without written cancellation (termination) by Licenser holder",
          "restrictions": "The License holder agrees not to, directly or indirectly, participate in the unauthorized use, disclosure or conversion of any confidential information.",      
          "GeographicalArea": [ 
