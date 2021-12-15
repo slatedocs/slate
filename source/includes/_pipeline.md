@@ -10,7 +10,7 @@ Data Pipeline Object's purpose is enabling building, deploying, and running the 
 ```javascript
   
 "dataPipeline": {
-  "infrastructure":{
+  "infrastructure": {
     "composer": "helm",
     "format": "yaml",
     "status": "development",
@@ -19,10 +19,10 @@ Data Pipeline Object's purpose is enabling building, deploying, and running the 
   }, 
   "dataAccess" {
     "type": "API",
-    "specification":"OAS",
-    "format":"JSON",
-    "specURL":"https://swagger.com/petstore.json",
-    "dataAccessDocumentationURL":"http://192.168.10.1/test/docs/dataaccessguide.html"
+    "specification": "OAS",
+    "format": "JSON",
+    "specURL": "https://swagger.com/petstore.json",
+    "dataAccessDocumentationURL": "http://192.168.10.1/test/docs/dataaccessguide.html"
   }
 }
 
