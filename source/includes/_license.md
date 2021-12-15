@@ -47,7 +47,7 @@ The data product may be exploited by licensing its use and exploitation to third
             }
    "governance": {
          "qualityControl": "ISO 8000-61:2016 specifies the processes required for data quality management. The processes are used as a reference to enhance data quality and assess process capability or organizational maturity for data quality management.",
-         "containssPersonalData": true,
+         "containsPersonalData": true,
          "dpaURL": "http://192.168.10.1/test/docs/dpaconditions.pdf",
          "audit": "Audit is conducted in accordance with the Petshop´s Data-audits ltd., www.petshopsdataaudits.com",
          "forceMajure": "Each party may suspend the fulfilment of its contractual obligations, when the said fulfilment is impossible or objectively too costly due to an unforeseeable impediment independent from the parties, such as for example: strike, boycott, lockout, fire, war (declared or not), civil war, riots and revolutions, requisitions, embargo, power blackouts, extraordinary breakage of machinery, delays in the delivery of components or raw materials.",
