@@ -1,6 +1,6 @@
 # Data Pipeline
 
-Data Pipeline is a process whereby a data product pipeline deployment method is defined.
+Data Pipeline is a process whereby a data product pipeline deployment method is defined. 
 
 > Example of Data Pipeline component usage:
 
