@@ -21,9 +21,12 @@ The data product may be exploited by licensing its use and exploitation to third
          "addressCountry":"Finland"
    }
    "scope":{
+         "definitions": "The purpose of this license is to determine the terms and conditions applicable to the licensing of the data product, whereby Licensor grants License holder the right to use the data.",
          "expiracyMonths":24,
-         "Restrictions": "The license holder agrees not to, directly or indirectly, participate in the unauthorized use, disclosure or conversion of any confidential information.",
-         "transferability": true,
+         "termitationContitions": "",
+         "continuityConditions": "",
+         "restrictions": "The license holder agrees not to, directly or indirectly, participate in the unauthorized use, disclosure or conversion of any confidential information.",
+         "exclusivity": "non-exclusive",                 
          "GeographicalArea": [ 
             "EU",
             "US"
@@ -33,19 +36,22 @@ The data product may be exploited by licensing its use and exploitation to third
          "subContractorRights": "",
          "modificationRights": "",
          "distribution": "",
-         "ownership":"".
+         "ownership":"",
+         "roalties":""
+         "payments": "License holder shall remit full payment within thirty (30) days after the end of each calendar month.",
+         "IPRs": "Copyright is regulated in Finland by the Copyright Act (404/1961).",
          "usageRights": [
               "globalUsage"
          ]
                 
             }
    "governance": {
-         "dpa": "",
-         "audit": "",
-         "forceMajure": "",
-         "damages": "",
-         "disclaimer": ""
-     
+         "qualityControl": "ISO 8000-61:2016 specifies the processes required for data quality management. The processes are used as a reference to enhance data quality and assess process capability or organizational maturity for data quality management.",
+         "dpaURL": "http://192.168.10.1/test/docs/dpaconditions.pdf",
+         "audit": "Audit is conducted in accordance with the Petshop´s Data-audits ltd., www.petshopsdataaudits.com",
+         "forceMajure": "Each party may suspend the fulfilment of its contractual obligations, when the said fulfilment is impossible or objectively too costly due to an unforeseeable impediment independent from the parties, such as for example: strike, boycott, lockout, fire, war (declared or not), civil war, riots and revolutions, requisitions, embargo, power blackouts, extraordinary breakage of machinery, delays in the delivery of components or raw materials.",
+         "damages": "During the term of license, except for the force majeure or the Licensors reasons, the License holder is required to follow strictly in accordance with the Contract. If the License holder wants to terminate the license early, it needs to pay a certain amount of liquidated damages.",
+         "confidentiality": "The Licensor undertakes to maintain confidentiality as regards all information of a technical (such as, by way of a non-limiting example, drawings, tables, documentation, formulas and correspondence) and commercial nature (including contractual conditions, prices, payment conditions) gained during the performance of this contract."          
    }
   }
 }
