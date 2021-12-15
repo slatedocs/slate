@@ -23,22 +23,21 @@ The data product may be exploited by licensing its use and exploitation to third
    "scope":{
          "definitions": "The purpose of this license is to determine the terms and conditions applicable to the licensing of the data product, whereby Licensor grants License holder the right to use the data.",
          "expiracyMonths":24,
-         "termitationContitions": "",
-         "continuityConditions": "",
+         "termitationContitions": "After 14 days trial period, a written cancellation before 30 days is mandatory",
+         "continuityConditions": "License will automatically continued without written (30 before) cancellation by licenser holder",
          "restrictions": "The license holder agrees not to, directly or indirectly, participate in the unauthorized use, disclosure or conversion of any confidential information.",
          "exclusivity": "non-exclusive",                 
          "GeographicalArea": [ 
             "EU",
             "US"
          ],
-         "purposeofUse": "",
-         "affiliatesRights": "",
-         "subContractorRights": "",
-         "modificationRights": "",
-         "distribution": "",
-         "ownership":"",
-         "roalties":""
-         "payments": "License holder shall remit full payment within thirty (30) days after the end of each calendar month.",
+         "purposeofUse": "Creating BI dashboard solution for License holders customers (End Users).",
+         "affiliatesRights": "Without limitations",
+         "subContractorRights": "Without limitation",
+         "modificationRights": "Without limitations",
+         "ownership":"Data ownership will be retained in any condition by the licensor",
+         "roalties":"  It is hereby agreed that License holder shall share with Licensor three percent (3%) of the revenues derives and receives from the usage their BI Dashbord solutions by the End Users."
+         "payments": "License holder shall remit full payment within thirty (30) days after the end of each calendar month. Taxes (VAT 24 %) are included.",
          "IPRs": "Copyright is regulated in Finland by the Copyright Act (404/1961).",
          "usageRights": [
               "globalUsage"
