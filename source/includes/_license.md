@@ -22,11 +22,12 @@ The data product may be exploited by licensing its use and exploitation to third
    }
    "scope":{
          "definitions": "The purpose of this license is to determine the terms and conditions applicable to the licensing of the data product, whereby Licensor grants License holder the right to use the data.",
+         "language": "en-us",
          "expiracyMonths":24,
          "termitationContitions": "After 14 days trial period, a written cancellation before 30 days is mandatory",
          "continuityConditions": "License will automatically continued without written (30 before) cancellation by licenser holder",
          "restrictions": "The license holder agrees not to, directly or indirectly, participate in the unauthorized use, disclosure or conversion of any confidential information.",
-         "exclusivity": "non-exclusive",                 
+         "exclusivity": false,                 
          "GeographicalArea": [ 
             "EU",
             "US"
@@ -46,6 +47,7 @@ The data product may be exploited by licensing its use and exploitation to third
             }
    "governance": {
          "qualityControl": "ISO 8000-61:2016 specifies the processes required for data quality management. The processes are used as a reference to enhance data quality and assess process capability or organizational maturity for data quality management.",
+         "containssPersonalData": true,
          "dpaURL": "http://192.168.10.1/test/docs/dpaconditions.pdf",
          "audit": "Audit is conducted in accordance with the Petshop´s Data-audits ltd., www.petshopsdataaudits.com",
          "forceMajure": "Each party may suspend the fulfilment of its contractual obligations, when the said fulfilment is impossible or objectively too costly due to an unforeseeable impediment independent from the parties, such as for example: strike, boycott, lockout, fire, war (declared or not), civil war, riots and revolutions, requisitions, embargo, power blackouts, extraordinary breakage of machinery, delays in the delivery of components or raw materials.",
@@ -59,4 +61,5 @@ The data product may be exploited by licensing its use and exploitation to third
 ```
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
-| x | string | any | name |
+| language | string | ISO 639-1 standard language codes | Licence language |
+
