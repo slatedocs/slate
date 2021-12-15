@@ -14,15 +14,15 @@ Data Pipeline Object's purpose is enabling building, deploying, and running the 
     "composer": "helm",
     "format": "yaml",
     "status": "development",
-    "scriptURL": "http://192.168.10.1/test/runDataPipeline.yml"
-    "documentationURL": "http://192.168.10.1/test/docs/DocsDataPipeline.html"
+    "scriptURL": "http://192.168.10.1/test/runDataPipeline.yml",
+    "deploymentDocumentationURL": "http://192.168.10.1/test/docs/DocsDataPipeline.html"
   }, 
-  "dataAccess"{
+  "dataAccess" {
     "type": "API",
     "specification":"OAS",
     "format":"JSON",
     "specURL":"https://swagger.com/petstore.json",
-    "documentationURL":""
+    "dataAccessDocumentationURL":"http://192.168.10.1/test/docs/dataaccessguide.html"
   }
 }
 
@@ -30,9 +30,20 @@ Data Pipeline Object's purpose is enabling building, deploying, and running the 
 ```
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
+
+Infrastructure
+
 | composer | string | any | A name of the package manager, composer or tool |
 | format | string  | any |  Type of script language|
 | status | string  | Options for unit are: announcement, draft, development, testing, acceptance, production, sunset, retired |
-| DeploymentScriptURL | URL | Valid URL  | 	The URL of the deployment script. |
-| DeploymentDocumentationURL | URL | Valid URL  | 	The URL of the deployment documentation |
+| scriptURL | URL | Valid URL  | 	The URL of the deployment script. |
+| deploymentDocumentationURL | URL | Valid URL  | 	The URL of the deployment documentation |
+
+Data Access
+
+| type | string | any  | 	Type of data access |
+| specification | string | any  | 	type of the data access specification |
+| format | string | any  | 	file format |
+| specsURL | URL | Valid URL  | 	The URL of the specification |
+| dataAccessDocumentationURL | URL | Valid URL  | 	The URL of the data access documentation |
 
