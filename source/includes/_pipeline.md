@@ -1,5 +1,6 @@
 # Data Pipeline
 
+
 Data Pipeline is a process whereby a data product pipeline deployment method is defined. Usually the deployment script contains the logic of the individual steps as well as the code chaining the steps together.
 
 > Example of Data Pipeline component usage:
@@ -13,6 +14,13 @@ Data Pipeline is a process whereby a data product pipeline deployment method is 
     "status": "development",
     "scriptURL": "http://192.168.10.1/test/runDataPipeline.yml"
     "documentationURL": "http://192.168.10.1/test/docs/DocsDataPipeline.html"
+  }, 
+  "dataAccess"{
+    "type": "API",
+    "specification":"OAS",
+    "format":"JSON",
+    "specURL":"https://swagger.com/petstore.json",
+    "documentationURL":""
   }
 }
 
