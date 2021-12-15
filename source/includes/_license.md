@@ -52,7 +52,7 @@ The data product may be exploited e.g. by licensing its use and exploitation to 
          "audit": "Audit is conducted in accordance with the Petshop´s Data-audits ltd., www.petshopsdataaudits.com",
          "forceMajure": "Each party may suspend the fulfilment of its contractual obligations, when the said fulfilment is impossible or objectively too costly due to an unforeseeable impediment independent from the parties, such as for example: strike, boycott, lockout, fire, war (declared or not), civil war, riots and revolutions, requisitions, embargo, power blackouts, extraordinary breakage of machinery, delays in the delivery of components or raw materials.",
          "damages": "During the term of license, except for the force majeure or the Licensors reasons, the License holder is required to follow strictly in accordance with the Contract. If the License holder wants to terminate the license early, it needs to pay a certain amount of liquidated damages.",
-         "confidentiality": "The Licensor undertakes to maintain confidentiality as regards all information of a technical (such as, by way of a non-limiting example, drawings, tables, documentation, formulas and correspondence) and commercial nature (including contractual conditions, prices, payment conditions) gained during the performance of this license."          
+         "confidentiality": "The License holder undertakes to maintain confidentiality as regards all information of a technical (such as, by way of a non-limiting example, drawings, tables, documentation, formulas and correspondence) and commercial nature (including contractual conditions, prices, payment conditions) gained during the performance of this license."          
    }
   }
 }
