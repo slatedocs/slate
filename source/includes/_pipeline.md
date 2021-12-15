@@ -31,16 +31,11 @@ Data Pipeline Object's purpose is enabling building, deploying, and running the 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
 
-Infrastructure
-
 | composer | string | any | A name of the package manager, composer or tool |
 | format | string  | any |  Type of script language|
 | status | string  | Options for unit are: announcement, draft, development, testing, acceptance, production, sunset, retired |
 | scriptURL | URL | Valid URL  | 	The URL of the deployment script. |
 | deploymentDocumentationURL | URL | Valid URL  | 	The URL of the deployment documentation |
-
-Data Access
-
 | type | string | any  | 	Type of data access |
 | specification | string | any  | 	type of the data access specification |
 | format | string | any  | 	file format |
