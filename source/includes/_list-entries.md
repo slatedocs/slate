@@ -55,7 +55,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
 [
   {
     "id": 64608,
-    "list_id": 222,
+    "list_id": 450,
     "creator_id": 287843,
     "entity_id": 62034,
     "created_at": "2017-05-04 10:44:31 -0700",
@@ -71,7 +71,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
   },
   {
     "id": 53510,
-    "list_id": 222,
+    "list_id": 450,
     "creator_id": 38596,
     "entity_id": 241576,
     "created_at": "2017-02-22 15:22:21 -0800",
@@ -96,7 +96,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
   "list_entries": [
     {
       "id": 64608,
-      "list_id": 222,
+      "list_id": 450,
       "creator_id": 287843,
       "entity_id": 62034,
       "created_at": "2017-05-04 10:44:31 -0700",
@@ -112,7 +112,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
     },
     {
       "id": 53510,
-      "list_id": 222,
+      "list_id": 450,
       "creator_id": 38596,
       "entity_id": 241576,
       "created_at": "2017-02-22 15:22:21 -0800",
@@ -178,8 +178,8 @@ curl "https://api.affinity.co/lists/450/list-entries/16367" -u :$APIKEY
 
 ```json
 {
-  "id": 53510,
-  "list_id": 222,
+  "id": 16367,
+  "list_id": 450,
   "creator_id": 38596,
   "entity_id": 241576,
   "created_at": "2017-02-22 15:22:21 -0800",
@@ -220,7 +220,7 @@ curl -X POST “https://api.affinity.co/lists/450/list-entries” \
 ```json
 {
   "id": 53510,
-  "list_id": 222,
+  "list_id": 450,
   "creator_id": 38596,
   "entity_id": 38706,
   "created_at": "2017-02-22 15:22:21 -0800",

@@ -27,7 +27,6 @@ list has a given email address.
   "primary_email": "john@affinity.co",
   "emails": [
     "john@affinity.co",
-    "john@affinity.co",
     "jdoe@alumni.stanford.edu",
     "johnjdoe@gmail.com",
   ],
@@ -185,7 +184,6 @@ curl "https://api.affinity.co/persons?term=doe" -u :$APIKEY
       "primary_email": "john@affinity.co",
       "emails": [
         "john@affinity.co",
-        "john@affinity.co",
         "jdoe@alumni.stanford.edu",
         "johnjdoe@gmail.com",
       ]
@@ -261,7 +259,6 @@ curl "https://api.affinity.co/persons/38706" -u :$APIKEY
   "last_name": "Doe",
   "primary_email": "john@affinity.co",
   "emails": [
-    "john@affinity.co",
     "john@affinity.co",
     "jdoe@alumni.stanford.edu",
     "johndoe@gmail.com",

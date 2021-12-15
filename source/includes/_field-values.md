@@ -118,11 +118,13 @@ curl "https://api.affinity.co/field-values?person_id=38706" -u :$APIKEY
     }
   },
   {
-    "id": 250615,
-    "field_id": 1284,
+    "id": 2634897436,
+    "field_id": 768101,
     "list_entry_id": null,
-    "entity_id": 38706,
-    "value": "Computer Software"
+    "entity_type": 0,
+    "value_type": 2,
+    "entity_id": 65680071,
+    "value": "Software Engineer"
   },
   {
     "id": 32760,
@@ -130,18 +132,6 @@ curl "https://api.affinity.co/field-values?person_id=38706" -u :$APIKEY
     "list_entry_id": null,
     "entity_id": 38706,
     "value": 38659
-  },
-  {
-    "id": 177634,
-    "field_id": 751,
-    "list_entry_id": 605,
-    "entity_id": 38706,
-    "value": {
-      "id": 71,
-      "text": "Low",
-      "rank": 1,
-      "color": 4
-    }
   },
   ...
 ]
