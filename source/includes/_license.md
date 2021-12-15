@@ -8,17 +8,17 @@ The data product may be exploited e.g. by licensing its use and exploitation to 
   
 "license": {
   "licensor":{
-         "taxID":"12243434-12",
-         "vatID":"12243434-12",
-         "logoURL":"https://mindmote.fi/logo.png",
-         "description":"Digital Economy services and tools",
-         "URL":"https://mindmote.fi"
-         "telephone":"+35845 0232 2323",
-         "streetAddress":"Koulukatu 1",
-         "postalCode":"33100",
-         "addressRegion":"Pirkanmaa"
-         "addressLocality":"Tampere",
-         "addressCountry":"Finland"
+         "taxID": "12243434-12",
+         "vatID": "12243434-12",
+         "logoURL": "https://mindmote.fi/logo.png",
+         "description": "Digital Economy services and tools",
+         "URL": "https://mindmote.fi"
+         "telephone": "+35845 0232 2323",
+         "streetAddress": "Koulukatu 1",
+         "postalCode": "33100",
+         "addressRegion": "Pirkanmaa"
+         "addressLocality": "Tampere",
+         "addressCountry": "Finland"
    }
    "scope":{
          "definitions": "The purpose of this license is to determine the terms and conditions applicable to the licensing of the data product, whereby Licensor grants License holder the right to use the data.",
@@ -61,5 +61,8 @@ The data product may be exploited e.g. by licensing its use and exploitation to 
 ```
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
+| definition | string | ISO 639-1 standard language codes | License language |
 | language | string | ISO 639-1 standard language codes | License language |
+| expiracyMonths | string | ISO 639-1 standard language codes | License language |
+| termitationContitions | string | ISO 639-1 standard language codes | License language |
 
