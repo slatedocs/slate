@@ -61,5 +61,5 @@ The data product may be exploited by licensing its use and exploitation to third
 ```
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
-| language | string | ISO 639-1 standard language codes | Licence language |
+| language | string | ISO 639-1 standard language codes | License language |
 
