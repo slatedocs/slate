@@ -42,6 +42,7 @@ Open Data Product Specification aims to:
 * enable interoperability between organizations, data platforms,  marketplaces, and tools. 
 * reduce data product metadata conversions and errors between systems and organizations, 
 * increase the speed of designing, testing, and implementing data products. 
+* speed up tools development around data product design, development and management.
 * enable creation of automated data product deployment with standard methods (DataOps)
 
 **Note!** In the "Open Data Product" focus is on the latter words and the prefix 'open' refers to openness of the standard. Any kind of connotations to open data (different thing) are not intentional, intended or desirable. 
