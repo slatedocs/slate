@@ -2,31 +2,19 @@
 
 The data product may be exploited e.g. by licensing its use and exploitation to third parties. Machine-readable license as part of the specification is implemented for this purpose. It can be used to conclude various agreements regarding data protection, processing and intellectual property rights (IPR). Data can be protected by one or more intellectual property rights. Principle is that when a third party exploits the data, it must have a license or other right to exploit to the data.
 
-> Example of license component usage:
+> Example of License Object usage:
+
 
 ```javascript
   
 "license": {
-  "licensor": {
-         "taxID": "12243434-12",
-         "vatID": "12243434-12",
-         "logoURL": "https://mindmote.fi/logo.png",
-         "description": "Digital Economy services and tools",
-         "URL": "https://mindmote.fi"
-         "telephone": "+35845 0232 2323",
-         "streetAddress": "Koulukatu 1",
-         "postalCode": "33100",
-         "addressRegion": "Pirkanmaa"
-         "addressLocality": "Tampere",
-         "addressCountry": "Finland"
-   }
    "scope":{
          "definitions": "The purpose of this license is to determine the terms and conditions applicable to the licensing of the data product, whereby Licensor grants License holder the right to use the data.",
          "language": "en-us",
          "permanent": false,
          "expiracyMonths": 12,
          "expiracyDate": "2022-12-15T00:00:00+02:00",
-         "termitationContitions": "Cancellation before 30 days.",
+         "terminationContitions": "Cancellation before 30 days.",
          "continuityConditions": "Expired license will automatically continued without written cancellation (termination) by Licenser holder",
          "restrictions": "The License holder agrees not to, directly or indirectly, participate in the unauthorized use, disclosure or conversion of any confidential information.",      
          "GeographicalArea": [ 
