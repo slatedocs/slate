@@ -4,6 +4,7 @@ The data product may be exploited e.g. by licensing its use and exploitation to 
 
 > Example of License Object usage:
 
+
 ```javascript
   
 "license": {
