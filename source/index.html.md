@@ -16,6 +16,7 @@ includes:
   - sla
   - license
   - provider
+  - licensor
   - extensions
   - terms
   - helloworld
