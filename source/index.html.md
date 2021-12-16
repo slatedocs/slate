@@ -3,7 +3,6 @@ title: Open Data Product Specification by Data Product Business
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - JSON
-  - XML
 
 
 toc_footers:
@@ -74,11 +73,6 @@ The right column contains JSON formatted examples of how the specification is us
 
   "url": "https://monitoring.com"
 }
-```
-
-```xml
-<button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
-
 ```
 
 <aside class="notice">
