@@ -374,11 +374,13 @@ In the event of a death of an Investor, specific tasks need to be carried out. T
 ### 1) The investor's cash and/or investments are being transferred to a surviving spouse on the same platform using an Additional Permitted Subscription ('APS')
 
 If you want to transfer investments to a surviving spouse, you must make sure you have the appropriate legal paperwork and technical capability in place to transfer investments on your platform.  Alternatively, you can wait for investments to mature and only transfer cash when it becomes available.
+
 The process flow is:
+
 - Notify the Goji operations team of the death by emailing platformsupport@goji.investments.
-- Goji will create a 'Death of investor' workflow and lock the account.
+- Goji will create a 'Death of investor' workflow and lock the account. 
 - The Goji operations team will liaise with you and the surviving spouse to complete the relevant APS paperwork and to gather the required paperwork (e.g. death certificate and grant of probate).
-- The surviving spouse must have an active ISA account.  If this isn't already in place, the surviving spouse must sign-up and create an account.  You must notify us of the account creation in the usual way through the `POST /investors` API call.
+- The surviving spouse must have an active ISA account.  If this isn't already in place, the surviving spouse must sign-up and create an account. You must notify us of the account creation in the usual way through the `POST /investors` API call.
 - Once required paperwork has been provided, Goji will confirm, unlock and the account and ask you to transfer the cash and investments to the beneficiary's account.
 - To notify us of cash moving between accounts using an APS:
     - On the deceased account: `POST /investors/{investorId}/cash`, setting the `type` to `CUSTOMER_WITHDRAWAL` with `amount.amount` set to a positive amount equal to the total cash balance.
