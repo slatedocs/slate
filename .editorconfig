@@ -1,4 +1,4 @@
-# EditorConfig is awesome: http://EditorConfig.org
+# EditorConfig is awesome: https://EditorConfig.org
 
 # Top-most EditorConfig file
 root = true
@@ -13,3 +13,6 @@ trim_trailing_whitespace = true
 
 [*.rb]
 charset = utf-8
+
+[*.md]
+trim_trailing_whitespace = false
