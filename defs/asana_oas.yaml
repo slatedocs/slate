@@ -1050,6 +1050,15 @@ components:
         type: string
       example: '321654'
       x-env-variable: project_status
+    status_path_gid:
+      name: status_gid
+      in: path
+      required: true
+      description: The status update to get.
+      schema:
+        type: string
+      example: '321654'
+      x-env-variable: status
     portfolio_path_gid:
       name: portfolio_gid
       in: path
@@ -3483,6 +3492,81 @@ components:
           properties:
             title:
               description: The title of the project status update.
+              type: string
+              example: Status Update - Jun 15
+    StatusResponse:
+      allOf:
+        - $ref: '#/components/schemas/StatusBase'
+        - type: object
+          properties:
+            author:
+              $ref: '#/components/schemas/UserCompact'
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
+            modified_at:
+              description: >-
+                The time at which this project status was last modified.
+
+                *Note: This does not currently reflect any changes in
+                associations such as comments that may have been added or
+                removed from the status.*
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+    StatusRequest:
+      $ref: '#/components/schemas/StatusBase'
+    StatusBase:
+      allOf:
+        - $ref: '#/components/schemas/StatusCompact'
+        - type: object
+          required:
+            - text
+            - color
+          properties:
+            text:
+              description: The text content of the status update.
+              type: string
+              example: The project is moving forward according to plan...
+            html_text:
+              description: >-
+                [Opt
+                In](/docs/input-output-options).
+                The text content of the status update with formatting as HTML.
+              type: string
+              example: >-
+                <body>The project <strong>is</strong> moving forward according to
+                plan...</body>
+            color:
+              description: The color associated with the status update.
+              type: string
+              enum:
+                - green
+                - yellow
+                - red
+                - blue
+    StatusCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A *status* is an update on the progress of a particular
+            project, portfolio, or goal, and is sent out to all of its parent's
+            followers when created. These
+            updates include both text describing the update and a color code
+            intended to represent the overall state of the project: "green" for
+            on track, "yellow" for at risk, and "red" being behind.
+          x-docs-overrides:
+            properties.resource_type.example: project_status
+          properties:
+            title:
+              description: The title of the status update.
               type: string
               example: Status Update - Jun 15
     SectionResponse:
@@ -8724,6 +8808,156 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /statuses/{status_gid}:
+    parameters:
+      - $ref: '#/components/parameters/status_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a status
+      description: >-
+        Returns the complete record for a single status update.
+      tags:
+        - Statuses
+      operationId: getStatus
+      responses:
+        200:
+          description: Successfully retrieved the specified object's status updates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/StatusResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete a status
+      description: |-
+        Deletes a specific, existing status update.
+
+        Returns an empty data record.
+      tags:
+        - Statuses
+      operationId: deleteStatus
+      responses:
+        200:
+          description: Successfully deleted the specified status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /statuses:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get statuses from an object
+      description: >-
+        Returns the compact status update records for all updates on the object.
+      tags:
+        - Statuses
+      operationId: getStatusesForObject
+      parameters:
+        - name: parent
+          in: query
+          description: Globally unique identifier for object to fetch statuses on.
+          schema:
+            type: string
+          example: '159874'
+        - name: published_since
+          in: query
+          description: |-
+            Only return statuses that have been published since the given time.
+          schema:
+            type: string
+            format: date-time
+          example: '2012-02-22T02:06:58.158Z'
+      responses:
+        200:
+          description: Successfully retrieved the specified object's status updates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StatusCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create a status
+      description: >-
+        Creates a new status update on an object.
+
+        Returns the full record of the newly created status update.
+      tags:
+        - Statuses
+      operationId: createStatusForObject
+      requestBody:
+        description: The project status to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/StatusRequest'
+      responses:
+        201:
+          description: Successfully created a new status update.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/StatusResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
