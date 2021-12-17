@@ -41,21 +41,10 @@ The specification is shared under Attribution-ShareAlike 4.0 International (CC B
 **Published 16 Dec 2021**
 
 **Latest version source:**
-<<<<<<< Updated upstream
-- https://github.com/Data-Product-Business/open-data-product-spec 
-
-**Editors:**
-  Jarkko Moilanen 
-  Jussi Niilahti 
-**Participate:**
-  [Raise an issue in Github](https://github.com/Data-Product-Business/open-data-product-spec/issues)
-  [Raise an issue in service designed for average mortals](https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5) 
-=======
 
 * https://github.com/Data-Product-Business/open-data-product-spec 
 
 **Editors:**
-
 * Jarkko Moilanen 
 * Jussi Niilahti 
 
@@ -63,7 +52,6 @@ The specification is shared under Attribution-ShareAlike 4.0 International (CC B
 
 * [Raise an issue in Github](https://github.com/Data-Product-Business/open-data-product-spec/issues)
 * [Raise an issue in service designed for average mortals](https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5) 
->>>>>>> Stashed changes
 
 ## Introduction
 
