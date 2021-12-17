@@ -62,9 +62,9 @@ The same logic applies to the optional attributes as well. Optional attributes a
 |---|---|---|---|
 | taxID | string  | - | The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain. |
 | vatID | string | - | The Value-added Tax ID of the organization or person. |
-| logoURL | URL | Valid URL | The URL pointing to organisation logo |
+| logoURL | URL | Valid URL. See more from [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986). | The URL pointing to organisation logo. |
 | description | string | Max length 512 chars | The introduction to the organization. Often contains information of what the organisation does and focuses on. |
-| URL | URL | Valid URL | The URL of the organization's website  |
+| URL | URL | Valid URL. See more from [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986). | The URL of the organization's website.   |
 | telephone | string | - | The telephone number.  |
 | streetAddress | string | - | The street address. For example, 1600 Amphitheatre Pkwy.  |
 | postalCode | string | - | The postal code. For example, 94043.  |
