@@ -40,7 +40,8 @@ The specification is shared under Attribution-ShareAlike 4.0 International (CC B
 
 **Published 16 Dec 2021**
 
-**Latest editor's draft:**
+**Latest version source:**
+
 - https://github.com/Data-Product-Business/open-data-product-spec 
 
 **Editors:**
