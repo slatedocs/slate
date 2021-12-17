@@ -20,6 +20,7 @@ info:
     - FormMetadataResponse
     - RanActionResponse
     - WidgetMetadataResponse
+    - TypeaheadResponse
     - TypeaheadItem
     - FormValues
 servers:
@@ -481,7 +482,7 @@ components:
             $ref: '#/components/schemas/AttachedResourceResponse'
     TypeaheadItem:
       description: >-
-        An object describing a typeahead result
+        An object describing a typeahead result.
       type: object
       properties:
         title:
@@ -504,6 +505,54 @@ components:
             The URL of the icon to display next to the title
           type: string
           example: 'https://example-icon.png'
+    TypeaheadRequest:
+      allOf:
+        - $ref: '#/components/schemas/RootUIComponentRequest'
+        - type: object
+          description: >-
+            The body of a typeahead request.
+          properties:
+            workspace:
+              type: string
+              description: >-
+                The workspace `gid` this hook is coming from.
+              example: '12345'
+            query:
+              type: string
+              description: >-
+                The user's input in the typeahead text input.
+              example: 'Messages'
+            task:
+              type: string
+              description: >-
+                *Conditional*. The task `gid` this hook is coming from. `task` is only present in the [App Form](/docs/app-form) (as there is a "context task"), but not in the [App Action](/docs/app-action) (as rules are associated with a _project_).
+              example: '67890'
+            user:
+              type: string
+              description: >-
+                The user `gid` this hook is coming from.
+              example: '54321'
+            expires_at:
+              type: string
+              description: >-
+                The time (in ISO-8601 format) when the request should expire
+              example: '2019-04-15T01:01:46.055Z'
+    TypeaheadResponse:
+      description: >-
+        The response to a successful typeahead request.
+      type: object
+      properties:
+        header:
+          description: >-
+            *optional* Header text to display above the list of typeahead results. If no `header` is passed in or the value is an empty string, only the typeahead results with be rendered.
+          type: string
+          example: 'List of messages'
+        items:
+          description: >-
+            Array of [TypeaheadItem](/docs/typeahead-item) objects that indicate typeahead results.
+          type: array
+          items:
+            $ref: '#/components/schemas/TypeaheadItem'
     WidgetMetadataResponse:
       description: >-
         An object containing information about the widget.
@@ -716,6 +765,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttachedResourceResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{resource_typeahead_url}:
+    get:
+      summary: Get typeahead results
+      description: >-
+        Gets typeahead results to render as a dropdown list in the resource search bar.
+        
+
+        When the user types into the resource search bar, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource search](/docs/resource-search) request to the app server, then process the response and render the attached resource in the widget.
+      tags:
+        - App Widgets
+      operationId: getTypeaheadResults
+      requestBody:
+        description: >-
+          Request to retrieve typeahead results for a resource search query.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeaheadRequest'
+      responses:
+        200:
+          description: Successfully retrieved typeahead results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeaheadResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
