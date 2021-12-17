@@ -38,6 +38,17 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 The specification is shared under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license. 
 
+**Published 16 Dec 2021**
+
+**Latest editor's draft:**
+  https://github.com/Data-Product-Business/open-data-product-spec 
+**Editors:**
+  Jarkko Moilanen 
+  Jussi Niilahti 
+**Participate:**
+  [Raise an issue in Github](https://github.com/Data-Product-Business/open-data-product-spec/issues)
+  [Raise an issue in service designed for average mortals](https://v90nkeo0oq0.typeform.com/to/Q1Zo6wE5) 
+
 ## Introduction
 
 Technical specification of a machine-readable data product metadata model. It defines the objects and attributes as well as the structure of digital data products. The work is based on existing standards (schema.org), best practices and emerging concepts like Data Mesh. The reasoning is that we reuse and proudly copy instead of reinventing the wheel. 
