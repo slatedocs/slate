@@ -66,7 +66,7 @@ The left column is navigation which enables fluent and easy movement around the 
 
 The middle column contains detailed information about the included components and related options. This is the theory part. 
 
-Note! Mandatory elements and attributes are marked with **bold names** and **\*** in the definition tables. https://schema.org provided ready-made definitions are applied when ever possible instead of re-inventing the wheel. 
+Note! Mandatory elements and attributes are listed separately in the definition tables. This enables user to construct minimum viable specification more easily and fast. https://schema.org provided ready-made definitions are applied when ever possible instead of re-inventing the wheel. 
 
 **RIGHT COLUMN: Examples**
 
