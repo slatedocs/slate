@@ -1,6 +1,6 @@
-# Service Level Agreement
+# Data SLA
 
-Quality ELEMENT contains attributes which define the desired and promised quality of the data product. 
+Data Service Level Agreement (SLA) **Object**** contains attributes which define the desired and promised quality of the data product. 
 
 No mandatory attributes at the moment. Optional attributes are listed in own table and an example is given in the right column. 
 
