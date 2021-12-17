@@ -122,6 +122,7 @@ Here's the list of attributes which can occur at the document root level. Mandat
   "status":"draft",
   "version":"0.1",
   "category":"pets",
+  "tags":"pet",
   "brandSlogan":"passion for the data monetization",
   "type":"dataset",
   "logo":"https://data-product-business.github.io/open-data-product-spec/images/logo-dps-ebd5a97d.png"
@@ -133,7 +134,8 @@ Here's the list of attributes which can occur at the document root level. Mandat
 |---|---|---|---|
 | valueProposition | string  | text content, max length 512 chars  | This is the product's value proposition. Often one or two sentences and crystallizes the value for the customer. |
 | description | string | - | The description of the product. Text only. |
-| category| array | - | array of categories |
+| categories| array | - | comma separates array of categories |
+| tags| array | - | comma separates array of tags |
 | version | string | The versioning scheme is **major.minor.**. Examples: 1.0, 2.1, 3.15 | The version of the product. |
 | logo | URL | Valid URL | URL of the logo. See more from [wikipedia](https://en.wikipedia.org/wiki/URL). |
 | brandSlogan | string | - | Brand related slogan like Nike has *just do it* |
