@@ -1,6 +1,8 @@
-# Provider
+# Data Holder
 
-Provider **ELEMENT** describes the Organization legally allowed to create, develop and publish data products. The provider might not be the original IPR owner of the data used, but has rights operate with it. The contract or other agreement between Provider and possible data owner is not part of the standard as metadata or licence wise.
+DataHolder **Bject** describes the Organization legally allowed to create, develop and publish data products. *Data holder* means a legal person, public body, international organisation, or a natural person who is not a data subject with respect to the specific data in question, which, in accordance with applicable Union or national law, has the right to grant access to or to share certain personal data or non-personal data;  (Data Governance Act)
+
+The *data holder* might not be the original IPR owner of the data used, but has rights operate with it. The contract or other agreement between Provider and possible data owner is not part of the standard as metadata or licence wise.
 
 Mandatory attributes are listed in separate table and marked with **bolded names** and asterix **\***. Next to the mandatory attributes is an example. 
 
@@ -12,7 +14,7 @@ The same logic applies to the optional attributes as well. Optional attributes a
 > Example of Provider component mandatory attributes usage:
 
 ```javascript
-   "Provider":
+   "dataHolder":
       {
          "legalName":"MindMote Oy",
          "businessId":"12243434-12",
@@ -35,7 +37,7 @@ The same logic applies to the optional attributes as well. Optional attributes a
 > Example of Provider component with some of the voluntary attributes:
 
 ```javascript
-   "Provider":
+   "dataHolder":
       {
          "taxID":"12243434-12",
          "vatID":"12243434-12",
