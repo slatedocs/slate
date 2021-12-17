@@ -27,7 +27,7 @@ discontinued or modified at any time.
 
 <hr>
 
-## App Widget
+## Widget
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
@@ -74,22 +74,22 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&at
 
 <img style="max-width:420px" src="../images/jira-widget.png" />
 
-An App Widget displays external data within Asana. The contents of a 
-widget may change, but the overall format stays consistent across apps.
+A Widget displays external data within Asana. The contents of a 
+Widget may change, but the overall format stays consistent across apps.
 Apps can control what layout they prefer by supplying their preferred 
 `template`. You can see the available templates in the *Enumerated Values* 
 section of [response schema](/docs/widget-metadata).
 
-The App Server controls the content of this widget. When an 
-Asana user's browser navigates to a widget, Asana sends a 
+The App Server controls the content of this Widget. When an 
+Asana user's browser navigates to a Widget, Asana sends a 
 request to the registered App Server. As long as the response from 
-the server is valid (like the example on the right), the widget 
+the server is valid (like the example on the right), the Widget 
 will display.
 
-How does Asana determine when a widget should be shown? When a task is opened in
-Asana, it checks each attachment on the task. If an attachment has a url 
+How does Asana determine when a Widget should be shown? When a task is opened in
+Asana, it checks each attachment on the task. If an attachment has a URL 
 that fits with an App's registered `match url` (ex: `https:\/\/.*.atlassian.net\/.*`) 
-then it shows a widget. A GET request is sent to the App's `widget url`, including 
+then it shows a Widget. A GET request is sent to the App's `widget url`, including 
 URL parameters like `task`, `user`, and `workspace`. 
 
 Related References: 
@@ -99,7 +99,7 @@ Related References:
 
 <hr>
 
-## App Form
+## Modal Form
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
@@ -160,12 +160,12 @@ https://app-server.com/form?workspace=12345&task=23456&user=34567&locale=en&expi
 
 <img style="max-width:580px; box-shadow: 0 0 0 1px rgba(111,119,130,.15), 0 5px 20px 0 rgba(21,27,38,.08); border-radius: 4px;" src="../images/jira-modal.png" />
 
-An App Form allows users to fill out a dynamic app-controlled list of fields. The # of fields can range from 0-20.
+A Modal Form allows users to fill out a dynamic app-controlled list of fields. The number of fields can range from 0-20.
 Once a form is submitted, the information is sent to the App Server and Asana will perform different functionality
 depending on what they responded with. If the App wants to cause additional changes within Asana, the App 
 Server will need to make the changes via the API. 
 
-An advanced feature of App Forms is live `on_change` events. While a user is filling out a form,
+An advanced feature of Modal Forms is live `on_change` events. While a user is filling out a form,
 the App Server can receive `on_change` requests. These requests include what the user has changed, and
 allow the App Server to respond with an updated form. Apps can build complex branching logic depending
 on changes a user makes.
@@ -184,14 +184,14 @@ Related References:
 
 <hr>
 
-## App Resource Search
+## Lookup
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 > Request to the App Server
 
 ```http
-https://app-server.com/resource-search?value=Cool&workspace=12345&task=23456&user=34567&locale=en&expires_at=2011-10-05T14%3A48%3A00.000Z
+https://app-server.com/lookup?value=Cool&workspace=12345&task=23456&user=34567&locale=en&expires_at=2011-10-05T14%3A48%3A00.000Z
 ```
 
 > Response from the App Server
@@ -203,19 +203,19 @@ https://app-server.com/resource-search?value=Cool&workspace=12345&task=23456&use
 }
 ```
 
-<img style="max-width:658px" src="../images/jira-resource-search.png" />
+<img style="max-width:658px" src="../images/jira-lookup.png" />
 
-Users can send a search term to the app server. The term is often a url or 
+Users can send a search term to the app server. The term is often a URL or 
 the title of an external resource. The app server then responds with a 
 resource or an error. 
 
 Related References: 
 
-* [App Widget](/docs/app-widget)
+* [Widget](/docs/widget)
 
 <hr>
 
-## App Action
+## Rule Action
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
@@ -254,14 +254,14 @@ https://app-server.com/rule?workspace=12345&project=23456&action_type=45678&acti
 
 <img style="max-width:380px; box-shadow: 0 0 0 1px rgba(111,119,130,.15), 0 5px 20px 0 rgba(21,27,38,.08); border-radius: 4px;" src="../images/slack-rule.png" />
 
-An App Action allows users to customize app actions triggered by Asana's rule engine. They use the same functionality as
-the [App Form](/docs/app-form), as Asana requests a form definition from the App Server. The app controls the form 
+A Rule Action allows users to customize actions triggered by Asana's rule engine. They use the same functionality as
+the [Modal Form](/docs/modal-form), as Asana requests a form definition from the App Server. The app controls the form 
 fields, handles `on_change` events, and stores the inputs of the form. When a rule is created, Asana sends a request to 
 the App Server with the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server.
 
  
 
-App actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
+Rule Actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
 
 Related References: 
 
@@ -295,16 +295,16 @@ Before you begin, you'll need a developer sandbox in order to use App Components
 5. Once the example app is installed, create a task in your project. In the task's **{Example}** custom field, go to **{Add Example Resource}** > **{Open form}** to see examples of customizable inputs. Click **Submit**.
 <br>
 <br>
-<img src="../images/example-app-form.gif" />
+<img src="../images/example-modal-form.gif" />
 <br>
 <br>
-6. View the newly-generated widget on your task. You can begin editing `index.js` to modify the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
+6. View the newly-generated Widget on your task. You can begin editing `index.js` to modify the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
 <br>
 <br>
-<img src="../images/example-app-widget.png" />
+<img src="../images/example-widget.png" />
 <br>
 <br>
-That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's widget. Once you're ready to define an app, [click here to create your own app](/docs/configurations) with App Components.
+That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's Widget. Once you're ready to define an app, [click here to create your own app](/docs/configurations) with App Components.
 
 <hr class="full-line">
 
@@ -335,7 +335,7 @@ When testing your application, you should:
 * Test and proof-read any custom error messages
 * Test the auth flow from both the web browser and [desktop app](https://asana.com/download)
   * You can enter the installation flow manually by navigating to `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`
-* Test app actions with a variety of trigger combinations
+* Test [Rule Actions](/docs/rule-actions) with a variety of trigger combinations
 
 <hr>
 
@@ -548,19 +548,19 @@ Once your app is submitted, an Asana developer will configure and enable your ap
 |» `x96`                      | String (url) | 96x96 icon asset |
 |» `x192`                     | String (url) | 192x192 icon asset |
 | `capabilities`              | Object       | A list of capabilities supported by the app and their configuration. |
-|» `resource_widget`          | String (url) | The container for resource widget functionality  |
-|»» `widgetMetadataUrl`       | String (url) | A URL that Asana uses to make requests for the data needed to load an app widget which displays information about a 3rd party resource. |
-|»» `matchUrlPattern`         | String (url) | A regex which allows Asana to compute whether a UrlAttachment is supported by an activated app on the project in order to render an app widget. |
+|» `resource_widget`          | String (url) | The container for resource Widget functionality  |
+|»» `widgetMetadataUrl`       | String (url) | A URL that Asana uses to make requests for the data needed to load a Widget which displays information about a 3rd party resource. |
+|»» `matchUrlPattern`         | String (url) | A regex which allows Asana to compute whether a UrlAttachment is supported by an activated app on the project in order to render a Widget. |
 |» `resource_search`          | Object       | The container for typeahead functionality |
 |»» `resourceAttachUrl`       | String (url) | A URL that Asana will make a request of when a user submits a value to attach. |
 |» `create_resource`          | Object       | The container for resource creation functionality |
 |»» `formMetadataUrl`         | String (url) | A URL that Asana uses to request data from the app about fields it should display in the resource creation modal when the form is first displayed. |
 |» `automation`               | Object       | The container for automation functionality |
-|»» `app_actions`             | Object[]     | The set of app actions exposed by the app |
+|»» `app_actions`             | Object[]     | The set of Rule Actions exposed by the app |
 |»»» `identifier`             | String       | The unique identifier for the action on the app. |
-|»»» `display_name`           | String       | App action name visible to end users, e.g. "Create a Jira issue" |
-|»»» `run_action_url`         | String       | App Server URL for requests to run an app action |
-|»»» `form_metadata_url`      | String       | App Server URL for requests about configuring an app action |
+|»»» `display_name`           | String       | Rule Action name visible to end users, e.g. "Create a Jira issue" |
+|»»» `run_action_url`         | String       | App Server URL for requests to run a Rule Action |
+|»»» `form_metadata_url`      | String       | App Server URL for requests about configuring an Rule Action |
 | `logo`                      | String (url) | A link to the image of the App logo. Appears in the app installation modal |
 | `authModalMetadata`         | Object       | Information about the text displayed in the auth modal |
 |» `title`                    | String       | The title displayed in the auth modal |
