@@ -33,7 +33,6 @@ includes:
     - rf
     - gpw
     - business-categories
-    - useful-tools
     - appendix
 
 search: true
