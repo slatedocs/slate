@@ -20,8 +20,8 @@ The data product may be exploited e.g. by licensing its use and exploitation to 
             "EU",
             "US"
          ],
-         "modificationRight": True,
-         "resellingRight": True,
+         "modificationRight": true,
+         "resellingRight": true,
          "roalties": "It is hereby agreed Data User shall share with Data Holder three percent (3%) of the revenues derives and receives from the usage their BI Dashbord solutions by the End Users.",
          "paymentsData User shall remit full payment within thirty (30) days after the end of each calendar month. Taxes (VAT 24 %) are included. Invoice will be electronical",
          "copyrights": "Copyright is regulated in Finland by the Copyright Act (404/1961). Data is property of Mindmote Oy."
@@ -49,11 +49,11 @@ The data product may be exploited e.g. by licensing its use and exploitation to 
 | continuityConditions | string | ISO 639-1 standard language codes | License language |
 | restrictions | string | ISO 639-1 standard language codes | License language |
 | geographicalArea | string | ISO 639-1 standard language codes | License language |
-| modificationRights | string | ISO 639-1 standard language codes | License language |
-| resellingRights | string | ISO 639-1 standard language codes | License language |
+| modificationRights | boolean | ISO 639-1 standard language codes | License language |
+| resellingRights | boolean | ISO 639-1 standard language codes | License language |
 | royalties | string | ISO 639-1 standard language codes | License language |
 | copyrights | string | ISO 639-1 standard language codes | License language |
-| containsPersonData | string | ISO 639-1 standard language codes | License language |
+| containsPersonData | boolean | ISO 639-1 standard language codes | License language |
 | dpaURL| string | ISO 639-1 standard language codes | License language |
 | audit | string | ISO 639-1 standard language codes | License language |
 | forceMajeure | string | ISO 639-1 standard language codes | License language |
