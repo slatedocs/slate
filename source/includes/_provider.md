@@ -27,9 +27,9 @@ The same logic applies to the optional attributes as well. Optional attributes a
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
-| **legalName** **\*** | string  | text content, max length 256 chars  | The official name of the organization, e.g. the registered company name.  | 
-|  **businessID** **\*** | string  | As defined in [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322)  | The business identifier code of the company. Often this is given to the company by authorized public sector organization managing register of businesses.  |
-| **email** **\*** | string | - | Email to be used in contacting the organization. |
+| **legalName** | string  | text content, max length 256 chars  | **REQUIRED** The official name of the organization, e.g. the registered company name.  | 
+|  **businessID**| string  | As defined in [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322)  | **REQUIRED** The business identifier code of the company. Often this is given to the company by authorized public sector organization managing register of businesses.  |
+| **email** | string | - | **REQUIRED** Email to be used in contacting the organization. |
 
 <button data-tf-popup="Q1Zo6wE5" data-tf-iframe-props="title=Customer Feedback Survey" style="all:unset;font-family:Helvetica,Arial,sans-serif;display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background-color:#FA6B05;color:#000000;font-size:17px;border-radius:3px;padding:0 28px;font-weight:bold;height:42.5px;cursor:pointer;line-height:42.5px;text-align:center;margin:0;text-decoration:none;">Raise an issue</button><script src="//embed.typeform.com/next/embed.js"></script>
 
