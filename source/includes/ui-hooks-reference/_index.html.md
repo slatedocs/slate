@@ -1097,7 +1097,7 @@ The search request made to an App Server when the search field is submitted.
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-widget-metadata"><span class="get-verb">GET</span> <span class=""nn>/{widget_metadata_url}</span></a><br><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a></code>
+<code><a href="/docs/get-widget-metadata"><span class="get-verb">GET</span> <span class=""nn>/{widget_metadata_url}</span></a><br><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a><br><a href="/docs/get-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{resource_typeahead_url}</span></a></code>
 </pre>
 
 <span class="description">
@@ -1310,6 +1310,110 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 |404<span class="param-type"> None</span>|Not Found|
 |500<span class="param-type"> None</span>|Server Error|
 
+</section><hr class="half-line">
+<section>
+## Get typeahead results
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+<a id="opIdgetTypeaheadResults"></a>
+
+> Code samples
+
+```shell
+curl -X GET {siteUrl}/{resource_typeahead_url} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```javascript--nodejs
+getTypeaheadResults
+
+```
+
+```python
+getTypeaheadResults
+
+```
+
+```ruby
+getTypeaheadResults
+
+```
+
+```java
+getTypeaheadResults
+
+```
+
+```php
+getTypeaheadResults
+
+```
+
+> Body parameter
+
+```json
+{
+  "expires_at": "2019-04-15T01:01:46.055Z",
+  "query": "Messages",
+  "task": "67890",
+  "user": "54321",
+  "workspace": "12345"
+}
+```
+
+> 200 Response
+
+```json
+{
+  "header": "List of messages",
+  "items": [
+    {
+      "icon_url": "https://example-icon.png",
+      "subtitle": "OTP",
+      "title": "OTP Team PF",
+      "value": "OTP"
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /{resource_typeahead_url}</code>
+</p>
+
+<span class="description">
+Gets typeahead results to render as a dropdown list in the resource search bar.
+
+When the user types into the resource search bar, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource search](/docs/resource-search) request to the app server, then process the response and render the attached resource in the widget.
+</span>
+
+<h3 id="get-typeahead-results-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to retrieve typeahead results for a resource search query.|
+|» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 format) when the request should expire|
+|» query<span class="param-type"> string</span>|The user's input in the typeahead text input.|
+|» task<span class="param-type"> string</span>|*Conditional*. The task `gid` this hook is coming from. `task` is only present in the [App Form](/docs/app-form) (as there is a "context task"), but not in the [App Action](/docs/app-action) (as rules are associated with a _project_).|
+|» user<span class="param-type"> string</span>|The user `gid` this hook is coming from.|
+|» workspace<span class="param-type"> string</span>|The workspace `gid` this hook is coming from.|
+
+<h3 id="get-typeahead-results-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
+|400<span class="param-type"> None</span>|Bad Request|
+|401<span class="param-type"> None</span>|Unauthorized|
+|403<span class="param-type"> None</span>|Forbidden|
+|404<span class="param-type"> None</span>|Not Found|
+|500<span class="param-type"> None</span>|Server Error|
+
 </section><hr class="full-line">
 <section class="full-section">
 # App Component Schemas
@@ -1515,7 +1619,7 @@ The response to an action request.
 ```
 
 <span class="description">
-An object describing a typeahead result
+An object describing a typeahead result.
 
 </span>
 
@@ -1527,6 +1631,48 @@ An object describing a typeahead result
 |subtitle<span class="param-type"> string</span>|The subtitle of the typeahead item|
 |title<span class="param-type"> string</span>|The title of the typeahead item|
 |value<span class="param-type"> string</span>|The value of the typeahead item|
+
+</section><hr>
+<section>
+<a id="schematypeahead"></a>
+<a id="schema_Typeahead"></a>
+<a id="tocStypeahead"></a>
+<a id="tocstypeahead"></a>
+<a id="tocS_Typeahead"></a>
+<h2 id="typeahead">Typeahead</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+```json
+{
+  "header": "List of messages",
+  "items": [
+    {
+      "icon_url": "https://example-icon.png",
+      "subtitle": "OTP",
+      "title": "OTP Team PF",
+      "value": "OTP"
+    }
+  ]
+}
+
+```
+
+<span class="description">
+The response to a successful typeahead request.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|header<span class="param-type"> string</span>|*optional* Header text to display above the list of typeahead results. If no `header` is passed in or the value is an empty string, only the typeahead results with be rendered.|
+|items<span class="param-type"> [object]</span>|Array of [TypeaheadItem](/docs/typeahead-item) objects that indicate typeahead results.|
+|» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the title|
+|» subtitle<span class="param-type"> string</span>|The subtitle of the typeahead item|
+|» title<span class="param-type"> string</span>|The title of the typeahead item|
+|» value<span class="param-type"> string</span>|The value of the typeahead item|
 
 </section><hr>
 <section>
