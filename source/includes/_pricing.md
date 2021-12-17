@@ -20,7 +20,7 @@ Supported pricing models include:
 > Example of Pricing component usage with manadatory elements and attributes:
 
 ```javascript
-   "pricing":[
+   "pricing":{
       {
          "name":"Premium subscription 1 year",
          "priceCurrency":"EUR",
@@ -45,7 +45,7 @@ Supported pricing models include:
          "unit": "recurring",
          "maxTransactionQuantity":1000
        }
-   ]
+   }
 ```
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
@@ -67,7 +67,7 @@ Supported pricing models include:
 > Example of Pricing component usage with some of the optional elements and attributes:
 
 ```javascript
-   "pricing":[
+   "pricing"{
       {
          "name":"Premium subscription 1 year",
          "priceCurrency":"EUR",
@@ -83,7 +83,7 @@ Supported pricing models include:
          "maxPrice":"20.00",
          "valueAddedTaxIncluded": false
        }
-   ]
+   }
 ```
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
