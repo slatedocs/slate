@@ -38,11 +38,11 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 The specification is shared under Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license. 
 
-## Purpose
+## Introduction
 
 Technical specification of a machine-readable data product metadata model. It defines the objects and attributes as well as the structure of digital data products. The work is based on existing standards (schema.org), best practices and emerging concepts like Data Mesh. The reasoning is that we reuse and proudly copy instead of reinventing the wheel. 
 
-## Specification aims
+**Specification aims:**
 
 * enable interoperability between organizations, data platforms,  marketplaces, and tools. 
 * reduce data product metadata conversions and errors between systems and organizations, 
@@ -89,7 +89,7 @@ The JSON examples are not based on any real data product, but exemplify the usag
 
 # Document level attributes
 
-Here's the list of attributes which can occur at the document root level. Mandatory attributes are listed in separate table and marked with **bolded names** and asterix **\***. Next to the mandatory attributes is an example. The same logic applies to the optional attributes as well. Optional attributes are listed in own table and examples are given on the right column. 
+Here's the list of attributes which can occur at the document root level. In the following description, if a field is not explicitly **REQUIRED** or described with a MUST or SHALL, it can be considered OPTIONAL. Optional attributes are listed in own table and examples are given on the right column. 
 
 ## Mandatory attributes
 
@@ -108,11 +108,14 @@ Here's the list of attributes which can occur at the document root level. Mandat
 
 | <div style="width:150px">Element name</div>   | Type  | Options  | Description  |
 |---|---|---|---|
-| **name** **\*** | string | max length 256 chars | The name of the product. |
-| **productID** **\*** | string | max length 256 chars | Product identifier. |
-| **visibility** **\*** | one of | one of: private, organisation, public | The publicity level eg who can see this product. Private - just the creator. Organisation - visible to all in your organisation. Public - visible to all publicly |
-| **status** **\*** | one of | one of: announcement, draft, development, testing, acceptance, production, sunset, retired | The status of the product. Lifecycle model discussed in details in here (link). |
-| **type** **\*** | one of |  Options: raw data, derived data, dataset, reports, analytic view, 3D visualisation, algorithm, decision support, automated decision-making, bi-directional | The type of the product. Options are derived from examples and lists found from academic literature  | 
+| **name** | string | max length 256 chars | **REQUIRED**The name of the product. |
+| **productID** **REQUIRED** | string | max length 256 chars | **REQUIRED** Product identifier. |
+| **name** **REQUIRED** | string |  max length 256 chars | **REQUIRED** The name of the product. |
+| **visibility**  | one of | one of: private, organisation, public | **REQUIRED** The publicity level eg who can see this product. Private - just the creator. Organisation - visible to all in your organisation. Public - visible to all publicly |
+| **name** | string | max length 256 chars | **REQUIRED** The name of the product. |
+| **status**  | one of | one of: announcement, draft, development, testing, acceptance, production, sunset, retired | **REQUIRED** The status of the product. Lifecycle model discussed in details in here (link). |
+| **name** | string | max length 256 chars | The name of the product. |
+| **type** | one of |  Options: raw data, derived data, dataset, reports, analytic view, 3D visualisation, algorithm, decision support, automated decision-making, bi-directional | **REQUIRED** The type of the product. Options are derived from examples and lists found from academic literature  | 
 
 
 ## Optional attributes
