@@ -48,6 +48,16 @@ Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
 
+### Query Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+name | string  | Filters results by the speaker name.
+last_name | string  | Filters results by the speaker last_name.
+email | string  | Filters results by the speaker email.
+fullname | string  | Filters results by the speaker concat name and last_name.
+keywords | string  | Filters results by the speaker match name ,last_name and email.
+
 ## Get Speaker
 
 ```javascript
