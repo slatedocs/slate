@@ -17,6 +17,7 @@ includes:
   - fields
   - pricing_tier
   - users
+  - workshops
 
 search: true
 ---
