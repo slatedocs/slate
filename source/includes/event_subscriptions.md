@@ -45,7 +45,7 @@ event_type | String | Yes | The name of the event you wish to be notified about,
 
 ### Response
 
-Successful requests will return a json payload of the project that was created and a `201` status code.
+Successful requests will return a json payload of the event subscription that was created and a `201` status code.
 
 > 201
 
