@@ -33,3 +33,15 @@ If you need to test that you have a valid API key use the following endpoint:
 ### Response
 
 Successful authentication with return a `200` response, otherwise a `401` will be returned when supplied with an invalid API key.
+
+```json
+{
+    "data": {
+        "id": "de9559a5dsjhsj74da6afb75a4dsds1e2769b",
+        "type": "actor",
+        "attributes": {
+            "company_name": "Example Company Ltd"
+        }
+    }
+}
+```
