@@ -182,6 +182,9 @@ curl https://api.handshq.com/v1/projects \
     "user_email": "maddox@daystrom.com",
     "project": {
       "name": "My project with extra details",
+      "start_date": "2021-12-20",
+      "end_date": "2022-12-20",
+      "reference": "abc123",
       "fields_attributes": {
         "1": "My field value"
       }
@@ -230,15 +233,19 @@ Successful requests will return a json payload of the project that was created a
     "type": "project",
     "attributes": {
       "name": "My Project",
-      "start_date": null,
-      "end_date": null,
-      "reference": null,
+      "start_date": "2021-12-20",
+      "end_date": "2022-12-20",
+      "reference": "abc123",
       "archived_at": null,
       "state": null
     },
     "relationships": {
       "user": {
-        "data": null
+        "data": {
+            "id": "345",
+            "type": "user"
+          }
+        }
       },
       "fields":{
         "data":[
@@ -260,7 +267,7 @@ Successful requests will return a json payload of the project that was created a
       "attributes":{
         "label":"Client reference",
         "required":null,
-        "value":"DEF345",
+        "value":"My field value",
         "data_type":"string"
       },
       "relationships":{
