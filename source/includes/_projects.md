@@ -6,6 +6,7 @@
 curl https://api.handshq.com/v1/projects \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]" \
+  -H "Content-Type: application/json" \
   --request POST \
   -d "[json_payload]"
 ```
