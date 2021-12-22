@@ -29,8 +29,8 @@ Successful requests will return a json payload of that division's projects and a
         "attributes": {
           "name": "Test Project",
           "reference": "ABC1",
-          "start_date": "2021-12-20T10:53:25.015+00:00",
-          "end_date": "2022-12-21T10:53:25.015+00:00",
+          "start_date": "2021-12-20",
+          "end_date": "2022-12-21",
           "archived_at": null,
           "state": "not_submitted"
         },
@@ -64,8 +64,8 @@ Successful requests will return a json payload of that division's projects and a
         "attributes": {
           "name": "Test Project 2",
           "reference": "ABC2",
-          "start_date": "2021-12-20T10:53:25.015+00:00",
-          "end_date": "2022-12-21T10:53:25.015+00:00",
+          "start_date": "2021-12-20",
+          "end_date": "2022-12-21",
           "archived_at": null,
           "state": "not_submitted"
         },
@@ -131,8 +131,8 @@ Successful requests will return a json payload of that division's projects that 
         "attributes": {
           "name": "Test Project",
           "reference": "ABC1",
-          "start_date": "2021-12-20T10:53:25.015+00:00",
-          "end_date": "2022-12-21T10:53:25.015+00:00",
+          "start_date": "2021-12-20",
+          "end_date": "2022-12-21",
           "archived_at": null,
           "state": "not_submitted"
         },
@@ -301,8 +301,8 @@ curl https://api.handshq.com/v1/projects/[id] \
   {
     "project": {
       "name": "My Updated Project",
-      "start_date": "2021-12-20T10:53:25.015+00:00" ,
-      "end_date": "2022-12-20T10:53:25.015+00:00",
+      "start_date": "2021-12-20" ,
+      "end_date": "2022-12-20",
       "reference": "abc123"
     }
   }
@@ -339,8 +339,8 @@ Successful requests will return a json payload of the project that was updated a
     "type": "project",
     "attributes": {
       "name": "My Updated Project",
-      "start_date": "2021-12-20T10:53:25.015+00:00" ,
-      "end_date": "2022-12-20T10:53:25.015+00:00",
+      "start_date": "2021-12-20" ,
+      "end_date": "2022-12-20",
       "reference": "abc123",
       "archived_at": null,
       "state": "not_submitted"
