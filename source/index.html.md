@@ -9,7 +9,7 @@ search: true
 
 # Prerequisites
 
-* Analytics VVM or User Story UDAY SAtivadadsfsfsfsdfsf
+* Analytics VVM or User Story UDAY SAtivadskdksajkajsdkasdjakdjkasldj
 * Access to Ensighten
 * Adobe configuration values :
 	* Report Suite ID (rsid) = provided in VVM or User Story
