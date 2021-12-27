@@ -96,6 +96,7 @@ Add the newly created Space to the latest global template.
     "template_type": "adbp:content",
     "app_name": "tbs|us|english",
     "device": "web",
+    "uday": "udayweb",
     "device_type": "web",
     "episode_num": "1",
     "mvpd_status": "no value",
