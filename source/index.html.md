@@ -29,7 +29,7 @@ search: true
 <script type="text/javascript" src="//agility.tbs.com/turner/tbs-prod/Bootstrap.js"></script>
 ```
 
-1. Log in to Ensighten Manage.
+1. Log sdkfsjklsjkdlsajdakldkjalsdjklasdfjklsajkljkld in to Ensighten Manage.
 2. Click **Spaces** from left menu.
 3. Click **Add Space** and enter your space info.
 4. Publish your changes and make a note of the Bootstrap include script.
