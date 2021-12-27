@@ -197,6 +197,18 @@ HTTP/1.1 422 Unprocessable Entity
 
 This endpoint create an attendee and return it
 
+### Path Parameters
+
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+first_name | string  | first name for attendee
+last_name  | string  | last name for attendee
+email      | string  | email for attendee
+telephone  | integer | telephone for attendee
+attendee_typ_id | integer | attendee type id who created attendee belongs
+fields_data | hash | key-value for custom fields data for created attendee
+photo      |  file   | photo for attendee
+
 ## Update Attendee
 
 ```javascript
@@ -280,10 +292,15 @@ This endpoint update an attendee and return it
 
 ### Path Parameters
 
-Parameter |  Type   | Description
---------- | ------- | -----------
-event_uri | string  | The event_uri for the desired event
-   id     | integer | The id for the desired attendee
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+first_name | string  | first name for attendee
+last_name  | string  | last name for attendee
+email      | string  | email for attendee
+telephone  | integer | telephone for attendee
+attendee_typ_id | integer | attendee type id who created attendee belongs
+fields_data | hash | key-value for custom fields data for created attendee
+photo      |  file   | photo for attendee
 
 ## Destroy Attendee
 ```javascript
