@@ -168,7 +168,6 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/', {
       confirmation_required: false,
       allow_public_registration: false,
       valid_if_no_payments: true,
-			update_by_id:
       archived: false
     }
   }
@@ -227,6 +226,18 @@ HTTP/1.1 422 Unprocessable Entity
 ```
 
 This endpoint create an attendee type and return it
+
+### Path Parameters
+
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+name       | string  | name for attendee type
+description| string  | description for attendee type
+price      | integer | price for attendee type
+limit      | integer | attendees limit for this attendee type
+confirmation_required | boolean | confirmation required for attendee type
+allow_public_registration | boolean | allow public registration for this attendee type
+valid_if_no_payments | boolean | valid attendee type if no payments
 
 ## Update Attendee Type
 
@@ -314,10 +325,15 @@ This endpoint update an attendee type and return it
 
 ### Path Parameters
 
-Parameter |  Type   | Description
---------- | ------- | -----------
-event_uri | string  | The event_uri for the desired event
-   id     | integer | The id for the desired attendee type
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+name       | string  | name for attendee type
+description| string  | description for attendee type
+price      | integer | price for attendee type
+limit      | integer | attendees limit for this attendee type
+confirmation_required | boolean | confirmation required for attendee type
+allow_public_registration | boolean | allow public registration for this attendee type
+valid_if_no_payments | boolean | valid attendee type if no payments
 
 ## Destroy Attendee Type
 ```javascript
