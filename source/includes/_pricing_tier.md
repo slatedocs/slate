@@ -223,7 +223,7 @@ HTTP/1.1 422 Unprocessable Entity
 }
 ```
 
-This endpoint create a pricing tier and return it
+This endpoint create a pricing tier and return it, , Entities supported : AttendeeType.
 
 ### HTTP Request
 
@@ -307,7 +307,7 @@ HTTP/1.1 422 Unprocessable Entity
 }
 ```
 
-This endpoint update a pricing tier and return it
+This endpoint update a pricing tier and return it, Entities supported : AttendeeType.
 
 ### HTTP Request
 
