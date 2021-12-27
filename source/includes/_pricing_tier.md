@@ -186,7 +186,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/', {
 
 > Make sure you replace <entity id> with the id for the entity associated to pricing tier to create. 
 
-> Make sure you replace <entity type> as integer with the nunmber for the entity associated to pricing tier to create.
+> Make sure you replace <entity type> as integer with the number for the entity associated to pricing tier to create.
 
   -- 1 : Attendee type
 
@@ -231,10 +231,13 @@ This endpoint create a pricing tier and return it
 
 ### Path Parameters
 
-Parameter |  Type   | Description
---------- | ------- | -----------
-event_uri | string  | The event_uri for the desired event
-   id     | integer | The id for the desired pricing tier
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+entity_id  | integer | entity id to which pricing tier belongs
+entity_type| string  | entity type to which pricing tier belongs
+start_date | date    | start date for pricing tier
+end_date   | date    | end date for pricing tier
+price      | float   | price for pricing tier
 
 ## Update Pricing Tier
 
@@ -312,10 +315,13 @@ This endpoint update a pricing tier and return it
 
 ### Path Parameters
 
-Parameter |  Type   | Description
---------- | ------- | -----------
-event_uri | string  | The event_uri for the desired event
-   id     | integer | The id for the desired pricing tier
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+entity_id  | integer | entity id to which pricing tier belongs
+entity_type| string  | entity type to which pricing tier belongs
+start_date | date    | start date for pricing tier
+end_date   | date    | end date for pricing tier
+price      | float   | price for pricing tier
 
 ## Destroy Pricing Tier
 ```javascript
