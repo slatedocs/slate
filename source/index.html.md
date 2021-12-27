@@ -1,5 +1,5 @@
 ---
-title: Analytics Implementation Guide
+title: Analytics Implementation Guide=========================
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
