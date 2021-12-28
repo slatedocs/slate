@@ -97,7 +97,7 @@ HTTP/1.1 200 OK
 }
 ```
 
->Example of Not Found (404) response: 
+>Example of Not Found (404) response:
 
 ```http
 HTTP/1.1 404 Not Found
@@ -194,17 +194,17 @@ This endpoint create a speaker and return it
 
 `POST /v1/events/event_uri/speakers`
 
-### Available settings
+### Path Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-name | string | name of speaker. 
+name      | string | name of speaker.
 last_name | string | last name of speaker.
-email | string | email of speaker.
+email     | string | email of speaker.
 biography | text | biography of speaker.
-twitter | string | speaker twitter account.
-website | string| speaker website.
-photo | file | image for this speaker. 
+twitter   | string | speaker twitter account.
+website   | string| speaker website.
+photo     | file | image for this speaker.
 
 ## Update Speaker
 
@@ -232,11 +232,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/speakers/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace <your token> with the JWT you get when you authenticate.
 
-> Make sure you replace <event uri> with the event uri for the event to update. 
+> Make sure you replace <event uri> with the event uri for the event to update.
 
-> Make sure you replace <id> with the id for the speaker to update. 
+> Make sure you replace <id> with the id for the speaker to update.
 
 > Example of a successful (200) response:
 
@@ -261,7 +261,7 @@ HTTP/1.1 200 OK
 }
 ```
 
->Example of Unprocessable Entity (422) response: 
+>Example of Unprocessable Entity (422) response:
 
 ```http
 HTTP/1.1 422 Unprocessable Entity
@@ -284,13 +284,13 @@ This endpoint update a speaker and return it
 
 Parameter | Type | Description
 --------- | ---- | -----------
-name | string | name of speaker. 
+name      | string | name of speaker.
 last_name | string | last name of speaker.
-email | string | email of speaker.
+email     | string | email of speaker.
 biography | text | biography of speaker.
-twitter | string | speaker twitter account.
-website | string| speaker website.
-photo | file | image for this speaker. 
+twitter   | string | speaker twitter account.
+website   | string| speaker website.
+photo     | file | image for this speaker.
 
 ## Destroy Speaker
 ```javascript
@@ -302,11 +302,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/speakers/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace <your token> with the JWT you get when you authenticate.
 
-> Make sure you replace <event uri> with the event uri for the event to destroy. 
+> Make sure you replace <event uri> with the event uri for the event to destroy.
 
-> Make sure you replace <id> with the id for the speaker to update. 
+> Make sure you replace <id> with the id for the speaker to update.
 
 >Example of a successful (200) response:
 
