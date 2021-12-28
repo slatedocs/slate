@@ -18,6 +18,7 @@ includes:
   - pricing_tier
   - speakers
   - users
+  - workshops
 
 search: true
 ---

@@ -8,8 +8,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    autoprefixer-rails (9.5.1.1)
-      execjs
+    autoprefixer-rails (10.3.3.0)
+      execjs (~> 2)
     backports (3.15.0)
     coffee-script (2.4.1)
       coffee-script-source
@@ -22,7 +22,7 @@ GEM
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.1.5)
-    ffi (1.11.1)
+    ffi (1.15.4)
     haml (5.1.1)
       temple (>= 0.8.0)
       tilt
@@ -42,9 +42,9 @@ GEM
       kramdown (~> 1.2)
       middleman-cli (= 4.3.4)
       middleman-core (= 4.3.4)
-    middleman-autoprefixer (2.10.1)
-      autoprefixer-rails (~> 9.1)
-      middleman-core (>= 3.3.3)
+    middleman-autoprefixer (3.0.0)
+      autoprefixer-rails (~> 10.0)
+      middleman-core (>= 4.0.0)
     middleman-cli (4.3.4)
       thor (>= 0.17.0, < 2.0)
     middleman-core (4.3.4)
@@ -89,7 +89,6 @@ GEM
     parallel (1.17.0)
     public_suffix (3.1.0)
     rack (2.0.7)
-    rake (12.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -100,9 +99,8 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    sassc (2.0.1)
+    sassc (2.4.0)
       ffi (~> 1.9)
-      rake
     servolux (0.13.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -121,7 +119,7 @@ PLATFORMS
 
 DEPENDENCIES
   middleman (~> 4.3)
-  middleman-autoprefixer (~> 2.7)
+  middleman-autoprefixer (~> 3.0)
   middleman-sprockets (~> 4.1)
   middleman-syntax (~> 3.0)
   nokogiri (~> 1.10.4)
@@ -133,4 +131,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   2.0.2
+   2.2.29

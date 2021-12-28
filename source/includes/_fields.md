@@ -62,21 +62,34 @@ fetch("https://core.eventtia.com/v1/fields", {
 ```http
 HTTP/1.1 200 OK
 {
-     "data": {
-        "id": "1",
-        "type": "fields",
-        "attributes": {
-            "name": {
-                "es": "Nombre",
-                "en": "Name"
-            },
-            "type": "Fields::TextField",
-            "required": true,
-            "display": true,
-            "filterable": true,
-            "available_public_listings": true,
-        }
+  "data": [
+    {
+      "id": "331",
+      "type": "fields",
+      "attributes": {
+        "name": {
+          "en": "326 name, locale: en",
+          "es": "326 name, locale: es",
+          "fr": "326 name, locale: fr"
+        },
+        "values": null,
+        "settings": {
+          "available_public_listings": true
+        },
+        "type": "Fields::TextField",
+        "validations": {
+          "letters": true
+        },
+        "order": 1,
+        "entity_id": 62374,
+        "maximum_characters": "10",
+        "validation_type": "numbers",
+        "repeat_value": "10",
+        "allowed_values": ["one","one"],
+        "terms_file": null
+      }
     }
+  ]
 }
 ```
 
