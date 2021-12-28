@@ -20,23 +20,25 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
 ```http
 HTTP/1.1 200 OK
 {
-  "data": {
-    "id": "62527",
-    "type": "attendees",
-    "attributes": {
-     "first_name": "Mary",
-      "last_name": "perez ossa",
-      "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
-      "archived": false,
-      "fields_data": {
+  "data": [
+    {
+      "id": "6264284",
+      "type": "attendees",
+      "attributes": {
+        "first_name": "Rosa Maria",
+        "last_name": "Rosales Rojas",
+        "email": "rosales@email.com",
+        "telephone": "+56912345678",
+        "updated_by_id": "10461",
+        "archived": "false",
+        "fields_data": {
           "281": "george",
           "282": "downtown"
-      },
-      "photo_url": "url_Image_file"     
+        },
+        "photo_url": "url_Image_file"
+      }
     }
-  }
+  ]
 }
 ```
 
@@ -75,23 +77,25 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/<id>', {
 ```http
 HTTP/1.1 200 OK
 {
-  "data": {
-    "id": "62527",
-    "type": "attendees",
-    "attributes": {
-     "first_name": "Mary",
-      "last_name": "perez ossa",
-      "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
-      "archived": false,
-      "fields_data": {
+  "data": [
+    {
+      "id": "6264284",
+      "type": "attendees",
+      "attributes": {
+        "first_name": "Rosa Maria",
+        "last_name": "Rosales Rojas",
+        "email": "rosales@email.com",
+        "telephone": "+56912345678",
+        "updated_by_id": "10461",
+        "archived": "false",
+        "fields_data": {
           "281": "george",
           "282": "downtown"
-      },
-      "photo_url": "url_Image_file"     
+        },
+        "photo_url": "url_Image_file"
+      }
     }
-  }
+  ]
 }
 ```
 
@@ -135,17 +139,17 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
         first_name: "Mary",
         last_name: "perez ossa",
         email: "maryperez@email.com",
-        telephone: 555 3434,
+        telephone: "+56912345678",
         updated_by_id: 192,
         archived: false,
         fields_data: {
-            "f281": "george",
-            "f282": "downtown"
+          "281": "george",
+          "282": "downtown"
         },
-        photo_url: "url_Image_file" 
+        photo_url: "url_Image_file"
       }
+    }
   }
-}
 })
 ```
 
@@ -159,20 +163,20 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
 HTTP/1.1 200 OK
 {
   "data": {
-    "id": "62527",
+    "id": "6264284",
     "type": "attendees",
     "attributes": {
-     "first_name": "Mary",
-      "last_name": "perez ossa",
-      "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
-      "archived": false,
+      "first_name": "Rosa Maria",
+      "last_name": "Rosales Rojas",
+      "email": "rosales@email.com",
+      "telephone": "+56912345678",
+      "updated_by_id": "10461",
+      "archived": "false",
       "fields_data": {
-          "281": "george",
-          "282": "downtown"
+        "281": "george",
+        "282": "downtown"
       },
-      "photo_url": "url_Image_file"     
+      "photo_url": "url_Image_file"
     }
   }
 }
@@ -193,6 +197,18 @@ HTTP/1.1 422 Unprocessable Entity
 
 This endpoint create an attendee and return it
 
+### Path Parameters
+
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+first_name | string  | first name for attendee
+last_name  | string  | last name for attendee
+email      | string  | email for attendee
+telephone  | integer | telephone for attendee
+attendee_typ_id | integer | attendee type id who created attendee belongs
+fields_data | hash | key-value for custom fields data for created attendee
+photo      |  file   | photo for attendee
+
 ## Update Attendee
 
 ```javascript
@@ -202,22 +218,24 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/<id>', {
     'Authorization': '<your token>',
   },
   body: {
-  data: {
-    type: "attendees",
+    data: {
+      type: "attendees",
       attributes: {
         attendee_type_id: 34,
         first_name: "Mary",
         last_name: "perez ossa",
         email: "maryperez@email.com",
-        telephone: 555 3434,
+        telephone: "+56912345678",
         updated_by_id: 192,
         archived: false,
         fields_data: {
-            "f281": "george",
-            "f282": "downtown"
+          "281": "george",
+          "282": "downtown"
         },
-        photo_url: "url_Image_file" 
+        photo_url: "url_Image_file"
       }
+    }
+  }
 }
 })
 ```
@@ -240,12 +258,12 @@ HTTP/1.1 200 OK
      "first_name": "Mary",
       "last_name": "perez ossa",
       "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
-      "archived": false,
+      "telephone": "+56912345678",
+      "updated_by_id": "192",
+      "archived": "false",
       "fields_data": {
-          "281": "george",
-          "282": "downtown"
+        "281": "george",
+        "282": "downtown"
       },
       "photo_url": "url_Image_file"     
     }
@@ -274,10 +292,15 @@ This endpoint update an attendee and return it
 
 ### Path Parameters
 
-Parameter |  Type   | Description
---------- | ------- | -----------
-event_uri | string  | The event_uri for the desired event
-   id     | integer | The id for the desired attendee
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+first_name | string  | first name for attendee
+last_name  | string  | last name for attendee
+email      | string  | email for attendee
+telephone  | integer | telephone for attendee
+attendee_typ_id | integer | attendee type id who created attendee belongs
+fields_data | hash | key-value for custom fields data for created attendee
+photo      |  file   | photo for attendee
 
 ## Destroy Attendee
 ```javascript
@@ -307,12 +330,12 @@ HTTP/1.1 200 OK
      "first_name": "Mary",
       "last_name": "perez ossa",
       "email": "maryperez@email.com",
-      "telephone": "555 3434",
-      "updated_by_id": 192,
-      "archived": true,
+      "telephone": "+56912345678",
+      "updated_by_id": "192",
+      "archived": "true",
       "fields_data": {
-          "281": "george",
-          "282": "downtown"
+        "281": "george",
+        "282": "downtown"
       },
       "photo_url": "url_Image_file"     
     }
