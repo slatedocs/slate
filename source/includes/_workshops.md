@@ -203,17 +203,16 @@ HTTP/1.1 200 OK
     "type": "workshops",
     "attributes": {
      "name": "Mary",
-      "start_date": "2021-12-02",
-      "end_date": "2021-12-20",
-      "limit": "0",
-      "location": "hotel",
-      "description": "business workshop",
-      "price": {
-          "1": "300"
-      },
-      "archived": false,
-      "show_on_register": false,
-      "allow_blocking_workshops": false     
+     "start_date": "2021-12-02",
+     "end_date": "2021-12-20",
+     "limit": "0",
+     "location": "hotel",
+     "description": "business workshop",
+     "price": {
+      "1": "300"},
+     "archived": false,
+     "show_on_register": false,
+     "allow_blocking_workshops": false     
     },
     "relationships": {
       "speakers": {
@@ -243,6 +242,20 @@ HTTP/1.1 422 Unprocessable Entity
 ```
 
 This endpoint create an workshop and return it
+
+### Path Parameters
+
+Parameter  |  Type  | Description
+---------  | -------| -----------
+name       | string | name for workshop
+start_date |  date  | start date for workshop
+end_date   |  date  | end date for workshop
+limit      | integer| attendees limit for workshop
+location   | string | location for workshop
+description| string | description for workshop
+price      |  hash  | key-value object setting a price for each attendee type id
+show_on_register | boolean | show this workshop on registration page
+allow_blocking_workshops | boolean | allow block hours for this workshop
 
 ## Update Workshop
 
@@ -346,10 +359,17 @@ This endpoint update an workshop and return it
 
 ### Path Parameters
 
-Parameter |  Type   | Description
---------- | ------- | -----------
-event_uri | string  | The event_uri for the desired event
-   id     | integer | The id for the desired workshop
+Parameter  |  Type  | Description
+---------  | -------| -----------
+name       | string | name for workshop
+start_date |  date  | start date for workshop
+end_date   |  date  | end date for workshop
+limit      | integer| attendees limit for workshop
+location   | string | location for workshop
+description| string | description for workshop
+price      |  hash  | key-value object setting a price for each attendee type id
+show_on_register | boolean | show this workshop on registration page
+allow_blocking_workshops | boolean | allow block hours for this workshop
 
 ## Destroy Workshop
 ```javascript
