@@ -205,7 +205,7 @@ first_name | string  | first name for attendee
 last_name  | string  | last name for attendee
 email      | string  | email for attendee
 telephone  | integer | telephone for attendee
-attendee_typ_id | integer | attendee type id who created attendee belongs
+attendee_type_id | integer | attendee type id who created attendee belongs
 fields_data | hash | key-value for custom fields data for created attendee
 photo      |  file   | photo for attendee
 
@@ -298,7 +298,7 @@ first_name | string  | first name for attendee
 last_name  | string  | last name for attendee
 email      | string  | email for attendee
 telephone  | integer | telephone for attendee
-attendee_typ_id | integer | attendee type id who created attendee belongs
+attendee_type_id | integer | attendee type id who created attendee belongs
 fields_data | hash | key-value for custom fields data for created attendee
 photo      |  file   | photo for attendee
 
