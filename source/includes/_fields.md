@@ -335,7 +335,7 @@ This endpoint allows you update a field info.
 
 ### HTTP Request
 
-`PUT /v1/fields/id`
+`PUT /v1/fields/:id`
 
 ### Path Parameters
 
@@ -385,7 +385,7 @@ This endpoint allows you destroy a field info.
 
 ### HTTP Request
 
-`DELETE /v1/fields/id`
+`DELETE /v1/fields/:id`
 
 ### Path Parameters
 

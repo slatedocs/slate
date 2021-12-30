@@ -40,7 +40,7 @@ This endpoint list speakers belongs to event and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/speakers/`
+`GET /v1/events/:event_uri/speakers/`
 
 ### Path Parameters
 
@@ -48,7 +48,7 @@ Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
 
-### Query Parameters
+### Body Parameters
 
 Parameter |  Type   | Description
 --------- | ------- | -----------
@@ -112,7 +112,7 @@ This endpoint get a speaker and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/speaker/id`
+`GET /v1/events/:event_uri/speaker/:id`
 
 ### Path Parameters
 
@@ -192,9 +192,15 @@ This endpoint create a speaker and return it
 
 ### HTTP Request
 
-`POST /v1/events/event_uri/speakers`
+`POST /v1/events/:event_uri/speakers`
 
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+
+### Body Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -278,9 +284,16 @@ This endpoint update a speaker and return it
 
 ### HTTP Request
 
-`PUT /v1/events/event_uri/speakers/id`
+`PUT /v1/events/:event_uri/speakers/:id`
 
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+   id     | integer | The id for the desired speaker
+
+### Body Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -333,7 +346,7 @@ This endpoint destroy a speaker and return it
 
 ### HTTP Request
 
-`DELETE /v1/events/event_uri/speakers/id`
+`DELETE /v1/events/:event_uri/speakers/:id`
 
 ### Path Parameters
 

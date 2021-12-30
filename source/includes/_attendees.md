@@ -46,7 +46,7 @@ This endpoint list attendees belongs to event and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/attendees/`
+`GET /v1/events/:event_uri/attendees/`
 
 ### Path Parameters
 
@@ -66,11 +66,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace <your token> with the JWT you get when you authenticate.
 
 > Make sure you replace <event uri> with the event uri for the event.
 
-> Make sure you replace <id> with the id for the attendee to obtain. 
+> Make sure you replace <id> with the id for the attendee to obtain.
 
 > Example of a successful (200) response:
 
@@ -114,7 +114,7 @@ This endpoint get an attendee and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/attendees/id`
+`GET /v1/events/:event_uri/attendees/:id`
 
 ### Path Parameters
 
@@ -153,9 +153,9 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendees/', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace <your token> with the JWT you get when you authenticate.
 
-> Make sure you replace <event uri> with the event uri for the event .  
+> Make sure you replace <event uri> with the event uri for the event .
 
 > Example of a successful (200) response:
 
@@ -196,8 +196,17 @@ HTTP/1.1 422 Unprocessable Entity
 ```
 
 This endpoint create an attendee and return it
+### HTTP Request
+
+`POST /v1/events/:event_uri/attendees/`
 
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+
+### Body Parameters
 
 Parameter  |  Type   | Description
 ---------  | ------- | -----------
@@ -265,7 +274,7 @@ HTTP/1.1 200 OK
         "281": "george",
         "282": "downtown"
       },
-      "photo_url": "url_Image_file"     
+      "photo_url": "url_Image_file"
     }
   }
 }
@@ -288,9 +297,16 @@ This endpoint update an attendee and return it
 
 ### HTTP Request
 
-`PUT /v1/events/event_uri/attendees/id`
+`PUT /v1/events/:event_uri/attendees/:id`
 
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+   id     | integer | The id for the desired attendee
+
+### Body Parameters
 
 Parameter  |  Type   | Description
 ---------  | ------- | -----------
@@ -347,7 +363,7 @@ This endpoint destroy an attendee and return it
 
 ### HTTP Request
 
-`DELETE /v1/events/event_uri/attendees/id`
+`DELETE /v1/events/:event_uri/attendees/:id`
 
 ### Path Parameters
 

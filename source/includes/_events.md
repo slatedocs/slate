@@ -142,7 +142,7 @@ HTTP/1.1 200 OK
           "type": "settings"
         }
       }
-    }    
+    }
   }
 }
 ```
@@ -160,7 +160,7 @@ This endpoint return an event
 
 ### HTTP Request
 
-`GET /v1/events/event_uri`
+`GET /v1/events/:event_uri`
 
 ### Path Parameters
 
@@ -171,7 +171,7 @@ event_uri | string | The event_uri for the desired event
 
 ### HTTP Request for optional include settings
 
-`GET /v1/events/event_uri/include=settings`
+`GET /v1/events/:event_uri/include=settings`
 
 ### Path Parameters
 
@@ -472,7 +472,7 @@ This endpoint update an event and return it
 
 ### HTTP Request
 
-`PUT /v1/events/event_uri`
+`PUT /v1/events/:event_uri`
 
 ### Path Parameters
 
@@ -572,7 +572,7 @@ This endpoint destroy a event and return it
 
 ### HTTP Request
 
-`DELETE /v1/events/event_uri`
+`DELETE /v1/events/:event_uri`
 
 ### Path Parameters
 
@@ -675,7 +675,7 @@ This endpoint allows you modify your event settings
 
 ### HTTP Request
 
-`PATCH /v1/events/<event_uri>/settings`
+`PATCH /v1/events/:event_uri/settings`
 
 
 ### Path Parameters

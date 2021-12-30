@@ -35,7 +35,7 @@ HTTP/1.1 200 OK
       },
       "archived": false,
       "show_on_register": false,
-      "allow_blocking_workshops": false     
+      "allow_blocking_workshops": false
     },
     "relationships": {
       "speakers": {
@@ -55,7 +55,7 @@ This endpoint list workshops belongs to event and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/workshops/`
+`GET /v1/events/:event_uri/workshops/`
 
 ### Path Parameters
 
@@ -110,7 +110,7 @@ HTTP/1.1 200 OK
       },
       "archived": false,
       "show_on_register": false,
-      "allow_blocking_workshops": false     
+      "allow_blocking_workshops": false
     },
     "relationships": {
       "speakers": {
@@ -141,7 +141,7 @@ This endpoint get an workshop and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/workshops/id`
+`GET /v1/events/:event_uri/workshops/:id`
 
 ### Path Parameters
 
@@ -167,9 +167,9 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/workshops/', {
         end_date: "2021-12-20",
         limit: 0,
         location: "hotel",
-        description: "business workshop"
+        description: "business workshop",
         show_on_register: false,
-        allow_blocking_workshops,: false,
+        allow_blocking_workshops: false,
         price: {
             "1": "300"
         }
@@ -212,7 +212,7 @@ HTTP/1.1 200 OK
       "1": "300"},
      "archived": false,
      "show_on_register": false,
-     "allow_blocking_workshops": false     
+     "allow_blocking_workshops": false
     },
     "relationships": {
       "speakers": {
@@ -243,7 +243,17 @@ HTTP/1.1 422 Unprocessable Entity
 
 This endpoint create an workshop and return it
 
+### HTTP Request
+
+`GET /v1/events/:event_uri/workshops/`
+
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+
+### Body Parameters
 
 Parameter  |  Type  | Description
 ---------  | -------| -----------
@@ -274,9 +284,9 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/workshops/<id>', {
         end_date: "2021-12-20",
         limit: 0,
         location: "hotel",
-        description: "business workshop"
+        description: "business workshop",
         show_on_register: false,
-        allow_blocking_workshops,: false,
+        allow_blocking_workshops: false,
         price: {
             "1": "300"
         }
@@ -322,7 +332,7 @@ HTTP/1.1 200 OK
       },
       "archived": false,
       "show_on_register": false,
-      "allow_blocking_workshops": false     
+      "allow_blocking_workshops": false
     },
     "relationships": {
       "speakers": {
@@ -355,9 +365,16 @@ This endpoint update an workshop and return it
 
 ### HTTP Request
 
-`PUT /v1/events/event_uri/workshops/id`
+`PUT /v1/events/:event_uri/workshops/:id`
 
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+   id     | integer | The id for the desired workshop
+
+### Body Parameters
 
 Parameter  |  Type  | Description
 ---------  | -------| -----------
@@ -407,7 +424,7 @@ HTTP/1.1 200 OK
       },
       "archived": false,
       "show_on_register": false,
-      "allow_blocking_workshops": false     
+      "allow_blocking_workshops": false
     },
     "relationships": {
       "speakers": {
@@ -438,7 +455,7 @@ This endpoint destroy an workshop and return it
 
 ### HTTP Request
 
-`DELETE /v1/events/event_uri/workshops/id`
+`DELETE /v1/events/:event_uri/workshops/:id`
 
 ### Path Parameters
 
