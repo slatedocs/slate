@@ -139,7 +139,7 @@ event_uri | string  | The event_uri for the desired event
 
 ### HTTP Request for optional include fields
 
-`GET /v1/events/event_uri/attendee_types/id/include=fields`
+`GET /v1/events/:event_uri/attendee_types/:id/include=fields`
 
 ### Path Parameters
 
@@ -227,7 +227,11 @@ HTTP/1.1 422 Unprocessable Entity
 
 This endpoint create an attendee type and return it
 
-### Path Parameters
+### HTTP Request
+
+`POST /v1/events/:event_uri/attendee_types/`
+
+### Body Parameters
 
 Parameter  |  Type   | Description
 ---------  | ------- | -----------
@@ -321,9 +325,16 @@ This endpoint update an attendee type and return it
 
 ### HTTP Request
 
-`PUT /v1/events/event_uri/attendee_types/id`
+`PUT /v1/events/:event_uri/attendee_types/:id`
 
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+   id     | integer | The id for the desired attendee type
+
+### Body Parameters
 
 Parameter  |  Type   | Description
 ---------  | ------- | -----------
@@ -387,7 +398,7 @@ This endpoint destroy an attendee type and return it
 
 ### HTTP Request
 
-`DELETE /v1/events/event_uri/attendee_types/id`
+`DELETE /v1/events/:event_uri/attendee_types/:id`
 
 ### Path Parameters
 

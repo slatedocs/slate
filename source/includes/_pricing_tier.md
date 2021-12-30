@@ -67,21 +67,26 @@ This endpoint list pricing tiers and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/pricing_tiers/`
+`GET /v1/events/:event_uri/pricing_tiers/`
 
 ### Path Parameters
 
 Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
-   id     | integer | The id for the desired pricing tier
 
+### Body Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+entity_id  | integer | entity id to which pricing tier belongs
+entity_type| string  | entity type to which pricing tier belongs
 
 ## Get Pricing Tier
 
 ```javascript
 fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/<id>', {
-  method: 'PUT',
+  method: 'GET',
   headers: {
     'Authorization': '<your token>',
   },
@@ -146,7 +151,7 @@ This endpoint get a pricing tier and return it
 
 ### HTTP Request
 
-`GET /v1/events/event_uri/pricing_tiers/id`
+`GET /v1/events/:event_uri/pricing_tiers/:id`
 
 ### Path Parameters
 
@@ -154,6 +159,13 @@ Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
    id     | integer | The id for the desired pricing tier
+
+### Body Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+entity_id  | integer | entity id to which pricing tier belongs
+entity_type| string  | entity type to which pricing tier belongs
 
 ## Create Pricing Tier
 
@@ -181,8 +193,6 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/', {
 > Make sure you replace <your token> with the JWT you get when you authenticate. 
 
 > Make sure you replace <event uri> with the event uri for the event . 
-
-> Make sure you replace <id> with the id for the pricing tier to create. 
 
 > Make sure you replace <entity id> with the id for the entity associated to pricing tier to create. 
 
@@ -227,9 +237,9 @@ This endpoint create a pricing tier and return it, , Entities supported : Attend
 
 ### HTTP Request
 
-`POST /v1/events/event_uri/pricing_tiers/`
+`POST /v1/events/:event_uri/pricing_tiers/`
 
-### Path Parameters
+### Body Parameters
 
 Parameter  |  Type   | Description
 ---------  | ------- | -----------
@@ -311,9 +321,15 @@ This endpoint update a pricing tier and return it, Entities supported : Attendee
 
 ### HTTP Request
 
-`PUT /v1/events/event_uri/pricing_tiers/id`
+`PUT /v1/events/:event_uri/pricing_tiers/:id`
 
 ### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+   id     | integer | The id for the desired pricing tier
+### Body Parameters
 
 Parameter  |  Type   | Description
 ---------  | ------- | -----------
@@ -363,7 +379,7 @@ This endpoint destroy a pricing tier and return it
 
 ### HTTP Request
 
-`DELETE /v1/events/event_uri/pricing_tiers/id`
+`DELETE /v1/events/:event_uri/pricing_tiers/:id`
 
 ### Path Parameters
 
