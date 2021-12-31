@@ -32,14 +32,14 @@ Our virtual accounts are adjustable according to your needs. We offer options of
 
 6. **Customizable VA types** - You can customize the VA numbers you want to create. Each VA would consist of three categories you can define in the creation process. Refer to the table below for more information on various types of VA:
 
-   | Category        | Type/Feature                  | Description                                                                                                  |
-   | --------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-   | Validity Period | Static Virtual Account        | VA that has a lifetime validity. It will always be active until it is manually deactivated                   |
-   | Validity Period | Dynamic Virtual Account       | VA that has a specific validity period. It will always be active until it is expired or manually deactivated |
-   | Amount Type     | Closed Amount Virtual Account | VA that only accepts payment of a specific amount/declared amount                                            |
-   | Amount Type     | Opened Amount Virtual Account | VA that accepts payment of any amount                                                                        |
-   | Usage Frequency | Single Use Virtual Account    | VA that expires after a single payment. A single use configuration can only be set up for a dynamic VA       |
-   | Usage Frequency | Multiple Use Virtual Account  | VA that only expires when expiration date is reached or when it is manually deactivated                      |
+| Category        | Type/Feature                  | Description                                                                                                  |
+| --------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Validity Period | Static Virtual Account        | VA that has a lifetime validity. It will always be active until it is manually deactivated                   |
+| Validity Period | Dynamic Virtual Account       | VA that has a specific validity period. It will always be active until it is expired or manually deactivated |
+| Amount Type     | Closed Amount Virtual Account | VA that only accepts payment of a specific amount/declared amount                                            |
+| Amount Type     | Opened Amount Virtual Account | VA that accepts payment of any amount                                                                        |
+| Usage Frequency | Single Use Virtual Account    | VA that expires after a single payment. A single use configuration can only be set up for a dynamic VA       |
+| Usage Frequency | Multiple Use Virtual Account  | VA that only expires when expiration date is reached or when it is manually deactivated                      |
 
 7. **Capability to update VA** Attribute that can be updated:
    * amount

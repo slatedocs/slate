@@ -253,7 +253,7 @@ To receive a request from a parent company, please 1) Log in to dashboard with s
 
 ![Image: As Child - AccState - 4b. 2 Requests to connect.png](../images/As_Child_AccState_4b_2_Requests_to_connect.png)![Image: As Child - AccState - 4e. Confirmation to connect](../images/As_Child_AccState_4e_Confirmation_to_connect.png)
 
-1. After successfully received the parent request to connect, you will find your parent information near the top right corner of your page, and you are now connected as a parent-subsidiary account
+3. After successfully received the parent request to connect, you will find your parent information near the top right corner of your page, and you are now connected as a parent-subsidiary account
 
 ![Image: As Child - AccState - 4h. Success add new head company](../images/As_Child_AccState_4h_Success_add_new_head_company.png)
 
