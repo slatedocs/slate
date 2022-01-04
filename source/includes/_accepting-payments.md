@@ -299,7 +299,7 @@ Creating a payment link/invoice page is free! You will only be charged when you 
 
 **Payment Link Preview**
 
-
+![Payment Link](images/3p1p_preview.png)
 
 ### Key Features
 
@@ -922,6 +922,7 @@ Illustration;
 
 If we pick green (#HEX code #067610) as the primary color and black (#HEX code #000000) as the secondary color, the look and feel will be as follows;
 
+![Payment Link](images/3p1p_preview.png)
 
 
 ### VA Bank Details
