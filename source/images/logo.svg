@@ -20,5 +20,5 @@
   <g transform="matrix(1, 0, 0, 1, 74.059006, 95.273361)">
     <path fill="#FFFFFF" d="M 181.533 107.749 L 40.799 107.007 C 32.593 107.007 25.941 113.659 25.941 121.865 C 25.941 130.071 32.593 136.723 40.799 136.723 L 181.533 137.465 C 189.739 137.465 196.391 130.813 196.391 122.607 C 196.391 114.401 189.739 107.749 181.533 107.749 Z"/>
   </g>
-  <text style="fill: rgb(51, 51, 51); font-family: Nunito; font-size: 17px; font-weight: 700; white-space: pre;" x="111.703" y="222.44">Payment Checkout</text>
+  <text style="fill: rgb(51, 51, 51); font-family: Nunito; font-size: 17px; font-weight: 700; white-space: pre;" x="111.703" y="222.44">Payment Link</text>
 </svg>
