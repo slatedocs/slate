@@ -299,17 +299,7 @@ Creating a payment link/invoice page is free! You will only be charged when you 
 
 **Payment Link Preview**
 
-Step 1 - Input Amount
 
-![Payment Link](images/payment_checkout_input_amount.png)
-
-Step 2 - Input Personal Info of the Customer
-
-![Payment Link](images/payment_checkout_info_customer.png)
-
-Step 3 - Select Payment Method
-
-![Payment Link](images/payment_checkout_payment_method.png)
 
 ### Key Features
 
@@ -361,8 +351,6 @@ In order to maintain a consistent brand experience for your users, you can custo
 
       Please refer to our [FAQ page](https://docs.oyindonesia.com/#faqs) below for more information regarding closed and open amounts.
 
-- **Payment link page customization**
-  You can customize which payment link pages are accessible for your users. We offer options to hide pages 1 (Input Amount), 2 (Customer Information), and 3 (Select Payment Method) of our payment link.
 
 **2. Creating payment link/invoice page through API**
 
@@ -379,9 +367,7 @@ Below are the things that you can customize:
 
 3. Payment method (choose the payment methods displayed to your customers among Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QR Code options. Additionally, you can choose which banks are enabled for Bank Transfer method.)
 
-4. Payment Link page (choose which payment link pages are accessible for your users. We offer options to hide pages 1 (Input Amount), 2 (Customer Information), and 3 (Select Payment Method) of our payment link.
-
-5. Payment link expiration date
+4. Payment link expiration date
 
 - **Static VA for Invoice Payment**
   You can enable a static VA option when using the API specifically assigned to your customer.
@@ -936,11 +922,7 @@ Illustration;
 
 If we pick green (#HEX code #067610) as the primary color and black (#HEX code #000000) as the secondary color, the look and feel will be as follows;
 
-![Payment Link](images/ui_customization_result_1.png)
 
-![Payment Link](images/ui_customization_result_2.png)
-
-![Payment Link](images/ui_customization_result_3.png)
 
 ### VA Bank Details
 
