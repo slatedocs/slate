@@ -141,7 +141,7 @@ An array of all the fields requested.
 curl -X POST "https://api.affinity.co/field" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
-  -d '{"name": "[Deals] Amount", "list_id": 11, "model_type": 1, "value_type": 3, "allows_multiple": false, "dropdown_options":[]}'
+  -d '{"name": "[Deals] Amount", "list_id": 11, "entity_type": 1, "value_type": 3, "allows_multiple": false, "dropdown_options":[]}'
 ```
 
 > Example Response
@@ -167,14 +167,14 @@ Creates a new field with the supplied parameters.
 | Parameter | Type | Required | Description |
 | --------- | --- | --- | --- |
 | name | string | true | The name of the field. |
-| model_type | integer | true | This describes what type of list this field will be associated with the field. This can be one of three values, see below for all value types. |
+| entity_type | integer | true | This describes what type of list this field will be associated with the field. This can be one of three values, see below for all value types. |
 | value_type | integer | true | This describes what values can be associated with the field. This can be one of many values, see the [Field Resource](#the-field-resource) section for all value types. |
 | list_id | integer | false | The unique identifier of the list that the field object belongs to if it is specific to a list. This is `null` if the field is global. |
 | allows_multiple | boolean | false | This determines whether multiple values can be added to a single cell for the field. |
 | is_list_specific | boolean | false | This determines whether the field object belongs to a specific list. If set to `true`, you must pass in the appropriate `list_id`. |
 | is_required | boolean | false | This determines whether the field object is required. |
 
-### Field Model Types
+### Field Entity Types
 
 | Parameter | Type | Description |
 | --------- | --- | --- | --- |
