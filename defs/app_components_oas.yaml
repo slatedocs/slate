@@ -27,25 +27,25 @@ servers:
   - url: "{siteUrl}"
     description: Main endpoint.
 tags:
-  - name: App Forms
+  - name: Modal Forms
     description: >-
-      The creation form is displayed when the user starts the flow to create a resource. Asana will make a signed
-      request to the specified form_metadata_url in the capabilities, and expect a response with the metadata needed to
-      create the form. This process is also used for forms within rules.
-  - name: App Rules
+      The Modal Form is displayed when the user starts the flow to create a resource. Asana will make a signed
+      request to the specified `form_metadata_url` in the configuration, and expect a response with the metadata needed to
+      create the form. This process is also used for forms within Rule Actions.
+  - name: Rule Actions
     description: >-
-      When a rule containing an app action is triggered, the Rules Engine will make a request to the app to
-      inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine
+      When a rule containing a Rule Action is triggered, the Rules Engine will make a request to the app to
+      inform the app to run the configured Rule Action. The resulting status code will indicate to the Rules Engine
       whether the action was successfully completed and, if not, specify a cause for the error.
-  - name: App Resource Searching
+  - name: Lookups
     description: >-
-      If the app defined a search url, tasks without a widget offer the search functionality. This appears as a text
-      input to the user. When the user submits the text, the app responds with either an attachment or an error.
-  - name: App Widgets
+      If the app defined a resource attach URL, tasks without a Widget offer the Lookup functionality. This appears as a text
+      input to the user. When the user submits the text, the app responds with either a resource attachment or with an error.
+  - name: Widgets
     description: >-
-      The widget is displayed when the user views a task with an attachment with a resource URL matching your
-      capability’s match_url_pattern. When this happens, Asana will make a signed request to your widget_metadata_url,
-      and expect a response with information to build the widget.
+      The Widget is displayed when the user views a task with an attachment with a resource URL matching your
+      capability’s `match_resource_url_pattern`. When this happens, Asana will make a signed request to your `widget_metadata_url`,
+      and expect a response with information to render in the Widget.
 components:
   parameters:
     action:
@@ -54,7 +54,7 @@ components:
       schema:
         type: string
       description: >-
-        The id of an existing app action that is being edited. Should be omitted when configuring a new app action.
+        The ID of an existing Rule Action that is being edited. Should be omitted when configuring a new Rule Action.
     action_type:
       name: action_type
       required: true
@@ -62,7 +62,7 @@ components:
       schema:
         type: string
       description: >-
-        The id of the configuration used to create the app action
+        The ID of the configuration used to create the Rule Action.
     attachment:
       name: attachment
       required: true
@@ -70,7 +70,7 @@ components:
       schema:
         type: string
       description: >-
-        The attachment id of the URL attachment
+        The attachment ID of the URL attachment.
     expires_at:
       name: expires_at
       required: true
@@ -188,11 +188,11 @@ components:
             query:
               type: string
               description: >-
-                The user’s input in the attach resource text input (this is often a resource url or resource key, such as
+                The user’s input in the Lookup text input (this is often a resource URL or resource key, such as
                 CP-1 or https://abcde.atlassian.net/browse/CP-1)
     AttachedResourceResponse:
       description: >-
-        The response to a successful attach request.
+        The response to a successful lookup request.
       type: object
       properties:
         resource_name:
@@ -282,6 +282,12 @@ components:
             An array of FieldOption objects
           items:
             $ref: '#/components/schemas/FieldOption'
+        typeahead_url:
+          description: >-
+            The URL that Asana uses to request typehead results from the application server. 
+            A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.
+          type: string
+          example: 'https://www.app-server.com/app/typeahead'
     FieldOption:
       description: >-
         An option for a dropdown or checkbox field. This is a property of the dropdown field, and should not include the
@@ -386,11 +392,11 @@ components:
             action:
               type: string
               description: >-
-                The id of an existing app action that is being edited
+                The ID of an existing Rule Action that is being edited
             action_type:
               type: string
               description: >-
-                The id of the configuration used to create the app action
+                The ID of the configuration used to create the Rule Action.
     FormOnChangeBaseRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
@@ -423,11 +429,11 @@ components:
             action:
               type: string
               description: >-
-                The id of an existing app action that is being edited
+                The ID of an existing Rule Action that is being edited.
             action_type:
               type: string
               description: >-
-                The id of the configuration used to create the app action
+                The ID of the configuration used to create the Rule Action.
     RunActionRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
@@ -438,15 +444,15 @@ components:
             target_object:
               type: string
               description: >-
-                The id of the target object that the Rule is acting on (currently always a Task id)
+                The ID of the target object that the Rule Action is acting on. Currently, this is always a Task `gid`.
             action:
               type: string
               description: >-
-                The action id generated from rule creation.
+                The action ID generated from rule creation.
             action_type:
               type: string
               description: >-
-                The id from the configuration used to create the app action. This is a developer-provided string.
+                The ID from the configuration used to create the Rule Action.
             idempotency_key:
               required: true
               type: string
@@ -525,7 +531,7 @@ components:
             task:
               type: string
               description: >-
-                *Conditional*. The task `gid` this hook is coming from. `task` is only present in the [App Form](/docs/app-form) (as there is a "context task"), but not in the [App Action](/docs/app-action) (as rules are associated with a _project_).
+                *Conditional*. The task `gid` this hook is coming from. `task` is only present in the [Modal Form](/docs/modal-form) (as there is a "context task"), but not in the [Rule Action](/docs/rule-action) (as rules are associated with a _project_).
               example: '67890'
             user:
               type: string
@@ -719,7 +725,7 @@ paths:
       description: >-
         Get the metadata from the App Server to render a widget.
       tags:
-        - App Widgets
+        - Widgets
       operationId: getWidgetMetadata
       responses:
         200:
@@ -745,10 +751,10 @@ paths:
       summary: Attach resource
       description: >-
         When the user attaches a resource URL to a task, Asana will make a signed request to the specified
-        resource_attach_url in the capabilities. Information about the attached resource should be included in the
+        `resource_attach_url` in the app configuration. Information about the attached resource should be included in the
         response.
       tags:
-        - App Widgets
+        - Lookups
       operationId: attachResource
       requestBody:
         description: >-
@@ -779,16 +785,16 @@ paths:
     get:
       summary: Get typeahead results
       description: >-
-        Gets typeahead results to render as a dropdown list in the resource search bar.
+        Gets typeahead results to render as a dropdown list in the resource lookup input field.
         
 
-        When the user types into the resource search bar, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource search](/docs/resource-search) request to the app server, then process the response and render the attached resource in the widget.
+        When the user types into the lookup input field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource attach](/docs/resource-attach) request to the app server, then process the response and render the attached resource in the widget.
       tags:
-        - App Widgets
+        - Lookups
       operationId: getTypeaheadResults
       requestBody:
         description: >-
-          Request to retrieve typeahead results for a resource search query.
+          Request to retrieve typeahead results for a resource lookup query.
         required: true
         content:
           application/json:
@@ -822,7 +828,7 @@ paths:
       description: >-
         Get the metadata from the App Server to render a form.
       tags:
-        - App Forms
+        - Modal Forms
       operationId: getFormMetadata
       responses:
         200:
@@ -847,7 +853,7 @@ paths:
       description: >-
         The callback request made to an App Server when a watched field's value changes within a form.
       tags:
-        - App Forms
+        - Modal Forms
       operationId: onFormChange
       requestBody:
         description: >-
@@ -884,7 +890,7 @@ paths:
       description: >-
         The callback request made to an App Server when a form is submitted.
       tags:
-        - App Forms
+        - Modal Forms
       operationId: onFormSubmit
       requestBody:
         description: >-
@@ -915,40 +921,13 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /{resource_search_url}:
-    post:
-      summary: Resource Search
-      description: >-
-        The search request made to an App Server when the search field is submitted.
-      tags:
-        - App Resource Searching
-      operationId: resourceSearch
-      requestBody:
-        description: >-
-          Request to attach a resource with a user given `value`.
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AttachResourceRequest'
-      responses:
-        200:
-          description: Successfully attached the resource created by the form.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AttachedResourceResponse'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /{run_action_url}:
     post:
       summary: Run action
       description: >-
         The request made when an action is triggered.
       tags:
-        - App Rules
+        - Rule Actions
       operationId: runAction
       requestBody:
         description: >-
@@ -988,13 +967,13 @@ paths:
     get:
       summary: Get action metadata
       description: >-
-        When a user has navigated to the Custom Rule Builder UI and selected an App Action (either through the sidebar
-        or via a Rule Preset), Asana will make a request to the app to get the configuration form definition
-        for the chosen app action. This will initiate the flow to configure a new app action or edit the configuration
-        of an existing app action. This is the endpoint and schema for updating app actions; app triggers (V2) will be
-        analogous.
+        When a user has navigated to the [Custom Rule builder](https://asana.com/guide/help/premium/rules#gl-create-rule)
+        UI and selected a Rule Action (either through the sidebar or via a Rule Preset), Asana will make a request to the
+        app to get the configuration form definition for the chosen Rule Action. This will initiate the flow to configure
+        a new Rule Action or edit the configuration of an existing Rule Action. This is the endpoint and schema for
+        updating Rule Actions; app triggers (V2) will be analogous.
       tags:
-        - App Rules
+        - Rule Actions
       operationId: getActionMetadata
       responses:
         200:
@@ -1019,7 +998,7 @@ paths:
       description: >-
         The callback request made to an App Server when a watched field's value changes within an action form.
       tags:
-        - App Rules
+        - Rule Actions
       operationId: onActionFormChange
       requestBody:
         description: >-
@@ -1054,13 +1033,13 @@ paths:
     post:
       summary: On action submit callback
       description: >-
-        The form is submitted when the user chooses to create their Rule. Asana will create the app action data model
+        The form is submitted when the user chooses to create their Rule. Asana will create the Rule Action data model
         object and make a signed request to the on_submit_callback specified in the form metadata returned from the
-        fetch/update app rule form endpoints. Information about the created app action should be included in the
-        response if it was successfully created. This is the endpoint and schema for updating app actions; app triggers
+        fetch/update Rule Action form endpoints. Information about the created Rule Action should be included in the
+        response if it was successfully created. This is the endpoint and schema for updating Rule Actions; app triggers
         (V2) will be analogous.
       tags:
-        - App Rules
+        - Rule Actions
       operationId: onActionFormSubmit
       requestBody:
         description: >-

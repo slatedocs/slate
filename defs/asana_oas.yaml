@@ -1050,6 +1050,15 @@ components:
         type: string
       example: '321654'
       x-env-variable: project_status
+    status_path_gid:
+      name: status_gid
+      in: path
+      required: true
+      description: The status update to get.
+      schema:
+        type: string
+      example: '321654'
+      x-env-variable: status
     portfolio_path_gid:
       name: portfolio_gid
       in: path
