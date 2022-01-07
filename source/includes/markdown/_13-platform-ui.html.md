@@ -541,14 +541,8 @@ Once your app is submitted, an Asana developer will configure and enable your ap
 |» `text`                     | String (url) | text below image of feature |
 | `siteUrl`                   | String (url) | A URL which informs Asana which domain will handle auth |
 | `authenticationUrl`         | String (url) | A URL which informs Asana where to make requests for authenticating and authorizing users.  This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
-| `icon`                      | Object       | A collection of URLs pointing to icon assets of various sizes. Used to display icons of the app in the Asana UI.<br><br>Note: This field is experimental. We may move to managing uploading and displaying these assets instead of allowing developers to specify them as a url in the app definition. |
-|» `x32`                      | String (url) | 32x32 icon asset |
-|» `x48`                      | String (url) | 48x48 icon asset |
-|» `x64`                      | String (url) | 64x64 icon asset |
-|» `x96`                      | String (url) | 96x96 icon asset |
-|» `x192`                     | String (url) | 192x192 icon asset |
 | `capabilities`              | Object       | A list of capabilities supported by the app and their configuration. |
-|» `resource_widget`          | String (url) | The container for resource Widget functionality  |
+|» `resource_widget`          | Object       | The container for resource Widget functionality  |
 |»» `widgetMetadataUrl`       | String (url) | A URL that Asana uses to make requests for the data needed to load a Widget which displays information about a 3rd party resource. |
 |»» `matchUrlPattern`         | String (url) | A regex which allows Asana to compute whether a UrlAttachment is supported by an activated app on the project in order to render a Widget. |
 |» `resource_search`          | Object       | The container for typeahead functionality |
