@@ -20,8 +20,8 @@ Base URLs:
 Web: <a href="https://asana.com/support">Asana Support</a> 
 </section><hr class="full-line">
 <section class="full-section">
-<a id="asana-app-forms"></a>
-<h1 id="app-forms">App Forms</h1>
+<a id="asana-modal-forms"></a>
+<h1 id="modal-forms">Modal Forms</h1>
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
@@ -30,7 +30,7 @@ Web: <a href="https://asana.com/support">Asana Support</a>
 </pre>
 
 <span class="description">
-The creation form is displayed when the user starts the flow to create a resource. Asana will make a signed request to the specified form_metadata_url in the capabilities, and expect a response with the metadata needed to create the form. This process is also used for forms within rules.
+The Modal Form is displayed when the user starts the flow to create a resource. Asana will make a signed request to the specified `form_metadata_url` in the configuration, and expect a response with the metadata needed to create the form. This process is also used for forms within Rule Actions.
 </span>
 
 </section>
@@ -95,6 +95,7 @@ getFormMetadata
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -213,6 +214,7 @@ onFormChange
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -325,6 +327,7 @@ onFormSubmit
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -345,6 +348,7 @@ onFormSubmit
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -395,6 +399,7 @@ The callback request made to an App Server when a form is submitted.
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
+|»»» typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.  A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -429,8 +434,8 @@ The callback request made to an App Server when a form is submitted.
 
 </section><hr class="full-line">
 <section class="full-section">
-<a id="asana-app-rules"></a>
-<h1 id="app-rules">App Rules</h1>
+<a id="asana-rule-actions"></a>
+<h1 id="rule-actions">Rule Actions</h1>
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
@@ -439,7 +444,7 @@ The callback request made to an App Server when a form is submitted.
 </pre>
 
 <span class="description">
-When a rule containing an app action is triggered, the Rules Engine will make a request to the app to inform the app to run the configured app action. The resulting status code will indicate to the Rules Engine whether the action was successfully completed and, if not, specify a cause for the error.
+When a rule containing a Rule Action is triggered, the Rules Engine will make a request to the app to inform the app to run the configured Rule Action. The resulting status code will indicate to the Rules Engine whether the action was successfully completed and, if not, specify a cause for the error.
 </span>
 
 </section>
@@ -531,11 +536,11 @@ The request made when an action is triggered.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to notify of an action running.|
-|» action<span class="param-type"> string</span>|The action id generated from rule creation.|
-|» action_type<span class="param-type"> string</span>|The id from the configuration used to create the app action. This is a developer-provided string.|
+|» action<span class="param-type"> string</span>|The action ID generated from rule creation.|
+|» action_type<span class="param-type"> string</span>|The ID from the configuration used to create the Rule Action.|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
 |» idempotency_key<span class="param-type"> string</span>|A unique key associated with the "Run action" request. App Servers should use this key to implement idempotency.|
-|» target_object<span class="param-type"> string</span>|The id of the target object that the Rule is acting on (currently always a Task id)|
+|» target_object<span class="param-type"> string</span>|The ID of the target object that the Rule Action is acting on. Currently, this is always a Task `gid`.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -612,6 +617,7 @@ getActionMetadata
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -632,15 +638,15 @@ getActionMetadata
 </p>
 
 <span class="description">
-When a user has navigated to the Custom Rule Builder UI and selected an App Action (either through the sidebar or via a Rule Preset), Asana will make a request to the app to get the configuration form definition for the chosen app action. This will initiate the flow to configure a new app action or edit the configuration of an existing app action. This is the endpoint and schema for updating app actions; app triggers (V2) will be analogous.
+When a user has navigated to the [Custom Rule builder](https://asana.com/guide/help/premium/rules#gl-create-rule) UI and selected a Rule Action (either through the sidebar or via a Rule Preset), Asana will make a request to the app to get the configuration form definition for the chosen Rule Action. This will initiate the flow to configure a new Rule Action or edit the configuration of an existing Rule Action. This is the endpoint and schema for updating Rule Actions; app triggers (V2) will be analogous.
 </span>
 
 <h3 id="get-action-metadata-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
-|?action<span class="param-type"> string</span>|The id of an existing app action that is being edited. Should be omitted when configuring a new app action.|
-|?action_type<span class="param-type"> string</span><div class="param-required">required</div>|The id of the configuration used to create the app action|
+|?action<span class="param-type"> string</span>|The ID of an existing Rule Action that is being edited. Should be omitted when configuring a new Rule Action.|
+|?action_type<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the configuration used to create the Rule Action.|
 |?project<span class="param-type"> string</span><div class="param-required">required</div>|The project gid this hook is coming from.|
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
@@ -733,6 +739,7 @@ onActionFormChange
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -761,8 +768,8 @@ The callback request made to an App Server when a watched field's value changes 
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to notify of an on change event.|
-|» action<span class="param-type"> string</span>|The id of an existing app action that is being edited|
-|» action_type<span class="param-type"> string</span>|The id of the configuration used to create the app action|
+|» action<span class="param-type"> string</span>|The ID of an existing Rule Action that is being edited.|
+|» action_type<span class="param-type"> string</span>|The ID of the configuration used to create the Rule Action.|
 |» changed_field<span class="param-type"> string</span>|The name of the changed FormField|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
@@ -849,6 +856,7 @@ onActionFormSubmit
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -869,6 +877,7 @@ onActionFormSubmit
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -898,6 +907,7 @@ onActionFormSubmit
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -918,7 +928,7 @@ onActionFormSubmit
 </p>
 
 <span class="description">
-The form is submitted when the user chooses to create their Rule. Asana will create the app action data model object and make a signed request to the on_submit_callback specified in the form metadata returned from the fetch/update app rule form endpoints. Information about the created app action should be included in the response if it was successfully created. This is the endpoint and schema for updating app actions; app triggers (V2) will be analogous.
+The form is submitted when the user chooses to create their Rule. Asana will create the Rule Action data model object and make a signed request to the on_submit_callback specified in the form metadata returned from the fetch/update Rule Action form endpoints. Information about the created Rule Action should be included in the response if it was successfully created. This is the endpoint and schema for updating Rule Actions; app triggers (V2) will be analogous.
 </span>
 
 <h3 id="on-action-submit-callback-parameters">Parameters</h3>
@@ -926,8 +936,8 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|Request to submit an action form.|
-|» action<span class="param-type"> string</span>|The id of an existing app action that is being edited|
-|» action_type<span class="param-type"> string</span>|The id of the configuration used to create the app action|
+|» action<span class="param-type"> string</span>|The ID of an existing Rule Action that is being edited|
+|» action_type<span class="param-type"> string</span>|The ID of the configuration used to create the Rule Action.|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
 |» rule_name<span class="param-type"> string</span>|The name of the rule being created|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
@@ -945,6 +955,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |»»»» label<span class="param-type"> string</span>|The label of the option|
 |»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |»»» type<span class="param-type"> string</span>|The type of field the form field is|
+|»»» typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.  A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.|
 |»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
@@ -979,32 +990,32 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 
 </section><hr class="full-line">
 <section class="full-section">
-<a id="asana-app-resource-searching"></a>
-<h1 id="app-resource-searching">App Resource Searching</h1>
+<a id="asana-lookups"></a>
+<h1 id="lookups">Lookups</h1>
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/resource-search"><span class="post-verb">POST</span> <span class=""nn>/{resource_search_url}</span></a></code>
+<code><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a><br><a href="/docs/get-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{resource_typeahead_url}</span></a></code>
 </pre>
 
 <span class="description">
-If the app defined a search url, tasks without a widget offer the search functionality. This appears as a text input to the user. When the user submits the text, the app responds with either an attachment or an error.
+If the app defined a resource attach URL, tasks without a Widget offer the Lookup functionality. This appears as a text input to the user. When the user submits the text, the app responds with either a resource attachment or with an error.
 </span>
 
 </section>
 <hr class="half-line">
 <section>
-## Resource Search
+## Attach resource
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
-<a id="opIdresourceSearch"></a>
+<a id="opIdattachResource"></a>
 
 > Code samples
 
 ```shell
-curl -X POST {siteUrl}/{resource_search_url} \
+curl -X POST {siteUrl}/{resource_attach_url} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -d '{"data": {"field":"value","field":"value"} }'
@@ -1012,27 +1023,27 @@ curl -X POST {siteUrl}/{resource_search_url} \
 ```
 
 ```javascript--nodejs
-resourceSearch
+attachResource
 
 ```
 
 ```python
-resourceSearch
+attachResource
 
 ```
 
 ```ruby
-resourceSearch
+attachResource
 
 ```
 
 ```java
-resourceSearch
+attachResource
 
 ```
 
 ```php
-resourceSearch
+attachResource
 
 ```
 
@@ -1062,46 +1073,153 @@ resourceSearch
 > See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
 
 <p>
-<code> <span class="post-verb">POST</span> /{resource_search_url}</code>
+<code> <span class="post-verb">POST</span> /{resource_attach_url}</code>
 </p>
 
 <span class="description">
-The search request made to an App Server when the search field is submitted.
+When the user attaches a resource URL to a task, Asana will make a signed request to the specified `resource_attach_url` in the app configuration. Information about the attached resource should be included in the response.
 </span>
 
-<h3 id="resource-search-parameters">Parameters</h3>
+<h3 id="attach-resource-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to attach a resource with a user given `value`.|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to attach a resource.|
 |» attachment<span class="param-type"> string</span>|The attachment id of the URL attachment|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» query<span class="param-type"> string</span>|The user’s input in the attach resource text input (this is often a resource url or resource key, such as CP-1 or https://abcde.atlassian.net/browse/CP-1)|
+|» query<span class="param-type"> string</span>|The user’s input in the Lookup text input (this is often a resource URL or resource key, such as CP-1 or https://abcde.atlassian.net/browse/CP-1)|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
-<h3 id="resource-search-responses">Responses</h3>
+<h3 id="attach-resource-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource created by the form.|
+|200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource to the given object.|
 |400<span class="param-type"> None</span>|Bad Request|
+|401<span class="param-type"> None</span>|Unauthorized|
+|403<span class="param-type"> None</span>|Forbidden|
+|404<span class="param-type"> None</span>|Not Found|
+|500<span class="param-type"> None</span>|Server Error|
+
+</section><hr class="half-line">
+<section>
+## Get typeahead results
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+<a id="opIdgetTypeaheadResults"></a>
+
+> Code samples
+
+```shell
+curl -X GET {siteUrl}/{resource_typeahead_url} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```javascript--nodejs
+getTypeaheadResults
+
+```
+
+```python
+getTypeaheadResults
+
+```
+
+```ruby
+getTypeaheadResults
+
+```
+
+```java
+getTypeaheadResults
+
+```
+
+```php
+getTypeaheadResults
+
+```
+
+> Body parameter
+
+```json
+{
+  "expires_at": "2019-04-15T01:01:46.055Z",
+  "query": "Messages",
+  "task": "67890",
+  "user": "54321",
+  "workspace": "12345"
+}
+```
+
+> 200 Response
+
+```json
+{
+  "header": "List of messages",
+  "items": [
+    {
+      "icon_url": "https://example-icon.png",
+      "subtitle": "OTP",
+      "title": "OTP Team PF",
+      "value": "OTP"
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /{resource_typeahead_url}</code>
+</p>
+
+<span class="description">
+Gets typeahead results to render as a dropdown list in the resource lookup input field.
+
+When the user types into the lookup input field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource attach](/docs/resource-attach) request to the app server, then process the response and render the attached resource in the widget.
+</span>
+
+<h3 id="get-typeahead-results-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to retrieve typeahead results for a resource lookup query.|
+|» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 format) when the request should expire|
+|» query<span class="param-type"> string</span>|The user's input in the typeahead text input.|
+|» task<span class="param-type"> string</span>|*Conditional*. The task `gid` this hook is coming from. `task` is only present in the [Modal Form](/docs/modal-form) (as there is a "context task"), but not in the [Rule Action](/docs/rule-action) (as rules are associated with a _project_).|
+|» user<span class="param-type"> string</span>|The user `gid` this hook is coming from.|
+|» workspace<span class="param-type"> string</span>|The workspace `gid` this hook is coming from.|
+
+<h3 id="get-typeahead-results-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
+|400<span class="param-type"> None</span>|Bad Request|
+|401<span class="param-type"> None</span>|Unauthorized|
+|403<span class="param-type"> None</span>|Forbidden|
+|404<span class="param-type"> None</span>|Not Found|
 |500<span class="param-type"> None</span>|Server Error|
 
 </section><hr class="full-line">
 <section class="full-section">
-<a id="asana-app-widgets"></a>
-<h1 id="app-widgets">App Widgets</h1>
+<a id="asana-widgets"></a>
+<h1 id="widgets">Widgets</h1>
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-widget-metadata"><span class="get-verb">GET</span> <span class=""nn>/{widget_metadata_url}</span></a><br><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a><br><a href="/docs/get-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{resource_typeahead_url}</span></a></code>
+<code><a href="/docs/get-widget-metadata"><span class="get-verb">GET</span> <span class=""nn>/{widget_metadata_url}</span></a></code>
 </pre>
 
 <span class="description">
-The widget is displayed when the user views a task with an attachment with a resource URL matching your capability’s match_url_pattern. When this happens, Asana will make a signed request to your widget_metadata_url, and expect a response with information to build the widget.
+The Widget is displayed when the user views a task with an attachment with a resource URL matching your capability’s `match_resource_url_pattern`. When this happens, Asana will make a signed request to your `widget_metadata_url`, and expect a response with information to render in the Widget.
 </span>
 
 </section>
@@ -1196,7 +1314,7 @@ Get the metadata from the App Server to render a widget.
 |?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
 |?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
 |?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
-|?attachment<span class="param-type"> string</span><div class="param-required">required</div>|The attachment id of the URL attachment|
+|?attachment<span class="param-type"> string</span><div class="param-required">required</div>|The attachment ID of the URL attachment.|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 
 <h3 id="get-widget-metadata-responses">Responses</h3>
@@ -1209,209 +1327,6 @@ Get the metadata from the App Server to render a widget.
 |403<span class="param-type"> None</span>|Forbidden|
 |404<span class="param-type"> None</span>|Not Found|
 |418<span class="param-type"> None</span>|Unauthorized|
-|500<span class="param-type"> None</span>|Server Error|
-
-</section><hr class="half-line">
-<section>
-## Attach resource
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-<a id="opIdattachResource"></a>
-
-> Code samples
-
-```shell
-curl -X POST {siteUrl}/{resource_attach_url} \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -d '{"data": {"field":"value","field":"value"} }'
-
-```
-
-```javascript--nodejs
-attachResource
-
-```
-
-```python
-attachResource
-
-```
-
-```ruby
-attachResource
-
-```
-
-```java
-attachResource
-
-```
-
-```php
-attachResource
-
-```
-
-> Body parameter
-
-```json
-{
-  "attachment": "string",
-  "expires_at": "string",
-  "query": "string",
-  "task": "string",
-  "user": "string",
-  "workspace": "string"
-}
-```
-
-> 200 Response
-
-```json
-{
-  "error": "No resource matched that input",
-  "resource_name": "Build the Thing",
-  "resource_url": "https://example.atlassian.net/browse/CP-1"
-}
-```
-
-> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
-
-<p>
-<code> <span class="post-verb">POST</span> /{resource_attach_url}</code>
-</p>
-
-<span class="description">
-When the user attaches a resource URL to a task, Asana will make a signed request to the specified resource_attach_url in the capabilities. Information about the attached resource should be included in the response.
-</span>
-
-<h3 id="attach-resource-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to attach a resource.|
-|» attachment<span class="param-type"> string</span>|The attachment id of the URL attachment|
-|» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
-|» query<span class="param-type"> string</span>|The user’s input in the attach resource text input (this is often a resource url or resource key, such as CP-1 or https://abcde.atlassian.net/browse/CP-1)|
-|» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
-|» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
-|» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
-
-<h3 id="attach-resource-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource to the given object.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
-
-</section><hr class="half-line">
-<section>
-## Get typeahead results
-
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
-
-<a id="opIdgetTypeaheadResults"></a>
-
-> Code samples
-
-```shell
-curl -X GET {siteUrl}/{resource_typeahead_url} \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```javascript--nodejs
-getTypeaheadResults
-
-```
-
-```python
-getTypeaheadResults
-
-```
-
-```ruby
-getTypeaheadResults
-
-```
-
-```java
-getTypeaheadResults
-
-```
-
-```php
-getTypeaheadResults
-
-```
-
-> Body parameter
-
-```json
-{
-  "expires_at": "2019-04-15T01:01:46.055Z",
-  "query": "Messages",
-  "task": "67890",
-  "user": "54321",
-  "workspace": "12345"
-}
-```
-
-> 200 Response
-
-```json
-{
-  "header": "List of messages",
-  "items": [
-    {
-      "icon_url": "https://example-icon.png",
-      "subtitle": "OTP",
-      "title": "OTP Team PF",
-      "value": "OTP"
-    }
-  ]
-}
-```
-
-> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
-
-<p>
-<code> <span class="get-verb">GET</span> /{resource_typeahead_url}</code>
-</p>
-
-<span class="description">
-Gets typeahead results to render as a dropdown list in the resource search bar.
-
-When the user types into the resource search bar, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource search](/docs/resource-search) request to the app server, then process the response and render the attached resource in the widget.
-</span>
-
-<h3 id="get-typeahead-results-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to retrieve typeahead results for a resource search query.|
-|» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 format) when the request should expire|
-|» query<span class="param-type"> string</span>|The user's input in the typeahead text input.|
-|» task<span class="param-type"> string</span>|*Conditional*. The task `gid` this hook is coming from. `task` is only present in the [App Form](/docs/app-form) (as there is a "context task"), but not in the [App Action](/docs/app-action) (as rules are associated with a _project_).|
-|» user<span class="param-type"> string</span>|The user `gid` this hook is coming from.|
-|» workspace<span class="param-type"> string</span>|The workspace `gid` this hook is coming from.|
-
-<h3 id="get-typeahead-results-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
 |500<span class="param-type"> None</span>|Server Error|
 
 </section><hr class="full-line">
@@ -1446,7 +1361,7 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 ```
 
 <span class="description">
-The response to a successful attach request.
+The response to a successful lookup request.
 
 </span>
 
@@ -1487,6 +1402,7 @@ The response to a successful attach request.
         ],
         "placeholder": "Type description here...",
         "type": "single_line_text",
+        "typeahead_url": "https://www.app-server.com/app/typeahead",
         "value": "It's over 9000",
         "width": "full"
       }
@@ -1522,6 +1438,7 @@ Contains the metadata that describes how to display and manage a form.
 |»»» label<span class="param-type"> string</span>|The label of the option|
 |»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
 |»» type<span class="param-type"> string</span>|The type of field the form field is|
+|»» typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.  A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.|
 |»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
 |»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
 |» on_change_callback<span class="param-type"> string</span>|The URL to POST the form to whenever watched field values are changed.|
