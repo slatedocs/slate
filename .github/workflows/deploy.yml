@@ -6,6 +6,9 @@ on:
 
 jobs:
   deploy:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
     env:
       ruby-version: 2.5
