@@ -166,9 +166,6 @@ The body of an event subscription will vary depending on the type of event being
             "id": "19",
             "type": "project"
           }
-        },
-        "message": {
-          "data": null
         }
       }
     },
@@ -193,9 +190,6 @@ The body of an event subscription will vary depending on the type of event being
               "type": "field"
             },
           ]
-        },
-        "latest_reviewed_version": {
-          "data": null
         },
         "user": {
           "data": {
