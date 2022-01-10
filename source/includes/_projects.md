@@ -210,8 +210,8 @@ All parameters must be nested within `project`
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 name | String | Yes | Name of your project, used for document titles, names of PDF documents etc.
-start_date | DateTime | No | To denote when your project starts, used in conjunction with `end_time` to denote whether project is still active.
-end_date | DateTime | No | To denote when your project ends, used in conjunction with `start_time` to denote whether project is still active.
+start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
+end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'
 
 In order to set further details we need a reference to which fields you would like to set a value for, these can differ for each company if you are using custom templates. You can find these references with our `fields` endpoint.
@@ -309,7 +309,7 @@ curl https://api.handshq.com/v1/projects/[id] \
 
 ```
 
-This endpoint allows you to create a project for the company who is registered with the api key you provide.
+This endpoint allows you to update a project for the company who is registered with the api key you provide.
 
 ### HTTP Request
 
@@ -322,8 +322,8 @@ All parameters must be nested within `project`
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 name | String | Yes | Name of your project, used for document titles, names of PDF documents etc.
-start_date | DateTime | No | To denote when your project starts, used in conjunction with `end_time` to denote whether project is still active.
-end_date | DateTime | No | To denote when your project ends, used in conjunction with `start_time` to denote whether project is still active.
+start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
+end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'
 
 ### Response
