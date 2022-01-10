@@ -179,7 +179,9 @@ The body of an event subscription will vary depending on the type of event being
         "name": "My lovely project",
         "reference": "ref1",
         "start_date": null,
-        "end_date": null
+        "end_date": null,
+        "archived_at": null,
+        "state": "not_submitted"
       },
       "relationships": {
         "fields": {
