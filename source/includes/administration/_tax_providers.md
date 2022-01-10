@@ -58,7 +58,7 @@ curl "https://cloudmc_endpoint/rest/tax_providers?reseller_id=23910576-d29f-4c14
 
 `GET /tax_providers/:id`
 
-Retrieves a list of tax providers configured for a reseller.
+Retrieves a tax provider's details.
 
 > Note: You must have the Reseller billing permission on the owner of the tax provider requested. If the caller does not have the correct permissions or the tax provider for the given ID does not exist, then a `404 Not Found` response will be returned.
 
