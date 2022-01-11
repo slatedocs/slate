@@ -63,7 +63,7 @@ curl "https://cloudmc_endpoint/rest/rollbacks?organization_id=23910576-d29f-4c14
         "name": "Operator",
         "id": "1b47df69-6458-4ea6-8c4b-2894b3f7ec00"
       },
-      "name": "HElloWorld",
+      "name": "Rollback January",
       "description": "This is a description",
       "id": "006980fe-6ee5-4c04-a0aa-df04acab54f9",
       "state": "SCHEDULED",
