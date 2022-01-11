@@ -5,9 +5,6 @@
 API disbursement product provides the capability for you to disburse to 100+ banks in Indonesia via OY! at any time. The integration process to use the API disbursement product is straight forward and the details can be checked [here](https://api-docs.oyindonesia.com/#fund-disbursement).  
 
 ### Key Features
-**Overdraft**
-
-OY! has established partnerships with third party lenders to credit a specific amount of funds that can be used for your disbursement needs. With this feature, you don’t need to top up the OY! balance to execute disbursements. Please contact our [business representative](partner@oyindonesia.com) for further details about this feature.
 
 **Overbooking** 
 
@@ -214,7 +211,7 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
         "message":"Success"
     },
     "balance":100000000.0000,
-    "overdraftBalance":500000.0000,
+  //  "overdraftBalance":500000.0000,
     "overbookingBalance":200000.0000,
     "pendingBalance":2000000.0000,
     "availableBalance":98500000.0000,
@@ -239,9 +236,6 @@ For further details on the parameters definition and proper usage, please refer 
 Our Bulk disbursement product provides the capability to execute disbursements to multiple beneficiaries with a single xlsx or csv file upload ("Campaign") up to 25,000 transactions. Bulk disbursement is made through the OY! dashboard, where details regarding the disbursement campaign can be found. No technical integration is required to use this product.
 
 ### Key Features 
-**Overdraft**
-
-OY! has established partnerships with third party lenders to credit a specific amount of funds that can be used for your disbursement needs. With this feature, you don’t need to top up the OY! balance to execute disbursements. Please contact our [business representative](partner@oyindonesia.com) for further details about this feature.
 
 **Overbooking** 
 
