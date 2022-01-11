@@ -10,7 +10,7 @@ curl https://api.handshq.com/v1/projects \
 
 This endpoint allows you to view projects for the company who is registered with the api key you provide.
 
-### HTTP Request
+### Request
 
 `GET https://api.handshq.com/v1/projects`
 
@@ -107,7 +107,7 @@ curl https://api.handshq.com/v1/projects?reference=#{project_reference} \
 
 Adding a reference to the query string will return all projects for that company that match that project reference.
 
-### HTTP Request
+### Request
 
 `GET https://api.handshq.com/v1/projects?reference=#{project_reference}`
 
@@ -195,7 +195,7 @@ curl https://api.handshq.com/v1/projects \
 
 This endpoint allows you to create a project for the company who is registered with the api key you provide.
 
-### HTTP Request
+### Request
 
 `POST https://api.handshq.com/v1/projects?user_email=#{user_email}`
 
@@ -306,7 +306,7 @@ curl https://api.handshq.com/v1/projects/[id] \
 
 This endpoint allows you to update a project for the company who is registered with the api key you provide.
 
-### HTTP Request
+### Request
 
 `PATCH https://api.handshq.com/v1/projects/#{project_id}`
 

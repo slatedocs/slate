@@ -31,7 +31,7 @@ This endpoint allows you to be notified of certain events. Those currently suppo
   Please note that the `version_pdf_created` event is scoped to look for subscriptions which were created by the same division that the project belongs to.
 </aside>
 
-### HTTP Request
+### Request
 
 `POST https://api.handshq.com/v1/event_subscriptions`
 
@@ -80,7 +80,7 @@ curl https://api.handshq.com/v1/event_subscriptions/[id] \
 
 If you no longer wish for an event subscription to be active, then this endpoint can delete an already created one.
 
-### HTTP Request
+### Request
 
 `DELETE https://api.handshq.com/v1/event_subscriptions/[id]`
 
