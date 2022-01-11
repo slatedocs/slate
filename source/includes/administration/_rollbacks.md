@@ -128,7 +128,7 @@ curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49
       "id": "1b47df69-6458-4ea6-8c4b-2894b3f7ec00"
     },
     "name": "Rollback",
-    "description": "Konoha",
+    "description": "Fix bug in pipeline for date conversion",
     "id": "6064e10e-a105-423a-b724-ba470bf42e79",
     "state": "COMPLETED",
     "type": "REPROCESS"
