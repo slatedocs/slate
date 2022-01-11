@@ -211,7 +211,6 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
         "message":"Success"
     },
     "balance":100000000.0000,
-  //  "overdraftBalance":500000.0000,
     "overbookingBalance":200000.0000,
     "pendingBalance":2000000.0000,
     "availableBalance":98500000.0000,
