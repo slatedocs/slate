@@ -21,7 +21,7 @@ There may be additional info given in the error in order to help fix the issue, 
 Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
+401 | Unauthorized -- Your API token is wrong.
 404 | Not Found -- The specified resource could not be found.
 418 | I'm a teapot.
 422 | The resource cannot be processed with the given request parameters
