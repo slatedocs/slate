@@ -1007,7 +1007,7 @@ All details regarding your created e-wallet and its payments can be retrieved vi
 
 ## API Payment Routing
 
-Some business have some use cases that require them to receive and disburse the fund. Often times, the operation team is struggling to manage this use case. Limited resource makes it harder to disburse the fund received. Therefore, API Payment Routing is the best solutions to cater this needs.
+Some business have some use cases that require them to receive and disburse the fund. Often times, the operation team is struggling to manage this use case. Limited resource makes it harder to disburse the fund received. Therefore, API Payment Routing is the best solutions to cater this needs. It allows end-to-end process from accepting fund to disburse fund in one flow.
 
 ### Description about Payment Routing
 
