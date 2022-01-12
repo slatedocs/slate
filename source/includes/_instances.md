@@ -20,6 +20,11 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 https://api.practitest.com/api/v2/projects/4566/instances.json?test-ids=1111&set-ids=32321,223254
 
+# Get all instances of project #4566, of Test display ids 1,2,3
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/4566/instances.json?test-display-ids=1,2,3
+
 ```
 
 > This command: https://api.practitest.com/api/v2/projects/4566/instances.json?api_token=xx&developer_email=admin%40pt.com&page[number]=1&page[size]=2", returns JSON structured like below:
@@ -113,6 +118,7 @@ set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
 name_exact | filter by instance name exact match; case sensitive! |
 name_like | filter by instance name: case insensitive, phrase can be inside the name |
 display-id | filter instances based on an instance display-id (can be used to convert display to system id) |
+test-display-ids | filter instances based on an certain or multiple Test display-ids (comma separated) |
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
