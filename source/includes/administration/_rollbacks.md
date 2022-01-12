@@ -1,4 +1,4 @@
-## Rollback Triggers
+## Rollbacks
 
 A rollback trigger enabled a reseller to process past usage data with a new pricing configuration. Pricing configuration can change due to a pricing change, a modified product or a change in pricing packages.
 You need to specify a reset date, the affected service connection(s) and the targeted organization(s). Pending invoices will be regenerated.
