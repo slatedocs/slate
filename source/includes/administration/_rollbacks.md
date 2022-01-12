@@ -155,7 +155,10 @@ curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49
 
 `POST /rollbacks`
 
-Creates a rollback trigger for the reseller org using the provided set of service connection IDs and organization IDs.
+Creates a rollback which will result in reprocessing of usage for the given request body. 
+This API currently supports the REPROCESS rollback type which uses existing usage previously collected by plugin usage collectors and re processes it in the monetization engine. The latest pricing configuration will be used when processing the records. 
+
+The API body supports targeting a set of service connections and organizations as well as the date from which the rollback should begin. 
 
 > Note: You must have the Reseller pricing permission on the target reseller. If the caller does not have the correct permissions or the reseller with the ID provided does not exist then a `404 Not Found` response will be returned.
 
