@@ -114,11 +114,12 @@ Parameters* | Description |
 set-filter-id | the testSet's filter id -> showing instances of TestSets which are in this filter |
 set-filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
 test-ids | filter instances that are related to a certain test_id (NOT display-id!) |
-set-ids | filter by TestSets ids, separated by comma (NOT display-id) |
+set-ids | filter by TestSets ids, separated by comma (system-id) |
 name_exact | filter by instance name exact match; case sensitive! |
 name_like | filter by instance name: case insensitive, phrase can be inside the name |
 display-id | filter instances based on an instance display-id (can be used to convert display to system id) |
-test-display-ids | filter instances based on an certain or multiple Test display-ids (comma separated) |
+test-display-ids | filter instances based on a
+certain or multiple Test display-ids (comma separated) |
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
