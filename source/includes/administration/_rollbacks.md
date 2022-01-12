@@ -1,6 +1,7 @@
 ## Rollbacks
 
-A rollback trigger enabled a reseller to process past usage data with a new pricing configuration. Pricing configuration can change due to a pricing change, a modified product or a change in pricing packages.
+Rollbacks enable service providers to reprocess usage data from the past. 
+Currently the only supported rollback type REPROCESS uses existing collected usage metrics and reprocesses it through the monetization engine. The most current effective pricing configuration will be used to price these records. 
 You need to specify a reset date, the affected service connection(s) and the targeted organization(s). Pending invoices will be regenerated.
 A rollback will be created for each service connection and organization pairs that are applicable.
 
