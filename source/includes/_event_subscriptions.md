@@ -68,6 +68,7 @@ Successful requests will return a json payload of the event subscription that wa
   }
 }
 ```
+> A convenience header of `location` will also be present in the response containing a url (e.g. `https://api.handshq.com/v1/event_subscriptions/123`) where you are able to send a DELETE request to if you wish to remove the subscription that was just created.
 
 ## Removing an event subscription
 
