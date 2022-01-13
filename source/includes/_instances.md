@@ -118,8 +118,7 @@ set-ids | filter by TestSets ids, separated by comma (system-id) |
 name_exact | filter by instance name exact match; case sensitive! |
 name_like | filter by instance name: case insensitive, phrase can be inside the name |
 display-id | filter instances based on an instance display-id (can be used to convert display to system id) |
-test-display-ids | filter instances based on a
-certain or multiple Test display-ids (comma separated) |
+test-display-ids | filter instances based on a certain or multiple Test display-ids (comma separated) |
 
 * none of the parameters are required. If you combine multiple parameters, it will do AND
 You can see examples in the dark area to the right.
