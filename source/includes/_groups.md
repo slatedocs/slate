@@ -1,7 +1,7 @@
 # Groups
 
 
-## GET all groups at your project
+## GET all groups in your project
 ```shell
     curl -H "Content-Type: application/json" \
     -u YOUR_EMAIL:YOUR_TOKEN \

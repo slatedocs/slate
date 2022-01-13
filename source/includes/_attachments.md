@@ -40,7 +40,7 @@ entity-id | the entity id |
 
 
 
-## Show attachments for an entity
+## Show specific attachment
 ```shell
 curl -H "PTToken: YOUR_TOKEN" \
 -L https://api.practitest.com/api/v2/projects/4508/attachments/14635 --output downloaded.jpg
@@ -59,7 +59,7 @@ Parameters* | Description |
 attachment-id | The id that was retrieved from index method |
 
 ### Output
-The output returns an html with redirect so it requires `-L` option (in curl)
+Returns binary attachment (you will need to use `-L` option in curl to follow redirects).
 
 <aside class="notice">
 This endpoint is not a json request, and without the "Content-Type:application/json" in the header. Usually it requires an output stream. See the curl example.

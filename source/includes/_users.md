@@ -1,6 +1,6 @@
 # Users
 
-## GET all users at your account
+## GET all users in your account
 ```shell
 curl -H "Content-Type: application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
@@ -173,7 +173,7 @@ data/attributes/display-name | Display name of the user in the system | false |
 ```
 
 
-## Show a specific Issue
+## Show specific user
 ```shell
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \

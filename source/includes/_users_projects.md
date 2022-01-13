@@ -89,9 +89,10 @@ curl -H "Content-Type:application/json" \
 </aside>
 
 
-Add access to specific project and group
+Add access to specific project and group.
+
 Adds the user to groups of a project. Multiple projects and multiple groups can be specified.
-All projects you want to give this user access to should be specified. If the user had access to projects A and B and you call this endpoint again with only project B, access to A will be revoked.*
+All projects you want to give this user access to should be specified. If the user had access to projects A and B and you call this endpoint again with only project B, access to A will be revoked.
 
 ### HTTP Request
 
