@@ -122,7 +122,7 @@ Shows list of users only to projects that a user belongs to.
 
 
 
-## Add a User
+## Add a user
 ```shell
 # creates a user:
 curl -H "Content-Type:application/json" \
@@ -132,7 +132,6 @@ curl -H "Content-Type:application/json" \
 
 
 ```
-<%= partial "footer" %>
 
 <aside class="notice">
   Available for Ultimate accounts only
@@ -143,7 +142,7 @@ Will return 422 if user already exists.
 
 ### HTTP Request
 
-`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues.json`
+`POST https://api.practitest.com/api/v2/users.json`
 
 Parameters | Description | required? |
 --------- | ------- |------- |
@@ -174,6 +173,46 @@ data/attributes/display-name | Display name of the user in the system | false |
 ```
 
 
+## Show a specific Issue
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/users/22.json
+```
+
+> This command returns JSON structured like below:
+
+```json
+{
+  "data": {
+    "id": "22",
+    "type": "users",
+    "attributes": {
+      "first-name": "Stas",
+      "last-name": "Krichevsky",
+      "display-name": "Stas Krichevsky",
+      "email": "stask+test@practitest.com",
+      "time-zone": null,
+      "created-at": "2019-07-10T20:18:34Z"
+    }
+  }
+}
+
+```
+<aside class="notice">
+  Available for Ultimate accounts only
+</aside>
+
+
+This endpoint shows a specific user
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/users/USER_ID.json`
+
+
+
+
 ## Update a user
 
 ```shell
@@ -183,6 +222,10 @@ curl -H "Content-Type:application/json" \
 -d '{"data": {"attributes": {"display-name": "NEW_DISPLAY_NAME"}}}'
 
 ```
+
+<aside class="notice">
+  Available for Ultimate accounts only
+</aside>
 
 
 This endpoint updates a specific user.
