@@ -39,7 +39,7 @@ This endpoint allows you to be notified of certain events. Those currently suppo
 
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
-external_url | String | Yes | A valid URL which we will send a `POST` request to when the event occurs (see below for samples of these)
+external_url | String | Yes | A valid URL which we will send a `POST` request to when the event occurs, this must be using `https`.
 event_type | String | Yes | The name of the event you wish to be notified about, allowed values: [`version_pdf_created`]
 
 
