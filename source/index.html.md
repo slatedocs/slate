@@ -19,6 +19,7 @@ includes:
   - projects
   - groups
   - users
+  - users_projects
   - attachments
   - project_fields
   - custom_fields
