@@ -31,7 +31,7 @@ This endpoint allows you to be notified of certain events. Those currently suppo
   Please note that the `version_pdf_created` event is scoped to look for subscriptions which were created by the same division that the project belongs to.
 </aside>
 
-### HTTP Request
+### Request
 
 `POST https://api.handshq.com/v1/event_subscriptions`
 
@@ -39,7 +39,7 @@ This endpoint allows you to be notified of certain events. Those currently suppo
 
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
-external_url | String | Yes | A valid URL which we will send a `POST` request to when the event occurs (see below for samples of these)
+external_url | String | Yes | A valid URL which we will send a `POST` request to when the event occurs, this must be using `https`.
 event_type | String | Yes | The name of the event you wish to be notified about, allowed values: [`version_pdf_created`]
 
 
@@ -68,6 +68,7 @@ Successful requests will return a json payload of the event subscription that wa
   }
 }
 ```
+> A convenience header of `location` will also be present in the response containing a url (e.g. `https://api.handshq.com/v1/event_subscriptions/123`) where you are able to send a DELETE request to if you wish to remove the subscription that was just created.
 
 ## Removing an event subscription
 
@@ -80,7 +81,7 @@ curl https://api.handshq.com/v1/event_subscriptions/[id] \
 
 If you no longer wish for an event subscription to be active, then this endpoint can delete an already created one.
 
-### HTTP Request
+### Request
 
 `DELETE https://api.handshq.com/v1/event_subscriptions/[id]`
 
