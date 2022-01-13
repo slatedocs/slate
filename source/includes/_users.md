@@ -2,12 +2,12 @@
 
 ## GET all users at your account
 ```shell
-    curl -H "Content-Type: application/json" \
-     -u YOUR_EMAIL:YOUR_TOKEN  \
-    https://api.practitest.com/api/v2/users.json
+curl -H "Content-Type: application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+https://api.practitest.com/api/v2/users.json
 # IS THE SAME AS:
-    curl -H "Content-Type: application/json" \
-    https://api.practitest.com/api/v2/users.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
+curl -H "Content-Type: application/json" \
+https://api.practitest.com/api/v2/users.json?developer_email=YOUR_EMAIL&api_token=YOUR_TOKEN
 ```
 
 ```csharp
@@ -118,3 +118,83 @@ Shows list of users only to projects that a user belongs to.
 <aside class="notice">
   Remember, you can see examples in the dark area to the right.
 </aside>
+
+
+
+
+## Add a User
+```shell
+# creates a user:
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/users.json \
+-d '{"data": {"attributes": {"email": "NEW_USER_EMAIL", "first-name": "FIRST_NAME", "last-name": "LAST_NAME", "display-name": "DISPLAY_NAME"}}}'
+
+
+```
+<%= partial "footer" %>
+
+<aside class="notice">
+  Available for Ultimate accounts only
+</aside>
+
+This endpoint creates a new User.<br>
+Will return 422 if user already exists.
+
+### HTTP Request
+
+`POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues.json`
+
+Parameters | Description | required? |
+--------- | ------- |------- |
+data/attributes/email | email | true |
+data/attributes/first-name | First Name | false |
+data/attributes/last-name | Last Name | false |
+data/attributes/display-name | Display name of the user in the system | false |
+
+
+> This command returns JSON structured like below:
+
+```json
+{
+  "data": {
+    "id": "22",
+    "type": "users",
+    "attributes": {
+      "first-name": "Stas",
+      "last-name": "Krichevsky",
+      "display-name": "Stas Krichevsky",
+      "email": "stask+test@practitest.com",
+      "time-zone": null,
+      "created-at": "2019-07-10T20:18:34Z"
+    }
+  }
+}
+
+```
+
+
+## Update a user
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PUT https://api.practitest.com/api/v2/users/USER_ID.json
+-d '{"data": {"attributes": {"display-name": "NEW_DISPLAY_NAME"}}}'
+
+```
+
+
+This endpoint updates a specific user.
+
+### HTTP Request
+
+`PUT https://api.practitest.com/api/v2/users/USER_ID.json`
+
+### Parameters
+
+Available parameters | Description |
+--------- | ------- |
+data/attributes/first-name | First Name | false |
+data/attributes/last-name | Last Name | false |
+data/attributes/display-name | Display name of the user in the system | false |
