@@ -197,9 +197,9 @@ This endpoint allows you to create a project for the company who is registered w
 
 ### Request
 
-`POST https://api.handshq.com/v1/projects?user_email=#{user_email}`
+`POST https://api.handshq.com/v1/projects`
 
-### Required Query Parameters
+### Required Parameters
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 user_email | String | Yes | The email of the HandsHQ user who will be marked as the author of the project
@@ -213,7 +213,7 @@ name | String | Yes | Name of your project, used for document titles, names of P
 start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
 end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'
-fields_attributes | object | No | More information available [here](#for-project-creation)
+fields_attributes | Object | No | More information available [here](#for-project-creation)
 
 ### Response
 
@@ -298,7 +298,10 @@ curl https://api.handshq.com/v1/projects/[id] \
       "name": "My Updated Project",
       "start_date": "2021-12-20" ,
       "end_date": "2022-12-20",
-      "reference": "abc123"
+      "reference": "abc123",
+      "fields_attributes": {
+        "248": "DEF345"
+      }
     }
   }
 
@@ -320,7 +323,7 @@ name | String | Yes | Name of your project, used for document titles, names of P
 start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
 end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'
-fields_attributes | object | No | More information available [here](#for-project-updates)
+fields_attributes | Object | No | More information available [here](#for-project-updates)
 
 
 ### Response
