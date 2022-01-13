@@ -22,4 +22,41 @@ Note: The example query parameters above use unencoded [ and ] characters simply
 Remember, you can see examples in the dark area to the right.
 
 ### PAT Support
-Shows user's projects inside the account.
+Shows user's projects of the account.
+
+
+
+## Show a specific project
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+https://api.practitest.com/api/v2/projects/22.json
+```
+
+
+> This command returns JSON structured like below:
+
+```json
+
+{
+  "data": {
+    "id": "22",
+    "type": "projects",
+    "attributes": {
+      "name": "Verticals",
+      "created-at": "2021-10-04T12:01:05Z",
+      "automation-support": true,
+      "enable-delete-issues": false,
+      "time-management-support": true
+    }
+  }
+}
+
+```
+
+
+This endpoint shows a specific project
+
+### HTTP Request
+
+`GET https://api.practitest.com/api/v2/projects/PROJECT_ID.json`
