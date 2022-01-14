@@ -562,7 +562,7 @@ The Audit Log API allows you to monitor and act upon important security and comp
 
 Note that since the API provides insight into what is happening in an Asana instance, the data is [read-only](/docs/get-audit-log-events). That is, there are no "write" or "update" endpoints for audit log events.
 
-Only [Service Accounts](https://asana.com/guide/help/premium/service-accounts) in [Enterprise Domains](https://asana.com/enterprise) can access Audit Log API endpoints. Authentication with a Service Account's [Personal Access Token](/docs/personal-access-token) is required. 
+Only [Service Accounts](https://asana.com/guide/help/premium/service-accounts) in [Enterprise Domains](https://asana.com/enterprise) can access Audit Log API endpoints. Authentication with a Service Account's [Personal Access Token](/docs/personal-access-token) is required.
 
 For a full list of supported events, see [Supported AuditLogEvents](/docs/supported-auditlogevents).
 </span>
@@ -5559,38 +5559,12 @@ This method creates a request to export an Organization. Asana will complete the
 
 |Status|Description|
 |---|---|
-|201<span class="param-type"> Inline</span>|Successfully created organization export request.|
+|201<span class="param-type"> [OrganizationExport](#schemaorganizationexport)</span>|Successfully created organization export request.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="create-an-organization-export-request-responseschema">Response Schema</h3>
-
-Status Code **201**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [OrganizationExportResponse](#schemaorganizationexportresponse)</span>|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-| download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
-| organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|The name of the workspace.|
-| state<span class="param-type"> string</span>|The current state of the export.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|state|pending|
-|state|started|
-|state|finished|
-|state|error|
 
 </section><hr class="half-line">
 <section>
@@ -5696,38 +5670,12 @@ Returns details of a previously-requested Organization export.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved organization export object.|
+|200<span class="param-type"> [OrganizationExport](#schemaorganizationexport)</span>|Successfully retrieved organization export object.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-details-on-an-org-export-request-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [OrganizationExportResponse](#schemaorganizationexportresponse)</span>|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-| download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
-| organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|The name of the workspace.|
-| state<span class="param-type"> string</span>|The current state of the export.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|state|pending|
-|state|started|
-|state|finished|
-|state|error|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -5943,8 +5891,8 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
   "data": {
     "gid": "12345",
     "resource_type": "portfolio",
-    "name": "Bug Portfolio",
     "color": "light-green",
+    "name": "Bug Portfolio",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -6174,8 +6122,8 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
   "data": {
     "gid": "12345",
     "resource_type": "portfolio",
-    "name": "Bug Portfolio",
     "color": "light-green",
+    "name": "Bug Portfolio",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -6391,8 +6339,8 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
   "data": {
     "gid": "12345",
     "resource_type": "portfolio",
-    "name": "Bug Portfolio",
     "color": "light-green",
+    "name": "Bug Portfolio",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
@@ -8138,29 +8086,28 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
   "data": {
     "gid": "12345",
     "resource_type": "project",
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
       "gid": "12345",
       "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "color": "green",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "modified_at": "2012-02-22T02:06:58.147Z"
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
     },
     "custom_field_settings": [
       {
@@ -8181,6 +8128,7 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
@@ -8399,29 +8347,28 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
   "data": {
     "gid": "12345",
     "resource_type": "project",
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
       "gid": "12345",
       "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "color": "green",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "modified_at": "2012-02-22T02:06:58.147Z"
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
     },
     "custom_field_settings": [
       {
@@ -8442,6 +8389,7 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
@@ -8637,29 +8585,28 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
   "data": {
     "gid": "12345",
     "resource_type": "project",
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
       "gid": "12345",
       "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "color": "green",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "modified_at": "2012-02-22T02:06:58.147Z"
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
     },
     "custom_field_settings": [
       {
@@ -8680,6 +8627,7 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
@@ -9433,29 +9381,28 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
   "data": {
     "gid": "12345",
     "resource_type": "project",
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
       "gid": "12345",
       "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "color": "green",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "modified_at": "2012-02-22T02:06:58.147Z"
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
     },
     "custom_field_settings": [
       {
@@ -9476,6 +9423,7 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
@@ -9840,29 +9788,28 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
   "data": {
     "gid": "12345",
     "resource_type": "project",
-    "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "current_status": {
       "gid": "12345",
       "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "color": "green",
-      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-      "text": "The project is moving forward according to plan...",
       "author": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
+      "color": "green",
       "created_at": "2012-02-22T02:06:58.147Z",
       "created_by": {
         "gid": "12345",
         "resource_type": "user",
         "name": "Greg Sanchez"
       },
-      "modified_at": "2012-02-22T02:06:58.147Z"
+      "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "text": "The project is moving forward according to plan...",
+      "title": "Status Update - Jun 15"
     },
     "custom_field_settings": [
       {
@@ -9883,6 +9830,7 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Stuff to buy",
     "notes": "These are things we need to purchase.",
     "public": false,
     "start_on": "2019-09-14",
@@ -10442,26 +10390,12 @@ Milestones are just tasks, so they are included in the `num_tasks`, `num_incompl
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved the requested project's task counts.|
+|200<span class="param-type"> [TaskCount](#schemataskcount)</span>|Successfully retrieved the requested project's task counts.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-task-count-of-a-project-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [TaskCountResponse](#schemataskcountresponse)</span>|A response object returned from the task count endpoint.|
-| num_completed_milestones<span class="param-type"> integer</span>|The number of completed milestones in a project.|
-| num_completed_tasks<span class="param-type"> integer</span>|The number of completed tasks in a project.|
-| num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
-| num_incomplete_tasks<span class="param-type"> integer</span>|The number of incomplete tasks in a project.|
-| num_milestones<span class="param-type"> integer</span>|The number of milestones in a project.|
-| num_tasks<span class="param-type"> integer</span>|The number of tasks in a project.|
 
 </section><hr class="half-line">
 <section>
@@ -11294,10 +11228,10 @@ $result = $client->projectstatuses->getProjectStatus($project_status_gid, array(
   "data": {
     "gid": "12345",
     "resource_type": "project_status",
-    "title": "Status Update - Jun 15",
     "color": "green",
     "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
     "text": "The project is moving forward according to plan...",
+    "title": "Status Update - Jun 15",
     "author": {
       "gid": "12345",
       "resource_type": "user",
@@ -11648,10 +11582,10 @@ $result = $client->projectstatuses->createProjectStatusForProject($project_gid, 
   "data": {
     "gid": "12345",
     "resource_type": "project_status",
-    "title": "Status Update - Jun 15",
     "color": "green",
     "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
     "text": "The project is moving forward according to plan...",
+    "title": "Status Update - Jun 15",
     "author": {
       "gid": "12345",
       "resource_type": "user",
@@ -12717,7 +12651,7 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
     "gid": "12345",
     "resource_type": "story",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
     "resource_subtype": "comment_added",
     "sticker_name": "dancing_unicorn",
@@ -13010,7 +12944,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
 ```json
 {
   "data": {
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
     "sticker_name": "dancing_unicorn",
     "text": "This is a comment."
@@ -13026,7 +12960,7 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
     "gid": "12345",
     "resource_type": "story",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
     "resource_subtype": "comment_added",
     "sticker_name": "dancing_unicorn",
@@ -13565,7 +13499,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
 ```json
 {
   "data": {
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
     "sticker_name": "dancing_unicorn",
     "text": "This is a comment."
@@ -13581,7 +13515,7 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
     "gid": "12345",
     "resource_type": "story",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "html_text": "<body>This is a comment.<body>",
+    "html_text": "<body>This is a comment.</body>",
     "is_pinned": false,
     "resource_subtype": "comment_added",
     "sticker_name": "dancing_unicorn",
@@ -15158,7 +15092,6 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "name": "Buy catnip",
     "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
@@ -15226,6 +15159,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Buy catnip",
     "notes": "Mittens really likes the stuff from Humboldt.",
     "num_hearts": 5,
     "num_likes": 5,
@@ -15490,7 +15424,6 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "name": "Buy catnip",
     "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
@@ -15558,6 +15491,7 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Buy catnip",
     "notes": "Mittens really likes the stuff from Humboldt.",
     "num_hearts": 5,
     "num_likes": 5,
@@ -15807,7 +15741,6 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "name": "Buy catnip",
     "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
@@ -15875,6 +15808,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Buy catnip",
     "notes": "Mittens really likes the stuff from Humboldt.",
     "num_hearts": 5,
     "num_likes": 5,
@@ -17002,7 +16936,6 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "name": "Buy catnip",
     "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
@@ -17070,6 +17003,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Buy catnip",
     "notes": "Mittens really likes the stuff from Humboldt.",
     "num_hearts": 5,
     "num_likes": 5,
@@ -17345,7 +17279,6 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
   "data": {
     "gid": "12345",
     "resource_type": "task",
-    "name": "Buy catnip",
     "approval_status": "pending",
     "assignee_status": "upcoming",
     "completed": false,
@@ -17413,6 +17346,7 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
       }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
+    "name": "Buy catnip",
     "notes": "Mittens really likes the stuff from Humboldt.",
     "num_hearts": 5,
     "num_likes": 5,
@@ -20577,8 +20511,6 @@ $result = $client->timeperiods->getTimePeriod($time_period_gid, array('param' =>
     "resource_type": "time_period",
     "display_name": "Q1 FY22",
     "end_on": "2019-09-14",
-    "period": "Q1",
-    "start_on": "2019-09-13",
     "parent": {
       "gid": "12345",
       "resource_type": "time_period",
@@ -20586,7 +20518,9 @@ $result = $client->timeperiods->getTimePeriod($time_period_gid, array('param' =>
       "end_on": "2019-09-14",
       "period": "Q1",
       "start_on": "2019-09-13"
-    }
+    },
+    "period": "Q1",
+    "start_on": "2019-09-13"
   }
 }
 ```
@@ -20613,52 +20547,12 @@ Returns the full record for a single time period.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved the record for a single time period.|
+|200<span class="param-type"> [TimePeriod](#schematimeperiod)</span>|Successfully retrieved the record for a single time period.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-a-time-period-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [TimePeriodResponse](#schematimeperiodresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
-| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
-| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
-| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
-| parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
-| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
-| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
-| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|period|FY|
-|period|H1|
-|period|H2|
-|period|Q1|
-|period|Q2|
-|period|Q3|
-|period|Q4|
-|period|FY|
-|period|H1|
-|period|H2|
-|period|Q1|
-|period|Q2|
-|period|Q3|
-|period|Q4|
 
 </section><hr class="half-line">
 <section>
@@ -20766,38 +20660,12 @@ Returns compact time period records.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved the requested time periods.|
+|200<span class="param-type"> [TimePeriodCompact](#schematimeperiodcompact)</span>|Successfully retrieved the requested time periods.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-time-periods-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [[TimePeriodCompact](#schematimeperiodcompact)]</span>|[A generic Asana Resource, containing a globally unique identifier.]|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
-| end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
-| period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
-| start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|period|FY|
-|period|H1|
-|period|H2|
-|period|Q1|
-|period|Q2|
-|period|Q3|
-|period|Q4|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -24836,6 +24704,112 @@ A *job* is an object representing a process that handles asynchronous work.
 
 </section><hr>
 <section>
+<a id="schemaorganizationexportcompact"></a>
+<a id="schema_OrganizationExportCompact"></a>
+<a id="tocSorganizationexportcompact"></a>
+<a id="tocsorganizationexportcompact"></a>
+<a id="tocS_OrganizationExportCompact"></a>
+<h2 id="organization-export-compact">OrganizationExportCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "organization_export",
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
+  "organization": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  },
+  "state": "started"
+}
+
+```
+
+<span class="description">
+A `Compact` object is the same as the [full response object](/docs/tocS_OrganizationExport), but with less fields included by default. See
+[Input/Output Options](/docs/input-output-options) to include more fields.
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
+|organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
+|state<span class="param-type"> string</span>|The current state of the export.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|state|pending|
+|state|started|
+|state|finished|
+|state|error|
+
+</section><hr>
+<section>
+<a id="schemaorganizationexport"></a>
+<a id="schema_OrganizationExport"></a>
+<a id="tocSorganizationexport"></a>
+<a id="tocsorganizationexport"></a>
+<a id="tocS_OrganizationExport"></a>
+<h2 id="organization-export">OrganizationExport</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "organization_export",
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
+  "organization": {
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "My Company Workspace"
+  },
+  "state": "started"
+}
+
+```
+
+<span class="description">
+An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|download_url<span class="param-type"> string(uri)¦null</span>|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
+|organization<span class="param-type"> object</span>|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the workspace.|
+|state<span class="param-type"> string</span>|The current state of the export.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|state|pending|
+|state|started|
+|state|finished|
+|state|error|
+
+</section><hr>
+<section>
 <a id="schemaportfoliocompact"></a>
 <a id="schema_PortfolioCompact"></a>
 <a id="tocSportfoliocompact"></a>
@@ -24972,8 +24946,8 @@ This object determines if a user is a member of a portfolio.
 {
   "gid": "12345",
   "resource_type": "portfolio",
-  "name": "Bug Portfolio",
   "color": "light-green",
+  "name": "Bug Portfolio",
   "created_at": "2012-02-22T02:06:58.147Z",
   "created_by": {
     "gid": "12345",
@@ -25082,8 +25056,8 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|The name of the portfolio.|
 |color<span class="param-type"> string</span>|Color of the portfolio.|
+|name<span class="param-type"> string</span>|The name of the portfolio.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -25333,29 +25307,28 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 {
   "gid": "12345",
   "resource_type": "project",
-  "name": "Stuff to buy",
   "archived": false,
   "color": "light-green",
   "created_at": "2012-02-22T02:06:58.147Z",
   "current_status": {
     "gid": "12345",
     "resource_type": "project_status",
-    "title": "Status Update - Jun 15",
-    "color": "green",
-    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
-    "text": "The project is moving forward according to plan...",
     "author": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "color": "green",
     "created_at": "2012-02-22T02:06:58.147Z",
     "created_by": {
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
-    "modified_at": "2012-02-22T02:06:58.147Z"
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "modified_at": "2012-02-22T02:06:58.147Z",
+    "text": "The project is moving forward according to plan...",
+    "title": "Status Update - Jun 15"
   },
   "custom_field_settings": [
     {
@@ -25376,6 +25349,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     }
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
+  "name": "Stuff to buy",
   "notes": "These are things we need to purchase.",
   "public": false,
   "start_on": "2019-09-14",
@@ -25440,27 +25414,26 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |color<span class="param-type"> string¦null</span>|Color of the project.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» title<span class="param-type"> string</span>|The title of the project status update.|
-|» color<span class="param-type"> string</span>|The color associated with the status update.|
-|» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|» text<span class="param-type"> string</span>|The text content of the status update.|
 |» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» color<span class="param-type"> string</span>|The color associated with the status update.|
 |» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
+|» text<span class="param-type"> string</span>|The text content of the status update.|
+|» title<span class="param-type"> string</span>|The title of the project status update.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -25474,6 +25447,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
+|name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
@@ -25627,10 +25601,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_ProjectS
 {
   "gid": "12345",
   "resource_type": "project_status",
-  "title": "Status Update - Jun 15",
   "color": "green",
   "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
   "text": "The project is moving forward according to plan...",
+  "title": "Status Update - Jun 15",
   "author": {
     "gid": "12345",
     "resource_type": "user",
@@ -25658,10 +25632,10 @@ A *project status* is an update on the progress of a particular project, and is 
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|title<span class="param-type"> string</span>|The title of the project status update.|
 |color<span class="param-type"> string</span>|The color associated with the status update.|
 |html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |text<span class="param-type"> string</span>|The text content of the status update.|
+|title<span class="param-type"> string</span>|The title of the project status update.|
 |author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -25824,7 +25798,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
   "gid": "12345",
   "resource_type": "story",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "html_text": "<body>This is a comment.<body>",
+  "html_text": "<body>This is a comment.</body>",
   "is_pinned": false,
   "resource_subtype": "comment_added",
   "sticker_name": "dancing_unicorn",
@@ -26350,6 +26324,43 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
 
 </section><hr>
 <section>
+<a id="schemataskcount"></a>
+<a id="schema_TaskCount"></a>
+<a id="tocStaskcount"></a>
+<a id="tocstaskcount"></a>
+<a id="tocS_TaskCount"></a>
+<h2 id="task-count">TaskCount</h2>
+
+```json
+{
+  "num_completed_milestones": 3,
+  "num_completed_tasks": 150,
+  "num_incomplete_milestones": 7,
+  "num_incomplete_tasks": 50,
+  "num_milestones": 10,
+  "num_tasks": 200
+}
+
+```
+
+<span class="description">
+A response object returned from the task count endpoint.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|num_completed_milestones<span class="param-type"> integer</span>|The number of completed milestones in a project.|
+|num_completed_tasks<span class="param-type"> integer</span>|The number of completed tasks in a project.|
+|num_incomplete_milestones<span class="param-type"> integer</span>|The number of incomplete milestones in a project.|
+|num_incomplete_tasks<span class="param-type"> integer</span>|The number of incomplete tasks in a project.|
+|num_milestones<span class="param-type"> integer</span>|The number of milestones in a project.|
+|num_tasks<span class="param-type"> integer</span>|The number of tasks in a project.|
+
+</section><hr>
+<section>
 <a id="schematask"></a>
 <a id="schema_Task"></a>
 <a id="tocStask"></a>
@@ -26361,7 +26372,6 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
 {
   "gid": "12345",
   "resource_type": "task",
-  "name": "Buy catnip",
   "approval_status": "pending",
   "assignee_status": "upcoming",
   "completed": false,
@@ -26429,6 +26439,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Task), b
     }
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
+  "name": "Buy catnip",
   "notes": "Mittens really likes the stuff from Humboldt.",
   "num_hearts": 5,
   "num_likes": 5,
@@ -26542,7 +26553,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |approval_status<span class="param-type"> string</span>|*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.|
 |assignee_status<span class="param-type"> string</span>|*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to "inbox" or "upcoming" inserts it at the top of the section, while the other options will insert at the bottom.|
 |completed<span class="param-type"> boolean</span>|True if the task is currently marked complete, false if not.|
@@ -26589,6 +26599,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|The name of the section (i.e. the text displayed as the section header).|
 |modified_at<span class="param-type"> string(date-time)</span>|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
+|name<span class="param-type"> string</span>|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |notes<span class="param-type"> string</span>|Free-form textual information associated with the task (i.e. its description).|
 |num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
@@ -26882,6 +26893,126 @@ A *team* is used to group related projects and people together within an organiz
 |visibility|secret|
 |visibility|request_to_join|
 |visibility|public|
+
+</section><hr>
+<section>
+<a id="schematimeperiodcompact"></a>
+<a id="schema_TimePeriodCompact"></a>
+<a id="tocStimeperiodcompact"></a>
+<a id="tocstimeperiodcompact"></a>
+<a id="tocS_TimePeriodCompact"></a>
+<h2 id="time-period-compact">TimePeriodCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "time_period",
+  "display_name": "Q1 FY22",
+  "end_on": "2019-09-14",
+  "period": "Q1",
+  "start_on": "2019-09-13"
+}
+
+```
+
+<span class="description">
+A `Compact` object is the same as the [full response object](/docs/tocS_TimePeriod), but with less fields included by default. See
+[Input/Output Options](/docs/input-output-options) to include more fields.
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
+|end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+|period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+|start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|period|FY|
+|period|H1|
+|period|H2|
+|period|Q1|
+|period|Q2|
+|period|Q3|
+|period|Q4|
+
+</section><hr>
+<section>
+<a id="schematimeperiod"></a>
+<a id="schema_TimePeriod"></a>
+<a id="tocStimeperiod"></a>
+<a id="tocstimeperiod"></a>
+<a id="tocS_TimePeriod"></a>
+<h2 id="time-period">TimePeriod</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "time_period",
+  "display_name": "Q1 FY22",
+  "end_on": "2019-09-14",
+  "parent": {
+    "gid": "12345",
+    "resource_type": "time_period",
+    "display_name": "Q1 FY22",
+    "end_on": "2019-09-14",
+    "period": "Q1",
+    "start_on": "2019-09-13"
+  },
+  "period": "Q1",
+  "start_on": "2019-09-13"
+}
+
+```
+
+<span class="description">
+A generic Asana Resource, containing a globally unique identifier.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
+|end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+|parent<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» display_name<span class="param-type"> string</span>|A string representing the cadence code and the fiscal year.|
+|» end_on<span class="param-type"> string</span>|The localized end date of the time period in `YYYY-MM-DD` format.|
+|» period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+|» start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
+|period<span class="param-type"> string</span>|The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.|
+|start_on<span class="param-type"> string</span>|The localized start date of the time period in `YYYY-MM-DD` format.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|period|FY|
+|period|H1|
+|period|H2|
+|period|Q1|
+|period|Q2|
+|period|Q3|
+|period|Q4|
+|period|FY|
+|period|H1|
+|period|H2|
+|period|Q1|
+|period|Q2|
+|period|Q3|
+|period|Q4|
 
 </section><hr>
 <section>

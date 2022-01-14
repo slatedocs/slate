@@ -38,8 +38,8 @@ info:
     - GoalCompact
     - JobResponse
     - JobCompact
-    - OrganiztaionExportResponse
-    - OrganiztaionExportCompact
+    - OrganizationExportResponse
+    - OrganizationExportCompact
     - PortfolioMembershipResponse
     - PortfolioMembershipCompact
     - PortfolioResponse
@@ -58,10 +58,13 @@ info:
     - TagCompact
     - TaskResponse
     - TaskCompact
+    - TaskCountResponse
     - TeamMembershipResponse
     - TeamMembershipCompact
     - TeamResponse
     - TeamCompact
+    - TimePeriodResponse
+    - TimePeriodCompact
     - UserTaskListResponse
     - UserTaskListCompact
     - UserResponse
@@ -93,7 +96,6 @@ tags:
 
       The Audit Log API allows you to monitor and act upon important security
       and compliance-related changes. Organizations might use this API endpoint to:
-      
 
 
       * Set up proactive alerting with a Security Information and Event Management
@@ -112,7 +114,7 @@ tags:
       Only [Service Accounts](https://asana.com/guide/help/premium/service-accounts)
       in [Enterprise Domains](https://asana.com/enterprise) can access Audit Log API
       endpoints. Authentication with a Service Account's
-      [Personal Access Token](/docs/personal-access-token) is required. 
+      [Personal Access Token](/docs/personal-access-token) is required.
 
 
       For a full list of
@@ -1377,6 +1379,66 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    AddCustomFieldSettingRequest:
+      type: object
+      required:
+        - custom_field
+      properties:
+        custom_field:
+          description: The custom field to associate with this container.
+          type: string
+          example: '14916'
+        is_important:
+          description: >-
+            Whether this field should be considered important to this container
+            (for instance, to display in the list view of items in the container).
+          type: boolean
+          example: true
+        insert_before:
+          description: >-
+            A gid of a Custom Field Setting on this container, before which the new
+            Custom Field Setting will be added.  `insert_before` and `insert_after`
+            parameters cannot both be specified.
+          type: string
+          example: '1331'
+        insert_after:
+          description: >-
+            A gid of a Custom Field Setting on this container, after which the new
+            Custom Field Setting will be added.  `insert_before` and `insert_after`
+            parameters cannot both be specified.
+          type: string
+          example: '1331'
+    AddFollowersRequest:
+      type: object
+      required:
+        - followers
+      properties:
+        followers:
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
+          type: string
+          example: 521621,621373
+    AddMembersRequest:
+      type: object
+      required:
+        - members
+      properties:
+        members:
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
+          type: string
+          example: 521621,621373
+    AsanaNamedResource:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          properties:
+            name:
+              description: The name of the object.
+              type: string
+              example: Bug Task
     AsanaResource:
       description: >-
         A generic Asana Resource, containing a globally unique identifier.
@@ -1395,15 +1457,30 @@ components:
           readOnly: true
           example: task
           x-insert-after: gid
-    AsanaNamedResource:
+    AttachmentBase:
+      $ref: '#/components/schemas/AttachmentCompact'
+    AttachmentCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
         - type: object
+          description: >-
+            An *attachment* object represents any file attached to a task in
+            Asana, whether it’s an uploaded file or one associated via a
+            third-party service such as Dropbox or Google Drive.
+          x-docs-overrides:
+            properties.resource_type.example: attachment
           properties:
             name:
-              description: The name of the object.
+              description: The name of the file.
               type: string
-              example: Bug Task
+              readOnly: true
+              example: Screenshot.png
+            resource_subtype:
+              description: >-
+                The service hosting the attachment. Valid values are `asana`,
+                `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.
+              type: string
+              example: dropbox
     AttachmentRequest:
       type: object
       properties:
@@ -1488,30 +1565,49 @@ components:
               readOnly: true
               nullable: true
               example: https://www.dropbox.com/s/123/Screenshot.png
-    AttachmentBase:
-      $ref: '#/components/schemas/AttachmentCompact'
-    AttachmentCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
+    AuditLogEvent:
+      description: >-
+        An object representing a single event within an Asana domain.
+
+
+        Every audit log event is comprised of an `event_type`, `actor`, `resource`,
+        and `context`.
+        Some events will include additional metadata about the event under `details`.
+        See our [currently supported list of events](/docs/supported-auditlogevents)
+        for more details.
+      type: object
+      properties:
+        gid:
           description: >-
-            An *attachment* object represents any file attached to a task in
-            Asana, whether it’s an uploaded file or one associated via a
-            third-party service such as Dropbox or Google Drive.
-          x-docs-overrides:
-            properties.resource_type.example: attachment
-          properties:
-            name:
-              description: The name of the file.
-              type: string
-              readOnly: true
-              example: Screenshot.png
-            resource_subtype:
-              description: >-
-                The service hosting the attachment. Valid values are `asana`,
-                `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.
-              type: string
-              example: dropbox
+            Globally unique identifier of the `AuditLogEvent`, as a string.
+          type: string
+          example: '12345'
+          x-insert-after: false
+        created_at:
+          description: The time the event was created.
+          type: string
+          format: date-time
+          example: '2021-01-01T00:00:00.000Z'
+        event_type:
+          description: The type of the event.
+          type: string
+          example: task_deleted
+        event_category:
+          description: The category that this `event_type` belongs to.
+          type: string
+          example: deletion
+        actor:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventActor'
+        resource:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventResource'
+        details:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventDetails'
+        context:
+          allOf:
+            - $ref: '#/components/schemas/AuditLogEventContext'
     AuditLogEventActor:
       description: >-
         The entity that triggered the event. Will typically be a user.
@@ -1616,49 +1712,6 @@ components:
         email:
           description: The email of the resource, if applicable.
           type: string
-    AuditLogEvent:
-      description: >-
-        An object representing a single event within an Asana domain.
-
-
-        Every audit log event is comprised of an `event_type`, `actor`, `resource`,
-        and `context`.
-        Some events will include additional metadata about the event under `details`.
-        See our [currently supported list of events](/docs/supported-auditlogevents)
-        for more details.
-      type: object
-      properties:
-        gid:
-          description: >-
-            Globally unique identifier of the `AuditLogEvent`, as a string.
-          type: string
-          example: '12345'
-          x-insert-after: false
-        created_at:
-          description: The time the event was created.
-          type: string
-          format: date-time
-          example: '2021-01-01T00:00:00.000Z'
-        event_type:
-          description: The type of the event.
-          type: string
-          example: task_deleted
-        event_category:
-          description: The category that this `event_type` belongs to.
-          type: string
-          example: deletion
-        actor:
-          allOf:
-            - $ref: '#/components/schemas/AuditLogEventActor'
-        resource:
-          allOf:
-            - $ref: '#/components/schemas/AuditLogEventResource'
-        details:
-          allOf:
-            - $ref: '#/components/schemas/AuditLogEventDetails'
-        context:
-          allOf:
-            - $ref: '#/components/schemas/AuditLogEventContext'
     BatchRequest:
       description: A request object for use in a batch request.
       type: object
@@ -1759,41 +1812,6 @@ components:
               completed: false
               name: Hello, world!
               notes: How are you today?
-    CustomFieldResponse:
-      allOf:
-        - $ref: '#/components/schemas/CustomFieldBase'
-        - type: object
-          properties:
-            enum_value:
-              allOf:
-                - $ref: '#/components/schemas/EnumOption'
-                - type: object
-                  description: >-
-                    *Conditional*. Only relevant for custom fields of type
-                    `enum`. This object is the chosen value of an enum custom
-                    field.
-            multi_enum_values:
-              description: >-
-                *Conditional*. Only relevant for custom fields of type
-                `multi_enum`. This object is the chosen values of a multi_enum custom
-                field.
-              type: array
-              items:
-                $ref: '#/components/schemas/EnumOption'
-            created_by:
-              $ref: '#/components/schemas/UserCompact'
-    CustomFieldRequest:
-      allOf:
-        - $ref: '#/components/schemas/CustomFieldBase'
-        - type: object
-          required:
-            - workspace
-          properties:
-            workspace:
-              type: string
-              description: >-
-                *Create-Only* The workspace to create a custom field in.
-              example: '1331'
     CustomFieldBase:
       allOf:
         - $ref: '#/components/schemas/CustomFieldCompact'
@@ -1959,6 +1977,53 @@ components:
               type: string
               readOnly: true
               example: blue
+    CustomFieldRequest:
+      allOf:
+        - $ref: '#/components/schemas/CustomFieldBase'
+        - type: object
+          required:
+            - workspace
+          properties:
+            workspace:
+              type: string
+              description: >-
+                *Create-Only* The workspace to create a custom field in.
+              example: '1331'
+    CustomFieldResponse:
+      allOf:
+        - $ref: '#/components/schemas/CustomFieldBase'
+        - type: object
+          properties:
+            enum_value:
+              allOf:
+                - $ref: '#/components/schemas/EnumOption'
+                - type: object
+                  description: >-
+                    *Conditional*. Only relevant for custom fields of type
+                    `enum`. This object is the chosen value of an enum custom
+                    field.
+            multi_enum_values:
+              description: >-
+                *Conditional*. Only relevant for custom fields of type
+                `multi_enum`. This object is the chosen values of a multi_enum custom
+                field.
+              type: array
+              items:
+                $ref: '#/components/schemas/EnumOption'
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
+    CustomFieldSettingBase:
+      $ref: '#/components/schemas/CustomFieldSettingCompact'
+    CustomFieldSettingCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            Custom Fields Settings objects represent the many-to-many join of the
+            Custom Field and Project as well as stores information that is
+            relevant to that particular pairing.
+          x-docs-overrides:
+            properties.resource_type.example: custom_field_setting
     CustomFieldSettingResponse:
       allOf:
         - $ref: '#/components/schemas/CustomFieldSettingBase'
@@ -1998,72 +2063,12 @@ components:
                   description: >-
                     The custom field that is applied to the `parent`.
                   readOnly: true
-    CustomFieldSettingBase:
-      $ref: '#/components/schemas/CustomFieldSettingCompact'
-    CustomFieldSettingCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            Custom Fields Settings objects represent the many-to-many join of the
-            Custom Field and Project as well as stores information that is
-            relevant to that particular pairing.
-          x-docs-overrides:
-            properties.resource_type.example: custom_field_setting
-    ModifyDependenciesRequest:
-      type: object
-      properties:
-        dependencies:
-          description: An array of task gids that a task depends on.
-          type: array
-          items:
-            type: string
-      example:
-        dependencies:
-          - '133713'
-          - '184253'
-    ModifyDependentsRequest:
-      description: A set of dependent tasks.
-      type: object
-      properties:
-        dependents:
-          description: An array of task gids that are dependents of the given task.
-          type: array
-          items:
-            type: string
-      example:
-        dependents:
-          - '133713'
-          - '184253'
     EmptyResponse:
       type: object
       description: >-
         An empty object. Some endpoints do not return an object on success. The
         success is conveyed through a 2-- status code and returning an empty
         object.
-    EnumOptionRequest:
-      allOf:
-        - $ref: '#/components/schemas/EnumOptionBase'
-        - type: object
-          properties:
-            insert_before:
-              type: string
-              description: >-
-                An existing enum option within this custom field
-                before which the new enum option should be
-                inserted. Cannot be provided together with
-                after_enum_option.
-              example: '12345'
-            insert_after:
-              type: string
-              description: >-
-                An existing enum option within this custom field
-                after which the new enum option should be inserted.
-                Cannot be provided together with
-                before_enum_option.
-              example: '12345'
-    EnumOptionBase:
-      $ref: '#/components/schemas/EnumOption'
     EnumOption:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -2119,6 +2124,8 @@ components:
                 The color of the enum option. Defaults to ‘none’.
               type: string
               example: blue
+    EnumOptionBase:
+      $ref: '#/components/schemas/EnumOption'
     EnumOptionInsertRequest:
       type: object
       required:
@@ -2144,26 +2151,27 @@ components:
             Cannot be provided together with
             before_enum_option.
           example: '12345'
-    ErrorResponse:
-      description: |-
-        Sadly, sometimes requests to the API are not successful. Failures can
-        occur for a wide range of reasons. In all cases, the API should return
-        an HTTP Status Code that indicates the nature of the failure,
-        with a response body in JSON format containing additional information.
-
-
-        In the event of a server error the response body will contain an error
-        phrase. These phrases are automatically generated using the
-        [node-asana-phrase
-        library](https://github.com/Asana/node-asana-phrase) and can be used by
-        Asana support to quickly look up the incident that caused the server
-        error.
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
+    EnumOptionRequest:
+      allOf:
+        - $ref: '#/components/schemas/EnumOptionBase'
+        - type: object
+          properties:
+            insert_before:
+              type: string
+              description: >-
+                An existing enum option within this custom field
+                before which the new enum option should be
+                inserted. Cannot be provided together with
+                after_enum_option.
+              example: '12345'
+            insert_after:
+              type: string
+              description: >-
+                An existing enum option within this custom field
+                after which the new enum option should be inserted.
+                Cannot be provided together with
+                before_enum_option.
+              example: '12345'
     Error:
       type: object
       properties:
@@ -2192,6 +2200,26 @@ components:
             when contacting developer support to help identify the exact
             occurrence of the problem in Asana’s logs.
           example: 6 sad squid snuggle softly
+    ErrorResponse:
+      description: |-
+        Sadly, sometimes requests to the API are not successful. Failures can
+        occur for a wide range of reasons. In all cases, the API should return
+        an HTTP Status Code that indicates the nature of the failure,
+        with a response body in JSON format containing additional information.
+
+
+        In the event of a server error the response body will contain an error
+        phrase. These phrases are automatically generated using the
+        [node-asana-phrase
+        library](https://github.com/Asana/node-asana-phrase) and can be used by
+        Asana support to quickly look up the incident that caused the server
+        error.
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     EventResponse:
       description: |-
         An *event* is an object representing a change to a resource that was
@@ -2331,94 +2359,42 @@ components:
               example:
                 gid: '12345'
                 resource_type: user
-    GoalResponse:
-      allOf:
-        - $ref: '#/components/schemas/GoalBase'
-        - type: object
-          properties:
-            likes:
-              description: >-
-                Array of likes for users who have liked this goal.
-              type: array
-              items:
-                $ref: '#/components/schemas/Like'
-              readOnly: true
-            num_likes:
-              description: >-
-                The number of users who have liked this goal.
-              type: integer
-              readOnly: true
-              example: 5
-            team:
-              allOf:
-                - $ref: '#/components/schemas/TeamCompact'
-                - type: object
-                  nullable: true
-              description: >-
-                *Conditional*. This property is only present when the `workspace`
-                provided is an organization.
-            workspace:
-              allOf:
-                - $ref: '#/components/schemas/WorkspaceCompact'
-                - type: object
-            followers:
-              type: array
-              items:
-                $ref: '#/components/schemas/UserCompact'
-              description: >-
-                Array of users following this goal.
-            time_period:
-              allOf:
-                - $ref: '#/components/schemas/TimePeriodCompact'
-                - type: object
-                  nullable: true
-            metric:
-              allOf:
-                - $ref: '#/components/schemas/GoalMetricBase'
-                - type: object
-                  nullable: true
-            owner:
-              allOf:
-                - $ref: '#/components/schemas/UserCompact'
-                - type: object
-                  nullable: true
-    GoalRequest:
-      allOf:
-        - $ref: '#/components/schemas/GoalBase'
-        - type: object
-          properties:
-            team:
-              type: string
-              description: >-
-                *Conditional*. This property is only present when the `workspace`
-                provided is an organization.
-              example: '12345'
-              nullable: true
-            workspace:
-              type: string
-              description: >-
-                The `gid` of a workspace.
-              example: '12345'
-            followers:
-              type: array
-              items:
-                type: string
-                description: >-
-                  The `gid` of a user.
-              example:
-                - '12345'
-            time_period:
-              type: string
-              description: >-
-                The `gid` of a time period.
-              example: '12345'
-              nullable: true
-            owner:
-              type: string
-              description: >-
-                The `gid` of a user.
-              example: '12345'
-              nullable: true
+    GoalAddSubgoalRequest:
+      type: object
+      required:
+        - subgoal
+      properties:
+        subgoal:
+          description: >-
+            The goal gid to add as subgoal to a parent goal
+          type: string
+          example: '1331'
+        insert_before:
+          description: >-
+            An id of a subgoal of this parent goal. The new
+            subgoal will be added before the one specified here.
+            `insert_before` and `insert_after` parameters cannot both
+            be specified.
+          type: string
+          example: '1331'
+        insert_after:
+          description: >-
+            An id of a subgoal of this parent goal. The new
+            subgoal will be added after the one specified here.
+            `insert_before` and `insert_after` parameters cannot both
+            be specified.
+          type: string
+          example: '1331'
+    GoalAddSupportingWorkRequest:
+      type: object
+      required:
+        - supporting_work
+      properties:
+        supporting_work:
+          description: >-
+            The project/portfolio gid to add as supporting work for a goal
+          type: string
+          example: '1331'
     GoalBase:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -2497,19 +2473,6 @@ components:
                 - $ref: '#/components/schemas/UserCompact'
                 - type: object
                   nullable: true
-    GoalMetricCurrentValueRequest:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          properties:
-            current_number_value:
-              description: >-
-                *Conditional*. This number is the current value of a goal metric of
-                type number.
-              type: number
-              example: 8.12
-    GoalMetricRequest:
-      $ref: '#/components/schemas/GoalMetricBase'
     GoalMetricBase:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -2578,32 +2541,19 @@ components:
               type: string
               readOnly: true
               example: '8.12'
-    GoalAddSubgoalRequest:
-      type: object
-      required:
-        - subgoal
-      properties:
-        subgoal:
-          description: >-
-            The goal gid to add as subgoal to a parent goal
-          type: string
-          example: '1331'
-        insert_before:
-          description: >-
-            An id of a subgoal of this parent goal. The new
-            subgoal will be added before the one specified here.
-            `insert_before` and `insert_after` parameters cannot both
-            be specified.
-          type: string
-          example: '1331'
-        insert_after:
-          description: >-
-            An id of a subgoal of this parent goal. The new
-            subgoal will be added after the one specified here.
-            `insert_before` and `insert_after` parameters cannot both
-            be specified.
-          type: string
-          example: '1331'
+    GoalMetricCurrentValueRequest:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          properties:
+            current_number_value:
+              description: >-
+                *Conditional*. This number is the current value of a goal metric of
+                type number.
+              type: number
+              example: 8.12
+    GoalMetricRequest:
+      $ref: '#/components/schemas/GoalMetricBase'
     GoalRemoveSubgoalRequest:
       type: object
       required:
@@ -2614,18 +2564,94 @@ components:
             The goal gid to remove as subgoal from the parent goal
           type: string
           example: '1331'
-    GoalAddSupportingWorkRequest:
-      type: object
-      required:
-        - supporting_work
-      properties:
-        supporting_work:
-          description: >-
-            The project/portfolio gid to add as supporting work for a goal
-          type: string
-          example: '1331'
-    JobResponse:
-      $ref: '#/components/schemas/JobBase'
+    GoalRequest:
+      allOf:
+        - $ref: '#/components/schemas/GoalBase'
+        - type: object
+          properties:
+            team:
+              type: string
+              description: >-
+                *Conditional*. This property is only present when the `workspace`
+                provided is an organization.
+              example: '12345'
+              nullable: true
+            workspace:
+              type: string
+              description: >-
+                The `gid` of a workspace.
+              example: '12345'
+            followers:
+              type: array
+              items:
+                type: string
+                description: >-
+                  The `gid` of a user.
+              example:
+                - '12345'
+            time_period:
+              type: string
+              description: >-
+                The `gid` of a time period.
+              example: '12345'
+              nullable: true
+            owner:
+              type: string
+              description: >-
+                The `gid` of a user.
+              example: '12345'
+              nullable: true
+    GoalResponse:
+      allOf:
+        - $ref: '#/components/schemas/GoalBase'
+        - type: object
+          properties:
+            likes:
+              description: >-
+                Array of likes for users who have liked this goal.
+              type: array
+              items:
+                $ref: '#/components/schemas/Like'
+              readOnly: true
+            num_likes:
+              description: >-
+                The number of users who have liked this goal.
+              type: integer
+              readOnly: true
+              example: 5
+            team:
+              allOf:
+                - $ref: '#/components/schemas/TeamCompact'
+                - type: object
+                  nullable: true
+              description: >-
+                *Conditional*. This property is only present when the `workspace`
+                provided is an organization.
+            workspace:
+              allOf:
+                - $ref: '#/components/schemas/WorkspaceCompact'
+                - type: object
+            followers:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserCompact'
+              description: >-
+                Array of users following this goal.
+            time_period:
+              allOf:
+                - $ref: '#/components/schemas/TimePeriodCompact'
+                - type: object
+                  nullable: true
+            metric:
+              allOf:
+                - $ref: '#/components/schemas/GoalMetricBase'
+                - type: object
+                  nullable: true
+            owner:
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
+                - type: object
+                  nullable: true
     JobBase:
       $ref: '#/components/schemas/JobCompact'
     JobCompact:
@@ -2662,6 +2688,8 @@ components:
               $ref: '#/components/schemas/ProjectCompact'
             new_task:
               $ref: '#/components/schemas/TaskCompact'
+    JobResponse:
+      $ref: '#/components/schemas/JobBase'
     Like:
       type: object
       description: >-
@@ -2675,19 +2703,31 @@ components:
           example: '12345'
         user:
           $ref: '#/components/schemas/UserCompact'
-    OrganizationExportRequest:
+    ModifyDependenciesRequest:
       type: object
-      description: >-
-        An *organization_export* request starts a job to export the complete
-        data of the given Organization.
       properties:
-        organization:
-          description: >-
-            Globally unique identifier for the workspace or organization.
-          type: string
-          example: '1331'
-    OrganizationExportResponse:
-      $ref: '#/components/schemas/OrganizationExportBase'
+        dependencies:
+          description: An array of task gids that a task depends on.
+          type: array
+          items:
+            type: string
+      example:
+        dependencies:
+          - '133713'
+          - '184253'
+    ModifyDependentsRequest:
+      description: A set of dependent tasks.
+      type: object
+      properties:
+        dependents:
+          description: An array of task gids that are dependents of the given task.
+          type: array
+          items:
+            type: string
+      example:
+        dependents:
+          - '133713'
+          - '184253'
     OrganizationExportBase:
       $ref: '#/components/schemas/OrganizationExportCompact'
     OrganizationExportCompact:
@@ -2734,6 +2774,146 @@ components:
               example: started
             organization:
               $ref: '#/components/schemas/WorkspaceCompact'
+    OrganizationExportRequest:
+      type: object
+      description: >-
+        An *organization_export* request starts a job to export the complete
+        data of the given Organization.
+      properties:
+        organization:
+          description: >-
+            Globally unique identifier for the workspace or organization.
+          type: string
+          example: '1331'
+    OrganizationExportResponse:
+      $ref: '#/components/schemas/OrganizationExportBase'
+    PortfolioAddItemRequest:
+      type: object
+      required:
+        - item
+      properties:
+        item:
+          description: >-
+            The item to add to the portfolio.
+          type: string
+          example: '1331'
+        insert_before:
+          description: >-
+            An id of an item in this portfolio. The new
+            item will be added before the one specified here.
+            `insert_before` and `insert_after` parameters cannot both
+            be specified.
+          type: string
+          example: '1331'
+        insert_after:
+          description: >-
+            An id of an item in this portfolio. The new
+            item will be added after the one specified here.
+            `insert_before` and `insert_after` parameters cannot both
+            be specified.
+          type: string
+          example: '1331'
+    PortfolioBase:
+      allOf:
+        - $ref: '#/components/schemas/PortfolioCompact'
+        - type: object
+          properties:
+            color:
+              description: Color of the portfolio.
+              type: string
+              enum:
+                - dark-pink
+                - dark-green
+                - dark-blue
+                - dark-red
+                - dark-teal
+                - dark-brown
+                - dark-orange
+                - dark-purple
+                - dark-warm-gray
+                - light-pink
+                - light-green
+                - light-blue
+                - light-red
+                - light-teal
+                - light-brown
+                - light-orange
+                - light-purple
+                - light-warm-gray
+              example: light-green
+    PortfolioCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A *portfolio* gives a high-level overview of the status of multiple
+            initiatives in Asana. Portfolios provide a dashboard overview of
+            the state of multiple projects, including a progress report and the
+            most recent [project
+            status](/docs/asana-project-statuses)
+            update.
+
+            Portfolios have some restrictions on size. Each portfolio has a max of
+            250 items and, like projects, a max of 20 custom fields.
+          x-docs-overrides:
+            properties.resource_type.example: portfolio
+          properties:
+            name:
+              description: The name of the portfolio.
+              type: string
+              example: Bug Portfolio
+    PortfolioMembershipBase:
+      $ref: '#/components/schemas/PortfolioMembershipCompact'
+    PortfolioMembershipCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            This object determines if a user is a member of a portfolio.
+          x-docs-overrides:
+            properties.resource_type.example: portfolio_membership
+          properties:
+            portfolio:
+              description: >-
+                [Opt In](/docs/input-output-options).
+                The portfolio the user is a member of.
+              $ref: '#/components/schemas/PortfolioCompact'
+            user:
+              $ref: '#/components/schemas/UserCompact'
+    PortfolioMembershipResponse:
+      $ref: '#/components/schemas/PortfolioMembershipBase'
+    PortfolioRemoveItemRequest:
+      type: object
+      required:
+        - item
+      properties:
+        item:
+          description: >-
+            The item to remove from the portfolio.
+          type: string
+          example: '1331'
+    PortfolioRequest:
+      allOf:
+        - $ref: '#/components/schemas/PortfolioBase'
+        - type: object
+          properties:
+            members:
+              type: array
+              description: >-
+                An array of strings identifying users. These can either be the
+                string "me", an email, or the gid of a user.
+              items:
+                type: string
+                description: >-
+                  Gid of an object.
+              example:
+                - '52164'
+                - '15363'
+            workspace:
+              type: string
+              description: >-
+                Gid of an object.
+              example: '167589'
     PortfolioResponse:
       allOf:
         - $ref: '#/components/schemas/PortfolioBase'
@@ -2791,177 +2971,6 @@ components:
               description: >-
                 A url that points directly to the object within Asana.
               example: https://app.asana.com/0/resource/123456789/list
-    PortfolioRequest:
-      allOf:
-        - $ref: '#/components/schemas/PortfolioBase'
-        - type: object
-          properties:
-            members:
-              type: array
-              description: >-
-                An array of strings identifying users. These can either be the
-                string "me", an email, or the gid of a user.
-              items:
-                type: string
-                description: >-
-                  Gid of an object.
-              example:
-                - '52164'
-                - '15363'
-            workspace:
-              type: string
-              description: >-
-                Gid of an object.
-              example: '167589'
-    PortfolioBase:
-      allOf:
-        - $ref: '#/components/schemas/PortfolioCompact'
-        - type: object
-          properties:
-            color:
-              description: Color of the portfolio.
-              type: string
-              enum:
-                - dark-pink
-                - dark-green
-                - dark-blue
-                - dark-red
-                - dark-teal
-                - dark-brown
-                - dark-orange
-                - dark-purple
-                - dark-warm-gray
-                - light-pink
-                - light-green
-                - light-blue
-                - light-red
-                - light-teal
-                - light-brown
-                - light-orange
-                - light-purple
-                - light-warm-gray
-              example: light-green
-    PortfolioCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            A *portfolio* gives a high-level overview of the status of multiple
-            initiatives in Asana. Portfolios provide a dashboard overview of
-            the state of multiple projects, including a progress report and the
-            most recent [project
-            status](/docs/asana-project-statuses)
-            update.
-
-            Portfolios have some restrictions on size. Each portfolio has a max of
-            250 items and, like projects, a max of 20 custom fields.
-          x-docs-overrides:
-            properties.resource_type.example: portfolio
-          properties:
-            name:
-              description: The name of the portfolio.
-              type: string
-              example: Bug Portfolio
-    PortfolioAddItemRequest:
-      type: object
-      required:
-        - item
-      properties:
-        item:
-          description: >-
-            The item to add to the portfolio.
-          type: string
-          example: '1331'
-        insert_before:
-          description: >-
-            An id of an item in this portfolio. The new
-            item will be added before the one specified here.
-            `insert_before` and `insert_after` parameters cannot both
-            be specified.
-          type: string
-          example: '1331'
-        insert_after:
-          description: >-
-            An id of an item in this portfolio. The new
-            item will be added after the one specified here.
-            `insert_before` and `insert_after` parameters cannot both
-            be specified.
-          type: string
-          example: '1331'
-    PortfolioRemoveItemRequest:
-      type: object
-      required:
-        - item
-      properties:
-        item:
-          description: >-
-            The item to remove from the portfolio.
-          type: string
-          example: '1331'
-    AddMembersRequest:
-      type: object
-      required:
-        - members
-      properties:
-        members:
-          description: >-
-            An array of strings identifying users. These can either be the string
-            "me", an email, or the gid of a user.
-          type: string
-          example: 521621,621373
-    RemoveMembersRequest:
-      type: object
-      required:
-        - members
-      properties:
-        members:
-          description: >-
-            An array of strings identifying users. These can either be the string
-            "me", an email, or the gid of a user.
-          type: string
-          example: 521621,621373
-    AddFollowersRequest:
-      type: object
-      required:
-        - followers
-      properties:
-        followers:
-          description: >-
-            An array of strings identifying users. These can either be the string
-            "me", an email, or the gid of a user.
-          type: string
-          example: 521621,621373
-    RemoveFollowersRequest:
-      type: object
-      required:
-        - followers
-      properties:
-        followers:
-          description: >-
-            An array of strings identifying users. These can either be the string
-            "me", an email, or the gid of a user.
-          type: string
-          example: 521621,621373
-    PortfolioMembershipResponse:
-      $ref: '#/components/schemas/PortfolioMembershipBase'
-    PortfolioMembershipBase:
-      $ref: '#/components/schemas/PortfolioMembershipCompact'
-    PortfolioMembershipCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            This object determines if a user is a member of a portfolio.
-          x-docs-overrides:
-            properties.resource_type.example: portfolio_membership
-          properties:
-            portfolio:
-              description: >-
-                [Opt In](/docs/input-output-options).
-                The portfolio the user is a member of.
-              $ref: '#/components/schemas/PortfolioCompact'
-            user:
-              $ref: '#/components/schemas/UserCompact'
     Preview:
       type: object
       description: >-
@@ -3007,120 +3016,6 @@ components:
           description: Where to title will link to.
           type: string
           example: https://asana.slack.com/archives/ABCDEFG/12345678
-    ProjectResponse:
-      allOf:
-        - $ref: '#/components/schemas/ProjectBase'
-        - type: object
-          properties:
-            custom_fields:
-              description: Array of Custom Fields.
-              readOnly: true
-              type: array
-              items:
-                $ref: '#/components/schemas/CustomFieldCompact'
-            followers:
-              description: >-
-                Array of users following this project. Followers are a subset
-                of members who have opted in to receive "tasks added"
-                notifications for a project.
-              type: array
-              items:
-                $ref: '#/components/schemas/UserCompact'
-              readOnly: true
-            owner:
-              description: >-
-                The current owner of the project, may be null.
-              nullable: true
-              allOf:
-                - $ref: '#/components/schemas/UserCompact'
-            team:
-              allOf:
-                - $ref: '#/components/schemas/TeamCompact'
-                - type: object
-                  description: >-
-                    *Create-only*. The team that this project is shared with.
-                    This field only exists for projects in organizations.
-            icon:
-              description: >-
-                The icon for a project.
-              type: string
-              nullable: true
-              enum:
-                - list
-                - board
-                - timeline
-                - calendar
-                - rocket
-                - people
-                - graph
-                - star
-                - bug
-                - light_bulb
-                - globe
-                - gear
-                - notebook
-                - computer
-                - check
-                - target
-                - html
-                - megaphone
-                - chat_bubbles
-                - briefcase
-                - page_layout
-                - mountain_flag
-                - puzzle
-                - presentation
-                - line_and_symbols
-                - speed_dial
-                - ribbon
-                - shoe
-                - shopping_basket
-                - map
-                - ticket
-                - coins
-              example: chat_bubbles
-            permalink_url:
-              type: string
-              readOnly: true
-              description: >-
-                A url that points directly to the object within Asana.
-              example: https://app.asana.com/0/resource/123456789/list
-    ProjectRequest:
-      allOf:
-        - $ref: '#/components/schemas/ProjectBase'
-        - type: object
-          properties:
-            custom_fields:
-              description: >-
-                An object where each key is a Custom Field gid and each value is
-                an enum gid, string, or number.
-              type: object
-              additionalProperties:
-                type: string
-                description: >-
-                  "{custom_field_gid}" => Value (Can be text, number, etc.)
-              example:
-                5678904321: On Hold
-                4578152156: Not Started
-            followers:
-              description: >-
-                *Create-only*. Comma separated string of users. Followers
-                are a subset of members who have opted in to receive "tasks
-                added" notifications for a project.
-              type: string
-              example: 12345,23456
-            owner:
-              description: >-
-                The current owner of the project, may be null.
-              nullable: true
-              type: string
-              example: '12345'
-            team:
-              description: >-
-                *Create-only*. The team that this project is shared with.
-                This field only exists for projects in organizations.
-              type: string
-              example: '12345'
     ProjectBase:
       allOf:
         - $ref: '#/components/schemas/ProjectCompact'
@@ -3343,44 +3238,23 @@ components:
                 as the start dates in the original project.
               type: string
               example: '2019-05-21'
-    AddCustomFieldSettingRequest:
-      type: object
-      required:
-        - custom_field
-      properties:
-        custom_field:
-          description: The custom field to associate with this container.
-          type: string
-          example: '14916'
-        is_important:
+    ProjectMembershipBase:
+      $ref: '#/components/schemas/ProjectMembershipCompact'
+    ProjectMembershipCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
           description: >-
-            Whether this field should be considered important to this container
-            (for instance, to display in the list view of items in the container).
-          type: boolean
-          example: true
-        insert_before:
-          description: >-
-            A gid of a Custom Field Setting on this container, before which the new
-            Custom Field Setting will be added.  `insert_before` and `insert_after`
-            parameters cannot both be specified.
-          type: string
-          example: '1331'
-        insert_after:
-          description: >-
-            A gid of a Custom Field Setting on this container, after which the new
-            Custom Field Setting will be added.  `insert_before` and `insert_after`
-            parameters cannot both be specified.
-          type: string
-          example: '1331'
-    RemoveCustomFieldSettingRequest:
-      type: object
-      required:
-        - custom_field
-      properties:
-        custom_field:
-          description: The custom field to remove from this portfolio.
-          type: string
-          example: '14916'
+            With the introduction of “comment-only” projects in Asana, a user’s
+            membership in a project comes with associated permissions. These
+            permissions (whether a user has full access to the project or
+            comment-only access) are accessible through the project memberships
+            endpoints described here.
+          x-docs-overrides:
+            properties.resource_type.example: project_membership
+          properties:
+            user:
+              $ref: '#/components/schemas/UserCompact'
     ProjectMembershipResponse:
       allOf:
         - $ref: '#/components/schemas/ProjectMembershipBase'
@@ -3402,51 +3276,146 @@ components:
                 - comment_only
               readOnly: true
               example: full_write
-    ProjectMembershipBase:
-      $ref: '#/components/schemas/ProjectMembershipCompact'
-    ProjectMembershipCompact:
+    ProjectRequest:
       allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            With the introduction of “comment-only” projects in Asana, a user’s
-            membership in a project comes with associated permissions. These
-            permissions (whether a user has full access to the project or
-            comment-only access) are accessible through the project memberships
-            endpoints described here.
-          x-docs-overrides:
-            properties.resource_type.example: project_membership
-          properties:
-            user:
-              $ref: '#/components/schemas/UserCompact'
-    ProjectStatusResponse:
-      allOf:
-        - $ref: '#/components/schemas/ProjectStatusBase'
+        - $ref: '#/components/schemas/ProjectBase'
         - type: object
           properties:
-            author:
-              $ref: '#/components/schemas/UserCompact'
-            created_at:
-              description: The time at which this resource was created.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            created_by:
-              $ref: '#/components/schemas/UserCompact'
-            modified_at:
+            custom_fields:
               description: >-
-                The time at which this project status was last modified.
-
-                *Note: This does not currently reflect any changes in
-                associations such as comments that may have been added or
-                removed from the project status.*
+                An object where each key is a Custom Field gid and each value is
+                an enum gid, string, or number.
+              type: object
+              additionalProperties:
+                type: string
+                description: >-
+                  "{custom_field_gid}" => Value (Can be text, number, etc.)
+              example:
+                5678904321: On Hold
+                4578152156: Not Started
+            followers:
+              description: >-
+                *Create-only*. Comma separated string of users. Followers
+                are a subset of members who have opted in to receive "tasks
+                added" notifications for a project.
               type: string
-              format: date-time
+              example: 12345,23456
+            owner:
+              description: >-
+                The current owner of the project, may be null.
+              nullable: true
+              type: string
+              example: '12345'
+            team:
+              description: >-
+                *Create-only*. The team that this project is shared with.
+                This field only exists for projects in organizations.
+              type: string
+              example: '12345'
+    ProjectResponse:
+      allOf:
+        - $ref: '#/components/schemas/ProjectBase'
+        - type: object
+          properties:
+            custom_fields:
+              description: Array of Custom Fields.
               readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-    ProjectStatusRequest:
-      $ref: '#/components/schemas/ProjectStatusBase'
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomFieldCompact'
+            followers:
+              description: >-
+                Array of users following this project. Followers are a subset
+                of members who have opted in to receive "tasks added"
+                notifications for a project.
+              type: array
+              items:
+                $ref: '#/components/schemas/UserCompact'
+              readOnly: true
+            owner:
+              description: >-
+                The current owner of the project, may be null.
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
+            team:
+              allOf:
+                - $ref: '#/components/schemas/TeamCompact'
+                - type: object
+                  description: >-
+                    *Create-only*. The team that this project is shared with.
+                    This field only exists for projects in organizations.
+            icon:
+              description: >-
+                The icon for a project.
+              type: string
+              nullable: true
+              enum:
+                - list
+                - board
+                - timeline
+                - calendar
+                - rocket
+                - people
+                - graph
+                - star
+                - bug
+                - light_bulb
+                - globe
+                - gear
+                - notebook
+                - computer
+                - check
+                - target
+                - html
+                - megaphone
+                - chat_bubbles
+                - briefcase
+                - page_layout
+                - mountain_flag
+                - puzzle
+                - presentation
+                - line_and_symbols
+                - speed_dial
+                - ribbon
+                - shoe
+                - shopping_basket
+                - map
+                - ticket
+                - coins
+              example: chat_bubbles
+            permalink_url:
+              type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
+    ProjectSectionInsertRequest:
+      type: object
+      properties:
+        project:
+          description: The project in which to reorder the given section.
+          type: string
+          example: '123456'
+        section:
+          description: The section to reorder.
+          type: string
+          example: '321654'
+        before_section:
+          description: >-
+            Insert the given section immediately before the section
+            specified by this parameter.
+          type: string
+          example: '86420'
+        after_section:
+          description: >-
+            Insert the given section immediately after the section
+            specified by this parameter.
+          type: string
+          example: '987654'
+      required:
+        - project
+        - section
     ProjectStatusBase:
       allOf:
         - $ref: '#/components/schemas/ProjectStatusCompact'
@@ -3494,26 +3463,84 @@ components:
               description: The title of the project status update.
               type: string
               example: Status Update - Jun 15
-    SectionResponse:
+    ProjectStatusRequest:
+      $ref: '#/components/schemas/ProjectStatusBase'
+    ProjectStatusResponse:
       allOf:
-        - $ref: '#/components/schemas/SectionBase'
+        - $ref: '#/components/schemas/ProjectStatusBase'
         - type: object
           properties:
+            author:
+              $ref: '#/components/schemas/UserCompact'
             created_at:
               description: The time at which this resource was created.
               type: string
               format: date-time
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
-            project:
-              $ref: '#/components/schemas/ProjectCompact'
-            projects:
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
+            modified_at:
               description: >-
-                *Deprecated - please use project instead*
-              type: array
+                The time at which this project status was last modified.
+
+                *Note: This does not currently reflect any changes in
+                associations such as comments that may have been added or
+                removed from the project status.*
+              type: string
+              format: date-time
               readOnly: true
-              items:
-                $ref: '#/components/schemas/ProjectCompact'
+              example: '2012-02-22T02:06:58.147Z'
+    RemoveCustomFieldSettingRequest:
+      type: object
+      required:
+        - custom_field
+      properties:
+        custom_field:
+          description: The custom field to remove from this portfolio.
+          type: string
+          example: '14916'
+    RemoveFollowersRequest:
+      type: object
+      required:
+        - followers
+      properties:
+        followers:
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
+          type: string
+          example: 521621,621373
+    RemoveMembersRequest:
+      type: object
+      required:
+        - members
+      properties:
+        members:
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
+          type: string
+          example: 521621,621373
+    SectionBase:
+      $ref: '#/components/schemas/SectionCompact'
+    SectionCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A *section* is a subdivision of a project that groups tasks together.
+            It can either be a header above a list of tasks in a list view or a
+            column in a board view of a project.
+          x-docs-overrides:
+            properties.resource_type.example: section
+          properties:
+            name:
+              description: >-
+                The name of the section (i.e. the text displayed as the section
+                header).
+              type: string
+              example: Next Actions
     SectionRequest:
       type: object
       properties:
@@ -3545,51 +3572,26 @@ components:
       required:
         - project
         - name
-    SectionBase:
-      $ref: '#/components/schemas/SectionCompact'
-    SectionCompact:
+    SectionResponse:
       allOf:
-        - $ref: '#/components/schemas/AsanaResource'
+        - $ref: '#/components/schemas/SectionBase'
         - type: object
-          description: >-
-            A *section* is a subdivision of a project that groups tasks together.
-            It can either be a header above a list of tasks in a list view or a
-            column in a board view of a project.
-          x-docs-overrides:
-            properties.resource_type.example: section
           properties:
-            name:
-              description: >-
-                The name of the section (i.e. the text displayed as the section
-                header).
+            created_at:
+              description: The time at which this resource was created.
               type: string
-              example: Next Actions
-    ProjectSectionInsertRequest:
-      type: object
-      properties:
-        project:
-          description: The project in which to reorder the given section.
-          type: string
-          example: '123456'
-        section:
-          description: The section to reorder.
-          type: string
-          example: '321654'
-        before_section:
-          description: >-
-            Insert the given section immediately before the section
-            specified by this parameter.
-          type: string
-          example: '86420'
-        after_section:
-          description: >-
-            Insert the given section immediately after the section
-            specified by this parameter.
-          type: string
-          example: '987654'
-      required:
-        - project
-        - section
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            project:
+              $ref: '#/components/schemas/ProjectCompact'
+            projects:
+              description: >-
+                *Deprecated - please use project instead*
+              type: array
+              readOnly: true
+              items:
+                $ref: '#/components/schemas/ProjectCompact'
     SectionTaskInsertRequest:
       type: object
       properties:
@@ -3613,6 +3615,110 @@ components:
           example: '987654'
       required:
         - task
+    StoryBase:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A story represents an activity associated with an object in the Asana
+            system.
+          x-docs-overrides:
+            properties.resource_type.example: story
+          properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            resource_subtype:
+              description: >-
+                The subtype of this resource. Different subtypes retain many of the
+                same fields and behavior, but may render differently in Asana or
+                represent resources with different semantic meaning.
+              type: string
+              readOnly: true
+              example: comment_added
+            text:
+              description: The plain text of the comment to add. Cannot be used with
+                html_text.
+              type: string
+              example: This is a comment.
+            html_text:
+              description: >-
+                [Opt In](/docs/input-output-options).
+                HTML formatted text for a comment. This will not include the name
+                of the creator.
+              type: string
+              example: <body>This is a comment.</body>
+            is_pinned:
+              description: >-
+                *Conditional*. Whether the story should be pinned on the
+                resource.
+              type: boolean
+              example: false
+            sticker_name:
+              description: >-
+                The name of the sticker in this story. `null` if there is no sticker.
+              type: string
+              enum:
+                - green_checkmark
+                - people_dancing
+                - dancing_unicorn
+                - heart
+                - party_popper
+                - people_waving_flags
+                - splashing_narwhal
+                - trophy
+                - yeti_riding_unicorn
+                - celebrating_people
+                - determined_climbers
+                - phoenix_spreading_love
+              example: dancing_unicorn
+    StoryCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A story represents an activity associated with an object in the Asana
+            system.
+          x-docs-overrides:
+            properties.resource_type.example: story
+          properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
+            resource_subtype:
+              description: >-
+                The subtype of this resource. Different subtypes retain many of the
+                same fields and behavior, but may render differently in Asana or
+                represent resources with different semantic meaning.
+              type: string
+              readOnly: true
+              example: comment_added
+            text:
+              description: >-
+                *Create-only*. Human-readable text for the story or comment.
+
+                This will not include the name of the creator.
+
+                *Note: This is not guaranteed to be stable for a given type of
+                story. For example, text for a reassignment may not always say
+                “assigned to …” as the text for a story can both be edited and
+                change based on the language settings of the user making the
+                request.*
+
+                Use the `resource_subtype` property to discover the action that
+                created the story.
+              type: string
+              example: marked today
+    StoryRequest:
+      $ref: '#/components/schemas/StoryBase'
     StoryResponse:
       allOf:
         - $ref: '#/components/schemas/StoryBase'
@@ -3856,110 +3962,6 @@ components:
                 name:
                   type: string
                   example: Bug Task
-    StoryRequest:
-      $ref: '#/components/schemas/StoryBase'
-    StoryBase:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            A story represents an activity associated with an object in the Asana
-            system.
-          x-docs-overrides:
-            properties.resource_type.example: story
-          properties:
-            created_at:
-              description: The time at which this resource was created.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            resource_subtype:
-              description: >-
-                The subtype of this resource. Different subtypes retain many of the
-                same fields and behavior, but may render differently in Asana or
-                represent resources with different semantic meaning.
-              type: string
-              readOnly: true
-              example: comment_added
-            text:
-              description: The plain text of the comment to add. Cannot be used with
-                html_text.
-              type: string
-              example: This is a comment.
-            html_text:
-              description: >-
-                [Opt In](/docs/input-output-options).
-                HTML formatted text for a comment. This will not include the name
-                of the creator.
-              type: string
-              example: <body>This is a comment.<body>
-            is_pinned:
-              description: >-
-                *Conditional*. Whether the story should be pinned on the
-                resource.
-              type: boolean
-              example: false
-            sticker_name:
-              description: >-
-                The name of the sticker in this story. `null` if there is no sticker.
-              type: string
-              enum:
-                - green_checkmark
-                - people_dancing
-                - dancing_unicorn
-                - heart
-                - party_popper
-                - people_waving_flags
-                - splashing_narwhal
-                - trophy
-                - yeti_riding_unicorn
-                - celebrating_people
-                - determined_climbers
-                - phoenix_spreading_love
-              example: dancing_unicorn
-    StoryCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            A story represents an activity associated with an object in the Asana
-            system.
-          x-docs-overrides:
-            properties.resource_type.example: story
-          properties:
-            created_at:
-              description: The time at which this resource was created.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            created_by:
-              $ref: '#/components/schemas/UserCompact'
-            resource_subtype:
-              description: >-
-                The subtype of this resource. Different subtypes retain many of the
-                same fields and behavior, but may render differently in Asana or
-                represent resources with different semantic meaning.
-              type: string
-              readOnly: true
-              example: comment_added
-            text:
-              description: >-
-                *Create-only*. Human-readable text for the story or comment.
-
-                This will not include the name of the creator.
-
-                *Note: This is not guaranteed to be stable for a given type of
-                story. For example, text for a reassignment may not always say
-                “assigned to …” as the text for a story can both be edited and
-                change based on the language settings of the user making the
-                request.*
-
-                Use the `resource_subtype` property to discover the action that
-                created the story.
-              type: string
-              example: marked today
     StoryResponseDates:
       description: >-
         *Conditional*
@@ -3978,52 +3980,6 @@ components:
           type: string
           format: date
           example: '2019-09-15'
-    TagResponse:
-      allOf:
-        - $ref: '#/components/schemas/TagBase'
-        - type: object
-          properties:
-            created_at:
-              description: The time at which this resource was created.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            followers:
-              description: Array of users following this tag.
-              type: array
-              readOnly: true
-              items:
-                $ref: '#/components/schemas/UserCompact'
-            workspace:
-              $ref: '#/components/schemas/WorkspaceCompact'
-            permalink_url:
-              type: string
-              readOnly: true
-              description: >-
-                A url that points directly to the object within Asana.
-              example: https://app.asana.com/0/resource/123456789/list
-    TagRequest:
-      allOf:
-        - $ref: '#/components/schemas/TagBase'
-        - type: object
-          properties:
-            followers:
-              type: array
-              description: >-
-                An array of strings identifying users. These can either be the
-                string "me", an email, or the gid of a user.
-              items:
-                type: string
-              example:
-                - '12345'
-                - '42563'
-            workspace:
-              type: string
-              x-env-variable: true
-              description: >-
-                Gid of an object.
-              example: '12345'
     TagBase:
       allOf:
         - $ref: '#/components/schemas/TagCompact'
@@ -4076,194 +4032,106 @@ components:
                 be longer.
               type: string
               example: Stuff to buy
-    TaskResponse:
+    TagRequest:
       allOf:
-        - $ref: '#/components/schemas/TaskBase'
+        - $ref: '#/components/schemas/TagBase'
         - type: object
           properties:
-            assignee:
-              nullable: true
-              allOf:
-                - $ref: '#/components/schemas/UserCompact'
-            assignee_section:
-              nullable: true
-              allOf:
-                - $ref: '#/components/schemas/SectionCompact'
-                - description: >-
-                    The *assignee section* is a subdivision of a project that groups
-                    tasks together in the assignee's "My Tasks" list. It can either
-                    be a
-                    header above a list of tasks in a list view or a column in a board
-                    view of "My Tasks."
-
-                    The `assignee_section` property will be returned in the response
-                    only
-                    if the request was sent by the user who is the assignee of the
-                    task.
-                    Note that you can only write to `assignee_section` with the gid
-                    of an
-                    existing section visible in the user's "My Tasks" list.
-            custom_fields:
-              description: >-
-                Array of custom field values applied to the task. These
-                represent the custom field values recorded on this project for a
-                particular custom field. For example, these custom field values
-                will contain an `enum_value` property for custom fields of type
-                `enum`, a `text_value` property for custom fields of type
-                `text`, and so on. Please note that the `gid` returned on each
-                custom field value *is identical* to the `gid` of the custom field,
-                which allows referencing the custom field metadata through the
-                `/custom_fields/custom_field-gid` endpoint.
-              type: array
-              items:
-                $ref: '#/components/schemas/CustomFieldResponse'
-              readOnly: true
             followers:
-              description: Array of users following this task.
+              type: array
+              description: >-
+                An array of strings identifying users. These can either be the
+                string "me", an email, or the gid of a user.
+              items:
+                type: string
+              example:
+                - '12345'
+                - '42563'
+            workspace:
+              type: string
+              x-env-variable: true
+              description: >-
+                Gid of an object.
+              example: '12345'
+    TagResponse:
+      allOf:
+        - $ref: '#/components/schemas/TagBase'
+        - type: object
+          properties:
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            followers:
+              description: Array of users following this tag.
               type: array
               readOnly: true
               items:
                 $ref: '#/components/schemas/UserCompact'
-            parent:
-              allOf:
-                - $ref: '#/components/schemas/TaskCompact'
-                - type: object
-                  readOnly: true
-                  description: >-
-                    The parent of this task, or `null` if this is not a subtask.
-                    This property cannot be modified using a PUT request but you
-                    can change it with the `setParent` endpoint. You can create
-                    subtasks by using the subtasks endpoint.
-                  nullable: true
-            projects:
-              description: >-
-                *Create-only.* Array of projects this task is associated with.
-                At task creation time, this array can be used to add the task to
-                many projects at once. After task creation, these associations can
-                be modified using the addProject and removeProject endpoints.
-              type: array
-              readOnly: true
-              items:
-                $ref: '#/components/schemas/ProjectCompact'
-            tags:
-              description: >-
-                Array of tags associated with this task. In order to change tags on
-                an
-                existing task use `addTag` and `removeTag`.
-              type: array
-              readOnly: true
-              items:
-                $ref: '#/components/schemas/TagCompact'
-              example:
-                - gid: '59746'
-                  name: Grade A
             workspace:
-              allOf:
-                - $ref: '#/components/schemas/WorkspaceCompact'
-                - type: object
-                  readOnly: true
-                  description: >-
-                    *Create-only*. The workspace this task is associated with.
-                    Once created, task cannot be moved to a different workspace.
-                    This attribute can only be specified at creation time.
+              $ref: '#/components/schemas/WorkspaceCompact'
             permalink_url:
               type: string
               readOnly: true
               description: >-
                 A url that points directly to the object within Asana.
               example: https://app.asana.com/0/resource/123456789/list
-    TaskRequest:
-      allOf:
-        - $ref: '#/components/schemas/TaskBase'
-        - type: object
-          properties:
-            assignee:
-              type: string
-              readOnly: false
-              x-env-variable: true
-              description: >-
-                Gid of a user.
-              example: '12345'
-              nullable: true
-            assignee_section:
-              nullable: true
-              type: string
-              description: >-
-                The *assignee section* is a subdivision of a project that groups
-                tasks together in the assignee's "My Tasks" list. It can either be
-                a
-                header above a list of tasks in a list view or a column in a board
-                view of "My Tasks."
-
-                The `assignee_section` property will be returned in the response only
-                if the request was sent by the user who is the assignee of the task.
-                Note that you can only write to `assignee_section` with the gid of
-                an
-                existing section visible in the user's "My Tasks" list.
-              example: '12345'
-            custom_fields:
-              description: >-
-                An object where each key is a Custom Field gid and each value is
-                an enum gid, string, or number.
-              type: object
-              additionalProperties:
-                type: string
-                description: >-
-                  "{custom_field_gid}" => Value (Can be text, number, etc.)
-              example:
-                5678904321: On Hold
-                4578152156: Not Started
-            followers:
-              type: array
-              description: >-
-                *Create-Only* An array of strings identifying users. These can
-                either be the string "me", an email, or the gid of a user. In
-                order to change followers on an existing task use `addFollowers`
-                and `removeFollowers`.
-              items:
-                type: string
-                description: >-
-                  Gid of a user.
-              example:
-                - '12345'
-            parent:
-              type: string
-              readOnly: false
-              x-env-variable: true
-              description: >-
-                Gid of a task.
-              example: '12345'
-              nullable: true
-            projects:
-              type: array
-              description: >-
-                *Create-Only* Array of project gids. In order to change projects on
-                an
-                existing task use `addProject` and `removeProject`.
-              items:
-                type: string
-                description: >-
-                  Gid of a project.
-              example:
-                - '12345'
-            tags:
-              type: array
-              description: >-
-                *Create-Only* Array of tag gids. In order to change tags on an
-                existing task use `addTag` and `removeTag`.
-              items:
-                type: string
-                description: >-
-                  Gid of a tag.
-              example:
-                - '12345'
-            workspace:
-              type: string
-              readOnly: false
-              x-env-variable: true
-              description: >-
-                Gid of a workspace.
-              example: '12345'
+    TaskAddFollowersRequest:
+      type: object
+      properties:
+        followers:
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
+          type: array
+          items:
+            type: string
+          example:
+            - '13579'
+            - '321654'
+      required:
+        - followers
+    TaskAddProjectRequest:
+      type: object
+      properties:
+        project:
+          description: The project to add the task to.
+          type: string
+          example: '13579'
+        insert_after:
+          description: >-
+            A task in the project to insert the task after, or `null`
+            to insert at the beginning of the list.
+          type: string
+          nullable: true
+          example: '124816'
+        insert_before:
+          description: >-
+            A task in the project to insert the task before, or
+            `null` to insert at the end of the list.
+          type: string
+          nullable: true
+          example: '432134'
+        section:
+          description: >-
+            A section in the project to insert the task into. The
+            task will be inserted at the bottom of the section.
+          type: string
+          nullable: true
+          example: '987654'
+      required:
+        - project
+    TaskAddTagRequest:
+      type: object
+      properties:
+        tag:
+          description: The tag to add to the task.
+          type: string
+          example: '13579'
+      required:
+        - tag
     TaskBase:
       allOf:
         - $ref: '#/components/schemas/TaskCompact'
@@ -4532,139 +4400,6 @@ components:
               description: The name of the task.
               type: string
               example: Bug Task
-    TaskDuplicateRequest:
-      type: object
-      properties:
-        name:
-          description: The name of the new task.
-          type: string
-          example: New Task Name
-        include:
-          description: The fields that will be duplicated to the new task.
-          type: string
-          enum:
-            - notes
-            - assignee
-            - subtasks
-            - attachments
-            - tags
-            - followers
-            - projects
-            - dates
-            - dependencies
-            - parent
-          example:
-            - notes
-            - assignee
-    TaskSetParentRequest:
-      type: object
-      properties:
-        parent:
-          description: >-
-            The new parent of the task, or `null` for no parent.
-          type: string
-          example: '987654'
-        insert_after:
-          description: >-
-            A subtask of the parent to insert the task after, or `null` to
-            insert at the beginning of the list.
-          type: string
-          example: 'null'
-        insert_before:
-          description: >-
-            A subtask of the parent to insert the task before, or `null` to
-            insert at the end of the list.
-          type: string
-          example: '124816'
-      required:
-        - parent
-    TaskAddProjectRequest:
-      type: object
-      properties:
-        project:
-          description: The project to add the task to.
-          type: string
-          example: '13579'
-        insert_after:
-          description: >-
-            A task in the project to insert the task after, or `null`
-            to insert at the beginning of the list.
-          type: string
-          nullable: true
-          example: '124816'
-        insert_before:
-          description: >-
-            A task in the project to insert the task before, or
-            `null` to insert at the end of the list.
-          type: string
-          nullable: true
-          example: '432134'
-        section:
-          description: >-
-            A section in the project to insert the task into. The
-            task will be inserted at the bottom of the section.
-          type: string
-          nullable: true
-          example: '987654'
-      required:
-        - project
-    TaskRemoveProjectRequest:
-      type: object
-      properties:
-        project:
-          description: The project to remove the task from.
-          type: string
-          example: '13579'
-      required:
-        - project
-    TaskAddTagRequest:
-      type: object
-      properties:
-        tag:
-          description: The tag to add to the task.
-          type: string
-          example: '13579'
-      required:
-        - tag
-    TaskRemoveTagRequest:
-      type: object
-      properties:
-        tag:
-          description: The tag to remove from the task.
-          type: string
-          example: '13579'
-      required:
-        - tag
-    TaskAddFollowersRequest:
-      type: object
-      properties:
-        followers:
-          description: >-
-            An array of strings identifying users. These can either be the string
-            "me", an email, or the gid of a user.
-          type: array
-          items:
-            type: string
-          example:
-            - '13579'
-            - '321654'
-      required:
-        - followers
-    TaskRemoveFollowersRequest:
-      type: object
-      properties:
-        followers:
-          description: >-
-            An array of strings identifying users. These can either be the string
-            "me", an email, or the gid of a user.
-          type: array
-          items:
-            type: string
-          example:
-            - '13579'
-            - '321654'
-      required:
-        - followers
     TaskCountResponse:
       description: A response object returned from the task count endpoint.
       type: object
@@ -4693,6 +4428,356 @@ components:
           description: The number of completed milestones in a project.
           type: integer
           example: 3
+    TaskDuplicateRequest:
+      type: object
+      properties:
+        name:
+          description: The name of the new task.
+          type: string
+          example: New Task Name
+        include:
+          description: The fields that will be duplicated to the new task.
+          type: string
+          enum:
+            - notes
+            - assignee
+            - subtasks
+            - attachments
+            - tags
+            - followers
+            - projects
+            - dates
+            - dependencies
+            - parent
+          example:
+            - notes
+            - assignee
+    TaskRemoveFollowersRequest:
+      type: object
+      properties:
+        followers:
+          description: >-
+            An array of strings identifying users. These can either be the string
+            "me", an email, or the gid of a user.
+          type: array
+          items:
+            type: string
+          example:
+            - '13579'
+            - '321654'
+      required:
+        - followers
+    TaskRemoveProjectRequest:
+      type: object
+      properties:
+        project:
+          description: The project to remove the task from.
+          type: string
+          example: '13579'
+      required:
+        - project
+    TaskRemoveTagRequest:
+      type: object
+      properties:
+        tag:
+          description: The tag to remove from the task.
+          type: string
+          example: '13579'
+      required:
+        - tag
+    TaskRequest:
+      allOf:
+        - $ref: '#/components/schemas/TaskBase'
+        - type: object
+          properties:
+            assignee:
+              type: string
+              readOnly: false
+              x-env-variable: true
+              description: >-
+                Gid of a user.
+              example: '12345'
+              nullable: true
+            assignee_section:
+              nullable: true
+              type: string
+              description: >-
+                The *assignee section* is a subdivision of a project that groups
+                tasks together in the assignee's "My Tasks" list. It can either be
+                a
+                header above a list of tasks in a list view or a column in a board
+                view of "My Tasks."
+
+                The `assignee_section` property will be returned in the response only
+                if the request was sent by the user who is the assignee of the task.
+                Note that you can only write to `assignee_section` with the gid of
+                an
+                existing section visible in the user's "My Tasks" list.
+              example: '12345'
+            custom_fields:
+              description: >-
+                An object where each key is a Custom Field gid and each value is
+                an enum gid, string, or number.
+              type: object
+              additionalProperties:
+                type: string
+                description: >-
+                  "{custom_field_gid}" => Value (Can be text, number, etc.)
+              example:
+                5678904321: On Hold
+                4578152156: Not Started
+            followers:
+              type: array
+              description: >-
+                *Create-Only* An array of strings identifying users. These can
+                either be the string "me", an email, or the gid of a user. In
+                order to change followers on an existing task use `addFollowers`
+                and `removeFollowers`.
+              items:
+                type: string
+                description: >-
+                  Gid of a user.
+              example:
+                - '12345'
+            parent:
+              type: string
+              readOnly: false
+              x-env-variable: true
+              description: >-
+                Gid of a task.
+              example: '12345'
+              nullable: true
+            projects:
+              type: array
+              description: >-
+                *Create-Only* Array of project gids. In order to change projects on
+                an
+                existing task use `addProject` and `removeProject`.
+              items:
+                type: string
+                description: >-
+                  Gid of a project.
+              example:
+                - '12345'
+            tags:
+              type: array
+              description: >-
+                *Create-Only* Array of tag gids. In order to change tags on an
+                existing task use `addTag` and `removeTag`.
+              items:
+                type: string
+                description: >-
+                  Gid of a tag.
+              example:
+                - '12345'
+            workspace:
+              type: string
+              readOnly: false
+              x-env-variable: true
+              description: >-
+                Gid of a workspace.
+              example: '12345'
+    TaskResponse:
+      allOf:
+        - $ref: '#/components/schemas/TaskBase'
+        - type: object
+          properties:
+            assignee:
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
+            assignee_section:
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/SectionCompact'
+                - description: >-
+                    The *assignee section* is a subdivision of a project that groups
+                    tasks together in the assignee's "My Tasks" list. It can either
+                    be a
+                    header above a list of tasks in a list view or a column in a board
+                    view of "My Tasks."
+
+                    The `assignee_section` property will be returned in the response
+                    only
+                    if the request was sent by the user who is the assignee of the
+                    task.
+                    Note that you can only write to `assignee_section` with the gid
+                    of an
+                    existing section visible in the user's "My Tasks" list.
+            custom_fields:
+              description: >-
+                Array of custom field values applied to the task. These
+                represent the custom field values recorded on this project for a
+                particular custom field. For example, these custom field values
+                will contain an `enum_value` property for custom fields of type
+                `enum`, a `text_value` property for custom fields of type
+                `text`, and so on. Please note that the `gid` returned on each
+                custom field value *is identical* to the `gid` of the custom field,
+                which allows referencing the custom field metadata through the
+                `/custom_fields/custom_field-gid` endpoint.
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomFieldResponse'
+              readOnly: true
+            followers:
+              description: Array of users following this task.
+              type: array
+              readOnly: true
+              items:
+                $ref: '#/components/schemas/UserCompact'
+            parent:
+              allOf:
+                - $ref: '#/components/schemas/TaskCompact'
+                - type: object
+                  readOnly: true
+                  description: >-
+                    The parent of this task, or `null` if this is not a subtask.
+                    This property cannot be modified using a PUT request but you
+                    can change it with the `setParent` endpoint. You can create
+                    subtasks by using the subtasks endpoint.
+                  nullable: true
+            projects:
+              description: >-
+                *Create-only.* Array of projects this task is associated with.
+                At task creation time, this array can be used to add the task to
+                many projects at once. After task creation, these associations can
+                be modified using the addProject and removeProject endpoints.
+              type: array
+              readOnly: true
+              items:
+                $ref: '#/components/schemas/ProjectCompact'
+            tags:
+              description: >-
+                Array of tags associated with this task. In order to change tags on
+                an
+                existing task use `addTag` and `removeTag`.
+              type: array
+              readOnly: true
+              items:
+                $ref: '#/components/schemas/TagCompact'
+              example:
+                - gid: '59746'
+                  name: Grade A
+            workspace:
+              allOf:
+                - $ref: '#/components/schemas/WorkspaceCompact'
+                - type: object
+                  readOnly: true
+                  description: >-
+                    *Create-only*. The workspace this task is associated with.
+                    Once created, task cannot be moved to a different workspace.
+                    This attribute can only be specified at creation time.
+            permalink_url:
+              type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/resource/123456789/list
+    TaskSetParentRequest:
+      type: object
+      properties:
+        parent:
+          description: >-
+            The new parent of the task, or `null` for no parent.
+          type: string
+          example: '987654'
+        insert_after:
+          description: >-
+            A subtask of the parent to insert the task after, or `null` to
+            insert at the beginning of the list.
+          type: string
+          example: 'null'
+        insert_before:
+          description: >-
+            A subtask of the parent to insert the task before, or `null` to
+            insert at the end of the list.
+          type: string
+          example: '124816'
+      required:
+        - parent
+    TeamAddUserRequest:
+      type: object
+      description: A user identification object for specification with the addUser/removeUser
+        endpoints.
+      properties:
+        user:
+          description: >-
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
+          type: string
+          example: '12345'
+    TeamBase:
+      $ref: '#/components/schemas/TeamCompact'
+    TeamCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A *team* is used to group related projects and people together within
+            an organization. Each project in an organization is associated with a
+            team.
+          x-docs-overrides:
+            properties.resource_type.example: team
+          properties:
+            name:
+              description: The name of the team.
+              type: string
+              example: Marketing
+    TeamMembershipBase:
+      $ref: '#/components/schemas/TeamMembershipCompact'
+    TeamMembershipCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            This object represents a user's connection to a team.
+          x-docs-overrides:
+            properties.resource_type.example: team_membership
+          properties:
+            user:
+              $ref: '#/components/schemas/UserCompact'
+            team:
+              $ref: '#/components/schemas/TeamCompact'
+            is_guest:
+              type: boolean
+              description: >-
+                Describes if the user is a guest in the team.
+              example: false
+    TeamMembershipResponse:
+      $ref: '#/components/schemas/TeamMembershipBase'
+    TeamRemoveUserRequest:
+      type: object
+      description: A user identification object for specification with the addUser/removeUser
+        endpoints.
+      properties:
+        user:
+          description: >-
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
+          type: string
+          example: '12345'
+    TeamRequest:
+      allOf:
+        - $ref: '#/components/schemas/TeamBase'
+        - type: object
+          properties:
+            description:
+              description: >
+                The description of the team.
+              type: string
+              example: All developers should be members of this team.
+            html_description:
+              description: >
+                The description of the team with formatting as HTML.
+              type: string
+              example: >-
+                <body><em>All</em> developers should be members of this
+                team.</body>
+            organization:
+              type: string
+              description: >
+                The organization/workspace the team belongs to.
+              example: '123456789'
     TeamResponse:
       allOf:
         - $ref: '#/components/schemas/TeamBase'
@@ -4734,71 +4819,6 @@ components:
                 - secret
                 - request_to_join
                 - public
-    TeamRequest:
-      allOf:
-        - $ref: '#/components/schemas/TeamBase'
-        - type: object
-          properties:
-            description:
-              description: >
-                The description of the team.
-              type: string
-              example: All developers should be members of this team.
-            html_description:
-              description: >
-                The description of the team with formatting as HTML.
-              type: string
-              example: >-
-                <body><em>All</em> developers should be members of this
-                team.</body>
-            organization:
-              type: string
-              description: >
-                The organization/workspace the team belongs to.
-              example: '123456789'
-    TeamBase:
-      $ref: '#/components/schemas/TeamCompact'
-    TeamCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            A *team* is used to group related projects and people together within
-            an organization. Each project in an organization is associated with a
-            team.
-          x-docs-overrides:
-            properties.resource_type.example: team
-          properties:
-            name:
-              description: The name of the team.
-              type: string
-              example: Marketing
-    TeamMembershipResponse:
-      $ref: '#/components/schemas/TeamMembershipBase'
-    TeamMembershipBase:
-      $ref: '#/components/schemas/TeamMembershipCompact'
-    TeamMembershipCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            This object represents a user's connection to a team.
-          x-docs-overrides:
-            properties.resource_type.example: team_membership
-          properties:
-            user:
-              $ref: '#/components/schemas/UserCompact'
-            team:
-              $ref: '#/components/schemas/TeamCompact'
-            is_guest:
-              type: boolean
-              description: >-
-                Describes if the user is a guest in the team.
-              example: false
-    TimePeriodResponse:
-      allOf:
-        - $ref: '#/components/schemas/TimePeriodBase'
-        - type: object
     TimePeriodBase:
       allOf:
         - $ref: '#/components/schemas/TimePeriodCompact'
@@ -4842,6 +4862,29 @@ components:
               description: >-
                 A string representing the cadence code and the fiscal year.
               example: Q1 FY22
+    TimePeriodResponse:
+      allOf:
+        - $ref: '#/components/schemas/TimePeriodBase'
+        - type: object
+    UserBase:
+      $ref: '#/components/schemas/UserCompact'
+    UserCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A *user* object represents an account in Asana that can be given
+            access to various workspaces, projects, and tasks.
+          x-docs-overrides:
+            properties.resource_type.example: user
+          properties:
+            name:
+              type: string
+              description: >-
+                *Read-only except when same user as requester*. The user’s name.
+              example: Greg Sanchez
+    UserRequest:
+      $ref: '#/components/schemas/UserBase'
     UserResponse:
       allOf:
         - $ref: '#/components/schemas/UserBase'
@@ -4898,51 +4941,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/WorkspaceCompact'
-    UserRequest:
-      $ref: '#/components/schemas/UserBase'
-    UserBase:
-      $ref: '#/components/schemas/UserCompact'
-    UserCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
-          description: >-
-            A *user* object represents an account in Asana that can be given
-            access to various workspaces, projects, and tasks.
-          x-docs-overrides:
-            properties.resource_type.example: user
-          properties:
-            name:
-              type: string
-              description: >-
-                *Read-only except when same user as requester*. The user’s name.
-              example: Greg Sanchez
-    TeamAddUserRequest:
-      type: object
-      description: A user identification object for specification with the addUser/removeUser
-        endpoints.
-      properties:
-        user:
-          description: >-
-            A string identifying a user. This can either be the string "me", an email,
-            or the gid of a user.
-          type: string
-          example: '12345'
-    TeamRemoveUserRequest:
-      type: object
-      description: A user identification object for specification with the addUser/removeUser
-        endpoints.
-      properties:
-        user:
-          description: >-
-            A string identifying a user. This can either be the string "me", an email,
-            or the gid of a user.
-          type: string
-          example: '12345'
-    UserTaskListResponse:
-      $ref: '#/components/schemas/UserTaskListBase'
-    UserTaskListRequest:
-      $ref: '#/components/schemas/UserTaskListBase'
     UserTaskListBase:
       $ref: '#/components/schemas/UserTaskListCompact'
     UserTaskListCompact:
@@ -4971,104 +4969,10 @@ components:
               readOnly: true
               allOf:
                 - $ref: '#/components/schemas/WorkspaceCompact'
-    WebhookResponse:
-      allOf:
-        - $ref: '#/components/schemas/WebhookCompact'
-        - type: object
-          properties:
-            created_at:
-              description: The time at which this resource was created.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            last_failure_at:
-              description: >-
-                The timestamp when the webhook last received an error when sending
-                an event to the target.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            last_failure_content:
-              description: >-
-                The contents of the last error response sent to the webhook when
-                attempting to deliver events to the target.
-              type: string
-              readOnly: true
-              example: 500 Server Error\n\nCould not complete the request
-            last_success_at:
-              description: >-
-                The timestamp when the webhook last successfully sent an event to
-                the target.
-              type: string
-              format: date-time
-              readOnly: true
-              example: '2012-02-22T02:06:58.147Z'
-            filters:
-              description: >-
-                Whitelist of filters to apply to events from this webhook. If a
-                webhook event passes any of the filters the event will be
-                delivered; otherwise no event will be sent to the receiving server.
-              type: array
-              items:
-                allOf:
-                  - $ref: '#/components/schemas/WebhookFilter'
-                  - description: A set of filters to specify a whitelist for what
-                      types of events will be delivered.
-                  - type: object
-    WebhookRequest:
-      type: object
-      properties:
-        resource:
-          description: >-
-            A resource ID to subscribe to. Many Asana resources are valid to
-            create webhooks on, but higher-level resources require filters.
-          type: string
-          example: '12345'
-        target:
-          description: >-
-            The URL to receive the HTTP POST. The full URL will be used to
-            deliver events from this webhook (including parameters) which allows
-            encoding of application-specific state when the webhook is created.
-          type: string
-          format: uri
-          example: >-
-            https://example.com/receive-webhook/7654?app_specific_param=app_specific_value
-        filters:
-          type: array
-          description: >-
-            An array of WebhookFilter objects to specify a whitelist of filters
-            to apply to events from this webhook. If a webhook event passes any
-            of the filters the event will be delivered; otherwise no event will
-            be sent to the receiving server.
-          items:
-            allOf:
-              - $ref: '#/components/schemas/WebhookFilter'
-              - description: >-
-                  A set of filters to specify a whitelist for what types of
-                  events will be delivered.
-              - type: object
-      required:
-        - resource
-        - target
-    WebhookUpdateRequest:
-      type: object
-      properties:
-        filters:
-          type: array
-          description: >-
-            An array of WebhookFilter objects to specify a whitelist of filters
-            to apply to events from this webhook. If a webhook event passes any
-            of the filters the event will be delivered; otherwise no event will
-            be sent to the receiving server.
-          items:
-            allOf:
-              - $ref: '#/components/schemas/WebhookFilter'
-              - description: >-
-                  A set of filters to specify a whitelist for what types of
-                  events will be delivered.
-              - type: object
+    UserTaskListRequest:
+      $ref: '#/components/schemas/UserTaskListBase'
+    UserTaskListResponse:
+      $ref: '#/components/schemas/UserTaskListBase'
     WebhookCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -5140,25 +5044,115 @@ components:
             - due_at
             - due_on
             - dependencies
-    WorkspaceResponse:
+    WebhookRequest:
+      type: object
+      properties:
+        resource:
+          description: >-
+            A resource ID to subscribe to. Many Asana resources are valid to
+            create webhooks on, but higher-level resources require filters.
+          type: string
+          example: '12345'
+        target:
+          description: >-
+            The URL to receive the HTTP POST. The full URL will be used to
+            deliver events from this webhook (including parameters) which allows
+            encoding of application-specific state when the webhook is created.
+          type: string
+          format: uri
+          example: >-
+            https://example.com/receive-webhook/7654?app_specific_param=app_specific_value
+        filters:
+          type: array
+          description: >-
+            An array of WebhookFilter objects to specify a whitelist of filters
+            to apply to events from this webhook. If a webhook event passes any
+            of the filters the event will be delivered; otherwise no event will
+            be sent to the receiving server.
+          items:
+            allOf:
+              - $ref: '#/components/schemas/WebhookFilter'
+              - description: >-
+                  A set of filters to specify a whitelist for what types of
+                  events will be delivered.
+              - type: object
+      required:
+        - resource
+        - target
+    WebhookResponse:
       allOf:
-        - $ref: '#/components/schemas/WorkspaceBase'
+        - $ref: '#/components/schemas/WebhookCompact'
         - type: object
           properties:
-            email_domains:
-              description: The email domains that are associated with this workspace.
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            last_failure_at:
+              description: >-
+                The timestamp when the webhook last received an error when sending
+                an event to the target.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            last_failure_content:
+              description: >-
+                The contents of the last error response sent to the webhook when
+                attempting to deliver events to the target.
+              type: string
+              readOnly: true
+              example: 500 Server Error\n\nCould not complete the request
+            last_success_at:
+              description: >-
+                The timestamp when the webhook last successfully sent an event to
+                the target.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            filters:
+              description: >-
+                Whitelist of filters to apply to events from this webhook. If a
+                webhook event passes any of the filters the event will be
+                delivered; otherwise no event will be sent to the receiving server.
               type: array
               items:
-                type: string
-                format: uri
-              example:
-                - asana.com
-            is_organization:
-              description: Whether the workspace is an *organization*.
-              type: boolean
-              example: false
-    WorkspaceRequest:
-      $ref: '#/components/schemas/WorkspaceBase'
+                allOf:
+                  - $ref: '#/components/schemas/WebhookFilter'
+                  - description: A set of filters to specify a whitelist for what
+                      types of events will be delivered.
+                  - type: object
+    WebhookUpdateRequest:
+      type: object
+      properties:
+        filters:
+          type: array
+          description: >-
+            An array of WebhookFilter objects to specify a whitelist of filters
+            to apply to events from this webhook. If a webhook event passes any
+            of the filters the event will be delivered; otherwise no event will
+            be sent to the receiving server.
+          items:
+            allOf:
+              - $ref: '#/components/schemas/WebhookFilter'
+              - description: >-
+                  A set of filters to specify a whitelist for what types of
+                  events will be delivered.
+              - type: object
+    WorkspaceAddUserRequest:
+      type: object
+      description: A user identification object for specification with the addUser/removeUser
+        endpoints.
+      properties:
+        user:
+          description: >-
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
+          type: string
+          example: '12345'
     WorkspaceBase:
       $ref: '#/components/schemas/WorkspaceCompact'
     WorkspaceCompact:
@@ -5175,28 +5169,23 @@ components:
               description: The name of the workspace.
               type: string
               example: My Company Workspace
-    WorkspaceAddUserRequest:
-      type: object
-      description: A user identification object for specification with the addUser/removeUser
-        endpoints.
-      properties:
-        user:
+    WorkspaceMembershipBase:
+      $ref: '#/components/schemas/WorkspaceMembershipCompact'
+    WorkspaceMembershipCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
           description: >-
-            A string identifying a user. This can either be the string "me", an email,
-            or the gid of a user.
-          type: string
-          example: '12345'
-    WorkspaceRemoveUserRequest:
-      type: object
-      description: A user identification object for specification with the addUser/removeUser
-        endpoints.
-      properties:
-        user:
-          description: >-
-            A string identifying a user. This can either be the string "me", an email,
-            or the gid of a user.
-          type: string
-          example: '12345'
+            This object determines if a user is a member of a workspace.
+          x-docs-overrides:
+            properties.resource_type.example: workspace_membership
+          properties:
+            user:
+              $ref: '#/components/schemas/UserCompact'
+            workspace:
+              $ref: '#/components/schemas/WorkspaceCompact'
+    WorkspaceMembershipRequest:
+      $ref: '#/components/schemas/WorkspaceMembershipBase'
     WorkspaceMembershipResponse:
       allOf:
         - $ref: '#/components/schemas/WorkspaceMembershipBase'
@@ -5222,23 +5211,36 @@ components:
               readOnly: true
               description: >-
                 Reflects if this user is a guest of the workspace.
-    WorkspaceMembershipRequest:
-      $ref: '#/components/schemas/WorkspaceMembershipBase'
-    WorkspaceMembershipBase:
-      $ref: '#/components/schemas/WorkspaceMembershipCompact'
-    WorkspaceMembershipCompact:
-      allOf:
-        - $ref: '#/components/schemas/AsanaResource'
-        - type: object
+    WorkspaceRemoveUserRequest:
+      type: object
+      description: A user identification object for specification with the addUser/removeUser
+        endpoints.
+      properties:
+        user:
           description: >-
-            This object determines if a user is a member of a workspace.
-          x-docs-overrides:
-            properties.resource_type.example: workspace_membership
+            A string identifying a user. This can either be the string "me", an email,
+            or the gid of a user.
+          type: string
+          example: '12345'
+    WorkspaceRequest:
+      $ref: '#/components/schemas/WorkspaceBase'
+    WorkspaceResponse:
+      allOf:
+        - $ref: '#/components/schemas/WorkspaceBase'
+        - type: object
           properties:
-            user:
-              $ref: '#/components/schemas/UserCompact'
-            workspace:
-              $ref: '#/components/schemas/WorkspaceCompact'
+            email_domains:
+              description: The email domains that are associated with this workspace.
+              type: array
+              items:
+                type: string
+                format: uri
+              example:
+                - asana.com
+            is_organization:
+              description: Whether the workspace is an *organization*.
+              type: boolean
+              example: false
   securitySchemes:
     personalAccessToken:
       type: http
