@@ -26,7 +26,7 @@ Web: <a href="https://asana.com/support">Asana Support</a>
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/get-form-metadata"><span class="get-verb">GET</span> <span class=""nn>/{form_metadata_url}</span></a><br><a href="/docs/on-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_change_callback}</span></a><br><a href="/docs/on-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_submit_callback}</span></a></code>
+<code><a href="/docs/get-form-metadata"><span class="get-verb">GET</span> <span class=""nn>/{form_metadata_url}</span></a><br><a href="/docs/get-modal-form-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{modal_form_typeahead_url}</span></a><br><a href="/docs/on-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_change_callback}</span></a><br><a href="/docs/on-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_submit_callback}</span></a></code>
 </pre>
 
 <span class="description">
@@ -123,9 +123,9 @@ Get the metadata from the App Server to render a form.
 
 |Name|Description|
 |---|---|
-|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace `gid` this hook is coming from.|
 |?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
-|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
+|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user `gid` this hook is coming from.|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 
 <h3 id="get-form-metadata-responses">Responses</h3>
@@ -133,6 +133,110 @@ Get the metadata from the App Server to render a form.
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Successfully retrieved the metadata for a single form.|
+|400<span class="param-type"> None</span>|Bad Request|
+|401<span class="param-type"> None</span>|Unauthorized|
+|403<span class="param-type"> None</span>|Forbidden|
+|404<span class="param-type"> None</span>|Not Found|
+|500<span class="param-type"> None</span>|Server Error|
+
+</section><hr class="half-line">
+<section>
+## Get Modal Form typeahead results
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+<a id="opIdgetModalFormTypeaheadResults"></a>
+
+> Code samples
+
+```shell
+curl -X GET {siteUrl}/{modal_form_typeahead_url} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```javascript--nodejs
+getModalFormTypeaheadResults
+
+```
+
+```python
+getModalFormTypeaheadResults
+
+```
+
+```ruby
+getModalFormTypeaheadResults
+
+```
+
+```java
+getModalFormTypeaheadResults
+
+```
+
+```php
+getModalFormTypeaheadResults
+
+```
+
+> Body parameter
+
+```json
+{
+  "expires_at": "2019-04-15T01:01:46.055Z",
+  "query": "Messages",
+  "task": "67890",
+  "user": "54321",
+  "workspace": "12345"
+}
+```
+
+> 200 Response
+
+```json
+{
+  "header": "List of messages",
+  "items": [
+    {
+      "icon_url": "https://example-icon.png",
+      "subtitle": "OTP",
+      "title": "OTP Team PF",
+      "value": "OTP"
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /{modal_form_typeahead_url}</code>
+</p>
+
+<span class="description">
+If a Modal Form form field is of type `typehead`, this operation gets typeahead results to render as a dropdown list.
+
+When the user types into a Modal Form form field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list.
+</span>
+
+<h3 id="get-modal-form-typeahead-results-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to retrieve typeahead results in a Modal Form typeahead form field.|
+|» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 format) when the request should expire|
+|» query<span class="param-type"> string</span>|The user's input in the typeahead text input.|
+|» task<span class="param-type"> string</span>|*Conditional*. The task `gid` this hook is coming from. `task` is only present in the [Modal Form](/docs/modal-form) (as there is a "context task"), but not in the [Rule Action](/docs/rule-action) (as rules are associated with a _project_).|
+|» user<span class="param-type"> string</span>|The user `gid` this hook is coming from.|
+|» workspace<span class="param-type"> string</span>|The workspace `gid` this hook is coming from.|
+
+<h3 id="get-modal-form-typeahead-results-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
 |400<span class="param-type"> None</span>|Bad Request|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
@@ -440,7 +544,7 @@ The callback request made to an App Server when a form is submitted.
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/run-action"><span class="post-verb">POST</span> <span class=""nn>/{run_action_url}</span></a><br><a href="/docs/get-action-metadata"><span class="get-verb">GET</span> <span class=""nn>/{action.metadata_url}</span></a><br><a href="/docs/on-action-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_change_callback}</span></a><br><a href="/docs/on-action-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_submit_callback}</span></a></code>
+<code><a href="/docs/get-rule-action-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{rule_action_typeahead_url}</span></a><br><a href="/docs/run-action"><span class="post-verb">POST</span> <span class=""nn>/{run_action_url}</span></a><br><a href="/docs/get-action-metadata"><span class="get-verb">GET</span> <span class=""nn>/{action.metadata_url}</span></a><br><a href="/docs/on-action-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_change_callback}</span></a><br><a href="/docs/on-action-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_submit_callback}</span></a></code>
 </pre>
 
 <span class="description">
@@ -449,6 +553,110 @@ When a rule containing a Rule Action is triggered, the Rules Engine will make a 
 
 </section>
 <hr class="half-line">
+<section>
+## Get Rule Action typeahead results
+
+<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+
+<a id="opIdgetRuleActionTypeaheadResults"></a>
+
+> Code samples
+
+```shell
+curl -X GET {siteUrl}/{rule_action_typeahead_url} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```javascript--nodejs
+getRuleActionTypeaheadResults
+
+```
+
+```python
+getRuleActionTypeaheadResults
+
+```
+
+```ruby
+getRuleActionTypeaheadResults
+
+```
+
+```java
+getRuleActionTypeaheadResults
+
+```
+
+```php
+getRuleActionTypeaheadResults
+
+```
+
+> Body parameter
+
+```json
+{
+  "expires_at": "2019-04-15T01:01:46.055Z",
+  "query": "Messages",
+  "task": "67890",
+  "user": "54321",
+  "workspace": "12345"
+}
+```
+
+> 200 Response
+
+```json
+{
+  "header": "List of messages",
+  "items": [
+    {
+      "icon_url": "https://example-icon.png",
+      "subtitle": "OTP",
+      "title": "OTP Team PF",
+      "value": "OTP"
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /{rule_action_typeahead_url}</code>
+</p>
+
+<span class="description">
+In a Rule Action typeahead form field, this operation gets typeahead results to render as a dropdown list.
+
+When the user types into a Rule Action form field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list.
+</span>
+
+<h3 id="get-rule-action-typeahead-results-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|Request to retrieve typeahead results in a Rule Action typeahead form field.|
+|» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 format) when the request should expire|
+|» query<span class="param-type"> string</span>|The user's input in the typeahead text input.|
+|» task<span class="param-type"> string</span>|*Conditional*. The task `gid` this hook is coming from. `task` is only present in the [Modal Form](/docs/modal-form) (as there is a "context task"), but not in the [Rule Action](/docs/rule-action) (as rules are associated with a _project_).|
+|» user<span class="param-type"> string</span>|The user `gid` this hook is coming from.|
+|» workspace<span class="param-type"> string</span>|The workspace `gid` this hook is coming from.|
+
+<h3 id="get-rule-action-typeahead-results-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
+|400<span class="param-type"> None</span>|Bad Request|
+|401<span class="param-type"> None</span>|Unauthorized|
+|403<span class="param-type"> None</span>|Forbidden|
+|404<span class="param-type"> None</span>|Not Found|
+|500<span class="param-type"> None</span>|Server Error|
+
+</section><hr class="half-line">
 <section>
 ## Run action
 
@@ -648,8 +856,8 @@ When a user has navigated to the [Custom Rule builder](https://asana.com/guide/h
 |?action<span class="param-type"> string</span>|The ID of an existing Rule Action that is being edited. Should be omitted when configuring a new Rule Action.|
 |?action_type<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the configuration used to create the Rule Action.|
 |?project<span class="param-type"> string</span><div class="param-required">required</div>|The project gid this hook is coming from.|
-|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
-|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace `gid` this hook is coming from.|
+|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user `gid` this hook is coming from.|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 
 <h3 id="get-action-metadata-responses">Responses</h3>
@@ -714,6 +922,7 @@ onActionFormChange
   "action_type": "string",
   "changed_field": "string",
   "expires_at": "string",
+  "project": "string",
   "user": "string",
   "workspace": "string"
 }
@@ -772,6 +981,7 @@ The callback request made to an App Server when a watched field's value changes 
 |» action_type<span class="param-type"> string</span>|The ID of the configuration used to create the Rule Action.|
 |» changed_field<span class="param-type"> string</span>|The name of the changed FormField|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
+|» project<span class="param-type"> string</span>|The project `gid` this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
@@ -836,6 +1046,7 @@ onActionFormSubmit
   "action": "string",
   "action_type": "string",
   "expires_at": "string",
+  "project": "string",
   "rule_name": "string",
   "task": "string",
   "user": "string",
@@ -939,6 +1150,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |» action<span class="param-type"> string</span>|The ID of an existing Rule Action that is being edited|
 |» action_type<span class="param-type"> string</span>|The ID of the configuration used to create the Rule Action.|
 |» expires_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) when the request should expire|
+|» project<span class="param-type"> string</span>|The project `gid` this hook is coming from.|
 |» rule_name<span class="param-type"> string</span>|The name of the rule being created|
 |» task<span class="param-type"> string</span>|The task gid this hook is coming from.|
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
@@ -996,7 +1208,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a><br><a href="/docs/get-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{resource_typeahead_url}</span></a></code>
+<code><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a><br><a href="/docs/get-lookup-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{resource_typeahead_url}</span></a></code>
 </pre>
 
 <span class="description">
@@ -1105,7 +1317,7 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 
 </section><hr class="half-line">
 <section>
-## Get typeahead results
+## Get Lookup typeahead results
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 
@@ -1185,7 +1397,7 @@ Gets typeahead results to render as a dropdown list in the resource lookup input
 When the user types into the lookup input field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource attach](/docs/resource-attach) request to the app server, then process the response and render the attached resource in the widget.
 </span>
 
-<h3 id="get-typeahead-results-parameters">Parameters</h3>
+<h3 id="get-lookup-typeahead-results-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
@@ -1196,7 +1408,7 @@ When the user types into the lookup input field, Asana will send a request conta
 |» user<span class="param-type"> string</span>|The user `gid` this hook is coming from.|
 |» workspace<span class="param-type"> string</span>|The workspace `gid` this hook is coming from.|
 
-<h3 id="get-typeahead-results-responses">Responses</h3>
+<h3 id="get-lookup-typeahead-results-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
@@ -1311,9 +1523,9 @@ Get the metadata from the App Server to render a widget.
 |Name|Description|
 |---|---|
 |?resource_url<span class="param-type"> string</span><div class="param-required">required</div>|The URL of the URL attachment on the task (i.e. Jira issue, GitHub pull request)|
-|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace gid this hook is coming from.|
+|?workspace<span class="param-type"> string</span><div class="param-required">required</div>|The workspace `gid` this hook is coming from.|
 |?task<span class="param-type"> string</span><div class="param-required">required</div>|The task gid this hook is coming from.|
-|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user gid this hook is coming from.|
+|?user<span class="param-type"> string</span><div class="param-required">required</div>|The user `gid` this hook is coming from.|
 |?attachment<span class="param-type"> string</span><div class="param-required">required</div>|The attachment ID of the URL attachment.|
 |?expires_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) when the request should expire|
 

@@ -102,7 +102,7 @@ components:
       schema:
         type: string
       description: >-
-        The user gid this hook is coming from.
+        The user `gid` this hook is coming from.
     resource_url:
       name: resource_url
       required: true
@@ -126,7 +126,7 @@ components:
       schema:
         type: string
       description: >-
-        The workspace gid this hook is coming from.
+        The workspace `gid` this hook is coming from.
   responses:
     BadRequest:
       description: >-
@@ -397,6 +397,10 @@ components:
               type: string
               description: >-
                 The ID of the configuration used to create the Rule Action.
+            project:
+              type: string
+              description: >-
+                The project `gid` this hook is coming from.
     FormOnChangeBaseRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
@@ -434,6 +438,10 @@ components:
               type: string
               description: >-
                 The ID of the configuration used to create the Rule Action.
+            project:
+              type: string
+              description: >-
+                The project `gid` this hook is coming from.
     RunActionRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
@@ -783,7 +791,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /{resource_typeahead_url}:
     get:
-      summary: Get typeahead results
+      summary: Get Lookup typeahead results
       description: >-
         Gets typeahead results to render as a dropdown list in the resource lookup input field.
         
@@ -847,6 +855,79 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /{modal_form_typeahead_url}:
+    get:
+      summary: Get Modal Form typeahead results
+      description: >-
+        If a Modal Form form field is of type `typehead`, this operation gets typeahead results to render as a dropdown list.
+        
+
+        When the user types into a Modal Form form field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list.
+      tags:
+        - Modal Forms
+      operationId: getModalFormTypeaheadResults
+      requestBody:
+        description: >-
+          Request to retrieve typeahead results in a Modal Form typeahead form field.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeaheadRequest'
+      responses:
+        200:
+          description: Successfully retrieved typeahead results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeaheadResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /{rule_action_typeahead_url}:
+    get:
+      summary: Get Rule Action typeahead results
+      description: >-
+        In a Rule Action typeahead form field, this operation gets typeahead results to render as a dropdown list.
+        
+
+        When the user types into a Rule Action form field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list.
+      tags:
+        - Rule Actions
+      operationId: getRuleActionTypeaheadResults
+      requestBody:
+        description: >-
+          Request to retrieve typeahead results in a Rule Action typeahead form field.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TypeaheadRequest'
+      responses:
+        200:
+          description: Successfully retrieved typeahead results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeaheadResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+      
   /{on_change_callback}:
     post:
       summary: On change callback
