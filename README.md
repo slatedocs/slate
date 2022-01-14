@@ -38,7 +38,7 @@ brew install nvm
 mkdir -p ~/.nvm # You should create NVM's working directory if it doesn't exist:
 # Add the following to /Users/runner/.bash_profile or your desired shell configuration file:
 echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
-echo '[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"; >> ~/.zshrc # This loads nvm
+echo '[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh";' >> ~/.zshrc # This loads nvm
 echo '[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"' >> ~/.zshrc # This loads nvm bash_completion
 ```
 
