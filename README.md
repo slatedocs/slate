@@ -28,20 +28,28 @@ Swagger is used to implement our OpenAPI specification and requires `mvn`, so be
 
 Beyond that, Node and Ruby are required to get started with documentation. The easiest way to work with the tooling is to install some version managers for some languages used in our toolchain.
 
+For this guide, we'll assume you're using `zsh`, if not you can replace the `~/.zshrc` with `~/.bash_profile`.
+
 For Node, we'll use [nvm](https://github.com/nvm-sh/nvm):
 
 ```shell
 brew install nvm
+# Brew doesn't set this up anymore, so we need to do this manually. See https://formulae.brew.sh/formula/nvm for up to date instructions if these fail
+mkdir -p ~/.nvm # You should create NVM's working directory if it doesn't exist:
+# Add the following to /Users/runner/.bash_profile or your desired shell configuration file:
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+echo '[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"; >> ~/.zshrc # This loads nvm
+echo '[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"' >> ~/.zshrc # This loads nvm bash_completion
 ```
 
 For Ruby, we'll use [rbenv](https://github.com/rbenv/rbenv):
 
 ```shell
 brew install rbenv # This is a ruby version manager, which could prove useful in the future. For now we use system.
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile # Init rbenv on every shell.
-echo 'export GEM_HOME=$HOME/.gem' >> ~/.bash_profile # Set the Ruby gem install to a non-system directory so we don't need sudo.
-echo 'export PATH="$GEM_HOME/bin:$PATH"' >> ~/.bash_profile # Needed if any gems have executables associated.
-source ~/.bash_profile # Let's pick up those changes.
+echo 'eval "$(rbenv init -)"' >> ~/.zshrc # Init rbenv on every shell.
+echo 'export GEM_HOME=$HOME/.gem' >> ~/.zshrc # Set the Ruby gem install to a non-system directory so we don't need sudo.
+echo 'export PATH="$GEM_HOME/bin:$PATH"' >> ~/.zshrc # Needed if any gems have executables associated.
+source ~/.zshrc # Let's pick up those changes.
 gem install bundler # Bundler is the standard for dependency management. Install it system-wide.
 ```
 
@@ -53,6 +61,11 @@ npm install
 
 rbenv shell system # We'll use system Ruby as well, but just like Node, we might pin it in the future.
 bundle install
+```
+
+You also might need some python dependencies:
+```shell
+pip install ruamel.yaml
 ```
 
 For the rest of this README, assume any commands that we list will be run from the root of this repository.
