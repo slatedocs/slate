@@ -98,7 +98,7 @@ make docs_gen
 make serve
 ```
 
-5. View documentation in your browser by visiting **http://localhost:4567** (or **http://127.0.0.1:4567**).
+5. View documentation in your browser by visiting **http://localhost:4567/docs** (or **http://127.0.0.1:4567/docs**).
 
 ## Reference (how it works)
 The public OpenAPI spec is located at **/defs/asana_oas.yaml**
