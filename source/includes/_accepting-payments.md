@@ -955,7 +955,7 @@ E-Wallet API allows partners to charge and receive payments directly from top e-
 
 ### Key Features
 
-1.  **Support multiple e-wallets** - Currently, we support ShopeePay and LinkAja e-wallets. OVO and DANA are coming soon
+1.  **Support multiple e-wallets** - We support ShopeePay, LinkAja, DANA, and OVO
 2.  **Transaction tracking and monitoring capability** - You can track all created e-wallet transactions, incoming payments, and their respective details through our API callback or OY! dashboard. You will receive a callback for all incoming transactions.
 3.  **Check Status capability** - We have a Check Status endpoint available for you to regularly check the status of an e-wallet transaction
 
@@ -980,7 +980,7 @@ In order to be able to simulate payment (change the transaction status into Comp
 
 1.  Create an account
 2.  Send a request to activate API E-Wallet product and obtain staging API Key to your business representative
-3.  Create a transaction by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/e-wallet-aggregator/create-transaction using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#create-e-wallet-transaction-api-e-wallet-aggregator-coming-soon)
+3.  Create a transaction by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/e-wallet-aggregator/create-transaction using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#api-e-wallet-aggregator)
 4.  After an E-Wallet transaction is generated, partner can simulate an E-Wallet payment through their dashboard (in Staging environment) by going to the "E-Wallet" sidebar, look for the newly created transaction row on the table (should be at the top), then click on the "Pay" button on the very right of that row. ![E-Wallet Table](images/ewallet_testing_2.png)
 5.  Fill in the e-wallet name, the ref number and amount should be prefilled from the transaction in the previous step, then click on "Send Callback" ![E-Wallet API](images/ewallet_testing.png)
 6.  If a payment is successful, we will send a callback to the registered staging callback URL destination
@@ -990,8 +990,8 @@ In order to be able to simulate payment (change the transaction status into Comp
 
 We provide 2 endpoints for you to use:
 
-- [Create E-Wallet Transaction](https://api-docs.oyindonesia.com/#create-e-wallet-transaction-api-e-wallet-aggregator-coming-soon): Use this API to create an e-wallet transaction for your user
-- [Check E-Wallet Transaction Status](https://api-docs.oyindonesia.com/#check-e-wallet-transaction-status-api-e-wallet-aggregator-coming-soon): Use this API to check the status of an e-wallet transaction. We highly recommend that you implement this endpoint.
+- [Create E-Wallet Transaction](https://api-docs.oyindonesia.com/#api-e-wallet-aggregator): Use this API to create an e-wallet transaction for your user
+- [Check E-Wallet Transaction Status](https://api-docs.oyindonesia.com/#https-request-check-e-wallet-transaction-status): Use this API to check the status of an e-wallet transaction. We highly recommend that you implement this endpoint.
 
 All details regarding your created e-wallet and its payments can be retrieved via our API endpoint (Check E-Wallet Transaction Status) or can be monitored directly from the OY! dashboard (through the E-Wallet sidebar)
 
@@ -1001,10 +1001,10 @@ All details regarding your created e-wallet and its payments can be retrieved vi
 
 | E-Wallet Issuer    | E-Wallet Code     | Minimum Expiration Time                        | Maximum Expiration Time                        | Redirection Feature |
 | ------------------ | ----------------- | ---------------------------------------------- | ---------------------------------------------- | ------------------- |
-| OVO (coming soon)  | ovo_ewallet       | Parameter is ignored, always set to 55 seconds | Parameter is ignored, always set to 55 seconds | Not supported       |
+| OVO                | ovo_ewallet       | Parameter is ignored, always set to 55 seconds | Parameter is ignored, always set to 55 seconds | Not supported       |
 | ShopeePay          | shopeepay_ewallet | 1 minute                                       | 60 minutes                                     | Support             |
 | Linkaja            | linkaja_ewallet   | Parameter is ignored, always set to 5 minutes  | Parameter is ignored, always set to 5 minutes  | Support             |
-| DANA (coming soon) | dana_ewallet      | 1 minute                                       | 60 minutes                                     | Support             |
+| DANA               | dana_ewallet      | 1 minute                                       | 60 minutes                                     | Support             |
 
 ## API Payment Routing
 
