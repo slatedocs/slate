@@ -973,9 +973,10 @@ Follow the below check-list to ensure you're all set up to use our E-Wallet API 
 
 ### Testing
 
-Once you successfully create an OY! account, you can immediately simulate E-Wallet payments via API.
+When you hit Create E-Wallet Transaction endpoint (https://api-docs.oyindonesia.com/#https-request-create-e-wallet-transaction), it will always return the same ewallet_url & success_redirect URL in the response: https://pay-dev.shareitpay.in/aggregate-pay-gate. You cannot simulate payment by clicking this URL.
 
-Follow the below steps to test the E-Wallet flow:
+In order to be able to simulate payment (change the transaction status into Complete), follow the steps below: (Note: the process of simulating payment in Staging environment doesn't involve any forward / redirection to the E-Wallet apps, the scope is just changing the transaction status into Complete.)
+
 
 1.  Create an account
 2.  Send a request to activate API E-Wallet product and obtain staging API Key to your business representative
