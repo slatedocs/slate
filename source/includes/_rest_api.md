@@ -1158,7 +1158,7 @@ p JSON.parse(result)
 |---|---|---|---|---|
 |product_ids|query|string|false|comma separated product ids|
 |states|query|string|false|comma separated list of states - open,pending|
-|contract_types|query|string|false|comma separated list of desired contract types|
+|contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the orders will be returned|
 |order_types|query|string|false|comma separated order types|
 |start_time|query|integer|false|from time in micro-seconds in epoc|
 |end_time|query|integer|false|from time in micro-seconds in epoc|
@@ -1170,6 +1170,10 @@ p JSON.parse(result)
 
 |Parameter|Value|
 |---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
 |order_types|market|
 |order_types|limit|
 |order_types|stop_market|
@@ -2100,7 +2104,16 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |product_ids|query|string|false|comma separated product ids|
-|contract_types|query|string|false|comma separated list of desired contract types|
+|contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the open positions will be returned|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
 
 > Example responses
 

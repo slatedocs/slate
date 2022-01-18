@@ -510,8 +510,14 @@
           {
             "in": "query",
             "name": "contract_types",
-            "description": "comma separated list of desired contract types",
-            "type": "string"
+            "description": "comma separated list of desired contract types, if not specified any parameters then, all the orders will be returned",
+            "type": "string",
+            "enum":[
+              "futures",
+              "perpetual_futures",
+              "call_options",
+              "put_options"
+            ]
           },
           {
             "in": "query",
@@ -1253,8 +1259,14 @@
           {
             "in": "query",
             "name": "contract_types",
-            "description": "comma separated list of desired contract types",
-            "type": "string"
+            "description": "comma separated list of desired contract types, if not specified any parameters then, all the open positions will be returned",
+            "type": "string",
+            "enum":[
+              "futures",
+              "perpetual_futures",
+              "call_options",
+              "put_options"
+            ]
           }
         ],
         "responses": {
