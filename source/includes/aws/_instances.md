@@ -137,3 +137,31 @@ Attributes | &nbsp;
 `tags`<br/>*Array[object]* | Any tags assigned to the instance. Tags are key value pairs.
 `coreCount`<br/>*int* | The number of CPU cores for the instance.
 `threadsPerCore`<br/>>*int* | The number of threads per CPU core.
+
+
+<!-------------------- DELETE AN INSTANCE -------------------->
+
+#### Delete an instance
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/instances/i-0d1f9106cd0e0dff7"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
+
+Attributes | &nbsp;
+------- | -----------
+`taskId` <br/>*string* | The task id related to the instance deletion.
+`taskStatus` <br/>*string* | The status of the operation.
+
+
