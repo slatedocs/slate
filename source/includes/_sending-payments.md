@@ -80,7 +80,7 @@ curl -X POST https://partner.oyindonesia.com/api/inquiry
     "recipient_bank":"022",
     "recipient_account":"7823023345",
     "recipient_name":"Budi Budianto Budiman",
-    "timestamp":"16-10-2019 09:55:31"
+    "timestamp":"16-10-2021 09:55:31"
 }
 ```
 
