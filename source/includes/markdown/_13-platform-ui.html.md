@@ -306,6 +306,77 @@ Before you begin, you'll need a developer sandbox in order to use App Components
 <br>
 That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's Widget. Once you're ready to define an app, [click here to create your own app](/docs/configurations) with App Components.
 
+# Installing an App
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+When a user connects an app with App Components to Asana for the first time, they will go through an installation flow. This involves walking the user through the app's features (i.e., "value props"), authorizing the app, and adding it to projects in Asana. The installation flow can be triggered through either one of two ways:
+
+1. The in-product app gallery. Users can access the app gallery by going into a project (in which they want to install an app), then navigating to **Customize** > **Add App**.
+<br>
+<br>
+<img src="../images/app-gallery.png" alt="app gallery"/>
+<br>
+<br>
+2. The [Asana app directory](https://asana.com/apps):
+<br>
+<br>
+<img src="../images/app-directory.png" alt="app directory"/>
+
+<hr>
+
+### Features
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+After entering the installation flow, the first screen that users see are the app's features, or value props. 
+
+<img src="../images/features.png" alt="features"/>
+
+As part of the customizations, a `valuePropTitle` and `valuePropSubtitle` can be shown at the top of the screen. Additionally, up to three value prop images can be displayed on the screen, each containing the image itself (via an `imageUrl`), accompanying `text` to display under each image, as well as `alt` text.
+
+<hr>
+
+### Authenticating
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+On the next screen, the user will be directed to the auth screen, which will ask them to connect to the external app.
+
+<img src="../images/authentication.png" alt="authentication"/>
+
+When the user clicks the button to continue, they will go through an OAuth flow if the app has configured OAuth. If an [Asana OAuth](/docs/oauth) flow has been configured, it will appear first.
+
+<img src="../images/authenticate-asana.png" alt="authentication with Asana"/>
+
+<img src="../images/authenticate-external.png" alt="authentication with external app"/>
+
+
+The OAuth flow is made possible by providing an `authenticationUrl` to Asana. For more information, feel free to review [Authorization](docs/authorization) requirements when publishing an app.
+
+<hr>
+
+### Adding to a Project
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+Once the user has successully granted permissions, they'll be taken to different screens depending on how they entered the installation flow:
+
+1. If the user began the installation flow from outside of a project (e.g., through the [Asana app directory](https://asana.com/apps)), the user will be shown an additional screen that prompts them to add the app to any necessary projects. This screen will not be shown otherwise.
+<br>
+<br>
+<img src="../images/add-app-to-projects.png" alt="add app to projects"/>
+<br>
+<br>
+From here, the user may choose to add the app to one or more projects, or even skip adding the app for the time being. Once the user has made their choice, the final screen will confirm the user's choices, and the installation flow will be completed.
+<br>
+<br>
+2. If the user began the installation flow from within a project, the user will see a confirmation of the app they've added, and the installation flow will be completed.
+<br>
+<br>
+<img src="../images/installation-flow-finish.png" alt="installation flow finish"/>
+<br>
+
 <hr class="full-line">
 
 # Publishing an App
@@ -539,7 +610,6 @@ Once your app is submitted, an Asana developer will configure and enable your ap
 |» `src`                      | String (url) | (Optional) src for image of feature |
 |» `alt`                      | String (url) | (Optional) alt for image of feature |
 |» `text`                     | String (url) | text below image of feature |
-| `siteUrl`                   | String (url) | A URL which informs Asana which domain will handle auth |
 | `authenticationUrl`         | String (url) | A URL which informs Asana where to make requests for authenticating and authorizing users.  This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
 | `capabilities`              | Object       | A list of capabilities supported by the app and their configuration. |
 |» `resource_widget`          | Object       | The container for resource Widget functionality  |
