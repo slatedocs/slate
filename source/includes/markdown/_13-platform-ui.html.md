@@ -347,14 +347,15 @@ On the next screen, the user will be directed to the auth screen, which will ask
 
 <img src="../images/authentication.png" alt="authentication"/>
 
-When the user clicks the button to continue, they will go through an OAuth flow if the app has configured OAuth. If an [Asana OAuth](/docs/oauth) flow has been configured, it will appear first.
+When the user clicks the button to continue, Asana will make a request to the application's specified `authenticationUrl` in a pop-up window. From here, it is developer's discretion as to how the user proceeds with authentication. In most cases, this authentication step usually involves completing the [Asana OAuth](/docs/oauth) flow, as well as the third-party (i.e., external) OAuth flow.
 
 <img src="../images/authenticate-asana.png" alt="authentication with Asana"/>
 
 <img src="../images/authenticate-external.png" alt="authentication with external app"/>
 
+Additionally, you may choose to present custom screens, forms, or otherwise logic to prompt the user for additional information needed to set up the application.
 
-The OAuth flow is made possible by providing an `authenticationUrl` to Asana. For more information, feel free to review [Authorization](docs/authorization) requirements when publishing an app.
+The authentication flow is concluded when the app confirms that authentication is complete with a "success" message using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). For more information, feel free to review [Authorization](docs/authorization) requirements when publishing an app.
 
 <hr>
 
