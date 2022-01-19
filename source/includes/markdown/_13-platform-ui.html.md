@@ -323,6 +323,8 @@ When a user connects an app with App Components to Asana for the first time, the
 <br>
 <img src="../images/app-directory.png" alt="app directory"/>
 
+Note that subsequent interactions with the same application by the same user will _not_ trigger the following installation flow. To force installation flow in its entirety again (e.g., for QA purposes), you can visit `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`, replacing the value of the `app_id` query parameter with the application's Client ID (accessible via the [developer console](https://app.asana.com/0/developer-console)).
+
 <hr>
 
 ### Features
