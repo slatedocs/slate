@@ -1660,7 +1660,7 @@
             "in": "query",
             "name": "symbol",
             "type": "string",
-            "description": "product symbol",
+            "description": "product symbol needs to pass to get data, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}",
             "required": true
           },
           {

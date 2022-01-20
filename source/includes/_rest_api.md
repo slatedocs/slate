@@ -3110,7 +3110,7 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |resolution|query|string|true|none|
-|symbol|query|string|true|product symbol|
+|symbol|query|string|true|product symbol needs to pass to get data, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}|
 |start|query|integer|true|Start time|
 |end|query|integer|true|End time|
 
