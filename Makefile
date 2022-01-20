@@ -55,8 +55,8 @@ build:
 	bundle exec middleman build --clean
 
 first_time_setup:
-	cd .. && git clone git@github.com:rossgrambo/widdershins.git
-	cd .. && mkdir swagger_forks && cd swagger_forks && git clone git@github.com:rossgrambo/swagger-parser.git && git clone git@github.com:rossgrambo/swagger-codegen-generators.git
+	cd .. && git clone git@github.com:Asana/widdershins.git
+	cd .. && mkdir swagger_forks && cd swagger_forks && git clone git@github.com:Asana/swagger-parser.git && git clone git@github.com:Asana/swagger-codegen-generators.git
 	cd .. && git clone git@github.com:swagger-api/swagger-codegen.git
 	cd .. && mkdir client_libraries && cd client_libraries && git clone git@github.com:Asana/node-asana.git && git clone git@github.com:Asana/php-asana.git && git clone git@github.com:Asana/java-asana.git && git clone git@github.com:Asana/ruby-asana.git && git clone git@github.com:Asana/python-asana.git
 
