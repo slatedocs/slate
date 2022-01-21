@@ -51,6 +51,10 @@
     {
       "name": "OHLC Candles",
       "description": "Get price data"
+    },
+    {
+      "name": "Stats",
+      "description": "Get Volume Stats"
     }
   ],
   "schemes": [
@@ -1741,6 +1745,38 @@
           }
         }
       }
+    },
+    "/stats": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get volume stats",
+        "operationId": "getStat",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "sum of turnover in the last 7 and 30 days along with  Total Volume in the last 24 hours (in USD)",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Stats"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -2653,6 +2689,23 @@
         "description": "array of timestamp and closing value"
       },
       "example": {"MARK:BTCUSD_31Oct": [[1594214051,0.00003826],[1594214051,0.00003826]],"SPOT:BTCUSD_31Oct": [[1594215270,0.00003826]]}
+    },
+    "Stats":{
+      "type": "object",
+      "properties": {
+        "last_30_days_volume": {
+          "type": "integer",
+          "description": "sum of turnover usd in the last 30 days"
+        },
+        "last_7_days_volume": {
+          "type": "integer",
+          "description": "sum of turnover usd in the last 7 days"
+        },
+        "total_volume": {
+          "type": "integer",
+          "description": "sum of turnover usd in the last 24 hours"
+        }
+      }
     }
   }
 }

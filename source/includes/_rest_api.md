@@ -3257,6 +3257,82 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
+<h1 id="delta-exchange-api-v2-stats">Stats</h1>
+
+Get Volume Stats
+
+## Get volume stats
+
+<a id="opIdgetStat"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/v2/stats', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/stats \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/stats',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /stats`
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "last_30_days_volume": 0,
+    "last_7_days_volume": 0,
+    "total_volume": 0
+  }
+}
+```
+
+<h3 id="get-volume-stats-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|sum of turnover in the last 7 and 30 days along with  Total Volume in the last 24 hours (in USD)|Inline|
+
+<h3 id="get-volume-stats-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
 # Schemas
 
 <h2 id="tocSapisuccessresponse">ApiSuccessResponse</h2>
@@ -4492,4 +4568,25 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |**additionalProperties**|[integer]|false|none|array of timestamp and closing value|
+
+<h2 id="tocSstats">Stats</h2>
+
+<a id="schemastats"></a>
+
+```json
+{
+  "last_30_days_volume": 0,
+  "last_7_days_volume": 0,
+  "total_volume": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|last_30_days_volume|integer|false|none|sum of turnover usd in the last 30 days|
+|last_7_days_volume|integer|false|none|sum of turnover usd in the last 7 days|
+|total_volume|integer|false|none|sum of turnover usd in the last 24 hours|
 
