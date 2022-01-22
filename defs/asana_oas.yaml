@@ -52,6 +52,8 @@ info:
     - ProjectStatusCompact
     - SectionResponse
     - SectionCompact
+    - StatusUpdateResponse
+    - StatusUpdateCompact
     - StoryResponse
     - StoryCompact
     - TagResponse
@@ -556,8 +558,7 @@ tags:
       A `portfolio` gives a high-level overview of the status of multiple
       initiatives in Asana. Portfolios provide a dashboard overview of the
       state of multiple projects, including a progress report and the most
-      recent [project status](/docs/asana-project-statuses)
-      update.
+      recent [status update](/docs/asana-statuses).
 
       Portfolios have some restrictions on size. Each portfolio has a max of 250
       items and, like projects, a max of 20 custom fields.
@@ -592,14 +593,15 @@ tags:
       comment-only access) are accessible through the project memberships
       endpoints described here.
   - name: Project Statuses
-    description: >-
+    description: |-
+      *Deprecated: new integrations should prefer using [Status Updates](/docs/asana-statuses)*
+
       A *project status* is an update on the progress of a particular project,
       and is sent out to all project followers when created. These updates
       include both text describing the update and a color code intended to
       represent the overall state of the project: "green" for projects that
       are on track, "yellow" for projects at risk, "red" for projects that
       are behind, and "blue" for projects on hold.
-
 
       Project statuses can be created and deleted, but not modified.
   - name: Sections
@@ -617,6 +619,16 @@ tags:
       [getting a task](/docs/get-a-task)
       will return the information for the section or the column under
       ‘section’ in the response.
+  - name: Status Updates
+    description: |-
+      A *status update* is an update on the progress of a particular object,
+      and is sent out to all followers when created. These updates
+      include both text describing the update and a `status_type` intended to
+      represent the overall state of the project. These include: `on_track` for projects that
+      are on track, `at_risk` for projects at risk, `off_track` for projects that
+      are behind, and `on_hold` for projects on hold.
+
+      Status updates can be created and deleted, but not modified.
   - name: Stories
     description: >-
       *See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924)
@@ -2012,6 +2024,7 @@ components:
                 $ref: '#/components/schemas/EnumOption'
             created_by:
               $ref: '#/components/schemas/UserCompact'
+              nullable: true
     CustomFieldSettingBase:
       $ref: '#/components/schemas/CustomFieldSettingCompact'
     CustomFieldSettingCompact:
@@ -2652,6 +2665,11 @@ components:
                 - $ref: '#/components/schemas/UserCompact'
                 - type: object
                   nullable: true
+            current_status_update:
+              description: The latest `status_update` posted to this goal.
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/StatusUpdateCompact'
     JobBase:
       $ref: '#/components/schemas/JobCompact'
     JobCompact:
@@ -2932,6 +2950,11 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/CustomFieldSettingResponse'
+            current_status_update:
+              description: The latest `status_update` posted to this portfolio.
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/StatusUpdateCompact'
             due_on:
               description: >-
                 The localized day on which this portfolio is due. This takes a
@@ -3059,15 +3082,23 @@ components:
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
             current_status:
+              description: >-
+                *Deprecated: new integrations should prefer the `current_status_update`
+                resource.*
               nullable: true
               allOf:
                 - $ref: '#/components/schemas/ProjectStatusResponse'
+            current_status_update:
+              description: The latest `status_update` posted to this project.
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/StatusUpdateCompact'
             custom_field_settings:
               description: Array of Custom Field Settings (in compact form).
               readOnly: true
               type: array
               items:
-                $ref: '#/components/schemas/CustomFieldSettingCompact'
+                $ref: '#/components/schemas/CustomFieldSettingResponse'
             default_view:
               description: The default view (list, board, calendar, or timeline) of
                 a project.
@@ -3450,6 +3481,8 @@ components:
         - $ref: '#/components/schemas/AsanaResource'
         - type: object
           description: >-
+            *Deprecated: new integrations should prefer the `status_update` resource.*
+
             A *project status* is an update on the progress of a particular
             project, and is sent out to all project followers when created. These
             updates include both text describing the update and a color code
@@ -3615,6 +3648,159 @@ components:
           example: '987654'
       required:
         - task
+    StatusUpdateBase:
+      allOf:
+        - $ref: '#/components/schemas/StatusUpdateCompact'
+        - type: object
+          required:
+            - text
+            - status_type
+          properties:
+            text:
+              description: The text content of the status update.
+              type: string
+              example: The project is moving forward according to plan...
+            html_text:
+              description: >-
+                [Opt
+                In](/docs/input-output-options).
+                The text content of the status update with formatting as HTML.
+              type: string
+              example: >-
+                <body>The project <strong>is</strong> moving forward according to
+                plan...</body>
+            status_type:
+              description: The type associated with the status update. This represents
+                the current state of the object this object is on.
+              type: string
+              enum:
+                - on_track
+                - at_risk
+                - off_track
+                - on_hold
+                - complete
+                - achieved
+                - partial
+                - missed
+                - dropped
+    StatusUpdateCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A *status update* is an update on the progress of a particular
+            project, portfolio, or goal, and is sent out to all of its parent's
+            followers when created. These
+            updates include both text describing the update and a `status_type`
+            intended to represent the overall state of the project.
+          x-docs-overrides:
+            properties.resource_type.example: status_update
+          properties:
+            title:
+              description: The title of the status update.
+              type: string
+              example: Status Update - Jun 15
+            resource_subtype:
+              type: string
+              description: >-
+                The subtype of this resource. Different subtypes retain many of
+                the same fields and behavior, but may render differently in Asana
+                or represent resources with different semantic meaning.
+
+                The `resource_subtype`s for `status` objects represent the type of
+                their parent.
+              enum:
+                - project_status_update
+                - portfolio_status_update
+                - goal_status_update
+              example: project_status_update
+              readOnly: true
+    StatusUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/StatusUpdateBase'
+        - type: object
+          required:
+            - parent
+          properties:
+            parent:
+              allOf:
+                - type: string
+                  description: >-
+                    The id of parent to send this status update to. This can be a
+                    project,
+                    goal or portfolio.
+    StatusUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/StatusUpdateBase'
+        - type: object
+          properties:
+            author:
+              $ref: '#/components/schemas/UserCompact'
+            created_at:
+              description: The time at which this resource was created.
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            created_by:
+              $ref: '#/components/schemas/UserCompact'
+            hearted:
+              description: >-
+                *Deprecated - please use liked instead* True if the status is
+                hearted by the authorized user, false if not.
+              type: boolean
+              example: true
+              readOnly: true
+            hearts:
+              description: >-
+                *Deprecated - please use likes instead* Array of likes for users
+                who have hearted this status.
+              type: array
+              items:
+                $ref: '#/components/schemas/Like'
+              readOnly: true
+            liked:
+              description: >-
+                True if the status is liked by the authorized user, false if not.
+              type: boolean
+              example: true
+            likes:
+              description: Array of likes for users who have liked this status.
+              type: array
+              items:
+                $ref: '#/components/schemas/Like'
+              readOnly: true
+            modified_at:
+              description: >-
+                The time at which this project status was last modified.
+
+                *Note: This does not currently reflect any changes in
+                associations such as comments that may have been added or
+                removed from the status.*
+              type: string
+              format: date-time
+              readOnly: true
+              example: '2012-02-22T02:06:58.147Z'
+            num_hearts:
+              description: >-
+                *Deprecated - please use likes instead* The number of users who
+                have hearted this status.
+              type: integer
+              example: 5
+              readOnly: true
+            num_likes:
+              description: The number of users who have liked this status.
+              type: integer
+              example: 5
+              readOnly: true
+            parent:
+              allOf:
+                - $ref: '#/components/schemas/ProjectCompact'
+                - type: object
+                  description: >-
+                    The parent of the status update. This can be a project,
+                    goal or portfolio, and indicates that this status was sent
+                    on that object.
     StoryBase:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -7568,7 +7754,9 @@ paths:
       - $ref: '#/components/parameters/fields'
     get:
       summary: Get a project status
-      description: >-
+      description: |-
+        *Deprecated: new integrations should prefer the `/status_updates/{status_gid}` route.*
+
         Returns the complete record for a single status update.
       tags:
         - Project Statuses
@@ -7596,6 +7784,8 @@ paths:
     delete:
       summary: Delete a project status
       description: |-
+        *Deprecated: new integrations should prefer the `/status_updates/{status_gid}` route.*
+
         Deletes a specific, existing project status update.
 
         Returns an empty data record.
@@ -7629,7 +7819,9 @@ paths:
       - $ref: '#/components/parameters/fields'
     get:
       summary: Get statuses from a project
-      description: >-
+      description: |-
+        *Deprecated: new integrations should prefer the `/status_updates` route.*
+
         Returns the compact project status update records for all updates on the project.
       tags:
         - Project Statuses
@@ -7664,7 +7856,9 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a project status
-      description: >-
+      description: |-
+        *Deprecated: new integrations should prefer the `/status_updates` route.*
+
         Creates a new status update on the project.
 
         Returns the full record of the newly created project status update.
@@ -8735,6 +8929,157 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /status_updates/{status_gid}:
+    parameters:
+      - $ref: '#/components/parameters/status_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a status update
+      description: >-
+        Returns the complete record for a single status update.
+      tags:
+        - Status Updates
+      operationId: getStatus
+      responses:
+        200:
+          description: Successfully retrieved the specified object's status updates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/StatusUpdateResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete a status update
+      description: |-
+        Deletes a specific, existing status update.
+
+        Returns an empty data record.
+      tags:
+        - Status Updates
+      operationId: deleteStatus
+      responses:
+        200:
+          description: Successfully deleted the specified status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /status_updates:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get status updates from an object
+      description: >-
+        Returns the compact status update records for all updates on the object.
+      tags:
+        - Status Updates
+      operationId: getStatusesForObject
+      parameters:
+        - name: parent
+          required: true
+          in: query
+          description: Globally unique identifier for object to fetch statuses from.
+          schema:
+            type: string
+          example: '159874'
+        - name: created_since
+          in: query
+          description: |-
+            Only return statuses that have been created since the given time.
+          schema:
+            type: string
+            format: date-time
+          example: '2012-02-22T02:06:58.158Z'
+      responses:
+        200:
+          description: Successfully retrieved the specified object's status updates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StatusUpdateCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create a status update
+      description: >-
+        Creates a new status update on an object.
+
+        Returns the full record of the newly created status update.
+      tags:
+        - Status Updates
+      operationId: createStatusForObject
+      requestBody:
+        description: The status update to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/StatusUpdateRequest'
+      responses:
+        201:
+          description: Successfully created a new status update.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/StatusUpdateResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
