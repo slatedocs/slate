@@ -2937,6 +2937,12 @@ $result = $client->goals->getGoal($goal_gid, array('param' => 'value', 'param' =
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "green",
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "followers": [
       {
         "gid": "12345",
@@ -3130,6 +3136,12 @@ $result = $client->goals->updateGoal($goal_gid, array('field' => 'value', 'field
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "green",
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "followers": [
       {
         "gid": "12345",
@@ -3576,6 +3588,12 @@ $result = $client->goals->createGoal(array('field' => 'value', 'field' => 'value
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "green",
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "followers": [
       {
         "gid": "12345",
@@ -3783,6 +3801,12 @@ $result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "green",
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "followers": [
       {
         "gid": "12345",
@@ -3982,6 +4006,12 @@ $result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "green",
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "followers": [
       {
         "gid": "12345",
@@ -4425,6 +4455,12 @@ $result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'val
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "green",
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "followers": [
       {
         "gid": "12345",
@@ -4611,6 +4647,12 @@ $result = $client->goals->removeFollowers(array('field' => 'value', 'field' => '
     "notes": "Start building brand awareness.",
     "start_on": "2019-09-14",
     "status": "green",
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "followers": [
       {
         "gid": "12345",
@@ -5687,7 +5729,7 @@ Returns details of a previously-requested Organization export.
 </pre>
 
 <span class="description">
-A `portfolio` gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](/docs/asana-project-statuses) update.
+A `portfolio` gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [status update](/docs/asana-statuses).
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 </span>
 
@@ -5898,6 +5940,12 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
+    },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
     },
     "custom_field_settings": [
       {
@@ -6130,6 +6178,12 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
       "resource_type": "user",
       "name": "Greg Sanchez"
     },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "custom_field_settings": [
       {
         "gid": "12345",
@@ -6346,6 +6400,12 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
       "gid": "12345",
       "resource_type": "user",
       "name": "Greg Sanchez"
+    },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
     },
     "custom_field_settings": [
       {
@@ -8059,6 +8119,9 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "title": "Status Update - Jun 15"
+    },
     "custom_fields": {
       "4578152156": "Not Started",
       "5678904321": "On Hold"
@@ -8109,10 +8172,76 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -8210,7 +8339,7 @@ Returns the full record of the newly created project.
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»» current_status<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `status_update` resource.*|
 |»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
@@ -8219,6 +8348,8 @@ Returns the full record of the newly created project.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -8234,6 +8365,11 @@ Returns the full record of the newly created project.
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**current_status**: *Deprecated: new integrations should prefer the `status_update` resource.*
+A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
 
 #### Enumerated Values
 
@@ -8370,10 +8506,76 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -8558,6 +8760,9 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "title": "Status Update - Jun 15"
+    },
     "custom_fields": {
       "4578152156": "Not Started",
       "5678904321": "On Hold"
@@ -8608,10 +8813,76 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -8707,7 +8978,7 @@ Returns the complete updated project record.
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»» current_status<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `status_update` resource.*|
 |»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
@@ -8716,6 +8987,8 @@ Returns the complete updated project record.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -8732,6 +9005,11 @@ Returns the complete updated project record.
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**current_status**: *Deprecated: new integrations should prefer the `status_update` resource.*
+A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
 
 #### Enumerated Values
 
@@ -9354,6 +9632,9 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "title": "Status Update - Jun 15"
+    },
     "custom_fields": {
       "4578152156": "Not Started",
       "5678904321": "On Hold"
@@ -9404,10 +9685,76 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -9497,7 +9844,7 @@ Returns the full record of the newly created project.
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»» current_status<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `status_update` resource.*|
 |»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
@@ -9506,6 +9853,8 @@ Returns the full record of the newly created project.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -9522,6 +9871,11 @@ Returns the full record of the newly created project.
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**current_status**: *Deprecated: new integrations should prefer the `status_update` resource.*
+A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
 
 #### Enumerated Values
 
@@ -9761,6 +10115,9 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "title": "Status Update - Jun 15"
+    },
     "custom_fields": {
       "4578152156": "Not Started",
       "5678904321": "On Hold"
@@ -9811,10 +10168,76 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       "text": "The project is moving forward according to plan...",
       "title": "Status Update - Jun 15"
     },
+    "current_status_update": {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    },
     "custom_field_settings": [
       {
         "gid": "12345",
-        "resource_type": "custom_field_setting"
+        "resource_type": "custom_field_setting",
+        "custom_field": {
+          "gid": "12345",
+          "resource_type": "custom_field",
+          "created_by": {
+            "gid": "12345",
+            "resource_type": "user",
+            "name": "Greg Sanchez"
+          },
+          "currency_code": "EUR",
+          "custom_label": "gold pieces",
+          "custom_label_position": "suffix",
+          "description": "Development team priority",
+          "display_value": "blue",
+          "enabled": true,
+          "enum_options": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "enum_value": {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          },
+          "format": "custom",
+          "has_notifications_enabled": true,
+          "is_global_to_workspace": true,
+          "multi_enum_values": [
+            {
+              "gid": "12345",
+              "resource_type": "enum_option",
+              "color": "blue",
+              "enabled": true,
+              "name": "Low"
+            }
+          ],
+          "name": "Status",
+          "number_value": 5.2,
+          "precision": 2,
+          "resource_subtype": "text",
+          "text_value": "Some Value",
+          "type": "text"
+        },
+        "is_important": false,
+        "parent": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        },
+        "project": {
+          "gid": "12345",
+          "resource_type": "project",
+          "name": "Stuff to buy"
+        }
       }
     ],
     "default_view": "calendar",
@@ -9907,7 +10330,7 @@ Returns the full record of the newly created project.
 |» data<span class="param-type"> object</span>|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»» archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |»» color<span class="param-type"> string¦null</span>|Color of the project.|
-|»» current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|»» current_status<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `status_update` resource.*|
 |»»» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
@@ -9916,6 +10339,8 @@ Returns the full record of the newly created project.
 |»»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |»»» title<span class="param-type"> string</span>|The title of the project status update.|
+|»» current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
@@ -9932,6 +10357,11 @@ Returns the full record of the newly created project.
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+#### Detailed descriptions
+
+**current_status**: *Deprecated: new integrations should prefer the `status_update` resource.*
+A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
 
 #### Enumerated Values
 
@@ -11152,7 +11582,14 @@ Returns the compact project membership records for the project.
 </pre>
 
 <span class="description">
-A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, "red" for projects that are behind, and "blue" for projects on hold.
+*Deprecated: new integrations should prefer using [Status Updates](/docs/asana-statuses)*
+
+A *project status* is an update on the progress of a particular project,
+and is sent out to all project followers when created. These updates
+include both text describing the update and a color code intended to
+represent the overall state of the project: "green" for projects that
+are on track, "yellow" for projects at risk, "red" for projects that
+are behind, and "blue" for projects on hold.
 
 Project statuses can be created and deleted, but not modified.
 </span>
@@ -11255,6 +11692,8 @@ $result = $client->projectstatuses->getProjectStatus($project_status_gid, array(
 </p>
 
 <span class="description">
+*Deprecated: new integrations should prefer the `/status_updates/{status_gid}` route.*
+
 Returns the complete record for a single status update.
 </span>
 
@@ -11355,6 +11794,8 @@ $result = $client->projectstatuses->deleteProjectStatus($project_status_gid, arr
 </p>
 
 <span class="description">
+*Deprecated: new integrations should prefer the `/status_updates/{status_gid}` route.*
+
 Deletes a specific, existing project status update.
 
 Returns an empty data record.
@@ -11471,6 +11912,8 @@ $result = $client->projectstatuses->getProjectStatusesForProject($project_gid, a
 </p>
 
 <span class="description">
+*Deprecated: new integrations should prefer the `/status_updates` route.*
+
 Returns the compact project status update records for all updates on the project.
 </span>
 
@@ -11609,7 +12052,10 @@ $result = $client->projectstatuses->createProjectStatusForProject($project_gid, 
 </p>
 
 <span class="description">
+*Deprecated: new integrations should prefer the `/status_updates` route.*
+
 Creates a new status update on the project.
+
 Returns the full record of the newly created project status update.
 </span>
 
@@ -11618,7 +12064,7 @@ Returns the full record of the newly created project status update.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project status to create.|
-|» data<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|» data<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `status_update` resource.*|
 |»» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |»» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
@@ -12563,6 +13009,586 @@ Status Code **200**
 |Name|Description|
 |---|---|
 | data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="full-line">
+<section class="full-section">
+<a id="asana-status-updates"></a>
+<h1 id="status-updates">Status Updates</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/get-a-status-update"><span class="get-verb">GET</span> <span class=""nn>/status_updates/{status_gid}</span></a><br><a href="/docs/delete-a-status-update"><span class="delete-verb">DELETE</span> <span class=""nn>/status_updates/{status_gid}</span></a><br><a href="/docs/get-status-updates-from-an-object"><span class="get-verb">GET</span> <span class=""nn>/status_updates</span></a><br><a href="/docs/create-a-status-update"><span class="post-verb">POST</span> <span class=""nn>/status_updates</span></a></code>
+</pre>
+
+<span class="description">
+A *status update* is an update on the progress of a particular object,
+and is sent out to all followers when created. These updates
+include both text describing the update and a `status_type` intended to
+represent the overall state of the project. These include: `on_track` for projects that
+are on track, `at_risk` for projects at risk, `off_track` for projects that
+are behind, and `on_hold` for projects on hold.
+
+Status updates can be created and deleted, but not modified.
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Get a status update
+
+<a id="opIdgetStatus"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/status_updates/{status_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.statuses.getStatus(statusGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.statuses.get_status(status_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.statuses.get_status(status_gid: 'status_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.statuses.getStatus(statusGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->statuses->getStatus($status_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "status_update",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "resource_subtype": "project_status_update",
+    "status_type": "on_track",
+    "text": "The project is moving forward according to plan...",
+    "title": "Status Update - Jun 15",
+    "author": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "hearted": true,
+    "hearts": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "liked": true,
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "modified_at": "2012-02-22T02:06:58.147Z",
+    "num_hearts": 5,
+    "num_likes": 5,
+    "parent": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    }
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /status_updates/{status_gid}</code>
+</p>
+
+<span class="description">
+Returns the complete record for a single status update.
+</span>
+
+<h3 id="get-a-status-update-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/status_gid<span class="param-type"> string</span><div class="param-required">required</div>|The status update to get.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-status-update-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [StatusUpdate](#schemastatusupdate)</span>|Successfully retrieved the specified object's status updates.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Delete a status update
+
+<a id="opIddeleteStatus"></a>
+
+> Code samples
+
+```shell
+curl -X DELETE https://app.asana.com/api/1.0/status_updates/{status_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.statuses.deleteStatus(statusGid)
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.statuses.delete_status(status_gid, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.statuses.delete_status(status_gid: 'status_gid', options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.statuses.deleteStatus(statusGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->statuses->deleteStatus($status_gid, array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="delete-verb">DELETE</span> /status_updates/{status_gid}</code>
+</p>
+
+<span class="description">
+Deletes a specific, existing status update.
+
+Returns an empty data record.
+</span>
+
+<h3 id="delete-a-status-update-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/status_gid<span class="param-type"> string</span><div class="param-required">required</div>|The status update to get.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="delete-a-status-update-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified status.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="delete-a-status-update-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Get status updates from an object
+
+<a id="opIdgetStatusesForObject"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/status_updates?parent=159874 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.statuses.getStatusesForObject({param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.statuses.get_statuses_for_object({'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.statuses.get_statuses_for_object(param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<JsonElement> result = client.statuses.getStatusesForObject(publishedSince, parent)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->statuses->getStatusesForObject(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "status_update",
+      "resource_subtype": "project_status_update",
+      "title": "Status Update - Jun 15"
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /status_updates</code>
+</p>
+
+<span class="description">
+Returns the compact status update records for all updates on the object.
+</span>
+
+<h3 id="get-status-updates-from-an-object-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|?parent<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for object to fetch statuses from.|
+|?created_since<span class="param-type"> string(date-time)</span>|Only return statuses that have been created since the given time.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-status-updates-from-an-object-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [StatusUpdateCompact](#schemastatusupdatecompact)</span>|Successfully retrieved the specified object's status updates.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Create a status update
+
+<a id="opIdcreateStatusForObject"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/status_updates \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.statuses.createStatusForObject({field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.statuses.create_status_for_object({'field': 'value', 'field': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.statuses.create_status_for_object(field: "value", field: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.statuses.createStatusForObject()
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->statuses->createStatusForObject(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "parent": "string",
+    "status_type": "on_track",
+    "text": "The project is moving forward according to plan...",
+    "title": "Status Update - Jun 15"
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "status_update",
+    "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+    "resource_subtype": "project_status_update",
+    "status_type": "on_track",
+    "text": "The project is moving forward according to plan...",
+    "title": "Status Update - Jun 15",
+    "author": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "hearted": true,
+    "hearts": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "liked": true,
+    "likes": [
+      {
+        "gid": "12345",
+        "user": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        }
+      }
+    ],
+    "modified_at": "2012-02-22T02:06:58.147Z",
+    "num_hearts": 5,
+    "num_likes": 5,
+    "parent": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    }
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /status_updates</code>
+</p>
+
+<span class="description">
+Creates a new status update on an object.
+Returns the full record of the newly created status update.
+</span>
+
+<h3 id="create-a-status-update-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The status update to create.|
+|» data<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|»» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
+|»» parent<span class="param-type"> string</span><div class="param-required">required</div>|The id of parent to send this status update to. This can be a project, goal or portfolio.|
+|»» status_type<span class="param-type"> string</span>|The type associated with the status update. This represents the current state of the object this object is on.|
+|»» text<span class="param-type"> string</span>|The text content of the status update.|
+|»» title<span class="param-type"> string</span>|The title of the status update.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| status_type|on_track|
+| status_type|at_risk|
+| status_type|off_track|
+| status_type|on_hold|
+| status_type|complete|
+| status_type|achieved|
+| status_type|partial|
+| status_type|missed|
+| status_type|dropped|
+
+<h3 id="create-a-status-update-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [StatusUpdate](#schemastatusupdate)</span>|Successfully created a new status update.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -24448,6 +25474,12 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Goal), b
   "notes": "Start building brand awareness.",
   "start_on": "2019-09-14",
   "status": "green",
+  "current_status_update": {
+    "gid": "12345",
+    "resource_type": "status_update",
+    "resource_subtype": "project_status_update",
+    "title": "Status Update - Jun 15"
+  },
   "followers": [
     {
       "gid": "12345",
@@ -24524,6 +25556,11 @@ A generic Asana Resource, containing a globally unique identifier.
 |notes<span class="param-type"> string</span>|Free-form textual information associated with the goal (i.e. its description).|
 |start_on<span class="param-type"> string¦null</span>|The day on which work for this goal begins, or null if the goal has no start date. This takes a date with `YYYY-MM-DD` format, and cannot be set unless there is an accompanying due date.|
 |status<span class="param-type"> string¦null</span>|The current status of this goal. When the goal is open, its status can be `green`, `yellow`, and `red` to reflect "On Track", "At Risk", and "Off Track", respectively. When the goal is closed, the value can be `missed`, `achieved`, `partial`, or `dropped`.<br>*Note* you can only write to this property if `metric` is set.|
+|current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The `resource_subtype`s for `status` objects represent the type of their parent.|
+|» title<span class="param-type"> string</span>|The title of the status update.|
 |followers<span class="param-type"> [object]</span>|Array of users following this goal.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -24570,6 +25607,9 @@ A generic Asana Resource, containing a globally unique identifier.
 
 |Property|Value|
 |---|---|
+|resource_subtype|project_status_update|
+|resource_subtype|portfolio_status_update|
+|resource_subtype|goal_status_update|
 |resource_subtype|number|
 |unit|none|
 |unit|currency|
@@ -24954,6 +25994,12 @@ This object determines if a user is a member of a portfolio.
     "resource_type": "user",
     "name": "Greg Sanchez"
   },
+  "current_status_update": {
+    "gid": "12345",
+    "resource_type": "status_update",
+    "resource_subtype": "project_status_update",
+    "title": "Status Update - Jun 15"
+  },
   "custom_field_settings": [
     {
       "gid": "12345",
@@ -25063,6 +26109,11 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The `resource_subtype`s for `status` objects represent the type of their parent.|
+|» title<span class="param-type"> string</span>|The title of the status update.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of custom field settings applied to the portfolio.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -25153,6 +26204,9 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |color|light-orange|
 |color|light-purple|
 |color|light-warm-gray|
+|resource_subtype|project_status_update|
+|resource_subtype|portfolio_status_update|
+|resource_subtype|goal_status_update|
 |custom_label_position|prefix|
 |custom_label_position|suffix|
 |format|currency|
@@ -25330,10 +26384,76 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     "text": "The project is moving forward according to plan...",
     "title": "Status Update - Jun 15"
   },
+  "current_status_update": {
+    "gid": "12345",
+    "resource_type": "status_update",
+    "resource_subtype": "project_status_update",
+    "title": "Status Update - Jun 15"
+  },
   "custom_field_settings": [
     {
       "gid": "12345",
-      "resource_type": "custom_field_setting"
+      "resource_type": "custom_field_setting",
+      "custom_field": {
+        "gid": "12345",
+        "resource_type": "custom_field",
+        "created_by": {
+          "gid": "12345",
+          "resource_type": "user",
+          "name": "Greg Sanchez"
+        },
+        "currency_code": "EUR",
+        "custom_label": "gold pieces",
+        "custom_label_position": "suffix",
+        "description": "Development team priority",
+        "display_value": "blue",
+        "enabled": true,
+        "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "format": "custom",
+        "has_notifications_enabled": true,
+        "is_global_to_workspace": true,
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "name": "Status",
+        "number_value": 5.2,
+        "precision": 2,
+        "resource_subtype": "text",
+        "text_value": "Some Value",
+        "type": "text"
+      },
+      "is_important": false,
+      "parent": {
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
+      },
+      "project": {
+        "gid": "12345",
+        "resource_type": "project",
+        "name": "Stuff to buy"
+      }
     }
   ],
   "default_view": "calendar",
@@ -25417,7 +26537,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |archived<span class="param-type"> boolean</span>|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |color<span class="param-type"> string¦null</span>|Color of the project.|
 |created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
-|current_status<span class="param-type"> object</span>|A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
+|current_status<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `status_update` resource.*<br>A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -25434,9 +26554,63 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
 |» text<span class="param-type"> string</span>|The text content of the status update.|
 |» title<span class="param-type"> string</span>|The title of the project status update.|
+|current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The `resource_subtype`s for `status` objects represent the type of their parent.|
+|» title<span class="param-type"> string</span>|The title of the status update.|
 |custom_field_settings<span class="param-type"> [object]</span>|Array of Custom Field Settings (in compact form).|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» custom_field<span class="param-type"> object</span>|The custom field that is applied to the `parent`.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|»» currency_code<span class="param-type"> string¦null</span>|ISO 4217 currency code to format this custom field. This will be null if the `format` is not `currency`.|
+|»» custom_label<span class="param-type"> string¦null</span>|This is the string that appears next to the custom field value. This will be null if the `format` is not `custom`.|
+|»» custom_label_position<span class="param-type"> string</span>|Only relevant for custom fields with `custom` format. This depicts where to place the custom label. This will be null if the `format` is not `custom`.|
+|»» description<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The description of the custom field.|
+|»» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
+|»» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
+|»» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» format<span class="param-type"> string</span>|The format of this custom field.|
+|»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» is_global_to_workspace<span class="param-type"> boolean</span>|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» name<span class="param-type"> string</span>|The name of the custom field.|
+|»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
+|»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.<br>For percentage format, this may be unintuitive, as a value of 0.25 has a precision of 0, while a value of 0.251 has a precision of 1. This is due to 0.25 being displayed as 25%.<br>The identifier format will always have a precision of 0.|
+|»» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
+|»» text_value<span class="param-type"> string</span>|*Conditional*. This string is the value of a text custom field.|
+|»» type<span class="param-type"> string</span>|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» is_important<span class="param-type"> boolean</span>|`is_important` is used in the Asana web application to determine if this custom field is displayed in the list/grid view of a project or portfolio.|
+|» parent<span class="param-type"> object</span>|The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|» project<span class="param-type"> object</span>|*Deprecated: new integrations should prefer the `parent` field.* The id of the project that this custom field settings refers to.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
 |due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
@@ -25512,6 +26686,24 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |color|yellow|
 |color|red|
 |color|blue|
+|resource_subtype|project_status_update|
+|resource_subtype|portfolio_status_update|
+|resource_subtype|goal_status_update|
+|custom_label_position|prefix|
+|custom_label_position|suffix|
+|format|currency|
+|format|identifier|
+|format|percentage|
+|format|custom|
+|format|none|
+|resource_subtype|text|
+|resource_subtype|enum|
+|resource_subtype|multi_enum|
+|resource_subtype|number|
+|type|text|
+|type|enum|
+|type|multi_enum|
+|type|number|
 |default_view|list|
 |default_view|board|
 |default_view|calendar|
@@ -25622,6 +26814,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_ProjectS
 ```
 
 <span class="description">
+*Deprecated: new integrations should prefer the `status_update` resource.*
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
 
 </span>
@@ -25739,6 +26932,174 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+
+</section><hr>
+<section>
+<a id="schemastatusupdatecompact"></a>
+<a id="schema_StatusUpdateCompact"></a>
+<a id="tocSstatusupdatecompact"></a>
+<a id="tocsstatusupdatecompact"></a>
+<a id="tocS_StatusUpdateCompact"></a>
+<h2 id="status-update-compact">StatusUpdateCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "status_update",
+  "resource_subtype": "project_status_update",
+  "title": "Status Update - Jun 15"
+}
+
+```
+
+<span class="description">
+A `Compact` object is the same as the [full response object](/docs/tocS_StatusUpdate), but with less fields included by default. See
+[Input/Output Options](/docs/input-output-options) to include more fields.
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The `resource_subtype`s for `status` objects represent the type of their parent.|
+|title<span class="param-type"> string</span>|The title of the status update.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|resource_subtype|project_status_update|
+|resource_subtype|portfolio_status_update|
+|resource_subtype|goal_status_update|
+
+</section><hr>
+<section>
+<a id="schemastatusupdate"></a>
+<a id="schema_StatusUpdate"></a>
+<a id="tocSstatusupdate"></a>
+<a id="tocsstatusupdate"></a>
+<a id="tocS_StatusUpdate"></a>
+<h2 id="status-update">StatusUpdate</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "status_update",
+  "html_text": "<body>The project <strong>is</strong> moving forward according to plan...</body>",
+  "resource_subtype": "project_status_update",
+  "status_type": "on_track",
+  "text": "The project is moving forward according to plan...",
+  "title": "Status Update - Jun 15",
+  "author": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "hearted": true,
+  "hearts": [
+    {
+      "gid": "12345",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ],
+  "liked": true,
+  "likes": [
+    {
+      "gid": "12345",
+      "user": {
+        "gid": "12345",
+        "resource_type": "user",
+        "name": "Greg Sanchez"
+      }
+    }
+  ],
+  "modified_at": "2012-02-22T02:06:58.147Z",
+  "num_hearts": 5,
+  "num_likes": 5,
+  "parent": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  }
+}
+
+```
+
+<span class="description">
+A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
+|resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The `resource_subtype`s for `status` objects represent the type of their parent.|
+|status_type<span class="param-type"> string</span>|The type associated with the status update. This represents the current state of the object this object is on.|
+|text<span class="param-type"> string</span>|The text content of the status update.|
+|title<span class="param-type"> string</span>|The title of the status update.|
+|author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
+|created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|hearted<span class="param-type"> boolean</span>|*Deprecated - please use liked instead* True if the status is hearted by the authorized user, false if not.|
+|hearts<span class="param-type"> [object]</span>|*Deprecated - please use likes instead* Array of likes for users who have hearted this status.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|liked<span class="param-type"> boolean</span>|True if the status is liked by the authorized user, false if not.|
+|likes<span class="param-type"> [object]</span>|Array of likes for users who have liked this status.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the object, as a string.|
+|» user<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|modified_at<span class="param-type"> string(date-time)</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the status.*|
+|num_hearts<span class="param-type"> integer</span>|*Deprecated - please use likes instead* The number of users who have hearted this status.|
+|num_likes<span class="param-type"> integer</span>|The number of users who have liked this status.|
+|parent<span class="param-type"> object</span>|The parent of the status update. This can be a project, goal or portfolio, and indicates that this status was sent on that object.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|resource_subtype|project_status_update|
+|resource_subtype|portfolio_status_update|
+|resource_subtype|goal_status_update|
+|status_type|on_track|
+|status_type|at_risk|
+|status_type|off_track|
+|status_type|on_hold|
+|status_type|complete|
+|status_type|achieved|
+|status_type|partial|
+|status_type|missed|
+|status_type|dropped|
 
 </section><hr>
 <section>

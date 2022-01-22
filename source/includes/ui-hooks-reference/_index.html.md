@@ -236,7 +236,7 @@ When the user types into a Modal Form form field, Asana will send a request cont
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
+|200<span class="param-type"> [TypeaheadList](#schematypeaheadlist)</span>|Successfully retrieved typeahead results.|
 |400<span class="param-type"> None</span>|Bad Request|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
@@ -649,7 +649,7 @@ When the user types into a Rule Action form field, Asana will send a request con
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
+|200<span class="param-type"> [TypeaheadList](#schematypeaheadlist)</span>|Successfully retrieved typeahead results.|
 |400<span class="param-type"> None</span>|Bad Request|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
@@ -1412,7 +1412,7 @@ When the user types into the lookup input field, Asana will send a request conta
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [Typeahead](#schematypeahead)</span>|Successfully retrieved typeahead results.|
+|200<span class="param-type"> [TypeaheadList](#schematypeaheadlist)</span>|Successfully retrieved typeahead results.|
 |400<span class="param-type"> None</span>|Bad Request|
 |401<span class="param-type"> None</span>|Unauthorized|
 |403<span class="param-type"> None</span>|Forbidden|
@@ -1763,12 +1763,12 @@ An object describing a typeahead result.
 
 </section><hr>
 <section>
-<a id="schematypeahead"></a>
-<a id="schema_Typeahead"></a>
-<a id="tocStypeahead"></a>
-<a id="tocstypeahead"></a>
-<a id="tocS_Typeahead"></a>
-<h2 id="typeahead">Typeahead</h2>
+<a id="schematypeaheadlist"></a>
+<a id="schema_TypeaheadList"></a>
+<a id="tocStypeaheadlist"></a>
+<a id="tocstypeaheadlist"></a>
+<a id="tocS_TypeaheadList"></a>
+<h2 id="typeahead-list">TypeaheadList</h2>
 
 <span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
 

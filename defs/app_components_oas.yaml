@@ -20,7 +20,7 @@ info:
     - FormMetadataResponse
     - RanActionResponse
     - WidgetMetadataResponse
-    - TypeaheadResponse
+    - TypeaheadListResponse
     - TypeaheadItem
     - FormValues
 servers:
@@ -519,7 +519,7 @@ components:
             The URL of the icon to display next to the title
           type: string
           example: 'https://example-icon.png'
-    TypeaheadRequest:
+    TypeaheadListRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
         - type: object
@@ -551,7 +551,7 @@ components:
               description: >-
                 The time (in ISO-8601 format) when the request should expire
               example: '2019-04-15T01:01:46.055Z'
-    TypeaheadResponse:
+    TypeaheadListResponse:
       description: >-
         The response to a successful typeahead request.
       type: object
@@ -807,14 +807,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TypeaheadRequest'
+              $ref: '#/components/schemas/TypeaheadListRequest'
       responses:
         200:
           description: Successfully retrieved typeahead results.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TypeaheadResponse'
+                $ref: '#/components/schemas/TypeaheadListResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -873,14 +873,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TypeaheadRequest'
+              $ref: '#/components/schemas/TypeaheadListRequest'
       responses:
         200:
           description: Successfully retrieved typeahead results.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TypeaheadResponse'
+                $ref: '#/components/schemas/TypeaheadListResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -909,14 +909,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TypeaheadRequest'
+              $ref: '#/components/schemas/TypeaheadListRequest'
       responses:
         200:
           description: Successfully retrieved typeahead results.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TypeaheadResponse'
+                $ref: '#/components/schemas/TypeaheadListResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
