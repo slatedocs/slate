@@ -156,7 +156,8 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
     "Köln"
   ],
   "homepage_url": "www.example.com",
-  "imdb_link": null,
+  "imdb_link": "https://www.imdb.com/name/nm0000001",
+  "imdb_id": "nm0000001",
   "facebook_page": "Castupload",
   "twitter_handle": "Castupload",
   "instagram_username": "castupload",
@@ -398,6 +399,7 @@ curl "https://www.castupload.com/api/v1/talent_agencies/123" \
   "name": "Example agency",
   "homepage_url": "https://www.example.com",
   "imdb_link": "https://pro.imdb.com/company/co0000001",
+  "imdb_id": "co0000001",
   "showreel_url": "https://www.example.com/showreel",
   "twitter_handle": "@example_agency",
   "public_email": "info@example.com",
