@@ -202,7 +202,7 @@ Required | &nbsp;
  ------- | -----------
 `ipPolicies`<br/>*Array* | The IP policy to use for the security group if the security group scope is CUSTOM.
 `ipPolicies.ipRange`<br/>*string* | The IP range in CIDR block notation of an IPV4 compatible string. Indicates the allowed IP(s) to reach the instance.
-`ipPolicies.protocol`<br/>*enum* | Possible values are UDP, TCP and ICMP. Indicates the allowed protocol to reach the instance.
+`ipPolicies.protocol`<br/>*enum* | Possible values are UDP, TCP and ICMP. Indicates the allowed protocol to use to reach the instance.
 `ipPolicies.fromPort`<br/>*integer* | The allowed origin port of the IP range.
 `ipPolicies.toPort`<br/>*integer* | The allowed destination port of the IP range.
 
