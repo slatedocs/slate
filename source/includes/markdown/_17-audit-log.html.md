@@ -37,27 +37,29 @@ All user events operate on the _User_ resource type.
 | user_two_factor_auth_disabled | A user’s two factor authentication was disabled. |
  
 ### Admin Settings
- 
-All admin settings events operate on the _Workspace_ resource type.
- 
+All admin settings events operate on the _Workspace_ resource type except for `workspace_announcement_created` and `workspace_announcement_removed` that operate on the _Workspace Announcement_ resource type.
+
 | Event Type | Description |
 |------------|---------------|
-| workspace_google_sso_settings_changed            | The workspace's Google SSO settings were changed. |
-| workspace_saml_settings_changed                  | The workspace's SAML settings were changed. |
-| workspace_saml_url_changed                       | The workspace's SAML url was changed. |
-| workspace_password_requirements_changed          | The workspace's password strength requirements were changed. |
-| workspace_force_password_reset                   | All users in the workspace were forced to reset their password. |
-| workspace_guest_invite_permissions_changed       | The workspace’s guest invite permissions were changed. |
-| workspace_file_attachment_options_changed        | File attachment options were enabled or disabled for the workspace. |
-| workspace_default_team_privacy_settings_changed  | The workspace's default team privacy settings were changed. |
-| workspace_wide_reporting_enabled                 | Workspace wide reporting was enabled. |
-| workspace_wide_reporting_disabled                | Workspace wide reporting was disabled. |
-| workspace_associated_email_domain_added          | An email domain was added to the workspace. |
-| workspace_associated_email_domain_removed        | An email domain was removed from the workspace. |
-| workspace_require_two_factor_auth_enabled        | Two factor authentication was set as required for the workspace. |
-| workspace_require_two_factor_auth_disabled       | Two factor authentication was set as not required for the workspace. |
-| workspace_view_links_enabled                     | Read-only link sharing was enabled for the workspace. |
-| workspace_view_links_disabled                    | Read-only link sharing was disabled for the workspace. |
+| workspace_google_sso_settings_changed           | The workspace's Google SSO settings were changed. |
+| workspace_saml_settings_changed                 | The workspace's SAML settings were changed. |
+| workspace_saml_url_changed                      | The workspace's SAML url was changed. |
+| workspace_password_requirements_changed         | The workspace's password strength requirements were changed. |
+| workspace_force_password_reset                  | All users in the workspace were forced to reset their password. |
+| workspace_guest_invite_permissions_changed      | The workspace’s guest invite permissions were changed. |
+| workspace_file_attachment_options_changed       | File attachment options were enabled or disabled for the workspace. |
+| workspace_default_team_privacy_settings_changed | The workspace's default team privacy settings were changed. |
+| workspace_wide_reporting_enabled                | Workspace wide reporting was enabled. |
+| workspace_wide_reporting_disabled               | Workspace wide reporting was disabled. |
+| workspace_associated_email_domain_added         | An email domain was added to the workspace. |
+| workspace_associated_email_domain_removed       | An email domain was removed from the workspace. |
+| workspace_require_two_factor_auth_enabled       | Two factor authentication was set as required for the workspace. |
+| workspace_require_two_factor_auth_disabled      | Two factor authentication was set as not required for the workspace. |
+| workspace_view_links_enabled                    | Read-only link sharing was enabled for the workspace. |
+| workspace_view_links_disabled                   | Read-only link sharing was disabled for the workspace. |
+| workspace_default_session_duration_changed      | The workspace's default session duration was changed. |
+| workspace_announcement_created                  | An announcement was created and published in the workspace. |
+| workspace_announcement_removed                  | An announcement was removed from the workspace. |
  
 ### Roles
  
@@ -73,7 +75,7 @@ All role events operate on the _User_ resource type.
 | Event Type | Resource Type | Description |
 |------------|---------------|-------------|
 | workspace_export_started | Workspace | An [organization export](https://asana.com/guide/help/premium/admin-console#gl-domain) was started. |
-| search_report_export_started   | AdvancedSearchQuery | A search report CSV export was started. |
+| search_report_export_started   | Search | A search report CSV export was started. |
 | workspace_teams_export_started | Workspace | A team CSV export for the workspace was started. |
 | division_teams_export_started  | Division | A team CSV export for the division was started. |
 | workspace_members_export_started | Workspace | A member CSV export was started for the workspace. |
