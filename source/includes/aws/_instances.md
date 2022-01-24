@@ -139,6 +139,79 @@ Attributes | &nbsp;
 `threadsPerCore`<br/>>*int* | The number of threads per CPU core.
 
 
+<!-------------------- CREATE AN INSTANCE -------------------->
+
+#### Create an instance
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/instances"
+```
+> Request body example for an instance with custom security group:
+
+```json
+{
+	"name": "name-of-the-instance",
+	"imageId": "ami-08e4e35cccc6189f4",
+	"instanceType": "t2.micro",
+  "securityGroupScope": "CUSTOM",
+  "securityGroupName": "sc-custom-user-iklp",
+  "securityGroupDescription": "Custom: allow only port 8085",
+	"minCount": 1,
+	"maxCount": 1,
+	"region": "us-east-1",
+	"sshKey": {
+		"keyName": "user ssh key"
+	},
+	"ipPolicies": [{
+			"ipRange": "0.0.0.0/0",
+			"protocol": "TCP",
+			"fromPort": 8085,
+			"toPort": 8085
+	}]
+}
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
+
+Create a new instance in a given [environment](#administration-environments).
+
+Required | &nbsp;
+ ------- | -----------
+`name`<br/>*string* | The name of the instance.
+`region`<br/>*string* | The region where the instance will be deployed.
+`imageId` <br/>*string* | The imageId to be used deployed with the instance. Represents the unique identifier of an amazon machine image (AMI). The imageId needs to be compatible with the machine type. The imageId needs to be available in the given region of the instance.
+`instanceType`<br/>*string* | The instance type for the instance. Represents the specification of the instance (cpu, memory, storage). The instance type needs to be available in the given region of the instance.
+`securityGroupScope`<br/>*enum* | Possible values are CUSTOM, DEFAULT and ALL. Represents the scope of the security group. CUSTOM scope implies that an IP policy will be provided with the payload indicating the custom ports and IP range to use. It indicates that only traffic matching the IP policy will be able to reach the instance. ALL scope allows all traffic from all sources. It is the default scope for an instance. No need to provide an IP policy if that is the selected scope. Default allows HTTP, HTTPS and SSH traffic by opening ports 80, 443 and 22 to all public IPs. No need to provide an IP policy if that is the selected scope.
+`securityGroupName`<br/>*string* | The name of the security group.
+`securityGroupDescription`<br/>*string* | The description of the security group.
+`maxCount`<br/>*integer* | The maximum number of instances to create. Cannot be greater than 20.
+`minCount`<br/>*integer* | The minimum number of instances to create. Should be greater than 1.
+`sshKey.keyName`<br/>*string* | The name of the SSH key to be used to connect to this instance via SSH.
+
+ Optional | &nbsp;
+ ------- | -----------
+`ipPolicies`<br/>*Array* | The IP policy to use for the security group if the security group scope is CUSTOM.
+`ipPolicies.ipRange`<br/>*string* | The IP range in CIDR block notation of an IPV4 compatible string. Indicates the allowed IP(s) to reach the instance.
+`ipPolicies.protocol`<br/>*enum* | Possible values are UDP, TCP and ICMP. Indicates the allowed protocol to reach the instance.
+`ipPolicies.fromPort`<br/>*integer* | The allowed origin port of the IP range.
+`ipPolicies.toPort`<br/>*integer* | The allowed destination port of the IP range.
+
+<aside class="notice">
+If the security group scope of the instance is CUSTOM, then the ipPolicies field is required.
+</aside>
+
+
+
 <!-------------------- DELETE AN INSTANCE -------------------->
 
 #### Delete an instance
