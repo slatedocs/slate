@@ -378,8 +378,8 @@ locale | en | Translates attributes with closed lists, free text fields are only
 See example response to the right for an overview of included fields. Please note:
 
 - It is not guaranteed that the exemplary JSON structure shown is complete. Additional fields may be added without notice.
-- The field `external_showreel` is still supported but deprecated. It is recommended to use the array of `external_showreels` instead.
-
+- **Deprecation**: `external_showreel` is deprecated. Use `external_showreels` instead.
+- **Deprecation**: `pitch` is deprecated. Use `pitches` instead.
 
 # Talent agencies
 
