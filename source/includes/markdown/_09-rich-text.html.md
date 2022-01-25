@@ -3,7 +3,7 @@
 
 # Rich Text
 
-***Note:***  *we are actively adding new rich texts formats to various objects in Asana. __This may break existing apps. New apps should be built using parsers and display logic that is forward compatible with the forthcoming rich text formats__. More details and ongoing updates can be found in __[this post in the developer forum](https://forum.asana.com/t/changes-are-coming-to-rich-text-html-notes-and-html-text-in-asana/113434)__.*
+***Note:***  *we are actively adding new rich texts formats to various objects in Asana. __This may break existing apps. New apps should be built using parsers and display logic that is forward compatible with the forthcoming rich text formats__. More details and ongoing updates can be found in __[this post in the developer forum](https://forum.asana.com/t/changes-are-coming-to-rich-text-html-notes-and-html-text-in-asana/113434)__.*
 
 
 > Example Rich Text
@@ -17,7 +17,7 @@
 The web product offers a number of rich formatting features when writing task notes, comments, project descriptions, and project status updates. These features include bold, italic, underlined, and monospaced text, as well as bulleted and numbered lists. Additionally, users can "@-mention" other users, tasks, projects, and many other objects within Asana to create links.
 </span>
 
-The rich text field name for an object is equivalent to it's plain text field name prefixed with `html_`. The following object types in Asana support rich text:
+The rich text field name for an object is equivalent to its plain text field name prefixed with `html_`. The following object types in Asana support rich text:
 
 | Object                 | Plain text field | Rich text field    |
 |------------------------|------------------|--------------------|
@@ -92,7 +92,7 @@ attribute values will be quoted. The following is a list of all the tags that ar
 | `<li>`     | List item          |
 | `<a>`      | Link               |
 
-In addition, the following tags are supported in the rich text of project briefs:
+In addition, the following tags are supported in the rich text of [Project Briefs](/docs/project-briefs):
 
 | Tag                                                        | Meaning in Asana              |
 |------------------------------------------------------------|-------------------------------|
@@ -104,7 +104,7 @@ In addition, the following tags are supported in the rich text of project briefs
 | `<object type="application/vnd.asana.project_milestones">` | List of milestones            |
 | `<object type="application/vnd.asana.project_goals">`      | List of goals                 |
 
-**Note:** This list can expand as new features are introduced to the Asana web product. Treat rich text as you would treat arbitrary HTML, and ensure that your code doesn't break when it encounters a tag not on this list.
+**Note:** Please note that the [Project Brief](/docs/project-briefs) API is in _preview_, and is expected to change. In addition, note that the above lists can expand as new features are introduced to the Asana web product. Treat rich text as you would treat arbitrary HTML, and ensure that your code doesn't break when it encounters a tag not on this list. 
 
 **Links**
 
