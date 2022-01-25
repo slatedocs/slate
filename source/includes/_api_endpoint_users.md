@@ -84,7 +84,7 @@ firstName|string|First Name of the user
 lastName|string|Last Name of the user
 email|string|Email of the user
 position|string|User's position title
-role|array|List of roles of the user
+role|object|Role details
 timezone|string|Timezone of the user
 onlineStatus|string|Online status of the user
 signature|string|Signature of the user which can be used in the emails
@@ -212,7 +212,7 @@ firstName|string|First Name of the user
 lastName|string|Last Name of the user
 email|string|Email of the user
 position|string|User's position title
-role|array|List of roles of the user
+role|int|Role ID
 timezone|string|Timezone of the user
 onlineStatus|string|Online status of the user
 signature|string|Signature of the user which can be used in the emails
@@ -264,7 +264,7 @@ firstName|string|First Name of the user
 lastName|string|Last Name of the user
 email|string|Email of the user
 position|string|User's position title
-role|array|List of roles of the user
+role|int|Role ID
 timezone|string|Timezone of the user
 signature|string|Signature of the user which can be used in the emails
 
