@@ -381,6 +381,7 @@ See example response to the right for an overview of included fields. Please not
 - **Deprecation**: `external_showreel` is deprecated. Use `external_showreels` instead.
 - **Deprecation**: `pitch` is deprecated. Use `pitches` instead.
 - **Deprecation**: `figure` is deprecated. Use `figures` instead.
+- **Deprecation**: `native_dialect` is deprecated. Use `native_dialects` instead.
 
 # Talent agencies
 
