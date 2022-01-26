@@ -190,7 +190,7 @@ Required | &nbsp;
 `name`<br/>*string* | The name of the instance.
 `region`<br/>*string* | The region where the instance will be deployed.
 `imageId` <br/>*string* | The imageId to be used deployed with the instance. Represents the unique identifier of an amazon machine image (AMI). The imageId needs to be compatible with the machine type. The imageId needs to be available in the given region of the instance.
-`instanceType`<br/>*string* | The instance type for the instance. Represents the specification of the instance (cpu, memory, storage). The instance type needs to be available in the given region of the instance.
+`instanceType`<br/>*string* | The type of the instance. Represents the specification of the instance (cpu, memory, storage). The instance type needs to be available in the given region of the instance.
 `securityGroupScope`<br/>*enum* | Possible values are CUSTOM, DEFAULT and ALL. Represents the scope of the security group. CUSTOM scope implies that an IP policy will be provided with the payload indicating the custom ports and IP range to use. It indicates that only traffic matching the IP policy will be able to reach the instance. ALL scope allows all traffic from all sources. It is the default scope for an instance. No need to provide an IP policy if that is the selected scope. Default allows HTTP, HTTPS and SSH traffic by opening ports 80, 443 and 22 to all public IPs. No need to provide an IP policy if that is the selected scope.
 `securityGroupName`<br/>*string* | The name of the security group.
 `securityGroupDescription`<br/>*string* | The description of the security group.
