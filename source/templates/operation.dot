@@ -4,6 +4,12 @@
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 {{?}}
 
+{{ var projectBriefOperationIds = ["getProjectBrief", "updateProjectBrief", "deleteProjectBrief", "createProjectBrief"]; }}
+
+{{? projectBriefOperationIds.includes(data.operation.operationId) }}
+<span class="beta-indicator">PREVIEW</span> - This endpoint is in "preview". For details, please see [Projects Briefs](/docs/project-briefs)
+{{?}}
+
 {{? data.operation.operationId}}
 <a id="opId{{=data.operation.operationId}}"></a>
 {{?}}
