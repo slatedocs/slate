@@ -1,0 +1,232 @@
+## Hotels Day View Schema
+
+```txt
+/hotels/day-view
+```
+
+A schema definition for the hotels day-view microsite supported parameters
+
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
+
+### Hotels Day View Type
+
+`object` Hotels Day View
+
+## Hotels Day View Properties
+
+| Property                | Type      | Required | Nullable       |
+| :---------------------- | :-------- | :------- | :------------- |
+| [entity_id](#entity_id) | `string`  | Required | cannot be null |
+| [checkin](#checkin)     | `string`  | Optional | cannot be null |
+| [checkout](#checkout)   | `string`  | Optional | cannot be null |
+| [adults](#adults)       | `integer` | Optional | cannot be null |
+| [rooms](#rooms)         | `integer` | Optional | cannot be null |
+| [sort](#sort)           | `string`  | Optional | cannot be null |
+| [market](#market)       | `string`  | Optional | cannot be null |
+| [locale](#locale)       | `string`  | Optional | cannot be null |
+| [currency](#currency)   | `string`  | Optional | cannot be null |
+
+### entity_id
+
+The ID of the geo location for which the search will be performed.
+
+`entity_id`
+
+*   is required
+
+*   Type: `string` Destination ID
+
+*   cannot be null
+
+#### entity_id Type
+
+`string` Destination ID
+
+#### entity_id Constraints
+
+**unknown format**: the value of this string must follow the format: `entity-id`
+
+### checkin
+
+Checkin date in the format YYYY-MM-DD
+
+`checkin`
+
+*   is optional
+
+*   Type: `string` Check-in Date
+
+*   cannot be null
+
+#### checkin Type
+
+`string` Check-in Date
+
+#### checkin Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### checkout
+
+Checkout date in the format YYYY-MM-DD
+
+`checkout`
+
+*   is optional
+
+*   Type: `string` Checkout Date
+
+*   cannot be null
+
+#### checkout Type
+
+`string` Checkout Date
+
+#### checkout Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### adults
+
+Number of adults. Adults number should be greater than or equal to the rooms number.
+
+`adults`
+
+*   is optional
+
+*   Type: `integer` Number of adults in the room. Adult's number should be greater than or equal to the rooms number.
+
+*   cannot be null
+
+#### adults Type
+
+`integer` Number of adults in the room. Adult's number should be greater than or equal to the rooms number.
+
+#### adults Constraints
+
+**minimum**: the value of this number must greater than or equal to: `1`
+#### adults Default Value
+
+The default value is:
+
+```json
+2
+```
+
+### rooms
+
+Number of rooms. Rooms number should be less than or equal to the adults number.
+
+`rooms`
+
+*   is optional
+
+*   Type: `integer` Number of rooms. Room's number should be less than or equal to the adults number.
+
+*   cannot be null
+
+#### rooms Type
+
+`integer` Number of rooms. Room's number should be less than or equal to the adults number.
+
+#### rooms Constraints
+
+**minimum**: the value of this number must greater than or equal to: `1`
+#### rooms Default Value
+
+The default value is:
+
+```json
+1
+```
+
+### sort
+
+Defines the order in which search results will appear. Options are: price, -price, distance, -rating, stars, -stars.
+
+`sort`
+
+*   is optional
+
+*   Type: `string` Sorting
+
+*   cannot be null
+
+#### sort Type
+
+`string` Sorting
+
+#### sort Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value             | Explanation |
+| :---------------- | :---------- |
+| `"price"`         |             |
+| `"-price"`        |             |
+| `"distance"`      |             |
+| `"-hotel_rating"` |             |
+| `"stars"`         |             |
+| `"-stars"`        |             |
+
+### market
+
+The market of the user. Examples: UK, US, ES
+
+`market`
+
+*   is optional
+
+*   Type: `string` Market
+
+*   cannot be null
+
+#### market Type
+
+`string` Market
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` Locale
+
+*   cannot be null
+
+#### locale Type
+
+`string` Locale
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` Currency
+
+*   cannot be null
+
+#### currency Type
+
+`string` Currency
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`

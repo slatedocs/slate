@@ -1,0 +1,176 @@
+## Hotels Home View Schema
+
+```txt
+/hotels/home-view
+```
+
+A schema definition for the hotels home-view microsite supported parameters.
+
+| Abstract            | Extensible | Status         | Identifiable | Custom Properties | Additional Properties | Access Restrictions |
+| :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ |
+| Can be instantiated | No         | Unknown status | No           | Forbidden         | Allowed               | none                |
+
+### Hotels Home View Type
+
+`object` Hotels Home View
+
+## Hotels Home View Properties
+
+| Property                                      | Type      | Required | Nullable       |
+| :-------------------------------------------- | :-------- | :------- | :------------- |
+| [checkin](#checkin)                           | `string`  | Optional | cannot be null |
+| [checkout](#checkout)                         | `string`  | Optional | cannot be null |
+| [adults](#adults)                             | `integer` | Optional | cannot be null |
+| [rooms](#rooms)                               | `integer` | Optional | cannot be null |
+| [skyscanner_node_code](#skyscanner_node_code) | `string`  | Optional | cannot be null |
+| [market](#market)                             | `string`  | Optional | cannot be null |
+| [locale](#locale)                             | `string`  | Optional | cannot be null |
+| [currency](#currency)                         | `string`  | Optional | cannot be null |
+
+### checkin
+
+Checkin date in the format YYYY-MM-DD
+
+`checkin`
+
+*   is optional
+
+*   Type: `string` Check-in Date
+
+*   cannot be null
+
+#### checkin Type
+
+`string` Check-in Date
+
+#### checkin Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### checkout
+
+Checkout date in the format YYYY-MM-DD
+
+`checkout`
+
+*   is optional
+
+*   Type: `string` Checkout Date
+
+*   cannot be null
+
+#### checkout Type
+
+`string` Checkout Date
+
+#### checkout Constraints
+
+**unknown format**: the value of this string must follow the format: `date-yyyy-mm-dd`
+
+### adults
+
+Number of adults. Adults number should be greater than or equal to the rooms number.
+
+`adults`
+
+*   is optional
+
+*   Type: `integer` Number of adult guests
+
+*   cannot be null
+
+#### adults Type
+
+`integer` Number of adult guests
+
+### rooms
+
+Number of rooms. Rooms number should be less than or equal to the adults number.
+
+`rooms`
+
+*   is optional
+
+*   Type: `integer` Number of rooms
+
+*   cannot be null
+
+#### rooms Type
+
+`integer` Number of rooms
+
+### skyscanner_node_code
+
+The IATA code of the destination.
+
+`skyscanner_node_code`
+
+*   is optional
+
+*   Type: `string` Destination
+
+*   cannot be null
+
+#### skyscanner_node_code Type
+
+`string` Destination
+
+### market
+
+The market of the user. Examples: UK, US, ES
+
+`market`
+
+*   is optional
+
+*   Type: `string` Market
+
+*   cannot be null
+
+#### market Type
+
+`string` Market
+
+#### market Constraints
+
+**unknown format**: the value of this string must follow the format: `market`
+
+### locale
+
+The desired locale for the page. Examples: es-ES, en-GB, ru-RU
+
+`locale`
+
+*   is optional
+
+*   Type: `string` Locale
+
+*   cannot be null
+
+#### locale Type
+
+`string` Locale
+
+#### locale Constraints
+
+**unknown format**: the value of this string must follow the format: `locale`
+
+### currency
+
+The desired currency for the page. Examples: GBP, EUR, USD
+
+`currency`
+
+*   is optional
+
+*   Type: `string` Currency
+
+*   cannot be null
+
+#### currency Type
+
+`string` Currency
+
+#### currency Constraints
+
+**unknown format**: the value of this string must follow the format: `currency`
