@@ -143,7 +143,7 @@ Attributes | &nbsp;
 
 #### Create an instance
 ```shell
-curl -X DELETE \
+curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/aws/test-area/instances"
 ```
