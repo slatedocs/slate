@@ -104,7 +104,7 @@ In addition, the following tags are supported in the rich text of [Project Brief
 | `<object type="application/vnd.asana.project_milestones">` | List of milestones            |
 | `<object type="application/vnd.asana.project_goals">`      | List of goals                 |
 
-**Note:** Please note that the [Project Brief](/docs/project-briefs) API is in _preview_, and is expected to change. In addition, note that the above lists can expand as new features are introduced to the Asana web product. Treat rich text as you would treat arbitrary HTML, and ensure that your code doesn't break when it encounters a tag not on this list. 
+**Note:** Please note that the [Project Brief](/docs/project-briefs) API and enhanced rich text features are in _preview_, and are expected to change. The above lists can expand as new features are introduced to the Asana web product. Treat rich text as you would treat arbitrary HTML, and ensure that your code doesn't break when it encounters a tag not on this list. 
 
 **Links**
 
