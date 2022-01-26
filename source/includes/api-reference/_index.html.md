@@ -11351,6 +11351,8 @@ Please note that this API is in *preview*, and is expected to change. This API i
 <section>
 ## Get a project brief
 
+<span class="beta-indicator">PREVIEW</span> - This endpoint is in "preview". For details, please see [Projects Briefs](/docs/project-briefs)
+
 <a id="opIdgetProjectBrief"></a>
 
 > Code samples
@@ -11467,6 +11469,8 @@ Get the full record for a project brief.
 </section><hr class="half-line">
 <section>
 ## Update a project brief
+
+<span class="beta-indicator">PREVIEW</span> - This endpoint is in "preview". For details, please see [Projects Briefs](/docs/project-briefs)
 
 <a id="opIdupdateProjectBrief"></a>
 
@@ -11605,6 +11609,8 @@ Returns the complete updated project brief record.
 <section>
 ## Delete a project brief
 
+<span class="beta-indicator">PREVIEW</span> - This endpoint is in "preview". For details, please see [Projects Briefs](/docs/project-briefs)
+
 <a id="opIddeleteProjectBrief"></a>
 
 > Code samples
@@ -11714,6 +11720,8 @@ Status Code **200**
 </section><hr class="half-line">
 <section>
 ## Create a project brief
+
+<span class="beta-indicator">PREVIEW</span> - This endpoint is in "preview". For details, please see [Projects Briefs](/docs/project-briefs)
 
 <a id="opIdcreateProjectBrief"></a>
 
