@@ -4,7 +4,7 @@
 <section class="full-section">
 <h1 id="app-components">App Component Reference</h1>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
@@ -23,7 +23,7 @@ Web: <a href="https://asana.com/support">Asana Support</a>
 <a id="asana-modal-forms"></a>
 <h1 id="modal-forms">Modal Forms</h1>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/get-form-metadata"><span class="get-verb">GET</span> <span class=""nn>/{form_metadata_url}</span></a><br><a href="/docs/get-modal-form-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{modal_form_typeahead_url}</span></a><br><a href="/docs/on-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_change_callback}</span></a><br><a href="/docs/on-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{on_submit_callback}</span></a></code>
@@ -38,7 +38,7 @@ The Modal Form is displayed when the user starts the flow to create a resource. 
 <section>
 ## Get form metadata
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdgetFormMetadata"></a>
 
@@ -143,7 +143,7 @@ Get the metadata from the App Server to render a form.
 <section>
 ## Get Modal Form typeahead results
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdgetModalFormTypeaheadResults"></a>
 
@@ -247,7 +247,7 @@ When the user types into a Modal Form form field, Asana will send a request cont
 <section>
 ## On change callback
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdonFormChange"></a>
 
@@ -368,7 +368,7 @@ The callback request made to an App Server when a watched field's value changes 
 <section>
 ## On submit callback
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdonFormSubmit"></a>
 
@@ -541,7 +541,7 @@ The callback request made to an App Server when a form is submitted.
 <a id="asana-rule-actions"></a>
 <h1 id="rule-actions">Rule Actions</h1>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/get-rule-action-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{rule_action_typeahead_url}</span></a><br><a href="/docs/run-action"><span class="post-verb">POST</span> <span class=""nn>/{run_action_url}</span></a><br><a href="/docs/get-action-metadata"><span class="get-verb">GET</span> <span class=""nn>/{action.metadata_url}</span></a><br><a href="/docs/on-action-change-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_change_callback}</span></a><br><a href="/docs/on-action-submit-callback"><span class="post-verb">POST</span> <span class=""nn>/{action.on_submit_callback}</span></a></code>
@@ -556,7 +556,7 @@ When a rule containing a Rule Action is triggered, the Rules Engine will make a 
 <section>
 ## Get Rule Action typeahead results
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdgetRuleActionTypeaheadResults"></a>
 
@@ -660,7 +660,7 @@ When the user types into a Rule Action form field, Asana will send a request con
 <section>
 ## Run action
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdrunAction"></a>
 
@@ -768,7 +768,7 @@ The request made when an action is triggered.
 <section>
 ## Get action metadata
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdgetActionMetadata"></a>
 
@@ -875,7 +875,7 @@ When a user has navigated to the [Custom Rule builder](https://asana.com/guide/h
 <section>
 ## On action change callback
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdonActionFormChange"></a>
 
@@ -1000,7 +1000,7 @@ The callback request made to an App Server when a watched field's value changes 
 <section>
 ## On action submit callback
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdonActionFormSubmit"></a>
 
@@ -1205,7 +1205,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 <a id="asana-lookups"></a>
 <h1 id="lookups">Lookups</h1>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/attach-resource"><span class="post-verb">POST</span> <span class=""nn>/{resource_attach_url}</span></a><br><a href="/docs/get-lookup-typeahead-results"><span class="get-verb">GET</span> <span class=""nn>/{resource_typeahead_url}</span></a></code>
@@ -1220,7 +1220,7 @@ If the app defined a resource attach URL, tasks without a Widget offer the Looku
 <section>
 ## Attach resource
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdattachResource"></a>
 
@@ -1319,7 +1319,7 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 <section>
 ## Get Lookup typeahead results
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdgetTypeaheadResults"></a>
 
@@ -1424,7 +1424,7 @@ When the user types into the lookup input field, Asana will send a request conta
 <a id="asana-widgets"></a>
 <h1 id="widgets">Widgets</h1>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <pre class="highlight http tab-http">
 <code><a href="/docs/get-widget-metadata"><span class="get-verb">GET</span> <span class=""nn>/{widget_metadata_url}</span></a></code>
@@ -1439,7 +1439,7 @@ The Widget is displayed when the user views a task with an attachment with a res
 <section>
 ## Get widget metadata
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <a id="opIdgetWidgetMetadata"></a>
 
@@ -1545,7 +1545,7 @@ Get the metadata from the App Server to render a widget.
 <section class="full-section">
 # App Component Schemas
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components BETA](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 <span class="description">
 The schema definitions for each object requested or returned from Asana's API. Some fields are not returned by
@@ -1561,7 +1561,7 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 <a id="tocS_AttachedResource"></a>
 <h2 id="attached-resource">AttachedResource</h2>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 ```json
 {
@@ -1594,7 +1594,7 @@ The response to a successful lookup request.
 <a id="tocS_FormMetadata"></a>
 <h2 id="form-metadata">FormMetadata</h2>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 ```json
 {
@@ -1686,7 +1686,7 @@ Contains the metadata that describes how to display and manage a form.
 <a id="tocS_RanAction"></a>
 <h2 id="ran-action">RanAction</h2>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 ```json
 {
@@ -1735,7 +1735,7 @@ The response to an action request.
 <a id="tocS_TypeaheadItem"></a>
 <h2 id="typeahead-item">TypeaheadItem</h2>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 ```json
 {
@@ -1770,7 +1770,7 @@ An object describing a typeahead result.
 <a id="tocS_TypeaheadList"></a>
 <h2 id="typeahead-list">TypeaheadList</h2>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 ```json
 {
@@ -1812,7 +1812,7 @@ The response to a successful typeahead request.
 <a id="tocS_WidgetMetadata"></a>
 <h2 id="widget-metadata">WidgetMetadata</h2>
 
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 ```json
 {

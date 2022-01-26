@@ -5,7 +5,7 @@
 <h1 id="{{=data.title_prefix}}">{{ if (data.options.platform_ui) { }}App Component Reference{{ } else { }}API Reference{{ } }}</h1>
 
 {{? data.options.platform_ui}}
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 {{?}}
 
 > Scroll down for {{? data.header.language_tabs.length > 1}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length > 1}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
@@ -38,7 +38,7 @@ Base URLs:
 <h1 id="{{=data.utils.slugify(r)}}">{{= r}}</h1>
 
 {{? data.options.platform_ui}}
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 {{?}}
 
 {{ var first = true; }}
@@ -62,7 +62,7 @@ Base URLs:
 # {{ if (data.options.platform_ui) { }}App Component Schemas{{ } else { }}Schemas{{ } }}
 
 {{? data.options.platform_ui}}
-<span class="beta-indicator">BETA</span> - For access, please see [App Components BETA](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 {{?}}
 
 <span class="description">
@@ -80,7 +80,7 @@ default and you'll need to use [Input/Output Options](/docs/input-output-options
 <h2 id="{{=s.replaceAll("Response","").replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/([A-Z])([A-Z])(?=[a-z])/g, '$1-$2').toLowerCase()}}">{{=s.replaceAll("Response","")}}</h2>
 
 {{? data.options.platform_ui}}
-<span class="beta-indicator">BETA</span> - For access, please see [App Components Beta](/docs/app-components-beta)
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 {{?}}
 
 {{? data.options.yaml }}
