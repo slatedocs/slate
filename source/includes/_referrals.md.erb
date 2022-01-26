@@ -44,6 +44,7 @@ using it for new referral links, as it will become fully deprecated eventually.
 | --------- | ------- |
 | flights | home, day-view, calendar-month-view, browse-view, multicity, cheap-flights-to, flights-airline |
 | cars | home, day-view |
+| hotels | home-view, day-view, hotel-details |
 
 *TRACKING QUERY PARAMETERS*
 
@@ -101,13 +102,13 @@ Please refer to our <a href="#response-codes">response codes</a> in case of unsu
 
 | Page type | Description  |
 | --- | ---|
-| [home](#flights-home-page-supported-parameters-schema) | Skyscanner's Home [Example Link](https://www.skyscanner.net/)|
-| [day-view](#flights-day-view-supported-parameters-schema) | Flights Day View [Example Link](https://www.skyscanner.net/transport/flights/sof/ams/<%= config[:startdate] %>/<%= config[:enddate] %>/?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home#/)|
-| [calendar-month-view](#flights-calendar-month-view-supported-parameters-schema) | Flights MonthView [Example Link](https://www.skyscanner.net/transport/flights/sof/ams/?adults=1&children=2&adultsv2=1&childrenv2=3%7C2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=<%= config[:startmonth] %>&iym=<%= config[:endmonth] %>&ref=home&selectedoday=01&selectediday=01)|
-| [browse-view](#flights-browse-view-supported-parameters-schema) | Flights BrowseView [Example Link](https://www.skyscanner.net/transport/flights-from/edi/?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=<%= config[:startmonth] %>&iym=<%= config[:endmonth] %>&ref=home)|
+| [home](#flights-home-page-schema) | Skyscanner's Home [Example Link](https://www.skyscanner.net/)|
+| [day-view](#flights-day-view-schema) | Flights Day View [Example Link](https://www.skyscanner.net/transport/flights/sof/ams/<%= config[:startdate] %>/<%= config[:enddate] %>/?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home#/)|
+| [calendar-month-view](#flights-calendar-month-view-schema) | Flights MonthView [Example Link](https://www.skyscanner.net/transport/flights/sof/ams/?adults=1&children=2&adultsv2=1&childrenv2=3%7C2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=<%= config[:startmonth] %>&iym=<%= config[:endmonth] %>&ref=home&selectedoday=01&selectediday=01)|
+| [browse-view](#flights-browse-view-schema) | Flights BrowseView [Example Link](https://www.skyscanner.net/transport/flights-from/edi/?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&oym=<%= config[:startmonth] %>&iym=<%= config[:endmonth] %>&ref=home)|
 | [multicity](#flights-day-view-for-multicity-search-schema) | Flights Multicity [Example Link](https://www.skyscanner.net/transport/d/sof/<%= config[:fullstartdate] %>/ams/ams/<%= config[:fullenddate] %>/lond/lond/<%= config[:fullenddate] %>/sof?adults=1&children=2&adultsv2=1&childrenv2=3%7c2&infants=0&cabinclass=economy&ref=home#/)|
-| [cheap-flights-to](#cheap-flights-to-supported-parameters-schema) | Cheap Flights To [Example Link](https://www.skyscanner.net/za/en-gb/zar/flights-to/bom/cheap-flights-to-mumbai-airport.html)|
-| [flights-airline](#flights-airline-supported-parameters-schema) | Flights Airline [Example Link](https://www.skyscanner.net/airline/airline-emirates-ek.html)|
+| [cheap-flights-to](#cheap-flights-to-view-schema) | Cheap Flights To [Example Link](https://www.skyscanner.net/za/en-gb/zar/flights-to/bom/cheap-flights-to-mumbai-airport.html)|
+| [flights-airline](#flights-airline-schema) | Flights Airline [Example Link](https://www.skyscanner.net/airline/airline-emirates-ek.html)|
 
 For more details, please see our [Examples](#examples)
 
@@ -117,5 +118,15 @@ For more details, please see our [Examples](#examples)
 
 | API endpoint | Description  |
 | --- | ---|
-| [home](#carhire-home-page-supported-parameters-schema) | CarHire Home [Example Link](https://www.skyscanner.net/carhire) |
-| [day-view](#carhire-day-view-supported-parameters-schema) | CarHire DayView [Example Link](https://www.skyscanner.net/carhire/results/95565041/95565041/<%= config[:fullstartdate] %>T10:00/<%= config[:fullenddate] %>T10:00/30)|
+| [home](#carhire-home-view-schema) | CarHire Home [Example Link](https://www.skyscanner.net/carhire) |
+| [day-view](#carhire-day-view-schema) | CarHire DayView [Example Link](https://www.skyscanner.net/carhire/results/95565041/95565041/<%= config[:fullstartdate] %>T10:00/<%= config[:fullenddate] %>T10:00/30)|
+
+## Hotels Parameters
+
+*Hotels - Referral*
+
+| API endpoint | Description  |
+| --- | ---|
+| [home-view](#hotels-home-view-schema) | Hotels Home [Example Link](https://www.skyscanner.net/hotels) |
+| [day-view](#hotels-day-view-schema) | Hotels DayView [Example Link](https://www.skyscanner.net/hotels/search?entity_id=27544008&checkin=<%= config[:fullstartdate] %>&checkout=<%= config[:fullenddate] %>&adults=2&rooms=1)|
+| [hotel-details](#hotel-details-schema) | Hotel Details [Example Link](https://www.skyscanner.net/hotels/united-kingdom/london-hotels/mercure-london-heathrow-airport/ht-133231627?checkin=<%= config[:fullstartdate] %>&checkout=<%= config[:fullenddate] %>&rooms=1&adults=2&clicked_details_partner=h_ly&clicked_details_price=42&currency=GBP&locale=en-GB&market=UK&priceType=price-per-night)|
