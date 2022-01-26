@@ -11363,28 +11363,51 @@ curl -X GET https://app.asana.com/api/1.0/project_briefs/{project_brief_gid} \
 ```
 
 ```javascript--nodejs
-getProjectBrief
+const asana = require('asana');
 
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectbriefs.getProjectBrief(projectBriefGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
 ```
 
 ```python
-getProjectBrief
+import asana
 
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_briefs.get_project_brief(project_brief_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
-getProjectBrief
+require 'asana'
 
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_briefs.get_project_brief(project_brief_gid: 'project_brief_gid', param: "value", param: "value", options: {pretty: true})
 ```
 
 ```java
-getProjectBrief
+import com.asana.Client;
 
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projectbriefs.getProjectBrief(projectBriefGid)
+    .option("pretty", true)
+    .execute();
 ```
 
 ```php
-getProjectBrief
+<?php
+require 'php-asana/vendor/autoload.php';
 
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectbriefs->getProjectBrief($project_brief_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11459,28 +11482,53 @@ curl -X PUT https://app.asana.com/api/1.0/project_briefs/{project_brief_gid} \
 ```
 
 ```javascript--nodejs
-updateProjectBrief
+const asana = require('asana');
 
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectbriefs.updateProjectBrief(projectBriefGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
 ```
 
 ```python
-updateProjectBrief
+import asana
 
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_briefs.update_project_brief(project_brief_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
-updateProjectBrief
+require 'asana'
 
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_briefs.update_project_brief(project_brief_gid: 'project_brief_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
-updateProjectBrief
+import com.asana.Client;
 
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projectbriefs.updateProjectBrief(projectBriefGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
 ```
 
 ```php
-updateProjectBrief
+<?php
+require 'php-asana/vendor/autoload.php';
 
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectbriefs->updateProjectBrief($project_brief_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -11569,28 +11617,51 @@ curl -X DELETE https://app.asana.com/api/1.0/project_briefs/{project_brief_gid} 
 ```
 
 ```javascript--nodejs
-deleteProjectBrief
+const asana = require('asana');
 
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectbriefs.deleteProjectBrief(projectBriefGid)
+    .then((result) => {
+        console.log(result);
+    });
 ```
 
 ```python
-deleteProjectBrief
+import asana
 
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_briefs.delete_project_brief(project_brief_gid, opt_pretty=True)
 ```
 
 ```ruby
-deleteProjectBrief
+require 'asana'
 
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_briefs.delete_project_brief(project_brief_gid: 'project_brief_gid', options: {pretty: true})
 ```
 
 ```java
-deleteProjectBrief
+import com.asana.Client;
 
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projectbriefs.deleteProjectBrief(projectBriefGid)
+    .option("pretty", true)
+    .execute();
 ```
 
 ```php
-deleteProjectBrief
+<?php
+require 'php-asana/vendor/autoload.php';
 
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectbriefs->deleteProjectBrief($project_brief_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -11658,28 +11729,53 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_briefs
 ```
 
 ```javascript--nodejs
-createProjectBrief
+const asana = require('asana');
 
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.projectbriefs.createProjectBrief(projectGid, {field: "value", field: "value", pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
 ```
 
 ```python
-createProjectBrief
+import asana
 
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.project_briefs.create_project_brief(project_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
-createProjectBrief
+require 'asana'
 
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.project_briefs.create_project_brief(project_gid: 'project_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
-createProjectBrief
+import com.asana.Client;
 
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+JsonElement result = client.projectbriefs.createProjectBrief(projectGid)
+    .data("field", "value")
+    .data("field", "value")
+    .option("pretty", true)
+    .execute();
 ```
 
 ```php
-createProjectBrief
+<?php
+require 'php-asana/vendor/autoload.php';
 
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->projectbriefs->createProjectBrief($project_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -13471,7 +13567,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.statuses.getStatus(statusGid, {param: "value", param: "value", opt_pretty: true})
+client.statusupdates.getStatus(statusGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -13482,7 +13578,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.statuses.get_status(status_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+result = client.status_updates.get_status(status_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -13492,7 +13588,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.statuses.get_status(status_gid: 'status_gid', param: "value", param: "value", options: {pretty: true})
+result = client.status_updates.get_status(status_gid: 'status_gid', param: "value", param: "value", options: {pretty: true})
 ```
 
 ```java
@@ -13500,7 +13596,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.statuses.getStatus(statusGid)
+JsonElement result = client.statusupdates.getStatus(statusGid)
     .option("pretty", true)
     .execute();
 ```
@@ -13511,7 +13607,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->statuses->getStatus($status_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->statusupdates->getStatus($status_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -13620,7 +13716,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.statuses.deleteStatus(statusGid)
+client.statusupdates.deleteStatus(statusGid)
     .then((result) => {
         console.log(result);
     });
@@ -13631,7 +13727,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.statuses.delete_status(status_gid, opt_pretty=True)
+result = client.status_updates.delete_status(status_gid, opt_pretty=True)
 ```
 
 ```ruby
@@ -13641,7 +13737,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.statuses.delete_status(status_gid: 'status_gid', options: {pretty: true})
+result = client.status_updates.delete_status(status_gid: 'status_gid', options: {pretty: true})
 ```
 
 ```java
@@ -13649,7 +13745,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.statuses.deleteStatus(statusGid)
+JsonElement result = client.statusupdates.deleteStatus(statusGid)
     .option("pretty", true)
     .execute();
 ```
@@ -13660,7 +13756,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->statuses->deleteStatus($status_gid, array('opt_pretty' => 'true'))
+$result = $client->statusupdates->deleteStatus($status_gid, array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -13730,7 +13826,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.statuses.getStatusesForObject({param: "value", param: "value", opt_pretty: true})
+client.statusupdates.getStatusesForObject({param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -13741,7 +13837,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.statuses.get_statuses_for_object({'param': 'value', 'param': 'value'}, opt_pretty=True)
+result = client.status_updates.get_statuses_for_object({'param': 'value', 'param': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -13751,7 +13847,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.statuses.get_statuses_for_object(param: "value", param: "value", options: {pretty: true})
+result = client.status_updates.get_statuses_for_object(parent: '&#x27;parent_example&#x27;', param: "value", param: "value", options: {pretty: true})
 ```
 
 ```java
@@ -13759,7 +13855,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<JsonElement> result = client.statuses.getStatusesForObject(publishedSince, parent)
+List<JsonElement> result = client.statusupdates.getStatusesForObject(createdSince, parent)
     .option("pretty", true)
     .execute();
 ```
@@ -13770,7 +13866,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->statuses->getStatusesForObject(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->statusupdates->getStatusesForObject(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -13842,7 +13938,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.statuses.createStatusForObject({field: "value", field: "value", pretty: true})
+client.statusupdates.createStatusForObject({field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -13853,7 +13949,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.statuses.create_status_for_object({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.status_updates.create_status_for_object({'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -13863,7 +13959,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.statuses.create_status_for_object(field: "value", field: "value", options: {pretty: true})
+result = client.status_updates.create_status_for_object(field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -13871,7 +13967,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.statuses.createStatusForObject()
+JsonElement result = client.statusupdates.createStatusForObject()
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -13884,7 +13980,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->statuses->createStatusForObject(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->statusupdates->createStatusForObject(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
