@@ -44,6 +44,8 @@ info:
     - PortfolioMembershipCompact
     - PortfolioResponse
     - PortfolioCompact
+    - ProjectBriefResponse
+    - ProjectBriefCompact
     - ProjectMembershipResponse
     - ProjectMembershipCompact
     - ProjectResponse
@@ -585,6 +587,16 @@ tags:
       have access to and will receive status updates of the project. Adding
       followers to a project will add them as members if they are not
       already, removing followers from a project will not affect membership.
+  - name: Project Briefs
+    description: >-
+      A *project brief* object represents a rich text document that describes
+      a project.
+
+
+      Please note that this API is in *preview*, and is expected to change.
+      This API is to be used for development and testing only as an advance
+      view into the upcoming rich text format experience in the task description.
+      For the latest on Project Briefs, [visit our forum](https://forum.asana.com/c/developersapi/platform-news/).
   - name: Project Memberships
     description: >-
       With the introduction of “comment-only” projects in Asana, a user’s
@@ -1037,6 +1049,16 @@ components:
         type: string
       example: '12345'
       x-env-variable: organization_export
+    project_brief_path_gid:
+      name: project_brief_gid
+      in: path
+      description: >-
+        Globally unique identifier for the project brief.
+      required: true
+      schema:
+        type: string
+      example: '12345'
+      x-env-variable: project_brief
     project_path_gid:
       name: project_gid
       in: path
@@ -3185,6 +3207,66 @@ components:
                     associated with. Once created, projects cannot be moved to a
                     different workspace. This attribute can only be specified at
                     creation time.
+    ProjectBriefBase:
+      allOf:
+        - $ref: '#/components/schemas/ProjectBriefCompact'
+        - type: object
+          properties:
+            title:
+              description: >-
+                The title of the project brief.
+              type: string
+              example: Stuff to buy — Project Brief
+            html_text:
+              description: >-
+                HTML formatted text for the project brief.
+              type: string
+              example: <body>This is a <strong>project brief</strong>.</body>
+    ProjectBriefCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          description: >-
+            A *Project Brief* allows you to explain the what and why of the project
+            to
+            your team.
+          x-docs-overrides:
+            properties.resource_type.example: project_brief
+    ProjectBriefRequest:
+      allOf:
+        - $ref: '#/components/schemas/ProjectBriefBase'
+        - type: object
+          properties:
+            text:
+              description: >-
+                The plain text of the project brief. When writing to a project
+                brief, you can specify either `html_text` (preferred) or `text`,
+                but not both.
+              type: string
+              example: This is a project brief.
+    ProjectBriefResponse:
+      allOf:
+        - $ref: '#/components/schemas/ProjectBriefBase'
+        - type: object
+          properties:
+            text:
+              description: >-
+                [Opt In](/docs/input-output-options).
+                The plain text of the project brief.
+              type: string
+              example: This is a project brief.
+            permalink_url:
+              type: string
+              readOnly: true
+              description: >-
+                A url that points directly to the object within Asana.
+              example: https://app.asana.com/0/11111111/22222222
+            project:
+              allOf:
+                - $ref: '#/components/schemas/ProjectCompact'
+                - type: object
+                  description: >-
+                    The project with which this project brief is associated.
     ProjectCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
@@ -7670,6 +7752,163 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /project_briefs/{project_brief_gid}:
+    parameters:
+      - $ref: '#/components/parameters/project_brief_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a project brief
+      description: Get the full record for a project brief.
+      tags:
+        - Project Briefs
+      operationId: getProjectBrief
+      responses:
+        200:
+          description: Successfully retrieved the record for a project brief.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProjectBriefResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        424:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        501:
+          $ref: '#/components/responses/BadGateway'
+        503:
+          $ref: '#/components/responses/ServiceUnavailable'
+        504:
+          $ref: '#/components/responses/GatewayTimeout'
+    put:
+      summary: Update a project brief
+      description: |-
+        An existing project brief can be updated by making a PUT request on the URL for
+        that project brief. Only the fields provided in the `data` block will be updated;
+        any unspecified fields will remain unchanged.
+
+        Returns the complete updated project brief record.
+      tags:
+        - Project Briefs
+      operationId: updateProjectBrief
+      requestBody:
+        description: The updated fields for the project brief.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ProjectBriefRequest'
+      responses:
+        200:
+          description: Successfully updated the project brief.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProjectBriefResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete a project brief
+      description: |-
+        Deletes a specific, existing project brief.
+
+        Returns an empty data record.
+      tags:
+        - Project Briefs
+      operationId: deleteProjectBrief
+      responses:
+        200:
+          description: Successfully deleted the specified project brief.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /projects/{project_gid}/project_briefs:
+    parameters:
+      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Create a project brief
+      description: |-
+        Creates a new project brief.
+
+        Returns the full record of the newly created project brief.
+      tags:
+        - Project Briefs
+      operationId: createProjectBrief
+      requestBody:
+        description: The project brief to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ProjectBriefRequest'
+      responses:
+        201:
+          description: Successfully created a new project brief.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProjectBriefResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:

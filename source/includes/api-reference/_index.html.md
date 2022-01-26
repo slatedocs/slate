@@ -11333,6 +11333,426 @@ Status Code **200**
 
 </section><hr class="full-line">
 <section class="full-section">
+<a id="asana-project-briefs"></a>
+<h1 id="project-briefs">Project Briefs</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="/docs/get-a-project-brief"><span class="get-verb">GET</span> <span class=""nn>/project_briefs/{project_brief_gid}</span></a><br><a href="/docs/update-a-project-brief"><span class="put-verb">PUT</span> <span class=""nn>/project_briefs/{project_brief_gid}</span></a><br><a href="/docs/delete-a-project-brief"><span class="delete-verb">DELETE</span> <span class=""nn>/project_briefs/{project_brief_gid}</span></a><br><a href="/docs/create-a-project-brief"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/project_briefs</span></a></code>
+</pre>
+
+<span class="description">
+A *project brief* object represents a rich text document that describes a project.
+
+Please note that this API is in *preview*, and is expected to change. This API is to be used for development and testing only as an advance view into the upcoming rich text format experience in the task description. For the latest on Project Briefs, [visit our forum](https://forum.asana.com/c/developersapi/platform-news/).
+</span>
+
+</section>
+<hr class="half-line">
+<section>
+## Get a project brief
+
+<a id="opIdgetProjectBrief"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/project_briefs/{project_brief_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+getProjectBrief
+
+```
+
+```python
+getProjectBrief
+
+```
+
+```ruby
+getProjectBrief
+
+```
+
+```java
+getProjectBrief
+
+```
+
+```php
+getProjectBrief
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "project_brief",
+    "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+    "title": "Stuff to buy — Project Brief",
+    "permalink_url": "https://app.asana.com/0/11111111/22222222",
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "text": "This is a project brief."
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /project_briefs/{project_brief_gid}</code>
+</p>
+
+<span class="description">
+Get the full record for a project brief.
+</span>
+
+<h3 id="get-a-project-brief-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/project_brief_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project brief.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="get-a-project-brief-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [ProjectBrief](#schemaprojectbrief)</span>|Successfully retrieved the record for a project brief.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|424<span class="param-type"> [Error](#schemaerror)</span>|You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](https://developers.asana.com/docs/#rate-limits) for more information.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+|501<span class="param-type"> [Error](#schemaerror)</span>|There is an issue between the load balancers and Asana's API.|
+|503<span class="param-type"> [Error](#schemaerror)</span>|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|
+|504<span class="param-type"> [Error](#schemaerror)</span>|This request took too long to complete.|
+
+</section><hr class="half-line">
+<section>
+## Update a project brief
+
+<a id="opIdupdateProjectBrief"></a>
+
+> Code samples
+
+```shell
+curl -X PUT https://app.asana.com/api/1.0/project_briefs/{project_brief_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+updateProjectBrief
+
+```
+
+```python
+updateProjectBrief
+
+```
+
+```ruby
+updateProjectBrief
+
+```
+
+```java
+updateProjectBrief
+
+```
+
+```php
+updateProjectBrief
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+    "text": "This is a project brief.",
+    "title": "Stuff to buy — Project Brief"
+  }
+}
+```
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "project_brief",
+    "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+    "title": "Stuff to buy — Project Brief",
+    "permalink_url": "https://app.asana.com/0/11111111/22222222",
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "text": "This is a project brief."
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="put-verb">PUT</span> /project_briefs/{project_brief_gid}</code>
+</p>
+
+<span class="description">
+An existing project brief can be updated by making a PUT request on the URL for
+that project brief. Only the fields provided in the `data` block will be updated;
+any unspecified fields will remain unchanged.
+
+Returns the complete updated project brief record.
+</span>
+
+<h3 id="update-a-project-brief-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the project brief.|
+|» data<span class="param-type"> object</span>|A *Project Brief* allows you to explain the what and why of the project to your team.|
+|»» html_text<span class="param-type"> string</span>|HTML formatted text for the project brief.|
+|»» text<span class="param-type"> string</span>|The plain text of the project brief. When writing to a project brief, you can specify either `html_text` (preferred) or `text`, but not both.|
+|»» title<span class="param-type"> string</span>|The title of the project brief.|
+|/project_brief_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project brief.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="update-a-project-brief-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [ProjectBrief](#schemaprojectbrief)</span>|Successfully updated the project brief.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Delete a project brief
+
+<a id="opIddeleteProjectBrief"></a>
+
+> Code samples
+
+```shell
+curl -X DELETE https://app.asana.com/api/1.0/project_briefs/{project_brief_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+deleteProjectBrief
+
+```
+
+```python
+deleteProjectBrief
+
+```
+
+```ruby
+deleteProjectBrief
+
+```
+
+```java
+deleteProjectBrief
+
+```
+
+```php
+deleteProjectBrief
+
+```
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="delete-verb">DELETE</span> /project_briefs/{project_brief_gid}</code>
+</p>
+
+<span class="description">
+Deletes a specific, existing project brief.
+
+Returns an empty data record.
+</span>
+
+<h3 id="delete-a-project-brief-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/project_brief_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project brief.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="delete-a-project-brief-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> Inline</span>|Successfully deleted the specified project brief.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="delete-a-project-brief-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [](#schemaemptyresponse)</span>|An empty object. Some endpoints do not return an object on success. The success is conveyed through a 2-- status code and returning an empty object.|
+
+</section><hr class="half-line">
+<section>
+## Create a project brief
+
+<a id="opIdcreateProjectBrief"></a>
+
+> Code samples
+
+```shell
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_briefs \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}' \
+  -d '{"data": {"field":"value","field":"value"} }'
+
+```
+
+```javascript--nodejs
+createProjectBrief
+
+```
+
+```python
+createProjectBrief
+
+```
+
+```ruby
+createProjectBrief
+
+```
+
+```java
+createProjectBrief
+
+```
+
+```php
+createProjectBrief
+
+```
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+    "text": "This is a project brief.",
+    "title": "Stuff to buy — Project Brief"
+  }
+}
+```
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "gid": "12345",
+    "resource_type": "project_brief",
+    "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+    "title": "Stuff to buy — Project Brief",
+    "permalink_url": "https://app.asana.com/0/11111111/22222222",
+    "project": {
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "text": "This is a project brief."
+  }
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/project_briefs</code>
+</p>
+
+<span class="description">
+Creates a new project brief.
+
+Returns the full record of the newly created project brief.
+</span>
+
+<h3 id="create-a-project-brief-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|body<span class="param-type"> object</span><div class="param-required">required</div>|The project brief to create.|
+|» data<span class="param-type"> object</span>|A *Project Brief* allows you to explain the what and why of the project to your team.|
+|»» html_text<span class="param-type"> string</span>|HTML formatted text for the project brief.|
+|»» text<span class="param-type"> string</span>|The plain text of the project brief. When writing to a project brief, you can specify either `html_text` (preferred) or `text`, but not both.|
+|»» title<span class="param-type"> string</span>|The title of the project brief.|
+|/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+
+<h3 id="create-a-project-brief-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|201<span class="param-type"> [ProjectBrief](#schemaprojectbrief)</span>|Successfully created a new project brief.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|402<span class="param-type"> [Error](#schemaerror)</span>|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="full-line">
+<section class="full-section">
 <a id="asana-project-memberships"></a>
 <h1 id="project-memberships">Project Memberships</h1>
 
@@ -26222,6 +26642,81 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |type|enum|
 |type|multi_enum|
 |type|number|
+
+</section><hr>
+<section>
+<a id="schemaprojectbriefcompact"></a>
+<a id="schema_ProjectBriefCompact"></a>
+<a id="tocSprojectbriefcompact"></a>
+<a id="tocsprojectbriefcompact"></a>
+<a id="tocS_ProjectBriefCompact"></a>
+<h2 id="project-brief-compact">ProjectBriefCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "project_brief"
+}
+
+```
+
+<span class="description">
+A `Compact` object is the same as the [full response object](/docs/tocS_ProjectBrief), but with less fields included by default. See
+[Input/Output Options](/docs/input-output-options) to include more fields.
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+
+</section><hr>
+<section>
+<a id="schemaprojectbrief"></a>
+<a id="schema_ProjectBrief"></a>
+<a id="tocSprojectbrief"></a>
+<a id="tocsprojectbrief"></a>
+<a id="tocS_ProjectBrief"></a>
+<h2 id="project-brief">ProjectBrief</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "project_brief",
+  "html_text": "<body>This is a <strong>project brief</strong>.</body>",
+  "title": "Stuff to buy — Project Brief",
+  "permalink_url": "https://app.asana.com/0/11111111/22222222",
+  "project": {
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  },
+  "text": "This is a project brief."
+}
+
+```
+
+<span class="description">
+A *Project Brief* allows you to explain the what and why of the project to your team.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|html_text<span class="param-type"> string</span>|HTML formatted text for the project brief.|
+|title<span class="param-type"> string</span>|The title of the project brief.|
+|permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
+|project<span class="param-type"> object</span>|The project with which this project brief is associated.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The plain text of the project brief.|
 
 </section><hr>
 <section>
