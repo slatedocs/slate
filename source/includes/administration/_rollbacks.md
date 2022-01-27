@@ -160,7 +160,7 @@ curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49
 Creates a rollback which will result in reprocessing of usage for the given request body. The Rollback API supports two types of rollback. `REPROCESS` and `RECOLLECT`
 
 The `REPROCESS` rollback type uses existing usage that was previously collected from a backend service and re-processes it in the monetization engine. The latest pricing configuration will be used when these records. 
-The API body supports targeting a set of service connections and organizations as well as the date from which the rollback should begin. If usage is not found for for the requested date and organization and service connection pair the API will default to the earliest available usage for the pair. If there is no previous usage for the organization and connection, no rollback will be generated for this pair.
+The API body supports targeting a set of service connections and organizations as well as the date from which the rollback should begin the reprocess. If usage is not found for the requested date and organization and service connection pair the API will default to the earliest available usage for the pair. If there is no previous usage for the organization and connection, no rollback will be generated for this pair.
 
 <aside class="notice">
   <strong>Note:</strong> A rollback will be performed for every valid pair of organizations and service connections. Rollbacks will only be performed when the organization is assigned the connection and has some previous usage for this connection.
