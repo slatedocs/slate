@@ -166,7 +166,7 @@ The API body supports targeting a set of service connections and organizations a
   <strong>Note:</strong> A rollback will be performed for every valid pair of organizations and service connections. Rollbacks will only be performed when the organization is assigned the connection and has some previous usage for this connection.
 </aside>
 
-The `RECOLLECT` rollback type can be used by connection owners to retrigger the collection of usage from the underlying backend service. The `RECOLLECT` rollback is limitted by the retention period of underlying usage of the targeted service. If for example the targeted service only stores 60 days of usage the earliest reset date will be 60 days before today. A recollect rollback impacts **all** assigned organizations of the selected service connection. 
+The `RECOLLECT` rollback type can be used by connection owners to retrigger the collection of usage from the underlying backend service. The `RECOLLECT` rollback is limitted by the retention period of underlying usage of the targeted service. If, for example, the targeted service only stores 60 days of usage the earliest reset date will be 60 days before today. A recollect rollback impacts **all** assigned organizations of the selected service connection. 
 
 Note: this operation will take time and the state of the rollbacks will update once the operation is complete. 
 
