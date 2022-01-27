@@ -28,7 +28,15 @@ curl "https://cloudmc_endpoint/api/v1/organizations" \
          "isBillable": true,
          "billingMode": "CREDIT_CARD",
          "isReseller": false,
-         "tags": ["a-tag"],
+         "tags": [
+            {
+              "id": "78c6afa5-8b65-40a5-be1c-aa55a3b81030",
+              "name": "a-tag",
+              "organization": {
+                "id":"075d64d5-c629-481a-9b91-32e5e286aeae",
+              },
+            },
+         ],
          "deleted": false,
          "parent": {
             "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
@@ -76,7 +84,7 @@ Attributes | &nbsp;
 `billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
-`tags`<br/>*Array[string]* | Tags associated to the organization.
+`tags`<br/>*Array[string]* | Tags associated to the organization. These include a reseller organization that the tags belong to.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
@@ -115,7 +123,15 @@ curl "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afdd
       "isBillable": true,
       "billingMode": "CREDIT_CARD",
       "isReseller": false,
-      "tags": ["a-tag"],
+      "tags": [
+        {
+          "id": "78c6afa5-8b65-40a5-be1c-aa55a3b81030",
+          "name": "a-tag",
+          "organization": {
+            "id":"075d64d5-c629-481a-9b91-32e5e286aeae",
+          },
+        },
+      ],
       "parent": {
          "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
          "name": "Nintendo"
@@ -155,7 +171,7 @@ Attributes | &nbsp;
 `billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
-`tags`<br/>*Array[string]* | Tags associated to the organization.
+`tags`<br/>*Array[string]* | Tags associated to the organization. These include a reseller organization that the tags belong to.
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
@@ -247,7 +263,7 @@ Optional | &nbsp;
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. <br/>_Read below (after the request parameter list) for more details._<br/>*required attributes of the service connection:* `id`
-`tags`<br/>*Array[string]* | Tags associated to the organization.
+`tags`<br/>*Array[string]* | Tags associated to the organization. These include a reseller organization that the tags belong to.
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
 `users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*required attributes of the organization* : `id`
 `notes`<br/>*string* | Organization notes. Must have the `Organization metadata: Manage` permission.
