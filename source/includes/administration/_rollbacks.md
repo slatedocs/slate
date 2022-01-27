@@ -159,14 +159,14 @@ curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49
 
 Creates a rollback which will result in reprocessing of usage for the given request body. The Rollback API supports two types of rollback. `REPROCESS` and `RECOLLECT`
 
-the `REPROCESS` rollback type uses existing usage previously collected by plugin usage collectors and re processes it in the monetization engine. The latest pricing configuration will be used when processing the records. 
-The API body supports targeting a set of service connections and organizations as well as the date from which the rollback should begin. If usage is not found for for the requested date and organization and service connection pair the API will default to the earliest available usage for the pair. If there is no previously gather usage at all, no rollback will be generated for this pair. 
+The `REPROCESS` rollback type uses existing usage that was previously collected from a backend service and re-processes it in the monetization engine. The latest pricing configuration will be used when these records. 
+The API body supports targeting a set of service connections and organizations as well as the date from which the rollback should begin. If usage is not found for for the requested date and organization and service connection pair the API will default to the earliest available usage for the pair. If there is no previous usage for the organization and connection, no rollback will be generated for this pair.
 
 <aside class="notice">
   <strong>Note:</strong> A rollback will be performed for every valid pair of organizations and service connections. Rollbacks will only be performed when the organization is assigned the connection and has some previous usage for this connection.
 </aside>
 
-The `RECOLLECT` rollback type can be used by connection owners to retrigger the collection of usage from the underlying service. This operation will recollect usage metrics from the backend service. The operation is limitted by the retention period of underlying usage of the targeted service. If for example the targeted service only stores 60 days of usage the earliest reset date will be 60 days today. A recollect rollback impacts **all** assigned organizations of the selected service connection. 
+The `RECOLLECT` rollback type can be used by connection owners to retrigger the collection of usage from the underlying backend service. The `RECOLLECT` rollback is limitted by the retention period of underlying usage of the targeted service. If for example the targeted service only stores 60 days of usage the earliest reset date will be 60 days before today. A recollect rollback impacts **all** assigned organizations of the selected service connection. 
 
 Note: this operation will take time and the state of the rollbacks will update once the operation is complete. 
 
