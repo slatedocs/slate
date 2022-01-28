@@ -58,17 +58,17 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 }
 ```
 
-| Object Type  | Events                                                                 |
-| ------------ | ---------------------------------------------------------------------- |
-| List         | `list.created`, `list.updated`, `list.deleted`                         |
-| List Entry   | `list_entry.created`, `list_entry.deleted`                             |
-| Note         | `note.created`, `note.updated`, `note.deleted`                         |
-| Field        | `field.created`, `field.updated`, `field.deleted`                      |
-| Field Value  | `field_value.created`, `field_value.updated`, `field_value.deleted`    |
-| Person       | `person.created`, `person.updated`, `person.deleted`                   |
-| Organization | `organization.created`, `organization.updated`, `organization.deleted` |
-| Opportunity  | `opportunity.created`, `opportunity.updated`, `opportunity.deleted`    |
-| Entity File  | `file.created`, `file.deleted`                                         |
+| Object Type  | Events                                                                                        |
+| ------------ | --------------------------------------------------------------------------------------------- |
+| List         | `list.created`, `list.updated`, `list.deleted`                                                |
+| List Entry   | `list_entry.created`, `list_entry.deleted`                                                    |
+| Note         | `note.created`, `note.updated`, `note.deleted`                                                |
+| Field        | `field.created`, `field.updated`, `field.deleted`                                             |
+| Field Value  | `field_value.created`, `field_value.updated`, `field_value.deleted`                           |
+| Person       | `person.created`, `person.updated`, `person.deleted`                                          |
+| Organization | `organization.created`, `organization.updated`, `organization.deleted`, `organization.merged` |
+| Opportunity  | `opportunity.created`, `opportunity.updated`, `opportunity.deleted`                           |
+| Entity File  | `file.created`, `file.deleted`                                                                |
 
 The Field Value webhook events do not include enrichment events by default. To enable enrichment webhooks, please contact [support@affinity.co](support@affinity.co).
 

@@ -1,5 +1,11 @@
 # Changelog
 
+
+## 2022-01-28
+
+- Added `organization.merged` webhook event to `Organization` object type.
+- Added `mentioned_person_ids` and `is_meeting` fields to note response.
+
 ## 2021-11-22
 
 - Added link out to <a href="https://support.affinity.co/hc/en-us/articles/4413976035085-Webhook-Responses">Help Center</a> for webhook responses

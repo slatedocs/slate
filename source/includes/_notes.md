@@ -7,6 +7,8 @@
   "id": 22984,
   "creator_id": 860197,
   "person_ids": [38706, 89734],
+  "is_meeting": false,
+  "mentioned_person_ids": [49817, 78624],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id": null,
@@ -52,6 +54,8 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "id": 22984,
     "creator_id": 860197,
     "person_ids": [38706,89734],
+    "is_meeting": false,
+    "mentioned_person_ids": [49817, 78624],
     "organization_ids": [64779194],
     "opportunity_ids": [117],
     "parent_id":  null,
@@ -62,6 +66,8 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "id": 22983,
     "creator_id": 860196,
     "person_ids": [],
+    "is_meeting": false,
+    "mentioned_person_ids": [7237],
     "organization_ids": [64779194],
     "opportunity_ids": [115],
     "parent_id":  null,
@@ -105,6 +111,8 @@ curl "https://api.affinity.co/notes/22984" -u :$APIKEY
   "id": 22984,
   "creator_id": 860197,
   "person_ids": [38706,89734],
+  "is_meeting": false,
+  "mentioned_person_ids": [49817, 78624],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id":  null,
@@ -146,6 +154,8 @@ curl -X POST "https://api.affinity.co/notes" \
   "id": 22984,
   "creator_id": 860197,
   "person_ids": [38706, 89734],
+  "is_meeting": false,
+  "mentioned_person_ids": [49817, 78624],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id": null,
@@ -190,7 +200,7 @@ The note resource created through this request.
 > Example Request
 
 ```shell
-curl -X POST "https://api.affinity.co/22984" \
+curl -X PUT "https://api.affinity.co/notes/22984" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
   -d '{"content": "Had another meeting with Jane and John today"}'
@@ -203,6 +213,8 @@ curl -X POST "https://api.affinity.co/22984" \
   "id": 22984,
   "creator_id": 860197,
   "person_ids": [38706, 89734],
+  "is_meeting": false,
+  "mentioned_person_ids": [49817, 78624],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id": null,
