@@ -29,7 +29,7 @@ HTTP/1.1 200 OK
         "active_modules": "[8]",
         "fields_data": "{}",
         "budget": 0.0,
-        "event_type": "virtual",
+        "attendance_mode": "online",
         "is_template": false,
         "event_uri": "event_uri",
         "timezone": "America/Bogota",
@@ -106,7 +106,7 @@ HTTP/1.1 200 OK
       "active_modules": "[0, 1]",
       "fields_data": "{}",
       "budget": 0.0,
-      "event_type": "virtual",
+      "attendance_mode": "online",
       "is_template": false,
       "event_uri": "event_uri",
       "timezone": "America/Bogota",
@@ -200,7 +200,7 @@ fetch('https://core.eventtia.com/v1/events/', {
       active_modules: "[0, 1]",
       fields_data: "{}",
       budget: 545.00,
-      event_type: "virtual",
+      attendance_mode: "online",
       is_template: false,
       event_uri: "event_uri",
       timezone: "America/Bogota",
@@ -251,7 +251,7 @@ HTTP/1.1 200 OK
       "active_modules": "[0, 1]",
       "fields_data": "{}",
       "budget": 0.0,
-      "event_type": "virtual",
+      "attendance_mode": "online",
       "is_template": false,
       "event_uri": "event_uri",
       "timezone": "America/Bogota",
@@ -323,7 +323,7 @@ start_date | date | starting date for event, must be before end date of event.
 budget | float | budget for event.
 is_template | boolean | this event is a template.
 cloned_from_id | integer | event id from this event was cloned
-event_type | string | event type ['virtual', 'physical', 'hybrid']. 
+attendance_mode | string | event attendance mode ['offline', 'mixed', 'online']. 
 event_uri| string | event uri must be an unique name.
 logo | file | logo for this event.
 banner_image | file | banner image for this event.
@@ -350,7 +350,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
       active_modules: "[0, 1]",
       fields_data: "{}",
       budget: 545.00,
-      event_type: "virtual",
+      attendance_mode: "online",
       is_template: false,
       event_uri: "event_uri",
       timezone: "America/Bogota",
@@ -411,7 +411,7 @@ HTTP/1.1 200 OK
       "active_modules": "[0, 1]",
       "fields_data": "{}",
       "budget": 0.0,
-      "event_type": "virtual",
+      "attendance_mode": "virtual",
       "is_template": "false",
       "event_uri": "event_uri",
       "timezone": "America/Bogota",
@@ -490,7 +490,7 @@ start_date | date | starting date for event, must be before end date of event.
 budget | float | budget for event.
 is_template | boolean | this event is a template.
 cloned_from_id | integer | event id from this event was cloned
-event_type | string | event type ['virtual', 'physical', 'hybrid']. 
+attendance_mode | string | event type ['offline', 'mixed', 'online']. 
 event_uri| string | event uri must be an unique name.
 logo | file | logo for this event.
 banner_image | file | banner image for this event.
@@ -528,7 +528,7 @@ HTTP/1.1 200 OK
       "active_modules": "[8]",
       "fields_data": "{}",
       "budget": 0.0,
-      "event_type": "virtual",
+      "attendance_mode": "virtual",
       "is_template": false,
       "event_uri": "event_uri",
       "timezone": "America/Bogota",
