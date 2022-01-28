@@ -97,7 +97,7 @@ This endpoint allows you to view projects for the company who is registered with
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 reference | String | No | Only projects with a matching reference will be returned
-with_fields | Boolean | No | If set to true will include the fields of projects in the `included` section of the response
+with_fields | Boolean | No | If set to true will include the fields of projects in the `included` section of the response, see the [fields index](#fields-index) endpoint for an example of the attributes on fields.
 
 ### Response
 
