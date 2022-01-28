@@ -644,7 +644,7 @@ Once your app is submitted, an Asana developer will configure and enable your ap
 
 <span class="beta-indicator">BETA</span>
 
-Our [App Components Toolkit](https://www.figma.com/file/my7DKSUnuVjEiNSnJuMFcI/App-Components-Toolkit?node-id=5%3A0) provides
+Our [App Components Toolkit](https://www.figma.com/file/my7DKSUnuVjEiNSnJuMFcI/branch/HiCYzuMtAkhdXQy1srf2Ug/App-Components-Toolkit?node-id=94%3A15940) provides
 a visual documentation of App Components. You'll see at-a-glance how the different features and capabilities surface within
 Asana, including how they fit together and what you can do with them. Feel free to use the toolkit to supplement the process
 of designing and building your apps with App Components.
