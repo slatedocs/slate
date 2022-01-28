@@ -138,10 +138,10 @@ An array of all the fields requested.
 > Example Request
 
 ```shell
-curl -X POST "https://api.affinity.co/field" \
+curl -X POST "https://api.affinity.co/fields" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
-  -d '{"name": "[Deals] Amount", "list_id": 11, "entity_type": 1, "value_type": 3, "allows_multiple": false, "dropdown_options":[]}'
+  -d '{"name": "[Deals] Amount", "list_id": 11, "entity_type": 1, "value_type": 3, "allows_multiple": false}'
 ```
 
 > Example Response
