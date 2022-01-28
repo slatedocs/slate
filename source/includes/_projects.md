@@ -14,6 +14,12 @@ This endpoint allows you to view projects for the company who is registered with
 
 `GET https://api.handshq.com/v1/projects`
 
+### Allowed Query Parameters
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+reference | String | No | Only projects with a matching reference will be returned
+with_fields | Boolean | No | If set to true will include the fields of projects in the `included` section of the response
+
 ### Response
 
 Successful requests will return a json payload of that division's projects and a `200` status code.
@@ -91,73 +97,6 @@ Successful requests will return a json payload of that division's projects and a
         },
         "links": {
           "app_url": "https://app.handshq.com/projects/5678"
-        }
-      }
-    ]
-  }
-```
-
-## Viewing projects by project reference
-
-```shell
-curl https://api.handshq.com/v1/projects?reference=#{project_reference} \
-  -H "Accept: application/json" \
-  -H "Authorization: bearer [api_token]"
-```
-
-Adding a reference to the query string will return all projects for that company that match that project reference.
-
-### Request
-
-`GET https://api.handshq.com/v1/projects?reference=#{project_reference}`
-
-### Allowed Query Parameters
-Parameter | Format | Required | Description
---------- | ------ | -------- | -----------
-reference | String | No | The project reference
-
-### Response
-
-Successful requests will return a json payload of that division's projects that match the project reference and a `200` status code.
-
-> 200
-
-```json
-  {
-    "data": [
-      {
-        "id": "1234",
-        "type": "project",
-        "attributes": {
-          "name": "Test Project",
-          "reference": "ABC1",
-          "start_date": "2021-12-20",
-          "end_date": "2022-12-21",
-          "archived_at": null,
-          "state": "not_submitted"
-        },
-        "relationships": {
-          "fields": {
-            "data": [
-              {
-                "id": "123",
-                "type": "field"
-              },
-              {
-                "id": "234",
-                "type": "field"
-              }
-            ]
-          },
-          "user": {
-            "data": {
-              "id": "345",
-              "type": "user"
-            }
-          }
-        },
-        "links": {
-          "app_url": "https://app.handshq.com/projects/1234"
         }
       }
     ]
