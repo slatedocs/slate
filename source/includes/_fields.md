@@ -153,8 +153,7 @@ curl -X POST "https://api.affinity.co/field" \
   "list_id": 11,
   "value_type": 3,
   "allows_multiple": false,
-  "track_changes": false,
-  "dropdown_options": []
+  "track_changes": false
 }
 ```
 
