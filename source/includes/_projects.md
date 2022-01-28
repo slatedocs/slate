@@ -8,22 +8,6 @@ curl https://api.handshq.com/v1/projects \
   -H "Authorization: bearer [api_token]"
 ```
 
-This endpoint allows you to view projects for the company who is registered with the API token you provide.
-
-### Request
-
-`GET https://api.handshq.com/v1/projects`
-
-### Allowed Query Parameters
-Parameter | Format | Required | Description
---------- | ------ | -------- | -----------
-reference | String | No | Only projects with a matching reference will be returned
-with_fields | Boolean | No | If set to true will include the fields of projects in the `included` section of the response
-
-### Response
-
-Successful requests will return a json payload of that division's projects and a `200` status code.
-
 > 200
 
 ```json
@@ -102,6 +86,23 @@ Successful requests will return a json payload of that division's projects and a
     ]
   }
 ```
+
+This endpoint allows you to view projects for the company who is registered with the API token you provide.
+
+### Request
+
+`GET https://api.handshq.com/v1/projects`
+
+### Allowed Query Parameters
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+reference | String | No | Only projects with a matching reference will be returned
+with_fields | Boolean | No | If set to true will include the fields of projects in the `included` section of the response
+
+### Response
+
+Successful requests will return a json payload of that division's projects and a `200` status code.
+
 
 ## Creating a project
 
