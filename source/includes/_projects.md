@@ -240,7 +240,6 @@ Successful requests will return a json payload of the project that was created a
             "id": "345",
             "type": "user"
           }
-        }
       },
       "fields":{
         "data":[
@@ -254,7 +253,7 @@ Successful requests will return a json payload of the project that was created a
     "links": {
       "app_url": "https://app.handshq.com/projects/1"
     }
-  },
+    },
     "included":[
     {
       "id":"248",
