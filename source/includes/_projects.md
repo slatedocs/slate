@@ -269,7 +269,7 @@ fields_attributes | Object | No | More information available [here](#for-project
 
 Successful requests will return a json payload of the project that was updated and a `200` status code.
 
-> 201
+> 200
 
 ```json
 {
