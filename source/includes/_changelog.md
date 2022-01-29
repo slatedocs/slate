@@ -3,7 +3,7 @@
 
 ## 2022-01-28
 
-- Added `organization.merged` webhook event to `Organization` object type. 
+- Added `organization.merged` webhook event to `Organization` object type.
 - Added `mentioned_person_ids` and `is_meeting` fields to note response.
 
 ## 2021-11-22
