@@ -62,7 +62,7 @@ Attributes | &nbsp;
 `encrypted` <br/>*boolean* | Indicates whether the volume is encrypted.
 `size` <br/>*int* | The size of the volume in GiB.
 `snapshotId` <br/>*string* | The snapshot from which the volume was created.
-`state` <br/>*string* | The state of the volume (creating | available | in-use | deleting | deleted | error).
+`state` <br/>*string* | The state of the volume (creating, available, in-use, deleting, deleted, error).
 `volumeId` <br/>*string* | The volume ID.
 `iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide.
 `tags` <br/>*Array[object]* | Any tags assigned to the volume. Tags are key value pairs.
