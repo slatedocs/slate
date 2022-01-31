@@ -309,7 +309,7 @@ Creating a payment link/invoice page is free! You will only be charged when you 
 
 **No integration needed**
 
-Offer your customers a seamless way to pay and complete payment channels without the need of an integration
+Offer your customers a seamless way to pay and complete payment channels without the need of an integration. 
 
 **Choose between one-time link and reusable link**
 
@@ -336,20 +336,11 @@ In order to maintain a consistent brand experience for your users, you can custo
 * Upload a logo
 * Choose the button and the theme color of the payment link
 
-**1. Creating payment link/invoice page through pre-generated URL**
+**Payment Link Delivery by Email and/or WhatsApp**
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow xxxx
 
-- **No integration needed**
-  Access and declare all parameters needed from the URL with easy and simple declaration.
-
-- **Reusable link**
-  One link can be used many times without repeating declaration.
-
-- **Amount and payment method customization**
-  You can choose whether your users will pay a fixed amount (closed amount) or any amount (open amount).
-
-      You can also choose which payment methods that you will enable for your customers. The payment methods to choose from are Bank Transfers, Credit Card, Debit Card, and QR code.
-
-      Please refer to our [FAQ page](https://docs.oyindonesia.com/#faqs) below for more information regarding closed and open amounts.
+**Payment Success Notification for your Users**
+When your users make a successful payment, you can choose to send them a success receipt through Email
 
 
 **2. Creating payment link/invoice page through API**
@@ -375,18 +366,16 @@ Below are the things that you can customize:
 - **Upload or Create a PDF for your Invoice Billing**
   You can upload an invoice attachment or create an attachment using the OY! PDF templates via our API so you do not need to send a separate email to your customer.
 
-- **Payment Link Delivery by Email**
-  If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email!
+- **Payment Link Delivery by Email and/or WhatsApp**
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow xxxx
 
-**3. Creating payment link/invoice page through dashboard**
+- **Payment Success Notification for your Users**
+When your users make a successful payment, you can choose to send them a success receipt through Email
 
-If you want to use our payment link/invoice page without undergoing technical integration process/without API and with higher level of customization, you can choose to create it through your dashboard.
-
-This capability enables you to enjoy most of the features and benefits of creating payment link/invoice page through API - without any integration needed!
 
 #### Capability to monitor payment link/invoice details on dashboard
 
-Whether you send your user a pre-generated link, dashboard-generated link, or an API-generated encapsulated link, each of your distributed payment link can be monitored through the OY! Dashboard. We will also send a callback for all incoming payments.
+Whether you send your user dashboard-generated link, or an API-generated encapsulated link, each of your distributed payment link can be monitored through the OY! Dashboard. We will also send a callback for all incoming payments.
 
 You will be able to see the details of the payment link including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status.
 
@@ -923,6 +912,16 @@ Illustration;
 If we pick green (#HEX code #067610) as the primary color and black (#HEX code #000000) as the secondary color, the look and feel will be as follows;
 
 ![Payment Link](images/3p1p_preview.png)
+
+
+### Sending the Created Payment Link through WhatsApp (Coming Soon)
+
+For better payment conversion, you can send the created link to your users through WhatsApp. The message template is pre-defined by OY.
+
+The flow will be as follows:
+
+
+
 
 
 ### VA Bank Details
