@@ -1,6 +1,6 @@
 ### Volumes
 
-Deploy and manage your volumes.
+Create an Amazon EBS volume to attach to any EC2 instance in the same Availability Zone.
 
 <!-------------------- LIST INSTANCES -------------------->
 
@@ -55,20 +55,20 @@ Retrieve a list of all volumes in a given [environment](#administration-environm
 Attributes | &nbsp;
 ------- | -----------
 `id`<br/>*string* | The ID of the volume.
-`name`<br/>*string* | The volume name of the root device volume (for example, /dev/sda1 ).
+`name`<br/>*string* | The volume name of the root device volume (for example, /dev/sda1).
 `attachments` <br/>*Array[object]* | The list of instances to which the volume is attached.
 `availabilityZone` <br/>*string* | The Availability Zone of the volume.
-`createTime` <br/>*object* | The time stamp when the volume was created.
-`encrypted` <br/>*boolean* | Indicates whether the volume is encrypted (true | false).
-`size` <br/>*int* | The size of the volume, in GiB.
+`createTime` <br/>*object* | The timestamp when the volume was created.
+`encrypted` <br/>*boolean* | Indicates whether the volume is encrypted.
+`size` <br/>*int* | The size of the volume in GiB.
 `snapshotId` <br/>*string* | The snapshot from which the volume was created.
 `state` <br/>*string* | The state of the volume (creating | available | in-use | deleting | deleted | error).
 `volumeId` <br/>*string* | The volume ID.
 `iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide.
 `tags` <br/>*Array[object]* | Any tags assigned to the volume. Tags are key value pairs.
-`volumeType` <br/>*string* | The Amazon EBS volume type (gp2 | gp3 | io1 | io2 | st1 | sc1| standard).
-`fastRestored` <br/>*boolean* | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore (true | false).
-`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach (true | false).
+`volumeType` <br/>*string* | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).
+`fastRestored` <br/>*boolean* | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore.
+`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.
 
 <!-------------------- RETRIEVE A VOLUME -------------------->
 <!-- MC-17105 -->
