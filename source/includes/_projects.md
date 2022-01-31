@@ -83,7 +83,13 @@ curl https://api.handshq.com/v1/projects \
           "app_url": "https://app.handshq.com/projects/5678"
         }
       }
-    ]
+    ],
+    "meta": {
+      "pagination": {
+          "requested_page": 1,
+          "total_pages": 1
+      }
+    }
   }
 ```
 
@@ -102,7 +108,7 @@ with_fields | Boolean | No | If set to true will include the fields of projects 
 ### Response
 
 Successful requests will return a json payload of that division's projects and a `200` status code.
-
+Results in `data` are [paginated](#pagination)
 
 ## Creating a project
 
