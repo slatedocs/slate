@@ -337,7 +337,7 @@ In order to maintain a consistent brand experience for your users, you can custo
 * Choose the button and the theme color of the payment link
 
 **Payment Link Delivery by Email and/or WhatsApp**
-You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow xxxx
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps here https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon
 
 **Payment Success Notification for your Users**
 When your users make a successful payment, you can choose to send them a success receipt through Email
@@ -367,7 +367,7 @@ Below are the things that you can customize:
   You can upload an invoice attachment or create an attachment using the OY! PDF templates via our API so you do not need to send a separate email to your customer.
 
 - **Payment Link Delivery by Email and/or WhatsApp**
-You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow xxxx
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps here https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon
 
 - **Payment Success Notification for your Users**
 When your users make a successful payment, you can choose to send them a success receipt through Email
@@ -916,12 +916,13 @@ If we pick green (#HEX code #067610) as the primary color and black (#HEX code #
 
 ### Sending the Created Payment Link through WhatsApp (Coming Soon)
 
-For better payment conversion, you can send the created link to your users through WhatsApp. The message template is pre-defined by OY.
+For better payment conversion, you can send the created link to your users through WhatsApp. The message template is pre-defined by OY. Contact our Business Representative if you'd like to activate this feature.
 
 The flow will be as follows:
 
+![WhatsApp Flow](images/flow_whatsapp.png)
 
-
+Click [here](https://api-docs.oyindonesia.com/#https-request-send-payment-invoice-link-whatsapp-notification) for more information on API Send WhatsApp
 
 
 ### VA Bank Details
