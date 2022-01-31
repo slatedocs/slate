@@ -306,6 +306,8 @@ Before you begin, you'll need a developer sandbox in order to use App Components
 <br>
 That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's Widget. Once you're ready to define an app, [click here to create your own app](/docs/configurations) with App Components.
 
+<hr class="full-line">
+
 # Installing an App
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
