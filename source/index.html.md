@@ -14,6 +14,7 @@ includes:
   - event_subscriptions
   - projects
   - fields
+  - pagination
   - errors
 
 search: true
