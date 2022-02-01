@@ -606,8 +606,6 @@ To create an app with App Components functionality, you'll first need to [create
 the configurations for your application with the data described in the table below ([coming soon](/docs/overview-of-app-components)).
 Note that certain fields, such as the app name and icon, are directly customizable in the developer console and will also be used by the App Components system.
 
-Once your app is submitted, an Asana developer will configure and enable your app, then notify you via email when the app is ready to use. 
-
 |Field|Type|Description|
 |---|---|---|
 | `description`               | String       | A short description of the app shown in the app gallery. |
