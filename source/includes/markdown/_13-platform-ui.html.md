@@ -10,20 +10,20 @@ projects, to provide clarity on *who* is doing *what* by *when*, and to automate
 see key work information from other tools on the surface of tasks, and automate cross-tool processes.
 
 Apps can use App Components to display customized widgets, forms, and rules within Asana's user interface. Requests go from
-Asana directly to an App Server. The App Server controls the information within these customized widgets and the App Server controls what happens when a User takes actions within these components.
+Asana directly to an App Server. The App Server controls the information within these customized widgets and the App Server
+controls what happens when a User takes actions within these components.
 
 <img src="../images/UI_Components.gif" />
 
-Note that App Components are currently in **Closed Beta**. At this time, we are limiting the number of app submissions to be 
-published in the in-product app gallery for the official launch. If you are interested in having your app published, please 
-[visit the forum](https://forum.asana.com/c/developersapi/app-components-beta/150) for instructions on participating in the
-App Components Beta Program. 
+The App Components open beta is **coming soon**. At the moment, we are offering this documentation as a preview of how will be
+able to build with App Components. For the latest updates and announcements,
+[subscribe to our developer forum](https://forum.asana.com/c/developersapi/app-components-beta/150).
 
-The App Components Beta Program is a pre-general-release version of a program developed by Asana that allows developers 
-to develop and test App Components. The App Component Beta Program is for development, evaluation, and testing purposes 
-only, and is not for production use or subject to availability or security obligations from Asana. The App Components 
-Beta Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be 
-discontinued or modified at any time.
+_The App Components Beta Program is a pre-general-release version of a program developed by Asana that allows developers_
+_to develop and test App Components. The App Component Beta Program is for development, evaluation, and testing purposes_
+_only, and is not for production use or subject to availability or security obligations from Asana. The App Components_
+_Beta Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be_
+_discontinued or modified at any time._
 
 <hr>
 
@@ -524,8 +524,7 @@ replay attacks.
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 After you have completed development of your app (and you have addressed the guidelines above), you can begin the process
-to have your app published on Asana. To do so, please complete and submit the
-[App Components Review form](https://form-beta.asana.com/?k=x08gUU-Hh2RYzjoEcckpkQ&d=15793206719).
+to have your app published on Asana. This feature is ([coming soon](/docs/overview-of-app-components)).
 
 <hr class="full-line">
 
@@ -603,7 +602,9 @@ to have your app published on Asana. To do so, please complete and submit the
 
 The following table lists the configurations you can make to define your App Components app.
 
-To create an app with App Components functionality, you'll first need to [create an app](docs/authentication-quick-start), then fill out the [App Components Configuration form](https://form-beta.asana.com?k=LBWpDpqZ6b-6pV4ZIbP-OA&d=15793206719) with the data described in the table below. Note that certain fields, such as the app name and icon, are directly customizable in the developer console and will also be used by the App Components system.
+To create an app with App Components functionality, you'll first need to [create an app](docs/authentication-quick-start), then provide
+the configurations for your application with the data described in the table below ([coming soon](/docs/overview-of-app-components)).
+Note that certain fields, such as the app name and icon, are directly customizable in the developer console and will also be used by the App Components system.
 
 Once your app is submitted, an Asana developer will configure and enable your app, then notify you via email when the app is ready to use. 
 
