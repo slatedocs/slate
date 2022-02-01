@@ -924,7 +924,7 @@ For better payment conversion, you can send the created link to your users throu
 
 The flow will be as follows:
 
-![WhatsApp Flow](images/flow_whatsapp.png)
+![WhatsApp Flow](images/flow_whatsapp_notif.png)
 
 Click [here](https://api-docs.oyindonesia.com/#https-request-send-payment-invoice-link-whatsapp-notification) for more information on API Send WhatsApp
 
