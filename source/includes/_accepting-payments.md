@@ -338,7 +338,7 @@ In order to maintain a consistent brand experience for your users, you can custo
 
 **Payment Link Delivery by Email and/or WhatsApp**
 
-You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps here https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps [here](https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon
 
 **Payment Success Notification for your Users**
 
@@ -370,7 +370,7 @@ Below are the things that you can customize:
 
 - **Payment Link Delivery by Email and/or WhatsApp**
 
-You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps here https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps [here](https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon
 
 - **Payment Success Notification for your Users**
 
@@ -951,7 +951,7 @@ Click [here](https://api-docs.oyindonesia.com/#https-request-send-payment-invoic
 
 ## API E-Wallet Aggregator
 
-E-Wallet API allows partners to charge and receive payments directly from top e-wallet issuers. With one integration, they are able to get access to all of OY’s available e-wallets and the upcoming e-wallet integrations.
+E-Wallet API allows clients to charge and receive payments directly from top e-wallet issuers. With one integration, they are able to get access to all of OY’s available e-wallets and the upcoming e-wallet integrations.
 
 ### E-Wallet Product Flow
 
@@ -985,7 +985,7 @@ In order to be able to simulate payment (change the transaction status into Comp
 1.  Create an account
 2.  Send a request to activate API E-Wallet product and obtain staging API Key to your business representative
 3.  Create a transaction by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/e-wallet-aggregator/create-transaction using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#api-e-wallet-aggregator)
-4.  After an E-Wallet transaction is generated, partner can simulate an E-Wallet payment through their dashboard (in Staging environment) by going to the "E-Wallet" sidebar, look for the newly created transaction row on the table (should be at the top), then click on the "Pay" button on the very right of that row. ![E-Wallet Table](images/ewallet_testing_2.png)
+4.  After an E-Wallet transaction is generated, you can simulate an E-Wallet payment through their dashboard (in Staging environment) by going to the "E-Wallet" sidebar, look for the newly created transaction row on the table (should be at the top), then click on the "Pay" button on the very right of that row. ![E-Wallet Table](images/ewallet_testing_2.png)
 5.  Fill in the e-wallet name, the ref number and amount should be prefilled from the transaction in the previous step, then click on "Send Callback" ![E-Wallet API](images/ewallet_testing.png)
 6.  If a payment is successful, we will send a callback to the registered staging callback URL destination
 7.  The payment made to the e-wallet transaction can be monitored through OY! dashboard, in the "E-Wallet" sidebar
