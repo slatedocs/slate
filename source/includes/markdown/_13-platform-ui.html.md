@@ -357,7 +357,7 @@ When the user clicks the button to continue, Asana will make a request to the ap
 
 Additionally, you may choose to present custom screens, forms, or otherwise logic to prompt the user for additional information needed to set up the application.
 
-The authentication flow is concluded when the app confirms that authentication is complete with a "success" message using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). For more information, feel free to review [Authorization](docs/authorization) requirements when publishing an app.
+The authentication flow is concluded when the app confirms that authentication is complete with a "success" message using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). For more information, feel free to review [Authorization](/docs/authorization) requirements when publishing an app.
 
 <hr>
 
@@ -602,7 +602,7 @@ to have your app published on Asana. This feature is ([coming soon](/docs/overvi
 
 The following table lists the configurations you can make to define your App Components app.
 
-To create an app with App Components functionality, you'll first need to [create an app](docs/authentication-quick-start), then provide
+To create an app with App Components functionality, you'll first need to [create an app](/docs/authentication-quick-start), then provide
 the configurations for your application with the data described in the table below ([coming soon](/docs/overview-of-app-components)).
 Note that certain fields, such as the app name and icon, are directly customizable in the developer console and will also be used by the App Components system.
 
