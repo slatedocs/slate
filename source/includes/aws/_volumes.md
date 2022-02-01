@@ -116,12 +116,12 @@ Attributes | &nbsp;
 `iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes.
 `throughput` <br/>*int* | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.
 `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.
-`volumeType` <br/>*string* | The Amazon EBS volume type. Below is a list of the possible volume types and the limits for their required fields
+`volumeType` <br/>*string* | The Amazon EBS volume type. Below is a list of the possible volume types and the limits for their respective fields.
 
 - gp2 (1-16,384 GiB Size)
 - gp3 (1-16,384 GiB Size, 3,000-16,000 IOPS, 125-1000 MiB/s Throughput)
-- io1 (4-16,384 GiB Size, 100-64,000 IOPS, 50:1 IOPS/Size ratio)
-- io2 (4-16,384 GiB Size, 100-256,000 IOPS, 1000:1 IOPS/Size ratio)
+- io1 (4-16,384 GiB Size, 100-64,000 IOPS, 50:1 IOPS/GiB ratio)
+- io2 (4-16,384 GiB Size, 100-256,000 IOPS, 1000:1 IOPS/GiB ratio)
 - sc1 (125-16,384 GiB Size)
 - sc2 (125-16,384 GiB Size)
 - standard (1-1,024 GiB Size)
