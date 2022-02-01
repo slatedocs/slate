@@ -4,7 +4,7 @@ Create an Amazon EBS volume to attach to any EC2 instance in the same Availabili
 
 <!-------------------- LIST INSTANCES -------------------->
 
-#### List instances
+#### List Volumes
 
 ```shell
 curl -X GET \
@@ -48,7 +48,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes</code>
 
 Retrieve a list of all volumes in a given [environment](#administration-environments).
 
@@ -74,4 +74,54 @@ Attributes | &nbsp;
 <!-- MC-17105 -->
 
 <!-------------------- CREATE VOLUMES -------------------->
-<!-- MC-17106 -->
+#### Create Volume
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-env/volumes"
+```
+
+> Request body example for a volume:
+```json
+{
+    "name": "api-volume",
+    "availabilityZone": "us-east-1a",
+    "size": 1,
+    "iops": 100,
+    "throughput": 125,
+    "volumeType": "gp3",
+    "multiAttachEnabled": false
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "35d38672-8772-4b04-b1ca-1b13b97638ca",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes</code>
+
+Retrieve a list of all volumes in a given [environment](#administration-environments).
+
+Attributes | &nbsp;
+------- | -----------
+`name`<br/>*string* | The volume name.
+`availabilityZone` <br/>*string* | The Availability Zone of the volume within the service connection's default region policy.
+`size` <br/>*int* | The size of the volume in GiB. Size is a required field for all volume types.
+`iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes.
+`throughput` <br/>*int* | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.
+`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.
+`volumeType` <br/>*string* | The Amazon EBS volume type. Below is a list of the possible volume types and the limits for their required fields
+
+- gp2 (1-16,384 GiB Size)
+- gp3 (1-16,384 GiB Size, 3,000-16,000 IOPS, 125-1000 MiB/s Throughput)
+- io1 (4-16,384 GiB Size, 100-64,000 IOPS, 50:1 IOPS/Size ratio)
+- io2 (4-16,384 GiB Size, 100-256,000 IOPS, 1000:1 IOPS/Size ratio)
+- sc1 (125-16,384 GiB Size)
+- sc2 (125-16,384 GiB Size)
+- standard (1-1,024 GiB Size)
