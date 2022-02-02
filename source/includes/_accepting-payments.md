@@ -309,7 +309,7 @@ Creating a payment link/invoice page is free! You will only be charged when you 
 
 **No integration needed**
 
-Offer your customers a seamless way to pay and complete payment channels without the need of an integration
+Offer your customers a seamless way to pay and complete payment channels without the need of an integration. 
 
 **Choose between one-time link and reusable link**
 
@@ -336,20 +336,13 @@ In order to maintain a consistent brand experience for your users, you can custo
 * Upload a logo
 * Choose the button and the theme color of the payment link
 
-**1. Creating payment link/invoice page through pre-generated URL**
+**Payment Link Delivery by Email and/or WhatsApp**
 
-- **No integration needed**
-  Access and declare all parameters needed from the URL with easy and simple declaration.
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps [here](https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon)
 
-- **Reusable link**
-  One link can be used many times without repeating declaration.
+**Payment Success Notification for your Users**
 
-- **Amount and payment method customization**
-  You can choose whether your users will pay a fixed amount (closed amount) or any amount (open amount).
-
-      You can also choose which payment methods that you will enable for your customers. The payment methods to choose from are Bank Transfers, Credit Card, Debit Card, and QR code.
-
-      Please refer to our [FAQ page](https://docs.oyindonesia.com/#faqs) below for more information regarding closed and open amounts.
+When your users make a successful payment, you can choose to send them a success receipt through Email
 
 
 **2. Creating payment link/invoice page through API**
@@ -375,18 +368,18 @@ Below are the things that you can customize:
 - **Upload or Create a PDF for your Invoice Billing**
   You can upload an invoice attachment or create an attachment using the OY! PDF templates via our API so you do not need to send a separate email to your customer.
 
-- **Payment Link Delivery by Email**
-  If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email!
+- **Payment Link Delivery by Email and/or WhatsApp**
 
-**3. Creating payment link/invoice page through dashboard**
+You can choose to send the created link to your users through Email and/or WhatsApp for better payment conversion. If you want to share the payment link to your customer's email, you can define the email parameter in our API. No need for you to send a separate email. If you want to share the payment link through WhatsApp, follow the steps [here](https://docs.oyindonesia.com/#sending-the-created-payment-link-through-whatsapp-coming-soon)
 
-If you want to use our payment link/invoice page without undergoing technical integration process/without API and with higher level of customization, you can choose to create it through your dashboard.
+- **Payment Success Notification for your Users**
 
-This capability enables you to enjoy most of the features and benefits of creating payment link/invoice page through API - without any integration needed!
+When your users make a successful payment, you can choose to send them a success receipt through Email
+
 
 #### Capability to monitor payment link/invoice details on dashboard
 
-Whether you send your user a pre-generated link, dashboard-generated link, or an API-generated encapsulated link, each of your distributed payment link can be monitored through the OY! Dashboard. We will also send a callback for all incoming payments.
+Whether you send your user dashboard-generated link, or an API-generated encapsulated link, each of your distributed payment link can be monitored through the OY! Dashboard. We will also send a callback for all incoming payments.
 
 You will be able to see the details of the payment link including, but not limited to, the payment status, creation and expiration dates and times, amount, description, payment details, and payer details. For further convenience, you can also find and filter through your payment link list by creation date, partner transaction ID, or status.
 
@@ -925,6 +918,17 @@ If we pick green (#HEX code #067610) as the primary color and black (#HEX code #
 ![Payment Link](images/3p1p_preview.png)
 
 
+### Sending the Created Payment Link through WhatsApp (Coming Soon)
+
+For better payment conversion, you can send the created link to your users through WhatsApp. The message template is pre-defined by OY. Contact our Business Representative if you'd like to activate this feature.
+
+The flow will be as follows:
+
+![WhatsApp Flow](images/flow_whatsapp_notif.png)
+
+Click [here](https://api-docs.oyindonesia.com/#https-request-send-payment-invoice-link-whatsapp-notification) for more information on API Send WhatsApp
+
+
 ### VA Bank Details
 
 | Bank (Virtual Account) | SKN Supported | RTGS Supported | Payment from ATM | Payment from m-banking / i-banking (intra bank) | Payment from business account (m-banking/i-banking) | Payment from m-banking/i-banking (inter bank) |
@@ -947,7 +951,7 @@ If we pick green (#HEX code #067610) as the primary color and black (#HEX code #
 
 ## API E-Wallet Aggregator
 
-E-Wallet API allows partners to charge and receive payments directly from top e-wallet issuers. With one integration, they are able to get access to all of OY’s available e-wallets and the upcoming e-wallet integrations.
+E-Wallet API allows clients to charge and receive payments directly from top e-wallet issuers. With one integration, they are able to get access to all of OY’s available e-wallets and the upcoming e-wallet integrations.
 
 ### E-Wallet Product Flow
 
@@ -981,7 +985,7 @@ In order to be able to simulate payment (change the transaction status into Comp
 1.  Create an account
 2.  Send a request to activate API E-Wallet product and obtain staging API Key to your business representative
 3.  Create a transaction by sending a ‘POST’ request to https://api-stg.oyindonesia.com/api/e-wallet-aggregator/create-transaction using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#api-e-wallet-aggregator)
-4.  After an E-Wallet transaction is generated, partner can simulate an E-Wallet payment through their dashboard (in Staging environment) by going to the "E-Wallet" sidebar, look for the newly created transaction row on the table (should be at the top), then click on the "Pay" button on the very right of that row. ![E-Wallet Table](images/ewallet_testing_2.png)
+4.  After an E-Wallet transaction is generated, you can simulate an E-Wallet payment through their dashboard (in Staging environment) by going to the "E-Wallet" sidebar, look for the newly created transaction row on the table (should be at the top), then click on the "Pay" button on the very right of that row. ![E-Wallet Table](images/ewallet_testing_2.png)
 5.  Fill in the e-wallet name, the ref number and amount should be prefilled from the transaction in the previous step, then click on "Send Callback" ![E-Wallet API](images/ewallet_testing.png)
 6.  If a payment is successful, we will send a callback to the registered staging callback URL destination
 7.  The payment made to the e-wallet transaction can be monitored through OY! dashboard, in the "E-Wallet" sidebar
