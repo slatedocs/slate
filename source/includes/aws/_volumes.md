@@ -2,7 +2,7 @@
 
 Create an Amazon EBS volume to attach to any EC2 instance in the same Availability Zone.
 
-<!-------------------- LIST INSTANCES -------------------->
+<!-------------------- LIST VOLUMES -------------------->
 
 #### List Volumes
 
