@@ -225,6 +225,8 @@ includes:
   - aws
   - aws/compute
   - aws/instances
+  - aws/storage
+  - aws/volumes
 
 search: true
 ---
