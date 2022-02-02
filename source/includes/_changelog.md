@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-02-01
+
+- Added [Reminder API](#reminders) documentation.
+- Added [Reminder webhook](/#webhooks) events.
 
 ## 2022-01-28
 
@@ -40,4 +44,4 @@
 
 ## 2021-05-05
 
-- Update the API rate limit information
+- Updated API rate limit information

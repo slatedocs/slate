@@ -69,6 +69,7 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 | Organization | `organization.created`, `organization.updated`, `organization.deleted`, `organization.merged` |
 | Opportunity  | `opportunity.created`, `opportunity.updated`, `opportunity.deleted`                           |
 | Entity File  | `file.created`, `file.deleted`                                                                |
+| Reminder     | `reminder.created`, `reminder.updated`, `reminder.deleted`                                                               |
 
 The Field Value webhook events do not include enrichment events by default. To enable enrichment webhooks, please contact [support@affinity.co](support@affinity.co).
 

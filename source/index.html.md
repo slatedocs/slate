@@ -22,6 +22,7 @@ includes:
   - relationship-strengths
   - notes
   - entity-files
+  - reminders
   - webhooks
   - spacer
   - changelog
