@@ -122,10 +122,37 @@ Attributes | &nbsp;
 - sc2 (125-16,384 GiB Size)
 - standard (1-1,024 GiB Size)
 
-
 Optional | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The volume name.
+`name`<br/>*string* | The volume name. A default name will be created if there isn't one provided.
 `iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes.
 `throughput` <br/>*int* | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.
 `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.
+
+
+<!-------------------- DELETE A VOLUME -------------------->
+
+#### Delete a volume
+
+Note: only instances in an "available" state can be deleted
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/volumes/vol-0d1f9106cd0e0dff7"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance deletion. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
