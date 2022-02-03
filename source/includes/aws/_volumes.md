@@ -110,12 +110,8 @@ Retrieve a list of all volumes in a given [environment](#administration-environm
 
 Attributes | &nbsp;
 ------- | -----------
-`name`<br/>*string* | The volume name.
 `availabilityZone` <br/>*string* | The Availability Zone of the volume within the service connection's default region policy.
 `size` <br/>*int* | The size of the volume in GiB. Size is a required field for all volume types.
-`iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes.
-`throughput` <br/>*int* | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.
-`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.
 `volumeType` <br/>*string* | The Amazon EBS volume type. Below is a list of the possible volume types and the limits for their respective fields.
 
 - gp2 (1-16,384 GiB Size)
@@ -125,6 +121,13 @@ Attributes | &nbsp;
 - sc1 (125-16,384 GiB Size)
 - sc2 (125-16,384 GiB Size)
 - standard (1-1,024 GiB Size)
+
+Optional | &nbsp;
+------- | -----------
+`name`<br/>*string* | The volume name. A default name will be created if there isn't one provided.
+`iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes.
+`throughput` <br/>*int* | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.
+`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.
 
 
 <!-------------------- DELETE A VOLUME -------------------->
