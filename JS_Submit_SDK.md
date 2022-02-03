@@ -19,6 +19,7 @@ It is recommended that `submit.js` script be added inside the head tag of the HT
 > Note:
 > 1. You should either use `form.js` or `submit.js` depending on your use case.
 > 2. `form.js` provides UI form components out of the box with default form fields, whereas `submit.js` gives you flexibility to show/render your own form UI.
+  3. Remove "defer async" if it is not hit in the loadeding the form page.  
 
 
 ### This SDK exposes __two__ methods with `window.Anarock` object:
