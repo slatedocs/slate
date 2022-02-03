@@ -16,6 +16,29 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 }' "https://api.apollo.io/v1/accounts"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/accounts"
+
+data = {
+  "api_key": "YOUR API KEY HERE",
+    "name": "Google",
+    "domain": "google.com",
+    "phone_number": "1-866-246-6453",
+    "raw_address": "1600 Amphitheatre Parkway"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -73,6 +96,26 @@ curl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d 
 }' "https://api.apollo.io/v1/accounts/ACOUNT_ID"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/accounts/ACOUNT_ID"
+
+data = {
+  "api_key": "YOUR API KEY HERE",
+    "name": "new name ",
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("PUT", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -115,7 +158,7 @@ curl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d 
 | domain        | The domain of the account you are updating |
 | phone_number  | The corporate phone for this account.      |
 
-## Searching for Accounts
+## Search for Accounts
 
 > Sample request:
 
@@ -126,6 +169,28 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "sort_by_field": "account_last_activity_date",
     "sort_ascending": false
 }' "https://api.apollo.io/v1/accounts/search"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/accounts/search"
+
+data = {
+  "api_key": "YOUR API KEY HERE",
+    "q_organization_name": "Google",
+    "sort_by_field": "account_last_activity_date",
+    "sort_ascending": False
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -231,12 +296,31 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 | page                | which page to return. Defaults to 1                                                                             |
 | per_page            | how many accounts to return per page. Max = 200                                                                 |
 
-## Getting a List of Account Stages
+## Get a List of Account Stages
 
 > Sample request:
 
 ```shell
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/account_stages?api_key=YOUR_API_KEY_HERE"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/account_stages"
+
+querystring = {
+  "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -295,7 +379,7 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "ht
 
 `GET https://api.apollo.io/v1/account_stages`
 
-## Updating Account Stage
+## Update Account Stage
 
 > Sample request:
 
@@ -305,6 +389,27 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "account_ids": ["account_id1", "account_id2"],
     "account_stage_id": "stage_id"
 }' "https://api.apollo.io/v1/accounts/bulk_update"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/accounts/bulk_update"
+
+data = {
+  "api_key": "YOUR API KEY HERE",
+    "account_ids": ["account_id1", "account_id2"],
+    "account_stage_id": "stage_id"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -329,7 +434,7 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 | account_ids      | An array of account ids. You can filter for a list of account IDS with the accounts/search API.                                   |
 | account_stage_id | The account stage id to change into. You can GET a list of possible stage ids and its associated information from /account_stages |
 
-## Updating Account Ownership
+## Update Account Ownership
 
 > Sample request:
 
@@ -339,6 +444,27 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "account_ids": ["account_id1", "account_id2"],
     "owner_id": "owner_id"
 }' "https://api.apollo.io/v1/accounts/update_owners"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/accounts/update_owners"
+
+data = {
+  "api_key": "YOUR API KEY HERE",
+    "account_ids": ["account_id1", "account_id2"],
+    "owner_id": "owner_id"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:

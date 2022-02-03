@@ -16,6 +16,31 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 }' "https://api.apollo.io/v1/people/match"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/people/match"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "id": "583f2f7ed9ced98ab5bfXXXX",
+    "first_name": "Tim",
+    "last_name": "Zheng",
+    "organization_name": "Apollo",
+    "email": "name@domain.io",
+    "domain": "apollo.io"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -231,6 +256,26 @@ id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9
 
 ```shell
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/organizations/enrich?api_key=YOUR_API_KEY_HERE&domain=apollo.io"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/organizations/enrich"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE",
+    "domain": "apollo.io"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:

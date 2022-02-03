@@ -8,6 +8,25 @@
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/auth/health?api_key=YOUR_API_KEY_HERE"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/auth/health"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
 > If authentication is successful, you should expect to see {"is_logged_in":true}
 
 Apollo uses API keys to allow access to the API. You may request an API key [here](https://www.apollo.io/app/#/settings/integrations/api)

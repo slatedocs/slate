@@ -16,6 +16,29 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 }' "https://api.apollo.io/v1/contacts"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/contacts"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "first_name": "Jonny",
+    "last_name": "Snow",
+    "title": "Lord Commander",
+    "organization_name": "Apollo",
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -121,6 +144,30 @@ curl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d 
 }' "https://api.apollo.io/v1/contacts/YOUR CONTACT ID"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/contacts/YOUR CONTACT ID"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "first_name": "Jon",
+    "last_name": "Snow",
+    "email": "jon.snow@westeros.com",
+    "title": "Lord Commander",
+    "organization_name": "Westeros"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("PUT", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json
@@ -218,7 +265,7 @@ home_phone | The home phone for this contact. If the contact already has a home 
 other_phone | Phone of unknown type for this contact. If the contact already has phone of unknown type, this overwrites it. If a contact does not already have phone of unknown type, this ADDS a new phone on top of existing phone numbers | "123-456-7890"
 
 
-## Searching for Contacts
+## Search for Contacts
 
 > Sample request:
 
@@ -229,6 +276,28 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "sort_by_field": "contact_last_activity_date",
     "sort_ascending": false
 }' "https://api.apollo.io/v1/contacts/search"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/contacts/search"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "q_keywords": "Tim Zheng, CEO, Apollo",
+    "sort_by_field": "contact_last_activity_date",
+    "sort_ascending": False,
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -392,12 +461,31 @@ sort_ascending | Possible values: true or false
 page | which page to return. Defaults to 1
 per_page | how many contacts to return per page. Max = 200
 
-## Getting a List of Contact Stages
+## Get a List of Contact Stages
 
 > Sample request:
 
 ```shell
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/contact_stages?api_key=YOUR_API_KEY_HERE"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/contact_stages"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -493,7 +581,7 @@ curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "ht
 `GET https://api.apollo.io/v1/contact_stages`
 
 
-## Updating Contact Stage
+## Update Contact Stage
 
 > Sample request:
 
@@ -503,6 +591,27 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "contact_ids": ["contact_id1", "contact_id2"],
     "contact_stage_id": "stage_id"
 }' "https://api.apollo.io/v1/contacts/update_stages"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/contacts/update_stages"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "contact_ids": ["contact_id1", "contact_id2"],
+    "contact_stage_id": "stage_id"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -578,7 +687,7 @@ contact_stage_id | The contact stage id to change into. You can GET a list of po
 
 
 
-## Updating Contact Ownership
+## Update Contact Ownership
 
 > Sample request:
 
@@ -588,6 +697,27 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "contact_ids": ["contact_id1", "contact_id2"],
     "owner_id": "owner_id"
 }' "https://api.apollo.io/v1/contacts/update_owners"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/contacts/update_owners"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "contact_ids": ["contact_id1", "contact_id2"],
+    "owner_id": "owner_id"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:

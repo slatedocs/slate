@@ -15,6 +15,28 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
 }' "https://api.apollo.io/v1/mixed_people/search"
 ``` 
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/mixed_people/search"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "q_organization_domains": "apollo.io\ngoogle.com",
+    "page" : 1,
+    "person_titles" : ["sales manager", "engineer manager"]
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json 

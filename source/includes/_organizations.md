@@ -10,6 +10,25 @@ An Organization represents a company in Apollo's database.
 curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "https://api.apollo.io/v1/organizations/ORGANIZATION_ID/job_postings?api_key=YOUR_API_KEY_HERE"
 ```
 
+```python
+import requests
+
+url = "https://api.apollo.io/v1/organizations/ORGANIZATION_ID/job_postings"
+
+querystring = {
+    "api_key": "YOUR API KEY HERE"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
 > Sample response:
 
 ```json

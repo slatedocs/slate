@@ -2,7 +2,7 @@
 
 Use the Sequences API to interact with sequences, add contacts to sequence, and more!
 
-## Searching for sequences
+## Search for sequences
 
 > Sample request:
 
@@ -11,6 +11,26 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "api_key": "YOUR API KEY HERE",
     "q_name": "Sequence Name"
 }' "https://api.apollo.io/v1/emailer_campaigns/search"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/emailer_campaigns/search"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "q_name": "Sequence Name"
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -103,7 +123,7 @@ Parameter | Description | Example
 q_name| Name | "Name of Sequence"
 
 
-## Adding Contacts to Sequence
+## Add Contacts to Sequence
 
 > Sample request:
 
@@ -118,6 +138,32 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "sequence_no_email": false,
     "sequence_finished_in_other_campaigns": false,    
 }' "https://api.apollo.io/v1/emailer_campaigns/REPLACE_WITH_SEQUENCE_ID/add_contact_ids"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/emailer_campaigns/REPLACE_WITH_SEQUENCE_ID/add_contact_ids"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "async": False,
+    "contact_ids": ["contact id 1", "contact id 2"],
+    "emailer_campaign_id": REPLACE_WITH_SEQUENCE_ID,
+    "send_email_from_email_account_id": "email_account_id",
+    "sequence_active_in_other_campaigns": False,
+    "sequence_no_email": False,
+    "sequence_finished_in_other_campaigns": False,    
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:
@@ -290,7 +336,7 @@ sequence_finished_in_other_campaigns  | Whether to still sequence the contact if
 async | Whether process should be executed synchronously or asynchronously | true or false (default false)
 
 
-## Removing Contacts from Sequence / Marking Contacts as Finished in Sequence
+## Remove Contacts from Sequence / Marking Contacts as Finished in Sequence
 
 > Sample request:
 
@@ -302,6 +348,29 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "mode": "remove",
     "async": "false"
 }' "https://api.apollo.io/v1/emailer_campaigns/remove_or_stop_contact_ids"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/v1/emailer_campaigns/remove_or_stop_contact_ids"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "emailer_campaign_ids": ["contact id 1", "contact id 2"],
+    "contact_ids": ["contact id 1", "contact id 2"],
+    "mode": "remove",
+    "async": False   
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
 ```
 
 > Sample response:
