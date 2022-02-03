@@ -131,6 +131,8 @@ Attributes | &nbsp;
 
 #### Delete a volume
 
+Note: only instances in an "available" state can be deleted
+
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
