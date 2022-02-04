@@ -8266,6 +8266,13 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "custom_fields": [
       {
         "gid": "12345",
@@ -8600,6 +8607,13 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "custom_fields": [
       {
         "gid": "12345",
@@ -8906,6 +8920,13 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
       "gid": "12345",
       "resource_type": "workspace",
       "name": "My Company Workspace"
+    },
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
     },
     "custom_fields": [
       {
@@ -9779,6 +9800,13 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
       "resource_type": "workspace",
       "name": "My Company Workspace"
     },
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "custom_fields": [
       {
         "gid": "12345",
@@ -10261,6 +10289,13 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
       "gid": "12345",
       "resource_type": "workspace",
       "name": "My Company Workspace"
+    },
+    "completed": false,
+    "completed_at": "2012-02-22T02:06:58.147Z",
+    "completed_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
     },
     "custom_fields": [
       {
@@ -11343,7 +11378,7 @@ Status Code **200**
 <span class="description">
 A *project brief* object represents a rich text document that describes a project.
 
-Please note that this API is in *preview*, and is expected to change. This API is to be used for development and testing only as an advance view into the upcoming rich text format experience in the task description. For the latest on Project Briefs, [visit our forum](https://forum.asana.com/c/developersapi/platform-news/).
+Please note that this API is in *preview*, and is expected to change. This API is to be used for development and testing only as an advance view into the upcoming rich text format experience in the task description. For more information, see [this post](https://forum.asana.com/t/project-brief-api-now-available-as-a-preview/150885) in the developer forum.
 </span>
 
 </section>
@@ -27077,6 +27112,13 @@ With the introduction of “comment-only” projects in Asana, a user’s member
     "resource_type": "workspace",
     "name": "My Company Workspace"
   },
+  "completed": false,
+  "completed_at": "2012-02-22T02:06:58.147Z",
+  "completed_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
   "custom_fields": [
     {
       "gid": "12345",
@@ -27228,6 +27270,12 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the workspace.|
+|completed<span class="param-type"> boolean</span>|True if the project is currently marked complete, false if not.|
+|completed_at<span class="param-type"> string(date-time)¦null</span>|The time at which this project was completed, or null if the project is not completed.|
+|completed_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|

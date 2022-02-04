@@ -19,6 +19,9 @@ info:
     - AttachedResourceResponse
     - FormMetadataResponse
     - RanActionResponse
+    - WidgetFooter-CustomText
+    - WidgetFooter-Created
+    - WidgetFooter-Updated
     - WidgetMetadataResponse
     - TypeaheadListResponse
     - TypeaheadItem
@@ -401,6 +404,46 @@ components:
               type: string
               description: >-
                 The project `gid` this hook is coming from.
+    WidgetFooter-Created:
+      description: >-
+        A Widget footer that displays the timestamp of the resource's creation time.
+      type: object
+      properties:
+        footer_type:
+          description:  >- 
+            The type of Widget footer.
+          type: string
+          enum:
+            - created
+          example: 'created'  
+        created_at:
+          description: >-
+            The time (in ISO-8601 date format) to show in the footer.
+          type: string
+          example: '2012-02-22T02:06:58.147Z'
+    WidgetFooter-CustomText:
+      type: object
+      description: >-
+        A Widget footer that custom text and an optional icon.
+      properties:
+        footer_type:
+          description: >-
+            The text to show in the footer.
+          type: string
+          enum:
+            - custom_text
+          example: 'custom_text'
+        text:
+          description: >-
+            The text to show in the footer.
+          type: string
+          example: 'This is a custom footer message'
+        icon_url:
+          description: >-
+            The optional icon to show in the footer next to the text. If not provided, no
+            icon will be shown.
+          type: string
+          example: 'https://example-icon.png'
     FormOnChangeBaseRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
@@ -567,6 +610,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TypeaheadItem'
+    WidgetFooter-Updated:
+      description: >-
+        A Widget footer that displays the timestamp of the resource's last updated time.
+      type: object
+      properties:
+        footer_type:
+          description:  >- 
+            The type of Widget footer.
+          type: string
+          enum:
+            - updated
+          example: 'updated'  
+        last_updated_at:
+          description: >-
+            The time (in ISO-8601 date format) to show in the footer.
+          type: string
+          example: '2012-02-22T02:06:58.147Z'
     WidgetMetadataResponse:
       description: >-
         An object containing information about the widget.
@@ -614,51 +674,18 @@ components:
               type: string
               example: 'https://example-icon.png'
             footer:
-              $ref: '#/components/schemas/WidgetFooter'
+              type: object
+              description: >-
+                Contains the information to display a footer on the Widget. 
+
+
+                Valid schemas: [WidgetFooter-Created](/docs/widget-footer-created), [WidgetFooter-CustomText](/docs/widget-footer-custom-text), [WidgetFooter-Updated](/docs/widget-footer-updated).
             num_comments:
               description: >-
                 The number of comments to display on the lower right corner of the widget. If not provided, no comment
                 count will be shown
               type: integer
               example: 2
-    WidgetFooter:
-      description: >-
-        Contains the information to display a footer on the widget
-      type: object
-      properties:
-        footer_type:
-          description: The type of widget footer.
-          type: string
-          enum:
-            - custom_text
-            - updated
-            - created
-          example: 'custom_text'
-        text:
-          description: >-
-            *Conditional* Only relevant for WidgetFooters of type `custom_text`.
-            The text to show in the footer.
-          type: string
-          example: 'This is a custom footer message'
-        icon_url:
-          description: >-
-            *Conditional* Only relevant for WidgetFooters of type `custom_text`.
-            The icon to show in the footer next to the text. If not provided, no
-            icon will be shown.
-          type: string
-          example: 'https://example-icon.png'
-        last_updated_at:
-          description: >-
-            *Conditional* Only relevant for WidgetFooters of type `updated`.
-            The time (in ISO-8601 date format) to show in the footer.
-          type: string
-          example: '2012-02-22T02:06:58.147Z'
-        created_at:
-          description: >-
-            *Conditional* Only relevant for WidgetFooters of type `created`.
-            The time (in ISO-8601 date format) to show in the footer.
-          type: string
-          example: '2012-02-22T02:06:58.147Z'
     WidgetField:
       description: >-
         Contains the information to display a field on the widget

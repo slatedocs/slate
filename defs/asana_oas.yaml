@@ -596,7 +596,8 @@ tags:
       Please note that this API is in *preview*, and is expected to change.
       This API is to be used for development and testing only as an advance
       view into the upcoming rich text format experience in the task description.
-      For the latest on Project Briefs, [visit our forum](https://forum.asana.com/c/developersapi/platform-news/).
+      For more information, see [this post](https://forum.asana.com/t/project-brief-api-now-available-as-a-preview/150885)
+      in the developer forum.
   - name: Project Memberships
     description: >-
       With the introduction of “comment-only” projects in Asana, a user’s
@@ -616,6 +617,16 @@ tags:
       are behind, and "blue" for projects on hold.
 
       Project statuses can be created and deleted, but not modified.
+  - name: Project Templates
+    description: |-
+      A *project template* is an object that allows new projects to be created
+      with a predefined setup, which may include tasks, sections, Rules, etc.
+      It simplifies the process of running a workflow that involves a similar
+      set of work every time.
+
+
+      Project templates in organizations are shared with a single team. You cannot
+      currently change the team of a project template via the API.
   - name: Sections
     description: >-
       A *section* is a subdivision of a project that groups tasks together.
@@ -3436,6 +3447,28 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/CustomFieldCompact'
+            completed:
+              description: >-
+                True if the project is currently marked complete, false if not.
+              type: boolean
+              readOnly: true
+              example: false
+            completed_at:
+              description: >-
+                The time at which this project was completed, or null if the project
+                is not completed.
+              type: string
+              format: date-time
+              readOnly: true
+              nullable: true
+              example: '2012-02-22T02:06:58.147Z'
+            completed_by:
+              description: >-
+                The user that marked this project complete, or null if the project
+                is not completed.
+              readOnly: true
+              nullable: true
+              $ref: '#/components/schemas/UserCompact'
             followers:
               description: >-
                 Array of users following this project. Followers are a subset
