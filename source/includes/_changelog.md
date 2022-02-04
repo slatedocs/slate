@@ -1,5 +1,8 @@
 # Changelog
 
+## 2022-02-03
+- Added [Whoami API](#whoami) documentation.
+
 ## 2022-02-01
 
 - Added [Reminder API](#reminders) documentation.

@@ -24,6 +24,7 @@ includes:
   - entity-files
   - reminders
   - webhooks
+  - whoami
   - spacer
   - changelog
 ---
