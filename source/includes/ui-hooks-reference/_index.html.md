@@ -1492,13 +1492,7 @@ getWidgetMetadata
         "type": "pill"
       }
     ],
-    "footer": {
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "footer_type": "custom_text",
-      "icon_url": "https://example-icon.png",
-      "last_updated_at": "2012-02-22T02:06:58.147Z",
-      "text": "This is a custom footer message"
-    },
+    "footer": {},
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
     "subtitle": "Custom App Story · Open in Custom App",
@@ -1805,6 +1799,119 @@ The response to a successful typeahead request.
 
 </section><hr>
 <section>
+<a id="schemawidgetfooter-created"></a>
+<a id="schema_WidgetFooter-Created"></a>
+<a id="tocSwidgetfooter-created"></a>
+<a id="tocswidgetfooter-created"></a>
+<a id="tocS_WidgetFooter-Created"></a>
+<h2 id="widget-footer-created">WidgetFooter-Created</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "footer_type": "created"
+}
+
+```
+
+<span class="description">
+A Widget footer that displays the timestamp of the resource's creation time.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|created_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) to show in the footer.|
+|footer_type<span class="param-type"> string</span>|The type of Widget footer.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|footer_type|created|
+
+</section><hr>
+<section>
+<a id="schemawidgetfooter-customtext"></a>
+<a id="schema_WidgetFooter-CustomText"></a>
+<a id="tocSwidgetfooter-customtext"></a>
+<a id="tocswidgetfooter-customtext"></a>
+<a id="tocS_WidgetFooter-CustomText"></a>
+<h2 id="widget-footer-custom-text">WidgetFooter-CustomText</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "footer_type": "custom_text",
+  "icon_url": "https://example-icon.png",
+  "text": "This is a custom footer message"
+}
+
+```
+
+<span class="description">
+A Widget footer that custom text and an optional icon.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|footer_type<span class="param-type"> string</span>|The text to show in the footer.|
+|icon_url<span class="param-type"> string</span>|The optional icon to show in the footer next to the text. If not provided, no icon will be shown.|
+|text<span class="param-type"> string</span>|The text to show in the footer.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|footer_type|custom_text|
+
+</section><hr>
+<section>
+<a id="schemawidgetfooter-updated"></a>
+<a id="schema_WidgetFooter-Updated"></a>
+<a id="tocSwidgetfooter-updated"></a>
+<a id="tocswidgetfooter-updated"></a>
+<a id="tocS_WidgetFooter-Updated"></a>
+<h2 id="widget-footer-updated">WidgetFooter-Updated</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "footer_type": "updated",
+  "last_updated_at": "2012-02-22T02:06:58.147Z"
+}
+
+```
+
+<span class="description">
+A Widget footer that displays the timestamp of the resource's last updated time.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|footer_type<span class="param-type"> string</span>|The type of Widget footer.|
+|last_updated_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) to show in the footer.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|footer_type|updated|
+
+</section><hr>
+<section>
 <a id="schemawidgetmetadata"></a>
 <a id="schema_WidgetMetadata"></a>
 <a id="tocSwidgetmetadata"></a>
@@ -1828,13 +1935,7 @@ The response to a successful typeahead request.
         "type": "pill"
       }
     ],
-    "footer": {
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "footer_type": "custom_text",
-      "icon_url": "https://example-icon.png",
-      "last_updated_at": "2012-02-22T02:06:58.147Z",
-      "text": "This is a custom footer message"
-    },
+    "footer": {},
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
     "subtitle": "Custom App Story · Open in Custom App",
@@ -1863,12 +1964,7 @@ An object containing information about the widget.
 |»» text<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `pill` and `text_with_icon`. The text to show in the field. Max size of 40 char.|
 |»» timestamp<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `datetime_with_icon`. The time (in ISO-8601 date format) to display next to the icon.|
 |»» type<span class="param-type"> string</span>|The type of widget field.|
-|» footer<span class="param-type"> object</span>|Contains the information to display a footer on the widget|
-|»» created_at<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `created`. The time (in ISO-8601 date format) to show in the footer.|
-|»» footer_type<span class="param-type"> string</span>|The type of widget footer.|
-|»» icon_url<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `custom_text`. The icon to show in the footer next to the text. If not provided, no icon will be shown.|
-|»» last_updated_at<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `updated`. The time (in ISO-8601 date format) to show in the footer.|
-|»» text<span class="param-type"> string</span>|*Conditional* Only relevant for WidgetFooters of type `custom_text`. The text to show in the footer.|
+|» footer<span class="param-type"> object</span>|Contains the information to display a footer on the Widget. <br><br>Valid schemas: [WidgetFooter-Created](/docs/widget-footer-created), [WidgetFooter-CustomText](/docs/widget-footer-custom-text), [WidgetFooter-Updated](/docs/widget-footer-updated).|
 |» num_comments<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
 |» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
@@ -1898,9 +1994,6 @@ An object containing information about the widget.
 |type|pill|
 |type|text_with_icon|
 |type|datetime_with_icon|
-|footer_type|custom_text|
-|footer_type|updated|
-|footer_type|created|
 |template|summary_with_details_v0|
 
 </section>
