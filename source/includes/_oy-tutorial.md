@@ -206,12 +206,12 @@ You can enable or disable notification settings for disbursement products if you
 
 ## Multi Account Management
 
-Multi Account Management (Subsidiaries) is a feature that can help you handle complex relations between entities in your business in the Oy! Dashboard. Please contact our Sales or Account Management if you’re interested to use this feature.  
+Multi Account Management (Children) is a feature that can help you handle complex relations between entities in your business in the Oy! Dashboard. Please contact our Sales or Account Management if you’re interested to use this feature.  
 With this feature you will be able to :
 
-1. Have a detailed report on transactions performed by all of subsidiary account
-2. Distribute balance between the parent account to subsidiaries account
-3. Use subsidiary balance to disburse funds
+1. Have a detailed report on transactions performed by all of children account
+2. Distribute balance between the parent account to children account
+3. Use child account balance to disburse funds
 4. Free admin fee to disburse between related user
 
 ### **Registration & Setup**
@@ -228,24 +228,24 @@ With this feature you will be able to :
 
 To properly used Multi Account Management, we required several accounts to be linked together. Each account can be used independently, and each account needs to pass the KYB to be used fully.
 
-**A. Link to Subsidiary Account**
+**A. Link to Child Account**
 
 1. **For Parent Account**
 
-To add a new subsidiary as a parent account please 1) Log in to Dashboard with parent credential 2) Go to Subsidiaries → List of Subsidiaries
+To add a new child as a parent account please 1) Log in to Dashboard with parent credential 2) Go to Child → List of Children
 
 ![As Parent - Subs - 1. Initial.png](../images/As_Parent_Subs_1_Initial(2).png)
 
-1. Click the “+ Add Subsidiary”
-2. Fill in the username for the subsidiary you wished to connect. You can find your username from the menu Accounts → User Profile in the Username section
+1. Click the “+ Add Child”
+2. Fill in the username for the child you wished to connect. You can find your username from the menu Accounts → User Profile in the Username section
 3. Click Add and then if the account is found in the system you can confirm by clicking Connect in the confirmation window
 
-![Image: As Parent - Subs - 6. Add Subsidiary - Type Username](../images/As_Parent_Subs_6_Add_Subsidiary_Type_Username.png) ![Image: As Parent - Subs - 7a. Existing Username - Not Connected with any parent](../images/As_Parent_Subs_Existing_Username_Not_Connected_with_any_parent.png)
+![Image: As Parent - Subs - 6. Add Child - Type Username](../images/As_Parent_Subs_6_Add_Subsidiary_Type_Username.png) ![Image: As Parent - Subs - 7a. Existing Username - Not Connected with any parent](../images/As_Parent_Subs_Existing_Username_Not_Connected_with_any_parent.png)
 After confirming, the request will be sent to the respective account to be accepted
 
-1. **For Subsidiary Account**
+1. **For Child Account**
 
-To receive a request from a parent company, please 1) Log in to dashboard with subsidiary credential 2) Go to Transaction Report → Account Statement
+To receive a request from a parent company, please 1) Log in to dashboard with child credential 2) Go to Transaction Report → Account Statement
 ![Image: As Child - AccState - 2b. Waiting approval](../images/As_Child_AccState_2b_Waiting_approval.png)
 
 1. Click the “Check All request” button that can be found near the top right corner of the page
@@ -253,14 +253,13 @@ To receive a request from a parent company, please 1) Log in to dashboard with s
 
 ![Image: As Child - AccState - 4b. 2 Requests to connect.png](../images/As_Child_AccState_4b_2_Requests_to_connect.png)![Image: As Child - AccState - 4e. Confirmation to connect](../images/As_Child_AccState_4e_Confirmation_to_connect.png)
 
-3. After successfully received the parent request to connect, you will find your parent information near the top right corner of your page, and you are now connected as a parent-subsidiary account
+3. After successfully received the parent request to connect, you will find your parent information near the top right corner of your page, and you are now connected as a parent-child account
 
 ![Image: As Child - AccState - 4h. Success add new head company](../images/As_Child_AccState_4h_Success_add_new_head_company.png)
 
-**B. Topup money to a subsidiary account**
+**B. Topup money to a child account**
 
-After having a working parent-subsidiary account, you can transfer money to the subsidiary account by accessing the menu Subsidiaries → List of Subsidiaries
-
+After having a working parent-child account, you can transfer money to the child account by accessing the menu Children → List of Children
 1. Find the account that you wished to top-up
 2. Click the “+ Top Up” button
 3. Fill in the amount you wish to top-up
@@ -269,12 +268,39 @@ After having a working parent-subsidiary account, you can transfer money to the 
 
 ![Image: As Parent - Subs - 5a. Top Up.png](../images/As_Parent_Subs_5a_Top_Up.png)
 
-**C. Disburse Money using subsidiary balance**
+**C. Disburse Money using child balance**
 
-In Multi Account Management, you will be able to do disbursement using your subsidiary account on their behalf. To do this you could
+In Multi Account Management, you will be able to do disbursement using your children account on their behalf. To do this you could
 
 1. Access the Bulk Disbursement menu and clicking on “+ Create Disbursement” button
-2. Select your subsidiary balance as a source of fund to do disbursement by selecting “My Subsdiary Balance” and choose the appropriate account.
+2. Select your child balance as a source of fund to do disbursement by selecting “My Subsdiary Balance” and choose the appropriate account.
 3. After choosing the balance you could proceed to do disbursement just like regular disbursement
 
 ![Image: Choose SoF - 2. Choose SoF subsidiary.png](../images/Choose_SoF_2_Choose_SoF_subsidiary.png) ![Image: Choose SoF - 4. Type or search sub.png](../images/Choose_SoF_4_Type_or_search_sub.png)
+
+**D. Create a payment link on behalf of a child account **
+
+With this feature, you will be able to accept payment from your users through Payment Link created on behalf of a child account. When your users make a successful transaction, the transaction will be recorded in the Child Account's balance. As a parent, you are equipped with the ability to view the Child Account's balance and transaction list anytime through Children → Children Statement. 
+
+The flow will be as follows:
+
+![MAM Payment Link](images/payment_link_mam_flow.png)
+
+Follow the below steps to create a payment link on behalf of a child account:
+
+***Via API***
+
+Hit [API Create Payment Link](https://api-docs.oyindonesia.com/#api-create-payment-link-fund-acceptance) and fill in "child_balance" parameter with the username of a child account that you will set as the balance destination for the transaction. When your users make a successful transaction, the transaction will be recorded in the specified Child Account's balance
+
+***Via Dashboard***
+ 
+1. Click Payment Link -> One-time (if you want to create a one-time payment link) or Click Payment Link -> Reusable (if you want to create a reusable payment link)
+2. Click "Create One-Time Link" (for one-time payment link) or click "Create Reusable Link" (for reusable payment link)
+3. You will see a pop-up to proceed with the creation process
+4. Fill in "Balance Destination" with "My Balance" (if the balance destination of the transaction is your own) or "Child Balance" (if the balance destination of the transaction is your child's). If you select "Child Balance", you will see a dropdown to select a username of the child account. Only 1 child account is currently allowed to be a balance destination
+5. If you select "Child Balance", when your users make a successful transaction, the transaction will be recorded in the specified Child Account's balance.
+
+
+
+
+
