@@ -80,6 +80,7 @@ All role events operate on the _User_ resource type.
 | division_teams_export_started  | Division | A team CSV export for the division was started. |
 | workspace_members_export_started | Workspace | A member CSV export was started for the workspace. |
 | project_csv_export_started | Project | A project CSV export was started. |
+| attachment_downloaded | Attachment | An attachment was downloaded. |
  
  
 ### Access Control
@@ -117,6 +118,7 @@ All role events operate on the _User_ resource type.
 | Event Type | Resource Type | Description |
 |------------|---------------|-------------|
 | team_created | Team | A new team was created. |
+| attachment_uploaded | Attachment | An attachment was uploaded. |
  
 ### Deletion
  
