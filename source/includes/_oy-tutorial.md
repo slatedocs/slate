@@ -300,7 +300,13 @@ Hit [API Create Payment Link](https://api-docs.oyindonesia.com/#api-create-payme
 4. Fill in "Balance Destination" with "My Balance" (if the balance destination of the transaction is your own) or "Child Balance" (if the balance destination of the transaction is your child's). If you select "Child Balance", you will see a dropdown to select a username of the child account. Only 1 child account is currently allowed to be a balance destination
 5. If you select "Child Balance", when your users make a successful transaction, the transaction will be recorded in the specified Child Account's balance.
 
+![MAM Payment Link](images/one_time_pc_mam_flow.png)
 
+Preview for one-time payment link
+
+![MAM Payment Link](images/reusable_pc_mam_flow.png)
+
+Preview for reusable payment link
 
 
 
