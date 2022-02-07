@@ -46,17 +46,17 @@ For full details of the batch payments, call [`GET /transfers/batch/{batchId}`](
 
 ### Optional Attributes
 
-| Key                          | JSON Type | Value Type | Value Description                                                            |
-|------------------------------|-----------|------------|------------------------------------------------------------------------------|
-| payments[].sourceOfFunds     | Object    | Object     | Optional but inclusion preferred. The client's active bank account details.  |
-| sourceOfFunds.accountName    | String    | String     | The investor's bank account name.                                            |
-| sourceOfFunds.accountNumber  | String    | String     | The client's bank account number.                                            |
-| sourceOfFunds.sortCode       | String    | String     | The client's bank account sort code.                                         |
-| payments[].status            | String    | Enum       | Response Only. Values: `PENDING`, `DISTRIBUTED`.                             |
-| payTo.accountName            | String    | String     | Response Only. The name of the account to send payment to.                   |
-| payTo.accountNumber          | String    | String     | Response Only. The account number to send payment to.                        |
-| payTo.sortCode               | String    | String     | Response Only. The sort code to send payment to.                             |
-| payTo.reference              | String    | String     | Response Only. The reference to use when sending payment.                    |
+| Key                          | JSON Type | Value Type | Value Description                                                           |
+|------------------------------|-----------|------------|-----------------------------------------------------------------------------|
+| payments[].sourceOfFunds     | Object    | Object     | Optional but inclusion preferred. The client's active bank account details. |
+| sourceOfFunds.accountName    | String    | String     | The investor's bank account name.                                           |
+| sourceOfFunds.accountNumber  | String    | String     | The client's bank account number.                                           |
+| sourceOfFunds.sortCode       | String    | String     | The client's bank account sort code.                                        |
+| payments[].status            | String    | Enum       | Response Only. Values: `PENDING`, `DISTRIBUTED`, `RECEIVED`, `FAILED`.              |
+| payTo.accountName            | String    | String     | Response Only. The name of the account to send payment to.                  |
+| payTo.accountNumber          | String    | String     | Response Only. The account number to send payment to.                       |
+| payTo.sortCode               | String    | String     | Response Only. The sort code to send payment to.                            |
+| payTo.reference              | String    | String     | Response Only. The reference to use when sending payment.                   |
 
 
 ## `POST /transfers/batch`
