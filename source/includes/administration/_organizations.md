@@ -30,12 +30,20 @@ curl "https://cloudmc_endpoint/api/v1/organizations" \
          "isReseller": false,
          "tags": [
             {
-              "id": "78c6afa5-8b65-40a5-be1c-aa55a3b81030",
-              "name": "a-tag",
-              "organization": {
-                "id":"075d64d5-c629-481a-9b91-32e5e286aeae",
-              },
+               "system": true,
+               "name": "billable",
+               "id": "5a84485f-7eed-11ec-b819-0242ac120002"
             },
+            {
+               "system": false,
+               "name": "organizationTagOne",
+               "id": "fc2a164f-3871-4eed-9591-d3ceb838550b"
+            },
+            {
+               "system": false,
+               "name": "organizationTagTwo",
+               "id": "12d6d802-ca56-4c22-9c9d-e76ee0b1e97c"
+            }
          ],
          "deleted": false,
          "parent": {
@@ -84,7 +92,7 @@ Attributes | &nbsp;
 `billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
-`tags`<br/>*Array[string]* | Tags associated to the organization. These include a reseller organization that the tags belong to.
+`tags`<br/>*Array[object]* | Tags associated to the organization. <br/>*includes*: `id`*UUID*, `name`*string*, `system`*boolean*
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
@@ -124,13 +132,21 @@ curl "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afdd
       "billingMode": "CREDIT_CARD",
       "isReseller": false,
       "tags": [
-        {
-          "id": "78c6afa5-8b65-40a5-be1c-aa55a3b81030",
-          "name": "a-tag",
-          "organization": {
-            "id":"075d64d5-c629-481a-9b91-32e5e286aeae",
-          },
-        },
+         {
+            "system": true,
+            "name": "billable",
+            "id": "5a84485f-7eed-11ec-b819-0242ac120002"
+         },
+         {
+            "system": false,
+            "name": "organizationTagOne",
+            "id": "fc2a164f-3871-4eed-9591-d3ceb838550b"
+         },
+         {
+            "system": false,
+            "name": "organizationTagTwo",
+            "id": "12d6d802-ca56-4c22-9c9d-e76ee0b1e97c"
+         }
       ],
       "parent": {
          "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
@@ -171,7 +187,7 @@ Attributes | &nbsp;
 `billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
-`tags`<br/>*Array[string]* | Tags associated to the organization. These include a reseller organization that the tags belong to.
+`tags`<br/>*Array[object]* | Tags associated to the organization. <br/>*includes*: `id`*UUID*, `name`*string*, `system`*boolean*
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
@@ -228,6 +244,7 @@ Optional | &nbsp;
 `parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
 `billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
+`tags`<br/>*Array[object]* | Tags associated to the organization. Tags provided in the request cannot be system tags. <br/>*required* : `id` or `name`
 
 The responses' `data` field contains the created [organization](#administration-organizations) with its `id`.
 
@@ -263,7 +280,7 @@ Optional | &nbsp;
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. <br/>_Read below (after the request parameter list) for more details._<br/>*required attributes of the service connection:* `id`
-`tags`<br/>*Array[string]* | Tags associated to the organization. These include a reseller organization that the tags belong to.
+`tags`<br/>*Array[object]* | Tags associated to the organization. Tags provided in the request cannot be system tags. Must have the `Reseller: Organizations metadata: Manage` permission. User cannot modify tags of their own (non-root) organization. <br/>*required* : `id` or `name`
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
 `users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*required attributes of the organization* : `id`
 `notes`<br/>*string* | Organization notes. Must have the `Organization metadata: Manage` permission.
