@@ -52,23 +52,23 @@ curl -X GET \
 
 Retrieve a list of all volumes in a given [environment](#administration-environments).
 
-Attributes | &nbsp;
-------- | -----------
-`id`<br/>*string* | The ID of the volume.
-`name`<br/>*string* | The volume name of the root device volume (for example, /dev/sda1).
-`attachments` <br/>*Array[object]* | The list of instances to which the volume is attached.
-`availabilityZone` <br/>*string* | The Availability Zone of the volume.
-`createTime` <br/>*object* | The timestamp when the volume was created.
-`encrypted` <br/>*boolean* | Indicates whether the volume is encrypted.
-`size` <br/>*int* | The size of the volume in GiB.
-`snapshotId` <br/>*string* | The snapshot from which the volume was created.
-`state` <br/>*string* | The state of the volume (creating, available, in-use, deleting, deleted, error).
-`volumeId` <br/>*string* | The volume ID.
-`iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide.
-`tags` <br/>*Array[object]* | Any tags assigned to the volume. Tags are key value pairs.
-`volumeType` <br/>*string* | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).
-`fastRestored` <br/>*boolean* | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore.
-`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.
+| Attributes                          | &nbsp;                                                                                                    |
+|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `id`<br/>*string*                   | The ID of the volume.                                                                                     |
+| `name`<br/>*string*                 | The volume name of the root device volume (for example, /dev/sda1).                                       |
+| `attachments` <br/>*Array[object]*  | The list of instances to which the volume is attached.                                                    |
+| `availabilityZone` <br/>*string*    | The Availability Zone of the volume.                                                                      |
+| `createTime` <br/>*object*          | The timestamp when the volume was created.                                                                |
+| `encrypted` <br/>*boolean*          | Indicates whether the volume is encrypted.                                                                |
+| `size` <br/>*int*                   | The size of the volume in GiB.                                                                            |
+| `snapshotId` <br/>*string*          | The snapshot from which the volume was created.                                                           |
+| `state` <br/>*string*               | The state of the volume (creating, available, in-use, deleting, deleted, error).                          |
+| `volumeId` <br/>*string*            | The volume ID.                                                                                            |
+| `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. |
+| `tags` <br/>*Array[object]*         | Any tags assigned to the volume. Tags are key value pairs.                                                |
+| `volumeType` <br/>*string*          | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).                                      |
+| `fastRestored` <br/>*boolean*       | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore.       |
+| `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.                                                 |
 
 <!-------------------- RETRIEVE A VOLUME -------------------->
 <!-- MC-17105 -->
@@ -108,11 +108,11 @@ curl -X POST \
 
 Retrieve a list of all volumes in a given [environment](#administration-environments).
 
-Attributes | &nbsp;
-------- | -----------
-`availabilityZone` <br/>*string* | The Availability Zone of the volume within the service connection's default region policy.
-`size` <br/>*int* | The size of the volume in GiB. Size is a required field for all volume types.
-`volumeType` <br/>*string* | The Amazon EBS volume type. Below is a list of the possible volume types and the limits for their respective fields.
+| Attributes                       | &nbsp;                                                                                                               |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| `availabilityZone` <br/>*string* | The Availability Zone of the volume within the service connection's default region policy.                           |
+| `size` <br/>*int*                | The size of the volume in GiB. Size is a required field for all volume types.                                        |
+| `volumeType` <br/>*string*       | The Amazon EBS volume type. Below is a list of the possible volume types and the limits for their respective fields. |
 
 - gp2 (1-16,384 GiB Size)
 - gp3 (1-16,384 GiB Size, 3,000-16,000 IOPS, 125-1000 MiB/s Throughput)
@@ -122,13 +122,12 @@ Attributes | &nbsp;
 - sc2 (125-16,384 GiB Size)
 - standard (1-1,024 GiB Size)
 
-Optional | &nbsp;
-------- | -----------
-`name`<br/>*string* | The volume name. A default name will be created if there isn't one provided.
-`iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes.
-`throughput` <br/>*int* | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.
-`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.
-
+| Optional                            | &nbsp;                                                                                                                                                                                                          |
+|-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`<br/>*string*                 | The volume name. A default name will be created if there isn't one provided.                                                                                                                                    |
+| `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes. |
+| `throughput` <br/>*int*             | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.                                                                                                      |
+| `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.                                                                                                  |
 
 <!-------------------- DELETE A VOLUME -------------------->
 
@@ -151,6 +150,42 @@ curl -X DELETE \
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance deletion. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
+
+
+
+<!-------------------- DETACH A VOLUME -------------------->
+
+#### Detach a volume
+
+Note: Only attached volumes can be detached. Detaching a root device volume will result in stopping the instance before detaching the volume.
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/volumes/vol-0d1f9106cd0e0dff7"
+```
+
+> Request body example for a volume:
+```json
+{
+    "instanceIdToDetach": "i-0e0d3jh110d1f9106"
+}
+```
+
+> The above command returns a JSON structured like this:
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
