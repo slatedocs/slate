@@ -131,7 +131,7 @@ Attributes | &nbsp;
 
 #### Delete a volume
 
-Note: only instances in an "available" state can be deleted
+Note: only volumes in an "available" state can be deleted
 
 ```shell
 curl -X DELETE \
