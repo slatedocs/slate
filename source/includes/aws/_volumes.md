@@ -157,6 +157,53 @@ curl -X DELETE \
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
 
+<!-------------------- ATTACH A VOLUME -------------------->
+
+#### Attach a volume
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/volumes/vol-0d1f9106cd0e0dff7?operation=attach"
+```
+
+> Request body example for a volume:
+```json
+{
+    "attachmentDeviceName": "/dev/sda1",
+    "instanceIdToAttach": "i-0b4e945ee65072b8a",
+    "attachments": [],
+    "availabilityZone": "us-east-1b",
+    "createTime": "2022-02-01T20:24:25.786Z",
+    "encrypted": false,
+    "fastRestored": false,
+    "id": "vol-0c103471947ff275d",
+    "iops": 100,
+    "multiAttachEnabled": true,
+    "name": "vol-0c103471947ff275d",
+    "size": 5,
+    "snapshotId": "",
+    "state": "available",
+    "tags": [],
+    "volumeId": "vol-0c103471947ff275d",
+    "volumeType": "io1"
+}
+```
+
+> The above command returns a JSON structured like this:
+```json
+{
+    "taskId": "c8f44de4-e36f-456d-9802-3fb59cce3de2",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
+
+| Attributes                 | &nbsp;                                          |
+|----------------------------|-------------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance attachment. |
+| `taskStatus` <br/>*string* | The status of the operation.                    |
 
 <!-------------------- DETACH A VOLUME -------------------->
 
