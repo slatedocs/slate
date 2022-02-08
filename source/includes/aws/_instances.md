@@ -17,26 +17,46 @@ curl -X GET \
 {
   "data": [
     {
-      "id": "i-0d1f9106cd0e0dff7",
+      "id": "i-03dffc71c7d649bb1",
+      "name": "NameOfMyInstance",
       "rootDeviceName": "/dev/xvda",
       "imageId": "ami-0947d2ba12ee1ff75",
       "instanceType": "t2.micro",
-      "launchTime": "2020-11-19T03:41:51Z",
-      "availabilityZone": "us-east-1e",
-      "privateDnsName": "ip-172-31-55-223.ec2.internal",
-      "privateIpAddress": "172.31.55.223",
-      "publicDnsName": "ec2-54-237-115-182.compute-1.amazonaws.com",
-      "publicIpAddress": "54.237.115.182",
+      "launchTime": "2022-01-11T20:57:30Z",
+      "availabilityZone": "us-east-1a",
+      "privateDnsName": "ip-172-31-90-212.ec2.internal",
+      "privateIpAddress": "172.31.90.212",
+      "publicDnsName": "ec2-54-210-168-154.compute-1.amazonaws.com",
+      "publicIpAddress": "54.210.168.154",
       "state": "running",
-      "subnetId": "subnet-775e9c46",
-      "vpcId": "vpc-4aaf6537",
+      "subnetId": "subnet-0ac78483b1159f7e9",
+      "vpcId": "vpc-040e8c412dc149b2a",
       "architecture": "x86_64",
-      "clientToken": "be7d840f-09e5-46b7-96ed-e6eb9fsaf133",
+      "clientToken": "7fe789d0-1e84-4c6a-886a-828b99f8525b",
       "rootDeviceType": "ebs",
       "virtualizationType": "hvm",
-      "tags": [],
+      "tags": [
+        {
+          "name": "NameOfMyInstance",
+          "tag2": "wowASecondValueIdkNotRequired"
+        }
+      ],
       "coreCount": 1,
-      "threadsPerCore": 1
+      "threadsPerCore": 1,
+      "securityGroupName": "default",
+      "minCount": 0,
+      "maxCount": 0,
+      "region": "us-east-1",
+      "attachments": [
+        {
+          "attachTime": "2022-01-11T20:57:31Z",
+          "device": "/dev/xvda",
+          "instanceId": "i-03dffc71c7d649bb1",
+          "state": "attached",
+          "volumeId": "vol-0c8dd88e0743c368b",
+          "deleteOnTermination": true
+        }
+      ]
     }
   ],
   "metadata": {
@@ -52,6 +72,7 @@ Retrieve a list of all instances in a given [environment](#administration-enviro
 | Attributes                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`<br/>*string*                 | The ID of the instance.                                                                                                                                                                                                  |
+| `name`<br/>*string*               | The name of the instance.                                                                                                                                                                                                |
 | `rootDeviceName`<br/>*string*     | The device name of the root device volume (for example, /dev/sda1 ).                                                                                                                                                     |
 | `imageId`<br/>*string*            | The ID of the AMI used to launch the instance.                                                                                                                                                                           |
 | `instanceType`<br/>*string*       | The instance type.                                                                                                                                                                                                       |
@@ -71,6 +92,12 @@ Retrieve a list of all instances in a given [environment](#administration-enviro
 | `tags`<br/>*Array[object]*        | Any tags assigned to the instance. Tags are key value pairs.                                                                                                                                                             |
 | `coreCount`<br/>*int*             | The number of CPU cores for the instance.                                                                                                                                                                                |
 | `threadsPerCore`<br/>>*int*       | The number of threads per CPU core.                                                                                                                                                                                      |
+| `securityGroupName`<br/>*string*  | The name of the security group.                                                                                                                                                                                          |
+| `maxCount`<br/>*integer*          | The maximum number of instances to create. Cannot be greater than 20.                                                                                                                                                    |
+| `minCount`<br/>*integer*          | The minimum number of instances to create. Should be greater than 1.                                                                                                                                                     |
+| `region`<br/>*string*             | The region where the instance will be deployed.                                                                                                                                                                          |
+| `attachments`<br/>*Array[object]* | The list of volumes to which the instance is attached.                                                                                                                                                                   |
+
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -79,33 +106,53 @@ Retrieve a list of all instances in a given [environment](#administration-enviro
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/aws/test-area/instances/i-0d1f9106cd0e0dff7"
+   "https://cloudmc_endpoint/v1/services/aws/test-area/instances/i-03dffc71c7d649bb1"
 ```
 > The above command returns a JSON structured like this:
 
 ```json
 {
   "data": {
-    "id": "i-0d1f9106cdde0dff7",
+    "id": "i-03dffc71c7d649bb1",
+    "name": "NameOfMyInstance",
     "rootDeviceName": "/dev/xvda",
     "imageId": "ami-0947d2ba12ee1ff75",
     "instanceType": "t2.micro",
-    "launchTime": "2020-11-19T03:41:51Z",
-    "availabilityZone": "us-east-1e",
-    "privateDnsName": "ip-172-31-55-223.ec2.internal",
-    "privateIpAddress": "172.31.55.223",
-    "publicDnsName": "ec2-54-237-115-182.compute-1.amazonaws.com",
-    "publicIpAddress": "54.237.115.182",
+    "launchTime": "2022-01-11T20:57:30Z",
+    "availabilityZone": "us-east-1a",
+    "privateDnsName": "ip-172-31-90-212.ec2.internal",
+    "privateIpAddress": "172.31.90.212",
+    "publicDnsName": "ec2-54-210-168-154.compute-1.amazonaws.com",
+    "publicIpAddress": "54.210.168.154",
     "state": "running",
-    "subnetId": "subnet-775e9c46",
-    "vpcId": "vpc-4aaf6537",
+    "subnetId": "subnet-0ac78483b1159f7e9",
+    "vpcId": "vpc-040e8c412dc149b2a",
     "architecture": "x86_64",
-    "clientToken": "be7d840f-09e5-46b7-96ed-e6eb9f0af133",
+    "clientToken": "7fe789d0-1e84-4c6a-886a-828b99f8525b",
     "rootDeviceType": "ebs",
     "virtualizationType": "hvm",
-    "tags": [],
+    "tags": [
+      {
+        "name": "NameOfMyInstance",
+        "tag2": "wowASecondValueIdkNotRequired"
+      }
+    ],
     "coreCount": 1,
-    "threadsPerCore": 1
+    "threadsPerCore": 1,
+    "securityGroupName": "default",
+    "minCount": 0,
+    "maxCount": 0,
+    "region": "us-east-1",
+    "attachments": [
+      {
+        "attachTime": "2022-01-11T20:57:31Z",
+        "device": "/dev/xvda",
+        "instanceId": "i-03dffc71c7d649bb1",
+        "state": "attached",
+        "volumeId": "vol-0c8dd88e0743c368b",
+        "deleteOnTermination": true
+      }
+    ]
   }
 }
 ```
@@ -117,6 +164,7 @@ Retrieve an instance in a given [environment](#administration-environments).
 | Attributes                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`<br/>*string*                 | The ID of the instance.                                                                                                                                                                                                  |
+| `name`<br/>*string*               | The name of the instance.                                                                                                                                                                                                |
 | `rootDeviceName`<br/>*string*     | The device name of the root device volume (for example, /dev/sda1 ).                                                                                                                                                     |
 | `imageId`<br/>*string*            | The ID of the AMI used to launch the instance.                                                                                                                                                                           |
 | `instanceType`<br/>*string*       | The instance type.                                                                                                                                                                                                       |
@@ -136,6 +184,11 @@ Retrieve an instance in a given [environment](#administration-environments).
 | `tags`<br/>*Array[object]*        | Any tags assigned to the instance. Tags are key value pairs.                                                                                                                                                             |
 | `coreCount`<br/>*int*             | The number of CPU cores for the instance.                                                                                                                                                                                |
 | `threadsPerCore`<br/>>*int*       | The number of threads per CPU core.                                                                                                                                                                                      |
+| `securityGroupName`<br/>*string*  | The name of the security group.                                                                                                                                                                                          |
+| `maxCount`<br/>*integer*          | The maximum number of instances to create. Cannot be greater than 20.                                                                                                                                                    |
+| `minCount`<br/>*integer*          | The minimum number of instances to create. Should be greater than 1.                                                                                                                                                     |
+| `region`<br/>*string*             | The region where the instance will be deployed.                                                                                                                                                                          |
+| `attachments`<br/>*Array[object]* | The list of volumes to which the instance is attached.                                                                                                                                                                   |
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
