@@ -167,7 +167,7 @@ Note: Only attached volumes can be detached. Detaching a root device volume will
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/aws/test-area/volumes/vol-0d1f9106cd0e0dff7"
+   "https://cloudmc_endpoint/v1/services/aws/test-area/volumes/vol-0d1f9106cd0e0dff7?operation=detach"
 ```
 
 > Request body example for a volume:
