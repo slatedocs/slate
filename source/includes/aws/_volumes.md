@@ -234,7 +234,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
 
-| Attributes                 | &nbsp;                                        |
-|----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the instance deletion. |
-| `taskStatus` <br/>*string* | The status of the operation.                  |
+| Attributes                 | &nbsp;                                          |
+|----------------------------|-------------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance detachment. |
+| `taskStatus` <br/>*string* | The status of the operation.                    |
