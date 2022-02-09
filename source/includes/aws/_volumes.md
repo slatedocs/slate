@@ -231,23 +231,8 @@ curl -X POST \
 > Request body example for a volume:
 ```json
 {
-    "attachmentDeviceName": "/dev/sda1",
     "instanceIdToAttach": "i-0b4e945ee65072b8a",
-    "attachments": [],
-    "availabilityZone": "us-east-1b",
-    "createTime": "2022-02-01T20:24:25.786Z",
-    "encrypted": false,
-    "fastRestored": false,
-    "id": "vol-0c103471947ff275d",
-    "iops": 100,
-    "multiAttachEnabled": true,
-    "name": "vol-0c103471947ff275d",
-    "size": 5,
-    "snapshotId": "",
-    "state": "available",
-    "tags": [],
-    "volumeId": "vol-0c103471947ff275d",
-    "volumeType": "io1"
+    "attachmentDeviceName": "/dev/sda1"
 }
 ```
 
