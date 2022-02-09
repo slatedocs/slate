@@ -218,6 +218,47 @@ curl -X DELETE \
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
 
+<!-------------------- ATTACH A VOLUME -------------------->
+
+#### Attach a volume
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/volumes/vol-0d1f9106cd0e0dff7?operation=attach"
+```
+
+> Request body example for a volume:
+```json
+{
+    "instanceIdToAttach": "i-0b4e945ee65072b8a",
+    "attachmentDeviceName": "/dev/sda1"
+}
+```
+| Attributes                 | &nbsp;                                          |
+|----------------------------|-------------------------------------------------|
+| `instanceIdToAttach` <br/>*string*   | Id of the instance the volume will be attached to (must be in the same availability zone). |
+| `attachmentDeviceName` <br/>*string* |  The device name that you assign is used by Amazon EC2. The device names that you're allowed to assign depends on the virtualization type of the selected instance.                  |
+- Linux device names: ***/dev/sdf*** through ***/dev/sdp***
+- Windows device names: ***/dev/xvdf*** through ***/dev/xvdz***
+- Linux root device names: ***/dev/sda1*** or ***/dev/xvda*** (depending on the AMI)
+- Windows root device names: ***/dev/sda1***
+
+
+> The above command returns a JSON structured like this:
+```json
+{
+    "taskId": "c8f44de4-e36f-456d-9802-3fb59cce3de2",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
+
+| Attributes                 | &nbsp;                                          |
+|----------------------------|-------------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance attachment. |
+| `taskStatus` <br/>*string* | The status of the operation.                    |
 
 <!-------------------- DETACH A VOLUME -------------------->
 
@@ -248,7 +289,8 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
 
-| Attributes                 | &nbsp;                                        |
-|----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the instance deletion. |
-| `taskStatus` <br/>*string* | The status of the operation.                  |
+| Attributes                 | &nbsp;                                          |
+|----------------------------|-------------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance detachment. |
+| `taskStatus` <br/>*string* | The status of the operation.                    |
+
