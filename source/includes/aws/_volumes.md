@@ -235,6 +235,15 @@ curl -X POST \
     "attachmentDeviceName": "/dev/sda1"
 }
 ```
+| Attributes                 | &nbsp;                                          |
+|----------------------------|-------------------------------------------------|
+| `instanceIdToAttach` <br/>*string*   | Id of the instance the volume will be attached to (must be in the same availability zone). |
+| `attachmentDeviceName` <br/>*string* |  The device name that you assign is used by Amazon EC2. The device names that you're allowed to assign depends on the virtualization type of the selected instance.                  |
+- Linux device names: ***/dev/sdf*** through ***/dev/sdp***
+- Windows device names: ***/dev/xvdf*** through ***/dev/xvdz***
+- Linux root device names: ***/dev/sda1*** or ***/dev/xvda*** (depending on the AMI)
+- Windows root device names: ***/dev/sda1***
+
 
 > The above command returns a JSON structured like this:
 ```json
