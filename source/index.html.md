@@ -1753,7 +1753,8 @@ request.post(options, function(error, response, body) {
 })
 ```
 
-> Response
+> Response:
+
 ```json
 [
   {
