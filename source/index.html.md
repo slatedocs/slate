@@ -408,20 +408,20 @@ PUT  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 |  *(body)*            |                  |
 ### Responses
 
-| Code                            | Description                                    |
-|---------------------------------|------------------------------------------------|
-| 200                             | Payment schedule updated successfully          |
-| Example  /Model                 |                                                |
-| {                               |                                                |
-| "body" : {},                    |                                                |
-| "statusCode" : "100 CONTINUE" , |                                                |
-| "statusCodeValue" : 0           |                                                |
-| }                               |                                                |
-| 201                             | Created                                        |
-| 400                             | Invalid data supplied for creation of customer |
-| 401                             | Unauthorized                                   |
-| 403                             | Operation not permitted for this business      |
-| 404                             | Invalid businessId supplied                    |
+| Code | Description                                    |
+|------|------------------------------------------------|
+| 200  | Payment schedule updated successfully          |
+|      | Example /Model                                 |
+|      | {                                              |
+|      | "body" : {},                                   |
+|      | "statusCode" : "100 CONTINUE"                  |
+|      | "statusCodeValue" : 0                          |
+| }    |                                                |
+| 201  | Created                                        |
+| 400  | Invalid data supplied for creation of customer |
+| 401  | Unauthorized                                   |
+| 403  | Operation not permitted for this business      |
+| 404  | Invalid businessId supplied                    |
 
 ## Resend SMS notification of payment 
 ```json
@@ -451,19 +451,22 @@ PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 
 ### Responses
 
-| Code                            | Description                                   |
-|---------------------------------|-----------------------------------------------|
-| 200                             | SMS notification sent successfully            |
-| Example  /Model                 |                                               |
-| {                               |                                               |
-| "body" : {},                    |                                               |
-| "statusCode" : "100 CONTINUE" , |                                               |
-| "statusCodeValue" : 0           |                                               |
-| }                               |                                               |
-| 204                             | No Content                                    |
-| 401                             | Unauthorized                                  |
-| 403                             | Operation not permitted for this business     |
-| 404                             | Invalid businessId or subscriptionId supplied |
+| Code | Description                                             |
+|------|---------------------------------------------------------|
+| 200  | SMS notification sent successfully                      |
+|      | Example  /Model                                         |
+|      | {                                                       |
+|      | "body" : {},                                            |
+|      | "statusCode" : "100 CONTINUE" ,                         |
+|      | "statusCodeValue" : 0                                   |
+|      | }                                                       |
+| 204  | No Content                                              |
+| 400  | Invalid data supplied for creation of payment schedules |
+| 401  | Unauthorized                                            |
+| 403  | Operation not permitted for this business               |
+| 404  | Invalid businessId or subscriptionId supplied           |
+
+
 
 ## Schedule payments for this subscription using the dates and amounts specified in the body 
 
@@ -488,21 +491,20 @@ POST  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/date
 
 ### Responses
 
-| Code                            | Description                                    |
-|---------------------------------|------------------------------------------------|
-| 200                             | Payment schedules generated successfully       |
-| Example  /Model                 |                                                |
-| {                               |                                                |
-| "body" : {},                    |                                                |
-| "statusCode" : "100 CONTINUE" , |                                                |
-| "statusCodeValue" : 0           |                                                |
-| }                               |                                                |
-| 201                             | Created                                        |
-| 400                             | Invalid data supplied for creation of customer |
-| 401                             | Unauthorized                                   |
-| 403                             | Operation not permitted for this business      |
-| 404                             | Invalid businessId supplied                    |
-
+| Code | Description                                    |
+|------|------------------------------------------------|
+| 200  | Payment schedule generated successfully        |
+|      | Example /Model                                 |
+|      | {                                              |
+|      | "body" : {},                                   |
+|      | "statusCode" : "100 CONTINUE"                  |
+|      | "statusCodeValue" : 0                          |
+|      | }                                              |
+| 201  | Created                                        |
+| 400  | Invalid data supplied for creation of customer |
+| 401  | Unauthorized                                   |
+| 403  | Operation not permitted for this business      |
+| 404  | Invalid businessId supplied                    |
 ## Schedule payments for this subscription using the order and amounts specified in the body
 
 ```json
@@ -534,20 +536,20 @@ POST  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/order
 
 ### Responses
 
-| Code                            | Description                                             |
-|---------------------------------|---------------------------------------------------------|
-| 200                             | Payments schedules cancelled successfully               |
-| Example  /Model                 |                                                         |
-| {                               |                                                         |
-| "body" : {},                    |                                                         |
-| "statusCode" : "100 CONTINUE" , |                                                         |
-| "statusCodeValue" : 0           |                                                         |
-| }                               |                                                         |
-| 201                             | Created                                                 |
-| 400                             | Invalid data supplied for creation of payment schedules |
-| 401                             | Unauthorized                                            |
-| 403                             | Operation not permitted for this business               |
-| 404                             | Invalid businessId or subscriptionId supplied           |
+| Code | Description                                             |
+|------|---------------------------------------------------------|
+| 200  | Payments schedules cancelled successfully               |
+|      | Example / Model                                         |
+|      | {                                                       |
+|      | "body" : {},                                            |
+|      | "statusCode" : "100 CONTINUE" ,                         |
+|      | "statusCodeValue" : 0                                   |
+|      | }                                                       |
+| 201  | Created                                                 |
+| 400  | Invalid data supplied for creation of payment schedules |
+| 401  | Unauthorized                                            |
+| 403  | Operation not permitted for this business               |
+| 404  | Invalid businessId or subscriptionId supplied           |
 
 ## Find all subscriptions for a customer by customerId
 
@@ -570,18 +572,18 @@ GET  /enterprise/v1/subscriptions/{businessId}/customer/{customerId}
 
 ### Responses
 
-| Code                            | Description                                   |
-|---------------------------------|-----------------------------------------------|
-| 200                             | Customer subscriptions found successfully     |
-| Example  /Model                 |                                               |
-| {                               |                                               |
-| "body" : {},                    |                                               |
-| "statusCode" : "100 CONTINUE" , |                                               |
-| "statusCodeValue" : 0           |                                               |
-| }                               |                                               |
-| 401                             | Unauthorized                                  |
-| 403                             | Operation not permitted for this business     |
-| 404                             | Invalid businessId or subscriptionId supplied |
+| Code | Description                                   |
+|------|-----------------------------------------------|
+| 200  | Customer subscriptions found successfully     |
+|      | Example  /Model                               |
+|      | {                                             |
+|      | "body" : {},                                  |
+|      | "statusCode" : "100 CONTINUE" ,               |
+|      | "statusCodeValue" : 0                         |
+|      | }                                             |
+| 401  | Unauthorized                                  |
+| 403  | Operation not permitted for this business     |
+| 404  | Invalid businessId or subscriptionId supplied |
 
 # Tier
 
@@ -619,20 +621,20 @@ POST  /enterprise/v1/tiers/{businessId}
 
 ### Responses
 
-| Code                            | Description                                |
-|---------------------------------|--------------------------------------------|
-| 200                             | Tier created successfully                  |
-| Example  /Model                 |                                            |
-| {                               |                                            |
-| "body" : {},                    |                                            |
-| "statusCode" : "100 CONTINUE" , |                                            |
-| "statusCodeValue" : 0           |                                            |
-| }                               |                                            |
-| 201                             | Created                                    |
-| 400                             | Invalid data supplied for creation of tier |
-| 401                             | Unauthorized                               |
-| 403                             | Operation not permitted for this business  |
-| 404                             | Invalid businessId or  supplied            |
+| Code | Description                                |
+|------|--------------------------------------------|
+| 200  | Tier created successfully                  |
+|      | Example  /Model                            |
+|      | {                                          |
+|      | "body" : {},                               |
+|      | "statusCode" : "100 CONTINUE" ,            |
+|      | "statusCodeValue" : 0                      |
+|      | }                                          |
+| 201  | Created                                    |
+| 400  | Invalid data supplied for creation of tier |
+| 401  | Unauthorized                               |
+| 403  | Operation not permitted for this business  |
+| 404  | Invalid businessId or  supplied            |
 
 ## Get a tier record by it's id
 
@@ -654,18 +656,18 @@ GET  /enterprise/v1/tiers/{businessId}/{tierId}
 
 ### Responses
 
-| Code                            | Description                               |
-|---------------------------------|-------------------------------------------|
-| 200                             | Tier found by id                          |
-| Example  /Model                 |                                           |
-| {                               |                                           |
-| "body" : {},                    |                                           |
-| "statusCode" : "100 CONTINUE" , |                                           |
-| "statusCodeValue" : 0           |                                           |
-| }                               |                                           |
-| 401                             | Unauthorized                              |
-| 403                             | Operation not permitted for this business |
-| 404                             | Invalid businessId or tierId supplied     |
+| Code | Description                               |
+|------|-------------------------------------------|
+| 200  | Tier found by id                          |
+|      | Example  /Model                           |
+|      | {                                         |
+|      | "body" : {},                              |
+|      | "statusCode" : "100 CONTINUE" ,           |
+|      | "statusCodeValue" : 0                     |
+|      | }                                         |
+| 401  | Unauthorized                              |
+| 403  | Operation not permitted for this business |
+| 404  | Invalid businessId or tierId supplied     |
 
 ## Update a tier under a business account
 
@@ -706,17 +708,17 @@ PUT  /enterprise/v1/tiers/{businessId}/{tierId}
 
 ### Responses
 
-| Code                            | Description                                |
-|---------------------------------|--------------------------------------------|
-| 200                             | Tier updated successfully                  |
-| Example  /Model                 |                                            |
-| {                               |                                            |
-| "body" : {},                    |                                            |
-| "statusCode" : "100 CONTINUE" , |                                            |
-| "statusCodeValue" : 0           |                                            |
-| }                               |                                            |
-| 201                             | Created                                    |
-| 400                             | Invalid data supplied for creation of tier |
-| 401                             | Unauthorized                               |
-| 403                             | Operation not permitted for this business  |
-| 404                             | Invalid businessId or tierId supplied      |
+| Code | Description                                |
+|------|--------------------------------------------|
+| 200  | Tier updated successfully                  |
+|      | Example  /Model                            |
+|      | {                                          |
+|      | "body" : {},                               |
+|      | "statusCode" : "100 CONTINUE" ,            |
+|      | "statusCodeValue" : 0                      |
+|      | }                                          |
+| 201  | Created                                    |
+| 400  | Invalid data supplied for creation of tier |
+| 401  | Unauthorized                               |
+| 403  | Operation not permitted for this business  |
+| 404  | Invalid businessId or tierId supplied      |
