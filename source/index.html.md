@@ -194,8 +194,6 @@ includes:
   - azure/k8_serviceaccounts
   - azure/k8_roles
   - azure/k8_rolebindings
-  - masterportal
-  - masterportal/applications
   - swift
   - swift/containers
   - swift/objects
