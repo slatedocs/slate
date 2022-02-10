@@ -20,12 +20,13 @@ meta:
   - name: description
     content: Documentation for the  Reveknew-API
 ---
-# Authentication Api
+
 # Introduction
 [Base URl : localhost:8080/ ]
 
 http://localhost:8080/v2/api-docs
 
+# Authentication
 
 # Customer
 
@@ -36,9 +37,9 @@ http://localhost:8080/v2/api-docs
     "customerNum" : "4515",
     "email" : "JoeyEGosselin@jourrapide.com",
     "firstName" : "Joey",
-    "id" : "1",
+    "id" : "e17ecab2-8a63-11ec-a8a3-0242ac120002",
     "lastName" : "Gosselin",
-    "phoneNo" : "603-227-4012"
+    "phoneNo" : "0222740128"
   }
 ```
 
@@ -84,9 +85,9 @@ POST  /enterprise/v1/customers/{businessId}
     "customerNum" : "77014",
     "email" : "ChristinaRPerrin@jourrapide.com",
     "firstName" : "Christina",
-    "id" : "5",
+    "id" : "f6867d4c-8a72-11ec-a8a3-0242ac120002",
     "lastName" : "Perrin",
-    "phoneNo" : "281-587-2451"
+    "phoneNo" : "0515872451"
   }
 ```
 
@@ -114,7 +115,7 @@ PUT  /enterprise/v1/customers/{businessId}
 |      | Example  /Model                                     |
 |      | {                                                   | 
 |      | "body" : {},                                        |  
-|      | "statusCode" : "100 CONTINUE"                       | , 
+|      | "statusCode" : "100 CONTINUE",                      |  
 |      | "statusCodeValue" : 0}                              |
 | 201  | Created                                             |
 | 400  | Invalid data supplied for update of customer record |
@@ -162,8 +163,8 @@ GET /enterprise/v1/customers/{businessId}/id/{customerId}
   {
     "amount" : "0",
     "cancelledOn" : "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
-    "customerId" : "32174",
-    "id" : "3",
+    "customerId" : "b03e0562-8a8b-11ec-a8a3-0242ac120002",
+    "id" : "f6867d4c-8a72-11ec-a8a3-0242ac120002",
     "lastBilledOn" : "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
     "nextBillingDate" : "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
     "pausedOn" : "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
@@ -171,7 +172,7 @@ GET /enterprise/v1/customers/{businessId}/id/{customerId}
       {
         "amount" : 0,
         "receivedAt": "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
-        "subscriptionId" : "4690"
+        "subscriptionId" : "f5c633ca-8a8b-11ec-a8a3-0242ac120002"
       }
     ],
     "scheduleResets" : true,
@@ -179,17 +180,17 @@ GET /enterprise/v1/customers/{businessId}/id/{customerId}
       {
         "amount": 0,
         "graceDate": "yyyy-MM-dd",
-        "id": "2",
+        "id": "10d45a7a-8a73-11ec-a8a3-0242ac120002",
         "reminderDate": "yyyy-MM-dd",
         "scheduledFor": "yyyy-MM-dd",
         "shortenedUrl": "https://test.jpg-online.com/connect/processing?storename=115512500&oid=VT-83be410a-6aba-449c-paymentUrlId=d32rceubeff-ca74-00388n8839d",
         "status": "AVAILABLE",
-        "subscriptionId": "59140"
+        "subscriptionId": "056838f0-8a8c-11ec-a8a3-0242ac120002"
       }
     ],
     "startDate": "yyyy-MM-dd",
     "status": "ACTIVE",
-    "tierId": "1248"
+    "tierId": "156c9048-8a8c-11ec-a8a3-0242ac120002"
   }
 ```
 
@@ -217,7 +218,7 @@ POST  /enterprise/v1/subscriptions/{businessId}
 |      | Example  /Model                                |
 |      | {                                              | 
 |      | "body" : {},                                   |  
-|      | "statusCode" : "100 CONTINUE"                  | , 
+|      | "statusCode" : "100 CONTINUE",                 |  
 |      | "statusCodeValue" : 0}                         |
 | 201  | Created                                        |
 | 400  | Invalid data supplied for creation of customer |
@@ -381,12 +382,12 @@ PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/pause
   {
     "amount": 0,
     "graceDate": "yyyy-MM-dd",
-    "id": "7",
+    "id": "6bb42d33-c2a2-4763-90e4-ff1702fc9951",
     "reminderDate": "yyyy-MM-dd",
     "scheduledFor": "yyyy-MM-dd",
     "shortenedUrl": "https://test.jpg-online.com/connect/gateway/processing?storename=110995000&oid=VT-83be410a-6aba-449c-paymentUrlId=d32rceubeff-cdy4-00388n8839d",
     "status": "AVAILABLE",
-    "subscriptionId": "57740"
+    "subscriptionId": "3330eb10-8a8c-11ec-a8a3-0242ac120002"
   }
 ```
 
@@ -416,7 +417,7 @@ PUT  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 |      | "body" : {},                                   |
 |      | "statusCode" : "100 CONTINUE"                  |
 |      | "statusCodeValue" : 0                          |
-| }    |                                                |
+|      | }                                              |
 | 201  | Created                                        |
 | 400  | Invalid data supplied for creation of customer |
 | 401  | Unauthorized                                   |
@@ -428,7 +429,7 @@ PUT  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
   {
     "amount": 0,
     "date": "yyyy-MM-dd",
-    "id": "9"
+    "id": "3993cf04-8a73-11ec-a8a3-0242ac120002"
   }
 ```
 
@@ -595,7 +596,7 @@ GET  /enterprise/v1/subscriptions/{businessId}/customer/{customerId}
     "billingPeriod": "ONCE",
     "deductions": 0,
     "graceDays": 0,
-    "id": "7",
+    "id": "5271cc42-8a73-11ec-a8a3-0242ac120002",
     "name": "John H. Thomas",
     "policy": "TIER",
     "reminderDays": 0
@@ -678,7 +679,7 @@ GET  /enterprise/v1/tiers/{businessId}/{tierId}
     "deductions": 0,
     "description": "Enjoy new additional services",
     "graceDays": 0,
-    "id": "12",
+    "id": "6325a978-8a73-11ec-a8a3-0242ac120002",
     "name": "Jacqueline M. Abbot",
     "policy": "TIER",
     "reminderDays": 0
