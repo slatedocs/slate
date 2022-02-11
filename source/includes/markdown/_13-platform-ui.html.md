@@ -10,12 +10,12 @@ projects, to provide clarity on *who* is doing *what* by *when*, and to automate
 see key work information from other tools on the surface of tasks, and automate cross-tool processes.
 
 Apps can use App Components to display customized widgets, forms, and rules within Asana's user interface. Requests go from
-Asana directly to an App Server. The App Server controls the information within these customized widgets and the App Server
-controls what happens when a User takes actions within these components.
+Asana directly to an [App Server](/docs/app-server). The App Server controls the information within these customized widgets and the App Server
+controls what happens when a user takes actions within these components.
 
 <img src="../images/UI_Components.gif" />
 
-The App Components open beta is **coming soon**. At the moment, we are offering this documentation as a preview of how will be
+**The App Components open beta is coming soon**. At the moment, we are offering this documentation as a preview of how will be
 able to build with App Components. For the latest updates and announcements,
 [subscribe to our developer forum](https://forum.asana.com/c/developersapi/app-components-beta/150).
 
@@ -89,10 +89,18 @@ will display.
 How does Asana determine when a Widget should be shown? When a task is opened in
 Asana, it checks each attachment on the task. If an attachment has a URL 
 that fits with an App's registered `match url` (ex: `https:\/\/.*.atlassian.net\/.*`) 
-then it shows a Widget. A GET request is sent to the App's `widget url`, including 
-URL parameters like `task`, `user`, and `workspace`. 
+then it shows a Widget. A GET request is sent to the App's `Widget Metadata URL`, including 
+URL parameters like `task`, `user`, and `workspace`.
 
-Related References: 
+### Widget Configurations
+
+| Property            | Description                                                                                                                                 |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Widget Metadata URL | A URL that Asana uses to make requests for the data needed to load a Widget which displays information about a third party resource.        |
+| Match URL Pattern   | A regex which allows Asana to compute whether a URL attachment is supported by an activated app on the project in order to render a Widget. |
+
+
+### Related References: 
 
 * [Get widget metadata](/docs/get-widget-metadata)
 * [Attach resource](/docs/attach-resource)
@@ -176,9 +184,17 @@ See the `on_change` field in the response to the
 [form metadata request](/docs/get-form-metadata). The request sent to that
 endpoint is the [On change callback request](/docs/on-change-callback).
 
-Related References: 
+### Modal Form Configurations
+
+| Property              | Description                                                                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| Form Metadata URL     | A URL that Asana uses to request data from the app about fields it should display in the Modal Form when the form is first displayed. |
+| Create Resource Label | Clickable action text that appears in the Entry Point that allows users to initiate a Modal Form.                                     |
+
+### Related References: 
 
 * [Get form metadata](/docs/get-form-metadata)
+* [Get Modal Form typeahead results](/docs/get-modal-form-typeahead-results)
 * [On change callback](/docs/on-change-callback)
 * [On submit callback](/docs/on-submit-callback)
 
@@ -209,9 +225,20 @@ Users can send a search term to the app server. The term is often a URL or
 the title of an external resource. The app server then responds with a 
 resource or an error. 
 
-Related References: 
+### Lookup Configurations
+
+| Property                    | Description                                                                                                       |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Resource Attach URL         | A URL that Asana will make a request to when a user submits a value to attach.                                    |
+| Attach Resource Label       | Clickable action text that appears in the Entry Point that allows users to initiate a Modal Form                  |
+| Attach Resource Placeholder | Placeholder action text that appears in the Lookup input field after the user clicks on the Attach Resource Label |
+| Resource Typeahead URL      | A URL that Asana will make a request to when a user types into a Modal Form form field.                           |
+
+### Related References: 
 
 * [Widget](/docs/widget)
+* [Attach Resource](/docs/attach-resource)
+* [Get Lookup typeahead results](/docs/get-lookup-typeahead-results)
 
 <hr>
 
@@ -259,159 +286,187 @@ the [Modal Form](/docs/modal-form), as Asana requests a form definition from the
 fields, handles `on_change` events, and stores the inputs of the form. When a rule is created, Asana sends a request to 
 the App Server with the user-specified inputs. When the rule is triggered, Asana sends an event to the App Server.
 
- 
-
 Rule Actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
 
-Related References: 
+### Rule Action Configurations
 
+| Property          | Description                                                              |
+|-------------------|--------------------------------------------------------------------------|
+| Display Name      | The Rule Action name visible to end users (e.g., "Create a Jira issue"). |
+| Run Action URL    | A URL that Asana will make a request to to run a Rule Action.            |
+| Form Metadata URL | A URL that Asana will make a request to to configure a Rule Action.      |
+
+### Related References: 
+
+* [Get Rule Action typeahead results](/docs/get-rule-action-typeahead-results)
+* [Run action](/docs/run-action)
 * [Get action metadata](/docs/get-action-metadata)
 * [On action change callback](/docs/on-action-change-callback)
 * [On action submit callback](/docs/on-action-submit-callback)
 
-<hr class="full-line">
+<hr>
 
-# Quick Start
+## Entry Point
 
-<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+<img src="../images/entry-point.png" alt="Entry point"/>
 
-This guide offers a quick way for developers to start building on App Components. By following these steps, you'll gain an understanding of how to install App Component apps to your developer sandbox, as well as how an example app communicates with endpoints exposed on a pre-built local server. 
+The Entry Point allows users to initiate the [Lookup](/docs/lookup) and [Modal Form](/docs/modal-form) components from tasks.
 
-Note that for the App Components apps [that you create](/docs/configurations), you'll be able to define your own icons, images, descriptions, and other content. Many of the values for these fields are marked by **{curly braces}** in the example app.
+To configure the Entry Point, one or both of the above capabilities must be configured first. If only one of these capabilities is configured, the Entry Point takes the form of a button. If both of these capabilities above are configured, the Entry Point is rendered as a dropdown menu. 
 
-Before you begin, you'll need a developer sandbox in order to use App Components in your application. [Click here to request a sandbox](/docs/developer-sandbox) if you don't already have one.
+### Entry Point Configurations
 
-1. Clone [this repository](https://github.com/Asana/app-components-example-app) containing an example Express server.
-2. Follow the instructions in the [README](https://github.com/Asana/app-components-example-app/blob/main/README.md) to run the server. This server needs to remain on as you use the example app.
-3. Open the developer sandbox in your browser.
-4. In an existing project, go to **Customize** > **Apps** > **{Example}** to install the App Components example app. 
-    - **Important**: The installation flow this takes you through is only shown once per user. To see it a second time, navigate to 
-      `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`.
-<br>
-<br>
-<img src="../images/example-app-gallery-tile.png" />
-<br>
-<br>
-5. Once the example app is installed, create a task in your project. In the task's **{Example}** custom field, go to **{Add Example Resource}** > **{Open form}** to see examples of customizable inputs. Click **Submit**.
-<br>
-<br>
-<img src="../images/example-modal-form.gif" />
-<br>
-<br>
-6. View the newly-generated Widget on your task. You can begin editing `index.js` to modify the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
-<br>
-<br>
-<img src="../images/example-widget.png" />
-<br>
-<br>
-That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's Widget. Once you're ready to define an app, [click here to create your own app](/docs/configurations) with App Components.
+| Property                    | Description                                                        |
+|-----------------------------|--------------------------------------------------------------------|
+| Add Resource action text    | A clear call-to-action for users to show the Add Resource input.   |
+| Create Resource action text | A clear call-to-action for users to open the Modal Form.           |
+| Dropdown button text        | Users can click this button to add or create resources from tasks. |
 
 <hr class="full-line">
 
-# Installing an App
+# Getting Started
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-When a user connects an app with App Components to Asana for the first time, they will go through an installation flow. This involves walking the user through the app's features (i.e., "value props"), authorizing the app, and adding it to projects in Asana. The installation flow can be triggered through either one of two ways:
-
-1. The in-product app gallery. Users can access the app gallery by going into a project (in which they want to install an app), then navigating to **Customize** > **Add App**.
-<br>
-<br>
-<img src="../images/app-gallery.png" alt="app gallery"/>
-<br>
-<br>
-2. The [Asana app directory](https://asana.com/apps):
-<br>
-<br>
-<img src="../images/app-directory.png" alt="app directory"/>
-
-Note that subsequent interactions with the same application by the same user will _not_ trigger the following installation flow. To force the installation flow in its entirety again (e.g., for QA purposes), you can visit `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`, replacing the value of the `app_id` query parameter with the application's Client ID (accessible via the [developer console](https://app.asana.com/0/developer-console)).
+This guide will show you how to begin building with App Components. To make best use of the following tutorials, be sure you've already reviewed the [Overview of App Components](/docs/overview-of-app-components).
 
 <hr>
 
-### Features
+## Overview of Build Steps
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-After entering the installation flow, the first screen that users see are the app's features, or value props. 
+The overall build process for App Components involves the following:
 
-<img src="../images/features.png" alt="features"/>
+1. Create the app in the [developer console](https://app.asana.com/0/developer-console).
+2. Configure the app in the [developer console](https://app.asana.com/0/developer-console).
+3. [Build the App Server](/docs/building-the-app-server).
+4. [Get the app ready for publishing](/docs/publishing-an-app).
+5. [Submit the app for review](/docs/submit-your-app).
 
-As part of the customizations, a `valuePropTitle` and `valuePropSubtitle` can be shown at the top of the screen. Additionally, up to three value prop images can be displayed on the screen, each containing the image itself (via an `imageUrl`), accompanying `text` to display under each image, as well as `alt` text.
+The tutorials in this guide will cover the first two steps of the overall build process: creating and configuring the app. By the end of this guide, you will have an app ready to interact with your [App Server](/docs/app-server).
 
 <hr>
 
-### Authenticating
+## Before You Begin
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-On the next screen, the user will be directed to the auth screen, which will ask them to connect to the external app.
+### Get a Sandbox
 
-<img src="../images/authentication.png" alt="authentication"/>
+To get started with App Components, we recommend using a [Developer Sandbox](/docs/developer-sandbox) to help you build in a separate, dedicated environment. You will also need this sandbox environment to access the [developer console](https://app.asana.com/0/developer-console), through which you can create and configure apps directly in Asana's user interface.
 
-When the user clicks the button to continue, Asana will make a request to the application's specified `authenticationUrl` in a pop-up window. From here, it is developer's discretion as to how the user proceeds with authentication. In most cases, this authentication step usually involves completing the [Asana OAuth](/docs/oauth) flow, as well as the third-party (i.e., external) OAuth flow.
+Additionally, the developer sandbox will also give you access to the [Example App](/docs/example-app), where you can explore the capabilities and features of App Components in-depth.
 
-<img src="../images/authenticate-asana.png" alt="authentication with Asana"/>
+### Consider the App's User Experience
 
-<img src="../images/authenticate-external.png" alt="authentication with external app"/>
+Each app built with App Components is unique, and will leverage different capabilities of App Components. For example, the [Zoom app](https://asana.com/apps/zoom) lets users create a new meeting or attach an existing meeting to an Asana task. Under the hood, these actions are made possible by using a [Modal Form](/docs/modal-form) to create new meetings, [Lookup](/docs/lookup) to search and connect existing meetings, and a [Widget](/docs/widget) to display the external meeting data in a task. Meanwhile, a different app may forego such functionalities, and instead exclusively use [Rule Actions](/docs/rule-actions) to automate workflows between Asana and another tool. Overall, we encourage you to experiment with different capabilities and decide how you want your end user's experience to be.
 
-Additionally, you may choose to present custom screens, forms, or otherwise logic to prompt the user for additional information needed to set up the application.
+To see visual documentation for how you can design your app, check out the [App Components Toolkit](/docs/toolkit). For further inspiration, feel free to navigate to the [app directory](https://asana.com/apps).
 
-The authentication flow is concluded when the app confirms that authentication is complete with a "success" message using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). For more information, feel free to review [Authorization](/docs/authorization) requirements when publishing an app.
+### Start Building the App Server
+
+Because App Components allow your end users to interact with resources outside of Asana's user interface, an [App Server](/docs/app-server) is required for building with App Components. While it isn't necessary to have a complete App Server before moving forward, it's a good idea to at least know the URLs to any server endpoints you want to configure ahead of time (e.g., your URL to [get the metadata](/docs/get-widget-metadata) for a [Widget](/docs/widget)), though these can be configured or changed at any time.
+
+Feel free to review the [app-components-example-app](https://github.com/Asana/app-components-example-app) on GitHub to see an example server written in Express.js. This server is also used in the [Example App](/docs/example-app).
 
 <hr>
 
-### Adding to a Project
+## Create the App
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-Once the user has successully granted permissions, they'll be taken to different screens depending on how they entered the installation flow:
+The first step is to create the app in your [developer console](https://app.asana.com/0/developer-console). Navigate to **Create new app** and provide a name for your app. If your app is published, this name will appear in the Asana app for users to see, including in both the app gallery and [app directory](https://asana.com/apps).
 
-1. If the user began the installation flow from outside of a project (e.g., through the [Asana app directory](https://asana.com/apps)), the user will be shown an additional screen that prompts them to add the app to any necessary projects. This screen will not be shown otherwise.
-<br>
-<br>
-<img src="../images/add-app-to-projects.png" alt="add app to projects"/>
-<br>
-<br>
-From here, the user may choose to add the app to one or more projects, or even skip adding the app for the time being. Once the user has made their choice, the final screen will confirm the user's choices, and the installation flow will be completed.
-<br>
-<br>
-2. If the user began the installation flow from within a project, the user will see a confirmation of the app they've added, and the installation flow will be completed.
-<br>
-<br>
-<img src="../images/installation-flow-finish.png" alt="installation flow finish"/>
-<br>
+<img src="../images/my-apps.png" alt="My apps"/>
+
+<hr>
+
+## Configure the App
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+Once your app has been created, you'll automatically be brought to the new app's settings. From here, you can make the configurations necessary to define your app. 
+
+_Note: To see these settings again, navigate to your app in the [developer console](https://app.asana.com/0/developer-console)._
+
+### Configure Basic Info
+
+On the **Basic Information** tab, provide some information about your app.
+
+_< screenshot of "Basic Info" in dev console >_
+
+These details will be accessible to the end user, and are meant to help them identify and learn more about your application.
+
+| Property             | Description                                                                        |
+|----------------------|------------------------------------------------------------------------------------|
+| App Icon             | Your app's icon, shown to users to identify your application.                      |
+| App Name             | Your app's name, shown to users to identify your application.                      |
+| Short Description    | A short description of the app shown in the app gallery.                           |
+| Long Description     | An extended description of the functionality of the app shown in the app settings. |
+| Company Name         | Your company name.                                                                 |
+| App Landing Page URL | URL of the page where users can learn more about this app and install it.          |
+| Support URL          | URL of the page where users can read documentation or get support.                 |
+| Privacy Policy URL   | URL of the page where users can read your app's privacy policy.                    |
+
+### Configure Capabilities
+
+The next set of configurations you make will differ depending on what functionality and user experience you're looking to build. Each of the capabilities below are configured separately in the **App Components** tab in the [developer console](https://app.asana.com/0/developer-console):
+
+_< screenshot of "App Components" in dev console >_
+
+Follow the links in the table below to view the configurations required to build each capability (e.g., [Widget](/docs/widget)).
+
+| Capability                       | Description                                                                                                                                            |
+|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Widget](/docs/widget)           | Display a dynamic, custom widget card in tasks that shows data from an attached resource.                                                              |
+| [Modal Form](/docs/modal-form)   | Build a custom form to allow users to create new resources. This form gets shown in a modal when a user clicks the entry point on a task.              |
+| [Lookup](/docs/lookup)           | Show a text input to allow users to find and attach resources to tasks. Users can paste a URL, ID, or pick from an optional typeahead.                 |
+| [Rule Action](/docs/rule-action) | Build a custom action for Asana’s Rules engine to help users automate their work. Users can create rules that run your action when triggered.          |
+| [Entry Point](/docs/entry-point) | Configure the button in tasks that initiates the Lookup and Modal Form. To configure this, one or both of these capabilities must be configured first. |
+
+### Configure the Installation Flow
+
+When a user connects an app with App Components to Asana for the first time, they will go through an [installation flow](/docs/installation-flow). There are a number of configurations that can be made here, including:
+
+| Property            | Description                                                                                                                                                                                                         |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Value Prop Title    | Text that appears as a title on the overview of features (i.e., "value props")                                                                                                                                      |
+| Value Prop Subtitle | Text that appears as a subtitle on the overview of features                                                                                                                                                         |
+| Image URL           | URL for image of a feature                                                                                                                                                                                          |
+| Text                | Text below the image of a feature                                                                                                                                                                                   |
+| Alt                 | `alt` text for image of feature                                                                                                                                                                                     |
+| Authentication URL  | A URL which informs Asana where to make requests for authenticating and authorizing users. This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
+
+To make these configurations, navigate to the **Install your app** tab and provide your configurations:
+
+_< screenshot of "Install your app" in dev console >_
+
+For an in-depth overview of the installation flow (including its customizations), see the [Installing Flow](/docs/installation-flow).
+
+<hr>
+
+## Next Steps
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+At this point, your app has been created and fully configured. For further configurations (e.g., updating a URL, replacing button text, etc.), you can head back into the [developer console](https://app.asana.com/0/developer-console) to make any necessary changes. 
+
+Next, you'll want to finish building the [App Server](/docs/building-the-app-server). Leveraging the URLs configured earlier in this guide, this is what enables your end users to interact with resources external to Asana (i.e., via requests to endpoints exposed on the App Server). 
+
+When your both your app and your App Server are complete, you can move forward with getting your app [ready for publishing](/docs/publishing-an-app).
 
 <hr class="full-line">
 
-# Publishing an App
+# Building the App Server
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, here are some guidelines you can follow.
+Because apps built with App Components allow end users to interact with resources external to Asana, an [App Server](/docs/app-server) is required in order for your app to function. Asana will make requests directly to endpoints exposed on the App Server, which controls, for example, what the user sees in a [Widget](/docs/widget) or [what happens](/docs/rule-action) when the user takes certain actions.
 
-<hr>
+To see an example server written in Express.js, check out the [app-components-example-app](https://github.com/Asana/app-components-example-app) on GitHub. This server is also used in the [Example App](/docs/example-app).
 
-## General Guidelines
-
-<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
-
-When submitting an [app configuration](/docs/configurations), you should:
-
-* Add necessary images (e.g., feature images, icon, logo, etc.)
-* Add support links (e.g., feedback link, external support URL)
-* Proofread marketing-related text (e.g., description, extended description, features)
-* Make sure button text has 3-4 words or fewer and start with a verb
-* Use consistent language for similar concepts where applicable
-* Use sentence case by default and capitalize proper nouns
-
-When testing your application, you should:
-
-* Try to "break" your forms (e.g., test watched fields, limit invalid submissions, test typeahead fetches, etc.)
-* Test and proof-read any custom error messages
-* Test the auth flow from both the web browser and [desktop app](https://asana.com/download)
-  * You can enter the installation flow manually by navigating to `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`
-* Test [Rule Actions](/docs/rule-actions) with a variety of trigger combinations
+As a final note, we recommend [creating and configuring your app](/docs/getting-started) before moving forward with building the App Server. After you have completed building both the app and App Server, you will be ready to begin the [publishing process](/docs/publishing-an-app).
 
 <hr>
 
@@ -519,12 +574,135 @@ replay attacks.
 
 <hr>
 
+## Final Steps
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+As you finish building the App Server, you may find it necessary to [update certain configurations](/docs/configure-the-app) such as URLs, image links, etc. These configurations can be updated at any time in the [developer console](https://app.asana.com/0/developer-console).
+
+After you have finished building both your app and App Server, you are now ready to begin the [publishing process](/docs/publishing-an-app)! 
+
+<hr class="full-line">
+
+# Publishing an App
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+After [creating and configuring your app](/docs/getting-started) to function alongside your [App Server](/docs/building-the-app-server), you may begin the app review process.
+
+Apps built on App Components are manually reviewed before they are accessible within Asana. To ensure a smooth review process and user experience, here are some guidelines you can follow before [submitting the app for review](/docs/submit-for-review).
+
+<hr>
+
+## General Guidelines
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+When [configuring your app](/docs/configure-the-app), you should:
+
+* Add necessary images (e.g., feature images, icon, logo, etc.)
+* Add support links (e.g., feedback link, external support URL)
+* Proofread marketing-related text (e.g., description, extended description, features)
+* Make sure button text has 3-4 words or fewer and start with a verb
+* Use consistent language for similar concepts where applicable
+* Use sentence case by default and capitalize proper nouns
+
+When testing your application, you should:
+
+* Try to "break" your forms (e.g., test watched fields, limit invalid submissions, test typeahead fetches, etc.)
+* Test and proof-read any custom error messages
+* Test the auth flow from both the web browser and [desktop app](https://asana.com/download)
+  * You can enter the installation flow manually by navigating to `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`
+* Test [Rule Actions](/docs/rule-actions) with a variety of trigger combinations
+
+<hr>
+
+## Installation Flow
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+When the end user connects an app with App Components to Asana for the first time, they will go through an installation flow. This involves walking the user through the app's features (i.e., "value props"), authorizing the app, and adding it to projects in Asana.
+
+The entire experience can be configured in the [developer console](https://app.asana.com/0/developer-console). Note that a list of all possible configurations can also be found in [Configure the App](/docs/configure-the-app) in the [Getting Started](/docs/getting-started) guide.
+
+For the end user, the installation flow can be triggered through either one of two ways:
+
+1. The in-product app gallery. Users can access the app gallery by going into a project (in which they want to install an app), then navigating to **Customize** > **Add App**.
+<br>
+<br>
+<img src="../images/app-gallery.png" alt="app gallery"/>
+<br>
+<br>
+2. The [Asana app directory](https://asana.com/apps):
+<br>
+<br>
+<img src="../images/app-directory.png" alt="app directory"/>
+
+Note that subsequent interactions with the same application by the same user will _not_ trigger the following installation flow. To force the installation flow in its entirety again (e.g., for QA purposes), you can visit `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`, replacing the value of the `app_id` query parameter with the application's Client ID (accessible via the [developer console](https://app.asana.com/0/developer-console)).
+
+<hr>
+
+### Features
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+After entering the installation flow, the first screen that users see are the app's features, or value props. 
+
+<img src="../images/features.png" alt="features"/>
+
+As part of the customizations, a `valuePropTitle` and `valuePropSubtitle` can be shown at the top of the screen. Additionally, up to three value prop images can be displayed on the screen, each containing the image itself (via an `imageUrl`), accompanying `text` to display under each image, as well as `alt` text.
+
+<hr>
+
+### Authenticating
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+On the next screen, the user will be directed to the auth screen, which will ask them to connect to the external app.
+
+<img src="../images/authentication.png" alt="authentication"/>
+
+When the user clicks the button to continue, Asana will make a request to the application's specified `authenticationUrl` in a pop-up window. From here, it is developer's discretion as to how the user proceeds with authentication. In most cases, this authentication step usually involves completing the [Asana OAuth](/docs/oauth) flow, as well as the third-party (i.e., external) OAuth flow.
+
+<img src="../images/authenticate-asana.png" alt="authentication with Asana"/>
+
+<img src="../images/authenticate-external.png" alt="authentication with external app"/>
+
+Additionally, you may choose to present custom screens, forms, or otherwise logic to prompt the user for additional information needed to set up the application.
+
+The authentication flow is concluded when the app confirms that authentication is complete with a "success" message using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). For more information, feel free to review [Authorization](/docs/authorization) requirements when publishing an app.
+
+<hr>
+
+### Adding to a Project
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+Once the user has successully granted permissions, they'll be taken to different screens depending on how they entered the installation flow:
+
+1. If the user began the installation flow from outside of a project (e.g., through the [Asana app directory](https://asana.com/apps)), the user will be shown an additional screen that prompts them to add the app to any necessary projects. This screen will not be shown otherwise.
+<br>
+<br>
+<img src="../images/add-app-to-projects.png" alt="add app to projects"/>
+<br>
+<br>
+From here, the user may choose to add the app to one or more projects, or even skip adding the app for the time being. Once the user has made their choice, the final screen will confirm the user's choices, and the installation flow will be completed.
+<br>
+<br>
+2. If the user began the installation flow from within a project, the user will see a confirmation of the app they've added, and the installation flow will be completed.
+<br>
+<br>
+<img src="../images/installation-flow-finish.png" alt="installation flow finish"/>
+<br>
+
+<hr>
+
 ## Submit for Review
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
 After you have completed development of your app (and you have addressed the guidelines above), you can begin the process
-to have your app published on Asana. This feature is ([coming soon](/docs/overview-of-app-components)).
+to have your app published on Asana. This feature is [coming soon](/docs/overview-of-app-components).
 
 <hr class="full-line">
 
@@ -620,9 +798,9 @@ Note that certain fields, such as the app name and icon, are directly customizab
 |»» `widgetMetadataUrl`       | String (url) | A URL that Asana uses to make requests for the data needed to load a Widget which displays information about a 3rd party resource. |
 |»» `matchUrlPattern`         | String (url) | A regex which allows Asana to compute whether a UrlAttachment is supported by an activated app on the project in order to render a Widget. |
 |» `resource_search`          | Object       | The container for typeahead functionality |
-|»» `resourceAttachUrl`       | String (url) | A URL that Asana will make a request of when a user submits a value to attach. |
+|»» `resourceAttachUrl`       | String (url) | A URL that Asana will make a request to when a user submits a value to attach. |
 |» `create_resource`          | Object       | The container for resource creation functionality |
-|»» `formMetadataUrl`         | String (url) | A URL that Asana uses to request data from the app about fields it should display in the resource creation modal when the form is first displayed. |
+|»» `formMetadataUrl`         | String (url) | A URL that Asana uses to request data from the app about fields it should display in the Modal Form when the form is first displayed. |
 |» `automation`               | Object       | The container for automation functionality |
 |»» `app_actions`             | Object[]     | The set of Rule Actions exposed by the app |
 |»»» `identifier`             | String       | The unique identifier for the action on the app. |
@@ -641,6 +819,43 @@ Note that certain fields, such as the app name and icon, are directly customizab
 
 <hr>
 
+## Example App
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+The example app offers a quick way for developers to explore the capabilities and features of App Components. By following the steps below, you'll gain an understanding of how to install App Component apps to your developer sandbox, as well as how an example app communicates with endpoints exposed on a pre-built local server. 
+
+Note that for the App Components apps [that you create](/docs/configurations), you'll be able to configure your own images, descriptions, URLs, and other content. Many of the values for these fields are marked by **{curly braces}** in the example app.
+
+Before you begin, be sure you already have a [developer sandbox]((/docs/developer-sandbox)), as this will give you access the "External Example App" in the app gallery. To start using the example app:
+
+1. Clone [this repository](https://github.com/Asana/app-components-example-app) containing an example Express server.
+2. Follow the instructions in the [README](https://github.com/Asana/app-components-example-app/blob/main/README.md) to run the server. This server needs to remain on as you use the example app.
+3. Open the developer sandbox in your browser.
+4. In an existing project, go to **Customize** > **Add App** > **External Example App** to install the App Components example app. 
+    - **Important**: The installation flow this takes you through is only shown once per user. To see it a second time, navigate to 
+      `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`, replacing the value of the `app_id` query parameter with the application's Client ID (accessible via the [developer console](https://app.asana.com/0/developer-console)).
+<br>
+<br>
+<img src="../images/example-app-gallery-tile.png" />
+<br>
+<br>
+5. Once the example app is installed, create a task in your project. In the task's **{Example}** custom field, go to **{Add Example Resource}** > **{Open form}** to see examples of customizable inputs. Click **Submit**.
+<br>
+<br>
+<img src="../images/example-modal-form.gif" />
+<br>
+<br>
+6. View the newly-generated Widget on your task. You can begin editing [index.js](https://github.com/Asana/app-components-example-app/blob/main/index.js) to modify the contents of the widget. Note that you'll need to restart the local server and reload the page to see your changes.
+<br>
+<br>
+<img src="../images/example-widget.png" />
+<br>
+<br>
+That's it! At this point, feel free to keep exploring how changes in the server affects data in the task's Widget. Once you're ready to define an app, [click here to create your own app](/docs/configurations) with App Components.
+
+<hr>
+
 ## Toolkit
 
 <span class="beta-indicator">BETA</span>
@@ -651,21 +866,6 @@ Asana, including how they fit together and what you can do with them. Feel free 
 of designing and building your apps with App Components.
 
 <img src="../images/ac-toolkit-screenshot.png" />
-
-<hr>
-
-## Example App
-
-<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
-
-After you have obtained a [developer sandbox](/docs/developer-sandbox), you will have access to the "External Example App"
-in the app gallery.
-
-<img src="../images/example-app-gallery-tile.png" />
-
-To test out the features of App Components, feel free to install the app into any project in your sandbox. Note that
-the corresponding [Express server](https://github.com/Asana/app-components-example-app) must be running at the same
-time as well. For more information on the example app, visit the [App Components Quick Start](/docs/quick-start) guide.
 
 <hr>
 
