@@ -163,6 +163,8 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   "instagram_username": "castupload",
   "filmmakers_url": null,
   "sv_url": null,
+  "wikipedia_url": "https://de.wikipedia.org/wiki/My_Page",
+  "agency_profile_url": "https://www.my-agency/my-profile",
   "talent_agency_id": 1,
   "updated_at": "2021-06-22T16:14:11.519+02:00",
   "native_dialect": "rheinisch",
