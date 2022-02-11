@@ -308,6 +308,8 @@ Rule Actions are a part of [Asana Rules](https://asana.com/guide/help/premium/ru
 
 ## Entry Point
 
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
 <img src="../images/entry-point.png" alt="Entry point"/>
 
 The Entry Point allows users to initiate the [Lookup](/docs/lookup) and [Modal Form](/docs/modal-form) components from tasks.
