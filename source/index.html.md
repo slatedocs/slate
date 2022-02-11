@@ -546,7 +546,7 @@ This endpoint finds all subscriptions for a customer by customerId
     "id": "5271cc42-8a73-11ec-a8a3-0242ac120002",
     "name": "John H. Thomas",
     "policy": "TIER",
-    "reminderDays": 0
+    "reminderDays": 2
   }
 ```
 
@@ -617,7 +617,7 @@ This endpoint  Get a tier record by it's id
     "id": "6325a978-8a73-11ec-a8a3-0242ac120002",
     "name": "Jacqueline M. Abbot",
     "policy": "TIER",
-    "reminderDays": 0
+    "reminderDays": 2
   }
 
 ```
