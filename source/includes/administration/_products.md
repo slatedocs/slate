@@ -93,7 +93,7 @@ Attributes | &nbsp;
 `products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
-`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
+`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION.
 `products.id`<br/>*UUID* | The ID of the product.
 `products.attribute`<br/>*string* | The attribute that will be used to compute usage from the service type usage.
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
@@ -105,7 +105,6 @@ Attributes | &nbsp;
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
 `products.sku`<br/>*string* | The SKU of the product.
 `products.categoryId`<br/>*UUID* | The UUID of the category to which belongs the product.
-
 
 <!-------------------- GET PRODUCT CATALOG -------------------->
 ### Retrieve a product catalog
@@ -119,6 +118,7 @@ Retrieve a product catalog's details.
 curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
+
 > The above command returns a JSON structured like this:
 
 ```json
@@ -197,7 +197,7 @@ Attributes | &nbsp;
 `products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
-`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
+`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION.
 `products.id`<br/>*UUID* | The ID of the product.
 `products.attribute`<br/>*string* | The attribute that will be used to compute usage from the service type usage.
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
@@ -209,7 +209,6 @@ Attributes | &nbsp;
 `products.filters.value`<br/>*string* | The value to use in the field combined with the operation. This is only required when type is SIMPLE.
 `products.sku`<br/>*string* | The SKU of the product.
 `products.categoryId`<br/>*UUID* | The UUID of the category to which belongs the product.
-
 
 <!-------------------- CREATE PRODUCT CATALOG -------------------->
 ### Create product catalog
@@ -248,12 +247,12 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
             "fr": "category_fr",
             "es": "category_es"
           },
-					"id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
+     "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
         }
       ],
       "products": [
         {
-					"categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+     "categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
           "metricType": "GAUGE",
           "unit": {
             "unit": "HOUR",
@@ -277,6 +276,7 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
       ]
     }
 ```
+
 > The above command return JSON structured like this:
 
 ```js
@@ -358,7 +358,7 @@ Optional | &nbsp;
 `products.name`<br/>*Object* | The name object in each language for the product name.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
-`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
+`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION.
 `products.id`<br/>*UUID* | The id of the product. Returned with the response.
 `products.attribute`<br/>*string* | The source attribute that will be used to compute usage from the service type usage.
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
@@ -371,7 +371,6 @@ Optional | &nbsp;
 `products.sku`<br/>*string* | The SKU of the product.
 `products.categoryId`<br/>*UUID* | The UUID of the category to which belongs the product. Required for each product.
 
-
 <!-------------------- UPDATE PRODUCT CATALOG -------------------->
 ### Update product catalog
 
@@ -380,6 +379,8 @@ Optional | &nbsp;
 Update an existing product catalog, including its associated categories and products.
 
 The catalog's service type as well as the existing product SKUs cannot be edited. In addition, users may not delete categories or products. Products may be marked as deprecated. Deprecated products may not be updated or un-deprecated.
+
+Changing a product definition affects how future usage charges will be calculated to customers. It will not be retroactively applied to records already processed. A manual rollback can be used to reprocess past usage charges with the updated product definition.
 
 ```shell
 # Updates a product catalog
@@ -411,12 +412,12 @@ curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8
             "fr": "category_fr",
             "es": "category_es"
           },
-					"id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
+     "id": "c14daee2-4678-4710-b9af-fc26fbd3c7f3"
         }
       ],
       "products": [
         {
-					"categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
+     "categoryId": "c14daee2-4678-4710-b9af-fc26fbd3c7f3",
           "metricType": "GAUGE",
           "unit": {
             "unit": "HOUR",
@@ -440,6 +441,7 @@ curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8
       ]
     }
 ```
+
 > The above command return JSON structured like this:
 
 ```js
@@ -516,7 +518,7 @@ Required | &nbsp;
 `products.deprecated`<br>*boolean* | Whether or not the product is deprecated. Deprecated products may not be updated or undeprecated. Defaults to false.
 `products.transformer`<br/>*Object* | The object representing the transformation to do on the product usage.
 `products.transformer.type`<br/>*string* | The type of transformation to apply. Possible values: PROPORTIONAL_TO_TIME, EXPRESSION, NONE.
-`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION. 
+`products.transformer.expression`<br/>*string* | The transformation expression to apply. Only required if the type is EXPRESSION.
 `products.id`<br/>*UUID* | The ID of the product.
 `products.attribute`<br/>*string* | The attribute that will be used to compute usage from the service type usage.
 `products.source`<br/>*strubg* | The source of the usage to get from the service type.
@@ -532,7 +534,6 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
-
 
 <!-------------------- DELETE PRODUCT CATALOG -------------------->
 ### Delete product catalog

@@ -1,7 +1,7 @@
 ## Rollbacks
 
-Rollbacks enable service providers to reprocess usage data from the past. 
-Currently the only supported rollback type REPROCESS uses existing collected usage metrics and reprocesses it through the monetization engine. The most current effective pricing configuration will be used to price these records. 
+Rollbacks enable service providers to reprocess usage data from the past.
+Currently the only supported rollback type REPROCESS uses existing collected usage metrics and reprocesses it through the monetization engine. The most current effective pricing configuration will be used to price these records.
 
 <!-------------------- LIST ROLLBACK TRIGGERS -------------------->
 ### List rollback triggers
@@ -71,19 +71,20 @@ curl "https://cloudmc_endpoint/rest/rollbacks?organization_id=23910576-d29f-4c14
   ]
 }
 ```
-| Attributes                   | &nbsp;                                                                                                                             |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `id`<br/>_UUID_              | The UUID of the rollback trigger provider.                                                                                         |
-| `name`<br/>_string_          | The name of the rollback.                                                                                                          |
-| `description`<br/>_string_   | The description of the rollback (optional).                                                                                        |
-| `organization.id`<br/>_UUID_ | The UUID of the organization (reseller) responsble for creating the rollback trigger                                               |
-| `type`<br/>_string_          | The type of the rollback: Possible values are `REPROCESS, RECOLLECT`.                                                              |
-|                              | The `REPROCESS` type is only available to users with operator permission.                                                          |
-|                              | The `RECOLLECT` type is available to connection owners and operators.                                                              |
-| `state`<br/>_enum_           | The state of the rollback. Possible values are: `COMPLETED`, `SCHEDULED` & `PENDING`.                                              |
-| `createdDate`<br/>_string_   | The date the rollback trigger was created.                                                                                         |
-| `resetDate`<br/>_string_     | The date in which we want to start the rollback (inclusive).                                                                       |
-| `rollbacks`<br/>_Array_      | A list of rollbacks scoped to a service connection and organization.                                                               |
+
+| Attributes                   | &nbsp;                                                                                |
+|------------------------------|---------------------------------------------------------------------------------------|
+| `id`<br/>_UUID_              | The UUID of the rollback trigger provider.                                            |
+| `name`<br/>_string_          | The name of the rollback.                                                             |
+| `description`<br/>_string_   | The description of the rollback (optional).                                           |
+| `organization.id`<br/>_UUID_ | The UUID of the organization (reseller) responsble for creating the rollback trigger  |
+| `type`<br/>_string_          | The type of the rollback: Possible values are `REPROCESS, RECOLLECT`.                 |
+|                              | The `REPROCESS` type is only available to users with operator permission.             |
+|                              | The `RECOLLECT` type is available to connection owners and operators.                 |
+| `state`<br/>_enum_           | The state of the rollback. Possible values are: `COMPLETED`, `SCHEDULED` & `PENDING`. |
+| `createdDate`<br/>_string_   | The date the rollback trigger was created.                                            |
+| `resetDate`<br/>_string_     | The date in which we want to start the rollback (inclusive).                          |
+| `rollbacks`<br/>_Array_      | A list of rollbacks scoped to a service connection and organization.                  |
 
 <!-------------------- GET ROLLBACK TRIGGER -------------------->
 ### Get a rollback trigger
@@ -157,24 +158,23 @@ curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49
 
 `POST /rollbacks`
 
-Creates a rollback which will result in reprocessing of usage for the given request body. The Rollback API supports two types of rollback. `REPROCESS` and `RECOLLECT`
+Creates a rollback which will result in reprocessing of usage for the given request body. The Rollback API supports two types of rollback: `REPROCESS` and `RECOLLECT`.
 
-The `REPROCESS` rollback re-processes existing usage, previously collected from the backend service, in the monetization engine. The latest pricing configuration will be used on these records. 
+The `REPROCESS` rollback re-processes existing usage, previously collected from the backend service, in the monetization engine. The latest pricing configuration will be used on these records.
 The API body supports targeting a set of service connections and organizations as well as the date from which the rollback should begin the reprocess. If usage is not found for the requested date and organization and service connection pair the API will default to the earliest available usage for the pair. If there is no previous usage for the organization and connection, no rollback will be generated for this pair.
 
 <aside class="notice">
   <strong>Note:</strong> A rollback will be performed for every valid pair of organizations and service connections. Rollbacks will only be performed when the organization is assigned the connection and has some previous usage for this connection.
 </aside>
 
-The `RECOLLECT` rollback type can be used by connection owners to retrigger the collection of usage from the underlying backend service. The `RECOLLECT` rollback is limitted by the retention period of underlying usage of the targeted service. If, for example, the targeted service only stores 60 days of usage the earliest reset date will be 60 days before today. A recollect rollback impacts **all** assigned organizations of the selected service connection. 
+The `RECOLLECT` rollback type can be used by connection owners to retrigger the collection of usage from the underlying backend service. The `RECOLLECT` rollback is limitted by the retention period of underlying usage of the targeted service. If, for example, the targeted service only stores 60 days of usage the earliest reset date will be 60 days before today. A recollect rollback impacts **all** assigned organizations of the selected service connection.
 
-Note: this operation will take time and the state of the rollbacks will update once the operation is complete. 
+Note: this operation will take time and the state of the rollbacks will update once the operation is complete.
 
-Once a rollback is complete the usage on the customer usage reports after the selected reset date should reflect the latest pricing configuration applied. 
-Rollbacks of all types will **not** impact issued, paid or overdue invoices. Only invoices that are not in the hands of customers will be regenerated. 
+Once a rollback is complete the usage on the customer usage reports after the selected reset date should reflect the latest pricing configuration applied.
+Rollbacks of all types will **not** impact issued, paid or overdue invoices. Only invoices that are not in the hands of customers will be regenerated.
 
 > Note: You must have the Reseller pricing permission on the target reseller. If the caller does not have the correct permissions or the reseller with the ID provided does not exist then a `404 Not Found` response will be returned.
-
 
 ```shell
 # Retrieve rollback triggers
@@ -233,15 +233,15 @@ curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49
 }
 ```
 
-| Attributes                         | &nbsp;                                                                                                                            |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `id`<br/>_UUID_                    | The UUID of the rollback trigger provider.                                                                                        |
-| `name`<br/>_string_                | The name of the rollback.                                                                                                         |
-| `description`<br/>_string_         | The description of the rollback (optional).                                                                                       |
-| `organization.id`<br/>_UUID_       | The UUID of the organization (reseller) responsble for creating the rollback trigger.                                             |
-| `type`<br/>_string_                | The type of the rollback: Possible values are `REPROCESS, RECOLLECT`.                                                             |
-|                                    | The `REPROCESS` type is only available to users with operator permission.                                                         |
-|                                    | The `RECOLLECT` type is available to connection owners and operators.                                                             |
-| `resetDate`<br/>_string_           | The date in which we want to start the rollback (inclusive).                                                                      |
-| `organizationIds`<br/>_Array_      | The list of targeted organization IDs to apply the rollback.                                                                      |
-| `serviceConnectionIds`<br/>_Array_ | The list of affected service connection IDs to apply the rollback.                                                                |
+| Attributes                         | &nbsp;                                                                                |
+|------------------------------------|---------------------------------------------------------------------------------------|
+| `id`<br/>_UUID_                    | The UUID of the rollback trigger provider.                                            |
+| `name`<br/>_string_                | The name of the rollback.                                                             |
+| `description`<br/>_string_         | The description of the rollback (optional).                                           |
+| `organization.id`<br/>_UUID_       | The UUID of the organization (reseller) responsble for creating the rollback trigger. |
+| `type`<br/>_string_                | The type of the rollback: Possible values are `REPROCESS, RECOLLECT`.                 |
+|                                    | The `REPROCESS` type is only available to users with operator permission.             |
+|                                    | The `RECOLLECT` type is available to connection owners and operators.                 |
+| `resetDate`<br/>_string_           | The date in which we want to start the rollback (inclusive).                          |
+| `organizationIds`<br/>_Array_      | The list of targeted organization IDs to apply the rollback.                          |
+| `serviceConnectionIds`<br/>_Array_ | The list of affected service connection IDs to apply the rollback.                    |
