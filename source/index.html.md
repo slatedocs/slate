@@ -26,9 +26,31 @@ meta:
 
 http://localhost:8080/v2/api-docs
 
-# Authentication
+Reveknew provides a simple and powerful REST API to schedule payments and payment reminders for your customers via SMS.
+This API reference provides information on the endpoints and how to use them. 
+Take note that your business must be marked as an enterprise and be provided with credentials by contacting the sales department of Reveknew.
+When enterprise features is provided to you, you will be able to see the businessId that you need in all the API calls.
 
-# Customer
+# Authentication
+This API supports this mode of authentication:
+* OAuth2 
+```
+curl https://api.reveknew.net/enterprise/v1/customers/53e08b340cd983/id/f27a7b170cd \
+    -H "Authorization: Bearer abd90df5f27a7b170cd775abf89d632b350b7c1c9d53e08b340cd9832ce52c2c"
+```
+
+##OAuth2
+To make calls to this API, you will need to be authenticated via OAuth2. You will need a clientId and clientSecret from the Enterprise section of the Reveknew dashboard.
+You will need to perform the following operation to get an access token.
+
+`POST https://auth.reveknew.net/oauth/token
+Content-Type: application/x-www-form-urlencoded
+grant_type=client_credentials&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&audience=https://services.reveknew.net`
+
+
+Any further API call now needs to include the access token in the `Authorization` header as a bearer token. To use the bearer token, construct a normal HTTPS request and include an `Authorization` header with the value of Bearer.
+
+# Customers
 
 ## Create a customer record under a business account
 
@@ -47,7 +69,7 @@ This endpoint creates a customer record under a business account
 
 ### HTTP Request
 
-POST  /enterprise/v1/customers/{businessId}
+`POST`  /enterprise/v1/customers/{businessId}
 
 ### Query Parameters
 
@@ -64,12 +86,6 @@ POST  /enterprise/v1/customers/{businessId}
 | Code | Description                                    |
 |------|------------------------------------------------|
 | 200  | Customer record created successfully           |
-|      | Example  /Model                                |
-|      | {                                              | 
-|      | "body" : {},                                   |
-|      | "statusCode" : "100 CONTINUE" ,                | 
-|      | "statusCodeValue" : 0                          |
-|      | }                                              |
 | 201  | Created                                        |
 | 400  | Invalid data supplied for creation of customer |
 | 401  | Unauthorized                                   |
@@ -95,7 +111,7 @@ This endpoint updates a customer record under a business account
 
 ### HTTP Request
 
-PUT  /enterprise/v1/customers/{businessId}
+`PUT`  /enterprise/v1/customers/{businessId}
 
 ### Query Parameters
 
@@ -112,11 +128,6 @@ PUT  /enterprise/v1/customers/{businessId}
 | Code | Description                                         |
 |------|-----------------------------------------------------|
 | 200  | Customer record updated successfully                | 
-|      | Example  /Model                                     |
-|      | {                                                   | 
-|      | "body" : {},                                        |  
-|      | "statusCode" : "100 CONTINUE",                      |  
-|      | "statusCodeValue" : 0}                              |
 | 201  | Created                                             |
 | 400  | Invalid data supplied for update of customer record |
 | 401  | Unauthorized                                        |
@@ -128,7 +139,7 @@ This endpoint finds  customer record by its id
 
 ### HTTP Request
 
-GET /enterprise/v1/customers/{businessId}/id/{customerId}
+`GET` /enterprise/v1/customers/{businessId}/id/{customerId}
 
 ### Query Parameters
 
@@ -145,23 +156,18 @@ GET /enterprise/v1/customers/{businessId}/id/{customerId}
 | Code | Description                               |
 |------|-------------------------------------------|
 | 200  | Customer record found successfully        | 
-|      | Example  /Model                           | 
-|      | {                                         |
-|      | "body" : {},                              |
-|      | "statusCodeValue" : 0                     |
-|      | }                                         |
 | 401  | Unauthorized                              |
 | 403  | Operation not permitted for this business |
 | 404  | Invalid businessId supplied               |
 
-# Subscription
+# Subscriptions
 
 
 ## Create a subscription record under a business account
 
 ```json
   {
-    "amount" : "0",
+    "amount" : 85392,
     "cancelledOn" : "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
     "customerId" : "b03e0562-8a8b-11ec-a8a3-0242ac120002",
     "id" : "f6867d4c-8a72-11ec-a8a3-0242ac120002",
@@ -170,7 +176,7 @@ GET /enterprise/v1/customers/{businessId}/id/{customerId}
     "pausedOn" : "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
     "receipts" : [
       {
-        "amount" : 0,
+        "amount" : "GH₵ 26,891" ,
         "receivedAt": "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
         "subscriptionId" : "f5c633ca-8a8b-11ec-a8a3-0242ac120002"
       }
@@ -178,7 +184,7 @@ GET /enterprise/v1/customers/{businessId}/id/{customerId}
     "scheduleResets" : true,
     "schedules": [
       {
-        "amount": 0,
+        "amount":31586 ,
         "graceDate": "yyyy-MM-dd",
         "id": "10d45a7a-8a73-11ec-a8a3-0242ac120002",
         "reminderDate": "yyyy-MM-dd",
@@ -198,7 +204,7 @@ This endpoint creates a subscription record under a business account
 
 ### HTTP Request
 
-POST  /enterprise/v1/subscriptions/{businessId}
+`POST`  /enterprise/v1/subscriptions/{businessId}
 
 ### Query Parameters
 
@@ -215,11 +221,6 @@ POST  /enterprise/v1/subscriptions/{businessId}
 | Code | Description                                    |
 |------|------------------------------------------------|
 | 200  | Subscription record updated successfully       | 
-|      | Example  /Model                                |
-|      | {                                              | 
-|      | "body" : {},                                   |  
-|      | "statusCode" : "100 CONTINUE",                 |  
-|      | "statusCodeValue" : 0}                         |
 | 201  | Created                                        |
 | 400  | Invalid data supplied for creation of customer |
 | 401  | Unauthorized                                   |
@@ -233,7 +234,7 @@ This endpoint finds a subscription record under a business account by id
 
 ### HTTP Request
 
-GET  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}
+`GET`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}
 
 ### Query Parameters
 
@@ -251,15 +252,9 @@ GET  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}
 | Code | Description                                   |
 |------|-----------------------------------------------|
 | 200  | Subscription record found successfully        |
-|      | Example  /Model                               |
-|      | {                                             |
-|      | "body" : {},                                  |
-|      | "statusCode" : "100 CONTINUE" ,               |
-|      | "statusCodeValue" : 0                         |
-|      | }                                             | 
 | 401  | Unauthorized                                  |
 | 403  | Operation not permitted for this business     |
-|  404 | Invalid businessId or subscriptionId supplied |
+| 404  | Invalid businessId or subscriptionId supplied |
 
 
 
@@ -269,7 +264,7 @@ This endpoint finds a scheduled payment under a business account by id
 
 ### HTTP Request
 
-GET  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/{scheduleId}
+`GET`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/{scheduleId}
 
 ### Query Parameters
 
@@ -290,12 +285,6 @@ GET  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/{scheduleId}
 | Code | Description                                                |
 |------|------------------------------------------------------------|
 | 200  | PaymentSchedule record created successfully                |
-|      | Example Value /Model                                       |
-|      | {                                                          |
-|      | "body" : {},                                               |
-|      | "statusCode" : "100 CONTINUE" ,                            |
-|      | "statusCodeValue" : 0                                      |
-|      | }                                                          |
 | 401  | Unauthorized                                               |
 | 403  | Operation not permitted for this business                  |
 | 404  | Invalid businessId, subscriptionId or scheduledId supplied |
@@ -308,7 +297,7 @@ This endpoint cancels a subscription record under a business account by id
 
 ### HTTP Request
 
-PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/cancel
+`PATCH`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/cancel
 
 ### Query Parameters
 
@@ -326,12 +315,6 @@ PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/cancel
 | Code | Description                                   |
 |------|-----------------------------------------------|
 | 200  | Subscription cancelled successfully           |
-|      | Example  /Model                               |
-|      | {                                             |
-|      | "body" : {},                                  |
-|      | "statusCode" : "100 CONTINUE" ,               |
-|      | "statusCodeValue" : 0                         |
-|      | }                                             |
 | 204  | No Content                                    |
 | 401  | Unauthorized                                  |
 | 403  | Operation not permitted for this business     |
@@ -345,7 +328,7 @@ This endpoint pauses a subscription record under a business account
 
 ### HTTP Request
 
-PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/pause
+`PATCH`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/pause
 
 ### Query Parameters
 
@@ -363,12 +346,6 @@ PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/pause
 | Code | Description                                   |
 |------|-----------------------------------------------|
 | 200  | Subscription paused successfully              |
-|      | Example  /Model                               |
-|      | {                                             |
-|      | "body" : {},                                  |
-|      | "statusCode" : "100 CONTINUE" ,               |
-|      | "statusCodeValue" : 0                         |
-|      | }                                             |
 | 204  | No Content                                    |
 | 401  | Unauthorized                                  |
 | 403  | Operation not permitted for this business     |
@@ -380,7 +357,7 @@ PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/pause
 
 ```json
   {
-    "amount": 0,
+    "amount": 93874,
     "graceDate": "yyyy-MM-dd",
     "id": "6bb42d33-c2a2-4763-90e4-ff1702fc9951",
     "reminderDate": "yyyy-MM-dd",
@@ -394,7 +371,7 @@ PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/pause
 This endpoint updates a PaymentSchedule record
 ### HTTP Request
 
-PUT  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
+`PUT`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 
 ### Query Parameters
 
@@ -412,12 +389,6 @@ PUT  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 | Code | Description                                    |
 |------|------------------------------------------------|
 | 200  | Payment schedule updated successfully          |
-|      | Example /Model                                 |
-|      | {                                              |
-|      | "body" : {},                                   |
-|      | "statusCode" : "100 CONTINUE"                  |
-|      | "statusCodeValue" : 0                          |
-|      | }                                              |
 | 201  | Created                                        |
 | 400  | Invalid data supplied for creation of customer |
 | 401  | Unauthorized                                   |
@@ -427,7 +398,7 @@ PUT  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 ## Resend SMS notification of payment 
 ```json
   {
-    "amount": 0,
+    "amount": 64913,
     "date": "yyyy-MM-dd",
     "id": "3993cf04-8a73-11ec-a8a3-0242ac120002"
   }
@@ -437,7 +408,7 @@ This endpoint resends SMS notification of payment
 
 ### HTTP Request
 
-PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
+`PATCH`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 
 ### Query Parameters
 
@@ -455,12 +426,6 @@ PATCH  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule
 | Code | Description                                             |
 |------|---------------------------------------------------------|
 | 200  | SMS notification sent successfully                      |
-|      | Example  /Model                                         |
-|      | {                                                       |
-|      | "body" : {},                                            |
-|      | "statusCode" : "100 CONTINUE" ,                         |
-|      | "statusCodeValue" : 0                                   |
-|      | }                                                       |
 | 204  | No Content                                              |
 | 400  | Invalid data supplied for creation of payment schedules |
 | 401  | Unauthorized                                            |
@@ -475,7 +440,7 @@ This endpoint schedule payments for this subscription using the dates and amount
 
 ### HTTP Request
 
-POST  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/date
+`POST`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/date
 
 ### Query Parameters
 
@@ -495,12 +460,6 @@ POST  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/date
 | Code | Description                                    |
 |------|------------------------------------------------|
 | 200  | Payment schedule generated successfully        |
-|      | Example /Model                                 |
-|      | {                                              |
-|      | "body" : {},                                   |
-|      | "statusCode" : "100 CONTINUE"                  |
-|      | "statusCodeValue" : 0                          |
-|      | }                                              |
 | 201  | Created                                        |
 | 400  | Invalid data supplied for creation of customer |
 | 401  | Unauthorized                                   |
@@ -510,7 +469,7 @@ POST  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/date
 
 ```json
   {
-    "amount": 0,
+    "amount": 56827,
     "order": 0
   }
 ```
@@ -520,7 +479,7 @@ This endpoint schedule payments for this subscription using the order and amount
 
 ### HTTP Request
 
-POST  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/order
+`POST`  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/order
 
 ### Query Parameters
 
@@ -540,12 +499,6 @@ POST  /enterprise/v1/subscriptions/{businessId}/{subscriptionId}/schedule/order
 | Code | Description                                             |
 |------|---------------------------------------------------------|
 | 200  | Payments schedules cancelled successfully               |
-|      | Example / Model                                         |
-|      | {                                                       |
-|      | "body" : {},                                            |
-|      | "statusCode" : "100 CONTINUE" ,                         |
-|      | "statusCodeValue" : 0                                   |
-|      | }                                                       |
 | 201  | Created                                                 |
 | 400  | Invalid data supplied for creation of payment schedules |
 | 401  | Unauthorized                                            |
@@ -558,7 +511,7 @@ This endpoint finds all subscriptions for a customer by customerId
 
 ### HTTP Request
 
-GET  /enterprise/v1/subscriptions/{businessId}/customer/{customerId}
+`GET`  /enterprise/v1/subscriptions/{businessId}/customer/{customerId}
 
 ### Query Parameters
 
@@ -576,23 +529,17 @@ GET  /enterprise/v1/subscriptions/{businessId}/customer/{customerId}
 | Code | Description                                   |
 |------|-----------------------------------------------|
 | 200  | Customer subscriptions found successfully     |
-|      | Example  /Model                               |
-|      | {                                             |
-|      | "body" : {},                                  |
-|      | "statusCode" : "100 CONTINUE" ,               |
-|      | "statusCodeValue" : 0                         |
-|      | }                                             |
 | 401  | Unauthorized                                  |
 | 403  | Operation not permitted for this business     |
 | 404  | Invalid businessId or subscriptionId supplied |
 
-# Tier
+# Tiers
 
 ## Create a tier under a business account
 
 ```json
   {
-    "amount": 0,
+    "amount": 102185,
     "billingPeriod": "ONCE",
     "deductions": 0,
     "graceDays": 0,
@@ -608,7 +555,7 @@ This endpoint creates a tier under a business account
 
 ### HTTP Request
 
-POST  /enterprise/v1/tiers/{businessId}
+`POST`  /enterprise/v1/tiers/{businessId}
 
 ### Query Parameters
 
@@ -625,12 +572,6 @@ POST  /enterprise/v1/tiers/{businessId}
 | Code | Description                                |
 |------|--------------------------------------------|
 | 200  | Tier created successfully                  |
-|      | Example  /Model                            |
-|      | {                                          |
-|      | "body" : {},                               |
-|      | "statusCode" : "100 CONTINUE" ,            |
-|      | "statusCodeValue" : 0                      |
-|      | }                                          |
 | 201  | Created                                    |
 | 400  | Invalid data supplied for creation of tier |
 | 401  | Unauthorized                               |
@@ -643,7 +584,7 @@ This endpoint  Get a tier record by it's id
 
 ### HTTP Request
 
-GET  /enterprise/v1/tiers/{businessId}/{tierId}
+`GET` /enterprise/v1/tiers/{businessId}/{tierId}
 
 ### Query Parameters
 
@@ -660,12 +601,6 @@ GET  /enterprise/v1/tiers/{businessId}/{tierId}
 | Code | Description                               |
 |------|-------------------------------------------|
 | 200  | Tier found by id                          |
-|      | Example  /Model                           |
-|      | {                                         |
-|      | "body" : {},                              |
-|      | "statusCode" : "100 CONTINUE" ,           |
-|      | "statusCodeValue" : 0                     |
-|      | }                                         |
 | 401  | Unauthorized                              |
 | 403  | Operation not permitted for this business |
 | 404  | Invalid businessId or tierId supplied     |
@@ -674,7 +609,7 @@ GET  /enterprise/v1/tiers/{businessId}/{tierId}
 
 ```json
  {
-    "amount": 0,
+    "amount": 832964,
     "billingPeriod": "ONCE",
     "deductions": 0,
     "description": "Enjoy new additional services",
@@ -692,7 +627,7 @@ This endpoint updates a tier under a business account
 
 ### HTTP Request
 
-PUT  /enterprise/v1/tiers/{businessId}/{tierId}
+`PUT`  /enterprise/v1/tiers/{businessId}/{tierId}
 
 ### Query Parameters
 
@@ -712,12 +647,6 @@ PUT  /enterprise/v1/tiers/{businessId}/{tierId}
 | Code | Description                                |
 |------|--------------------------------------------|
 | 200  | Tier updated successfully                  |
-|      | Example  /Model                            |
-|      | {                                          |
-|      | "body" : {},                               |
-|      | "statusCode" : "100 CONTINUE" ,            |
-|      | "statusCodeValue" : 0                      |
-|      | }                                          |
 | 201  | Created                                    |
 | 400  | Invalid data supplied for creation of tier |
 | 401  | Unauthorized                               |
