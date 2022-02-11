@@ -39,7 +39,7 @@ curl https://api.reveknew.net/enterprise/v1/customers/53e08b340cd983/id/f27a7b17
     -H "Authorization: Bearer abd90df5f27a7b170cd775abf89d632b350b7c1c9d53e08b340cd9832ce52c2c"
 ```
 
-##OAuth2
+## OAuth2
 To make calls to this API, you will need to be authenticated via OAuth2. You will need a clientId and clientSecret from the Enterprise section of the Reveknew dashboard.
 You will need to perform the following operation to get an access token.
 
