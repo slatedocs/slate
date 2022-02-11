@@ -176,7 +176,7 @@ This endpoint finds  customer record by its id
     "pausedOn" : "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
     "receipts" : [
       {
-        "amount" : "GH₵ 26,891" ,
+        "amount" :  26891,
         "receivedAt": "yyyy-MM-dd'T'HH:mm:ss.SSSZZ",
         "subscriptionId" : "f5c633ca-8a8b-11ec-a8a3-0242ac120002"
       }
