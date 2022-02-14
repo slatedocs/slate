@@ -173,7 +173,7 @@ Name | Description
 ## Tasks
 
 ```shell
-# The above command returns a JSON structured like this:
+# Example of an asynchronus operation response
 ```
 
 ```json
