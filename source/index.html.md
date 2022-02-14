@@ -1692,7 +1692,8 @@ timeStamp = int(round(time.time() * 1000))
 body = {
   "from_id": 352622,
   "limit": 50,
-  "timestamp": timeStamp
+  "timestamp": timeStamp,
+  "sort": "asc"
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -1730,7 +1731,8 @@ const secret = "";
 const body = {
   "from_id": 352622,
   "limit": 50,
-  "timestamp": timestamp
+  "timestamp": timestamp,
+  "sort": "asc"
 }
 
 const payload = new Buffer(JSON.stringify(body)).toString();
@@ -1751,7 +1753,8 @@ request.post(options, function(error, response, body) {
 })
 ```
 
-> Response
+> Response:
+
 ```json
 [
   {
@@ -1779,6 +1782,7 @@ Use this endpoint to fetch trades associated with your account
 |---------|----------|---------|---------------------------------------------------------------------------------------|
 | limit   | No       | 100     | Default: 500, Min: 1, Max: 5000                                                       |
 | from_id | No       | 28473   | Trade ID after which you want the data. If not supplied, trades in ascending order will be returned |
+| sort    | No | asc | Specify asc or desc to get trades in ascending or descending order, default: asc |
 | timestamp| Yes | 1524211224 | When was the request generated |
 
 
