@@ -29,13 +29,9 @@ The API key is found from the API keys section under the user profile menu. If y
 
 *If you don't know what a sub-organization is, you can safely skip this section.*
 
-When listing entities or carrying out an operation in an organization other than your own, make sure to specify the `org_id` query parameter in your request. For operations, this looks like:
+When using the API in an organization other than your own, make sure to specify the `org_id` query parameter in your request. This looks like:
 
-<code>https://cloudmc_endpoint/api/v1/services/:service_code/:environment_name/:entity_type/:entity_id?operation=:operation&<strong>org_id=:org_id</strong></code>
-
-and for listing entities, looks like:
-
-<code>https://cloudmc_endpoint/api/v1/services/:service_code/:environment_name/:entity_type?<strong>org_id=:org_id</strong></code>
+<code>https://cloudmc_endpoint/api/v1/users&<strong>org_id=:org_id</strong></code>
 
 ## HTTP verbs
 The CloudMC API can be used by any tool that is fluent in HTTP. The appropriate HTTP method should be used depending on the desired action.
