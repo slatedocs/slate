@@ -278,13 +278,13 @@ In Multi Account Management, you will be able to do disbursement using your chil
 
 ![Image: Choose SoF - 2. Choose SoF subsidiary.png](../images/Choose_SoF_2_Choose_SoF_subsidiary.png) ![Image: Choose SoF - 4. Type or search sub.png](../images/Choose_SoF_4_Type_or_search_sub.png)
 
-**D. Create a payment link on behalf of a child account **
+**D. Create a payment link on behalf of a child account**
 
 With this feature, you will be able to accept payment from your users through Payment Link created on behalf of a child account. When your users make a successful transaction, the transaction will be recorded in the Child Account's balance. As a parent, you are equipped with the ability to view the Child Account's balance and transaction list anytime through Children → Children Statement. 
 
 The flow will be as follows:
 
-![MAM Payment Link](images/payment_link_mam_flow.png)
+![MAM Payment Link](images/mam_flow_payment_link.png)
 
 Follow the below steps to create a payment link on behalf of a child account:
 
