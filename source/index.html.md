@@ -20,11 +20,11 @@ code_clipboard: true
 
 # Household carbon footprint calculator
 
-# Introduction
+## Introduction
 
 HOST: [https://dynm.herokuapp.com/](https://dynm.herokuapp.com/).
 
-## About
+### About
 
 Many of our daily activities - such as using electricity, driving a car, or disposing of waste - cause greenhouse gas emissions. Together these emissions make up a household's carbon footprint.
 
@@ -32,13 +32,13 @@ The calculator estimates your footprint in three areas: home energy, transportat
 
 For an explanation of the calculator's assumptions and sources, see the [Assumptions and References](https://www.epa.gov/sites/production/files/signpost/cc.html) page.
 
-## How To
+### How To
 
 You can get a quick, rough estimate of your carbon footprint by using U.S. average amounts. They are provided (along with other useful information) in the "tool tips" throughout the calculator.
 
 For a more accurate estimate, use your own numbers. Gather your utility bills (electricity, natural gas, fuel oil, propane) to calculate your average use over a year. You can find your car's rated fuel efficiency at [fueleconomy.gov](https://fueleconomy.gov/), or you can [calculate your car's actual efficiency](https://www.fueleconomy.gov/mpg/MPG.do?action=calcMPG).
 
-## Adding/Editing conversions
+### Adding/Editing conversions
 
 > Adding/Editing conversions
 
@@ -56,7 +56,7 @@ For example, go to [carbon_dioxide_conversion.rb](https://github.com/sunnysanwar
 
 <iframe src="images/dynm-updating-conversions.mp4" height="320" width="560" allowfullscreen="" frameborder="0"></iframe>
  
-# Home Energy
+## Home Energy
 
 > REQUEST
 
@@ -268,7 +268,7 @@ Your Current Emissions from Home Energy.
 | propane ['average_price_ per_gallon']                  | string | false    | The average price per gallon of propane. If not provided the assumption is 2.47                                             |
 | propane ['amount']                                     | string | false    | The amount of propane consumed whether in price or gallons                                                                  |
 
-# Transportation
+## Transportation
 
 > REQUEST
 
@@ -436,7 +436,7 @@ This endpoint deals with transportation.
 | average_miles_driven ['value']    | string | true     | the average amount of miles driven                                               |
 | average_gas_mileage               | string | true     | average amount of gas used by vehicles per mileage                               |
 
-# Waste
+## Waste
 
 > REQUEST
 
@@ -577,11 +577,11 @@ This endpoint deals with waste.
 | materials_recycled ['newspaper'] | boolean | true     | Newspaper is the material being recycled. if true, the value of reduction is -113.14 |
 | materials_recycled ['magazines'] | boolean | true     | Magazine is the material being recycled. if true, the value of reduction is -27.46   |
 
-# Conversions
+## Conversions
 
 <!-- ......here -->
 
-## Carbon Dioxide
+### Carbon Dioxide
 
 > REQUEST
 
@@ -734,7 +734,7 @@ print(data)
 | municipal solid waste       | petroleum coke solid     | plastics                 |
 | plastics quad short ton     | tires                    | tires short ton          |
 
-## Carbon Dioxide with mass
+### Carbon Dioxide with mass
 
 > REQUEST
 
@@ -867,7 +867,7 @@ Units that require mass include CO2, CH4 and N2O
 | mass      | string | false    | This param is only required when the unit type is CO2, CH4 or N2O. Acceptable mass units are kg, g and lbs. If mass is not provided, it defaults to pounds(lbs) |
 | category  | string | true     | There are four categories in which conversion can take place. The categories include: residential, commercial, industrial and transportation                    |
 
-## Carbon Dioxide units
+### Carbon Dioxide units
 
 > REQUEST
 
@@ -940,7 +940,7 @@ echo $response;
 | --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | fuel_type | string | true     | The fuel type to convert          |
 
-## Energy
+### Energy
 
 > REQUEST
 
@@ -1087,7 +1087,7 @@ Energy Conversion
 | municipal solid waste       | petroleum coke solid     | plastics                 |
 | plastics quad short ton     | tires                    | tires short ton          |
 
-## Energy units
+### Energy units
 
 > REQUEST
 
@@ -1160,7 +1160,7 @@ echo $response;
 | --------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | fuel_type | string | true     | The fuel type to convert          |
 
-# Solutions
+## Solutions
 
 > REQUEST
 
