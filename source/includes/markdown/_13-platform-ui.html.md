@@ -96,7 +96,7 @@ URL parameters like `task`, `user`, and `workspace`.
 
 | Property            | Description                                                                                                                                 |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| Widget Metadata URL | A URL that Asana uses to make requests for the data needed to load a Widget which displays information about a third party resource.        |
+| Widget Metadata URL | A URL that Asana uses to make requests for the data needed to load a Widget, which displays information about a third party resource.       |
 | Match URL Pattern   | A regex which allows Asana to compute whether a URL attachment is supported by an activated app on the project in order to render a Widget. |
 
 
@@ -186,10 +186,9 @@ endpoint is the [On change callback request](/docs/on-change-callback).
 
 ### Modal Form Configurations
 
-| Property              | Description                                                                                                                           |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| Form Metadata URL     | A URL that Asana uses to request data from the app about fields it should display in the Modal Form when the form is first displayed. |
-| Create Resource Label | Clickable action text that appears in the Entry Point that allows users to initiate a Modal Form.                                     |
+| Property              | Description                                                                                          |
+|-----------------------|------------------------------------------------------------------------------------------------------|
+| Form metadata URL     | A URL that Asana uses to request data from the app about fields it should display in the Modal Form. |
 
 ### Related References: 
 
@@ -227,12 +226,11 @@ resource or an error.
 
 ### Lookup Configurations
 
-| Property                    | Description                                                                                                       |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------|
-| Resource Attach URL         | A URL that Asana will make a request to when a user submits a value to attach.                                    |
-| Attach Resource Label       | Clickable action text that appears in the Entry Point that allows users to initiate a Modal Form                  |
-| Attach Resource Placeholder | Placeholder action text that appears in the Lookup input field after the user clicks on the Attach Resource Label |
-| Resource Typeahead URL      | A URL that Asana will make a request to when a user types into a Modal Form form field.                           |
+| Property               | Description                                                                                                                 |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Resource attach URL    | A URL that Asana will make a request to when a user submits a value to attach (i.e., when clicking "Add").                  |
+| Placeholder text       | _Optional_. Placeholder action text that appears in the Lookup input field after the user clicks on the Lookup action text. |
+| Resource typeahead URL | A URL that Asana will make a request to when a user types into a Lookup field.                                              |
 
 ### Related References: 
 
@@ -290,11 +288,11 @@ Rule Actions are a part of [Asana Rules](https://asana.com/guide/help/premium/ru
 
 ### Rule Action Configurations
 
-| Property          | Description                                                              |
-|-------------------|--------------------------------------------------------------------------|
-| Display Name      | The Rule Action name visible to end users (e.g., "Create a Jira issue"). |
-| Run Action URL    | A URL that Asana will make a request to to run a Rule Action.            |
-| Form Metadata URL | A URL that Asana will make a request to to configure a Rule Action.      |
+| Property          | Description                                                                                  |
+|-------------------|----------------------------------------------------------------------------------------------|
+| Display name      | The Rule Action name visible to end users in the rule builder (e.g., "Create a Jira issue"). |
+| Run action URL    | A URL that Asana will make a request to when the rule is triggered.                          |
+| Form metadata URL | A URL that Asana will make a request to to display the configuration form.                   |
 
 ### Related References: 
 
@@ -318,11 +316,10 @@ To configure the Entry Point, one or both of the above capabilities must be conf
 
 ### Entry Point Configurations
 
-| Property                    | Description                                                        |
-|-----------------------------|--------------------------------------------------------------------|
-| Add Resource action text    | A clear call-to-action for users to show the Add Resource input.   |
-| Create Resource action text | A clear call-to-action for users to open the Modal Form.           |
-| Dropdown button text        | Users can click this button to add or create resources from tasks. |
+| Property               | Description                                                        |
+|------------------------|--------------------------------------------------------------------|
+| Lookup action text     | Clickable action text that allows users to initiate a Lookup.      |
+| Modal Form action text | Clickable action text that allows users to initiate a Modal Fornm. |
 
 <hr class="full-line">
 
