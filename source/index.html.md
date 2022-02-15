@@ -2709,9 +2709,9 @@ Aggregates data for rows in all sheets above. Returns an overall emissions summa
 | inventory_data          | list   | required | List of inventory data entries with inventory information i.e inventory_year, start_date and end_date |
 | facilities              | list   | required | List of all facilities with facility information for each i.e facility_id, grid_region and country    |
 
-# Emission Factors for Corporate Endpoints
+## Emission Factors for Corporate Endpoints
 
-## Stationary Combustion
+### Stationary Combustion
 
 <aside>Fuel Types</aside>
 
@@ -2742,7 +2742,7 @@ Source:
 EPA, "Emission Factors for Greenhouse Gas Inventories," Table 1 Stationary Combustion Emission Factors, March 9, 2018 (https://www.epa.gov/climateleadership/center-corporate-climate-leadership-ghg-emission-factors-hub).
 Note: Emission factors are per unit of heat content using higher heating values (HHV). If heat content is available from the fuel supplier, it is preferable to use that value. If not, default heat contents are provided.
 
-## Mobile Combustion
+### Mobile Combustion
 
 <aside>Fuel Types</aside>
 
@@ -2757,7 +2757,7 @@ Note: Emission factors are per unit of heat content using higher heating values 
 | Jet Fuel - Jet Fuel Aircraft                             | Aviation Gasoline - Aviation Gasoline Aircraft               | Motor Gasoline - Gasoline Motorcycles                                   | Motor Gasoline - Other Gasoline Non-Road Vehicles |
 | Diesel Fuel - Other Diesel Non-Road Vehicles             | Biodiesel (100%) - Biodiesel Medium- and Heavy-duty Vehicles |
 
-## Transport
+### Transport
 
 <aside>Lookup Name</aside>
 
@@ -2792,7 +2792,7 @@ Note: Emission factors are per unit of heat content using higher heating values 
 | Air Travel - International, to/from non-UK - Business class_RF     | Air Travel - International, to/from non-UK - First class_RF   | Freight flights - Domestic, to/from UK_RF                             |
 | Freight flights - Short-haul, to/from UK_RF                        | Freight flights - Long-haul, to/from UK_RF                    |
 
-## Purchased Electricity
+### Purchased Electricity
 
 <aside>Grid Region - Location Based</aside>
 |Grid Region                 | Grid Region                 | Grid Region             |
@@ -2841,7 +2841,7 @@ Note: Emission factors are per unit of heat content using higher heating values 
 |Slovakia | Slovenia | Spain |
 |Sweden |Switzerland|
 
-## Refrigerants
+### Refrigerants
 
 GWPs of Required Greenhouse Gases and Refrigerant Blends
 
