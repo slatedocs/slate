@@ -22,9 +22,11 @@ meta:
 ---
 
 # Introduction
-[Base URl : localhost:8080/ ]
+The Reveknew API can be accessed via the base urls below.
 
-http://localhost:8080/v2/api-docs
+`Production base url: https://api.reveknew.net`
+
+`UAT base url: https://uat.api.reveknew.net`
 
 Reveknew provides a simple and powerful REST API to schedule payments and payment reminders for your customers via SMS.
 This API reference provides information on the endpoints and how to use them. 
