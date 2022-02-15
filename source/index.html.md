@@ -22,16 +22,17 @@ meta:
 ---
 
 # Introduction
-The Reveknew API can be accessed via the base urls below.
-
-`Production base url: https://api.reveknew.net`
-
-`UAT base url: https://uat.api.reveknew.net`
 
 Reveknew provides a simple and powerful REST API to schedule payments and payment reminders for your customers via SMS.
 This API reference provides information on the endpoints and how to use them. 
 Take note that your business must be marked as an enterprise and be provided with credentials by contacting the sales department of Reveknew.
 When enterprise features is provided to you, you will be able to see the businessId that you need in all the API calls.
+
+The Reveknew API can be accessed via the base urls below.
+
+`Production base url: https://api.reveknew.net`
+
+`UAT base url: https://uat.api.reveknew.net`
 
 # Authentication
 This API supports this mode of authentication:
