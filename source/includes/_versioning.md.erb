@@ -1,0 +1,12 @@
+# API Version History
+
+All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advance and be given ample time to upgrade.
+
+<dl>
+  <% data.versions.sort_by(&:date).reverse.each do |v| %>
+    <dt>Version <%= v.version %> &ndash; <%= v.date.strftime("%b %d, %Y") %></dt>
+    <dd>
+      <%= markdown(Array(v.changes).map { |c| "* #{c.strip}" }.join("\n")) %>
+    </dd>
+  <% end %>
+</dl>

@@ -42,7 +42,7 @@ html, body {
 
 #toc > ul > li > a > span {
   float: right;
-  background-color: #2484FF;
+  background-color: #0c61cf;
   border-radius: 40px;
   width: 20px;
 }
@@ -60,7 +60,7 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 500;
 
   // language selector for mobile devices
   .lang-selector {
@@ -76,6 +76,7 @@ html, body {
     display: block;
     max-width: 100%;
     margin-bottom: $logo-margin;
+    margin-top: $logo-margin;
   }
 
   &>.search {
@@ -92,6 +93,19 @@ html, body {
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
+      
+      &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: rgb(255, 255, 255);
+        opacity: 1; /* Firefox */
+      }
+      
+      &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: rgb(255, 255, 255);
+      }
+      
+      &::-ms-input-placeholder { /* Microsoft Edge */
+        color: rgb(255, 255, 255);
+      }
     }
 
     &:before {
@@ -100,7 +114,7 @@ html, body {
       left: $nav-padding;
       color: $nav-text;
       @extend %icon-search;
-    }
+    }    
   }
 
   .search-results {
@@ -228,7 +242,7 @@ html, body {
   z-index: 100;
   color: #000;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
   opacity: 0.7;
   line-height: 16px;
   img {
@@ -281,7 +295,7 @@ html, body {
   display: flex;
   background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
+  font-weight: 500;
   overflow-x: auto;
   a {
     display: inline;
@@ -400,6 +414,8 @@ html, body {
   table {
     margin-bottom: 1em;
     overflow: auto;
+    width: auto;
+
     th,td {
       text-align: left;
       vertical-align: top;
@@ -421,19 +437,11 @@ html, body {
 
     tr:last-child {
       border-bottom: 1px solid #ccc;
-    }
-
-    tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
-    }
-
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
-    }
+    }    
   }
 
   dt {
-    font-weight: bold;
+    font-weight: 500;
   }
 
   dd {
