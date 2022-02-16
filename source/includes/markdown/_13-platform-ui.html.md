@@ -417,13 +417,13 @@ _< screenshot of "App Components" in dev console >_
 
 Follow the links in the table below to view the configurations required to build each capability (e.g., [Widget](/docs/widget)).
 
-| Capability                       | Description                                                                                                                                            |
-|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Widget](/docs/widget)           | Display a dynamic, custom widget card in tasks that shows data from an attached resource.                                                              |
-| [Modal Form](/docs/modal-form)   | Build a custom form to allow users to create new resources. This form gets shown in a modal when a user clicks the entry point on a task.              |
-| [Lookup](/docs/lookup)           | Show a text input to allow users to find and attach resources to tasks. Users can paste a URL, ID, or pick from an optional typeahead.                 |
-| [Rule Action](/docs/rule-action) | Build a custom action for Asana’s Rules engine to help users automate their work. Users can create rules that run your action when triggered.          |
-| [Entry Point](/docs/entry-point) | Configure the button in tasks that initiates the Lookup and Modal Form. To configure this, one or both of these capabilities must be configured first. |
+| Capability                        | Description                                                                                                                                             |
+|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Widget](/docs/widget)            | Display a dynamic, custom widget card in tasks that shows data from an attached resource.                                                               |
+| [Modal Form](/docs/modal-form)    | Build a custom form to allow users to create new resources. This form gets shown in a modal when a user clicks the entry point on a task.               |
+| [Lookup](/docs/lookup)            | Show a text input to allow users to find and attach resources to tasks. Users can paste a URL, ID, or pick from an optional typeahead.                  |
+| [Rule Actions](/docs/rule-action) | Build one or more custom action for Asana’s Rules engine to help users automate their work. Users can create rules that run your action when triggered. |
+| [Entry Point](/docs/entry-point)  | Configure the button in tasks that initiates the Lookup and Modal Form. To configure this, one or both of these capabilities must be configured first.  |
 
 ### Configure the Installation Flow
 
