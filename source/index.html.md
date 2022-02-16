@@ -57,7 +57,8 @@ curl -X POST "https://sandbox.f1sales.org/public/api/v1/leads"\
         \"email\":\"darthvader@deathstar.com\"
       },
       \"product\":{
-        \"name\":\"Tie Fighter\"
+        \"name\":\"Tie Fighter\",
+        \"link\":\"https://www.darthvader.com.br/deathstar\"
       },
       \"source\":{
         \"name\":\"Galactic Market - Used Ships\"
@@ -81,7 +82,8 @@ curl -X POST "https://sandbox.f1sales.org/public/api/v1/leads"\
       "description": "Clicked on header banner"
     },
       "product": {
-        "name": "Tie Fighter"
+        "name": "Tie Fighter",
+        "link": "https://www.darthvader.com.br/deathstar"
     },
      "included": {
        "customer": {
@@ -126,6 +128,7 @@ email | não | String | Email do interessado
 Parametro | Obrigatório | Tipo | Descrição
 --------- | ----------- | ---- | ----------
 name | sim | String | Nome do produto
+link | não | String | Link do produto
 
 #### Parametros de `source`
 Parametro | Obrigatório | Tipo | Descrição | Observação
