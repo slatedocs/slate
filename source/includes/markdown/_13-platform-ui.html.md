@@ -404,6 +404,7 @@ These details will be accessible to the end user, and are meant to help them ide
 | Short Description    | A short description of the app shown in the app gallery.                           |
 | Long Description     | An extended description of the functionality of the app shown in the app settings. |
 | Company Name         | Your company name.                                                                 |
+| Company URL          | URL of the page where users can learn more about your company.                     |
 | App Landing Page URL | URL of the page where users can learn more about this app and install it.          |
 | Support URL          | URL of the page where users can read documentation or get support.                 |
 | Privacy Policy URL   | URL of the page where users can read your app's privacy policy.                    |
@@ -724,6 +725,7 @@ _Note: You must first create an app in order to be able to configure it. To begi
 | Short description    | A short description of the app shown in the app gallery.                           |
 | Long description     | An extended description of the functionality of the app shown in the app settings. |
 | Company name         | Your company name.                                                                 |
+| Company URL          | URL of the page where users can learn more about your company.                     |
 | App landing page URL | URL of the page where users can learn more about this app and install it.          |
 | Support URL          | URL of the page where users can read documentation or get support.                 |
 | Privacy policy URL   | URL of the page where users can read your app's privacy policy.                    |
