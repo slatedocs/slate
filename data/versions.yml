@@ -1,0 +1,5 @@
+- version: "0.1"
+  date: 2021-12-22
+  changes:
+    - Initial upload of draft content
+    - Warning added relating to draft nature and forthcoming authentication changes.
