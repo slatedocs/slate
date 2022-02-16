@@ -7,7 +7,7 @@ language_tabs:
 
 toc_footers: 
    - <a href='mailto:support@sieraglobal.com'>Contact us for a developer account</a> 
-   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
+   - <a href='https://github.com/lavkumarv'>Documentation powered by lav</a> 
 
 includes: 
    - intro
