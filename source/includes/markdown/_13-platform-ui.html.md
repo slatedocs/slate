@@ -477,8 +477,8 @@ As a final note, we recommend [creating and configuring your app](/docs/getting-
 When handling requests from Asana, an App Components app should:
  
  - Reject requests with missing or incorrect signatures.
- - Reject requests with an "expires" time in the past.
-    - **Note**: Make sure to use the correct units for this. "expires" is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
+ - Reject requests with an `expires_at` time in the past.
+    - **Note**: Make sure to use the correct units for this. `expires_at` is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
 
 If an app uses [OAuth for authentication](/docs/oauth), the app should:
  
