@@ -62,6 +62,14 @@ Ratelimit-Reset: 1597048500
 * `Ratelimit-Limit`: the request-quota associated to your client (defaults to 300)
 * `Ratelimit-Reset`: the timestamp when the quota resets
 
+# Changelog
+
+## 2022-01-26
+-  **ActorProfile#show**: Add `pitches`, `figures`, `native_dialects`, `sport_skills`, `special_skills`
+
+## 2022-01-12
+- **ActorProfile#show**: Add new fields `station` / `theatre` / `writer` to Vita
+
 # Actor profiles
 
 ## Get all actor profiles
