@@ -601,7 +601,7 @@ Apps built on App Components are manually reviewed before they are accessible wi
 When [configuring your app](/docs/configure-the-app), you should:
 
 * Add necessary images (e.g., feature images, icon, logo, etc.)
-* Add support links (e.g., feedback link, external support URL)
+* Add links to supporting information and/or documentation (e.g., app landing page URL, support URL, etc.)
 * Proofread marketing-related text (e.g., description, extended description, features)
 * Make sure button text has 3-4 words or fewer and start with a verb
 * Use consistent language for similar concepts where applicable
