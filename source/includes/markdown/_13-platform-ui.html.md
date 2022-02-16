@@ -551,14 +551,17 @@ have the token for one user. You may want to suggest users to authenticate with 
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. This is URL parameters in the 
-case of GET requests and a JSON blob in the case of a POST request. The signature is transmitted via a header. The app 
-calculates the same signature and compares that to the value in the header, rejecting the request if the two do not match.
-The signature must be on the exact parameter string that will be passed to the app because the signature will change if 
-something as trivial as spacing changes.
+The burden of verifying the request is on the app. Without this check, attackers can send requests to the App Server pretending to be Asana.
 
-The burden of verifying the request is on the app. Without this check, attackers can send requests to the App 
-Server pretending to be Asana.
+Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. For GET requests, the "message" used
+to generate the signature is the query string of the request with escaped characters, omitting the leading "?" of the query string.
+For POST requests, the "message" is the JSON blob in the "data" field of the request body. For both types of requests, the secret
+used to compute the signature is your app's Client Secret which can be found in the **OAuth** tab for the app in the
+[developer console](https://app.asana.com/0/developer-console). 
+
+Note that the signature is transmitted via a header. The app calculates the same signature and compares that to the value in the header,
+rejecting the request if the two do not match. The signature must be on the exact parameter string that will be passed to the app, since
+the signature will change if something as trivial as spacing changes.
 
 <hr>
 
