@@ -623,7 +623,7 @@ When testing your application, you should:
 
 When the end user connects an app with App Components to Asana for the first time, they will go through an installation flow. This involves walking the user through the app's features (i.e., "value props"), authorizing the app, and adding it to projects in Asana.
 
-The entire experience can be configured in the [developer console](https://app.asana.com/0/developer-console). Note that a list of all possible configurations can also be found in [Configure the App](/docs/configure-the-app) in the [Getting Started](/docs/getting-started) guide.
+The installation flow can be configured in the [developer console](https://app.asana.com/0/developer-console). Note that a list of all possible configurations can also be found in [Configure the App](/docs/configure-the-app) in the [Getting Started](/docs/getting-started) guide.
 
 For the end user, the installation flow can be triggered through either one of two ways:
 
