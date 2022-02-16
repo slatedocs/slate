@@ -335,7 +335,7 @@ This guide will show you how to begin building with App Components. To make best
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-The overall build process for App Components involves the following:
+The overall development process for App Components involves the following:
 
 1. Create the app in the [developer console](https://app.asana.com/0/developer-console).
 2. Configure the app in the [developer console](https://app.asana.com/0/developer-console).
