@@ -89,15 +89,15 @@ will display.
 How does Asana determine when a Widget should be shown? When a task is opened in
 Asana, it checks each attachment on the task. If an attachment has a URL 
 that fits with an App's registered `match url` (ex: `https:\/\/.*.atlassian.net\/.*`) 
-then it shows a Widget. A GET request is sent to the App's `Widget Metadata URL`, including 
+then it shows a Widget. A GET request is sent to the App's `Widget metadata URL`, including 
 URL parameters like `task`, `user`, and `workspace`.
 
 ### Widget Configurations
 
 | Property            | Description                                                                                                                                 |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| Widget Metadata URL | A URL that Asana uses to make requests for the data needed to load a Widget, which displays information about a third party resource.       |
-| Match URL Pattern   | A regex which allows Asana to compute whether a URL attachment is supported by an activated app on the project in order to render a Widget. |
+| Widget metadata URL | A URL that Asana uses to make requests for the data needed to load a Widget, which displays information about a third party resource.       |
+| Match URL pattern   | A regex which allows Asana to compute whether a URL attachment is supported by an activated app on the project in order to render a Widget. |
 
 
 ### Related References: 
@@ -316,10 +316,10 @@ To configure the Entry Point, one or both of the above capabilities must be conf
 
 ### Entry Point Configurations
 
-| Property               | Description                                                        |
-|------------------------|--------------------------------------------------------------------|
-| Lookup action text     | Clickable action text that allows users to initiate a Lookup.      |
-| Modal Form action text | Clickable action text that allows users to initiate a Modal Fornm. |
+| Property               | Description                                                       |
+|------------------------|-------------------------------------------------------------------|
+| Lookup action text     | Clickable action text that allows users to initiate a Lookup.     |
+| Modal Form action text | Clickable action text that allows users to initiate a Modal Form. |
 
 <hr class="full-line">
 
@@ -428,14 +428,14 @@ Follow the links in the table below to view the configurations required to build
 
 When a user connects an app with App Components to Asana for the first time, they will go through an [installation flow](/docs/installation-flow). There are a number of configurations that can be made here, including:
 
-| Property            | Description                                                                                                                                                                                                         |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Value Prop Title    | Text that appears as a title on the overview of features (i.e., "value props")                                                                                                                                      |
-| Value Prop Subtitle | Text that appears as a subtitle on the overview of features                                                                                                                                                         |
-| Image URL           | URL for image of a feature                                                                                                                                                                                          |
-| Text                | Text below the image of a feature                                                                                                                                                                                   |
-| Alt                 | `alt` text for image of feature                                                                                                                                                                                     |
-| Authentication URL  | A URL which informs Asana where to make requests for authenticating and authorizing users. This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
+| Property           | Description                                                                                                                                                                                                         |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Headline           | Text that appears as a title on the overview of features (i.e., "value props").                                                                                                                                     |
+| Subhead            | Text that appears as a subtitle on the overview of features.                                                                                                                                                        |
+| Feature image      | The image representing a feature.                                                                                                                                                                                   |
+| Caption text       | Text below the image of a feature.                                                                                                                                                                                  |
+| Image alt text     | Alt text for image of feature.                                                                                                                                                                                      |
+| Authentication URL | A URL which informs Asana where to make requests for authenticating and authorizing users. This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
 
 To make these configurations, navigate to the **Install your app** tab and provide your configurations:
 
@@ -649,7 +649,7 @@ After entering the installation flow, the first screen that users see are the ap
 
 <img src="../images/features.png" alt="features"/>
 
-As part of the customizations, a `valuePropTitle` and `valuePropSubtitle` can be shown at the top of the screen. Additionally, up to three value prop images can be displayed on the screen, each containing the image itself (via an `imageUrl`), accompanying `text` to display under each image, as well as `alt` text.
+As part of the customizations, a `Headline` and `Subhead` can be shown at the top of the screen. Additionally, up to three `Feature images` can be displayed on the screen, each containing the image itself, accompanying `Caption text` to display under each image, as well as `Image alt text` text.
 
 <hr>
 
@@ -661,7 +661,7 @@ On the next screen, the user will be directed to the auth screen, which will ask
 
 <img src="../images/authentication.png" alt="authentication"/>
 
-When the user clicks the button to continue, Asana will make a request to the application's specified `authenticationUrl` in a pop-up window. From here, it is developer's discretion as to how the user proceeds with authentication. In most cases, this authentication step usually involves completing the [Asana OAuth](/docs/oauth) flow, as well as the third-party (i.e., external) OAuth flow.
+When the user clicks the button to continue, Asana will make a request to the application's specified `Authentication URL` in a pop-up window. From here, it is developer's discretion as to how the user proceeds with authentication. In most cases, this authentication step usually involves completing the [Asana OAuth](/docs/oauth) flow, as well as the third-party (i.e., external) OAuth flow.
 
 <img src="../images/authenticate-asana.png" alt="authentication with Asana"/>
 
@@ -711,110 +711,69 @@ to have your app published on Asana. This feature is [coming soon](/docs/overvie
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-> Sample of a "full" App Components configuration
+The following tables represent a master list of all the configurations you can make to define your App Components app. Further context for these configurations can be found in the [Configure the App](/docs/configure-the-app) section of the [Getting Started](/docs/getting-started) guide. Feel free to also review the [Toolkit](/docs/toolkit) for a visual documentation of these configurations. To make these configurations, visit the [developer console](https://app.asana.com/0/developer-console).
 
-```json
+_Note: You must first create an app in order to be able to configure it. To begin, see the [Getting Started](/docs/getting-started) guide._
 
-{
-  identifier: "jira",
-  name: "Jira Cloud",
-  description: "Short description of the app.",
-  extendedDescription: "A long description of the functionality of the app and the value it provides for users.",
-  features: [
-    {
-      src: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/create.svg",
-      alt: "Create issue dialog",
-      text: "Kick off new work by creating Jira issues from Asana.",
-    },
-    {
-      src: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/sync.svg",
-      alt: "Syncing Jira Widget",
-      text: "Add issues to Asana tasks to sync the status from Jira.",
-    },
-    {
-      src: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/visibility.svg",
-      alt: "Person surrounded by issues",
-      text: "Add visibility for stakeholders to reduce status meetings.",
-    },
-  ],
-  siteUrl: "https://jira-asana-integration.asana.com",
-  appDirectoryUrl: "https://www.asana.com/apps/jiracloud",
-  authenticationUrl: "https://jira-asana-integration.asana.com/auth",
-  icon: {
-    x32: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_32.png",
-    x64: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_64.png",
-    x96: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_96.png",
-    x192: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/jira_cloud_192.png",
-  },
-  logo: "https://abcdefghijklmnop.cloudfront.net/obj/56fd875687fa6875fda7f586dsa/Jira-full.png",
-  capabilities: [
-    {
-      type: "ResourceSearch",
-      resourceTypeaheadUrl: "https://jira-asana-integration.asana.com/project/typeahead",
-      resourceAttachUrl: "https://jira-asana-integration.asana.com/actions/attach"
-    },
-    {
-      type: "ResourceWidget",
-      widgetMetadataUrl: "https://jira-asana-integration.asana.com/issue/widget",
-      matchUrlPattern: "https:\\/\\/.*.atlassian.net\\/.*"
-    },
-    {
-      type: "CreateResource",
-      formMetadataUrl: "https://jira-asana-integration.asana.com/actions/form",
-      formOnChangeUrl: "https://jira-asana-integration.asana.com/actions/form/onchange",
-      formOnSubmitUrl: "https://jira-asana-integration.asana.com/actions/create",
-    },
-  ],
-  authModalMetadata: {
-      title: "Drive visibility & transparency across teams",
-      subtitle: "Here's what you can do in Asana with the Jira Cloud app.",
-      buttonText: "Get started",
-  },
-  coachmarkText: "Add or create new Jira issues on any task in this project.",
-  actionsMenuTitle: "Add Jira Issue",
-  feedbackLink: "https://form-beta.asana.com?hash=6da775cf552078ee2299eda9309d22f32239aa29900b5b9330cd57891e7d6068&id=1148560723305775",
-  externalSupportUrl: "https://asana.com/guide/help/api/jira",
-}
-```
+### Configurations for Basic Information
 
-The following table lists the configurations you can make to define your App Components app.
+| Property             | Description                                                                        |
+|----------------------|------------------------------------------------------------------------------------|
+| App icon             | Your app's icon, shown to users to identify your application.                      |
+| App name             | Your app's name, shown to users to identify your application.                      |
+| Short description    | A short description of the app shown in the app gallery.                           |
+| Long description     | An extended description of the functionality of the app shown in the app settings. |
+| Company name         | Your company name.                                                                 |
+| App landing page URL | URL of the page where users can learn more about this app and install it.          |
+| Support URL          | URL of the page where users can read documentation or get support.                 |
+| Privacy policy URL   | URL of the page where users can read your app's privacy policy.                    |
 
-To create an app with App Components functionality, you'll first need to [create an app](/docs/authentication-quick-start), then provide
-the configurations for your application with the data described in the table below ([coming soon](/docs/overview-of-app-components)).
-Note that certain fields, such as the app name and icon, are directly customizable in the developer console and will also be used by the App Components system.
+### Configurations for [Widget](/docs/widget)
 
-|Field|Type|Description|
-|---|---|---|
-| `description`               | String       | A short description of the app shown in the app gallery. |
-| `extendedDescription`       | String       | An extended description of the functionality of the app shown in the app settings. |
-| `features`                  | Object       | A list of feature descriptions used to illustrate the functionality of the app in marketing views. |
-|» `src`                      | String (url) | (Optional) src for image of feature |
-|» `alt`                      | String (url) | (Optional) alt for image of feature |
-|» `text`                     | String (url) | text below image of feature |
-| `authenticationUrl`         | String (url) | A URL which informs Asana where to make requests for authenticating and authorizing users.  This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
-| `capabilities`              | Object       | A list of capabilities supported by the app and their configuration. |
-|» `resource_widget`          | Object       | The container for resource Widget functionality  |
-|»» `widgetMetadataUrl`       | String (url) | A URL that Asana uses to make requests for the data needed to load a Widget which displays information about a 3rd party resource. |
-|»» `matchUrlPattern`         | String (url) | A regex which allows Asana to compute whether a UrlAttachment is supported by an activated app on the project in order to render a Widget. |
-|» `resource_search`          | Object       | The container for typeahead functionality |
-|»» `resourceAttachUrl`       | String (url) | A URL that Asana will make a request to when a user submits a value to attach. |
-|» `create_resource`          | Object       | The container for resource creation functionality |
-|»» `formMetadataUrl`         | String (url) | A URL that Asana uses to request data from the app about fields it should display in the Modal Form when the form is first displayed. |
-|» `automation`               | Object       | The container for automation functionality |
-|»» `app_actions`             | Object[]     | The set of Rule Actions exposed by the app |
-|»»» `identifier`             | String       | The unique identifier for the action on the app. |
-|»»» `display_name`           | String       | Rule Action name visible to end users, e.g. "Create a Jira issue" |
-|»»» `run_action_url`         | String       | App Server URL for requests to run a Rule Action |
-|»»» `form_metadata_url`      | String       | App Server URL for requests about configuring an Rule Action |
-| `logo`                      | String (url) | A link to the image of the App logo. Appears in the app installation modal |
-| `authModalMetadata`         | Object       | Information about the text displayed in the auth modal |
-|» `title`                    | String       | The title displayed in the auth modal |
-|» `subtitle`                 | String       | The subtitle displayed in the auth modal |
-|» `buttonText`               | String       | The buttonText displayed in the auth modal |
-| `coachmarkText`             | String       | Text displayed to new users to inform them about the app’s capabilities. |
-| `actionsMenuTitle`          | String       | Text displayed in the app field in the task pane |
-| `feedbackLink`              | String (url) | Link to a form for collecting feedback about the app. |
-| `externalSupportUrl`        | String (url) | Link to page where users can learn more about the app, access detailed setup instructions, or get support. | 
+| Property            | Description                                                                                                                                 |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Widget metadata URL | A URL that Asana uses to make requests for the data needed to load a Widget, which displays information about a third party resource.       |
+| Match URL pattern   | A regex which allows Asana to compute whether a URL attachment is supported by an activated app on the project in order to render a Widget. |
+
+### Configurations for [Modal Form](/docs/modal-form)
+
+| Property              | Description                                                                                          |
+|-----------------------|------------------------------------------------------------------------------------------------------|
+| Form metadata URL     | A URL that Asana uses to request data from the app about fields it should display in the Modal Form. |
+
+### Configurations for [Lookup](/docs/lookup)
+
+| Property               | Description                                                                                                                 |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Resource attach URL    | A URL that Asana will make a request to when a user submits a value to attach (i.e., when clicking "Add").                  |
+| Placeholder text       | _Optional_. Placeholder action text that appears in the Lookup input field after the user clicks on the Lookup action text. |
+| Resource typeahead URL | A URL that Asana will make a request to when a user types into a Lookup field.                                              |
+
+### Configurations for [Rule Action](/docs/rule-action)
+
+| Property          | Description                                                                                  |
+|-------------------|----------------------------------------------------------------------------------------------|
+| Display name      | The Rule Action name visible to end users in the rule builder (e.g., "Create a Jira issue"). |
+| Run action URL    | A URL that Asana will make a request to when the rule is triggered.                          |
+| Form metadata URL | A URL that Asana will make a request to to display the configuration form.                   |
+
+### Configurations for [Entry Point](/docs/entry-point)
+
+| Property               | Description                                                       |
+|------------------------|-------------------------------------------------------------------|
+| Lookup action text     | Clickable action text that allows users to initiate a Lookup.     |
+| Modal Form action text | Clickable action text that allows users to initiate a Modal Form. |
+
+### Configurations for the [Installation Flow](/docs/installation-flow)
+
+| Property           | Description                                                                                                                                                                                                         |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Headline           | Text that appears as a title on the overview of features (i.e., "value props").                                                                                                                                     |
+| Subhead            | Text that appears as a subtitle on the overview of features.                                                                                                                                                        |
+| Feature image      | The image representing a feature.                                                                                                                                                                                   |
+| Caption text       | Text below the image of a feature.                                                                                                                                                                                  |
+| Image alt text     | Alt text for image of feature.                                                                                                                                                                                      |
+| Authentication URL | A URL which informs Asana where to make requests for authenticating and authorizing users. This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
 
 <hr>
 
