@@ -541,9 +541,9 @@ authentication request. This is different from the `targetOrigin` of the `window
 If the app wants additional data from Asana or wants to make changes within Asana, they should have the user complete 
 an [OAuth flow](/docs/oauth) against Asana. 
 
-Keep in mind that this authorization provides the app server with a single user's auth token. Multiple users of Asana will
-hit the UI hooks and send requests to the app server, but the server will likely only have the token for one user. You may want
-to suggest users to authenticate with a bot account. 
+Keep in mind that this authorization provides the App Server with a single user's auth token. Multiple users of Asana will view
+external resources attached by a user who has authenticated and send requests to the App Server, but the server will likely only
+have the token for one user. You may want to suggest users to authenticate with a bot account. 
 
 <hr>
 
