@@ -433,7 +433,7 @@ When a user connects an app with App Components to Asana for the first time, the
 |--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Headline           | Text that appears as a title on the overview of features (i.e., "value props").                                                                                                                                     |
 | Subhead            | Text that appears as a subtitle on the overview of features.                                                                                                                                                        |
-| Feature image      | The image representing a feature.                                                                                                                                                                                   |
+| Feature image      | The image representing a feature. For the best user experience, we recommend providing three `Feature image`s.                                                                                                      |
 | Caption text       | Text below the image of a feature.                                                                                                                                                                                  |
 | Image alt text     | Alt text for image of feature.                                                                                                                                                                                      |
 | Authentication URL | A URL which informs Asana where to make requests for authenticating and authorizing users. This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
@@ -650,7 +650,7 @@ After entering the installation flow, the first screen that users see are the ap
 
 <img src="../images/features.png" alt="features"/>
 
-As part of the customizations, a `Headline` and `Subhead` can be shown at the top of the screen. Additionally, up to three `Feature images` can be displayed on the screen, each containing the image itself, accompanying `Caption text` to display under each image, as well as `Image alt text` text.
+As part of the customizations, a `Headline` and `Subhead` can be shown at the top of the screen. Additionally, up to three `Feature image`s can be displayed on the screen, each containing the image itself, accompanying `Caption text` to display under each image, as well as `Image alt text` text. We recommend configuring all three `Feature images` for the best user experience.
 
 <hr>
 
@@ -772,7 +772,7 @@ _Note: You must first create an app in order to be able to configure it. To begi
 |--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Headline           | Text that appears as a title on the overview of features (i.e., "value props").                                                                                                                                     |
 | Subhead            | Text that appears as a subtitle on the overview of features.                                                                                                                                                        |
-| Feature image      | The image representing a feature.                                                                                                                                                                                   |
+| Feature image      | The image representing a feature. For the best user experience, we recommend providing three `Feature image`s.                                                                                                      |
 | Caption text       | Text below the image of a feature.                                                                                                                                                                                  |
 | Image alt text     | Alt text for image of feature.                                                                                                                                                                                      |
 | Authentication URL | A URL which informs Asana where to make requests for authenticating and authorizing users. This is called during installation or when the app returns a response indicating the user must authenticate to continue. |
