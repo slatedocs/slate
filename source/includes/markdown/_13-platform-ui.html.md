@@ -497,7 +497,7 @@ If an app doesn't use OAuth for authentication, the Asana Security Team should m
 
 ```html
 <!-- Example: An app might return this HTML in response to the 
-authenticationUrl request after the Oauth flow is completed:
+Authentication URL request after the Oauth flow is completed:
  -->
 
 <!DOCTYPE html>
@@ -519,20 +519,20 @@ authenticationUrl request after the Oauth flow is completed:
 ### Overview
 
 The Asana platform needs confirmation from the App Components app that authentication has completed successfully. When 
-an app is added to a project, the user adding it is sent to the app's `authenticationUrl`. The app may perform OAuth with Asana,
+an app is added to a project, the user adding it is sent to the app's `Authentication URL`. The app may perform OAuth with Asana,
 OAuth with a different app, perform both, or perform none. As long as the app confirms the flow was complete, Asana will
 successfully add the app to the project. This will allow requests to be sent to the app's predefined endpoints.
 
 ### How it works
 
 Under the hood, we carry this out by listening for a message from the authentication popup window containing the string "success".
-When we make a request to the app's `authenticationUrl`, the browser opens a popup or "child" window and waits for it to respond
+When we make a request to the app's `Authentication URL`, the browser opens a popup or "child" window and waits for it to respond
 with "success"  using [window.postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). The target window
 for this `postMessage` call should be the opener, accessible via
 [window.opener](https://developer.mozilla.org/en-US/docs/Web/API/Window/opener).
 
 Note that for security purposes, the _origin_ of the event (which is added to the event by the browser) needs to match the root of the 
-`authenticationUrl` registered to the app. That is, the authentication success message must be initiated from the same origin that receives the 
+`Authentication URL` registered to the app. That is, the authentication success message must be initiated from the same origin that receives the 
 authentication request. This is different from the `targetOrigin` of the `window.opener.postMessage` call, which must be exactly 
 `"https://app.asana.com"`.
 
@@ -566,8 +566,7 @@ Server pretending to be Asana.
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-Timeliness is provided by the addition of an expiration parameter. If this parameter were not added then a request 
-recorded, such as in logs, could be reused to continue to request information from the app at a later time.
+Timeliness is provided by the addition of an expiration parameter: `expires_at`. If this parameter were not added, then a recorded request (e.g., a log), could be reused to continue requesting information from the app at a later time.
 
 The burden of verifying the request has not expired is on the app. Without this check, the App Server is vulnerable to 
 replay attacks.
