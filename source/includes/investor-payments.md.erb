@@ -410,7 +410,7 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-""
+"SUCCESS"
 ```
 ### Description
 Withdraw cash from the specified account to the registered investor bank details.
@@ -421,24 +421,7 @@ Withdraw cash from the specified account to the registered investor bank details
 | amount.amount   | number | The amount.                                              ||
 | amount.currency | string | The ISO 4217 three character codes eg 'GBP'              ||
 | reference       | string | An optional reference to be used when withdrawing funds. | optional |
-### Response
-| Name                                    | Type   | Description                                                                                              |
-| --------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------- |
-| totalBalance                            | ref    | The total balance. The sum of the invested, queued and cash balances.                                    |
-| totalBalance.amount                     | number | The amount.                                                                                              |
-| totalBalance.currency                   | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-| totalCashBalance                        | ref    | The total cash balance.                                                                                  |
-| totalCashBalance.amount                 | number | The amount.                                                                                              |
-| totalCashBalance.currency               | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-| totalQueuedInvestedBalance              | ref    | The total queued for investment.                                                                         |
-| totalQueuedInvestedBalance.amount       | number | The amount.                                                                                              |
-| totalQueuedInvestedBalance.currency     | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-| totalInvestedBalance                    | ref    | The total invested balance.                                                                              |
-| totalInvestedBalance.amount             | number | The amount.                                                                                              |
-| totalInvestedBalance.currency           | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-| isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
-| isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
-| isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
+
 ## `POST /platformApi/investors/{clientId}/accounts/{accountType}/transfer`
 
 ```http
