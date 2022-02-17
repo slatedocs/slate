@@ -1,6 +1,11 @@
 # Changelog
 
+## 2022-02-17
+
+- Updated [GET entity files](#get-all-files) and entity file webhooks to exclude non-user uploaded files.
+
 ## 2022-02-03
+
 - Added [Whoami API](#whoami) documentation.
 
 ## 2022-02-01
