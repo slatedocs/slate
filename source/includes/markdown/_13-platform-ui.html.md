@@ -74,9 +74,9 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&at
 
 <img style="max-width:420px" src="../images/jira-widget.png" />
 
-A Widget displays external data within Asana. The contents of a 
-Widget may change, but the overall format stays consistent across apps.
-Apps can control what layout they prefer by supplying their preferred 
+A Widget is a card that is used to show data about an external resource. Currently, Widgets
+appear inside of tasks. While the contents of a Widget may change, but the overall format stays
+consistent across apps. Apps can control what layout they prefer by supplying their preferred 
 `template`. You can see the available templates in the *Enumerated Values* 
 section of [response schema](/docs/widget-metadata).
 
@@ -519,9 +519,10 @@ Authentication URL request after the Oauth flow is completed:
 ### Overview
 
 The Asana platform needs confirmation from the App Components app that authentication has completed successfully. When 
-an app is added to a project, the user adding it is sent to the app's `Authentication URL`. The app may perform OAuth with Asana,
-OAuth with a different app, perform both, or perform none. As long as the app confirms the flow was complete, Asana will
-successfully add the app to the project. This will allow requests to be sent to the app's predefined endpoints.
+an app is added to a project, the user adding that app is sent to its `Authentication URL`
+(see the [Installation Flow](/docs/installation-flow)). The app may perform OAuth with Asana, OAuth with a different app,
+perform both, or perform none. As long as the app confirms the flow was complete, Asana will successfully add the app to the project.
+This will allow requests to be sent to the app's predefined endpoints.
 
 ### How it works
 
