@@ -264,6 +264,16 @@ For further details regarding OY!'s extensive API VA Aggregator capabilities and
 
 ### VA Bank Details
 
+| Bank (Virtual Account) | Capability (Open Amount/Closed Amount)         |
+| ---------------------- | ---------------------------------------------- | 
+| BNI                    | Closed Amount                                  | 
+| Bank Mandiri           | Open Amount, Closed Amount                     |                  
+| BRI                    | Open Amount, Closed Amount                     | 
+| BCA                    | Open Amount, Closed Amount                     | 
+| Bank Permata           | Open Amount, Closed Amount                     |
+| CIMB Niaga             | Open Amount, Closed Amount                     | 
+| BTPN                   | Open Amount, Closed Amount                     | 
+
 | Bank (Virtual Account) | SKN Supported | RTGS Supported | Payment from ATM | Payment from m-banking / i-banking (intra bank) | Payment from business account (m-banking/i-banking) | Payment from m-banking/i-banking (inter bank) |
 | ---------------------- | ------------- | -------------- | ---------------- | ----------------------------------------------- | --------------------------------------------------- | --------------------------------------------- |
 | Bank Mandiri           | Yes           | Yes            | Yes              | Yes                                             | Yes                                                 | Yes                                           |
@@ -949,6 +959,16 @@ Click [here](https://api-docs.oyindonesia.com/#https-request-send-payment-invoic
 
 
 ### VA Bank Details
+
+| Bank (Virtual Account) | Capability (Open Amount/Closed Amount)         |
+| ---------------------- | ---------------------------------------------- | 
+| BNI                    | Closed Amount                                  | 
+| Bank Mandiri           | Open Amount, Closed Amount                     |                  
+| BRI                    | Open Amount, Closed Amount                     | 
+| BCA                    | Open Amount, Closed Amount                     | 
+| Bank Permata           | Open Amount, Closed Amount                     |
+| CIMB Niaga             | Open Amount, Closed Amount                     | 
+| BTPN                   | Open Amount, Closed Amount                     | 
 
 | Bank (Virtual Account) | SKN Supported | RTGS Supported | Payment from ATM | Payment from m-banking / i-banking (intra bank) | Payment from business account (m-banking/i-banking) | Payment from m-banking/i-banking (inter bank) |
 | ---------------------- | ------------- | -------------- | ---------------- | ----------------------------------------------- | --------------------------------------------------- | --------------------------------------------- |
