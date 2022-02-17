@@ -353,9 +353,9 @@ The tutorials in this guide will cover the first two steps of the overall build 
 
 ### Get a Sandbox
 
-To get started with App Components, we recommend using a [Developer Sandbox](/docs/developer-sandbox) to help you build in a separate, dedicated environment. You will also need this sandbox environment to access the [developer console](https://app.asana.com/0/developer-console), through which you can create and configure apps directly in Asana's user interface.
+To get started with App Components, you'll need an Asana account. This will give you a workspace to access the [developer console](https://app.asana.com/0/developer-console), through which you can create and configure apps directly in Asana's user interface. 
 
-Additionally, the developer sandbox will also give you access to the [Example App](/docs/example-app), where you can explore the capabilities and features of App Components in-depth.
+While you can [sign up](https://asana.com/guide/help/fundamentals/about-asana) for an account if you don't already have one, we actually recommend using a [Developer Sandbox](/docs/developer-sandbox) to help you build in a separate, dedicated environment. You'll still be able to access the developer console this way, but the developer sandbox will also grant you access to the [Example App](/docs/example-app), where you can explore the capabilities and features of App Components in-depth.
 
 ### Consider the App's User Experience
 
