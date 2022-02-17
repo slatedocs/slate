@@ -27,7 +27,7 @@ curl https://api.sieraglobal.com/api/v1/epcs \
 [
   {
     "id": 12,
-    "propertyID": 3,
+    "assetId": 3,
     "rating": "A",
     "certificateReferenceNumber": "EPC1",
     "score": 10,
@@ -62,7 +62,27 @@ curl https://api.sieraglobal.com/api/v1/epcs \
         }
       ],
       "isDefault": true
-    }
+    },
+    "scope": "Unit",
+    "unit": {
+      "unitId": 12,
+      "unitName": "Unit A",
+      "unitReference": "TAC-234",
+      "occupier": "Pets At Home",
+      "actionNotes": "",
+      "gia": 1100,
+      "nla": 900,
+      "measurementUnit": "M2",
+      "vacant": false,
+      "leaseStart": "2020-12-17T12:00:00.000Z",
+      "leaseLength": 24,
+      "leaseExpiry": "2022-12-17T12:00:00.000Z",
+      "leaseBreak": "",
+      "erv": 1200,
+      "fri": false,
+      "epcExempt": false
+    },
+    "comment": "[2021-11-09] I'm a comment!"
   },
   {
     "id": 13,
@@ -101,7 +121,10 @@ curl https://api.sieraglobal.com/api/v1/epcs \
         }
       ],
       "isDefault": true
-    }
+    },
+    "scope": "WholeBuilding",
+    "unit": null,
+    "comment": "[2021-11-09] I'm a comment!"
   }
 ]
 ```
@@ -133,6 +156,22 @@ The response body will be a list of all the EPC records in the API caller's inst
 | `scheme.ratings.rating`      | **datetime**<br/>The letter given to an EPC scheme rating                                                                                                     |
 | `scheme.ratings.from`        | **datetime**<br/>The lower bound value of an EPC scheme rating                                                                                                |
 | `scheme.ratings.to`          | **float**<br/>The upper bound value of an EPC scheme rating                                                                                                   |
+| `scope`                      | **enumeration**<br/>Indicates if the EPC is related to a unit or whole building. Must be a valid item from the [EPC scope](#epc-scope) enumeration |
+| `unit.unitId`                | **integer**<br/>The SIERA-generated id of the asset unit |
+| `unit.unitName`              | **string**<br/>The name of the asset unit |
+| `unit.unitReference`         | **string**<br/>The asset unit reference |
+| `unit.occupier`              | **string**<br/>The name of the current occupier of the unit |
+| `unit.gia`                   | **float**<br/>The *Gross Internal Area* (GIA) of the asset, measured in units indicated by the measurement unit. This may be null |
+| `unit.nla`                   | **float**<br/>The *Net Lettable Area* (NLA) of the asset, measured in units indicated by the measurement unit. This may be null |
+| `unit.measurementUnit`       | **enumeration**<br/>The unit of measurement used to indicate floor area of this asset. Must be a valid item from the [measurement unit](#measurement-unit) enumeration (m<sup>2</sup> or ft<sup>2</sup>) |
+| `unit.leaseStart`            | **datetime**<br/>The start date of the tenant of this unit's lease |
+| `unit.leaseLength`           | **integer**<br/>The length in months of the tenant of this unit's lease |
+| `unit.leaseExpiry`           | **datetime**<br/>The expiry date of the tenant of this unit's lease |
+| `unit.leaseBreak`            | **datetime**<br/>The start date of a break in the tenant of this unit's lease |
+| `unit.erv`                   | **float**<br/>The estimated rental value (ERV) of this unit |
+| `unit.fri`                   | **boolean**<br/>A boolean flag indicating if the current lease is [Full Repairing and Insuring (FRI)](https://www.herrington-carmichael.com/full-repairing-and-insuring-lease/) or not |
+| `unit.epcExempt`             | **boolean**<br/>A boolean flag indicating if this unit has an [EPC exemption](https://www.gov.uk/energy-performance-certificate-commercial-property/exemptions) or not |
+| `comment`                    | **string**<br/>The latest comment that has been recorded on the EPC record |
 
 **Responses**
 
@@ -158,6 +197,9 @@ curl POST https://api.sieraglobal.com/api/v1/epcs \
     "certificateReferenceNumber": "EPC3",
     "score": 17,
     "date": "2021-12-22T09:14:12.784Z",
+    "schemeId": 2,
+    "scope": "WholeBuilding",
+    "unitId": null
   }
 ```
 
@@ -177,6 +219,9 @@ curl POST https://api.sieraglobal.com/api/v1/epcs \
 | `certificateReferenceNumber` | **string**<br/>The certificate reference number of the EPC if one is available |
 | `score`                      | **integer**<br/>The score achieved of the EPC record                           |
 | `date`                       | **datetime**<br/>The date of the EPC certificate                               |
+| `schemeId`                   | **integer**<br/>The ID of the related scheme                         |
+| `scope`                      | **enumeration**<br/>Indicates if the EPC is related to a unit or whole building. Must be a valid item from the [EPC scope](#epc-scope) enumeration                               |
+| `unitId`                     | **integer**<br/>The ID of the related unit. This is mandatory when scope is set to "Unit"     |
 
 
 **Responses**
@@ -204,6 +249,9 @@ curl PUT https://api.sieraglobal.com/api/v1/epcs \
     "certificateReferenceNumber": "EPC12",
     "score": 20,
     "date": "2021-11-07T08:11:23.813Z",
+    "schemeId": 2,
+    "scope": "Unit",
+    "unitId": 43
   }
 ```
 
@@ -223,6 +271,9 @@ curl PUT https://api.sieraglobal.com/api/v1/epcs \
 | `certificateReferenceNumber` | **string**<br/>The certificate reference number of the EPC if one is available |
 | `score`                      | **integer**<br/>The score achieved of the EPC record                           |
 | `date`                       | **datetime**<br/>The date of the EPC certificate                               |
+| `schemeId`                   | **integer**<br/>The ID of the related scheme                         |
+| `scope`                      | **enumeration**<br/>Indicates if the EPC is related to a unit or whole building. Must be a valid item from the [EPC scope](#epc-scope) enumeration                               |
+| `unitId`                     | **integer**<br/>The ID of the related unit. This is mandatory when scope is set to "Unit"     |
 
 **Responses**
 
@@ -245,7 +296,7 @@ curl https://api.sieraglobal.com/api/v1/epcs/12 \
 
 {
     "id": 12,
-    "propertyID": 3,
+    "assetId": 3,
     "rating": "A",
     "certificateReferenceNumber": "EPC1",
     "score": 10,
@@ -280,7 +331,27 @@ curl https://api.sieraglobal.com/api/v1/epcs/12 \
         }
       ],
       "isDefault": true
-    }
+    },
+    "scope": "Unit",
+    "unit": {
+      "unitId": 12,
+      "unitName": "Unit A",
+      "unitReference": "TAC-234",
+      "occupier": "Pets At Home",
+      "actionNotes": "",
+      "gia": 1100,
+      "nla": 900,
+      "measurementUnit": "M2",
+      "vacant": false,
+      "leaseStart": "2020-12-17T12:00:00.000Z",
+      "leaseLength": 24,
+      "leaseExpiry": "2022-12-17T12:00:00.000Z",
+      "leaseBreak": "",
+      "erv": 1200,
+      "fri": false,
+      "epcExempt": false
+    },
+    "comment": "[2021-11-09] I'm a comment!"
   }
 ```
 
@@ -315,6 +386,22 @@ The response body will the specified EPC record which matches the epcId given as
 | `scheme.ratings.rating`      | **datetime**<br/>The letter given to an EPC scheme rating                                                                                                     |
 | `scheme.ratings.from`        | **datetime**<br/>The lower bound value of an EPC scheme rating                                                                                                |
 | `scheme.ratings.to`          | **float**<br/>The upper bound value of an EPC scheme rating                                                                                                   |
+| `scope`                      | **enumeration**<br/>Indicates if the EPC is related to a unit or whole building. Must be a valid item from the [EPC scope](#epc-scope) enumeration |
+| `unit.unitId`                | **integer**<br/>The SIERA-generated id of the asset unit |
+| `unit.unitName`              | **string**<br/>The name of the asset unit |
+| `unit.unitReference`         | **string**<br/>The asset unit reference |
+| `unit.occupier`              | **string**<br/>The name of the current occupier of the unit |
+| `unit.gia`                   | **float**<br/>The *Gross Internal Area* (GIA) of the asset, measured in units indicated by the measurement unit. This may be null |
+| `unit.nla`                   | **float**<br/>The *Net Lettable Area* (NLA) of the asset, measured in units indicated by the measurement unit. This may be null |
+| `unit.measurementUnit`       | **enumeration**<br/>The unit of measurement used to indicate floor area of this asset. Must be a valid item from the [measurement unit](#measurement-unit) enumeration (m<sup>2</sup> or ft<sup>2</sup>) |
+| `unit.leaseStart`            | **datetime**<br/>The start date of the tenant of this unit's lease |
+| `unit.leaseLength`           | **integer**<br/>The length in months of the tenant of this unit's lease |
+| `unit.leaseExpiry`           | **datetime**<br/>The expiry date of the tenant of this unit's lease |
+| `unit.leaseBreak`            | **datetime**<br/>The start date of a break in the tenant of this unit's lease |
+| `unit.erv`                   | **float**<br/>The estimated rental value (ERV) of this unit |
+| `unit.fri`                   | **boolean**<br/>A boolean flag indicating if the current lease is [Full Repairing and Insuring (FRI)](https://www.herrington-carmichael.com/full-repairing-and-insuring-lease/) or not |
+| `unit.epcExempt`             | **boolean**<br/>A boolean flag indicating if this unit has an [EPC exemption](https://www.gov.uk/energy-performance-certificate-commercial-property/exemptions) or not |
+| `comment`                    | **string**<br/>The latest comment that has been recorded on the EPC record |
 
 **Responses**
 

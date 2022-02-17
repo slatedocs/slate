@@ -29,7 +29,29 @@ curl https://api.sieraglobal.com/api/v1/assets \
     "fundId": 3,
     "gia": 1234,
     "nla": 1100,
-    "measurementType": "m2"
+    "measurementType": "m2",
+    "address": "1, The Way",
+    "city": "Townington",
+    "postcode": "AB12 3DC",
+    "status": "MajorRefurbishment",
+    "dateOfPurchase": "1999-01-01T00:00:00.000Z",
+    "dateOfSale": "2021-03-14T00:00:00.000Z",
+    "yearOfConstruction": 1985,
+    "yearOfRefurbishment": 2006,
+    "currentAssetValue": 1200000,
+    "longitude": 51.507351,
+    "latitude": -0.127758,
+    "targetCarbon": 5,
+    "targetEnergy": 1,
+    "targetElectricity": 3,
+    "targetFuelsAndThermals": 4,
+    "targetWater": 6,
+    "gresbSector": "Office",
+    "carParkingSpaces": 14,
+    "fri": true,
+    "cpa": 15,
+    "ext": 100,
+    "assetImageUri": "https://api.sieraglobal.com/api/v1/assets/2/assetimage"
   },
   {
     "assetId": 3,
@@ -42,7 +64,29 @@ curl https://api.sieraglobal.com/api/v1/assets \
     "fundId": 3,
     "gia": 1640,
     "nla": 1530,
-    "measurementType": "m2"
+    "measurementType": "m2",
+    "address": "2, The Way",
+    "city": "Townington",
+    "postcode": "AB12 3DC",
+    "status": "MajorRefurbishment",
+    "dateOfPurchase": "2000-01-01T00:00:00.000Z",
+    "dateOfSale": "2021-03-19T00:00:00.000Z",
+    "yearOfConstruction": 1985,
+    "yearOfRefurbishment": 2007,
+    "currentAssetValue": 1250000,
+    "longitude": 51.507351,
+    "latitude": -0.127758,
+    "targetCarbon": 4,
+    "targetEnergy": 3,
+    "targetElectricity": 5,
+    "targetFuelsAndThermals": 1,
+    "targetWater": 6,
+    "gresbSector": "Office",
+    "carParkingSpaces": 18,
+    "fri": false,
+    "cpa": 14,
+    "ext": 121,
+    "assetImageUri": "https://api.sieraglobal.com/api/v1/assets/3/assetimage"
   }
 ]
 ```
@@ -70,7 +114,28 @@ The response body will include a list of all assets in the API caller's instance
 | `gia` | **integer**<br/>The *Gross Internal Area* (GIA) of the asset, measured in units indicated by the measurement type |
 | `nla` | **integer**<br/>The *Net Lettable Area* (NLA) of the asset, measured in units indicated by the measurement type |
 | `measurementType` | **enumeration**<br/>The unit of measurement used to indicate floor area of this asset. Must be a valid item from the [measurement unit](#measurement-unit) enumeration (m<sup>2</sup> or ft<sup>2</sup>) |
-
+| `address` | **string**<br/> The address of the asset |
+| `city` | **string**<br/> The city of the asset |
+| `postcode` | **string**<br/> The postcode of the asset |
+| `status` | **enumeration**<br/> A valid item from the [asset status](#asset-status) enumeration indicates the current state of the asset in relation to its ability to be commercially occupied. |
+| `dateOfPurchase` | **datetime**<br/> The date which the asset was purchased |
+| `dateOfSale` | **datetime**<br/> The date which the asset was sold |
+| `yearOfConstruction` | **integer**<br/> The year that the asset was built |
+| `yearOfRefurbishment` | **integer**<br/> The year that the asset was refurbished |
+| `currentAssetValue` | **integer**<br/> The current value of the asset in Great British Pounds (GBP) |
+| `longitude` | **decimal**<br/> The decimal longitude coordinates of the asset location (to 6 decimal places) |
+| `latitude` | **decimal**<br/> The decimal latitude coordinates of the asset location (to 6 decimal places) |
+| `targetCarbon` | **float**<br/> The target percentage for the annual reduction of carbon usage for all meters on the asset |
+| `targetEnergy` | **float**<br/> The target percentage for the annual reduction of energy usage for all meters on the asset |
+| `targetElectricity` | **float**<br/> The target percentage for the annual reduction of electricity usage for all meters on the asset |
+| `targetFuelsAndThermals` | **float**<br/> The target percentage for the annual reduction of fuels & thermals usage for all meters on the asset |
+| `targetWater` | **float**<br/> The target percentage for the annual reduction of water usage for all meters on the asset |
+| `gresbSector` | **enumeration**<br/> A valid item from the [GRESB sector](#gresb-sector) enumeration indicating how the asset is classified |
+| `carParkingSpaces` | **integer**<br/> The number of car parking spaces available at the asset |
+| `fri` | **boolean**<br/> A boolean flag indicating if the current lease is [Full Repairing and Insuring (FRI)](https://www.herrington-carmichael.com/full-repairing-and-insuring-lease/) or not |
+| `cpa` | **integer**<br/> The *Common Part Areas* (CPA) of the asset, measured in units indicated by the measurement type. For example, entrance lobbies, hallways and toilets |
+| `ext` | **integer**<br/> The external areas of the asset, measured in units indicated by the measurement type. For example, car parks, outside eating areas and greenspace |
+| `assetImageUri` | **string**<br/> A URI of a downloadable image for the asset |
 
 ## Upload a new asset
 
@@ -94,7 +159,28 @@ curl POST https://api.sieraglobal.com/api/v1/assets \
     "fundId": 3,
     "gia": 1234,
     "nla": 1100,
-    "measurementType": "m2"
+    "measurementType": "m2",
+    "address": "1, The Way",
+    "city": "Townington",
+    "postcode": "AB12 3DC",
+    "status": "MajorRefurbishment",
+    "dateOfPurchase": "1999-01-01T00:00:00.000Z",
+    "dateOfSale": "2021-03-14T00:00:00.000Z",
+    "yearOfConstruction": 1985,
+    "yearOfRefurbishment": 2006,
+    "currentAssetValue": 1200000,
+    "longitude": 51.507351,
+    "latitude": -0.127758,
+    "targetCarbon": 5,
+    "targetEnergy": 1,
+    "targetElectricity": 3,
+    "targetFuelsAndThermals": 4,
+    "targetWater": 6,
+    "gresbSector": "Office",
+    "carParkingSpaces": 14,
+    "fri": true,
+    "cpa": 15,
+    "ext": 100
   }
 ```
 
@@ -120,6 +206,27 @@ curl POST https://api.sieraglobal.com/api/v1/assets \
 | `gia` | **float**<br/>The *Gross Internal Area* (GIA) of the asset, measured in units indicated by the measurement type. This may be null |
 | `nla` | **float**<br/>The *Net Lettable Area* (NLA) of the asset, measured in units indicated by the measurement type. This may be null |
 | `measurementType` | **enumeration**<br/>The unit of measurement used to indicate floor area of this asset. Must be a valid item from the [measurement unit](#measurement-unit) enumeration (m<sup>2</sup> or ft<sup>2</sup>) |
+| `address` | **string**<br/> The address of the asset |
+| `city` | **string**<br/> The city of the asset |
+| `postcode` | **string**<br/> The postcode of the asset |
+| `status` | **enumeration**<br/> A valid item from the [asset status](#asset-status) indicates the current state of the asset in relation to its ability to be commercially occupied. |
+| `dateOfPurchase` | **datetime**<br/> The date which the asset was purchased |
+| `dateOfSale` | **datetime**<br/> The date which the asset was sold |
+| `yearOfConstruction` | **integer**<br/> The year that the asset was built |
+| `yearOfRefurbishment` | **integer**<br/> The year that the asset was refurbished |
+| `currentAssetValue` | **integer**<br/> The current value of the asset in Great British Pounds (GBP) |
+| `longitude` | **decimal**<br/> The decimal longitude coordinates of the asset location (to 6 decimal places) |
+| `latitude` | **decimal**<br/> The decimal latitude coordinates of the asset location (to 6 decimal places) |
+| `targetCarbon` | **float**<br/> The target percentage for the annual reduction of carbon usage for all meters on the asset |
+| `targetEnergy` | **float**<br/> The target percentage for the annual reduction of energy usage for all meters on the asset |
+| `targetElectricity` | **float**<br/> The target percentage for the annual reduction of electricity usage for all meters on the asset |
+| `targetFuelsAndThermals` | **float**<br/> The target percentage for the annual reduction of fuels & thermals usage for all meters on the asset |
+| `targetWater` | **float**<br/> The target percentage for the annual reduction of water usage for all meters on the asset |
+| `gresbSector` | **enumeration**<br/> A valid item from the [GRESB sector](#gresb-sector) enumeration indicating how the asset is classified |
+| `carParkingSpaces` | **integer**<br/> The number of car parking spaces available at the asset |
+| `fri` | **boolean**<br/> A boolean flag indicating if the current lease is [Full Repairing and Insuring (FRI)](https://www.herrington-carmichael.com/full-repairing-and-insuring-lease/) or not |
+| `cpa` | **integer**<br/> The *Common Part Areas* (CPA) of the asset, measured in units indicated by the measurement type. For example, entrance lobbies, hallways and toilets |
+| `ext` | **integer**<br/>  The external areas of the asset, measured in units indicated by the measurement type. For example, car parks, outside eating areas and greenspace |
 
 **Responses**
 
@@ -156,7 +263,29 @@ curl https://api.sieraglobal.com/api/v1/assets/2 \
   "fundId": 3,
   "gia": 1234,
   "nla": 1100,
-  "measurementType": "m2"
+  "measurementType": "m2",
+  "address": "1, The Way",
+  "city": "Townington",
+  "postcode": "AB12 3DC",
+  "status": "MajorRefurbishment",
+  "dateOfPurchase": "1999-01-01T00:00:00.000Z",
+  "dateOfSale": "2021-03-14T00:00:00.000Z",
+  "yearOfConstruction": 1985,
+  "yearOfRefurbishment": 2006,
+  "currentAssetValue": 1200000,
+  "longitude": 51.507351,
+  "latitude": -0.127758,
+  "targetCarbon": 5,
+  "targetEnergy": 1,
+  "targetElectricity": 3,
+  "targetFuelsAndThermals": 4,
+  "targetWater": 6,
+  "gresbSector": "Office",
+  "carParkingSpaces": 14,
+  "fri": true,
+  "cpa": 15,
+  "ext": 100,
+  "assetImageUri": "https://myapi.com/api/v1/Assets/2/AssetImage"
 }
 ```
 
@@ -190,6 +319,28 @@ The response body will the specified asset which matches the assetId given as a 
 | `gia` | **integer**<br/>The *Gross Internal Area* (GIA) of the asset, measured in units indicated by the measurement type |
 | `nla` | **integer**<br/>The *Net Lettable Area* (NLA) of the asset, measured in units indicated by the measurement type |
 | `measurementType` | **enumeration**<br/>The unit of measurement used to indicate floor area of this asset. Must be a valid item from the [measurement unit](#measurement-unit) enumeration (m<sup>2</sup> or ft<sup>2</sup>) |
+| `address` | **string**<br/> The address of the asset |
+| `city` | **string**<br/> The city of the asset |
+| `postcode` | **string**<br/> The postcode of the asset |
+| `status` | **enumeration**<br/> A valid item from the [asset status](#asset-status) enumeration indicates the current state of the asset in relation to its ability to be commercially occupied. |
+| `dateOfPurchase` | **datetime**<br/> The date which the asset was purchased |
+| `dateOfSale` | **datetime**<br/> The date which the asset was sold |
+| `yearOfConstruction` | **integer**<br/> The year that the asset was built |
+| `yearOfRefurbishment` | **integer**<br/> The year that the asset was refurbished |
+| `currentAssetValue` | **integer**<br/> The current value of the asset in Great British Pounds (GBP) |
+| `longitude` | **integer**<br/> The decimal longitude coordinates of the asset location (to 6 decimal places) |
+| `latitude` | **integer**<br/> The decimal latitude coordinates of the asset location (to 6 decimal places) |
+| `targetCarbon` | **float**<br/> The target percentage for the annual reduction of carbon usage for all meters on the asset |
+| `targetEnergy` | **float**<br/> The target percentage for the annual reduction of energy usage for all meters on the asset |
+| `targetElectricity` | **float**<br/> The target percentage for the annual reduction of electricity usage for all meters on the asset |
+| `targetFuelsAndThermals` | **float**<br/> The target percentage for the annual reduction of fuels & thermals usage for all meters on the asset |
+| `targetWater` | **float**<br/> The target percentage for the annual reduction of water usage for all meters on the asset |
+| `gresbSector` | **enumeration**<br/> A valid item from the [GRESB sector](#gresb-sector) enumeration indicating how the asset is classified |
+| `carParkingSpaces` | **integer**<br/> The number of car parking spaces available at the asset |
+| `fri` | **boolean**<br/> A boolean flag indicating if the current lease is [Full Repairing and Insuring (FRI)](https://www.herrington-carmichael.com/full-repairing-and-insuring-lease/) or not |
+| `cpa` | **integer**<br/> The *Common Part Areas* (CPA) of the asset, measured in units indicated by the measurement type. For example, entrance lobbies, hallways and toilets |
+| `ext` | **integer**<br/>  The external areas of the asset, measured in units indicated by the measurement type. For example, car parks, outside eating areas and greenspace |
+| `assetImageUri` | **string**<br/> A URI of a downloadable image for the asset |
 
 ## Update an asset
 
@@ -213,7 +364,28 @@ curl PUT https://api.sieraglobal.com/api/v1/assets/2 \
     "fundId": 3,
     "gia": 1234,
     "nla": 1100,
-    "measurementType": "m2"
+    "measurementType": "m2",
+    "address": "2, The Way",
+    "city": "Townington",
+    "postcode": "AB12 3DC",
+    "status": "MajorRefurbishment",
+    "dateOfPurchase": "2000-01-01T00:00:00.000Z",
+    "dateOfSale": "2021-03-19T00:00:00.000Z",
+    "yearOfConstruction": 1985,
+    "yearOfRefurbishment": 2007,
+    "currentAssetValue": 1250000,
+    "longitude": 51.507351,
+    "latitude": -0.127758,
+    "targetCarbon": 4,
+    "targetEnergy": 3,
+    "targetElectricity": 5,
+    "targetFuelsAndThermals": 1,
+    "targetWater": 6,
+    "gresbSector": "Office",
+    "carParkingSpaces": 18,
+    "fri": false,
+    "cpa": 14,
+    "ext": 121
   }
 ```
 
@@ -244,6 +416,28 @@ curl PUT https://api.sieraglobal.com/api/v1/assets/2 \
 | `gia` | **integer**<br/>The *Gross Internal Area* (GIA) of the asset, measured in units indicated by the measurement type |
 | `nla` | **integer**<br/>The *Net Lettable Area* (NLA) of the asset, measured in units indicated by the measurement type |
 | `measurementType` | **enumeration**<br/>The unit of measurement used to indicate floor area of this asset. Must be a valid item from the [measurement unit](#measurement-unit) enumeration (m<sup>2</sup> or ft<sup>2</sup>) |
+| `address` | **string**<br/> The address of the asset |
+| `city` | **string**<br/> The city of the asset |
+| `postcode` | **string**<br/> The postcode of the asset |
+| `status` | **enumeration**<br/> A valid item from the [asset status](#asset-status) enumeration indicates the current state of the asset in relation to its ability to be commercially occupied. |
+| `dateOfPurchase` | **datetime**<br/> The date which the asset was purchased |
+| `dateOfSale` | **datetime**<br/> The date which the asset was sold |
+| `yearOfConstruction` | **integer**<br/> The year that the asset was built |
+| `yearOfRefurbishment` | **integer**<br/> The year that the asset was refurbished |
+| `currentAssetValue` | **integer**<br/> The current value of the asset in Great British Pounds (GBP) |
+| `longitude` | **decimal**<br/> The decimal longitude coordinates of the asset location (to 6 decimal places) |
+| `latitude` | **decimal**<br/> The decimal latitude coordinates of the asset location (to 6 decimal places) |
+| `targetCarbon` | **float**<br/> The target percentage for the annual reduction of carbon usage for all meters on the asset |
+| `targetEnergy` | **float**<br/> The target percentage for the annual reduction of energy usage for all meters on the asset |
+| `targetElectricity` | **float**<br/> The target percentage for the annual reduction of electricity usage for all meters on the asset |
+| `targetFuelsAndThermals` | **float**<br/> The target percentage for the annual reduction of fuels & thermals usage for all meters on the asset |
+| `targetWater` | **float**<br/> The target percentage for the annual reduction of water usage for all meters on the asset |
+| `gresbSector` | **enumeration**<br/> A valid item from the [GRESB sector](#gresb-sector) enumeration indicating how the asset is classified |
+| `carParkingSpaces` | **integer**<br/> The number of car parking spaces available at the asset |
+| `fri` | **boolean**<br/> A boolean flag indicating if the current lease is [Full Repairing and Insuring (FRI)](https://www.herrington-carmichael.com/full-repairing-and-insuring-lease/) or not |
+| `cpa` | **integer**<br/> The *Common Part Areas* (CPA) of the asset, measured in units indicated by the measurement type. For example, entrance lobbies, hallways and toilets |
+| `ext` | **integer**<br/>  The external areas of the asset, measured in units indicated by the measurement type. For example, car parks, outside eating areas and greenspace |
+| `assetImageUri` | **string**<br/> This URI is for the endpoint where the asset image can be downloaded |
 
 **Responses**
 
@@ -410,3 +604,23 @@ The response body will be a list of meters which are associated with the asset s
 | Code | Description |
 | ---- | ----------- |
 | 200 | Success |
+
+## Get an asset image
+
+**Summary** The response will return a file, if one is found for the given asset ID.
+
+### HTTP Request 
+`GET /api/v1/assets/{assetId}/assetimage` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| assetId | path | A valid id of an asset stored in SIERA | Yes | **integer** |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success      |
+| 404 | Not Found    |
