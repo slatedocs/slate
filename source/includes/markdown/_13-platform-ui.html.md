@@ -470,27 +470,6 @@ As a final note, we recommend [creating and configuring your app](/docs/getting-
 
 <hr>
 
-## Security
-
-<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
-
-When handling requests from Asana, an App Components app should:
- 
- - Reject requests with missing or incorrect signatures.
- - Reject requests with an `expires_at` time in the past.
-    - **Note**: Make sure to use the correct units for this. `expires_at` is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
-
-If an app uses [OAuth for authentication](/docs/oauth), the app should:
- 
- - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
-
-If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
-
- - An attacker can't authenticate themselves as someone else
- - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
-
- <hr>
-
 ## Authorization
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
@@ -546,7 +525,28 @@ an [OAuth flow](/docs/oauth) against Asana.
 
 Keep in mind that this authorization provides the App Server with a single user's auth token. Multiple users of Asana will view
 external resources attached by a user who has authenticated and send requests to the App Server, but the server will likely only
-have the token for one user. You may want to suggest users to authenticate with a bot account. 
+have the token for one user. You may want to suggest users to authenticate with a bot account.
+
+<hr>
+
+## Security
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+When handling requests from Asana, an App Components app should:
+ 
+ - Reject requests with missing or incorrect signatures. See [Message Integrity](/docs/message-integrity) for more details.
+ - Reject requests with an `expires_at` time in the past.
+    - **Note**: Make sure to use the correct units for this. `expires_at` is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
+
+If an app uses [OAuth for authentication](/docs/oauth), the app should:
+ 
+ - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
+
+If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
+
+ - An attacker can't authenticate themselves as someone else
+ - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
 
 <hr>
 
