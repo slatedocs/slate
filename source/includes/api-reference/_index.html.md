@@ -2673,9 +2673,7 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 </pre>
 
 <span class="description">
-*Note: The Events architecture uses the same infrastructure as Webhooks. That is, the two resources differ only in the delivery mechanism for events (i.e., pull vs. push). Recently, some users have seen intermittent delays with event distributions. For more information, see [Webhooks](/docs/webhooks).*
-
-An *event* is an object representing a change to a resource that was observed by an event subscription.
+An *event* is an object representing a change to a resource that was observed by an event subscription. Event streams rely on the same infrastructure as webhooks, which ensures events are delivered within a minute on average. This system is designed for at most once delivery, meaning in exceptional circumstances a small number of events may be missing from the stream. For this reason, if your use case requires strong guarantees about processing all changes on a resource and cannot tolerate any missing events, regardless of how rare that might be, we recommend building a fallback polling system that fetches the resource periodically as well. Note that while webhooks cannot be replayed once delivered, events are retrievable from the event stream for 24 hours after being processed.
 
 In general, requesting events on a resource is faster and subject to higher rate limits than requesting the resource itself. Additionally, change events bubble up - listening to events on a project would include when stories are added to tasks in the project, even on subtasks.
 
@@ -23265,13 +23263,13 @@ Returns the full record for a user's task list.
 </pre>
 
 <span class="description">
-*Note: Recently, some users have seen intermittent delays with webhook event distributions. We are in the process of transferring the webhooks system to a more reliable infrastructure while also iteratively improving the current system. As such, for the time being we advise against using webhooks for functionality beyond logging (e.g., syncing state with real-time notification data). If you experience issues, we recommend using webhooks in conjunction with fetching the resource periodically (e.g. [GET a task](/docs/get-a-task)). More details and ongoing updates can be found in [this post](https://forum.asana.com/t/update-on-upcoming-improvements-to-our-webhooks-system/143305) in the developer forum.*
-
 Webhooks allow an application to be notified of changes in Asana.
 
 This is similar to our [Events](/docs/asana-events) resource, but webhooks "push" events via HTTP `POST` rather than expecting integrations to repeatedly "poll" for them. For services that are already accessible on the Internet this is often more convenient and efficient.
 
 However, webhooks _require_ a server to be accessible over the internet at all times to receive the event. For most simple integrations, Events provide much of the same benefits while using a significantly simpler implementation which does not require maintaining an internet-accessible server.
+
+Webhooks and events streams are served from the same infrastructure, where, on average, events are delivered within a minute of occurring. This system is designed for at most once delivery, meaning in exceptional circumstances we may fail to deliver events. Furthermore, webhooks cannot be replayed once delivered. For these reasons, if your use case requires strong guarantees about processing all changes on a resource and cannot tolerate any missing events, regardless of how rare that might be, we recommend building a fallback polling system that fetches the resource periodically as well. Note that, if your server does not respond to a webhook with a successful HTTP status code within 10 seconds, Asana will try to resend the webhook for up to 24 hours before giving up.
 
 #### The webhook "handshake"
 In order to ensure that the receiving server is available to receive incoming events from a webhook Asana will `POST` to the requested target endpoint during the webhook creation request. In other words, the outgoing webhook creation request will wait to return until another full `POST` request from Asana's servers to the target has been completed, *then* the webhook creation request can return with a successful response.
