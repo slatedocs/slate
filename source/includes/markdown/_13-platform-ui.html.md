@@ -518,11 +518,13 @@ Authentication URL request after the Oauth flow is completed:
 
 ### Overview
 
-The Asana platform needs confirmation from the App Components app that authentication has completed successfully. When 
-an app is added to a project, the user adding that app is sent to its `Authentication URL`
-(see the [Installation Flow](/docs/installation-flow)). The app may perform OAuth with Asana, OAuth with a different app,
-perform both, or perform none. As long as the app confirms the flow was complete, Asana will successfully add the app to the project.
-This will allow requests to be sent to the app's predefined endpoints.
+The Asana platform needs confirmation from the App Components app that authentication has completed successfully.
+When an app is added to a project, the user adding that app is sent to its `Authentication URL`
+(see the [Installation Flow](/docs/installation-flow)). The app may perform OAuth with Asana, OAuth with a
+different app, perform both, or perform none. For apps intended for multi-user usage, OAuth with Asana is
+_required_ to securely determine the identity of the user performing the authorization. Otherwise, as long as
+the app confirms the flow was complete, Asana will successfully add the app to the project. This will allow
+requests to be sent to the app's predefined endpoints.
 
 ### How it works
 
