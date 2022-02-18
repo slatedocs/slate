@@ -5413,6 +5413,7 @@ $result = $client->jobs->getJob($job_gid, array('param' => 'value', 'param' => '
       "resource_type": "project",
       "name": "Stuff to buy"
     },
+    "new_project_template": null,
     "new_task": {
       "gid": "12345",
       "resource_type": "task",
@@ -6027,6 +6028,7 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
       "name": "Greg Sanchez"
     },
     "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+    "public": false,
     "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
@@ -6264,6 +6266,7 @@ $result = $client->portfolios->getPortfolio($portfolio_gid, array('param' => 'va
       "name": "Greg Sanchez"
     },
     "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+    "public": false,
     "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
@@ -6487,6 +6490,7 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
       "name": "Greg Sanchez"
     },
     "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+    "public": false,
     "start_on": "2019-09-14",
     "workspace": {
       "gid": "12345",
@@ -9284,6 +9288,7 @@ $result = $client->projects->duplicateProject($project_gid, array('field' => 'va
       "resource_type": "project",
       "name": "Stuff to buy"
     },
+    "new_project_template": null,
     "new_task": {
       "gid": "12345",
       "resource_type": "task",
@@ -11206,7 +11211,7 @@ $result = $client->projects->addFollowersForProject($project_gid, array('field' 
 </p>
 
 <span class="description">
-Adds the specified list of users as followers to the project. Followers are a subset of members who have opted in to receive "tasks added"  notifications for a project. Therefore, if the users are not already members of the project, they will also become members as a result of this operation.
+Adds the specified list of users as followers to the project. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project. Therefore, if the users are not already members of the project, they will also become members as a result of this operation.
 Returns the updated project record.
 </span>
 
@@ -17797,6 +17802,7 @@ $result = $client->tasks->duplicateTask($task_gid, array('field' => 'value', 'fi
       "resource_type": "project",
       "name": "Stuff to buy"
     },
+    "new_project_template": null,
     "new_task": {
       "gid": "12345",
       "resource_type": "task",
@@ -26199,6 +26205,7 @@ A generic Asana Resource, containing a globally unique identifier.
     "resource_type": "project",
     "name": "Stuff to buy"
   },
+  "new_project_template": null,
   "new_task": {
     "gid": "12345",
     "resource_type": "task",
@@ -26225,6 +26232,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|new_project_template<span class="param-type"> any</span>|none|
 |new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -26259,6 +26267,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
     "resource_type": "project",
     "name": "Stuff to buy"
   },
+  "new_project_template": null,
   "new_task": {
     "gid": "12345",
     "resource_type": "task",
@@ -26285,6 +26294,7 @@ A *job* is an object representing a process that handles asynchronous work.
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|new_project_template<span class="param-type"> any</span>|none|
 |new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -26639,6 +26649,7 @@ This object determines if a user is a member of a portfolio.
     "name": "Greg Sanchez"
   },
   "permalink_url": "https://app.asana.com/0/resource/123456789/list",
+  "public": false,
   "start_on": "2019-09-14",
   "workspace": {
     "gid": "12345",
@@ -26735,6 +26746,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
+|public<span class="param-type"> boolean</span>|True if the portfolio is public to its workspace members.|
 |start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this portfolio begins, or null if the portfolio has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|

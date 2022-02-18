@@ -17,12 +17,25 @@ info:
   version: '0.1'
   x-docs-schema-whitelist:
     - AttachedResourceResponse
+    - FormField-Checkbox
+    - FormField-Date
+    - FormField-Datetime
+    - FormField-Dropdown
+    - FormField-MultiLineText
+    - FormField-RadioButton
+    - FormField-RichText
+    - FormField-SingleLineText
+    - FormField-StaticText
+    - FormField-Typeahead
     - FormMetadataResponse
     - RanActionResponse
     - WidgetFooter-CustomText
     - WidgetFooter-Created
     - WidgetFooter-Updated
     - WidgetMetadataResponse
+    - WidgetField-DatetimeWithIcon
+    - WidgetField-Pill
+    - WidgetField-TextWithIcon
     - TypeaheadListResponse
     - TypeaheadItem
     - FormValues
@@ -213,106 +226,512 @@ components:
             The error that should be displayed to the user
           type: string
           example: 'No resource matched that input'
-    FormField:
+    CheckboxOption:
       description: >-
-        Every form field type has a set of properties to describe what should be rendered on the form. These are the
-        common properties among every form field type, which should be included in addition to any unique properties of
-        each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and
-        `dropdown` has a limit of 50.
-      type: object
-      properties:
-        type:
-          description: >-
-            The type of field the form field is
-          type: string
-          enum:
-            - single_line_text
-            - multi_line_text
-            - rich_text
-            - static_text
-            - dropdown
-            - checkbox
-            - radio_button
-            - date
-            - datetime
-            - typeahead
-          example: 'single_line_text'
-        id:
-          description: >-
-            The id of the field, which is used to reference the field. These should be unique across the entire form
-          type: string
-          example: 'item-description'
-        name:
-          description: >-
-            The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.
-          type: string
-          example: 'Item Description'
-        value:
-          description: >-
-            The value of the field, the type of which varies based on the particular field. If not provided, the field
-            will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters
-            while `multi_line_text` and `rich_text` have limits of 3000 characters.
-          example: "It's over 9000"
-        is_required:
-          description: >-
-            Whether the field is required to submit the form
-          type: boolean
-          example: true
-        placeholder:
-          description: >-
-            *Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`,
-            `date_time_input`, and `typeahead`.
-            The placeholder for the input, which is shown if the field has no value. If not provided, there will be no
-            placeholder.
-          type: string
-          example: 'Type description here...'
-        width:
-          description: >-
-            *Conditional*. Only relevant for custom fields of type
-            `single_line_text`. The width of the form field. The default is "full".
-          type: string
-          enum:
-            - full
-            - half
-        is_watched:
-          description: >-
-            Whether the field should be watched. Fields that are watched send requests to the on_change URL specified
-            in the form metadata to get updated form information.
-          type: boolean
-        options:
-          description: >-
-            *Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`.
-            An array of FieldOption objects
-          items:
-            $ref: '#/components/schemas/FieldOption'
-        typeahead_url:
-          description: >-
-            The URL that Asana uses to request typehead results from the application server. 
-            A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.
-          type: string
-          example: 'https://www.app-server.com/app/typeahead'
-    FieldOption:
-      description: >-
-        An option for a dropdown or checkbox field. This is a property of the dropdown field, and should not include the
-        FormField properties.
+        An option for a checkbox field (i.e., an object in the field's `options` array).
       type: object
       properties:
         id:
           description: >-
-            The id of the option
+            The ID of the option.
           type: string
           example: 'opt-in'
         label:
           description: >-
-            The label of the option
+            The label of the option. Limit 80 characters.
           type: string
-          example: 'Opt in to emails.'
+          example: 'Opt in'
+    DropdownOption:
+      description: >-
+        An option for a dropdown field (i.e., an object in the field's `options` array).
+      type: object
+      properties:
+        id:
+          description: >-
+            The ID of the option.
+          type: string
+          example: 'red'
+        label:
+          description: >-
+            The label of the option. Limit 80 characters.
+          type: string
+          example: 'Red'
         icon_url:
           description: >-
-            *Conditional*. Only relevant for fields of type `dropdown`.
-            The URL for the icon beside the label. If not present, no icon will be displayed.
+            *Optional*. The URL for the icon beside the label. If not present, no icon will be displayed.
           type: string
-          example: 'some-icon.png'
+          example: 'https://example.com/red.png'
+    FormField-StaticText:
+      description: >-
+        A Modal Form "field" that displays static text. Fields of this type do not collect user input.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - static_text
+          example: 'static_text'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'create-resource-field-1'
+        name:
+          description: >-
+            The text (i.e., label) for the field. Limit 50 characters.
+          type: string
+          example: 'Please enter the following details:'
+    FormField-SingleLineText:
+      description: >-
+        A Modal Form field that accepts single-line text input.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - single_line_text
+          example: 'single_line_text'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'create-resource-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Resource name'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        placeholder:
+          description: >-
+            The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.
+          type: string
+          example: 'Enter the full title of the resource here'
+        width:
+          description: >-
+            *Optional*. The width of the form field. If not provided, the default value will be `"full"`.
+          type: string
+          enum:
+            - full
+            - half
+          example: 'full'
+        value:
+          description: >-
+            The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 200 characters.
+          type: string
+          example: "Annual Kick-Off Meeting"
+    FormField-MultiLineText:
+      description: >-
+        A Modal Form field that accepts multi-line text input.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - multi_line_text
+          example: 'multi_line_text'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'create-resource-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Resource name'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        placeholder:
+          description: >-
+            The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.
+          type: string
+          example: 'Enter the full title of the resource here'
+        value:
+          description: >-
+            The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 3000 characters.
+          type: string
+          example: "Annual Kick-Off Meeting"
+    FormField-RichText:
+      description: >-
+        A Modal Form field that accepts rich text input.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - rich_text
+          example: 'rich_text'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'create-resource-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Resource name'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        placeholder:
+          description: >-
+            The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.
+          type: string
+          example: 'Enter the full title of the resource here'
+        value:
+          description: >-
+            The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 3000 characters.
+          type: string
+          example: "Annual Kick-Off Meeting"
+    FormField-Dropdown:
+      description: >-
+        A Modal Form field that accepts input via a dropdown list. Limit 50 options.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - dropdown
+          example: 'dropdown'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'create-resource-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Resource name'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        width:
+          description: >-
+            *Optional*. The width of the form field. If not provided, the default value will be `"full"`.
+          type: string
+          enum:
+            - full
+            - half
+          example: 'full'
+        value:
+          description: >-
+            *Optional*. The value for the form field, which is the ID of the chosen DropdownOption object.
+          type: string
+          example: 'dropdown_option_1'
+        options:
+          description: >-
+            An array (minimum length: 1) of DropdownOption objects.
+          type: array
+          items:
+            $ref: '#/components/schemas/DropdownOption'
+    FormField-RadioButton:
+      description: >-
+        A Modal Form field that accepts radio button input. Limit 5 options.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - radio_button
+          example: 'radio_button'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'create-resource-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Resource name'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        value:
+          description: >-
+            *Optional*. The value for the form field, which is the ID of the chosen RadioOption object.
+          type: string
+          example: 'radio_option_1'
+        options:
+          description: >-
+            An array (minimum length: 1) of RadioOption objects.
+          type: array
+          items:
+            $ref: '#/components/schemas/RadioOption'
+    FormField-Checkbox:
+      description: >-
+        A Modal Form field that accepts checkbox input. Limit 10 options.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - checkbox
+          example: 'checkbox'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'create-resource-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Resource name'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        value:
+          description: >-
+            *Optional*. The value for the form field, which is the IDs of the chosen CheckboxOption objects.
+          type: string
+          example: 'checkbox_option_1'
+        options:
+          description: >-
+            An array (minimum length: 1) of CheckboxOption objects.
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckboxOption'
+    FormField-Date:
+      description: >-
+        A Modal Form field that accepts date input.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - date
+          example: 'date'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'date-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Date'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        placeholder:
+          description: >-
+            The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.
+          type: string
+          example: '2022-02-01'
+    FormField-Datetime:
+      description: >-
+        A Modal Form field that accepts datetime input.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - datetime
+          example: 'datetime'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'datetime-field-1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Datetime'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        placeholder:
+          description: >-
+            The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.
+          type: string
+          example: '2022-02-01T14:48:00.000Z'
+    FormField-Typeahead:
+      description: >-
+        A Modal Form field that accepts typeahead input.
+      type: object
+      properties:
+        type:
+          description: >-
+            The type of Modal Form field.
+          type: string
+          enum:
+            - typeahead
+          example: 'typeahead'
+        id:
+          description: >-
+            The ID of the field, which is used to reference the field. These should be unique across the entire form.
+          type: string
+          example: 'typeahead_field_1'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 50 characters.
+          type: string
+          example: 'Statuses'
+        is_required:
+          description: >-
+            *Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        is_watched:
+          description: >-
+            *Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified
+            in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.
+          type: boolean
+          example: true
+        error:
+          description: >-
+            *Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.
+          type: string
+          example: 'Please review and change your input'
+        width:
+          description: >-
+            *Optional*. The width of the form field. If not provided, the default value will be `"full"`.
+          type: string
+          enum:
+            - full
+            - half
+          example: 'full'
+        typeahead_url:
+          description: >-
+            The URL that Asana uses to request typehead results from the application server.
+          type: string
+          example: 'https://www.app-server.com/app/typeahead'
+        value:
+          description: >-
+            *Optional*. The value for the form field, which is the ID of the chosen TypeaheadListItem object.
+          type: string
+          example: 'typeahead_1'
     FormMetadataResponse:
       description: >-
         Contains the metadata that describes how to display and manage a form.
@@ -337,10 +756,15 @@ components:
               example: 'Create New Issue'
             fields:
               description: >-
-                An array of FormField objects that are rendered in the order they are in the array. Limit of 30 fields.
+                An array of form field objects that are rendered in the order they are in the array. Limit of 30 fields.
+
+
+                Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date), 
+                [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown), 
+                [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button), 
+                [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text), 
+                [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
               type: array
-              items:
-                $ref: '#/components/schemas/FormField'
             submit_button_text:
               description: >-
                 The text to display on the form’s submit button. If not provided, the default text “Submit” will be
@@ -380,7 +804,16 @@ components:
                   field_name:
                     type: string
                   field_object:
-                    $ref: '#/components/schemas/FormField'
+                    description: >-
+                      A form field object.
+
+
+                      Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date), 
+                      [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown), 
+                      [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button), 
+                      [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text), 
+                      [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
+                    type: object
     ActionFormSubmissionRequest:
       allOf:
         - $ref: '#/components/schemas/FormSubmissionRequest'
@@ -424,7 +857,7 @@ components:
     WidgetFooter-CustomText:
       type: object
       description: >-
-        A Widget footer that custom text and an optional icon.
+        A Widget footer that displays custom text and an optional icon.
       properties:
         footer_type:
           description: >-
@@ -440,7 +873,7 @@ components:
           example: 'This is a custom footer message'
         icon_url:
           description: >-
-            The optional icon to show in the footer next to the text. If not provided, no
+            *Optional*. The icon to show in the footer next to the text. If not provided, no
             icon will be shown.
           type: string
           example: 'https://example-icon.png'
@@ -537,6 +970,26 @@ components:
             created.
           items:
             $ref: '#/components/schemas/AttachedResourceResponse'
+    RadioOption:
+      description: >-
+        An option for a radio button field (i.e., an object in the field's `options` array).
+      type: object
+      properties:
+        id:
+          description: >-
+            The ID of the option.
+          type: string
+          example: 'blue'
+        label:
+          description: >-
+            The label of the option. Limit 80 characters.
+          type: string
+          example: 'Blue'
+        sub_label:
+          description: >-
+            *Optional*. The label to display as subtext for the `label`.
+          type: string
+          example: '#0000FF'
     TypeaheadItem:
       description: >-
         An object describing a typeahead result.
@@ -601,7 +1054,7 @@ components:
       properties:
         header:
           description: >-
-            *optional* Header text to display above the list of typeahead results. If no `header` is passed in or the value is an empty string, only the typeahead results with be rendered.
+            *Optional*. Header text to display above the list of typeahead results. If no `header` is passed in or the value is an empty string, only the typeahead results with be rendered.
           type: string
           example: 'List of messages'
         items:
@@ -627,6 +1080,104 @@ components:
             The time (in ISO-8601 date format) to show in the footer.
           type: string
           example: '2012-02-22T02:06:58.147Z'
+    WidgetField-DatetimeWithIcon:
+      description: >-
+        A Widget field that displays a timestamp and an optional icon.
+      type: object
+      properties:
+        type:
+          description:  >- 
+            The type of Widget field.
+          type: string
+          enum:
+            - datetime_with_icon
+          example: 'datetime_with_icon'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 40 characters.
+          type: string
+          example: 'Status'
+        datetime:
+          description: >-
+            The time (in ISO-8601 date format) to display next to the icon.
+          type: string
+          example: '2012-02-22T02:06:58.147Z'
+        icon_url:
+          description: >-
+            *Optional*. The URL of the icon to display next to the time.
+          type: string
+          example: 'https://example-icon.png'
+    WidgetField-Pill:
+      description: >-
+        A Widget field that displays custom text in a colored "pill" format.
+      type: object
+      properties:
+        type:
+          description:  >- 
+            The type of Widget field.
+          type: string
+          enum:
+            - pill
+          example: 'pill'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 40 characters.
+          type: string
+          example: 'Status'
+        text:
+          description: >-
+            The text to show in the field. Limit 40 characters.
+          type: string
+          example: 'In Progress'
+        color:
+          description: >-
+            The color of the pill.
+          type: string
+          enum:
+            - none
+            - red
+            - orange
+            - yellow-orange
+            - yellow
+            - yellow-green
+            - green
+            - blue-green
+            - aqua
+            - blue
+            - indigo
+            - purple
+            - magenta
+            - hot-pink
+            - pink
+            - cool-gray
+          example: 'gray'
+    WidgetField-TextWithIcon:
+      description: >-
+        A Widget field that displays custom text with an optional icon.
+      type: object
+      properties:
+        type:
+          description:  >- 
+            The type of Widget field.
+          type: string
+          enum:
+            - text_with_icon
+          example: 'text_with_icon'
+        name:
+          description: >-
+            The text (i.e., label) to show in the title of the field. Limit 40 characters.
+          type: string
+          example: 'Status'
+        text:
+          description: >-
+            The text to show in the field. Limit 40 characters.
+          type: string
+          example: 'In Progress'
+        icon_url:
+          description: >-
+            *Optional*. The URL of the icon to display next to the text.
+          type: string
+          example: 'https://example-icon.png'
     WidgetMetadataResponse:
       description: >-
         An object containing information about the widget.
@@ -657,11 +1208,12 @@ components:
               example: 'Status'
             fields:
               description: >-
-                An array of WidgetField objects. A widget must contain at least 1 field and no more than 5.
+                A list of fields showing data from external resources (i.e., an array of WidgetField objects). A Widget must contain at least 1 field and no more than 5 fields.
+
+
+                Valid object schemas: [WidgetField-DatetimeWithIcon](/docs/widget-field-datetime-with-icon), [WidgetField-Pill](/docs/widget-field-pill), [WidgetField-TextWithIcon](/docs/widget-field-text-with-icon).
               type: array
               required: true
-              items:
-                $ref: '#/components/schemas/WidgetField'
             subtitle:
               description: >-
                 The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the
@@ -686,66 +1238,6 @@ components:
                 count will be shown
               type: integer
               example: 2
-    WidgetField:
-      description: >-
-        Contains the information to display a field on the widget
-      type: object
-      properties:
-        name:
-          description: >-
-            The text to show in the title of the field.
-          type: string
-          example: 'Status'
-        type:
-          description: The type of widget field.
-          type: string
-          enum:
-            - pill
-            - text_with_icon
-            - datetime_with_icon
-          example: 'pill'
-        text:
-          description: >-
-            *Conditional*. Only relevant for WidgetFields of type
-            `pill` and `text_with_icon`. The text to show in the field. Max size of 40 char.
-          type: string
-          example: 'To Do'
-        color:
-          description: >-
-            *Conditional*. Only relevant for WidgetFields of type
-            `pill`. The color of the pill.
-          type: string
-          enum:
-            - none
-            - red
-            - orange
-            - yellow-orange
-            - yellow
-            - yellow-green
-            - green
-            - blue-green
-            - aqua
-            - blue
-            - indigo
-            - purple
-            - magenta
-            - hot-pink
-            - pink
-            - cool-gray
-          example: 'gray'
-        icon_url:
-          description: >-
-            *Conditional*. Only relevant for WidgetFields of type
-            `text_with_icon` and `datetime_with_icon`. The URL of the icon to
-            display next to the text or time.
-          type: string
-          example: 'https://example-icon.png'
-        timestamp:
-          description: >-
-            *Conditional*. Only relevant for WidgetFields of type `datetime_with_icon`.
-            The time (in ISO-8601 date format) to display next to the icon.
-          type: string
-          example: '2012-02-22T02:06:58.147Z'
 paths:
   /{widget_metadata_url}:
     parameters:
