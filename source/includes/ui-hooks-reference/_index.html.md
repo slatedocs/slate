@@ -80,26 +80,7 @@ getFormMetadata
 ```json
 {
   "metadata": {
-    "fields": [
-      {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
-    ],
+    "fields": [],
     "on_change_callback": "https://www.example.com/on_change",
     "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
@@ -303,26 +284,7 @@ onFormChange
 ```json
 {
   "metadata": {
-    "fields": [
-      {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
-    ],
+    "fields": [],
     "on_change_callback": "https://www.example.com/on_change",
     "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
@@ -417,45 +379,11 @@ onFormSubmit
   "values": {
     "property1": {
       "field_name": "string",
-      "field_object": {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
+      "field_object": {}
     },
     "property2": {
       "field_name": "string",
-      "field_object": {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
+      "field_object": {}
     }
   },
   "workspace": "string"
@@ -492,38 +420,14 @@ The callback request made to an App Server when a form is submitted.
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» values<span class="param-type"> object</span>|A FormValues object mapping each FormField’s name to its value|
 |»» field_name<span class="param-type"> string</span>|none|
-|»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and `dropdown` has a limit of 50.|
-|»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
-|»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
-|»»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
-|»»» name<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
-|»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
-|»»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
-|»»»» id<span class="param-type"> string</span>|The id of the option|
-|»»»» label<span class="param-type"> string</span>|The label of the option|
-|»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» type<span class="param-type"> string</span>|The type of field the form field is|
-|»»» typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.  A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.|
-|»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
-|»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
+|»» field_object<span class="param-type"> object</span>|A form field object.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
-#### Enumerated Values
+#### Detailed descriptions
 
-|Parameter|Value|
-|---|---|
-| type|single_line_text|
-| type|multi_line_text|
-| type|rich_text|
-| type|static_text|
-| type|dropdown|
-| type|checkbox|
-| type|radio_button|
-| type|date|
-| type|datetime|
-| type|typeahead|
-| width|full|
-| width|half|
+**field_object**: A form field object.
+
+Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),  [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),  [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),  [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),  [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
 
 <h3 id="on-submit-callback-responses">Responses</h3>
 
@@ -810,26 +714,7 @@ getActionMetadata
 ```json
 {
   "metadata": {
-    "fields": [
-      {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
-    ],
+    "fields": [],
     "on_change_callback": "https://www.example.com/on_change",
     "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
@@ -933,26 +818,7 @@ onActionFormChange
 ```json
 {
   "metadata": {
-    "fields": [
-      {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
-    ],
+    "fields": [],
     "on_change_callback": "https://www.example.com/on_change",
     "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
@@ -1053,45 +919,11 @@ onActionFormSubmit
   "values": {
     "property1": {
       "field_name": "string",
-      "field_object": {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
+      "field_object": {}
     },
     "property2": {
       "field_name": "string",
-      "field_object": {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
+      "field_object": {}
     }
   },
   "workspace": "string"
@@ -1103,26 +935,7 @@ onActionFormSubmit
 ```json
 {
   "metadata": {
-    "fields": [
-      {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
-    ],
+    "fields": [],
     "on_change_callback": "https://www.example.com/on_change",
     "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
@@ -1156,38 +969,14 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 |» user<span class="param-type"> string</span>|The user gid this hook is coming from.|
 |» values<span class="param-type"> object</span>|A FormValues object mapping each FormField’s name to its value|
 |»» field_name<span class="param-type"> string</span>|none|
-|»» field_object<span class="param-type"> object</span>|Every form field type has a set of properties to describe what should be rendered on the form. These are the common properties among every form field type, which should be included in addition to any unique properties of each form field type. `checkboxes` has a limit of 10 options, `radio_button` has a limit of 5 options, and `dropdown` has a limit of 50.|
-|»»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
-|»»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
-|»»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
-|»»» name<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
-|»»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
-|»»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
-|»»»» id<span class="param-type"> string</span>|The id of the option|
-|»»»» label<span class="param-type"> string</span>|The label of the option|
-|»»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»»» type<span class="param-type"> string</span>|The type of field the form field is|
-|»»» typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.  A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.|
-|»»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
-|»»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
+|»» field_object<span class="param-type"> object</span>|A form field object.|
 |» workspace<span class="param-type"> string</span>|The workspace gid this hook is coming from.|
 
-#### Enumerated Values
+#### Detailed descriptions
 
-|Parameter|Value|
-|---|---|
-| type|single_line_text|
-| type|multi_line_text|
-| type|rich_text|
-| type|static_text|
-| type|dropdown|
-| type|checkbox|
-| type|radio_button|
-| type|date|
-| type|datetime|
-| type|typeahead|
-| width|full|
-| width|half|
+**field_object**: A form field object.
+
+Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),  [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),  [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),  [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),  [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
 
 <h3 id="on-action-submit-callback-responses">Responses</h3>
 
@@ -1482,16 +1271,7 @@ getWidgetMetadata
 {
   "metadata": {
     "error": "The resource cannot be accessed",
-    "fields": [
-      {
-        "color": "gray",
-        "icon_url": "https://example-icon.png",
-        "name": "Status",
-        "text": "To Do",
-        "timestamp": "2012-02-22T02:06:58.147Z",
-        "type": "pill"
-      }
-    ],
+    "fields": [],
     "footer": {},
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
@@ -1581,6 +1361,519 @@ The response to a successful lookup request.
 
 </section><hr>
 <section>
+<a id="schemaformfield-checkbox"></a>
+<a id="schema_FormField-Checkbox"></a>
+<a id="tocSformfield-checkbox"></a>
+<a id="tocsformfield-checkbox"></a>
+<a id="tocS_FormField-Checkbox"></a>
+<h2 id="form-field-checkbox">FormField-Checkbox</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "create-resource-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Resource name",
+  "options": [
+    {
+      "id": "opt-in",
+      "label": "Opt in"
+    }
+  ],
+  "type": "checkbox",
+  "value": "checkbox_option_1"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts checkbox input. Limit 10 options.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|options<span class="param-type"> [object]</span>|An array (minimum length: 1) of CheckboxOption objects.|
+|» id<span class="param-type"> string</span>|The ID of the option.|
+|» label<span class="param-type"> string</span>|The label of the option. Limit 80 characters.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the IDs of the chosen CheckboxOption objects.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|checkbox|
+
+</section><hr>
+<section>
+<a id="schemaformfield-date"></a>
+<a id="schema_FormField-Date"></a>
+<a id="tocSformfield-date"></a>
+<a id="tocsformfield-date"></a>
+<a id="tocS_FormField-Date"></a>
+<h2 id="form-field-date">FormField-Date</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "date-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Date",
+  "placeholder": "2022-02-01",
+  "type": "date"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts date input.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|date|
+
+</section><hr>
+<section>
+<a id="schemaformfield-datetime"></a>
+<a id="schema_FormField-Datetime"></a>
+<a id="tocSformfield-datetime"></a>
+<a id="tocsformfield-datetime"></a>
+<a id="tocS_FormField-Datetime"></a>
+<h2 id="form-field-datetime">FormField-Datetime</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "datetime-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Datetime",
+  "placeholder": "2022-02-01T14:48:00.000Z",
+  "type": "datetime"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts datetime input.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|datetime|
+
+</section><hr>
+<section>
+<a id="schemaformfield-dropdown"></a>
+<a id="schema_FormField-Dropdown"></a>
+<a id="tocSformfield-dropdown"></a>
+<a id="tocsformfield-dropdown"></a>
+<a id="tocS_FormField-Dropdown"></a>
+<h2 id="form-field-dropdown">FormField-Dropdown</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "create-resource-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Resource name",
+  "options": [
+    {
+      "icon_url": "https://example.com/red.png",
+      "id": "red",
+      "label": "Red"
+    }
+  ],
+  "type": "dropdown",
+  "value": "dropdown_option_1",
+  "width": "full"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts input via a dropdown list. Limit 50 options.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|options<span class="param-type"> [object]</span>|An array (minimum length: 1) of DropdownOption objects.|
+|» icon_url<span class="param-type"> string</span>|*Optional*. The URL for the icon beside the label. If not present, no icon will be displayed.|
+|» id<span class="param-type"> string</span>|The ID of the option.|
+|» label<span class="param-type"> string</span>|The label of the option. Limit 80 characters.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the ID of the chosen DropdownOption object.|
+|width<span class="param-type"> string</span>|*Optional*. The width of the form field. If not provided, the default value will be `"full"`.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|dropdown|
+|width|full|
+|width|half|
+
+</section><hr>
+<section>
+<a id="schemaformfield-multilinetext"></a>
+<a id="schema_FormField-MultiLineText"></a>
+<a id="tocSformfield-multilinetext"></a>
+<a id="tocsformfield-multilinetext"></a>
+<a id="tocS_FormField-MultiLineText"></a>
+<h2 id="form-field-multi-line-text">FormField-MultiLineText</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "create-resource-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Resource name",
+  "placeholder": "Enter the full title of the resource here",
+  "type": "multi_line_text",
+  "value": "Annual Kick-Off Meeting"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts multi-line text input.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|value<span class="param-type"> string</span>|The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 3000 characters.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|multi_line_text|
+
+</section><hr>
+<section>
+<a id="schemaformfield-radiobutton"></a>
+<a id="schema_FormField-RadioButton"></a>
+<a id="tocSformfield-radiobutton"></a>
+<a id="tocsformfield-radiobutton"></a>
+<a id="tocS_FormField-RadioButton"></a>
+<h2 id="form-field-radio-button">FormField-RadioButton</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "create-resource-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Resource name",
+  "options": [
+    {
+      "id": "blue",
+      "label": "Blue",
+      "sub_label": "#0000FF"
+    }
+  ],
+  "type": "radio_button",
+  "value": "radio_option_1"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts radio button input. Limit 5 options.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|options<span class="param-type"> [object]</span>|An array (minimum length: 1) of RadioOption objects.|
+|» id<span class="param-type"> string</span>|The ID of the option.|
+|» label<span class="param-type"> string</span>|The label of the option. Limit 80 characters.|
+|» sub_label<span class="param-type"> string</span>|*Optional*. The label to display as subtext for the `label`.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the ID of the chosen RadioOption object.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|radio_button|
+
+</section><hr>
+<section>
+<a id="schemaformfield-richtext"></a>
+<a id="schema_FormField-RichText"></a>
+<a id="tocSformfield-richtext"></a>
+<a id="tocsformfield-richtext"></a>
+<a id="tocS_FormField-RichText"></a>
+<h2 id="form-field-rich-text">FormField-RichText</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "create-resource-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Resource name",
+  "placeholder": "Enter the full title of the resource here",
+  "type": "rich_text",
+  "value": "Annual Kick-Off Meeting"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts rich text input.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|value<span class="param-type"> string</span>|The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 3000 characters.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|rich_text|
+
+</section><hr>
+<section>
+<a id="schemaformfield-singlelinetext"></a>
+<a id="schema_FormField-SingleLineText"></a>
+<a id="tocSformfield-singlelinetext"></a>
+<a id="tocsformfield-singlelinetext"></a>
+<a id="tocS_FormField-SingleLineText"></a>
+<h2 id="form-field-single-line-text">FormField-SingleLineText</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "create-resource-field-1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Resource name",
+  "placeholder": "Enter the full title of the resource here",
+  "type": "single_line_text",
+  "value": "Annual Kick-Off Meeting",
+  "width": "full"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts single-line text input.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|value<span class="param-type"> string</span>|The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 200 characters.|
+|width<span class="param-type"> string</span>|*Optional*. The width of the form field. If not provided, the default value will be `"full"`.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|single_line_text|
+|width|full|
+|width|half|
+
+</section><hr>
+<section>
+<a id="schemaformfield-statictext"></a>
+<a id="schema_FormField-StaticText"></a>
+<a id="tocSformfield-statictext"></a>
+<a id="tocsformfield-statictext"></a>
+<a id="tocS_FormField-StaticText"></a>
+<h2 id="form-field-static-text">FormField-StaticText</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "id": "create-resource-field-1",
+  "name": "Please enter the following details:",
+  "type": "static_text"
+}
+
+```
+
+<span class="description">
+A Modal Form "field" that displays static text. Fields of this type do not collect user input.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|name<span class="param-type"> string</span>|The text (i.e., label) for the field. Limit 50 characters.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|static_text|
+
+</section><hr>
+<section>
+<a id="schemaformfield-typeahead"></a>
+<a id="schema_FormField-Typeahead"></a>
+<a id="tocSformfield-typeahead"></a>
+<a id="tocsformfield-typeahead"></a>
+<a id="tocS_FormField-Typeahead"></a>
+<h2 id="form-field-typeahead">FormField-Typeahead</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "error": "Please review and change your input",
+  "id": "typeahead_field_1",
+  "is_required": true,
+  "is_watched": true,
+  "name": "Statuses",
+  "type": "typeahead",
+  "typeahead_url": "https://www.app-server.com/app/typeahead",
+  "value": "typeahead_1",
+  "width": "full"
+}
+
+```
+
+<span class="description">
+A Modal Form field that accepts typeahead input.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
+|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
+|is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
+|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.|
+|value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the ID of the chosen TypeaheadListItem object.|
+|width<span class="param-type"> string</span>|*Optional*. The width of the form field. If not provided, the default value will be `"full"`.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|typeahead|
+|width|full|
+|width|half|
+
+</section><hr>
+<section>
 <a id="schemaformmetadata"></a>
 <a id="schema_FormMetadata"></a>
 <a id="tocSformmetadata"></a>
@@ -1593,26 +1886,7 @@ The response to a successful lookup request.
 ```json
 {
   "metadata": {
-    "fields": [
-      {
-        "id": "item-description",
-        "is_required": true,
-        "is_watched": true,
-        "name": "Item Description",
-        "options": [
-          {
-            "icon_url": "some-icon.png",
-            "id": "opt-in",
-            "label": "Opt in to emails."
-          }
-        ],
-        "placeholder": "Type description here...",
-        "type": "single_line_text",
-        "typeahead_url": "https://www.app-server.com/app/typeahead",
-        "value": "It's over 9000",
-        "width": "full"
-      }
-    ],
+    "fields": [],
     "on_change_callback": "https://www.example.com/on_change",
     "on_submit_callback": "https://www.example.com/on_submit",
     "submit_button_text": "Create New Issue",
@@ -1633,20 +1907,7 @@ Contains the metadata that describes how to display and manage a form.
 |Name|Description|
 |---|---|
 |metadata<span class="param-type"> object</span>|The metadata (i.e., underlying definition) of a form. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
-|» fields<span class="param-type"> [object]</span>|An array of FormField objects that are rendered in the order they are in the array. Limit of 30 fields.|
-|»» id<span class="param-type"> string</span>|The id of the field, which is used to reference the field. These should be unique across the entire form|
-|»» is_required<span class="param-type"> boolean</span>|Whether the field is required to submit the form|
-|»» is_watched<span class="param-type"> boolean</span>|Whether the field should be watched. Fields that are watched send requests to the on_change URL specified in the form metadata to get updated form information.|
-|»» name<span class="param-type"> string</span>|The title displayed on top of the field in the creation form. If not provided, no title will be shown. Max size of 40 char.|
-|»» options<span class="param-type"> array</span>|*Conditional*. Only relevant for custom fields of type `dropdown`, `checkbox`, and `radio_button`. An array of FieldOption objects|
-|»»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for fields of type `dropdown`. The URL for the icon beside the label. If not present, no icon will be displayed.|
-|»»» id<span class="param-type"> string</span>|The id of the option|
-|»»» label<span class="param-type"> string</span>|The label of the option|
-|»» placeholder<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`, `multi_line_text`, `date_input`, `date_time_input`, and `typeahead`. The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|»» type<span class="param-type"> string</span>|The type of field the form field is|
-|»» typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.  A `typeahead_url` is required when the value of the form field `type` is `"typeahead"`.|
-|»» value<span class="param-type"> any</span>|The value of the field, the type of which varies based on the particular field. If not provided, the field will be empty and the form cannot be submitted if it is required. `single_line_text` has a limit of 200 characters while `multi_line_text` and `rich_text` have limits of 3000 characters.|
-|»» width<span class="param-type"> string</span>|*Conditional*. Only relevant for custom fields of type `single_line_text`. The width of the form field. The default is "full".|
+|» fields<span class="param-type"> array</span>|An array of form field objects that are rendered in the order they are in the array. Limit of 30 fields.<br><br>Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),  [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),  [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),  [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),  [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)|
 |» on_change_callback<span class="param-type"> string</span>|The URL to POST the form to whenever watched field values are changed.|
 |» on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button. If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
 |» submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|
@@ -1657,18 +1918,6 @@ Contains the metadata that describes how to display and manage a form.
 
 |Property|Value|
 |---|---|
-|type|single_line_text|
-|type|multi_line_text|
-|type|rich_text|
-|type|static_text|
-|type|dropdown|
-|type|checkbox|
-|type|radio_button|
-|type|date|
-|type|datetime|
-|type|typeahead|
-|width|full|
-|width|half|
 |template|form_metadata_v0|
 
 </section><hr>
@@ -1790,12 +2039,151 @@ The response to a successful typeahead request.
 
 |Name|Description|
 |---|---|
-|header<span class="param-type"> string</span>|*optional* Header text to display above the list of typeahead results. If no `header` is passed in or the value is an empty string, only the typeahead results with be rendered.|
+|header<span class="param-type"> string</span>|*Optional*. Header text to display above the list of typeahead results. If no `header` is passed in or the value is an empty string, only the typeahead results with be rendered.|
 |items<span class="param-type"> [object]</span>|Array of [TypeaheadItem](/docs/typeahead-item) objects that indicate typeahead results.|
 |» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the title|
 |» subtitle<span class="param-type"> string</span>|The subtitle of the typeahead item|
 |» title<span class="param-type"> string</span>|The title of the typeahead item|
 |» value<span class="param-type"> string</span>|The value of the typeahead item|
+
+</section><hr>
+<section>
+<a id="schemawidgetfield-datetimewithicon"></a>
+<a id="schema_WidgetField-DatetimeWithIcon"></a>
+<a id="tocSwidgetfield-datetimewithicon"></a>
+<a id="tocswidgetfield-datetimewithicon"></a>
+<a id="tocS_WidgetField-DatetimeWithIcon"></a>
+<h2 id="widget-field-datetime-with-icon">WidgetField-DatetimeWithIcon</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "datetime": "2012-02-22T02:06:58.147Z",
+  "icon_url": "https://example-icon.png",
+  "name": "Status",
+  "type": "datetime_with_icon"
+}
+
+```
+
+<span class="description">
+A Widget field that displays a timestamp and an optional icon.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|datetime<span class="param-type"> string</span>|The time (in ISO-8601 date format) to display next to the icon.|
+|icon_url<span class="param-type"> string</span>|*Optional*. The URL of the icon to display next to the time.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
+|type<span class="param-type"> string</span>|The type of Widget field.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|datetime_with_icon|
+
+</section><hr>
+<section>
+<a id="schemawidgetfield-pill"></a>
+<a id="schema_WidgetField-Pill"></a>
+<a id="tocSwidgetfield-pill"></a>
+<a id="tocswidgetfield-pill"></a>
+<a id="tocS_WidgetField-Pill"></a>
+<h2 id="widget-field-pill">WidgetField-Pill</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "color": "gray",
+  "name": "Status",
+  "text": "In Progress",
+  "type": "pill"
+}
+
+```
+
+<span class="description">
+A Widget field that displays custom text in a colored "pill" format.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|color<span class="param-type"> string</span>|The color of the pill.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
+|text<span class="param-type"> string</span>|The text to show in the field. Limit 40 characters.|
+|type<span class="param-type"> string</span>|The type of Widget field.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|color|none|
+|color|red|
+|color|orange|
+|color|yellow-orange|
+|color|yellow|
+|color|yellow-green|
+|color|green|
+|color|blue-green|
+|color|aqua|
+|color|blue|
+|color|indigo|
+|color|purple|
+|color|magenta|
+|color|hot-pink|
+|color|pink|
+|color|cool-gray|
+|type|pill|
+
+</section><hr>
+<section>
+<a id="schemawidgetfield-textwithicon"></a>
+<a id="schema_WidgetField-TextWithIcon"></a>
+<a id="tocSwidgetfield-textwithicon"></a>
+<a id="tocswidgetfield-textwithicon"></a>
+<a id="tocS_WidgetField-TextWithIcon"></a>
+<h2 id="widget-field-text-with-icon">WidgetField-TextWithIcon</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "icon_url": "https://example-icon.png",
+  "name": "Status",
+  "text": "In Progress",
+  "type": "text_with_icon"
+}
+
+```
+
+<span class="description">
+A Widget field that displays custom text with an optional icon.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|icon_url<span class="param-type"> string</span>|*Optional*. The URL of the icon to display next to the text.|
+|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
+|text<span class="param-type"> string</span>|The text to show in the field. Limit 40 characters.|
+|type<span class="param-type"> string</span>|The type of Widget field.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|text_with_icon|
 
 </section><hr>
 <section>
@@ -1855,7 +2243,7 @@ A Widget footer that displays the timestamp of the resource's creation time.
 ```
 
 <span class="description">
-A Widget footer that custom text and an optional icon.
+A Widget footer that displays custom text and an optional icon.
 
 </span>
 
@@ -1864,7 +2252,7 @@ A Widget footer that custom text and an optional icon.
 |Name|Description|
 |---|---|
 |footer_type<span class="param-type"> string</span>|The text to show in the footer.|
-|icon_url<span class="param-type"> string</span>|The optional icon to show in the footer next to the text. If not provided, no icon will be shown.|
+|icon_url<span class="param-type"> string</span>|*Optional*. The icon to show in the footer next to the text. If not provided, no icon will be shown.|
 |text<span class="param-type"> string</span>|The text to show in the footer.|
 
 #### Enumerated Values
@@ -1925,16 +2313,7 @@ A Widget footer that displays the timestamp of the resource's last updated time.
 {
   "metadata": {
     "error": "The resource cannot be accessed",
-    "fields": [
-      {
-        "color": "gray",
-        "icon_url": "https://example-icon.png",
-        "name": "Status",
-        "text": "To Do",
-        "timestamp": "2012-02-22T02:06:58.147Z",
-        "type": "pill"
-      }
-    ],
+    "fields": [],
     "footer": {},
     "num_comments": 2,
     "subicon_url": "https://example-icon.png",
@@ -1957,13 +2336,7 @@ An object containing information about the widget.
 |---|---|
 |metadata<span class="param-type"> object</span>|The metadata (i.e., underlying definition) of a widget. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
 |» error<span class="param-type"> string</span>|The error that should be displayed to the user|
-|» fields<span class="param-type"> [object]</span>|An array of WidgetField objects. A widget must contain at least 1 field and no more than 5.|
-|»» color<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `pill`. The color of the pill.|
-|»» icon_url<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `text_with_icon` and `datetime_with_icon`. The URL of the icon to display next to the text or time.|
-|»» name<span class="param-type"> string</span>|The text to show in the title of the field.|
-|»» text<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `pill` and `text_with_icon`. The text to show in the field. Max size of 40 char.|
-|»» timestamp<span class="param-type"> string</span>|*Conditional*. Only relevant for WidgetFields of type `datetime_with_icon`. The time (in ISO-8601 date format) to display next to the icon.|
-|»» type<span class="param-type"> string</span>|The type of widget field.|
+|» fields<span class="param-type"> array</span>|A list of fields showing data from external resources (i.e., an array of WidgetField objects). A Widget must contain at least 1 field and no more than 5 fields.<br><br>Valid object schemas: [WidgetField-DatetimeWithIcon](/docs/widget-field-datetime-with-icon), [WidgetField-Pill](/docs/widget-field-pill), [WidgetField-TextWithIcon](/docs/widget-field-text-with-icon).|
 |» footer<span class="param-type"> object</span>|Contains the information to display a footer on the Widget. <br><br>Valid schemas: [WidgetFooter-Created](/docs/widget-footer-created), [WidgetFooter-CustomText](/docs/widget-footer-custom-text), [WidgetFooter-Updated](/docs/widget-footer-updated).|
 |» num_comments<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
@@ -1975,25 +2348,6 @@ An object containing information about the widget.
 
 |Property|Value|
 |---|---|
-|color|none|
-|color|red|
-|color|orange|
-|color|yellow-orange|
-|color|yellow|
-|color|yellow-green|
-|color|green|
-|color|blue-green|
-|color|aqua|
-|color|blue|
-|color|indigo|
-|color|purple|
-|color|magenta|
-|color|hot-pink|
-|color|pink|
-|color|cool-gray|
-|type|pill|
-|type|text_with_icon|
-|type|datetime_with_icon|
 |template|summary_with_details_v0|
 
 </section>

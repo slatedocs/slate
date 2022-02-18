@@ -1177,6 +1177,14 @@ components:
         type: string
       example: '159874'
       x-env-variable: team
+    team_query_param:
+      name: team
+      in: query
+      description: The team to filter projects on.
+      schema:
+        type: string
+      example: '14916'
+      x-env-variable: team
     team_membership_path_gid:
       name: team_membership_gid
       in: path
@@ -2739,6 +2747,8 @@ components:
               $ref: '#/components/schemas/ProjectCompact'
             new_task:
               $ref: '#/components/schemas/TaskCompact'
+            new_project_template:
+              $ref: '#/components/schemas/ProjectTemplateCompact'
     JobResponse:
       $ref: '#/components/schemas/JobBase'
     Like:
@@ -3027,6 +3037,11 @@ components:
               description: >-
                 A url that points directly to the object within Asana.
               example: https://app.asana.com/0/resource/123456789/list
+            public:
+              description: >-
+                True if the portfolio is public to its workspace members.
+              type: boolean
+              example: false
     Preview:
       type: object
       description: >-
@@ -8846,8 +8861,8 @@ paths:
       summary: Add followers to a project
       description: >-
         Adds the specified list of users as followers to the project. Followers
-        are a subset of members who have opted in to receive "tasks added"  notifications
-        for a project. Therefore, if the users are not already
+        are a subset of members who have opted in to receive "tasks added"
+        notifications for a project. Therefore, if the users are not already
         members of the project, they will also become members as a result of
         this operation.
 
