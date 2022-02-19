@@ -15,8 +15,7 @@ controls what happens when a user takes actions within these components.
 
 <img src="../images/UI_Components.gif" />
 
-**The App Components open beta is coming soon**. At the moment, we are offering this documentation as a preview of how will be
-able to build with App Components. For the latest updates and announcements,
+**App Components are currently in open beta**. For the latest updates and announcements,
 [subscribe to our developer forum](https://forum.asana.com/c/developersapi/app-components-beta/150).
 
 _The App Components Beta Program is a pre-general-release version of a program developed by Asana that allows developers_
@@ -391,9 +390,9 @@ _Note: To see these settings again, navigate to your app in the [developer conso
 
 ### Configure Basic Info
 
-On the **Basic Information** tab, provide some information about your app.
+On the **Basic information** tab, provide some information about your app.
 
-_< screenshot of "Basic Info" in dev console >_
+<img src="../images/basic-info.png" alt="Basic information"/>
 
 These details will be accessible to the end user, and are meant to help them identify and learn more about your application.
 
@@ -413,7 +412,7 @@ These details will be accessible to the end user, and are meant to help them ide
 
 The next set of configurations you make will differ depending on what functionality and user experience you're looking to build. Each of the capabilities below are configured separately in the **App Components** tab in the [developer console](https://app.asana.com/0/developer-console):
 
-_< screenshot of "App Components" in dev console >_
+<img src="../images/app-components-configs.png" alt="App Components configuration"/>
 
 Follow the links in the table below to view the configurations required to build each capability (e.g., [Widget](/docs/widget)).
 
@@ -440,7 +439,7 @@ When a user connects an app with App Components to Asana for the first time, the
 
 To make these configurations, navigate to the **Install your app** tab and provide your configurations:
 
-_< screenshot of "Install your app" in dev console >_
+<img src="../images/install-your-app.png" alt="Install your app configs"/>
 
 For an in-depth overview of the installation flow (including its customizations), see the [Installing Flow](/docs/installation-flow).
 
@@ -706,8 +705,7 @@ From here, the user may choose to add the app to one or more projects, or even s
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-After you have completed development of your app (and you have addressed the guidelines above), you can begin the process
-to have your app published on Asana. This feature is [coming soon](/docs/overview-of-app-components).
+After you have completed development of your app (and you have addressed the guidelines above), you can [begin the process](/docs/submit-your-app) to have your app published on Asana.
 
 <hr class="full-line">
 
