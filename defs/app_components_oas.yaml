@@ -39,6 +39,11 @@ info:
     - TypeaheadListResponse
     - TypeaheadItem
     - FormValues
+    - BadRequestResponse
+    - UnauthorizedResponse
+    - ForbiddenResponse
+    - NotFoundResponse
+    - InternalServerErrorResponse
 servers:
   - url: "{siteUrl}"
     description: Main endpoint.
@@ -146,16 +151,32 @@ components:
   responses:
     BadRequest:
       description: >-
-        Bad Request
+        Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
     Unauthorized:
       description: >-
         Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
     Forbidden:
       description: >-
         Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
     NotFound:
       description: >-
-        Not Found
+        Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
     TooManyRequests:
       description: >-
         Too Many Requests
@@ -164,7 +185,11 @@ components:
         Gone
     InternalServerError:
       description: >-
-        Server Error
+        Server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerErrorResponse'
     ImATeapot:
       description: >-
         I'm A Teapot
@@ -226,6 +251,21 @@ components:
             The error that should be displayed to the user
           type: string
           example: 'No resource matched that input'
+    BadRequestResponse:
+      description: >-
+        An error response object indicating a bad request (i.e., a status code of `400`).
+      type: object
+      properties:
+        data:
+          description: >-
+            An object containing an `error` string to display to the user.
+          type: object
+          properties:
+            error:
+              description: >-
+                The error to display.
+              type: string
+              example: "Illegal or malformed request."
     CheckboxOption:
       description: >-
         An option for a checkbox field (i.e., an object in the field's `options` array).
@@ -261,6 +301,36 @@ components:
             *Optional*. The URL for the icon beside the label. If not present, no icon will be displayed.
           type: string
           example: 'https://example.com/red.png'
+    ForbiddenResponse:
+      description: >-
+        An error response object indicating a forbidden request (i.e., a status code of `403`).
+      type: object
+      properties:
+        data:
+          description: >-
+            An object containing an `error` string to display to the user.
+          type: object
+          properties:
+            error:
+              description: >-
+                The error to display.
+              type: string
+              example: "Access forbidden."
+    InternalServerErrorResponse:
+      description: >-
+        An error response object indicating a request that could not be found (i.e., a status code of `500`).
+      type: object
+      properties:
+        data:
+          description: >-
+            An object containing an `error` string to display to the user.
+          type: object
+          properties:
+            error:
+              description: >-
+                The error to display.
+              type: string
+              example: "Internal server error."
     FormField-StaticText:
       description: >-
         A Modal Form "field" that displays static text. Fields of this type do not collect user input.
@@ -918,6 +988,21 @@ components:
               type: string
               description: >-
                 The project `gid` this hook is coming from.
+    NotFoundResponse:
+      description: >-
+        An error response object indicating a request that could not be found (i.e., a status code of `404`).
+      type: object
+      properties:
+        data:
+          description: >-
+            An object containing an `error` string to display to the user.
+          type: object
+          properties:
+            error:
+              description: >-
+                The error to display.
+              type: string
+              example: "Not found."
     RunActionRequest:
       allOf:
         - $ref: '#/components/schemas/RootUIComponentRequest'
@@ -1063,6 +1148,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TypeaheadItem'
+    UnauthorizedResponse:
+      description: >-
+        An error response object indicating a unauthorized request (i.e., a status code of `401`).
+      type: object
+      properties:
+        data:
+          description: >-
+            An object containing an `error` string to display to the user.
+          type: object
+          properties:
+            error:
+              description: >-
+                The error to display.
+              type: string
+              example: "Authorization required."
     WidgetFooter-Updated:
       description: >-
         A Widget footer that displays the timestamp of the resource's last updated time.

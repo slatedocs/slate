@@ -114,11 +114,11 @@ Get the metadata from the App Server to render a form.
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Successfully retrieved the metadata for a single form.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -218,11 +218,11 @@ When the user types into a Modal Form form field, Asana will send a request cont
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [TypeaheadList](#schematypeaheadlist)</span>|Successfully retrieved typeahead results.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -321,10 +321,10 @@ The callback request made to an App Server when a watched field's value changes 
 |---|---|
 |200<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Successfully returned the new state of the form.|
 |400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -435,10 +435,10 @@ Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormFiel
 |---|---|
 |200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource created by the form.|
 |400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -554,11 +554,11 @@ When the user types into a Rule Action form field, Asana will send a request con
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [TypeaheadList](#schematypeaheadlist)</span>|Successfully retrieved typeahead results.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -661,12 +661,12 @@ The request made when an action is triggered.
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [RanAction](#schemaranaction)</span>|Successfully attached the resource created by the form.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
 |410<span class="param-type"> None</span>|Gone|
-|500<span class="param-type"> None</span>|Server Error|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -750,11 +750,11 @@ When a user has navigated to the [Custom Rule builder](https://asana.com/guide/h
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Successfully retrieved the metadata for a single action.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -857,10 +857,10 @@ The callback request made to an App Server when a watched field's value changes 
 |---|---|
 |200<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Successfully returned the new state of the form.|
 |400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -984,10 +984,10 @@ Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormFiel
 |---|---|
 |200<span class="param-type"> None</span>|Successfully handled form submission.|
 |400<span class="param-type"> [FormMetadata](#schemaformmetadata)</span>|Something was wrong with the form data.|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -1098,11 +1098,11 @@ When the user attaches a resource URL to a task, Asana will make a signed reques
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [AttachedResource](#schemaattachedresource)</span>|Successfully attached the resource to the given object.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="half-line">
 <section>
@@ -1202,11 +1202,11 @@ When the user types into the lookup input field, Asana will send a request conta
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [TypeaheadList](#schematypeaheadlist)</span>|Successfully retrieved typeahead results.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|500<span class="param-type"> None</span>|Server Error|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -1308,12 +1308,12 @@ Get the metadata from the App Server to render a widget.
 |Status|Description|
 |---|---|
 |200<span class="param-type"> [WidgetMetadata](#schemawidgetmetadata)</span>|Successfully retrieved the metadata for a single widget.|
-|400<span class="param-type"> None</span>|Bad Request|
-|401<span class="param-type"> None</span>|Unauthorized|
-|403<span class="param-type"> None</span>|Forbidden|
-|404<span class="param-type"> None</span>|Not Found|
-|418<span class="param-type"> None</span>|Unauthorized|
-|500<span class="param-type"> None</span>|Server Error|
+|400<span class="param-type"> [BadRequest](#schemabadrequest)</span>|Bad request|
+|401<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|403<span class="param-type"> [Forbidden](#schemaforbidden)</span>|Forbidden|
+|404<span class="param-type"> [NotFound](#schemanotfound)</span>|Not found|
+|418<span class="param-type"> [Unauthorized](#schemaunauthorized)</span>|Unauthorized|
+|500<span class="param-type"> [InternalServerError](#schemainternalservererror)</span>|Server error|
 
 </section><hr class="full-line">
 <section class="full-section">
@@ -1358,6 +1358,70 @@ The response to a successful lookup request.
 |error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |resource_name<span class="param-type"> string</span>|The name of the attached resource|
 |resource_url<span class="param-type"> string</span>|The URL of the attached resource|
+
+</section><hr>
+<section>
+<a id="schemabadrequest"></a>
+<a id="schema_BadRequest"></a>
+<a id="tocSbadrequest"></a>
+<a id="tocsbadrequest"></a>
+<a id="tocS_BadRequest"></a>
+<h2 id="bad-request">BadRequest</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "data": {
+    "error": "Illegal or malformed request."
+  }
+}
+
+```
+
+<span class="description">
+An error response object indicating a bad request (i.e., a status code of `400`).
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|data<span class="param-type"> object</span>|An object containing an `error` string to display to the user.|
+|» error<span class="param-type"> string</span>|The error to display.|
+
+</section><hr>
+<section>
+<a id="schemaforbidden"></a>
+<a id="schema_Forbidden"></a>
+<a id="tocSforbidden"></a>
+<a id="tocsforbidden"></a>
+<a id="tocS_Forbidden"></a>
+<h2 id="forbidden">Forbidden</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "data": {
+    "error": "Access forbidden."
+  }
+}
+
+```
+
+<span class="description">
+An error response object indicating a forbidden request (i.e., a status code of `403`).
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|data<span class="param-type"> object</span>|An object containing an `error` string to display to the user.|
+|» error<span class="param-type"> string</span>|The error to display.|
 
 </section><hr>
 <section>
@@ -1922,6 +1986,70 @@ Contains the metadata that describes how to display and manage a form.
 
 </section><hr>
 <section>
+<a id="schemainternalservererror"></a>
+<a id="schema_InternalServerError"></a>
+<a id="tocSinternalservererror"></a>
+<a id="tocsinternalservererror"></a>
+<a id="tocS_InternalServerError"></a>
+<h2 id="internal-server-error">InternalServerError</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "data": {
+    "error": "Internal server error."
+  }
+}
+
+```
+
+<span class="description">
+An error response object indicating a request that could not be found (i.e., a status code of `500`).
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|data<span class="param-type"> object</span>|An object containing an `error` string to display to the user.|
+|» error<span class="param-type"> string</span>|The error to display.|
+
+</section><hr>
+<section>
+<a id="schemanotfound"></a>
+<a id="schema_NotFound"></a>
+<a id="tocSnotfound"></a>
+<a id="tocsnotfound"></a>
+<a id="tocS_NotFound"></a>
+<h2 id="not-found">NotFound</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "data": {
+    "error": "Not found."
+  }
+}
+
+```
+
+<span class="description">
+An error response object indicating a request that could not be found (i.e., a status code of `404`).
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|data<span class="param-type"> object</span>|An object containing an `error` string to display to the user.|
+|» error<span class="param-type"> string</span>|The error to display.|
+
+</section><hr>
+<section>
 <a id="schemaranaction"></a>
 <a id="schema_RanAction"></a>
 <a id="tocSranaction"></a>
@@ -2045,6 +2173,38 @@ The response to a successful typeahead request.
 |» subtitle<span class="param-type"> string</span>|The subtitle of the typeahead item|
 |» title<span class="param-type"> string</span>|The title of the typeahead item|
 |» value<span class="param-type"> string</span>|The value of the typeahead item|
+
+</section><hr>
+<section>
+<a id="schemaunauthorized"></a>
+<a id="schema_Unauthorized"></a>
+<a id="tocSunauthorized"></a>
+<a id="tocsunauthorized"></a>
+<a id="tocS_Unauthorized"></a>
+<h2 id="unauthorized">Unauthorized</h2>
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+```json
+{
+  "data": {
+    "error": "Authorization required."
+  }
+}
+
+```
+
+<span class="description">
+An error response object indicating a unauthorized request (i.e., a status code of `401`).
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|data<span class="param-type"> object</span>|An object containing an `error` string to display to the user.|
+|» error<span class="param-type"> string</span>|The error to display.|
 
 </section><hr>
 <section>
