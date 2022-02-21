@@ -18,7 +18,7 @@ search: true
 code_clipboard: true
 ---
 
-# Household carbon footprint calculator
+# Carbon Footprint
 
 ## Introduction
 
@@ -55,7 +55,7 @@ To edit or add fuel types and their conversion constants, open the [models](http
 For example, go to [carbon_dioxide_conversion.rb](https://github.com/sunnysanwar/fuel-co2-conv-api/blob/main/app/models/carbon_dioxide_conversion.rb) to New Fuel to CO2 with the following conversion constants.
 
 <iframe src="images/dynm-updating-conversions.mp4" height="320" width="560" allowfullscreen="" frameborder="0"></iframe>
- 
+
 ## Home Energy
 
 > REQUEST
@@ -1263,19 +1263,21 @@ Each time you recycle or compost materials instead of discarding them, you help 
 | fuel_type | string | true     | fuel type to be recycled                      |
 | input     | number | true     | no of tons/month of fuel type to be converted |
 
-# Dynm Corporate
+# Corporate
 
 ## About
 
 A calculation tool for estimating GHG emissions based on the GHG Protocol.
 
-The tool uses default emission factors, which vary by country. These are free to use and publicly available, and the tool includes links of where to obtain them. Currently, separate sets of emission factors are available for the UK and US. Location-based Scope 2 emission factors are also available for the US, Canada and Australia, while market-based residual mix emission factors are available for the US, Canada and all European counties. The GHG emissions results for each activity types are provided in the "Results Summary". This tool covers the following cross-sectoral emission sources:
+The tool uses default emission factors, which vary by country. These are free to use and publicly available, and the tool includes links of where to obtain them. Currently, separate sets of emission factors are available for the UK and US. Location-based Scope 2 emission factors are also available for the US, Canada and Australia, while market-based residual mix emission factors are available for the US, Canada and all European counties. The GHG emissions results for each activity types are provided in the "Results Summary".
 
-Scope 1 - Stationary Combustion, Mobile Combustion, and Fugitive Emissions from Air Conditioning.
+This tool covers the following cross-sectoral emission sources:
 
-Scope 2 - Purchased Electricity and Purchased Heat/Steam.
+- Scope 1 - Stationary Combustion, Mobile Combustion, and Fugitive Emissions from Air Conditioning.
 
-Scope 3 - Upstream Transportation and Distribution, Business Travel, and Employee Commuting.
+- Scope 2 - Purchased Electricity and Purchased Heat/Steam.
+
+- Scope 3 - Upstream Transportation and Distribution, Business Travel, and Employee Commuting.
 
 ## Stationary Combustion
 
@@ -2709,7 +2711,7 @@ Aggregates data for rows in all sheets above. Returns an overall emissions summa
 | inventory_data          | list   | required | List of inventory data entries with inventory information i.e inventory_year, start_date and end_date |
 | facilities              | list   | required | List of all facilities with facility information for each i.e facility_id, grid_region and country    |
 
-## Emission Factors for Corporate Endpoints
+## Emission Factors
 
 ### Stationary Combustion
 
@@ -2797,20 +2799,20 @@ Note: Emission factors are per unit of heat content using higher heating values 
 <aside>Grid Region - Location Based</aside>
 |Grid Region                 | Grid Region                 | Grid Region             |
 | --------------------------- | ------------------------ | ------------------------ |
-|AKGD		| AKMS	| AZNM |			
+|AKGD		| AKMS	| AZNM |
 |CAMX		|	ERCT	|	FRCC |
-|HIMS		| HIOA	| MROE |	
+|HIMS		| HIOA	| MROE |
 |MROW		| NEWE	| NWPP |
 |	NYCW	| NYLI	| NYUP |
 |	RFCE	|	RFCM  |	RFCW |
-| RMPA	| SPNO	| SPSO |	
+| RMPA	| SPNO	| SPSO |
 |SRMV		| SRMW	| SRSO |
 |SRTV |	SRVC	|	U.S.		|
 |CA		|Newfoundland and Labrador	|Prince Edward Island	|
-|Nova Scotia|	New Brunswick	| Quebec	| 
+|Nova Scotia|	New Brunswick	| Quebec	|
 |Ontario			| Manitoba		| Saskatchewan			|
 |Alberta		| British Columbia			| Yukon		|
-|Northwest Territories and Nunavut | New South Wales and ACT	| Victoria	|		
+|Northwest Territories and Nunavut | New South Wales and ACT	| Victoria	|
 |Queensland | South Australia		| SWIS in Western Australia			|
 |Tasmania		| Northern Territory |	North China Grid	|
 |	China Northeast Grid	| East China Grid	|	 China Grid	|
@@ -2857,16 +2859,16 @@ GWPs of Required Greenhouse Gases and Refrigerant Blends
 | HFC-236cb (R-236cb)	| HFC-236ea (R-236ea)	| HFC-236fa (R-236fa)	|
 |	HFC-245ca (R-245ca)	|	HFC-245fa (R-245fa) |	HFC-365mfc  	|
 |	HFC-43-10mee (R-4310)	|	Perfluorocarbons (PFCs)	|	PFC-116 (Perfluoroethane)  	|
-|	PFC-218 (Perfluoropropane)  |	PFC-318 (Perfluorocyclobutane) |	PFC-4-1-12 (Perfluoropentane)  |	
+|	PFC-218 (Perfluoropropane)  |	PFC-318 (Perfluorocyclobutane) |	PFC-4-1-12 (Perfluoropentane)  |
 |	PFC-9-1-18 (Perfluorodecalin) |
 
-# Dynm Community
+# Community
 
 ## About
 
-Dynmhx Community is designed to support cities in reporting city-wide GHG emissions according to GPC protocol.
+The Community API is designed to support cities in reporting city-wide GHG emissions according to GPC protocol.
 
-## Community Stationary Combustion
+## Stationary Combustion
 
 > REQUEST
 
@@ -3172,7 +3174,7 @@ Endpoint for recording activity and emissions data for Stationary energy sources
 | data_quality_explanation  | string  | true     | The explanation for choice of data quality level.                                                                                                                                                       |
 | custom_emission_factors   | list    | true     | custom params for this particular endpoint                                                                                                                                                              |
 
-## Community Transportation
+## Transportation
 
 > REQUEST
 
@@ -3485,7 +3487,7 @@ Endpoint for recording activity and emissions data for Transportation sources.
 | data_quality_explanation  | string  | true     | The explanation for choice of data quality level.                                                                                                                                                       |
 | custom_emission_factors   | list    | true     | custom params for this particular endpoint                                                                                                                                                              |
 
-## Community Waste
+## Waste
 
 > REQUEST
 
@@ -3795,7 +3797,7 @@ Endpoint for recording activity and emissions data for Waste sources.
 | data_quality_explanation  | string  | true     | The explanation for choice of data quality level.                                                                                                                                                       |
 | custom_emission_factors   | list    | true     | custom params for this particular endpoint                                                                                                                                                              |
 
-## Community IPPU
+## IPPU
 
 > REQUEST
 
@@ -4105,7 +4107,7 @@ Endpoint for recording activity and emissions data for IPPU sources.
 | data_quality_explanation  | string  | true     | The explanation for choice of data quality level.                                                                                                                                                       |
 | custom_emission_factors   | list    | true     | custom params for this particular endpoint                                                                                                                                                              |
 
-## Community AFOLU
+## AFOLU
 
 > REQUEST
 
@@ -4409,7 +4411,7 @@ Endpoint for recording activity and emissions data for AFOLU sources.
 | data_quality_explanation  | string  | true     | The explanation for choice of data quality level.                                                                                                                                                       |
 | custom_emission_factors   | list    | true     | custom params for this particular endpoint                                                                                                                                                              |
 
-## Community Other Scope
+## Other Scope
 
 > REQUEST
 
