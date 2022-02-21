@@ -365,7 +365,7 @@ curl -X GET "https://api.tauros.io/api/v2/coins/"
 {
     "success": true,
     "payload": {
-        "cryto": [
+        "crypto": [
             {
                 "coin": "BTC",
                 "coin_name": "Bitcoin",
