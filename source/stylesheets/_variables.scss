@@ -25,9 +25,9 @@ $nav-bg: #182628 !default;
 $examples-bg: #2e3336 !default;
 $code-bg: #1e2224 !default;
 $code-annotation-bg: #0b5054 !default;
-$nav-subitem-bg: #1e7aaf !default;
-$nav-active-bg: #0a93d4 !default;
-$nav-active-parent-bg: #0a6692 !default; // parent links of the current section
+$nav-subitem-bg: #0c5054 !default;
+$nav-active-bg: #148cb1 !default;
+$nav-active-parent-bg: #0c5054 !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #1e2224 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
@@ -52,7 +52,7 @@ $lang-select-pressed-text: #fff !default; // color of language tab text when mou
 ////////////////////
 $nav-width: 230px !default; // width of the navbar
 $examples-width: 50% !default; // portion of the screen taken up by code examples
-$logo-margin: 0px !default; // margin below logo
+$logo-margin: 20px !default; // margin below logo
 $main-padding: 28px !default; // padding to left and right of content & examples
 $nav-padding: 15px !default; // padding to left and right of navbar
 $nav-v-padding: 10px !default; // padding used vertically around search boxes and results
@@ -65,9 +65,8 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
 }
 
 %header-font {
@@ -76,11 +75,8 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono",
-    "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
-    serif;
-  font-size: 12px;
-  line-height: 1.5;
+  font-family: monospace, monospace;
+  font-size: 1em;
 }
 
 // OTHER
