@@ -6,6 +6,8 @@ API disbursement product provides the capability for you to disburse to 100+ ban
 
 ### Key Features
 
+**Overbooking**
+OY! can use the funds directly from your Mandiri or CIMB bank accounts for your disbursement needs. You will only need to top up the admin fee needed to execute the disbursements instead of the full amount of your disbursement. Please contact our [business representative](partner@oyindonesia.com) for further details about this feature.
 **Check Transaction Status and Callback**
 
 For all disbursements executed, you will receive notifications regarding your transaction whether it is successful, failed or pending. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
@@ -209,6 +211,7 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
     "balance":100000000.0000,
     "pendingBalance":2000000.0000,
     "availableBalance":98500000.0000,
+    "overbookingBalance":98500000.0000,
     "timestamp":"10-12-2019 12:15:37"
 }
 ```
@@ -230,6 +233,9 @@ For further details on the parameters definition and proper usage, please refer 
 Our Bulk disbursement product provides the capability to execute disbursements to multiple beneficiaries with a single xlsx or csv file upload ("Campaign") up to 25,000 transactions. Bulk disbursement is made through the OY! dashboard, where details regarding the disbursement campaign can be found. No technical integration is required to use this product.
 
 ### Key Features 
+
+**Overbooking**
+OY! can use the funds directly from your Mandiri or CIMB bank accounts for your disbursement needs. You will only need to top up the admin fee needed to execute the disbursements instead of the full amount of your disbursement. Please contact our [business representative](partner@oyindonesia.com) for further details about this feature.
 
 **Account Management** 
 
