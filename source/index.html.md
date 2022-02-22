@@ -19,6 +19,14 @@ search: true
 
 # Change Log
 
+## 2022-02-21
+
+- Add `network` body param in crypto-withdraw endpoint
+ 
+- Add `network` query param in get deposit address endpoint
+  
+- Update endpoint for query coins to include supported networks
+
 ## 2021-08-24
 
 - Update endpoint for query markets orderbooks
@@ -355,91 +363,217 @@ curl -X GET "https://api.tauros.io/api/v2/coins/"
 
 ```json
 {
-  "success": true,
-  "payload": {
-    "cryto": [
-      {
-        "coin": "BTC",
-        "coin_name": "Bitcoin",
-        "min_withdraw": "0.00050000",
-        "fee_withdraw": 0.0002,
-        "confirmations_required": 4,
-        "coin_icon": "https://static.coinbtr.com/media/coins/BTC_9ItLsUF.png",
-        "available_to_deposit": true,
-        "available_to_withdraw": true
-      },
-      {
-        "coin": "BEMB",
-        "coin_name": "Bitcoin Embassy Bar",
-        "min_withdraw": "5.00000000",
-        "fee_withdraw": 1,
-        "confirmations_required": 10,
-        "coin_icon": "https://static.coinbtr.com/media/coins/BEMB_Po8mN3B.png",
-        "available_to_deposit": false,
-        "available_to_withdraw": true
-      },
-      {
-        "coin": "ZEC",
-        "coin_name": "ZCash",
-        "min_withdraw": "0.08500000",
-        "fee_withdraw": 0.05,
-        "confirmations_required": 25,
-        "coin_icon": "https://static.coinbtr.com/media/coins/ZEC_hecsnl7.png",
-        "available_to_deposit": true,
-        "available_to_withdraw": false
-      },
-      {
-        "coin": "LTC",
-        "coin_name": "Litecoin",
-        "min_withdraw": "0.00500000",
-        "fee_withdraw": 0.0035,
-        "confirmations_required": 6,
-        "coin_icon": "https://static.coinbtr.com/media/coins/LTC_O4Ktdtr.png",
-        "available_to_deposit": true,
-        "available_to_withdraw": true
-      },
-      {
-        "coin": "XLM",
-        "coin_name": "Stellar",
-        "min_withdraw": "2.00000000",
-        "fee_withdraw": 1,
-        "confirmations_required": 10,
-        "coin_icon": "https://static.coinbtr.com/media/coins/XLM_UKjRoth.png",
-        "available_to_deposit": true,
-        "available_to_withdraw": true
-      },
-      {
-        "coin": "BCH",
-        "coin_name": "Bitcoin Cash",
-        "min_withdraw": "0.00200000",
-        "fee_withdraw": 0.001,
-        "confirmations_required": 6,
-        "coin_icon": "https://static.coinbtr.com/media/coins/BCH_IlW6auL.png",
-        "available_to_deposit": true,
-        "available_to_withdraw": true
-      },
-      {
-        "coin": "DASH",
-        "coin_name": "Dash",
-        "min_withdraw": "0.00400000",
-        "fee_withdraw": 0.002,
-        "confirmations_required": 6,
-        "coin_icon": "https://static.coinbtr.com/media/coins/DASH_7yHBf0P.png",
-        "available_to_deposit": true,
-        "available_to_withdraw": true
-      }
-    ],
-    "fiat": [
-      {
-        "coin": "MXN",
-        "coin_name": "Pesos Mexicanos",
-        "min_withdraw": "10.00000000",
-        "fee_withdraw": "0.0000",
-        "country": "Mexico",
-        "coin_icon": "https://static.coinbtr.com/media/coins/MXN_LmmSZ71.png"
-      }
-    ]
-  }
+    "success": true,
+    "payload": {
+        "crypto": [
+            {
+                "coin": "BTC",
+                "coin_name": "Bitcoin",
+                "decimals": 8,
+                "min_withdraw": "0.00010000",
+                "fee_withdraw": 0.00002,
+                "confirmations_required": 3,
+                "coin_icon": "https://static.coinbtr.com/media/coins/BTC_9ItLsUF.png",
+                "available_to_deposit": true,
+                "available_to_withdraw": true,
+                "networks": [
+                    {
+                        "name": "BTC",
+                        "full_name": "Bitcoin",
+                        "min_withdraw": 0.0001,
+                        "fee_withdraw": 0.00002,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 3
+                    }
+                ]
+            },
+            {
+                "coin": "BCH",
+                "coin_name": "Bitcoin Cash",
+                "decimals": 8,
+                "min_withdraw": "0.00200000",
+                "fee_withdraw": 0.001,
+                "confirmations_required": 6,
+                "coin_icon": "https://static.coinbtr.com/media/coins/BCH_IlW6auL.png",
+                "available_to_deposit": true,
+                "available_to_withdraw": true,
+                "networks": [
+                    {
+                        "name": "BCH",
+                        "full_name": "Bitcoin Cash",
+                        "min_withdraw": 0.002,
+                        "fee_withdraw": 0.001,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 6
+                    }
+                ]
+            },
+            {
+                "coin": "XLM",
+                "coin_name": "Stellar",
+                "decimals": 7,
+                "min_withdraw": "1.00000000",
+                "fee_withdraw": 0.1,
+                "confirmations_required": 10,
+                "coin_icon": "https://static.coinbtr.com/media/coins/XLM_UKjRoth.png",
+                "available_to_deposit": true,
+                "available_to_withdraw": true,
+                "networks": [
+                    {
+                        "name": "XLM",
+                        "full_name": "Stellar",
+                        "min_withdraw": 1,
+                        "fee_withdraw": 0.1,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 1
+                    }
+                ]
+            },
+            {
+                "coin": "USDC",
+                "coin_name": "USD Coin",
+                "decimals": 4,
+                "min_withdraw": "17.85030000",
+                "fee_withdraw": 16.2276,
+                "confirmations_required": 30,
+                "coin_icon": "https://static.coinbtr.com/media/coins/USDC_KhhC0uw.png",
+                "available_to_deposit": true,
+                "available_to_withdraw": true,
+                "networks": [
+                    {
+                        "name": "ETH",
+                        "full_name": "Ethereum",
+                        "min_withdraw": 17.8503,
+                        "fee_withdraw": 16.2276,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 30
+                    },
+                    {
+                        "name": "POLYGON",
+                        "full_name": "Polygon (PoS)",
+                        "min_withdraw": 1,
+                        "fee_withdraw": 0.5,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 100
+                    }
+                ]
+            },
+            {
+                "coin": "LTC",
+                "coin_name": "Litecoin",
+                "decimals": 8,
+                "min_withdraw": "0.00200000",
+                "fee_withdraw": 0.0001,
+                "confirmations_required": 6,
+                "coin_icon": "https://static.coinbtr.com/media/coins/LTC_O4Ktdtr.png",
+                "available_to_deposit": true,
+                "available_to_withdraw": true,
+                "networks": [
+                    {
+                        "name": "LTC",
+                        "full_name": "Litecoin",
+                        "min_withdraw": 0.002,
+                        "fee_withdraw": 0.0001,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 6
+                    }
+                ]
+            },
+            {
+                "coin": "DASH",
+                "coin_name": "Dash",
+                "decimals": 8,
+                "min_withdraw": "0.00400000",
+                "fee_withdraw": 0.003,
+                "confirmations_required": 6,
+                "coin_icon": "https://static.coinbtr.com/media/coins/DASH_hJX2BkG.png",
+                "available_to_deposit": true,
+                "available_to_withdraw": true,
+                "networks": [
+                    {
+                        "name": "DASH",
+                        "full_name": "Dash",
+                        "min_withdraw": 0.004,
+                        "fee_withdraw": 0.003,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 6
+                    }
+                ]
+            },
+            {
+                "coin": "ETH",
+                "coin_name": "Ethereum",
+                "decimals": 8,
+                "min_withdraw": "0.00255766",
+                "fee_withdraw": 0.00232515,
+                "confirmations_required": 30,
+                "coin_icon": "https://static.coinbtr.com/media/coins/ETH_fNCzuBy.png",
+                "available_to_deposit": true,
+                "available_to_withdraw": true,
+                "networks": [
+                    {
+                        "name": "ETH",
+                        "full_name": "Ethereum",
+                        "min_withdraw": 0.00255766,
+                        "fee_withdraw": 0.00232515,
+                        "available_to_deposit": true,
+                        "available_to_withdraw": true,
+                        "available_in_app": false,
+                        "available_in_web": false,
+                        "status": "AVAILABLE",
+                        "icon": null,
+                        "confirmations_required": 30
+                    }
+                ]
+            }
+        ],
+        "fiat": [
+            {
+                "coin": "MXN",
+                "coin_name": "Pesos Mexicanos",
+                "decimals": 2,
+                "min_withdraw": "25.00000000",
+                "fee_withdraw": "0.0000",
+                "country": "Mexico",
+                "coin_icon": "https://static.coinbtr.com/media/coins/MXN_LmmSZ71.png"
+            }
+        ]
+    }
 }
 ```
 
@@ -464,6 +598,12 @@ This API call will bring you a deposit address for funding your cryptocurrency w
 ### HTTP Request
 
 `GET /v2/wallets/address/<coin>/`
+
+### Query Parameters
+
+| Parameter | Type   | Required | Description                      |
+| --------- | ------ | -------- | -------------------------------- |
+| network   | String | No       | Network to use (e.g. 'polygon'). |
 
 > The API call will response this:
 
@@ -546,14 +686,14 @@ This API call allows you to send cryptocurrency to a given destination address.
 
 ### Body Parameters
 
-| Parameter | Type    | Required | Coins | Description                            |
-| --------- | ------- | -------- | ----- | -------------------------------------- |
-| nip       | String  | Yes      | All   | Transactional NIP (e.g. '1234').       |
-| coin      | String  | Yes      | All   | Cryptocurrency symbol (e.g. 'btc').    |
-| address   | String  | Yes      | All   | Destination address.                   |
-| amount    | Float   | Yes      | All   | Amount to send.                        |
-| memoId    | Integer | No       | XLM   | Memo id attached to the transaction.   |
-| memoText  | String  | No       | XLM   | Memo text attached to the transaction. |
+| Parameter | Type   | Required | Coins | Description                                                              |
+| --------- | ------ | -------- | ----- | ------------------------------------------------------------------------ |
+| nip       | String | Yes      | All   | Transactional NIP (e.g. '1234').                                         |
+| coin      | String | Yes      | All   | Cryptocurrency symbol (e.g. 'btc').                                      |
+| address   | String | Yes      | All   | Destination address.                                                     |
+| amount    | Float  | Yes      | All   | Amount to send (including fee).                                          |
+| message   | Json   | No       | XLM   | Json field to specify memo type and value (e.g. `{"memoText": "4321"}`). |
+| network   | String | No       | All   | Network over wich you want to transfer the assets.                       |
 
 <aside class="notice">
 Make sure your API key has permission to perform this action.
@@ -1279,7 +1419,7 @@ This endpoint returns the last 50 trades for a given market.
 
 | Parameter | Type   | Required | Description                   |
 | --------- | ------ | -------- | ----------------------------- |
-| market    | String | Yes       | Market name (e.g. `btc-mxn`). |
+| market    | String | Yes      | Market name (e.g. `btc-mxn`). |
 
 ## Tickers
 
