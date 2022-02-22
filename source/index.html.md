@@ -13,6 +13,7 @@ includes:
    - intro
    - authentication
    - assets
+   - asset-access.md
    - asset-units
    - meters
    - consumption
