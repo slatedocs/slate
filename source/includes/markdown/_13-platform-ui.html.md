@@ -398,15 +398,15 @@ These details will be accessible to the end user, and are meant to help them ide
 
 | Property             | Description                                                                        |
 |----------------------|------------------------------------------------------------------------------------|
-| App Icon             | Your app's icon, shown to users to identify your application.                      |
-| App Name             | Your app's name, shown to users to identify your application.                      |
-| Short Description    | A short description of the app shown in the app gallery.                           |
-| Long Description     | An extended description of the functionality of the app shown in the app settings. |
-| Company Name         | Your company name.                                                                 |
+| App icon             | Your app's icon, shown to users to identify your application.                      |
+| App name             | Your app's name, shown to users to identify your application.                      |
+| Short description    | A short description of the app shown in the app gallery.                           |
+| Long description     | An extended description of the functionality of the app shown in the app settings. |
+| Company name         | Your company name.                                                                 |
 | Company URL          | URL of the page where users can learn more about your company.                     |
-| App Landing Page URL | URL of the page where users can learn more about this app and install it.          |
+| App landing page URL | URL of the page where users can learn more about this app and install it.          |
 | Support URL          | URL of the page where users can read documentation or get support.                 |
-| Privacy Policy URL   | URL of the page where users can read your app's privacy policy.                    |
+| Privacy policy URL   | URL of the page where users can read your app's privacy policy.                    |
 
 ### Configure Capabilities
 
