@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-02-23
+
+- Added [Interactions API](#interactions) documentation.
+
 ## 2022-02-17
 
 - Updated [GET entity files](#get-all-files) and entity file webhooks to exclude non-user uploaded files.

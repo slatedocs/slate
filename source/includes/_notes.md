@@ -195,6 +195,11 @@ Note that either `content` or `gmail_id` must be specified.
 
 The note resource created through this request.
 
+<aside class="notice">
+  <h6>Note</h6>
+  <p>When creating a note using the API, the user corresponding to the API token will be the creator by default.</p>
+</aside>
+
 ## Update a Note
 
 > Example Request

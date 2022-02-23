@@ -19,6 +19,7 @@ includes:
   - persons
   - organizations
   - opportunities
+  - interactions
   - relationship-strengths
   - notes
   - entity-files

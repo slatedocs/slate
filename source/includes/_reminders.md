@@ -389,7 +389,7 @@ The reminder created through this request.
 
 <aside class="notice">
   <h6>Note</h6>
-  <p>If you create a reminder through the API, the user corresponding to the API token will be the creator by default.</p>
+  <p>When creating a reminder using the API, the user corresponding to the API token will be the creator by default.</p>
 </aside>
 
 ## Update a Reminder
