@@ -77,7 +77,7 @@ There are 2 ways in which you can top up your OY account:
 - Top Up via Virtual Account
   The Virtual Account number information can be found on 'How to Top Up Balance via VA' tab once you click the 'How To Top Up' button. If you choose to top up via VA, the topped up amount will be credited into your account real-time and you do not need to send any manual confirmation to OY
 
-![VA Topup](images/va_topup.png)
+![VA Topup](images/vatopupnobni.png)
 
 - Manual Top Up via Bank Transfer
   Aside from Virtual Account, you can also transfer the top up money to OY's giro account. If you choose to top up via this method, you need to perform a manual confirmation in order that your money can be credited into your account.
