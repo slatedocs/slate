@@ -65,7 +65,7 @@ echo 'Hello World';
 ```
 
 An App Server is required for working with [Webhooks](/docs/webhooks)
-and [App Components](/docs/app-components-overview). When we say "App Server", we
+and [App Components](/docs/overview-of-app-components). When we say "App Server", we
 are referring to the server Asana directly sends requests to. This is different
 from the service it may be connecting to in the end (like Slack or Jira).
 
