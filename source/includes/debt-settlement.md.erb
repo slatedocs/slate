@@ -404,10 +404,20 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-""
+{
+  "repaymentBatchReference": "SECONDARY-4855bf09-6765-48c4-a8f7-5dd189924589"
+}
 ```
 ### Description
 Records the settlement of a secondary market trade.
+
+The response includes a field called `repaymentBatchReference`, which will be included in several
+webhooks that can help to track the arrival of the funds into the sellers account. These webhooks include:
+
+ * <a href="/#webhooks-investment_repayment_instruction_received">INVESTMENT_REPAYMENT_INSTRUCTION_RECEIVED</a>
+ * <a href="/#webhooks-investment_repayment_clearing">INVESTMENT_REPAYMENT_CLEARING</a>
+ * <a href="/#webhooks-investment_repayment_batch_complete">INVESTMENT_REPAYMENT_BATCH_COMPLETE</a>
+
 ### Request
 | Name                                        | Type   | Description                                                                                                     | Required |
 | ------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------- | -------- |
@@ -615,13 +625,13 @@ This endpoint is the only call required to repay investments for any platform on
 | ------------------------ | ------ | -------------------------------------------- |
 | repaymentBatchReference  | string | The unique ID for this repayment request     |
 
-### Possible HTTP Statuses 
+### Possible HTTP Statuses
 
-| HTTP Status Code                | Description                                                                                                                                                                                                                                                                                                | Body                                               | Content-Type     |                 
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------- |------------------| 
-| 200 Ok                          | Batch accepted to be instructed. Note that this does not indicate completion or success. Subsequent processing is asynchronous, so the caller should listen to the webhooks detailed above to determine progress.                                                                                          | See above                                          | application/json |                 
-| 400 Bad Request                 | The request was malformed. See body for more information                                                                                                                                                                                                                                                   | <a href="/#errors-bad-request">Error</a>           | application/json |        
-| 50x Unknown errors and timeouts | Unknown errors and timeouts. The caller should not assume that the request has failed. Listen for any subsequent webhooks indicating processing may have started, and ensure any automated retries use the X-CLIENT-REQUEST-ID header and repeat within a maximum of 24 hours to prevent double-processing | <a href="/#errors-internal-server-error">Error</a> | application/json |       
+| HTTP Status Code                | Description                                                                                                                                                                                                                                                                                                | Body                                               | Content-Type     |
+|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------- |------------------|
+| 200 Ok                          | Batch accepted to be instructed. Note that this does not indicate completion or success. Subsequent processing is asynchronous, so the caller should listen to the webhooks detailed above to determine progress.                                                                                          | See above                                          | application/json |
+| 400 Bad Request                 | The request was malformed. See body for more information                                                                                                                                                                                                                                                   | <a href="/#errors-bad-request">Error</a>           | application/json |
+| 50x Unknown errors and timeouts | Unknown errors and timeouts. The caller should not assume that the request has failed. Listen for any subsequent webhooks indicating processing may have started, and ensure any automated retries use the X-CLIENT-REQUEST-ID header and repeat within a maximum of 24 hours to prevent double-processing | <a href="/#errors-internal-server-error">Error</a> | application/json |
 
 ## `GET /investor-repayment`
 
