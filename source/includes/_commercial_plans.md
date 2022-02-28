@@ -11,7 +11,7 @@ fetch('https://core.eventtia.com/v1/commercial_plans/', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate.
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
 > Example of a successful (200) response:
 
@@ -68,9 +68,9 @@ fetch('https://core.eventtia.com/v1/commercial_plans/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate.
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
-> Make sure you replace <id> with the id for the commercial plan to get.
+> Make sure you replace &lt;id&gt; with the id for the commercial plan to get.
 
 > Example of a successful (200) response:
 

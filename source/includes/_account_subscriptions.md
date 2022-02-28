@@ -11,7 +11,7 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate.
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
 > Example of a successful (200) response:
 
@@ -79,9 +79,9 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate.
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
-> Make sure you replace <id> with the id for the account_subscription to get.
+> Make sure you replace &lt;id&gt; with the id for the account_subscription to get.
 
 > Example of a successful (200) response:
 
@@ -154,11 +154,11 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate.
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
-> Make sure you replace <commercial_plan_id> with the id of the desired commercial plan.
+> Make sure you replace &lt;commercial_plan_id&gt; with the id of the desired commercial plan.
 
-> Make sure you replace <price_id> with the id of the desired price.
+> Make sure you replace &lt;price_id&gt; with the id of the desired price.
 
 > Example of a successful (200) response:
 
@@ -229,11 +229,11 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate.
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
-> Make sure you replace <commercial_plan_id> with the id of the desired commercial plan.
+> Make sure you replace &lt;commercial_plan_id&gt; with the id of the desired commercial plan.
 
-> Make sure you replace <price_id> with the id of the desired price.
+> Make sure you replace &lt;price_id&gt; with the id of the desired price.
 
 > Example of a successful (200) response:
 
@@ -301,9 +301,9 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate.
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
-> Make sure you replace <id> with the id for the account subscription to destroy.
+> Make sure you replace &lt;id&gt; with the id for the account subscription to destroy.
 
 > Example of a successful (200) response:
 
