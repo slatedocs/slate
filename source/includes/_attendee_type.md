@@ -139,7 +139,7 @@ event_uri | string  | The event_uri for the desired event
 
 ### HTTP Request for optional include fields
 
-`GET /v1/events/:event_uri/attendee_types/:id/include=fields`
+`GET /v1/events/:event_uri/attendee_types/:id?include=value`
 
 ### Path Parameters
 
@@ -147,6 +147,12 @@ Parameter |  Type   | Description
 --------- | ------- | -----------
 include   | string  | this value gives informations for each relationships
 
+### Include Options
+
+Value |  Type   | Description
+----- | ------- | -----------
+fields | string | include fields relationships
+current_price | string | include current price
 
 ## Create Attendee Type
 

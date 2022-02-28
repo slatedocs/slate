@@ -19,6 +19,8 @@ includes:
   - speakers
   - users
   - workshops
+  - commercial_plans
+  - account_subscriptions
 
 search: true
 ---
