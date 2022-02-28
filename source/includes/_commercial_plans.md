@@ -118,6 +118,6 @@ This endpoint return a commercial plan
 
 ### Path Parameters
 
-| Parameter | Type    | Description                            |
-| --------- | ------- | -------------------------------------- |
-| id        | integer | The id for the desired commercial plan |
+Parameter | Type | Description
+--------- | ---- | -----------
+id | integer | The id for the desired commercial plan.

@@ -130,9 +130,9 @@ This endpoint return an account subscription
 
 ### Path Parameters
 
-| Parameter | Type    | Description                                 |
-| --------- | ------- | ------------------------------------------- |
-| id        | integer | The id for the desired account subscription |
+Parameter | Type | Description
+--------- | ---- | -----------
+id | integer | The id for the desired account subscription
 
 ## Create Account Subscription
 
@@ -146,8 +146,15 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/', {
     data: {
       type: "account_subscriptions",
       attributes: {
-        plan_id: "<commercial_plan_id>",
         price_id: "<price_id>"
+      }
+      relationships: {
+        plan: {
+          data: {
+            id: '<plan_id>',
+            type: 'commercial_plans'
+          }
+        }
       }
     }
   }
@@ -156,7 +163,7 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/', {
 
 > Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
-> Make sure you replace &lt;commercial_plan_id&gt; with the id of the desired commercial plan.
+> Make sure you replace &lt;plan_id&gt; with the id of the desired commercial plan.
 
 > Make sure you replace &lt;price_id&gt; with the id of the desired price.
 
@@ -172,13 +179,11 @@ HTTP/1.1 200 OK
       "price_id": "price_1KEwkLHCxGs6xkptcLXtbBlV"
     },
     "relationships": {
-      "commercial_plans": {
-        "data": [
-          {
-            "id": ,
-            "type": "commercial_plans"
-          }
-        ]
+      "plan": {
+        "data": {
+          "id": "43234",
+          "type": "commercial_plans"
+        }
       }
     }
   }
@@ -202,12 +207,12 @@ This endpoint create an account subscription and return it
 
 `POST /v1/account_subscriptions/`
 
-### Available settings
+### Body Parameters
 
-| Parameter | Type   | Description                                       |
-| --------- | ------ | ------------------------------------------------- |
-| plan_id   | string | commercial plan id for this account subscription. |
-| price_id  | string | payment platform price id.                        |
+Parameter | Type | Description
+--------- | ---- | -----------
+plan_id | string | commercial plan id for this account subscription.
+price_id | string | price id for this account subscription.
 
 ## Update Account Subscription
 
@@ -215,14 +220,21 @@ This endpoint create an account subscription and return it
 fetch('https://core.eventtia.com/v1/account_subscriptions/<id>', {
   method: 'PUT',
   headers: {
-    'Authorization': <your token>',
+    'Authorization': '<your token>',
   },
   body: {
     data: {
       type: "account_subscriptions",
       attributes: {
-        plan_id: "<commercial_plan_id>",
         price_id: "<price_id>"
+      }
+      relationships: {
+        plan: {
+          data: {
+            id: '<plan_id>',
+            type: 'commercial_plans'
+          }
+        }
       }
     }
   }
@@ -231,7 +243,7 @@ fetch('https://core.eventtia.com/v1/account_subscriptions/<id>', {
 
 > Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
-> Make sure you replace &lt;commercial_plan_id&gt; with the id of the desired commercial plan.
+> Make sure you replace &lt;plan_id&gt; with the id of the desired commercial plan.
 
 > Make sure you replace &lt;price_id&gt; with the id of the desired price.
 
@@ -247,13 +259,11 @@ HTTP/1.1 200 OK
       "price_id": "price_1KEwkLHCxGs6xkptcLXtbBlV"
     },
     "relationships": {
-      "commercial_plans": {
-        "data": [
-          {
-            "id": ,
-            "type": "commercial_plans"
-          }
-        ]
+      "plan": {
+        "data": {
+          "id": "4343",
+          "type": "commercial_plans"
+        }
       }
     }
   }
@@ -279,16 +289,16 @@ This endpoint update an account subscription and return it
 
 ### Path Parameters
 
-| Parameter | Type    | Description                                 |
-| --------- | ------- | ------------------------------------------- |
-| id        | integer | The id for the desired account subscription |
+Parameter | Type | Description
+--------- | ---- | -----------
+id | integer | The id for the desired account subscription
 
-### Available settings
+### Body Parameters
 
-| Parameter | Type   | Description                                       |
-| --------- | ------ | ------------------------------------------------- |
-| plan_id   | string | commercial plan id for this account subscription. |
-| price_id  | string | payment platform price id.                        |
+Parameter | Type | Description
+--------- | ---- | -----------
+plan_id | string | commercial plan id for this account subscription.
+price_id | string | price id for this account subscription.
 
 ## Destroy Account Subscriptions
 
@@ -317,13 +327,11 @@ HTTP/1.1 200 OK
       "price_id": "price_1KEwkLHCxGs6xkptcLXtbBlV"
     },
     "relationships": {
-      "commercial_plans": {
-        "data": [
-          {
-            "id": ,
-            "type": "commercial_plans"
-          }
-        ]
+      "plan": {
+        "data": {
+          "id": "4343",
+          "type": "commercial_plans"
+        }
       }
     }
   }
@@ -338,6 +346,6 @@ This endpoint destroy a account subscription and return it
 
 ### Path Parameters
 
-| Parameter | Type    | Description                                 |
-| --------- | ------- | ------------------------------------------- |
-| id        | integer | The id for the desired account subscription |
+Parameter | Type | Description
+--------- | ---- | -----------
+id | integer | The id for the desired account subscription.
