@@ -5920,6 +5920,7 @@ $result = $client->portfolios->createPortfolio(array('field' => 'value', 'field'
       "15363"
     ],
     "name": "Bug Portfolio",
+    "public": false,
     "workspace": "167589"
   }
 }
@@ -6062,6 +6063,7 @@ integrations to create their own starting state on a portfolio.
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |»» name<span class="param-type"> string</span>|The name of the portfolio.|
+|»» public<span class="param-type"> boolean</span>|True if the portfolio is public to its workspace members.|
 |»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -6382,6 +6384,7 @@ $result = $client->portfolios->updatePortfolio($portfolio_gid, array('field' => 
       "15363"
     ],
     "name": "Bug Portfolio",
+    "public": false,
     "workspace": "167589"
   }
 }
@@ -6522,6 +6525,7 @@ Returns the complete updated portfolio record.
 |»» color<span class="param-type"> string</span>|Color of the portfolio.|
 |»» members<span class="param-type"> [string]</span>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
 |»» name<span class="param-type"> string</span>|The name of the portfolio.|
+|»» public<span class="param-type"> boolean</span>|True if the portfolio is public to its workspace members.|
 |»» workspace<span class="param-type"> string</span>|Gid of an object.|
 |/portfolio_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the portfolio.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
