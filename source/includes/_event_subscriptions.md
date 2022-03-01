@@ -25,7 +25,15 @@ curl https://api.handshq.com/v1/event_subscriptions \
 
 This endpoint allows you to be notified of certain events. Those currently supported are:
 
+### RAMS
 - `version_pdf_created` - this is fired after we have generated and stored a project version PDF, which is now ready to be downloaded.
+
+### Training Register
+<p> The below events are available to customers with the Training Register feature </p>
+
+- `role_created` - this is fired after a role is created for an account (via the HandsHQ app or via the API).
+- `role_updated` - this is fired after a role is updated for an account (via the HandsHQ app or via the API).
+- `role_deleted` - this is fired after a role is deleted for an account (via the HandsHQ app or via the API).
 
 <aside class="notice">
   Please note that the `version_pdf_created` event is scoped to look for subscriptions which were created by the same division that the project belongs to.
@@ -40,7 +48,7 @@ This endpoint allows you to be notified of certain events. Those currently suppo
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 external_url | String | Yes | A valid URL which we will send a `POST` request to when the event occurs, this must be using `https`.
-event_type | String | Yes | The name of the event you wish to be notified about, allowed values: [`version_pdf_created`]
+event_type | String | Yes | The name of the event you wish to be notified about, e.g `version_pdf_created`
 
 
 ### Response
@@ -61,9 +69,6 @@ Successful requests will return a json payload of the event subscription that wa
           "type": "subscriber"
         }
       }
-    },
-    "links": {
-        "related": "https://some.external_location.com/webhooks"
     }
   }
 }

@@ -3,7 +3,7 @@
 ## Viewing your roles
 
 ```shell
-curl https://api.handshq.com/v1/company_roles \
+curl https://api.handshq.com/v1/roles \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]"
 ```
@@ -20,14 +20,20 @@ curl https://api.handshq.com/v1/company_roles \
           "position": "Engineer"
         }
       },
-        {
+      {
         "id": "1235",
         "type": "companyRole",
         "attributes": {
           "position": "Technician"
         }
       }
-    ]
+    ],
+    "meta": {
+      "pagination": {
+          "requested_page": 1,
+          "total_pages": 1
+      }
+    }
   }
 ```
 
@@ -35,7 +41,7 @@ This endpoint allows you to view the roles that belong to the account registered
 
 ### Request
 
-`GET https://api.handshq.com/v1/company_roles`
+`GET https://api.handshq.com/v1/roles`
 
 ### Allowed Query Parameters
 Parameter | Format | Required | Description
@@ -50,7 +56,7 @@ Results in `data` are [paginated](#pagination)
 ## Viewing one role
 
 ```shell
-curl https://api.handshq.com/v1/company_role/[id] \
+curl https://api.handshq.com/v1/role/[id] \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]"
 ```
@@ -58,7 +64,7 @@ curl https://api.handshq.com/v1/company_role/[id] \
 > 200
 
 ```json
-{
+  {
     "data": {
       "id": "1234",
       "type": "companyRole",
@@ -73,20 +79,27 @@ This endpoint allows you to view a role by providing the id.
 
 ### Request
 
+`GET https://api.handshq.com/v1/roles/[id]`
+
 ### Response
+
+Successful requests will return a json payload of that role and a `200` status code
 
 ## Creating a role
 
 ```shell
-curl https://api.handshq.com/v1/company_role/[id] \
+curl https://api.handshq.com/v1/roles \
   -H "Accept: application/json" \
-  -H "Authorization: bearer [api_token]"
+  -H "Authorization: bearer [api_token]" \
+  -H "Content-Type: application/json" \
+  --request POST \
+  -d "[json_payload]"
 ```
 
-> 200
+> 201
 
 ```json
-{
+  {
     "data": {
       "id": "1234",
       "type": "companyRole",
@@ -97,24 +110,31 @@ curl https://api.handshq.com/v1/company_role/[id] \
   }
 ```
 
-This endpoint allows you to view a role by providing the id.
+This endpoint allows you to create a role. Roles are account wide, so the role will be created for the account of the company that the API key belongs to.
 
 ### Request
 
+`POST https://api.handshq.com/v1/roles`
+
 ### Response
+
+Successful requests will return a json payload of the newly created role and a `201` status code
 
 ## Updating a role
 
 ```shell
-curl https://api.handshq.com/v1/company_role/[id] \
+curl https://api.handshq.com/v1/role/[id] \
   -H "Accept: application/json" \
-  -H "Authorization: bearer [api_token]"
+  -H "Authorization: bearer [api_token]" \
+  -H "Content-Type: application/json" \
+  --requst PATCH
+  -d "[json_payload]"
 ```
 
 > 200
 
 ```json
-{
+  {
     "data": {
       "id": "1234",
       "type": "companyRole",
@@ -125,36 +145,33 @@ curl https://api.handshq.com/v1/company_role/[id] \
   }
 ```
 
-This endpoint allows you to view a role by providing the id.
+This endpoint allows you to update the `position` attribute of a role belonging to your account
 
 ### Request
 
+`PATCH https://api.handshq.com/v1/role/[id]`
+
 ### Response
+
+Successful requests will return a json payload of the updated role and a `200` status code
 
 ## Deleting a role
 
 ```shell
-curl https://api.handshq.com/v1/company_role/[id] \
+curl https://api.handshq.com/v1/role/[id] \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]"
+  --request DELETE
 ```
 
-> 200
+> 204
 
-```json
-{
-    "data": {
-      "id": "1234",
-      "type": "companyRole",
-      "attributes": {
-        "position": "Engineer"
-      }
-    }
-  }
-```
-
-This endpoint allows you to view a role by providing the id.
+This endpoint allows you to delete a role belonging to your account.
 
 ### Request
 
+`DELETE https://api.handshq.com/v1/role[id]`
+
 ### Response
+
+Successful requests will return a `204` status code
