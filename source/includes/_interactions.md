@@ -38,8 +38,8 @@ Note the combination of id and type for an interaction is unique.
             "last_name": "Doe",
             "primary_email": "john@affinity.co",
             "emails": [
-            "john@affinity.co"
-        ]
+                "john@affinity.co"
+            ]
         },
         {
             "id": 2021,
@@ -68,8 +68,8 @@ Note the combination of id and type for an interaction is unique.
             "last_name": "Doe",
             "primary_email": "john@affinity.co",
             "emails": [
-            "john@affinity.co"
-        ]
+                "john@affinity.co"
+            ]
         },
         {
             "id": 2021,
@@ -92,16 +92,28 @@ Note the combination of id and type for an interaction is unique.
 {
     "date": "2021-02-04T09:43:39.717-08:00",
     "id": 417,
-    "subject": "John <-> Gareth",
+    "subject": "John <-> Alice",
     "type": 3,
     "from": {
         "id": 443,
-        "email": "john@affinity.co"
+        "type": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "primary_email": "john@affinity.co",
+        "emails": [
+            "john@affinity.co"
+        ]
     },
     "to": [
         {
-            "id": 211,
-            "email": "gareth@example.com"
+            "id": 2021,
+            "type": 0,
+            "first_name": "Alice",
+            "last_name": "Yen",
+            "primary_email": "yen@alice.com",
+            "emails": [
+                "yen@alice.com"
+            ]
         }
     ],
     "cc": [],
@@ -164,16 +176,28 @@ curl "https://api.affinity.co/interactions?type=3&page_size=2&status=2" -u :$API
         {
             "date": "2021-02-04T09:43:39.717-08:00",
             "id": 417,
-            "subject": "John <-> Gareth",
+            "subject": "John <-> Alice",
             "type": 3,
             "from": {
                 "id": 443,
-                "email": "john@affinity.co"
+                "type": 1,
+                "first_name": "John",
+                "last_name": "Doe",
+                "primary_email": "john@affinity.co",
+                "emails": [
+                    "john@affinity.co"
+                ]
             },
             "to": [
                 {
-                    "id": 211,
-                    "email": "gareth@example.com"
+                    "id": 2021,
+                    "type": 0,
+                    "first_name": "Alice",
+                    "last_name": "Yen",
+                    "primary_email": "yen@alice.com",
+                    "emails": [
+                        "yen@alice.com"
+                    ]
                 }
             ],
             "cc": [],
@@ -182,16 +206,28 @@ curl "https://api.affinity.co/interactions?type=3&page_size=2&status=2" -u :$API
         {
             "date": "2021-02-02T12:55:19.801-08:00",
             "id": 265,
-            "subject": "Alfred <-> Guilherme",
+            "subject": "Alfred <-> Alice",
             "type": 3,
             "from": {
                 "id": 1012,
-                "email": "alfred@affinity.co"
+                "type": 1,
+                "first_name": "Alfred",
+                "last_name": "Hickey",
+                "primary_email": "alfredhickeyshmcneax@affinity.co",
+                "emails": [
+                    "alfredhickeyshmcneax@affinity.co"
+                ]
             },
             "to": [
                 {
-                    "id": 135,
-                    "email": "guilhermecarenjphsqob@kestumbilt.com"
+                    "id": 2021,
+                    "type": 0,
+                    "first_name": "Alice",
+                    "last_name": "Yen",
+                    "primary_email": "yen@alice.com",
+                    "emails": [
+                        "yen@alice.com"
+                    ]
                 }
             ],
             "cc": [],
@@ -341,8 +377,8 @@ curl -X POST "https://api.affinity.co/interactions" \
             "last_name": "Doe",
             "primary_email": "john@affinity.co",
             "emails": [
-            "john@affinity.co"
-        ]
+                "john@affinity.co"
+            ]
         },
         {
             "id": 2021,
@@ -419,8 +455,8 @@ curl -X PUT "https://api.affinity.co/interaction/3007" \
             "last_name": "Doe",
             "primary_email": "john@affinity.co",
             "emails": [
-            "john@affinity.co"
-        ]
+                "john@affinity.co"
+            ]
         },
         {
             "id": 2021,
