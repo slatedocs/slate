@@ -534,6 +534,7 @@ have the token for one user. You may want to suggest users to authenticate with 
 
 When handling requests from Asana, an App Components app should:
  
+ - Add [cross-origin resource searching (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) headers to responses. In order to update the Asana user interface (e.g., populating a Widget with external data), requests are made from the client to your app server. As such, enabling and configuring CORS is required. Feel free to use your browser's developer tools to debug during development.
  - Reject requests with missing or incorrect signatures. See [Message Integrity](/docs/message-integrity) for more details.
  - Reject requests with an `expires_at` time in the past.
     - **Note**: Make sure to use the correct units for this. `expires_at` is in milliseconds. If you compare the expiration time to a timestamp in seconds, it will always look like the request expires thousands of years in the future.
