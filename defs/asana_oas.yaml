@@ -241,7 +241,7 @@ tags:
       this field in order to future-proof for changes to Custom Fields.
 
 
-      The characteristics of Custom Fields are:
+      #### Characteristics of Custom Fields
 
 
       * There is metadata that defines the Custom Field. This metadata can be
@@ -262,7 +262,28 @@ tags:
       * Tasks have Custom Field _values_ assigned to them.
 
 
-      A brief example: let's imagine that an organization has defined a Custom
+      #### Types of Custom Fields
+
+
+      Integrations using Custom Fields need to be aware of the four basic types that
+      a Custom Field can adopt. These types are:
+
+
+      * `text` - an arbitrary, relatively short string of text
+
+      * `number` - a number with a defined level of precision
+
+      * `enum` - a selection of a single option from a defined list of options (i.e.,
+      mutually exclusive selections)
+
+      * `multi_enum` - a selection of one or more options from a defined list of options
+      (i.e., mutually inclusive selections)
+
+
+      #### Example use-case
+
+
+      Consider an organization that has defined a Custom
       Field for "Priority". This field is of `enum` type and can have
       user-defined values of `Low`, `Medium`, or `High`. This is the field
       metadata, and it is visible within, and shared across, the entire
@@ -279,24 +300,15 @@ tags:
       `Low`, `Medium`, and `High`.
 
 
+      #### Custom Fields in the API
+
+
       These Custom Fields are accessible via the API through a number of
       endpoints at the top level (e.g. `/custom_fields` and
       `/custom_field_settings`) and through calls on Workspaces, Portfolios,
-      Projects, and
-      Tasks resources. The API also provides a way to fetch both the metadata
-      and data which define each particular Custom Field, so that a client
+      Projects, and Tasks resources. The API also provides a way to fetch both the
+      metadata and data which define each particular Custom Field, so that a client
       application may render proper UI to display or edit the values.
-
-
-      Custom Field aware integrations need to be aware of the basic types that
-      Custom Fields can adopt. These types are:
-
-
-      * `text` - an arbitrary, relatively short string of text
-
-      * `number` - a number with a defined level of precision
-
-      * `enum` - a selection from a defined list of options
 
 
       Text fields are currently limited to 1024 characters. On Tasks, their
@@ -310,15 +322,18 @@ tags:
       Field value will have a `number_value` property to represent this field.
 
 
+      #### Enum fields
+
+
       Enum fields represent a selection from a list of options. On the metadata,
       they will contain all of the options in an array. Each option has 4
       properties:
 
 
-      * `gid` - the gid of this enum option. Note that this is the gid of the
+      * `gid` - the gid of this enum option. Note that this is the gid of the individual
       _option_ - the Custom Field itself has a separate `gid`.
 
-      * `name` - the name of the option, e.g. "Choice #1"
+      * `name` - the name of the option (e.g., "Choice #1")
 
       * `enabled` - whether this field is enabled. Disabled fields are not
       available to choose from when disabled, and are visually hidden in the

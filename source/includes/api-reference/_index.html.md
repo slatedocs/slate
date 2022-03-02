@@ -962,35 +962,44 @@ In the Asana application, Tasks, Projects, and Portfolios can hold user-specifie
 
 `display_value` is a read-only field that will always be a string. For apps that use custom fields, this is a great way to safely display/export the value of a custom field, regardless of its type. We suggest apps use this field in order to future-proof for changes to Custom Fields.
 
-The characteristics of Custom Fields are:
+#### Characteristics of Custom Fields
 
 * There is metadata that defines the Custom Field. This metadata can be shared across an entire workspace, or be specific to a Project or Portfolio.
 * Creating a Custom Field Setting on a Project or Portfolio means each direct child will have the custom field. This is conceptually akin to adding columns in a database or a spreadsheet: every Task (row) in the Project (table) can contain information for that field, including "blank" values, i.e. `null` data. For Portfolio custom fields, every Project (row) in the Portfolio (table) will contain information for the custom field.
 * Custom Field Settings only go one child deep. Meaning a custom field setting on a portfolio will give each project the custom field, but not each task within those projects.
 * Tasks have Custom Field _values_ assigned to them.
 
-A brief example: let's imagine that an organization has defined a Custom Field for "Priority". This field is of `enum` type and can have user-defined values of `Low`, `Medium`, or `High`. This is the field metadata, and it is visible within, and shared across, the entire organization.
+#### Types of Custom Fields
+
+Integrations using Custom Fields need to be aware of the four basic types that a Custom Field can adopt. These types are:
+
+* `text` - an arbitrary, relatively short string of text
+* `number` - a number with a defined level of precision
+* `enum` - a selection of a single option from a defined list of options (i.e., mutually exclusive selections)
+* `multi_enum` - a selection of one or more options from a defined list of options (i.e., mutually inclusive selections)
+
+#### Example use-case
+
+Consider an organization that has defined a Custom Field for "Priority". This field is of `enum` type and can have user-defined values of `Low`, `Medium`, or `High`. This is the field metadata, and it is visible within, and shared across, the entire organization.
 
 A Project is then created in the organization, called "Bugs", and the "Priority" Custom Field is associated with that Project. This will allow all Tasks within the "Bugs" Project to have an associated "Priority".
 
 A new Task is created within "Bugs". This Task, then, has a field named "Priority" which can take on the Custom Field value of one of `[null]`, `Low`, `Medium`, and `High`.
 
+#### Custom Fields in the API
+
 These Custom Fields are accessible via the API through a number of endpoints at the top level (e.g. `/custom_fields` and `/custom_field_settings`) and through calls on Workspaces, Portfolios, Projects, and Tasks resources. The API also provides a way to fetch both the metadata and data which define each particular Custom Field, so that a client application may render proper UI to display or edit the values.
-
-Custom Field aware integrations need to be aware of the basic types that Custom Fields can adopt. These types are:
-
-* `text` - an arbitrary, relatively short string of text
-* `number` - a number with a defined level of precision
-* `enum` - a selection from a defined list of options
 
 Text fields are currently limited to 1024 characters. On Tasks, their Custom Field value will have a `text_value` property to represent this field.
 
 Number fields can have an arbitrary `precision` associated with them; for example, a precision of `2` would round its value to the second (hundredths) place, i.e. 1.2345 would round to 1.23. On Tasks, the Custom Field value will have a `number_value` property to represent this field.
 
+#### Enum fields
+
 Enum fields represent a selection from a list of options. On the metadata, they will contain all of the options in an array. Each option has 4 properties:
 
-* `gid` - the gid of this enum option. Note that this is the gid of the _option_ - the Custom Field itself has a separate `gid`.
-* `name` - the name of the option, e.g. "Choice #1"
+* `gid` - the gid of this enum option. Note that this is the gid of the individual _option_ - the Custom Field itself has a separate `gid`.
+* `name` - the name of the option (e.g., "Choice #1")
 * `enabled` - whether this field is enabled. Disabled fields are not available to choose from when disabled, and are visually hidden in the Asana application, but they remain in the metadata for Custom Field values which were set to the option before the option was disabled.
 * `color` - a color associated with this choice.
 
