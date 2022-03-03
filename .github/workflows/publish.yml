@@ -12,11 +12,36 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: slatedocs/slate
+          tags: |
+            type=ref,event=tag
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_KEY }}
-          repository: slatedocs/slate
-          tag_with_ref: true
-          tags: latest
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64,linux/ppc64le
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
