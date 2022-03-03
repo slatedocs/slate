@@ -147,5 +147,9 @@ All role events operate on the _User_ resource type.
 | status_update_deleted        | Status Update | A status update was deleted. |
 | status_update_permanently_deleted        | Status Update | A status update was permanently deleted. |
 | status_update_undeleted        | Status Update | A status update was undeleted. |
- 
+| task_template_deleted    | Task Template | A task template was deleted. |
+| task_template_undeleted  | Task Template | A task template was undeleted. |
+| project_template_deleted | Project Template | A project template was deleted. |
+| project_template_undeleted    | Project Template | A project template was undeleted. |
+
 </section>
