@@ -174,7 +174,7 @@ Asana has [client libraries](/docs/official-client-libraries) in several popular
 <blockquote>
 <div class="postman-run-button"
 data-postman-action="collection/import"
-data-postman-var-1="f3c8e2599dfa2a9c39f0"></div>
+data-postman-var-1="c7a5949aed49ec7851c5"></div>
 <script type="text/javascript">
   (function (p,o,s,t,m,a,n) {
     !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
