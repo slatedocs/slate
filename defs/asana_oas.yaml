@@ -898,13 +898,19 @@ tags:
 
 
        * Attachment - deleted, undeleted
+       * Column Recipe - added, deleted, undeleted
        * Portfolio - added, deleted, removed
        * Project - added, changed, deleted, removed, undeleted
        * Project Membership - added, removed
+       * Project Membership Recipe - added, removed
+       * Project Recipe - added, deleted, removed
+       * Project Template Configuration - added, deleted, removed
+       * Project Template Configuration Membership - added, removed
        * Section - added, changed, deleted, undeleted
        * Story - added, removed, undeleted
        * Tag - added, changed, deleted, undeleted
        * Task - added, changed, deleted, removed, undeleted
+       * Task Recipe - added, deleted, removed
        * Team - added, changed, deleted
        * Team Membership - added, removed
        * Workspace - added, removed, changed
@@ -1102,6 +1108,16 @@ components:
         type: string
       example: '1331'
       x-env-variable: project
+    project_template_path_gid:
+      name: project_template_gid
+      in: path
+      description: >-
+        Globally unique identifier for the project template.
+      required: true
+      schema:
+        type: string
+      example: '1331'
+      x-env-variable: project_template
     project_membership_path_gid:
       name: project_membership_gid
       in: path
@@ -3578,6 +3594,16 @@ components:
               description: >-
                 A url that points directly to the object within Asana.
               example: https://app.asana.com/0/resource/123456789/list
+            created_from_template:
+              allOf:
+                - $ref: '#/components/schemas/ProjectTemplateCompact'
+                - type: object
+                  description: >-
+                    [Opt In](/docs/input-output-options).
+                    The project template from which this project was created. If the
+                    project was
+                    not created from a template, this field will be null.
+                  nullable: true
     ProjectSectionInsertRequest:
       type: object
       properties:
@@ -3681,6 +3707,187 @@ components:
               format: date-time
               readOnly: true
               example: '2012-02-22T02:06:58.147Z'
+    ProjectTemplateCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaResource'
+        - type: object
+          properties:
+            description:
+              description: >-
+                Free-form textual information associated with the
+                project template
+              type: string
+              example: These are things we need to pack for a trip.
+            html_description:
+              description: >-
+                The description of the project template with formatting as HTML.
+              type: string
+              example: <body>These are things we need to pack for a trip.</body>
+            public:
+              description: >-
+                True if the project template is public to its team.
+              type: boolean
+              example: false
+            owner:
+              description: >-
+                The current owner of the project template, may be null.
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/UserCompact'
+            team:
+              allOf:
+                - $ref: '#/components/schemas/TeamCompact'
+            name:
+              description: >-
+                Name of the project template.
+              type: string
+              example: Packing list
+            requested_dates:
+              description: >-
+                Array of date variables in this project template. Calendar dates
+                must be provided for these variables when instantiating a project.
+              type: array
+              items:
+                $ref: '#/components/schemas/DateVariableCompact'
+              readOnly: true
+            color:
+              description: Color of the project template.
+              type: string
+              nullable: true
+              enum:
+                - dark-pink
+                - dark-green
+                - dark-blue
+                - dark-red
+                - dark-teal
+                - dark-brown
+                - dark-orange
+                - dark-purple
+                - dark-warm-gray
+                - light-pink
+                - light-green
+                - light-blue
+                - light-red
+                - light-teal
+                - light-brown
+                - light-orange
+                - light-purple
+                - light-warm-gray
+              example: light-green
+    ProjectTemplateResponse:
+      allOf:
+        - $ref: '#/components/schemas/ProjectTemplateCompact'
+    ProjectTemplateInstantiateProjectRequest:
+      type: object
+      required:
+        - name
+        - public
+      properties:
+        name:
+          description: The name of the new project.
+          type: string
+          example: New Project Name
+        team:
+          description: >-
+            Sets the team of the new project. If the project template exists in an
+            organization, specify team and not workspace.
+          type: string
+          example: '12345'
+        workspace:
+          description: >-
+            Sets the workspace of the new project. Only specify workspace if the
+            project template exists in a workspace.
+          type: string
+          example: '12345'
+        public:
+          description: >-
+            Sets the project to public to its team.
+          type: boolean
+          example: true
+        is_strict:
+          description: >-
+            If set true, the endpoint returns an error if you forget to provide a
+            calendar date value for any date variable. If set false, a deafult date
+            is used for
+            each unfulfilled date variable. For example, the current date is used
+            as
+            Start Date of a project in this case.
+          type: boolean
+          example: true
+        requested_dates:
+          description: >-
+            Array of mappings of date variables to calendar dates.
+          type: array
+          items:
+            $ref: '#/components/schemas/DateVariableRequest'
+    DateVariableCompact:
+      type: object
+      properties:
+        gid:
+          description: >-
+            Globally unique identifier of date variable, as a string.
+          type: string
+          readOnly: true
+          example: '12345'
+        name:
+          description: >-
+            The name of the date variable.
+          type: string
+          readOnly: true
+          example: Start Date
+        description:
+          description: >-
+            The description of what the date variable is used for when instantiating
+            a project.
+          type: string
+          readOnly: true
+          example: Choose a start date for your project.
+    DateVariableRequest:
+      type: object
+      properties:
+        gid:
+          description: >-
+            Globally unique identifier of date variable, as a string.
+          type: string
+          readOnly: true
+          example: '12345'
+        value:
+          description: >-
+            The date with which the date variable should be replaced when instantiating
+            a project.
+            This takes a date with `YYYY-MM-DD` format.
+          type: string
+          nullable: true
+          format: date-time
+          example: '2022-01-01'
+    ProjectSaveAsTemplateRequest:
+      type: object
+      required:
+        - name
+        - public
+      properties:
+        name:
+          description: The name of the new project template.
+          type: string
+          example: New Project Template
+        team:
+          description: >-
+            Sets the team of the new project template. If the project exists in an
+            organization, specify team and not workspace.
+          type: string
+          example: '12345'
+        workspace:
+          description: >-
+            Sets the workspace of the new project template. Only specify workspace
+            if the
+            project exists in a workspace.
+          type: string
+          example: '12345'
+        public:
+          description: >-
+            Sets the project template to public to its team.
+          type: boolean
+          example: true
     RemoveCustomFieldSettingRequest:
       type: object
       required:
@@ -8209,6 +8416,160 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /project_templates/{project_template_gid}:
+    parameters:
+      - $ref: '#/components/parameters/project_template_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a project template
+      description: Returns the complete project template record for a single project
+        template.
+      tags:
+        - Project Templates
+      operationId: getProjectTemplate
+      responses:
+        200:
+          description: Successfully retrieved the requested project template.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ProjectTemplateResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /project_templates:
+    parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get multiple project templates
+      description: >-
+        Returns the compact project template records for all project templates in
+        the given team or workspace.
+      tags:
+        - Project Templates
+      operationId: getProjectTemplates
+      parameters:
+        - $ref: '#/components/parameters/workspace_query_param'
+        - $ref: '#/components/parameters/team_query_param'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        200:
+          description: Successfully retrieved the requested team's or workspace's
+            project templates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProjectTemplateCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /teams/{team_gid}/project_templates:
+    parameters:
+      - $ref: '#/components/parameters/team_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a team's project templates
+      description: >-
+        Returns the compact project template records for all project templates in
+        the team.
+      tags:
+        - Project Templates
+      operationId: getProjectTemplatesForTeam
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        200:
+          description: Successfully retrieved the requested team's project templates.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProjectTemplateCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /project_templates/{project_template_gid}/instantiateProject:
+    parameters:
+      - $ref: '#/components/parameters/project_template_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Instantiate a project from a project template
+      description: >-
+        Creates and returns a job that will asynchronously handle the project instantiation.
+      tags:
+        - Project Templates
+      operationId: instantiateProject
+      requestBody:
+        description: >-
+          Describes the inputs used for instantiating a project, such as the resulting
+          project's name,
+          which team it should be created in, and values for date variables.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ProjectTemplateInstantiateProjectRequest'
+      responses:
+        201:
+          description: Successfully created the job to handle project instantiation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/JobResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /projects:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -8962,6 +9323,53 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/EmptyResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /projects/{project_gid}/saveAsTemplate:
+    parameters:
+      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    post:
+      summary: Create a project template from a project
+      description: |-
+        Creates and returns a job that will asynchronously handle the project template creation. Note that
+        while the resulting project template can be accessed with the API, it won't be visible in the Asana
+        UI until Project Templates 2.0 is launched in the app.
+      tags:
+        - Projects
+      operationId: projectSaveAsTemplate
+      requestBody:
+        description: >-
+          Describes the inputs used for creating a project template, such as the resulting
+          project template's name,
+          which team it should be created in.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ProjectSaveAsTemplateRequest'
+      responses:
+        201:
+          description: Successfully created the job to handle project template creation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/JobResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -12074,17 +12482,18 @@ paths:
         in: query
         description: >-
           The type of values the typeahead should return. You can choose from one
-          of the following: `custom_field`, `project`, `portfolio`, `tag`, `task`,
-          and `user`. Note that unlike in the names of endpoints, the types listed
-          here are in singular form (e.g. `task`). Using multiple types is not yet
-          supported.
+          of the following: `custom_field`, `project`, `project_template`,
+          `portfolio`, `tag`, `task`, and `user`. Note that unlike in the names
+          of endpoints, the types listed here are in singular form (e.g. `task`).
+          Using multiple types is not yet supported.
         required: true
         schema:
           type: string
           enum:
             - custom_field
-            - portfolio
             - project
+            - project_template
+            - portfolio
             - tag
             - task
             - user
@@ -12156,6 +12565,9 @@ paths:
 
         Resources with type `task` are returned with priority placed on tasks
         the user is following, but no guarantee on the order of those tasks.
+
+        Resources with type `project_template` are returned with priority
+        placed on favorited project templates.
 
         Leaving the `query` string empty or omitted will give you results, still
         following the resource ordering above. This could be used to list users or
@@ -12368,6 +12780,7 @@ paths:
             - tag
             - task
             - user
+            - project_template
           default: project
       - name: workspace
         in: query
