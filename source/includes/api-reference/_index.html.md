@@ -5422,29 +5422,8 @@ $result = $client->jobs->getJob($job_gid, array('param' => 'value', 'param' => '
     },
     "new_project_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "new_task": {
       "gid": "12345",
@@ -8315,29 +8294,8 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
     },
     "created_from_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "custom_fields": [
       {
@@ -8682,29 +8640,8 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
     },
     "created_from_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "custom_fields": [
       {
@@ -9022,29 +8959,8 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
     },
     "created_from_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "custom_fields": [
       {
@@ -9404,29 +9320,8 @@ $result = $client->projects->duplicateProject($project_gid, array('field' => 'va
     },
     "new_project_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "new_task": {
       "gid": "12345",
@@ -9953,29 +9848,8 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
     },
     "created_from_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "custom_fields": [
       {
@@ -10469,29 +10343,8 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
     },
     "created_from_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "custom_fields": [
       {
@@ -11656,29 +11509,8 @@ $result = $client->projects->projectSaveAsTemplate($project_gid, array('field' =
     },
     "new_project_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "new_task": {
       "gid": "12345",
@@ -13103,7 +12935,7 @@ $result = $client->projecttemplates->getProjectTemplate($project_template_gid, a
 {
   "data": {
     "gid": "12345",
-    "resource_type": "task",
+    "resource_type": "project_template",
     "color": "light-green",
     "description": "These are things we need to pack for a trip.",
     "html_description": "<body>These are things we need to pack for a trip.</body>",
@@ -13152,62 +12984,12 @@ Returns the complete project template record for a single project template.
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved the requested project template.|
+|200<span class="param-type"> [ProjectTemplate](#schemaprojecttemplate)</span>|Successfully retrieved the requested project template.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-a-project-template-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [ProjectTemplateResponse](#schemaprojecttemplateresponse)</span>|A generic Asana Resource, containing a globally unique identifier.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| color<span class="param-type"> string¦null</span>|Color of the project template.|
-| description<span class="param-type"> string</span>|Free-form textual information associated with the project template|
-| html_description<span class="param-type"> string</span>|The description of the project template with formatting as HTML.|
-| name<span class="param-type"> string</span>|Name of the project template.|
-| owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-| public<span class="param-type"> boolean</span>|True if the project template is public to its team.|
-| requested_dates<span class="param-type"> [object]</span>|Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.|
-| description<span class="param-type"> string</span>|The description of what the date variable is used for when instantiating a project.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
-| name<span class="param-type"> string</span>|The name of the date variable.|
-| team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|The name of the team.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
 
 </section><hr class="half-line">
 <section>
@@ -13279,29 +13061,8 @@ $result = $client->projecttemplates->getProjectTemplates(array('param' => 'value
   "data": [
     {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     }
   ]
 }
@@ -13332,62 +13093,12 @@ Returns the compact project template records for all project templates in the gi
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved the requested team's or workspace's project templates.|
+|200<span class="param-type"> [ProjectTemplateCompact](#schemaprojecttemplatecompact)</span>|Successfully retrieved the requested team's or workspace's project templates.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-multiple-project-templates-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [[ProjectTemplateCompact](#schemaprojecttemplatecompact)]</span>|[A generic Asana Resource, containing a globally unique identifier.]|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| color<span class="param-type"> string¦null</span>|Color of the project template.|
-| description<span class="param-type"> string</span>|Free-form textual information associated with the project template|
-| html_description<span class="param-type"> string</span>|The description of the project template with formatting as HTML.|
-| name<span class="param-type"> string</span>|Name of the project template.|
-| owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-| public<span class="param-type"> boolean</span>|True if the project template is public to its team.|
-| requested_dates<span class="param-type"> [object]</span>|Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.|
-| description<span class="param-type"> string</span>|The description of what the date variable is used for when instantiating a project.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
-| name<span class="param-type"> string</span>|The name of the date variable.|
-| team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|The name of the team.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
 
 </section><hr class="half-line">
 <section>
@@ -13459,29 +13170,8 @@ $result = $client->projecttemplates->getProjectTemplatesForTeam($team_gid, array
   "data": [
     {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     }
   ]
 }
@@ -13511,62 +13201,12 @@ Returns the compact project template records for all project templates in the te
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> Inline</span>|Successfully retrieved the requested team's project templates.|
+|200<span class="param-type"> [ProjectTemplateCompact](#schemaprojecttemplatecompact)</span>|Successfully retrieved the requested team's project templates.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-<h3 id="get-a-team's-project-templates-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Description|
-|---|---|
-| data<span class="param-type"> [[ProjectTemplateCompact](#schemaprojecttemplatecompact)]</span>|[A generic Asana Resource, containing a globally unique identifier.]|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| color<span class="param-type"> string¦null</span>|Color of the project template.|
-| description<span class="param-type"> string</span>|Free-form textual information associated with the project template|
-| html_description<span class="param-type"> string</span>|The description of the project template with formatting as HTML.|
-| name<span class="param-type"> string</span>|Name of the project template.|
-| owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-| public<span class="param-type"> boolean</span>|True if the project template is public to its team.|
-| requested_dates<span class="param-type"> [object]</span>|Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.|
-| description<span class="param-type"> string</span>|The description of what the date variable is used for when instantiating a project.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
-| name<span class="param-type"> string</span>|The name of the date variable.|
-| team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-| resource_type<span class="param-type"> string</span>|The base type of this resource.|
-| name<span class="param-type"> string</span>|The name of the team.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
 
 </section><hr class="half-line">
 <section>
@@ -13645,6 +13285,7 @@ $result = $client->projecttemplates->instantiateProject($project_template_gid, a
     "public": true,
     "requested_dates": [
       {
+        "gid": "12345",
         "value": "2022-01-01"
       }
     ],
@@ -13668,29 +13309,8 @@ $result = $client->projecttemplates->instantiateProject($project_template_gid, a
     },
     "new_project_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "new_task": {
       "gid": "12345",
@@ -13723,6 +13343,7 @@ Creates and returns a job that will asynchronously handle the project instantiat
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The name of the new project.|
 |»» public<span class="param-type"> boolean</span><div class="param-required">required</div>|Sets the project to public to its team.|
 |»» requested_dates<span class="param-type"> [object]</span>|Array of mappings of date variables to calendar dates.|
+|»»» gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
 |»»» value<span class="param-type"> string(date-time)¦null</span>|The date with which the date variable should be replaced when instantiating a project. This takes a date with `YYYY-MM-DD` format.|
 |»» team<span class="param-type"> string</span>|Sets the team of the new project. If the project template exists in an organization, specify team and not workspace.|
 |»» workspace<span class="param-type"> string</span>|Sets the workspace of the new project. Only specify workspace if the project template exists in a workspace.|
@@ -18888,29 +18509,8 @@ $result = $client->tasks->duplicateTask($task_gid, array('field' => 'value', 'fi
     },
     "new_project_template": {
       "gid": "12345",
-      "resource_type": "task",
-      "color": "light-green",
-      "description": "These are things we need to pack for a trip.",
-      "html_description": "<body>These are things we need to pack for a trip.</body>",
-      "name": "Packing list",
-      "owner": {
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "public": false,
-      "requested_dates": [
-        {
-          "description": "Choose a start date for your project.",
-          "gid": "12345",
-          "name": "Start Date"
-        }
-      ],
-      "team": {
-        "gid": "12345",
-        "resource_type": "team",
-        "name": "Marketing"
-      }
+      "resource_type": "project_template",
+      "name": "Packing list"
     },
     "new_task": {
       "gid": "12345",
@@ -27327,29 +26927,8 @@ A generic Asana Resource, containing a globally unique identifier.
   },
   "new_project_template": {
     "gid": "12345",
-    "resource_type": "task",
-    "color": "light-green",
-    "description": "These are things we need to pack for a trip.",
-    "html_description": "<body>These are things we need to pack for a trip.</body>",
-    "name": "Packing list",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "public": false,
-    "requested_dates": [
-      {
-        "description": "Choose a start date for your project.",
-        "gid": "12345",
-        "name": "Start Date"
-      }
-    ],
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    }
+    "resource_type": "project_template",
+    "name": "Packing list"
   },
   "new_task": {
     "gid": "12345",
@@ -27377,26 +26956,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|new_project_template<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|new_project_template<span class="param-type"> object</span>|A *project template* is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string¦null</span>|Color of the project template.|
-|» description<span class="param-type"> string</span>|Free-form textual information associated with the project template|
-|» html_description<span class="param-type"> string</span>|The description of the project template with formatting as HTML.|
 |» name<span class="param-type"> string</span>|Name of the project template.|
-|» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» public<span class="param-type"> boolean</span>|True if the project template is public to its team.|
-|» requested_dates<span class="param-type"> [object]</span>|Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.|
-|»» description<span class="param-type"> string</span>|The description of what the date variable is used for when instantiating a project.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
-|»» name<span class="param-type"> string</span>|The name of the date variable.|
-|» team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the team.|
 |new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -27408,24 +26971,6 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
 
 |Property|Value|
 |---|---|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
 |status|not_started|
 |status|in_progress|
 |status|completed|
@@ -27451,29 +26996,8 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
   },
   "new_project_template": {
     "gid": "12345",
-    "resource_type": "task",
-    "color": "light-green",
-    "description": "These are things we need to pack for a trip.",
-    "html_description": "<body>These are things we need to pack for a trip.</body>",
-    "name": "Packing list",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "public": false,
-    "requested_dates": [
-      {
-        "description": "Choose a start date for your project.",
-        "gid": "12345",
-        "name": "Start Date"
-      }
-    ],
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    }
+    "resource_type": "project_template",
+    "name": "Packing list"
   },
   "new_task": {
     "gid": "12345",
@@ -27501,26 +27025,10 @@ A *job* is an object representing a process that handles asynchronous work.
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|new_project_template<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
+|new_project_template<span class="param-type"> object</span>|A *project template* is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string¦null</span>|Color of the project template.|
-|» description<span class="param-type"> string</span>|Free-form textual information associated with the project template|
-|» html_description<span class="param-type"> string</span>|The description of the project template with formatting as HTML.|
 |» name<span class="param-type"> string</span>|Name of the project template.|
-|» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» public<span class="param-type"> boolean</span>|True if the project template is public to its team.|
-|» requested_dates<span class="param-type"> [object]</span>|Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.|
-|»» description<span class="param-type"> string</span>|The description of what the date variable is used for when instantiating a project.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
-|»» name<span class="param-type"> string</span>|The name of the date variable.|
-|» team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the team.|
 |new_task<span class="param-type"> object</span>|The *task* is the basic object around which many operations in Asana are centered.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -27532,24 +27040,6 @@ A *job* is an object representing a process that handles asynchronous work.
 
 |Property|Value|
 |---|---|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
 |status|not_started|
 |status|in_progress|
 |status|completed|
@@ -28377,29 +27867,8 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   },
   "created_from_template": {
     "gid": "12345",
-    "resource_type": "task",
-    "color": "light-green",
-    "description": "These are things we need to pack for a trip.",
-    "html_description": "<body>These are things we need to pack for a trip.</body>",
-    "name": "Packing list",
-    "owner": {
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "public": false,
-    "requested_dates": [
-      {
-        "description": "Choose a start date for your project.",
-        "gid": "12345",
-        "name": "Start Date"
-      }
-    ],
-    "team": {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    }
+    "resource_type": "project_template",
+    "name": "Packing list"
   },
   "custom_fields": [
     {
@@ -28561,23 +28030,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |created_from_template<span class="param-type"> object¦null</span>|[Opt In](/docs/input-output-options). The project template from which this project was created. If the project was not created from a template, this field will be null.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|» color<span class="param-type"> string¦null</span>|Color of the project template.|
-|» description<span class="param-type"> string</span>|Free-form textual information associated with the project template|
-|» html_description<span class="param-type"> string</span>|The description of the project template with formatting as HTML.|
 |» name<span class="param-type"> string</span>|Name of the project template.|
-|» owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» public<span class="param-type"> boolean</span>|True if the project template is public to its team.|
-|» requested_dates<span class="param-type"> [object]</span>|Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.|
-|»» description<span class="param-type"> string</span>|The description of what the date variable is used for when instantiating a project.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
-|»» name<span class="param-type"> string</span>|The name of the date variable.|
-|» team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
-|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
-|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|»» name<span class="param-type"> string</span>|The name of the team.|
 |custom_fields<span class="param-type"> [object]</span>|Array of Custom Fields.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -28657,24 +28110,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |default_view|board|
 |default_view|calendar|
 |default_view|timeline|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
 |resource_subtype|text|
 |resource_subtype|enum|
 |resource_subtype|multi_enum|
@@ -28815,6 +28250,128 @@ A *project status* is an update on the progress of a particular project, and is 
 |color|yellow|
 |color|red|
 |color|blue|
+
+</section><hr>
+<section>
+<a id="schemaprojecttemplatecompact"></a>
+<a id="schema_ProjectTemplateCompact"></a>
+<a id="tocSprojecttemplatecompact"></a>
+<a id="tocsprojecttemplatecompact"></a>
+<a id="tocS_ProjectTemplateCompact"></a>
+<h2 id="project-template-compact">ProjectTemplateCompact</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "project_template",
+  "name": "Packing list"
+}
+
+```
+
+<span class="description">
+A `Compact` object is the same as the [full response object](/docs/tocS_ProjectTemplate), but with less fields included by default. See
+[Input/Output Options](/docs/input-output-options) to include more fields.
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|name<span class="param-type"> string</span>|Name of the project template.|
+
+</section><hr>
+<section>
+<a id="schemaprojecttemplate"></a>
+<a id="schema_ProjectTemplate"></a>
+<a id="tocSprojecttemplate"></a>
+<a id="tocsprojecttemplate"></a>
+<a id="tocS_ProjectTemplate"></a>
+<h2 id="project-template">ProjectTemplate</h2>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "project_template",
+  "color": "light-green",
+  "description": "These are things we need to pack for a trip.",
+  "html_description": "<body>These are things we need to pack for a trip.</body>",
+  "name": "Packing list",
+  "owner": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "public": false,
+  "requested_dates": [
+    {
+      "description": "Choose a start date for your project.",
+      "gid": "12345",
+      "name": "Start Date"
+    }
+  ],
+  "team": {
+    "gid": "12345",
+    "resource_type": "team",
+    "name": "Marketing"
+  }
+}
+
+```
+
+<span class="description">
+A *project template* is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.
+
+</span>
+
+### Properties
+
+|Name|Description|
+|---|---|
+|gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|color<span class="param-type"> string¦null</span>|Color of the project template.|
+|description<span class="param-type"> string</span>|Free-form textual information associated with the project template|
+|html_description<span class="param-type"> string</span>|The description of the project template with formatting as HTML.|
+|name<span class="param-type"> string</span>|Name of the project template.|
+|owner<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+|public<span class="param-type"> boolean</span>|True if the project template is public to its team.|
+|requested_dates<span class="param-type"> [object]</span>|Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.|
+|» description<span class="param-type"> string</span>|The description of what the date variable is used for when instantiating a project.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
+|» name<span class="param-type"> string</span>|The name of the date variable.|
+|team<span class="param-type"> object</span>|A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» name<span class="param-type"> string</span>|The name of the team.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|color|dark-pink|
+|color|dark-green|
+|color|dark-blue|
+|color|dark-red|
+|color|dark-teal|
+|color|dark-brown|
+|color|dark-orange|
+|color|dark-purple|
+|color|dark-warm-gray|
+|color|light-pink|
+|color|light-green|
+|color|light-blue|
+|color|light-red|
+|color|light-teal|
+|color|light-brown|
+|color|light-orange|
+|color|light-purple|
+|color|light-warm-gray|
 
 </section><hr>
 <section>
