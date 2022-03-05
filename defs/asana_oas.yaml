@@ -52,6 +52,8 @@ info:
     - ProjectCompact
     - ProjectStatusResponse
     - ProjectStatusCompact
+    - ProjectTemplateCompact
+    - ProjectTemplateResponse
     - SectionResponse
     - SectionCompact
     - StatusUpdateResponse
@@ -3711,6 +3713,23 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaResource'
         - type: object
+          description: >-
+            A *project template* is an object that allows new projects to be created
+            with a predefined setup, which may include tasks, sections, Rules, etc.
+            It simplifies the process of running a workflow that involves a similar
+            set of work every time.
+          x-docs-overrides:
+            properties.resource_type.example: project_template
+          properties:
+            name:
+              description: >-
+                Name of the project template.
+              type: string
+              example: Packing list
+    ProjectTemplateBase:
+      allOf:
+        - $ref: '#/components/schemas/ProjectTemplateCompact'
+        - type: object
           properties:
             description:
               description: >-
@@ -3737,11 +3756,6 @@ components:
             team:
               allOf:
                 - $ref: '#/components/schemas/TeamCompact'
-            name:
-              description: >-
-                Name of the project template.
-              type: string
-              example: Packing list
             requested_dates:
               description: >-
                 Array of date variables in this project template. Calendar dates
@@ -3776,7 +3790,7 @@ components:
               example: light-green
     ProjectTemplateResponse:
       allOf:
-        - $ref: '#/components/schemas/ProjectTemplateCompact'
+        - $ref: '#/components/schemas/ProjectTemplateBase'
     ProjectTemplateInstantiateProjectRequest:
       type: object
       required:
@@ -3849,7 +3863,6 @@ components:
           description: >-
             Globally unique identifier of date variable, as a string.
           type: string
-          readOnly: true
           example: '12345'
         value:
           description: >-
