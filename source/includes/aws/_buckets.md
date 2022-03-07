@@ -2,9 +2,9 @@
 
 View and manage your buckets.
 
-<!-------------------- LIST buckets -------------------->
+<!-------------------- GET buckets -------------------->
 
-#### List buckets
+#### Get buckets
 
 ```shell
 curl -X GET \
