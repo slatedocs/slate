@@ -1,5 +1,49 @@
 # Event Subscriptions
 
+## Viewing all your event subscriptions
+
+```shell
+curl https://api.handshq.com/v1/event_subscriptions \
+  -H "Accept: application/json" \
+  -H "Authorization: bearer [api_token]" \
+```
+
+> 200
+
+```json
+  {"data": [
+    {
+      "id":"1",
+      "type":"event_subscription",
+      "event_type": "version_pdf_created",
+      "links": {
+        "related":"https://example.url/hello"
+      }
+    },
+      {
+      "id":"2",
+      "type":"event_subscription",
+      "event_type": "personnel_updated",
+      "links": {
+        "related":"https://example.url/hello"
+      }
+    }
+  ]}
+
+```
+
+This endpoint will return a list of your event subscriptions.
+
+### Request
+
+`GET https://api.handshq.com/v1/event_subscriptions`
+
+
+### Response
+
+Successful requests will return a json payload of that division's event subscriptions and a `200` status code.
+Results in `data` are [paginated](#pagination)
+
 ## Creating an event subscription
 
 ```shell
