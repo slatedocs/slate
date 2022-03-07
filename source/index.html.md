@@ -1155,7 +1155,8 @@ body = {
     "price_per_unit": 0.03244, #This parameter is only required for a 'limit_order'
     "total_quantity": 400, #Replace this with the quantity you want
     "timestamp": timeStamp,
-    "ecode": "I"
+    "ecode": "I",
+    "client_order_id": "2022.02.14-btcinr-pro" #Replace this with the client order id you want
   },
   {
     "side": "buy",  #Toggle between 'buy' or 'sell'.
@@ -1210,7 +1211,8 @@ const body = {"orders": [{
           "price_per_unit": "466330", //This parameter is only required for a 'limit_order'
           "total_quantity": 0.01, //Replace this with the quantity you want
           "timestamp": timeStamp,
-          "ecode": "I"
+          "ecode": "I",
+          "client_order_id": "2022.02.14-btcinr-pro" //Replace this with the client order id you want
         },
         {
           "side": "buy",  //Toggle between 'buy' or 'sell'.
@@ -1249,6 +1251,7 @@ request.post(options, function(error, response, body) {
    "orders":[
      {
         "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+        "client_order_id": "2022.02.14-btcinr-pro",
         "market":"TRXETH",
         "order_type":"limit_order",
         "side":"buy",
@@ -1275,15 +1278,16 @@ Use this endpoint to place a multiple orders on the exchange
 
 ### Parameters in an array of objects
 
-| Name           | Required | Example      | Description                                    |
-|----------------|----------|--------------|------------------------------------------------|
-| market         | Yes      | SNTBTC       | The trading pair                               |
-| total_quantity | Yes      | 1.101        | Quantity to trade                              |
-| price_per_unit | No       | 0.082        | Price per unit (not required for market order) |
-| side           | Yes      | buy          | Specify buy or sell                            |
-| order_type     | Yes      | market_order | Order Type                                     |
-| timestamp      | Yes      | 1524211224   | When was the request generated                 |
-| ecode          | Yes      | I            | Exchange code                                  |
+| Name            | Required | Example               | Description                                    |
+|-----------------|----------|-----------------------|------------------------------------------------|
+| market          | Yes      | SNTBTC                | The trading pair                               |
+| total_quantity  | Yes      | 1.101                 | Quantity to trade                              |
+| price_per_unit  | No       | 0.082                 | Price per unit (not required for market order) |
+| side            | Yes      | buy                   | Specify buy or sell                            |
+| order_type      | Yes      | market_order          | Order Type                                     |
+| timestamp       | Yes      | 1524211224            | When was the request generated                 |
+| ecode           | Yes      | I                     | Exchange code                                  |
+| client_order_id | No       | 2022.02.14-btcinr-pro | Client order id of the order                   |
 
 ##  Order status
 ```ruby
