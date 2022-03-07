@@ -4,7 +4,7 @@ View and manage your buckets.
 
 <!-------------------- GET buckets -------------------->
 
-#### Get buckets
+#### Get Buckets
 
 ```shell
 curl -X GET \
@@ -50,7 +50,7 @@ Retrieve a list of all buckets from Amazon S3.
 | `url`<br/>*string*       | The full endpoint url used to make api calls on the bucket.                                                                                                                                                                                                                                               
 <!-------------------- DELETE A BUCKET -------------------->
 
-#### Delete a bucket
+#### Delete Bucket
 
 ```shell
 curl -X DELETE \
