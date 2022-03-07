@@ -39,7 +39,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets</code>
 
-Retrieve a list of all buckets from a given S3 provider.
+Retrieve a list of all buckets from Amazon S3.
 
 | Attributes                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
