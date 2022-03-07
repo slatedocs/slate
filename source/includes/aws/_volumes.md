@@ -187,7 +187,7 @@ Retrieve a list of all volumes in a given [environment](#administration-environm
 |-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`<br/>*string*                 | The volume name. A default name will be created if there isn't one provided.                                                                                                                                    |
 | `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes. |
-| `throughput` <br/>*int*             | The throughput performance in MiB/s that the volume can support. This field is only valid for gp3 volumes.                                                                                                      |
+| `throughput` <br/>*int*             | The throughput performance in MiB/s that the volume can support. This field is required for gp3 volumes.                                                                                                        |
 | `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.                                                                                                  |
 
 <!-------------------- DELETE A VOLUME -------------------->

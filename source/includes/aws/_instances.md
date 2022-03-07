@@ -218,6 +218,15 @@ curl -X POST \
     "ipRange": "0.0.0.0/0",
     "protocol": "TCP",
     "portRange": "5200-5220"
+  }],
+  "blockDeviceMappings": [{
+    "type": "Root",
+    "attachmentDeviceName": "/dev/xvda",
+    "deleteOnTermination": true,
+    "size": 30,
+    "volumeType": "gp3",
+    "iops": 3000,
+    "throughput": 250
   }]
 }
 ```
@@ -247,20 +256,36 @@ Create a new instance in a given [environment](#administration-environments).
 | `maxCount`<br/>*integer*                | The maximum number of instances to create. Cannot be greater than 20.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `minCount`<br/>*integer*                | The minimum number of instances to create. Should be greater than 1.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `sshKey.keyName`<br/>*string*           | The name of the SSH key to be used to connect to this instance via SSH.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `blockDeviceMappings`<br/>*Array*       | Volumes to attached to the instance on launch. To be left empty if the default root volume should be used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
-| Optional                             | &nbsp;                                                                                                             |
-|--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| `ipPolicies`<br/>*Array*             | The IP policy to use for the security group if the security group scope is CUSTOM.                                 |
-| `ipPolicies.ipRange`<br/>*string*    | The IP range in CIDR block notation of an IPV4 compatible string. Indicates the allowed IP(s) to reach the instance. |
-| `ipPolicies.protocol`<br/>*enum*     | Possible values are UDP, TCP and ICMP. Indicates the allowed protocol to use to reach the instance.                |
-| `ipPolicies.portRange`<br/>*integer* | The allowed IP range. Can be a single port or a port range, such as 1024-65535                                                                        |
-|
+
+| Optional                                                | &nbsp;                                                                                                                                                             |
+|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ipPolicies`<br/>*Array*                                | The IP policy to use for the security group if the security group scope is CUSTOM.                                                                                 |
+| `ipPolicies.ipRange`<br/>*string*                       | The IP range in CIDR block notation of an IPV4 compatible string. Indicates the allowed IP(s) to reach the instance.                                               |
+| `ipPolicies.protocol`<br/>*enum*                        | Possible values are UDP, TCP and ICMP. Indicates the allowed protocol to use to reach the instance.                                                                |
+| `ipPolicies.portRange`<br/>*integer*                    | The allowed IP range. Can be a single port or a port range, such as 1024-65535                                                                                     |
+| `blockDeviceMappings.type`<br/>*string*                 | Indicates whether the volume is "Root" or "EBS", used to calculate minimum sizing.                                                                                 |
+| `blockDeviceMappings.attachmentDeviceName`<br/>*string* | The device name for the attached volume.                                                                                                                           |
+| `blockDeviceMappings.deleteOnTermination`<br/>*boolean* | Whether or not the volume should be deleted alongside the instance.                                                                                           |
+| `blockDeviceMappings.size`<br/>*integer*                | The required size of the attached volume.                                                                                                                          |
+| `blockDeviceMappings.volumeType`<br/>*string*           | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard). Refer to "Create Volume" docs to see volume types & limits for their respective fields.       |
+| `blockDeviceMappings.iops`<br/>*integer*                | Describes the maximum number of input/output operations per second (IOPS) supported by the volume type. This field is only valid for volume types gp3, io1, and io2. |
+| `blockDeviceMappings.throughput`<br/>*integer*          | The throughput performance in MiB/s supported by the volume type. This field is only valid for gp3 volumes.                                                          |
+
+
 
 <aside class="notice">
 If the security group scope of the instance is CUSTOM, then the ipPolicies field is required.
 </aside>
 
-
+<aside class="notice">
+<br/>Linux device names: /dev/sdf through /dev/sdp<br/>
+Windows device names: /dev/xvdf through /dev/xvdz<br/>
+For root device name:<br/>
+Linux: /dev/sda1 or /dev/xvda (depending on the AMI)<br/>
+Windows: /dev/sda1<br/>
+</aside>
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
