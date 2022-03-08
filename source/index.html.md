@@ -4556,7 +4556,7 @@ sio.emit('join', { 'channelName': 'coindcx', 'authSignature': signature, 'apiKey
 # Listen update on eventName
 @sio.on('eventName')
 def on_message(response):
-    print(response.data)
+    print(response["data"])
 
 # leave a channel
 sio.emit('leave', { 'channelName' : 'coindcx' })
@@ -4565,7 +4565,11 @@ sio.emit('leave', { 'channelName' : 'coindcx' })
 
 ```javascript
 
-import io from 'socket.io-client';
+//For commonJS(NPM)
+const io = require("socket.io-client");
+const crypto = require('crypto');
+
+
 const socketEndpoint = "wss://stream.coindcx.com";
 
 //connect to server.
@@ -4599,6 +4603,8 @@ socket.on("eventName", (response) => {
 socket.emit('leave', {
   'channelName': 'coindcx'
 });
+
+// NOTE : Need to use V2 Socket.io-client
 ```
 
 ## Balances
@@ -4620,8 +4626,8 @@ socket.emit('leave', {
 ```python
 @sio.on('balance-update')
 def on_message(response):
-  if response.event == 'balance-update':
-    print(response.data)
+  if response["event"] == 'balance-update':
+    print(response["data"])
 ```
 
 ```javascript
@@ -4667,7 +4673,7 @@ socket.on("balance-update", (response) => {
 ```python
 @sio.on('trade-update')
 def on_message(response):
-    print(response.data)
+    print(response["data"])
 ```
 
 ```javascript
