@@ -4569,6 +4569,10 @@ sio.emit('leave', { 'channelName' : 'coindcx' })
 const io = require("socket.io-client");
 const crypto = require('crypto');
 
+/// ES6 import or TypeScript
+import io from 'socket.io-client';
+import crypto from 'crypto';
+
 
 const socketEndpoint = "wss://stream.coindcx.com";
 
@@ -4582,7 +4586,7 @@ const key = "key";
 
 
 const body = { channel: "coindcx" };
-const payload = new Buffer(JSON.stringify(body)).toString();
+const payload = Buffer.from(JSON.stringify(body)).toString();
 const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
 
 //Join channel
