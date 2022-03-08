@@ -3,32 +3,21 @@
 ## List Pricing Tiers
 
 ```javascript
-fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/', {
+fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/?entity_id=<entity_id>&entity_type=<entity_type>', {
   method: 'GET',
   headers: {
     'Authorization': '<your token>',
-  },
-  body: {
-  data: {
-    type: "pricing_tier",
-    attributes: {
-      entity_id: <entity id>,
-      entity_type: <entity type>
-    }
   }
-}
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event . 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event . 
 
-> Make sure you replace <entity id> with the id for the entity associated to pricing tier to list. 
+> Make sure you replace &lt;entity id&gt; with the id for the entity associated to pricing tier to list. 
 
-> Make sure you replace <entity type> as integer with the nunmber for the entity associated to pricing tier to list.
-
-  -- 1 : Attendee type
+> Make sure you replace &lt;entity type&gt; with the name of the entity associated to pricing tier to list.
 
 > Example of a successful (200) response:
 
@@ -67,18 +56,13 @@ This endpoint list pricing tiers and return it
 
 ### HTTP Request
 
-`GET /v1/events/:event_uri/pricing_tiers/`
+`GET /v1/events/:event_uri/pricing_tiers/?entity_id=:entity_id&entity_type=:entity_type`
 
 ### Path Parameters
 
 Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
-
-### Body Parameters
-
-Parameter |  Type   | Description
---------- | ------- | -----------
 entity_id  | integer | entity id to which pricing tier belongs
 entity_type| string  | entity type to which pricing tier belongs
 
@@ -89,30 +73,15 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/<id>', {
   method: 'GET',
   headers: {
     'Authorization': '<your token>',
-  },
-  body: {
-  data: {
-    type: "pricing_tier",
-    attributes: {
-      entity_id: <entity id>,
-      entity_type: <entity type>
-    }
   }
-}
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event. 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event. 
 
-> Make sure you replace <id> with the id for the pricing tier to get. 
-
-> Make sure you replace <entity id> with the id for the entity associated to pricing tier. 
-
-> Make sure you replace <entity type> as integer with the number for the entity associated to pricing tier.
-
-  -- 1 : Attendee type
+> Make sure you replace &lt;id&gt; with the id for the pricing tier to get. 
 
 > Example of a successful (200) response:
 
@@ -160,13 +129,6 @@ Parameter |  Type   | Description
 event_uri | string  | The event_uri for the desired event
    id     | integer | The id for the desired pricing tier
 
-### Body Parameters
-
-Parameter |  Type   | Description
---------- | ------- | -----------
-entity_id  | integer | entity id to which pricing tier belongs
-entity_type| string  | entity type to which pricing tier belongs
-
 ## Create Pricing Tier
 
 ```javascript
@@ -190,15 +152,13 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event . 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event . 
 
-> Make sure you replace <entity id> with the id for the entity associated to pricing tier to create. 
+> Make sure you replace &lt;entity id&gt; with the id for the entity associated to pricing tier to create. 
 
-> Make sure you replace <entity type> as integer with the number for the entity associated to pricing tier to create.
-
-  -- 1 : Attendee type
+> Make sure you replace &lt;entity type> as integer with the number for the entity associated to pricing tier to create.
 
 > Example of a successful (200) response:
 
@@ -272,17 +232,15 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event to update. 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event to update. 
 
-> Make sure you replace <id> with the id for the pricing tier to update. 
+> Make sure you replace &lt;id&gt; with the id for the pricing tier to update. 
 
-> Make sure you replace <entity id> with the id for the entity associated to pricing tier to update. 
+> Make sure you replace &lt;entity id&gt; with the id for the entity associated to pricing tier to update. 
 
-> Make sure you replace <entity type> as integer with the nunmber for the entity associated to pricing tier to update.
-
-  -- 1 : Attendee type
+> Make sure you replace &lt;entity type> as integer with the nunmber for the entity associated to pricing tier to update.
 
 > Example of a successful (200) response:
 
@@ -349,11 +307,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/pricing_tiers/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event to destroy. 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event to destroy. 
 
-> Make sure you replace <id> with the id for the pricing tier to update. 
+> Make sure you replace &lt;id&gt; with the id for the pricing tier to update. 
 
 >Example of a successful (200) response:
 

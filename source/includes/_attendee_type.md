@@ -11,9 +11,9 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event. 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event. 
 
 > Example of a successful (200) response:
 
@@ -74,11 +74,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event.
+> Make sure you replace &lt;event uri&gt; with the event uri for the event.
 
-> Make sure you replace <id> with the id for the attendee type to obtain. 
+> Make sure you replace &lt;id&gt; with the id for the attendee type to obtain. 
 
 > Example of a successful (200) response:
 
@@ -139,7 +139,7 @@ event_uri | string  | The event_uri for the desired event
 
 ### HTTP Request for optional include fields
 
-`GET /v1/events/:event_uri/attendee_types/:id/include=fields`
+`GET /v1/events/:event_uri/attendee_types/:id?include=value`
 
 ### Path Parameters
 
@@ -147,6 +147,12 @@ Parameter |  Type   | Description
 --------- | ------- | -----------
 include   | string  | this value gives informations for each relationships
 
+### Include Options
+
+Value |  Type   | Description
+----- | ------- | -----------
+fields | string | include fields relationships
+current_price | string | include current price
 
 ## Create Attendee Type
 
@@ -175,9 +181,9 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event .  
+> Make sure you replace &lt;event uri&gt; with the event uri for the event .  
 
 > Example of a successful (200) response:
 
@@ -269,11 +275,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event to update. 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event to update. 
 
-> Make sure you replace <id> with the id for the attendee type to update. 
+> Make sure you replace &lt;id&gt; with the id for the attendee type to update. 
 
 > Example of a successful (200) response:
 
@@ -356,11 +362,11 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/<id>', {
 })
 ```
 
-> Make sure you replace <your token> with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
-> Make sure you replace <event uri> with the event uri for the event to destroy. 
+> Make sure you replace &lt;event uri&gt; with the event uri for the event to destroy. 
 
-> Make sure you replace <id> with the id for the attendee type to update. 
+> Make sure you replace &lt;id&gt; with the id for the attendee type to update. 
 
 >Example of a successful (200) response:
 
