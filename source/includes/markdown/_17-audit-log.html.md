@@ -5,7 +5,9 @@
  
 Asana’s Audit Log API allows you to monitor and act upon critical events in your organization's Asana instance.
  
-To get started with the Audit Log API, visit the [API Reference](/docs/audit-log-api).
+Only [Service Accounts](https://asana.com/guide/help/premium/service-accounts) in [Enterprise Domains](https://asana.com/enterprise) can access Audit Log API endpoints. Authentication with a Service Account's [Personal Access Token](/docs/personal-access-token) is required.
+
+To get started with the Audit Log API, visit the [API Reference](/docs/audit-log-api). 
  
 ## Supported AuditLogEvents
  
