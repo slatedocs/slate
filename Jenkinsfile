@@ -28,22 +28,24 @@ pipeline {
         }
       }
       steps {
-        if (fileExists('deposit_information.json')) {
-          def json = readFile(file:'deposit_information.json')
-          def data = new JsonSlurperClassic().parseText(json)
-          def currentVersion = data.DepositVersion;
+        script {
+          if (fileExists('deposit_information.json')) {
+            def json = readFile(file:'deposit_information.json')
+            def data = new JsonSlurperClassic().parseText(json)
+            def currentVersion = data.DepositVersion;
 
-          def versionParts = currentVersion.split('\\.')
-          assert versionParts.size() == 3: "Helm chart version ${currentVersion} isn't of the form X.X.X!"
-          versionParts[2] = versionParts[2].toInteger() + 1;
+            def versionParts = currentVersion.split('\\.')
+            assert versionParts.size() == 3: "Helm chart version ${currentVersion} isn't of the form X.X.X!"
+            versionParts[2] = versionParts[2].toInteger() + 1;
 
-          def newVersion = versionParts.join('.')
+            def newVersion = versionParts.join('.')
 
-          echo "updating deposit information file version from ${currentVersion} to ${newVersion}"
-          def newJson = json.replaceFirst("\"${currentVersion}\"", "\"${newVersion}\"")
-          writeFile(file:'deposit_information.json', text: newJson)
-          commit "Bumped version to ${newVersion}"
-          sh "git push origin cmc-dev"
+            echo "updating deposit information file version from ${currentVersion} to ${newVersion}"
+            def newJson = json.replaceFirst("\"${currentVersion}\"", "\"${newVersion}\"")
+            writeFile(file:'deposit_information.json', text: newJson)
+            commit "Bumped version to ${newVersion}"
+            sh "git push origin cmc-dev"
+          }
         }
       }
     }
