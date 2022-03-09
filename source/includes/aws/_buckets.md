@@ -81,7 +81,7 @@ curl -X POST \
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets?operation=edit_bucket_privileges"
+   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets/:regionName/:bucketName?operation=edit_bucket_privileges"
 ```
 
 > Request body examples:
