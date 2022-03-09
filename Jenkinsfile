@@ -21,34 +21,6 @@ pipeline {
         git credentialsId: 'gh-jenkins', url: env.GIT_URL, branch: env.BRANCH_NAME
       }
     }
-    stage('Update ESCROW info') {
-      when {
-        expression {
-          env.BRANCH_NAME == 'cmc-dev'
-        }
-      }
-      steps {
-        script {
-          if (fileExists('deposit_information.json')) {
-            def json = readFile(file:'deposit_information.json')
-            def data = new JsonSlurperClassic().parseText(json)
-            def currentVersion = data.DepositVersion;
-
-            def versionParts = currentVersion.split('\\.')
-            assert versionParts.size() == 3: "Helm chart version ${currentVersion} isn't of the form X.X.X!"
-            versionParts[2] = versionParts[2].toInteger() + 1;
-
-            def newVersion = versionParts.join('.')
-
-            echo "updating deposit information file version from ${currentVersion} to ${newVersion}"
-            def newJson = json.replaceFirst("\"${currentVersion}\"", "\"${newVersion}\"")
-            writeFile(file:'deposit_information.json', text: newJson)
-            commit "Bumped version to ${newVersion}"
-            sh "git push origin cmc-dev"
-          }
-        }
-      }
-    }
 
     stage('Deploy github pages') {
       when {
@@ -64,6 +36,25 @@ pipeline {
                 sh 'git config user.name "$GIT_AUTHOR_NAME"'
                 sh 'git config user.password "$GIT_PASSWORD"'
                 sh 'set -x'
+
+                if (fileExists('deposit_information.json')) {
+                    def json = readFile(file:'deposit_information.json')
+                    def data = new JsonSlurperClassic().parseText(json)
+                    def currentVersion = data.DepositVersion;
+
+                    def versionParts = currentVersion.split('\\.')
+                    assert versionParts.size() == 3: "Helm chart version ${currentVersion} isn't of the form X.X.X!"
+                    versionParts[2] = versionParts[2].toInteger() + 1;
+
+                    def newVersion = versionParts.join('.')
+
+                    echo "updating deposit information file version from ${currentVersion} to ${newVersion}"
+                    def newJson = json.replaceFirst("\"${currentVersion}\"", "\"${newVersion}\"")
+                    writeFile(file:'deposit_information.json', text: newJson)
+                    commit "Bumped escrow version to ${newVersion}"
+                    sh "git push origin cmc-dev"
+                }
+
                 sh "./deploy.sh"
             }
         }
@@ -77,3 +68,9 @@ pipeline {
   }
 }
 
+def commit(message) {
+    def nothingToCommit = sh(script: "git status", returnStdout: true).trim().contains('nothing to commit')
+    if (!nothingToCommit) {
+	    sh "git commit -a -m '$message'"
+    }
+}
