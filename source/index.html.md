@@ -3907,8 +3907,10 @@ secret_bytes = bytes(secret)
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "details": true,
+  "details": True,
   "market": "LTCBTC",
+  "status":"close",
+  "size":20,
   "timestamp": timeStamp
 }
 
@@ -3951,6 +3953,8 @@ const secret = "";
 const body = {
   "details": true,
   "market": "LTCBTC",
+  "status":"open",
+  "size":20,
   "timestamp": timeStamp
 }
 
@@ -4086,9 +4090,10 @@ Use this endpoint to fetch orders and optionally its details which include all b
 
 | Name  | Type      | Required | Example            | Description                    |
 |------|-----|----------|--------------------|--------------------------------|
-| market         | string | No      | XRPBTC         | The trading pair                |
+| market         | string | No      | XRPBTC         | The trading pair, default: Orders for all market               |
 | details        | boolean | No      | false          | Whether you want detailed information or not, default: false            |
-| status         | string | No       | open,close | The ID of the order            |
+| status         | string | No       | init,open,close,rejected,cancelled,partial_entry,partial_close,triggered | The status of the order, default: All orders           |
+| size           | number | No       | 20 | Number of records per page, default: 10|
 | timestamp      | number | Yes      | 1524211224    | When was the request generated |
 
 
