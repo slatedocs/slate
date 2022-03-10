@@ -1005,7 +1005,8 @@ body = {
   "market": "SNTBTC", #Replace 'SNTBTC' with your desired market pair.
   "price_per_unit": 0.03244, #This parameter is only required for a 'limit_order'
   "total_quantity": 400, #Replace this with the quantity you want
-  "timestamp": timeStamp
+  "timestamp": timeStamp,
+  "client_order_id": "2022.02.14-btcinr_1" #Replace this with the client order id you want
 }
 
 json_body = json.dumps(body, separators = (',', ':'))
@@ -1048,7 +1049,8 @@ const body = {
 	"market": "SNTBTC", //Replace 'SNTBTC' with your desired market.
 	"price_per_unit": "0.03244", //This parameter is only required for a 'limit_order'
 	"total_quantity": 400, //Replace this with the quantity you want
-	"timestamp": timeStamp
+	"timestamp": timeStamp,
+	"client_order_id": "2022.02.14-btcinr_1" //Replace this with the client order id you want
 }
 
 const payload = new Buffer(JSON.stringify(body)).toString();
@@ -1077,6 +1079,7 @@ request.post(options, function(error, response, body) {
    "orders":[
      {
         "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+        "client_order_id": "2022.02.14-btcinr_1",
         "market":"TRXETH",
         "order_type":"limit_order",
         "side":"buy",
@@ -1107,14 +1110,15 @@ You can only have a maximum of <strong>25 open orders</strong> at a time for one
 
 ### Parameters
 
-| Name           | Required | Example      | Description                                    |
-|----------------|----------|--------------|------------------------------------------------|
-| market         | Yes      | SNTBTC       | The trading pair                               |
-| total_quantity | Yes      | 1.101        | Quantity to trade                              |
-| price_per_unit | No       | 0.082        | Price per unit (not required for market order) |
-| side           | Yes      | buy          | Specify buy or sell                            |
-| order_type     | Yes      | market_order | Order Type                                     |
-| timestamp      | Yes      | 1524211224   | When was the request generated                 |
+| Name            | Required | Example             | Description                                    |
+|-----------------|----------|---------------------|------------------------------------------------|
+| market          | Yes      | SNTBTC              | The trading pair                               |
+| total_quantity  | Yes      | 1.101               | Quantity to trade                              |
+| price_per_unit  | No       | 0.082               | Price per unit (not required for market order) |
+| side            | Yes      | buy                 | Specify buy or sell                            |
+| order_type      | Yes      | market_order        | Order Type                                     |
+| timestamp       | Yes      | 1524211224          | When was the request generated                 |
+| client_order_id | No       | 2022.02.14-btcinr_1 | Client order id of the order                   |
 
 ## Create multiple orders
 
@@ -1155,7 +1159,8 @@ body = {
     "price_per_unit": 0.03244, #This parameter is only required for a 'limit_order'
     "total_quantity": 400, #Replace this with the quantity you want
     "timestamp": timeStamp,
-    "ecode": "I"
+    "ecode": "I",
+    "client_order_id": "2022.02.14-btcinr_1" #Replace this with the client order id you want
   },
   {
     "side": "buy",  #Toggle between 'buy' or 'sell'.
@@ -1210,7 +1215,8 @@ const body = {"orders": [{
           "price_per_unit": "466330", //This parameter is only required for a 'limit_order'
           "total_quantity": 0.01, //Replace this with the quantity you want
           "timestamp": timeStamp,
-          "ecode": "I"
+          "ecode": "I",
+          "client_order_id": "2022.02.14-btcinr_1" //Replace this with the client order id you want
         },
         {
           "side": "buy",  //Toggle between 'buy' or 'sell'.
@@ -1249,6 +1255,7 @@ request.post(options, function(error, response, body) {
    "orders":[
      {
         "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+        "client_order_id": "2022.02.14-btcinr_1",
         "market":"TRXETH",
         "order_type":"limit_order",
         "side":"buy",
@@ -1275,15 +1282,16 @@ Use this endpoint to place a multiple orders on the exchange
 
 ### Parameters in an array of objects
 
-| Name           | Required | Example      | Description                                    |
-|----------------|----------|--------------|------------------------------------------------|
-| market         | Yes      | SNTBTC       | The trading pair                               |
-| total_quantity | Yes      | 1.101        | Quantity to trade                              |
-| price_per_unit | No       | 0.082        | Price per unit (not required for market order) |
-| side           | Yes      | buy          | Specify buy or sell                            |
-| order_type     | Yes      | market_order | Order Type                                     |
-| timestamp      | Yes      | 1524211224   | When was the request generated                 |
-| ecode          | Yes      | I            | Exchange code                                  |
+| Name            | Required | Example             | Description                                    |
+|-----------------|----------|---------------------|------------------------------------------------|
+| market          | Yes      | SNTBTC              | The trading pair                               |
+| total_quantity  | Yes      | 1.101               | Quantity to trade                              |
+| price_per_unit  | No       | 0.082               | Price per unit (not required for market order) |
+| side            | Yes      | buy                 | Specify buy or sell                            |
+| order_type      | Yes      | market_order        | Order Type                                     |
+| timestamp       | Yes      | 1524211224          | When was the request generated                 |
+| ecode           | Yes      | I                   | Exchange code                                  |
+| client_order_id | No       | 2022.02.14-btcinr_1 | Client order id of the order                   |
 
 ##  Order status
 ```ruby
