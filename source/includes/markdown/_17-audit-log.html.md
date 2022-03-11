@@ -107,8 +107,8 @@ All role events operate on the _User_ resource type.
 |------------|---------------|-------------|
 | team_harvest_integration_enabled      | Team | The Harvest time tracking integration was enabled for a team. |
 | team_harvest_integration_disabled     | Team | The Harvest time tracking integration was disabled for a team. |
-| user_app_authorized                   | App | An app was authorized by a user in the workspace. |
-| user_app_revoked                      | App | An app was deauthorized by a user in the workspace. |
+| user_app_authorized                   | User | An app was authorized by a user in the workspace. |
+| user_app_revoked                      | User | An app was deauthorized by a user in the workspace. |
 | user_personal_access_token_authorized | User | A new personal access token was authorized by the user in the workspace. |
 | user_personal_access_token_revoked    | User | A personal access token was deauthorized by the user in the workspace. |
 | service_account_created               | User | A service account was created or reprovisioned. |
