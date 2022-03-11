@@ -108,8 +108,10 @@ $result = $client->attachments->getAttachment($attachment_gid, array('param' => 
     "parent": {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Bug Task"
+      "name": "Bug Task",
+      "resource_subtype": "default_task"
     },
+    "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
   }
 }
@@ -461,8 +463,10 @@ url: string
     "parent": {
       "gid": "12345",
       "resource_type": "task",
-      "name": "Bug Task"
+      "name": "Bug Task",
+      "resource_subtype": "default_task"
     },
+    "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
     "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
   }
 }
@@ -1137,8 +1141,20 @@ $result = $client->customfields->createCustomField(array('field' => 'value', 'fi
         "name": "Low"
       }
     ],
+    "enum_value": {
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
     "format": "custom",
     "has_notifications_enabled": true,
+    "multi_enum_values": [
+      {
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "name": "Status",
     "number_value": 5.2,
     "precision": 2,
@@ -1217,8 +1233,8 @@ to be created in a specific workspace, and this workspace cannot be
 changed once set.
 
 A custom field’s name must be unique within a workspace and not conflict
-with names of existing task properties such as ‘Due Date’ or ‘Assignee’.
-A custom field’s type must be one of ‘text’, ‘enum’, or ‘number’.
+with names of existing task properties such as `Due Date` or `Assignee`.
+A custom field’s type must be one of `text`, `enum`, `multi_enum` or `number`.
 
 Returns the full record of the newly created custom field.
 </span>
@@ -1238,8 +1254,16 @@ Returns the full record of the newly created custom field.
 |»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -1523,8 +1547,20 @@ $result = $client->customfields->updateCustomField($custom_field_gid, array('fie
         "name": "Low"
       }
     ],
+    "enum_value": {
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
     "format": "custom",
     "has_notifications_enabled": true,
+    "multi_enum_values": [
+      {
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "name": "Status",
     "number_value": 5.2,
     "precision": 2,
@@ -1621,8 +1657,16 @@ Returns the complete updated custom field record.
 |»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
 |»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»»» name<span class="param-type"> string</span>|The name of the enum option.|
+|»» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» format<span class="param-type"> string</span>|The format of this custom field.|
 |»» has_notifications_enabled<span class="param-type"> boolean</span>|*Conditional*. This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»»» name<span class="param-type"> string</span>|The name of the enum option.|
 |»» name<span class="param-type"> string</span>|The name of the custom field.|
 |»» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |»» precision<span class="param-type"> integer</span>|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
@@ -2030,7 +2074,7 @@ $result = $client->customfields->createEnumOptionForCustomField($custom_field_gi
 </p>
 
 <span class="description">
-Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 50 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list.
+Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 100 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list.
 Locked custom fields can only have enum options added by the user who locked the field.
 Returns the full record of the newly created enum option.
 </span>
@@ -2040,7 +2084,7 @@ Returns the full record of the newly created enum option.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to create.|
-|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 100.|
 |»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
 |»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
@@ -2303,7 +2347,7 @@ Returns the full record of the updated enum option.
 |Name|Description|
 |---|---|
 |body<span class="param-type"> object</span>|The enum option object to update|
-|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
+|» data<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 100.|
 |»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
 |»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» insert_after<span class="param-type"> string</span>|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
@@ -8312,6 +8356,22 @@ $result = $client->projects->createProject(array('field' => 'value', 'field' => 
             "name": "Low"
           }
         ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -8387,7 +8447,7 @@ Returns the full record of the newly created project.
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). *Deprecated - please use a project template endpoint instead (more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432)).* Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -8650,6 +8710,22 @@ $result = $client->projects->getProject($project_gid, array('param' => 'value', 
         "display_value": "blue",
         "enabled": true,
         "enum_options": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "multi_enum_values": [
           {
             "gid": "12345",
             "resource_type": "enum_option",
@@ -8977,6 +9053,22 @@ $result = $client->projects->updateProject($project_gid, array('field' => 'value
             "name": "Low"
           }
         ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -9050,7 +9142,7 @@ Returns the complete updated project record.
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). *Deprecated - please use a project template endpoint instead (more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432)).* Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -9866,6 +9958,22 @@ $result = $client->projects->createProjectForTeam($team_gid, array('field' => 'v
             "name": "Low"
           }
         ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -9933,7 +10041,7 @@ Returns the full record of the newly created project.
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). *Deprecated - please use a project template endpoint instead (more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432)).* Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -10361,6 +10469,22 @@ $result = $client->projects->createProjectForWorkspace($workspace_gid, array('fi
             "name": "Low"
           }
         ],
+        "enum_value": {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        },
+        "multi_enum_values": [
+          {
+            "gid": "12345",
+            "resource_type": "enum_option",
+            "color": "blue",
+            "enabled": true,
+            "name": "Low"
+          }
+        ],
         "name": "Status",
         "number_value": 5.2,
         "resource_subtype": "text",
@@ -10431,7 +10555,7 @@ Returns the full record of the newly created project.
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
-|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
+|»» is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). *Deprecated - please use a project template endpoint instead (more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432)).* Determines if the project is a template.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
@@ -11532,7 +11656,7 @@ $result = $client->projects->projectSaveAsTemplate($project_gid, array('field' =
 <span class="description">
 Creates and returns a job that will asynchronously handle the project template creation. Note that
 while the resulting project template can be accessed with the API, it won't be visible in the Asana
-UI until Project Templates 2.0 is launched in the app.
+UI until Project Templates 2.0 is launched in the app. See more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432).
 </span>
 
 <h3 id="create-a-project-template-from-a-project-parameters">Parameters</h3>
@@ -14975,6 +15099,22 @@ $result = $client->stories->getStory($story_gid, array('param' => 'value', 'para
           "name": "Low"
         }
       ],
+      "enum_value": {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      },
+      "multi_enum_values": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
       "name": "Status",
       "number_value": 5.2,
       "resource_subtype": "text",
@@ -15276,6 +15416,22 @@ $result = $client->stories->updateStory($story_gid, array('field' => 'value', 'f
       "display_value": "blue",
       "enabled": true,
       "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
+      "enum_value": {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      },
+      "multi_enum_values": [
         {
           "gid": "12345",
           "resource_type": "enum_option",
@@ -15831,6 +15987,22 @@ $result = $client->stories->createStoryForTask($task_gid, array('field' => 'valu
       "display_value": "blue",
       "enabled": true,
       "enum_options": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
+      "enum_value": {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      },
+      "multi_enum_values": [
         {
           "gid": "12345",
           "resource_type": "enum_option",
@@ -23340,8 +23512,8 @@ $result = $client->users->getUser($user_gid, array('param' => 'value', 'param' =
   "data": {
     "gid": "12345",
     "resource_type": "user",
-    "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
+    "name": "Greg Sanchez",
     "photo": {
       "image_1024x1024": "https://...",
       "image_128x128": "https://...",
@@ -25258,8 +25430,8 @@ $result = $client->workspaces->addUserForWorkspace($workspace_gid, array('field'
   "data": {
     "gid": "12345",
     "resource_type": "user",
-    "name": "Greg Sanchez",
     "email": "gsanchez@example.com",
+    "name": "Greg Sanchez",
     "photo": {
       "image_1024x1024": "https://...",
       "image_128x128": "https://...",
@@ -25267,14 +25439,7 @@ $result = $client->workspaces->addUserForWorkspace($workspace_gid, array('field'
       "image_27x27": "https://...",
       "image_36x36": "https://...",
       "image_60x60": "https://..."
-    },
-    "workspaces": [
-      {
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "My Company Workspace"
-      }
-    ]
+    }
   }
 }
 ```
@@ -25305,12 +25470,31 @@ The user can be referenced by their globally unique user ID or their email addre
 
 |Status|Description|
 |---|---|
-|200<span class="param-type"> [User](#schemauser)</span>|The user was added successfully to the workspace or organization.|
+|200<span class="param-type"> Inline</span>|The user was added successfully to the workspace or organization.|
 |400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
 |401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
 |403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
 |404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
 |500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+<h3 id="add-a-user-to-a-workspace-or-organization-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Description|
+|---|---|
+| data<span class="param-type"> [UserBaseResponse](#schemauserbaseresponse)</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+| gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+| resource_type<span class="param-type"> string</span>|The base type of this resource.|
+| email<span class="param-type"> string(email)</span>|The user's email address.|
+| name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
+| photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, 128, and 1024. All images are in PNG format, except for 1024 (which is in JPEG format).|
+| image_1024x1024<span class="param-type"> string(uri)</span>|none|
+| image_128x128<span class="param-type"> string(uri)</span>|none|
+| image_21x21<span class="param-type"> string(uri)</span>|none|
+| image_27x27<span class="param-type"> string(uri)</span>|none|
+| image_36x36<span class="param-type"> string(uri)</span>|none|
+| image_60x60<span class="param-type"> string(uri)</span>|none|
 
 </section><hr class="half-line">
 <section>
@@ -25937,8 +26121,10 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
   "parent": {
     "gid": "12345",
     "resource_type": "task",
-    "name": "Bug Task"
+    "name": "Bug Task",
+    "resource_subtype": "default_task"
   },
+  "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
   "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
 }
 
@@ -25964,6 +26150,8 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the task.|
+|» resource_subtype<span class="param-type"> string¦null</span>|The resource subtype of the parent resource that the filter applies to.|
+|permanent_url<span class="param-type"> string(uri)¦null</span>|none|
 |view_url<span class="param-type"> string(uri)¦null</span>|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
 
 </section><hr>
@@ -26125,6 +26313,22 @@ A response object returned from a batch request.
       "name": "Low"
     }
   ],
+  "enum_value": {
+    "gid": "12345",
+    "resource_type": "enum_option",
+    "color": "blue",
+    "enabled": true,
+    "name": "Low"
+  },
+  "multi_enum_values": [
+    {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    }
+  ],
   "name": "Status",
   "number_value": 5.2,
   "resource_subtype": "text",
@@ -26148,6 +26352,18 @@ A `Compact` object is the same as the [full response object](/docs/tocS_CustomFi
 |display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|» name<span class="param-type"> string</span>|The name of the enum option.|
+|multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
@@ -26513,7 +26729,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 ```
 
 <span class="description">
-Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
+Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 100.
 
 You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
 
@@ -27885,6 +28101,22 @@ With the introduction of “comment-only” projects in Asana, a user’s member
           "name": "Low"
         }
       ],
+      "enum_value": {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      },
+      "multi_enum_values": [
+        {
+          "gid": "12345",
+          "resource_type": "enum_option",
+          "color": "blue",
+          "enabled": true,
+          "name": "Low"
+        }
+      ],
       "name": "Status",
       "number_value": 5.2,
       "resource_subtype": "text",
@@ -28007,7 +28239,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
-|is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). Determines if the project is a template.|
+|is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). *Deprecated - please use a project template endpoint instead (more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432)).* Determines if the project is a template.|
 |members<span class="param-type"> [object]</span>|Array of users who are members of this project.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -28037,6 +28269,18 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» display_value<span class="param-type"> string</span>|A string representation for the value of the custom field. Integrations that don't require the underlying type should use this field to read values. Using this field will future-proof an app against new custom field types.|
 |» enabled<span class="param-type"> boolean</span>|*Conditional*. Determines if the custom field is enabled or not.|
 |» enum_options<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](/docs/create-an-enum-option).|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
@@ -28712,6 +28956,22 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Story), 
         "name": "Low"
       }
     ],
+    "enum_value": {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "color": "blue",
+      "enabled": true,
+      "name": "Low"
+    },
+    "multi_enum_values": [
+      {
+        "gid": "12345",
+        "resource_type": "enum_option",
+        "color": "blue",
+        "enabled": true,
+        "name": "Low"
+      }
+    ],
     "name": "Status",
     "number_value": 5.2,
     "resource_subtype": "text",
@@ -28909,6 +29169,18 @@ A story represents an activity associated with an object in the Asana system.
 |»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
 |»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
 |»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» enum_value<span class="param-type"> object</span>|*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
+|» multi_enum_values<span class="param-type"> [object]</span>|*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.|
+|»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
+|»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
+|»» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
+|»» enabled<span class="param-type"> boolean</span>|Whether or not the enum option is a selectable value for the custom field.|
+|»» name<span class="param-type"> string</span>|The name of the enum option.|
 |» name<span class="param-type"> string</span>|The name of the custom field.|
 |» number_value<span class="param-type"> number</span>|*Conditional*. This number is the value of a number custom field.|
 |» resource_subtype<span class="param-type"> string</span>|The type of the custom field. Must be one of the given values.|
@@ -28950,7 +29222,7 @@ A story represents an activity associated with an object in the Asana system.
 |» due_at<span class="param-type"> string(date-time)</span>|none|
 |» due_on<span class="param-type"> string(date)</span>|none|
 |» start_on<span class="param-type"> string(date)</span>|none|
-|new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|new_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 100.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
@@ -28977,7 +29249,7 @@ A story represents an activity associated with an object in the Asana system.
 |» due_at<span class="param-type"> string(date-time)</span>|none|
 |» due_on<span class="param-type"> string(date)</span>|none|
 |» start_on<span class="param-type"> string(date)</span>|none|
-|old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|old_enum_value<span class="param-type"> object</span>|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 100.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» color<span class="param-type"> string</span>|The color of the enum option. Defaults to ‘none’.|
@@ -29943,8 +30215,8 @@ A `Compact` object is the same as the [full response object](/docs/tocS_User), b
 {
   "gid": "12345",
   "resource_type": "user",
-  "name": "Greg Sanchez",
   "email": "gsanchez@example.com",
+  "name": "Greg Sanchez",
   "photo": {
     "image_1024x1024": "https://...",
     "image_128x128": "https://...",
@@ -29975,8 +30247,8 @@ A *user* object represents an account in Asana that can be given access to vario
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |email<span class="param-type"> string(email)</span>|The user's email address.|
+|name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |photo<span class="param-type"> object¦null</span>|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, 128, and 1024. All images are in PNG format, except for 1024 (which is in JPEG format).|
 |» image_1024x1024<span class="param-type"> string(uri)</span>|none|
 |» image_128x128<span class="param-type"> string(uri)</span>|none|
