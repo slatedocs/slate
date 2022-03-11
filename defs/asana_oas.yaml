@@ -1635,6 +1635,13 @@ components:
               readOnly: true
               nullable: true
               example: https://s3.amazonaws.com/assets/123/Screenshot.png
+            permanent_url:
+              description: >
+              type: string
+              format: uri
+              readOnly: true
+              nullable: true
+              example: https://s3.amazonaws.com/assets/123/Screenshot.png
             host:
               description: >-
                 The service hosting the attachment. Valid values are `asana`,
@@ -1648,6 +1655,14 @@ components:
                 - type: object
                   description: The task this attachment is attached to.
                   readOnly: true
+                  properties:
+                    resource_subtype:
+                      description: >-
+                        The resource subtype of the parent resource that the filter
+                        applies to.
+                      type: string
+                      example: default_task
+                      nullable: true
             view_url:
               description: >-
                 The URL where the attachment can be viewed, which may be
@@ -2051,6 +2066,22 @@ components:
                 *Conditional*. Determines if the custom field is enabled or not.
               type: boolean
               example: true
+            enum_value:
+              allOf:
+                - $ref: '#/components/schemas/EnumOption'
+                - type: object
+                  description: >-
+                    *Conditional*. Only relevant for custom fields of type
+                    `enum`. This object is the chosen value of an enum custom
+                    field.
+            multi_enum_values:
+              description: >-
+                *Conditional*. Only relevant for custom fields of type
+                `multi_enum`. This object is the chosen values of a multi_enum custom
+                field.
+              type: array
+              items:
+                $ref: '#/components/schemas/EnumOption'
             number_value:
               description: >-
                 *Conditional*. This number is the value of a number custom field.
@@ -2087,22 +2118,6 @@ components:
         - $ref: '#/components/schemas/CustomFieldBase'
         - type: object
           properties:
-            enum_value:
-              allOf:
-                - $ref: '#/components/schemas/EnumOption'
-                - type: object
-                  description: >-
-                    *Conditional*. Only relevant for custom fields of type
-                    `enum`. This object is the chosen value of an enum custom
-                    field.
-            multi_enum_values:
-              description: >-
-                *Conditional*. Only relevant for custom fields of type
-                `multi_enum`. This object is the chosen values of a multi_enum custom
-                field.
-              type: array
-              items:
-                $ref: '#/components/schemas/EnumOption'
             created_by:
               $ref: '#/components/schemas/UserCompact'
               nullable: true
@@ -2170,7 +2185,7 @@ components:
           description: >-
             Enum options are the possible values which an enum custom field can
             adopt. An enum custom field must contain at least 1 enum option but no
-            more than 50.
+            more than 100.
 
 
             You can add enum options to a custom field by using the `POST
@@ -3226,6 +3241,8 @@ components:
             is_template:
               description: >-
                 [Opt In](/docs/input-output-options).
+                *Deprecated - please use a project template endpoint instead (more
+                in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432)).*
                 Determines if the project is a template.
               type: boolean
               example: false
@@ -5448,7 +5465,7 @@ components:
               example: Greg Sanchez
     UserRequest:
       $ref: '#/components/schemas/UserBase'
-    UserResponse:
+    UserBaseResponse:
       allOf:
         - $ref: '#/components/schemas/UserBase'
         - type: object
@@ -5494,6 +5511,11 @@ components:
                 image_60x60: https://...
                 image_128x128: https://...
                 image_1024x1024: https://...
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/UserBaseResponse'
+        - type: object
+          properties:
             workspaces:
               description: >-
                 Workspaces and organizations this user may access.
@@ -6228,8 +6250,8 @@ paths:
         changed once set.
 
         A custom field’s name must be unique within a workspace and not conflict
-        with names of existing task properties such as ‘Due Date’ or ‘Assignee’.
-        A custom field’s type must be one of ‘text’, ‘enum’, or ‘number’.
+        with names of existing task properties such as `Due Date` or `Assignee`.
+        A custom field’s type must be one of `text`, `enum`, `multi_enum` or `number`.
 
         Returns the full record of the newly created custom field.
       tags:
@@ -6439,7 +6461,7 @@ paths:
       summary: Create an enum option
       description: >-
         Creates an enum option and adds it to this custom field’s list of enum
-        options. A custom field can have at most 50 enum options (including
+        options. A custom field can have at most 100 enum options (including
         disabled options). By default new enum options are inserted at the end of
         a custom field’s list.
 
@@ -9356,7 +9378,7 @@ paths:
       description: |-
         Creates and returns a job that will asynchronously handle the project template creation. Note that
         while the resulting project template can be accessed with the API, it won't be visible in the Asana
-        UI until Project Templates 2.0 is launched in the app.
+        UI until Project Templates 2.0 is launched in the app. See more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432).
       tags:
         - Projects
       operationId: projectSaveAsTemplate
@@ -13407,7 +13429,7 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/UserResponse'
+                    $ref: '#/components/schemas/UserBaseResponse'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
