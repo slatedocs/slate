@@ -73,7 +73,7 @@ This endpoint is not a json request, and without the "Content-Type:application/j
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/attachments.json \
--d '{"entity": "issue", "entity-id": 23232, "data": { "type": "attachments",  "files": { "data": [ { filename: "test_data.csv", content_encoded: "whatever encoded data here.." } ] }  }}'
+-d '{"entity": "issue", "entity-id": 23232, "data": { "type": "attachments",  "files": { "data": [ { "filename": "test_data.csv", "content_encoded": "whatever encoded data here.." } ] }  }}'
 
 ```
 
