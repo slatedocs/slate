@@ -53,23 +53,23 @@ curl -X GET \
 
 Retrieve a list of all volumes in a given [environment](#administration-environments).
 
-Attributes | &nbsp;
-------- | -----------
-`id`<br/>*string* | The ID of the volume.
-`name`<br/>*string* | The volume name of the root device volume (for example, /dev/sda1).
-`attachments` <br/>*Array[object]* | The list of instances to which the volume is attached.
-`availabilityZone` <br/>*string* | The Availability Zone of the volume.
-`createTime` <br/>*string* | The timestamp when the volume was created.
-`encrypted` <br/>*boolean* | Indicates whether the volume is encrypted.
-`size` <br/>*int* | The size of the volume in GiB.
-`snapshotId` <br/>*string* | The snapshot from which the volume was created.
-`state` <br/>*string* | The state of the volume (creating, available, in-use, deleting, deleted, error).
-`volumeId` <br/>*string* | The volume ID.
-`iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide.
-`tags` <br/>*Array[object]* | Any tags assigned to the volume. Tags are key value pairs.
-`volumeType` <br/>*string* | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).
-`fastRestored` <br/>*boolean* | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore.
-`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.
+| Attributes                          | &nbsp;                                                                                                    |
+|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `id`<br/>*string*                   | The ID of the volume.                                                                                     |
+| `name`<br/>*string*                 | The volume name of the root device volume (for example, /dev/sda1).                                       |
+| `attachments` <br/>*Array[object]*  | The list of instances to which the volume is attached.                                                    |
+| `availabilityZone` <br/>*string*    | The Availability Zone of the volume.                                                                      |
+| `createTime` <br/>*string*          | The timestamp when the volume was created.                                                                |
+| `encrypted` <br/>*boolean*          | Indicates whether the volume is encrypted.                                                                |
+| `size` <br/>*int*                   | The size of the volume in GiB.                                                                            |
+| `snapshotId` <br/>*string*          | The snapshot from which the volume was created.                                                           |
+| `state` <br/>*string*               | The state of the volume (creating, available, in-use, deleting, deleted, error).                          |
+| `volumeId` <br/>*string*            | The volume ID.                                                                                            |
+| `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. |
+| `tags` <br/>*Array[object]*         | Any tags assigned to the volume. Tags are key value pairs.                                                |
+| `volumeType` <br/>*string*          | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).                                      |
+| `fastRestored` <br/>*boolean*       | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore.       |
+| `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.                                                 |
 
 <!-------------------- RETRIEVE A VOLUME -------------------->
 #### Retrieve a volume
@@ -116,23 +116,23 @@ curl -X GET \
 
 Retrieve a volume in a given [environment](#administration-environments).
 
-Attributes | &nbsp;
-------- | -----------
-`id`<br/>*string* | The ID of the volume.
-`name`<br/>*string* | The volume name of the root device volume (for example, /dev/sda1).
-`attachments` <br/>*Array[object]* | The list of instances to which the volume is attached.
-`availabilityZone` <br/>*string* | The Availability Zone of the volume.
-`createTime` <br/>*string* | The timestamp when the volume was created.
-`encrypted` <br/>*boolean* | Indicates whether the volume is encrypted.
-`size` <br/>*int* | The size of the volume in GiB.
-`snapshotId` <br/>*string* | The snapshot from which the volume was created.
-`state` <br/>*string* | The state of the volume (creating, available, in-use, deleting, deleted, error).
-`volumeId` <br/>*string* | The volume ID.
-`iops` <br/>*int* | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide.
-`tags` <br/>*Array[object]* | Any tags assigned to the volume. Tags are key value pairs.
-`volumeType` <br/>*string* | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).
-`fastRestored` <br/>*boolean* | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore.
-`multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.
+| Attributes                          | &nbsp;                                                                                                    |
+|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `id`<br/>*string*                   | The ID of the volume.                                                                                     |
+| `name`<br/>*string*                 | The volume name of the root device volume (for example, /dev/sda1).                                       |
+| `attachments` <br/>*Array[object]*  | The list of instances to which the volume is attached.                                                    |
+| `availabilityZone` <br/>*string*    | The Availability Zone of the volume.                                                                      |
+| `createTime` <br/>*string*          | The timestamp when the volume was created.                                                                |
+| `encrypted` <br/>*boolean*          | Indicates whether the volume is encrypted.                                                                |
+| `size` <br/>*int*                   | The size of the volume in GiB.                                                                            |
+| `snapshotId` <br/>*string*          | The snapshot from which the volume was created.                                                           |
+| `state` <br/>*string*               | The state of the volume (creating, available, in-use, deleting, deleted, error).                          |
+| `volumeId` <br/>*string*            | The volume ID.                                                                                            |
+| `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. |
+| `tags` <br/>*Array[object]*         | Any tags assigned to the volume. Tags are key value pairs.                                                |
+| `volumeType` <br/>*string*          | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).                                      |
+| `fastRestored` <br/>*boolean*       | Indicates whether the volume was created from a snapshot that is enabled for fast snapshot restore.       |
+| `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.                                                 |
 
 <!-------------------- CREATE VOLUMES -------------------->
 #### Create Volume
@@ -189,6 +189,61 @@ Retrieve a list of all volumes in a given [environment](#administration-environm
 | `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. This field is only valid for gp3, io1, and io2 volume types. It is mandatory for io1 and io2 volumes. |
 | `throughput` <br/>*int*             | The throughput performance in MiB/s that the volume can support. This field is required for gp3 volumes.                                                                                                        |
 | `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach. This is only supported for io1 and io2 volume types.                                                                                                  |
+
+<!-------------------- MODIFY VOLUMES -------------------->
+
+#### Modify Volume
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/volumes/vol-0c8dd88e0743c368b"
+```
+> Request body example for a volume:
+```json
+{
+    "name": "api-volume",
+    "id": "vol-0c8dd88e0743c368b",
+    "size": 1,
+    "iops": 100,
+    "throughput": 125,
+    "volumeType": "gp3",
+    "multiAttachEnabled": false, 
+    "attachments": [
+      {
+        "attachTime": "2022-01-11T20:57:31Z",
+        "device": "/dev/xvda",
+        "instanceId": "i-03dffc71c7d649bb1",
+        "state": "attached",
+        "volumeId": "vol-0c8dd88e0743c368b",
+        "deleteOnTermination": true
+      }
+    ]
+}
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "35d38672-8772-4b04-b1ca-1b13b97638ca",
+    "taskStatus": "PENDING"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
+
+Modify a volume in a given environment [environment](#administration-environments).
+
+| Attributes                          | &nbsp;                                                                                                    |
+|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `id`<br/>*string*                   | The ID of the volume.                                                                                     |
+| `name`<br/>*string*                 | The volume name of the root device volume (for example, /dev/sda1).                                       |
+| `attachments` <br/>*Array[object]*  | The list of instances to which the volume is attached.                                                    |                                                                                                                                  |
+| `size` <br/>*int*                   | The size of the volume in GiB.                                                                            |
+| `volumeId` <br/>*string*            | The volume ID.                                                                                            |
+| `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. |
+| `volumeType` <br/>*string*          | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).                                      |
+| `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.                                                 |
+
+
 
 <!-------------------- DELETE A VOLUME -------------------->
 
