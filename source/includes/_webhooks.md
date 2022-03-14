@@ -43,7 +43,7 @@ There is an option to queue webhooks for background execution. The reason behind
 
 This lag can be more visible when you do a CSV import. It may be slow when it is waiting a second or two for webhook response for every imported contact.
 
-If you want to avoid this lag, configure the webhook queue in the configuration and add this command to your cron tab: `app/console mautic:webhooks:process`. This way every time the webhook is triggered, the action is queued as a new row into database, so it is much faster and then the command will make the requests which may take some time. The caveat to this optimization is that the webhooks are not fired every time the action happens, but every time the command runs.
+If you want to avoid this lag in the user interface, configure the webhook queue in the configuration and add this command to your cron tab: `app/console mautic:webhooks:process`. This way every time the webhook is triggered, the information is only stored as a new row into database, so it is much faster then sending the information to another service via HTTP. Then the command (cron job) will read the records from the database and make the requests which may take some time, but it is not slowing down the users or contacts. The command will also send 10 events in 1 webhook request so this communication needs 10 times less HTTP requests. The caveat to this optimization is that the webhooks are not fired every time the action happens, but every time the command (cron job) runs.
 
 ## Queued event order
 
