@@ -1320,6 +1320,7 @@ timeStamp = int(round(time.time() * 1000))
 
 body = {
   "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", # Enter your Order ID here.
+  # "client_order_id": "ead19992-43fd-11e8-b027-bb815bcb14ed", # Enter your Client Order ID here.
   "timestamp": timeStamp
 }
 
@@ -1360,7 +1361,8 @@ const secret = "";
 
 
 const body = {
-	"id": "qwd19992-43fd-14e8-b027-bb815bnb14ed", //Replace it with your Order ID.
+	// "id": "qwd19992-43fd-14e8-b027-bb815bnb14ed", //Replace it with your Order ID.
+	"client_order_id": "qwd19992-43fd-14e8-b027-bb815bnb14ed", //Replace it with your Client Order ID.
 	"timestamp": timeStamp
 }
 
@@ -1387,6 +1389,7 @@ request.post(options, function(error, response, body) {
 ```json
 {
   "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+  "client_order_id": "2022.02.14-btcinr_1",
   "market":"TRXETH",
   "order_type":"limit_order",
   "side":"buy",
@@ -1411,10 +1414,11 @@ Use this endpoint to fetch status of any order
 
 ### Parameters
 
-| Name      | Required | Example                              | Description                    |
-|-----------|----------|--------------------------------------|--------------------------------|
-| id        | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
-| timestamp | Yes      | 1524211224                           | When was the request generated |
+| Name            | Required | Example                              | Description                      |
+|-----------------|----------|--------------------------------------|----------------------------------|
+| id              | No       | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order              |
+| client_order_id | No       | 8a1d1e4c-c895-11e8-9dff-df1480546936 | The Client Order ID of the order |
+| timestamp       | Yes      | 1524211224                           | When was the request generated   |
 
 
 ##  Multiple order status
@@ -1443,7 +1447,8 @@ secret_bytes = bytes(secret)
 timeStamp = int(round(time.time() * 1000))
 
 body = {
-  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"],
+  # "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"], # Array of Order ids
+  "client_order_ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"], # Array of Client Order ids
   "timestamp": timeStamp
 }
 
@@ -1484,7 +1489,8 @@ const secret = "";
 
 
 const body = {
-  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"],
+  "ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"], // Array of Order ids
+  // "client_order_ids": ["8a2f4284-c895-11e8-9e00-5b2c002a6ff4", "8a1d1e4c-c895-11e8-9dff-df1480546936"], // Array of Client Order ids
   "timestamp": timeStamp
 }
 
@@ -1512,6 +1518,7 @@ request.post(options, function(error, response, body) {
 [
   {
     "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+    "client_order_id": "2022.02.14-btcinr_1",
     "market":"TRXETH",
     "order_type":"limit_order",
     "side":"buy",
@@ -1537,10 +1544,11 @@ Use this endpoint to fetch status of any order
 
 ### Parameters
 
-| Name | Required | Example        | Description        |
-|------|----------|----------------|--------------------|
-| ids  | Yes      | ["id1", "id3"] | Array of order IDs |
-| timestamp | Yes      | 1524211224                     | When was the request generated |
+| Name             | Required | Example                      | Description                    |
+|------------------|----------|------------------------------|--------------------------------|
+| ids              | No       | ["id1", "id3"]               | Array of order IDs             |
+| client_order_ids | No       | ["client_id1", "client_id2"] | Array of client order IDs      |
+| timestamp        | Yes      | 1524211224                   | When was the request generated |
 
 
 
@@ -1641,6 +1649,7 @@ request.post(options, function(error, response, body) {
 [
   {
     "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
+    "client_order_id": "2022.02.14-btcinr_1",
     "market":"TRXETH",
     "order_type":"limit_order",
     "side":"buy",
