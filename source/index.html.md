@@ -153,24 +153,33 @@ You can get your API key and Secret as follows
 
 * `target currency` refers to the asset that is the `quantity` of a symbol.
 * `base currency` refers to the asset that is the `price` of a symbol.
-* `pair` uniquely idenfies the market along with it's exchange, and is available in market details api.
+* `pair` uniquely identifies the market along with it's exchange, and is available in market details api.
 * `ecode` is used to specify the exchange for the given market. Valid values for ecode include:
   - `B`: Binance
   - `I`: CoinDCX
   - `HB`: HitBTC
   - `H`: Huobi
   - `BM`: BitMEX
+  - `OE`: OkEx
 
 ### Orders
 
 * `status`: used to denote the current status of the given order. Valid values for status include:
-  - `init`: order is just created, but not placed in the orderbook
+  - `init`: order is just created, but not placed in the orderbook (eg: stop-limit orders whose stop/trigger price hasn't reached)
   - `open`: order is successfully placed in the orderbook
   - `partially_filled`: order is partially filled
   - `filled`: order is completely filled
   - `partially_cancelled`: order is partially filled, but cancelled, thus inactive
   - `cancelled`: order is completely or partially cancelled
-  - `rejected`: order is rejected (not placed on the exchange
+  - `rejected`: order is rejected (not placed on the exchange)
+
+Among these, the open-equivalent status' includes:
+<br/>`init, open, partially_filled`
+<br/>Orders having any these status can undergo further change (like when they get filled or cancelled).
+
+And settled or closed-equivalent status' includes:
+<br/>`filled, partially_cancelled, cancelled, rejected`
+<br/> Orders having any of these status could not undergo any change.
 
 ### Margin Orders
 
@@ -182,11 +191,12 @@ You can get your API key and Secret as follows
   - `cancelled`: order is completely cancelled
   - `rejected`: order is rejected (not placed on the exchange)
   - `close`: order is completely filled
-  - `triggered`: stop varinat order triggered at specified stop price
+  - `triggered`: stop variant order triggered at specified stop price
 
+<br/>
 
 * `order_type`: used to denote the type of order to be placed. Valid values for order_type includes:
-  - `market_order`: in this order type we don't secify price; it is executed on the market price
+  - `market_order`: in this order type we don't specify price; it is executed on the market price
   - `limit_order`: in this order type we specify the price on which order is to be executed
   - `stop_limit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
   - `take_profit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
@@ -207,7 +217,7 @@ Other Terms:
   - `cancelled`: order is completely cancelled
   - `rejected`: order is rejected (not placed on the exchange)
   - `partially_cancelled`: order is partially cancelled
-  - `untriggered`: stop varinat order was not triggered
+  - `untriggered`: stop variant order was not triggered
 
 
 
