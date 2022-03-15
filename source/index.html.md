@@ -153,7 +153,7 @@ You can get your API key and Secret as follows
 
 * `target currency` refers to the asset that is the `quantity` of a symbol.
 * `base currency` refers to the asset that is the `price` of a symbol.
-* `pair` uniquely identifies the market along with it's exchange, and is available in market details api.
+* `pair` uniquely identifies the market along with its exchange, and is available in market details api.
 * `ecode` is used to specify the exchange for the given market. Valid values for ecode include:
   - `B`: Binance
   - `I`: CoinDCX
