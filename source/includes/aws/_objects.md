@@ -33,6 +33,6 @@ curl -X DELETE \
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:regionName/:bucketName/:fullPath</code>
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the bucket deletion. |
+| `taskId` <br/>*string*     | The task id related to the object deletion. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
