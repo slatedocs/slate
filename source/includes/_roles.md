@@ -15,14 +15,14 @@ curl https://api.handshq.com/v1/roles \
     "data": [
       {
         "id": "1234",
-        "type": "companyRole",
+        "type": "role",
         "attributes": {
           "position": "Engineer"
         }
       },
       {
         "id": "1235",
-        "type": "companyRole",
+        "type": "role",
         "attributes": {
           "position": "Technician"
         }
@@ -67,7 +67,7 @@ curl https://api.handshq.com/v1/role/[id] \
   {
     "data": {
       "id": "1234",
-      "type": "companyRole",
+      "type": "role",
       "attributes": {
         "position": "Engineer"
       }
@@ -102,7 +102,7 @@ curl https://api.handshq.com/v1/roles \
   {
     "data": {
       "id": "1234",
-      "type": "companyRole",
+      "type": "role",
       "attributes": {
         "position": "Engineer"
       }
@@ -137,7 +137,7 @@ curl https://api.handshq.com/v1/role/[id] \
   {
     "data": {
       "id": "1234",
-      "type": "companyRole",
+      "type": "role",
       "attributes": {
         "position": "Engineer"
       }
