@@ -385,6 +385,9 @@
                     <a href="#tracking-status" class="toc-h2 toc-link" data-title="Tracking Status">Tracking Status</a>
                   </li>
                   <li>
+                    <a href="#tracking-undeliverable-category" class="toc-h2 toc-link" data-title="Tracking Undeliverable Category">Tracking Undeliverable Category</a>
+                  </li>
+                  <li>
                     <a href="#tracking-print" class="toc-h2 toc-link" data-title="Tracking Print">Tracking Print</a>
                   </li>
               </ul>
@@ -2819,6 +2822,234 @@ You must replace <code>access_token</code> with your personal access_token.
 <td><code>Đã hủy</code></td>
 <td><code>#DB3E36</code></td>
 <td>Vn Name is <code>current_status</code> and Name is <code>current_status_en</code> of api <a href="#get-trackings">GET /snappy/trackings</a></td>
+</tr>
+</tbody></table>
+<h2 id='tracking-undeliverable-category'>Tracking Undeliverable Category</h2>
+<table><thead>
+<tr>
+<th>ID</th>
+<th>category</th>
+<th>sub_category</th>
+<th>category_vi</th>
+<th>sub_category_vi</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>CONTACT_RECEIVER</td>
+<td>MAKE_PHONE_CALL_FAILED</td>
+<td>Liên hệ người nhận</td>
+<td>không liên lạc được/Thuê bao/Người nhận thuê bao</td>
+</tr>
+<tr>
+<td>2</td>
+<td>CONTACT_RECEIVER</td>
+<td>NO_ANSWERED Liên hệ người nhận</td>
+<td>không liên lạc được/Không nghe máy/không gọi được/Tắt máy</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>CONTACT_RECEIVER</td>
+<td>BLOCK_SHIPPER_NUMBER</td>
+<td>Liên hệ người nhận</td>
+<td>không liên lạc được/Chặn số/Số điện thoại không phải của người nhận</td>
+</tr>
+<tr>
+<td>4</td>
+<td>WRONG_INFOMATION</td>
+<td>WRONG_PHONE_NUMBER</td>
+<td>Sai thông tin người nhận</td>
+<td>không liên lạc được/Sai số điện thoại/Thông tin liên hệ sai</td>
+</tr>
+<tr>
+<td>5</td>
+<td>WRONG_INFOMATION</td>
+<td>WRONG_ADDRESS</td>
+<td>Sai thông tin người nhận</td>
+<td>Sai địa chỉ/Đổi địa chỉ</td>
+</tr>
+<tr>
+<td>6</td>
+<td>WRONG_INFOMATION</td>
+<td>WRONG_COD</td>
+<td>Sai thông tin người nhận</td>
+<td>Sai COD/Sai tiền COD/Cập nhật COD</td>
+</tr>
+<tr>
+<td>7</td>
+<td>REJECT_GOODS</td>
+<td>NOT_ALLOW_CHECKING_GOOD Từ chối nhận hàng</td>
+<td>Không cho xem/Thử/Đòi thử/Mở xem</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>REJECT_GOODS</td>
+<td>WRONG_DELIVERY_COMMIT</td>
+<td>Từ chối nhận hàng</td>
+<td>Giao chậm quá cam kết/Lâu quá không nhận</td>
+</tr>
+<tr>
+<td>9</td>
+<td>REJECT_GOODS</td>
+<td>WRONG_PRODUCT</td>
+<td>Từ chối nhận hàng</td>
+<td>Sai sản phẩm</td>
+</tr>
+<tr>
+<td>10</td>
+<td>REJECT_GOODS</td>
+<td>RECEIVER_CHANGED_THEIR_MIND Từ chối nhận hàng</td>
+<td>đổi ý/Khách đổi ý/Không ưng ý/Xem không nhận</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>REJECT_GOODS</td>
+<td>DO_NOT_ORDER</td>
+<td>Từ chối nhận hàng</td>
+<td>Không đặt/Đơn hàng ảo</td>
+</tr>
+<tr>
+<td>12</td>
+<td>REJECT_GOODS</td>
+<td>BROKEN_PRODUCT</td>
+<td>Từ chối nhận hàng</td>
+<td>bể vỡ hỏng/suy xuyển/bể vỡ/Thiếu số lượng/Hư hỏng</td>
+</tr>
+<tr>
+<td>13</td>
+<td>REJECT_GOODS</td>
+<td>DUPLICATED_ORDER</td>
+<td>Từ chối nhận hàng</td>
+<td>Đơn bị trùng/Đã nhận đơn này trước đó/đặt trùng đơn/đặt nhầm</td>
+</tr>
+<tr>
+<td>14</td>
+<td>REJECT_GOODS</td>
+<td>NOT_ENOUGH_MONEY</td>
+<td>Từ chối nhận hàng</td>
+<td>Không đủ tiền/không có tiền</td>
+</tr>
+<tr>
+<td>15</td>
+<td>REJECT_GOODS</td>
+<td>CANCEL_ORDER</td>
+<td>Từ chối nhận hàng</td>
+<td>Báo huỷ</td>
+</tr>
+<tr>
+<td>16</td>
+<td>REJECT_GOODS</td>
+<td>PLACED_ANOTHER_ORDER</td>
+<td>Từ chối nhận hàng</td>
+<td>Đã mua sản phẩm khác</td>
+</tr>
+<tr>
+<td>17</td>
+<td>REJECT_GOODS</td>
+<td>NO_RECEIVER Từ chối nhận hàng</td>
+<td>không có ở nhà/Không có người nhận/Không có nhà/Khách đi vắng</td>
+<td></td>
+</tr>
+<tr>
+<td>18</td>
+<td>REJECT_GOODS</td>
+<td>RECEIVE_AT_WAREHOUSE</td>
+<td>Từ chối nhận hàng</td>
+<td>Tự đến nhận tại bưu cục/Tự đến bưu cục</td>
+</tr>
+<tr>
+<td>19</td>
+<td>REJECT_GOODS</td>
+<td>BOOM_GOODS</td>
+<td>Từ chối nhận hàng</td>
+<td>không xuống nhận/Shipper chờ, đợi quá lâu</td>
+</tr>
+<tr>
+<td>20</td>
+<td>COVID</td>
+<td>ISOLATION_AREA</td>
+<td>Ảnh hưởng của covid Vùng cách ly</td>
+<td></td>
+</tr>
+<tr>
+<td>21</td>
+<td>SHIPPER_ACTION</td>
+<td>CAN_NOT_SCHEDULE_WORK</td>
+<td>Shipper Chưa xếp được lịch giao</td>
+<td></td>
+</tr>
+<tr>
+<td>22</td>
+<td>SHIPPER_ACTION</td>
+<td>CHANGE_SHIPPER</td>
+<td>Shipper Đổi shipper</td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td>SHIPPER_ACTION</td>
+<td>MIS_CLASSIFICATION</td>
+<td>Shipper Phân loại sai, sai tuyến đường</td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td>SHIPPER_ACTION</td>
+<td>DELIVERING</td>
+<td>Shipper Đường bị cấm/Thiên tai/bão/virus/Trời mưa to</td>
+<td></td>
+</tr>
+<tr>
+<td>25</td>
+<td>SHIPPER_ACTION</td>
+<td>DELIVERING_MULTI_TIME</td>
+<td>Shipper Giao liên tiếp/Giao nhiều lần</td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td>SHOP</td>
+<td>REQUEST_RETURN</td>
+<td>Shop</td>
+<td>Chuyển hoàn, yêu cầu hoàn</td>
+</tr>
+<tr>
+<td>27</td>
+<td>SHOP</td>
+<td>SUSPECTED_FRAUD Shop</td>
+<td>Nghi ngờ Shop gian lận</td>
+<td></td>
+</tr>
+<tr>
+<td>28</td>
+<td>DELIVERY_LATER</td>
+<td>DELIVERY_LATER_COMMON</td>
+<td>Hẹn lại thời gian giao</td>
+<td>Hẹn giao lại buổi/Hẹn sáng/Hẹn chiều/Hẹn tối/Mai giao</td>
+</tr>
+<tr>
+<td>29</td>
+<td>DELIVERY_LATER</td>
+<td>WORK_TIME</td>
+<td>Hẹn lại thời gian giao</td>
+<td>Hẹn giao lại giờ hành chính</td>
+</tr>
+<tr>
+<td>30</td>
+<td>DELIVERY_LATER</td>
+<td>DATE</td>
+<td>Hẹn lại thời gian giao</td>
+<td>Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác</td>
+</tr>
+<tr>
+<td>31</td>
+<td>OTHER</td>
+<td>SUB_OTHER</td>
+<td>Các lý do khác / chưa xác định</td>
+<td>Lý do khác</td>
 </tr>
 </tbody></table>
 <h2 id='tracking-print'>Tracking Print</h2>
