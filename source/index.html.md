@@ -579,7 +579,7 @@ m -> minutes, h -> hours, d -> days, w -> weeks, M -> months
 
 # Authentication
 
-<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timestamp parameter of when the request was generated.</aside>
+<aside class="warning">Common Notes:<ul><li>All the Authenticated API calls use POST method.</li><li>Parameters are to be passed as JSON in the request body.</li><li>Every request must contain a timestamp parameter of when the request was generated. This timestamp is used to validate that the request is not a very old one (due to some lag in any layer) - the request is rejected with an appropriate error if this timestamp deviates too much from the server's time at which it is received to be processed.</li></ul></aside>
 
 > To authorize, use this code:
 
@@ -1117,8 +1117,8 @@ You can only have a maximum of <strong>25 open orders</strong> at a time for one
 | price_per_unit  | No       | 0.082               | Price per unit (not required for market order) |
 | side            | Yes      | buy                 | Specify buy or sell                            |
 | order_type      | Yes      | market_order        | Order Type                                     |
-| timestamp       | Yes      | 1524211224          | When was the request generated                 |
 | client_order_id | No       | 2022.02.14-btcinr_1 | Client order id of the order                   |
+| timestamp       | Yes      | 1524211224          | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication)                 |
 
 ## Create multiple orders
 
@@ -1289,9 +1289,9 @@ Use this endpoint to place a multiple orders on the exchange
 | price_per_unit  | No       | 0.082               | Price per unit (not required for market order) |
 | side            | Yes      | buy                 | Specify buy or sell                            |
 | order_type      | Yes      | market_order        | Order Type                                     |
-| timestamp       | Yes      | 1524211224          | When was the request generated                 |
 | ecode           | Yes      | I                   | Exchange code                                  |
 | client_order_id | No       | 2022.02.14-btcinr_1 | Client order id of the order                   |
+| timestamp       | Yes      | 1524211224          | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication)                 |
 
 ##  Order status
 ```ruby
@@ -1414,7 +1414,7 @@ Use this endpoint to fetch status of any order
 | Name      | Required | Example                              | Description                    |
 |-----------|----------|--------------------------------------|--------------------------------|
 | id        | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
-| timestamp | Yes      | 1524211224                           | When was the request generated |
+| timestamp | Yes      | 1524211224                           | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 ##  Multiple order status
@@ -1540,7 +1540,7 @@ Use this endpoint to fetch status of any order
 | Name | Required | Example        | Description        |
 |------|----------|----------------|--------------------|
 | ids  | Yes      | ["id1", "id3"] | Array of order IDs |
-| timestamp | Yes      | 1524211224                     | When was the request generated |
+| timestamp | Yes      | 1524211224                     | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 
@@ -1670,7 +1670,7 @@ Use this endpoint to fetch active orders
 |-----------|----------|------------|--------------------------------|
 | market    | Yes      | SNTBTC     |                                |
 | side      | No       | buy        |                                |
-| timestamp | Yes      | 1524211224 | When was the request generated |
+| timestamp | Yes      | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 ## Account Trade history
 ```ruby
@@ -1791,7 +1791,7 @@ Use this endpoint to fetch trades associated with your account
 | limit   | No       | 100     | Default: 500, Min: 1, Max: 5000                                                       |
 | from_id | No       | 28473   | Trade ID after which you want the data. If not supplied, trades in ascending order will be returned |
 | sort    | No | asc | Specify asc or desc to get trades in ascending or descending order, default: asc |
-| timestamp| Yes | 1524211224 | When was the request generated |
+| timestamp| Yes | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 
@@ -1905,7 +1905,7 @@ Use this endpoint to fetch active orders count
 |-----------|----------|------------|--------------------------------|
 | market    | Yes      | SNTBTC     |                                |
 | side      | No       | buy        |                                |
-| timestamp | Yes      | 1524211224 | When was the request generated |
+| timestamp | Yes      | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 ##  Cancel all
@@ -2018,7 +2018,7 @@ Use this endpoint to cancel multiple active orders in a single API call
 |-----------|----------|------------|--------------------------------|
 | market    | Yes      | SNTBTC     |                                |
 | side      | No       | buy        |                                |
-| timestamp | Yes      | 1524211224 | When was the request generated |
+| timestamp | Yes      | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 Sending side param is optional. You may cancel all the sell orders of SNTBTC by sending
 <br>
@@ -2246,7 +2246,7 @@ Use this endpoint to cancel an active orders
 | Name      | Required | Example                              | Description                    |
 |-----------|----------|--------------------------------------|--------------------------------|
 | id        | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
-| timestamp | Yes      | 1524211224                           | When was the request generated |
+| timestamp | Yes      | 1524211224                           | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 
@@ -2368,7 +2368,7 @@ Use this endpoint to edit the price of an active order
 |----------------|----------|--------------------------------------|--------------------------------|
 | id             | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
 | price_per_unit | Yes      | 123.45                               | New Price for the order        |
-| timestamp      | Yes      | 1524211224                           | When was the request generated |
+| timestamp      | Yes      | 1524211224                           | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 
@@ -2512,7 +2512,7 @@ Use this endpoint to fetch orders and its details
 
 | Name  | Type      | Required | Example            | Description                    |
 |------|-----|----------|--------------------|--------------------------------|
-| timestamp      | number | Yes      | 1524211224    | When was the request generated |
+| timestamp      | number | Yes      | 1524211224    | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 
@@ -2642,7 +2642,7 @@ Use this endpoint to lend specified currency on the exchange.
 | currency_short_name         | string | Yes      | XRP      | The lending currency                         |
 | amount       | number | Yes      | 11       | Quantity to lend                            |
 | duration     | number |Yes      | 20           | The Time period for which you want to lend the currency in days|
-| timestamp      | number | Yes      | 1524211224   | When was the request generated                 |
+| timestamp      | number | Yes      | 1524211224   | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication)                 |
 
 
 
@@ -2768,7 +2768,7 @@ Use this endpoint to settle lend order.
 | Name  | Type      | Required | Example                              | Description                    |
 |------|-----|----------|--------------------------------------|--------------------------------|
 | id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
-| timestamp | number | Yes      | 1524211224                           | When was the request generated |
+| timestamp | number | Yes      | 1524211224                           | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 # Margin Order
 <aside class="notice">
@@ -2963,7 +2963,7 @@ You can only have a maximum of <strong>10 open orders</strong> at a time for one
 | trailing_sl    | boolean | No       | true         | To place order with Trailing Stop Loss             |
 | target_price   | number |No       | 0.082        | The price to buy/sell or close the order position   |
 | ecode          | string |Yes      | B            | Exchange code in which the order will be placed|
-| timestamp      | number | Yes      | 1524211224   | When was the request generated                 |
+| timestamp      | number | Yes      | 1524211224   | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication)                 |
 
 ## Cancel Order
 <aside class="notice">Any order with <b>order_status</b> among the following can only be cancelled: <br/>
@@ -3080,7 +3080,7 @@ Use this endpoint to cancel any order.
 | Name  | Type      | Required | Example                              | Description                    |
 |------|-----|----------|--------------------------------------|--------------------------------|
 | id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
-| timestamp | number | Yes      | 1524211224                           | When was the request generated |
+| timestamp | number | Yes      | 1524211224                           | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 ## Exit
@@ -3199,7 +3199,7 @@ Use this endpoint to exit any order.
 | Name  | Type      | Required | Example                              | Description                    |
 |------|-----|----------|--------------------------------------|--------------------------------|
 | id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed | The ID of the order            |
-| timestamp | number | Yes      | 1524211224                           | When was the request generated |
+| timestamp | number | Yes      | 1524211224                           | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 ## Edit Target
 <aside class="notice">You can update target price only if order has 0 or 1 target order. For the multiple open targets refer- <strong><a href="#edit-price-of-target-order">Edit Price of Target Order</a></strong> section</aside>
@@ -3318,7 +3318,7 @@ Use this endpoint to edit the target price of any order.
 |------|----------|----------------------------------------|--------------------|---|
 | id   | string | Yes      | 8a2f4284-c895-11e8-9e00-5b2c002a6ff4 | ID of the order to edit |
 | target_price | number  | Yes       | 0.082        | The new price to buy/sell or close the order position at  |
-| timestamp | number     | Yes      | 1524211224   | When was the request generated     |
+| timestamp | number     | Yes      | 1524211224   | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication)     |
 
 
 ## Edit Price of Target Order
@@ -3438,7 +3438,7 @@ Use this endpoint to edit price of internal target order.
 | id        | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |                                |
 | target_price   | number |  Yes       | 0.082        | The new price to buy/sell or close the order position at  |
 | itpo_id   | string | Yes      | 164968 |ID of internal order to edit |
-| timestamp | number | Yes      | 1524211224 | When was the request generated |
+| timestamp | number | Yes      | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 ## Edit SL Price
 <aside class="notice">Only for orders where <b>trailing_sl is false</b></aside>
@@ -3550,7 +3550,7 @@ Use this endpoint to edit stop loss price of a bracket order.
 |------|---|----------|---------|-----------------------------------------------------|
 | id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
 | sl_price| number | Yes      | 0.082         | The price to Stop Loss at|
-| timestamp| number | Yes     | 1524211224    | When was the request generated |
+| timestamp| number | Yes     | 1524211224    | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 ## Edit SL Price of Trailing Stop Loss
@@ -3663,7 +3663,7 @@ Use this endpoint to edit stop loss price of a trailing stop loss order.
 |------|---|----------|---------|-----------------------------------------------------|
 | id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
 | sl_price | number      | Yes       | 0.082        | The new price to Stop Loss at                |
-| timestamp| number | Yes     | 1524211224 | When was the request generated |
+| timestamp| number | Yes     | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 ## Add Margin
@@ -3774,7 +3774,7 @@ Use this endpoint to add a particular amount to your margin order, decreasing th
 |------|---|----------|---------|-----------------------------------------------------|
 | id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
 | amount | number | Yes     | 0.06                                     | Amount to add in the margin to decrease effective leverage |
-| timestamp| number | Yes     | 1524211224 | When was the request generated |
+| timestamp| number | Yes     | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 ## Remove Margin
 ```ruby
@@ -3884,7 +3884,7 @@ Use this endpoint to remove a particular amount from your Margin order, increasi
 |------|---|----------|---------|-----------------------------------------------------|
 | id      | string | Yes      | ead19992-43fd-11e8-b027-bb815bcb14ed     |  ID of Margin Order                                      |
 | amount | number | Yes     | 0.06                                     | Amount to remove from the margin to increase effective leverage |
-| timestamp| number | Yes     | 1524211224 | When was the request generated |
+| timestamp| number | Yes     | 1524211224 | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 ##  Fetch Orders
@@ -4102,7 +4102,7 @@ Use this endpoint to fetch orders and optionally its details which include all b
 | details        | boolean | No      | false          | Whether you want detailed information or not, default: false            |
 | status         | string | No       | init,open,close,rejected,cancelled,partial_entry,partial_close,triggered | The status of the order, default: All orders           |
 | size           | number | No       | 20 | Number of records per page, default: 10|
-| timestamp      | number | Yes      | 1524211224    | When was the request generated |
+| timestamp      | number | Yes      | 1524211224    | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 ##  Query Order
@@ -4264,7 +4264,7 @@ Use this endpoint to query specific order and optionally its details.
 |------|-----|----------|--------------------|--------------------------------|
 | id         | string | Yes      | 30b5002f-d9c1-413d-8a8d-0fd32b054c9c         | Id of the order           |
 | details        | boolean | No      | false          | Whether you want detailed information or not, default: false            |
-| timestamp      | number | Yes      | 1524211224    | When was the request generated |
+| timestamp      | number | Yes      | 1524211224    | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 # Pagination
 
