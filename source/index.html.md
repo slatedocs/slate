@@ -1873,13 +1873,13 @@ Name | Vn Name | Color code | Description
         "status_color": "#ff1744",
         "status_en": "undeliverable",
         "undeliverable_category": {
-        "category": "CONTACT_RECEIVER",
-        "category_vi": "Liên hệ người nhận",
-        "id": 1,
-        "nomalized_reason": "khong lien lac duoc/thue bao/nguoi nhan thue bao",
-        "reason": "Không liên lạc được/Thuê bao/Người nhận thuê bao",
-        "sub_category": "MAKE_PHONE_CALL_FAILED",
-        "sub_category_vi": "Không liên lạc được/Thuê bao/Người nhận thuê bao"
+            "category": "CONTACT_RECEIVER",
+            "category_vi": "Liên hệ người nhận",
+            "id": 1,
+            "nomalized_reason": "khong lien lac duoc/thue bao/nguoi nhan thue bao",
+            "reason": "Không liên lạc được/Thuê bao/Người nhận thuê bao",
+            "sub_category": "MAKE_PHONE_CALL_FAILED",
+            "sub_category_vi": "Không liên lạc được/Thuê bao/Người nhận thuê bao"
         },
         "updated_at": "2022-03-15T09:45:17"
     },
