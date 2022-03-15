@@ -579,7 +579,7 @@ m -> minutes, h -> hours, d -> days, w -> weeks, M -> months
 
 # Authentication
 
-<aside class="warning">All the Authenticated API calls use POST method. Parameters are to be passed as JSON in the request body. Every request must contain a timestamp parameter of when the request was generated.</aside>
+<aside class="warning">Common Notes:<ul><li>All the Authenticated API calls use POST method.</li><li>Parameters are to be passed as JSON in the request body.</li><li>Every request must contain a timestamp parameter of when the request was generated. This timestamp is used to validate that the request is not a very old one (due to some lag in any layer) - the request is rejected with an appropriate error if this timestamp deviates too much from the server's time at which it is received to be processed.</li></ul></aside>
 
 > To authorize, use this code:
 
