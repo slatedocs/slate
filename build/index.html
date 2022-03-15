@@ -2825,6 +2825,48 @@ You must replace <code>access_token</code> with your personal access_token.
 </tr>
 </tbody></table>
 <h2 id='tracking-undeliverable-category'>Tracking Undeliverable Category</h2>
+<blockquote>
+<p>Sample respone of tracking.updates</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao không thành"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff1744"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undeliverable"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"undeliverable_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY_LATER"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hẹn lại thời gian giao"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"nomalized_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hen ngay giao/hen thoi gian giao/hen sau/hen lai ngay/hen giao sau/hen giao thoi diem khac"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sub_category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sub_category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-15T09:17:52"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao không thành"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff1744"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undeliverable"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"undeliverable_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTACT_RECEIVER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liên hệ người nhận"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nomalized_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"khong lien lac duoc/thue bao/nguoi nhan thue bao"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Không liên lạc được/Thuê bao/Người nhận thuê bao"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sub_category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKE_PHONE_CALL_FAILED"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sub_category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Không liên lạc được/Thuê bao/Người nhận thuê bao"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-15T09:45:17"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Đang giao"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#0063b8"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out_for_delivery"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-15T07:45:17"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>ID</th>
@@ -3052,49 +3094,7 @@ You must replace <code>access_token</code> with your personal access_token.
 <td>Lý do khác</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>Sample respone of tracking.updates</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao không thành"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"status_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff1744"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"status_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undeliverable"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"undeliverable_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERY_LATER"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hẹn lại thời gian giao"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"nomalized_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hen ngay giao/hen thoi gian giao/hen sau/hen lai ngay/hen giao sau/hen giao thoi diem khac"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sub_category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sub_category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-15T09:17:52"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giao không thành"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"status_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff1744"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"status_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undeliverable"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"undeliverable_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTACT_RECEIVER"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liên hệ người nhận"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"nomalized_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"khong lien lac duoc/thue bao/nguoi nhan thue bao"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Không liên lạc được/Thuê bao/Người nhận thuê bao"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"sub_category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKE_PHONE_CALL_FAILED"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"sub_category_vi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Không liên lạc được/Thuê bao/Người nhận thuê bao"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-15T09:45:17"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Đang giao"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"status_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#0063b8"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"status_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"out_for_delivery"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-15T07:45:17"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div><h2 id='tracking-print'>Tracking Print</h2>
+<h2 id='tracking-print'>Tracking Print</h2>
 <p>This is special part. With this api you must be redirect or open new tab in your browser and apply this link <code>https://snappy.vn/print/&lt;ids&gt;&amp;business_id=&lt;business_id&gt;&amp;access_token=&lt;access_token&gt;</code></p>
 
 <table><thead>

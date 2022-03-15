@@ -1849,40 +1849,6 @@ Name | Vn Name | Color code | Description
 
 ## Tracking Undeliverable Category
 
-ID | category | sub_category | category_vi | sub_category_vi
-----| -----| ------- | ---------- | ---------------
-1 | CONTACT_RECEIVER | MAKE_PHONE_CALL_FAILED | Liên hệ người nhận | Không liên lạc được/Thuê bao/Người nhận thuê bao
-2 | CONTACT_RECEIVER | NO_ANSWERED | Liên hệ người nhận | Không liên lạc được/Không nghe máy/không gọi được/Tắt máy
-3 | CONTACT_RECEIVER | BLOCK_SHIPPER_NUMBER | Liên hệ người nhận | Không liên lạc được/Chặn số/Số điện thoại không phải của người nhận
-4 | WRONG_INFOMATION | WRONG_PHONE_NUMBER | Sai thông tin người nhận | Không liên lạc được/Sai số điện thoại/Thông tin liên hệ sai
-5 | WRONG_INFOMATION | WRONG_ADDRESS | Sai thông tin người nhận | Sai địa chỉ/Đổi địa chỉ
-6 | WRONG_INFOMATION | WRONG_COD | Sai thông tin người nhận | Sai COD/Sai tiền COD/Cập nhật COD
-7 | REJECT_GOODS | NOT_ALLOW_CHECKING_GOOD | Từ chối nhận hàng | Không cho xem/Thử/Đòi thử/Mở xem
-8 | REJECT_GOODS | WRONG_DELIVERY_COMMIT | Từ chối nhận hàng | Giao chậm quá cam kết/Lâu quá không nhận
-9 | REJECT_GOODS | WRONG_PRODUCT | Từ chối nhận hàng | Sai sản phẩm
-10 | REJECT_GOODS | RECEIVER_CHANGED_THEIR_MIND | Từ chối nhận hàng | Đổi ý/Khách đổi ý/Không ưng ý/Xem không nhận
-11 | REJECT_GOODS | DO_NOT_ORDER | Từ chối nhận hàng | Không đặt/Đơn hàng ảo
-12 | REJECT_GOODS | BROKEN_PRODUCT | Từ chối nhận hàng | Bể vỡ hỏng/suy xuyển/bể vỡ/Thiếu số lượng/Hư hỏng
-13 | REJECT_GOODS | DUPLICATED_ORDER | Từ chối nhận hàng | Đơn bị trùng/Đã nhận đơn này trước đó/đặt trùng đơn/đặt nhầm
-14 | REJECT_GOODS | NOT_ENOUGH_MONEY | Từ chối nhận hàng | Không đủ tiền/không có tiền
-15 | REJECT_GOODS | CANCEL_ORDER | Từ chối nhận hàng | Báo huỷ
-16 | REJECT_GOODS | PLACED_ANOTHER_ORDER | Từ chối nhận hàng | Đã mua sản phẩm khác
-17 | REJECT_GOODS | NO_RECEIVER | Từ chối nhận hàng | Không có ở nhà/Không có người nhận/Không có nhà/Khách đi vắng
-18 | REJECT_GOODS | RECEIVE_AT_WAREHOUSE | Từ chối nhận hàng | Tự đến nhận tại bưu cục/Tự đến bưu cục
-19 | REJECT_GOODS | BOOM_GOODS | Từ chối nhận hàng | Không xuống nhận/Shipper chờ, đợi quá lâu
-20 | COVID | ISOLATION_AREA | Ảnh hưởng của covid | Vùng cách ly
-21 | SHIPPER_ACTION | CAN_NOT_SCHEDULE_WORK | Shipper | Chưa xếp được lịch giao
-22 | SHIPPER_ACTION | CHANGE_SHIPPER | Shipper | Đổi shipper
-23 | SHIPPER_ACTION | MIS_CLASSIFICATION | Shipper | Phân loại sai, sai tuyến đường
-24 | SHIPPER_ACTION | DELIVERING | Shipper | Đường bị cấm/Thiên tai/bão/virus/Trời mưa to
-25 | SHIPPER_ACTION | DELIVERING_MULTI_TIME | Shipper | Giao liên tiếp/Giao nhiều lần
-26 | SHOP | REQUEST_RETURN | Shop | Chuyển hoàn, yêu cầu hoàn
-27 | SHOP | SUSPECTED_FRAUD | Shop | Nghi ngờ Shop gian lận
-28 | DELIVERY_LATER | DELIVERY_LATER_COMMON | Hẹn lại thời gian giao | Hẹn giao lại buổi/Hẹn sáng/Hẹn chiều/Hẹn tối/Mai giao
-29 | DELIVERY_LATER | WORK_TIME | Hẹn lại thời gian giao | Hẹn giao lại giờ hành chính
-30 | DELIVERY_LATER | DATE | Hẹn lại thời gian giao | Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác
-31 | OTHER | SUB_OTHER | Các lý do khác / chưa xác định | Lý do khác
-
 > Sample respone of tracking.updates
 
 ```json
@@ -1925,6 +1891,40 @@ ID | category | sub_category | category_vi | sub_category_vi
     }
 ]
 ```
+
+ID | category | sub_category | category_vi | sub_category_vi
+----| -----| ------- | ---------- | ---------------
+1 | CONTACT_RECEIVER | MAKE_PHONE_CALL_FAILED | Liên hệ người nhận | Không liên lạc được/Thuê bao/Người nhận thuê bao
+2 | CONTACT_RECEIVER | NO_ANSWERED | Liên hệ người nhận | Không liên lạc được/Không nghe máy/không gọi được/Tắt máy
+3 | CONTACT_RECEIVER | BLOCK_SHIPPER_NUMBER | Liên hệ người nhận | Không liên lạc được/Chặn số/Số điện thoại không phải của người nhận
+4 | WRONG_INFOMATION | WRONG_PHONE_NUMBER | Sai thông tin người nhận | Không liên lạc được/Sai số điện thoại/Thông tin liên hệ sai
+5 | WRONG_INFOMATION | WRONG_ADDRESS | Sai thông tin người nhận | Sai địa chỉ/Đổi địa chỉ
+6 | WRONG_INFOMATION | WRONG_COD | Sai thông tin người nhận | Sai COD/Sai tiền COD/Cập nhật COD
+7 | REJECT_GOODS | NOT_ALLOW_CHECKING_GOOD | Từ chối nhận hàng | Không cho xem/Thử/Đòi thử/Mở xem
+8 | REJECT_GOODS | WRONG_DELIVERY_COMMIT | Từ chối nhận hàng | Giao chậm quá cam kết/Lâu quá không nhận
+9 | REJECT_GOODS | WRONG_PRODUCT | Từ chối nhận hàng | Sai sản phẩm
+10 | REJECT_GOODS | RECEIVER_CHANGED_THEIR_MIND | Từ chối nhận hàng | Đổi ý/Khách đổi ý/Không ưng ý/Xem không nhận
+11 | REJECT_GOODS | DO_NOT_ORDER | Từ chối nhận hàng | Không đặt/Đơn hàng ảo
+12 | REJECT_GOODS | BROKEN_PRODUCT | Từ chối nhận hàng | Bể vỡ hỏng/suy xuyển/bể vỡ/Thiếu số lượng/Hư hỏng
+13 | REJECT_GOODS | DUPLICATED_ORDER | Từ chối nhận hàng | Đơn bị trùng/Đã nhận đơn này trước đó/đặt trùng đơn/đặt nhầm
+14 | REJECT_GOODS | NOT_ENOUGH_MONEY | Từ chối nhận hàng | Không đủ tiền/không có tiền
+15 | REJECT_GOODS | CANCEL_ORDER | Từ chối nhận hàng | Báo huỷ
+16 | REJECT_GOODS | PLACED_ANOTHER_ORDER | Từ chối nhận hàng | Đã mua sản phẩm khác
+17 | REJECT_GOODS | NO_RECEIVER | Từ chối nhận hàng | Không có ở nhà/Không có người nhận/Không có nhà/Khách đi vắng
+18 | REJECT_GOODS | RECEIVE_AT_WAREHOUSE | Từ chối nhận hàng | Tự đến nhận tại bưu cục/Tự đến bưu cục
+19 | REJECT_GOODS | BOOM_GOODS | Từ chối nhận hàng | Không xuống nhận/Shipper chờ, đợi quá lâu
+20 | COVID | ISOLATION_AREA | Ảnh hưởng của covid | Vùng cách ly
+21 | SHIPPER_ACTION | CAN_NOT_SCHEDULE_WORK | Shipper | Chưa xếp được lịch giao
+22 | SHIPPER_ACTION | CHANGE_SHIPPER | Shipper | Đổi shipper
+23 | SHIPPER_ACTION | MIS_CLASSIFICATION | Shipper | Phân loại sai, sai tuyến đường
+24 | SHIPPER_ACTION | DELIVERING | Shipper | Đường bị cấm/Thiên tai/bão/virus/Trời mưa to
+25 | SHIPPER_ACTION | DELIVERING_MULTI_TIME | Shipper | Giao liên tiếp/Giao nhiều lần
+26 | SHOP | REQUEST_RETURN | Shop | Chuyển hoàn, yêu cầu hoàn
+27 | SHOP | SUSPECTED_FRAUD | Shop | Nghi ngờ Shop gian lận
+28 | DELIVERY_LATER | DELIVERY_LATER_COMMON | Hẹn lại thời gian giao | Hẹn giao lại buổi/Hẹn sáng/Hẹn chiều/Hẹn tối/Mai giao
+29 | DELIVERY_LATER | WORK_TIME | Hẹn lại thời gian giao | Hẹn giao lại giờ hành chính
+30 | DELIVERY_LATER | DATE | Hẹn lại thời gian giao | Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác
+31 | OTHER | SUB_OTHER | Các lý do khác / chưa xác định | Lý do khác
 
 ## Tracking Print
 
