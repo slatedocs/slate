@@ -201,8 +201,9 @@ And settled or closed-equivalent status' includes:
   - `stop_limit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
   - `take_profit`: it is a type of limit order whether we specify stop price and a price, once price reaches stop_price, order is placed on the given price
 
-*
-Other Terms:
+<br/>
+
+* Other Terms:
   - `target_price`: The price at which the trader plans to buy/sell or close the order position is called the Target Price. When the Target price is hit, the trade is closed and the trader’s funds are settled according to the P&L incurred. Target price feature is available if the trader checks the Bracket order checkbox.
   - `sl_price`: The price at which the trader wishes to Stop Loss is the SL Price.
   - `stop_price`: It is used in the Stop Variant order, to specify stop price
