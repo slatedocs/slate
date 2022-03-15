@@ -1320,7 +1320,7 @@ timeStamp = int(round(time.time() * 1000))
 
 body = {
   "id": "ead19992-43fd-11e8-b027-bb815bcb14ed", # Enter your Order ID here.
-  # "client_order_id": "ead19992-43fd-11e8-b027-bb815bcb14ed", # Enter your Client Order ID here.
+  # "client_order_id": "2022.02.14-btcinr_1", # Enter your Client Order ID here.
   "timestamp": timeStamp
 }
 
