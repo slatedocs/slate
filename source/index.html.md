@@ -1883,6 +1883,49 @@ ID | category | sub_category | category_vi | sub_category_vi
 30 | DELIVERY_LATER | DATE | Hẹn lại thời gian giao | Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác
 31 | OTHER | SUB_OTHER | Các lý do khác / chưa xác định | Lý do khác
 
+> Sample respone of tracking.updates
+
+```json
+[
+    {
+        "status": "Giao không thành",
+        "status_color": "#ff1744",
+        "status_en": "undeliverable",
+        "undeliverable_category": {
+            "category": "DELIVERY_LATER",
+            "category_vi": "Hẹn lại thời gian giao",
+            "id": 30,
+            "nomalized_reason": "hen ngay giao/hen thoi gian giao/hen sau/hen lai ngay/hen giao sau/hen giao thoi diem khac",
+            "reason": "Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác",
+            "sub_category": "DATE",
+            "sub_category_vi": "Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác"
+        },
+        "updated_at": "2022-03-15T09:17:52"
+    },
+    {
+        "status": "Giao không thành",
+        "status_color": "#ff1744",
+        "status_en": "undeliverable",
+        "undeliverable_category": {
+        "category": "CONTACT_RECEIVER",
+        "category_vi": "Liên hệ người nhận",
+        "id": 1,
+        "nomalized_reason": "khong lien lac duoc/thue bao/nguoi nhan thue bao",
+        "reason": "Không liên lạc được/Thuê bao/Người nhận thuê bao",
+        "sub_category": "MAKE_PHONE_CALL_FAILED",
+        "sub_category_vi": "Không liên lạc được/Thuê bao/Người nhận thuê bao"
+        },
+        "updated_at": "2022-03-15T09:45:17"
+    },
+    {
+        "status": "Đang giao",
+        "status_color": "#0063b8",
+        "status_en": "out_for_delivery",
+        "updated_at": "2022-03-15T07:45:17"
+    }
+]
+```
+
 ## Tracking Print
 
 This is special part. With this api you must be redirect or open new tab in your browser and apply this link `https://snappy.vn/print/<ids>&business_id=<business_id>&access_token=<access_token>`
