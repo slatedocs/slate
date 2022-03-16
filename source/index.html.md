@@ -17,6 +17,7 @@ includes:
   - fields
   - pricing_tier
   - speakers
+  - registrations
   - users
   - workshops
   - commercial_plans
