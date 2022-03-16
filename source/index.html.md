@@ -28,9 +28,6 @@ search: true
 
 全てのエンドポイントはこのドメイン以下に設定されています。
 
-## Quota
-
-APIコール回数の制限は、組織単位で決定されており、ロボット1台につき 60回/分 となっております。
 
 # Authorization
 
@@ -58,7 +55,7 @@ curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" 
 
 Robotic Crowd では、API の認証にJWTを使っています。JWTは、プロジェクト内で作成した API Key のaccess_key_id と secret_access_key から作成することができます。API Key は、
 プロジェクトオーナー権限をもつユーザーがプロジェクト管理画面から作成する事ができます。
-API Key の作成については、こちらの記事を参照してください。
+API Key の作成については、[こちらの記事](https://support.roboticcrowd.com/docs/management-2/%e3%81%9d%e3%81%ae%e4%bb%96%e3%81%ae%e8%a8%ad%e5%ae%9a/api%e3%82%ad%e3%83%bc%e3%81%ae%e7%99%ba%e8%a1%8c/)を参照してください。
 
 クライアント側で JWT を作成する事を想定していますが、JWT トークンを取得するためのエンドポイントも用意しています。
 
@@ -137,7 +134,7 @@ JWT は、base64 エンコードされた、 JSON 形式の header と payload �
 
 ### iss
 
-`iss` は、トークンの発行者を示すデータです。`access_key_id` を設定してください。
+`iss` は、トークンの発行者を示すデータです。`console.roboticcrowd.com` を設定してください。
 
 ### sub
 
@@ -172,8 +169,9 @@ JWT は、base64 エンコードされた、 JSON 形式の header と payload �
 | スコープ | 権限 |
 |---|---|
 | session_queue.write | 実行キューを作成できます |
-| session_queue.read | 実行キューの取得ができます |
-| token  | トークンの作成ができます |
+| session_queue.read | 実行キューの取得、ワークフロー一覧の取得ができます |
+| session_queue.delete | 実行キューを削除できます |
+| access_token.create  | トークンの作成ができます |
 
 ## 署名
 
@@ -209,7 +207,7 @@ echo -n '{"alg":"HS256","typ":"JWT"}' | base64
 > payloadを生成する
 
 ```shell
-echo -n '{"iss": "console.roboticcrowd.com","sub": "IjoiIiwiZ3JhbnRzIjp7Im","aud": "https://api.roboticcrowd.com/","nbf": 1450471147,"exp": 1450473747,"scopes": ["session_queue.write","session_queue.read","token"]}' | \
+echo -n '{"iss": "console.roboticcrowd.com","sub": "IjoiIiwiZ3JhbnRzIjp7Im","aud": "https://api.roboticcrowd.com/","nbf": 1450471147,"exp": 1450473747,"scopes": ["session_queue.write","session_queue.read","access_token.create"]}' | \
 base64 | \
 tr -d '='
 
@@ -219,7 +217,6 @@ tr -d '='
 > signatureを生成する
 
 ```shell
-
 # echo -n "header.payload" | openssl dgst -binary -sha256 -hmac "secret_access_key" | base64 | sed "s/+/-/g;s/\//_/g;s/=//g"
 
 echo -n "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zb2xlLnJvYm90aWNjcm93ZC5jb20iLCJzdWIiOiJJam9pSWl3aVozSmhiblJ6SWpwN0ltIiwiYXVkIjoiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ" | \
@@ -279,13 +276,13 @@ JWT は、header と payload が base64 で誰でもデコードできてしま�
 curl --location --request POST "https://api.roboticcrowd.com/v1/token" \
   --header "content-type: application/json" \
   --data "{
-  \"access_key_id\": \"your_key_id\",
+  \"access_key_id\": \"your_access_key_id\",
   \"secret_access_key\": \"your_secret_access_key\",
   \"expires\": 3600
 }"
 ```
 
-> *`your_key_id` と　`your_secret_access_key` は、API Key から正しい値に置き換えてください。
+> *`your_access_key_id` と `your_secret_access_key` は、API Key から正しい値に置き換えてください。
 
 このエンドポイントは、JWTトークンをサーバーサイドで生成して返却します。他のエンドポイントと認証が異なっており、 `access_key_id` と `secret_access_key` を直接送信してもらうことにより認証しています。
 
@@ -551,7 +548,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
 
 JSON オブジェクトを返却します。
 
-#### session_queue
+#### session_queues
 
 Session Queue Schema の JSON オブジェクトの配列が格納されています。
 
@@ -627,7 +624,7 @@ Session Queue のオブジェクトの返却は、
 Workflow とは、自動化設定そのものです。外部からワークフローを指定してSession Queue に登録する際に Workflow の ID が必要になりますが、一覧取得のエンドポイントによりIDを確認し指定することができるようになります。
 ## ワークフロー一覧を取得する。
 このエンドポイントは、API Key が作成されたプロジェクトの Workflow の一覧を取得します。パラメーターとして、ページ数、ページあたりの件数を設定できます。パラメーターの指定がない時は、ページあたりの件数は、300件、ページは1ページ目になります。ページあたりの件数は最大で、1000まで指定できます。
-### HTTP Request
+
 > GET /v1/workflows
 
 ```shell
@@ -670,6 +667,12 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/workflows?page=1&
  "total_count": 102
 }
 ```
+
+### HTTP Request
+
+`
+GET https://api.roboticcrowd.com/v1/workflows?page=1&per_page=10
+`
 
 ### クエリパラメーター
 #### per_page
