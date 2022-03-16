@@ -75,7 +75,8 @@ html, body {
   .logo {
     display: block;
     max-width: 100%;
-    margin-bottom: $logo-margin;
+    width: 80%;
+    margin: 2rem auto 1rem;
   }
 
   &>.search {
@@ -567,6 +568,10 @@ html, body {
 
     &.open {
       left: 0;
+    }
+
+    .logo {
+      margin-bottom: 2rem;
     }
   }
 
