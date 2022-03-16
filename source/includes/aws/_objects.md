@@ -16,7 +16,6 @@ curl -X DELETE \
 
 ```json
 {
-	"fullPath": "images/",
   "id": "ap-south-1/bucket-root-dwyak/images/",
 }
 ```
