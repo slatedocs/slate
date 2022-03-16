@@ -1561,11 +1561,11 @@ Use this endpoint to fetch status of any order
 
 ### Parameters
 
-| Name | Required | Example        | Description        |
-|------|----------|----------------|--------------------|
-| ids  | Yes      | ["id1", "id3"] | Array of order IDs |
+| Name             | Required | Example                                                                          | Description        |
+|------------------|----------|----------------------------------------------------------------------------------|--------------------|
+| ids              | Yes      | ["ead19992-43fd-11e8-b027-bb815bcb14ed", "8a1d1e4c-c895-11e8-9dff-df1480546936"] | Array of order IDs |
 | client_order_ids | No       | ["2022.02.14-btcinr_1", "2022.02.14-btcinr_2"]                                   | Array of client order IDs         |
-| timestamp | Yes      | 1524211224                     | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
+| timestamp        | Yes      | 1524211224                                                                       | Timestamp at which the request was generated [(see 'Common Notes' under 'Authentication' heading to read more)](http://192.168.1.10:4567/#authentication) |
 
 
 
