@@ -6903,6 +6903,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/setMetric:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -6947,6 +6948,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/setMetricCurrentValue:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -6993,6 +6995,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/addSubgoal:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -7038,6 +7041,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/removeSubgoal:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -7080,6 +7084,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/addFollowers:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -7128,6 +7133,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/removeFollowers:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -7173,6 +7179,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/addSupportingWork:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -7219,6 +7226,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/removeSupportingWork:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -7263,6 +7271,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/subgoals:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -7297,6 +7306,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/supportingWork:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -7331,6 +7341,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /goals/{goal_gid}/parentGoals:
     parameters:
+      - $ref: '#/components/parameters/goal_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
