@@ -3937,6 +3937,7 @@ Creates and adds a goal metric to a specified goal. Note that this replaces an e
 |»» precision<span class="param-type"> integer</span>|*Conditional*. Only relevant for goal metrics of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
 |»» target_number_value<span class="param-type"> number</span>|This number is the end value of a goal metric of type number. This number cannot equal `initial_number_value`.|
 |»» unit<span class="param-type"> string</span>|A supported unit of measure for the goal metric, or none.|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4140,6 +4141,7 @@ Returns the complete updated goal metric record.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The updated fields for the goal metric.|
 |» data<span class="param-type"> object</span>|A generic Asana Resource, containing a globally unique identifier.|
 |»» current_number_value<span class="param-type"> number</span>|*Conditional*. This number is the current value of a goal metric of type number.|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4263,6 +4265,7 @@ Returns an empty data block.
 |»» insert_after<span class="param-type"> string</span>|An id of a subgoal of this parent goal. The new subgoal will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 |»» insert_before<span class="param-type"> string</span>|An id of a subgoal of this parent goal. The new subgoal will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 |»» subgoal<span class="param-type"> string</span><div class="param-required">required</div>|The goal gid to add as subgoal to a parent goal|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4388,6 +4391,7 @@ Removes a goal as a subgoal of a specified parent goal.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The goal to be removed as a subgoal|
 |» data<span class="param-type"> object</span>|none|
 |»» subgoal<span class="param-type"> string</span><div class="param-required">required</div>|The goal gid to remove as subgoal from the parent goal|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4588,6 +4592,7 @@ Requests to add/remove followers, if successful, will return the complete update
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The followers to be added as collaborators|
 |» data<span class="param-type"> object</span>|none|
 |»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4780,6 +4785,7 @@ Requests to add/remove followers, if successful, will return the complete update
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The followers to be removed as collaborators|
 |» data<span class="param-type"> object</span>|none|
 |»» followers<span class="param-type"> [string]</span><div class="param-required">required</div>|An array of strings identifying users. These can either be the string "me", an email, or the gid of a user.|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -4897,6 +4903,7 @@ Adds a project or portfolio as supporting work for a goal. *A goal can have at m
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project/portfolio to set as supporting work|
 |» data<span class="param-type"> object</span>|none|
 |»» supporting_work<span class="param-type"> string</span><div class="param-required">required</div>|The project/portfolio gid to add as supporting work for a goal|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5022,6 +5029,7 @@ Removes a project or portfolio as supporting work for a goal.
 |body<span class="param-type"> object</span><div class="param-required">required</div>|The project/portfolio to remove as supporting work|
 |» data<span class="param-type"> object</span>|none|
 |»» supporting_work<span class="param-type"> string</span><div class="param-required">required</div>|The project/portfolio gid to add as supporting work for a goal|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5141,6 +5149,7 @@ Returns a compact representation of all of the subgoals of a goal.
 
 |Name|Description|
 |---|---|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5247,6 +5256,7 @@ Returns any portfolios or projects associated with specified goal.
 
 |Name|Description|
 |---|---|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -5358,6 +5368,7 @@ Returns a compact representation of all of the parent goals of a goal.
 
 |Name|Description|
 |---|---|
+|/goal_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the goal.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 

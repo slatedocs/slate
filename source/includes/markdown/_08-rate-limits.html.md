@@ -62,7 +62,7 @@ In addition to limiting the total number of requests in a given time window, we 
 
 For example, if you have 50 read requests in-flight and attempt to make another read request, the API will return a `429 Too Many Requests` error. The read and write limits are independent of each other, so the number of read requests you make at one time will have no impact on the number of write requests you can make.
 
-Responses for requests rejected by this concurrent request limiter will contain a `Retry-After` header specifying a duration long enough such that the other in-flight requests are guaranteed to have either completed or timed out.
+Responses for requests rejected by this concurrent request limiter will contain a `Retry-After` header specifying a duration long enough (in seconds) such that the other in-flight requests are guaranteed to have either completed or timed out.
 
 <a name="cost"></a>
 ## Cost Limits
