@@ -327,31 +327,20 @@ after | [String](#string) | Returns the elements in the list that come after the
 before | [String](#string) | Returns the elements in the list that come before the specified cursor. |
 createdAt | [DateTimeFilter](#datetimefilter) | filter employees based on when they were created |
 customFieldValues | [\[CustomFieldValuesInput\]](#customfieldvaluesinput) | filter employees by their custom field values |
-dateOfBirth | [DateFilter](#datefilter) | DEPRECATED. Use dateOfBirthFilter instead |
 dateOfBirthFilter | [DateOfBirthFilter](#dateofbirthfilter) | filter employees by their date of birth |
 departmentFilter | [DepartmentFilter](#departmentfilter) | filter employees by their department |
-departmentIds | [\[Int\]](#int) | DEPRECATED. Use departmentFilter instead |
 emailFilter | [EmailFilter](#emailfilter) | filter employees by their email |
-emails | [\[String\]](#string) | DEPRECATED. Use emailFilter instead |
 employmentStatusFilter | [EmploymentStatusFilter](#employmentstatusfilter) | filter employees by their employment status |
-employmentStatuses | [\[String\]](#string) | DEPRECATED. Use employmentStatusFilter instead |
 first | [Int](#int) | Returns the first _n_ elements from the list. |
 hrManagerFilter | [HrManagerFilter](#hrmanagerfilter) | filter employees by their hr manager |
-hrManagerIds | [\[Int\]](#int) | DEPRECATED. Use hrManagerFilter instead |
 last | [Int](#int) | Returns the last _n_ elements from the list. |
 locationFilter | [LocationFilter](#locationfilter) | filter employees by their location |
-locationIds | [\[Int\]](#int) | DEPRECATED. Use locationFilter instead |
 managerFilter | [ManagerFilter](#managerfilter) | filter employees by their manager |
-managerIds | [\[Int\]](#int) | DEPRECATED. Use managerFilter instead |
 personalEmailFilter | [PersonalEmailFilter](#personalemailfilter) | filter employees by their personal email |
-personalEmails | [\[String\]](#string) | DEPRECATED. Use personalEmailFilter instead |
-startDate | [DateFilter](#datefilter) | DEPRECATED. Use startDateFilter instead |
 startDateFilter | [StartDateFilter](#startdatefilter) | filter employees by their start date |
 titleFilter | [TitleFilter](#titlefilter) | filter employees by their title |
-titles | [\[String\]](#string) | DEPRECATED. Use titleFilter instead |
 updatedAt | [DateTimeFilter](#datetimefilter) | filter employees based on when they were last updated |
 workCountryCodeFilter | [WorkCountryCodeFilter](#workcountrycodefilter) | filter employees by their work country code |
-workCountryCodes | [\[String\]](#string) | DEPRECATED. Use WorkCountryCodeFilter instead |
 
 ## employmentStatuses \([\[String\]](#string)\)
 The list of valid options for Employment Status
