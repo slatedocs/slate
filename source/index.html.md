@@ -4739,6 +4739,89 @@ socket.on("trade-update", (response) => {
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
 In aggregate, you may call `https//api.coindcx.com` not more than 10 times per second. -->
 
+## Order Updates
+
+### Definitions
+<ul>
+  <li><strong>Channel:</strong> coindcx</li>
+  <li><strong>Event:</strong> order-update</li>
+</ul>
+
+### Response
+<ul>
+<li><code>id</code>: unique order identifier (uuid)</li>
+<li><code>order_type</code>: the order type</li>
+<li><code>side</code>: whether the order is a buy order or a sell order</li>
+<li><code>status</code>: the current status</li>
+<li><code>fee_amount</code>: total fee amount charged so far (in base-currency)</li>
+<li><code>fee</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>maker_fee</code>: the fee (in percentage) to be charged for maker-trades for this order</li>
+<li><code>taker_fee</code>: the fee (in percentage) to be charged for taker-trades for this order</li>
+<li><code>total_quantity</code>: total quantity</li>
+<li><code>remaining_quantity</code>: pending (unfilled/uncancelled) quantity</li>
+<li><code>source</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>base_currency_name</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>target_currency_name</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>base_currency_short_name</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>target_currency_short_name</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>base_currency_precision</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>target_currency_precision</code>: deprecated - do not refer - will be removed soon</li>
+<li><code>avg_price</code>: avg-execution price so far</li>
+<li><code>price_per_unit</code>: specified limit price</li>
+<li><code>stop_price</code>: specified stop price (applicable for stop-variant orders)</li>
+<li><code>market</code>: symbol</li>
+<li><code>time_in_force</code>: just contains one value for now, which is <code>good_till_cancel</code></li>
+<li><code>created_at</code>: the timestamp for order creation</li>
+<li><code>updated_at</code>: the latest timestamp specifying when the order was updated</li>
+</ul>
+
+```python
+@sio.on('order-update')
+def on_message(response):
+  print(response["data"])
+```
+
+```javascript
+socket.on("order-update", (response) => {
+  console.log(response.data);
+});
+```
+
+
+> Order update response:
+
+```json
+[
+  {
+    "id": "axxxxxxa-axxa-axxa-axxa-axxxxxxxxxxa",
+    "order_type": "limit_order",
+    "side": "buy",
+    "status": "open",
+    "fee_amount": 0,
+    "fee": 0.1,
+    "maker_fee": 0.1,
+    "taker_fee": 0.1,
+    "total_quantity": 0.0005,
+    "remaining_quantity": 0.0005,
+    "source": "web",
+    "base_currency_name": "Indian Rupee",
+    "target_currency_name": "Bitcoin",
+    "base_currency_short_name": "INR",
+    "target_currency_short_name": "BTC",
+    "base_currency_precision": 2,
+    "target_currency_precision": 5,
+    "avg_price": 0,
+    "price_per_unit": 3015016.03,
+    "stop_price": 0,
+    "market": "BTCINR",
+    "time_in_force": "good_till_cancel",
+    "created_at": 1647418697307,
+    "updated_at": 1647418697307
+  }
+]
+```
+
+
 ## Bracket Order Trades
 
 ### Definitions
