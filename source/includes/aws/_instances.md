@@ -312,4 +312,53 @@ curl -X DELETE \
 | `taskId` <br/>*string*     | The task id related to the instance deletion. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
+<!-------------------- START AN INSTANCE -------------------->
+
+#### Start an instance
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/instances/i-0d1f9106cd0e0dff7?operation=start"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>START /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance to be started. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
+
+<!-------------------- STOP AN INSTANCE -------------------->
+
+#### Stop an instance
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/instances/i-0d1f9106cd0e0dff7?operation=stop"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>STOP /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance to be stopped. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
 
