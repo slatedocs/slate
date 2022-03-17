@@ -227,6 +227,7 @@ includes:
   - aws/volumes
   - aws/s3
   - aws/buckets
+  - aws/objects
 
 search: true
 ---
