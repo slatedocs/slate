@@ -33,6 +33,6 @@ curl -X DELETE \
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the object deletion.   |
+| `taskId` <br/>*string*     | The task id related to the object deletion. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
