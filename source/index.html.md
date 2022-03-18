@@ -122,10 +122,7 @@ JWT は、base64 エンコードされた、 JSON 形式の header と payload �
   "aud": "https://api.roboticcrowd.com/",
   "nbf": 1450471147,
   "exp": 1450473747,
-  "scopes": [
-    "session_queue.write", 
-    "session_queue.read",
-    "token"
+  "scopes": "session_queue.write session_queue.read access_token.create"
   ]
 }
 ```
@@ -207,11 +204,11 @@ echo -n '{"alg":"HS256","typ":"JWT"}' | base64
 > payloadを生成する
 
 ```shell
-echo -n '{"iss": "console.roboticcrowd.com","sub": "IjoiIiwiZ3JhbnRzIjp7Im","aud": "https://api.roboticcrowd.com/","nbf": 1450471147,"exp": 1450473747,"scopes": ["session_queue.write","session_queue.read","access_token.create"]}' | \
+echo -n '{"iss": "console.roboticcrowd.com","sub": "IjoiIiwiZ3JhbnRzIjp7Im","aud": "https://api.roboticcrowd.com/","nbf": 1450471147,"exp": 1450473747,"scopes": "session_queue.write session_queue.read access_token.create"}' | \
 base64 | \
 tr -d '='
 
-# eyJpc3MiOiJjb25zb2xlLnJvYm90aWNjcm93ZC5jb20iLCJzdWIiOiJJam9pSWl3aVozSmhiblJ6SWpwN0ltIiwiYXVkIjoiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ
+# eyJpc3MiOiAiY29uc29sZS5yb2JvdGljY3Jvd2QuY29tIiwic3ViIjogIklqb2lJaXdpWjNKaGJuUnpJanA3SW0iLCJhdWQiOiAiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOiAxNDUwNDcxMTQ3LCJleHAiOiAxNDUwNDczNzQ3LCJzY29wZXMiOiAic2Vzc2lvbl9xdWV1ZS53cml0ZSBzZXNzaW9uX3F1ZXVlLnJlYWQgYWNjZXNzX3Rva2VuLmNyZWF0ZSJ9
 ```
 
 > signatureを生成する
@@ -219,17 +216,17 @@ tr -d '='
 ```shell
 # echo -n "header.payload" | openssl dgst -binary -sha256 -hmac "secret_access_key" | base64 | sed "s/+/-/g;s/\//_/g;s/=//g"
 
-echo -n "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zb2xlLnJvYm90aWNjcm93ZC5jb20iLCJzdWIiOiJJam9pSWl3aVozSmhiblJ6SWpwN0ltIiwiYXVkIjoiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ" | \
+echo -n "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiAiY29uc29sZS5yb2JvdGljY3Jvd2QuY29tIiwic3ViIjogIklqb2lJaXdpWjNKaGJuUnpJanA3SW0iLCJhdWQiOiAiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOiAxNDUwNDcxMTQ3LCJleHAiOiAxNDUwNDczNzQ3LCJzY29wZXMiOiAic2Vzc2lvbl9xdWV1ZS53cml0ZSBzZXNzaW9uX3F1ZXVlLnJlYWQgYWNjZXNzX3Rva2VuLmNyZWF0ZSJ9" | \
 openssl dgst -binary -sha256 -hmac "523463041EF9FFA2950D8450FEB34C88BC8692C40C9CF3C99DCDF75E270229E2" | \
 base64 | sed "s/+/-/g;s/\//_/g;s/=//g"
 
-# LbICm0Ylbt0UFUGBRP7tqL1tT_RwH1D-XWSt_dfenUg
+# 45ervId5_CudT4hya5Tbx30OrO08KCewFQlgxU7mfew
 ```
 
 > 生成されたJWT
 
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zb2xlLnJvYm90aWNjcm93ZC5jb20iLCJzdWIiOiJJam9pSWl3aVozSmhiblJ6SWpwN0ltIiwiYXVkIjoiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ.LbICm0Ylbt0UFUGBRP7tqL1tT_RwH1D-XWSt_dfenUg
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiAiY29uc29sZS5yb2JvdGljY3Jvd2QuY29tIiwic3ViIjogIklqb2lJaXdpWjNKaGJuUnpJanA3SW0iLCJhdWQiOiAiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOiAxNDUwNDcxMTQ3LCJleHAiOiAxNDUwNDczNzQ3LCJzY29wZXMiOiAic2Vzc2lvbl9xdWV1ZS53cml0ZSBzZXNzaW9uX3F1ZXVlLnJlYWQgYWNjZXNzX3Rva2VuLmNyZWF0ZSJ9.45ervId5_CudT4hya5Tbx30OrO08KCewFQlgxU7mfew
 ```
 
 JWT を生成するには、URL-safe な base64 文字列に変換する必要があります。command line で base64 エンコードするのは、簡単のようで簡単ではありません。各OSによって微妙に仕様が異なっています。
@@ -248,7 +245,7 @@ JWT を生成するには、URL-safe な base64 文字列に変換する必要�
 最後に、これらの出力を全てドット `.` で接続して JWT の完成です。
 
 `
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zb2xlLnJvYm90aWNjcm93ZC5jb20iLCJzdWIiOiJJam9pSWl3aVozSmhiblJ6SWpwN0ltIiwiYXVkIjoiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ.LbICm0Ylbt0UFUGBRP7tqL1tT_RwH1D-XWSt_dfenUg
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiAiY29uc29sZS5yb2JvdGljY3Jvd2QuY29tIiwic3ViIjogIklqb2lJaXdpWjNKaGJuUnpJanA3SW0iLCJhdWQiOiAiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOiAxNDUwNDcxMTQ3LCJleHAiOiAxNDUwNDczNzQ3LCJzY29wZXMiOiAic2Vzc2lvbl9xdWV1ZS53cml0ZSBzZXNzaW9uX3F1ZXVlLnJlYWQgYWNjZXNzX3Rva2VuLmNyZWF0ZSJ9.45ervId5_CudT4hya5Tbx30OrO08KCewFQlgxU7mfew
 `
 
 出来上がった JWT を [jwt.io](https://jwt.io) で検証してみましょう。Encoded のテキストエリアに JWT をペーストとします。
