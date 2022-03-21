@@ -556,15 +556,19 @@ If an app doesn't use OAuth for authentication, the Asana Security Team should m
 
 The burden of verifying the request is on the app. Without this check, attackers can send requests to the App Server pretending to be Asana.
 
-Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. For GET requests, the "message" used
+Message integrity is provided by a SHA-256 HMAC signature on the contents of the request. For `GET` requests, the "message" used
 to generate the signature is the query string of the request with escaped characters, omitting the leading "?" of the query string.
-For POST requests, the "message" is the JSON blob in the "data" field of the request body. For both types of requests, the secret
+For `POST` requests, the "message" is the JSON blob in the `data` field of the request body. For both types of requests, the secret
 used to compute the signature is your app's Client Secret which can be found in the **OAuth** tab for the app in the
 [developer console](https://app.asana.com/0/developer-console). 
 
-Note that the signature is transmitted via a header. The app calculates the same signature and compares that to the value in the header,
-rejecting the request if the two do not match. The signature must be on the exact parameter string that will be passed to the app, since
-the signature will change if something as trivial as spacing changes.
+Note that the signature is transmitted via a header in the request body, particularly the value of `x-asana-request-signature`. The
+app server calculates the same signature and compares that to the value in the header. **The app server should reject the request if the two do not match**.
+The signature must be on the exact parameter string that will be passed to the app, since the signature will change if something as
+trivial as spacing changes.
+
+To see an example of how the signature is computed, you can view an open source example app server in the
+[app-components-example-app](https://github.com/Asana/app-components-example-app) repository.
 
 <hr>
 
