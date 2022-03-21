@@ -30,7 +30,15 @@ list has a given email address.
     "jdoe@alumni.stanford.edu",
     "johnjdoe@gmail.com",
   ],
-  "organization_ids": [1687449],
+  "organization_ids": [
+    1687449,
+    ...
+  ],
+  "opportunity_ids": [
+    4,
+    11,
+    ...
+  ],
   "list_entries": [
     {
       "id": 388,
@@ -116,18 +124,19 @@ Dates of the most recent and upcoming interactions with a person are available i
 `with_interaction_dates=true` as a query parameter to the `/persons` or
 the `/persons/{person_id}` endpoints.
 
-| Attribute         | Type        | Description                                                                                                                                                                                                                                                                       |
-| ----------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id                | integer     | The unique identifier of the person object.                                                                                                                                                                                                                                       |
-| type              | integer     | The type of person (see below).                                                                                                                                                                                                                                                   |
-| first_name        | string      | The first name of the person.                                                                                                                                                                                                                                                     |
-| last_name         | string      | The last name of the person.                                                                                                                                                                                                                                                      |
-| emails            | string[]    | The email addresses of the person.                                                                                                                                                                                                                                                |
-| primary_email     | string      | The email (automatically computed) that is most likely to the current active email address of the person.                                                                                                                                                                         |
-| organization_ids  | integer[]   | An array of unique identifiers of organizations that the person is associated with.                                                                                                                                                                                               |
-| list_entries      | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a Specific Person](#get-a-specific-person) endpoint.                                                                                                                               |
-| interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
-| interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event.  Only returned when passing `with_interaction_dates=true`. |
+| Attribute         | Type        | Description                                                                                                                                                                                                                                                                                           |
+| ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                     |
+| id                | integer     | The unique identifier of the person object.                                                                                                                                                                                                                                                           |
+| type              | integer     | The type of person (see below).                                                                                                                                                                                                                                                                       |
+| first_name        | string      | The first name of the person.                                                                                                                                                                                                                                                                         |
+| last_name         | string      | The last name of the person.                                                                                                                                                                                                                                                                          |
+| emails            | string[]    | The email addresses of the person.                                                                                                                                                                                                                                                                    |
+| primary_email     | string      | The email (automatically computed) that is most likely to the current active email address of the person.                                                                                                                                                                                             |
+| organization_ids  | integer[]   | An array of unique identifiers of organizations that the person is associated with.                                                                                                                                                                                                                   |
+| opportunity_ids   | integer[]   | An array of unique identifiers of opportunities that the person is associated with.                                                                                                                                                                                                             |
+| list_entries      | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a Specific Person](#get-a-specific-person) endpoint.                                                                                                                                                   |
+| interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.  |
+| interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event.  Only returned when passing `with_interaction_dates=true`.                |
 
 ### Person types
 
@@ -264,6 +273,11 @@ curl "https://api.affinity.co/persons/38706" -u :$APIKEY
     "johndoe@gmail.com",
   ],
   "organization_ids": [1687449],
+  "opportunity_ids": [
+    4,
+    11,
+    ...
+  ],
   "list_entries": [
     {
       "id": 388,
@@ -285,9 +299,10 @@ Fetches a person with a specified `person_id`.
 
 | Parameter                | Type    | Required | Description                                                                                                 |
 | ----------------------   | ------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| person_id                | integer | true     | The unique id of the person that needs to be retrieved.                                                     |
+| person_id                | integer | true     | The unique ID of the person that needs to be retrieved.                                                     |
 | with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources.                                     |
 | with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates` |
+| with_opportunities       | boolean | false    | When true, opportunity IDs associated with this person will be returned.                                      |
 
 ### Returns
 

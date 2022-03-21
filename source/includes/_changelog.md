@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-03-21
+
+- Added `opportunity_ids` fields to person and organization responses.
+
 ## 2022-02-23
 
 - Added [Interactions API](#interactions-beta) documentation.

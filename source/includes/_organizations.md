@@ -31,7 +31,18 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
   "domain": "affinity.co",
   "domains": ["affinity.co"],
   "global": false,
-  "person_ids": [89734, 117270, 138123, 274492, 304848, ...]
+  "person_ids": [
+    89734, 
+    117270, 
+    138123, 
+    274492, 
+    304848, 
+    ...],
+  "opportunity_ids": [
+    4,
+    11,
+    ...
+  ],
   "list_entries": [
     {
       "id": 389,
@@ -118,7 +129,8 @@ the [`GET /organizations/{organization_id}`](#get-a-specific-organization) endpo
 | name              | integer     | The name of the organization (see below).                                                                                                                                                                                                                                               |
 | domain            | string      | The website name of the organization. This is used by Affinity to automatically associate person objects with an organization.                                                                                                                                                          |
 | domains           | string[]    | An array of all the websites associated with the organization. These are also used to automatically associate person objects with an organization.                                                                                                                                      |
-| person_ids        | string[]    | An array of unique identifiers of person that are associated with the organization                                                                                                                                                                                                      |
+| person_ids        | integer[]   | An array of unique identifiers of people that are associated with the organization                                                                                                                                                                                                      |
+| opportunity_ids   | integer[]   | An array of unique identifiers of opportunities that are associated with the organization                                                                                                                                                                                               |
 | global            | boolean     | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.                                                                                                                                 |
 | list_entries      | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.                                                                                                                   |
 | interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date`, and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
@@ -243,7 +255,19 @@ curl "https://api.affinity.co/organizations/64779194" -u :$APIKEY
   "domain": "affinity.co",
   "domains": ["affinity.co"],
   "global": false,
-  "person_ids": [89734, 117270, 138123, 274492, 304848, ...],
+  "person_ids": [
+    89734, 
+    117270, 
+    138123, 
+    274492, 
+    304848, 
+    ...
+  ],
+  "opportunity_ids": [
+    4,
+    11,
+    ...
+  ],
   "list_entries": [
     {
       "id": 389,
@@ -263,11 +287,12 @@ Fetches an organization with a specified `organization_id`.
 
 ### Path Parameters
 
-| Parameter                | Type    | Required | Description                                                             |
-| ----------------------   | ------- | -------- | ----------------------------------------------------------------------- |
-| organization_id          | integer | true     | The unique id of the organization that needs to be retrieved.           |
-| with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources. |
+| Parameter                | Type    | Required | Description                                                                                                 |
+| ----------------------   | ------- | -------- | ------------------------------------------------------------------------------------------------------------|
+| organization_id          | integer | true     | The unique ID of the organization that needs to be retrieved.                                               |
+| with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources.                                     |
 | with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates` |
+| with_opportunities       | boolean | false    | When true, opportunity IDs associated with this organization will be returned.                                |
 
 ### Returns
 
