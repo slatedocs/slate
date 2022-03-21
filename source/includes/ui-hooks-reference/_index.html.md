@@ -14,10 +14,14 @@ This is the interface for handling requests for [App Components](https://develop
 
 Base URLs:
 
-* <a href="{siteUrl}">{siteUrl}</a>
+* {siteUrl}
 
-<a href="https://asana.com/terms">Terms of service</a>
-Web: <a href="https://asana.com/support">Asana Support</a> 
+Note that <i>{siteUrl}</i> refers to the base URL for your [App Server](/docs/app-server) endpoints.
+
+Additional resources:
+
+* <a href="https://asana.com/terms">Terms & Policies</a>
+* <a href="https://asana.com/support">Asana Support</a> 
 </section><hr class="full-line">
 <section class="full-section">
 <a id="asana-modal-forms"></a>
