@@ -5,7 +5,7 @@ const docsFilename = './source/includes/markdown/_12_1-news-and-changelog.html.m
 
 let result = "";
 
-https.get("https://forum.asana.com/c/developersapi/platform-news/97.json", res => {
+https.get("https://forum.asana.com/c/api/news/97.json", res => {
   res.setEncoding("utf8");
   let body = "";
   res.on("data", data => {
