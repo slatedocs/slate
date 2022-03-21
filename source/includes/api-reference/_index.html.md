@@ -14,8 +14,10 @@ Base URLs:
 
 * <a href="https://app.asana.com/api/1.0">https://app.asana.com/api/1.0</a>
 
-<a href="https://asana.com/terms">Terms of service</a>
-Web: <a href="https://asana.com/support">Asana Support</a> 
+Additional resources:
+
+* <a href="https://asana.com/terms">Terms & Policies</a>
+* <a href="https://asana.com/support">Asana Support</a> 
 </section><hr class="full-line">
 <section class="full-section">
 <a id="asana-attachments"></a>

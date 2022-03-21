@@ -18,7 +18,13 @@
 {{? data.api.servers }}
 Base URLs:
 {{~data.api.servers :s}}
+
+{{? s.url === "{siteUrl}" }}
+* {{=s.url}}
+{{??}}
 * <a href="{{=s.url}}">{{=s.url}}</a>
+{{?}}
+
 {{ for(var v in s.variables) { }}
     * **{{=v}}** - {{=s.variables[v].description||''}} Default: {{=s.variables[v].default}}
 {{? s.variables[v].enum}}
@@ -30,8 +36,14 @@ Base URLs:
 {{~}}
 {{?}}
 
-{{? data.api.info && data.api.info.termsOfService}}<a href="{{=data.api.info.termsOfService}}">Terms of service</a>{{?}}
-{{? data.api.info && data.api.info.contact}}{{? data.api.info.contact.email}}Email: <a href="mailto:{{=data.api.info.contact.email}}">{{=data.api.info.contact.name || 'Support'}}</a> {{?}}{{? data.api.info.contact.url}}Web: <a href="{{=data.api.info.contact.url}}">{{= data.api.info.contact.name || 'Support'}}</a> {{?}}{{?}}
+{{? s.url === "{siteUrl}" }}
+Note that <i>{siteUrl}</i> refers to the base URL for your [App Server](/docs/app-server) endpoints.
+{{?}}
+
+Additional resources:
+
+{{? data.api.info && data.api.info.termsOfService}}* <a href="{{=data.api.info.termsOfService}}">Terms & Policies</a>{{?}}
+{{? data.api.info && data.api.info.contact}}{{? data.api.info.contact.email}}Email: <a href="mailto:{{=data.api.info.contact.email}}">{{=data.api.info.contact.name || 'Support'}}</a> {{?}}{{? data.api.info.contact.url}}* <a href="{{=data.api.info.contact.url}}">{{= data.api.info.contact.name || 'Support'}}</a> {{?}}{{?}}
 </section>{{ for (var r in data.resources) { }}{{ data.resource = data.resources[r]; }}<hr class="full-line">
 <section class="full-section">
 <a id="asana-{{=data.utils.slugify(r)}}"></a>
