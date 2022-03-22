@@ -73,7 +73,7 @@ Retrieve a list of objects inside a given folder inside a given bucket.
 | `name`<br/>*string*               | The name of the object.                                                                                                                                                     
 | `fullPath`<br/>*string*               | The actual key of the object inside the bucket, which is represented as a full path.                                                                                                                                                    |
 | `size`<br/>*integer*     | The size of the object in bytes.                                                                                                                                                     |
-| `storageClass`<br/>*string*            | The Type of storage class on the object.                                                                                                                                                      |
+| `storageClass`<br/>*string*            | The type of storage class on the object.                                                                                                                                                      |
 | `lastModified`<br/>*string*       | The date the object was last updated.
 | `displaySize`<br/>*string*       | The size of the object represented as an object in either KB/MB/GB.
 | `contentType`<br/>*string*       | The type of file.
@@ -81,7 +81,7 @@ Retrieve a list of objects inside a given folder inside a given bucket.
 | `isFolder`<br/>*boolean*       | Boolean denoting whether the object acts as a folder. This is always true when the name ends with a '/' character.
 | `bucketName`<br/>*string*       | The name of the bucket the object exists within.
 | `region`<br/>*string*       | The name of the region the object exists within.
-| `isVirtual`<br/>*string*       | Boolean denoting whether the folder actually exists (there exists a key in the bucket named 'folder/'), or just because it's part of the path of a complete object path ('folder/object'). In this request, if nested=true, it will not return any virtual folders due to the nature of obtaining common prefixes and nested objects.
+| `isVirtual`<br/>*string*       | Boolean denoting whether the folder is virtual. If true there exists no object named ‘`{folderName}/`‘, and the folder exists only as a part of a complete object path (`{folderName}/{objectName}`). If false, there exists a key in the bucket named ‘{folderName}/’. If the query parameter `nested = true`, the request will not return any virtual folders.
 
 | Required Query Paramaters                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -91,7 +91,7 @@ Retrieve a list of objects inside a given folder inside a given bucket.
 | Optional Query Paramaters                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `prefix`<br/>*string*       | The path of the objects to search in. If prefix is left blank, it will search for objects in the root. If nested is true and prefix is left blank, it will obtain all objects in the bucket.
-| `nested`<br/>*boolean*       | Whether to include nested objects or just include objects in the root of the prefix.
+| `nested`<br/>*boolean*       | Whether to include nested objects or just include objects in the root of the prefix. If `nested=true`, the request will not return any virtual folders.
 
 
 
