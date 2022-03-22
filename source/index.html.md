@@ -4699,7 +4699,8 @@ socket.on("balance-update", (response) => {
 
 ### Response
 <ul>
-  <li>o is client order id / system generated order id</li>
+  <li>o is system generated order id</li>
+  <li>c is client order id</li>
   <li>t is trade id</li>
   <li>s is symbol/market (LTCBTC)</li>
   <li>p is price</li>
@@ -4729,6 +4730,7 @@ socket.on("trade-update", (response) => {
 ```json
 [{
   "o": "28c58ee8-09ab-11e9-9c6b-8f2ae34ea8b0",
+  "c": "2022.02.14-btcinr_1",
   "t": "17105",
   "s": "XRPBTC",
   "p": "0.00009634",
@@ -4759,6 +4761,7 @@ In aggregate, you may call `https//api.coindcx.com` not more than 10 times per s
 ### Response
 <ul>
 <li><code>id</code>: unique order identifier (uuid)</li>
+<li><code>client_order_id</code>: client order id of the order</li>
 <li><code>order_type</code>: the order type</li>
 <li><code>side</code>: whether the order is a buy order or a sell order</li>
 <li><code>status</code>: the current status</li>
@@ -4803,6 +4806,7 @@ socket.on("order-update", (response) => {
 [
   {
     "id": "axxxxxxa-axxa-axxa-axxa-axxxxxxxxxxa",
+    "client_order_id": "2022.02.14-btcinr_1",
     "order_type": "limit_order",
     "side": "buy",
     "status": "open",
