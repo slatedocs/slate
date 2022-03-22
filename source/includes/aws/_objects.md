@@ -69,6 +69,8 @@ curl --request GET \
 
 <code>GET /services/operation/:service_connection_id/download</code>
 
+> The above command returns the binary that represent the file downloaded.
+
 Required Query Parameters | &nbsp;
 ---- | -----------
 `bucketName`<br/>*string* | Name of the bucket to download the file from.
@@ -77,8 +79,6 @@ Required Query Parameters | &nbsp;
 `entityType`<br/>*string* | The type of entity to download. In this case 'objects'.
 `operation`<br/>*string* | The type of operation to execute. In this case 'download'.
 `environmentId`<br/>*string* | The id of environment which owns the object.
-
-> The above command returns the binary that represent the file downloaded.
 
 
 <!-------------------- DELETE AN OBJECT -------------------->
