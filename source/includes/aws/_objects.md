@@ -214,3 +214,38 @@ Delete an object from a bucket in Amazon S3.
 | `taskId` <br/>*string*     | The task id related to the object deletion. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
+<!-------------------- RENAME AN OBJECT -------------------->
+
+#### Rename Objects
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject/?operation=rename"
+```
+
+> Request body examples:
+
+```json
+{
+  "id": "ap-south-1/bucket-root-dwyak/oldFilePath.png",
+  "fullPath": "newFilePath.png",
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/operation/rename <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:regionName/:bucketName/:fullPath</code>
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the object rename. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
+
