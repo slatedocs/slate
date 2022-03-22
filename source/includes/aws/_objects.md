@@ -49,6 +49,8 @@ file: path_to_file
 
 <code>POST /services/operation/upload</code>
 
+Upload a file to a bucket in Amazon S3.
+
 Attributes | &nbsp;
 ---------- | -----
 `filename: file_size`<br/>*string* | Multipart form part: key-value pair with the name of the file as key and its file size as value.
@@ -68,6 +70,8 @@ curl --request GET \
 ```
 
 <code>GET /services/operation/:service_connection_id/download</code>
+
+Download an object from a bucket in Amazon S3.
 
 > The above command returns the binary that represent the file downloaded.
 
@@ -109,6 +113,8 @@ curl -X DELETE \
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:regionName/:bucketName/:fullPath</code>
+
+Delete an object from a bucket in Amazon S3.
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
