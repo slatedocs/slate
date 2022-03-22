@@ -224,6 +224,8 @@ curl -X POST \
    "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject/?operation=rename"
 ```
 
+Rename an object in a bucket in Amazon S3.
+
 > Request body examples:
 
 ```json
