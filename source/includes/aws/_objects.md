@@ -64,7 +64,7 @@ Attributes | &nbsp;
 ```shell
 curl --request GET \
   -H "MC-Api-Key: your_api_key" \
-  "http://localhost:8081/rest/services/operations/:service_connection_id/download?bucketName=akc-buck&regionName=us-east-1&id=us-east-1/akc-buck/api123.png&entityType=objects&operation=download&environmentId=97430433-875c-4ba5-8c57-90a051a52729"
+  "https://cloudmc_endpoint/rest/services/operations/:service_connection_id/download?bucketName=akc-buck&regionName=us-east-1&id=us-east-1/akc-buck/api123.png&entityType=objects&operation=download&environmentId=97430433-875c-4ba5-8c57-90a051a52729"
 ```
 
 <code>GET /services/operation/:service_connection_id/download</code>
