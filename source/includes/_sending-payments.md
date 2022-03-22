@@ -661,7 +661,7 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
 
 Lastly, all transactions can be monitored from the OY! dashboard which includes all the transaction details.
 
-![API Biller](images/API_Biller.png)
+![API Biller](../images/API_Biller.png)
 
 
 For further details on the parameters definition and proper usage, please refer to our [API Documentation](https://api-docs.oyindonesia.com/#biller-api).
