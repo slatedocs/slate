@@ -459,3 +459,211 @@ Transaction need to go through approval process to ensure that the money will be
 
 * In parallel, your customer will also get email notification about successful claim fund transaction.
 ![Create Claim Fund - user success](../images/claim-fund-user-success.png)
+
+## API Biller
+
+API biller product provides the capability for you to pay the bill products. With 130+ types of billing products, you can provide numerous bill payment options with ease and in real-time.
+The integration process to use the API biller product is straight forward and the details can be checked [here](https://api-docs.oyindonesia.com/#biller-api).  
+
+### Transaction Flow
+
+![Transacation Flow](../images/Flow_API_Biller.png)
+
+### Key Features
+
+**Overbooking**
+OY! can use the funds directly from your Mandiri or CIMB bank accounts for your bill payment needs. Please contact our [business representative](partner@oyindonesia.com) for further details about this feature.
+
+**Check Transaction Status and Callback**
+
+For all bill inquiry & bill payment executed, you will receive notifications regarding your transaction whether it is successful, failed or pending. We also provide an API for you to check the transaction status manually. IP proxy is also available upon request to enhance the security and integrity of the callback you will receive. 
+
+**Check Balance**
+
+You can check your available balance at anytime to ensure that you have sufficient balance to execute a bill payment.
+
+### Registration and Set Up
+**Prerequisites** 
+
+* Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
+
+* Activate your account through the activation link sent via email
+
+* Upgrade your account 
+
+* Upgrade request is approved
+
+* Provide IP to be whitelisted and callback link to our business team
+
+* Receive an API Key from us
+
+* Integrate with our [API](https://api-docs.oyindonesia.com/#biller-api)
+
+### Testing
+
+Once you successfully create an OY! account, you can immediately simulate bill payment via API.
+Follow the below steps to test the flow:
+
+1. Create an account
+2. Login into the dashboard 
+3. Change the environment to “demo” 
+4. Once the environment changed to demo, there will be API key demo available on the bottom left corner of the page
+5. Before creating a bill payment transaction, check your available balance through API GET _https://api-stg.oyindonesia.com/api/balance_
+6. Request inquiry for the bill you want to pay by sending a ‘POST’ request to _https://api-stg.oyindonesia.com/api/v2/bill_ using your staging API key. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#bill-inquiry-biller-api)
+7. Fill in the customer-id, product-id, and the partner transaction-id. You will get the detail information about the bill that you want to pay. 
+8. After successful inquiry, you should do the payment process by sending a ‘POST’ request to _https://api-stg.oyindonesia.com/api/v2/bill/payment_. Enter the required and optional fields, as referenced in the API reference docs (https://api-docs.oyindonesia.com/#pay-bill-biller-api)
+8. To get the status of a bill payment request, you can call the API https://api-stg.oyindonesia.com/api/v2/bill/status
+9. If payment is successful or failed, we will send a callback to the registered staging callback URL destination. Callback URL can be registered via our business representative.
+10. The API biller transactions can be monitored through OY! dashboard from the “Send money - API biller" menu.
+
+
+### How to Use 
+
+In order to create API biller transaction, a sufficient available OY! balance is required in the account. More details and instructions about topping up to your OY! account can you see here https://docs.oyindonesia.com/#top-up-oy-dashboard-tutorial.
+
+Before you execute the bill payment, you have to verify the bill information from our [bill inquiry endpoint](https://api-docs.oyindonesia.com/#bill-inquiry-biller-api). 
+
+> Below is an example of the request body for inquiry:
+
+```shell 
+curl -X POST https://partner.oyindonesia.com/api/v2/bill 
+-H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:987654' 
+-d '{
+    "customer_id": "512233308943",
+    "product_id": "plnpost",
+    "partner_tx_id": "Tx15048563JKFJ"
+    }'
+```
+
+> It will return an [error message](https://api-docs.oyindonesia.com/#api-biller-response-codes-biller-api) if the request is not valid. Otherwise, below is the sample response parameters that will be returned:
+
+```json
+{
+    "status":{
+        "code":"000",
+        "message":"Success"
+    },
+    "data": {
+        "tx_id": "a3d87877-e579-4378-844b-c06294fc9564",
+        "partner_tx_id": "Tx15048563JKFJ",
+        "product_id": "plnpost",
+        "customer_id": "512233308943",
+        "customer_name": "Plg.,De'mo 512233308943",
+        "amount": 282380,
+        "additional_data": "{\"customer_id\":\"512233308943\",\"customer_name\":\"Plg.,De'mo 512233308943\",\"admin_fee\":\"2.500\"}"
+    }
+}
+```
+
+> 
+
+Next, send a request body to execute a bill payment request to be sent to our [bill payment endpoint](https://api-docs.oyindonesia.com/#pay-bill-biller-api). 
+
+> Below is an example of the request body for the bill payment: 
+
+```shell
+curl -X POST https://partner.oyindonesia.com/api/v2/bill/payment 
+-H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
+-d '{
+    "partner_trx_id":"Tx15048563JKFJ", 
+    "note" :"biller transaction test"
+    }'
+```
+
+> Below is the sample response parameters that will be returned:
+
+```json 
+{
+    "status":{
+        "code": "102",
+        "message": "Request is In progress"
+    },
+    "data": {
+        "tx_id": "a3d87877-e579-4378-844b-c06294fc9564",
+        "partner_tx_id": "Tx15048563JKFJ",
+        "product_id": "plnpost",
+        "customer_id": "512233308943",
+        "customer_name": "Plg.,De'mo 512233308943",
+        "amount": 282380,
+        "note": "biller transaction test"
+    },
+}
+```
+
+> 
+
+An endpoint to [check the transaction](https://api-docs.oyindonesia.com/#get-bill-payment-status-biller-api) is also available and can be accessed at anytime. 
+
+> Below is an example of the request body: 
+
+```shell
+curl -X POST https://partner.oyindonesia.com/api/b2/bill/status 
+-H 'content-type: application/json, accept: application/json, x-oy-username:myuser, x-api-key:7654321' 
+-d '{
+    "partner_trx_id": "Tx15048563JKFJ"
+    }'
+```
+
+> The above command returns a JSON structured similar like this:
+
+```json
+{
+    "status":{
+        "code": "000",
+        "message": "Success"
+    },
+    "data": {
+        "tx_id": "a3d87877-e579-4378-844b-c06294fc9564",
+        "partner_tx_id": "Tx15048563JKFJ",
+        "product_id": "plnpost",
+        "customer_id": "512233308943",
+        "customer_name": "Plg.,De'mo 512233308943",
+        "amount": 282380,
+        "additional_data": "\"{\\\"bill_period\\\":\\\"FEB2022\\\",\\\"total_amount\\\":\\\"282.380\\\",\\\"customer_id\\\":\\\"512233308943\\\",\\\"customer_name\\\":\\\"Plg.,De'mo 512233308943\\\",\\\"admin_fee\\\":\\\"2.500\\\",\\\"settlement_date\\\":\\\"09/03/2022 16:49\\\"}\"",
+        "status": "SUCCESS"
+    },
+}
+```
+
+>
+
+A callback with the following information will be sent to the callback endpoint that you can register with us. 
+
+You can also [check your balance](https://api-docs.oyindonesia.com/#get-balance) anytime to ensure you have sufficient balance from our endpoint.
+
+> Below is an example of a request body to check the balance:
+
+```shell
+curl -X GET 'https://partner.oyindonesia.com/api/balance' 
+-H 'Content-Type: application/json' 
+-H 'Accept: application/json' 
+-H 'X-OY-Username: janedoe' 
+-H 'X-Api-Key: 7654321'
+```
+
+> Below is the sample response parameters that will be returned:
+
+```json 
+{
+    "status":{
+        "code":"000",
+        "message":"Success"
+    },
+    "balance":100000000.0000,
+    "pendingBalance":2000000.0000,
+    "availableBalance":98500000.0000,
+    "overbookingBalance":98500000.0000,
+    "timestamp":"10-12-2019 12:15:37"
+}
+```
+
+>
+
+Lastly, all transactions can be monitored from the OY! dashboard which includes all the transaction details.
+
+![API Biller](images/API_Biller.png)
+
+
+For further details on the parameters definition and proper usage, please refer to our [API Documentation](https://api-docs.oyindonesia.com/#biller-api).
+
+
