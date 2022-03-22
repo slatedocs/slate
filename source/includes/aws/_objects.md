@@ -101,8 +101,7 @@ Retrieve a list of objects inside a given folder inside a given bucket.
 
 ```shell
 curl -X POST \
-   -H "X-CSRF-TOKEN: your_token" \
-   -H "Cookie: session_id" \
+   -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/rest/services/operation/upload" \
    --form operation=upload \
    --form entityType=objects \
@@ -143,12 +142,40 @@ file: path_to_file
 
 <code>POST /services/operation/upload</code>
 
+Upload a file to a bucket in Amazon S3.
+
 Attributes | &nbsp;
 ---------- | -----
 `filename: file_size`<br/>*string* | Multipart form part: key-value pair with the name of the file as key and its file size as value.
 `bucketName`<br/>*string* | Multipart form part: key-value pair with "bucketName" as key and the name of the bucket to upload to as value.
 `regionName`<br/>*string* | Multipart form part: key-value pair with "regionName" as key and the name of the region to upload to as value.
 `file`<br/>*file* | Multipart form part: key-value pair with "file" as key and the file to upload as value.
+
+
+<!-------------------- DOWNLOAD AN OBJECT -------------------->
+
+#### Download Object
+
+```shell
+curl --request GET \
+  -H "MC-Api-Key: your_api_key" \
+  "https://cloudmc_endpoint/rest/services/operations/:service_connection_id/download?bucketName=akc-buck&regionName=us-east-1&id=us-east-1/akc-buck/api123.png&entityType=objects&operation=download&environmentId=97430433-875c-4ba5-8c57-90a051a52729"
+```
+
+<code>GET /services/operation/:service_connection_id/download</code>
+
+Download an object from a bucket in Amazon S3.
+
+> The above command returns the binary that represent the file downloaded.
+
+Required Query Parameters | &nbsp;
+---- | -----------
+`bucketName`<br/>*string* | Name of the bucket to download the file from.
+`regionName`<br/>*string* | Name of the region to download the file from.
+`id`<br/>*string* | The ID of the object to download, which is of the form ":regionName/:bucketName/:objectName".
+`entityType`<br/>*string* | The type of entity to download. In this case 'objects'.
+`operation`<br/>*string* | The type of operation to execute. In this case 'download'.
+`environmentId`<br/>*string* | The id of environment which owns the object.
 
 
 <!-------------------- DELETE AN OBJECT -------------------->
@@ -179,6 +206,8 @@ curl -X DELETE \
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:regionName/:bucketName/:fullPath</code>
+
+Delete an object from a bucket in Amazon S3.
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
