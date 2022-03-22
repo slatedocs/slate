@@ -541,12 +541,12 @@ When handling requests from Asana, an App Components app should:
 
 If an app uses [OAuth for authentication](/docs/oauth), the app should:
  
- - Prevent OAuth CSRF attacks. This is often done using a one-time CSRF token in the "state" parameter. This can also be done using PKCE instead, if it's supported.
+ - **Prevent OAuth CSRF attacks**. A one-time CSRF token in the `state` parameter is _required_ in order to implement a secure OAuth flow. Omitting the `state` parameter is a security risk. If the `state` parameter is _not_ used, or _not_ tied to the user's session, then attackers can initiate an OAuth flow themselves before tricking a user's browser into completing it. For more information about the `state` parameter, see [OAuth](/docs/oauth).
 
 If an app doesn't use OAuth for authentication, the Asana Security Team should manually review the authentication scheme the app uses. In particular, we will try to verify that:
 
  - An attacker can't authenticate themselves as someone else
- - An attacker can't force a victim to authenticate as another user (eg. with a CSRF attack)
+ - An attacker can't force a victim to authenticate as another user (e.g., with a CSRF attack)
 
 <hr>
 

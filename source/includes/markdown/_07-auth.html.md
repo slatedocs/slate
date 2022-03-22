@@ -119,7 +119,7 @@ Your app redirects the user to `https://app.asana.com/-/oauth_authorize`, passin
 | **client_id** |  *required* The Client ID uniquely identifies the application making the request. |
 | **redirect_uri** | *required* The URI to redirect to on success or error. This *must* match the Redirect URL specified in the application settings. |
 | **response_type** | *required* Must be either `code` or `id_token`, or the space-delimited combination `code id_token`. |
-| **state** | *optional* Encodes state of the app, which will be returned verbatim in the response and can be used to match the response up to a given request. |
+| **state** | *required* Encodes state of the app, which will be returned verbatim in the response and can be used to match the response up to a given request. |
 | **code_challenge_method** | *PKCE* The hash method used to generate the challenge. Typically `S256`. |
 | **code_challenge** | *PKCE* The code challenge used for [PKCE](/docs/proof-key-for-code-exchange-pkce-oauth-extension). |
 | **scope** | *optional* A space-delimited set of one or more [scopes](/docs/oauth-scopes) to get the user's permission to access. Defaults to the `default` OAuth scope if no scopes are specified. |
@@ -146,8 +146,11 @@ When using the `response_type=code`, your app will receive the following paramet
 | **code** | If response_type=code in the request, this is the code your app can exchange for a token |
 | **state** | The state parameter that was sent with the authorizing request |
 
-You should check that the state is the same in this response as it was in the request. You can read more about the `state`
-parameter [here](https://auth0.com/docs/protocols/oauth2/oauth-state).
+The `state` parameter is necessary to prevent CSRF attacks. As such, **you should check that the `state` is the same in this response as it was in the request.** 
+
+The `state` parameter must contain an unguessable value tied to the user's session, which can be the hash of something tied to their session when the OAuth flow is first initiated (e.g., their session cookie). This value is then passed back and forth between the client application and the OAuth service as a form of CSRF token for the client application. If the `state` parameter is _not_ used, or _not_ tied to the user's session, then attackers can initiate an OAuth flow themselves before tricking a user's browser into completing it. This is similar to a traditional CSRF attack and can also lead to victims binding their accounts to an attacker account without their knowledge. See the [OAuth 2.0 Security best practices](https://tools.ietf.org/id/draft-ietf-oauth-security-topics-13.html) for more detailed information.
+
+For more general information about preventing CSRF attacks with the `state` parameter, feel free to visit [this article](https://auth0.com/docs/secure/attack-protection/state-parameters).
 
 <a name="scopes" class="jump-anchor"></a>
 ### OAuth Scopes
