@@ -63,8 +63,8 @@ Attributes | &nbsp;
 
 ```shell
 curl --request GET \
-  --url 'http://localhost:8081/rest/services/operations/:service_connection_id/download?bucketName=akc-buck&regionName=us-east-1&id=us-east-1/akc-buck/api123.png&entityType=objects&operation=download&environmentId=97430433-875c-4ba5-8c57-90a051a52729' \
-  --header 'MC-Api-Key: 3cHCOW8tp+/PCgbA+zDlXg=='
+  -H "MC-Api-Key: your_api_key" \
+  "http://localhost:8081/rest/services/operations/:service_connection_id/download?bucketName=akc-buck&regionName=us-east-1&id=us-east-1/akc-buck/api123.png&entityType=objects&operation=download&environmentId=97430433-875c-4ba5-8c57-90a051a52729"
 ```
 
 <code>GET /services/operation/:service_connection_id/download</code>
@@ -79,8 +79,6 @@ Required Query Parameters | &nbsp;
 `environmentId`<br/>*string* | The id of environment which owns the object.
 
 > The above command returns the binary that represent the file downloaded.
-
-
 
 
 <!-------------------- DELETE AN OBJECT -------------------->
