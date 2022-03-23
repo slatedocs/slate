@@ -4092,7 +4092,7 @@ Use this endpoint to fetch orders and optionally its details which include all b
 |------|-----|----------|--------------------|--------------------------------|
 | market         | string | No      | XRPBTC         | The trading pair, default: Orders for all market               |
 | details        | boolean | No      | false          | Whether you want detailed information or not, default: false            |
-| status         | string | No       | init,open,close,rejected,cancelled,partial_entry,partial_close,triggered | The status of the order, default: All orders           |
+| status         | string | No       | init,open,close,rejected,cancelled,<br/><br/>partial_entry,partial_close,triggered | The status of the order, default: All orders           |
 | size           | number | No       | 20 | Number of records per page, default: 10|
 | timestamp      | number | Yes      | 1524211224    | When was the request generated |
 
