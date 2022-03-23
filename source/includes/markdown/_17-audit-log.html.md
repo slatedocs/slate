@@ -43,26 +43,28 @@ All admin settings events operate on the _Workspace_ resource type except for `w
 
 | Event Type | Description |
 |------------|---------------|
-| workspace_google_sso_settings_changed           | The workspace's Google SSO settings were changed. |
-| workspace_saml_settings_changed                 | The workspace's SAML settings were changed. |
-| workspace_saml_url_changed                      | The workspace's SAML url was changed. |
-| workspace_password_requirements_changed         | The workspace's password strength requirements were changed. |
-| workspace_force_password_reset                  | All users in the workspace were forced to reset their password. |
-| workspace_guest_invite_permissions_changed      | The workspace’s guest invite permissions were changed. |
-| workspace_file_attachment_options_changed       | File attachment options were enabled or disabled for the workspace. |
-| workspace_default_team_privacy_settings_changed | The workspace's default team privacy settings were changed. |
-| workspace_wide_reporting_enabled                | Workspace wide reporting was enabled. |
-| workspace_wide_reporting_disabled               | Workspace wide reporting was disabled. |
-| workspace_associated_email_domain_added         | An email domain was added to the workspace. |
-| workspace_associated_email_domain_removed       | An email domain was removed from the workspace. |
-| workspace_require_two_factor_auth_enabled       | Two factor authentication was set as required for the workspace. |
-| workspace_require_two_factor_auth_disabled      | Two factor authentication was set as not required for the workspace. |
-| workspace_view_links_enabled                    | Read-only link sharing was enabled for the workspace. |
-| workspace_view_links_disabled                   | Read-only link sharing was disabled for the workspace. |
-| workspace_default_session_duration_changed      | The workspace's default session duration was changed. |
-| workspace_announcement_created                  | An announcement was created and published in the workspace. |
-| workspace_announcement_removed                  | An announcement was removed from the workspace. |
- 
+| workspace_google_sso_settings_changed                | The workspace's Google SSO settings were changed. |
+| workspace_saml_settings_changed                      | The workspace's SAML settings were changed. |
+| workspace_saml_url_changed                           | The workspace's SAML url was changed. |
+| workspace_password_requirements_changed              | The workspace's password strength requirements were changed. |
+| workspace_force_password_reset                       | All users in the workspace were forced to reset their password. |
+| workspace_guest_invite_permissions_changed           | The workspace’s guest invite permissions were changed. |
+| workspace_file_attachment_options_changed            | File attachment options were enabled or disabled for the workspace. |
+| workspace_default_team_privacy_settings_changed      | The workspace's default team privacy settings were changed. |
+| workspace_wide_reporting_enabled                     | Workspace wide reporting was enabled. |
+| workspace_wide_reporting_disabled                    | Workspace wide reporting was disabled. |
+| workspace_associated_email_domain_added              | An email domain was added to the workspace. |
+| workspace_associated_email_domain_removed            | An email domain was removed from the workspace. |
+| workspace_require_two_factor_auth_enabled            | Two factor authentication was set as required for the workspace. |
+| workspace_require_two_factor_auth_disabled           | Two factor authentication was set as not required for the workspace. |
+| workspace_view_links_enabled                         | Read-only link sharing was enabled for the workspace. |
+| workspace_view_links_disabled                        | Read-only link sharing was disabled for the workspace. |
+| workspace_default_session_duration_changed           | The workspace's default session duration was changed. |
+| workspace_announcement_created                       | An announcement was created and published in the workspace. |
+| workspace_announcement_removed                       | An announcement was removed from the workspace. |
+| workspace_form_link_authentication_required_enabled  | For this workspace, form link authentication was set as required, so all viewers need to authenticate with Asana in order to open forms links. |
+| workspace_form_link_authentication_required_disabled | For this workspace, form link authentication was set as not required, however authentication may still be required for individual links. Some viewers may not need to authenticate with Asana in order to open forms links. |
+
 ### Roles
  
 All role events operate on the _User_ resource type.
