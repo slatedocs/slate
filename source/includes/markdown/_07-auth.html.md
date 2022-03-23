@@ -139,18 +139,23 @@ case, the user will be redirected back to the `redirect_uri`.
 https://my.app.com?code=325797325&state=thisIsARandomString
 ```
 
-When using the `response_type=code`, your app will receive the following parameters in the query string on successful authorization.
+| Parameter | Description                                                                              |
+| --------- | ---------------------------------------------------------------------------------------- |
+| **code**  | If response_type=code in the request, this is the code your app can exchange for a token |
+| **state** | The state parameter that was sent with the authorizing request                           |
 
-| Parameter | Description |
-|---|---|
-| **code** | If response_type=code in the request, this is the code your app can exchange for a token |
-| **state** | The state parameter that was sent with the authorizing request |
+##### Preventing CSRF Attacks
 
-The `state` parameter is necessary to prevent CSRF attacks. As such, **you should check that the `state` is the same in this response as it was in the request.** 
+The `state` parameter is necessary to prevent CSRF attacks. As such, **you must check that the `state` is the same in this response as it was in the request.** If the `state` parameter is _not_ used, or _not_ tied to the user's session, then attackers can initiate an OAuth flow themselves before tricking a user's browser into completing it. That is, users can unknowingly bind their accounts to an attacker account.
 
-The `state` parameter must contain an unguessable value tied to the user's session, which can be the hash of something tied to their session when the OAuth flow is first initiated (e.g., their session cookie). This value is then passed back and forth between the client application and the OAuth service as a form of CSRF token for the client application. If the `state` parameter is _not_ used, or _not_ tied to the user's session, then attackers can initiate an OAuth flow themselves before tricking a user's browser into completing it. This is similar to a traditional CSRF attack and can also lead to victims binding their accounts to an attacker account without their knowledge. See the [OAuth 2.0 Security best practices](https://tools.ietf.org/id/draft-ietf-oauth-security-topics-13.html) for more detailed information.
+##### Requirements
 
-For more general information about preventing CSRF attacks with the `state` parameter, feel free to visit [this article](https://auth0.com/docs/secure/attack-protection/state-parameters).
+The `state` parameter must contain an unguessable value tied to the user's session, which can be the hash of something tied to their session when the OAuth flow is first initiated (e.g., their session cookie). This value is then passed back and forth between the client application and the OAuth service as a form of CSRF token for the client application.
+
+##### Additional Resources
+
+- [OAuth 2.0 Security Best Current Practice](https://tools.ietf.org/id/draft-ietf-oauth-security-topics-13.html)
+- [Prevent Attacks and Redirect Users with OAuth 2.0 State Parameters](https://auth0.com/docs/secure/attack-protection/state-parameters)
 
 <a name="scopes" class="jump-anchor"></a>
 ### OAuth Scopes
