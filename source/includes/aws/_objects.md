@@ -9,7 +9,7 @@ View and manage your objects within a bucket.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects?regionName=us-east-1&prefix=photos&bucketName=bucket-root-nvisf'"
+   "https://cloudmc_endpoint/rest/services/aws/test-env/objects?bucketId=us-east-1/bucket-root-brdje"
 ```
 > The above command returns a JSON structured like this:
 
@@ -63,13 +63,13 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/?regionName=us-east-1&bucketName=bucket-root-nvisf</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/?bucketId=:bucketId</code>
 
 Retrieve a list of objects inside a given folder inside a given bucket.
 
 | Attributes                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`<br/>*string*                 | The ID of the object, which is of the form ":regionName/:bucketName/:objectName".                                                                                                                                                |
+| `id`<br/>*string*                 | The ID of the object, which is of the form `:regionName/:bucketName/:objectName`.                                                                                                                                                |
 | `name`<br/>*string*               | The name of the object.                                                                                                                                                     
 | `fullPath`<br/>*string*               | The actual key of the object inside the bucket, which is represented as a full path.                                                                                                                                                    |
 | `size`<br/>*integer*     | The size of the object in bytes.                                                                                                                                                     |
@@ -81,12 +81,11 @@ Retrieve a list of objects inside a given folder inside a given bucket.
 | `isFolder`<br/>*boolean*       | Boolean denoting whether the object acts as a folder. This is always true when the name ends with a '/' character.
 | `bucketName`<br/>*string*       | The name of the bucket the object exists within.
 | `region`<br/>*string*       | The name of the region the object exists within.
-| `isVirtual`<br/>*string*       | Boolean denoting whether the folder is virtual. If true there exists no object named ‘`{folderName}/`‘, and the folder exists only as a part of a complete object path (`{folderName}/{objectName}`). If false, there exists a key in the bucket named ‘{folderName}/’. If the query parameter `nested = true`, the request will not return any virtual folders.
+| `isVirtual`<br/>*string*       | Boolean denoting whether the folder is virtual. If true there exists no object named `:folderName/`, and the folder exists only as a part of a complete object path (`:folderName/:objectName`). If false, there exists a key in the bucket named ‘{folderName}/’. If the query parameter `nested = true`, the request will not return any virtual folders.
 
-| Required Query Paramaters                        | &nbsp;                                                                                                                                                                                                                   |
+| Required Query Parameters                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `bucketName`<br/>*string*       | The name of the bucket to get the objects in.
-| `regionName`<br/>*string*       | The name of the region to get the objects in.
+| `bucketId`<br/>*string*       | The ID of the bucket of the form `:regionName/:bucketName`.
 
 | Optional Query Paramaters                        | &nbsp;                                                                                                                                                                                                                   |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
