@@ -197,7 +197,7 @@ file: path_to_file
 
 Upload a file to a bucket in Amazon S3.
 
-Required Form Data | &nbsp;
+Required | &nbsp;
 ---------- | -----
 `operation`<br/>*string* | The type of operation to execute, in this case ``pload`.
 `entityType`<br/>*string* | The entityType, in this case ``bjects`.
