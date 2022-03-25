@@ -1284,7 +1284,7 @@ This tool covers the following cross-sectoral emission sources:
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/stationary-combustion' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/corporate/stationary-combustion' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "facility_id": 1,
@@ -1311,7 +1311,7 @@ const data = {
   scope: "Scope 1",
 };
 
-fetch("https://dynm-corporate.herokuapp.com/stationary-combustion", {
+fetch("https://dynm-api.herokuapp.com/corporate/stationary-combustion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -1331,7 +1331,7 @@ fetch("https://dynm-corporate.herokuapp.com/stationary-combustion", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/stationary-combustion"
+url = "https://dynm-api.herokuapp.com/corporate/stationary-combustion"
 
 payload = json.dumps({
   "facility_id": 1,
@@ -1354,7 +1354,7 @@ print(response.text)
 
 ```php
 <?php
-  $url = "https://dynm-corporate.herokuapp.com/stationary-combustion";
+  $url = "https://dynm-api.herokuapp.com/corporate/stationary-combustion";
   $ch = curl_init($url);
   $postData = array(
     "facility_id" => 1,
@@ -1396,7 +1396,7 @@ print(response.text)
 
 Includes fuel consumption at a facility to produce electricity, steam, heat, or power. The combustion of fossil fuels by natural gas boilers, diesel generators and other equipment emits carbon dioxide, methane, and nitrous oxide into the atmosphere.
 
-`POST https://dynm-corporate.herokuapp.com/stationary-combustion`
+`POST https://dynm-api.herokuapp.com/corporate/stationary-combustion`
 
 <aside>Request params</aside>
 
@@ -1416,7 +1416,7 @@ Includes fuel consumption at a facility to produce electricity, steam, heat, or 
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/mobile-combustion' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/corporate/mobile-combustion' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "facility_id": 1,
@@ -1445,7 +1445,7 @@ const data = {
   scope: "Scope 1",
 };
 
-fetch("https://dynm-corporate.herokuapp.com/mobile-combustion", {
+fetch("https://dynm-api.herokuapp.com/corporate/mobile-combustion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -1465,7 +1465,7 @@ fetch("https://dynm-corporate.herokuapp.com/mobile-combustion", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/mobile-combustion"
+url = "https://dynm-api.herokuapp.com/corporate/mobile-combustion"
 
 payload = json.dumps({
   "facility_id": 1,
@@ -1489,7 +1489,7 @@ print(response.text)
 
 ```php
 <?php
-  $url = "https://dynm-corporate.herokuapp.com/mobile-combustion";
+  $url = "https://dynm-api.herokuapp.com/corporate/mobile-combustion";
   $ch = curl_init($url);
   $postData = array(
     "facility_id"=> 1,
@@ -1532,7 +1532,7 @@ print(response.text)
 
 Includes fuel consumption by vehicles that are owned or leased by the company. Combustion of fossil fuels in vehicles (including cars, trucks, planes, and boats) emits carbon dioxide, methane, and nitrous oxide into the atmosphere.
 
-`POST https://dynm-corporate.herokuapp.com/mobile-combustion`
+`POST https://dynm-api.herokuapp.com/corporate/mobile-combustion`
 
 | Param                | Type    | Required | Description                                                                                                                   |
 | -------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -1551,7 +1551,7 @@ Includes fuel consumption by vehicles that are owned or leased by the company. C
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/transportation' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/corporate/transportation' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "facility_id": 1,
@@ -1584,7 +1584,7 @@ const data = {
   scope: "Scope 3",
 };
 
-fetch("https://dynm-corporate.herokuapp.com/transportation", {
+fetch("https://dynm-api.herokuapp.com/corporate/transportation", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -1604,7 +1604,7 @@ fetch("https://dynm-corporate.herokuapp.com/transportation", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/transportation"
+url = "https://dynm-api.herokuapp.com/corporate/transportation"
 
 payload = json.dumps({
   "facility_id": 1,
@@ -1630,7 +1630,7 @@ print(response.text)
 
 ```php
 <?php
-  $url = "https://dynm-corporate.herokuapp.com/transportation";
+  $url = "https://dynm-api.herokuapp.com/corporate/transportation";
   $ch = curl_init($url);
   $postData = array(
     "facility_id"=> 1,
@@ -1675,7 +1675,7 @@ print(response.text)
 
 Fuel consumption by vehicles used to conduct company-financed travel. Examples include commercial air travel and use of rented vehicles during business trips (travel using company-owned/leased vehicles are included in Scope 1).
 
-`POST https://dynm-corporate.herokuapp.com/transportation`
+`POST https://dynm-api.herokuapp.com/corporate/transportation`
 
 <aside>Request params</aside>
 
@@ -1698,7 +1698,7 @@ Fuel consumption by vehicles used to conduct company-financed travel. Examples i
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/electricity' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/corporate/electricity' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "facility_id": 1,
@@ -1749,7 +1749,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/electricity", {
+fetch("https://dynm-api.herokuapp.com/corporate/electricity", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -1769,7 +1769,7 @@ fetch("https://dynm-corporate.herokuapp.com/electricity", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/electricity"
+url = "https://dynm-api.herokuapp.com/corporate/electricity"
 
 payload = json.dumps({
   "facility_id": 1,
@@ -1804,7 +1804,7 @@ print(response.text)
 
 ```php
 <?php
-  $url = "https://dynm-corporate.herokuapp.com/electricity";
+  $url = "https://dynm-api.herokuapp.com/corporate/electricity";
   $ch = curl_init($url);
   $postData = array(
     "facility_id"=> 1,
@@ -1858,7 +1858,7 @@ print(response.text)
 
 Electricity and other sources of energy purchased from your local utility (that is not combusted on-site). Examples include electricity, steam, and chilled or hot water. To generate this energy, utilities combust coal, natural gas, and other fossil fuels, emitting carbon dioxide, methane, and nitrous oxide in the process.
 
-`POST https://dynm-corporate.herokuapp.com/electricity`
+`POST https://dynm-api.herokuapp.com/corporate/electricity`
 
 <aside>Request params</aside>
 
@@ -1879,7 +1879,7 @@ Electricity and other sources of energy purchased from your local utility (that 
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/refrigerants' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/corporate/refrigerants' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "year": 2018,
@@ -1910,7 +1910,7 @@ const data = {
   scope: "Scope 1",
 };
 
-fetch("https://dynm-corporate.herokuapp.com/refrigerants", {
+fetch("https://dynm-api.herokuapp.com/corporate/refrigerants", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -1930,7 +1930,7 @@ fetch("https://dynm-corporate.herokuapp.com/refrigerants", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/refrigerants"
+url = "https://dynm-api.herokuapp.com/corporate/refrigerants"
 
 payload = json.dumps({
   "year": 2018,
@@ -1955,7 +1955,7 @@ print(response.text)
 
 ```php
 <?php
-  $url = "https://dynm-corporate.herokuapp.com/electricity";
+  $url = "https://dynm-api.herokuapp.com/corporate/refrigerants";
   $ch = curl_init($url);
   $postData = array(
     "year"=> 2018,
@@ -1996,7 +1996,7 @@ Includes leaks in your company's HVAC system, chillers, refrigerators, etc., thr
 
 Records or invoices from your maintenance company show the amount and type of refrigerant gas (e.g., freon, R-22, HFC-134a , CFC-12) replaced in your building's systems.
 
-`POST https://dynm-corporate.herokuapp.com/refrigerants`
+`POST https://dynm-api.herokuapp.com/corporate/refrigerants`
 
 <aside>Request params</aside>
 
@@ -2067,7 +2067,7 @@ Different calculation methods will have different fields:
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/summary' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/corporate/summary' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "stationary_combustion": [{
@@ -2250,7 +2250,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/summary", {
+fetch("https://dynm-api.herokuapp.com/corporate/summary", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -2270,7 +2270,7 @@ fetch("https://dynm-corporate.herokuapp.com/summary", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/summary"
+url = "https://dynm-api.herokuapp.com/corporate/summary"
 
 payload = json.dumps({
   "stationary_combustion": [
@@ -2378,7 +2378,7 @@ print(response.text)
 
 ```php
 <?php
-  $url = "https://dynm-corporate.herokuapp.com/summary";
+  $url = "https://dynm-api.herokuapp.com/corporate/summary";
   $ch = curl_init($url);
   $postData = array(
     "stationary_combustion"=> [
@@ -2440,7 +2440,7 @@ print(response.text)
             "refrigerant"=> "Methane",
             "calculation_method"=> "Sales Approach (Product)",
             "equipment_type"=> "",
-            "inventory_start"=> 50,
+ corporate/           "inventory_start"=> 50,
             "inventory_end"=> 1,
             "purchased"=> 0,
             "gwp_dataset_revision"=> "2007 IPCC Fifth Assessment",
@@ -2696,7 +2696,7 @@ print(response.text)
 
 Aggregates data for rows in all sheets above. Returns an overall emissions summary grouped by scope for each year in inventory data. Also returns a disaggregation of Scope 1 and 2 per either Facility or Country as entered in facilities data.
 
-`POST https://dynm-corporate.herokuapp.com/summary`
+`POST https://dynm-api.herokuapp.com/corporate/summary`
 
 <aside>Request params</aside>
 
@@ -2873,7 +2873,7 @@ The Community API is designed to support cities in reporting city-wide GHG emiss
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/community/stationary-combustion' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/stationary-combustion' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "I.1.1",
@@ -2975,7 +2975,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/community/stationary-combustion", {
+fetch("https://dynm-api.herokuapp.com/community/stationary-combustion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -2995,7 +2995,7 @@ fetch("https://dynm-corporate.herokuapp.com/community/stationary-combustion", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/community/stationary-combustion"
+url = "https://dynm-api.herokuapp.com/community/stationary-combustion"
 
 payload = json.dumps({
   "gpc_ref": "I.1.1",
@@ -3060,7 +3060,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-corporate.herokuapp.com/community/stationary-combustion',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/stationary-combustion',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -3141,7 +3141,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for Stationary energy sources.
 
-`POST https://dynm-corporate.herokuapp.com/community/stationary-combustion`
+`POST https://dynm-api.herokuapp.com/community/stationary-combustion`
 
 <aside>Request params</aside>
 
@@ -3179,7 +3179,7 @@ Endpoint for recording activity and emissions data for Stationary energy sources
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/community/transportation' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/transportation' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "II.1.1",
@@ -3283,7 +3283,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/community/transportation", {
+fetch("https://dynm-api.herokuapp.com/community/transportation", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -3303,7 +3303,7 @@ fetch("https://dynm-corporate.herokuapp.com/community/transportation", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/community/transportation"
+url = "https://dynm-api.herokuapp.com/community/transportation"
 
 payload = json.dumps({
   "gpc_ref": "II.1.1",
@@ -3369,7 +3369,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-corporate.herokuapp.com/community/transportation',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/transportation',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -3452,7 +3452,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for Transportation sources.
 
-`POST https://dynm-corporate.herokuapp.com/community/transportation`
+`POST https://dynm-api.herokuapp.com/community/transportation`
 
 <aside>Request params</aside>
 
@@ -3492,7 +3492,7 @@ Endpoint for recording activity and emissions data for Transportation sources.
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/community/waste' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/waste' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "III.1.1",
@@ -3596,7 +3596,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/community/waste", {
+fetch("https://dynm-api.herokuapp.com/community/waste", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -3616,7 +3616,7 @@ fetch("https://dynm-corporate.herokuapp.com/community/waste", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/community/waste"
+url = "https://dynm-api.herokuapp.com/community/waste"
 
 payload = json.dumps({
   "gpc_ref": "III.1.1",
@@ -3681,7 +3681,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-corporate.herokuapp.com/community/waste',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/waste',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -3763,7 +3763,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for Waste sources.
 
-`POST https://dynm-corporate.herokuapp.com/community/waste`
+`POST https://dynm-api.herokuapp.com/community/waste`
 
 <aside>Request params</aside>
 
@@ -3802,7 +3802,7 @@ Endpoint for recording activity and emissions data for Waste sources.
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/community/ippu' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/ippu' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "IV.1",
@@ -3906,7 +3906,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/community/ippu", {
+fetch("https://dynm-api.herokuapp.com/community/ippu", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -3926,7 +3926,7 @@ fetch("https://dynm-corporate.herokuapp.com/community/ippu", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/community/ippu"
+url = "https://dynm-api.herokuapp.com/community/ippu"
 
 payload = json.dumps({
   "gpc_ref": "IV.1",
@@ -3991,7 +3991,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-corporate.herokuapp.com/community/ippu',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/ippu',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -4073,7 +4073,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for IPPU sources.
 
-`POST https://dynm-corporate.herokuapp.com/community/ippu`
+`POST https://dynm-api.herokuapp.com/community/ippu`
 
 <aside>Request params</aside>
 
@@ -4112,7 +4112,7 @@ Endpoint for recording activity and emissions data for IPPU sources.
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/community/afolu' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/afolu' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "V.1",
@@ -4213,7 +4213,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/community/afolu", {
+fetch("https://dynm-api.herokuapp.com/community/afolu", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -4233,7 +4233,7 @@ fetch("https://dynm-corporate.herokuapp.com/community/afolu", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/community/afolu"
+url = "https://dynm-api.herokuapp.com/community/afolu"
 
 payload = json.dumps({
   "gpc_ref": "V.1",
@@ -4297,7 +4297,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-corporate.herokuapp.com/community/afolu',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/afolu',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -4378,7 +4378,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for AFOLU sources.
 
-`POST https://dynm-corporate.herokuapp.com/community/afolu`
+`POST https://dynm-api.herokuapp.com/community/afolu`
 
 <aside>Request params</aside>
 
@@ -4416,7 +4416,7 @@ Endpoint for recording activity and emissions data for AFOLU sources.
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-corporate.herokuapp.com/community/other' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/other' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "VI.1",
@@ -4517,7 +4517,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-corporate.herokuapp.com/community/other", {
+fetch("https://dynm-api.herokuapp.com/community/other", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -4537,7 +4537,7 @@ fetch("https://dynm-corporate.herokuapp.com/community/other", {
 import requests
 import json
 
-url = "https://dynm-corporate.herokuapp.com/community/other"
+url = "https://dynm-api.herokuapp.com/community/other"
 
 payload = json.dumps({
   "gpc_ref": "VI.1",
@@ -4601,7 +4601,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-corporate.herokuapp.com/community/other',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/other',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -4682,7 +4682,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for Other Scope 3 sources.
 
-`POST https://dynm-corporate.herokuapp.com/community/other`
+`POST https://dynm-api.herokuapp.com/community/other`
 
 <aside>Request params</aside>
 
