@@ -440,7 +440,7 @@ This endpoint deals with transportation.
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/waste \
+  https://dynm.herokuapp.com/carbon-footprint/waste \
   -H "Content-type: application/json" \
   -d '{
     "average_waste_per_person": 692,
@@ -471,7 +471,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/waste", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/waste", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -491,7 +491,7 @@ fetch("https://dynm.herokuapp.com/waste", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/waste"
+url = "https://dynm.herokuapp.com/carbon-footprint/waste"
 
 payload={
   "average_waste_per_person": 692,
@@ -515,7 +515,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/waste";
+  $url = "https://dynm.herokuapp.com/carbon-footprint/waste";
   $ch = curl_init($url);
   $postData = array(
     'average_waste_per_person' => 692,
@@ -560,7 +560,7 @@ print(data)
 
 This endpoint deals with waste.
 
-`POST https://dynm.herokuapp.com/waste`
+`POST https://dynm.herokuapp.com/carbon-footprint/waste`
 
 <aside>Request params</aside>
 
