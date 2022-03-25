@@ -22,7 +22,7 @@ code_clipboard: true
 
 ## Introduction
 
-HOST: [https://dynm.herokuapp.com/](https://dynm.herokuapp.com/).
+HOST: [https://dynm-api.herokuapp.com/](https://dynm-api.herokuapp.com/).
 
 ### About
 
@@ -62,7 +62,7 @@ For example, go to [carbon_dioxide_conversion.rb](https://github.com/sunnysanwar
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-footprint/home-energy \
+  https://dynm-api.herokuapp.com/carbon-footprint/home-energy \
   -H "Content-type: application/json" \
   -d '{
     "number_of_people": 2,
@@ -123,7 +123,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/carbon-footprint/home-energy", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/home-energy", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -143,7 +143,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/home-energy", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-footprint/home-energy"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/home-energy"
 
 payload = {
     "number_of_people": 2,
@@ -183,7 +183,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/carbon-footprint/home-energy";
+  $url = "https://dynm-api.herokuapp.com/carbon-footprint/home-energy";
   $ch = curl_init($url);
   $postData = array(
     "number_of_people" => 2,
@@ -245,7 +245,7 @@ print(data)
 
 Your Current Emissions from Home Energy.
 
-`POST https://dynm.herokuapp.com/carbon-footprint/home-energy`
+`POST https://dynm-api.herokuapp.com/carbon-footprint/home-energy`
 
 <aside>Request params</aside>
 
@@ -274,7 +274,7 @@ Your Current Emissions from Home Energy.
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-footprint/transportation \
+  https://dynm-api.herokuapp.com/carbon-footprint/transportation \
   -H "Content-type: application/json" \
   -d '{
     "current_maintenance": "Do Not Do",
@@ -322,7 +322,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm.herokuapp.com/carbon-footprint/transportation", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/transportation", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -342,7 +342,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/transportation", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-footprint/transportation"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/transportation"
 
 payload={
   "current_maintenance": "Do Not Do",
@@ -374,7 +374,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https =>//dynm.herokuapp.com/carbon-footprint/transportation";
+  $url = "https =>//dynm-api.herokuapp.com/carbon-footprint/transportation";
   $ch = curl_init($url);
   $postData = array(
     "current_maintenance" => "Do Not Do",
@@ -423,7 +423,7 @@ print(data)
 
 This endpoint deals with transportation.
 
-`POST https://dynm.herokuapp.com/carbon-footprint/transportation`
+`POST https://dynm-api.herokuapp.com/carbon-footprint/transportation`
 
 <aside>Request params</aside>
 
@@ -442,7 +442,7 @@ This endpoint deals with transportation.
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-footprint/waste \
+  https://dynm-api.herokuapp.com/carbon-footprint/waste \
   -H "Content-type: application/json" \
   -d '{
     "average_waste_per_person": 692,
@@ -473,7 +473,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/carbon-footprint/waste", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/waste", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -493,7 +493,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/waste", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-footprint/waste"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/waste"
 
 payload={
   "average_waste_per_person": 692,
@@ -517,7 +517,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/carbon-footprint/waste";
+  $url = "https://dynm-api.herokuapp.com/carbon-footprint/waste";
   $ch = curl_init($url);
   $postData = array(
     'average_waste_per_person' => 692,
@@ -562,7 +562,7 @@ print(data)
 
 This endpoint deals with waste.
 
-`POST https://dynm.herokuapp.com/carbon-footprint/waste`
+`POST https://dynm-api.herokuapp.com/carbon-footprint/waste`
 
 <aside>Request params</aside>
 
@@ -587,7 +587,7 @@ This endpoint deals with waste.
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion \
+  https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion \
   -H "Content-type: application/json" \
   -d '{
     "conversion": {
@@ -610,7 +610,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -630,7 +630,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion"
 
 payload = {
   "conversion": {
@@ -651,7 +651,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion";
+  $url = "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion";
   $ch = curl_init($url);
   $postData = array(
     "conversion" => array(
@@ -696,7 +696,7 @@ print(data)
 }
 ```
 
-`POST https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion`
+`POST https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion`
 
 <aside>Request params</aside>
 
@@ -740,7 +740,7 @@ print(data)
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion \
+  https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion \
   -H "Content-type: application/json" \
   -d '{
     "conversion": {
@@ -765,7 +765,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -785,7 +785,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion"
 
 payload = {
   "conversion": {
@@ -807,7 +807,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion";
+  $url = "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion";
   $ch = curl_init($url);
   $postData = array(
     "conversion" => array(
@@ -855,7 +855,7 @@ print(data)
 
 Units that require mass include CO2, CH4 and N2O
 
-`POST https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion`
+`POST https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion`
 
 <aside>Request params</aside>
 
@@ -873,13 +873,13 @@ Units that require mass include CO2, CH4 and N2O
 
 ```shell
 curl -X GET \
-  https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane \
+  https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane \
   -H "Content-type: application/json" \
 ```
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -897,7 +897,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=p
 ```python
 import requests
 import json
-url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane"
 headers = {
   'Content-Type': 'application/json'
 }
@@ -909,7 +909,7 @@ print(response.text)
 <?php
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -933,7 +933,7 @@ echo $response;
 ["mmBTU", "CO2", "CH4", "N2O", "BTU", "GALLON"]
 ```
 
-`GET https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane`
+`GET https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane`
 
 <aside>Query params</aside>
 | Param     | Type   | Required | Description                                                                                                                                  |
@@ -946,7 +946,7 @@ echo $response;
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-footprint/energy-conversion \
+  https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion \
   -H "Content-type: application/json" \
   -d  '{
     "conversion": {
@@ -969,7 +969,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -989,7 +989,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion"
 
 payload = {"conversion": {
     "fuel_type": "Anthracite coal",
@@ -1009,7 +1009,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion";
+  $url = "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion";
   $ch = curl_init($url);
   $postData = array(
     "conversion" => array(
@@ -1049,7 +1049,7 @@ print(data)
 
 Energy Conversion
 
-`POST https://dynm.herokuapp.com/carbon-footprint/energy-conversion`
+`POST https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion`
 
 <aside>Request params</aside>
 
@@ -1093,13 +1093,13 @@ Energy Conversion
 
 ```shell
 curl -X GET \
-  https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane \
+  https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane \
   -H "Content-type: application/json" \
 ```
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -1117,7 +1117,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=p
 ```python
 import requests
 import json
-url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane"
 headers = {
   'Content-Type': 'application/json'
 }
@@ -1129,7 +1129,7 @@ print(response.text)
 <?php
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -1153,7 +1153,7 @@ echo $response;
 ["BTU", "QUAD", "EJ", "kWH", "SCF"]
 ```
 
-`GET https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane`
+`GET https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane`
 
 <aside>Query params</aside>
 | Param     | Type   | Required | Description                                                                                                                                  |
@@ -1165,7 +1165,7 @@ echo $response;
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm.herokuapp.com/carbon-footprint/solutions' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/carbon-footprint/solutions' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "fuel_type": "wood waste",
@@ -1181,7 +1181,7 @@ const data = {
   input: 20,
 };
 
-fetch("https://dynm.herokuapp.com/carbon-footprint/solutions", {
+fetch("https://dynm-api.herokuapp.com/carbon-footprint/solutions", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -1201,7 +1201,7 @@ fetch("https://dynm.herokuapp.com/carbon-footprint/solutions", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-footprint/solutions"
+url = "https://dynm-api.herokuapp.com/carbon-footprint/solutions"
 
 payload={
   "fuel_type": "wood waste",
@@ -1219,7 +1219,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https =>//dynm.herokuapp.com/carbon-footprint/solutions";
+  $url = "https =>//dynm-api.herokuapp.com/carbon-footprint/solutions";
   $ch = curl_init($url);
   $postData = array(
     "fuel_type" => "wood waste",
@@ -1254,7 +1254,7 @@ This endpoint deals with solutions. it estimates the impact of your waste reduct
 
 Each time you recycle or compost materials instead of discarding them, you help reduce greenhouse gas (GHG) emissions and protect the climate. Over time these emission reductions add up to significant amounts! In fact, GHG reductions from recycling and composting are often so considerable that they can be compared to avoided tailpipe emissions from vehicles, or cars taken off the road.
 
-`POST https://dynm.herokuapp.com/carbon-footprint/solutions`
+`POST https://dynm-api.herokuapp.com/carbon-footprint/solutions`
 
 <aside>Request params</aside>
 
