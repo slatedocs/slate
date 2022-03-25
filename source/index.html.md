@@ -1092,7 +1092,7 @@ Energy Conversion
 ```shell
 curl -X GET \
   https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane \
-  -H "Content-type: application/j/carbon-footprint/son" \
+  -H "Content-type: application/json" \
 ```
 
 ```javascript
@@ -1163,7 +1163,7 @@ echo $response;
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm.herokuapp.com/solutions' \
+curl --location --request POST 'https://dynm.herokuapp.com/carbon-footprint/solutions' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "fuel_type": "wood waste",
@@ -1179,7 +1179,7 @@ const data = {
   input: 20,
 };
 
-fetch("https://dynm.herokuapp.com/solutions", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/solutions", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -1199,7 +1199,7 @@ fetch("https://dynm.herokuapp.com/solutions", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/solutions"
+url = "https://dynm.herokuapp.com/carbon-footprint/solutions"
 
 payload={
   "fuel_type": "wood waste",
@@ -1217,7 +1217,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https =>//dynm.herokuapp.com/solutions";
+  $url = "https =>//dynm.herokuapp.com/carbon-footprint/solutions";
   $ch = curl_init($url);
   $postData = array(
     "fuel_type" => "wood waste",
@@ -1252,7 +1252,7 @@ This endpoint deals with solutions. it estimates the impact of your waste reduct
 
 Each time you recycle or compost materials instead of discarding them, you help reduce greenhouse gas (GHG) emissions and protect the climate. Over time these emission reductions add up to significant amounts! In fact, GHG reductions from recycling and composting are often so considerable that they can be compared to avoided tailpipe emissions from vehicles, or cars taken off the road.
 
-`POST https://dynm.herokuapp.com/solutions`
+`POST https://dynm.herokuapp.com/carbon-footprint/solutions`
 
 <aside>Request params</aside>
 
