@@ -944,7 +944,7 @@ echo $response;
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/energy-conversion \
+  https://dynm.herokuapp.com/carbon-footprint/energy-conversion \
   -H "Content-type: application/json" \
   -d  '{
     "conversion": {
@@ -967,7 +967,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/energy-conversion", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -987,7 +987,7 @@ fetch("https://dynm.herokuapp.com/energy-conversion", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/energy-conversion"
+url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion"
 
 payload = {"conversion": {
     "fuel_type": "Anthracite coal",
@@ -1007,7 +1007,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/energy-conversion";
+  $url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion";
   $ch = curl_init($url);
   $postData = array(
     "conversion" => array(
@@ -1047,7 +1047,7 @@ print(data)
 
 Energy Conversion
 
-`POST https://dynm.herokuapp.com/energy-conversion`
+`POST https://dynm.herokuapp.com/carbon-footprint/energy-conversion`
 
 <aside>Request params</aside>
 
@@ -1091,13 +1091,13 @@ Energy Conversion
 
 ```shell
 curl -X GET \
-  https://dynm.herokuapp.com/energy-conversion?fuel_type=propane \
-  -H "Content-type: application/json" \
+  https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane \
+  -H "Content-type: application/j/carbon-footprint/son" \
 ```
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -1115,7 +1115,7 @@ fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
 ```python
 import requests
 import json
-url = "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"
+url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane"
 headers = {
   'Content-Type': 'application/json'
 }
@@ -1127,7 +1127,7 @@ print(response.text)
 <?php
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm.herokuapp.com/energy-conversion?fuel_type=propane',
+  CURLOPT_URL => 'https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -1151,7 +1151,7 @@ echo $response;
 ["BTU", "QUAD", "EJ", "kWH", "SCF"]
 ```
 
-`GET https://dynm.herokuapp.com/energy-conversion?fuel_type=propane`
+`GET https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane`
 
 <aside>Query params</aside>
 | Param     | Type   | Required | Description                                                                                                                                  |
