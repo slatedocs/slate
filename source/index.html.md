@@ -243,7 +243,7 @@ print(data)
 
 Your Current Emissions from Home Energy.
 
-`POST https://dynm.herokuapp.com/home-energy`
+`POST https://dynm.herokuapp.com/carbon-footprint/home-energy`
 
 <aside>Request params</aside>
 
@@ -272,7 +272,7 @@ Your Current Emissions from Home Energy.
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/transportation \
+  https://dynm.herokuapp.com/carbon-footprint/transportation \
   -H "Content-type: application/json" \
   -d '{
     "current_maintenance": "Do Not Do",
@@ -320,7 +320,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm.herokuapp.com/transportation", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/transportation", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -340,7 +340,7 @@ fetch("https://dynm.herokuapp.com/transportation", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/transportation"
+url = "https://dynm.herokuapp.com/carbon-footprint/transportation"
 
 payload={
   "current_maintenance": "Do Not Do",
@@ -372,7 +372,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https =>//dynm.herokuapp.com/transportation";
+  $url = "https =>//dynm.herokuapp.com/carbon-footprint/transportation";
   $ch = curl_init($url);
   $postData = array(
     "current_maintenance" => "Do Not Do",
@@ -421,7 +421,7 @@ print(data)
 
 This endpoint deals with transportation.
 
-`POST https://dynm.herokuapp.com/transportation`
+`POST https://dynm.herokuapp.com/carbon-footprint/transportation`
 
 <aside>Request params</aside>
 
