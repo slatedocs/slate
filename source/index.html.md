@@ -585,7 +585,7 @@ This endpoint deals with waste.
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-dioxide-conversion \
+  https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion \
   -H "Content-type: application/json" \
   -d '{
     "conversion": {
@@ -608,7 +608,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/carbon-dioxide-conversion", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -628,7 +628,7 @@ fetch("https://dynm.herokuapp.com/carbon-dioxide-conversion", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-dioxide-conversion"
+url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion"
 
 payload = {
   "conversion": {
@@ -649,7 +649,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/carbon-dioxide-conversion";
+  $url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion";
   $ch = curl_init($url);
   $postData = array(
     "conversion" => array(
@@ -694,7 +694,7 @@ print(data)
 }
 ```
 
-`POST https://dynm.herokuapp.com/carbon-dioxide-conversion`
+`POST https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion`
 
 <aside>Request params</aside>
 
@@ -738,7 +738,7 @@ print(data)
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/carbon-dioxide-conversion \
+  https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion \
   -H "Content-type: application/json" \
   -d '{
     "conversion": {
@@ -763,7 +763,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/carbon-dioxide-conversion", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -783,7 +783,7 @@ fetch("https://dynm.herokuapp.com/carbon-dioxide-conversion", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/carbon-dioxide-conversion"
+url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion"
 
 payload = {
   "conversion": {
@@ -805,7 +805,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/carbon-dioxide-conversion";
+  $url = "https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion";
   $ch = curl_init($url);
   $postData = array(
     "conversion" => array(
@@ -853,7 +853,7 @@ print(data)
 
 Units that require mass include CO2, CH4 and N2O
 
-`POST https://dynm.herokuapp.com/carbon-dioxide-conversion`
+`POST https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion`
 
 <aside>Request params</aside>
 
@@ -871,13 +871,13 @@ Units that require mass include CO2, CH4 and N2O
 
 ```shell
 curl -X GET \
-  https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane \
+  https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane \
   -H "Content-type: application/json" \
 ```
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -895,7 +895,7 @@ fetch("https://dynm.herokuapp.com/energy-conversion?fuel_type=propane", {
 ```python
 import requests
 import json
-url = "https://dynm.herokuapp.com/energy-conversion?fuel_type=propane"
+url = "https://dynm.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane"
 headers = {
   'Content-Type': 'application/json'
 }
@@ -907,7 +907,7 @@ print(response.text)
 <?php
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane',
+  CURLOPT_URL => 'https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -931,7 +931,7 @@ echo $response;
 ["mmBTU", "CO2", "CH4", "N2O", "BTU", "GALLON"]
 ```
 
-`GET https://dynm.herokuapp.com/carbon-dioxide-conversion?fuel_type=propane`
+`GET https://dynm.herokuapp.com/carbon-footprint/carbon-dioxide-conversion?fuel_type=propane`
 
 <aside>Query params</aside>
 | Param     | Type   | Required | Description                                                                                                                                  |
