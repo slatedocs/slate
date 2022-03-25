@@ -137,7 +137,7 @@ Retrieve a list of objects inside a given folder inside a given bucket.
 | `region`<br/>*string*             | The name of the region the object exists within.
 | `isVirtual`<br/>*boolean*         | Boolean denoting whether the folder is virtual. If true there exists no object named `:folderName/`, and the folder exists only as a part of a complete object path (`:folderName/:objectName`). If false, there exists a key in the bucket named ‘{folderName}/’. If the query parameter `nested = true`, the request will not return any virtual folders.
 
-| Required Query Parameters | &nbsp;|
+| Mandatory Query Parameters | &nbsp;|
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bucketId`<br/>*string*       | The ID of the bucket of the form `:regionName/:bucketName`.
 
@@ -230,7 +230,7 @@ Download an object from a bucket in Amazon S3.
 
 > The above command returns the binary that represent the file downloaded.
 
-Required Query Parameters | &nbsp;
+Mandatory Query Parameters | &nbsp;
 ---- | -----------
 `bucketName`<br/>*string* | Name of the bucket to download the file from.
 `regionName`<br/>*string* | Name of the region to download the file from.
@@ -276,7 +276,7 @@ Delete an object from a bucket in Amazon S3.
 | `taskId` <br/>*string*     | The task id related to the object deletion. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
-| Required Query Parameters                 | &nbsp;                                        |
+| Mandatory Query Parameters                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `operation` <br/>*string*     | The type of operation to execute. In this case, `delete`. |
 
@@ -311,7 +311,7 @@ Rename an object in a bucket in Amazon S3.
 
 <code>POST /services/operation/rename <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:regionName/:bucketName/:fullPath?&operation=rename</code>
 
-| Required Body Parameters                 | &nbsp;                                        |
+| Required                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `name` <br/>*string*     | The new name of the object. |
 
@@ -320,7 +320,7 @@ Rename an object in a bucket in Amazon S3.
 | `taskId` <br/>*string*     | The task id related to the object rename. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
-| Required Query Parameters  | &nbsp;                                        |
+| Mandatory Query Parameters  | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `name` <br/>*string*       | The new name of the object.                   |
 | `operation` <br/>*string*  | The type of operation to execute. In this case, `rename`.                  |
@@ -356,7 +356,7 @@ Add a folder in amazon S3.
 
 <code>POST /services/operation/rename <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/?bucketName=:bucketName&regionName=:regionName&operation=add_folder</code>
 
-| Required Body Parameters                 | &nbsp;                                        |
+| Required                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `name` <br/>*string*     | The name of the folder. Can contain '/' characters to create nested folders. |
 
@@ -406,7 +406,7 @@ Renames a folder in Amazon S3. This operation renames all objects inside the fol
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:regionName/:bucketName/:folderFullPath?&operation=rename_folder</code>
 
-| Required Body Parameters                 | &nbsp;                                        |
+| Required                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `name` <br/>*string*     | The new name of the folder. Can contain '/' characters to create nested folders. |
 

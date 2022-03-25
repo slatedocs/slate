@@ -128,7 +128,7 @@ curl -X POST \
 
 Create a bucket in Amazon S3.
 
-| Mandatory Body Parameters                   | &nbsp;                                        |
+| Required                   | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `access` <br/>*string*     | The desired access level of the bucket. The list of supported Canned ACL is: private, public-read, public-read-write, authenticated-read, log-delivery-write, aws-exec-read.     |
 | `name` <br/>*string*       | The name of the bucket.                       |
@@ -175,7 +175,7 @@ curl -X POST \
 
 Update the canned ACL of a buckets from Amazon S3.
 
-Mandatory Body Parameters | &nbsp;
+Required | &nbsp;
 ---------- | -----
 `access`<br/>*string* | The name of the Canned ACL to be assigned to the bucket. The list of supported Canned ACL is: private, public-read, public-read-write, authenticated-read, log-delivery-write, aws-exec-read.
 
