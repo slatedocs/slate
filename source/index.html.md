@@ -228,6 +228,8 @@ includes:
   - aws/s3
   - aws/buckets
   - aws/objects
+  - aws/networks  
+  - aws/internetgateways
 
 search: true
 ---
