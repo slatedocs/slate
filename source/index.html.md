@@ -60,7 +60,7 @@ For example, go to [carbon_dioxide_conversion.rb](https://github.com/sunnysanwar
 
 ```shell
 curl -X POST \
-  https://dynm.herokuapp.com/home-energy \
+  https://dynm.herokuapp.com/carbon-footprint/home-energy \
   -H "Content-type: application/json" \
   -d '{
     "number_of_people": 2,
@@ -121,7 +121,7 @@ const data = {
   },
 };
 
-fetch("https://dynm.herokuapp.com/home-energy", {
+fetch("https://dynm.herokuapp.com/carbon-footprint/home-energy", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -141,7 +141,7 @@ fetch("https://dynm.herokuapp.com/home-energy", {
 import requests
 import json
 
-url = "https://dynm.herokuapp.com/home-energy"
+url = "https://dynm.herokuapp.com/carbon-footprint/home-energy"
 
 payload = {
     "number_of_people": 2,
@@ -181,7 +181,7 @@ print(data)
 
 ```php
 <?php
-  $url = "https://dynm.herokuapp.com/home-energy";
+  $url = "https://dynm.herokuapp.com/carbon-footprint/home-energy";
   $ch = curl_init($url);
   $postData = array(
     "number_of_people" => 2,
@@ -243,7 +243,7 @@ print(data)
 
 Your Current Emissions from Home Energy.
 
-`POST https://dynm.herokuapp.com/transportation`
+`POST https://dynm.herokuapp.com/home-energy`
 
 <aside>Request params</aside>
 
