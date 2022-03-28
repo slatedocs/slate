@@ -1,0 +1,121 @@
+###Subnetworks
+
+View and manage subnetworks.
+
+<!-------------------- LIST SUBNETWORKS -------------------->
+
+#### List Subnets
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-env/subnetworks"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "name": "subnet-0b9cd03ba220cff0c",
+      "id": "subnet-0b9cd03ba220cff0c",
+      "cidrBlock": "172.31.32.0/20",
+      "availabilityZone": "us-east-1c",
+      "defaultSubnet": true,
+      "state": "available",
+      "subnetARN": "arn:aws:ec2:us-east-1:559465017721:subnet/subnet-0b9cd03ba220cff0c",
+      "routeTableId": "rtb-0ffdc3e3c20fb0246",
+      "availabilityZoneId": "use1-az6",
+      "resourceNameDNSARecordEnabled": false,
+      "dns64Enabled": false,
+      "autoAssignIPv4Address": true,
+      "autoAssignCustomerOwnedIPv4Address": false,
+      "ipv4CIDRReservations": false,
+      "availableIPv4Addresses": 4091,
+      "vpcId": "vpc-040e8c412dc149b2a"
+    }
+  ],
+  "metadata": {
+    "recordCount": 1
+  }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks</code>
+
+Retrieve a list of all subnets in a given [environment](#administration-environments).
+
+| Attributes                                         | &nbsp;                                                                                                                          |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `name`<br/>_string_                                | The name of the subnet. (ID if not set)                                                                                         |
+| `id`<br/>_string_                                  | The id of the subnet.                                                                                                           |
+| `cidrBlock`<br/>_string_                           | IPv4 network range for the subnet in CIDR.                                                                                      |
+| `availabilityZone`<br/>_string_                    | The availability zone of the subnet.                                                                                            |
+| `defaultSubnet`<br/>_boolean_                      | If the subnet is the default for its availability zone.                                                                         |
+| `state`<br/>_string_                               | State of the subnet. (pending, availabile)                                                                                      |
+| `subnetARN`<br/>_string_                           | The Amazon Resource Name (ARN) of the subnet.                                                                                   |
+| `routeTableId`<br/>_string_                        | ID of the route table associated with the subnet.                                                                               |
+| `availabilityZoneId`<br/>_string_                  | The ID of the subnet's availability zone.                                                                                       |
+| `resourceNameDNSARecordEnabled`<br/>_boolean_      | Indicates whether to respond to DNS queries for instance hostnames with DNS A records.                                          |
+| `dns64Enabled`<br/>_boolean_                       | Indicates if DNS queries made to the resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. |
+| `autoAssignIPv4Address`<br/>_boolean_              | Indicates whether instances launched in this subnet receive a public IPv4 address.                                              |
+| `autoAssignCustomerOwnedIPv4Address`<br/>_boolean_ | Indicates whether a network interface created in this subnet receives a customer-owned IPv4 address.                            |
+| `ipv4CIDRReservations`<br/>_boolean_               | Indicates whether the subnet has IPv4 CIDR reservations.                                                                        |
+| `availableIPv4Addreses`<br/>_int_                  | The number of available addresses in the subnet's CIDR block.                                                                   |
+| `vpcId`<br/>_string_                               | The ID of the VPC the subnet is associated with.                                                                                |
+
+<!-------------------- RETRIEVE A SUBNETWORK -------------------->
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-env/subnetwork/subnet_id"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "name": "subnet-0b9cd03ba220cff0c",
+    "id": "subnet-0b9cd03ba220cff0c",
+    "cidrBlock": "172.31.32.0/20",
+    "availabilityZone": "us-east-1c",
+    "defaultSubnet": true,
+    "state": "available",
+    "subnetARN": "arn:aws:ec2:us-east-1:559465017721:subnet/subnet-0b9cd03ba220cff0c",
+    "routeTableId": "rtb-0ffdc3e3c20fb0246",
+    "availabilityZoneId": "use1-az6",
+    "resourceNameDNSARecordEnabled": false,
+    "dns64Enabled": false,
+    "autoAssignIPv4Address": true,
+    "autoAssignCustomerOwnedIPv4Address": false,
+    "ipv4CIDRReservations": false,
+    "availableIPv4Addresses": 4091,
+    "vpcId": "vpc-040e8c412dc149b2a"
+  }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks/:id</code>
+
+Retrieve a subnetwork in a given [environment](#administration-environments).
+| Attributes                                         | &nbsp;                                                                                                                          |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `name`<br/>_string_                                | The name of the subnet. (ID if not set)                                                                                         |
+| `id`<br/>_string_                                  | The id of the subnet.                                                                                                           |
+| `cidrBlock`<br/>_string_                           | IPv4 network range for the subnet in CIDR.                                                                                      |
+| `availabilityZone`<br/>_string_                    | The availability zone of the subnet.                                                                                            |
+| `defaultSubnet`<br/>_boolean_                      | If the subnet is the default for its availability zone.                                                                         |
+| `state`<br/>_string_                               | State of the subnet. (pending, availabile)                                                                                      |
+| `subnetARN`<br/>_string_                           | The Amazon Resource Name (ARN) of the subnet.                                                                                   |
+| `routeTableId`<br/>_string_                        | ID of the route table associated with the subnet.                                                                               |
+| `availabilityZoneId`<br/>_string_                  | The ID of the subnet's availability zone.                                                                                       |
+| `resourceNameDNSARecordEnabled`<br/>_boolean_      | Indicates whether to respond to DNS queries for instance hostnames with DNS A records.                                          |
+| `dns64Enabled`<br/>_boolean_                       | Indicates if DNS queries made to the resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. |
+| `autoAssignIPv4Address`<br/>_boolean_              | Indicates whether instances launched in this subnet receive a public IPv4 address.                                              |
+| `autoAssignCustomerOwnedIPv4Address`<br/>_boolean_ | Indicates whether a network interface created in this subnet receives a customer-owned IPv4 address.                            |
+| `ipv4CIDRReservations`<br/>_boolean_               | Indicates whether the subnet has IPv4 CIDR reservations.                                                                        |
+| `availableIPv4Addreses`<br/>_int_                  | The number of available addresses in the subnet's CIDR block.                                                                   |
+| `vpcId`<br/>_string_                               | The ID of the VPC the subnet is associated with.                                                                                |
