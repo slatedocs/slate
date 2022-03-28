@@ -230,7 +230,10 @@ includes:
   - aws/objects
   - aws/networking
   - aws/vpcs
+  - aws/subnetworks
+  - aws/internetgateways
   - aws/elastic_ips
+
 
 search: true
 ---
