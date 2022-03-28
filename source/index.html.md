@@ -228,7 +228,9 @@ includes:
   - aws/s3
   - aws/buckets
   - aws/objects
+  - aws/networking
   - aws/vpcs
+  - aws/elastic_ips
 
 search: true
 ---
