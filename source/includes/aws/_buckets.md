@@ -101,7 +101,7 @@ Retrieve a list of all buckets from Amazon S3.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets?operation=create"
+   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets"
 ```
 
 > Request body examples:
