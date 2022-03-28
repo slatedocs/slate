@@ -227,7 +227,9 @@ curl -X POST \
     "volumeType": "gp3",
     "iops": 3000,
     "throughput": 250
-  }]
+  }],
+  "vpcId" : "vpc-0b23fed563eebe635",
+  "subnetId" : "subnet-0d4d9d813e763d403"
 }
 ```
 
@@ -272,6 +274,8 @@ Create a new instance in a given [environment](#administration-environments).
 | `blockDeviceMappings.volumeType`<br/>*string*           | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard). Refer to "Create Volume" docs to see volume types & limits for their respective fields.       |
 | `blockDeviceMappings.iops`<br/>*integer*                | Describes the maximum number of input/output operations per second (IOPS) supported by the volume type. This field is only valid for volume types gp3, io1, and io2. |
 | `blockDeviceMappings.throughput`<br/>*integer*          | The throughput performance in MiB/s supported by the volume type. This field is only valid for gp3 volumes.                                                          |
+| `vpcId` <br/>*string* | The id of the VPC in which the instance will be deployed. This must be specified if there is no default VPC in the selected region or if you decide to provide a subnet. |
+|`subnetId` <br/>*string* | The id of the subnet in which the instance will be deployed. If this is not specified, the instance will be deployed in one of the default subnets in the default VPC. The subnet specified must belong to the VPC specified.
 
 
 
