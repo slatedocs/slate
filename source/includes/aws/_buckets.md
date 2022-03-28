@@ -38,13 +38,13 @@ Retrieve a list of all buckets from Amazon S3.
 | `name`<br/>*string*               | The name of the bucket.
 | `region`<br/>*string*             | The region the bucket exists in.
 | `created`<br/>*string*            | The date the bucket was created.
-| `url`<br/>*string*                | The full endpoint url used to make api calls on the bucket.
-| `size`<br/>*integer*               | The size of the bucket in bytes. Ommited if query parameter details=`false`.
-| `keyCount`<br/>*integer*           | The number of objects inside the bucket. Ommited if query parameter details=`false`.
+| `url`<br/>*string*                | The full endpoint URL used to make API calls on the bucket.
+| `size`<br/>*integer*               | The size of the bucket in bytes. Omitted if query parameter details=`false`.
+| `keyCount`<br/>*integer*           | The number of objects inside the bucket. Omitted if query parameter details=`false`.
 
 | Optional Query Parameters | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `details` <br/>*boolean*  | Whether to include more details about the bucket, if ommited defaults to `true` and returns extra parameters `size` and `keyCount`.  |
+| `details` <br/>*boolean*  | Whether to include more details about the bucket, if omitted defaults to `true` and returns extra parameters `size` and `keyCount`.  |
 
 <!-------------------- GET buckets -------------------->
 
@@ -91,7 +91,7 @@ Retrieve a list of all buckets from Amazon S3.
 | `name`<br/>*string*               | The name of the bucket.
 | `region`<br/>*string*             | The region the bucket exists in.
 | `created`<br/>*string*            | The date the bucket was created.
-| `url`<br/>*string*                | The full endpoint url used to make api calls on the bucket.
+| `url`<br/>*string*                | The full endpoint URL used to make API calls on the bucket.
 
 
 <!-------------------- Create bucket -------------------->
@@ -124,7 +124,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets&operation=create</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets?operation=create</code>
 
 Create a bucket in Amazon S3.
 
@@ -136,7 +136,7 @@ Create a bucket in Amazon S3.
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the bucket creation.   |
+| `taskId` <br/>*string*     | The task ID related to the bucket creation.   |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
 | Mandatory Query Parameters | &nbsp;                                        |
@@ -181,7 +181,7 @@ Required | &nbsp;
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the bucket creation.   |
+| `taskId` <br/>*string*     | The task ID related to the bucket creation.   |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
 | Mandatory Query Parameters | &nbsp;                                        |
@@ -210,7 +210,7 @@ curl -X DELETE \
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the bucket deletion. |
+| `taskId` <br/>*string*     | The task ID related to the bucket deletion. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
 | Mandatory Query Parameters | &nbsp;                                        |
