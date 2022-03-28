@@ -229,6 +229,7 @@ includes:
   - aws/buckets
   - aws/objects
   - aws/vpcs
+  - aws/internetgateways
 
 search: true
 ---
