@@ -137,7 +137,7 @@ Retrieve a list of objects inside a given folder inside a given bucket.
 | `region`<br/>*string*             | The name of the region the object exists within.
 | `isVirtual`<br/>*boolean*         | Boolean value denoting whether the folder is virtual. If true there exists no object named `:folderName/`, and the folder exists only as a part of a complete object path (`:folderName/:objectName`). If false, there exists a key in the bucket named ‘{folderName}/’. If the query parameter `nested = true`, the request will not return any virtual folders.
 
-| Mandatory Query Parameters | &nbsp;|
+| Required Query Parameters | &nbsp;|
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `bucketId`<br/>*string*       | The ID of the bucket of the form `:regionName/:bucketName`.
 
@@ -231,11 +231,10 @@ Download an object from a bucket in Amazon S3.
 
 > The above command returns the binary that represent the file downloaded.
 
-Mandatory Query Parameters | &nbsp;
+Required Query Parameters | &nbsp;
 ---- | -----------
 `id`<br/>*string* | The ID of the object to download, which is of the form ":regionName/:bucketName/:objectName".
 `entityType`<br/>*string* | The type of entity to download. In this case `objects`.
-`operation`<br/>*string* | The type of operation to execute. In this case `download`.
 `environmentId`<br/>*string* | The id of environment which owns the object.
 
 
@@ -315,11 +314,6 @@ Rename an object in a bucket in Amazon S3.
 | `taskId` <br/>*string*     | The task ID related to the object renaming.   |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
-| Mandatory Query Parameters  | &nbsp;                                       |
-|----------------------------|-----------------------------------------------|
-| `name` <br/>*string*       | The new name of the object.                   |
-| `operation` <br/>*string*  | The type of operation to execute. In this case, `rename`.                  |
-
 <!-------------------- ADD FOLDER -------------------->
 
 #### Add Folder
@@ -360,11 +354,10 @@ Add a folder in amazon S3.
 | `taskId` <br/>*string*     | The task ID related to the folder creation. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
-| Mandatory Query Parameters  | &nbsp;                                        |
+| Required Query Parameters  | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `bucketName` <br/>*string*       | The name of the bucket to create the folder in.                   |
 | `regionName` <br/>*string*       | The name of the region the bucket exists in.                      |
-| `operation` <br/>*string*  | The type of operation to execute. In this case, `add_folder`.           |
 
 | Optional Query Parameters  | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
@@ -409,8 +402,4 @@ Renames a folder in Amazon S3. This operation renames all objects inside the fol
 |----------------------------|-----------------------------------------------|
 | `taskId` <br/>*string*     | The task ID related to the folder renaming. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
-
-| Mandatory Query Parameters  | &nbsp;                                        |
-|----------------------------|-----------------------------------------------|
-| `operation` <br/>*string*  | The type of operation to execute. In this case, `rename_folder`.|
 

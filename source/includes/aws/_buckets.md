@@ -46,7 +46,7 @@ Retrieve a list of all buckets from Amazon S3.
 |----------------------------|-----------------------------------------------|
 | `details` <br/>*boolean*  | Whether to include more details about the bucket, if omitted defaults to `true` and returns extra parameters `size` and `keyCount`.  |
 
-<!-------------------- GET buckets -------------------->
+<!-------------------- LIST buckets -------------------->
 
 #### List Buckets
 
@@ -139,10 +139,6 @@ Create a bucket in Amazon S3.
 | `taskId` <br/>*string*     | The task ID related to the bucket creation.   |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
-| Mandatory Query Parameters | &nbsp;                                        |
-|----------------------------|-----------------------------------------------|
-| `operation` <br/>*string*  | The type of operation to execute. In this case, `create`. |
-
 
 <!-------------------- Update bucket -------------------->
 
@@ -184,10 +180,6 @@ Required | &nbsp;
 | `taskId` <br/>*string*     | The task ID related to the bucket creation.   |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
-| Mandatory Query Parameters | &nbsp;                                        |
-|----------------------------|-----------------------------------------------|
-| `operation` <br/>*string*  | The type of operation to execute. In this case, `edit_privileges`. |
-
 <!-------------------- DELETE A BUCKET -------------------->
 
 #### Delete Bucket
@@ -195,7 +187,7 @@ Required | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets/us-east-1/bucketOne&operation=delete"
+   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets/us-east-1/bucketOne"
 ```
 > The above command returns a JSON structured like this:
 
@@ -206,15 +198,11 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets/:regionName/:bucketName&operation=delete</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets/:regionName/:bucketName</code>
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
 | `taskId` <br/>*string*     | The task ID related to the bucket deletion. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
-
-| Mandatory Query Parameters | &nbsp;                                        |
-|----------------------------|-----------------------------------------------|
-| `operation` <br/>*string*  | The type of operation to execute. In this case, `delete`. |
 
 
