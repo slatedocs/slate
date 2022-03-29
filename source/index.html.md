@@ -233,7 +233,7 @@ includes:
   - aws/subnetworks
   - aws/internetgateways
   - aws/elastic_ips
-
+  - aws/cidr_blocks
 
 search: true
 ---
