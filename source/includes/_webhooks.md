@@ -146,7 +146,7 @@ Gets the details for a specific webhook subscription given the specified `webhoo
 
 | Parameter               | Type    | Required | Description                                                           |
 | ----------------------- | ------- | -------- | --------------------------------------------------------------------- |
-| webhook_subscription_id | integer | true     | The unique id of the webhook subscription that needs to be retrieved. |
+| webhook_subscription_id | integer | true     | The unique ID of the webhook subscription that needs to be retrieved. |
 
 ### Returns
 
@@ -256,7 +256,7 @@ Deletes a webhook subscription with a specified `webhook_subscription_id`.
 
 | Parameter               | Type    | Required | Description                                                         |
 | ----------------------- | ------- | -------- | ------------------------------------------------------------------- |
-| webhook_subscription_id | integer | true     | The unique id of the webhook subscription that needs to be deleted. |
+| webhook_subscription_id | integer | true     | The unique ID of the webhook subscription that needs to be deleted. |
 
 ### Returns
 

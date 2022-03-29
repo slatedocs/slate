@@ -299,8 +299,8 @@ Gets the details for a specific reminder given the existing reminder id.
 
 ### Returns
 
-The details of the reminder corresponding to the reminder id specified in the path
-parameter. An appropriate error is returned if an invalid reminder id is supplied.
+The details of the reminder corresponding to the reminder ID specified in the path
+parameter. An appropriate error is returned if an invalid reminder ID is supplied.
 
 ## Create a New Reminder
 
@@ -460,7 +460,7 @@ Updates the content of an existing reminder with `reminder_id` with the supplied
 
 | Parameter   | Type    | Required | Description                                             |
 | ----------- | ------- | -------- | ------------------------------------------------------- |
-| reminder_id | integer | true     | The unique id of the reminder to be updated.            |
+| reminder_id | integer | true     | The unique ID of the reminder to be updated.            |
 
 ### Payload Parameters
 
@@ -502,7 +502,7 @@ Deletes the reminder with the specified `reminder_id`.
 
 | Parameter   | Type    | Required | Description                                             |
 | ----------- | ------- | -------- | ------------------------------------------------------- |
-| reminder_id | integer | true     | The unique id of the reminder to be deleted.            |
+| reminder_id | integer | true     | The unique ID of the reminder to be deleted.            |
 
 ### Returns
 

@@ -1,3 +1,4 @@
+
 # Field Value Changes
 
 Field value changes allow you to see historical changes to the values of fields in Affinity.
@@ -141,12 +142,12 @@ Returns all field values changes attached to a specific field. Field value chang
 
 | Parameter       | Type    | Required | Description                                                                                               |
 | --------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------- |
-| field_id        | integer | true     | A unique id that represents a field object whose field values changes are to be retrieved.                |
+| field_id        | integer | true     | A unique ID that represents a field object whose field values changes are to be retrieved.                |
 | action_type     | integer | false    | An integer that filters field value changes that were created with this specific action type (see above). |
-| person_id       | integer | false    | A unique id that represents a person object whose field value changes are to be retrieved.                |
-| organization_id | integer | false    | A unique id that represents an organization object whose field value changes are to be retrieved.         |
-| opportunity_id  | integer | false    | A unique id that represents an opportunity object whose field value changes are to be retrieved.          |
-| list_entry_id   | integer | false    | A unique id that represents a list entry object whose field value changes are to be retrieved.            |
+| person_id       | integer | false    | A unique ID that represents a person object whose field value changes are to be retrieved.                |
+| organization_id | integer | false    | A unique ID that represents an organization object whose field value changes are to be retrieved.         |
+| opportunity_id  | integer | false    | A unique ID that represents an opportunity object whose field value changes are to be retrieved.          |
+| list_entry_id   | integer | false    | A unique ID that represents a list entry object whose field value changes are to be retrieved.            |
 
 ### Returns
 

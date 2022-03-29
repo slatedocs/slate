@@ -42,7 +42,7 @@ person entity. Furthermore, the list would have two "fields" with the names
 | type      | integer | The type of the entities contained within the list. A list can contain people or organizations, but not both. |
 | name      | string  | The title of the list that is displayed in Affinity.                                                          |
 | public    | boolean | If the list is publicly accessible to all users in your team, this is true. Otherwise, this is false.         |
-| owner_id  | integer | The unique id of the internal person who created this list.                                                   |
+| owner_id  | integer | The unique ID of the internal person who created this list.                                                   |
 | list_size | integer | The number of list entries contained within the list.                                                         |
 
 ### List Types
@@ -154,10 +154,10 @@ Gets the details for a specific list given the existing list id.
 
 | Parameter | Type    | Required | Description                                       |
 | --------- | ------- | -------- | ------------------------------------------------- |
-| list_id   | integer | true     | The unique id of the list object to be retrieved. |
+| list_id   | integer | true     | The unique ID of the list object to be retrieved. |
 
 ### Returns
 
-The details of the list resource corresponding to the list id specified in the path
+The details of the list resource corresponding to the list ID specified in the path
 parameter. These details include an array of the fields that are specific
 to this list. An appropriate error is returned if an invalid list is supplied.

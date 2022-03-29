@@ -145,10 +145,10 @@ Returns all field values attached to a `person`, `organization`, `opportunity`, 
 
 | Parameter       | Type    | Required | Description                                                                                |
 | --------------- | ------- | -------- | ------------------------------------------------------------------------------------------ |
-| person_id       | integer | custom\* | A unique id that represents a person object whose field values are to be retrieved.        |
-| organization_id | integer | custom\* | A unique id that represents an organization object whose field values are to be retrieved. |
-| opportunity_id  | integer | custom\* | A unique id that represents an opportunity object whose field values are to be retrieved.  |
-| list_entry_id   | integer | custom\* | A unique id that represents a list entry object whose field values are to be retrieved.    |
+| person_id       | integer | custom\* | A unique ID that represents a person object whose field values are to be retrieved.        |
+| organization_id | integer | custom\* | A unique ID that represents an organization object whose field values are to be retrieved. |
+| opportunity_id  | integer | custom\* | A unique ID that represents an opportunity object whose field values are to be retrieved.  |
+| list_entry_id   | integer | custom\* | A unique ID that represents a list entry object whose field values are to be retrieved.    |
 
 ### Returns
 
@@ -238,7 +238,7 @@ Updates the existing field value with `field_value_id` with the supplied paramet
 
 | Parameter      | Type    | Required | Description                                                |
 | -------------- | ------- | -------- | ---------------------------------------------------------- |
-| field_value_id | integer | true     | The unique id of the field value that needs to be updated. |
+| field_value_id | integer | true     | The unique ID of the field value that needs to be updated. |
 
 ### Payload Parameters
 
@@ -279,7 +279,7 @@ Deletes an field value with the specified `field_value_id`.
 
 | Parameter      | Type    | Required | Description                                                |
 | -------------- | ------- | -------- | ---------------------------------------------------------- |
-| field_value_id | integer | true     | The unique id of the field value that needs to be deleted. |
+| field_value_id | integer | true     | The unique ID of the field value that needs to be deleted. |
 
 ### Returns
 

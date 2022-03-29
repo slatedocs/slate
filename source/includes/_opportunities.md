@@ -184,7 +184,7 @@ Fetches an opportunity with a specified `opportunity_id`.
 
 | Parameter      | Type    | Required | Description                                                  |
 | -------------- | ------- | -------- | ------------------------------------------------------------ |
-| opportunity_id | integer | true     | The unique id of the opportunity that needs to be retrieved. |
+| opportunity_id | integer | true     | The unique ID of the opportunity that needs to be retrieved. |
 
 ### Returns
 
@@ -279,7 +279,7 @@ Updates an existing opportunity with `opportunity_id` with the supplied paramete
 
 | Parameter      | Type    | Required | Description                                     |
 | -------------- | ------- | -------- | ----------------------------------------------- |
-| opportunity_id | integer | true     | The unique id of the opportunity to be updated. |
+| opportunity_id | integer | true     | The unique ID of the opportunity to be updated. |
 
 ### Payload Parameters
 
@@ -325,7 +325,7 @@ Deletes an opportunity with a specified `opportunity_id`.
 
 | Parameter      | Type    | Required | Description                                                |
 | -------------- | ------- | -------- | ---------------------------------------------------------- |
-| opportunity_id | integer | true     | The unique id of the opportunity that needs to be deleted. |
+| opportunity_id | integer | true     | The unique ID of the opportunity that needs to be deleted. |
 
 ### Returns
 

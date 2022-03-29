@@ -98,7 +98,7 @@ list has a given email address.
       ]
     }
   }
-},
+}
 ```
 
 Each person resource is assigned a unique `id` and stores the name, type, and
@@ -392,7 +392,7 @@ that need to be changed must be passed in.
 
 | Parameter | Type    | Required | Description                                           |
 | --------- | ------- | -------- | ----------------------------------------------------- |
-| person_id | integer | true     | The unique id of the person that needs to be updated. |
+| person_id | integer | true     | The unique ID of the person that needs to be updated. |
 
 ### Payload Parameters
 
@@ -439,7 +439,7 @@ Deletes a person with a specified `person_id`.
 
 | Parameter | Type    | Required | Description                                           |
 | --------- | ------- | -------- | ----------------------------------------------------- |
-| person_id | integer | true     | The unique id of the person that needs to be deleted. |
+| person_id | integer | true     | The unique ID of the person that needs to be deleted. |
 
 ### Returns
 

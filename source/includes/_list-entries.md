@@ -142,7 +142,7 @@ list with the supplied list id.
 
 | Parameter  | Type    | Required | Description                                                                                     |
 | ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
-| list_id    | integer | true     | The unique id of the list whose list entries are to be retrieved.                               |
+| list_id    | integer | true     | The unique ID of the list whose list entries are to be retrieved.                               |
 
 ### Query Parameters
 
@@ -197,8 +197,8 @@ curl "https://api.affinity.co/lists/450/list-entries/16367" -u :$APIKEY
 
 | Parameter     | Type    | Required | Description                                                            |
 | ------------- | ------- | -------- | ---------------------------------------------------------------------- |
-| list_id       | integer | true     | The unique id of the list that contains the specified `list_entry_id`. |
-| list_entry_id | integer | true     | The unique id of the list entry object to be retrieved.                |
+| list_id       | integer | true     | The unique ID of the list that contains the specified `list_entry_id`. |
+| list_entry_id | integer | true     | The unique ID of the list entry object to be retrieved.                |
 
 ### Returns
 
@@ -242,14 +242,14 @@ Creates a new list entry in the list with the supplied list id.
 
 | Parameter  | Type    | Required | Description                                                                                                                                                                                     |
 | ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| list_id    | integer | true     | The unique id of the list whose list entries are to be retrieved.                                                                                                                               |
+| list_id    | integer | true     | The unique ID of the list whose list entries are to be retrieved.                                                                                                                               |
 
 ### Payload Parameters
 
 | Parameter        | Type      | Required | Description                                                                                        |
 | ---------------- | --------- | -------- | -------------------------------------------------------------------------------------------------- |
-| entity_id  | integer | true     | The unique id of the person or organization to add to this list. Opportunities **cannot** be created using this endpoint. See note below.                                                                                                         |
-| creator_id | integer | false    | The id of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key. |
+| entity_id  | integer | true     | The unique ID of the person or organization to add to this list. Opportunities **cannot** be created using this endpoint. See note below.                                                                                                         |
+| creator_id | integer | false    | The ID of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key. |
 
 <aside class="notice">
   <h6>Notes</h6>
@@ -287,8 +287,8 @@ Deletes a list entry with a specified `list_entry_id`.
 
 | Parameter     | Type    | Required | Description                                                            |
 | ------------- | ------- | -------- | ---------------------------------------------------------------------- |
-| list_id       | integer | true     | The unique id of the list that contains the specified `list_entry_id`. |
-| list_entry_id | integer | true     | The unique id of the list entry object to be deleted.                  |
+| list_id       | integer | true     | The unique ID of the list that contains the specified `list_entry_id`. |
+| list_entry_id | integer | true     | The unique ID of the list entry object to be deleted.                  |
 
 ### Returns
 

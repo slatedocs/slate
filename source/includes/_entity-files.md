@@ -99,9 +99,9 @@ Can optionally be filtered to return only entity files associated with a specifi
 | --------------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
 | page_size       | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                     |
 | page_token      | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results. |
-| person_id       | integer | false    | A unique id that represents a Person whose associated files should be retrieved.                |
-| organization_id | integer | false    | A unique id that represents an Organization whose associated files should be retrieved.         |
-| opportunity_id  | integer | false    | A unique id that represents an Opportunity whose associated files should be retrieved.          |
+| person_id       | integer | false    | A unique ID that represents a Person whose associated files should be retrieved.                |
+| organization_id | integer | false    | A unique ID that represents an Organization whose associated files should be retrieved.         |
+| opportunity_id  | integer | false    | A unique ID that represents an Opportunity whose associated files should be retrieved.          |
 
 ### Returns
 
@@ -139,7 +139,7 @@ Fetches an entity with a specified `entity_file_id`.
 
 | Parameter      | Type    | Required | Description                                                  |
 | -------------- | ------- | -------- | ------------------------------------------------------------ |
-| entity_file_id | integer | true     | The unique id of the entity file that needs to be retrieved. |
+| entity_file_id | integer | true     | The unique ID of the entity file that needs to be retrieved. |
 
 ### Returns
 
@@ -164,7 +164,7 @@ Downloads an entity file with a specified `entity_file_id`
 
 | Parameter      | Type    | Required | Description                                                   |
 | -------------- | ------- | -------- | ------------------------------------------------------------- |
-| entity_file_id | integer | true     | The unique id of the entity file that needs to be downloaded. |
+| entity_file_id | integer | true     | The unique ID of the entity file that needs to be downloaded. |
 
 ### Returns
 
@@ -216,7 +216,7 @@ The file will display on the entity's profile, provided that the entity is not a
 <aside class="notice">
   <h6>Notes</h6>
   <ul>
-    <li>Files must be attached to a single entity, specified using one of the three entity id parameters (<code>person_id</code>, <code>organization_id</code>, and <code>opportunity_id</code>).</li>
+    <li>Files must be attached to a single entity, specified using one of the three entity ID parameters (<code>person_id</code>, <code>organization_id</code>, and <code>opportunity_id</code>).</li>
     <li>At least one file must be uploaded using the <code>file</code> or <code>files</code> parameters.</li>
   </ul>
 </aside>

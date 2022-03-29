@@ -35,6 +35,41 @@ more.
 
 ## The Field Resource
 
+> Example Response
+
+```json
+
+{
+  "id": 1234,
+  "name": "Deal Status",
+  "list_id": 11,
+  "value_type": 7,
+  "allows_multiple": false,
+  "track_changes": true,
+  "dropdown_options": [
+    {
+      "id": 2863451,
+      "text": "New",
+      "rank": 0,
+      "color": 3
+    },
+    {
+      "id": 2863452,
+      "text": "In Progress",
+      "rank": 1,
+      "color": 3
+    },
+    {
+      "id": 2863453,
+      "text": "Won",
+      "rank": 2,
+      "color": 2
+    }
+  ]
+}
+
+```
+
 Each field object has a unique `id`. It also has a `name`, which determines the name of the field,
 and `allows_multiple`, which determines whether multiple values can be added to a single cell for that field.
 
@@ -210,7 +245,7 @@ Deletes an field with the specified `id`.
 
 | Parameter | Type    | Required | Description                                          |
 | --------- | ------- | -------- | ---------------------------------------------------- |
-| id        | integer | true     | The unique id of the field that needs to be deleted. |
+| id        | integer | true     | The unique ID of the field that needs to be deleted. |
 
 ### Returns
 

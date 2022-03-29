@@ -1,5 +1,11 @@
 # Notes
 
+Just like field values, notes are used to keep track of state on an entity. They could be
+notes manually taken from due diligence, a meeting, or a call. Or, notes could be used to
+store logged activity from a prospect's visit to your website.
+
+## The Note Resource
+
 > Example Response
 
 ```json
@@ -16,12 +22,6 @@
   "created_at": "2017-03-28 00:38:41 -0700"
 }
 ```
-
-Just like field values, notes are used to keep track of state on an entity. They could be
-notes manually taken from due diligence, a meeting, or a call. Or, notes could be used to
-store logged activity from a prospect's visit to your website.
-
-## The Note Resource
 
 A note object contains `content`, which is a string containing the note body. In
 addition, a note can be associated with multiple people, organizations, or opportunities.
@@ -133,7 +133,7 @@ Gets the details for a specific note given the existing note id.
 
 ### Returns
 
-The details of the note resource corresponding to the note id specified in the path
+The details of the note resource corresponding to the note ID specified in the path
 parameter. An appropriate error is returned if an invalid note is supplied.
 
 ## Create a New Note
@@ -155,7 +155,7 @@ curl -X POST "https://api.affinity.co/notes" \
   "creator_id": 860197,
   "person_ids": [38706, 89734],
   "is_meeting": false,
-  "mentioned_person_ids": [49817, 78624],
+  "mentioned_person_ids": null,
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id": null,
@@ -185,8 +185,8 @@ account that owns the Gmail mesage.) A note associated with an email cannot have
 | organization_ids | integer[] | false    | An array of unique identifiers of organization objects that are associated with the new note.                                                                                                   |
 | opportunity_ids  | integer[] | false    | An array of unique identifiers of opportunity objects that are associated with the new note.                                                                                                    |
 | content          | string    | false    | The string containing the content of the new note.                                                                                                                                              |
-| gmail_id         | string    | false    | The id of a Gmail message to save as the content of the note.                                                                                                                                   |
-| creator_id       | integer   | false    | The id of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.       |
+| gmail_id         | string    | false    | The ID of a Gmail message to save as the content of the note.                                                                                                                                   |
+| creator_id       | integer   | false    | The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.       |
 | created_at       | datetime  | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time. |
 
 Note that either `content` or `gmail_id` must be specified.
@@ -236,7 +236,7 @@ Updates the content of an existing note with `note_id` with the supplied `conten
 
 | Parameter | Type    | Required | Description                                         |
 | --------- | ------- | -------- | --------------------------------------------------- |
-| note_id   | integer | true     | The unique id of the note that needs to be updated. |
+| note_id   | integer | true     | The unique ID of the note that needs to be updated. |
 
 ### Payload Parameters
 
@@ -277,7 +277,7 @@ Deletes a note with a specified `note_id`.
 
 | Parameter | Type    | Required | Description                                         |
 | --------- | ------- | -------- | --------------------------------------------------- |
-| note_id   | integer | true     | The unique id of the note that needs to be deleted. |
+| note_id   | integer | true     | The unique ID of the note that needs to be deleted. |
 
 ### Returns
 

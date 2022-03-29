@@ -8,7 +8,7 @@ support@affinity.co if you are interested in getting access.
 ## The Interactions Resource
 
 Different types of interactions have different interaction resources.
-Note the combination of id and type for an interaction is unique.
+Note the combination of ID and type for an interaction is unique.
 
 > Example Response
 
@@ -123,7 +123,7 @@ Note the combination of id and type for an interaction is unique.
 
 | Attribute         | Type      | Description
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id                | integer   | The identifier of the interaction. Note the id is not unique across different types of interactions.                                              |
+| id                | integer   | The identifier of the interaction. Note the ID is not unique across different types of interactions.                                              |
 | manual_creator_id | integer   | The unique identifier of the person object who created the interaction.                                                                           |
 | persons           | object[]  | The list of persons who are associated with the interaction.                                                                                      |
 | type              | integer   | The type of interaction. This can be one of many values, as described in the table below.                                                         |
@@ -133,7 +133,7 @@ Note the combination of id and type for an interaction is unique.
 | start_time        | datetime  | The time when event starts.                                                                                                                       |
 | end_time          | datetime  | The time when event ends.                                                                                                                         |
 | title             | string    | The title of event.                                                                                                                               |
-| notes             | integer[] | The list of note ids that are associated with the event.                                                                                          |
+| notes             | integer[] | The list of note IDs that are associated with the event.                                                                                          |
 | direction         | integer   | The direction of the interaction. Only relevant for `type == 2` and `type == 3`. This can be one of two values, as described in the table below.  |
 
 ### Interactions Types
@@ -325,7 +325,7 @@ curl "https://api.affinity.co/interactions/15326?type=2" -u :$APIKEY
 
 `GET /interactions/{id}`
 
-Gets the details for a specific interaction given the existing id and type.
+Gets the details for a specific interaction given the existing ID and type.
 
 ### Path Parameters
 
@@ -336,8 +336,8 @@ Gets the details for a specific interaction given the existing id and type.
 
 ### Returns
 
-The details of the interaction corresponding to the id and type specified in the path
-parameter. An appropriate error is returned if an invalid id and type are supplied.
+The details of the interaction corresponding to the ID and type specified in the path
+parameter. An appropriate error is returned if an invalid ID and type are supplied.
 
 ## Create a New Interaction
 
@@ -403,7 +403,7 @@ Creates a new interaction with the supplied parameters.
 | Parameter  | Type      | Required | Description                                                                                                                                 |
 | ---------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | type       | integer   | true     | The type of interaction to be created.                                                                                                      |
-| person_ids | integer[] | true     | The list of person ids that are associated with the event.                                                                                  |
+| person_ids | integer[] | true     | The list of person IDs that are associated with the event.                                                                                  |
 | content    | string    | true     | The string containing the content of the new interaction.                                                                                   |
 | direction  | integer   | false    | The direction of the chat message to be created. Only applies to chat messages (`type == 2`).                                               |
 | date       | string    | true     | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred.   |
@@ -485,7 +485,7 @@ Updates the content of an existing interaction with the supplied parameters.
 
 | Parameter   | Type    | Required | Description                                             |
 | ----------- | ------- | -------- | ------------------------------------------------------- |
-| id          | integer | true     | The id of the interaction to be updated.                |
+| id          | integer | true     | The ID of the interaction to be updated.                |
 
 
 ### Payload Parameters
@@ -493,7 +493,7 @@ Updates the content of an existing interaction with the supplied parameters.
 | Parameter     | Type      | Required | Description                                                                                                                                 |
 | ------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | type          | integer   | true     | The type of interaction to be updated.                                                                                                      |
-| person_ids    | integer[] | true     | The list of person ids that are associated with the event.                                                                                  |
+| person_ids    | integer[] | true     | The list of person IDs that are associated with the event.                                                                                  |
 | content       | string    | false    | The string containing the content of the interaction.                                                                                       |
 | date          | string    | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred.   |
 
@@ -525,7 +525,7 @@ Deletes the interaction with the specified `id`.
 
 | Parameter   | Type    | Required | Description                                             |
 | ----------- | ------- | -------- | ------------------------------------------------------- |
-| id          | integer | true     | The unique id of the interaction to be deleted.         |
+| id          | integer | true     | The unique ID of the interaction to be deleted.         |
 | type        | integer | true     | The type of interaction to be deleted.                  |
 
 ### Returns

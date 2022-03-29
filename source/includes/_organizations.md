@@ -126,7 +126,7 @@ the [`GET /organizations/{organization_id}`](#get-a-specific-organization) endpo
 | Attribute         | Type        | Description                                                                                                                                                                                                                                                                             |
 | ----------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id                | integer     | The unique identifier of the organization object.                                                                                                                                                                                                                                       |
-| name              | integer     | The name of the organization (see below).                                                                                                                                                                                                                                               |
+| name              | string      | The name of the organization.                                                                                                                                                                                                                                               |
 | domain            | string      | The website name of the organization. This is used by Affinity to automatically associate person objects with an organization.                                                                                                                                                          |
 | domains           | string[]    | An array of all the websites associated with the organization. These are also used to automatically associate person objects with an organization.                                                                                                                                      |
 | person_ids        | integer[]   | An array of unique identifiers of people that are associated with the organization                                                                                                                                                                                                      |
@@ -237,6 +237,11 @@ an array of all the organization resources that match the search criteria.
 `next_page_token` includes a token to be sent along with the next request as the
 `page_token` parameter to fetch the next page of results. When `with_interaction_dates` is
 passed in the returned resources will have `interaction_dates` fields.
+
+<aside class="notice">
+  <h6>Note</h6>
+  <p>When <span class="bold">only</span> a search term is supplied, Affinity will search organization resources that are also outside of your instance.</p>
+</aside>
 
 ## Get a Specific Organization
 
@@ -375,7 +380,7 @@ Updates an existing organization with `organization_id` with the supplied parame
 
 | Parameter       | Type    | Required | Description                                      |
 | --------------- | ------- | -------- | ------------------------------------------------ |
-| organization_id | integer | true     | The unique id of the organization to be updated. |
+| organization_id | integer | true     | The unique ID of the organization to be updated. |
 
 ### Payload Parameters
 
@@ -421,7 +426,7 @@ Deletes an organization with a specified `organization_id`.
 
 | Parameter       | Type    | Required | Description                                                 |
 | --------------- | ------- | -------- | ----------------------------------------------------------- |
-| organization_id | integer | true     | The unique id of the organization that needs to be deleted. |
+| organization_id | integer | true     | The unique ID of the organization that needs to be deleted. |
 
 ### Returns
 
