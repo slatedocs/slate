@@ -228,9 +228,12 @@ includes:
   - aws/s3
   - aws/buckets
   - aws/objects
+  - aws/networking
   - aws/vpcs
   - aws/subnetworks
   - aws/internetgateways
+  - aws/elastic_ips
+  - aws/cidrs
 
 search: true
 ---
