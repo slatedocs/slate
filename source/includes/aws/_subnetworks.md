@@ -1,6 +1,6 @@
 ###Subnetworks
 
-View and manage subnetworks.
+Subnets are a range of IP addresses within your VPC. You can use a public subnet for resources that that will be connected to the internet, and a private subnet for resources that won't be. The CIDR block of a subnet can be the same as the CIDR block for the VPC (for a single subnet in the VPC), or a subset of the CIDR block for the VPC (to create multiple subnets in the VPC). The allowed block size is between a /28 netmask and /16 netmask. If you create more than one subnet in a VPC, the CIDR blocks of the subnets cannot overlap. Each subnet must be associated with a route table, which specifies the allowed routes for outbound traffic leaving the subnet. Every subnet that you create is automatically associated with the main route table for the VPC. 
 
 <!-------------------- LIST SUBNETWORKS -------------------->
 
@@ -67,6 +67,8 @@ Retrieve a list of all subnets in a given [environment](#administration-environm
 
 <!-------------------- RETRIEVE A SUBNETWORK -------------------->
 
+#### Retrieve a Subnet
+
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
@@ -101,6 +103,7 @@ curl -X GET \
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks/:id</code>
 
 Retrieve a subnetwork in a given [environment](#administration-environments).
+
 | Attributes                                         | &nbsp;                                                                                                                          |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `name`<br/>_string_                                | The name of the subnet. (ID if not set)                                                                                         |
