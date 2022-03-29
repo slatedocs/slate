@@ -1,10 +1,10 @@
-### CIDRs
+### CIDR Blocks
 
 A Classless Inter-Domain Routing (CIDR) block has to be associated to a VPC. Therefore, you need to provide the VPC ID in order to fetch the CIDR blocks.
 
-<!-------------------- LIST CIDRs BY VPC -------------------->
+<!-------------------- LIST CIDR BLOCKS BY VPC -------------------->
 
-#### Get CIDRs by VPC
+#### Get CIDR Blocks by VPC
 
 ```shell
 curl -X GET \
