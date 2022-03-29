@@ -141,7 +141,7 @@ An array of all the fields requested.
 curl -X POST "https://api.affinity.co/fields" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
-  -d '{"name": "[Deals] Amount", "list_id": 11, "entity_type": 1, "value_type": 3, "allows_multiple": false}'
+  -d '{"name": "[Deals] Amount", "list_id": 11, "entity_type": 1, "value_type": 3, "allows_multiple": false, "is_list_specific": true}'
 ```
 
 > Example Response
