@@ -201,8 +201,8 @@ Required | &nbsp;
 ---------- | -----
 `operation`<br/>*string* | The type of operation to execute, in this case `upload`.
 `entityType`<br/>*string* | The entityType, in this case `objects`.
-`serviceConnectionId`<br/>*string* | The id tied to the related service connection.
-`environmentId`<br/>*string* | The id tied to the related environment.
+`serviceConnectionId`<br/>*string* | The ID tied to the related service connection.
+`environmentId`<br/>*string* | The ID tied to the related environment.
 `bucketName`<br/>*string* | The name of the bucket to upload the file to.
 `regionName`<br/>*string* | The name of the region to upload the file to.
 `:fileName`<br/>*long* | Key should be the name of the file and value should be the size of the file in bytes.
@@ -361,7 +361,7 @@ Add a folder in amazon S3.
 
 | Optional Query Parameters  | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `prefix` <br/>*string*       | The folder path to create the folder in. If ommited, a folder will be created in the root of the bucket. |
+| `prefix` <br/>*string*       | The folder path to create the folder in. If omitted, a folder will be created in the root of the bucket. |
 
 <!-------------------- RENAME FOLDER -------------------->
 
