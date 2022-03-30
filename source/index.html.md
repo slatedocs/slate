@@ -4626,13 +4626,17 @@ const body = { channel: "coindcx" };
 const payload = Buffer.from(JSON.stringify(body)).toString();
 const signature = crypto.createHmac('sha256', secret).update(payload).digest('hex')
 
-//Join channel
-socket.emit('join', {
-  'channelName': "coindcx",
-  'authSignature': signature,
-  'apiKey' : key
-});
 
+
+//Listen to connect event
+socket.on("connect", () => {
+ //Join channel
+  socket.emit('join', {
+    'channelName': "coindcx",
+    'authSignature': signature,
+    'apiKey' : key
+  });
+});
 
 //Listen update on eventName
 socket.on("eventName", (response) => {
