@@ -235,7 +235,7 @@ Required Query Parameters | &nbsp;
 ---- | -----------
 `id`<br/>*string* | The ID of the object to download, which is of the form ":regionName/:bucketName/:objectName".
 `entityType`<br/>*string* | The type of entity to download. In this case `objects`.
-`environmentId`<br/>*string* | The id of environment which owns the object.
+`environmentId`<br/>*string* | The ID of environment which owns the object.
 
 
 <!-------------------- DELETE AN OBJECT -------------------->
