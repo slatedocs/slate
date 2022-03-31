@@ -36,7 +36,7 @@ require 'asana'
 The Asana API is a <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank" rel="noopener noreferrer">REST</a>ful
 interface, providing programmatic access to much of the data in the system. It provides predictable URLs for accessing
 resources, and uses built-in HTTP features to receive commands and return responses. This makes it easy to communicate
-with from a wide variety of environments, from command-line utilities to gadgets to the browser URL bar itself.
+from a wide variety of environments: command-line utilities, gadgets, and even the browser URL bar itself.
 </span>
 
 The API accepts <a href="http://json.org/" target="_blank" rel="noopener noreferrer">JSON</a> or form-encoded content in requests and returns
