@@ -4418,11 +4418,6 @@ const socket = io.connect(socketEndpoint, {
   origin: '*',
 });
 
-//Join Channel
-socket.emit('join', {
-  'channelName': "channelName",
-});
-
 //Listen update on channelName
 socket.on('eventName', (response) => {
   console.log(response.data);
@@ -4433,6 +4428,10 @@ socket.connect();
 // client-side
 socket.on("connect", () => {
   console.log(socket.id,'coindcx'); // x8WIv7-mJelg7on_ALbx
+   //Join Channel
+  socket.emit('join', {
+    'channelName': "channelName",
+  });
 });
 
 // leave a channel
