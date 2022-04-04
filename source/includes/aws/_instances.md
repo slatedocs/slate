@@ -228,8 +228,13 @@ curl -X POST \
     "iops": 3000,
     "throughput": 250
   }],
-  "vpcId" : "vpc-0b23fed563eebe635",
-  "subnetId" : "subnet-0d4d9d813e763d403"
+  "vpcId": "vpc-0b23fed563eebe635",
+  "subnetId": "subnet-0d4d9d813e763d403",
+  "volumesToAttach": [{
+    "volumeId": "vol-1",
+    "device": "/dev/sdg",
+    "availabilityZone": "us-east-1a"
+  }]
 }
 ```
 
@@ -258,7 +263,8 @@ Create a new instance in a given [environment](#administration-environments).
 | `maxCount`<br/>*integer*                | The maximum number of instances to create. Cannot be greater than 20.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `minCount`<br/>*integer*                | The minimum number of instances to create. Should be greater than 1.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `sshKey.keyName`<br/>*string*           | The name of the SSH key to be used to connect to this instance via SSH.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `blockDeviceMappings`<br/>*Array*       | Volumes to attached to the instance on launch. To be left empty if the default root volume should be used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `blockDeviceMappings`<br/>*Array*       | Volumes to attached to the instance on launch. To be left empty if the default root volume should be used.  
+| `volumesToAttach`<br/>*Array*       | Volumes to attached to the instance after it is launched. Only volumes in the same availability zone as the subnet can be attached.      
 
 
 | Optional                                                | &nbsp;                                                                                                                                                             |
