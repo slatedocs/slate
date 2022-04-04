@@ -233,7 +233,6 @@ curl -X POST \
   "volumesToAttach": [{
     "volumeId": "vol-1",
     "device": "/dev/sdg",
-    "availabilityZone": "us-east-1a"
   }]
 }
 ```
