@@ -600,7 +600,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
 `invoiceId`<br/>*string* | The human readable id.
-`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
 `createdDate`<br/>*date* | The created date of the invoice.
 `draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
 `issuedDate`<br/>*date* | The date the invoice was issued.
@@ -1280,7 +1280,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
 `invoiceId`<br/>*string* | The human readable id.
-`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
 `createdDate`<br/>*date* | The created date of the invoice.
 `draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
 `issuedDate`<br/>*date* | The date the invoice was issued.
@@ -1380,8 +1380,8 @@ The format of the response is a CSV with `,` used as the delimiter.
 
 ```csv
 organization,custom_field_1,custom_field_2,category,sku,usage,unit,currency,total_before_tax,tax_code,total_tax,tax_name1,tax_amount1,tax_name2,tax_amount2,invoice_number,status,due_date,credit_card_transaction_id,billing_start_date,billing_end_date,
-AcmeCorp,null,null,Networking,BANDWIDTH,0.0043,GIGABYTE,USD,$0.00,SW056003,$0.00,QUEBEC QST/TVQ,$0.00,CANADA GST/TPS,$0.00,NFROFNGWHU,DRAFT,null,null,9/20/21,10/20/21,
-AcmeCorp,null,null,Compute,CCM-1M02,295.935,GIGABYTE,USD,$21.90,SW056003,$3.28,QUEBEC QST/TVQ,$2.18,CANADA GST/TPS,$1.10,NFROFNGWHU,DRAFT,null,null,9/20/21,10/20/21,%         
+AcmeCorp,null,null,Networking,BANDWIDTH,0.0043,GIGABYTE,USD,$0.00,SW056003,$0.00,QUEBEC QST/TVQ,$0.00,CANADA GST/TPS,$0.00,NFROFNGWHU,IN_REVIEW,null,null,9/20/21,10/20/21,
+AcmeCorp,null,null,Compute,CCM-1M02,295.935,GIGABYTE,USD,$21.90,SW056003,$3.28,QUEBEC QST/TVQ,$2.18,CANADA GST/TPS,$1.10,NFROFNGWHU,IN_REVIEW,null,null,9/20/21,10/20/21,%         
 ```
 
 **Query Parameters**
@@ -1407,7 +1407,7 @@ Report Attributes | &nbsp;
 `tax_name1`<br/>*String* | The name of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax name<b>.
 `tax_amount1`<br/>*String* | The amount of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax amount<b>.
 `invoice_number`<br/>*String* | The human-readable number of the invoice.
-`status`<br/>*String* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*String* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
 `due_date`<br/>*String* | The date the invoice is due.
 `credit_card_transaction_id`<br/>*String* | The confirmation number returned from the payment provider for the invoice.
 `billing_start_date`<br/>*String* | The billing start date of the invoice.
@@ -1418,7 +1418,7 @@ Report Attributes | &nbsp;
 
 `PUT /invoices/:invoice_id/approve`
 
-Manually approve an invoice in the 'DRAFT' state and issue the invoice to the customer by email. If the invoice is already in the 'ISSUED' state, an empty response will be returned and an email will not be sent. If the invoice is in any other state, an error will be thrown.
+Manually approve an invoice in the 'IN_REVIEW' state and issue the invoice to the customer by email. If the invoice is already in the 'ISSUED' state, an empty response will be returned and an email will not be sent. If the invoice is in any other state, an error will be thrown.
 
 ```shell
 # Approve a draft invoice
@@ -2039,7 +2039,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
 `invoiceId`<br/>*string* | The human readable id.
-`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
 `createdDate`<br/>*date* | The created date of the invoice.
 `draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
 `issuedDate`<br/>*date* | The date the invoice was issued.
