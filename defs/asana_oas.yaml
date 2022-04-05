@@ -900,19 +900,15 @@ tags:
 
 
        * Attachment - deleted, undeleted
-       * Column Recipe - added, deleted, undeleted
        * Portfolio - added, deleted, removed
        * Project - added, changed, deleted, removed, undeleted
        * Project Membership - added, removed
-       * Project Membership Recipe - added, removed
-       * Project Recipe - added, deleted, removed
        * Project Template Configuration - added, deleted, removed
        * Project Template Configuration Membership - added, removed
        * Section - added, changed, deleted, undeleted
        * Story - added, removed, undeleted
        * Tag - added, changed, deleted, undeleted
        * Task - added, changed, deleted, removed, undeleted
-       * Task Recipe - added, deleted, removed
        * Team - added, changed, deleted
        * Team Membership - added, removed
        * Workspace - added, removed, changed
@@ -3079,7 +3075,7 @@ components:
                 portfolio has no start date. This takes a date with `YYYY-MM-DD`
                 format. *Note: `due_on` must be present in the
                 request when setting or unsetting the `start_on` parameter.
-                Additionally, start_on and due_on cannot be the same date.*
+                Additionally, `start_on` and `due_on` cannot be the same date.*
               type: string
               format: date
               nullable: true
@@ -3219,7 +3215,7 @@ components:
               example: calendar
             due_date:
               description: >-
-                *Deprecated: new integrations should prefer the due_on field.*
+                *Deprecated: new integrations should prefer the `due_on` field.*
               type: string
               nullable: true
               format: date-time
@@ -3280,7 +3276,7 @@ components:
                 project has no start date. This takes a date with `YYYY-MM-DD`
                 format. *Note: `due_on` or `due_at` must be present in the
                 request when setting or unsetting the `start_on` parameter.
-                Additionally, start_on and due_on cannot be the same date.*
+                Additionally, `start_on` and `due_on` cannot be the same date.*
               type: string
               nullable: true
               format: date
@@ -4802,7 +4798,7 @@ components:
               description: >-
                 The localized date on which this task is due, or null if the task
                 has no due date. This takes a date with `YYYY-MM-DD` format and
-                should not be used together with due_at.
+                should not be used together with `due_at`.
               type: string
               format: date
               example: '2019-09-15'
@@ -4955,10 +4951,23 @@ components:
                 - section
                 - approval
               example: default_task
+            start_at:
+              description: >-
+                Date and time on which work begins for the task, or null if the task
+                has no start time. This takes an ISO 8601 date string in UTC
+                and should not be used together with `start_on`.
+
+                *Note: `due_at` must be present in the request when
+                setting or unsetting the `start_at` parameter.*
+              type: string
+              nullable: true
+              format: date
+              example: '2019-09-14T02:06:58.147Z'
             start_on:
               description: >-
                 The day on which work begins for the task , or null if the task
-                has no start date. This takes a date with `YYYY-MM-DD` format.
+                has no start date. This takes a date with `YYYY-MM-DD` format and
+                should not be used together with `start_at`.
 
                 *Note: `due_on` or `due_at` must be present in the request when
                 setting or unsetting the `start_on` parameter.*
