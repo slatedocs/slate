@@ -8460,7 +8460,7 @@ Returns the full record of the newly created project.
 |»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
-|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the `due_on` field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
@@ -8469,7 +8469,7 @@ Returns the full record of the newly created project.
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -9155,7 +9155,7 @@ Returns the complete updated project record.
 |»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
-|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the `due_on` field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
@@ -9164,7 +9164,7 @@ Returns the complete updated project record.
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -10054,7 +10054,7 @@ Returns the full record of the newly created project.
 |»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
-|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the `due_on` field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
@@ -10063,7 +10063,7 @@ Returns the full record of the newly created project.
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -10568,7 +10568,7 @@ Returns the full record of the newly created project.
 |»»» title<span class="param-type"> string</span>|The title of the status update.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
-|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|»» due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the `due_on` field.*|
 |»» due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers<span class="param-type"> string</span>|*Create-only*. Comma separated string of users. Followers are a subset of members who have opted in to receive "tasks added" notifications for a project.|
 |»» html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
@@ -10577,7 +10577,7 @@ Returns the full record of the newly created project.
 |»» notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
 |»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -17560,6 +17560,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
       "12345"
     ],
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -17649,6 +17650,7 @@ $result = $client->tasks->createTask(array('field' => 'value', 'field' => 'value
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -17777,7 +17779,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with `due_at`.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
@@ -17789,7 +17791,8 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with `start_on`.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format and should not be used together with `start_at`.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
@@ -17806,7 +17809,10 @@ The external field allows you to store app-specific metadata on tasks, including
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 
-**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
+**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with `start_on`.
+*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
+
+**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format and should not be used together with `start_at`.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
 
 #### Enumerated Values
@@ -17981,6 +17987,7 @@ $result = $client->tasks->getTask($task_gid, array('param' => 'value', 'param' =
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -18209,6 +18216,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
       "12345"
     ],
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -18298,6 +18306,7 @@ $result = $client->tasks->updateTask($task_gid, array('field' => 'value', 'field
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -18428,7 +18437,7 @@ Returns the complete updated task record.
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with `due_at`.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
@@ -18440,7 +18449,8 @@ Returns the complete updated task record.
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with `start_on`.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format and should not be used together with `start_at`.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
@@ -18458,7 +18468,10 @@ The external field allows you to store app-specific metadata on tasks, including
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 
-**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
+**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with `start_on`.
+*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
+
+**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format and should not be used together with `start_at`.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
 
 #### Enumerated Values
@@ -19409,6 +19422,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
       "12345"
     ],
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "tags": [
       "12345"
@@ -19498,6 +19512,7 @@ $result = $client->tasks->createSubtaskForTask($task_gid, array('field' => 'valu
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -19620,7 +19635,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |»» custom_fields<span class="param-type"> object</span>|An object where each key is a Custom Field gid and each value is an enum gid, string, or number.|
 |»» due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with `due_at`.|
 |»» external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).|
 |»»» data<span class="param-type"> string</span>|none|
 |»»» gid<span class="param-type"> string</span>|none|
@@ -19632,7 +19647,8 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» parent<span class="param-type"> string¦null</span>|Gid of a task.|
 |»» projects<span class="param-type"> [string]</span>|*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.|
 |»» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with `start_on`.|
+|»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format and should not be used together with `start_at`.|
 |»» tags<span class="param-type"> [string]</span>|*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» workspace<span class="param-type"> string</span>|Gid of a workspace.|
 |/task_gid<span class="param-type"> string</span><div class="param-required">required</div>|The task to operate on.|
@@ -19650,7 +19666,10 @@ The external field allows you to store app-specific metadata on tasks, including
 **resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
 The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
 
-**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
+**start_at**: Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with `start_on`.
+*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*
+
+**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format and should not be used together with `start_at`.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
 
 #### Enumerated Values
@@ -19841,6 +19860,7 @@ $result = $client->tasks->setParentForTask($task_gid, array('field' => 'value', 
     "num_likes": 5,
     "num_subtasks": 3,
     "resource_subtype": "default_task",
+    "start_at": "2019-09-14T02:06:58.147Z",
     "start_on": "2019-09-14",
     "assignee": {
       "gid": "12345",
@@ -24230,19 +24250,15 @@ Webhooks keep track of the last time that delivery succeeded, and this time is u
 This is not an exhaustive list, but should cover the most common use cases.
 
  * Attachment - deleted, undeleted
- * Column Recipe - added, deleted, undeleted
  * Portfolio - added, deleted, removed
  * Project - added, changed, deleted, removed, undeleted
  * Project Membership - added, removed
- * Project Membership Recipe - added, removed
- * Project Recipe - added, deleted, removed
  * Project Template Configuration - added, deleted, removed
  * Project Template Configuration Membership - added, removed
  * Section - added, changed, deleted, undeleted
  * Story - added, removed, undeleted
  * Tag - added, changed, deleted, undeleted
  * Task - added, changed, deleted, removed, undeleted
- * Task Recipe - added, deleted, removed
  * Team - added, changed, deleted
  * Team Membership - added, removed
  * Workspace - added, removed, changed
@@ -27714,7 +27730,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
 |public<span class="param-type"> boolean</span>|True if the portfolio is public to its workspace members.|
-|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this portfolio begins, or null if the portfolio has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this portfolio begins, or null if the portfolio has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization that the portfolio belongs to.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -28253,7 +28269,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |default_view<span class="param-type"> string</span>|The default view (list, board, calendar, or timeline) of a project.|
-|due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the due_on field.*|
+|due_date<span class="param-type"> string(date-time)¦null</span>|*Deprecated: new integrations should prefer the `due_on` field.*|
 |due_on<span class="param-type"> string(date-time)¦null</span>|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |html_notes<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The notes of the project with formatting as HTML.|
 |is_template<span class="param-type"> boolean</span>|[Opt In](/docs/input-output-options). *Deprecated - please use a project template endpoint instead (more in [this forum post](https://forum.asana.com/t/a-new-api-for-project-templates/156432)).* Determines if the project is a template.|
@@ -28265,7 +28281,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |name<span class="param-type"> string</span>|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |notes<span class="param-type"> string</span>|Free-form textual information associated with the project (ie., its description).|
 |public<span class="param-type"> boolean</span>|True if the project is public to its team.|
-|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, start_on and due_on cannot be the same date.*|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
 |workspace<span class="param-type"> object</span>|*Create-only*. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
@@ -29619,6 +29635,7 @@ A response object returned from the task count endpoint.
   "num_likes": 5,
   "num_subtasks": 3,
   "resource_subtype": "default_task",
+  "start_at": "2019-09-14T02:06:58.147Z",
   "start_on": "2019-09-14",
   "assignee": {
     "gid": "12345",
@@ -29743,7 +29760,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |due_at<span class="param-type"> string(date)¦null</span>|The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.|
-|due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|due_on<span class="param-type"> string(date)¦null</span>|The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with `due_at`.|
 |external<span class="param-type"> object</span>|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
 |» data<span class="param-type"> string</span>|none|
 |» gid<span class="param-type"> string</span>|none|
@@ -29779,7 +29796,8 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_likes<span class="param-type"> integer</span>|The number of users who have liked this task.|
 |num_subtasks<span class="param-type"> integer</span>|[Opt In](/docs/input-output-options). The number of subtasks on this task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.|
-|start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|start_at<span class="param-type"> string(date)¦null</span>|Date and time on which work begins for the task, or null if the task has no start time. This takes an ISO 8601 date string in UTC and should not be used together with `start_on`.<br>*Note: `due_at` must be present in the request when setting or unsetting the `start_at` parameter.*|
+|start_on<span class="param-type"> string(date)¦null</span>|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format and should not be used together with `start_at`.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |assignee<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
