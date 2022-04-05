@@ -1,23 +1,257 @@
 # Queries
 ## complexityInfo \([ComplexityInfo](#complexityinfo)\)
-The complexity information for the current query
+```graphql
+# the basic structure of the complexityInfo query
+{
+  complexityInfo {
+    score
+    maximum
+  }
+}
+```
+
+```graphql
+# Example of retriving complexity information from the employee query
+{
+  employee(id: 20) {
+     email
+     lastName
+  }
+  complexityInfo {
+    score
+    maximum
+  }
+}
+```
+
+The complexity information for the current query. By itself it doesn't tell
+us anything. This really comes in handy when paired with other queries.
 
 ## contactRelationships \([\[String\]](#string)\)
+```graphql
+{
+  contactRelationships
+}
+```
 The list of valid options for the 'Contact' custom field type
 
 ## countries \([\[Country\]](#country)\)
+
+```graphql
+# Request all country information for North America
+{
+  countries(countryCodes: ["USA", "CAN", "MEX"]) {
+    countryCode
+    name
+    states {
+      name
+      stateCode
+      country {
+        name
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request all country information for all countries
+{
+  countries {
+    countryCode
+    name
+    states {
+      name
+      stateCode
+      country {
+        name
+      }
+    }
+  }
+}
+```
 The list of countries
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 countryCodes | [\[String\]](#string) |  |
 ## customField \([CustomField](#customfield)\)
-A custom field
+```graphql
+# Request custom field information for a custom field
+{
+  customField(id: "system.pronouns") {
+    id
+    name
+    fieldType
+    multipleChoiceOptions
+    customFieldGroup {
+      id
+      name
+    }
+    teamCategory {
+      id
+      name
+    }
+    createdAt
+    updatedAt
+  }
+}
+```
+Information about a custom field. The argument must be the permanent field id of the custom field.
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 id | [ID](#id) |  |
 ## customFields \([CustomFieldConnection](#customfieldconnection)\)
+```graphql
+# Request the first 5 custom fields after the cursor "NQ=="
+{
+  customFields(first: 5, after: "NQ==") {
+    edges {
+      node {
+        name
+        id
+        teamCategory {
+          id
+          name
+        }
+        fieldType
+        customFieldGroup {
+          id
+          name
+        }
+        multipleChoiceOptions
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request the first 5 custom fields before the cursor "MTA="
+{
+  customFields(first: 5, before: "MTA=") {
+    edges {
+      node {
+        name
+        id
+        teamCategory {
+          id
+          name
+        }
+        fieldType
+        customFieldGroup {
+          id
+          name
+        }
+        multipleChoiceOptions
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request the first 10 custom fields with the field type 'text'
+{
+  customFields(first: 10, fieldTypes: [TEXT]) {
+    edges {
+      node {
+        name
+        id
+        teamCategory {
+          id
+          name
+        }
+        fieldType
+        customFieldGroup {
+          id
+          name
+        }
+        multipleChoiceOptions
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request the first 10 customFields in the list
+{
+  customFields(first: 10) {
+    edges {
+      node {
+        name
+        id
+        teamCategory {
+          id
+          name
+        }
+        fieldType
+        customFieldGroup {
+          id
+          name
+        }
+        multipleChoiceOptions
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request the last 10 customFields in the list
+{
+  customFields(last: 10) {
+    edges {
+      node {
+        name
+        id
+        teamCategory {
+          id
+          name
+        }
+        fieldType
+        customFieldGroup {
+          id
+          name
+        }
+        multipleChoiceOptions
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request custom fields with permanent field ids "department" and "location"
+{
+  customFields(first: 2, ids: ["department", "location"]) {
+    edges {
+      node {
+        name
+        id
+        teamCategory {
+          id
+          name
+        }
+        fieldType
+        customFieldGroup {
+          id
+          name
+        }
+        multipleChoiceOptions
+      }
+      cursor
+    }
+  }
+}
+```
+
 A collection of custom fields
 
 Argument | Type | Description | Required
@@ -29,12 +263,84 @@ first | [Int](#int) | Returns the first _n_ elements from the list. |
 ids | [\[ID\]](#id) |  |
 last | [Int](#int) | Returns the last _n_ elements from the list. |
 ## department \([Department](#department)\)
+```graphql
+{
+  department(id: 1) {
+    id
+    name
+    externalId
+  }
+}
+```
 A single department
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 id | [Int](#int) |  |
 ## departments \([DepartmentConnection](#departmentconnection)\)
+```graphql
+# Request for the first 5 departments after cursor "NQ=="
+{
+  departments(first: 5, after: "NQ==") {
+    edges {
+      node {
+       id
+       name
+       externalId
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for the first 5 departments before cursor "NQ=="
+{
+  departments(first: 5, before: "NQ==") {
+    edges {
+      node {
+       id
+       name
+       externalId
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 10 departments in the list
+{
+  departments(first: 10) {
+    edges {
+      node {
+       id
+       name
+       externalId
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for the last 10 departments in the list
+{
+  departments(last: 10) {
+    edges {
+      node {
+       id
+       name
+       externalId
+      }
+      cursor
+    }
+  }
+}
+```
 All departments
 
 Argument | Type | Description | Required
@@ -44,6 +350,73 @@ before | [String](#string) | Returns the elements in the list that come before t
 first | [Int](#int) | Returns the first _n_ elements from the list. |
 last | [Int](#int) | Returns the last _n_ elements from the list. |
 ## employee \([Employee](#employee)\)
+```graphql
+# Request for an employee
+{
+  employee(id: 5) {
+    about
+    createdAt
+    dateOfBirth
+    dateOfTermination
+    department {
+      id
+      name
+      externalId
+    }
+    documents {
+      id
+      file {
+        fileUrl
+        fileName
+        fileSize
+      }
+    }
+    email
+    employmentStatus
+    firstName
+    greenhouseRecruitingData {
+      applicationId
+    }
+    hrManager {
+      id
+      email
+    }
+    id
+    lastName
+    location {
+      id
+      name
+      address
+      externalId
+    }
+    manager {
+      id
+      email
+    }
+    middleName
+    otherCriteria {
+      id
+      name
+    }
+    personalEmail
+    phoneNumber
+    preferredFirstName
+    preferredLastName
+    profileImage {
+      fileUrl
+      fileName
+      fileSize
+    }
+    requiredFieldsCompletedAt
+    startDate
+    suffix
+    title
+    updatedAt
+    workCountryCode
+  }
+}
+
+```
 ```graphql
 # Request an employee but limit their customFieldValues to those of specific customFields.
 # The customFieldIds argument can be used when you are interested in only getting a specific
@@ -74,12 +447,18 @@ last | [Int](#int) | Returns the last _n_ elements from the list. |
       file {
         fileUrl
       }
+      status
       signatureRequestTemplate {
         publicName
+        counterSigner {
+          id
+          email
+        }
       }
     }
   }
 }
+
 
 ```
 An Onboarding employee record
@@ -88,11 +467,50 @@ Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 id | [Int](#int) |  |
 ## employees \([EmployeeConnection](#employeeconnection)\)
+
 ```graphql
-# Request only those employees that have title "Account Manager". For each employee that fits the criteria,
-# return their id and work email
+# Request employees after the cursor "NQ=="
 {
-  employees(first: 25, titleFilter: { titles: ["Account Manager"] }) {
+  employees(first: 25, after: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request employees before the cursor "MTM="
+{
+  employees(first: 25, before: "MTM=") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      nodes {
+        id
+        email
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request only those employees that were createed before 12-13-2021 and after 10-01-2021. For each employee that
+# fits that criteria, return their id and work email
+{
+  employees(first: 25, createdAt: {after: "2021-10-01T00:00:00+00:00", before: "2021-12-31T00:00:00+00:00" }) {
     pageInfo {
       hasNextPage
       endCursor
@@ -107,68 +525,6 @@ id | [Int](#int) |  |
 }
 
 ```
-
-```graphql
-# Request only those employees that have a department set (department is not null). For each employee that fits the criteria,
-# return their id and work email
-{
-  employees(first: 25, departmentFilter: { anyValue: true }) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        email
-      }
-    }
-  }
-}
-
-```
-
-```graphql
-# Request only those employees that lack a department (department is null). For each employee that fits the criteria,
-# return their id and work email
-{
-  employees(first: 25, departmentFilter: { noValue: true }) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        email
-      }
-    }
-  }
-}
-
-```
-
-```graphql
-# Request only those employees that have a startDate between 2017-03-25 and 2018-03-25.
-# These dates are exclusive (e.g. someone who started on 2017-03-25 or 2018-03-25 would not be included.
-{
-  employees(first: 25, startDateFilter: { dateFilter: { after: "2017-03-25", before: "2018-03-25" } }) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    edges {
-      node {
-        id
-        email
-        startDate
-      }
-    }
-  }
-}
-
-```
-
 ```graphql
 # Request only those employees that have a value (ANY value) set for the "favorite_food" Custom Field. For these employees, return
 # ALL of their customFieldValues.
@@ -232,7 +588,7 @@ id | [Int](#int) |  |
       node {
         id
         email
-    	}
+      }
     }
   }
 }
@@ -319,6 +675,319 @@ id | [Int](#int) |  |
 }
 
 ```
+
+```graphql
+# Request only those employees that have a dateOfBirth between 1989-12-31 and 2000-01-01.
+# These dates are exclusive (e.g. someone who was born on 1989-12-31 or 2000-01-01 would not be included.
+{
+  employees(first: 25, dateOfBirthFilter: { dateFilter: { after: "1989-12-31", before: "2000-01-01" } }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+        startDate
+      }
+    }
+  }
+}
+
+```
+
+```graphql
+# Request only those employees that have a department set (department is not null). For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, departmentFilter: { anyValue: true }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+```
+
+```graphql
+# Request only those employees that lack a department (department is null). For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, departmentFilter: { noValue: true }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+```
+
+```graphql
+# Request only those employees that are in specific departments. For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, departmentFilter: { departmentIds: [1, 3] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+```
+
+```graphql
+# Request only those employees that have specific emails. For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, emailFilter: { emails: ["john.doe@example.com"] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request only those employees that have specific employment statuses. For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, employmentStatusFilter: { employmentStatuses: ["Full-time", "Part-time"] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request the first 10 employees in the list, For each employee return their id and work email
+{
+  employees(first: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+
+```graphql
+# Request only those employees that have a specific hr manager or managers. For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, hrManagerFilter: { hrManagerIds: [1, 2] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request the last 10 employees in the list, For each employee return their id and work email
+{
+  employees(last: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request only those employees that are in a specific location or locations. For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, locationFilter: { locationIds: [1, 2] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request only those employees that have a specific manager or managers. For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, managerFilter: { managerIds: [1, 2] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request only those employees that have a specific personal email or emails. For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, personalEmailFilter: { personalEmails: ["john.doe@example.com", "jon.doe2@example.com"] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+```
+
+```graphql
+# Request only those employees that have a startDate between 2017-03-25 and 2018-03-25.
+# These dates are exclusive (e.g. someone who started on 2017-03-25 or 2018-03-25 would not be included.
+{
+  employees(first: 25, startDateFilter: { dateFilter: { after: "2017-03-25", before: "2018-03-25" } }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+        startDate
+      }
+    }
+  }
+}
+
+```
+
+```graphql
+# Request only those employees that have title "Account Manager". For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, titleFilter: { titles: ["Account Manager"] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+```
+
+```graphql
+# Request only those employees in a specific country or countries (using workCountryCode). For each employee that fits the criteria,
+# return their id and work email
+{
+  employees(first: 25, workCountryCodeFilter: { workCountryCodes: ["USA", "CAN"] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+```
+
+```graphql
+# Request only those employees that were updated before 12-13-2021 and after 10-01-2021. For each employee that
+# fits that criteria, return their id and work email
+{
+  employees(first: 25, updatedAt: {after: "2021-10-01T00:00:00+00:00", before: "2021-12-31T00:00:00+00:00" }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+```
 A collection of Onboarding employee records. The following arguments are depreacated and should be avoided as support for them will be dropped: dateOfBirth, departmentIds, emails, employmentStatuses, hrManagerIds, locationIds, managerIds, personalEmails, startDate, titles, and workCountryCodes. Each of these arguments has a newer, more powerful companion named *Filter. For example, departmentIds has been replaced by the argument departmentFilter - which allows for the specification of department IDs, but also allows for more flexibility (e.g. filtering by lack/presence of a given field - as opposed to filtering by specific values).
 
 Argument | Type | Description | Required
@@ -343,15 +1012,114 @@ updatedAt | [DateTimeFilter](#datetimefilter) | filter employees based on when t
 workCountryCodeFilter | [WorkCountryCodeFilter](#workcountrycodefilter) | filter employees by their work country code |
 
 ## employmentStatuses \([\[String\]](#string)\)
+
+```graphql
+{
+  employmentStatuses
+}
+```
 The list of valid options for Employment Status
 
 ## location \([Location](#location)\)
+```graphql
+{
+  location(id: 1) {
+    id
+    name
+    address
+    externalId
+  }
+}
+```
 A single location
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 id | [Int](#int) |  |
 ## locations \([LocationConnection](#locationconnection)\)
+```graphql
+# Request for first 10 locations after cursor "NQ=="
+{
+  locations(first: 10, after: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        address
+        externalId
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 10 locations before cursor "NQ=="
+{
+  locations(first: 10, before: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        address
+        externalId
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 10 locations in the list
+{
+  locations(first: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        address
+        externalId
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for last 10 locations in the list
+{
+  locations(last: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        address
+        externalId
+      }
+      cursor
+    }
+  }
+}
+```
 All locations
 
 Argument | Type | Description | Required
@@ -361,6 +1129,89 @@ before | [String](#string) | Returns the elements in the list that come before t
 first | [Int](#int) | Returns the first _n_ elements from the list. |
 last | [Int](#int) | Returns the last _n_ elements from the list. |
 ## otherCriteria \([OtherCriterionConnection](#othercriterionconnection)\)
+```graphql
+# Request for first 10 other criteria after cursor "NQ=="
+{
+  otherCriteria(first: 10, after: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 10 other criteria before cursor "NQ=="
+{
+  otherCriteria(first: 10, before: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 10 other criteria in the list
+{
+  otherCriteria(first: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for last 10 other criteria in the list
+{
+  otherCriteria(last: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      cursor
+    }
+  }
+}
+```
 All other criteria
 
 Argument | Type | Description | Required
@@ -370,21 +1221,133 @@ before | [String](#string) | Returns the elements in the list that come before t
 first | [Int](#int) | Returns the first _n_ elements from the list. |
 last | [Int](#int) | Returns the last _n_ elements from the list. |
 ## otherCriterion \([OtherCriterion](#othercriterion)\)
+```graphql
+{
+  otherCriterion(id: 1) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+```
 A single other criterion
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 id | [Int](#int) |  |
 ## rateLimit \([RateLimit](#ratelimit)\)
+```graphql
+{
+  rateLimit {
+    cost
+    limit
+    remaining
+    resetAt
+  }
+}
+```
 Information about your current API quota
 
 ## team \([Team](#team)\)
+```graphql
+{
+  team(id: 1) {
+    id
+    name
+    description
+    email
+    location
+    name
+    teamCategory {
+      id
+      name
+    }
+  }
+}
+
+```
 A single team
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 id | [Int](#int) |  |
 ## teamCategories \([TeamCategoryConnection](#teamcategoryconnection)\)
+```graphql
+# Request for first 5 team categories after cursor "NQ=="
+{
+  teamCategories(first: 5, after: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 5 team categories before cursor "NQ=="
+{
+  teamCategories(first: 5, before: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 5 team categories in the list
+{
+  teamCategories(first: 5) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for last 5 team categories in the list
+{
+  teamCategories(last: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+      }
+      cursor
+    }
+  }
+}
+```
 All team categories
 
 Argument | Type | Description | Required
@@ -394,12 +1357,127 @@ before | [String](#string) | Returns the elements in the list that come before t
 first | [Int](#int) | Returns the first _n_ elements from the list. |
 last | [Int](#int) | Returns the last _n_ elements from the list. |
 ## teamCategory \([TeamCategory](#teamcategory)\)
+```graphql
+{
+  teamCategory(id: 1) {
+    id
+    name
+  }
+}
+```
 A single team category
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 id | [Int](#int) |  |
 ## teams \([TeamConnection](#teamconnection)\)
+```graphql
+# Request for first 10 teams after cursor "NQ=="
+{
+  teams(first: 10, after: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        description
+        email
+        location
+        name
+        teamCategory {
+          id
+          name
+        }
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 10 teams before cursor "NQ=="
+{
+  teams(first: 10, before: "NQ==") {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        description
+        email
+        location
+        name
+        teamCategory {
+          id
+          name
+        }
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for first 10 teams in the list
+{
+  teams(first: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        description
+        email
+        location
+        name
+        teamCategory {
+          id
+          name
+        }
+      }
+      cursor
+    }
+  }
+}
+```
+
+```graphql
+# Request for last 10 teams in the list
+{
+  teams(last: 10) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        name
+        description
+        email
+        location
+        name
+        teamCategory {
+          id
+          name
+        }
+      }
+      cursor
+    }
+  }
+}
+```
 All teams
 
 Argument | Type | Description | Required
@@ -410,12 +1488,48 @@ first | [Int](#int) | Returns the first _n_ elements from the list. |
 last | [Int](#int) | Returns the last _n_ elements from the list. |
 # Mutations
 ## addDepartment \([AddDepartmentPayload](#adddepartmentpayload)\)
+```graphql
+# Create a Department
+mutation {
+  addDepartment(
+    addDepartmentInput: {
+      name: "Engineering"
+      externalId: "123"
+    }
+  ) {
+    department {
+      id
+      name
+      externalId
+    }
+  }
+}
+```
 Add a new Department
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 addDepartmentInput | [AddDepartmentInput!](#adddepartmentinput) |  | Required
 ## addLocation \([AddLocationPayload](#addlocationpayload)\)
+```graphql
+# Create a Location
+mutation {
+  addLocation(
+    addLocationInput: {
+      name: "Denver, CO"
+      address: "1801 Broadway, 13th Floor, Denver, CO 80202"
+      externalId: "123"
+    }
+  ) {
+    location {
+      id
+      name
+      address
+      externalId
+    }
+  }
+}
+```
 Add a new Location
 
 Argument | Type | Description | Required
@@ -601,18 +1715,52 @@ Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 pendingHireInfo | [AddPendingHireInput!](#addpendinghireinput) |  | Required
 ## deleteDepartment \([DeleteDepartmentPayload](#deletedepartmentpayload)\)
+```graphql
+# Delete a department by the department id
+mutation {
+  deleteDepartment(deleteDepartmentInput: {id: 1}) {
+    deletedDepartmentId
+  }
+}
+```
 Delete a Department
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 deleteDepartmentInput | [DeleteDepartmentInput!](#deletedepartmentinput) |  | Required
 ## deleteLocation \([DeleteLocationPayload](#deletelocationpayload)\)
+```graphql
+# Delete a location by the location id
+mutation {
+  deleteLocation(deleteLocationInput: {id: 1}) {
+    deletedLocationId
+  }
+}
+```
 Delete a Location
 
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 deleteLocationInput | [DeleteLocationInput!](#deletelocationinput) |  | Required
 ## updateDepartment \([UpdateDepartmentPayload](#updatedepartmentpayload)\)
+```graphql
+# Update a department's name. Must provide the id of an existing department
+mutation {
+  updateDepartment(
+    updateDepartmentInput: {
+      id: 1
+      name: "Data Science"
+      externalId: "123"
+    }
+  ) {
+    department {
+      id
+      name
+      externalId
+    }
+  }
+}
+```
 Update a Department
 
 Argument | Type | Description | Required
@@ -820,6 +1968,26 @@ Argument | Type | Description | Required
 employeeUpdates | [UpdateEmployee!](#updateemployee) |  | Required
 id | [ID!](#id) |  | Required
 ## updateLocation \([UpdateLocationPayload](#updatelocationpayload)\)
+```graphql
+# Update a location. Must provide the id of an existing location.
+mutation {
+  updateLocation(
+    updateLocationInput: {
+      id: 22
+      name: "San Francisco, CA"
+      address: "575 Market Street, Suite #1750, San Francisco, CA 94105"
+      externalId: "123"
+    }
+  ) {
+    location {
+      id
+      name
+      address
+      externaId
+    }
+  }
+}
+```
 Update a Location
 
 Argument | Type | Description | Required
@@ -1250,7 +2418,7 @@ The input object used to add a [Department](#department).
 Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 externalId | [String](#string) |  |
-name | [String](#string) |  |
+name | [String](#string) |  | Required
 
 ## AddLocationInput
 The input object used to add a [Location](#location).
@@ -1259,7 +2427,7 @@ Argument | Type | Description | Required
 --------- | ----------- | ----------- | -----------
 address | [String](#string) |  |
 externalId | [String](#string) |  |
-name | [String](#string) |  |
+name | [String](#string) |  | Required
 
 ## AddPendingHireInput
 Specify the properties of a new PendingHire
