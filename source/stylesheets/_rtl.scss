@@ -19,7 +19,7 @@ $default: auto;
 }
 
 .toc-h2 {
-    padding-#{right}: $nav-padding + $nav-indent;
+    padding-#{right}: $nav-padding + $nav-indent !important;
 }
 
 #nav-button {
