@@ -70,6 +70,7 @@ $default: auto;
     }
     &>ul,
     &>ol {
+        direction: rtl;
         padding-#{right}: $main-padding + 15px;
     }
     table {
