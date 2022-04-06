@@ -1,9 +1,9 @@
-# Interactions (BETA)
+# Interactions
 
 The interactions API allows you to manage interactions.
 
-This endpoint is currently only available to select customers. Please reach out to
-support@affinity.co if you are interested in getting access.
+**This endpoint is only available to Enterprise tier customers**. Please reach out to
+[support@affinity.co](support@affinity.co) if you are interested in getting access.
 
 ## The Interactions Resource
 
@@ -165,7 +165,7 @@ Note the combination of ID and type for an interaction is unique.
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/interactions?type=3&page_size=2&status=2" -u :$APIKEY
+curl "https://api.affinity.co/interactions?organization_id=1609909&type=3&start_time=2021-01-01T07:00:00Z&end_time=2021-02-25T21:00:00Z&" -u :$APIKEY
 ```
 
 > Example Response
@@ -248,7 +248,7 @@ Returns all interactions that meet the query parameters.
 | ------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | type               | integer | true     | The type of interactions to be retrieved.                                                                                                                           |
 | logging_type       | integer | false    | The logging type of interactions to be retrieved.                                                                                                                   |
-| person_id          | integer | false    | A unique identifier that represents a external Person that was involved in the interactions.                                                                        |
+| person_id          | integer | false    | A unique identifier that represents an external Person that was involved in the interactions.                                                                       |
 | organization_id    | integer | false    | A unique identifier that represents an Organization that was involved in the interactions.                                                                          |
 | opportunity_id     | integer | false    | A unique identifier that represents an Opportunity that was involved in the interactions.                                                                           |
 | internal_person_id | integer | false    | A unique identifier that represents an internal person that was involved in the interactions.                                                                       |
@@ -261,8 +261,9 @@ Returns all interactions that meet the query parameters.
 <aside class="notice">
   <h6>Notes</h6>
   <ul>
-    <li>Only one <code>person_id</code>, <code>organization_id</code> or <code>opportunity_id</code> can be specified per request.</li>
+    <li>One <code>person_id</code>, <code>organization_id</code> or <code>opportunity_id</code> must be specified per request.</li>
     <li>Only one <code>type</code> of interaction can be specified per request.</li>
+    <li>An error will be returned if an internal person is used in the <code>person_id</code> parameter.</li>
   </ul>
 </aside>
 
@@ -400,13 +401,13 @@ Creates a new interaction with the supplied parameters.
 
 ### Path Parameters
 
-| Parameter  | Type      | Required | Description                                                                                                                                 |
-| ---------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| type       | integer   | true     | The type of interaction to be created.                                                                                                      |
-| person_ids | integer[] | true     | The list of person IDs that are associated with the event.                                                                                  |
-| content    | string    | true     | The string containing the content of the new interaction.                                                                                   |
-| direction  | integer   | false    | The direction of the chat message to be created. Only applies to chat messages (`type == 2`).                                               |
-| date       | string    | true     | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred.   |
+| Parameter  | Type      | Required | Description                                                                                                                                                                                       |
+| ---------- | --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------                                                       |
+| type       | integer   | true     | The type of interaction to be created. Only meetings (`type == 0`), calls (`type == 1`) and chat messages (`type == 2`) are supported.                                                                                                        |
+| person_ids | integer[] | true     | The list of person IDs that are associated with the event. At least one internal person ID must be included (see [Person Resource](#the-person-resource) for more details on internal persons).   |
+| content    | string    | true     | The string containing the content of the new interaction.                                                                                                                                         |
+| direction  | integer   | false    | The direction of the chat message to be created. Only applies to chat messages (`type == 2`).                                                                                                     |
+| date       | string    | true     | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred.                                                         |
 
 ### Returns
 

@@ -6,7 +6,7 @@
 
 ## 2022-02-23
 
-- Added [Interactions API](#interactions-beta) documentation.
+- Added [Interactions API](#interactions) documentation.
 
 ## 2022-02-17
 
