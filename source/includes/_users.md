@@ -1,41 +1,57 @@
 # Users
 
-
-## Create new user and account
-
-> To create a new user, use this code:
-
-```shell
-# Get your token for further authorization
-curl "https://core.eventtia.com/v1/registrations" \
-  -H 'Content-Type: application/json' \
-  -X POST -d '{"user": {"name": "Your name", "email": "companyemail@mycompany.com", "phone": "your phone number", "password": "your password", "password_confirmation": "your password confirmation"}, "account": {"name": "Your company name", "website": "www.yourcompany.com"}}'
-```
+## List Users
 
 ```javascript
-// Get your token for further authorization
-fetch("https://core.eventtia.com/v1/registrations", {
-  method: 'POST',
+fetch('https://core.eventtia.com/v1/users/', {
+  method: 'GET',
   headers: {
-    'Content-Type': 'application/json',
-    'Authorization': '<your token>'
-  },
-  body: {
-    user: {
-      name: "Your name", 
-      email: "companyemail@mycompany.com", 
-      phone: "your phone number", 
-      password: "your password", 
-      password_confirmation: "your password confirmation"
-    }, 
-    account: {
-      name: "Your company name", 
-      website: "www.yourcompany.com"
-    }
-  }
-  
-})
+    'Authorization': '<your token>',
+  }})
 ```
+
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+  "data": [
+    {
+      "id": 1,
+      "type": "users",
+      "attributes":{
+        "name": "User Name",
+        "phone": "788965455",
+        "password": "securepassword",
+        "password_confirmation": "securepassword",
+        "email": "user@eventtia.com"
+        }
+    }
+  ]
+}
+```
+
+This endpoint return a list of users
+
+### HTTP Request
+
+`GET /v1/users/`
+
+## Get User
+
+```javascript
+fetch('https://core.eventtia.com/v1/users/<id>', {
+  method: 'GET',
+  headers: {
+    'Authorization': '<your token>',
+  }})
+```
+
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+
+> Make sure you replace &lt;id&gt; for the user to get. 
 
 > Example of a successful (200) response:
 
@@ -46,52 +62,242 @@ HTTP/1.1 200 OK
         "id": "1",
         "type": "users",
         "attributes": {
-            "name": "Your name",
-            "email": "companyemail@mycompany.com",
-            "account_name": "Your company name"
+            "name": "user name",
+            "email": "email@eventtia.com",
+            "account_name": "eventtia"
         },
         "relationships": {
             "account": {
                 "data": {
                     "id": "1",
-                    "type": "account"
+                    "type": "users"
                 }
             }
         }
-    },
-    "meta": {
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjbGFzcyI6IlVzZXIiLCJhdXRoZW50aWNhdGlvbl9rZXkiOiJwb2VmZWNvbSIsImV4cCI6MTU5MzcwMTYwMX0.sHJrSzZYxnYxyWDRIjgK-BqHnRXgFdQBq0c0WjI_kfI"
     }
 }
 ```
 
-> Example of a 422 response:
+>Example of User Not Found (404) response:
 
 ```http
-HTTP/1.1 422 Unprocessable Entity
+HTTP/1.1 404 Not Found
 {
-    "message": {
-        "name": [
-            "can't be empty"
-        ]
-    }
+  "message": "Couldn't find User"
 }
 ```
 
-This endpoint allows you create a new user and account
+This endpoint return an user
 
 ### HTTP Request
 
-`POST /v1/registrations`
+`GET /v1/users/:id`
 
-### Query Parameters
+### Path Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-user[name] | string | The User's name.
-user[email] | string | The User's corporate email.
-user[phone] | string | The User's phone.
-user[password] | string | The User's password.
-account[name] | string | The Uers's company name.
-account[website] | string | The User's company website.
+id | integer | id for the desired user
+## Create User
+
+```javascript
+fetch('https://core.eventtia.com/v1/users/', {
+  method: 'POST',
+  headers: {
+    'Authorization': '<your token>',
+  },
+  body: {
+    {
+    data: {
+    type: "users",
+    attributes:{
+        name: "User Name",
+        phone: 788965455,
+        password: "SecurePassword",
+        password_confirmation: "SecurePassword",
+        email: "user@eventtia.com"
+          		             }
+	}
+}
+}
+```
+
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+    "data": {
+        "id": "1",
+        "type": "users",
+        "attributes": {
+            "name": "user name",
+            "email": "email@eventtia.com",
+            "account_name": "eventtia"
+        },
+        "relationships": {
+            "account": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                }
+            }
+        }
+    }
+}
+```
+
+>Example of Unprocessable Entity (422) response:
+
+```http
+HTTP/1.1 422 Unprocessable Entity
+```
+
+This endpoint create an user and return it
+
+### HTTP Request
+
+`POST /v1/users/`
+
+### Available settings
+
+Parameter | Type | Description
+--------- | ---- | -----------
+name | string | The User's name.
+email | string | The User's corporate email.
+phone | string | The User's phone.
+password | string | The User's password.
+
+## Update User
+
+```javascript
+fetch('https://core.eventtia.com/v1/users/<id>', {
+  method: 'PUT',
+  headers: {
+    'Authorization': '<your token>',
+  },
+  body: {
+    data: {
+    type: "users",
+    attributes:{
+        name: "User Name",
+        phone: 788965455,
+        password: "SecurePassword",
+        password_confirmation: "SecurePassword",
+        email: "user@eventtia.com"
+          		             }
+	}
+}
+})
+```
+
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+
+> Make sure you replace &lt;id&gt; for the user to update. 
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+    "data": {
+        "id": "1",
+        "type": "users",
+        "attributes": {
+            "name": "user name",
+            "email": "email@eventtia.com",
+            "account_name": "eventtia"
+        },
+        "relationships": {
+            "account": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                }
+            }
+        }
+    }
+}
+```
+
+>Example of Unprocessable Entity (422) response: 
+
+```http
+HTTP/1.1 422 Unprocessable Entity
+```
+
+This endpoint update an user and return it
+
+### HTTP Request
+
+`PUT /v1/users/:id`
+
+### Path Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+id | integer | The id for the desired user
+
+### Available settings
+
+Parameter | Type | Description
+--------- | ---- | -----------
+name | string | The User's name.
+email | string | The User's corporate email.
+phone | string | The User's phone.
+password | string | The User's password.
+
+## Destroy User
+```javascript
+fetch('https://core.eventtia.com/v1/users/<id>', {
+  method: 'DELETE',
+  headers: {
+    'Authorization': '<your token>',
+  },
+})
+```
+
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+
+> Make sure you replace &lt;id&gt; for the user to destroy. 
+
+>Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+    "data": {
+        "id": "1",
+        "type": "users",
+        "attributes": {
+            "name": "user name",
+            "email": "email@eventtia.com",
+            "account_name": "eventtia"
+        },
+        "relationships": {
+            "account": {
+                "data": {
+                    "id": "1",
+                    "type": "users"
+                }
+            }
+        }
+    }
+}
+```
+
+This endpoint destroy a user and return it
+
+### HTTP Request
+
+`DELETE /v1/users/:id`
+
+### Path Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+id | integer | The id for the desired user
+
 
