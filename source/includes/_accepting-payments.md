@@ -947,7 +947,7 @@ If we pick green (#HEX code #067610) as the primary color and black (#HEX code #
 ![Payment Link](images/3p1p_preview.png)
 
 
-### Sending the Created Payment Link through WhatsApp (Coming Soon)
+### Sending the Created Payment Link through WhatsApp 
 
 For better payment conversion, you can send the created link to your users through WhatsApp. The message template is pre-defined by OY. Contact our Business Representative if you'd like to activate this feature.
 
