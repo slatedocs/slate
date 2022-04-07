@@ -93,3 +93,121 @@ Retrieve an internet gateway in a given [environment](#administration-environmen
 | `name`<br/>*string*               | The name of the Internet Gateway, which is derived from a Tag with the Name key.                                                                                                                                                                                                |
 | `state`<br/>*string*              | The state of the Internet Gateway depending whether or not it is attached or not to a VPC. The possible values include: ATTACHED, DETACHED.                                                                                                                                                  |
 | `vpcId`<br/>*string*              | The identifier of the VPC, if attached. Else this field is not returned.                                                                                                                                                                         |
+
+<!-------------------- CREATE AN INTERNET GATEWAY -------------------->
+
+#### Create an Internet Gateway
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways?operation=create"
+```
+> Request body example to create an internet gateway:
+
+```json
+{
+  "name": "igw-root-guthc",
+  "vpcId": "vpc-0094a0760c22437ec"
+}
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways</code>
+
+Create a new internet gateway in a DETACHED state in a given [environment](#administration-environments).
+
+| Optional                                           | &nbsp;                                |
+|----------------------------------------------------|---------------------------------------|
+| `name`<br/>*string*                                | The name of the internet gateway. Automatically generated if not provided.   |
+| `vpcId`<br/>*string*                               | The ID of the VPC.   |
+
+
+<aside class="notice">
+If the VPC ID is provided, it'll attach the newly created Internet Gateway to the VPC.
+</aside>
+
+<aside class="notice">
+There is a default limit (5) to the number of internet gateways per region.
+</aside>
+
+<!-------------------- ATTACH AN INTERNET GATEWAY -------------------->
+
+#### Attach an Internet Gateway
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways?operation=attach"
+```
+> Request body example to attach an internet gateway:
+
+```json
+{
+  "id": "igw-09adee4bafdef2c31",
+  "vpcId": "vpc-0094a0760c22437ec"
+}
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways</code>
+
+Attach an internet gateway to a VPC in a given [environment](#administration-environments).
+
+| Required                                         | &nbsp;                                |
+|--------------------------------------------------|---------------------------------------|
+| `id`<br/>*string*                                | The ID of the internet gateway.       |
+| `vpcId`<br/>*string*                             | The ID of the VPC.                    |
+
+<aside class="notice">
+A VPC can only have a single Internet Gateway attached at the same time.
+</aside>
+
+<!-------------------- DETACH AN INTERNET GATEWAY -------------------->
+
+#### Detach an Internet Gateway
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways?operation=detach"
+```
+> Request body example to detach an internet gateway:
+
+```json
+{
+  "id": "igw-09adee4bafdef2c31",
+  "vpcId": "vpc-0094a0760c22437ec"
+}
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways</code>
+
+Detach an internet gateway from a VPC in a given [environment](#administration-environments).
+
+| Required                                         | &nbsp;                                |
+|--------------------------------------------------|---------------------------------------|
+| `id`<br/>*string*                                | The ID of the internet gateway.       |
+| `vpcId`<br/>*string*                             | The ID of the VPC.                    |
