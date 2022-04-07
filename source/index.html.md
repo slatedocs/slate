@@ -234,6 +234,7 @@ includes:
   - aws/internetgateways
   - aws/elastic_ips
   - aws/cidr_blocks
+  - aws/cidr_reservations
 
 search: true
 ---
