@@ -81,3 +81,33 @@ fetch("<api endpoint>", {
 > Make sure you replace `<your token>` with the JWT you get when you authenticate.
 
 Eventtia uses JSON Web Tokens for authorization. Tokens issued by Eventtia are valid for 90 days.
+
+
+## Pagination
+
+All list endpoints are paginated by default. The default page size is 24, and the default page number is 1. The response contains links to the first, previous (prev), current (self) and next.
+
+```shell
+# You can request a specific page size and number by sending the page param in the request query params:
+curl '<api endpoint>?page[size]=12&page[number]=1'
+```
+
+```javascript
+// You can request a specific page size and number by sending the page param in the request query params:
+fetch('<api endpoint>?page[size]=12&page[number]=1')
+})
+```
+
+> Example response:
+
+```
+{
+  "data": [...],
+  "links": {
+    "first": "<api endpoint>?page[number]=1&page[size]=12",
+    "last": "<api endpoint>?page[number]=1&page[size]=12",
+    "prev": null,
+    "next": null
+  }
+}
+```
