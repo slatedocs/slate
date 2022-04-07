@@ -53,6 +53,14 @@ This endpoint list attendees belongs to event and return it
 Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
+page | json | A page object as described <a href="#pagination">here</a>
+first_name | string | Filters results by the attendee's first name.
+last_name | string | Filters results by the attendee's last name.
+email | string | Filters results by the attendee's email.
+telephone | string | Filters results by the attendee's telephone.
+attendee_type_id | integer | Filters results by attendee type.
+event_id | integer | Filters results by event
+user_id | integer | Filters results by user
 
 
 ## Get Attendee
