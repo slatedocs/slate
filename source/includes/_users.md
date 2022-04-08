@@ -39,6 +39,12 @@ This endpoint return a list of users
 
 `GET /v1/users/`
 
+### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+page | json | A page object as described <a href="#pagination">here</a>
+
 ## Get User
 
 ```javascript

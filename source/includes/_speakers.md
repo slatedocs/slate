@@ -47,6 +47,7 @@ This endpoint list speakers belongs to event and return it
 Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
+page | json | A page object as described <a href="#pagination">here</a>
 
 ### Body Parameters
 
