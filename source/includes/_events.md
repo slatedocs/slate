@@ -76,6 +76,21 @@ This endpoint return a list of events
 
 `GET /v1/events/`
 
+### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+page | json | A page object as described <a href="#pagination">here</a>
+name | string | Filters results by the event's name.
+created_by_id | integer | Filters results by the event's user.
+template| integer | Filters results by The id of a specific template to get all the events cloned from it
+templates | boolean | Send true if you want to get only template events.
+start_date_upper_bound | datetime | Filters results by event's start_date before this bound date ej 2020-07-16 23:00.
+start_date_lower_bound | datetime | Filters results by event's start_date after this bound date ej 2020-07-16 23:00.
+end_date_upper_bound | datetime | Filters results by event's end_date before this bound date ej 2020-07-16 23:00.
+end_date_lower_bound | datetime | Filters results by event's end_date after this bound date ej 2020-07-16 23:00.
+active_status | boolean | Send true if you want to get only active events.
+
 ## Get Event
 
 ```javascript
