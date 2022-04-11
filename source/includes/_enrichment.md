@@ -1,5 +1,779 @@
 # Enrichment API
 
+## Bulk People Enrichment
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
+    "api_key": "YOUR API KEY HERE",
+    "details": [
+        {
+            "first_name": "Tim",
+            "last_name": "Zheng",
+            "domain": "apollo.io",
+            "email": "tim@apollo.io",
+            "organization_name": "Apollo"
+        },
+        {
+            "first_name": "Roy",
+            "last_name": "Chung",
+            "email": "roy@apollo.io",
+            "organization_name": "Apollo"
+        }
+    ]
+}' "https://api.apollo.io/api/v1/people/bulk_match"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/api/v1/people/bulk_match"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "details": [
+        {
+            "first_name": "Tim",
+            "last_name": "Zheng",
+            "domain": "apollo.io",
+            "email": "tim@apollo.io",
+            "organization_name": "Apollo"
+        },
+        {
+            "first_name": "Roy",
+            "last_name": "Chung",
+            "email": "roy@apollo.io",
+            "organization_name": "Apollo"
+        }
+    ]
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
+> Sample response:
+
+```json
+{
+   "status":"success",
+   "error_code":null,
+   "error_message":null,
+   "total_requested_enrichments":2,
+   "unique_enriched_records":2,
+   "missing_records":0,
+   "credits_consumed":0.02,
+   "matches":[
+      {
+         "revealed_for_current_team":true,
+         "email":"email_not_unlocked@domain.com",
+         "email_status":"verified",
+         "id":"61c2e2d4bbb92a0001509cce",
+         "first_name":"Tim",
+         "last_name":"Zheng",
+         "name":"Tim Zheng",
+         "linkedin_url":"http://www.linkedin.com/in/tim-zheng-677ba010",
+         "title":"Founder \u0026 CEO",
+         "photo_url":"https://media-exp1.licdn.com/dms/image/C5603AQGiphGg4YXw4Q/profile-displayphoto-shrink_400_400/0/1527618224366?e=1652918400\u0026v=beta\u0026t=ApFqfgq3DodDHyS3m-1bYH9xQfztL_yqUItyo_7sGEQ",
+         "twitter_url":null,
+         "github_url":null,
+         "facebook_url":null,
+         "extrapolated_email_confidence":null,
+         "headline":"Founder \u0026 CEO at Apollo",
+         "organization_id":"5e66b6381e05b4008c8331b8",
+         "state":"Texas",
+         "city":"Austin",
+         "country":"United States",
+         "organization":{
+            "id":"5e66b6381e05b4008c8331b8",
+            "name":"Apollo.io",
+            "website_url":"http://www.apollo.io",
+            "blog_url":null,
+            "angellist_url":null,
+            "linkedin_url":"http://www.linkedin.com/company/apolloio",
+            "twitter_url":"https://twitter.com/MeetApollo/",
+            "facebook_url":"https://www.facebook.com/MeetApollo/",
+            "primary_phone":{
+               "number":"+1 415-763-6055",
+               "source":"Owler"
+            },
+            "languages":[
+               
+            ],
+            "alexa_ranking":2651,
+            "phone":"+1 415-763-6055",
+            "linkedin_uid":"18511550",
+            "founded_year":2015,
+            "publicly_traded_symbol":null,
+            "publicly_traded_exchange":null,
+            "logo_url":"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/62299e01b86a98000152b0c5/picture",
+            "crunchbase_url":null,
+            "primary_domain":"apollo.io",
+            "persona_counts":{
+               
+            },
+            "industry":"computer software",
+            "keywords":[
+               "sales engagement",
+               "lead generation",
+               "predictive analytics",
+               "lead scoring",
+               "sales strategy",
+               "conversation intelligence",
+               "sales enablement",
+               "lead routing",
+               "sales development",
+               "email engagement",
+               "revenue intelligence",
+               "sales operations",
+               "demand generation"
+            ],
+            "estimated_num_employees":200,
+            "snippets_loaded":true,
+            "industry_tag_id":"5567cd4e7369643b70010000",
+            "retail_location_count":0,
+            "raw_address":"535 Mission St, Suite 1100, San Francisco, California 94105, US",
+            "street_address":"535 Mission St",
+            "city":"San Francisco",
+            "state":"California",
+            "postal_code":"94105",
+            "country":"United States"
+         },
+         "account_id":"6182b6670e22be00ded90b0f",
+         "account":{
+            "id":"6182b6670e22be00ded90b0f",
+            "name":"Apollo.io",
+            "website_url":"http://www.apollo.io",
+            "blog_url":null,
+            "angellist_url":null,
+            "linkedin_url":"http://www.linkedin.com/company/apolloio",
+            "twitter_url":"https://twitter.com/MeetApollo/",
+            "facebook_url":"https://www.facebook.com/MeetApollo/",
+            "primary_phone":{
+               "number":"+1 415-763-6055",
+               "source":"Owler"
+            },
+            "languages":[
+               
+            ],
+            "alexa_ranking":2651,
+            "phone":"2023741312",
+            "linkedin_uid":"18511550",
+            "founded_year":2015,
+            "publicly_traded_symbol":null,
+            "publicly_traded_exchange":null,
+            "logo_url":"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/62299e01b86a98000152b0c5/picture",
+            "crunchbase_url":null,
+            "primary_domain":"apollo.io",
+            "persona_counts":{
+               
+            },
+            "domain":"apollo.io",
+            "team_id":"6181a50999668600ded6fe71",
+            "organization_id":"5e66b6381e05b4008c8331b8",
+            "account_stage_id":"6181a50999668600ded6fe7c",
+            "source":"deployment",
+            "original_source":"deployment",
+            "owner_id":"6181a50a99668600ded6feed",
+            "created_at":"2021-11-03T16:18:47.229Z",
+            "phone_status":"no_status",
+            "test_predictive_score":null,
+            "hubspot_id":null,
+            "salesforce_id":null,
+            "crm_owner_id":null,
+            "parent_account_id":null,
+            "sanitized_phone":"+12023741312",
+            "account_playbook_statuses":[
+               {
+                  "_id":"61844b47a4258e00c2499c8e",
+                  "added_by_id":"6181a50a99668600ded6feed",
+                  "added_on":"2021-11-04T21:06:15.053+00:00",
+                  "completed_step_ids":[
+                     "6184391f26e0aa00a4ccc56b"
+                  ],
+                  "created_at":null,
+                  "current_step_id":"61844dba8b94530112288546",
+                  "finished_reason_cd":"completed_all_steps",
+                  "paused_reason_cd":null,
+                  "playbook_id":"6184388a0515e4008cbf5129",
+                  "position":2,
+                  "status_cd":"finished",
+                  "updated_at":null,
+                  "id":"61844b47a4258e00c2499c8e",
+                  "key":"61844b47a4258e00c2499c8e"
+               }
+            ],
+            "existence_level":"full",
+            "label_ids":[
+               
+            ],
+            "typed_custom_fields":{
+               "618438b906b01300da086546":"Google, Okta, Lyft"
+            },
+            "modality":"account"
+         },
+         "phone_numbers":[
+            {
+               "raw_number":"+1 415-763-6055",
+               "sanitized_number":"+14157636055",
+               "type":"work_hq",
+               "position":0,
+               "status":"no_status"
+            }
+         ]
+      },
+      {
+         "revealed_for_current_team":true,
+         "email":"email_not_unlocked@domain.com",
+         "email_status":"verified",
+         "id":"611c931f1b404b00014e884c",
+         "first_name":"Roy",
+         "last_name":"Chung",
+         "name":"Roy Chung",
+         "linkedin_url":"http://www.linkedin.com/in/royychung",
+         "title":"Chief Business Officer",
+         "photo_url":"https://media-exp1.licdn.com/dms/image/C5603AQFVolaIjLeG3g/profile-displayphoto-shrink_200_200/0/1517707907539?e=1652918400\u0026v=beta\u0026t=cpM4yiTrGbgwEiM61eTYIsdW83u-bmv4m27hiaiJppU",
+         "twitter_url":"https://twitter.com/r1strategy",
+         "github_url":null,
+         "facebook_url":null,
+         "extrapolated_email_confidence":null,
+         "headline":"Founder @ Apollo - We're Hiring! 🚀",
+         "organization_id":"5e66b6381e05b4008c8331b8",
+         "state":"California",
+         "city":"San Francisco",
+         "country":"United States",
+         "organization":{
+            "id":"5e66b6381e05b4008c8331b8",
+            "name":"Apollo.io",
+            "website_url":"http://www.apollo.io",
+            "blog_url":null,
+            "angellist_url":null,
+            "linkedin_url":"http://www.linkedin.com/company/apolloio",
+            "twitter_url":"https://twitter.com/MeetApollo/",
+            "facebook_url":"https://www.facebook.com/MeetApollo/",
+            "primary_phone":{
+               "number":"+1 415-763-6055",
+               "source":"Owler"
+            },
+            "languages":[
+               
+            ],
+            "alexa_ranking":2651,
+            "phone":"+1 415-763-6055",
+            "linkedin_uid":"18511550",
+            "founded_year":2015,
+            "publicly_traded_symbol":null,
+            "publicly_traded_exchange":null,
+            "logo_url":"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/62299e01b86a98000152b0c5/picture",
+            "crunchbase_url":null,
+            "primary_domain":"apollo.io",
+            "persona_counts":{
+               
+            },
+            "industry":"computer software",
+            "keywords":[
+               "sales engagement",
+               "lead generation",
+               "predictive analytics",
+               "lead scoring",
+               "sales strategy",
+               "conversation intelligence",
+               "sales enablement",
+               "lead routing",
+               "sales development",
+               "email engagement",
+               "revenue intelligence",
+               "sales operations",
+               "demand generation"
+            ],
+            "estimated_num_employees":200,
+            "snippets_loaded":true,
+            "industry_tag_id":"5567cd4e7369643b70010000",
+            "retail_location_count":0,
+            "raw_address":"535 Mission St, Suite 1100, San Francisco, California 94105, US",
+            "street_address":"535 Mission St",
+            "city":"San Francisco",
+            "state":"California",
+            "postal_code":"94105",
+            "country":"United States"
+         },
+         "account_id":"6182b6670e22be00ded90b0f",
+         "account":{
+            "id":"6182b6670e22be00ded90b0f",
+            "name":"Apollo.io",
+            "website_url":"http://www.apollo.io",
+            "blog_url":null,
+            "angellist_url":null,
+            "linkedin_url":"http://www.linkedin.com/company/apolloio",
+            "twitter_url":"https://twitter.com/MeetApollo/",
+            "facebook_url":"https://www.facebook.com/MeetApollo/",
+            "primary_phone":{
+               "number":"+1 415-763-6055",
+               "source":"Owler"
+            },
+            "languages":[
+               
+            ],
+            "alexa_ranking":2651,
+            "phone":"2023741312",
+            "linkedin_uid":"18511550",
+            "founded_year":2015,
+            "publicly_traded_symbol":null,
+            "publicly_traded_exchange":null,
+            "logo_url":"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/62299e01b86a98000152b0c5/picture",
+            "crunchbase_url":null,
+            "primary_domain":"apollo.io",
+            "persona_counts":{
+               
+            },
+            "domain":"apollo.io",
+            "team_id":"6181a50999668600ded6fe71",
+            "organization_id":"5e66b6381e05b4008c8331b8",
+            "account_stage_id":"6181a50999668600ded6fe7c",
+            "source":"deployment",
+            "original_source":"deployment",
+            "owner_id":"6181a50a99668600ded6feed",
+            "created_at":"2021-11-03T16:18:47.229Z",
+            "phone_status":"no_status",
+            "test_predictive_score":null,
+            "hubspot_id":null,
+            "salesforce_id":null,
+            "crm_owner_id":null,
+            "parent_account_id":null,
+            "sanitized_phone":"+12023741312",
+            "account_playbook_statuses":[
+               {
+                  "_id":"61844b47a4258e00c2499c8e",
+                  "added_by_id":"6181a50a99668600ded6feed",
+                  "added_on":"2021-11-04T21:06:15.053+00:00",
+                  "completed_step_ids":[
+                     "6184391f26e0aa00a4ccc56b"
+                  ],
+                  "created_at":null,
+                  "current_step_id":"61844dba8b94530112288546",
+                  "finished_reason_cd":"completed_all_steps",
+                  "paused_reason_cd":null,
+                  "playbook_id":"6184388a0515e4008cbf5129",
+                  "position":2,
+                  "status_cd":"finished",
+                  "updated_at":null,
+                  "id":"61844b47a4258e00c2499c8e",
+                  "key":"61844b47a4258e00c2499c8e"
+               }
+            ],
+            "existence_level":"full",
+            "label_ids":[
+               
+            ],
+            "typed_custom_fields":{
+               "618438b906b01300da086546":"Google, Okta, Lyft"
+            },
+            "modality":"account"
+         },
+         "phone_numbers":[
+            {
+               "raw_number":"+1 415-763-6055",
+               "sanitized_number":"+14157636055",
+               "type":"work_hq",
+               "position":0,
+               "status":"no_status"
+            }
+         ]
+      }
+   ]
+}
+```
+
+This endpoint enriches people information in bulk - the more information you pass in, the more likely we can find a match. 
+
+### Credit Usage
+
+The enrich endpoint charges you credits for its usage. If a verified email is successfully returned, it will cost you 1 credit. If an email is not found, but Apollo successfully found ALL of the following information: Name, Linkedin Profile, Current Company Information, Apollo will charge a fraction of a credit. Typically this is 0.01 credit per successful enrichment without email. But it may be higher depending on your specific plan.
+
+`POST https://api.apollo.io/api/v1/people/bulk_match`
+
+### Request Parameters
+
+Parameter | Description | Example
+--------- | ----------- | -----------
+first_name (optional) | The person's first name | Tim
+last_name (optional) | The person's last name | Zheng
+name (optional) | The person's full name | Tim Zheng
+email (optional) | The person's email | example@domani.com
+organization_name (optional) | The person's company name | Apollo Inc.
+domain (optional) | The person's company domain | apollo.io
+id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
+
+
+## Bulk Organization Enrichment
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
+    "api_key": "YOUR API KEY HERE",
+    "domains": [
+        "apollo.io",
+        "outreach.com",
+        "microsoft.com"
+    ]
+}' "https://api.apollo.io/api/v1/organizations/bulk_enrich"
+```
+
+```python
+import requests
+
+url = "https://api.apollo.io/api/v1/organizations/bulk_enrich"
+
+data = {
+    "api_key": "YOUR API KEY HERE",
+    "domains": [
+        "apollo.io",
+        "outreach.com",
+        "microsoft.com"
+    ]
+}
+
+headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, json=data)
+
+print(response.text)
+```
+
+> Sample response:
+
+```json
+{
+   "status":"success",
+   "error_code":null,
+   "error_message":null,
+   "total_requested_domains":3,
+   "unique_domains":3,
+   "unique_enriched_records":3,
+   "missing_records":0,
+   "organizations":[
+      {
+         "id":"5e66b6381e05b4008c8331b8",
+         "name":"Apollo.io",
+         "website_url":"http://www.apollo.io",
+         "blog_url":null,
+         "angellist_url":null,
+         "linkedin_url":"http://www.linkedin.com/company/apolloio",
+         "twitter_url":"https://twitter.com/MeetApollo/",
+         "facebook_url":"https://www.facebook.com/MeetApollo/",
+         "primary_phone":{
+            "number":"+1 415-763-6055",
+            "source":"Owler"
+         },
+         "languages":[
+            
+         ],
+         "alexa_ranking":2651,
+         "phone":"+1 415-763-6055",
+         "linkedin_uid":"18511550",
+         "founded_year":2015,
+         "publicly_traded_symbol":null,
+         "publicly_traded_exchange":null,
+         "logo_url":"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/6232fbed6106460001ca5dc7/picture",
+         "crunchbase_url":null,
+         "primary_domain":"apollo.io",
+         "persona_counts":{
+            
+         },
+         "industry":"computer software",
+         "keywords":[
+            "sales engagement",
+            "lead generation",
+            "predictive analytics",
+            "lead scoring",
+            "sales strategy",
+            "conversation intelligence",
+            "sales enablement",
+            "lead routing",
+            "sales development",
+            "email engagement",
+            "revenue intelligence",
+            "sales operations",
+            "demand generation"
+         ],
+         "estimated_num_employees":210,
+         "snippets_loaded":true,
+         "industry_tag_id":"5567cd4e7369643b70010000",
+         "retail_location_count":0,
+         "raw_address":"535 mission st, suite 1100, san francisco, california 94105, us",
+         "street_address":"535 Mission St",
+         "city":"San Francisco",
+         "state":"California",
+         "country":"United States",
+         "postal_code":"94105",
+         "owned_by_organization_id":null,
+         "account_id":"6182b6670e22be00ded90b0f",
+         "account":{
+            "id":"6182b6670e22be00ded90b0f",
+            "domain":"apollo.io",
+            "name":"Apollo.io",
+            "team_id":"6181a50999668600ded6fe71",
+            "organization_id":"5e66b6381e05b4008c8331b8",
+            "account_stage_id":"6181a50999668600ded6fe7c",
+            "source":"deployment",
+            "original_source":"deployment",
+            "owner_id":"6181a50a99668600ded6feed",
+            "created_at":"2021-11-03T16:18:47.229Z",
+            "phone":"2023741312",
+            "phone_status":"no_status",
+            "test_predictive_score":null,
+            "hubspot_id":null,
+            "salesforce_id":null,
+            "crm_owner_id":null,
+            "parent_account_id":null,
+            "sanitized_phone":"+12023741312",
+            "account_playbook_statuses":[
+               {
+                  "_id":"61844b47a4258e00c2499c8e",
+                  "added_by_id":"6181a50a99668600ded6feed",
+                  "added_on":"2021-11-04T21:06:15.053+00:00",
+                  "completed_step_ids":[
+                     "6184391f26e0aa00a4ccc56b"
+                  ],
+                  "created_at":null,
+                  "current_step_id":"61844dba8b94530112288546",
+                  "finished_reason_cd":"completed_all_steps",
+                  "paused_reason_cd":null,
+                  "playbook_id":"6184388a0515e4008cbf5129",
+                  "position":2,
+                  "status_cd":"finished",
+                  "updated_at":null,
+                  "id":"61844b47a4258e00c2499c8e",
+                  "key":"61844b47a4258e00c2499c8e"
+               }
+            ],
+            "existence_level":"full",
+            "label_ids":[
+               
+            ],
+            "typed_custom_fields":{
+               "618438b906b01300da086546":"Google, Okta, Lyft"
+            },
+            "modality":"account",
+            "persona_counts":{
+               
+            }
+         },
+         "departmental_head_count":{
+            "engineering":46,
+            "business_development":14,
+            "support":21,
+            "finance":2,
+            "marketing":10,
+            "administrative":1,
+            "product_management":7,
+            "arts_and_design":8,
+            "operations":7,
+            "accounting":2,
+            "entrepreneurship":3,
+            "information_technology":2,
+            "consulting":9,
+            "human_resources":6,
+            "sales":17,
+            "education":3,
+            "legal":0,
+            "media_and_commmunication":0,
+            "data_science":0
+         }
+      },
+      {
+         "id":"55ea57fdf3e5bb1430000ac7",
+         "name":"Outreach, Inc.",
+         "website_url":"http://www.outreach.com",
+         "blog_url":null,
+         "angellist_url":null,
+         "linkedin_url":"http://www.linkedin.com/company/outreach-inc-",
+         "twitter_url":null,
+         "facebook_url":"https://www.facebook.com/outreachinc",
+         "primary_phone":{
+            "number":"+1 800-991-6011",
+            "source":"Owler"
+         },
+         "languages":[
+            "English",
+            "English"
+         ],
+         "alexa_ranking":597090,
+         "phone":"+1 800-991-6011",
+         "linkedin_uid":"314305",
+         "founded_year":1996,
+         "publicly_traded_symbol":null,
+         "publicly_traded_exchange":null,
+         "logo_url":"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/623369279d4f650001b93cb3/picture",
+         "crunchbase_url":null,
+         "primary_domain":"outreach.com",
+         "persona_counts":{
+            
+         },
+         "industry":"marketing \u0026 advertising",
+         "keywords":[
+            "outreach marketing product for christian churches",
+            "customized design services",
+            "professional design",
+            "print \u0026 full service delivery",
+            "targeted mailings done by inhouse mail services",
+            "thought leader in outreach",
+            "resource provider \u0026 content network",
+            "churches",
+            "marketing",
+            "professional services",
+            "religious organizations"
+         ],
+         "estimated_num_employees":170,
+         "snippets_loaded":true,
+         "industry_tag_id":"5567cd467369644d39040000",
+         "retail_location_count":1,
+         "raw_address":"5550 tech center drive, colorado springs, co 80919, us",
+         "street_address":"5550 Tech Center Drive",
+         "city":"Colorado Springs",
+         "state":"Colorado",
+         "country":"United States",
+         "postal_code":"80919",
+         "owned_by_organization_id":null,
+         "departmental_head_count":{
+            "accounting":3,
+            "operations":4,
+            "finance":2,
+            "arts_and_design":5,
+            "human_resources":3,
+            "sales":11,
+            "marketing":8,
+            "media_and_commmunication":7,
+            "product_management":3,
+            "engineering":5,
+            "consulting":6,
+            "support":4,
+            "entrepreneurship":2,
+            "information_technology":5,
+            "business_development":1,
+            "administrative":2,
+            "legal":0,
+            "education":0,
+            "data_science":0
+         }
+      },
+      {
+         "id":"5d09312ca3ae61489386b467",
+         "name":"Microsoft",
+         "website_url":"http://www.microsoft.com",
+         "blog_url":null,
+         "angellist_url":null,
+         "linkedin_url":"http://www.linkedin.com/company/microsoft",
+         "twitter_url":"https://twitter.com/microsoft",
+         "facebook_url":"https://facebook.com/Microsoft",
+         "primary_phone":{
+            "number":"+1 425-882-8080",
+            "source":"Owler"
+         },
+         "languages":[
+            "English"
+         ],
+         "alexa_ranking":19,
+         "phone":"+1 425-882-8080",
+         "linkedin_uid":"1035",
+         "founded_year":1975,
+         "publicly_traded_symbol":"MSFT",
+         "publicly_traded_exchange":"nasdaq",
+         "logo_url":"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/6232f7976d60b600019c2644/picture",
+         "crunchbase_url":null,
+         "primary_domain":"microsoft.com",
+         "persona_counts":{
+            
+         },
+         "market_cap":"2099.6B",
+         "industry":"computer software",
+         "keywords":[
+            "business software",
+            "developer tools",
+            "home",
+            "educational software",
+            "tablets",
+            "search",
+            "advertising",
+            "servers",
+            "windows operating system",
+            "windows applications",
+            "platforms",
+            "smartphones",
+            "cloud computing",
+            "quantum computing",
+            "future of work",
+            "productivity",
+            "ai",
+            "artificial intelligence",
+            "machine learning",
+            "laptops",
+            "mixed reality",
+            "virtual reality",
+            "gaming",
+            "developers",
+            "it professional",
+            "computers",
+            "electronics",
+            "mobile phones",
+            "shopping"
+         ],
+         "estimated_num_employees":224000,
+         "snippets_loaded":true,
+         "industry_tag_id":"5567cd4e7369643b70010000",
+         "retail_location_count":96,
+         "raw_address":"1 microsoft way, redmond, washington 98052, us",
+         "street_address":"1 Microsoft Way",
+         "city":"Redmond",
+         "state":"Washington",
+         "country":"United States",
+         "postal_code":"98052",
+         "owned_by_organization_id":null,
+         "departmental_head_count":{
+            "sales":10117,
+            "business_development":9413,
+            "engineering":66732,
+            "media_and_commmunication":1612,
+            "finance":3079,
+            "marketing":5327,
+            "operations":3747,
+            "support":12733,
+            "consulting":5822,
+            "product_management":4099,
+            "data_science":1922,
+            "administrative":350,
+            "education":13249,
+            "human_resources":3818,
+            "arts_and_design":2125,
+            "information_technology":3727,
+            "legal":625,
+            "accounting":476,
+            "entrepreneurship":121
+         }
+      }
+   ]
+}
+```
+
+This endpoint enriches organization information in bulk with info such as industry, company size, etc. based on the domain parameter passed in.
+
+
+`POST https://api.apollo.io/api/v1/organizations/bulk_enrich`
+
+### Request Parameters
+
+| Parameter | Description        | Example    |
+| --------- | ------------------ | ---------- |
+| domains    | The company domain | google.com |
+
+
 ## People Enrichment
 
 > Sample request:
@@ -250,7 +1024,7 @@ domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
 
 
-## Organization Enrichment 
+## Organization Enrichment
 
 > Sample request:
 
