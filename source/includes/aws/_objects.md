@@ -403,3 +403,43 @@ Renames a folder in Amazon S3. This operation renames all objects inside the fol
 | `taskId` <br/>*string*     | The task ID related to the folder renaming. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
+<!-------------------- GENERATE URL -------------------->
+
+#### Generate URL
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject?&operation=generate_url"
+```
+
+Generates a presigned URL in S3. Must specify a limit in the request which denotes the amount of time (in minutes) until the URL expires. Minimum is 1 minute and maximum is 10080 minutes.
+
+> Request body examples:
+
+```json
+{
+  "limit": "60",
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "SUCCESS"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:regionName/:bucketName/:objectFullPath?&operation=generate_url</code>
+
+| Required                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `limit` <br/>*integer*     | The length (in minutes) the link will be active for.                         |
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task ID related to the URL generation.    |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
+
