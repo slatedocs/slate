@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-04-11
+
+- Added [Partner With Us](#partner-with-us) section.
+
 ## 2022-03-21
 
 - Added `opportunity_ids` fields to person and organization responses.

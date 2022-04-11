@@ -10,6 +10,7 @@ includes:
   - rate-limits
   - data-model
   - common-use-cases
+  - partner-with-us
   - spacer
   - lists
   - list-entries
