@@ -413,7 +413,7 @@ curl -X POST \
    "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject?&operation=generate_url"
 ```
 
-Generates a presigned URL in S3. Must specify a limit in the request which denotes the amount of time (in minutes) until the URL expires. Minimum is 1 minute and maximum is 10008 minutes.
+Generates a presigned URL in S3. Must specify a limit in the request which denotes the amount of time (in minutes) until the URL expires. Minimum is 1 minute and maximum is 10080 minutes.
 
 > Request body examples:
 
