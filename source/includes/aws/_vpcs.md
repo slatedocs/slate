@@ -132,3 +132,31 @@ Create a VPC in a given [environment](#administration-environments).
 | Optional            | &nbsp;                                                                       |
 | ------------------- | ---------------------------------------------------------------------------- |
 | `name`<br/>_string_ | The VPC name. A default name will be created if there isn't one provided. |
+
+<!-------------------- DELETE A VPC -------------------->
+
+#### Delete a VPC
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-env/vpcs/vpc-05a6af2e6a6360915"
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs/:id</code>
+
+Delete a VPC in a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the VPC deletion. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
