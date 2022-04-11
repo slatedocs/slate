@@ -391,9 +391,19 @@ print(response.text)
 
 This endpoint enriches people information in bulk - the more information you pass in, the more likely we can find a match. 
 
+Up to 10 records can be enriched at the same time through this endpoint. 
+
+
 ### Credit Usage
 
 The enrich endpoint charges you credits for its usage. If a verified email is successfully returned, it will cost you 1 credit. If an email is not found, but Apollo successfully found ALL of the following information: Name, Linkedin Profile, Current Company Information, Apollo will charge a fraction of a credit. Typically this is 0.01 credit per successful enrichment without email. But it may be higher depending on your specific plan.
+
+
+Duplicate enrichments of the same record will not be charged credits. 
+
+### Rate Limits
+
+Rate limits on this endpoint are 1/10th of what is available on the single enrichment endpoint.
 
 `POST https://api.apollo.io/api/v1/people/bulk_match`
 
@@ -764,6 +774,15 @@ print(response.text)
 
 This endpoint enriches organization information in bulk with info such as industry, company size, etc. based on the domain parameter passed in.
 
+Up to 10 records can be enriched at the same time through this endpoint. 
+
+### Credit Usage
+
+Duplicate enrichments of the same record will not be charged credits. 
+
+### Rate Limits
+
+Rate limits on this endpoint are 1/10th of what is available on the single enrichment endpoint. 
 
 `POST https://api.apollo.io/api/v1/organizations/bulk_enrich`
 
