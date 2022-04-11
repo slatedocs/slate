@@ -13480,7 +13480,7 @@ Creates and returns a job that will asynchronously handle the project instantiat
 |---|---|
 |body<span class="param-type"> object</span>|Describes the inputs used for instantiating a project, such as the resulting project's name, which team it should be created in, and values for date variables.|
 |» data<span class="param-type"> object</span>|none|
-|»» is_strict<span class="param-type"> boolean</span>|If set true, the endpoint returns an error if you forget to provide a calendar date value for any date variable. If set false, a deafult date is used for each unfulfilled date variable. For example, the current date is used as Start Date of a project in this case.|
+|»» is_strict<span class="param-type"> boolean</span>|*Optional*. If set to `true`, the endpoint returns an "Unprocessable Entity" error if you fail to provide a calendar date value for any date variable. If set to `false`, a default date is used for each unfulfilled date variable (e.g., the current date is used as the Start Date of a project).|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The name of the new project.|
 |»» public<span class="param-type"> boolean</span><div class="param-required">required</div>|Sets the project to public to its team.|
 |»» requested_dates<span class="param-type"> [object]</span>|Array of mappings of date variables to calendar dates.|
