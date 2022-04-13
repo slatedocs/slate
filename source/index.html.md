@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Snappy Express API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - http
@@ -17,7 +17,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the Snappy Express API
 ---
 
 # Introduction
