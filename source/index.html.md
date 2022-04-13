@@ -1828,7 +1828,7 @@ note | true | string | `Hủy vận đơn` | Note of status canceled
 
 ## Tracking Status
 
-Name | Vn Name | Color code | Description
+Name | VN Name | Color code | Description
 -----| ------- | ---------- | ---------------
 `request_received` | `Chờ lấy hàng` | `#AD7E05` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `processing_picked_up` | `Đang lấy hàng` | `#039BE5` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
@@ -2550,6 +2550,6 @@ tracking_ids | true | string | | List of tracking ids separate by comma. Sample:
 
 ### Update tracking status
 
-* Add new tracking status `import_picking_warehouse`, `import_returning_warehouse`, `return_fail` and change minor `Name vn` of some tracking status
+* Add new tracking status `import_picking_warehouse`, `import_returning_warehouse`, `return_fail` and change minor `VN Name` of some tracking status
 
  <a href="http://api.snappy.vn/images/changelog_2022_04_15-e9fce970.png" target="_blank" rel="changelog_2022_04_15">![changelog_2022_04_15](images/changelog_2022_04_15.png)</a>
