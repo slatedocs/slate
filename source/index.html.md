@@ -2543,3 +2543,10 @@ Parameter | Required | Type    | Default | Description
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
 tracking_ids | true | string | | List of tracking ids separate by comma. Sample: S00037457,S00037442,S0003743
+
+# Changelog
+
+ `2022-04-15` Cập nhật trạng thái mới
+
+
+ <a href="http://api.snappy.vn/images/changelog_2022_04_15.png" target="_blank" rel="changelog_2022_04_15">![changelog_2022_04_15](images/changelog_2022_04_15.png)</a>
