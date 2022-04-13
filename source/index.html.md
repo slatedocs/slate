@@ -2550,6 +2550,6 @@ tracking_ids | true | string | | List of tracking ids separate by comma. Sample:
 
 ### Update tracking status
 
-* Add new tracking status `import_picking_warehouse`, `import_returning_warehouse` and `return_fail`
+* Add new tracking status `import_picking_warehouse`, `import_returning_warehouse`, `return_fail` and change minor `Name vn` of some tracking status
 
  <a href="http://api.snappy.vn/images/changelog_2022_04_15-e9fce970.png" target="_blank" rel="changelog_2022_04_15">![changelog_2022_04_15](images/changelog_2022_04_15.png)</a>
