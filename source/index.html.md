@@ -2549,4 +2549,4 @@ tracking_ids | true | string | | List of tracking ids separate by comma. Sample:
  `2022-04-15` Cập nhật trạng thái mới
 
 
- <a href="http://api.snappy.vn/images/changelog_2022_04_15.png" target="_blank" rel="changelog_2022_04_15">![changelog_2022_04_15](images/changelog_2022_04_15.png)</a>
+ <a href="http://api.snappy.vn/images/changelog_2022_04_15-e9fce970.png" target="_blank" rel="changelog_2022_04_15">![changelog_2022_04_15](images/changelog_2022_04_15.png)</a>
