@@ -52,14 +52,6 @@ const langSettings = {
     path: '../client_libraries/python-asana',
     replacements: [
       {
-        file: "setup.py",
-        regex: "{{version}}"
-      },
-      {
-        file: "asana/__init__.py",
-        regex: "{{version}}"
-      },
-      {
         file: "asana/version.py",
         regex: "{{version}}"
       }
