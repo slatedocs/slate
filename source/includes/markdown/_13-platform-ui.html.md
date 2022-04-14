@@ -74,7 +74,7 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&at
 <img style="max-width:420px" src="../images/jira-widget.png" />
 
 A Widget is a card that is used to show data about an external resource. Currently, Widgets
-appear inside of tasks. While the contents of a Widget may change, but the overall format stays
+appear inside of tasks. While the contents of a Widget may change, the overall format stays
 consistent across apps. Apps can control what layout they prefer by supplying their preferred 
 `template`. You can see the available templates in the *Enumerated Values* 
 section of [response schema](/docs/widget-metadata).
@@ -453,7 +453,7 @@ At this point, your app has been created and fully configured. For further confi
 
 Next, you'll want to finish building the [App Server](/docs/building-the-app-server). Leveraging the URLs configured earlier in this guide, this is what enables your end users to interact with resources external to Asana (i.e., via requests to endpoints exposed on the App Server). 
 
-When your both your app and your App Server are complete, you can move forward with getting your app [ready for publishing](/docs/publishing-an-app).
+When both your app and your App Server are complete, you can move forward with getting your app [ready for publishing](/docs/publishing-an-app).
 
 <hr class="full-line">
 
