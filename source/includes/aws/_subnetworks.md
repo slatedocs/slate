@@ -122,3 +122,32 @@ Retrieve a subnetwork in a given [environment](#administration-environments).
 | `ipv4CIDRReservations`<br/>_boolean_               | Indicates whether the subnet has IPv4 CIDR reservations.                                                                        |
 | `availableIPv4Addreses`<br/>_int_                  | The number of available addresses in the subnet's CIDR block.                                                                   |
 | `vpcId`<br/>_string_                               | The ID of the VPC the subnet is associated with.                                                                                |
+
+<!-------------------- DELETE A SUBNETWORK -------------------->
+
+#### Delete a Subnetwork
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-env/subnetworks/subnet-07baec16047092451"
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks/:id</code>
+
+Delete a Subnetwork in a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the subnet deletion. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
+
