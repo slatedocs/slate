@@ -11,11 +11,12 @@ Access url
 - Production - wss://socket.delta.exchange
 - Testnet - wss://testnet-socket.delta.exchange
 
+ You will be disconnected, if there is no activity within 60 after making connection.
 # Subscribing to Channels
 
 ## Subscribe
 
-To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for. This message is mandatory — you will be disconnected if no subscribe has been received within 60 seconds.
+To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for.
 
 To specify contracts within each channel, just pass a list of symbols inside the channel payload.
 

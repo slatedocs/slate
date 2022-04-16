@@ -152,7 +152,7 @@
           {
             "in": "query",
             "name": "states",
-            "description": "Comma separated list of states",
+            "description": "Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired ",
             "type": "string"
           },
           {
@@ -246,6 +246,15 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "contract_types",
+            "in": "query",
+            "description": "Comma separated list of contract types",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "List of live tickers for all products",
@@ -289,7 +298,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of live tickers for all products",
+            "description": "ticker data for requested product",
             "schema": {
               "allOf": [
                 {
@@ -2584,20 +2593,71 @@
         "$ref": "#/definitions/Transaction"
       }
     },
+    "greeks": {
+      "type": "object",
+      "properties": {
+        "delta": {
+          "type": "string"
+        },
+        "gamma": {
+          "type": "string"
+        },
+        "rho": {
+          "type": "string"
+        },
+        "theta": {
+          "type": "string"
+        },
+        "vega": {
+          "type": "string"
+        }
+      }
+    },
+    "price_band": {
+      "type": "object",
+      "properties": {
+        "lower_limit": {
+          "type": "string"
+        },
+        "upper_limit": {
+          "type": "string"
+        }
+      }
+    },
+    "quotes": {
+      "type": "object",
+      "properties": {
+        "ask_iv": {
+          "type": "string"
+        },
+        "ask_size": {
+          "type": "string"
+        },
+        "best_ask": {
+          "type": "string"
+        },
+        "best_bid": {
+          "type": "string"
+        },
+        "bid_iv": {
+          "type": "string"
+        },
+        "bid_size": {
+          "type": "string"
+        }
+      }
+    },
     "Ticker": {
       "type": "object",
       "properties": {
-        "product_id": {
+        "close": {
           "type": "integer"
         },
-        "symbol": {
+        "contract_type": {
           "type": "string"
         },
-        "timestamp": {
-          "type": "integer"
-        },
-        "open": {
-          "type": "number"
+        "greeks": {
+          "$ref": "#/definitions/greeks"
         },
         "high": {
           "type": "number"
@@ -2605,17 +2665,50 @@
         "low": {
           "type": "number"
         },
-        "close": {
-          "type": "number"
-        },
-        "volume": {
-          "type": "integer"
-        },
         "mark_price": {
           "type": "string"
         },
+        "mark_vol": {
+          "type": "string"
+        },
+        "oi": {
+          "type": "string"
+        },
+        "oi_value": {
+          "type": "string"
+        },
+        "oi_value_symbol": {
+          "type": "string"
+        },
+        "oi_value_usd": {
+          "type": "string"
+        },
+        "open": {
+          "type": "number"
+        },
+        "price_band": {
+          "$ref": "#/definitions/price_band"
+        },
+        "product_id": {
+          "type": "number"
+        },
+        "quotes": {
+          "$ref": "#/definitions/quotes"
+        },
+        "size": {
+          "type": "number"
+        },
         "spot_price": {
           "type": "string"
+        },
+        "strike_price": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "number"
         },
         "turnover": {
           "type": "number"
@@ -2626,8 +2719,8 @@
         "turnover_usd": {
           "type": "number"
         },
-        "contract_type": {
-          "type": "string"
+        "volume": {
+          "type": "integer"
         }
       }
     },

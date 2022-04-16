@@ -6,13 +6,15 @@ Api endpoints that place orders or fetch account related information needs to au
 
 ## Common Errors
 **Note**
-You should use ntp timestamp to sync local clocks inorder to avoid following issue:
+You should use ntp timestamp to sync local clocks in order to avoid following issue:
 
 * ```{ "error: "SignatureExpired", message:"your signature has expired" }```
 
+ Signature created in the last 5 seconds is allowed. if signature reaches delta system post 5 seconds of generation, then it will fail.
+
 * ```{ "error": "InvalidApiKey", message: "Api Key not found"}```
 
-  above error will be thrown if you are not using correct key, please check hostname e.g. errorneouly Testnet.Delta.exchange api key have been used insted of Delta.exchange api key
+  above error will be thrown if you are not using correct key, please check hostname e.g. erroneously Testnet.Delta.exchange api key have been used instead of Delta.exchange api key
 
 * ```{ "error: "UnauthorizedApiAccess", message:"Api Key not authorised to access this endpoint" }```
 

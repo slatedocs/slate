@@ -1,3 +1,17 @@
+---
+title: Delta Exchange Api V2
+language_tabs:
+  - python: Python
+  - shell: Shell
+  - ruby: Ruby
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
 <h1 id="ApiSection" class="section-header">Rest Api</h1>
 This section documents the latest(v2) api for trading on Delta Exchange. The REST API has endpoints for account and order management as well as public market data.
 
@@ -253,7 +267,7 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |contract_types|query|string|false|Comma separated list of contract types|
-|states|query|string|false|Comma separated list of states|
+|states|query|string|false|Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired |
 |after|query|string|false|after cursor for paginated request|
 |before|query|string|false|before cursor for paginated request|
 |page_size|query|string|false|size of a single page for paginated request, default: 100|
@@ -578,6 +592,12 @@ p JSON.parse(result)
 
 `GET /tickers`
 
+<h3 id="get-tickers-for-products-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|contract_types|query|string|false|Comma separated list of contract types|
+
 > Example responses
 
 > 200 Response
@@ -587,20 +607,46 @@ p JSON.parse(result)
   "success": true,
   "result": [
     {
-      "product_id": 0,
-      "symbol": "string",
-      "timestamp": 0,
-      "open": 0,
+      "close": 0,
+      "contract_type": "string",
+      "greeks": {
+        "delta": "string",
+        "gamma": "string",
+        "rho": "string",
+        "theta": "string",
+        "vega": "string"
+      },
       "high": 0,
       "low": 0,
-      "close": 0,
-      "volume": 0,
       "mark_price": "string",
+      "mark_vol": "string",
+      "oi": "string",
+      "oi_value": "string",
+      "oi_value_symbol": "string",
+      "oi_value_usd": "string",
+      "open": 0,
+      "price_band": {
+        "lower_limit": "string",
+        "upper_limit": "string"
+      },
+      "product_id": 0,
+      "quotes": {
+        "ask_iv": "string",
+        "ask_size": "string",
+        "best_ask": "string",
+        "best_bid": "string",
+        "bid_iv": "string",
+        "bid_size": "string"
+      },
+      "size": 0,
       "spot_price": "string",
+      "strike_price": "string",
+      "symbol": "string",
+      "timestamp": 0,
       "turnover": 0,
       "turnover_symbol": "string",
       "turnover_usd": 0,
-      "contract_type": "string"
+      "volume": 0
     }
   ]
 }
@@ -677,20 +723,46 @@ p JSON.parse(result)
 {
   "success": true,
   "result": {
-    "product_id": 0,
-    "symbol": "string",
-    "timestamp": 0,
-    "open": 0,
+    "close": 0,
+    "contract_type": "string",
+    "greeks": {
+      "delta": "string",
+      "gamma": "string",
+      "rho": "string",
+      "theta": "string",
+      "vega": "string"
+    },
     "high": 0,
     "low": 0,
-    "close": 0,
-    "volume": 0,
     "mark_price": "string",
+    "mark_vol": "string",
+    "oi": "string",
+    "oi_value": "string",
+    "oi_value_symbol": "string",
+    "oi_value_usd": "string",
+    "open": 0,
+    "price_band": {
+      "lower_limit": "string",
+      "upper_limit": "string"
+    },
+    "product_id": 0,
+    "quotes": {
+      "ask_iv": "string",
+      "ask_size": "string",
+      "best_ask": "string",
+      "best_bid": "string",
+      "bid_iv": "string",
+      "bid_size": "string"
+    },
+    "size": 0,
     "spot_price": "string",
+    "strike_price": "string",
+    "symbol": "string",
+    "timestamp": 0,
     "turnover": 0,
     "turnover_symbol": "string",
     "turnover_usd": 0,
-    "contract_type": "string"
+    "volume": 0
   }
 }
 ```
@@ -699,7 +771,7 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live tickers for all products|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|ticker data for requested product|Inline|
 
 <h3 id="get-ticker-for-a-product-by-symbol-responseschema">Response Schema</h3>
 
@@ -4390,26 +4462,17 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |*anonymous*|[[Transaction](#schematransaction)]|false|none|none|
 
-<h2 id="tocSticker">Ticker</h2>
+<h2 id="tocSgreeks">greeks</h2>
 
-<a id="schematicker"></a>
+<a id="schemagreeks"></a>
 
 ```json
 {
-  "product_id": 0,
-  "symbol": "string",
-  "timestamp": 0,
-  "open": 0,
-  "high": 0,
-  "low": 0,
-  "close": 0,
-  "volume": 0,
-  "mark_price": "string",
-  "spot_price": "string",
-  "turnover": 0,
-  "turnover_symbol": "string",
-  "turnover_usd": 0,
-  "contract_type": "string"
+  "delta": "string",
+  "gamma": "string",
+  "rho": "string",
+  "theta": "string",
+  "vega": "string"
 }
 
 ```
@@ -4418,20 +4481,136 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|product_id|integer|false|none|none|
-|symbol|string|false|none|none|
-|timestamp|integer|false|none|none|
-|open|number|false|none|none|
+|delta|string|false|none|none|
+|gamma|string|false|none|none|
+|rho|string|false|none|none|
+|theta|string|false|none|none|
+|vega|string|false|none|none|
+
+<h2 id="tocSprice_band">price_band</h2>
+
+<a id="schemaprice_band"></a>
+
+```json
+{
+  "lower_limit": "string",
+  "upper_limit": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lower_limit|string|false|none|none|
+|upper_limit|string|false|none|none|
+
+<h2 id="tocSquotes">quotes</h2>
+
+<a id="schemaquotes"></a>
+
+```json
+{
+  "ask_iv": "string",
+  "ask_size": "string",
+  "best_ask": "string",
+  "best_bid": "string",
+  "bid_iv": "string",
+  "bid_size": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ask_iv|string|false|none|none|
+|ask_size|string|false|none|none|
+|best_ask|string|false|none|none|
+|best_bid|string|false|none|none|
+|bid_iv|string|false|none|none|
+|bid_size|string|false|none|none|
+
+<h2 id="tocSticker">Ticker</h2>
+
+<a id="schematicker"></a>
+
+```json
+{
+  "close": 0,
+  "contract_type": "string",
+  "greeks": {
+    "delta": "string",
+    "gamma": "string",
+    "rho": "string",
+    "theta": "string",
+    "vega": "string"
+  },
+  "high": 0,
+  "low": 0,
+  "mark_price": "string",
+  "mark_vol": "string",
+  "oi": "string",
+  "oi_value": "string",
+  "oi_value_symbol": "string",
+  "oi_value_usd": "string",
+  "open": 0,
+  "price_band": {
+    "lower_limit": "string",
+    "upper_limit": "string"
+  },
+  "product_id": 0,
+  "quotes": {
+    "ask_iv": "string",
+    "ask_size": "string",
+    "best_ask": "string",
+    "best_bid": "string",
+    "bid_iv": "string",
+    "bid_size": "string"
+  },
+  "size": 0,
+  "spot_price": "string",
+  "strike_price": "string",
+  "symbol": "string",
+  "timestamp": 0,
+  "turnover": 0,
+  "turnover_symbol": "string",
+  "turnover_usd": 0,
+  "volume": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|close|integer|false|none|none|
+|contract_type|string|false|none|none|
+|greeks|[greeks](#schemagreeks)|false|none|none|
 |high|number|false|none|none|
 |low|number|false|none|none|
-|close|number|false|none|none|
-|volume|integer|false|none|none|
 |mark_price|string|false|none|none|
+|mark_vol|string|false|none|none|
+|oi|string|false|none|none|
+|oi_value|string|false|none|none|
+|oi_value_symbol|string|false|none|none|
+|oi_value_usd|string|false|none|none|
+|open|number|false|none|none|
+|price_band|[price_band](#schemaprice_band)|false|none|none|
+|product_id|number|false|none|none|
+|quotes|[quotes](#schemaquotes)|false|none|none|
+|size|number|false|none|none|
 |spot_price|string|false|none|none|
+|strike_price|string|false|none|none|
+|symbol|string|false|none|none|
+|timestamp|number|false|none|none|
 |turnover|number|false|none|none|
 |turnover_symbol|string|false|none|none|
 |turnover_usd|number|false|none|none|
-|contract_type|string|false|none|none|
+|volume|integer|false|none|none|
 
 <h2 id="tocSarrayoftickers">ArrayOfTickers</h2>
 
@@ -4440,20 +4619,46 @@ This operation does not require authentication.
 ```json
 [
   {
-    "product_id": 0,
-    "symbol": "string",
-    "timestamp": 0,
-    "open": 0,
+    "close": 0,
+    "contract_type": "string",
+    "greeks": {
+      "delta": "string",
+      "gamma": "string",
+      "rho": "string",
+      "theta": "string",
+      "vega": "string"
+    },
     "high": 0,
     "low": 0,
-    "close": 0,
-    "volume": 0,
     "mark_price": "string",
+    "mark_vol": "string",
+    "oi": "string",
+    "oi_value": "string",
+    "oi_value_symbol": "string",
+    "oi_value_usd": "string",
+    "open": 0,
+    "price_band": {
+      "lower_limit": "string",
+      "upper_limit": "string"
+    },
+    "product_id": 0,
+    "quotes": {
+      "ask_iv": "string",
+      "ask_size": "string",
+      "best_ask": "string",
+      "best_bid": "string",
+      "bid_iv": "string",
+      "bid_size": "string"
+    },
+    "size": 0,
     "spot_price": "string",
+    "strike_price": "string",
+    "symbol": "string",
+    "timestamp": 0,
     "turnover": 0,
     "turnover_symbol": "string",
     "turnover_usd": 0,
-    "contract_type": "string"
+    "volume": 0
   }
 ]
 
