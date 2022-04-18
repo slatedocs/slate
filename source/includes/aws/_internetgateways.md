@@ -144,14 +144,14 @@ There is a default limit (5) to the number of internet gateways per region.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways?operation=attach"
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways/igw-09adee4bafdef2c31?operation=attach"
 ```
 > Request body example to attach an internet gateway:
 
 ```json
 {
-  "id": "igw-09adee4bafdef2c31",
-  "vpcId": "vpc-0094a0760c22437ec"
+  "vpcId": "vpc-0094a0760c22437ec",
+  "cidrBlock": "0.0.0.0/0"
 }
 ```
 
@@ -164,17 +164,21 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways/:id</code>
 
 Attach an internet gateway to a VPC in a given [environment](#administration-environments).
 
 | Required                                         | &nbsp;                                |
 |--------------------------------------------------|---------------------------------------|
-| `id`<br/>*string*                                | The ID of the internet gateway.       |
 | `vpcId`<br/>*string*                             | The ID of the VPC.                    |
+| `cidrBlock`<br/>*string*                         | The CIDR IPv4 Block for the route of the Internet Gateway.|
 
 <aside class="notice">
 A VPC can only have a single Internet Gateway attached at the same time.
+</aside>
+
+<aside class="notice">
+This operation will configure a Route for this Internet Gateway within the Route Table of the VPC
 </aside>
 
 <!-------------------- DETACH AN INTERNET GATEWAY -------------------->
