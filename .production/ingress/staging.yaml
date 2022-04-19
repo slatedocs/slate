@@ -1,8 +1,10 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
     io.coinbetter.ingress: master
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
   name: docs-app-tauros
   namespace: api-staging
 spec:
@@ -10,6 +12,10 @@ spec:
   - host: docs-staging.tauros.io
     http:
       paths:
-      - backend:
-          serviceName: docs
-          servicePort: 4567
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: docs
+              port:
+                number: 4567
