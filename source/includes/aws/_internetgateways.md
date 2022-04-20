@@ -187,14 +187,14 @@ This operation will configure a Route for this Internet Gateway within the Route
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways?operation=detach"
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways/igw-09adee4bafdef2c31?operation=detach"
 ```
 > Request body example to detach an internet gateway:
 
 ```json
 {
-  "id": "igw-09adee4bafdef2c31",
-  "vpcId": "vpc-0094a0760c22437ec"
+  "vpcId": "vpc-0ebb01212fbb562a3",
+  "deleteRoutes": true
 }
 ```
 
@@ -207,11 +207,11 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways/:id</code>
 
 Detach an internet gateway from a VPC in a given [environment](#administration-environments).
 
 | Required                                         | &nbsp;                                |
 |--------------------------------------------------|---------------------------------------|
-| `id`<br/>*string*                                | The ID of the internet gateway.       |
 | `vpcId`<br/>*string*                             | The ID of the VPC.                    |
+| `deleteRoutes`<br/>*boolean*                     | Whether or not to delete the routes attached to the Internet Gateway. Default to true. |
