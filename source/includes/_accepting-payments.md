@@ -671,30 +671,66 @@ The details that you can see are;
 
 ![Payment Link](images/reusable_link_child.png)
 
-### How to Use Invoice via Dashboard
+### How to Use Invoice/Account Receivable via Dashboard
 
 1. Log on your OY! dashboard
 2. Choose "Production" environment
-3. Click "Request Money" menu, and choose "Invoice"
-4. Click "Create Invoice"
+3. Click "Create Invoice" under Account Receivable menu
+4. Click "Create New Invoice"
 5. Fill in the necessary details
 
 | Parameter                    | Description                                                                                                                                                                                                                                                                                                                                                          |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Amount Type                  | You can choose between Open Amount and Closed Amount. Open Amount = can accept payments of any amount, OR up to the specified amount (if amount is filled in). Closed Amount = only accept payments of the specified amount                                                                                                                                          |
-| Partner Transaction ID       | A unique transaction ID that you can assign for a transaction                                                                                                                                                                                                                                                                                                        |
+| Invoice Number               | The number of the invoice to be created                                                                                                                                         |
+| Invoice Date      | The date of the invoice                                                                                                                                                                                                                                                                                                       |
+| Due Date               |  Due date of a transaction. You can choose between 7, 14, 30, 45, or 60 days after created date of the invoice OR you can also input a specific/custom date. Your customer will get reminders to pay on D-1, D-Day, and D+7 from the transaction due date.                                                                                                                  |
+| Customer           | The name of the customer that the invoice is addressed to. You can choose the name of the customer from the dropdown. To create a new customer, follow the instruction on xxxxx  |
+| Product Description| The name and/or description of the product                                                                                                                 |
+| Quantity        | The quantity of the product   |
+| Unit price            | Unit price of the product                                                                                                                                                                                                                                                                                                                             |
+| Amount          | Total amount for the product |
+| Notes       | The note to be displayed in the automatically generated invoice file                                                                                                                                                                                                                                                                                          |
+| Additional Documents             | The supporting documents that will be attached in the email along with the invoice. Accept PDF & Excel files. Maximum of 4 documents (maximum 5MB each).                                                                                                     |
+| Invoice Payment             | You can choose between "Payment Link" (the invoice will be embedded with a payment link that the customer can use to make a payment on) or "Invoice Only" (the invoice will not be embedded with a payment link)                                                                                                                                                                                                                                                      |
 | Payment Method               | The payment method that you can choose to enable/disable for your customers. The payment methods available are Bank Transfer (via Virtual Account), Cards (Credit Card/Debit Card), E-Wallet (ShopeePay, DANA, LinkAja, OVO), and QR Code                                                                                                                            |
 | Admin Fee Method             | You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)                        |
-| Payment Link Expiration Date | You can choose between "Default" and "Custom". "Default" means the payment link will expire 24 hours after it is created. "Custom" means you can specify the expired date. The payment link will expire when this specified expired date is reached                                                                                                                  |
-| Transaction Due Date         | Due date of a transaction. You can choose between "Same with Payment Link Expiration Date" and "Custom". Your customer will get reminders to pay on D-1, D-Day, and D+7 from the transaction due date. A transaction can exceed the due date, but the link can still be opened (because transaction due date and link expiration time are 2 separate things).        |
-| Partner User ID              | ID assigned for a specific user/customer                                                                                                                                                                                                                                                                                                                             |
-| VA Static                    | You can choose between "Disable" and "Enable". 'Disable" means a new VA number will be assigned for the respective Partner User ID (if the user chooses to pay via VA). "Enable" means we will assign a static VA for the respective Partner User ID (if the user chooses to pay via VA). The VA number assigned will be the same for the respective partner user ID |
-| Customer Full Name           | Full name of your customer that will be displayed in the invoice link.                                                                                                                                                                                                                                                                                               |
-| Invoice Detail               | You can choose between attaching the PDF file of your invoice and input the item list (such as Item Name, Price, and Quantity). Note that the subtotal of price and quantity inputted here must be the same with the total amount inputted in he field above.                                                                                                        |
-| Description                  | The description of the payment link. Usually this is used to describe the purpose of the payment link page                                                                                                                                                                                                                                                           |
-| Customer Detail              | Details that can be specified: Customer Phone Number, Email, and Notes. We will send the payment link as well as the payment success receipt to the specified email address (if email address is filled in).                                                                                                                                                         |
 
-Whether you create the link through URL, dashboard, or API, you can see the details of your link on the OY! Dashboard. The details that can be checked are the created date of the link, amount billed, amount received, expiration date, and status.
+
+![Invoice](images/create_new_invoice_1.png)
+
+![Invoice](images/create_new_invoice_2.png)
+
+### Creating a Customer for Account Receivable/Invoice
+
+![Invoice](images/add_new_customer.png)
+
+1. Click dropdown of the "Customer"
+2. Click "Add new customer"
+3. Fill in Customer ID, Customer Name (mandatory), PIC Name, Customer Phone Number, Tax Type (mandatory), Customer Email, Address.
+4. Click save
+
+For Tax Type, the explanation is as follows:
+
+| No tax           | Tax will not be added upon the subtotal                                                                                                                          |
+| PPN 10% Exclusive            | PPN 10% of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN will be 10% of the 10,000 = 1,000                |
+| PPN 10% Inclusive          | Tax will not be added upon the subtotal because the subtotal is assumed to be tax inclusive   |
+
+### Amount Customization for Account Receivable/Invoice
+
+We have a feature that allows you to add the price of the subtotal (addition) and/or deduct the price from subtotal. The step is as follows:
+
+![Invoice](images/add_column_amount_customization.png)
+
+
+1. Click "add column" below the subtotal
+2. Choose "addition" or "substraction" from the dropdown
+3. Fill in the description
+4. Fill in the amount
+
+![Invoice](images/column_addition_substraction.png)
+
+![Invoice](images/after_state_amount_customization.png)
+
 
 ### How to Use Payment Link/Invoice via API
 
