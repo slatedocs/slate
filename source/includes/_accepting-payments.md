@@ -696,13 +696,13 @@ The details that you can see are;
 | Admin Fee Method             | You can choose between "Included in total amount" or "Excluded from total amount". "Included in total amount" means the admin fee will be deducted from the payment amount made by the customer. "Excluded from total amount" means the admin fee will be added to the customer's total payment (Total Amount = Specified Amount + Admin Fee)                        |
 
 
-12.56
+![Invoice](images/create_new_invoice_1.png)
 
-12.57
+![Invoice](images/create_new_invoice_2.png)
 
 ### Creating a Customer for Account Receivable/Invoice
 
-12.58
+![Invoice](images/add_new_customer.png)
 
 1. Click dropdown of the "Customer"
 2. Click "Add new customer"
@@ -719,16 +719,17 @@ For Tax Type, the explanation is as follows:
 
 We have a feature that allows you to add the price of the subtotal (addition) and/or deduct the price from subtotal. The step is as follows:
 
-13.24
+![Invoice](images/add_column_amount_customization.png)
+
 
 1. Click "add column" below the subtotal
 2. Choose "addition" or "substraction" from the dropdown
 3. Fill in the description
 4. Fill in the amount
 
-13.25
+![Invoice](images/column_addition_substraction.png)
 
-13.25
+![Invoice](images/after_state_amount_customization.png)
 
 
 ### How to Use Payment Link/Invoice via API
