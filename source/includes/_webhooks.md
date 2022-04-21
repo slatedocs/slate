@@ -1,4 +1,38 @@
 # Webhooks
+## What are webhooks
+
+Webhooks are notifications about ProcurementExpress entities that are sent to your app. When any event specified on `event_type` query params occurs, a `POST` request is sent to the specified `url`. Webhooks notification configured here are triggered by events in your ProcurementExpress company. 
+
+## When should I use webhooks
+
+If you use API endpoints, then you will get response only when you call it. But there comes a scenario where you might like to know about the changes in realtime, for example, you want to listen to changes as soon as purchase order is created, approved, delivered or paid, then webhooks makes your life easier, because it send a `POST` request to your application, as soon as those event occurs in your ProcurementExpress company.
+
+## Access webhooks in ProcurementExpress application
+
+- Login to your company in https://app.procurementexpress.com as `companyadmin`.
+- Click on the users menu on the top right corner of the application
+- click on Integrations menu item
+- And finally click on `Integrate` button for `Create webhooks based on events` section
+- Here you will see list of webhooks you have configured, and also click on `Add Webhooks` button to create new one.
+
+## Supported events
+
+Right now we support following webhooks events:
+
+### `new_po`
+
+If `new_po` event is enabled in webhooks configuration, then everytime new purchase order is created in your ProcurementExpress company, a webhooks request is notified.
+
+### `po_approved`
+
+When `po_approved` event is enabled in webhooks configuration, then everytime a purchase order is approved in your ProcurementExpress company, a webhooks request is notified.
+
+### `po_delivered`
+
+When `po_delivered` event is enabled in webhooks configuration, then everytime a purchase order is marked as delivered, a webhooks request is notified.
+### `po_paid`
+
+When `po_paid` event is enabled in webhooks configuration, then everytime a purchase order is marked as paid, a webhooks request is notified.
 
 ## Create a Webhook
 
