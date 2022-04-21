@@ -217,7 +217,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 | startDate <br> *ISO8601 Date Time*| The start date of the record (inclusive)
 | endDate <br> *ISO8601 Date Time*  | The end date of the record (exclusive)
 | fields <br> *Object*              | Attributes of the underlying resource that created this usage
-| metricType <br> *String*          | The type of usage specified. [COUNTER,GAUGE].
+| metricType <br> *String*          | The type of metric being summarized in this record. [COUNTER,GAUGE]. Counter accumulates over time. Gauge types indicate a particular amount of usage during record duration and fluxate up and down. 
 | metadata <br> *Object*            | Attributes of the underlying environment under which this usge was created.
 
 | Metadata Attributes           | Description
