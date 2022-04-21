@@ -187,30 +187,33 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 }
 ```
 
-| Record Attributes   | Description
-| ------------------  | ---------------
-| id                  | The id of the record.
-| usageType           | The type of the underlying usage.
-| usage               | The amount of usage within this usage records period.
-| unit                | The unit attributed to the usage.
-| connectionId        | The id of the connection on which this usage was generated.
-| connectionName      | The name of the connection on which this usage was generated.
-| organizationId      | The id of the organization on which this usage was generated.
-| organizationName    | The name of the organization on which this usage was generated.
-| environmentId       | The id of the environment on which this usage was generated.
-| environmentName     | The name of the environment on which this usage was generated.
-| startDate           | The start date of the record (inclusive)
-| endDate             | The end date of the record (exclusive)
-| fields              | Attributes of the underlying resource that created this usage
-| metricType          | The type of usage specified. [COUNTER,GAUGE].
-| metadata            | Attributes of the underlying environment under which this usge was created.
+| Record Attributes                 | Description
+| ------------------                | ---------------
+| id <br> *String*                  | The id of the record.
+| usageType <br> *String*           | The type of the underlying usage.
+| usage <br> *Number*               | The amount of usage within this usage records period.
+| unit <br> *String*                | The unit attributed to the usage.
+| connectionId <br> *String*        | The id of the connection on which this usage was generated.
+| connectionName <br> *String*      | The name of the connection on which this usage was generated.
+| organizationId <br> *String*      | The id of the organization on which this usage was generated.
+| organizationName <br> *String*    | The name of the organization on which this usage was generated.
+| environmentId <br> *String*       | The id of the environment on which this usage was generated.
+| environmentName <br> *String*     | The name of the environment on which this usage was generated.
+| startDate <br> *ISO8601 Date Time*| The start date of the record (inclusive)
+| endDate <br> *ISO8601 Date Time*  | The end date of the record (exclusive)
+| fields <br> *Object*              | Attributes of the underlying resource that created this usage
+| metricType <br> *String*          | The type of usage specified. [COUNTER,GAUGE].
+| metadata <br> *Object*            | Attributes of the underlying environment under which this usge was created.
 
-| Metadata Attributes   | Description
-| ------------------    | ---------------
-| totalCount            | The total number of records satisfying the query.
-| totalPageCount        | The total number of pages.
-| count                 | The number of records returned on this page only.
-| page                  | The page returned. Always the same as the page requested.
+| Metadata Attributes           | Description
+| ------------------            | ---------------
+| totalCount <br> *Number*      | The total number of records satisfying the query.
+| totalPageCount <br> *Number*  | The total number of pages.
+| count <br> *Number*           | The number of records returned on this page only.
+| page <br> *Number*            | The page returned. Always the same as the page requested.
+
+
+### Query Options
 
 | Optional Query Parameters  | Description                                        | Default Behaviour (when not specified)
 ---------------------------- | ------------                                       | -----------------
@@ -221,7 +224,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 | start_date (inclusive)     | Retrieve the usage starting from the requested date| The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY
 | end_date                   | Retrieve the usage up to the specific date only    | The time of the request
 
-To retrieve data as a json response please supply the `application/json` Accept header in your request. For example
+To retrieve data as a json response please supply the `application/json` Accept header in your request. For example:
 
 ```shell
 curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
@@ -239,7 +242,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
 
 <sup>2</sup> Note: a granularity query is expensive and may take time. When specifying a granularity, traditional paging is not performed. Up to 65,536 results may be returned. If there are more than 65,536 results only the first 65,536 results will be returned and subsequent records maybe retrieved by specifying the `next_page_token` query param in the request. The token will be provided in the response.
 
-```json
+```js
 {
   "records": [...],
   "metadata": {
@@ -249,7 +252,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
 }
 ```
 
-To retrieve data as a csv response please supply the `text/csv` Accept header in your request. For example
+To retrieve data as a csv response please supply the `text/csv` Accept header in your request. For example:
 
 ```shell
 curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
