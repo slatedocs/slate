@@ -6,23 +6,25 @@
 <span class="beta-indicator">BETA</span>
 
 An important step in maintaining flow at work is having all the information you need in one place. Asana is for teams to track 
-projects, to provide clarity on *who* is doing *what* by *when*, and to automate repetitive processes. Now, it's easier than ever to 
-see key work information from other tools on the surface of tasks, and automate cross-tool processes.
+projects, to provide clarity on *who* is doing *what* by *when*, and to automate repetitive processes. With App Components, it's
+now easier than ever to see key work information from other tools on the surface of tasks, as well as automate cross-tool processes.
 
-Apps can use App Components to display customized widgets, forms, and rules within Asana's user interface. Requests go from
-Asana directly to an [App Server](/docs/app-server). The App Server controls the information within these customized widgets and the App Server
-controls what happens when a user takes actions within these components.
+Apps can use App Components to display customized widgets, forms, and rules within Asana's user interface. Under the hood, requests are
+made from Asana directly to your [App Server](/docs/app-server). Your App Server controls the information within these customized
+widgets, as well what happens when a user takes actions within these components.
+
+Using App Components, you can build customizable in-product experiences for apps within Asana by leveraging capabilities such as:
+
+* [Widget](/docs/widget)
+* [Modal Form](/docs/modal-form)
+* [Lookup](/docs/lookup)
+* [Rule Action](/docs/rule-action)
+* [Entry Point](/docs/entry-point)
 
 <img src="../images/UI_Components.gif" />
 
 **App Components are currently in open beta**. For the latest updates and announcements,
-[subscribe to our developer forum](https://forum.asana.com/c/developersapi/app-components-beta/150).
-
-_The App Components Beta Program is a pre-general-release version of a program developed by Asana that allows developers_
-_to develop and test App Components. The App Component Beta Program is for development, evaluation, and testing purposes_
-_only, and is not for production use or subject to availability or security obligations from Asana. The App Components_
-_Beta Program is made available on an “as is” basis without warranties (express or implied) of any kind, and may be_
-_discontinued or modified at any time._
+[subscribe to our developer forum](https://forum.asana.com/c/api/app-components-beta/150).
 
 <hr>
 
