@@ -226,6 +226,7 @@ includes:
   - aws/storage
   - aws/volumes
   - aws/s3
+  - aws/s3_api_credentials
   - aws/buckets
   - aws/objects
   - aws/networking
@@ -235,6 +236,8 @@ includes:
   - aws/elastic_ips
   - aws/cidr_blocks
   - aws/cidr_reservations
+  - purestorage
+  - purestorage/object_storage_api_credentials
 
 search: true
 ---
