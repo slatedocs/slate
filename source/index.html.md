@@ -16,6 +16,7 @@ includes:
   - fields
   - personnel
   - roles
+  - personnel_roles
   - pagination
   - errors
 
