@@ -232,14 +232,14 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 
 | Optional Query Parameters  | Description                                        | Default Behaviour (when not specified)
 ---------------------------- | ------------                                       | -----------------
-| organization_id            | Retrieve the usage of a specific organization only | All orgs you have visibility on
-| environment_Id             | Retrieve the usage of a specific environment only  | All environments you visibility on
-| connection_id              | Retrieve the usage of a specific connection only   | All connections you have visibility on
+| organization_id            | Retrieve the usage of a specific organization only | All orgs the caller has visibility on
+| environment_Id             | Retrieve the usage of a specific environment only  | All environments the caller has visibility on
+| connection_id              | Retrieve the usage of a specific connection only   | All connections the caller have visibility on
 | usage_type                 | Retrieve the usage of a specific usage type only   | All usage types
 | start_date (inclusive)     | Retrieve the usage starting from the requested date| The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY
 | end_date                   | Retrieve the usage up to the specific date only    | The time of the request
 
-To retrieve data as a json response please supply the `application/json` Accept header in your request. For example:
+To retrieve data as a json response supply the `application/json` Accept header in your request. For example:
 
 ```shell
 curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
@@ -266,7 +266,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
 }
 ```
 
-To retrieve data as a csv response please supply the `text/csv` Accept header in your request. For example:
+To retrieve data as a csv response supply the `text/csv` Accept header in your request. For example:
 
 ```shell
 curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
@@ -274,4 +274,4 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
    -H "Accept: text/csv"
 ```
 
-Note that granularity and paging (of any kind) are not supported for the CSV response type.
+Note that granularity and paging (of any kind) are not supported for CSV response type.
