@@ -131,6 +131,21 @@ Attributes | &nbsp;
 `usageType`<br/>*string* | Usage type of the record.
 `secondaryType`<br/>*string* | Secondary type of the record.
 
+Query Parameters (*required*) | &nbsp;
+---------- | -----
+`start_date`<br/>*String* | Start date (inclusive). Should have the following format YYYY-MM-DD.
+`end_date`<br/>*String* | End date (exclusive). Should have the following format YYYY-MM-DD.
+
+Query Parameters | &nbsp;
+---------- | -----
+`service_connection_id`<br/>*UUID* | Show usage summary for this service connection.
+`include_sub_orgs`<br/>*boolean* | Include usage summary of all its sub-organizations. Defaults to false.
+`include_cost`<br/>*boolean* | Include the utility cost and service connection pricing id fields. Defaults to true.
+`include_free_usage`<br/>*boolean* | Include all summary records that has no cost associated to it (i.e. utilityCost == 0). Defaults to true.
+`combine_usage_types`<br/>*boolean* | Sums up the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`.
+`period`<br/>*String* | The period on which the aggregation is made. HOUR, DAY or PERIOD. The default is HOUR.
+`include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted.
+
 ## Retrieve service usage
 
 `GET /service/usage`
