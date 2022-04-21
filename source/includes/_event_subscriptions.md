@@ -52,7 +52,7 @@ curl https://api.handshq.com/v1/event_subscriptions \
   -H "Content-Type: application/json" \
   -H "Authorization: bearer [api_token]" \
   --request POST \
-  -d "[json_payload]"
+  -d '[json_payload]'
 ```
 
 > Example Event Subscription creation payload.

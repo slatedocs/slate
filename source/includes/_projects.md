@@ -118,7 +118,7 @@ curl https://api.handshq.com/v1/projects \
   -H "Authorization: bearer [api_token]" \
   -H "Content-Type: application/json" \
   --request POST \
-  -d "[json_payload]"
+  -d '[json_payload]'
 ```
 
 > Example Project creation payload.
@@ -232,7 +232,7 @@ curl https://api.handshq.com/v1/projects/[id] \
   -H "Authorization: bearer [api_token]" \
   -H "Content-Type: application/json" \
   --request PATCH \
-  -d "[json_payload]"
+  -d '[json_payload]'
 ```
 
 > Example Project update payload.
