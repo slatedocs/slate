@@ -93,10 +93,10 @@ curl https://api.handshq.com/v1/roles \
   -H "Authorization: bearer [api_token]" \
   -H "Content-Type: application/json" \
   --request POST \
-  -d "[json_payload]"
+  -d '[json_payload]'
 ```
 
-> 201
+> Example Role creation payload.
 
 ```json
   {
@@ -128,10 +128,10 @@ curl https://api.handshq.com/v1/role/[id] \
   -H "Authorization: bearer [api_token]" \
   -H "Content-Type: application/json" \
   --requst PATCH
-  -d "[json_payload]"
+  -d '[json_payload]'
 ```
 
-> 200
+> Example Role creation payload.
 
 ```json
   {

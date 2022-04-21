@@ -67,7 +67,9 @@ curl https://api.handshq.com/v1/event_subscriptions \
 
 ```
 
-This endpoint allows you to be notified of certain events. Those currently supported are:
+This endpoint allows you to be notified of certain events. Where resources are account wide (such as roles), all companies within that account with an event subscription will be notified of the event. Where resources are company specific (such as personnel), companies with event subscriptions will be notified of events relating to their own resources only. The only exception to this is the primary company on an account, as they will be notified of events relating to all personnel within the account.
+
+Events currently supported are:
 
 ### RAMS
 - `version_pdf_created` - this is fired after we have generated and stored a project version PDF, which is now ready to be downloaded.
@@ -75,9 +77,17 @@ This endpoint allows you to be notified of certain events. Those currently suppo
 ### Training Register
 <p> The below events are available to customers with the Training Register feature </p>
 
-- `role_created` - this is fired after a role is created for an account (via the HandsHQ app or via the API).
-- `role_updated` - this is fired after a role is updated for an account (via the HandsHQ app or via the API).
-- `role_deleted` - this is fired after a role is deleted for an account (via the HandsHQ app or via the API).
+- `role_created` - this is fired after a role is created (via the HandsHQ app or via the API).
+- `role_updated` - this is fired after a role is updated (via the HandsHQ app or via the API).
+- `role_deleted` - this is fired after a role is deleted (via the HandsHQ app or via the API).
+
+- `personnel_created` - this is fired after a personnel is created (via the HandsHQ app or via the API).
+- `personnel_updated` - this is fired after a personnel is updated (via the HandsHQ app or via the API).
+- `personnel_deleted` - this is fired after a personnel is deleted (via the HandsHQ app or via the API).
+- `personnel_archived` - this is fired after a personnel is archived (via the HandsHQ app or via the API).
+- `personnel_unarchived` - this is fired after a personnel is unarchived (via the HandsHQ app or via the API).
+
+- `training_status_changed` - this is fired after the training status of a personnel changes. Training statuses change as a result of changes to that personnel's roles, courses and training etc.
 
 <aside class="notice">
   Please note that the `version_pdf_created` event is scoped to look for subscriptions which were created by the same division that the project belongs to.
