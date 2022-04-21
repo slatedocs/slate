@@ -1094,3 +1094,87 @@ Attributes | &nbsp;
 `discounts.remaining`<br/>*Object* | Tracking of the credits remaining and used for the billing cycle.
 `discounts.discountId`<br/>*UUID* | The UUID of the discount.
 `state`<br/>*enum* | The state of the billing cycle. It could be "NONE", "WAITING_INVOICE", "WAITING_PAYMENT", "PAID", "IN_PROGRESS", or "FUTURE".
+
+
+<!-------------------- UPDATE BILLABLEORGINFO PACKAGE & DISCOUNTS FOR BILLING CYCLE -------------------->
+### Update the pricing package and discounts starting at a billing cycle
+
+`PUT /organizations/:organization_id/billable_info`
+
+Updates the organization's billable information with the new pricing package and discounts starting at the specified billing cycle
+
+```shell
+# Update billable information
+curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728823309a4/billable_info" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "request_body"
+```
+> Request body example:
+
+```json
+{
+  "billableOrgInfoId": "1529945f-2254-4242-8633-a49ac237919b",
+  "billingCycleId": "8f651e10-f8c7-4f26-8ab5-75f2e5bc4f79",
+  "pricingPackageId": "87cf333a-fb01-4114-971f-da5c972bfece",
+  "discountIds": [
+    "033f37c5-9ea4-4caa-9008-5db9118b3d30",
+    "9254ca94-b12b-4cf4-92c3-d51cef33a229"
+  ]
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "billingCycles": [
+      {
+        "endDate": "2022-05-01",
+        "id": "d3999e15-144d-4967-ba33-91a52c004550",
+        "state": "IN_PROGRESS",
+        "startDate": "2022-04-01"
+      },
+      {
+        "endDate": "2022-05-01",
+        "id": "ebcb1ce9-de0e-4bb1-ac17-53a2f16781d8",
+        "state": "IN_PROGRESS",
+        "startDate": "2022-04-01"
+      },
+      {
+        "endDate": "2022-04-01",
+        "id": "5a6b369c-9c26-4acc-a042-a4ffe5b644a1",
+        "state": "WAITING_PAYMENT",
+        "startDate": "2022-03-01"
+      },
+      {
+        "endDate": "2022-03-01",
+        "id": "34429f4d-91cf-4bf3-8c81-1d5357062dd5",
+        "state": "WAITING_PAYMENT",
+        "startDate": "2022-02-01"
+      }
+    ],
+    "currency": "USD",
+    "id": "a37218aa-3515-49c2-8600-e1a856bebc9b",
+    "pricingPackage": {
+      "pricingDefinition": {
+        "name": {
+          "en": "StackPath",
+          "fr": "StackPath"
+        }
+      },
+      "id": "1529945f-2254-4242-8633-a49ac237919b"
+    },
+    "billableStart": "2021-11-22"
+  }
+}
+```
+
+| Attributes                      | &nbsp;                                                                                                              |
+|---------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `billableOrgInfoId`<br/>*UUID*  | The id of the billable organization information.                                                                    |
+| `billingCycleId`<br/>*UUID*     | The id of the starting billing cycle.                                                                               |
+| `pricingPackageId`<br/>*UUID*   | The id of pricing package to apply.                                                                                 |
+| `discountIds`<br/>*Array[UUID]* | The list of discount Ids to apply at the start of the billing cycle. An empty list results in no discounts to apply |
+
