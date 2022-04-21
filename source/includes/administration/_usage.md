@@ -232,7 +232,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 
 | Optional Query Parameters  | Description                                        | Default Behaviour (when not specified)
 ---------------------------- | ------------                                       | -----------------
-| organization_id            | Retrieve the usage of a specific organization only | All orgs the caller has visibility on
+| organization_id            | Retrieve the usage of a specific organization only | All organizations the caller has visibility on
 | environment_Id             | Retrieve the usage of a specific environment only  | All environments the caller has visibility on
 | connection_id              | Retrieve the usage of a specific connection only   | All connections the caller have visibility on
 | usage_type                 | Retrieve the usage of a specific usage type only   | All usage types
