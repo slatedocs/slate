@@ -230,14 +230,15 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 
 ### Query Options
 
-| Optional Query Parameters  | Description                                        | Default Behaviour (when not specified)
----------------------------- | ------------                                       | -----------------
-| organization_id            | Retrieve the usage of a specific organization only | All organizations the caller has visibility on
-| environment_Id             | Retrieve the usage of a specific environment only  | All environments the caller has visibility on
-| connection_id              | Retrieve the usage of a specific connection only   | All connections the caller have visibility on
-| usage_type                 | Retrieve the usage of a specific usage type only   | All usage types
-| start_date (inclusive)     | Retrieve the usage starting from the requested date| The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY
-| end_date                   | Retrieve the usage up to the specific date only    | The time of the request
+| Optional Query Parameters  | Description                                           | Default Behaviour (when not specified)
+---------------------------- | ------------                                          | -----------------
+| organization_id            | Retrieve the usage of a specific organization only    | All organizations the caller has visibility on
+| environment_Id             | Retrieve the usage of a specific environment only     | All environments the caller has visibility on
+| connection_id              | Retrieve the usage of a specific connection only      | All connections the caller have visibility on
+| usage_type                 | Retrieve the usage of a specific usage type only      | All usage types
+| start_date (inclusive)     | Retrieve the usage starting from the requested date   | The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY
+| end_date                   | Retrieve the usage up to the specific date only       | The time of the request
+| fields.<fieldName>         | Retrieve the usage that matches a specific field name | No filtering of fields applied. Multiple field filters are supported for unique field names and will be applied with the AND operator.
 
 ### Paged JSON response
 
