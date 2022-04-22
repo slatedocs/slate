@@ -154,6 +154,10 @@ The body of an event subscription will vary depending on the type of event being
   }
 ```
 
+### Data:
+
+  - The role that has been created.
+
 
 ## Role Updated
 ```json
@@ -171,6 +175,10 @@ The body of an event subscription will vary depending on the type of event being
   }
 ```
 
+### Data:
+
+  - The role that has been updated.
+
 ## Role Deleted
 ```json
   {
@@ -186,6 +194,10 @@ The body of an event subscription will vary depending on the type of event being
     }
   }
 ```
+
+### Data:
+
+  - The role that has been deleted.
 
 ## Personnel Created
 ```json
@@ -227,6 +239,10 @@ The body of an event subscription will vary depending on the type of event being
   }
 ```
 
+### Data:
+
+  - The personnel that has been created, along with IDs of the personnel's line manager and associated roles.
+
 ## Personnel Updated
 ```json
   {
@@ -266,6 +282,10 @@ The body of an event subscription will vary depending on the type of event being
     }
   }
 ```
+
+### Data:
+
+  - The personnel that has been updated, along with IDs of the personnel's line manager and associated roles.
 
 ## Personnel Deleted
 ```json
@@ -307,6 +327,10 @@ The body of an event subscription will vary depending on the type of event being
   }
 ```
 
+### Data:
+
+  - The personnel that has been deleted, along with IDs of the personnel's line manager and associated roles.
+
 ## Personnel Archived
 ```json
   {
@@ -346,6 +370,10 @@ The body of an event subscription will vary depending on the type of event being
     }
   }
 ```
+
+### Data:
+
+  - The personnel that has been archived, along with IDs of the personnel's line manager and associated roles.
 
 ## Personnel Unarchived
 ```json
@@ -387,6 +415,10 @@ The body of an event subscription will vary depending on the type of event being
   }
 ```
 
+### Data:
+
+  - The personnel that has been unarchived, along with IDs of the personnel's line manager and associated roles.
+
 ## Training Status Changed
 ```json
   {
@@ -401,7 +433,7 @@ The body of an event subscription will vary depending on the type of event being
         "relationships": {
           "personnel": {
             "data": {
-              "id": "23",
+              "id": "123",
               "type": "personnel"
             }
           }
@@ -411,13 +443,14 @@ The body of an event subscription will vary depending on the type of event being
         "id": "22_training-status",
         "type": "trainingStatus",
         "attributes": {
-          "status": "valid",
-          "description": "training up-to-date"
+          "status": "expired",
+          "description": "expired training"
         },
         "relationships": {
           "personnel": {
             "data": {
-              "id":"22", "type":"personnel"
+              "id":"231",
+              "type":"personnel"
             }
           }
         }
@@ -428,3 +461,14 @@ The body of an event subscription will vary depending on the type of event being
     }
   }
 ```
+
+### Data:
+
+  - A collection of the training statuses that have changed as the result of an action taken via API or via the App.
+  - A list of possible statuses and their status descriptions:
+    - `missing` | missing training
+    - `date_missing` | training expiry date not set
+    - `expired` | expired training
+    - `expiring` | training expiring soon
+    - `valid` | training up-to-date
+    - `default` | no training require

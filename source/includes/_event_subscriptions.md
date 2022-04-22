@@ -80,13 +80,11 @@ Events currently supported are:
 - `role_created` - this is fired after a role is created (via the HandsHQ app or via the API).
 - `role_updated` - this is fired after a role is updated (via the HandsHQ app or via the API).
 - `role_deleted` - this is fired after a role is deleted (via the HandsHQ app or via the API).
-
 - `personnel_created` - this is fired after a personnel is created (via the HandsHQ app or via the API).
 - `personnel_updated` - this is fired after a personnel is updated (via the HandsHQ app or via the API).
 - `personnel_deleted` - this is fired after a personnel is deleted (via the HandsHQ app or via the API).
 - `personnel_archived` - this is fired after a personnel is archived (via the HandsHQ app or via the API).
 - `personnel_unarchived` - this is fired after a personnel is unarchived (via the HandsHQ app or via the API).
-
 - `training_status_changed` - this is fired after the training status of a personnel changes. Training statuses change as a result of changes to that personnel's roles, courses and training etc.
 
 <aside class="notice">
