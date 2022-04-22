@@ -2790,7 +2790,7 @@ components:
               enum:
                 - not_started
                 - in_progress
-                - completed
+                - succeeded
                 - failed
               readOnly: true
               example: in_progress
@@ -12283,6 +12283,45 @@ paths:
       tags:
         - Teams
       operationId: getTeamsForOrganization
+      responses:
+        200:
+          description: >-
+            Returns the team records for all teams in the organization or
+            workspace accessible to the authenticated user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TeamCompact'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /workspaces/{workspace_gid}/teams:
+    parameters:
+      - $ref: '#/components/parameters/workspace_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get teams in an workspace
+      description: >-
+        Returns the compact records for all teams in the workspace visible to
+        the authorized user.
+      tags:
+        - Teams
+      operationId: getTeamsForWorkspcae
       responses:
         200:
           description: >-

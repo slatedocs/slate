@@ -3783,7 +3783,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.createGoalMetric({field: "value", field: "value", pretty: true})
+client.goals.createGoalMetric(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -3794,7 +3794,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.create_goal_metric({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.create_goal_metric(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -3804,7 +3804,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.create_goal_metric(field: "value", field: "value", options: {pretty: true})
+result = client.goals.create_goal_metric(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -3812,7 +3812,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.createGoalMetric()
+JsonElement result = client.goals.createGoalMetric(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -3825,7 +3825,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->createGoalMetric(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->createGoalMetric($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -3994,7 +3994,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.updateGoalMetric({field: "value", field: "value", pretty: true})
+client.goals.updateGoalMetric(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4005,7 +4005,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.update_goal_metric({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.update_goal_metric(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -4015,7 +4015,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.update_goal_metric(field: "value", field: "value", options: {pretty: true})
+result = client.goals.update_goal_metric(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -4023,7 +4023,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.updateGoalMetric()
+JsonElement result = client.goals.updateGoalMetric(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -4036,7 +4036,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->updateGoalMetric(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->updateGoalMetric($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4185,7 +4185,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.addSubgoal({field: "value", field: "value", pretty: true})
+client.goals.addSubgoal(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4196,7 +4196,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.add_subgoal({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.add_subgoal(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -4206,7 +4206,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.add_subgoal(field: "value", field: "value", options: {pretty: true})
+result = client.goals.add_subgoal(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -4214,7 +4214,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.addSubgoal()
+JsonElement result = client.goals.addSubgoal(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -4227,7 +4227,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->addSubgoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->addSubgoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4317,7 +4317,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.removeSubgoal({field: "value", field: "value", pretty: true})
+client.goals.removeSubgoal(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4328,7 +4328,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.remove_subgoal({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.remove_subgoal(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -4338,7 +4338,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.remove_subgoal(field: "value", field: "value", options: {pretty: true})
+result = client.goals.remove_subgoal(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -4346,7 +4346,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.removeSubgoal()
+JsonElement result = client.goals.removeSubgoal(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -4359,7 +4359,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->removeSubgoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->removeSubgoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4443,7 +4443,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.addFollowers({field: "value", field: "value", pretty: true})
+client.goals.addFollowers(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4454,7 +4454,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.add_followers({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.add_followers(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -4464,7 +4464,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.add_followers(field: "value", field: "value", options: {pretty: true})
+result = client.goals.add_followers(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -4472,7 +4472,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.addFollowers()
+JsonElement result = client.goals.addFollowers(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -4485,7 +4485,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->addFollowers(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->addFollowers($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4636,7 +4636,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.removeFollowers({field: "value", field: "value", pretty: true})
+client.goals.removeFollowers(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4647,7 +4647,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.remove_followers({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.remove_followers(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -4657,7 +4657,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.remove_followers(field: "value", field: "value", options: {pretty: true})
+result = client.goals.remove_followers(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -4665,7 +4665,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.removeFollowers()
+JsonElement result = client.goals.removeFollowers(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -4678,7 +4678,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->removeFollowers(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->removeFollowers($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4829,7 +4829,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.addSupportingWorkForGoal({field: "value", field: "value", pretty: true})
+client.goals.addSupportingWorkForGoal(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4840,7 +4840,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.add_supporting_work_for_goal({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.add_supporting_work_for_goal(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -4850,7 +4850,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.add_supporting_work_for_goal(field: "value", field: "value", options: {pretty: true})
+result = client.goals.add_supporting_work_for_goal(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -4858,7 +4858,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.addSupportingWorkForGoal()
+JsonElement result = client.goals.addSupportingWorkForGoal(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -4871,7 +4871,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->addSupportingWorkForGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->addSupportingWorkForGoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -4955,7 +4955,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.removeSupportingWorkForGoal({field: "value", field: "value", pretty: true})
+client.goals.removeSupportingWorkForGoal(goalGid, {field: "value", field: "value", pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -4966,7 +4966,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.remove_supporting_work_for_goal({'field': 'value', 'field': 'value'}, opt_pretty=True)
+result = client.goals.remove_supporting_work_for_goal(goal_gid, {'field': 'value', 'field': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -4976,7 +4976,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.remove_supporting_work_for_goal(field: "value", field: "value", options: {pretty: true})
+result = client.goals.remove_supporting_work_for_goal(goal_gid: 'goal_gid', field: "value", field: "value", options: {pretty: true})
 ```
 
 ```java
@@ -4984,7 +4984,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-JsonElement result = client.goals.removeSupportingWorkForGoal()
+JsonElement result = client.goals.removeSupportingWorkForGoal(goalGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -4997,7 +4997,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->removeSupportingWorkForGoal(array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->removeSupportingWorkForGoal($goal_gid, array('field' => 'value', 'field' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > Body parameter
@@ -5079,7 +5079,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.getSubgoalsForGoal({param: "value", param: "value", opt_pretty: true})
+client.goals.getSubgoalsForGoal(goalGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -5090,7 +5090,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.get_subgoals_for_goal({'param': 'value', 'param': 'value'}, opt_pretty=True)
+result = client.goals.get_subgoals_for_goal(goal_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -5100,7 +5100,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.get_subgoals_for_goal(param: "value", param: "value", options: {pretty: true})
+result = client.goals.get_subgoals_for_goal(goal_gid: 'goal_gid', param: "value", param: "value", options: {pretty: true})
 ```
 
 ```java
@@ -5108,7 +5108,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<JsonElement> result = client.goals.getSubgoalsForGoal()
+List<JsonElement> result = client.goals.getSubgoalsForGoal(goalGid)
     .option("pretty", true)
     .execute();
 ```
@@ -5119,7 +5119,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->getSubgoalsForGoal(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->getSubgoalsForGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5191,7 +5191,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.supportingWork({param: "value", param: "value", opt_pretty: true})
+client.goals.supportingWork(goalGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -5202,7 +5202,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.supporting_work({'param': 'value', 'param': 'value'}, opt_pretty=True)
+result = client.goals.supporting_work(goal_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -5212,7 +5212,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.supporting_work(param: "value", param: "value", options: {pretty: true})
+result = client.goals.supporting_work(goal_gid: 'goal_gid', param: "value", param: "value", options: {pretty: true})
 ```
 
 ```java
@@ -5220,7 +5220,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<Project> result = client.goals.supportingWork()
+List<Project> result = client.goals.supportingWork(goalGid)
     .option("pretty", true)
     .execute();
 ```
@@ -5231,7 +5231,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->supportingWork(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->supportingWork($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -5298,7 +5298,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.goals.getParentGoalsForGoal({param: "value", param: "value", opt_pretty: true})
+client.goals.getParentGoalsForGoal(goalGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -5309,7 +5309,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.goals.get_parent_goals_for_goal({'param': 'value', 'param': 'value'}, opt_pretty=True)
+result = client.goals.get_parent_goals_for_goal(goal_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -5319,7 +5319,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.goals.get_parent_goals_for_goal(param: "value", param: "value", options: {pretty: true})
+result = client.goals.get_parent_goals_for_goal(goal_gid: 'goal_gid', param: "value", param: "value", options: {pretty: true})
 ```
 
 ```java
@@ -5327,7 +5327,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<JsonElement> result = client.goals.getParentGoalsForGoal()
+List<JsonElement> result = client.goals.getParentGoalsForGoal(goalGid)
     .option("pretty", true)
     .execute();
 ```
@@ -5338,7 +5338,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->goals->getParentGoalsForGoal(array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->goals->getParentGoalsForGoal($goal_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -21714,7 +21714,7 @@ Searching for multiple exact matches of a custom field is not supported.
 <h1 id="teams">Teams</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/create-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams</span></a><br><a href="/docs/get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="/docs/get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{workspace_gid}/teams</span></a><br><a href="/docs/get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="/docs/add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="/docs/remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
+<code><a href="/docs/create-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams</span></a><br><a href="/docs/get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="/docs/get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{workspace_gid}/teams</span></a><br><a href="/docs/get-teams-in-an-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/teams</span></a><br><a href="/docs/get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="/docs/add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="/docs/remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
 </pre>
 
 <span class="description">
@@ -22072,6 +22072,114 @@ Returns the compact records for all teams in the organization visible to the aut
 |?offset<span class="param-type"> string</span>|Offset token.|
 
 <h3 id="get-teams-in-an-organization-responses">Responses</h3>
+
+|Status|Description|
+|---|---|
+|200<span class="param-type"> [TeamCompact](#schemateamcompact)</span>|Returns the team records for all teams in the organization or workspace accessible to the authenticated user.|
+|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
+|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
+|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
+|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
+|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
+
+</section><hr class="half-line">
+<section>
+## Get teams in an workspace
+
+<a id="opIdgetTeamsForWorkspcae"></a>
+
+> Code samples
+
+```shell
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/teams \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const asana = require('asana');
+
+const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
+
+client.teams.getTeamsForWorkspcae(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+    .then((result) => {
+        console.log(result);
+    });
+```
+
+```python
+import asana
+
+client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
+
+result = client.teams.get_teams_for_workspcae(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+```
+
+```ruby
+require 'asana'
+
+client = Asana::Client.new do |c|
+    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
+end
+
+result = client.teams.get_teams_for_workspcae(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+```
+
+```java
+import com.asana.Client;
+
+Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
+
+List<Team> result = client.teams.getTeamsForWorkspcae(workspaceGid)
+    .option("pretty", true)
+    .execute();
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+
+$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
+
+$result = $client->teams->getTeamsForWorkspcae($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+```
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "gid": "12345",
+      "resource_type": "team",
+      "name": "Marketing"
+    }
+  ]
+}
+```
+
+> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
+
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/teams</code>
+</p>
+
+<span class="description">
+Returns the compact records for all teams in the workspace visible to the authorized user.
+</span>
+
+<h3 id="get-teams-in-an-workspace-parameters">Parameters</h3>
+
+|Name|Description|
+|---|---|
+|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
+|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
+|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
+|?limit<span class="param-type"> integer</span>|Results per page.|
+|?offset<span class="param-type"> string</span>|Offset token.|
+
+<h3 id="get-teams-in-an-workspace-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
@@ -25430,7 +25538,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-User result = client.workspaces.addUserForWorkspace(workspaceGid)
+JsonElement result = client.workspaces.addUserForWorkspace(workspaceGid)
     .data("field", "value")
     .data("field", "value")
     .option("pretty", true)
@@ -27222,7 +27330,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
 |---|---|
 |status|not_started|
 |status|in_progress|
-|status|completed|
+|status|succeeded|
 |status|failed|
 
 </section><hr>
@@ -27291,7 +27399,7 @@ A *job* is an object representing a process that handles asynchronous work.
 |---|---|
 |status|not_started|
 |status|in_progress|
-|status|completed|
+|status|succeeded|
 |status|failed|
 
 </section><hr>
