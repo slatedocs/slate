@@ -140,5 +140,5 @@ Return value:
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task ID related to the bucket creation.   |
+| `taskId` <br/>*string*     | The task ID.   |
 | `taskStatus` <br/>*string* | The status of the operation.                  | 
