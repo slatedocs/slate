@@ -30,7 +30,7 @@ curl --request GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/apiCredentials</code>
 
-Retrieves a list of aws s3 API credentials. There will only ever be one time in this list if a user has credentials.
+Retrieves a list of aws s3 API credentials. There will only ever be one entry in this list if a user has credentials.
 
 | Attributes                 | &nbsp;                                                                                                                      |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
