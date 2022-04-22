@@ -1123,6 +1123,13 @@ curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728
   ]
 }
 ```
+| Attributes                      | &nbsp;                                                                                                              |
+|---------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `billableOrgInfoId`<br/>*UUID*  | The id of the billable organization information.                                                                    |
+| `billingCycleId`<br/>*UUID*     | The id of the starting billing cycle.                                                                               |
+| `pricingPackageId`<br/>*UUID*   | The id of pricing package to apply.                                                                                 |
+| `discountIds`<br/>*Array[UUID]* | The list of discount Ids to apply at the start of the billing cycle. An empty list results in no discounts to apply |
+
 
 > The above command returns a JSON structured like this:
 
@@ -1170,11 +1177,11 @@ curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728
   }
 }
 ```
-
-| Attributes                      | &nbsp;                                                                                                              |
-|---------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `billableOrgInfoId`<br/>*UUID*  | The id of the billable organization information.                                                                    |
-| `billingCycleId`<br/>*UUID*     | The id of the starting billing cycle.                                                                               |
-| `pricingPackageId`<br/>*UUID*   | The id of pricing package to apply.                                                                                 |
-| `discountIds`<br/>*Array[UUID]* | The list of discount Ids to apply at the start of the billing cycle. An empty list results in no discounts to apply |
+| Attributes                          | &nbsp;                                                                                |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| `currency`<br/>*String*             | The currency used by the organization for billing, payments and invoices.             |
+| `id`<br/>*UUID*                     | The id of billing information.                                                        |
+| `pricingPackage`<br/>*Object*       | The pricing package currently applied to the organization.                            |
+| `billableStart`<br/>*String*        | The the start date when the application start generating billing cycles and invoices. |
+| `billingCycles`<br/>*Array[Object]* | The generated billing cycles for the organization.                                    |
 
