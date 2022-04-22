@@ -12,6 +12,7 @@ includes:
   - format
   - authentication
   - event_subscriptions
+  - event_notifications
   - projects
   - fields
   - personnel
