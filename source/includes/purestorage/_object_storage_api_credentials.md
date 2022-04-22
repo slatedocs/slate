@@ -121,7 +121,7 @@ Return value:
 | `accessKeyId`<br/>_string_ | The ID for your object storage's s3 API access key.                                         |
 | `secretKey`<br/>_string_   | The secret key for your object storage's s3 API access key. Should be saved.                |
 | `region`<br/>_string_      | The region the access key belongs to. Will always be 'global' for purestorage. |
-| `taskId` <br/>*string*     | The task ID related to the bucket creation.                            |
+| `taskId` <br/>*string*     | The task ID.                            |
 | `taskStatus` <br/>*string* | The status of the operation.                                           | 
 
 #### Delete credentials
