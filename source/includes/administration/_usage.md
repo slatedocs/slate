@@ -239,13 +239,8 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 | start_date (inclusive)     | Retrieve the usage starting from the requested date| The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY
 | end_date                   | Retrieve the usage up to the specific date only    | The time of the request
 
-To retrieve data as a json response supply the `application/json` Accept header in your request. For example:
+To retrieve data as a json response supply the `application/json` Accept header in your request `Accept: application/json`. Some query parameters apply only when retrieving a paged json response. 
 
-```shell
-curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
-   -H "MC-Api-Key: your_api_key" \
-   -H "Accept: application/json"
-```
 
 | Query parameters (application/json)                | Description                                        | Default Behaviour (when not specified)  
 | -------------------------------------------------- | -----------                                        | -------------------------------------
@@ -254,7 +249,7 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
 | granularity<sup>1</sup>                            | [YEARLY, MONTHLY, DAILY, HOURLY]. Transforms the data into the requested granularity | No transformation is made
 | next_page_token                                    | For requests that specify a granularity, may be used to retrieve the next page of results.  
 
-<sup>1</sup> Note: a granularity query is expensive and may take time. When specifying a granularity, traditional paging is not performed. Up to 65,536 results may be returned. If there are more than 65,536 results only the first 65,536 results will be returned and subsequent records maybe retrieved by specifying the `next_page_token` query param in the request. The token will be provided in the response.
+<sup>1</sup> Note: a granularity query is expensive and may take time. When specifying a granularity, traditional paging is not performed. Up to 65,536 results may be returned. If there are more than 65,536 results only the first 65,536 results will be returned and subsequent records maybe retrieved by specifying the `next_page_token` query param in the request. The token will be provided in the response as shown.
 
 ```js
 {
@@ -266,12 +261,5 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
 }
 ```
 
-To retrieve data as a csv response supply the `text/csv` Accept header in your request. For example:
-
-```shell
-curl -X POST "https://cloudmc_endpoint/rest/service/usage" \
-   -H "MC-Api-Key: your_api_key" \
-   -H "Accept: text/csv"
-```
-
+To retrieve data as a csv response supply the `text/csv` Accept header in your request. `Accept: text/csv` 
 Note that granularity and paging (of any kind) are not supported for CSV response type.
