@@ -143,11 +143,13 @@ curl https://api.handshq.com/v1/personnel \
 
 ```json
   {
-    "first_name": "Sandra",
-    "last_name": "Smith",
-    "email":"sandra.smith@email.com",
-    "line_manager_id": "66062",
-    "role_ids": ["17235", "17236"]
+    "personnel": {
+      "first_name": "Sandra",
+      "last_name": "Smith",
+      "email":"sandra.smith@email.com",
+      "line_manager_id": "66062",
+      "role_ids": ["17235", "17236"]
+    }
   }
 ```
 
@@ -176,11 +178,13 @@ curl https://api.handshq.com/v1/personnel/[id] \
 
 ```json
   {
-    "first_name": "Sandra",
-    "last_name": "Smith",
-    "email":"sandra.smith@email.com",
-    "line_manager_id": "66062",
-    "role_ids": ["17235", "17236"]
+    "personnel": {
+      "first_name": "Sandra",
+      "last_name": "Smith",
+      "email":"sandra.smith@email.com",
+      "line_manager_id": "66062",
+      "role_ids": ["17235", "17236"]
+    }
   }
 ```
 

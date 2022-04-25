@@ -100,12 +100,9 @@ curl https://api.handshq.com/v1/roles \
 
 ```json
   {
-    "data": {
-      "id": "1234",
-      "type": "role",
-      "attributes": {
-        "position": "Engineer"
-      }
+    "role": {
+      "position": "Engineer",
+      "course_ids": ["123", "321"]
     }
   }
 ```
@@ -135,12 +132,9 @@ curl https://api.handshq.com/v1/role/[id] \
 
 ```json
   {
-    "data": {
-      "id": "1234",
-      "type": "role",
-      "attributes": {
-        "position": "Engineer"
-      }
+    "role": {
+      "position": "Engineer",
+      "course_ids": ["123", "321"]
     }
   }
 ```
