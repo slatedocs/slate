@@ -34,6 +34,10 @@ When `po_delivered` event is enabled in webhooks configuration, then everytime a
 
 When `po_paid` event is enabled in webhooks configuration, then everytime a purchase order is marked as paid, a webhooks request is notified.
 
+### `po_cancelled`
+
+When `po_cancelled` event is enabled in webhooks configuration, then everytime a purchase order is marked as cancelled, a webhooks request is notified.
+
 ## Create a Webhook
 
 ```ruby
