@@ -25,7 +25,8 @@ includes:
   - administration/rollbacks
   - administration/invoices
   - administration/payments
-  - administration/discounts
+  - administration/package_discounts
+  - administration/organization_discounts
   - administration/authentication
   - administration/identity_providers
   - administration/service_providers
