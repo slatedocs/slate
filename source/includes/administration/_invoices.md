@@ -2136,3 +2136,53 @@ curl  -X GET 'https://cloudmc_endpoint/rest/invoices/download?invoice_id=3f7b7cc
 | Required | &nbsp; |
 | --- | --- |
 | `invoice_id`<br/>*UUID* | The id of the invoice. |
+
+
+<!-------------------- FLAG INVOICE -------------------->
+
+`POST /invoices/:invoiceId/flag`
+
+Flag an invoice with a message to prevent the invoice from being automatically issued to the customer. 
+
+As with other invoices that are not in the hands of the customer, pricing configuration changes can be made to regenerate the invoice.
+If the configuration changes made impact the invoice, it will be voided and a new invoice will be generated. If the invoice was previously flagged, the new invoice will still have the same flag and will need to be manually approved to issue it to the customer.
+
+
+```shell
+# Approve a draft invoice
+curl -X POST "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/flag" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+| Required | &nbsp; |
+| --- | --- |
+| `invoiceId`<br/>*UUID* | The id of the invoice to be flagged |
+| `message`<br/>*String* | A 280 character message about why this invoice needed to be flagged. 
+
+
+> Request body example:
+
+```json
+{
+   "message": "The prices charged to this customer are incorrect. We should perform a pricing change and ensure the invoice is regenerated."
+}
+```
+
+> The above command return JSON structured like this:
+```json
+{
+	"data": {
+		"createdAt": "2022-04-08T12:40:33Z",
+		"invoice": {
+			"id": "0bf4b212-816b-4c6d-9466-47abeb0a0826"
+		},
+		"message": "The prices charged to this customer are incorrect. We should perform a pricing change and ensure the invoice is regenerated.",
+		"user": {
+			"firstName": "Jason",
+			"lastName": "Dias",
+			"id": "f117f36e-902e-41fb-b7b2-0a6a73be5396",
+			"email": "jdias@cloudops.com"
+		}
+	}
+}
+```
