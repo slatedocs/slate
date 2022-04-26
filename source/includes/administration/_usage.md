@@ -269,3 +269,38 @@ To retrieve data as a json response supply the `application/json` Accept header 
 
 To retrieve data as a csv response supply the `text/csv` Accept header in your request. For example: `Accept: text/csv` 
 Note that granularity and paging (of any kind) are not supported for CSV response type.
+
+<!-------------------- GET SERVICE TYPE FILTERABLE FIELDS -------------------->
+
+### List filterable fields for the requested service type
+
+`GET service/usage/:serviceType/filterable_fields`
+
+```shell
+# Retrieve usage summary in JSON
+curl "https://cloudmc_endpoint/rest/service/usage/stackpath/filterable_fields" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "storage_type": [
+      {
+        "field": "type",
+        "label": "stackpath.fields.type",
+        "capturable": false,
+        "unit": "UNIT"
+      }
+    ]
+  }
+}
+```
+
+### Path Parameters
+
+| Path Parameters | Description                                        |
+| --------------- | -------------------------------------------------- |
+| serviceType     | The service type to retrieve filterable fields for |
