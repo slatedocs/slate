@@ -129,7 +129,6 @@ JWT は、base64 エンコードされた、 JSON 形式の header と payload �
   "nbf": 1450471147,
   "exp": 1450473747,
   "scopes": "session_queue.write session_queue.read access_token.create"
-  ]
 }
 ```
 
