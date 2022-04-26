@@ -2143,9 +2143,9 @@ curl  -X GET 'https://cloudmc_endpoint/rest/invoices/download?invoice_id=3f7b7cc
 `POST /invoices/:invoiceId/flag`
 
 Flag an invoice with a message to prevent the invoice from being automatically issued to the customer. 
-Once an invoice is flagged, pricing configuration changes can be made. 
-If the configuration changes impact the previously flagged invoice, it will be voided and a new invoice will be generated. 
-Note: the flag will be maintained even after a new invoice is generated. In order to clear the flag the invoice must be approved. 
+
+As with other invoices that are not in the hands of the customer, pricing configuration changes can be made to regenerate the invoice.
+If the configuration changes made impact the invoice, it will be voided and a new invoice will be generated. If the invoice was previously flagged, the new invoice will still have the same flag and will need to be manually approved to issue it to the customer.
 
 
 ```shell
@@ -2157,6 +2157,7 @@ curl -X POST "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb
 | Required | &nbsp; |
 | --- | --- |
 | `invoiceId`<br/>*UUID* | The id of the invoice to be flagged |
+| `message`<br/>*String* | A 280 character message about why this invoice needed to be flagged. 
 
 
 > Request body example:
