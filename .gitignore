@@ -22,3 +22,6 @@ build/
 _yardoc
 doc/
 .idea/
+
+# Vagrant artifacts
+ubuntu-*-console.log

@@ -11,6 +11,12 @@ includes:
   - errors
 
 search: true
+
+code_clipboard: true
+
+meta:
+  - name: description
+    content: Documentation for the Kittn API
 ---
 
 # Overview
