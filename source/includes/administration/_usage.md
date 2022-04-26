@@ -276,11 +276,11 @@ Note that granularity and paging (of any kind) are not supported for CSV respons
 
 This endpoint returns the filterable fields for each usage type for the requested service type. Filterable fields are used when defining products.
 
-`GET service/usage/:serviceType/filterable_fields`
+`GET service/:serviceType/filterable_fields`
 
 ```shell
 # Retrieve usage summary in JSON
-curl "https://cloudmc_endpoint/rest/service/usage/stackpath/filterable_fields" \
+curl "https://cloudmc_endpoint/rest/service/stackpath/filterable_fields" \
    -H "MC-Api-Key: your_api_key"
 ```
 
