@@ -30,7 +30,7 @@
     },
     {
       "name": "Positions",
-      "description": "Get Open positions, Change Position Margin, Close Position"
+      "description": "Get Open positions, Change Position Margin, Close Position, Close All Position"
     },
     {
       "name": "TradeHistory",
@@ -1365,6 +1365,65 @@
           },
           "400": {
             "description": "Returns error if position margin could not be changed",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/positions/close_all": {
+      "post": {
+        "tags": [
+          "Positions"
+        ],
+        "operationId": "closeAllPosition",
+        "summary": "Close all positions ",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "close_all",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "close_all_portfolio",
+                "close_all_isolated",
+                "user_id"
+              ],
+              "properties": {
+                "close_all_portfolio": {
+                  "type": "boolean"
+                },
+                "close_all_isolated": {
+                  "type": "boolean"
+                },
+                "user_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns back success response",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if not able to close all positions",
             "schema": {
               "$ref": "#/definitions/ApiErrorResponse"
             }

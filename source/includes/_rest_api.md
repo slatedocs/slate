@@ -1,17 +1,3 @@
----
-title: Delta Exchange Api V2
-language_tabs:
-  - python: Python
-  - shell: Shell
-  - ruby: Ruby
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
-
----
-
 <h1 id="ApiSection" class="section-header">Rest Api</h1>
 This section documents the latest(v2) api for trading on Delta Exchange. The REST API has endpoints for account and order management as well as public market data.
 
@@ -2028,7 +2014,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 <h1 id="delta-exchange-api-v2-positions">Positions</h1>
 
-Get Open positions, Change Position Margin, Close Position
+Get Open positions, Change Position Margin, Close Position, Close All Position
 
 ## Get position
 
@@ -2331,6 +2317,103 @@ p JSON.parse(result)
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if position margin could not be changed|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="add/remove-position-margin-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Close all positions 
+
+<a id="opIdcloseAllPosition"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/v2/positions/close_all', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/v2/positions/close_all \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/v2/positions/close_all',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /positions/close_all`
+
+> Body parameter
+
+```json
+{
+  "close_all_portfolio": true,
+  "close_all_isolated": true,
+  "user_id": 0
+}
+```
+
+<h3 id="close-all-positions--parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» close_all_portfolio|body|boolean|true|none|
+|» close_all_isolated|body|boolean|true|none|
+|» user_id|body|integer|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true
+}
+```
+
+<h3 id="close-all-positions--responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if not able to close all positions|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
