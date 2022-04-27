@@ -46,7 +46,7 @@ This endpoint allows you to view the roles that belong to the account registered
 ### Allowed Query Parameters
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
-position  | String | No       | Only roles with a matching position will be returned
+search    | String | No       | Search roles by position name
 
 ### Response
 
@@ -56,7 +56,7 @@ Results in `data` are [paginated](#pagination)
 ## Viewing one role
 
 ```shell
-curl https://api.handshq.com/v1/role/[id] \
+curl https://api.handshq.com/v1/roles/[id] \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]"
 ```
@@ -117,10 +117,25 @@ This endpoint allows you to create a role. Roles are account wide, so the role w
 
 Successful requests will return a json payload of the newly created role and a `201` status code
 
+> 201
+
+```json
+  {
+    "data": {
+      "id": "123",
+      "type": "role",
+      "attributes": {
+        "position": "Engineer"
+      }
+    }
+  }
+```
+
+
 ## Updating a role
 
 ```shell
-curl https://api.handshq.com/v1/role/[id] \
+curl https://api.handshq.com/v1/roles/[id] \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]" \
   -H "Content-Type: application/json" \
@@ -128,7 +143,7 @@ curl https://api.handshq.com/v1/role/[id] \
   -d '[json_payload]'
 ```
 
-> Example Role creation payload.
+> Example Role update payload.
 
 ```json
   {
@@ -143,16 +158,30 @@ This endpoint allows you to update the `position` attribute of a role belonging 
 
 ### Request
 
-`PATCH https://api.handshq.com/v1/role/[id]`
+`PATCH https://api.handshq.com/v1/roles/[id]`
 
 ### Response
 
 Successful requests will return a json payload of the updated role and a `200` status code
 
+> 200
+
+```json
+  {
+    "data": {
+      "id": "123",
+      "type": "role",
+      "attributes": {
+        "position": "Engineer Manager"
+      }
+    }
+  }
+```
+
 ## Deleting a role
 
 ```shell
-curl https://api.handshq.com/v1/role/[id] \
+curl https://api.handshq.com/v1/roles/[id] \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]"
   --request DELETE
@@ -164,7 +193,7 @@ This endpoint allows you to delete a role belonging to your account.
 
 ### Request
 
-`DELETE https://api.handshq.com/v1/role[id]`
+`DELETE https://api.handshq.com/v1/roles/[id]`
 
 ### Response
 

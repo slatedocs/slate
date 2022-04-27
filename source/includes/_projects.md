@@ -93,7 +93,7 @@ curl https://api.handshq.com/v1/projects \
   }
 ```
 
-This endpoint allows you to view projects for the company who is registered with the API token you provide.
+This endpoint allows you to view projects for the division who is registered with the API token you provide.
 
 ### Request
 
@@ -139,7 +139,7 @@ curl https://api.handshq.com/v1/projects \
 
 ```
 
-This endpoint allows you to create a project for the company who is registered with the API token you provide.
+This endpoint allows you to create a project for the division who is registered with the API token you provide.
 
 ### Request
 
@@ -252,7 +252,7 @@ curl https://api.handshq.com/v1/projects/[id] \
 
 ```
 
-This endpoint allows you to update a project for the company who is registered with the API token you provide.
+This endpoint allows you to update a project for the division who is registered with the API token you provide.
 
 ### Request
 

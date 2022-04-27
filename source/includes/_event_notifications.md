@@ -219,15 +219,15 @@ The body of an event subscription will vary depending on the type of event being
             "type": "lineManager"
           }
         },
-        "companyRoles": {
+        "roles": {
           "data": [
             {
               "id": "123",
-              "type": "companyRole"
+              "type": "role"
             },
             {
               "id": "321",
-              "type": "companyRole"
+              "type": "role"
             }
           ]
         }
@@ -263,15 +263,15 @@ The body of an event subscription will vary depending on the type of event being
             "type": "lineManager"
           }
         },
-        "companyRoles": {
+        "roles": {
           "data": [
             {
               "id": "123",
-              "type": "companyRole"
+              "type": "role"
             },
             {
               "id": "321",
-              "type": "companyRole"
+              "type": "role"
             }
           ]
         }
@@ -307,15 +307,15 @@ The body of an event subscription will vary depending on the type of event being
             "type": "lineManager"
           }
         },
-        "companyRoles": {
+        "roles": {
           "data": [
             {
               "id": "123",
-              "type": "companyRole"
+              "type": "role"
             },
             {
               "id": "321",
-              "type": "companyRole"
+              "type": "role"
             }
           ]
         }
@@ -351,15 +351,15 @@ The body of an event subscription will vary depending on the type of event being
             "type": "lineManager"
           }
         },
-        "companyRoles": {
+        "roles": {
           "data": [
             {
               "id": "123",
-              "type": "companyRole"
+              "type": "role"
             },
             {
               "id": "321",
-              "type": "companyRole"
+              "type": "role"
             }
           ]
         }
@@ -395,15 +395,15 @@ The body of an event subscription will vary depending on the type of event being
             "type": "lineManager"
           }
         },
-        "companyRoles": {
+        "roles": {
           "data": [
             {
               "id": "123",
-              "type": "companyRole"
+              "type": "role"
             },
             {
               "id": "321",
-              "type": "companyRole"
+              "type": "role"
             }
           ]
         }

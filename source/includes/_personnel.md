@@ -21,7 +21,11 @@ curl https://api.handshq.com/v1/personnel \
         "lastName": "Smith",
         "email": "john.smith@email.com",
         "archivedAt": null,
-        "type": "employee"
+        "type": "employee",
+        "trainingStatus": {
+          "status": "missing",
+          "description": "missing training"
+        }
       },
       "relationships": {
         "lineManager": {
@@ -30,15 +34,15 @@ curl https://api.handshq.com/v1/personnel \
             "type": "lineManager"
           }
         },
-        "companyRoles": {
+        "roles": {
           "data": [
             {
               "id": "123",
-              "type": "companyRole"
+              "type": "role"
             },
             {
               "id": "321",
-              "type": "companyRole"
+              "type": "role"
             }
           ]
         }
@@ -55,7 +59,7 @@ curl https://api.handshq.com/v1/personnel \
 }
 ```
 
-This endpoint allows you to view the personnel that belong to the company registered to the API token you provide. If the company is the primary company for that account, all personnel across the account will be returned. If not, only the personnel of that company will be returned. By default the personnel index returns personnel that have not been archived.
+This endpoint allows you to view the personnel that belong to the division registered to the API token you provide. If the division is the primary division for that account, all personnel across the account will be returned. If not, only the personnel of that division will be returned. By default the personnel index returns personnel that have not been archived.
 
 ### Request
 
@@ -69,7 +73,7 @@ archived  | String | No       | Provide a param of true to fetch only archived p
 
 ### Response
 
-Successful requests will return a json payload of personnel and a `200` status code.
+Successful requests will return a collection of personnel and a `200` status code.
 Results in `data` are [paginated](#pagination)
 
 ## Viewing one personnel
@@ -92,7 +96,10 @@ curl https://api.handshq.com/v1/personnel/[id] \
         "lastName": "Smith",
         "email": "john.smith@email.com",
         "archivedAt": null,
-        "type": "employee"
+        "type": "employee",
+        "trainingStatus": {
+          "status": "missing",
+          "description": "missing training"
       },
       "relationships": {
         "lineManager": {
@@ -101,15 +108,15 @@ curl https://api.handshq.com/v1/personnel/[id] \
             "type": "lineManager"
           }
         },
-        "companyRoles": {
+        "roles": {
           "data": [
             {
               "id": "123",
-              "type": "companyRole"
+              "type": "role"
             },
             {
               "id": "321",
-              "type": "companyRole"
+              "type": "role"
             }
           ]
         }
@@ -147,13 +154,13 @@ curl https://api.handshq.com/v1/personnel \
       "first_name": "Sandra",
       "last_name": "Smith",
       "email":"sandra.smith@email.com",
-      "line_manager_id": "66062",
-      "role_ids": ["17235", "17236"]
+      "line_manager_id": "456",
+      "role_ids": ["987", "765"]
     }
   }
 ```
 
-This endpoint allows you to create a personnel. Personnel are company specific, so the personnel will belong to the company that the API key belongs to. You can set the first name, last name and email of the personnel through this endpoint. You can also assign the personnel a line manager using the ID of another personnel, and assign roles to the personnel using the IDs of roles that exist in the account.
+This endpoint allows you to create a personnel. Personnel are division specific, so the personnel will belong to the division that the API key belongs to. You can set the first name, last name and email of the personnel through this endpoint. You can also assign the personnel a line manager using the ID of another personnel, and assign roles to the personnel using the IDs of roles that exist in the account.
 
 ### Request
 
@@ -162,6 +169,44 @@ This endpoint allows you to create a personnel. Personnel are company specific, 
 ### Response
 
 Successful requests will return a json payload of the newly created personnel and a `201` status code
+
+> 201
+
+```json
+  {
+    "data": {
+      "id": "123",
+      "type": "personnel",
+      "attributes": {
+        "firstName": "Sandra",
+        "lastName": "Smith",
+        "email": "sandra.smith@email.com",
+        "archivedAt": null,
+        "type": "employee"
+      },
+      "relationships": {
+        "lineManager": {
+          "data": {
+            "id": "456",
+            "type": "lineManager"
+          }
+        },
+        "roles": {
+          "data": [
+            {
+              "id": "987",
+              "type": "role"
+            },
+            {
+              "id": "765",
+              "type": "role"
+            }
+          ]
+        }
+      }
+    }
+  }
+```
 
 ## Updating a personnel
 
@@ -179,11 +224,11 @@ curl https://api.handshq.com/v1/personnel/[id] \
 ```json
   {
     "personnel": {
-      "first_name": "Sandra",
-      "last_name": "Smith",
-      "email":"sandra.smith@email.com",
-      "line_manager_id": "66062",
-      "role_ids": ["17235", "17236"]
+      "first_name": "Sally",
+      "last_name": "Smith-West",
+      "email":"sally-sw@email.com",
+      "line_manager_id": "567",
+      "role_ids": ["345"]
     }
   }
 ```
@@ -197,6 +242,41 @@ This endpoint allows you to update the first name, last name, email address, lin
 ### Response
 
 Successful requests will return a json payload of the updated personnel and a `200` status code
+
+> 200
+
+```json
+  {
+    "data": {
+      "id": "123",
+      "type": "personnel",
+      "attributes": {
+        "firstName": "Sally",
+        "lastName": "Smith-West",
+        "email": "sally-sw@email.com",
+        "archivedAt": null,
+        "type": "employee"
+      },
+      "relationships": {
+        "lineManager": {
+          "data": {
+            "id": "567",
+            "type": "lineManager"
+          }
+        },
+        "roles": {
+          "data": [
+            {
+              "id": "345",
+              "type": "role"
+            }
+          ]
+        }
+      }
+    }
+  }
+
+```
 
 ## Deleting a personnel
 
@@ -240,6 +320,40 @@ This endpoint allows you to archive a personnel.
 
 Successful requests will return a json payload of the archived personnel and a `200` status code
 
+> 200
+
+```json
+   {
+    "data": {
+      "id": "123",
+      "type": "personnel",
+      "attributes": {
+        "firstName": "Sally",
+        "lastName": "Smith-West",
+        "email": "sally-sw@email.com",
+        "archivedAt": "2022-04-27T17:30:18.835+01:00",
+        "type": "employee"
+      },
+      "relationships": {
+        "lineManager": {
+          "data": {
+            "id": "567",
+            "type": "lineManager"
+          }
+        },
+        "roles": {
+          "data": [
+            {
+              "id": "345",
+              "type": "role"
+            }
+          ]
+        }
+      }
+    }
+  }
+```
+
 
 ## Unarchiving a personnel
 
@@ -247,12 +361,46 @@ Successful requests will return a json payload of the archived personnel and a `
 curl https://api.handshq.com/v1/personnel/[id]/unarchive \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]"
-  --request DELETE
+  --request PATCH
 ```
 
 > 200
 
 This endpoint allows you to unarchive an archived personnel.
+
+> 200
+
+```json
+   {
+    "data": {
+      "id": "123",
+      "type": "personnel",
+      "attributes": {
+        "firstName": "Sally",
+        "lastName": "Smith-West",
+        "email": "sally-sw@email.com",
+        "archivedAt": null,
+        "type": "employee"
+      },
+      "relationships": {
+        "lineManager": {
+          "data": {
+            "id": "567",
+            "type": "lineManager"
+          }
+        },
+        "roles": {
+          "data": [
+            {
+              "id": "345",
+              "type": "role"
+            }
+          ]
+        }
+      }
+    }
+  }
+```
 
 ### Request
 
