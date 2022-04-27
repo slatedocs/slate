@@ -269,3 +269,45 @@ To retrieve data as a json response supply the `application/json` Accept header 
 
 To retrieve data as a csv response supply the `text/csv` Accept header in your request. For example: `Accept: text/csv` 
 Note that granularity and paging (of any kind) are not supported for CSV response type.
+
+<!-------------------- GET SERVICE TYPE FILTERABLE FIELDS -------------------->
+
+### List filterable fields for the requested service type
+
+This endpoint returns the filterable fields for each usage type for the requested service type. Filterable fields are used when defining products.
+
+`GET service/:serviceType/filterable_fields`
+
+```shell
+# Retrieve usage summary in JSON
+curl "https://cloudmc_endpoint/rest/service/stackpath/filterable_fields" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "storage_type": [
+      {
+        "field": "type",
+        "label": "stackpath.fields.type",
+        "capturable": false,
+        "unit": "UNIT"
+      }
+    ]
+  }
+}
+```
+
+| Path Parameters            | &nbsp;                                              |
+| -------------------------- | --------------------------------------------------- |
+| `serviceType`<br/>_String_ | The service type to retrieve filterable fields for. |
+
+| Attributes                 | &nbsp;                                                |
+| -------------------------- | ----------------------------------------------------- |
+| `field`<br/>_String_       | The name of the field..                               |
+| `label`<br/>_String_       | The label used for the field in the UI.               |
+| `capturable`<br/>_boolean_ | Whether the field can be used as usage for a product. |
+| `unit`<br/>_String_        | The unit used to measure the field.                   |
