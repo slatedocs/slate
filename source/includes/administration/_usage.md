@@ -272,7 +272,7 @@ Note that granularity and paging (of any kind) are not supported for CSV respons
 
 <!-------------------- GET SERVICE TYPE FILTERABLE FIELDS -------------------->
 
-### List filterable fields for the requested service type
+### List filterable fields by usage type
 
 This endpoint returns the filterable fields for each usage type for the requested service type. Filterable fields are used when defining products.
 
