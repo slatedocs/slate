@@ -1,4 +1,120 @@
 # Webhooks
+
+## Example post request send to the webhooks URL
+
+If you want to send `payload` as text, then update your webhooks setting from web application  and enable `send as text`
+option. To access webhooks setting from web application, click [here](https://rubberstamp.github.io/slate/#access-webhooks-in-procurementexpress-application)
+
+
+```json
+{
+  "event": "new_po",
+  "object": "PurchaseOrder",
+  "payload": {
+    "id": 1,
+    "company_id": 1,
+    "approval_key": null,
+    "department_id": 1,
+    "department_name": "South",
+    "supplier_id": 1,
+    "supplier_name": "Top Rated Supplier",
+    "supplier_email": "",
+    "supplier_address": "",
+    "status": "pending",
+    "creator_id": 1,
+    "currency_id": 65,
+    "currency_iso_code": "INR",
+    "currency_symbol": "₹",
+    "currency_name": "Indian Rupee",
+    "creator_name": "John Doe",
+    "creator_email": "ctech.sachin@gmail.com",
+    "amount": "1.0",
+    "created_at": 1651143873,
+    "updated_at": 1651143873,
+    "notes": "",
+    "total_net_amount": "1.0",
+    "total_gross_amount": "1.0",
+    "base_gross_amount": 1.0,
+    "delivery_status": "not_delivered",
+    "delivered_on": null,
+    "custom_fields": null,
+    "share_key": "PLMLMLVL....20220428070433",
+    "archived": false,
+    "conversion_rate": "1.0",
+    "keywords": "1 Top Rated Supplier John Doe  pending 1.00  Sample Budget Pen 1.0 1.0",
+    "self_approved": false,
+    "xero_id": null,
+    "synced_with_xero": false,
+    "custom_field_values": [],
+    "url": "https://app.procurementexpress.com/en/purchase_orders/1",
+    "purchase_order_items": [
+      {
+        "id": 1,
+        "description": "Pen",
+        "purchase_order_id": 1,
+        "budget_id": 1,
+        "budget_summary": "Sample Budget",
+        "gross_amount": "1.0",
+        "vat": "0.0",
+        "net_amount": "1.0",
+        "status": "pending",
+        "quantity": "1.0",
+        "unit_price": "1.0",
+        "item_number": null,
+        "base_net_amount": "1.0",
+        "base_gross_amount": "1.0",
+        "gross_usd_amount": "0.01307",
+        "product_id": 1,
+        "received_quantity": null,
+        "sequence_no": 1,
+        "custom_field_values": [],
+        "third_party_id_mappings": []
+      }
+    ],
+    "budgets": [
+      {
+        "id": 1,
+        "company_id": 1,
+        "name": "Sample Budget",
+        "amount": "10000000.0",
+        "cost_code": null,
+        "cost_type": null,
+        "archived": false,
+        "currency_id": 65,
+        "base_amount": null,
+        "base_rate": null,
+        "allow_anyone_to_approve_a_po": false,
+        "start_date": null,
+        "end_date": null,
+        "summary": "Sample Budget",
+        "third_party_id_mappings": []
+      }
+    ],
+    "purchase_order_comments": [],
+    "payments": [],
+    "purchase_order_item_payments": [],
+    "uploads": [],
+    "department": null,
+    "supplier": {
+      "id": 1,
+      "name": "Top Rated Supplier",
+      "company_id": 1,
+      "notes": "",
+      "phone_number": "",
+      "address": "",
+      "email": "",
+      "payment_details": "",
+      "archived": false,
+      "contact_person": "",
+      "tax_number": "",
+      "created_at": "2022-04-28T06:03:57.773-05:00",
+      "updated_at": "2022-04-28T06:04:33.989-05:00",
+      "department_ids": [],
+      "third_party_id_mappings": []
+    }
+  }
+}
+```
 ## What are webhooks
 
 Webhooks are notifications about ProcurementExpress entities that are sent to your app. When any event specified on `event_type` query params occurs, a `POST` request is sent to the specified `url`. Webhooks notification configured here are triggered by events in your ProcurementExpress company. 
@@ -14,6 +130,8 @@ If you use API endpoints, then you will get response only when you call it. But 
 - click on Integrations menu item
 - And finally click on `Integrate` button for `Create webhooks based on events` section
 - Here you will see list of webhooks you have configured, and also click on `Add Webhooks` button to create new one.
+
+![image](https://user-images.githubusercontent.com/4189129/165744544-6743c4fb-14ac-4521-81c7-8c0922d2e357.png)
 
 ## Supported events
 
