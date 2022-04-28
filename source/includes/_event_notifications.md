@@ -142,14 +142,14 @@ The body of an event subscription will vary depending on the type of event being
 ```json
  {
    "data": {
+    "id": "123",
+    "type": "role",
     "attributes": {
-       "position": "Technician",
-       "id": "123",
-       "type": "role"
+       "position": "Technician"
       },
-      "meta": {
-        "event_type": "role_updated"
-      }
+    },
+    "meta": {
+      "event_type": "role_created"
     }
   }
 ```
@@ -163,14 +163,13 @@ The body of an event subscription will vary depending on the type of event being
 ```json
  {
    "data": {
+    "id": "123",
+    "type": "role",
     "attributes": {
-       "position": "Technician",
-       "id": "123",
-       "type": "role"
-      },
-      "meta": {
-        "event_type": "role_updated"
-      }
+      "position": "Technician",
+    },
+    "meta": {
+      "event_type": "role_updated"
     }
   }
 ```
@@ -183,14 +182,13 @@ The body of an event subscription will vary depending on the type of event being
 ```json
   {
    "data": {
+    "id": "123",
+    "type": "role",
     "attributes": {
-       "position": "Technician",
-       "id": "123",
-       "type": "role"
-      },
-      "meta": {
-        "event_type": "role_updated"
-      }
+      "position": "Technician",
+    },
+    "meta": {
+      "event_type": "role_deleted"
     }
   }
 ```
@@ -234,7 +232,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_updated"
+      "event_type":"personnel_created"
     }
   }
 ```
@@ -322,7 +320,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_updated"
+      "event_type":"personnel_deleted"
     }
   }
 ```
@@ -366,7 +364,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_updated"
+      "event_type":"personnel_archived"
     }
   }
 ```
@@ -410,7 +408,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_updated"
+      "event_type":"personnel_unarchived"
     }
   }
 ```
@@ -457,7 +455,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     ],
     "meta": {
-      "eventType":"trainingStatusChanged"
+      "eventType":"training_status_changed"
     }
   }
 ```
