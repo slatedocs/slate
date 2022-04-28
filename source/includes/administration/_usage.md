@@ -236,9 +236,9 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 | environment_Id             | Retrieve the usage of a specific environment only     | All environments the caller has visibility on
 | connection_id              | Retrieve the usage of a specific connection only      | All connections the caller have visibility on
 | usage_type                 | Retrieve the usage of a specific usage type only      | All usage types
-| start_date (inclusive)     | Retrieve the usage starting from the requested date   | The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY
+| start_date (inclusive)     | Retrieve the usage starting from the requested date   | The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY<sup>1</sup>
 | end_date (exclusive)       | Retrieve the usage up to the specific date only       | The time of the request
-| fields.*fieldName*         | Retrieve the usage that matches a specific field name | No filtering of fields applied. Multiple field filters are supported for unique field names and will be applied with the AND operator.
+| fields.*fieldName*         | Retrieve the usage that matches a specific field name. <br/> Example: `fields.region=EU` | No filtering of fields applied. Multiple field filters are supported for unique field names and will be applied with the AND operator.
 
 ### Paged JSON response
 
@@ -249,7 +249,7 @@ To retrieve data as a json response supply the `application/json` Accept header 
 | -------------------------------------------------- | -----------                                        | -------------------------------------
 | page                                               | The page of data to retrieve [1,...,N]             | 1
 | page_size                                          | The size of the page to retrieve (max: 1000)       | 100
-| granularity<sup>1</sup>                            | [YEARLY, MONTHLY, DAILY, HOURLY]. Transforms the data into the requested granularity | No transformation is made
+| granularity                                        | [YEARLY, MONTHLY, DAILY, HOURLY]. Transforms the data into the requested granularity | No transformation is made
 | next_page_token                                    | For requests that specify a granularity, may be used to retrieve the next page of results.  
 
 ```js
@@ -262,9 +262,18 @@ To retrieve data as a json response supply the `application/json` Accept header 
 }
 ```
 
-<sup>1</sup> Note: a granularity query is expensive and may take time. When specifying a granularity, traditional paging is not performed. Up to 65,536 results may be returned. If there are more than 65,536 results only the first 65,536 results will be returned and subsequent records maybe retrieved by specifying the `next_page_token` query param in the request. The token will be provided in the response as shown.
+### Granularity Query
 
+Note: a granularity query is expensive and may take time. When specifying a granularity, traditional paging is not performed. Only up to 1,000 results may be returned at a time. If there are more than 1,000 results only the first 1,000 results will be returned and subsequent records maybe retrieved by specifying the `next_page_token` query param in the request. The token will be provided in the response as shown.
 
+<sup>1</sup>When specifying a granularity, the default start and end dates may be different
+
+| granularity | default start_date              | default end_date       |
+| ----------- | ------------------------------  | ---------------        
+| YEARLY      | First day of the previous year  | Now
+| MONTHLY     | First day of the previous month | Now
+| DAILY       | Yesterday                       | Now
+| HOURLY      | 1 Hour Ago                      | Now
 ### CSV Response
 
 To retrieve data as a csv response supply the `text/csv` Accept header in your request. For example: `Accept: text/csv` 
@@ -311,3 +320,4 @@ curl "https://cloudmc_endpoint/rest/service/stackpath/filterable_fields" \
 | `label`<br/>_String_       | The label used for the field in the UI.               |
 | `capturable`<br/>_boolean_ | Whether the field can be used as usage for a product. |
 | `unit`<br/>_String_        | The unit used to measure the field.                   |
+Note that granularity and paging (of any kind) are not supported for the CSV response type.
