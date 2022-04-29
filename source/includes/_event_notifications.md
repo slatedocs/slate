@@ -423,7 +423,7 @@ The body of an event subscription will vary depending on the type of event being
     "data": [
       {
         "id": "23_training-status",
-        "type": "trainingStatus",
+        "type": "training_status",
         "attributes": {
           "status": "valid",
           "description": "training up-to-date"
@@ -439,7 +439,7 @@ The body of an event subscription will vary depending on the type of event being
       },
       {
         "id": "22_training-status",
-        "type": "trainingStatus",
+        "type": "training_status",
         "attributes": {
           "status": "expired",
           "description": "expired training"
