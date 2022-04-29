@@ -17,21 +17,21 @@ curl https://api.handshq.com/v1/personnel \
       "id": "1234",
       "type": "personnel",
       "attributes": {
-        "firstName": "John",
-        "lastName": "Smith",
+        "first_name": "John",
+        "last_name": "Smith",
         "email": "john.smith@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee",
-        "trainingStatus": {
+        "training_status": {
           "status": "missing",
           "description": "missing training"
         }
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "4321",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -92,20 +92,20 @@ curl https://api.handshq.com/v1/personnel/[id] \
       "id": "1234",
       "type": "personnel",
       "attributes": {
-        "firstName": "John",
-        "lastName": "Smith",
+        "first_name": "John",
+        "last_name": "Smith",
         "email": "john.smith@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee",
-        "trainingStatus": {
+        "training_status": {
           "status": "missing",
           "description": "missing training"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "4321",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -178,17 +178,17 @@ Successful requests will return a json payload of the newly created personnel an
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "Sandra",
-        "lastName": "Smith",
+        "first_name": "Sandra",
+        "last_name": "Smith",
         "email": "sandra.smith@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "456",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -251,17 +251,17 @@ Successful requests will return a json payload of the updated personnel and a `2
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "Sally",
-        "lastName": "Smith-West",
+        "first_name": "Sally",
+        "last_name": "Smith-West",
         "email": "sally-sw@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "567",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -328,17 +328,17 @@ Successful requests will return a json payload of the archived personnel and a `
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "Sally",
-        "lastName": "Smith-West",
+        "first_name": "Sally",
+        "last_name": "Smith-West",
         "email": "sally-sw@email.com",
-        "archivedAt": "2022-04-27T17:30:18.835+01:00",
+        "archived_at": "2022-04-27T17:30:18.835+01:00",
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "567",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -376,17 +376,17 @@ This endpoint allows you to unarchive an archived personnel.
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "Sally",
-        "lastName": "Smith-West",
+        "first_name": "Sally",
+        "last_name": "Smith-West",
         "email": "sally-sw@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "567",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
