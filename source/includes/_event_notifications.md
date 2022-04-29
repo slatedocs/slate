@@ -204,14 +204,14 @@ The body of an event subscription will vary depending on the type of event being
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "John",
-        "lastName": "Smith",
+        "first_name": "John",
+        "last_name": "Smith",
         "email": "john.smith@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "4321",
             "type": "lineManager"
@@ -248,14 +248,14 @@ The body of an event subscription will vary depending on the type of event being
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "John",
-        "lastName": "Smith",
+        "first_name": "John",
+        "last_name": "Smith",
         "email": "john.smith@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "4321",
             "type": "lineManager"
@@ -292,14 +292,14 @@ The body of an event subscription will vary depending on the type of event being
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "John",
-        "lastName": "Smith",
+        "first_name": "John",
+        "last_name": "Smith",
         "email": "john.smith@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "4321",
             "type": "lineManager"
@@ -336,14 +336,14 @@ The body of an event subscription will vary depending on the type of event being
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "John",
-        "lastName": "Smith",
+        "first_name": "John",
+        "last_name": "Smith",
         "email": "john.smith@email.com",
-        "archivedAt": "2022-01-01T12:30:30.479+01:00",
+        "archived_at": "2022-01-01T12:30:30.479+01:00",
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "4321",
             "type": "lineManager"
@@ -380,14 +380,14 @@ The body of an event subscription will vary depending on the type of event being
       "id": "123",
       "type": "personnel",
       "attributes": {
-        "firstName": "John",
-        "lastName": "Smith",
+        "first_name": "John",
+        "last_name": "Smith",
         "email": "john.smith@email.com",
-        "archivedAt": null,
+        "archived_at": null,
         "type": "employee"
       },
       "relationships": {
-        "lineManager": {
+        "line_manager": {
           "data": {
             "id": "4321",
             "type": "lineManager"
