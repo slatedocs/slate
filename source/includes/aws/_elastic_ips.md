@@ -103,3 +103,49 @@ Retrieve an elastic ip in a given [environment](#administration-environments).
 | `privateIpAddress`<br/>_boolean_   | The private IP address associated with the Elastic IP address.                                                             |
 | `publicIp`<br/>_boolean_           | The Elastic IP address.                                                                                                    |
 | `state`<br/>_boolean_              | The attachment state of the Elastic IP. Can be either Associated or Available.                                             |
+
+<!-------------------- DISASSOCIATE AN ELASTIC IP -------------------->
+
+#### Disassociate an Elastic IP
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/elasticips/eipalloc-0576a190ce3b575e3?operation=disassociate"
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=disassociate</code>
+
+Disassociate an elastic IP from an Instance in a given [environment](#administration-environments).
+
+<!-------------------- RELEASE AN ELASTIC IP -------------------->
+
+#### Release an Elastic IP
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/elasticips/eipalloc-0576a190ce3b575e3?operation=release"
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=release</code>
+
+Release an elastic IP in a given [environment](#administration-environments).
+
+Note: The release operation also disassociate the elastic IP if it is associated to an Instance.
