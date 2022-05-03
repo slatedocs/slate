@@ -166,6 +166,17 @@ This endpoint allows you to create a personnel. Personnel are division specific,
 
 `POST https://api.handshq.com/v1/personnel`
 
+### Allowed Personnel Parameters
+All parameters must be nested within `personnel`
+
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+first_name | String | Yes | First name of the personnel
+last_name | String | Yes | Last name of the personnel
+email | String | No | Email address of the personnel
+line_manager_id | String | No | ID of the line manager of the personnel
+role_ids | Array of strings | No | IDs of roles that exist in the training register, that the personnel holds
+
 ### Response
 
 Successful requests will return a json payload of the newly created personnel and a `201` status code
