@@ -166,7 +166,7 @@ This endpoint allows you to create a personnel. Personnel are division specific,
 
 `POST https://api.handshq.com/v1/personnel`
 
-### Allowed Personnel Parameters
+### Allowed Personnel Parameters for create
 All parameters must be nested within `personnel`
 
 Parameter | Format | Required | Description
@@ -249,6 +249,18 @@ This endpoint allows you to update the first name, last name, email address, lin
 ### Request
 
 `PATCH https://api.handshq.com/v1/personnel/[id]`
+
+
+### Allowed Personnel Parameters for update
+All parameters must be nested within `personnel`
+
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+first_name | String | No | First name of the personnel
+last_name | String | No | Last name of the personnel
+email | String | No | Email address of the personnel
+line_manager_id | String | No | ID of the line manager of the personnel
+role_ids | Array of strings | No | IDs of roles that exist in the training register, that the personnel holds.
 
 ### Response
 
