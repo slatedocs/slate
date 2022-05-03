@@ -123,6 +123,7 @@ includes:
   - gcp/k8_networking
   - gcp/k8_services
   - gcp/k8_ingresses
+  - gcp/k8_ingresses_v1
   - gcp/k8_configuration
   - gcp/k8_configmaps
   - gcp/k8_secrets
@@ -148,6 +149,7 @@ includes:
   - kubernetes/k8_networking
   - kubernetes/k8_services
   - kubernetes/k8_ingresses
+  - kubernetes/k8_ingresses_v1
   - kubernetes/k8_configuration
   - kubernetes/k8_configmaps
   - kubernetes/k8_secrets
@@ -184,6 +186,7 @@ includes:
   - azure/k8_networking
   - azure/k8_services
   - azure/k8_ingresses
+  - azure/k8_ingresses_v1
   - azure/k8_configuration
   - azure/k8_configmaps
   - azure/k8_secrets

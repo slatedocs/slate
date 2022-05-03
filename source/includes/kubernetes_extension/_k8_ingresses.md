@@ -1,8 +1,8 @@
-#### Ingresses
+#### Ingresses V1Beta1
 
-<!-------------------- LIST INGRESSES -------------------->
+<!-------------------- LIST INGRESSES V1Beta1 -------------------->
 
-##### List ingresses
+##### List ingresses V1Beta1
 
 ```shell
 curl -X GET \
@@ -29,7 +29,6 @@ curl -X GET \
         "name": "cloudmc",
         "namespace": "cmc-stg",
         "resourceVersion": "143213903",
-        "selfLink": "/apis/extensions/v1beta1/namespaces/cmc-stg/ingresses/cloudmc",
         "uid": "376bc4c5-a3e4-11e9-b6bd-02006e76001e"
       },
       "spec": {
@@ -61,7 +60,6 @@ curl -X GET \
         "namespace": "auth",
         "ownerReferences": [],
         "resourceVersion": "143213968",
-        "selfLink": "/apis/extensions/v1beta1/namespaces/auth/ingresses/cm-acme-http-solver-75png",
         "uid": "48720f48-f2bc-45fc-95c5-60cae8ffe11e"
       },
       "spec": {
@@ -77,7 +75,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses?cluster_id=:cluster_id</code>
 
-Retrieve a list of all ingresses in a given [environment](#administration-environments).
+Retrieve a list of all ingresses V1Beta1 in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                             |
 | -------------------------- | -------------------------------------------------- |
@@ -97,11 +95,11 @@ Retrieve a list of all ingresses in a given [environment](#administration-enviro
 | `metadata.uid` <br/>_object_       | The UUID of the ingress                             |
 | `spec`<br/>_object_                | The attributes that a user specifies for an ingress |
 
-Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
+Note that the list is not complete, since it is referring to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
-<!-------------------- GET AN INGRESS -------------------->
+<!-------------------- GET AN INGRESS V1Beta1 -------------------->
 
-##### Get an ingress
+##### Get an ingress V1Beta1
 
 ```shell
 curl -X GET \
@@ -127,7 +125,6 @@ curl -X GET \
       "name": "cloudmc",
       "namespace": "cmc-stg",
       "resourceVersion": "143213903",
-      "selfLink": "/apis/extensions/v1beta1/namespaces/cmc-stg/ingresses/cloudmc",
       "uid": "376bc4c5-a3e4-11e9-b6bd-02006e76001e"
     },
     "spec": {
@@ -143,7 +140,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
-Retrieve an ingress and all its info in a given [environment](#administration-environments).
+Retrieve an ingress V1Beta1 and all its info in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                             |
 | -------------------------- | -------------------------------------------------- |
@@ -163,11 +160,11 @@ Retrieve an ingress and all its info in a given [environment](#administration-en
 | `metadata.uid` <br/>_object_       | The UUID of the ingress                             |
 | `spec`<br/>_object_                | The attributes that a user specifies for an ingress |
 
-Note that the list is not complete, since it is refering to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
+Note that the list is not complete, since it is referring to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
-<!-------------------- CREATE AN INGRESS -------------------->
+<!-------------------- CREATE AN INGRESS V1Beta1 -------------------->
 
-##### Create an ingress
+##### Create an ingress V1Beta1
 
 ```shell
 curl -X POST \
@@ -208,7 +205,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
-Create an ingress in a given [environment](#administration-environments).
+Create an ingress V1Beta1 in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                             |
 | -------------------------- | -------------------------------------------------- |
@@ -233,9 +230,9 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create ingress task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                     |
 
-<!-------------------- REPLACE AN INGRESS -------------------->
+<!-------------------- REPLACE AN INGRESS V1Beta1 -------------------->
 
-##### Replace an ingress
+##### Replace an ingress V1Beta1
 
 ```shell
 curl -X PUT \
@@ -259,7 +256,6 @@ curl -X PUT \
     "name": "ingress-name",
     "namespace": "default",
     "resourceVersion": "170302224",
-    "selfLink": "/apis/extensions/v1beta1/namespaces/default/ingresses/ingress-name",
     "uid": "c67e6a6a-2b07-4976-8b3d-2ec9fd91ae5d"
   },
   "spec": {
@@ -303,7 +299,7 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
-Replace an ingress in a given [environment](#administration-environments).
+Replace an ingress V1Beta1 in a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                             |
 | -------------------------- | -------------------------------------------------- |
@@ -323,9 +319,9 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the replace ingress task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                      |
 
-<!-------------------- DELETE AN INGRESS -------------------->
+<!-------------------- DELETE AN INGRESS V1Beta1 -------------------->
 
-##### Delete an ingress
+##### Delete an ingress V1Beta1
 
 ```shell
 curl -X DELETE \
@@ -344,7 +340,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
-Delete an ingress from a given [environment](#administration-environments).
+Delete an ingress V1Beta1 from a given [environment](#administration-environments).
 
 | Required                   | &nbsp;                                             |
 | -------------------------- | -------------------------------------------------- |
