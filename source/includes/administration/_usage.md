@@ -271,7 +271,7 @@ To retrieve data as a json response supply the `application/json` Accept header 
 
 Note: a granularity query is expensive and may take time. When specifying a granularity, traditional paging is not performed. Only up to 1,000 results may be returned at a time. If there are more than 1,000 results only the first 1,000 results will be returned and subsequent records maybe retrieved by specifying the `next_page_token` query param in the request. The token will be provided in the response as shown.
 
-<sup>1</sup>When specifying a granularity the duration between the start and end dates must be greater than or equal to the granularity specified. 
+When specifying a granularity the duration between the start and end dates must be greater than or equal to the granularity specified. 
 ### CSV Response
 
 To retrieve data as a csv response supply the `text/csv` Accept header in your request. For example: `Accept: text/csv` 
