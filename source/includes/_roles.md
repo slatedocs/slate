@@ -113,6 +113,14 @@ This endpoint allows you to create a role. Roles are account wide, so the role w
 
 `POST https://api.handshq.com/v1/roles`
 
+### Allowed Role Parameters
+All parameters must be nested within `role`
+
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+position | String | Yes | The position name of the role
+course_ids | Array of strings | No | IDs of courses that exist within the training register, that the role is connected to
+
 ### Response
 
 Successful requests will return a json payload of the newly created role and a `201` status code
