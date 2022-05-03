@@ -220,15 +220,22 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 | metricType <br> *String*          | The type of metric being summarized in this record. [COUNTER,GAUGE]. Counter accumulates over time. Gauge types indicate a particular amount of usage during record duration and fluxate up and down. 
 | metadata <br> *Object*            | Attributes of the underlying environment under which this usge was created.
 
-| Metadata Attributes           | Description
-| ------------------            | ---------------
-| totalCount <br> *Number*      | The total number of records satisfying the query.
-| totalPageCount <br> *Number*  | The total number of pages.
-| count <br> *Number*           | The number of records returned on this page only.
-| page <br> *Number*            | The page returned. Always the same as the page requested.
+| Metadata Attributes               | Description
+| ------------------                | ---------------
+| total_record_count <br> *Number*  | The total number of records satisfying the query.
+| total_page_count <br> *Number*    | The total number of pages.
+| page_size <br> *Number*           | The number of records returned on this page only.
+| page <br> *Number*                | The page returned. Always the same as the page requested.
 
 
 ### Query Options
+
+| Required Query Parameters  | Description                                                  | 
+---------------------------- | ------------                                                 |
+| start_date (inclusive)     | Retrieve the usage starting from the requested date and time |
+| end_date (exclusive)       | Retrieve the usage up to the specific date and time          |
+
+The start_date and end_date must be an ISO8601 date time. For example 2011-12-03T10:15:30Z.
 
 | Optional Query Parameters  | Description                                           | Default Behaviour (when not specified)
 ---------------------------- | ------------                                          | -----------------
@@ -236,8 +243,6 @@ curl -X POST "https://cloudmc_endpoint/rest/service/usage?page=1&page_size=1" \
 | environment_Id             | Retrieve the usage of a specific environment only     | All environments the caller has visibility on
 | connection_id              | Retrieve the usage of a specific connection only      | All connections the caller have visibility on
 | usage_type                 | Retrieve the usage of a specific usage type only      | All usage types
-| start_date (inclusive)     | Retrieve the usage starting from the requested date   | The last 7 days or for the granularity specified. I.e. last year if YEARLY, last month if MONTHLY<sup>1</sup>
-| end_date (exclusive)       | Retrieve the usage up to the specific date only       | The time of the request
 | fields.*fieldName*         | Retrieve the usage that matches a specific field name. <br/> Example: `fields.region=EU` | No filtering of fields applied. Multiple field filters are supported for unique field names and will be applied with the AND operator.
 
 ### Paged JSON response
@@ -266,14 +271,7 @@ To retrieve data as a json response supply the `application/json` Accept header 
 
 Note: a granularity query is expensive and may take time. When specifying a granularity, traditional paging is not performed. Only up to 1,000 results may be returned at a time. If there are more than 1,000 results only the first 1,000 results will be returned and subsequent records maybe retrieved by specifying the `next_page_token` query param in the request. The token will be provided in the response as shown.
 
-<sup>1</sup>When specifying a granularity, the default start and end dates may be different
-
-| granularity | default start_date              | default end_date       |
-| ----------- | ------------------------------  | ---------------        
-| YEARLY      | First day of the previous year  | Now
-| MONTHLY     | First day of the previous month | Now
-| DAILY       | Yesterday                       | Now
-| HOURLY      | 1 Hour Ago                      | Now
+When specifying a granularity the duration between the start and end dates must be greater than or equal to the granularity specified. 
 ### CSV Response
 
 To retrieve data as a csv response supply the `text/csv` Accept header in your request. For example: `Accept: text/csv` 
