@@ -28,6 +28,14 @@ This endpoint allows you to add a role to a personnel using the ID of the person
 
 `POST https://api.handshq.com/v1/personnel_roles`
 
+### Allowed Personnel Role Parameters
+All parameters must be nested within `personnel_role`
+
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+personnel_id | String | Yes | The ID of the personnel
+role_id | String | Yes | The ID of the role
+
 ### Response
 
 Successful requests will return a json payload of the newly created personnel role and a `201` status code
