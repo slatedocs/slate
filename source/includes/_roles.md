@@ -113,7 +113,7 @@ This endpoint allows you to create a role. Roles are account wide, so the role w
 
 `POST https://api.handshq.com/v1/roles`
 
-### Allowed Role Parameters
+### Allowed Role Parameters for create
 All parameters must be nested within `role`
 
 Parameter | Format | Required | Description
@@ -167,6 +167,15 @@ This endpoint allows you to update the `position` attribute of a role belonging 
 ### Request
 
 `PATCH https://api.handshq.com/v1/roles/[id]`
+
+
+### Allowed Role Parameters for update
+All parameters must be nested within `role`
+
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+position | String | No | The position name of the role
+course_ids | Array of strings | No | IDs of courses that exist within the training register, that the role is connected to
 
 ### Response
 
