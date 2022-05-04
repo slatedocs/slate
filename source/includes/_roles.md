@@ -119,7 +119,7 @@ All parameters must be nested within `role`
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 position | String | Yes | The position name of the role
-course_ids | Array of strings | No | IDs of courses that exist within the training register, that the role is connected to
+course_ids | Association IDs | No | IDs of courses that exist in the training register, that the role should be associated to. For more information see [Associations](#associations)
 
 ### Response
 
@@ -175,7 +175,7 @@ All parameters must be nested within `role`
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 position | String | No | The position name of the role
-course_ids | Array of strings | No | IDs of courses that exist within the training register, that the role is connected to
+course_ids | Association IDs | No | IDs of courses that exist in the training register, that the role should be associated to. For more information see [Associations](#associations)
 
 ### Response
 

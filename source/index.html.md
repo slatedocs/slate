@@ -19,6 +19,7 @@ includes:
   - roles
   - personnel_roles
   - pagination
+  - associations
   - errors
 
 search: true

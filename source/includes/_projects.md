@@ -264,7 +264,7 @@ All parameters must be nested within `project`
 
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
-name | String | Yes | Name of your project, used for document titles, names of PDF documents etc.
+name | String | No | Name of your project, used for document titles, names of PDF documents etc.
 start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
 end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'

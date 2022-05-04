@@ -175,7 +175,7 @@ first_name | String | Yes | First name of the personnel
 last_name | String | Yes | Last name of the personnel
 email | String | No | Email address of the personnel
 line_manager_id | String | No | ID of the line manager of the personnel
-role_ids | Array of strings | No | IDs of roles that exist in the training register, that the personnel holds
+role_ids | Association IDs | No | IDs of roles that exist in the training register, that the personnel holds. For more information see [Associations](#associations)
 
 ### Response
 
@@ -260,7 +260,7 @@ first_name | String | No | First name of the personnel
 last_name | String | No | Last name of the personnel
 email | String | No | Email address of the personnel
 line_manager_id | String | No | ID of the line manager of the personnel
-role_ids | Array of strings | No | IDs of roles that exist in the training register, that the personnel holds.
+role_ids | Association IDs | No | IDs of roles that exist in the training register, that the personnel holds. For more information see [Associations](#associations)
 
 ### Response
 
