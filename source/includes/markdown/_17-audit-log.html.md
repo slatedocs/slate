@@ -64,6 +64,10 @@ All admin settings events operate on the _Workspace_ resource type except for `w
 | workspace_announcement_removed                       | An announcement was removed from the workspace. |
 | workspace_form_link_authentication_required_enabled  | For this workspace, form link authentication was set as required, so all viewers need to authenticate with Asana in order to open forms links. |
 | workspace_form_link_authentication_required_disabled | For this workspace, form link authentication was set as not required, however authentication may still be required for individual links. Some viewers may not need to authenticate with Asana in order to open forms links. |
+| workspace_personal_access_token_enabled              | The workspace's global personal access token setting was enabled.  |
+| workspace_personal_access_token_disabled             | The workspace's global personal access token setting was disabled. |
+| workspace_app_admin_approval_setting_changed         | The workspace's specific app approval setting was changed.     |
+| workspace_require_app_approvals_of_type_changed      | The workspace's global app approval setting was changed. |
 
 ### Roles
  
