@@ -371,3 +371,29 @@ curl -X POST \
 | `taskId` <br/>*string*     | The task id related to the instance to be stopped. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
+<!-------------------- DISASSOCIATE AN ELASTIC IP FROM AN INSTANCE -------------------->
+
+#### Disassociate an Elastic IP from an instance
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-area/instances/i-0d1f9106cd0e0dff7?operation=disassociate"
+```
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=disassociate</code>
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The task id related to the instance to be disassociated. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
+
+
