@@ -8470,7 +8470,7 @@ Returns the full record of the newly created project.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -9165,7 +9165,7 @@ Returns the complete updated project record.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10064,7 +10064,7 @@ Returns the full record of the newly created project.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10578,7 +10578,7 @@ Returns the full record of the newly created project.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -13472,6 +13472,8 @@ $result = $client->projecttemplates->instantiateProject($project_template_gid, a
 
 <span class="description">
 Creates and returns a job that will asynchronously handle the project instantiation.
+
+_Note: The body of this request will differ if your workspace is an organization. To determine if your workspace is an organization, use the [is_organization](/docs/workspace) parameter._
 </span>
 
 <h3 id="instantiate-a-project-from-a-project-template-parameters">Parameters</h3>
@@ -13486,8 +13488,8 @@ Creates and returns a job that will asynchronously handle the project instantiat
 |»» requested_dates<span class="param-type"> [object]</span>|Array of mappings of date variables to calendar dates.|
 |»»» gid<span class="param-type"> string</span>|Globally unique identifier of date variable, as a string.|
 |»»» value<span class="param-type"> string(date-time)¦null</span>|The date with which the date variable should be replaced when instantiating a project. This takes a date with `YYYY-MM-DD` format.|
-|»» team<span class="param-type"> string</span>|Sets the team of the new project. If the project template exists in an organization, specify team and not workspace.|
-|»» workspace<span class="param-type"> string</span>|Sets the workspace of the new project. Only specify workspace if the project template exists in a workspace.|
+|»» team<span class="param-type"> string</span>|*Conditional*. Sets the team of the new project. If the project template exists in an _organization_, you must specify a value for `team` and not `workspace`.|
+|»» workspace<span class="param-type"> string</span>|*Conditional*. Sets the workspace of the new project. If the project template exists in a _workspace_, you must specify a value for `workspace` and not `team`.|
 |/project_template_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project template.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -21714,7 +21716,7 @@ Searching for multiple exact matches of a custom field is not supported.
 <h1 id="teams">Teams</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="/docs/create-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams</span></a><br><a href="/docs/get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="/docs/get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{workspace_gid}/teams</span></a><br><a href="/docs/get-teams-in-an-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/teams</span></a><br><a href="/docs/get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="/docs/add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="/docs/remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
+<code><a href="/docs/create-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams</span></a><br><a href="/docs/get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="/docs/get-teams-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/teams</span></a><br><a href="/docs/get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="/docs/add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="/docs/remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
 </pre>
 
 <span class="description">
@@ -21976,115 +21978,7 @@ Returns the full record for a single team.
 
 </section><hr class="half-line">
 <section>
-## Get teams in an organization
-
-<a id="opIdgetTeamsForOrganization"></a>
-
-> Code samples
-
-```shell
-curl -X GET https://app.asana.com/api/1.0/organizations/{workspace_gid}/teams \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const asana = require('asana');
-
-const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
-
-client.teams.getTeamsForOrganization(workspaceGid, {param: "value", param: "value", opt_pretty: true})
-    .then((result) => {
-        console.log(result);
-    });
-```
-
-```python
-import asana
-
-client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
-
-result = client.teams.get_teams_for_organization(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
-```
-
-```ruby
-require 'asana'
-
-client = Asana::Client.new do |c|
-    c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
-end
-
-result = client.teams.get_teams_for_organization(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
-```
-
-```java
-import com.asana.Client;
-
-Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
-
-List<Team> result = client.teams.getTeamsForOrganization(workspaceGid)
-    .option("pretty", true)
-    .execute();
-```
-
-```php
-<?php
-require 'php-asana/vendor/autoload.php';
-
-$client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
-
-$result = $client->teams->getTeamsForOrganization($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
-```
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "gid": "12345",
-      "resource_type": "team",
-      "name": "Marketing"
-    }
-  ]
-}
-```
-
-> See [Input/Output Options](/docs/input-output-options) to include more fields in your response.
-
-<p>
-<code> <span class="get-verb">GET</span> /organizations/{workspace_gid}/teams</code>
-</p>
-
-<span class="description">
-Returns the compact records for all teams in the organization visible to the authorized user.
-</span>
-
-<h3 id="get-teams-in-an-organization-parameters">Parameters</h3>
-
-|Name|Description|
-|---|---|
-|/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
-|?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
-|?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
-|?limit<span class="param-type"> integer</span>|Results per page.|
-|?offset<span class="param-type"> string</span>|Offset token.|
-
-<h3 id="get-teams-in-an-organization-responses">Responses</h3>
-
-|Status|Description|
-|---|---|
-|200<span class="param-type"> [TeamCompact](#schemateamcompact)</span>|Returns the team records for all teams in the organization or workspace accessible to the authenticated user.|
-|400<span class="param-type"> [Error](#schemaerror)</span>|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|
-|401<span class="param-type"> [Error](#schemaerror)</span>|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|
-|403<span class="param-type"> [Error](#schemaerror)</span>|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|
-|404<span class="param-type"> [Error](#schemaerror)</span>|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|
-|500<span class="param-type"> [Error](#schemaerror)</span>|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|
-
-</section><hr class="half-line">
-<section>
-## Get teams in an workspace
+## Get teams in a workspace
 
 <a id="opIdgetTeamsForWorkspcae"></a>
 
@@ -22169,7 +22063,7 @@ $result = $client->teams->getTeamsForWorkspcae($workspace_gid, array('param' => 
 Returns the compact records for all teams in the workspace visible to the authorized user.
 </span>
 
-<h3 id="get-teams-in-an-workspace-parameters">Parameters</h3>
+<h3 id="get-teams-in-a-workspace-parameters">Parameters</h3>
 
 |Name|Description|
 |---|---|
@@ -22179,7 +22073,7 @@ Returns the compact records for all teams in the workspace visible to the author
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
 
-<h3 id="get-teams-in-an-workspace-responses">Responses</h3>
+<h3 id="get-teams-in-a-workspace-responses">Responses</h3>
 
 |Status|Description|
 |---|---|
@@ -28442,7 +28336,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
-|team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with. This field only exists for projects in organizations.|
+|team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the team.|
