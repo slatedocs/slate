@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-05-05
+
+- Added `enrichment_source` field to `GET /fields` response.
+
 ## 2022-04-11
 
 - Added [Partner With Us](#partner-with-us) section.

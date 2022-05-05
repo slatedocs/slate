@@ -123,6 +123,7 @@ curl "https://api.affinity.co/fields?with_modified_names=true" -u :$APIKEY
     "id": 1234,
     "name": "[Deals] Amount",
     "list_id": 11,
+    "enrichment_source": "none",
     "value_type": 3,
     "allows_multiple": false,
     "track_changes": true,
@@ -132,9 +133,20 @@ curl "https://api.affinity.co/fields?with_modified_names=true" -u :$APIKEY
     "id": 5678,
     "name": "[Events] Amount",
     "list_id": 16,
+    "enrichment_source": "none",
     "value_type": 3,
     "allows_multiple": false,
     "track_changes": true,
+    "dropdown_options": []
+  },
+  {
+    "id": 4321,
+    "name": "[Companies] Description",
+    "list_id": 18,
+    "enrichment_source": "dealroom",
+    "value_type": 6,
+    "allows_multiple": false,
+    "track_changes": false,
     "dropdown_options": []
   },
   ...
