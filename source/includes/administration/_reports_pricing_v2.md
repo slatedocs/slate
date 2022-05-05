@@ -250,6 +250,8 @@ Customer Report Attributes | &nbsp;
 
 <!------------------- GET REVENUE TAXATION REPORT --------------------->
 
+### Get a revenue taxation report
+
 `GET /reports/revenue_tax_report?billing_cycle=:billing_cycle&organization_id=:organization_id&language=:language`
 
 The response is a list of priced products, with the first line as a header, across all the customers of the given reseller and billing cycle.

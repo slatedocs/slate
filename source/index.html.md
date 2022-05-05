@@ -242,6 +242,8 @@ includes:
   - aws/cidr_reservations
   - purestorage
   - purestorage/object_storage_api_credentials
+  - purestorage/buckets
+  - purestorage/objects
 
 search: true
 ---
