@@ -13,7 +13,7 @@ Some resources take an array of IDs as a parameter for create or update actions.
   }
 ```
 
-Please note: when an array of IDs is accepted as a parameter, the IDs that are provided will replace any associations already in place.
+When an array of IDs is accepted as a parameter, the IDs that are provided will replace any associations already in place.
 
 For example:
 
@@ -49,4 +49,4 @@ If you provide an empty array to a parameter that accepts an array of associatio
 
 For example:
 
-If a `role` had associations to `courses` with the ID of 2, and 3 providing `course_ids: []` to the update of the role will remove these associations.
+If a `role` had associations to `courses` with the ID of 2, providing `course_ids: []` to the update of the role will remove this association.

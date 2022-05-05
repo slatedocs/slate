@@ -1,8 +1,8 @@
 # Event Notifications
 
-Each Event Subscription will send a `POST` request to the location set out within it's own `external_url` that has been provided once the event occurs.
+Each Event Subscription will send a `POST` request to the location set as the `external_url` when the event occurs.
 
-These will be in a `JSON` format and still in-keeping with the `JSON:API` specification.
+These will be in a `JSON` format and in-keeping with the `JSON:API` specification.
 
 The body of an event subscription will vary depending on the type of event being subscribed to.
 
@@ -214,7 +214,7 @@ The body of an event subscription will vary depending on the type of event being
         "line_manager": {
           "data": {
             "id": "4321",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -232,7 +232,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_created"
+      "event_type": "personnel_created"
     }
   }
 ```
@@ -258,7 +258,7 @@ The body of an event subscription will vary depending on the type of event being
         "line_manager": {
           "data": {
             "id": "4321",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -276,7 +276,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_updated"
+      "event_type": "personnel_updated"
     }
   }
 ```
@@ -302,7 +302,7 @@ The body of an event subscription will vary depending on the type of event being
         "line_manager": {
           "data": {
             "id": "4321",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -320,7 +320,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_deleted"
+      "event_type": "personnel_deleted"
     }
   }
 ```
@@ -346,7 +346,7 @@ The body of an event subscription will vary depending on the type of event being
         "line_manager": {
           "data": {
             "id": "4321",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -364,7 +364,7 @@ The body of an event subscription will vary depending on the type of event being
       }
     },
     "meta": {
-      "event_type":"personnel_archived"
+      "event_type": "personnel_archived"
     }
   }
 ```
@@ -390,7 +390,7 @@ The body of an event subscription will vary depending on the type of event being
         "line_manager": {
           "data": {
             "id": "4321",
-            "type": "lineManager"
+            "type": "line_manager"
           }
         },
         "roles": {
@@ -469,4 +469,4 @@ The body of an event subscription will vary depending on the type of event being
     - `expired` | expired training
     - `expiring` | training expiring soon
     - `valid` | training up-to-date
-    - `default` | no training require
+    - `default` | no training required
