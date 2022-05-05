@@ -134,7 +134,7 @@ The body of an event subscription will vary depending on the type of event being
 <aside class='notice'>
   <strong>Please Note</strong>:
   <li>The URL of the PDF (as described in "links" => "content") is only valid for 48 hours.</li>
-  <li>This event may fire on occassion for the same version, in cases where a PDF is being regenerated (e.g. in the case of digital signatures)</li>
+  <li>This event may fire on occasion for the same version, in cases where a PDF is being regenerated (e.g. in the case of digital signatures)</li>
 </aside>
 
 

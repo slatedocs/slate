@@ -4,7 +4,7 @@
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://api.handshq.com/v1/authentication" \
+curl https://api.handshq.com/v1/authentication \
   -H "Accept: application/json"  \
   -H "Authorization: bearer [api_token]"
 ```
@@ -80,7 +80,7 @@ If you would like to test that your token is valid, the following request is ava
 
 > Note that different languages will have their own implementations of how to generate the HMAC hex digest.
 
-While requests made to the HandsHQ API require the authentication measures set out out [here](#strategy), we also provide measures to verify that any requests made from HandsHQ can be authenticated.
+While requests made to the HandsHQ API require the authentication measures set out [here](#strategy), we also provide measures to verify that any requests made from HandsHQ can be authenticated.
 
 Such requests are made as a result of subscribing for webhook notifications (e.g. `version_pdf_created`) where we will send a payload containing information about the event. e.g. attributes about a PDF that was just generated for one of your projects.
 
@@ -88,7 +88,7 @@ Such requests are made as a result of subscribing for webhook notifications (e.g
   Please note that while we provide such measures, it is still up to those who wish to receive webhook notifications to implement the checks of authenticity with the strategy described.
 </aside>
 
-Our strategy involves the generation of a signature which is constructed for each request sent by HandsHQ and can be verified by the consumer due to the fact that the only other holder of the shared secret is HandsHQ, the signature also protects against request tamperings, see below for details:
+Our strategy involves the generation of a signature that is constructed for each request sent by HandsHQ and can be verified by the consumer. Due to the fact that the only other holder of the shared secret is HandsHQ, the signature also protects against request tamperings. See below for details.
 
 ### Signature details
 

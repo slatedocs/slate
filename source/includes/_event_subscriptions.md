@@ -5,7 +5,7 @@
 ```shell
 curl https://api.handshq.com/v1/event_subscriptions \
   -H "Accept: application/json" \
-  -H "Authorization: bearer [api_token]" \
+  -H "Authorization: bearer [api_token]"
 ```
 
 > 200
