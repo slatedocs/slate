@@ -3506,7 +3506,6 @@ components:
             team:
               description: >-
                 *Create-only*. The team that this project is shared with.
-                This field only exists for projects in organizations.
               type: string
               example: '12345'
     ProjectResponse:
@@ -3563,7 +3562,6 @@ components:
                 - type: object
                   description: >-
                     *Create-only*. The team that this project is shared with.
-                    This field only exists for projects in organizations.
             icon:
               description: >-
                 The icon for a project.
@@ -3816,14 +3814,16 @@ components:
           example: New Project Name
         team:
           description: >-
-            Sets the team of the new project. If the project template exists in an
-            organization, specify team and not workspace.
+            *Conditional*. Sets the team of the new project. If the project template
+            exists in an
+            _organization_, you must specify a value for `team` and not `workspace`.
           type: string
           example: '12345'
         workspace:
           description: >-
-            Sets the workspace of the new project. Only specify workspace if the
-            project template exists in a workspace.
+            *Conditional*. Sets the workspace of the new project. If the project template
+            exists in
+            a _workspace_, you must specify a value for `workspace` and not `team`.
           type: string
           example: '12345'
         public:
@@ -8595,6 +8595,11 @@ paths:
       summary: Instantiate a project from a project template
       description: >-
         Creates and returns a job that will asynchronously handle the project instantiation.
+
+
+        _Note: The body of this request will differ if your workspace is an organization.
+        To determine if your workspace is an organization, use the
+        [is_organization](/docs/workspace) parameter._
       tags:
         - Project Templates
       operationId: instantiateProject
@@ -12268,45 +12273,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /organizations/{workspace_gid}/teams:
-    parameters:
-      - $ref: '#/components/parameters/workspace_path_gid'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get teams in an organization
-      description: >-
-        Returns the compact records for all teams in the organization visible to
-        the authorized user.
-      tags:
-        - Teams
-      operationId: getTeamsForOrganization
-      responses:
-        200:
-          description: >-
-            Returns the team records for all teams in the organization or
-            workspace accessible to the authenticated user.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/TeamCompact'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/teams:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -12315,7 +12281,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get teams in an workspace
+      summary: Get teams in a workspace
       description: >-
         Returns the compact records for all teams in the workspace visible to
         the authorized user.
