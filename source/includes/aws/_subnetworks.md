@@ -1,6 +1,6 @@
 ###Subnetworks
 
-Subnets are a range of IP addresses within your VPC. You can use a public subnet for resources that that will be connected to the internet, and a private subnet for resources that won't be. The CIDR block of a subnet can be the same as the CIDR block for the VPC (for a single subnet in the VPC), or a subset of the CIDR block for the VPC (to create multiple subnets in the VPC). The allowed block size is between a /28 netmask and /16 netmask. If you create more than one subnet in a VPC, the CIDR blocks of the subnets cannot overlap. Each subnet must be associated with a route table, which specifies the allowed routes for outbound traffic leaving the subnet. Every subnet that you create is automatically associated with the main route table for the VPC. 
+Subnets are a range of IP addresses within your VPC. You can use a public subnet for resources that that will be connected to the internet, and a private subnet for resources that won't be. The CIDR block of a subnet can be the same as the CIDR block for the VPC (for a single subnet in the VPC), or a subset of the CIDR block for the VPC (to create multiple subnets in the VPC). The allowed block size is between a /28 netmask and /16 netmask. If you create more than one subnet in a VPC, the CIDR blocks of the subnets cannot overlap. Each subnet must be associated with a route table, which specifies the allowed routes for outbound traffic leaving the subnet. Every subnet that you create is automatically associated with the main route table for the VPC.
 
 <!-------------------- LIST SUBNETWORKS -------------------->
 
@@ -123,6 +123,60 @@ Retrieve a subnetwork in a given [environment](#administration-environments).
 | `availableIPv4Addreses`<br/>_int_                  | The number of available addresses in the subnet's CIDR block.                                                                   |
 | `vpcId`<br/>_string_                               | The ID of the VPC the subnet is associated with.                                                                                |
 
+<!-------------------- CREATE SUBNETWORKS -------------------->
+
+#### Create Subnetworks
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/test-env/subnetworks"
+```
+
+> Request body example for named subnets:
+
+```json
+{
+  "vpcId": "vpc-0d5f70bd6b3bf9013",
+  "subnetsToCreate": [
+    {
+      "name": "newSubnet1",
+      "cidrBlock": "10.0.0.0/25",
+      "availabilityZone": "us-east-1c"
+    },
+    {
+      "name": "newSubnet2",
+      "cidrBlock": "10.0.0.128/25",
+      "availabilityZone": "us-east-1c"
+    }
+  ]
+}
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnetworks</code>
+
+Create a subnetwork in a given [environment](#administration-environments).
+
+| Attributes                     | &nbsp;                                              |
+| ------------------------------ | --------------------------------------------------- |
+| `vpcId`<br/>_string_           | The ID of the VPC.                                  |
+| `subnetsToCreate`<br/>*Array*  | List of subnets to be created for a VPC             |
+| `cidrBlock`<br/>_string_       | IPv4 network range for the subnet in CIDR notation. |
+
+| Optional                        | &nbsp;                                                                       |
+| ------------------------------- | ---------------------------------------------------------------------------- |
+| `name`<br/>_string_             | The subnet name. A default name will be created if there isn't one provided. |
+| `availabilityZone`<br/>_string_ | Availability zone of the subnet                                              |
+
 <!-------------------- DELETE A SUBNETWORK -------------------->
 
 #### Delete a Subnetwork
@@ -146,8 +200,7 @@ curl -X DELETE \
 
 Delete a Subnetwork in a given [environment](#administration-environments).
 
-| Attributes                 | &nbsp;                                        |
-|----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the subnet deletion. |
-| `taskStatus` <br/>*string* | The status of the operation.                  |
-
+| Attributes                 | &nbsp;                                      |
+| -------------------------- | ------------------------------------------- |
+| `taskId` <br/>_string_     | The task id related to the subnet deletion. |
+| `taskStatus` <br/>_string_ | The status of the operation.                |
