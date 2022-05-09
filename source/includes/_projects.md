@@ -93,7 +93,7 @@ curl https://api.handshq.com/v1/projects \
   }
 ```
 
-This endpoint allows you to view projects for the company who is registered with the API token you provide.
+This endpoint allows you to view projects for the division who is registered with the API token you provide.
 
 ### Request
 
@@ -118,7 +118,7 @@ curl https://api.handshq.com/v1/projects \
   -H "Authorization: bearer [api_token]" \
   -H "Content-Type: application/json" \
   --request POST \
-  -d "[json_payload]"
+  -d '[json_payload]'
 ```
 
 > Example Project creation payload.
@@ -139,7 +139,7 @@ curl https://api.handshq.com/v1/projects \
 
 ```
 
-This endpoint allows you to create a project for the company who is registered with the API token you provide.
+This endpoint allows you to create a project for the division who is registered with the API token you provide.
 
 ### Request
 
@@ -232,7 +232,7 @@ curl https://api.handshq.com/v1/projects/[id] \
   -H "Authorization: bearer [api_token]" \
   -H "Content-Type: application/json" \
   --request PATCH \
-  -d "[json_payload]"
+  -d '[json_payload]'
 ```
 
 > Example Project update payload.
@@ -252,7 +252,7 @@ curl https://api.handshq.com/v1/projects/[id] \
 
 ```
 
-This endpoint allows you to update a project for the company who is registered with the API token you provide.
+This endpoint allows you to update a project for the division who is registered with the API token you provide.
 
 ### Request
 
@@ -264,7 +264,7 @@ All parameters must be nested within `project`
 
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
-name | String | Yes | Name of your project, used for document titles, names of PDF documents etc.
+name | String | No | Name of your project, used for document titles, names of PDF documents etc.
 start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
 end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'

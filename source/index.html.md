@@ -12,9 +12,14 @@ includes:
   - format
   - authentication
   - event_subscriptions
+  - event_notifications
   - projects
   - fields
+  - personnel
+  - roles
+  - personnel_roles
   - pagination
+  - associations
   - errors
 
 search: true
