@@ -142,10 +142,10 @@ The body of an event subscription will vary depending on the type of event being
 ```json
  {
    "data": {
-    "id": "123",
-    "type": "role",
-    "attributes": {
-       "position": "Technician"
+      "id": "123",
+      "type": "role",
+      "attributes": {
+        "position": "Technician"
       },
     },
     "meta": {
@@ -163,11 +163,12 @@ The body of an event subscription will vary depending on the type of event being
 ```json
  {
    "data": {
-    "id": "123",
-    "type": "role",
-    "attributes": {
-      "position": "Technician",
-    },
+      "id": "123",
+      "type": "role",
+      "attributes": {
+        "position": "Technician",
+      }
+   },
     "meta": {
       "event_type": "role_updated"
     }
@@ -182,11 +183,12 @@ The body of an event subscription will vary depending on the type of event being
 ```json
   {
    "data": {
-    "id": "123",
-    "type": "role",
-    "attributes": {
-      "position": "Technician",
-    },
+      "id": "123",
+      "type": "role",
+      "attributes": {
+        "position": "Technician",
+      }
+   },
     "meta": {
       "event_type": "role_deleted"
     }
