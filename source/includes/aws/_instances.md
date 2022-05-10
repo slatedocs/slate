@@ -371,6 +371,46 @@ curl -X POST \
 | `taskId` <br/>*string*     | The task id related to the instance to be stopped. |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
 
+<!-------------------- ASSOCIATE AN ELASTIC IP TO AN INSTANCE -------------------->
+
+#### Associate an Elastic IP to an Instance
+
+You can enable communication with the Internet by associating an Elastic IP to an Instance. In other words, an Elastic IP
+acts as the bridge between a Virtual Private Cloud (VPC) and an Instance.
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws-tesv/test/instances/i-00b2dcf0e059a2f1e?operation=associate"
+```
+
+> Request body to associate an Elastic IP to an Instance:
+
+```json
+{
+  "vpcId": "vpc-08a3263852fd4fb2a",
+  "elasticIp": {
+      "id": "eipalloc-0b1822bb64a812884"
+  }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+    "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=associate</code>
+
+| Required                      | &nbsp;                                                  |
+| ------------------------------|-------------------------------------------------------- |
+| `vpcId`<br/>_string_          | The ID of the VPC to associate this instance to.        |
+| `elasticIp.id`<br/>_string_   | The ID of the Elastic IP to associate this instance to. |
+
 <!-------------------- DISASSOCIATE AN ELASTIC IP FROM AN INSTANCE -------------------->
 
 #### Disassociate an Elastic IP from an instance
