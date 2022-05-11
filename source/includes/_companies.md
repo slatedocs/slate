@@ -193,7 +193,8 @@ curl 'https://app.procurementexpress.com/api/v1/companies/1'
     "reserve_po_number": false,
     "show_remaining_budget_to_teammember": false,
     "allow_open_draft_access": true,
-    "link_budgets_to_qbo_account": false
+    "link_budgets_to_qbo_account": false,
+    "is_quickbooks_connected": true
   },
   "custom_fields": [
     {
@@ -333,7 +334,8 @@ curl 'https://app.procurementexpress.com/api/v1/companies/details'
     "report_name": null,
     "user_can_add_supplier": true,
     "po_fields": ["Date", "Budgets", "From", "PO number", "Net Amount"],
-    "reserve_po_number": false
+    "reserve_po_number": false,
+    "is_quickbooks_connected": true
   },
   "custom_fields": [
     {

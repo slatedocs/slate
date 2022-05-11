@@ -119,6 +119,7 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
     "archived": false,
     "contact_person": null,
     "tax_number": null
+    "currency_id": 1
   }
 ]
 ```
@@ -139,7 +140,8 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
       "payment_details": null,
       "archived": false,
       "contact_person": null,
-      "tax_number": null
+      "tax_number": null,
+      "currency_id": 1
     }
   ],
   "meta": {
@@ -227,7 +229,8 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers/1'
   "payment_details": null,
   "archived": false,
   "contact_person": null,
-  "tax_number": null
+  "tax_number": null,
+  "currency_id": 1
 }
 ```
 
@@ -288,7 +291,8 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers/1'
   "payment_details": null,
   "archived": false,
   "contact_person": null,
-  "tax_number": null
+  "tax_number": null,
+  "currency_id": 1
 }
 ```
 
