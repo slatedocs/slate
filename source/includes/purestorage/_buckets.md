@@ -15,27 +15,27 @@ curl -X GET \
 
 ```json
 {
-    "data": [
-        {
-            "id": "ap-south-1/bucketOne",
-            "name": "bucketOne",
-            "region": "ap-south-1",
-            "created": "Tue Mar 01 16:13:29 EST 2022",
-            "url": "http://10.23.42.55/bucketOne/",
-			"access": "private"
-        },
-        {
-            "id": "us-east-1/bucketTwo",
-            "name": "bucketTwo",
-            "region": "us-east-1",
-            "created": "Fri Mar 04 16:20:29 EST 2022",
-            "url": "http://10.23.42.65/bucketTwo/",
-            "access": "private"
-        }
-    ],
-    "metadata": {
-        "recordCount": 2
+  "data": [
+    {
+      "id": "ap-south-1/bucketOne",
+      "name": "bucketOne",
+      "region": "ap-south-1",
+      "created": "Tue Mar 01 16:13:29 EST 2022",
+      "url": "http://10.23.42.55/bucketOne/",
+      "access": "private"
+    },
+    {
+      "id": "us-east-1/bucketTwo",
+      "name": "bucketTwo",
+      "region": "us-east-1",
+      "created": "Fri Mar 04 16:20:29 EST 2022",
+      "url": "http://10.23.42.65/bucketTwo/",
+      "access": "private"
     }
+  ],
+  "metadata": {
+    "recordCount": 2
+  }
 }
 ```
 
@@ -65,16 +65,20 @@ curl -X GET \
 
 ```json
 {
-    "data": {
-        "size": 180524264,
-        "keyCount": 4,
-        "id": "us-east-1/bucketOne",
-        "name": "bucketOne",
-        "region": "us-east-1",
-        "created": "Tue Mar 22 16:15:03 UTC 2022",
-        "url": "http://10.23.42.55/bucketOne",
-        "access": "private"
-    }
+  "data": {
+    "size": 28807002,
+    "keyCount": 2,
+    "displaySize": {
+      "value": "27.5",
+      "unitKey": "units.filesizes.MB"
+    },
+    "id": "us-east-1/bucketOne",
+    "name": "bucketOne",
+    "region": "us-east-1",
+    "created": "Tue Mar 22 16:15:03 UTC 2022",
+    "url": "http://10.23.42.55/bucketOne",
+    "access": "private"
+  }
 }
 ```
 
@@ -92,6 +96,7 @@ Retrieve details of a given bucket.
 | `access`<br/>*string*             | The access level of the bucket.
 | `size`<br/>*integer*              | The size of the bucket in bytes. Omitted if query parameter details=`false`.
 | `keyCount`<br/>*integer*          | The number of objects inside the bucket. Omitted if query parameter details=`false`.
+| `displaySize`<br/>*string*        | The size of the bucket represented as an object in either KB, MB, or GB.
 
 | Optional Query Parameters | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
@@ -121,8 +126,8 @@ curl -X POST \
 
 ```json
 {
-    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
-    "taskStatus": "SUCCESS"
+  "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+  "taskStatus": "SUCCESS"
 }
 ```
 
@@ -154,8 +159,8 @@ curl -X DELETE \
 
 ```json
 {
-    "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
-    "taskStatus": "PENDING"
+  "taskId": "30121175-926a-4fd2-991b-ff303ffdf905",
+  "taskStatus": "PENDING"
 }
 ```
 

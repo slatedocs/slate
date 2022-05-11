@@ -136,7 +136,7 @@ Create a bucket in Amazon S3.
 
 | Attributes                 | &nbsp;                                                   |
 |----------------------------|----------------------------------------------------------|
-| `taskId` <br/>*string*     | The [task id](#tasks) related to the bucket creation.    |
+| `taskId` <br/>*string*     | The [task ID](#tasks) related to the bucket creation.    |
 | `taskStatus` <br/>*string* | The status of the operation.                             |
 
 
@@ -177,7 +177,7 @@ Required | &nbsp;
 
 | Attributes                 | &nbsp;                                                  |
 |----------------------------|---------------------------------------------------------|
-| `taskId` <br/>*string*     | The [task id](#tasks) related to the bucket creation.   |
+| `taskId` <br/>*string*     | The [task ID](#tasks) related to the bucket creation.   |
 | `taskStatus` <br/>*string* | The status of the operation.                            |
 
 <!-------------------- DELETE A BUCKET -------------------->
@@ -202,7 +202,7 @@ curl -X DELETE \
 
 | Attributes                 | &nbsp;                                                   |
 |----------------------------|----------------------------------------------------------|
-| `taskId` <br/>*string*     | The [task id](#tasks) related to the bucket deletion.    |
+| `taskId` <br/>*string*     | The [task ID](#tasks) related to the bucket deletion.    |
 | `taskStatus` <br/>*string* | The status of the operation.                             |
 
 
