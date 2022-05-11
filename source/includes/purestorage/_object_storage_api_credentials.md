@@ -121,7 +121,7 @@ Return value:
 | `accessKeyId`<br/>_string_ | The ID for your object storage's s3 API access key.                                         |
 | `secretKey`<br/>_string_   | The secret key for your object storage's s3 API access key. Should be saved.                |
 | `region`<br/>_string_      | The region the access key belongs to. Values depend on the configuration of the PureStorage plugin. |
-| `taskId` <br/>*string*     | The task ID.                            |
+| `taskId` <br/>*string*     | The [task ID](#tasks).                            |
 | `taskStatus` <br/>*string* | The status of the operation.                                           | 
 
 #### Delete credentials
@@ -148,5 +148,5 @@ Return value:
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task ID.   |
+| `taskId` <br/>*string*     | The [task ID](#tasks).   |
 | `taskStatus` <br/>*string* | The status of the operation.                  | 
