@@ -32,11 +32,11 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
   "domains": ["affinity.co"],
   "global": false,
   "person_ids": [
-    89734, 
-    117270, 
-    138123, 
-    274492, 
-    304848, 
+    89734,
+    117270,
+    138123,
+    274492,
+    304848,
     ...],
   "opportunity_ids": [
     4,
@@ -166,7 +166,7 @@ You can filter by interaction dates by providing additional query parameters lik
 `min_last_email_date` or `max_next_event_date`. The value of these query parameters should
 be ISO 8601 formatted date strings. The interaction dates are stored with timestamps,
 so the `{min,max}_<interaction>_date` parameter can include or exclude timestamps to explicitly
-filter the dataset. If a timestamp is not provided, the system will use the default value of 
+filter the dataset. If a timestamp is not provided, the system will use the default value of
 `00:00:00`.
 
 > Example Request
@@ -221,14 +221,15 @@ curl "https://api.affinity.co/organizations" \
 
 ### Query Parameters
 
-| Parameter                      | Type    | Required | Description                                                                                                                                                                                            |
-| ------------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| term                           | string  | false    | A string used to search all the organizations in your team's address book. This could be a name or a domain name.                                                                                      |
-| with_interaction_dates         | boolean | false    | When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.                                                                    |
-| with_interaction_persons       | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates`                                                                   |
-| `{min,max}_<interaction>_date` | string  | false    | Only returns organizations with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. |
-| page_size                      | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                            |
-| page_token                     | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                        |
+| Parameter                     | Type    | Required | Description                                                                                                                                                                                                                                               |
+| ----------------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| term                          | string  | false    | A string used to search all the organizations in your team's address book. This could be a name or a domain name.                                                                                                                                         |
+| with_interaction_dates        | boolean | false    | When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.                                                                                                                       |
+| with_interaction_persons      | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates`                                                                                                                                               |
+| min_`{interaction type}`_date | string  | false    | Only returns organizations with the given interaction type above the given value. `interaction type` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. This would be used with max interation. |
+| max_`{interaction type>`_date | string  | false    | Only returns organizations with the given interaction type below the given value. `interaction type` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. This would be used with min interation. |
+| page_size                     | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                                                                               |
+| page_token                    | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                                                                           |
 
 ### Returns
 
@@ -261,11 +262,11 @@ curl "https://api.affinity.co/organizations/64779194" -u :$APIKEY
   "domains": ["affinity.co"],
   "global": false,
   "person_ids": [
-    89734, 
-    117270, 
-    138123, 
-    274492, 
-    304848, 
+    89734,
+    117270,
+    138123,
+    274492,
+    304848,
     ...
   ],
   "opportunity_ids": [
