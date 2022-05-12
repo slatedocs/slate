@@ -26,7 +26,7 @@ jobs:
             - checkout
             - add_ssh_keys:
                 fingerprints:
-                    - "dc:3e:2f:44:f5:5a:ab:71:af:6c:e8:00:d9:77:d2:b1"
+                    - "72:81:e7:4d:d2:d4:0d:7f:59:6b:e1:74:57:3d:36:12"
             - attach_workspace:
                 at: /root/project
             - run:
