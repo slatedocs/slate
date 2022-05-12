@@ -103,7 +103,7 @@ When we make backwards-incompatible changes to the API, we release new versions.
 To ensure Intelex Platform is reliable and has the expected performance for all users, we limit the number of API calls an API user (or application) can make within a given time period. If the limit is exceeded, the API user may be throttled and subsequent requests within the same period will fail (status code 429).
 
 ### Limit
-The Intelex Platform API Rate limit is **2 requests per second**
+The Intelex Platform API Rate limit is **2 requests per second**.
 
 ### Quota headers
 Quota details may be passed back to the API user/application via response headers.
