@@ -666,4 +666,174 @@ Lastly, all transactions can be monitored from the OY! dashboard which includes 
 
 For further details on the parameters definition and proper usage, please refer to our [API Documentation](https://api-docs.oyindonesia.com/#biller-api).
 
+## Account Payable
+
+OY! Account Payable product provides the capability to record, create approval level, and auto payment for invoice payable without hassle. Account Payable is made through the OY! dashboard, so no technical integration is required to use this product. 
+
+### How to Use Account Payable via Dashboard
+
+You can create new invoice to be paid and set up payment by following this step:
+1. Log on to your OY! dashboard
+2. Choose "Production" environment
+3. Click "Pay Invoice" under Account Payable menu
+4. Click "Invoice List"
+5. Choose "Create New Invoice"
+6. Upload your invoice document to help you easier record the invoice by click "Browse to Upload" or Drag & drop to the invoice area
+7. Fill in the necessary details
+
+Parameter | Description
+------ | -----------
+Purchase Type | You can choose between purchase order, service fee, bill, subscription fee, and reimbursement
+Invoice Number | The number of the invoice that you get from your vendor/supplier
+Invoice Date | The date of the invoice
+Due Date | Due date of a transaction as mention in invoice. Your approver will be reminder to approved on D-7, D-3, and D-1 from the invoice due date
+PO/PR Number (optional)	| The reference PO/PR number from your company to track this invoice
+Note | The note for this invoice
+Vendor | The name of the vendor that this invoice belongs to. You can choose the name of the vendor on the dropdown. To create a new vendor, follow the instruction here
+Product Description | The name and/or description of the product
+Quantity | The quantity of the product
+Price | Unit price of the product
+Total | Total price of the product (Total = Quantity x Price)
+Subtotal | The total price of all the products
+PPn | PPn that should be paid to the vendor. PPn will be calculate from subtotal. You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
+PPh | PPh that should be deduct from the vendor. PPh will be calculate from subtotal.You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
+Total Pay to Vendor | Total amount that will pay to vendor after complete approval
+Reference Documents (Upload document) | The supporting documents that you want to record related to this invoice. Accept PDF files only. Maximum 7 documents (maximum 2.5MB each)
+
+Note: Maximum 20 rows for line item detail
+
+**Empty State**
+![AP Invoice Creation Empty](images/accountPayable/invoice_creation_empty.png)
+
+**Filled State**
+![AP Invoice Creation Filled](images/accountPayable/invoice_creation_filled.png)
+
+8. Continue to set up 'Invoice Payment Details'. You can set up the payment to one time payment by choosing 'Full Payment' or multiple times payment by choosing 'Partial Payment'.
+
+Parameter | Description
+------ | -----------
+Payment Amount | Amount that will be automatically paid to vendor after approval.
+Due Date | The due date of the payment. The due date cannot do back date or more than due date that set in the first page (record invoice). Notification will be send to approval D-7, D-3, and D-1 if the status is waiting aproval.
+Status | Status of the invoice payment. You can choose Paid' for record intention and this amount will not be paid automatically by system. Choose 'Unpaid' for
+Remaining Amount | Total pay to vendor - subtotal. This amount should be 0 to continue the process.
+
+**Full Payment**
+![AP Payment Creation Full](images/accountPayable/payment_creation_full.png)
+
+**Partial Payment**
+Empty State
+![AP Payment Creation Partial Empty](images/accountPayable/payment_creation_partial_empty.png)
+Filled State
+![AP Payment Creation Partial Filled](images/accountPayable/payment_creation_partial_filled.png)
+
+**Empty State - payment transaction list**
+![AP Payment Transaction List Empty](images/accountPayable/payment_transaction_list_empty.png)
+**Filled State  - payment transaction list**
+Empty State
+![AP Payment Transaction List Filled Fit Screen](images/accountPayable/payment_transaction_list_filled_fit_screen.png)
+Filled State
+![AP Payment Transaction List Filled Full Screen](images/accountPayable/payment_transaction_list_filled_full_screen.png)
+
+9. Status: Waiting Payment, Partially Paid, Complete and Cancelled
+Congratulations! You have finish your first invoice payable set up. below is the list of statuses you will find on 'Invoice List'
+
+Parameter | Description
+------ | -----------
+Partially Paid | Multi times payment or partially paid that not finish yet. You can click invoice number to find the partial payment details in 'payment transaction' tab
+Waiting Payment	| Waiting for approval or balance not enough
+Cancelled | Invoice has been cancelled
+Complete | All payment of the invoice is complete
+
+**Empty State**
+![AP Invoice List Empty](images/accountPayable/invoice_list_empty.png)
+**Filled State**
+Screen Fit
+![AP Invoice List Filled Fit Screen](images/accountPayable/invoice_list_filled_fit_screen.png)
+Full Screen
+![AP Invoice List Filled Full Screen](images/accountPayable/invoice_list_filled_full_screen.png)
+
+### How to Create, Edit and Inactivate Vendor Data ###
+
+**Add New Vendor for Account Payable**
+
+1. Click 'Add' in the 'Vendor' field in the 'Create Payable Invoice' page.
+2. Fill in the necessary details
+3. Click 'Add Vendor' after complete registration of new vendor
+
+Parameter | Description
+------ | -----------
+Vendor ID (Optional) | Unique ID of the vendor from your company. This is not mandatory
+Vendor Name | The company/vendor name. Make sure the vendor name matches the vendor NPWP (if any) to help your company tax record
+Vendor Address (Optional) | Vendor address to be record. This is not mandatory
+Bank Name | Recipient bank name. You can choose using drop down
+Account Number | Recipient bank account number. You can check the inquiry by click 'Get Account Name' after fill the account number
+PIC Name | The PIC name of this vendor
+PIC Email | The PIC or recipient email. Payment/transfer receipt will be send automatically to this email after complete payment
+PIC WhatsApp (optional) | The PIC WhatsApp number for your record
+PPh (optional) | PPh type from this vendor. Default of the setting is Not Subject to PPh.
+Vendor NPWP (optional) | The vendor NPWP number record that can be use for company reference to generate 'Faktur Pajak'
+NPWP Document (optional) | Vendor NPWP document to be record. Accept PDF and JPG format. Maximum 10 MB
+PPn (optional) | PPn type of this vendor. Default of the setting is Not Subject to PPn.
+SKB Document (optional) | Vendor SKB Document to be record. Accept PDF and JPG format. Maximum 10 MB
+
+| Not subject of PPh | Tax will not be added upon the subtotal |
+
+| Not subject of PPn | Tax will not be added upon the subtotal |
+| PPN 10% Exclusive | PPN 10% of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN will be 10% of the 10,000 = 1,000 |
+| PPN 10% Inclusive | Tax will not be added upon the subtotal because the subtotal is assumed to be tax inclusive |
+
+Each vendor only have 1 type of PPh setting and 1 type of PPn setting
+
+There will be auto email PPh every 1st day in a month that contain all the PPh from your vendor in the previous month. This report will help company for tax payment & reporting, and generate 'Faktur Pajak' to your vendor.
+
+**Create New Vendor**
+
+***Empty State***
+Main Info
+![VM Vendor Creation Main Info Empty](images/vendorManagement/creation_main_info_empty.png)
+PIC Info
+![VM Vendor Creation PIC Info Empty](images/vendorManagement/creation_pic_empty.png)
+Legality
+![VM Vendor Creation Legality Empty](images/vendorManagement/creation_legality_empty.png)
+***Filled State***
+Main Info
+![VM Vendor Creation Main Info Filled](images/vendorManagement/creation_main_info_filled.png)
+PIC Info
+![VM Vendor Creation PIC Info Filled](images/vendorManagement/creation_pic_filled.png)
+Legality
+![VM Vendor Creation Legality Filled](images/vendorManagement/creation_legality_filled.png)
+
+**List Of Vendor**
+***Empty State***
+![VM Vendor List Empty](images/vendorManagement/list_empty.png)
+***Filled State***
+![VM Vendor List Filled](images/vendorManagement/list_filled.png)
+
+**Detail Vendor**
+***No Invoice for this Vendor***
+![VM Vendor Detail Empty Invoice](images/vendorManagement/detail_empty_invoice.png)
+***There's invoice for this vendor***
+Screen Fit
+![VM Vendor Detail Filled Invoice Fit Screen](images/vendorManagement/detail_filled_invoice_fit_screen.png)
+Full Screen
+![VM Vendor Detail Filled Invoice Full Screen](images/vendorManagement/detail_filled_invoice_full_screen.png)
+
+**How to Set Up Invoice Payable Approval**
+
+You can set up multi level approval from OY's users. There will be 4 type or user: Super Admin, Admin, Approver, and Maker
+
+***Approval Layer Set Up***
+Approval Layer can be set up using 'User Management' under 'General' menu. When you first create an account, your account will be assigned as a Super Admin role. As a Super Admin, you have the ability to create new sub-accounts and assign different roles to your team such as Admin, Maker and Approver that are applicable for bulk disbursement. The Super Admin and Admin can also edit or delete created sub-accounts.
+Note: it is not necessary to create new sub-accounts in order to use Account Payable. The Super Admin and Admin roles allows you to directly create and approve Account Payable and also Bulk Disbursement.
+Detailed step-by-step instructions on setting up user management and the different role types coming soon.
+
+***Multi-Layer Approval***
+Multi-layer Approval will improve your control over your bulk disburse transaction especially for big amount of money. You can setup up to 3 layers of approver before the transaction instruction is executed. By assigning proper approver and amount limitation, you can avoid a huge trouble on your business operational caused by incorrect transfer amount.
+
+Default approval: Super Admin, Admin, and Approval.
+
+**No Sub Account**
+![AP Approval Empty Sub Account](images/vendorManagement/approval_empty_sub_account.png)
+**With Sub Account**
+![AP Approval Filled Sub Account](images/vendorManagement/approval_filled_sub_account.png)
 
