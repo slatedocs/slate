@@ -610,13 +610,16 @@ const data = {
   },
 };
 
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data),
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -765,13 +768,16 @@ const data = {
   },
 };
 
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data),
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -879,12 +885,15 @@ curl -X GET \
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane",
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -1099,12 +1108,15 @@ curl -X GET \
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane",
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -2440,7 +2452,7 @@ print(response.text)
             "refrigerant"=> "Methane",
             "calculation_method"=> "Sales Approach (Product)",
             "equipment_type"=> "",
- corporate/           "inventory_start"=> 50,
+            "inventory_start"=> 50,
             "inventory_end"=> 1,
             "purchased"=> 0,
             "gwp_dataset_revision"=> "2007 IPCC Fifth Assessment",
