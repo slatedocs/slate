@@ -2885,7 +2885,7 @@ The Community API is designed to support cities in reporting city-wide GHG emiss
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-api.herokuapp.com/community/stationary-combustion' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/stationary' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "I.1.1",
@@ -2987,7 +2987,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-api.herokuapp.com/community/stationary-combustion", {
+fetch("https://dynm-api.herokuapp.com/community/stationary", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -3007,7 +3007,7 @@ fetch("https://dynm-api.herokuapp.com/community/stationary-combustion", {
 import requests
 import json
 
-url = "https://dynm-api.herokuapp.com/community/stationary-combustion"
+url = "https://dynm-api.herokuapp.com/community/stationary"
 
 payload = json.dumps({
   "gpc_ref": "I.1.1",
@@ -3072,7 +3072,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/stationary-combustion',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/stationary',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -3153,7 +3153,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for Stationary energy sources.
 
-`POST https://dynm-api.herokuapp.com/community/stationary-combustion`
+`POST https://dynm-api.herokuapp.com/community/stationary`
 
 <aside>Request params</aside>
 
