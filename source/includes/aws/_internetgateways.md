@@ -215,3 +215,38 @@ Detach an internet gateway from a VPC in a given [environment](#administration-e
 |--------------------------------------------------|---------------------------------------|
 | `vpcId`<br/>*string*                             | The ID of the VPC.                    |
 | `deleteRoutes`<br/>*boolean*                     | Whether or not to delete the routes attached to the Internet Gateway. Default to true. |
+
+<!-------------------- DELETE AN INTERNET GATEWAY -------------------->
+
+#### Delete an Internet Gateway
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws/aws-tesv/internetgateways/igw-00b5e5bb6cce152cb?operation=delete"
+```
+
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/internetgateways/:id?operation=delete</code>
+
+Delete an internet gateway in a given [environment](#administration-environments).
+
+| Attributes                 | &nbsp;                                        |
+|----------------------------|-----------------------------------------------|
+| `taskId` <br/>*string*     | The [task ID](#tasks) for the delete route operation. |
+| `taskStatus` <br/>*string* | The status of the operation.                  |
+
+<aside class="notice">
+If any route targets the Internet Gateway pending deletion, the route will be deleted as well.
+</aside>
+
+<aside class="notice">
+If the Internet Gateway is attached to a VPC, it'll be detached from the VPC and then deleted.
+</aside>
