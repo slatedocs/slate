@@ -1161,6 +1161,9 @@ Follow the instruction below to activate retry callback
 4. If you want to activate automated retry callback, check the Enable Automatic Retry Callback and fill in the email. The email will be used to receive a notification if all the automatic callback attempts have been made but still fail
 5. Click "Save Changes". The configuration will not able to be saved if the callback URL or/and email format are not valid.
 
+
+![Resend Callback](images/retry_callback_developer_option.png)
+
 If you want to manually resend a callback, you can follow the instruction below
 
 1. Login to your account in OY! Dashboard
@@ -1173,6 +1176,16 @@ Ewallet Aggregator: open "E-Wallet" menu
 
 3. If the product is VA Aggregator or Ewallet Aggregator, click "Resend Callback" button in the related transaction
 4. If the product product is Payment Link, click 3 dots in the related transaction and click "Resend Callback"
+
+
+![Resend Callback](images/payment_link_resend_callback.png)
+
+![Resend Callback](images/reusable_resend_callback.png)
+
+![Resend Callback](images/va_resend_callback.png)
+
+![Resend Callback](images/ewallet_resend_callback.png)
+
 
 
 ### Callback Interval
