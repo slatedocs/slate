@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/pods"
 ```
 
 > The above command returns a JSON structured like this:
@@ -232,7 +232,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods/my-aerospike-0/default"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/pods/my-aerospike-0/default"
 ```
 
 > The above command returns a JSON structured like this:
@@ -458,7 +458,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/pods"
   Content-Type: application/json
   {
 	  "apiVersion": "v1",
@@ -518,7 +518,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods/edgar-allen-pod/default"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/pods/edgar-allen-pod/default"
   Content-Type: application/json
   {
     "apiVersion": "v1",
@@ -578,7 +578,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/pods/my-aerospike-0/default"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/pods/my-aerospike-0/default"
 ```
 
 > The above command returns a JSON structured like this:

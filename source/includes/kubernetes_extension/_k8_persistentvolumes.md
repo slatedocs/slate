@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -99,7 +99,7 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -183,7 +183,7 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes"
   Content-Type: application/json
    {
       "apiVersion": "v1",
@@ -246,6 +246,89 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create persistent volume task.       |
 | `taskStatus` <br/>_string_ | The status of the operation.                                     |
 
+<!-------------------- REPLACE PERSISTENT VOLUME -------------------->
+
+##### Replace a persistent volume
+
+```shell
+curl -X PUT \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes/my-persistent-volume?cluster_id=a_cluster_id"
+  Content-Type: application/json
+  {
+    "apiVersion": "v1",
+    "kind": "PersistentVolume",
+    "metadata": {
+        "annotations": {
+            "key": "value"
+        },
+        "name": "persistentvolumes-name"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteMany"
+        ],
+        "capacity": {
+            "storage": "2Gi"
+        },
+        "claimRef": {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "name": "pv-claim-name",
+            "namespace": "default",
+            "resourceVersion": "259087",
+            "uid": "11957feb-1acc-4c7e-911e-f77d5d7be5ac"
+        },
+        "hostPath": {
+            "path": "/etc/path"
+        },
+        "persistentVolumeReclaimPolicy": "Retain",
+        "storageClassName": "standard",
+        "volumeMode": "Filesystem"
+    }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumes/:id?cluster_id=a_cluster_id</code>
+
+Replace a persistent volume in a given [environment](#administration-environments).
+
+Required Attributes                 | &nbsp;
+----------------------------------- | ------------------------------------------------------------
+`apiVersion` <br/>_string_          | The api version (versioned schema) of the volume.
+`metadata` <br/>_object_            | The metadata of the volume.
+`metadata.name` <br/>_string_       | The name of the volume.
+`spec`<br/>_object_                 | The specification used to replace and run the volume.
+`spec.accessModes`<br/>_string_ | The desired access modes the volume should have.
+`spec.capacity.storage`<br/>_string_  | The size of the claim.
+`spec.hostPath.path`<br/>_string_  | The path of the directory on the host.
+
+| Optional Attributes                       | &nbsp;                                                                  |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `metadata.annotations` <br/>_string_        | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata.|
+| `spec.claimRef` <br/>_string_        | part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound.|
+| `spec.persistentVolumeReclaimPolicy` <br/>_string_        | What happens to a persistent volume when released from its claim.|
+| `spec.storageClassName` <br/>_string_        | Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.|
+| `spec.volumeMode` <br/>_string_        | Defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.|
+
+Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#persistentvolume-v1-core).
+
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace volume task.|
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
 
 <!-------------------- DELETE a persistent volume  -------------------->
 
@@ -254,7 +337,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:

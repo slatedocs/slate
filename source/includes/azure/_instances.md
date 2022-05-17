@@ -9,7 +9,7 @@ Deploy and manage your instances.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances"
 ```
 
 > The above command returns a JSON structured like this:
@@ -94,7 +94,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server"
 ```
 
 > The above command returns a JSON structured like this:
@@ -176,7 +176,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances"
 ```
 
 > Request body examples:
@@ -240,12 +240,20 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Delete an existing instance.
+
+<aside class="notice">
+This will not delete the disks (OS/Data) attached to the instance but will leave them in detached state. To delete the OS disk attached to the instance `deleteOsDisk` query parameter can be used.
+</aside>
+
+Query Parameter | &nbsp;
+---------- | -----
+`deleteOsDisk`<br/>*boolean* | Will delete the OS disk attached to this instance. Default value is `false`.
 
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
@@ -258,7 +266,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=resize"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=resize"
 ```
 
 > Request body example:
@@ -301,7 +309,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=reset_password"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=reset_password"
 ```
 
 > Request body example:
@@ -329,7 +337,7 @@ Optional | &nbsp;
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=start"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=start"
 
 ```
 
@@ -345,7 +353,7 @@ Start an existing instance. The instance must be in the power state *PowerState/
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=stop"
+   "https://cloudmc_endpoint/api/v1/services/azure/example/instances/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Compute/virtualMachines/example-small-server?operation=stop"
 ```
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
@@ -361,7 +369,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
- "https://cloudmc_endpoint/v1/services/azure-conn/test_env/instances/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
+ "https://cloudmc_endpoint/api/v1/services/azure-conn/test_env/instances/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/instances/{instanceName}?operation=attach_disk"
 ```
 
 > Request body example:

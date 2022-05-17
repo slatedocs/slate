@@ -6,7 +6,7 @@ A template is a virtual disk image that can be used on the creation of an [insta
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/templates"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/templates"
 ```
 > The above command returns a JSON structured like this:
 
@@ -76,7 +76,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-"https://cloudmc_endpoint/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
+"https://cloudmc_endpoint/api/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -145,7 +145,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/templates"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/templates"
 ```
 > Request body example:
 
@@ -198,7 +198,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb?operation=update"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb?operation=update"
 ```
 > Request body example:
 
@@ -233,7 +233,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-"https://cloudmc_endpoint/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
+"https://cloudmc_endpoint/api/v1/services/compute-on/test_area/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
 ```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/templates/:id</code>
 

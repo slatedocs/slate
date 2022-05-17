@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses"
 ```
 
 > The above command returns a JSON structured like this:
@@ -75,7 +75,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses/rook-ceph-block"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses/rook-ceph-block"
 ```
 
 > The above command returns a JSON structured like this:
@@ -138,7 +138,7 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses"
   Content-Type: application/json
   {
   "apiVersion": "storage.k8s.io/v1",
@@ -185,6 +185,57 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create stateful set task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                          |
 
+<!-------------------- REPLACE STORAGE CLASS -------------------->
+
+#### Replace a storage class
+
+```shell
+curl -X PUT \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses/rook-ceph-block"
+  Content-Type: application/json
+  {
+    "apiVersion": "storage.k8s.io/v1",
+    "metadata": {
+        "name": "hostpath"
+    },
+    "provisioner": "docker.io/hostpath"
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/storageclasses/:id</code>
+
+Replace a storage class in a given [environment](#administration-environments).
+
+Required Attributes                 | &nbsp;
+----------------------------------- | ------------------------------------------------------------
+`apiVersion` <br/>_string_          | The api version (versioned schema) of the storage class.
+`metadata` <br/>_object_            | The metadata of the storage class.
+`metadata.name` <br/>_string_       | The name of the storage class.
+`provisioner`<br/>_object_          | The type of provisioner.
+
+| Optional Attributes                       | &nbsp;                                                                  |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `reclaimPolicy` <br/>_string_        | Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.|
+
+Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#storageclass-v1-storage-k8s-io).
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace storage class task.|
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
+
 <!-------------------- DELETE A storage class -------------------->
 
 #### Delete a storage class
@@ -192,7 +243,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/storageclasses/rook-ceph-block
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses/rook-ceph-block
 ```
 
 > The above command returns a JSON structured like this:

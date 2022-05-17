@@ -6,7 +6,7 @@ Security group rules define the type of traffic that can access the instances as
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules?securitygroupid=f54f050b-01b2-4a73-b6e1-4e13a5566323"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygrouprules?securitygroupid=f54f050b-01b2-4a73-b6e1-4e13a5566323"
 ```
 > The above command returns a JSON structured like this:
 
@@ -60,7 +60,7 @@ Retrieve a list of all security group rules in a security group.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules/655d3bcb-3f8a-4738-b50a-53bca43469b5"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygrouprules/655d3bcb-3f8a-4738-b50a-53bca43469b5"
 ```
 > The above command returns a JSON structured like this:
 
@@ -103,7 +103,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygrouprules"
 ```
 > Request body example:
 
@@ -139,7 +139,7 @@ Create a security group rule for a security group.
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key"
-    "https://api.your.cloudmc/v1/services/compute-os/devel/securitygrouprules/655d3bcb-3f8a-4738-b50a-53bca43469b5"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygrouprules/655d3bcb-3f8a-4738-b50a-53bca43469b5"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygrouprules/:id</code>

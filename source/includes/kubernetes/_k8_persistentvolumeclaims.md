@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims"
 ```
 
 > The above command returns a JSON structured like this:
@@ -88,7 +88,7 @@ Retrieve a list of all persistent volume claims in a given [environment](#admini
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
 ```
 
 > The above command returns a JSON structured like this:
@@ -166,7 +166,7 @@ Retrieve a persistent volume claim and all its info in a given [environment](#ad
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims"
   Content-Type: application/json
    {
       "apiVersion": "v1",
@@ -223,6 +223,77 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create persistent volume claim task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                                     |
 
+<!-------------------- REPLACE PERSISTENT VOLUME CLAIM -------------------->
+
+#### Replace a persistent volume claim
+
+```shell
+curl -X PUT \
+  -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims/my-persistent-volume-claim/default"
+  Content-Type: application/json
+  {
+    "id": "pv-claim-name/default",
+    "apiVersion": "v1",
+    "kind": "PersistentVolumeClaim",
+    "metadata": {
+        "name": "pv-claim-name",
+        "namespace": "default"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "resources": {
+            "requests": {
+                "storage": "1Gi"
+            }
+        },
+        "storageClassName": "standard",
+        "volumeName": "persistentvolumes-name",
+        "dataSource": "dataSource"
+    }
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId": "1542bd45-4732-419b-87b6-4ea6ec695c2b",
+  "taskStatus": "PENDING"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/persistentvolumeclaims/:id</code>
+
+Replace a persistent volume claim in a given [environment](#administration-environments).
+
+Required Attributes                 | &nbsp;
+----------------------------------- | ------------------------------------------------------------
+`apiVersion` <br/>_string_          | The api version (versioned schema) of the claim.
+`metadata` <br/>_object_            | The metadata of the claim.
+`metadata.name` <br/>_string_       | The name of the claim.
+`spec`<br/>_object_                 | The specification used to replace and run the claim.
+`spec.accessModes`<br/>_string_ | The desired access modes the volume should have.
+`spec.resources.requests.storage`<br/>_string_  | The size of the claim.
+`spec.storageClassName`<br/>_string_  | The name of the StorageClass required by the claim.
+`spec.volumeName`<br/>_string_  | The binding reference to the PersistentVolume backing this claim. Only required if claim is bound.
+
+| Optional Attributes                       | &nbsp;                                                                  |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `spec.volumemode` <br/>_string_        | What type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.|
+| `spec.dataSource` <br/>_string_        | This field can be used to specify either: an existing VolumeSnapshot object, an existing PVC or an existing custom resource/object that implements data population.|
+
+Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#persistentvolumeclaim-v1-core).
+
+Return value:
+
+| Attributes                 | &nbsp;                                       |
+| -------------------------- | -------------------------------------------- |
+| `taskId` <br/>_string_     | The id corresponding to the replace persistent volume claim task.|
+| `taskStatus` <br/>_string_ | The status of the operation.                 |
+
 <!-------------------- DELETE a persistent volume claim  -------------------->
 
 #### Delete a persistent volume claim
@@ -230,7 +301,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
 ```
 
 > The above command returns a JSON structured like this:

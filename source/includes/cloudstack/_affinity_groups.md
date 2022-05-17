@@ -9,7 +9,7 @@ Affinity groups are a way of influencing on which host an [instance](#cloudstack
 ```shell
 curl -X GET \
   -H "MC-Api-Key: your_api_key" \
-  "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups"
+  "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/affinitygroups"
 ```
 > The above command returns a JSON structured like this:
 
@@ -48,7 +48,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 ```
 > The above command returns a JSON structured like this:
 
@@ -87,7 +87,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/affinitygroups"
 ```
 > Request body example:
 
@@ -124,7 +124,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 ```
 > Request body example:
 
@@ -156,7 +156,7 @@ Required | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/affinitygroups/:id</code>

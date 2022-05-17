@@ -6,7 +6,7 @@ Routers route traffic between networks, including the public internet.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/routers"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routers"
 ```
 > The above command returns a JSON structured like this:
 
@@ -51,7 +51,7 @@ Retrieve a list of routers in an OpenStack environment.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
 ```
 > The above command returns a JSON structured like this:
 
@@ -94,7 +94,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/routers"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routers"
 ```
 > Request body example:
 
@@ -121,7 +121,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71?operation=addRouterInterface"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71?operation=addRouterInterface"
 ```
 > Request body example:
 
@@ -145,7 +145,7 @@ Connect a router to a network.
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://api.your.cloudmc/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
+    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routers/212eb8d8-80ee-4edd-8bae-1efed8bc5c71"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers/:id</code>
