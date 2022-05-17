@@ -9,7 +9,7 @@ Create and manage your containers/buckets.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/swift/example/buckets"
+   "https://cloudmc_endpoint/api/v1/services/swift/example/buckets"
 ```
 > The above command returns a JSON structured like this:
 
@@ -75,7 +75,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/swift/example/buckets/private"
+   "https://cloudmc_endpoint/api/v1/services/swift/example/buckets/private"
 ```
 > The above command returns a JSON structured like this:
 
@@ -121,7 +121,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/swift/example/buckets"
+   "https://cloudmc_endpoint/api/v1/services/swift/example/buckets"
 ```
 > Request body example:
 
@@ -151,7 +151,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/swift/example/buckets/containerToDelete"
+   "https://cloudmc_endpoint/api/v1/services/swift/example/buckets/containerToDelete"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/buckets/:id</code>
@@ -169,7 +169,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/swift/example/buckets/containerToRename?operation=rename"
+   "https://cloudmc_endpoint/api/v1/services/swift/example/buckets/containerToRename?operation=rename"
 ```
 > Request body example:
 

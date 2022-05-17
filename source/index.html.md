@@ -17,14 +17,36 @@ includes:
   - administration/resource_commitments 
   - administration/usage
   - administration/monetization
+  - administration/reports_pricing_v2 # Reporting section
+  - administration/notification_categories
+  - administration/notifications
   - administration/products
   - administration/pricings
   - administration/applied_pricings
+  - administration/rollbacks
+  - administration/invoices
+  - administration/payments
+  - administration/package_discounts
+  - administration/organization_discounts
   - administration/authentication
   - administration/identity_providers
   - administration/service_providers
   - administration/saml_settings
+  - administration/branding
+  - administration/knowledge_base
   - administration/trials
+  - administration/email_settings
+  - administration/feedback_settings
+  - administration/workspace_settings
+  - administration/custom_fields
+  - administration/quotas
+  - administration/activity_log
+  - administration/billing
+  - administration/billing_settings
+  - administration/billing_providers
+  - administration/tax_providers
+  - administration/custom_navigation
+  - administration/metrics
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
@@ -102,6 +124,7 @@ includes:
   - gcp/k8_networking
   - gcp/k8_services
   - gcp/k8_ingresses
+  - gcp/k8_ingresses_v1
   - gcp/k8_configuration
   - gcp/k8_configmaps
   - gcp/k8_secrets
@@ -109,6 +132,10 @@ includes:
   - gcp/k8_storageclasses
   - gcp/k8_persistentvolumes
   - gcp/k8_persistentvolumeclaims
+  - gcp/k8_accesscontrol
+  - gcp/k8_serviceaccounts
+  - gcp/k8_roles
+  - gcp/k8_rolebindings
   - gcp/k8_releases
   - gcp/k8_charts
   - gcp/images
@@ -123,6 +150,7 @@ includes:
   - kubernetes/k8_networking
   - kubernetes/k8_services
   - kubernetes/k8_ingresses
+  - kubernetes/k8_ingresses_v1
   - kubernetes/k8_configuration
   - kubernetes/k8_configmaps
   - kubernetes/k8_secrets
@@ -130,6 +158,10 @@ includes:
   - kubernetes/k8_storageclasses
   - kubernetes/k8_persistentvolumes
   - kubernetes/k8_persistentvolumeclaims
+  - kubernetes/k8_accesscontrol
+  - kubernetes/k8_serviceaccounts
+  - kubernetes/k8_roles
+  - kubernetes/k8_rolebindings
   - kubernetes/k8_releases
   - kubernetes/k8_charts  
   - azure
@@ -155,6 +187,7 @@ includes:
   - azure/k8_networking
   - azure/k8_services
   - azure/k8_ingresses
+  - azure/k8_ingresses_v1
   - azure/k8_configuration
   - azure/k8_configmaps
   - azure/k8_secrets
@@ -162,10 +195,58 @@ includes:
   - azure/k8_storageclasses
   - azure/k8_persistentvolumes
   - azure/k8_persistentvolumeclaims
-  - masterportal
-  - masterportal/applications
+  - azure/k8_accesscontrol
+  - azure/k8_serviceaccounts
+  - azure/k8_roles
+  - azure/k8_rolebindings
   - swift
   - swift/containers
+  - swift/objects
+  - stackpath
+  - stackpath/edge_compute
+  - stackpath/workloads
+  - stackpath/instances
+  - stackpath/network_policy_rules
+  - stackpath/edge_delivery
+  - stackpath/sites
+  - stackpath/origin_settings
+  - stackpath/delivery_domains
+  - stackpath/cdn
+  - stackpath/waf
+  - stackpath/firewall_rules
+  - stackpath/scripts
+  - stackpath/edgessl
+  - stackpath/edgessl_settings
+  - stackpath/certificates
+  - stackpath/edgerules
+  - stackpath/predefined_edgerules
+  - stackpath/custom_rules
+  - stackpath/delivery_rules
+  - stackpath/images
+  - stackpath/dns_zones
+  - stackpath/dns_records
+  - aws
+  - aws/compute
+  - aws/instances
+  - aws/storage
+  - aws/volumes
+  - aws/s3
+  - aws/s3_api_credentials
+  - aws/buckets
+  - aws/objects
+  - aws/networking
+  - aws/vpcs
+  - aws/subnetworks
+  - aws/internetgateways
+  - aws/routes
+  - aws/availability_zones
+  - aws/elastic_ips
+  - aws/cidr_blocks
+  - aws/cidr_reservations
+  - purestorage
+  - purestorage/object_storage_api_credentials
+  - purestorage/buckets
+  - purestorage/objects
 
 search: true
 ---

@@ -10,7 +10,7 @@ Resource commitments allow you to set specific commitment levels on cloud resour
 
 ```shell
 # Retrieve visible resource commitments
-curl "https://cloudmc_endpoint/v1/resource_commitments" \
+curl "https://cloudmc_endpoint/api/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -102,7 +102,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible a resource commitment
 
-curl "https://cloudmc_endpoint/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
+curl "https://cloudmc_endpoint/api/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -188,7 +188,7 @@ Attributes | &nbsp;
 ```shell
 # Create a resource commitment
 
-curl -X POST "https://cloudmc_endpoint/v1/resource_commitments" \
+curl -X POST "https://cloudmc_endpoint/api/v1/resource_commitments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -260,7 +260,7 @@ The responses' `data` field contains the created [resource-commitment](#administ
 ```shell
 # Update a resource commitment
 
-curl -X PUT "https://cloudmc_endpoint/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -336,7 +336,7 @@ The responses' `data` field contains the created [resource-commitment](#administ
 ```shell
 # Delete a resource commitment
 
-curl "https://cloudmc_endpoint/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
+curl "https://cloudmc_endpoint/api/v2/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 ```
 

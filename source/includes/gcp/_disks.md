@@ -8,7 +8,7 @@ Deploy and manage your disks.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks"
 ```
 > The above command returns a JSON structured like this:
 
@@ -77,7 +77,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks/5333546534174463697"
 ```
 > The above command returns a JSON structured like this:
 
@@ -143,7 +143,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks"
 ```
 > Request body example:
 
@@ -180,12 +180,25 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697"
+   -d "request_body" \
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks/5333546534174463697"
+```
+
+> Request body example:
+
+```json
+{
+   "deleteSnapshots": true,
+}
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks/:id</code>
 
 Destroy an existing disk. A disk can only be deleted if it's not attached to an [instance](#gcp-instances).
+
+Optional | &nbsp;
+------ | -----------
+`deleteSnapshots`<br/>*boolean* | Whether captured snapshops should be deleted
 
 <!-------------------- ATTACH A DISK -------------------->
 
@@ -196,7 +209,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=attach"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks/5333546534174463697?operation=attach"
 ```
 > Request body example:
 
@@ -225,7 +238,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=detach"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks/5333546534174463697?operation=detach"
 ```
 > Request body example:
 
@@ -250,7 +263,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=resize"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks/5333546534174463697?operation=resize"
 ```
 > Request body example:
 
@@ -275,7 +288,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/disks/5333546534174463697?operation=snapshot"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/disks/5333546534174463697?operation=snapshot"
 ```
 > Request body example:
 

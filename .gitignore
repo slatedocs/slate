@@ -23,3 +23,5 @@ _yardoc
 doc/
 .idea/
 vendor
+workspace.code-workspace
+.markdownlint.json

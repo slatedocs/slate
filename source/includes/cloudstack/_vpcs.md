@@ -10,7 +10,7 @@ A Virtual Private Cloud (VPC) is a logically isolated section of CloudMC, where 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcs"
 ```
 > The above command returns a JSON structured like this:
 
@@ -63,7 +63,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 ```
 > The above command returns a JSON structured like this:
 
@@ -116,7 +116,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcs"
 ```
 > Request body example:
 
@@ -155,7 +155,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/d77e1ab1-0320-4504-83c5-e78b431c7577"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcs/d77e1ab1-0320-4504-83c5-e78b431c7577"
 ```
 > Request body example:
 
@@ -185,7 +185,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs/:id</code>
@@ -201,7 +201,7 @@ Destroy an existing VPC. To delete a VPC, you must first delete all the [network
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e?operation=restart"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e?operation=restart"
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs/:id?operation=restart</code>

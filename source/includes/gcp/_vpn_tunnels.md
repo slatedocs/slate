@@ -9,7 +9,7 @@ With Classic VPN, your on-premises hosts communicate through one or more IPsec V
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/vpntunnels"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/vpntunnels"
 ```
 > The above command returns a JSON structured like this:
 
@@ -85,7 +85,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/vpntunnels/8211895554244865771"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/vpntunnels/8211895554244865771"
 ```
 > The above command returns a JSON structured like this:
 
@@ -158,7 +158,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/vpntunnels"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/vpntunnels"
 ```
 > Request body example:
 
@@ -200,7 +200,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/vpntunnels/8211895554244865771"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/vpntunnels/8211895554244865771"
 ```
 > The above command returns a JSON structured like this:
 

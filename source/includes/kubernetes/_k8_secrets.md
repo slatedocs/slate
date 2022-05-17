@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/secrets"
 ```
 
 > The above command returns a JSON structured like this:
@@ -53,7 +53,7 @@ Retrieve a list of all secrets in a given [environment](#administration-environm
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets/default-token-xxxmt/default"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/secrets/default-token-xxxmt/default"
 ```
 
 > The above command returns a JSON structured like this:
@@ -94,7 +94,7 @@ Retrieve a secret and all its info in a given [environment](#administration-envi
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/secrets"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -113,7 +113,7 @@ curl -X POST \
 
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/secrets"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -173,7 +173,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets/my-secret/shhh"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/secrets/my-secret/shhh"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -193,7 +193,7 @@ curl -X PUT \
 
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets/my-secret/shhh"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/secrets/my-secret/shhh"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -253,7 +253,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/a_service/an_environment/secrets/default-token-xxxmt/default"
+   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/secrets/default-token-xxxmt/default"
 ```
 
 > The above command returns a JSON structured like this:

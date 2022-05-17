@@ -1,9 +1,9 @@
-### Applied Pricings
+## Applied Pricings
 
 The applied pricing allows the assignment of pricing to organization with a determined scope.
 
 <!-------------------- LIST APPLIED PRICINGS -------------------->
-#### List applied pricings
+### List applied pricings
 
 `GET /applied_pricings`
 
@@ -42,7 +42,6 @@ curl "https://cloudmc_endpoint/rest/applied_pricings" \
         "name": "System",
         "id": "23910576-d29f-4c14-b663-31d728ff49a5"
       },
-      "billingDay": 5,
       "currency": "USD",
       "id": "47c4993a-a131-4365-a427-02de95bad85b",
       "creationDate": "2020-06-04T18:30:21.000Z",
@@ -70,7 +69,6 @@ Attributes | &nbsp;
 `startDate`<br/>*date* | The start date of the applied pricing.
 `endDate`<br/>*date* | The end date of the applied pricing. If it is not present, there is no end date defined.
 `currency`<br/>*string* | The currency associated to the applied pricing.
-`billingDay`<br/>*int* | The billing day that the applied pricing will be applied.
 `scopeQualifier`<br/>*string* | Scope qualifier of the applied pricing. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
 `scopeOrganization`<br/>*Object* | The organization to which the scope is applied to.
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
@@ -80,7 +78,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- GET APPLIED PRICING -------------------->
-#### Retrieve an applied pricing
+### Retrieve an applied pricing
 
 `GET /applied_pricings/:id`
 
@@ -118,7 +116,6 @@ curl "https://cloudmc_endpoint/rest/applied_pricings/03bc22bd-adc4-46b8-988d-afd
       "name": "System",
       "id": "23910576-d29f-4c14-b663-31d728ff49a5"
     },
-    "billingDay": 5,
     "currency": "USD",
     "id": "47c4993a-a131-4365-a427-02de95bad85b",
     "creationDate": "2020-06-04T18:30:21.000Z",
@@ -145,7 +142,6 @@ Attributes | &nbsp;
 `startDate`<br/>*date* | The start date of the applied pricing.
 `endDate`<br/>*date* | The end date of the applied pricing. If it is not present, there is no end date defined.
 `currency`<br/>*string* | The currency associated to the applied pricing.
-`billingDay`<br/>*int* | The billing day that the applied pricing will be applied.
 `scopeQualifier`<br/>*string* | Scope qualifier of the applied pricing. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
 `scopeOrganization`<br/>*Object* | The organization to which the scope is applied to.
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
@@ -154,7 +150,7 @@ Attributes | &nbsp;
 `status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, FUTURE.
 
 <!-------------------- CREATE APPLIED PRICING -------------------->
-#### Create applied pricing
+### Create applied pricing
 
 `POST /applied_pricings`
 
@@ -176,7 +172,6 @@ curl -X POST "https://cloudmc_endpoint/rest/applied_pricings" \
   "organization": {
     "id": "23910576-d29f-4c14-b663-31d728ff49a5"
   },
-  "billingDay": 5,
   "currency": "USD",
   "scopeQualifier": "GLOBAL",
   "startDate": "2020-06-05T00:00:00Z",
@@ -198,7 +193,6 @@ curl -X POST "https://cloudmc_endpoint/rest/applied_pricings" \
     "organization": {
       "id": "23910576-d29f-4c14-b663-31d728ff49a5"
     },
-    "billingDay": 5,
     "currency": "USD",
     "id": "8bb5e457-41c3-410b-aced-b9c694ff141a",
     "creationDate": "2020-06-04T19:31:31.178Z",
@@ -215,7 +209,6 @@ Required | &nbsp;
 `scopeQualifier` <br/>*string* | The scope qualifier for the applied pricing. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
 `currency` <br/>*String* | The currency used for the applied pricing. The value is a ISO 4217 currency code that is part of the pricing selected. 
 `startDate` <br/>*Date* | The start date for the applied pricing.
-`billingDay` <br/>*int*| The billing day that the applied pricing will be applied.
 
 Optional | &nbsp;
 ------- | -----------
@@ -224,7 +217,7 @@ Optional | &nbsp;
 
 
 <!-------------------- UPDATE APPLIED PRICING -------------------->
-#### Update applied pricing
+### Update applied pricing
 
 `PUT /applied_pricings/:id`
 
@@ -246,7 +239,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/8bb5e457-41c3-410b-a
   "organization": {
     "id": "23910576-d29f-4c14-b663-31d728ff49a5"
   },
-  "billingDay": 5,
   "currency": "USD",
   "scopeQualifier": "ORG_BASE",
   "scopeOrganization": {
@@ -284,7 +276,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/8bb5e457-41c3-410b-a
       "name": "Systemer",
       "id": "52fd201e-aa82-4a27-86b3-ea9650a7fb1e"
     },
-    "billingDay": 3,
     "currency": "CAD",
     "id": "d08b9332-d26e-42fe-b272-3071f2d64839",
     "creationDate": "2020-09-08T17:44:18.000Z",
@@ -305,14 +296,13 @@ Required | &nbsp;
 `scopeQualifier` <br/>*string* | The scope qualifier for the applied pricing. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
 `currency` <br/>*String* | The currency used for the applied pricing. The value is a ISO 4217 currency code that is part of the pricing selected. 
 `startDate` <br/>*Date* | The start date for the applied pricing.
-`billingDay` <br/>*int*| The billing day that the applied pricing will be applied.
 
 Optional | &nbsp;
 ------- | -----------
 `endDate` <br/>*Date* | The end date for the applied pricing. 
 `scopeOrganization.id` <br/>*UUID* | The UUID of the organization that the scope is targeting. Only required for scopes : ORG_BASE, ORG_TREE, ORG_SUBS.
 
-#### Delete applied pricing
+### Delete applied pricing
 
 `DELETE /applied_pricings/:id`
 

@@ -11,7 +11,7 @@ Environments allow you to manage resources of a specific service and to manage y
 
 ```shell
 # Retrieve visible environments
-curl "https://cloudmc_endpoint/v2/environments" \
+curl "https://cloudmc_endpoint/api/v2/environments" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -79,7 +79,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible environment
 
-curl "https://cloudmc_endpoint/v2/environments/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
+curl "https://cloudmc_endpoint/api/v2/environments/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -150,7 +150,7 @@ Environments are created asynchronously on the underlying service. When creating
 ```shell
 # Create an environment
 
-curl -X POST "https://cloudmc_endpoint/v2/environments" \
+curl -X POST "https://cloudmc_endpoint/api/v2/environments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -242,7 +242,7 @@ If the membership mode is changed, users will also be added or removed asynchron
 
 ```shell
 # Update an environment
-curl -X POST "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
+curl -X POST "https://cloudmc_endpoint/api/v2/environments/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -330,9 +330,7 @@ If deleting an environment fails in the underlying service, subsequent delete at
 
 ```shell
 # Delete an environment
-
-curl "https://cloudmc_endpoint/v2/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
-
+curl "https://cloudmc_endpoint/api/v2/environments/f9dea588-d7ab-4f42-b6e6-4b85f273f3db" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 # Response body example

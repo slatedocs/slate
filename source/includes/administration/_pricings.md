@@ -1,8 +1,8 @@
-### Pricings
+## Pricings
 
 
 <!-------------------- LIST PRICINGS -------------------->
-#### List pricings
+### List pricings
 
 `GET /pricings`
 
@@ -56,7 +56,28 @@ curl "https://cloudmc_endpoint/v2/pricings" \
             "CAD": 10
           },
           "deprecated": false,
-          "id": "0a5553f7-5ea9-432e-9a00-58fa81964422"
+          "pricingTiers": [
+            {
+              "pricingMode": "FLAT_FEE",
+              "lowerBound": 0.0,
+              "upperBound": 1000.5,
+              "price": {
+                "CAD": 999
+              },
+              "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
+             },
+             {
+              "pricingMode": "FLAT_FEE",
+              "lowerBound": 1000.5,
+              "chunkSize": 500,
+              "price": {
+                "CAD": 999
+              },
+              "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
+             }
+           ],
+          "currency": "CAD",
+          "id": "45425fe6-beb3-4c78-be68-f82eeb3976c6"
         }
       ]
     },
@@ -140,6 +161,29 @@ curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5"
           },
           "cogs": {
             "CAD": 10
+          },
+          "pricingTiers": [
+            {
+              "pricingMode": "FLAT_FEE",
+              "lowerBound": 0.0,
+              "upperBound": 1000.5,
+              "price": {
+               "CAD": 999
+              },
+             "id": "9c560c79-e600-4a8b-b73b-d359a6512601"
+            },
+            {
+             "pricingMode": "FLAT_FEE",
+             "lowerBound": 1000.5,
+             "chunkSize": 500,
+             "price": {
+              "CAD": 999
+             },
+             "id": "accf0b65-1406-45d6-b6d8-b83c062efcd7"
+            }
+           ],
+          "transformer": {
+            "type": "PROPORTIONAL_TO_TIME"
           },
           "deprecated": false,
           "id": "0a5553f7-5ea9-432e-9a00-58fa81964422"

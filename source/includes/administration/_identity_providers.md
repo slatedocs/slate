@@ -11,7 +11,7 @@ Configure methods of authentication for your organizations.
 
 ```shell
 # Retrieve identity providers
-curl "https://cloudmc_endpoint/v1/identity_providers" \
+curl "https://cloudmc_endpoint/api/v1/identity_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -61,7 +61,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the identity provider.
 `provider`<br/>*string* | The name of the provider. Possible values include the default providers (e.g GOOGLE), or CUSTOM for a custom user-defined provider.
 `displayName`<br/>*string* | The display name of the identity provider that will appear on the login screen.
-`logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen.
+`logo`<br/>*string* | A base64 encoded data URL or URL to an image for the logo to display on the login screen.
 `css`<br/>*string* | Custom css for the login button of the identity provider.
 `identityProviderUsers`<br/>*Array* | A list of objects containing the ids of users associated with the identity provider, and their subject ids.
 `connectionName`<br/>*string* | The connection name of the identity provider.
@@ -145,7 +145,7 @@ Required | &nbsp;
 `provider`<br/>*string* | The name of the provider. Possible values include the default providers (e.g GOOGLE), or CUSTOM for a custom user-defined provider.
 `displayName`<br/>*string* | The display name of the identity provider that will appear on the login screen. If of a default provider type, this will be set with a default if not passed.
 `connectionName`<br/>*string* | The connection name of the identity provider. If of a default provider type, this will be set with a default if not passed.
-`logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
+`logo`<br/>*string* | A base64 encoded data URL or URL to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider. The issuerURL will be set if of a default provider type.
 `rank`<br/>*int* | If provided, this integer sorts identity providers on the Login page in ascending order.
@@ -232,7 +232,7 @@ Required | &nbsp;
 `provider`<br/>*string* | The name of the provider. Possible values include the default providers (e.g GOOGLE), or CUSTOM for a custom user-defined provider.
 `displayName`<br/>*string* | The display name of the identity provider that will appear on the login screen. If of a default provider type, this will be set with a default if not passed.
 `connectionName`<br/>*string* | The connection name of the identity provider. If of a default provider type, this will be set with a default if not passed.
-`logo`<br/>*string* | A base64 encoded data url or url to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
+`logo`<br/>*string* | A base64 encoded data URL or URL to an image for the logo to display on the login screen. If of a default provider type, this will be set with a default if not passed.
 `type`<br/>*string* | The type of authentication protocol. Possible values: OIDC, SAML.
 `parameters`<br/>*Array* | A list of parameters associated with the identity provider. The issuerURL will be set if of a default provider type.
 `rank`<br/>*int* | If provided, this integer sorts identity providers on the Login page in ascending order.

@@ -13,7 +13,7 @@ Cloud Router allows to programs custom dynamic routes and it scales with your ne
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routers"
 ```
 
 > The above command returns a JSON structured like this:
@@ -66,7 +66,7 @@ Retrieve a list of all cloud routers in a given [environment](#administration-en
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers/0569972416436922364"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routers/0569972416436922364"
 ```
 
 > The above command returns a JSON structured like this:
@@ -136,7 +136,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routers"
 ```
 
 > Request body example:
@@ -177,7 +177,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers/5333546534174463697?operation=addvpntunnelinterface"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routers/5333546534174463697?operation=addvpntunnelinterface"
 ```
 
 > Request body example:
@@ -214,7 +214,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers/5333546534174463697?operation=addbgppeer"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routers/5333546534174463697?operation=addbgppeer"
 ```
 
 > Request body example:
@@ -253,7 +253,7 @@ Add one or more BGP peers associated to existing router interface(s)
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/routers/5333546534174463697"
+   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routers/5333546534174463697"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routers/:id</code>

@@ -9,7 +9,7 @@ Port forwarding allows traffic from external hosts to services offered by applic
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/portforwardingrules"
 ```
 > The above command returns a JSON structured like this:
 
@@ -69,7 +69,7 @@ Query Parameters | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/portforwardingrules/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 ```
 > The above command returns a JSON structured like this:
 
@@ -127,7 +127,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/portforwardingrules"
 ```
 > Request body example:
 
@@ -171,7 +171,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"
+   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules/:id</code>
