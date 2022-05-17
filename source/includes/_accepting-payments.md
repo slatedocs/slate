@@ -1164,6 +1164,8 @@ Follow the instruction below to activate retry callback
 
 ![Resend Callback](images/retry_callback_developer_option.png)
 
+Don't forget to whitelist these IPs in order to be able to receive callback from OY: 54.151.191.85 and 54.179.86.72
+
 If you want to manually resend a callback, you can follow the instruction below
 
 1. Login to your account in OY! Dashboard
