@@ -680,7 +680,7 @@ Attributes | &nbsp;
 `detail.categories.products.adjustmentAggregations.scopedAfter`<br/>*string* | The product total after the adjustments were applied. Only includes adjustments with the same scope as the item.
 `detail.categories.products.adjustmentAggregations.after`<br/>*string* | The product total after the adjustments were applied.
 `detail.categories.products.adjustmentAggregations.cumulativeAmount`<br/>*string* | The adjustment amount applied to the product total.
-`deletedAuditEvent`</br>*Object* | An object containing details from the deletion audit event associated to the invoice's orgnaization. Only present if the invoice's organization if deleted.
+`deletedAuditEvent`</br>*Object* | An object containing details from the deletion audit event associated to the invoice's organization. Only present if the invoice's organization if deleted.
 `deletedAuditEvent.id`</br>*UUID* | The ID for the audit event for the deletion of the invoice's organization.
 `deletedAuditEvent.created`</br>*date* | The creation date for the deletion audit event of the invoice's organization.
 `deletedAuditEvent.updated`</br>*date* | The last updated date for the deletion audit event of the invoice's organization.
