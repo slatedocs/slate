@@ -237,6 +237,7 @@ includes:
   - aws/vpcs
   - aws/subnetworks
   - aws/internetgateways
+  - aws/availability_zones
   - aws/elastic_ips
   - aws/cidr_blocks
   - aws/cidr_reservations
