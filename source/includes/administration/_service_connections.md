@@ -63,7 +63,6 @@ Attributes | &nbsp;
 `type`<br/>*string* | The type of the service connection.
 `status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`.
 
-<<<<<<< HEAD
 <!-------------------- GET APIINFO -------------------->
 
 ### Retrieve API credentials
@@ -152,7 +151,6 @@ Retrieve a service connection's parameters, used to create and manage connection
 Attributes | &nbsp;
 ---- | -----------
 `data`<br/>*Array[object]* | An array of objects that describe the service connection parameters.<br/>*includes*: `parameter`, `id`, `value` and `serviceConnection.id`
-=======
 <!-------------------- GET SERVICE CONNECTION PARAMETERS -------------------->
 ### Retrieve connection parameters
 
@@ -325,7 +323,6 @@ curl -X POST "https://cloudmc_endpoint/api/v1/services/connections/9571b279-abaf
 ```
 
 Test an existing service connection. This request does not require a body. The `connection id` is passed as a path parameter in the request.
->>>>>>> cmc-dev
 
 <!-------------------- GET CONNECTION POLICY DESCRIPTORS -------------------->
 
