@@ -1,6 +1,8 @@
 ### Elastic IPs
 
-An Elastic IP address is a static public IPv4 formatted address designed to be dynamically associated with an instance. By using an Elastic IP address, upon failure of its associated instance, the address will be remapped to a new instance within your account.
+An Elastic IP address is a static public IPv4 formatted address designed to be dynamically associated with an instance.
+By using an Elastic IP address, upon failure of its associated instance, the address will be remapped to a new instance
+within your account.
 
 <!-------------------- LIST Elastic IPs -------------------->
 
@@ -37,12 +39,13 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>
+/<a href="#administration-environments">:environment_name</a>/elasticips</code>
 
 Retrieve a list of all elastic ips in a given [environment](#administration-environments).
 
 | Attributes                         | &nbsp;                                                                                                                     |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | `id`<br/>_string_                  | The ID of the Elastic IP.                                                                                                  |
 | `name`<br/>_string_                | The name of the Elastic IP.                                                                                                |
 | `associationId`<br/>_string_       | The ID of the association between the Elastic IP and instance.                                                             |
@@ -86,12 +89,13 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>
+/<a href="#administration-environments">:environment_name</a>/elasticips/:id</code>
 
 Retrieve an elastic ip in a given [environment](#administration-environments).
 
 | Attributes                         | &nbsp;                                                                                                                     |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | `id`<br/>_string_                  | The ID of the Elastic IP.                                                                                                  |
 | `name`<br/>_string_                | The name of the Elastic IP.                                                                                                |
 | `associationId`<br/>_string_       | The ID of the association between the Elastic IP and instance.                                                             |
@@ -104,9 +108,49 @@ Retrieve an elastic ip in a given [environment](#administration-environments).
 | `publicIp`<br/>_boolean_           | The Elastic IP address.                                                                                                    |
 | `state`<br/>_boolean_              | The attachment state of the Elastic IP. Can be either Associated or Available.                                             |
 
+
+<!-------------------- ALLOCATE AN ELASTIC IP -------------------->
+#### Allocate an Elastic IP
+
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/aws-tesv/test/elasticips?operation=allocate"
+```
+
+> Request body to allocate an Elastic IP:
+
+```json
+{
+  "name": "eip-rbensariro-oxrgp",
+  "networkBorderGroup": "us-east-1",
+  "instanceId": "i-00b2dcf0e059a2f1e"
+}
+```
+> The above commands return a JSON structured like this:
+
+```json
+{
+  "taskId": "7135ae25-8488-4bc5-a289-285c84a00a84",
+  "taskStatus": "PENDING"
+}
+```
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips?operation=allocate</code>
+
+Allocate an Elastic IP to a given environment [environment](#administration-environments).
+
+| Attributes                        | &nbsp;                                                                                                                                                                                      |
+|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`<br/>_string_               | The name of the Elastic IP.                                                                                                                                                                 |
+| `networkBorderGroup`<br/>_string_ | The AWS network border group of the Elastic IP.Could be a region, an availability zone, local zone or wavelength zone.                                                                      |
+| `instanceId`<br/>_string_         | The ID of the instance that the newly allocated Elastic IP will be associated to. This attribute is optional. The instance needs to be in a non-terminating state and possess no public IP. |
+
+
 <!-------------------- ASSOCIATE AN ELASTIC IP -------------------->
 
 #### Associate an Elastic IP
+
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
@@ -130,19 +174,21 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=associate</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>
+/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=associate</code>
 
 Associate an Elastic IP to an Instance in a given [environment](#administration-environments).
 
-| Attributes                         | &nbsp;                                                 |
-| ---------------------------------- |------------------------------------------------------- |
-| `instanceId`<br/>_string_          | The ID of the Instance to associate the Elastic IP to. |
+| Attributes                | &nbsp;                                                 |
+|---------------------------|--------------------------------------------------------|
+| `instanceId`<br/>_string_ | The ID of the Instance to associate the Elastic IP to. |
 
 Note: A Virtual Private Cloud has to be configured on the Instance, else this operation will return an error.
 
 <!-------------------- DISASSOCIATE AN ELASTIC IP -------------------->
 
 #### Disassociate an Elastic IP
+
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
@@ -158,13 +204,15 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=disassociate</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>
+/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=disassociate</code>
 
 Disassociate an elastic IP from an Instance in a given [environment](#administration-environments).
 
 <!-------------------- RELEASE AN ELASTIC IP -------------------->
 
 #### Release an Elastic IP
+
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
@@ -180,7 +228,8 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=release</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>
+/<a href="#administration-environments">:environment_name</a>/elasticips/:id?operation=release</code>
 
 Release an elastic IP in a given [environment](#administration-environments).
 
