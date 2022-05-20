@@ -46,6 +46,7 @@ includes:
   - administration/tax_providers
   - administration/custom_navigation
   - administration/metrics
+  - administration/caches
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances
