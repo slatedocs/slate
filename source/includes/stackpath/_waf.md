@@ -70,7 +70,7 @@ curl -X GET \
       "blockProbingAndForcedBrowsing": true,
       "obfuscatedAttacksAndZeroDayMitigation": true,
       "repeatedViolations": true,
-      "bruteForceProtection": true,
+      "bruteForceProtection": true
     },
     "cmsProtection": {
       "wordpressWafRuleset": false,
@@ -114,7 +114,7 @@ Attributes | &nbsp;
 `owaspThreats.localFileInclusion`<br/>*boolean* | Block requests suspected of a Local File Inclusion attempt. Local File Inclusion attempts seek to exploit vulnerabilities in a Web application to execute potentially harmful scripts on your servers.
 `owaspThreats.commonWebApplicationVulnerabilities`<br/>*boolean* | Block attempts to access and potentially harm your servers through common backdoors, such as common control panels, configuration scripts etc. which may be accessible to unwanted users.
 `owaspThreats.webShellExecutionAttempt`<br/>*boolean* | Block requests suspected of Web shell attempts. A Web shell is a script that can be uploaded to a Web server to enable remote administration of the machine. Infected Web servers can either be internet-facing or internal to the network, where the Web shell is used to further pivot to internal hosts.
-`owaspThreats.protocolAttack`<br/>*boolean* | Block requests suspected of Response header injection attempts. Response header injection attempts to inject a header via insufficient user input sanitation.
+`owaspThreats.protocolAttack`<br/>*boolean* | Block requests suspected of being a protocol attack attempt. Protocol attacks attempt to inject and manipulate headers or query parameters via insufficient user input sanitation.
 `owaspThreats.csrf`<br/>*boolean* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
 `owaspThreats.openRedirect`<br/>*boolean* | Block requests suspected of being an Open Redirect attempt. Open Redirect attempts to exploit vulnerabilities in a Web application to redirect a user to a new website without any validation of the target of redirect.
 `owaspThreats.shellInjection`<br/>*boolean* | Block requests suspected of being a shell injection attack attempt. Shell Injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell.
@@ -209,7 +209,7 @@ Attributes | &nbsp;
 `owaspThreats.localFileInclusion`<br/>*boolean* | Block requests suspected of a Local File Inclusion attempt. Local File Inclusion attempts seek to exploit vulnerabilities in a Web application to execute potentially harmful scripts on your servers.
 `owaspThreats.commonWebApplicationVulnerabilities`<br/>*boolean* | Block attempts to access and potentially harm your servers through common backdoors, such as common control panels, configuration scripts etc. which may be accessible to unwanted users.
 `owaspThreats.webShellExecutionAttempt`<br/>*boolean* | Block requests suspected of Web shell attempts. A Web shell is a script that can be uploaded to a Web server to enable remote administration of the machine. Infected Web servers can either be internet-facing or internal to the network, where the Web shell is used to further pivot to internal hosts.
-`owaspThreats.protocolAttack`<br/>*boolean* | Block requests suspected of Response header injection attempts. Response header injection attempts to inject a header via insufficient user input sanitation.
+`owaspThreats.protocolAttack`<br/>*boolean* | Block requests suspected of being a protocol attack attempt. Protocol attacks attempt to inject and manipulate headers or query parameters via insufficient user input sanitation.
 `owaspThreats.csrf`<br/>*boolean* | StackPath WAF will generate a CSRF token that is added to forms. Requests without a valid CSRF token will be blocked.
 `owaspThreats.openRedirect`<br/>*boolean* | Block requests suspected of being an Open Redirect attempt. Open Redirect attempts to exploit vulnerabilities in a Web application to redirect a user to a new website without any validation of the target of redirect.
 `owaspThreats.shellInjection`<br/>*boolean* | Block requests suspected of being a shell injection attack attempt. Shell Injection is an attack in which the goal is execution of arbitrary commands on the host operating system via a vulnerable application. Command injection attacks are possible when an application passes unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell.
