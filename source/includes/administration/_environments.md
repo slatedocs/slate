@@ -66,6 +66,7 @@ Attributes | &nbsp;
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
+`defaultRole`<br/>*object* | The role that will be assigned to new users logging into the organization
 `state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR_PROVISIONING, PURGED, PURGING, ERROR_PURGING, and PENDING.
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
@@ -134,6 +135,7 @@ Attributes | &nbsp;
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `allowExternalMembers`<br/>*boolean* | Indicates if the environment supports external members or not
+`defaultRole`<br/>*object* | The role that will be assigned to new users logging into the organization
 `state`<br/>*string* | Indicates the state of the environment. Possible states are PROVISIONING, PROVISIONED, ERROR_PROVISIONING, PURGED, PURGING, ERROR_PURGING, and PENDING.
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`, `serviceCode`, `type`
 
@@ -373,6 +375,7 @@ curl "https://cloudmc_endpoint/v2/environments/[env-id]/members" \
     {
       "id": "00977373-3eae-4d26-84df-68817f97b072",
       "creationDate": "2019-05-16T20:39:28.000Z",
+      "state": "PROVISIONED",
       "role": {
         "id": "46fb36d8-6888-48ed-ab13-711fd19f0873",
         "name": "viewer",
@@ -387,10 +390,16 @@ curl "https://cloudmc_endpoint/v2/environments/[env-id]/members" \
       "metadata": {
         "membership": "All"
       },
+      "environment": {
+				"id": "094e1dee-164b-4b32-be29-e6b4e27e7713"
+			},
+      "scopeQualifier": "ENV"
     },
   ]
 }
 ```
+
+List all the users in an environment that you have access to.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -398,7 +407,9 @@ Attributes | &nbsp;
 `creationDate`<br/>*string* | The date the user membership was either created or updated.
 `role`<br/>*[Role](#administration-roles)* | The role of the user in the environment<br/>*includes*: `id` and `name`
 `user`<br/>*[User](#administration-users)* | A member of the environmment<br/>*includes*: `id`, `firstName`, `lastName`, `userName` and `email`
-`metadata.membership`<br/>*UUID* | "All" if automatically added from the ALL_ORG_USERS membership. "Many" if added manually to the org.
+`metadata.membership`<br/>*string* | "All" if automatically added from the ALL_ORG_USERS membership. "Many" if added manually to the org.
+`environment.id`<br/>*UUID* | The id of the environment the user is part of.
+`scopeQualifier`<br/>*string* | The scope qualifier for the user. Possible value: ENV.
 
 You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
 
@@ -436,6 +447,8 @@ curl -X POST "https://cloudmc_endpoint/v2/environments/[environment-id]/members"
 }
 ```
 
+Add a user to an environment that you have access to.
+
 Required | &nbsp;
 -------- | -----------
 `user.id`<br/>*UUID* | The user that will be added to the environment.
@@ -463,6 +476,8 @@ curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/members/[
   }
 }
 ```
+
+Update a user in an environment that you have access to.
 
 Required | &nbsp;
 -------- | -----------
@@ -522,6 +537,48 @@ curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/membershi
   "membership": "ALL_ORG_USERS",
   "defaultRole": {
     "id": "f05ff413-0d6d-4054-bbee-a720de5f1a4c"
+  }
+}
+```
+
+Update the default membership of an environment that you own.
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": "1ee5cd43-8395-4cd5-a20f-0f1e83b7f8bd",
+    "name": "cheyenne_mountain",
+    "description": "Environment for base at Cheyenne Mountain",
+    "metadata": {
+      "mode": "project"
+    },
+    "defaultRole": {
+      "creationDate": "2020-01-02T16:04:27.000Z",
+      "version": 1,
+      "isSystem": false,
+      "isDefault": false,
+      "deleted": false,
+      "name": "Owner",
+      "alias": "owner",
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "isFixed": true,
+      "defaultScope": "ENV"
+    },
+    "membership": "MANY_USERS",
+    "creationDate": "2017-08-15T12:00:00.000Z",
+    "organization": {
+      "id": "a9f93785-0545-4876-8241-3b19b9a86721",
+      "name": "sg1",
+      "entryPoint": "sg1"
+    },
+    "allowExternalMembers": false,
+    "state": "PROVISIONING",
+    "serviceConnection": {
+      "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
+      "name": "Compute - Québec"
+    },
   }
 }
 ```
