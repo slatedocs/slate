@@ -673,6 +673,7 @@ OY! Account Payable product provides the capability to record, create approval l
 ### How to Use Account Payable via Dashboard
 
 You can create new invoice to be paid and set up payment by following this step:
+
 1. Log on to your OY! dashboard
 2. Choose "Production" environment
 3. Click "Pay Invoice" under Account Payable menu
@@ -681,76 +682,55 @@ You can create new invoice to be paid and set up payment by following this step:
 6. Upload your invoice document to help you easier record the invoice by click "Browse to Upload" or Drag & drop to the invoice area
 7. Fill in the necessary details
 
-Parameter | Description
------- | -----------
-Purchase Type | You can choose between purchase order, service fee, bill, subscription fee, and reimbursement
-Invoice Number | The number of the invoice that you get from your vendor/supplier
-Invoice Date | The date of the invoice
-Due Date | Due date of a transaction as mention in invoice. Your approver will be reminder to approved on D-7, D-3, and D-1 from the invoice due date
-PO/PR Number (optional)	| The reference PO/PR number from your company to track this invoice
-Note | The note for this invoice
-Vendor | The name of the vendor that this invoice belongs to. You can choose the name of the vendor on the dropdown. To create a new vendor, follow the instruction here
-Product Description | The name and/or description of the product
-Quantity | The quantity of the product
-Price | Unit price of the product
-Total | Total price of the product (Total = Quantity x Price)
-Subtotal | The total price of all the products
-PPn | PPn that should be paid to the vendor. PPn will be calculate from subtotal. You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
-PPh | PPh that should be deduct from the vendor. PPh will be calculate from subtotal.You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
-Total Pay to Vendor | Total amount that will pay to vendor after complete approval
-Reference Documents (Upload document) | The supporting documents that you want to record related to this invoice. Accept PDF files only. Maximum 7 documents (maximum 2.5MB each)
+    Parameter | Description
+    ------ | -----------
+    Purchase Type | You can choose between purchase order, service fee, bill, subscription fee, and reimbursement
+    Invoice Number | The number of the invoice that you get from your vendor/supplier
+    Invoice Date | The date of the invoice
+    Due Date | Due date of a transaction as mention in invoice. Your approver will be reminder to approved on D-7, D-3, and D-1 from the invoice due date
+    PO/PR Number (optional)	| The reference PO/PR number from your company to track this invoice
+    Note | The note for this invoice
+    Vendor | The name of the vendor that this invoice belongs to. You can choose the name of the vendor on the dropdown. To create a new vendor, follow the instruction here
+    Product Description | The name and/or description of the product
+    Quantity | The quantity of the product
+    Price | Unit price of the product
+    Total | Total price of the product (Total = Quantity x Price)
+    Subtotal | The total price of all the products
+    PPn | PPn that should be paid to the vendor. PPn will be calculate from subtotal. You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
+    PPh | PPh that should be deduct from the vendor. PPh will be calculate from subtotal.You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
+    Total Pay to Vendor | Total amount that will pay to vendor after complete approval
+    Reference Documents (Upload document) | The supporting documents that you want to record related to this invoice. Accept PDF files only. Maximum 7 documents (maximum 2.5MB each)
+    Note: Maximum 20 rows for line item detail
 
-Note: Maximum 20 rows for line item detail
-
-**Empty State**
-![AP Invoice Creation Empty](images/accountPayable/invoice_creation_empty.png)
-
-**Filled State**
-![AP Invoice Creation Filled](images/accountPayable/invoice_creation_filled.png)
+    **Image Account Payable**
+    ![AP Invoice Creation One](images/accountPayable/invoice_creation_1.png)
 
 8. Continue to set up 'Invoice Payment Details'. You can set up the payment to one time payment by choosing 'Full Payment' or multiple times payment by choosing 'Partial Payment'.
 
-Parameter | Description
------- | -----------
-Payment Amount | Amount that will be automatically paid to vendor after approval.
-Due Date | The due date of the payment. The due date cannot do back date or more than due date that set in the first page (record invoice). Notification will be send to approval D-7, D-3, and D-1 if the status is waiting aproval.
-Status | Status of the invoice payment. You can choose Paid' for record intention and this amount will not be paid automatically by system. Choose 'Unpaid' for
-Remaining Amount | Total pay to vendor - subtotal. This amount should be 0 to continue the process.
+    Parameter | Description
+    ------ | -----------
+    Payment Amount | Amount that will be automatically paid to vendor after approval.
+    Due Date | The due date of the payment. The due date cannot do back date or more than due date that set in the first page (record invoice). Notification will be send to approval D-7, D-3, and D-1 if the status is waiting aproval.
+    Status | Status of the invoice payment. You can choose Paid' for record intention and this amount will not be paid automatically by system. Choose 'Unpaid' for
+    Remaining Amount | Total pay to vendor - subtotal. This amount should be 0 to continue the process.
 
-**Full Payment**
-![AP Payment Creation Full](images/accountPayable/payment_creation_full.png)
+    **Image Payment Page**
+    ![AP Invoice Creation Two](images/accountPayable/invoice_creation_2.png)
 
-**Partial Payment**
-Empty State
-![AP Payment Creation Partial Empty](images/accountPayable/payment_creation_partial_empty.png)
-Filled State
-![AP Payment Creation Partial Filled](images/accountPayable/payment_creation_partial_filled.png)
-
-**Empty State - payment transaction list**
-![AP Payment Transaction List Empty](images/accountPayable/payment_transaction_list_empty.png)
-**Filled State  - payment transaction list**
-Empty State
-![AP Payment Transaction List Filled Fit Screen](images/accountPayable/payment_transaction_list_filled_fit_screen.png)
-Filled State
-![AP Payment Transaction List Filled Full Screen](images/accountPayable/payment_transaction_list_filled_full_screen.png)
+    ![AP Invoice Creation Transaction List](images/accountPayable/invoice_creation_transaction_list.png)
 
 9. Status: Waiting Payment, Partially Paid, Complete and Cancelled
 Congratulations! You have finish your first invoice payable set up. below is the list of statuses you will find on 'Invoice List'
 
-Parameter | Description
------- | -----------
-Partially Paid | Multi times payment or partially paid that not finish yet. You can click invoice number to find the partial payment details in 'payment transaction' tab
-Waiting Payment	| Waiting for approval or balance not enough
-Cancelled | Invoice has been cancelled
-Complete | All payment of the invoice is complete
+    Parameter | Description
+    ------ | -----------
+    Partially Paid | Multi times payment or partially paid that not finish yet. You can click invoice number to find the partial payment details in 'payment transaction' tab
+    Waiting Payment	| Waiting for approval or balance not enough
+    Cancelled | Invoice has been cancelled
+    Complete | All payment of the invoice is complete
 
-**Empty State**
-![AP Invoice List Empty](images/accountPayable/invoice_list_empty.png)
-**Filled State**
-Screen Fit
-![AP Invoice List Filled Fit Screen](images/accountPayable/invoice_list_filled_fit_screen.png)
-Full Screen
-![AP Invoice List Filled Full Screen](images/accountPayable/invoice_list_filled_full_screen.png)
+    **List of the Invoice Payable**
+    ![AP Invoice List Payable](images/accountPayable/invoice_list_payable.png)
 
 ### How to Create, Edit and Inactivate Vendor Data ###
 
@@ -787,53 +767,27 @@ Each vendor only have 1 type of PPh setting and 1 type of PPn setting
 There will be auto email PPh every 1st day in a month that contain all the PPh from your vendor in the previous month. This report will help company for tax payment & reporting, and generate 'Faktur Pajak' to your vendor.
 
 **Create New Vendor**
-
-***Empty State***
-Main Info
-![VM Vendor Creation Main Info Empty](images/vendorManagement/creation_main_info_empty.png)
-PIC Info
-![VM Vendor Creation PIC Info Empty](images/vendorManagement/creation_pic_empty.png)
-Legality
-![VM Vendor Creation Legality Empty](images/vendorManagement/creation_legality_empty.png)
-***Filled State***
-Main Info
-![VM Vendor Creation Main Info Filled](images/vendorManagement/creation_main_info_filled.png)
-PIC Info
-![VM Vendor Creation PIC Info Filled](images/vendorManagement/creation_pic_filled.png)
-Legality
-![VM Vendor Creation Legality Filled](images/vendorManagement/creation_legality_filled.png)
+![VM Vendor Creation](images/vendorManagement/creation.png)
 
 **List Of Vendor**
-***Empty State***
-![VM Vendor List Empty](images/vendorManagement/list_empty.png)
-***Filled State***
-![VM Vendor List Filled](images/vendorManagement/list_filled.png)
+![VM Vendor List](images/vendorManagement/list.png)
 
-**Detail Vendor**
-***No Invoice for this Vendor***
-![VM Vendor Detail Empty Invoice](images/vendorManagement/detail_empty_invoice.png)
-***There's invoice for this vendor***
-Screen Fit
-![VM Vendor Detail Filled Invoice Fit Screen](images/vendorManagement/detail_filled_invoice_fit_screen.png)
-Full Screen
-![VM Vendor Detail Filled Invoice Full Screen](images/vendorManagement/detail_filled_invoice_full_screen.png)
+**Vendor Detail**
+![VM Vendor Detail](images/vendorManagement/detail.png)
 
 **How to Set Up Invoice Payable Approval**
 
 You can set up multi level approval from OY's users. There will be 4 type or user: Super Admin, Admin, Approver, and Maker
 
-***Approval Layer Set Up***
+**Approval Layer Set Up**
+
 Approval Layer can be set up using 'User Management' under 'General' menu. When you first create an account, your account will be assigned as a Super Admin role. As a Super Admin, you have the ability to create new sub-accounts and assign different roles to your team such as Admin, Maker and Approver that are applicable for bulk disbursement. The Super Admin and Admin can also edit or delete created sub-accounts.
 Note: it is not necessary to create new sub-accounts in order to use Account Payable. The Super Admin and Admin roles allows you to directly create and approve Account Payable and also Bulk Disbursement.
 Detailed step-by-step instructions on setting up user management and the different role types coming soon.
 
-***Multi-Layer Approval***
+**Multi-Layer Approval**
+
 Multi-layer Approval will improve your control over your bulk disburse transaction especially for big amount of money. You can setup up to 3 layers of approver before the transaction instruction is executed. By assigning proper approver and amount limitation, you can avoid a huge trouble on your business operational caused by incorrect transfer amount.
 
 Default approval: Super Admin, Admin, and Approval.
-
-**No Sub Account**
-![AP Approval Empty Sub Account](images/vendorManagement/approval_empty_sub_account.png)
-**With Sub Account**
-![AP Approval Filled Sub Account](images/vendorManagement/approval_filled_sub_account.png)
 
