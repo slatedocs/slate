@@ -21,13 +21,16 @@ curl "https://cloudmc_endpoint/api/v2/organizations" \
    "data": [
       {
          "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
+         "lineage": "03bc22bd-adc4-46b8-988d-afddc24c0cb5, 5ff3a3d8-41a8-4ca2-813f-7d5af4cfc872",
          "name": "Umbrella Corporation",
          "entryPoint": "umbrella",
          "billableStartDate": "2017-08-15T12:00:00.000Z",
-         "billingDay": 5,
+         "creationDate": "2022-04-29T19:49:18.000Z",
          "isBillable": true,
          "billingMode": "CREDIT_CARD",
          "isReseller": false,
+         "features": [],
+         "customFields": {},
          "tags": [
             {
                "system": true,
@@ -46,6 +49,12 @@ curl "https://cloudmc_endpoint/api/v2/organizations" \
             }
          ],
          "deleted": false,
+         "isDbAuthentication": true,
+         "isLdapAuthentication": false,
+         "isTrial": false,
+         "reseller": {
+           "id": "5d841eb6-5913-4244-b001-917228e7aa64"
+          },
          "parent": {
             "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
             "name": "Capcom"
@@ -53,12 +62,6 @@ curl "https://cloudmc_endpoint/api/v2/organizations" \
          "environments": [
             {
                "id": "9df14056-51e2-4000-ab14-beeaa488500d",
-               "deleted": false
-            }
-         ],
-         "roles": [
-            {
-               "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8",
                "deleted": false
             }
          ],
@@ -87,20 +90,22 @@ Optional Query Parameters | &nbsp;
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The id of the organization.
+`lineage`<br/>*string* | A string of comma-seperated UUIDs of the lineage of the organization.
 `name`<br/>*string* | The name of the organization.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
-`billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
+`creationDate`<br/>*string* | The date the organization was created in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 `tags`<br/>*Array[object]* | Tags associated to the organization. <br/>*includes*: `id`*UUID*, `name`*string*, `system`*boolean*
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
+`reseller`<br/>*[Organization](#administration-organizations)* | The nearest reseller of the organization. *includes*:`id`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
 `serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources.<br/>*includes*: `id`,`serviceCode`
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
 `users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*includes*: `id`
-`notes`<br/>*string* | Organization notes.
+`features`<br/>*Array[[OrganizationFeature]]* | The features offered by the organization and their access levels.
+`customFields`<br/>*map* | Map of custom fields on the organization and their values.
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
@@ -125,13 +130,16 @@ curl "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afdd
 {
    "data": {
       "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
+      "lineage": "03bc22bd-adc4-46b8-988d-afddc24c0cb5, 5ff3a3d8-41a8-4ca2-813f-7d5af4cfc872",
       "name": "Nintendo US",
       "entryPoint": "nintendo-us",
       "billableStartDate": "2017-08-15T12:00:00.000Z",
-      "billingDay": 5,
       "isBillable": true,
       "billingMode": "CREDIT_CARD",
+      "hashIterations": 100,
+      "hashAlgorithmName": "SHA-512",
       "isReseller": false,
+      "version": 4,
       "tags": [
          {
             "system": true,
@@ -153,14 +161,31 @@ curl "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afdd
          "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
          "name": "Nintendo"
       },
+      "reseller": {
+        "id": "5d841eb6-5913-4244-b001-917228e7aa64"
+        },
+      "customFields": {},
+      "notes": "",
+      "customFieldDefinitions": [],
+      "isDbAuthentication": true,
+      "isLdapAuthentication": false,
+      "quotas": [
+			{
+				"name": "unlimited",
+				"id": "3311d69e-12c8-4295-bae0-34e9a1c57982",
+				"serviceConnection": {
+					"id": "78f55cd7-47c9-47ac-a6a0-203b838d1507"
+          }
+        }
+      ],
+      "ldap": {
+        "version": 2,
+        "deleted": false,
+        "id": "4de3ed48-0b9c-43c8-a93a-244d763b6861"
+      },
       "environments": [
          {
            "id": "9df14056-51e2-4000-ab14-beeaa488500d"
-         }
-      ],
-      "roles": [
-         {
-           "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8"
          }
       ],
       "serviceConnections": [
@@ -183,22 +208,30 @@ curl "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afdd
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The id of the organization.
+`lineage`<br/>*string* | A string of comma-seperated UUIDs of the lineage of the organization.
 `name`<br/>*string* | The name of the organization.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL :<br/>`[entryPoint].CloudMC`.
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
-`billingDay`<br/>*int* | The billing day of the organization. Default value is 1.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
+`quotas`<br/>*Array[Quotas]* | A list of quotas that associated to the organization.
+`hashIterations`<br/>*integer* | The hash iteration of the organization.
+`hashAlgorithmName`<br/>*String* | Hash algorithm name of the organization.
+`version`<br/>*long* | The version of the organization.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 `tags`<br/>*Array[object]* | Tags associated to the organization. <br/>*includes*: `id`*UUID*, `name`*string*, `system`*boolean*
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
+`reseller`<br/>*[Organization](#administration-organizations)* | The nearest reseller of the organization. *includes*:`id`.
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments belonging to the organization.<br/>*includes*: `id`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles belonging to the organization.<br/>*includes*: `id`
 `serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The services for which the organization is allowed to provision resources.<br/>*includes*: `id`,`serviceCode`
 `resourceCommitments`</br>*Array[[ResourceCommitment](#administration-retrieve-a-resource-commitment)]* | The resource commitments applied on the organization.
 `users`<br/>*Array[[User](#administration-users)]* | The users of the organization.<br/>*includes*: `id`
 `notes`<br/>*string* | Organization notes.
+`features`<br/>*Array[[OrganizationFeature]]* | The features offered by the organization and their access levels.
+`customFields`<br/>*map* | Map of custom fields on the organization and their values.
+`customFieldDefinitions`<br/>*Array[[CustomFieldDefinition]]* | Custom field definitions of the organization.
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
+`ldap`<br/>*Object* | LDAP authentication associated with the organization.
 `isTrial`<br/>*boolean* | Whether or not this is a trial organization.
 `isReseller`<br/>*boolean* | Whether or not this organization is a reseller or not.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | The custom domain for the organization.
@@ -248,7 +281,6 @@ Optional | &nbsp;
 ---- | ----
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#administration-organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
-`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 `tags`<br/>*Array[object]* | Tags associated to the organization. Tags provided in the request cannot be system tags. <br/>*required* : `id` or `name`
 
@@ -256,8 +288,6 @@ The responses' `data` field contains the created [organization](#administration-
 
 Response | &nbsp;
 ---------- | -----------
-`taskId`<br/>*UUID* | The id of the task
-`taskStatus`<br/>*string* | The status of the task
 `data`<br/>*[Organization](#administration-organizations)* | The information about the created organization
 
 
@@ -286,6 +316,9 @@ Response | &nbsp;
     "isDbAuthentication": true,
     "deleted": false,
     "serviceConnections": [],
+    "reseller": {
+			"id": "5d841eb6-5913-4244-b001-917228e7aa64"
+		},
     "ldap": {
       "version": 1,
       "deleted": false,
@@ -294,9 +327,7 @@ Response | &nbsp;
     "name": "Shopify",
     "id": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
     "entryPoint": "shopify"
-  },
-  "taskId": "fd7f6c47-d525-414c-a77f-69047966c765",
-  "taskStatus": "PENDING"
+  }
 }
 ```
 
@@ -342,8 +373,8 @@ Optional | &nbsp;
 `isDbAuthentication`<br/>*boolean* | Whether or not the organization supports database authentication.
 `isLdapAuthentication`<br/>*boolean* | Whether or not LDAP authentication is enabled on this organization.
 `customDomain`<br/>*[VerifiedDomain](#administration-get-verified-domains)* | An object describing a verified domain. Must have the `Organization: Manage reseller features` permission. <br/>*required* : `id`
-`billingDay`<br/>*int* | The billing day of the organization. Must be between 1 and 28 (inclusive), the default value is 1.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
+`isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 
 The responses' `data` field contains the updated [organization](#administration-organizations).</br>
 **NB :** At this time the API only enables adding access to Service connections but not revoking it. A Service connection can be assigned to an organization only if: 
@@ -353,9 +384,6 @@ The responses' `data` field contains the updated [organization](#administration-
 
 
 Response | &nbsp;
----------- | -----------
-`taskId`<br/>*UUID* | The id of the task
-`taskStatus`<br/>*string* | The status of the task
 `data`<br/>*[Organization](#administration-organizations)* | The information about the updated organization
 
 
@@ -428,8 +456,8 @@ curl -X DELETE "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8
 
 Response                  | &nbsp;
 --------------------------|-----------------------
-`taskId`<br/>*UUID*       | The id of the task
-`taskStatus`<br/>*string* | The status of the task
+`taskId`<br/>*UUID*       | The id of the task.
+`taskStatus`<br/>*string* | The status of the task.
 
 ```shell
 # Response body example
@@ -452,7 +480,7 @@ Get a list of all verified domains on the specified organization.
 
 ```shell
 # Retrieve all verified domains
-curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
+curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -493,6 +521,7 @@ curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e30
 Attributes | &nbsp;
 ---- | -----------
 `lastCheckedDate`<br/>*string* |  The last date that the domain's DNS was checked for the TXT record with the verification code. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+`createdDate`<br/>*string* |  The date the verified domain was created. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 `domain`<br/>*string* | The domain associated with the organization.
 `organization`<br/>*[Organization](#administration-organizations)* | The organization to which the verified domain belongs. *includes*:`id`,`name`, `entryPoint`.
 `id`<br/>*UUID* | The id of the verified domain.
@@ -508,7 +537,7 @@ Creates a new verified domain in the specified organization.
 
 ```shell
 # Create a verified domain
-curl -X POST "https://cloudmc_endpoint/api/v1/organizations87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
+curl -X POST "https://cloudmc_endpoint/api/v2/organizations87895f43-51c1-43cc-b987-7e301bf5b86a/verified_domains" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -550,7 +579,7 @@ Retrieve the security settings for the organization.
 
 ```shell
 # Retrieve the organization's security settings
-curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/security_settings" \
+curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/security_settings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -568,6 +597,7 @@ curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e30
       "entryPoint": "myOrg"
     },
     "autoCreationEnabled": true,
+    "blockedNativeLoginDomain": "",
     "verifiedDomains": [
        {
         "lastCheckedDate": "2020-08-03T17:19:36Z",
@@ -624,7 +654,8 @@ curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e30
           "value": 1,
           "isMandatory": true
         }
-      ]
+      ],
+      "isParentPolicy": false,
     }
   }
 }
@@ -636,9 +667,11 @@ Attributes | &nbsp;
 `defaultRole.id`<br/>*UUID* | The id of the default role.
 `organization`<br/>*[Organization](#administration-organizations)* | The organization to which the verified domain belongs. *includes*:`id`,`name`, `entryPoint`.
 `autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
+`blockedNativeLoginDomain`<br/>*string* | The blocked native login domain.
 `verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
 `passwordPolicy`<br/>*object*  | The password policy assigned to the organization. 
 `passwordPolicy.constraints`<br/>*Array[Object]* | List of password policy constraints.
+`passwordPolicy.isParentPolicy`<br/>*boolean* | A boolean flag to indicate if the password policy is a parent policy.
 `passwordPolicy.constraints.name`<br/>*string* | A string that represents the constraint name.
 `passwordPolicy.constraints.value`<br/>*int* | An integer that represents the minimum value for the constraint.
 `passwordPolicy.constraints.isMandatory`<br/>*boolean* | A boolean flag to indicate if the constraint is mandatory or not.
@@ -650,7 +683,7 @@ Attributes | &nbsp;
 
 ```shell
 # Update an organization's security settings
-curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/security_settings" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/security_settings" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -713,6 +746,7 @@ Optional | &nbsp;
 ---- | ----
 `autoCreationEnabled`<br/>*boolean* | A boolean specifying whether to enable automatic end-user account creation upon successful OIDC login.
 `verifiedDomains`<br/>*Array[[verified domains](#administration-get-verified-domains)]*| A list of objects containing the ids of verified domains (with VERIFIED status) for which successful matching OIDC logins will create new users.
+`blockedNativeLoginDomain`<br/>*string* | The blocked native login domain.
 `passwordPolicy`<br/>*object*  | The password policy that will be assigned to the organization. 
 `passwordPolicy.constraints`<br/>*Array[Object]* | List of password policy constraints objects with the following fields.
 `passwordPolicy.constraints.name`<br/>*string* | A string that represents the constraint name.
@@ -738,7 +772,7 @@ Retrieve the password policy for the organization.
 
 ```shell
 # Retrieve the organization's own or inherited password policy.
-curl "https://cloudmc_endpoint/api/v1/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
+curl "https://cloudmc_endpoint/api/v1=2/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -789,11 +823,11 @@ Delete a password policy for an organization. Root reseller organization will no
 
 ```shell
 # Delete an organization
-curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
    -H "MC-Api-Key: your_api_key"
 ```
 
-Returns an HTTP status code 204, with an empty response body.
+Returns an HTTP status code 200, with an empty response body.
 
 <!-------------------- GET MANAGEABLE CONNECTIONS OF ORGANIZATION -------------------->
 ### Get manageable connections of an organization
@@ -803,7 +837,7 @@ Get a list of Service connections that can be managed by the current user on the
 
 ```shell
 # Update an organization
-curl -X GET "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/manageable_connections" \
+curl -X GET "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/manageable_connections" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -831,6 +865,7 @@ curl -X GET "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-98
     "name": "Objects Lab",
     "type": "swiftstack",
     "serviceCode": "objects-lab",
+    "iconOverrideUrl": "https://icon-override-url.png",
     "status": {
       "id": "74a78d2b-c0da-475e-9bb7-218adc745d81",
       "serviceConnection": null,
@@ -854,6 +889,7 @@ Attributes | &nbsp;
 `serviceCode`<br/>*string* | The globally unique serviceCode that identifies the service connection.
 `status`<br/>*Object* | The status object describing the status of connectivity to this service from CloudMc.
 `quotas`<br/>*Array[Quotas]* | A list of quotas that can be associated to the service connnection.
+`iconOverrideUrl`<br/>*string* | The icon the overwrites the default icon for the service connection.
 
 The user should have `Connections reseller` permission on the organization. This list includes the following types of Service connections:
 
@@ -935,7 +971,7 @@ Retrieve the billing information for an organization.
 
 ```shell
 # Retrieve the organization's billing information
-curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
+curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -981,27 +1017,27 @@ Attributes | &nbsp;
 `billingAddressCity`<br/>*string* | The city of the billing address.
 `billingAddressProvince`<br/>*string* | The province or state code (2 letters) of the billing address.
 `billingAddressPostalCode`<br/>*string* | The postal/zip code of the billing address.
-`billingAddressCountry`<br/>*string* | The country code (ISO 2 or 3 letter code) of the billing address
-`billingAddressCountry`<br/>*string* | The country code (ISO 2 or 3 letter code) of the billing address
+`billingAddressCountry`<br/>*string* | The country code (ISO 2 or 3 letter code) of the billing address.
 `customAttribute` <br/>*Object*| The custom attributes associated to the billing provider
 
 Chase attributes | &nbsp;
 ---- | -----------
-`customAttribute.uid` <br/>*string* | Chase registration id 
-`customAttribute.customerRefNum` <br/>*string* | Chase customer reference number/profile id
+`customAttribute.uid` <br/>*string* | Chase registration id.
+`customAttribute.customerRefNum` <br/>*string* | Chase customer reference number/profile id.
+`customAttribute.originalMitTransactionId` <br/>*string* | Chase customer original transaction id.
 
 
 <!-------------------- DELETE CREDIT CARD -------------------->
 ### Clear credit card information
 `DELETE /organizations/:organization_id/billing_info`
 
-Delete the billing information for an organization. Only accessible to system operator.
+Delete the billing information for an organization. Only accessible to users with System:Pricings permission.
 
 Returns an HTTP status code 200, with an empty response body.
 
 ```shell
-# Retrieve the organization's billing information
-curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
+# Delete the organization's billing information
+curl -X DELETE "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_info" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -1017,7 +1053,7 @@ pricing package.
 
 ```shell
 # Update billable organization info
-curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billable" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billable" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -1026,8 +1062,8 @@ curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b9
 
 ```json
 {
-   "id": "39f6260d-f0ca-4be9-93c4-46405d471c04",
-   "billableStart": "2015-01-18",
+  "id": "39f6260d-f0ca-4be9-93c4-46405d471c04",
+  "billableStart": "2015-01-18",
 	"pricingPackage": {
 		"id": "58bad1de-1f87-422b-b44f-27ed58889272"
 	}
@@ -1044,6 +1080,8 @@ Optional | &nbsp;
 ---- | ----
 `billableEnd`<br/>*string*  | The date the organization stops being billable, in YYYY-MM-DD format.
 
+The response's `data` field contains the updated billable organization info with it's `id`, the `billableStart`, as well as the pricing package and it's`id`.
+
 <!-------------------- LIST APPLICABLE PRICING PACKAGES TO ORG -------------------->
 ### List applicable pricing packages to an organization
 
@@ -1053,7 +1091,7 @@ Retrieves a list of applicable pricing packages to an organization.
 
 ```shell
 # Retrieve visible organizations
-curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/pricing_packages" \
+curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/pricing_packages" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -1093,7 +1131,7 @@ Attributes | &nbsp;
 `startDate`<br/>*date* | The start date of the pricing package.
 `endDate`<br/>*date* | The end date of the pricing package. If it is not present, there is no end date defined.
 `creationDate`<br/>*Object* | The date the pricing package was created.
-`name` <br/>*Object* | A map of language keys to the name of the pricing package in the specified language. 
+`name` <br/>*Map[String, String]* | The name translations of the pricing package.
 
 <!-------------------- LIST ORG BILLING EMAILS -------------------->
 ### List billing emails
@@ -1104,7 +1142,7 @@ Retrieves a list of billing emails configured on the org. These emails will also
 
 ```shell
 # Retrieve billing emails
-curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_emails" \
+curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_emails" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -1133,7 +1171,7 @@ Update the list of billing emails configured on the org. These emails will also 
 
 ```shell
 # Update billing emails
-curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_emails" \
+curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/billing_emails" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -1162,7 +1200,7 @@ Retrieves a billing cycle for the organization.
 
 ```shell
 # Retrieve billing cycle
-curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728823309a4/billing_cycles/8259182d-5234-4a78-adf6-7edc11db2e3b" \
+curl "https://cloudmc_endpoint/api/v2/organizations/c01e2bd4-50c4-4ef4-b756-f728823309a4/billing_cycles/8259182d-5234-4a78-adf6-7edc11db2e3b" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -1239,7 +1277,7 @@ Updates the organization's billable information with the new pricing package and
 
 ```shell
 # Update billable information
-curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728823309a4/billable_info" \
+curl "https://cloudmc_endpoint/api/v2/organizations/c01e2bd4-50c4-4ef4-b756-f728823309a4/billable_info" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -1270,52 +1308,28 @@ curl "https://cloudmc_endpoint/api/v1/organizations/c01e2bd4-50c4-4ef4-b756-f728
 ```json
 {
   "data": {
-    "billingCycles": [
-      {
-        "endDate": "2022-05-01",
-        "id": "d3999e15-144d-4967-ba33-91a52c004550",
-        "state": "IN_PROGRESS",
-        "startDate": "2022-04-01"
-      },
-      {
-        "endDate": "2022-05-01",
-        "id": "ebcb1ce9-de0e-4bb1-ac17-53a2f16781d8",
-        "state": "IN_PROGRESS",
-        "startDate": "2022-04-01"
-      },
-      {
-        "endDate": "2022-04-01",
-        "id": "5a6b369c-9c26-4acc-a042-a4ffe5b644a1",
-        "state": "WAITING_PAYMENT",
-        "startDate": "2022-03-01"
-      },
-      {
-        "endDate": "2022-03-01",
-        "id": "34429f4d-91cf-4bf3-8c81-1d5357062dd5",
-        "state": "WAITING_PAYMENT",
-        "startDate": "2022-02-01"
-      }
-    ],
+    "organization": {
+      "id": "0594913c-b909-43dd-9467-79a09219f760"
+    },
+    "applicableDiscounts": [],
     "currency": "USD",
     "id": "a37218aa-3515-49c2-8600-e1a856bebc9b",
     "pricingPackage": {
-      "pricingDefinition": {
-        "name": {
-          "en": "StackPath",
-          "fr": "StackPath"
-        }
-      },
       "id": "1529945f-2254-4242-8633-a49ac237919b"
     },
     "billableStart": "2021-11-22"
   }
 }
 ```
-| Attributes                          | &nbsp;                                                                                |
+
+| Response | &nbsp;                                                                                                            |
+`data`<br/>*[Organization](#administration-organizations)* | The information about the updated organization
+
 |-------------------------------------|---------------------------------------------------------------------------------------|
+|`organization`<br/>*[Organization](#administration-organizations)* | The organization to which belongs the billing information.|
 | `currency`<br/>*String*             | The currency used by the organization for billing, payments and invoices.             |
 | `id`<br/>*UUID*                     | The id of billing information.                                                        |
 | `pricingPackage`<br/>*Object*       | The pricing package currently applied to the organization.                            |
 | `billableStart`<br/>*String*        | The the start date when the application start generating billing cycles and invoices. |
-| `billingCycles`<br/>*Array[Object]* | The generated billing cycles for the organization.                                    |
+| `applicableDiscounts`<br/>*Array[Object]* | The discounts applicable to the billable org .                                  |
 

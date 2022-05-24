@@ -239,7 +239,7 @@ includes:
   - aws/subnetworks
   - aws/internetgateways
   - aws/routes
-  - aws/availability_zones
+  - aws/availabilityzones
   - aws/elastic_ips
   - aws/cidr_blocks
   - aws/cidr_reservations

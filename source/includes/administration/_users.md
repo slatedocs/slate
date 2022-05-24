@@ -26,39 +26,61 @@ curl "https://cloudmc_endpoint/api/v2/users" \
     "email": "gohabsgo@cloud.mc",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "status": "ACTIVE",
+    "locale": "en",
     "organization": {
       "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
       "name": "Canadiens"
     },
     "serviceConnections": [
       {
-        "serviceCode": "cs-acs-dev2",
-        "name": "cs-acs-dev2",
-        "id": "7430e95f-6029-444f-9677-9d2d54007138",
-        "state": "PROVISIONING",
-        "type": "cloudstack"
+        "organizationId": "5d841eb6-5913-4244-b001-917228e7aa64",
+        "commitmentTrackingEnabled": true,
+        "metricsTrackingEnabled": false,
+        "serviceCode": "azure",
+        "iconOverrideUrl": "",
+        "lastUsageRecord": "2022-05-23T00:00:00Z",
+        "name": "Microsoft Azure",
+        "locations": [],
+        "id": "2ebe2a97-7c20-47c0-80ed-a784bb7b6554",
+        "state": "PROVISIONED",
+        "type": "azure",
+        "reachable": true
       },
       {
-        "serviceCode": "cs-acs-dev1",
-        "name": "cs-acs-dev1",
-        "id": "9000c02b-cb33-4e4e-8d7b-f834f48e8fb9",
+        "organizationId": "5d841eb6-5913-4244-b001-917228e7aa64",
+        "commitmentTrackingEnabled": false,
+        "metricsTrackingEnabled": false,
+        "serviceCode": "swift-test",
+        "iconOverrideUrl": "",
+        "name": "swifttest",
+        "locations": [],
+        "id": "7580a845-9c0c-4496-a577-01fa665c4a1f",
         "state": "PROVISIONED",
-        "type": "cloudstack"
+        "type": "swift",
+        "reachable": true
       }
     ],
-    "roles": [
-      {
-        "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8",
-        "name": "End-User"
-      },
-      {
-        "id": "fe6d2614-3c33-447c-96f2-c79f67f5fd19",
-        "name": "Environment Admin",
-        "environment": {
-          "id": "afcafd98-0287-4139-bb77-f29ab0549eaa"
-        }
+    "lastLogin": "2022-05-20T15:56:27.000Z",
+    "lastFailedLogin": "2022-04-16T18:50:21.000Z",
+    "loginCount": 76,
+    "failedLoginCount": 10,
+    "isBusinessContact": false,
+    "isTechnicalContact": false,
+    "tfaEnabled": false,
+    "deleted": false,
+    "receivesEmailNotifications": false,
+    "version": 1,
+    "canResendUserCreationEmail": true,
+    "backupCodesRemaining": 0,
+    "primaryRoleBinding": {
+      "id": "013b40ca-9837-4233-b28e-09f5828958e5",
+      "role": {
+        "isSystem": true,
+        "name": "guest",
+        "id": "ad6b03cc-b9f3-48ae-9406-2ad168afbe01",
+        "isFixed": true
       }
-    ]
+    }
   }]
 }
 ```
@@ -67,16 +89,28 @@ Retrieve information about users you have access to. If you want access to other
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
-`email`<br/>*string* | The email of the user
-`firstName`<br/>*string* | The first name of the user
-`lastName`<br/>*string* | The last name of the user
-`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
+`id`<br/>*UUID* | The id of the user.
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created.
+`email`<br/>*string* | The email of the user.
+`firstName`<br/>*string* | The first name of the user.
+`lastName`<br/>*string* | The last name of the user.
+`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs.
+`primaryRoleBinding`<br/>*RoleBinding* | The primary role assigned to this user. This role will always be a fixed role.
 `serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
 `status`<br/>*string* | The current status of the user.
 `userName`<br/>*string* | The username of the user
+`timezone`<br/>*string* | The timezone of the user.
+`locale`<br/>*string* | The language set for the user.
+`lastLogin`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the last login by the user.
+`lastFailedLogin`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the last failed login by the user.
+`loginCount`<br/>*integer* | The count of successful logins for that user.
+`failedLoginCount`<br/>*integer* | The count of failed logins attempted by the user.
+`isBusinessContact`<br/>*boolean* | Indicates whether the user is a business contact.
+`isTechnicalContact`<br/>*boolean* | Indicates whether the user is a technical contact.
+`version`<br/>*integer* | The version of the user.
+`receivesEmailNotifications`<br/>*boolean* | Indicates whether the user email notifications.
+`canResendUserCreationEmail`<br/>*boolean* | Indicates whether the user creation email can be sent to the user.
+`backupCodesRemaining`<br/>*integer* | The number of backup codes remaining for the user.
 
 <!-------------------- GET USER -------------------->
 
@@ -101,21 +135,11 @@ curl "https://cloudmc_endpoint/api/v2/users/fdf60a19-980d-4380-acab-914485111305
     "email": "frodo@cloud.mc",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "status": "ACTIVE",
-    "primaryRoleBinding": {
-      "id": "36d347e3-e3fa-4e6b-be4d-a12c4dec5b1c",
-      "role": {
-        "id": "4a1a44f3-ea74-4952-b9ef-ff3163c329d9",
-        "name": "admin",
-      },
-    },
+    "locale": "en",
     "organization": {
       "id": "c64dcd1d-9123-45e5-ad00-5d635c49176b",
       "name": "The Shire"
     },
-    "environments": [{
-      "id": "55724a36-4817-4cd3-927e-57d8a8b41eb8",
-      "name": "hobbiton"
-    }],
     "serviceConnections": [
       {
         "serviceCode": "cs-acs-dev2",
@@ -132,19 +156,27 @@ curl "https://cloudmc_endpoint/api/v2/users/fdf60a19-980d-4380-acab-914485111305
         "type": "cloudstack"
       }
     ],
-    "roles": [
-      {
-        "id": "5f0a4f20-3537-4bcd-81fe-2b74fd4c07e0",
-        "name": "End-User"
-      },
-      {
-        "id": "0b9159cd-81ac-48d1-be8a-7595a1617c94",
-        "name": "Read-Only",
-        "environment": {
-          "id": "55724a36-4817-4cd3-927e-57d8a8b41eb8"
-        }
+     "lastLogin": "2022-05-20T15:56:27.000Z",
+    "lastFailedLogin": "2022-04-16T18:50:21.000Z",
+    "loginCount": 76,
+    "failedLoginCount": 10,
+    "isBusinessContact": false,
+    "isTechnicalContact": false,
+    "tfaEnabled": false,
+    "deleted": false,
+    "receivesEmailNotifications": false,
+    "version": 1,
+    "canResendUserCreationEmail": true,
+    "backupCodesRemaining": 0,
+    "primaryRoleBinding": {
+      "id": "013b40ca-9837-4233-b28e-09f5828958e5",
+      "role": {
+        "isSystem": true,
+        "name": "guest",
+        "id": "ad6b03cc-b9f3-48ae-9406-2ad168afbe01",
+        "isFixed": true
       }
-    ]
+    }
   }
 }
 ```
@@ -153,18 +185,29 @@ Retrieve information about a specific user. If you want access to other users in
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | The id of the user
-`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
-`email`<br/>*string* | The email of the user
-`environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
-`firstName`<br/>*string* | The first name of the user
-`lastName`<br/>*string* | The last name of the user
-`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
+`id`<br/>*UUID* | The id of the user.
+`creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created.
+`email`<br/>*string* | The email of the user.
+`firstName`<br/>*string* | The first name of the user.
+`lastName`<br/>*string* | The last name of the user.
+`organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs.
 `primaryRoleBinding`<br/>*RoleBinding* | The primary role assigned to this user. This role will always be a fixed role.
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
 `serviceConnections`<br/>*Array[[ServiceConnection](#administration-service-connections)]* | The service connection of the user<br/>*includes*: `id`, `name`, `serviceCode`, `type`, and `state`
 `status`<br/>*string* | The current status of the user.
 `userName`<br/>*string* | The username of the user
+`timezone`<br/>*string* | The timezone of the user.
+`locale`<br/>*string* | The language set for the user.
+`lastLogin`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the last login by the user.
+`lastFailedLogin`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the last failed login by the user.
+`loginCount`<br/>*integer* | The count of successful logins for that user.
+`failedLoginCount`<br/>*integer* | The count of failed logins attempted by the user.
+`isBusinessContact`<br/>*boolean* | Indicates whether the user is a business contact.
+`isTechnicalContact`<br/>*boolean* | Indicates whether the user is a technical contact.
+`version`<br/>*integer* | The version of the user.
+`receivesEmailNotifications`<br/>*boolean* | Indicates whether the user email notifications.
+`canResendUserCreationEmail`<br/>*boolean* | Indicates whether the user creation email can be sent to the user.
+`backupCodesRemaining`<br/>*integer* | The number of backup codes remaining for the user.
+`identityProviderUsers`<br/>*Array* | A list of objects containing the ids of users associated with the identity provider, and their subject ids.
 
 
 <!-------------------- CREATE USER -------------------->
@@ -197,19 +240,12 @@ curl -X POST "https://cloudmc_endpoint/api/v2/users" \
   "organization": {
     "id": "645cf4ce-3699-40c5-a1a8-0b3e945f49ee"
   },
-  "roles": [
-    {
-      "id": "dd01c908-371c-4ec5-9fd7-80b1bfac8975"
-    }
-  ]
 }
 ```
 
 Create a user in a specific organization.
 
 Users are created asynchronously on the underlying service(s) and progress is reflected in the state of the user's service connection(s).
-
-There are two different types of [roles](#administration-roles) a user can be assigned. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine his access rights in that environment.
 
 You will need the `Create a new user` permission to execute this operation.
 
@@ -224,7 +260,6 @@ Required | &nbsp;
 Optional | &nbsp;
 -------- | -----------
 `organization`</br>*[Organization](#administration-organization)* | Organization in which the user will be created. *Defaults to your organization*.<br/>*required:* `id`
-`roles`<br/>*Array[[Role](#administration-roles)]* | The system and environment roles to give to the user.<br/>*required*: `id`
 
 Response | &nbsp;
 ---------- | -----------
@@ -302,15 +337,10 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/users/fdf60a19-980d-4380-acab-91448
       "id": "4a1a44f3-ea74-4952-b9ef-ff3163c329d9",
     },
   },
-  "roles": [
-    {
-      "id": "dd01c908-371c-4ec5-9fd7-80b1bfac8975"
-    }
-  ]
 }
 ```
 
-Update a specific user. It is important to note that updating the list of roles will override the previous one. You will the `Users update` permission to execute this operation.
+Update a specific user. You will need the `Users update` permission to execute this operation.
 
 Optional | &nbsp;
 -------- | -----------
@@ -319,7 +349,6 @@ Optional | &nbsp;
 `lastName`<br/>*string* | The new last name of the user
 `primaryRoleBinding.role.id`<br/>*UUID* | The id of the primary role to assign to this user
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
-`roles`<br/>*Array[[Role](#administration-roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 
 ##### Returns
 
@@ -345,11 +374,7 @@ Delete a specific user. You will need the `Delete an existing user` permission t
 
 ```shell
 # Delete a user
-<<<<<<< HEAD
 curl "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
-=======
-curl "https://cloudmc_endpoint/api/v1/users/fdf60a19-980d-4380-acab-914485111305" \
->>>>>>> cmc-dev
    -X DELETE -H "MC-Api-Key: your_api_key"
 ```
 
@@ -379,12 +404,8 @@ Response                  | &nbsp;
 
 ```shell
 # Unlock a user that was locked from the system
-<<<<<<< HEAD
 
 curl "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975/unlock" \
-=======
-curl "https://cloudmc_endpoint/api/v1/users/fdf60a19-980d-4380-acab-914485111305/unlock" \
->>>>>>> cmc-dev
    -X POST -H "MC-Api-Key: your_api_key"
 
 ```
