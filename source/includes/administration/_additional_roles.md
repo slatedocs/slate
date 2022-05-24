@@ -20,7 +20,7 @@ TAGS_ANYMATCH | Applies the role on all organizations that are tagged with at le
 
 ```shell
 # Get additional role of user
-curl -X GET "https://cloudmc_endpoint/v2/users/:id/additional_roles" \
+curl -X GET "https://cloudmc_endpoint/api/v2/users/:id/additional_roles" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json"
 
@@ -33,6 +33,7 @@ curl -X GET "https://cloudmc_endpoint/v2/users/:id/additional_roles" \
         "id": "ed18cdd0-0fa0-464d-a993-e689d39dfe2e",
         "creationDate": "2019-06-06T15:01:22.000Z",
         "scopeQualifier": "ORG_BASE",
+        "primary": false,
         "role": {
             "id": "cc71a40b-d90b-40db-b724-08d71f5179b5",
             "name": "user",
@@ -64,6 +65,7 @@ Attributes | &nbsp;
 `role`<br/>*[Role](#administration-roles)* | The role to apply on the target scope
 `organization`<br/>*[Organization](#administration-organizations)* | The organization of the additional role. Only present on scopes that target a specific organization.<br/>*includes*: `id`, `name`, `entryPoint`
 `user`<br/>*[User](#administration-users)* | The user that the additional role is applied on<br/>*includes*: `id`, `username`, `firstName`, `lastName`, `email`
+`primary`<br/>*boolean* | Indicates whether the role is primary.
 
 
 ### Assign additional role to user
@@ -72,7 +74,7 @@ Attributes | &nbsp;
 
 ```shell
 # Assign an additional role to user
-curl -X POST "https://cloudmc_endpoint/v2/users/:id/additional_roles" \
+curl -X POST "https://cloudmc_endpoint/api/v2/users/:id/additional_roles" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json"
    -d "[request_body]"
