@@ -234,7 +234,7 @@ curl -X POST "https://cloudmc_endpoint/api/v1/organizations" \
 
 Required | &nbsp;
 ---- | ----
-`name`<br/>*string*  | The name of the organization. Must be between 3 and 50 (inclusive) and the first character must be alphanumeric.
+`name`<br/>*string*  | The name of the organization. Must be between 2 and 50 (inclusive) and the first character must be alphanumeric.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 
 
@@ -277,7 +277,7 @@ curl -X PUT "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-98
 
 Optional | &nbsp;
 ---- | ----
-`name`<br/>*string*  | The name of the organization. Must be between 3 and 50 (inclusive) and the first character must be alphanumeric.
+`name`<br/>*string*  | The name of the organization. Must be between 2 and 50 (inclusive) and the first character must be alphanumeric.
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the CloudMC URL : `[entryPoint].CloudMC`.
 `serviceConnections`<br/>Array[[ServiceConnection](#administration-service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. <br/>_Read below (after the request parameter list) for more details._<br/>*required attributes of the service connection:* `id`
 `tags`<br/>*Array[object]* | Tags associated to the organization. Tags provided in the request cannot be system tags. Must have the `Reseller: Organizations metadata: Manage` permission. User cannot modify tags of their own (non-root) organization. <br/>*required* : `id` or `name`
