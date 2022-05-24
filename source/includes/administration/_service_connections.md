@@ -12,23 +12,58 @@ Service connections are the services that you can create resources for (e.g. com
   "data":[{
     "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
     "serviceCode": "compute-qc",
+    "creationDate": "2021-12-09T21:02:16.000Z",
     "name": "Compute - Québec",
     "type": "CloudCA",
     "status": {  
       "lastUpdated": "2017-08-15T12:00:00.000Z",
       "reachable": true
-    }
+    },
+    "organization": {
+			"name": "System",
+			"id": "5d841eb6-5913-4244-b001-917228e7aa64"
+		},
+    "metricsEnabled": true,
+    "supportsQuotas": true,
+    "supportsPricingV2": true,
+    "supportsPolicies": true,
+    "hasWidgets": false,
+    "supportsUsage": true,
+    "supportsInfra": true,
+    "lastUsageRecord": "2022-03-28T18:59:59.000Z",
+    "quotas": [{
+			"name": "DefaultQuota",
+			"id": "081b1ebb-16c4-49e0-8120-a5b8b356b269"
+		},
+		{
+			"name": "CsQuota",
+			"id": "3734dfed-9d43-4543-ac01-bdd32875e0eb"
+		}],
   }]
 }
 ```
+
+List service connections that are owned by a organization.
 
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The id of the service connection.
 `serviceCode`<br/>*string* | The service code of the service connection. It is used in the endpoint of the services API.
+`creationDate`<br/>*string* | The date the service connection was created.
 `name`<br/>*string* | The name of the service connection.
 `type`<br/>*string* | The type of the service connection.
 `status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`.
+`organization`<br/>*Object* | Organization that owns this service connection.<br/>*includes*: `id`, `name`
+`metricsEnabled`<br/>*boolean* | Is metric collection allowed on this service connection.
+`supportsQuotas`<br/>*boolean* | Are quotas supported on this service connection.
+`supportsPricingV2`<br/>*boolean* | Is the V2 pricing engine supported on this service connection.
+`supportsPolicies`<br/>*boolean* | Are policies supported on this service connection.
+`supportsUsage`<br/>*boolean* | Is usage collection supported on this service connection.
+`supportsInfra`<br/>*boolean* | Is infra supported on this service connection.
+`hasWidgets`<br/>*boolean* | Does this service connection have widgets.
+`lastUsageRecord`<br/>*string* | The date which the latest usage record was recorded.
+`quota`<br/>*Array[object]* | The list of quota assigned to the organization.<br/>*includes*: `id`, `name`
+
 
 Optional query parameters | &nbsp;
 ---------- | -----
@@ -45,23 +80,57 @@ Optional query parameters | &nbsp;
   "data":[{
     "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
     "serviceCode": "compute-qc",
+    "creationDate": "2021-12-09T21:02:16.000Z",
     "name": "Compute - Québec",
     "type": "CloudCA",
     "status": {  
       "lastUpdated": "2017-08-15T12:00:00.000Z",
       "reachable": true
-    }
+    },
+    "organization": {
+			"name": "System",
+			"id": "5d841eb6-5913-4244-b001-917228e7aa64"
+		},
+    "metricsEnabled": true,
+    "supportsQuotas": true,
+    "supportsPricingV2": true,
+    "supportsPolicies": true,
+    "hasWidgets": false,
+    "supportsUsage": true,
+    "supportsInfra": true,
+    "lastUsageRecord": "2022-03-28T18:59:59.000Z",
+    "quotas": [{
+			"name": "DefaultQuota",
+			"id": "081b1ebb-16c4-49e0-8120-a5b8b356b269"
+		},
+		{
+			"name": "CsQuota",
+			"id": "3734dfed-9d43-4543-ac01-bdd32875e0eb"
+		}],
   }]
 }
 ```
+
+Fetch a service connection.
 
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The id of the service connection.
 `serviceCode`<br/>*string* | The service code of the service connection. It is used in the endpoint of the services API.
+`creationDate`<br/>*string* | The date the service connection was created.
 `name`<br/>*string* | The name of the service connection.
 `type`<br/>*string* | The type of the service connection.
 `status`<br/>*Object* | Status of the service connection. Tells you if the service is up.<br/>*includes*: `lastUpdated`, `reachable`.
+`organization`<br/>*Object* | Organization that owns this service connection.<br/>*includes*: `id`, `name`
+`metricsEnabled`<br/>*boolean* | Is metric collection allowed on this service connection.
+`supportsQuotas`<br/>*boolean* | Are quotas supported on this service connection.
+`supportsPricingV2`<br/>*boolean* | Is the V2 pricing engine supported on this service connection.
+`supportsPolicies`<br/>*boolean* | Are policies supported on this service connection.
+`supportsUsage`<br/>*boolean* | Is usage collection supported on this service connection.
+`supportsInfra`<br/>*boolean* | Is infra supported on this service connection.
+`hasWidgets`<br/>*boolean* | Does this service connection have widgets.
+`lastUsageRecord`<br/>*string* | The date which the latest usage record was recorded.
+`quota`<br/>*Array[object]* | The list of quota assigned to the organization.<br/>*includes*: `id`, `name`
 
 <!-------------------- GET APIINFO -------------------->
 
@@ -83,19 +152,23 @@ curl -X GET \
         "fields": [{
             "key": "endpoint",
             "value": "https://your_endpoint.com/auth",
-            "sensitive": false
+            "sensitive": false,
+            "environmentSpecific": false
         }, {
             "key": "api_key",
             "value": "my_api_key",
-            "sensitive": true
+            "sensitive": true,
+            "environmentSpecific": false
         }, {
             "key": "secret_key",
             "value": "my_secret_key",
-            "sensitive": true
+            "sensitive": true,
+            "environmentSpecific": false
         }, {
             "key": "project_id",
             "value": "079bdead-61b5-4b38-86ed-dbbf963808ec",
-            "sensitive": false
+            "sensitive": false,
+            "environmentSpecific": false
         }]
     }
 }
@@ -111,7 +184,7 @@ Query Parameters (*required*) | &nbsp;
 Attributes | &nbsp;
 ---- | -----------
 `canRegenerateCredentials`<br/>*boolean* | True if the user can regenerate their API keys for the service.
-`fields`<br/>*Array[object]* | An array of objects that describe the different parameters (*e.g. endpoint, api_key, secret_key, project_id*) comprised in the users' API credentials.<br/>*includes*: `key`, `value` and `sensitive`
+`fields`<br/>*Array[object]* | An array of objects that describe the different parameters (*e.g. endpoint, api_key, secret_key, project_id*) comprised in the users' API credentials.<br/>*includes*: `key`, `value`, `sensitive` and `environmentSpecific`
 
 <!-------------------- GET PARAMETERS -------------------->
 
@@ -151,8 +224,10 @@ Retrieve a service connection's parameters, used to create and manage connection
 Attributes | &nbsp;
 ---- | -----------
 `data`<br/>*Array[object]* | An array of objects that describe the service connection parameters.<br/>*includes*: `parameter`, `id`, `value` and `serviceConnection.id`
-<!-------------------- GET SERVICE CONNECTION PARAMETERS -------------------->
-### Retrieve connection parameters
+
+
+<!-------------------- GET SERVICE DESCRIPTOR PARAMETERS -------------------->
+### Retrieve descriptor parameters
 
 `GET /services/descriptors/:pluginType/parameters`
 
@@ -186,6 +261,8 @@ curl -X GET \
         }
       ],
       "required": true,
+      "disabled": false,
+      "sectionsToReload": [],
       "type": "select"
     },
     {
@@ -193,12 +270,16 @@ curl -X GET \
       "label": "gcp.service_configuration.parameters.parent_id.label",
       "descriptionLabel": "gcp.service_configuration.parameters.parent_id.description",
       "required": true,
+      "disabled": false,
+      "sectionsToReload": [],
       "type": "text"
     },
     {
       "field": "jsonCredentials",
       "label": "gcp.service_configuration.parameters.json_credentials.label",
       "required": true,
+      "disabled": false,
+      "sectionsToReload": [],
       "type": "textarea"
     },
     {
@@ -206,6 +287,8 @@ curl -X GET \
       "label": "gcp.service_configuration.parameters.billing_account.label",
       "descriptionLabel": "gcp.service_configuration.parameters.billing_account.description",
       "required": true,
+      "disabled": false,
+      "sectionsToReload": [],
       "type": "text"
     }
   ]
@@ -219,6 +302,9 @@ Attributes | &nbsp;
 `type`<br/>*string* | The type of the connection parameter. Possible values are `text`, `textarea`, `select`, `checkbox`.
 `options`<br/>*Array[select options]* | A list of possible options for parameters of `type` = `select`
 `required`<br/>*boolean* | An indication as to whether or not this parameter is a required one when creating a service connection.
+`disabled`<br/>*boolean* | Whether or not this parameter is a disabled.
+`options`<br/>*Array[string]* | A list of sections to reload when this field is modified.
+
 
 This call returns a list of parameters that must be provided _(when creating a new `ServiceConnection`)_ for CloudMc to be able to successfully connect to service. While, the response includes a variety of information, the `field` attribute of each paramter object returned is the parameter identifier. This is used together with some value to provide the connection parameters when [creating a new `ServiceConnection`](#administration-create-service-connection).
 
@@ -243,6 +329,13 @@ curl -X POST "https://cloudmc_endpoint/api/v1/services/connections" \
    "name":"GCP-AmericasRegion",
 	 "type":"gcp",
 	 "serviceCode":"gcp-americas",
+   "trialEnabled": false,
+	 "usageEnabled": false,
+	 "metricsEnabled": false,
+	 "commitmentTrackingEnabled": false,
+	 "groupedParameters": [],
+   "dependentConnection": null,
+	 "locations": [],
    "organization": {
 		 "id": "9571b279-abaf-4a37-9f39-85d1a915af7d"
 	 },
@@ -283,7 +376,19 @@ Required | &nbsp;
 `type`<br/>*string* | The type of new service connection. _(e.g. gcp, azure, aws, cloudca, swift, etc.)_
 `serviceCode`<br/>*string* | A globally unique code that identifies this service connection.
 `organization`<br/>*[Organization](#administration-organizations)* | The organization that the service connection should be created in. <br/>*required attributes of the organization*: `id`
-`parameters`<br/>*Array[[connection parameters](#administration-retrieve-connection-parameters)]* | An array of connection parameters specific to this connection type along with their values. This array should contain all `required` parameters from the list returned from the [retrieve connection parameters](#administration-retrieve-connection-parameters) API. <br/>*required attributes per parameter*: `parameter`, `value`.
+`parameters`<br/>*Array[connection parameters](#administration-retrieve-connection-parameters)]* | An array of connection parameters specific to this connection type along with their values. This array should contain all `required` parameters from the list returned from the [retrieve connection parameters](#administration-retrieve-connection-parameters) API. <br/>*required attributes per parameter*: `parameter`, `value`.
+
+
+Optional query parameters | &nbsp;
+---------- | -----
+`trialEnabled`<br/>*string* | Are trials allowed on this service connection.
+`usageEnabled`<br/>*string* | Is usage collection enabled on this service connection.
+`metricsEnabled`<br/>*string* | Is metric collection enabled on this service connection.
+`commitmentTrackingEnabled`<br/>*string* | Is commitment tracking enabled on this service connection.
+`dependentConnection`<br/>*object* | The dependent connection if there is one.
+`locations`<br/>*Array[object]* | Locations of a service connection region.<br/>*includes*: `name`, `lat` and `lng`
+`groupedParameters`<br/>*Array[object]* | An array of grouped connection parameters specific to this connection type along with their values.
+
 
 <!-------------------- TEST NEW SERVICE CONNECTION -------------------->
 
@@ -347,7 +452,9 @@ curl "https://cloudmc_endpoint/api/v1/services/connections/03bc22bd-adc4-46b8-98
     "name": "general",
     "label": "general",
     "optional": false,
-  },{
+    "subsection": false
+  },
+  {
     "name": "trials",
     "formElements": [{
       "label": "cloudstack.service_configuration.policies.trials.network_config_for_trial_env.label",
@@ -366,6 +473,7 @@ curl "https://cloudmc_endpoint/api/v1/services/connections/03bc22bd-adc4-46b8-98
       }],
       "disabled": false,
       "required": true,
+      "subsection": false,
       "field": "trials:network_config_for_trial_envs",
       "reloadOnChange": false,
       "sectionsToReload": [],
@@ -384,12 +492,15 @@ curl "https://cloudmc_endpoint/api/v1/services/connections/03bc22bd-adc4-46b8-98
 }
 ```
 
+Retrieve the policy descriptors of an service connection.
+
 Attributes | &nbsp;
 ---- | -----------
 `name`<br/>*string* | The name of the policy section.
 `label`<br/>*string* | The label key for the policy section name.
 `formElements`<br/>*Array* | The FormElements returned by the policy section. Form elements are only returned for a given section if the query param `section` matches the name of a policy section.  
 `optional`<br/>*boolean* | Specifies if the policy section is required or not.
+`subsection`<br/>*boolean* | Specifies if the policy has a subsection.
 `entity`<br/> *Object* | The service connection entity which includes a string to string map of the `ServiceConnectionPolicy::name` to `ServiceConnectionPolicy::value`.
 
 
