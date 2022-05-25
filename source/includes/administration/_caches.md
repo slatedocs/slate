@@ -1,4 +1,4 @@
-## Fetcher Cache
+## Caches
 
 Whenever any entity objects is retrieved from the backend-service, the result of the fetch operation will be automatically cached temporarily to avoid any subsequent calls to the backend service.
 
