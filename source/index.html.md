@@ -610,13 +610,16 @@ const data = {
   },
 };
 
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data),
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -765,13 +768,16 @@ const data = {
   },
 };
 
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data),
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/carbon-dioxide-conversion",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -879,12 +885,15 @@ curl -X GET \
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane",
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -1099,12 +1108,15 @@ curl -X GET \
 
 ```javascript
 const fetch = require("node-fetch");
-fetch("https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
+fetch(
+  "https://dynm-api.herokuapp.com/carbon-footprint/energy-conversion?fuel_type=propane",
+  {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+)
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);
@@ -2440,7 +2452,7 @@ print(response.text)
             "refrigerant"=> "Methane",
             "calculation_method"=> "Sales Approach (Product)",
             "equipment_type"=> "",
- corporate/           "inventory_start"=> 50,
+            "inventory_start"=> 50,
             "inventory_end"=> 1,
             "purchased"=> 0,
             "gwp_dataset_revision"=> "2007 IPCC Fifth Assessment",
@@ -2873,7 +2885,7 @@ The Community API is designed to support cities in reporting city-wide GHG emiss
 > REQUEST
 
 ```shell
-curl --location --request POST 'https://dynm-api.herokuapp.com/community/stationary-combustion' \
+curl --location --request POST 'https://dynm-api.herokuapp.com/community/stationary' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "gpc_ref": "I.1.1",
@@ -2975,7 +2987,7 @@ const data = {
   ],
 };
 
-fetch("https://dynm-api.herokuapp.com/community/stationary-combustion", {
+fetch("https://dynm-api.herokuapp.com/community/stationary", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -2995,7 +3007,7 @@ fetch("https://dynm-api.herokuapp.com/community/stationary-combustion", {
 import requests
 import json
 
-url = "https://dynm-api.herokuapp.com/community/stationary-combustion"
+url = "https://dynm-api.herokuapp.com/community/stationary"
 
 payload = json.dumps({
   "gpc_ref": "I.1.1",
@@ -3060,7 +3072,7 @@ print(response.text)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/stationary-combustion',
+  CURLOPT_URL => 'https://dynm-api.herokuapp.com/community/stationary',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -3141,7 +3153,7 @@ echo $response;
 
 Endpoint for recording activity and emissions data for Stationary energy sources.
 
-`POST https://dynm-api.herokuapp.com/community/stationary-combustion`
+`POST https://dynm-api.herokuapp.com/community/stationary`
 
 <aside>Request params</aside>
 
