@@ -136,10 +136,7 @@ curl "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afdd
       "billableStartDate": "2017-08-15T12:00:00.000Z",
       "isBillable": true,
       "billingMode": "CREDIT_CARD",
-      "hashIterations": 100,
-      "hashAlgorithmName": "SHA-512",
       "isReseller": false,
-      "version": 4,
       "tags": [
          {
             "system": true,
@@ -179,7 +176,6 @@ curl "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afdd
         }
       ],
       "ldap": {
-        "version": 2,
         "deleted": false,
         "id": "4de3ed48-0b9c-43c8-a93a-244d763b6861"
       },
@@ -214,9 +210,6 @@ Attributes | &nbsp;
 `billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization.
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise.
 `quotas`<br/>*Array[Quotas]* | A list of quotas that associated to the organization.
-`hashIterations`<br/>*integer* | The hash iteration of the organization.
-`hashAlgorithmName`<br/>*String* | Hash algorithm name of the organization.
-`version`<br/>*long* | The version of the organization.
 `billingMode`<br/>*enum* | The billing mode of the organization. It could be either "MANUAL" or "CREDIT_CARD". Default value is "MANUAL".
 `tags`<br/>*Array[object]* | Tags associated to the organization. <br/>*includes*: `id`*UUID*, `name`*string*, `system`*boolean*
 `parent`<br/>*[Organization](#administration-organizations)* | If the organization is a sub-organization, it will have its `parent` organization. *includes*:`id`,`name`.
@@ -311,7 +304,6 @@ Response | &nbsp;
     "hashIterations": 100,
     "isTrial": false,
     "creationDate": "2020-04-14T18:46:15.000Z",
-    "version": 2,
     "tags": [],
     "isDbAuthentication": true,
     "deleted": false,
@@ -320,14 +312,15 @@ Response | &nbsp;
 			"id": "5d841eb6-5913-4244-b001-917228e7aa64"
 		},
     "ldap": {
-      "version": 1,
       "deleted": false,
       "id": "0bf68b3a-8248-487b-a855-1003874339e7"
     },
     "name": "Shopify",
     "id": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
     "entryPoint": "shopify"
-  }
+  },
+  "taskId": "aee1862d-c187-43eb-be12-754c24022dfc",
+  "taskStatus": "PENDING"
 }
 ```
 
@@ -403,17 +396,13 @@ Response | &nbsp;
         }
       }
     ],
-    "hashAlgorithmName": "SHA-512",
-    "hashIterations": 100,
     "isTrial": false,
     "creationDate": "2020-04-14T18:46:15.000Z",
-    "version": 2,
     "tags": [],
     "isDbAuthentication": true,
     "deleted": false,
     "serviceConnections": [],
     "ldap": {
-      "version": 1,
       "deleted": false,
       "id": "0bf68b3a-8248-487b-a855-1003874339e7"
     },
@@ -606,11 +595,8 @@ curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e30
         "organization": {
           "lineage": "87895f43-51c1-43cc-b987-7e301bf5b86a",
           "notes": "",
-          "hashAlgorithmName": "SHA-512",
-          "hashIterations": 100,
           "isTrial": false,
           "creationDate": "2020-04-30T21:25:49.000Z",
-          "version": 2,
           "isLdapAuthentication": false,
           "isBillable": false,
           "isDbAuthentication": true,
@@ -856,7 +842,6 @@ curl -X GET "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-98
       "reachable": true,
       "lastUpdated": null,
       "message": null,
-      "version": null
     },
     "quotas": []
   },
@@ -872,7 +857,6 @@ curl -X GET "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-98
       "reachable": true,
       "lastUpdated": null,
       "message": null,
-      "version": null
     },
     "quotas": [
       { ... },
