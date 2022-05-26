@@ -10,7 +10,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/nics"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/nics"
 ```
 > The above command returns a JSON structured like this:
 
@@ -75,7 +75,7 @@ Query Parameters | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/nics/fff1f45a-8350-4c87-be43-947b96d01ebd"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/nics/fff1f45a-8350-4c87-be43-947b96d01ebd"
 ```
 > The above command returns a JSON structured like this:
 
@@ -134,7 +134,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/nics"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/nics"
 ```
 > Request body example:
 
@@ -165,7 +165,7 @@ Required | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id</code>
@@ -182,7 +182,7 @@ Delete an existing NIC. The NIC you're trying to delete must not be the default 
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2?operation=setDefault"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2?operation=setDefault"
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id?operation=setDefault</code>

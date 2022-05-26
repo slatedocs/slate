@@ -9,7 +9,7 @@ A route is a path that network traffic takes from an [instance](#gcp-instances) 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routes"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/routes"
 ```
 
 > The above command returns a JSON structured like this:
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/gcp/test-area/routes/6918030089270271318"
+    "https://cloudmc_endpoint/api/v2/services/gcp/test-area/routes/6918030089270271318"
 ```
 > The above command returns a JSON structured like this:
 

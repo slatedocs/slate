@@ -9,7 +9,7 @@ A backend service directs traffic to backends, such as [instance groups](#gcp-in
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/backendservices"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/backendservices"
 ```
 > The above command returns a JSON structured like this:
 
@@ -90,7 +90,7 @@ Retrieve a list of all backend services in an [environment](#administration-envi
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/backendservices"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/backendservices"
 ```
 > The above command returns a JSON structured like this:
 
@@ -167,7 +167,7 @@ Retrieve a backend service in an [environment](#administration-environments).
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/backendservices"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/backendservices"
 ```
 > Request body example:
 
@@ -204,7 +204,7 @@ Create a new backend service.
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/backendservices/2570199154720991429"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/backendservices/2570199154720991429"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/backendservices/:id</code>

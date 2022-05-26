@@ -107,7 +107,7 @@ You will need to have `Users: Manage` permission to execute this operation.
 
 ```shell
 # Remove an additional role from user
-curl -X DELETE "https://cloudmc_endpoint/v2/users/:user_id/additional_roles/:id" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/users/:user_id/additional_roles/:id" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json"
 

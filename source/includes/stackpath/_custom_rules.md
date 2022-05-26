@@ -9,7 +9,7 @@ Manage custom rules used to control and limit access to your sites.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/customrules?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -97,7 +97,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1580676?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/customrules/1580676?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -165,7 +165,7 @@ Attributes | &nbsp;
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+    "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/customrules?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > Request body example for a custom rule with conditions:
 
@@ -249,14 +249,14 @@ Optional | &nbsp;
 ##### Create a WAF rule based on a request made to an existing site
 
 ```
-POST "https://cloudmc_endpoint/api/v1/services/{serviceCode}/{environment}/wafrequests/{wafrequestId}?operation=create_rule&siteId={siteId}"
+POST "https://cloudmc_endpoint/api/v2/services/{serviceCode}/{environment}/wafrequests/{wafrequestId}?operation=create_rule&siteId={siteId}"
 ```
 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath-aaaa/env-1/wafrequests/197d190d415bea5ea1385a0de6f3bceb-452444?operation=create_rule&siteId=5ea00192-30f0-4da0-b9d9-461baa3dde89"
+  "https://cloudmc_endpoint/api/v2/services/stackpath-aaaa/env-1/wafrequests/197d190d415bea5ea1385a0de6f3bceb-452444?operation=create_rule&siteId=5ea00192-30f0-4da0-b9d9-461baa3dde89"
 ```
 > Request body example for the custom rule:
 
@@ -301,7 +301,7 @@ Required | &nbsp;
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1576836?siteId=1c6c127a-bfa4-4c85-a329-13c0581b41eb"
+  "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/customrules/1576836?siteId=1c6c127a-bfa4-4c85-a329-13c0581b41eb"
 ```
 > Request body example for a custom rule with conditions:
 
@@ -388,7 +388,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36"
 ```
 > The above command returns a JSON structured like this:
 
@@ -422,7 +422,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36&operation=enable"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36&operation=enable"
 ```
 > The above command returns a JSON structured like this:
 
@@ -454,7 +454,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36&operation=disable"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/customrules/1585477?siteId=1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36&operation=disable"
 ```
 > The above command returns a JSON structured like this:
 ```json

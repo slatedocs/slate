@@ -12,7 +12,7 @@ Retrieves metrics for a given metric id in a specified interval
 
 ```shell
 # Retrieve metrics for a given interval
-curl "https://cloudmc_endpoint/api/v1/metrics/stackpath-cox-dev/ingress_bandwidth?startDate=2021-08-12T10:50:46.386Z&endDate=2021-08-15T10:50:46.386Z&size=12&unit=hours&entityId=1923471a-6a72-474d-9e19-63075bc1020b" \
+curl "https://cloudmc_endpoint/api/v2/metrics/stackpath-cox-dev/ingress_bandwidth?startDate=2021-08-12T10:50:46.386Z&endDate=2021-08-15T10:50:46.386Z&size=12&unit=hours&entityId=1923471a-6a72-474d-9e19-63075bc1020b" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:

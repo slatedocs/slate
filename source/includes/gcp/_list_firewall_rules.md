@@ -3,7 +3,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "http://cloudmc_endpoint/v2/services/gcp-co/testing/firewallrules"
+   "http://cloudmc_endpoint/api/v2/services/gcp-co/testing/firewallrules"
 
 # The above command returns JSON structured like this:
 ```

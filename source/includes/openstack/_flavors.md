@@ -6,7 +6,7 @@ Flavors are available hardware configurations for instances. They store the info
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/flavors"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/flavors"
 ```
 > The above command returns a JSON structured like this:
 
@@ -53,7 +53,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/flavors/1d547941-1738-4d7b-a70b-b52a44ff18e5"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/flavors/1d547941-1738-4d7b-a70b-b52a44ff18e5"
 ```
 > The above command returns a JSON structured like this:
 

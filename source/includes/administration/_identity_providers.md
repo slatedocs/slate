@@ -11,7 +11,7 @@ Configure methods of authentication for your organizations.
 
 ```shell
 # Retrieve identity providers
-curl "https://cloudmc_endpoint/api/v1/identity_providers" \
+curl "https://cloudmc_endpoint/api/v2/identity_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -90,7 +90,7 @@ Create a new identity provider.
 
 ```shell
 # Creates a new identity provider
-curl -X POST "https://cloudmc_endpoint/rest/identity_providers" \
+curl -X POST "https://cloudmc_endpoint/api/v2/identity_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -175,7 +175,7 @@ Update an existing identity provider.
 
 ```shell
 # Updates an existing identity provider
-curl -X PUT "https://cloudmc_endpoint/rest/identity_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/identity_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -262,7 +262,7 @@ Delete an existing identity provider.
 
 ```shell
 # Deletes a specified identity provider
-curl -X DELETE "https://cloudmc_endpoint/rest/identity_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/identity_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command(s) return(s) JSON structured like this:
@@ -288,7 +288,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve default identity providers
-curl "https://cloudmc_endpoint/api/v1/identity_providers/default_providers" \
+curl "https://cloudmc_endpoint/api/v2/identity_providers/default_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:

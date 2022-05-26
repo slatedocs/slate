@@ -11,7 +11,7 @@ Retrieve a list of invoices belonging to the customers of the reseller specified
 
 ```shell
 # Retrieve customer invoices list
-curl "https://cloudmc_endpoint/rest/invoices/find/efd32752-c6f2-45cf-b494-cc6be8a45845/customer_invoices?includeAllSubOrgs=false&billingCycle=07-2021" \
+curl "https://cloudmc_endpoint/api/v2/invoices/find/efd32752-c6f2-45cf-b494-cc6be8a45845/customer_invoices?includeAllSubOrgs=false&billingCycle=07-2021" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -697,7 +697,7 @@ Retrieve the list of invoices associated with an organization.
 
 ```shell
 # Retrieve list of invoices of an organization
-curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-bca8-777a691e23c7&billingCycle=07-2021" \
+curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e3-bca8-777a691e23c7&billingCycle=07-2021" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -1376,7 +1376,7 @@ Retrieve the list of invoices associated with an organization as a csv report
 
 ```shell
 # Retrieve list of invoices of an organization
-curl "https://cloudmc_endpoint/rest/invoices?organization_id=289ec5fb-0970-44e3-bca8-777a691e23c7&billingCycle=07-2021" \
+curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e3-bca8-777a691e23c7&billingCycle=07-2021" \
    -H "MC-Api-Key: your_api_key"
    -H "Accept: text/csv"
 ```
@@ -1429,7 +1429,7 @@ Manually approve an invoice in the 'IN_REVIEW' state and issue the invoice to th
 
 ```shell
 # Approve a draft invoice
-curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/approve" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/approve" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -2136,7 +2136,7 @@ Download an invoice as a PDF file.
 
 ```shell
 # Download an invoice
-curl  -X GET 'https://cloudmc_endpoint/rest/invoices/download?invoice_id=3f7b7cca-d440-4c70-8ea7-ff23fe88b152' \
+curl  -X GET 'https://cloudmc_endpoint/api/v2/invoices/download?invoice_id=3f7b7cca-d440-4c70-8ea7-ff23fe88b152' \
   -H 'MC-Api-Key: your_api_key'
 ```
 
@@ -2157,7 +2157,7 @@ If the configuration changes made impact the invoice, it will be voided and a ne
 
 ```shell
 # Approve a draft invoice
-curl -X POST "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/flag" \
+curl -X POST "https://cloudmc_endpoint/api/v2/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/flag" \
    -H "MC-Api-Key: your_api_key"
 ```
 

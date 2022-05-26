@@ -6,7 +6,7 @@ Router interfaces connect a router to a network.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routerinterfaces?routerid=3de4f523-06ce-4955-acb0-b8e3d61ec582"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/routerinterfaces?routerid=3de4f523-06ce-4955-acb0-b8e3d61ec582"
 ```
 > The above command returns a JSON structured like this:
 
@@ -47,7 +47,7 @@ Retrieve a list of router interfaces associated with a router in an OpenStack en
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routerinterfaces/b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/routerinterfaces/b5f0cbbf-45f3-4e77-8a5c-90351f83e5f9"
 ```
 > The above command returns a JSON structured like this:
 
@@ -86,7 +86,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routerinterfaces"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/routerinterfaces"
 ```
 > Request body example:
 
@@ -112,7 +112,7 @@ Required          | Description
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/routerinterfaces/c14ed06b-6de9-4b3e-aac9-9e6c1406de9e"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/routerinterfaces/c14ed06b-6de9-4b3e-aac9-9e6c1406de9e"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/routerinterfaces/:id</code>

@@ -9,7 +9,7 @@ Deploy and manage Serverless Scripts used to interact with requests made to the 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/scripts?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/scripts?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -72,7 +72,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/scripts/439b145a-7c55-4a73-8cf2-d8faabfe6d22?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/scripts/439b145a-7c55-4a73-8cf2-d8faabfe6d22?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -156,7 +156,7 @@ Required | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/scripts?siteId=:siteId"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/scripts?siteId=:siteId"
 ```
 > Request body example for creating a script:
 
@@ -217,7 +217,7 @@ Edit a script in a given [environment](#administration-environments) for a given
 ```shell
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/scripts/dd207010-4570-43ee-9ff2-5421d2306b41?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/scripts/dd207010-4570-43ee-9ff2-5421d2306b41?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > Request body example for editing a script:
 
@@ -266,7 +266,7 @@ Delete a script in a given [environment](#administration-environments) for a giv
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/scripts/dd207010-4570-43ee-9ff2-5421d2306b41?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/scripts/dd207010-4570-43ee-9ff2-5421d2306b41?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 

@@ -374,7 +374,7 @@ Delete a specific user. You will need the `Delete an existing user` permission t
 
 ```shell
 # Delete a user
-curl "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
+curl "https://cloudmc_endpoint/api/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 ```
 
@@ -405,7 +405,7 @@ Response                  | &nbsp;
 ```shell
 # Unlock a user that was locked from the system
 
-curl "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975/unlock" \
+curl "https://cloudmc_endpoint/api/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975/unlock" \
    -X POST -H "MC-Api-Key: your_api_key"
 
 ```

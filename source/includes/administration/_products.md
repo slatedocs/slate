@@ -11,7 +11,7 @@ Retrieves a list of product catalogs configured in the system.
 
 ```shell
 # Retrieve product catalog list
-curl "https://cloudmc_endpoint/rest/product_catalogs" \
+curl "https://cloudmc_endpoint/api/v2/product_catalogs" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -120,7 +120,7 @@ Retrieve a product catalog's details.
 
 ```shell
 # Retrieve a product catalog's details
-curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://cloudmc_endpoint/api/v2/product_catalogs/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -229,7 +229,7 @@ Create a new product catalog.
 
 ```shell
 # Creates a new product catalog
-curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
+curl -X POST "https://cloudmc_endpoint/api/v2/product_catalogs" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -402,7 +402,7 @@ Changing a product definition affects how future usage charges will be calculate
 
 ```shell
 # Updates a product catalog
-curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -566,7 +566,7 @@ Delete an existing product catalog. Users may not delete a product catalog that 
 
 ```shell
 # Deletes a specified product catalog
-curl -X DELETE "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
    -H "MC-Api-Key: your_api_key"
 ```
 

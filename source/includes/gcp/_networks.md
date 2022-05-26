@@ -9,7 +9,7 @@ A network is an isolated network where you can place groups of resources, such a
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/networks"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/networks"
 ```
 > The above command returns a JSON structured like this:
 
@@ -69,7 +69,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/gcp/test-area/networks/6402509859159933821"
+    "https://cloudmc_endpoint/api/v2/services/gcp/test-area/networks/6402509859159933821"
 ```
 > The above command returns a JSON structured like this:
 
@@ -127,7 +127,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/networks"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/networks"
 ```
 
 > Request body example for network in auto subnet creation mode:
@@ -177,7 +177,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
   -H "mc-api-key: your_api_key" \
-  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/networks/6402509859159933821"
+  "https://cloudmc_endpoint/api/v2/services/gcp/test-area/networks/6402509859159933821"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>

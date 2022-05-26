@@ -10,7 +10,7 @@ Retrieve the feedback settings associated to an organization. If the `organizati
 
 ```shell
 # Retrieve the feedback settings
-curl "https://cloudmc_endpoint/api/v1/feedback/find?organizationId=fcda8d5a-0276-4de3-908f-b3bd0aff2491" \
+curl "https://cloudmc_endpoint/api/v2/feedback/find?organizationId=fcda8d5a-0276-4de3-908f-b3bd0aff2491" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -44,7 +44,7 @@ Retrieve the feedback settings associated to a feedback setting id.
 
 ```shell
 # Retrieve feedback settings
-curl "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38ffecfa4094" \
+curl "https://cloudmc_endpoint/api/v2/feedback/f4be2785-ec67-474c-af3a-38ffecfa4094" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -92,7 +92,7 @@ Create a new feedback settings. The support can either be through email or a Zen
 
 ```shell
 # Creates a new feedback settings
-curl -X POST "https://cloudmc_endpoint/api/v1/feedback" \
+curl -X POST "https://cloudmc_endpoint/api/v2/feedback" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -160,7 +160,7 @@ Updates the feedback settings of an organization. The support can either be thro
 
 ```shell
 # Updates an existing feedback settings for an organization
-curl -X PUT "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38ffecfa4094 \
+curl -X PUT "https://cloudmc_endpoint/api/v2/feedback/f4be2785-ec67-474c-af3a-38ffecfa4094 \
    -H "MC-Api-Key: your_api_key"
    -H "Content-Type: application/json" \
    -d "request-body"
@@ -230,7 +230,7 @@ Optional | &nbsp;
 Delete an existing feedback settings.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/api/v1/feedback/f4be2785-ec67-474c-af3a-38ffecfa4094" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/feedback/f4be2785-ec67-474c-af3a-38ffecfa4094" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -253,7 +253,7 @@ Checks if feedback settings is configured for an organization. If the `organizat
 
 ```shell
 # Check if feedback settings is configured
-curl "https://cloudmc_endpoint/api/v1/feedback/exists?organizationId=fcda8d5a-0276-4de3-908f-b3bd0aff2491" \
+curl "https://cloudmc_endpoint/api/v2/feedback/exists?organizationId=fcda8d5a-0276-4de3-908f-b3bd0aff2491" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -274,7 +274,7 @@ Check if a support email is configured for an organization. If the `organization
 
 ```shell
 # Check if support email is configured
-curl "https://cloudmc_endpoint/api/v1/support/exists?organizationId=fcda8d5a-0276-4de3-908f-b3bd0aff2491" \
+curl "https://cloudmc_endpoint/api/v2/support/exists?organizationId=fcda8d5a-0276-4de3-908f-b3bd0aff2491" \
    -H "MC-Api-Key: your_api_key"
 ```
 

@@ -12,7 +12,7 @@ Manage trials settings.
 
 ```shell
 # Retrieve trials settings
-curl "https://cloudmc_endpoint/rest/trials_settings" \
+curl "https://cloudmc_endpoint/api/v2/trials_settings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -82,7 +82,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve trial settings
-curl "https://cloudmc_endpoint/rest/trials_settings/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae" \
+curl "https://cloudmc_endpoint/api/v2/trials_settings/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -145,7 +145,7 @@ Attributes | &nbsp;
 
 ```shell
 # Updates an existing trial's settings
-curl -X PUT "https://cloudmc_endpoint/rest/trials_settings/:id" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/trials_settings/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -245,7 +245,7 @@ Manage trials through it lifecycle.
 
 ```shell
 # Retrieve trials
-curl "https://cloudmc_endpoint/rest/trials" \
+curl "https://cloudmc_endpoint/api/v2/trials" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -328,7 +328,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve trial
-curl "https://cloudmc_endpoint/rest/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae" \
+curl "https://cloudmc_endpoint/api/v2/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -428,7 +428,7 @@ Attributes | &nbsp;
 
 ```shell
 # Get trial remaining slots
-curl -X GET "https://cloudmc_endpoint/rest/trials/remaining" \
+curl -X GET "https://cloudmc_endpoint/api/v2/trials/remaining" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -454,7 +454,7 @@ Query Params | &nbsp;
 
 ```shell
 # Activate a trial
-curl -X PUT "https://cloudmc_endpoint/rest/trials/:id/activate" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/trials/:id/activate" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -468,7 +468,7 @@ Activate the trial for the provided id.
 
 ```shell
 # Extend a trial
-curl -X PUT "https://cloudmc_endpoint/rest/trials/:id/extend" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/trials/:id/extend" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -487,7 +487,7 @@ Query Params | &nbsp;
 
 ```shell
 # Extend a trial
-curl -X PUT "https://cloudmc_endpoint/rest/trials/:id/terminate" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/trials/:id/terminate" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -506,7 +506,7 @@ Query Params | &nbsp;
 
 ```shell
 # Deny a trial
-curl -X PUT "https://cloudmc_endpoint/rest/trials/:id/deny" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/trials/:id/deny" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -526,7 +526,7 @@ Deny the trial for the provided id. The body of the request is the reason for be
 
 ```shell
 # Cnvert to billable a trial
-curl -X PUT "https://cloudmc_endpoint/rest/trials/:id/convertToBillable" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/trials/:id/convertToBillable" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -546,7 +546,7 @@ Query Params | &nbsp;
 
 ```shell
 # Retrieve trial activities
-curl "https://cloudmc_endpoint/rest/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae/activity" \
+curl "https://cloudmc_endpoint/api/v2/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae/activity" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -617,7 +617,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve trial users
-curl "https://cloudmc_endpoint/rest/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae/users" \
+curl "https://cloudmc_endpoint/api/v2/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae/users" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -662,7 +662,7 @@ Attributes | &nbsp;
 
 ```shell
 # Resend trial email
-curl "https://cloudmc_endpoint/rest/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae/resend_email" \
+curl "https://cloudmc_endpoint/api/v2/trials/b41f2aa3-e2d1-48d8-9760-8b874c20e8ae/resend_email" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -688,7 +688,7 @@ Query Param | &nbsp;
 
 ```shell
 # Retrieve trial statuses
-curl "https://cloudmc_endpoint/rest/trials/statuses" \
+curl "https://cloudmc_endpoint/api/v2/trials/statuses" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:

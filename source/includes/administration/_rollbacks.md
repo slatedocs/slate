@@ -14,7 +14,7 @@ Retrives a list of rollback triggers for a reseller.
 
 ```shell
 # Retrieve rollback triggers
-curl "https://cloudmc_endpoint/rest/rollbacks?organization_id=23910576-d29f-4c14-b663-31d728ff49a5" \
+curl "https://cloudmc_endpoint/api/v2/rollbacks?organization_id=23910576-d29f-4c14-b663-31d728ff49a5" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -97,7 +97,7 @@ Retrives a rollback trigger's details.
 
 ```shell
 # Retrieve rollback triggers
-curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49a5" \
+curl "https://cloudmc_endpoint/api/v2/rollbacks/23910576-d29f-4c14-b663-31d728ff49a5" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -178,7 +178,7 @@ Rollbacks of all types will **not** impact issued, paid or overdue invoices. Onl
 
 ```shell
 # Retrieve rollback triggers
-curl "https://cloudmc_endpoint/rest/rollbacks/23910576-d29f-4c14-b663-31d728ff49a5" \
+curl "https://cloudmc_endpoint/api/v2/rollbacks/23910576-d29f-4c14-b663-31d728ff49a5" \
    -H "MC-Api-Key: your_api_key"
 ```
 

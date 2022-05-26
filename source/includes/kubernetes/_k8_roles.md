@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/roles"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/roles"
 ```
 
 > The above command returns a JSON structured like this:
@@ -63,7 +63,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/roles/role-name/role-namespace"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/roles/role-name/role-namespace"
 ```
 
 > The above command returns a JSON structured like this:
@@ -113,7 +113,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/roles"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/roles"
   Content-Type: application/json
   {
    "apiVersion": "rbac.authorization.k8s.io/v1",
@@ -176,7 +176,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/roles/role-name/namespace-name?cluster_id=:cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/roles/role-name/namespace-name?cluster_id=:cluster_id"
   Content-Type: application/json
   {
     "metadata": {
@@ -240,7 +240,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/roles/default-token-xxxmt/default"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/roles/default-token-xxxmt/default"
 ```
 
 > The above command returns a JSON structured like this:

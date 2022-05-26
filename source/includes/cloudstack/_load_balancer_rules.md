@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/loadbalancerrules?public_ip_id=eb763d03-9935-4cd4-8a42-99134e242ccb"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/loadbalancerrules?public_ip_id=eb763d03-9935-4cd4-8a42-99134e242ccb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -74,7 +74,7 @@ Query Parameters | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/loadbalancerrules/f8ed7f44-449c-4510-848c-dc18e6665db1"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/loadbalancerrules/f8ed7f44-449c-4510-848c-dc18e6665db1"
 ```
 > The above command returns a JSON structured like this:
 
@@ -132,7 +132,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/loadbalancerrules"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/loadbalancerrules"
 ```
 > Request body example:
 
@@ -211,7 +211,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
 > Request body example:
 
@@ -238,7 +238,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
 > Request body example:
 
@@ -264,7 +264,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
 > Request body example:
 
@@ -297,7 +297,7 @@ See [Create a load balance rule](#cloudstack-create-a-load-balancer-rule) for st
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/loadbalancerrules/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/loadbalancerrules/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
 ```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/loadbalancerrules/:id</code>
 

@@ -6,7 +6,7 @@ SSH keys can be assigned on instance creation to provide SSH access.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/sshkeys"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/sshkeys"
 ```
 > The above command returns a JSON structured like this:
 
@@ -47,7 +47,7 @@ Retrieve a list of SSH keys in an OpenStack domain.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/sshkeys/ssh-key-a"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/sshkeys/ssh-key-a"
 ```
 > The above command returns a JSON structured like this:
 
@@ -82,7 +82,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/sshkeys"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/sshkeys"
 ```
 > Request body example:
 
@@ -107,7 +107,7 @@ Required                | Description
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/sshkeys/ssh-key-c"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/sshkeys/ssh-key-c"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>

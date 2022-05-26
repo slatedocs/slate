@@ -11,7 +11,7 @@ Retrieves a list of billing providers configured in the system.
 
 ```shell
 # Retrieve billing providers list
-curl "https://cloudmc_endpoint/rest/billing_providers" \
+curl "https://cloudmc_endpoint/api/v2/billing_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -60,7 +60,7 @@ Retrieve a billing provider's details.
 
 ```shell
 # Retrieve a billing provider's details
-curl "https://cloudmc_endpoint/rest/billing_providers/f26e66a4-755c-4867-b565-ad68aa515237" \
+curl "https://cloudmc_endpoint/api/v2/billing_providers/f26e66a4-755c-4867-b565-ad68aa515237" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -107,7 +107,7 @@ Create a new billing provider.
 
 ```shell
 # Creates a new billing provider
-curl -X POST "https://cloudmc_endpoint/rest/billing_providers" \
+curl -X POST "https://cloudmc_endpoint/api/v2/billing_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -171,7 +171,7 @@ Update an existing billing provider.
 
 ```shell
 # Updates an existing billing provider
-curl -X PUT "https://cloudmc_endpoint/rest/billing_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/billing_providers/c84cfe41-929b-47c9-bde4-b55a10bd2774" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -252,7 +252,7 @@ chaseCreditCard | `orbitalMerchantBin`<br/>*string* | Orbital API merchant BIN n
 
 ```shell
 curl --request DELETE \
-  --url https://cloudmc_endpoint/rest/billing_providers/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
+  --url https://cloudmc_endpoint/api/v2/billing_providers/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
   --header "Content-Type: application/json" \
   --header "Mc-Api-Key: your_api_key" 
 ```

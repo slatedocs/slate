@@ -364,7 +364,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible user
 
-curl "https://cloudmc_endpoint/v2/environments/[env-id]/members" \
+curl "https://cloudmc_endpoint/api/v2/environments/[env-id]/members" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -419,7 +419,7 @@ You will need to either be owner on the environment or have the `Environments: O
 
 ```shell
 # Add an environment member
-curl -X POST "https://cloudmc_endpoint/v2/environments/[environment-id]/members" \
+curl -X POST "https://cloudmc_endpoint/api/v2/environments/[environment-id]/members" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -462,7 +462,7 @@ You will need to either be owner on the environment or have the `Environments: O
 
 ```shell
 # Update an environment member
-curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/members/[user-id]" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/environments/[environment-id]/members/[user-id]" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -496,7 +496,7 @@ If deleting an member fails in the underlying environment service, subsequent de
 
 ```shell
 # Remove a member from an environment
-curl -X DELETE "https://cloudmc_endpoint/v2/environments/[environment-id]/members/[user-id]" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/environments/[environment-id]/members/[user-id]" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" 
 
@@ -525,7 +525,7 @@ You will need to either be owner on the environment or have the `Environments: O
 
 ```shell
 # Update default environment membership
-curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/membership" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/environments/[environment-id]/membership" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"

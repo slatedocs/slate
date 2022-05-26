@@ -9,7 +9,7 @@ A security rule in Azure is a filter which controls both inbound and outbound tr
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/securityrules"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/securityrules"
 ```
 > The above command returns a JSON structured like this:
 
@@ -75,7 +75,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
   -H 'mc-api-key: your_api_key' \
-  "https://cloudmc_endpoint/api/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/mySeccurityRule"
+  "https://cloudmc_endpoint/api/v2/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/mySeccurityRule"
 ```
 > The above command returns a JSON structured like this:
 
@@ -125,7 +125,7 @@ Attributes | &nbsp;
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body"
-    "https://cloudmc_endpoint/api/v1/services/azure/example/securityrules"
+    "https://cloudmc_endpoint/api/v2/services/azure/example/securityrules"
 ```
 > Request body example:
 
@@ -180,7 +180,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
   -H 'mc-api-key: your_api_key' \
-  "https://cloudmc_endpoint/api/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/sample-network-security-group/securityRules/securityRule1"
+  "https://cloudmc_endpoint/api/v2/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/sample-network-security-group/securityRules/securityRule1"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securityrules/:id</code>
@@ -195,7 +195,7 @@ Delete an existing security rule.
 curl -X POST \
   -H 'mc-api-key: your_api_key' \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/mySecurityRule?operation=edit"
+  "https://cloudmc_endpoint/api/v2/services/azure/example/securityrules/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/mySecurityRule?operation=edit"
 ```
 > Request body example:
 

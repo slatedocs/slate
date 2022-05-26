@@ -6,7 +6,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/wafsettings/1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/wafsettings/1b1cd7e6-41ab-4e0f-a59a-5c4b89da1b36"
 ```
 > The above command returns a JSON structured like this:
 
@@ -149,7 +149,7 @@ Attributes | &nbsp;
 ```shell
 curl -X PATCH \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/wafsettings/c0ddc1b3-b390-4f39-b200-5c0323ca306e"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/wafsettings/c0ddc1b3-b390-4f39-b200-5c0323ca306e"
 ```
 
 > Request body example:

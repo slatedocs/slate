@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumes?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -25,7 +25,7 @@ curl -X GET \
         "finalizers": ["kubernetes.io/pv-protection"],
         "name": "pvc-05097a93-120d-45d2-aaab-0f273849fccd",
         "resourceVersion": "147569183",
-        "selfLink": "/api/v1/persistentvolumes/pvc-05097a93-120d-45d2-aaab-0f273849fccd",
+        "selfLink": "/api/v2/persistentvolumes/pvc-05097a93-120d-45d2-aaab-0f273849fccd",
         "uid": "2e20a8fb-d90c-4c39-acd8-7007f85e2d8e"
       },
       "spec": {
@@ -99,7 +99,7 @@ Retrieve a list of all persistent volumes in a given [environment](#administrati
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -115,7 +115,7 @@ curl -X GET \
     "finalizers": ["kubernetes.io/pv-protection"],
     "name": "pvc-05097a93-120d-45d2-aaab-0f273849fccd",
     "resourceVersion": "147569183",
-    "selfLink": "/api/v1/persistentvolumes/pvc-05097a93-120d-45d2-aaab-0f273849fccd",
+    "selfLink": "/api/v2/persistentvolumes/pvc-05097a93-120d-45d2-aaab-0f273849fccd",
     "uid": "2e20a8fb-d90c-4c39-acd8-7007f85e2d8e"
   },
   "spec": {
@@ -183,7 +183,7 @@ Retrieve a persistent volume and all its info in a given [environment](#administ
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumes"
   Content-Type: application/json
    {
       "apiVersion": "v1",
@@ -253,7 +253,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes/my-persistent-volume?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumes/my-persistent-volume?cluster_id=a_cluster_id"
   Content-Type: application/json
   {
     "apiVersion": "v1",
@@ -320,7 +320,7 @@ Required Attributes                 | &nbsp;
 | `spec.storageClassName` <br/>_string_        | Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.|
 | `spec.volumeMode` <br/>_string_        | Defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.|
 
-Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#persistentvolume-v1-core).
+Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v2.19/#persistentvolume-v1-core).
 
 
 Return value:
@@ -337,7 +337,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumes/pvc-05097a93-120d-45d2?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:

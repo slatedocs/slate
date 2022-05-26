@@ -11,7 +11,7 @@ List pricings in your organization
 
 ```shell
 # List pricings
-curl "https://cloudmc_endpoint/v2/pricings" \
+curl "https://cloudmc_endpoint/api/v2/pricings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -118,7 +118,7 @@ Get a pricing in your organization
 
 ```shell
 # Retrieve specific pricing
-curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5" \
+curl "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -224,7 +224,7 @@ Create a pricing and put a price on selected products.
 
 ```shell
 # Create a pricing
-curl -X POST "https://cloudmc_endpoint/v2/pricings" \
+curl -X POST "https://cloudmc_endpoint/api/v2/pricings" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -348,7 +348,7 @@ Update the name and description of a pricing. If you want to modify anything els
 
 ```shell
 # Update a pricing
-curl -X PUT "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -424,7 +424,7 @@ Delete a pricing that has no applied pricing using it.
 
 ```shell
 # Update a pricing
-curl -X DELETE "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"
@@ -440,7 +440,7 @@ Get an effective pricing in your organization at a certain date. It will apply a
 
 ```shell
 # Get effective pricing
-curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/effective?date=2021-01-01" \
+curl "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/effective?date=2021-01-01" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -539,7 +539,7 @@ Get all changes of a specific pricing
 
 ```shell
 # List pricing changes of a pricing
-curl "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes" \
+curl "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -729,7 +729,7 @@ Add a pricing change to a pricing
 
 ```shell
 # Add pricing change
-curl -X POST "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes" \
+curl -X POST "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes" \
    -H "MC-Api-Key: your_api_key"
 ```
 > Request body example: 
@@ -958,7 +958,7 @@ Update a future pricing change of a pricing
 
 ```shell
 # Update a pricing change
-curl -X PUT "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes/920d7ee9-8771-4485-a0f2-2e122db83c32" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes/920d7ee9-8771-4485-a0f2-2e122db83c32" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -974,6 +974,6 @@ Remove a future pricing change from a pricing
 
 ```shell
 # Remove a pricing change
-curl -X DELETE "https://cloudmc_endpoint/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes/920d7ee9-8771-4485-a0f2-2e122db83c32" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/pricings/73eb0d75-03b0-44e2-9cbf-9ad25dff5da5/changes/920d7ee9-8771-4485-a0f2-2e122db83c32" \
    -H "MC-Api-Key: your_api_key"
 ```

@@ -6,7 +6,7 @@ Snapshots are point in time copies of volumes that can be used to create other v
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/snapshots"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/snapshots"
 ```
 > The above command returns a JSON structured like this:
 
@@ -45,7 +45,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/snapshots/4b41c7de-b2a8-4cb7-82ce-46685b07921d"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/snapshots/4b41c7de-b2a8-4cb7-82ce-46685b07921d"
 ```
 > The above command returns a JSON structured like this:
 
@@ -80,7 +80,7 @@ Attributes | &nbsp;
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/snapshots/4b41c7de-b2a8-4cb7-82ce-46685b07921d"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/snapshots/4b41c7de-b2a8-4cb7-82ce-46685b07921d"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots/:id</code>

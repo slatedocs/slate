@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/releases"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/releases"
 ```
 
 > The above command returns a JSON structured like this:
@@ -157,7 +157,7 @@ The information is not totally returned in the list. We filter out the manifest 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/releases/my-namespace/my-cloudflare"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/releases/my-namespace/my-cloudflare"
 ```
 
 > The above command returns a JSON structured like this:
@@ -326,7 +326,7 @@ curl -X GET \
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954&operation=rollback"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954&operation=rollback"
 ```
 
 > The above command returns a JSON structured like this:
@@ -365,7 +365,7 @@ Rollback a release in a given [environment](#administration-environments) to the
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/releases/my-namespace/my-aerospike?operation=upgrade"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/releases/my-namespace/my-aerospike?operation=upgrade"
    -d "request_body"
 ```
 
@@ -442,7 +442,7 @@ Upgrade a release in a given [environment](#administration-environments).
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954&operation=uninstall"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/releases/pspensieri/aerospike-1579797954&operation=uninstall"
    -d "request_body"
 ```
 

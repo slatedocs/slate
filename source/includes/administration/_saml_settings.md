@@ -10,7 +10,7 @@ Allows to change the configuration for the service provider integrated with SAML
 
 ```shell
 # Retrieve SAML settings
-curl "https://cloudmc_endpoint/api/v1/saml_settings?organization_id=:organization_id" \
+curl "https://cloudmc_endpoint/api/v2/saml_settings?organization_id=:organization_id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -52,7 +52,7 @@ List the SAML settings of an organization
 
 ```shell
 # Retrieve saml settings
-curl "https://cloudmc_endpoint/api/v1/saml_settings/:id" \
+curl "https://cloudmc_endpoint/api/v2/saml_settings/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -88,7 +88,7 @@ Return the SAML settings of an organization
 
 ```shell
 # Updates an existing saml settings
-curl -X POST "https://cloudmc_endpoint/api/v1/saml_settings/:id" \
+curl -X POST "https://cloudmc_endpoint/api/v2/saml_settings/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -136,7 +136,7 @@ Creates a specific SAML settings
 
 ```shell
 # Updates an existing saml settings
-curl -X PUT "https://cloudmc_endpoint/api/v1/saml_settings/:id" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/saml_settings/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -183,7 +183,7 @@ Updates a specific SAML settings
 
 ```shell
 # Updates an existing saml settings
-curl -X DELETE "https://cloudmc_endpoint/api/v1/saml_settings/:id" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/saml_settings/:id" \
    -H "MC-Api-Key: your_api_key"
 ```
 

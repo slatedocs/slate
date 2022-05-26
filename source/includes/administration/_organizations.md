@@ -565,7 +565,7 @@ Delete a specified domain on the organization.
 
 ```shell
 # Delete a verified domain
-curl -X DELETE "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/verified_domains/22d30872-8e90-43b5-b1ba-636bead42e34" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/verified_domains/22d30872-8e90-43b5-b1ba-636bead42e34" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -772,7 +772,7 @@ Retrieve the password policy for the organization.
 
 ```shell
 # Retrieve the organization's own or inherited password policy.
-curl "https://cloudmc_endpoint/api/v1=2/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
+curl "https://cloudmc_endpoint/api/v2=2/organizations/e8d95716-26a9-4054-833e-81cd3a5155cd/password_policy" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -909,7 +909,7 @@ The user should have `Connections reseller` permission on the organization. This
 
 ```shell
 # Mark an organization as reseller
-curl -X POST "https://cloudmc_endpoint/api/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/mark_reseller" \
+curl -X POST "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5/mark_reseller" \
    -H "MC-Api-Key: your_api_key" \
 ```
 
@@ -924,7 +924,7 @@ Retrieve the identity providers for the organization.
 
 ```shell
 # Retrieve the organization's identity providers
-curl "https://cloudmc_endpoint/api/v1/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/identity_providers" \
+curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e301bf5b86a/identity_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:

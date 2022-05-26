@@ -75,7 +75,7 @@ Retrieves an access key by region.
 
 ```shell
 curl --request POST \
-  --url 'https://cloudmc_endpoint/rest/services/purestorage/test-env/apiCredentials?operation=generate' \
+  --url 'https://cloudmc_endpoint/api/v2/services/purestorage/test-env/apiCredentials?operation=generate' \
   --header 'Content-Type: application/json' \
   --header 'Mc-Api-key: your_api_key' \
   --data '{
@@ -127,7 +127,7 @@ Return value:
 #### Delete credentials
 ```shell
 curl --request DELETE \
-  --url `https://cloudmc_endpoint/rest/services/purestorage-aaaa/emcilroy-local/apiCredentials/montreal` \
+  --url `https://cloudmc_endpoint/api/v2/services/purestorage-aaaa/emcilroy-local/apiCredentials/montreal` \
   --header 'Mc-Api-Key: your_api_key'
 ```
 

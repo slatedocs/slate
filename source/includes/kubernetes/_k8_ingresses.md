@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/ingresses"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses"
 ```
 
 > The above command returns a JSON structured like this:
@@ -100,7 +100,7 @@ Note that the list is not complete, since it is referring to the [kubernetes api
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/ingresses/cloudmc/cmc-stg"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/cloudmc/cmc-stg"
 ```
 
 > The above command returns a JSON structured like this:
@@ -161,7 +161,7 @@ Note that the list is not complete, since it is referring to the [kubernetes api
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/ingresses"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses"
   Content-Type: application/json
   {
   "apiVersion": "networking.k8s.io/v1beta1",
@@ -225,7 +225,7 @@ Return value:
 ```shell
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/ingresses/ingress-name/default"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/ingress-name/default"
 ```
 > Request body example:
 
@@ -310,7 +310,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/ingresses/test-ingress/default"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/test-ingress/default"
 ```
 
 > The above command returns a JSON structured like this:

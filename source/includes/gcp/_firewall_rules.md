@@ -7,7 +7,7 @@ Firewall allows you to control inbound and outbound traffic to your [environment
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/firewallrules"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/firewallrules"
 ```
 > The above command returns a JSON structured like this:
 
@@ -81,7 +81,7 @@ Retrieve a list of all firewall rules in a given [environment](#administration-e
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/firewallrules/4890726785951782638"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/firewallrules/4890726785951782638"
 ```
 > The above command returns a JSON structured like this:
 
@@ -153,7 +153,7 @@ Retrieve a firewall rules in a given [environment](#administration-environments)
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/firewallrule"
+  "https://cloudmc_endpoint/api/v2/services/gcp/test-area/firewallrule"
 ```
 > Request body example:
 
@@ -196,7 +196,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/firewallrule/4890726785951782638"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/firewallrule/4890726785951782638"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrule/:id</code>

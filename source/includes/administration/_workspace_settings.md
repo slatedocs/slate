@@ -10,7 +10,7 @@ Retrieve the workspace settings associated to an organization. If the `organizat
 
 ```shell
 # Retrieve the workspace settings
-curl "https://cloudmc_endpoint/api/v1/reseller/settings/workspace/find?organizationId=10572c3d-16e5-450f-8af8-a01e50dc52d4" \
+curl "https://cloudmc_endpoint/api/v2/reseller/settings/workspace/find?organizationId=10572c3d-16e5-450f-8af8-a01e50dc52d4" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -47,7 +47,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve workspace settings
-curl "https://cloudmc_endpoint/api/v1/reseller/settings/workspace/f7ad28a8-1227-44de-9785-6dbd556f3bda" \
+curl "https://cloudmc_endpoint/api/v2/reseller/settings/workspace/f7ad28a8-1227-44de-9785-6dbd556f3bda" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -86,7 +86,7 @@ Create a new workspace settings.
 
 ```shell
 # Creates a new workspace settings
-curl -X POST "https://cloudmc_endpoint/api/v1/reseller/settings/workspace" \
+curl -X POST "https://cloudmc_endpoint/api/v2/reseller/settings/workspace" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -136,7 +136,7 @@ Updates the workspace settings of an organization.
 
 ```shell
 # Updates an existing workspace settings for an organization
-curl -X PUT "https://cloudmc_endpoint/api/v1/reseller/settings/workspace/d785ffcb-9b03-478d-a49b-52a2ccedf1b8 \
+curl -X PUT "https://cloudmc_endpoint/api/v2/reseller/settings/workspace/d785ffcb-9b03-478d-a49b-52a2ccedf1b8 \
    -H "MC-Api-Key: your_api_key"
    -H "Content-Type: application/json" \
    -d "request-body"
@@ -187,7 +187,7 @@ Required | &nbsp;
 Delete an existing workspace settings.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/api/v1/reseller/settings/workspace/d785ffcb-9b03-478d-a49b-52a2ccedf1b8" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/reseller/settings/workspace/d785ffcb-9b03-478d-a49b-52a2ccedf1b8" \
    -H "MC-Api-Key: your_api_key"
 ```
 

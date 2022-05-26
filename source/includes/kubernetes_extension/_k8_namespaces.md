@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/namespaces?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/namespaces?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -51,7 +51,7 @@ Retrieve a list of all namespaces in a given [environment](#administration-envir
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/namespaces/cert-manager?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/namespaces/cert-manager?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -92,7 +92,7 @@ Retrieve a namespace and all its info in a given [environment](#administration-e
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/namespaces?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/namespaces?cluster_id=test-cluster"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -140,7 +140,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/namespaces/test-namespace?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/namespaces/test-namespace?cluster_id=test-cluster"
 ```
 
 > The above command returns a JSON structured like this:

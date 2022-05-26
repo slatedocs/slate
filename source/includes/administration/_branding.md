@@ -8,7 +8,7 @@ Manage branding.
 
 ```shell
 # Retrieve branding
-curl "https://cloudmc_endpoint/rest/brandings" \
+curl "https://cloudmc_endpoint/api/v2/brandings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -76,7 +76,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve knowledge base
-curl "https://cloudmc_endpoint/rest/brandings/671f113c-dbbb-4478-be9c-90765b3259e5" \
+curl "https://cloudmc_endpoint/api/v2/brandings/671f113c-dbbb-4478-be9c-90765b3259e5" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:

@@ -8,7 +8,7 @@ Images are virtual machine images that have a virtual disk which contains a boot
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/gcp/test-area/images"
+    "https://cloudmc_endpoint/api/v2/services/gcp/test-area/images"
 ```
 > The above command returns a JSON structured like this:
 
@@ -112,7 +112,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/gcp/test-area/images/4658005417542122143"
+    "https://cloudmc_endpoint/api/v2/services/gcp/test-area/images/4658005417542122143"
 ```
 > The above command returns a JSON structured like this:
 

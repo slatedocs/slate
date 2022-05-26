@@ -11,7 +11,7 @@ Retrieves a list of applied pricings configured in the system.
 
 ```shell
 # Retrieve applied pricing list
-curl "https://cloudmc_endpoint/rest/applied_pricings" \
+curl "https://cloudmc_endpoint/api/v2/applied_pricings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -86,7 +86,7 @@ Retrieve an applied pricing's details.
 
 ```shell
 # Retrieve an applied pricing
-curl "https://cloudmc_endpoint/rest/applied_pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://cloudmc_endpoint/api/v2/applied_pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -158,7 +158,7 @@ Create a new applied pricing.
 
 ```shell
 # Creates a new pricing
-curl -X POST "https://cloudmc_endpoint/rest/applied_pricings" \
+curl -X POST "https://cloudmc_endpoint/api/v2/applied_pricings" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -225,7 +225,7 @@ Update an applied pricing. Updates to the pricing, the scope, start date and end
 
 ```shell
 # Update an applied pricing
-curl -X PUT "https://cloudmc_endpoint/rest/applied_pricings/8bb5e457-41c3-410b-aced-b9c694ff141a" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/applied_pricings/8bb5e457-41c3-410b-aced-b9c694ff141a" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -309,7 +309,7 @@ Optional | &nbsp;
 Delete an existing applied pricing. Deleting an applied pricing that is ACTIVE or EXPIRED may cause charges to be rolled back.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/rest/applied_pricings/d08b9332-d26e-42fe-b272-3071f2d64839" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/applied_pricings/d08b9332-d26e-42fe-b272-3071f2d64839" \
    -H "MC-Api-Key: your_api_key"
 ```
 

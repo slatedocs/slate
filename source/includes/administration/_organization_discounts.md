@@ -11,7 +11,7 @@ Retrieve the list of discounts associated with an organization.
 
 ```shell
 # Retrieve organization discount list
-curl "https://cloudmc_endpoint/rest/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts?type=PERCENTAGE" \
+curl "https://cloudmc_endpoint/api/v2/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts?type=PERCENTAGE" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -111,7 +111,7 @@ Retrieve a discount's details.
 
 ```shell
 # Retrieve organization discount list
-curl "https://cloudmc_endpoint/rest/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
+curl "https://cloudmc_endpoint/api/v2/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -159,7 +159,7 @@ Create a new discount
 
 ```shell
 # Creates a new discount
-curl -X POST "https://cloudmc_endpoint/rest/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts" \
+curl -X POST "https://cloudmc_endpoint/api/v2/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -229,7 +229,7 @@ Edit an existing discount that hasn't ended. Only the name and cutoff date can b
 
 ```shell
 # Edit an existing discount
-curl -X PUT "https://cloudmc_endpoint/rest/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -320,7 +320,7 @@ Optional | &nbsp;
 Delete a discount. This operation can only be performed on discounts that have status UPCOMING.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/rest/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/organizations/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
    -H "MC-Api-Key: your_api_key"
 ```
 

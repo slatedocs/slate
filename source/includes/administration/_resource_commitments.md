@@ -10,7 +10,7 @@ Resource commitments allow you to set specific commitment levels on cloud resour
 
 ```shell
 # Retrieve visible resource commitments
-curl "https://cloudmc_endpoint/api/v1/resource_commitments" \
+curl "https://cloudmc_endpoint/api/v2/resource_commitments" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -188,7 +188,7 @@ Attributes | &nbsp;
 ```shell
 # Create a resource commitment
 
-curl -X POST "https://cloudmc_endpoint/api/v1/resource_commitments" \
+curl -X POST "https://cloudmc_endpoint/api/v2/resource_commitments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body"

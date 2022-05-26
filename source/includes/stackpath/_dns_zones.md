@@ -9,7 +9,7 @@ Create and manage your DNS zones.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnszones"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnszones"
 ```
 > The above command returns a JSON structured like this:
 
@@ -64,7 +64,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnszones/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnszones/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5"
 ```
 > The above command returns a JSON structured like this:
 
@@ -117,7 +117,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnszones"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnszones"
 ```
 > Request body example for without DNS records to import:
 
@@ -176,7 +176,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnszones/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnszones/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5"
 ```
 > The above command returns a JSON structured like this:
 
@@ -208,7 +208,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnszones/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5?operation=import"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnszones/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5?operation=import"
 ```
 > Request body example:
 

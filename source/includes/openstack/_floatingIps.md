@@ -6,7 +6,7 @@ Floating IPs are public IP addresses that a user can acquire and use in an envir
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/floatingips"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/floatingips"
 ```
 > The above command returns a JSON structured like this:
 
@@ -41,7 +41,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/floatingips/287a3963-983b-4602-9dea-4dff89e9dc10"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/floatingips/287a3963-983b-4602-9dea-4dff89e9dc10"
 ```
 > The above command returns a JSON structured like this:
 
@@ -73,7 +73,7 @@ Attributes | &nbsp;
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \ 
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/floatingips"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/floatingips"
 ```
 > Request body example:
 
@@ -97,7 +97,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key"
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/floatingips/287a3963-983b-4602-9dea-4dff89e9dc10"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/floatingips/287a3963-983b-4602-9dea-4dff89e9dc10"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/floatingips/:id</code>

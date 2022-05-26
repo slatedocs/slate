@@ -13,7 +13,7 @@ Deploy and manage your images.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/images"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/images"
 ```
 > The above command returns a JSON structured like this:
 
@@ -76,7 +76,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/images/a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu/v20201110"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/images/a8050b2b-39eb-4929-bce5-1af42055903e/ubuntu/v20201110"
 ```
 > The above command returns a JSON structured like this:
 
@@ -121,7 +121,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/images"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/images"
 ```
 > Request body example for creating a custom image:
 
@@ -162,7 +162,7 @@ Optional| &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/images/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/images/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
 > The above command returns a JSON structured like this:
 

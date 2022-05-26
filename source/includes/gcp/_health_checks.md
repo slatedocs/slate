@@ -7,7 +7,7 @@ Health checking mechanisms determine whether VM instances respond properly to tr
 ```shell
 curl -X GET \
   -H 'MC-Api-key: your_api_key'
-  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/healthchecks"
+  "https://cloudmc_endpoint/api/v2/services/gcp/test-area/healthchecks"
 ```
 > The above command returns a JSON structured like this:
 
@@ -72,7 +72,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/healthchecks/5930212998788364011"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/healthchecks/5930212998788364011"
 ```
 > The above command returns a JSON structured like this:
 
@@ -131,7 +131,7 @@ curl -X POST \
   -H 'MC-Api-Key: your_api_key' \
   -H "Content-Type: application/json" \
   -d "request _body" \
-  "https://cloudmc_endpoint/api/v1/services/gcp/test-area/healthchecks"
+  "https://cloudmc_endpoint/api/v2/services/gcp/test-area/healthchecks"
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks</code>
@@ -155,7 +155,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/healthchecks/6938691570659391640"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/healthchecks/6938691570659391640"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks/:id</code>
@@ -170,7 +170,7 @@ Destroy an existing health check. A health check can only be deleted if it's not
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/healthchecks/6938691570659391640"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/healthchecks/6938691570659391640"
 ```
 > Request body example:
 

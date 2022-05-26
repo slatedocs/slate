@@ -9,7 +9,7 @@ Represents an SSL Certificate resource.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sslcertificates"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/sslcertificates"
 ```
 > The above command returns a JSON structured like this:
 
@@ -81,7 +81,7 @@ Retrieve a list of all ssl certificates in an [environment](#administration-envi
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sslcertificates/6911678730334723784"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/sslcertificates/6911678730334723784"
 ```
 > The above command returns a JSON structured like this:
 
@@ -133,7 +133,7 @@ Retrieve a ssl certificate in an [environment](#administration-environments).
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sslcertificates"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/sslcertificates"
 ```
 > Request body example:
 
@@ -172,7 +172,7 @@ Create a new ssl certificate.
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/sslcertificates/2973924929495212345"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/sslcertificates/2973924929495212345"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sslcertificates/:id</code>
