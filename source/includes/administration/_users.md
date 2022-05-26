@@ -33,11 +33,11 @@ curl "https://cloudmc_endpoint/api/v2/users" \
     },
     "serviceConnections": [
       {
-        "organizationId": "5d841eb6-5913-4244-b001-917228e7aa64",
+        "id": "5d841eb6-5913-4244-b001-917228e7aa64",
         "name": "Microsoft Azure"
       },
       {
-        "organizationId": "5d841eb6-5913-4244-b001-917228e7aa64",
+        "id": "61e5dc38-441b-4c7d-8ac4-087ebaab23da",
         "name": "swifttest"
       }
     ],
