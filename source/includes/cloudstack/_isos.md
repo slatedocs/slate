@@ -6,7 +6,7 @@ An ISO is a disk image that is a copy of a file system. A bootable ISO can be us
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/isos"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/isos"
 ```
 > The above command returns a JSON structured like this:
 
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-"https://cloudmc_endpoint/api/v1/services/compute-on/test_area/isos/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
+"https://cloudmc_endpoint/api/v2/services/compute-on/test_area/isos/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -114,7 +114,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/isos"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/isos"
 ```
 > Request body example:
 
@@ -150,7 +150,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attach"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attach"
 ```
 > Request body example:
 
@@ -178,7 +178,7 @@ See the [*Detach the ISO from an instance* endpoint](#cloudstack-instances-detac
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=generateDownloadUrl"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/testing/isos/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=generateDownloadUrl"
 
 # No parameters required
 ```
@@ -192,7 +192,7 @@ Generate a URL that can be used to download an extractable ISO. The URL may also
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/isos/84fc07a8-c6a3-4538-b493-11ce69ea3c88"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/isos/84fc07a8-c6a3-4538-b493-11ce69ea3c88"
 ```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/isos/:id</code>
 

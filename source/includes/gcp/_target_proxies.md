@@ -9,7 +9,7 @@ Target proxies route incoming request to either a URL map (HTTP(S) load balancin
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/targetproxies"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/targetproxies"
 ```
 > The above command returns a JSON structured like this:
 
@@ -56,7 +56,7 @@ Retrieve a list of all target proxies in an [environment](#administration-enviro
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/targetproxies/2137054791002409126"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/targetproxies/2137054791002409126"
 ```
 > The above command returns a JSON structured like this:
 
@@ -104,7 +104,7 @@ Retrieve a target proxy in an [environment](#administration-environments).
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/targetProxies"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/targetProxies"
 ```
 > Request body examples:
 
@@ -148,7 +148,7 @@ Create a new target proxy.
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/targetproxies/2137054791002409126"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/targetproxies/2137054791002409126"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/targetproxies/:id</code>

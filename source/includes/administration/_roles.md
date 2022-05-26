@@ -11,7 +11,7 @@ Example: If a user has a role with `env:<entity>:read` and `env:<entity>:create`
 
 ```shell
 # Retrieve all env-scoped roles applicable to this environment 
-curl "https://cloudmc_endpoint/rest/roles?v=v2&environment_id=4865a023-1dd5-45a3-a23d-e952ceb7a44a&filter_scope=ENV" \
+curl "https://cloudmc_endpoint/api/v2/roles?environment_id=4865a023-1dd5-45a3-a23d-e952ceb7a44a&filter_scope=ENV" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -27,14 +27,15 @@ curl "https://cloudmc_endpoint/rest/roles?v=v2&environment_id=4865a023-1dd5-45a3
          "deleted":false,
          "permissions":[
             {
-               "name":"env:*:*"
+               "name":"env:*:*",
+               "id":"98047553-7a00-450d-afd0-d49eee436603"
             }
          ],
          "name":"editor",
-         "alias":"editor",
          "id":"b230cc47-3fad-4759-8ad2-de80bc6ac7e8",
          "isFixed":true,
-         "defaultScope":"ENV"
+         "defaultScope":"ENV",
+         "pluginName": "cloudstack"
       },
       {
          "creationDate":"2019-03-11T22:16:12.000Z",
@@ -48,10 +49,10 @@ curl "https://cloudmc_endpoint/rest/roles?v=v2&environment_id=4865a023-1dd5-45a3
             }
          ],
          "name":"viewer",
-         "alias":"viewer",
          "id":"f405a594-56c7-43d4-b790-ab8c616253fc",
          "isFixed":true,
-         "defaultScope":"ENV"
+         "defaultScope":"ENV",
+         "pluginName": "cloudstack"
       }
    ]
 }

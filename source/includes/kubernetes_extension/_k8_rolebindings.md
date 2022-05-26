@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/rolebindings?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/rolebindings?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 
 > The above command returns a JSON structured like this:
@@ -66,7 +66,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/rolebindings/rolebinding-name/rolebinding-namespace?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/rolebindings/rolebinding-name/rolebinding-namespace?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 
 > The above command returns a JSON structured like this:
@@ -124,7 +124,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/rolebindings?cluster_id=:cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/rolebindings?cluster_id=:cluster_id"
   Content-Type: application/json
   {
     "kind": "Rolebinding",
@@ -192,7 +192,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/rolebindings/rolebinding-name/namespace-name?cluster_id=:cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/rolebindings/rolebinding-name/namespace-name?cluster_id=:cluster_id"
   Content-Type: application/json
   {
     "metadata": {
@@ -253,7 +253,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/rolebindings/default-token-xxxmt/default?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/rolebindings/default-token-xxxmt/default?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:

@@ -6,7 +6,7 @@ VPN users are the accounts that are allowed to connect to [remote access VPNs](#
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpnusers"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/vpnusers"
 ```
 > The above command returns a JSON structured like this:
 
@@ -37,7 +37,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpnusers/5de76bf5-9f61-487a-a989-042b52882da4"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/vpnusers/5de76bf5-9f61-487a-a989-042b52882da4"
 ```
 > The above command returns a JSON structured like this:
 
@@ -63,7 +63,7 @@ Attributes | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpnusers/5de76bf5-9f61-487a-a989-042b52882da4"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/vpnusers/5de76bf5-9f61-487a-a989-042b52882da4"
 ```
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpnusers/:id</code>
 

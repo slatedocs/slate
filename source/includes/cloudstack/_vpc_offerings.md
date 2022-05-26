@@ -7,7 +7,7 @@ VPC offerings determine which services are available to provisioned [VPCs](#clou
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcofferings"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/vpcofferings"
 ```
 > The above command returns a JSON structured like this:
 
@@ -53,7 +53,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/vpcofferings/41ac6ba0-6172-4bc4-bff6-b0831b91677c"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/vpcofferings/41ac6ba0-6172-4bc4-bff6-b0831b91677c"
 ```
 > The above command returns a JSON structured like this:
 

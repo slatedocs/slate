@@ -9,7 +9,7 @@ Retreive the history of payment transactions for an organization.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/payments?organizationId=07d88499-a17f-4a68-8888-bbec953xxx1d"
+   "https://cloudmc_endpoint/api/v2/payments?organizationId=07d88499-a17f-4a68-8888-bbec953xxx1d"
 ```
 > The above command returns a JSON structured like this:
 
@@ -95,7 +95,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/payments/07d88499-a17f-4a68-8560-bbec953ert1d"
+   "https://cloudmc_endpoint/api/v2/payments/07d88499-a17f-4a68-8560-bbec953ert1d"
 ```
 > The above command returns a JSON structured like this:
 

@@ -9,7 +9,7 @@ View and manage your buckets.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/purestorage/test-env/buckets"
+   "https://cloudmc_endpoint/api/v2/services/purestorage/test-env/buckets"
 ```
 > The above command returns a JSON structured like this:
 
@@ -59,7 +59,7 @@ Retrieve a list of all buckets in a given [environment](#administration-environm
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/purestorage/test-env/buckets/us-east-1/bucketOne"
+   "https://cloudmc_endpoint/api/v2/services/purestorage/test-env/buckets/us-east-1/bucketOne"
 ```
 > The above command returns a JSON structured like this:
 
@@ -109,7 +109,7 @@ Retrieve details of a given bucket.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/purestorage/test-env/buckets"
+   "https://cloudmc_endpoint/api/v2/services/purestorage/test-env/buckets"
 ```
 
 > Request body examples:
@@ -153,7 +153,7 @@ Create a bucket in a given region.
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/purestorage/test-env/buckets/us-east-1/bucketOne"
+   "https://cloudmc_endpoint/api/v2/services/purestorage/test-env/buckets/us-east-1/bucketOne"
 ```
 > The above command returns a JSON structured like this:
 

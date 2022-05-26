@@ -9,7 +9,7 @@ Manage notifications.
 
 ```shell
 # Retrieve notification categories
-curl "https://cloudmc_endpoint/v2/rest/content/notifications?language=:language&organization_id=:organiationId" \
+curl "https://cloudmc_endpoint/api/v2/rest/content/notifications?language=:language&organization_id=:organiationId" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -126,7 +126,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve notification category
-curl "https://cloudmc_endpoint/v2/rest/content/notifications/:id?language=:language" \
+curl "https://cloudmc_endpoint/api/v2/rest/content/notifications/:id?language=:language" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -240,7 +240,7 @@ Attributes | &nbsp;
 
 ```shell
 # Create notification
-curl -X POST "https://cloudmc_endpoint/v2/rest/content/notifications/" \
+curl -X POST "https://cloudmc_endpoint/api/v2/rest/content/notifications/" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request-body"
@@ -301,7 +301,7 @@ Optional | &nbsp;
 
 ```shell
 # Update notification
-curl -X PUT "https://cloudmc_endpoint/v2/rest/content/notifications/:id" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/rest/content/notifications/:id" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request-body"
@@ -367,7 +367,7 @@ Optional | &nbsp;
 
 ```shell
 # Delete a notification category
-curl "https://cloudmc_endpoint/v2/content/notifications/:id" \
+curl "https://cloudmc_endpoint/api/v2/content/notifications/:id" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```

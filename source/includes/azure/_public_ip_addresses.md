@@ -9,7 +9,7 @@ Deploy and manage your public ip addresses.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/publicipaddresses"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/publicipaddresses"
 ```
 > The above command returns a JSON structured like this:
 
@@ -61,7 +61,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/publicipaddresses/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
 ```
 > The above command returns a JSON structured like this:
 
@@ -109,7 +109,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
-   "https://cloudmc_endpoint/api/v1/services/azure/example/publicipaddresses"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/publicipaddresses"
 ```
 > Request body example:
 
@@ -148,7 +148,7 @@ Optional | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
-   "https://cloudmc_endpoint/api/v1/services/azure/example/publicipaddresses?operation=associate"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/publicipaddresses?operation=associate"
 ```
 > Request body example:
 
@@ -189,7 +189,7 @@ Delete an existing public IP address.
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body"
-   "https://cloudmc_endpoint/api/v1/services/azure/example/publicipaddresses//subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/publicipaddresses//subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.Network/publicIPAddresses/some-public-ip"
 ```
 > Request body example:
 

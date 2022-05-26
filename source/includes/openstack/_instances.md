@@ -6,7 +6,7 @@ Deploy and manage your instances. Instances are virtual machines or physical mac
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/instances"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/instances"
 ```
 > The above command returns a JSON structured like this:
 
@@ -85,7 +85,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e"
 ```
 > The above command returns a JSON structured like this:
 
@@ -161,7 +161,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/instances"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/instances"
 ```
 > Request body example:
 
@@ -202,7 +202,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=associate"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=associate"
 ```
 > Request body example:
 
@@ -226,7 +226,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=changeSecurityGroups"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e?operation=changeSecurityGroups"
 ```
 > Request body example:
 
@@ -250,7 +250,7 @@ Required                                 | Description
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/instances/30fca349-68b0-48c2-9ada-1f60f57fa44e"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>

@@ -9,7 +9,7 @@ Set up delivery rules to improve access, security and set custom rules.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliveryrules?siteId=dcc2771d-a524-4f8c-a666-f699985d6961"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliveryrules?siteId=dcc2771d-a524-4f8c-a666-f699985d6961"
 ```
 > The above command returns a JSON structured like this:
 
@@ -57,7 +57,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliveryrules?siteId=f9dea588-d7ab-4f42-b6e6-4b85f273f3db"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliveryrules?siteId=f9dea588-d7ab-4f42-b6e6-4b85f273f3db"
 ```
 
 > Request body example for creating a delivery rule:
@@ -107,7 +107,7 @@ Required| &nbsp;
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliveryrules/d065db45-1eba-4c62-a017-d51f2d473d4a?siteId=f9dea588-d7ab-4f42-b6e6-4b85f273f3db"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliveryrules/d065db45-1eba-4c62-a017-d51f2d473d4a?siteId=f9dea588-d7ab-4f42-b6e6-4b85f273f3db"
 ```
 
 > Request body example for updating a delivery rule:
@@ -154,7 +154,7 @@ Required| &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliveryrules/90d6a6ed-05a5-4b45-8d5a-e8229f535149?siteId=1c6c127a-bfa4-4c85-a329-13c0581b41eb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliveryrules/90d6a6ed-05a5-4b45-8d5a-e8229f535149?siteId=1c6c127a-bfa4-4c85-a329-13c0581b41eb"
 ```
 > The above command returns a JSON structured like this:
 

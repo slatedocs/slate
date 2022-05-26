@@ -8,7 +8,7 @@ List your Kubernetes clusters.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/clusters"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/clusters"
 ```
 > The above command returns a JSON structured like this:
 
@@ -91,7 +91,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/clusters/standard-cluster-1/projects/testarea-ugx/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/clusters/standard-cluster-1/projects/testarea-ugx/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 > The above command returns a JSON structured like this:
 
@@ -157,7 +157,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/clusters"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/clusters"
 ```
 > Request body examples:
 
@@ -198,7 +198,7 @@ Required | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/clusters/projects/cmc-test-area-ugx/locations/us-central1-c/clusters/cluster-1"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/clusters/projects/cmc-test-area-ugx/locations/us-central1-c/clusters/cluster-1"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:id</code>

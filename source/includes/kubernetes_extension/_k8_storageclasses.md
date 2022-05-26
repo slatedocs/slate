@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/storageclasses?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -79,7 +79,7 @@ Retrieve a list of all storage classes in a given [environment](#administration-
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses/rook-ceph-block?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/storageclasses/rook-ceph-block?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -146,7 +146,7 @@ Retrieve a storage class and all its info in a given [environment](#administrati
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/storageclasses?cluster_id=a_cluster_id"
   Content-Type: application/json
   {
   "apiVersion": "storage.k8s.io/v1",
@@ -200,7 +200,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses/rook-ceph-block?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/storageclasses/rook-ceph-block?cluster_id=a_cluster_id"
   Content-Type: application/json
   {
     "apiVersion": "storage.k8s.io/v1",
@@ -235,7 +235,7 @@ Required Attributes                 | &nbsp;
 | ----------------------------------------- | ----------------------------------------------------------------------- |
 | `reclaimPolicy` <br/>_string_        | Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.|
 
-Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#storageclass-v1-storage-k8s-io).
+Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v2.19/#storageclass-v1-storage-k8s-io).
 
 Return value:
 
@@ -251,7 +251,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/storageclasses/rook-ceph-block?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/storageclasses/rook-ceph-block?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:

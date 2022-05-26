@@ -9,7 +9,7 @@ View and manage your buckets.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/buckets"
 ```
 > The above command returns a JSON structured like this:
 
@@ -57,7 +57,7 @@ Retrieve a list of all buckets from Amazon S3 in a given [environment](#administ
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets/us-east-1/bucket-nsturk-lullp"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/buckets/us-east-1/bucket-nsturk-lullp"
 ```
 > The above command returns a JSON structured like this:
 
@@ -101,7 +101,7 @@ Retrieve details of a given bucket.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/buckets"
 ```
 
 > Request body examples:
@@ -147,7 +147,7 @@ Create a bucket in Amazon S3.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets/:regionName/:bucketName?operation=edit_privileges"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/buckets/:regionName/:bucketName?operation=edit_privileges"
 ```
 
 > Request body examples:
@@ -187,7 +187,7 @@ Required | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/buckets/us-east-1/bucketOne"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/buckets/us-east-1/bucketOne"
 ```
 > The above command returns a JSON structured like this:
 

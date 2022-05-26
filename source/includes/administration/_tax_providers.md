@@ -15,7 +15,7 @@ Retrieves a list of tax providers configured for a reseller.
 
 ```shell
 # Retrieve tax providers
-curl "https://cloudmc_endpoint/rest/tax_providers?reseller_id=23910576-d29f-4c14-b663-31d728ff49a5" \
+curl "https://cloudmc_endpoint/api/v2/tax_providers?reseller_id=23910576-d29f-4c14-b663-31d728ff49a5" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -64,7 +64,7 @@ Retrieves a tax provider's details.
 
 ```shell
 # Retrieve a specific tax provider
-curl "https://cloudmc_endpoint/rest/tax_providers/f26e66a4-755c-4867-b565-ad68aa515237" \
+curl "https://cloudmc_endpoint/api/v2/tax_providers/f26e66a4-755c-4867-b565-ad68aa515237" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -111,7 +111,7 @@ Retrieves a list of tax codes from the configured tax provider for a reseller or
 
 ```shell
 # Retrieve tax codes for a given organization
-curl "https://cloudmc_endpoint/rest/tax_providers/f26e66a4-755c-4867-b565-ad68aa515237/tax-codes" \
+curl "https://cloudmc_endpoint/api/v2/tax_providers/f26e66a4-755c-4867-b565-ad68aa515237/tax-codes" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -153,7 +153,7 @@ Creates a tax provider for the given reseller
 
 ```shell
 # Create a tax provider
-curl "https://cloudmc_endpoint/rest/tax_providers" \
+curl "https://cloudmc_endpoint/api/v2/tax_providers" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -237,7 +237,7 @@ Updates a tax provider for the given reseller
 
 ```shell
 # Update a tax provider
-curl "https://cloudmc_endpoint/rest/tax_providers/961a2b96-0a6a-4bb4-9e32-59a3dcc555aa" \
+curl "https://cloudmc_endpoint/api/v2/tax_providers/961a2b96-0a6a-4bb4-9e32-59a3dcc555aa" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -322,7 +322,7 @@ This endpoint verifies whether or not a given organization's reseller parent org
 
 ```shell
 # Verify an organization's reseller tax configuration
-curl "https://cloudmc_endpoint/rest/tax_providers/961a2b96-0a6a-4bb4-9e32-59a3dcc555aa/tax-provider-configured" \
+curl "https://cloudmc_endpoint/api/v2/tax_providers/961a2b96-0a6a-4bb4-9e32-59a3dcc555aa/tax-provider-configured" \
    -H "MC-Api-Key: your_api_key"
 ```
 

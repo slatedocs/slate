@@ -75,7 +75,7 @@ Retrieves an access key by region. The only region supported for AWS is 'global'
 
 ```shell
 curl --request POST \
-  --url 'https://cloudmc_endpoint/rest/services/aws/test-env/apiCredentials?operation=generate' \
+  --url 'https://cloudmc_endpoint/api/v2/services/aws/test-env/apiCredentials?operation=generate' \
   --header 'Mc-Api-key: your_api_key'
 ```
 
@@ -119,7 +119,7 @@ Return value:
 #### Delete credentials
 ```shell
 curl --request DELETE \
-  --url `https://cloudmc_endpoint/rest/services/aws-aaaa/emcilroy-local/apiCredentials/global` \
+  --url `https://cloudmc_endpoint/api/v2/services/aws-aaaa/emcilroy-local/apiCredentials/global` \
   --header 'Mc-Api-Key: your_api_key'
 ```
 

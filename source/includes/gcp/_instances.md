@@ -9,7 +9,7 @@ Deploy and manage your instances.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances"
 ```
 > The above command returns a JSON structured like this:
 
@@ -155,7 +155,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/5611478403377505138"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/5611478403377505138"
 ```
 > The above command returns a JSON structured like this:
 
@@ -298,7 +298,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances"
 ```
 > Request body examples:
 
@@ -391,7 +391,7 @@ Optional | &nbsp;
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/5611478403377505138"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/5611478403377505138"
 ```
 
 > Request body example:
@@ -420,7 +420,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/6564997542943928188?operation=resize"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/6564997542943928188?operation=resize"
 ```
 > Request body example:
 
@@ -463,7 +463,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/6564997542943928188?operation=change_external_ip"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/6564997542943928188?operation=change_external_ip"
 ```
 > Request body examples:
 
@@ -500,7 +500,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/6564997542943928188?operation=get_ssh"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/6564997542943928188?operation=get_ssh"
 ```
 > Request body example:
 
@@ -528,7 +528,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/6564997542943928188?operation=set_windows_password"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/6564997542943928188?operation=set_windows_password"
 ```
 > Request body example:
 
@@ -553,7 +553,7 @@ Required | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/2986056884972096897?operation=manage_group_membership"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/2986056884972096897?operation=manage_group_membership"
 ```
 > Request body example:
 
@@ -583,7 +583,7 @@ Required | &nbsp;
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/6564997542943928188?operation=start"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/6564997542943928188?operation=start"
 
 ```
 
@@ -599,7 +599,7 @@ Start an existing instance. The instance must be in the *TERMINATED* status for 
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/6564997542943928188?operation=stop"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/6564997542943928188?operation=stop"
 ```
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
@@ -614,7 +614,7 @@ curl -X POST \
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/gcp/test-area/instances/6564997542943928188?operation=edit_startup_script"
+   "https://cloudmc_endpoint/api/v2/services/gcp/test-area/instances/6564997542943928188?operation=edit_startup_script"
 ```
 > Request body example:
 

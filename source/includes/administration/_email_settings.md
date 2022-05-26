@@ -8,7 +8,7 @@
 
 ```shell
 # Retrieve email settings
-curl "https://cloudmc_endpoint/rest/email_settings" \
+curl "https://cloudmc_endpoint/api/v2/email_settings" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve knowledge base
-curl "https://cloudmc_endpoint/rest/email_settings/dc30f9a6-1edc-11eb-92b6-0242ac120003" \
+curl "https://cloudmc_endpoint/api/v2/email_settings/dc30f9a6-1edc-11eb-92b6-0242ac120003" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -107,7 +107,7 @@ Attributes | &nbsp;
 
 ```shell
 # Updates an existing email settings for an organization
-curl -X PUT "https://cloudmc_endpoint/rest/email_settings/dc30f8f7-1edc-11eb-92b6-0242ac120003 \
+curl -X PUT "https://cloudmc_endpoint/api/v2/email_settings/dc30f8f7-1edc-11eb-92b6-0242ac120003 \
    -H "MC-Api-Key: your_api_key"
    -H "Content-Type: application/json" \
    -d "request-body"

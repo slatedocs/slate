@@ -8,7 +8,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 > The above command returns a JSON structured like this:
 
@@ -93,7 +93,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/charts/k8s-at-home/cloudflare-dyndns?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/charts/k8s-at-home/cloudflare-dyndns?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1"
 ```
 > The above command returns a JSON structured like this:
 
@@ -208,7 +208,7 @@ Required | &nbsp;
 
 ```shell
 curl --request POST \
-  --url https://cloudmc_endpoint/api/v1/services/a_service/an_environment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1 \
+  --url https://cloudmc_endpoint/api/v2/services/a_service/an_environment/charts?cluster_id=projects/cmc-k8s-enabled-llb/locations/us-central1-a/clusters/standard-cluster-1 \
   --header 'MC-Api-Key: your_api_key' \
   --data '{
 	"namespace": "my-namespace",

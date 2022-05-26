@@ -11,9 +11,9 @@ Retrieves a list of product catalogs configured in the system.
 
 ```shell
 # Retrieve product catalog list
-curl "https://cloudmc_endpoint/rest/product_catalogs" \
+curl "https://cloudmc_endpoint/api/v2/product_catalogs" \
    -H "MC-Api-Key: your_api_key"
-```s
+```
 > The above command returns a JSON structured like this:
 
 ```json
@@ -26,6 +26,10 @@ curl "https://cloudmc_endpoint/rest/product_catalogs" \
       "name": {
         "en": "fgsfdg",
         "fr": "sfdg"
+      },
+      "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
       },
       "changes": [],
       "description": {
@@ -75,6 +79,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the product catalog.
 `name`<br/>*Object* | The name object in each language for the product catalog.
+`organization`<br/>*Object* | The organization the product catalog is scoped to.
 `description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
 `serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
@@ -115,7 +120,7 @@ Retrieve a product catalog's details.
 
 ```shell
 # Retrieve a product catalog's details
-curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://cloudmc_endpoint/api/v2/product_catalogs/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -130,6 +135,10 @@ curl "https://cloudmc_endpoint/rest/product_catalogs/03bc22bd-adc4-46b8-988d-afd
     "name": {
       "en": "fgsfdg",
       "fr": "sfdg"
+    },
+    "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
     },
     "changes": [],
     "description": {
@@ -179,6 +188,7 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the product catalog.
 `name`<br/>*Object* | The name object in each language for the product catalog.
+`organization`<br/>*Object* | The organization the product catalog is scoped to.
 `description`<br/>*string* | The description object in each language for the product catalog.
 `mode`<br/>*string* | Identify the mode if it is for all service type or specific connections. Possible values: ALL_CONNECTIONS_OF_TYPE, SPECIFIC_CONNECTIONS.
 `serviceType`<br/>*Object* | The service connection type the product catalog is bound to.
@@ -219,7 +229,7 @@ Create a new product catalog.
 
 ```shell
 # Creates a new product catalog
-curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
+curl -X POST "https://cloudmc_endpoint/api/v2/product_catalogs" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -234,6 +244,9 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
         "en": "name_en",
         "fr": "name_fr",
         "es": "name_es"
+      },
+      "organization": {
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
       },
       "description": {
         "en": "beep boop",
@@ -290,6 +303,10 @@ curl -X POST "https://cloudmc_endpoint/rest/product_catalogs" \
       "fr": "madeInApi",
       "es": "madeInApi"
     },
+    "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
+    },
     "description": {
       "en": "beep boop",
       "fr": "beep boop",
@@ -344,6 +361,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
+`organization`<br/>*Object* | The orgnization the product catalog is scoped to. If no organization is provided, the user's organization is used by default.
 `connectionIds`<br/>*Array[UUID]* | Array of UUID for the service connections that the catalog is bound to.
 `categories`<br/>*Array[Object]* | The list of product categories object.
 `categories.id`<br/>*UUID* | The id of product category object. Required for each category object.
@@ -384,7 +402,7 @@ Changing a product definition affects how future usage charges will be calculate
 
 ```shell
 # Updates a product catalog
-curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -454,6 +472,10 @@ curl -X PUT "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8
       "en": "updated_en",
       "fr": "name_fr",
       "es": "name_es"
+    },
+    "organization": {
+        "name": "myOrg",
+        "id": "23dbae5c-24fe-4391-a8ca-f5ec4a6c2948"
     },
     "description": {
       "en": "beep boop",
@@ -544,7 +566,7 @@ Delete an existing product catalog. Users may not delete a product catalog that 
 
 ```shell
 # Deletes a specified product catalog
-curl -X DELETE "https://cloudmc_endpoint/rest/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/product_catalogs/b541a90b-afb6-44cf-8a0d-3332668bbe12" \
    -H "MC-Api-Key: your_api_key"
 ```
 

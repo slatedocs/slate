@@ -9,7 +9,7 @@ A subnet is a child of a virtual network. It is a subset of a network in which I
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/subnets"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/subnets"
 ```
 > The above command returns a JSON structured like this:
 
@@ -72,7 +72,7 @@ Additional Attributes: Network filter included | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
 ```
 > The above command returns a JSON structured like this:
 
@@ -134,7 +134,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/subnets"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/subnets"
 ```
 > Request body example:
 
@@ -169,7 +169,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
 ```
 > Request body example:
 
@@ -195,7 +195,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/subnets/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/example-vnet/subnets/example-subnet"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/subnets/:subnet_id</code>

@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/services?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -72,7 +72,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services/test-aerospike/auth?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/services/test-aerospike/auth?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -123,7 +123,7 @@ Note that the list is not complete, since it is refering to the [kubernetes api 
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/services"
   Content-Type: application/json
   {
   "apiVersion": "v1",
@@ -190,7 +190,7 @@ Return value:
 ```shell
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services/service-name/default?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/services/service-name/default?cluster_id=test-cluster"
 ```
 > Request body example:
 
@@ -207,7 +207,7 @@ curl -X PUT \
         "name": "service-name",
         "namespace": "default",
         "resourceVersion": "170742452",
-        "selfLink": "/api/v1/namespaces/default/services/service-name",
+        "selfLink": "/api/v2/namespaces/default/services/service-name",
         "uid": "a84c8fea-f9d9-47ab-8e58-37059e9f18bd"
     },
     "spec": {
@@ -264,7 +264,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/services/test-service/default?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/services/test-service/default?cluster_id=test-cluster"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/services/:id?cluster_id=:cluster_id</code>

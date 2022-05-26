@@ -9,7 +9,7 @@ Network policy rules allows you to control inbound and outbound traffic to your 
 ```shell
 curl -X GET \
   -H "MC-Api-Key: your_api_key" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/networkpolicyrules"
+  "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/networkpolicyrules"
 ```
 
 > The above command returns a JSON structured like this:
@@ -77,7 +77,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
   -H "MC-Api-Key: your_api_key" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/networkpolicyrules/2ac958f2-0976-4de9-95f6-3546fc10f8d0/INBOUND/-812331665/0"
+  "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/networkpolicyrules/2ac958f2-0976-4de9-95f6-3546fc10f8d0/INBOUND/-812331665/0"
 ```
 
 > The above command returns a JSON structured like this:
@@ -124,7 +124,7 @@ Attributes | &nbsp;
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/networkpolicyrules"
+  "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/networkpolicyrules"
 ```
 > Request body example:
 
@@ -161,7 +161,7 @@ Required | &nbsp;
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-  "https://cloudmc_endpoint/api/v1/services/stack/razine-test-env/networkpolicyrules/93cf3029-3657-44c4-add1-22c4ee2bcb94/INBOUND/1617554972/0"
+  "https://cloudmc_endpoint/api/v2/services/stack/razine-test-env/networkpolicyrules/93cf3029-3657-44c4-add1-22c4ee2bcb94/INBOUND/1617554972/0"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networkpolicyrules/:id</code>
@@ -176,7 +176,7 @@ Delete a network policy rule.
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/networkpolicyrules/2ac958f2-0976-4de9-95f6-3546fc10f8d0/INBOUND/-812331665/0"
+  "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/networkpolicyrules/2ac958f2-0976-4de9-95f6-3546fc10f8d0/INBOUND/-812331665/0"
 ```
 > Request body example:
 

@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/charts"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/charts"
 ```
 
 > The above command returns a JSON structured like this:
@@ -85,7 +85,7 @@ Retrieve a list of all charts in a given [environment](#administration-environme
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/charts/k8s-at-home/cloudflare-dyndns"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/charts/k8s-at-home/cloudflare-dyndns"
 ```
 
 > The above command returns a JSON structured like this:
@@ -191,7 +191,7 @@ Retrieve a specific chart in a given [environment](#administration-environments)
 
 ```shell
 curl --request POST \
-  --url https://cloudmc_endpoint/api/v1/services/a_service/an_environment/charts \
+  --url https://cloudmc_endpoint/api/v2/services/a_service/an_environment/charts \
   --header 'MC-Api-Key: your_api_key' \
   --data '{
 	"namespace": "my-namespace",

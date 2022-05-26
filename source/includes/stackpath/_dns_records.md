@@ -9,7 +9,7 @@ Create and manage your DNS records associated to your zones.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnsrecords?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
 ```
 > The above command returns a JSON structured like this:
 
@@ -78,7 +78,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
 ```
 > The above command returns a JSON structured like this:
 
@@ -130,7 +130,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnsrecords?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
 ```
 > Request body example for creating a DNS record:
 
@@ -180,7 +180,7 @@ Optional | &nbsp;
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
 ```
 > Request body example for creating a DNS record:
 
@@ -229,7 +229,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/dnsrecords/0a18b323-72df-447a-af81-08a2ea62re45?zoneId=337c7c26-31f4-4b2e-83dc-126exxxxxxWr"
 ```
 > The above command returns a JSON structured like this:
 

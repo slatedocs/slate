@@ -6,7 +6,7 @@ Security groups manage network access to instances.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygroups"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/securitygroups"
 ```
 > The above command returns a JSON structured like this:
 
@@ -41,7 +41,7 @@ Retrieve a list of all security groups in an environment.
 
 ```shell
 curl -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygroups/1bd672f4-b274-4371-a792-b0a6c6778cc7"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/securitygroups/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 ```
 > The above command returns a JSON structured like this:
 
@@ -74,7 +74,7 @@ curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -H "Content-Type: application/json" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygroups"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/securitygroups"
 ```
 > Request body example:
 
@@ -99,7 +99,7 @@ Create a security group in an environment.
 ```shell
 curl -X DELETE \
     -H "MC-Api-Key: your_api_key" \
-    "https://cloudmc_endpoint/api/v1/services/compute-os/devel/securitygroups/1bd672f4-b274-4371-a792-b0a6c6778cc7"
+    "https://cloudmc_endpoint/api/v2/services/compute-os/devel/securitygroups/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/securitygroups/:id</code>

@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumeclaims"
 ```
 
 > The above command returns a JSON structured like this:
@@ -34,7 +34,7 @@ curl -X GET \
         "name": "cmc-staging-mysql",
         "namespace": "cmc-stg",
         "resourceVersion": "111495311",
-        "selfLink": "/api/v1/namespaces/cmc-stg/persistentvolumeclaims/cmc-staging-mysql",
+        "selfLink": "/api/v2/namespaces/cmc-stg/persistentvolumeclaims/cmc-staging-mysql",
         "uid": "ba115a65-e3c5-4e37-8548-e37ec395e79f"
       },
       "spec": {
@@ -88,7 +88,7 @@ Retrieve a list of all persistent volume claims in a given [environment](#admini
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
 ```
 
 > The above command returns a JSON structured like this:
@@ -116,7 +116,7 @@ curl -X GET \
       "name": "cmc-staging-mysql",
       "namespace": "cmc-stg",
       "resourceVersion": "111495311",
-      "selfLink": "/api/v1/namespaces/cmc-stg/persistentvolumeclaims/cmc-staging-mysql",
+      "selfLink": "/api/v2/namespaces/cmc-stg/persistentvolumeclaims/cmc-staging-mysql",
       "uid": "ba115a65-e3c5-4e37-8548-e37ec395e79f"
     },
     "spec": {
@@ -166,7 +166,7 @@ Retrieve a persistent volume claim and all its info in a given [environment](#ad
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumeclaims"
   Content-Type: application/json
    {
       "apiVersion": "v1",
@@ -230,7 +230,7 @@ Return value:
 ```shell
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims/my-persistent-volume-claim/default"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumeclaims/my-persistent-volume-claim/default"
   Content-Type: application/json
   {
     "id": "pv-claim-name/default",
@@ -285,7 +285,7 @@ Required Attributes                 | &nbsp;
 | `spec.volumemode` <br/>_string_        | What type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.|
 | `spec.dataSource` <br/>_string_        | This field can be used to specify either: an existing VolumeSnapshot object, an existing PVC or an existing custom resource/object that implements data population.|
 
-Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#persistentvolumeclaim-v1-core).
+Note that the list is not complete, since it is refering to the [kubernetes api details](https://kubernetes.io/docs/reference/generated/kubernetes-api/v2.19/#persistentvolumeclaim-v1-core).
 
 Return value:
 
@@ -301,7 +301,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/persistentvolumeclaims/cmc-staging-mysql/cmc-stg"
 ```
 
 > The above command returns a JSON structured like this:

@@ -10,7 +10,7 @@ Custom navigation API allows to customize the navigation per-reseller. Most nota
 ```shell
 
 curl --request GET \
-  --url http://cloudmc_endpoint/rest/navigation/:id \
+  --url http://cloudmc_endpoint/api/v2/navigation/:id \
   --header 'Content-Type: application/json' \
   --header 'Mc-Api-Key: your_api_key'
 ```
@@ -55,7 +55,7 @@ Attributes | &nbsp;
 ```shell
 
 curl --request GET \
-  --url http://cloudmc_endpoint/rest/navigation/f8663571-1d84-4d48-bb86-d4e2a14ea9f9 \
+  --url http://cloudmc_endpoint/api/v2/navigation/f8663571-1d84-4d48-bb86-d4e2a14ea9f9 \
   --header 'Content-Type: application/json' \
   --header 'Mc-Api-Key: your_api_key'
 ```
@@ -133,7 +133,7 @@ Attributes | &nbsp;
 
 ```shell 
   --request POST \
-  --url http://cloudmc_endpoint/rest/navigation \
+  --url http://cloudmc_endpoint/api/v2/navigation \
   --header 'Content-Type: application/json' \
   --header 'Mc-Api-Key: your_api_key' \
   --data '{
@@ -251,7 +251,7 @@ Optional | &nbsp;
 
 ```shell 
 curl --request PUT \
-  --url http://cloudmc_endpoint/rest/navigation/e80adf4d-5401-4cff-b393-93a7f10f4d71 \
+  --url http://cloudmc_endpoint/api/v2/navigation/e80adf4d-5401-4cff-b393-93a7f10f4d71 \
   --header 'Content-Type: application/json' \
   --header 'Mc-Api-Key: your_api_key' \
   --data '{
@@ -312,7 +312,7 @@ Optional | &nbsp;
 
 ```shell 
 curl --request DELETE \
-  --url http://cloudmc_endpoint/rest/navigation/e80adf4d-5401-4cff-b393-93a7f10f4d71 \
+  --url http://cloudmc_endpoint/api/v2/navigation/e80adf4d-5401-4cff-b393-93a7f10f4d71 \
   --header 'Mc-Api-Key: you_api_key'
 ```
 

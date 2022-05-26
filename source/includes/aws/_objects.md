@@ -9,7 +9,7 @@ View and manage your objects within a bucket.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects?bucketId=us-east-1/bucket-root-brdje"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/objects?bucketId=us-east-1/bucket-root-brdje"
 ```
 > The above command returns a JSON structured like this:
 
@@ -100,7 +100,7 @@ Retrieve a list of objects inside a given bucket.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/us-east-1/bucket-nsturk-lullp/photos/miami.png"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/objects/us-east-1/bucket-nsturk-lullp/photos/miami.png"
 ```
 > The above command returns a JSON structured like this:
 
@@ -156,7 +156,7 @@ Retrieve details of a specific object inside a given folder inside a given bucke
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/operation/upload" \
+   "https://cloudmc_endpoint/api/v2/services/operation/upload" \
    --form operation=upload \
    --form entityType=objects \
    --form serviceConnectionId=connection_id \
@@ -223,7 +223,7 @@ Attributes | &nbsp;
 ```shell
 curl --request GET \
   -H "MC-Api-Key: your_api_key" \
-  "https://cloudmc_endpoint/rest/services/operations/:service_connection_id/download?bucketName=akc-buck&regionName=us-east-1&id=us-east-1/akc-buck/api123.png&entityType=objects&operation=download&environmentId=97430433-875c-4ba5-8c57-90a051a52729"
+  "https://cloudmc_endpoint/api/v2/services/operations/:service_connection_id/download?bucketName=akc-buck&regionName=us-east-1&id=us-east-1/akc-buck/api123.png&entityType=objects&operation=download&environmentId=97430433-875c-4ba5-8c57-90a051a52729"
 ```
 
 <code>GET rest/services/operations/:service_connection_id/download?id=:regionName/:bucketName/:objectPath&entityType=objects&operation=download&environmentId:environmentId</code>
@@ -246,7 +246,7 @@ Required Query Parameters | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject/?operation=delete"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject/?operation=delete"
 ```
 
 > Request body examples:
@@ -282,7 +282,7 @@ Delete an object from a bucket in Amazon S3.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject/?operation=rename"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject/?operation=rename"
 ```
 
 Rename an object in a bucket in Amazon S3.
@@ -322,7 +322,7 @@ Rename an object in a bucket in Amazon S3.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/?bucketName=bucketOne&regionName=regionOne&operation=add_folder"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/objects/?bucketName=bucketOne&regionName=regionOne&operation=add_folder"
 ```
 
 Add a folder in amazon S3.
@@ -371,7 +371,7 @@ Add a folder in amazon S3.
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject?&operation=rename_folder"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject?&operation=rename_folder"
 ```
 
 Renames a folder in Amazon S3. This operation renames all objects inside the folder to use the new folder name and their full path. To accomplish this, all objects must first be copied with a new key, then deleted. This operation can take an extended amount of time depending on the amount and size of objects inside the folder.
@@ -411,7 +411,7 @@ Renames a folder in Amazon S3. This operation renames all objects inside the fol
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/rest/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject?&operation=generate_url"
+   "https://cloudmc_endpoint/api/v2/services/aws/test-env/objects/:regionName/:bucketName/:pathToObject?&operation=generate_url"
 ```
 
 Generates a presigned URL in S3. Must specify a limit in the request which denotes the amount of time (in minutes) until the URL expires. Minimum is 1 minute and maximum is 10080 minutes.

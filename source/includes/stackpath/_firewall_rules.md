@@ -9,7 +9,7 @@ Deploy and manage Firewall Rules used to control and limit access to your sites.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/firewallrules?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/firewallrules?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -65,7 +65,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/firewallrules/1533148?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/firewallrules/1533148?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 
@@ -107,7 +107,7 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/firewallrules?siteId=f9dea588-d7ab-4f42-b6e6-4b85f273f3db"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/firewallrules?siteId=f9dea588-d7ab-4f42-b6e6-4b85f273f3db"
 ```
 > Request body example for creating a firewall rule:
 
@@ -157,7 +157,7 @@ Optional| &nbsp;
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/firewallrules/1576836?siteId=1c6c127a-bfa4-4c85-a329-13c0581b41eb"
+  "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/firewallrules/1576836?siteId=1c6c127a-bfa4-4c85-a329-13c0581b41eb"
 ```
 > Request body example:
 
@@ -209,7 +209,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/firewallrules/2318483?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/firewallrules/2318483?siteId=0a57855b-26d8-4e8f-8b77-429997c7c5fb"
 ```
 > The above command returns a JSON structured like this:
 

@@ -12,8 +12,9 @@ includes:
   - administration/organizations
   - administration/users
   - administration/roles
-  - administration/environments
-  - administration/resource_commitments
+  - administration/additional_roles
+  - administration/environments 
+  - administration/resource_commitments 
   - administration/usage
   - administration/monetization
   - administration/reports_pricing_v2 # Reporting section

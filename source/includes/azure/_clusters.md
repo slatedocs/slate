@@ -11,7 +11,7 @@ For information regarding AKS clusters, please see [azure docs](https://docs.mic
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure-conn/test_env/clusters"
+   "https://cloudmc_endpoint/api/v2/services/azure-conn/test_env/clusters"
 ```
 
 > The above command returns a JSON structured like this:
@@ -58,7 +58,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure-conn/test_env/clusters/subscriptions/9e548d49-7d56-452c-8fc8-e81a25d05ddf/resourcegroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.ContainerService/managedClusters/ssamadh-aks-mean"
+   "https://cloudmc_endpoint/api/v2/services/azure-conn/test_env/clusters/subscriptions/9e548d49-7d56-452c-8fc8-e81a25d05ddf/resourcegroups/azure-connect-system-ssamadh-mean-env/providers/Microsoft.ContainerService/managedClusters/ssamadh-aks-mean"
 ```
 
 Note: The above example uses the complete cluster id set by Azure. However, the cluster may also be retrieved by the cluster name as shown below:
@@ -66,7 +66,7 @@ Note: The above example uses the complete cluster id set by Azure. However, the 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure-conn/test_env/clusters/ssamadh-aks-mean"
+   "https://cloudmc_endpoint/api/v2/services/azure-conn/test_env/clusters/ssamadh-aks-mean"
 ```
 
 > The above command returns a JSON structured like this:
@@ -157,7 +157,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/azure/example/clusters/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.ContainerService/managedClusters/sample_small_cluster"
+   "https://cloudmc_endpoint/api/v2/services/azure/example/clusters/subscriptions/subscriptionId/resourceGroups/cmc-example/providers/Microsoft.ContainerService/managedClusters/sample_small_cluster"
 ```
 
 > The above command returns a JSON structured like this:

@@ -5,7 +5,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/publicipaddresses"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/publicipaddresses"
 ```
 > The above command returns a JSON structured like this:
 
@@ -78,7 +78,7 @@ Query Parameters | &nbsp;
 
 ```shell
 curl -X GET -H "MC-Api-Key: your_api_key"
-"https://cloudmc_endpoint/api/v1/services/compute-on/test_area/publicipaddresses/10001e7d-b4ef-489b-836e-0619a383bc8d"
+"https://cloudmc_endpoint/api/v2/services/compute-on/test_area/publicipaddresses/10001e7d-b4ef-489b-836e-0619a383bc8d"
 ```
 > The above command returns a JSON structured like this:
 
@@ -124,7 +124,7 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/publicipaddresses"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/publicipaddresses"
 ```
 > Request body example:
 
@@ -148,7 +148,7 @@ Required | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/publicipaddresses/:id</code>
@@ -162,7 +162,7 @@ curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b?operation=enableStaticNat"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b?operation=enableStaticNat"
 ```
 > Request body example:
 
@@ -185,7 +185,7 @@ Required | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b?operation=disableStaticNat"
+   "https://cloudmc_endpoint/api/v2/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b?operation=disableStaticNat"
 
 ```
 

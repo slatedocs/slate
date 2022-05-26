@@ -8,7 +8,7 @@ Custom fields allow administrators to define new fields on the organization and 
 
 ```shell
 # Retrieve custom fields
-curl "https://cloudmc_endpoint/rest/custom_fields?organization_id=fb0eeef9-eddd-48bc-949c-871481777ff9" \
+curl "https://cloudmc_endpoint/api/v2/custom_fields?organization_id=fb0eeef9-eddd-48bc-949c-871481777ff9" \
   -h "Mc-Api-Key: your_api_key"
 ```
 > The above command returns JSON structured like this:
@@ -66,7 +66,7 @@ Attributes | &nbsp;
 `GET /custom_fields/:id`
 
 ```shell
-curl "http://localhost:8080/rest/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e" \
+curl "http://cloudmc_endpoint/api/v2/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e" \
   -h "Mc-Api-Key: your_api_key"
 ```
 
@@ -120,7 +120,7 @@ Attributes | &nbsp;
 
 ```shell
 curl --request POST \
-  --url https://cloudmc_endpoint/rest/custom_fields \
+  --url https://cloudmc_endpoint/api/v2/custom_fields \
   --header "Content-Type: application/json" \
   --header "Mc-Api-Key: your_api_key" \
   --data "request_body"
@@ -163,7 +163,7 @@ Optional | &nbsp;
 
 ```shell
 curl --request PUT \
-  --url https://cloudmc_endpoint/rest/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
+  --url https://cloudmc_endpoint/api/v2/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
   --header "Content-Type: application/json" \
   --header "Mc-Api-Key: your_api_key" \
   --data "request_body"
@@ -215,7 +215,7 @@ Optional | &nbsp;
 
 ```shell
 curl --request DELETE \
-  --url https://cloudmc_endpoint/rest/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
+  --url https://cloudmc_endpoint/api/v2/custom_fields/f9a2b02b-7d67-4910-8353-c4bfcbdeaa7e \
   --header "Content-Type: application/json" \
   --header "Mc-Api-Key: your_api_key" 
 ```

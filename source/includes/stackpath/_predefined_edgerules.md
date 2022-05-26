@@ -9,7 +9,7 @@ The predefined EdgeRules let you configure how StackPath responds to requests to
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/predefinededgerules/dcc2771d-a524-4f8c-a666-f699985d6961"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/predefinededgerules/dcc2771d-a524-4f8c-a666-f699985d6961"
 ```
 > The above command returns a JSON structured like this:
 
@@ -59,7 +59,7 @@ Attributes | &nbsp;
 curl -X PATCH \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/predefinededgerules/dcc2771d-a524-4f8c-a666-f699985d6961"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/predefinededgerules/dcc2771d-a524-4f8c-a666-f699985d6961"
 ```
 
 > Request body example:

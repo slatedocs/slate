@@ -9,7 +9,7 @@ Create and manage your CDN, WAF, and/or Serverless Scripting Delivery sites.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites"
 ```
 > The above command returns a JSON structured like this:
 
@@ -73,7 +73,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/9ae3717a-006a-4aa7-b64b-8bc8d2f2d6e5"
 ```
 > The above command returns a JSON structured like this:
 
@@ -132,7 +132,7 @@ Attributes | &nbsp;
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites"
+    "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites"
 ```
 > Request body example for a site with basic authentication:
 
@@ -200,7 +200,7 @@ Required | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853"
 ```
 > The above command returns a JSON structured like this:
 
@@ -227,7 +227,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_cdn"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_cdn"
 ```
 > The above command returns a JSON structured like this:
 
@@ -254,7 +254,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_cdn"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_cdn"
 ```
 > The above command returns a JSON structured like this:
 
@@ -281,7 +281,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_waf"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_waf"
 ```
 > The above command returns a JSON structured like this:
 
@@ -308,7 +308,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_waf"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_waf"
 ```
 > The above command returns a JSON structured like this:
 
@@ -335,7 +335,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_scripts"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=enable_scripts"
 ```
 > The above command returns a JSON structured like this:
 
@@ -362,7 +362,7 @@ Attributes | &nbsp;
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_scripts"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/sites/f8ad8351-4f07-4b52-92ec-fd2983873853?operation=disable_scripts"
 ```
 > The above command returns a JSON structured like this:
 

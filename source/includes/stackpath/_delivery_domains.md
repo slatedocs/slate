@@ -9,7 +9,7 @@ Delivery domains allow the CDN to recognize an HTTP request and associate it wit
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliverydomains?siteId=439b145a-7c55-4a73-8cf2-d8faabfe6d22"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliverydomains?siteId=439b145a-7c55-4a73-8cf2-d8faabfe6d22"
 ```
 > The above command returns a JSON structured like this:
 
@@ -65,7 +65,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliverydomains/439b145a-7c55-4a73-8cf2-d8faabfe6d22/test-domain.com"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliverydomains/439b145a-7c55-4a73-8cf2-d8faabfe6d22/test-domain.com"
 ```
 > The above command returns a JSON structured like this:
 
@@ -99,7 +99,7 @@ Attributes | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliverydomains/439b145a-7c55-4a73-8cf2-d8faabfe6d22/test-domain.com"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliverydomains/439b145a-7c55-4a73-8cf2-d8faabfe6d22/test-domain.com"
 ```
 > The above command returns a JSON structured like this:
 
@@ -127,7 +127,7 @@ Attributes | &nbsp;
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/deliverydomains?siteId=a2fefb15-7e31-4c72-87e0-5a892e91c8d9"
+    "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/deliverydomains?siteId=a2fefb15-7e31-4c72-87e0-5a892e91c8d9"
 ```
 
 > Request body example:

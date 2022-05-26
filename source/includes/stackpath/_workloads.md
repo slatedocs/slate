@@ -11,7 +11,7 @@ Deploy and manage your workloads.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/workloads"
 ```
 
 > The above command returns a JSON structured like this:
@@ -170,7 +170,7 @@ Attributes | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
 
 > The above command returns a JSON structured like this:
@@ -295,7 +295,7 @@ Attributes | &nbsp;
 curl -X POST \
     -H "MC-Api-Key: your_api_key" \
     -d "request_body" \
-    "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads"
+    "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/workloads"
 ```
 > Request body example for a VM Workload type:
 
@@ -461,7 +461,7 @@ A workload can be added without any `ports`. However, `ports.publicPort` and `po
 curl -X PUT \
   -H "MC-Api-Key: your_api_key" \
   -d "request_body" \
-  "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+  "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
 > Request body example for a VM Workload type:
 
@@ -571,7 +571,7 @@ Optional | &nbsp;
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
 > The above command returns a JSON structured like this:
 
@@ -598,7 +598,7 @@ Change a workload specific settings in a given [environment](#administration-env
 ```shell
 curl -X PATCH \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
+   "https://cloudmc_endpoint/api/v2/services/stackpath/test-area/workloads/1b932678-1038-4ab4-9fa4-c4c06e696e20"
 ```
 
 > Request body example:

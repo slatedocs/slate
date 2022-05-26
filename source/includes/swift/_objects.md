@@ -9,7 +9,7 @@ Create and manage your objects.
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v1/services/swift/my-env/objects/my-private-bucket/my-object.jpg/redirect?operation=preview"
+   "https://cloudmc_endpoint/api/v2/services/swift/my-env/objects/my-private-bucket/my-object.jpg/redirect?operation=preview"
 ```
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/objects/:id/redirect</code>
 
