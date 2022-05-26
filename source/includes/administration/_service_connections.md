@@ -20,9 +20,9 @@ Service connections are the services that you can create resources for (e.g. com
       "reachable": true
     },
     "organization": {
-			"name": "System",
-			"id": "5d841eb6-5913-4244-b001-917228e7aa64"
-		},
+      "name": "System",
+      "id": "5d841eb6-5913-4244-b001-917228e7aa64"
+    },
     "metricsEnabled": true,
     "supportsQuotas": true,
     "supportsPricingV2": true,
@@ -32,13 +32,13 @@ Service connections are the services that you can create resources for (e.g. com
     "supportsInfra": true,
     "lastUsageRecord": "2022-03-28T18:59:59.000Z",
     "quotas": [{
-			"name": "DefaultQuota",
-			"id": "081b1ebb-16c4-49e0-8120-a5b8b356b269"
-		},
-		{
-			"name": "CsQuota",
-			"id": "3734dfed-9d43-4543-ac01-bdd32875e0eb"
-		}],
+      "name": "DefaultQuota",
+      "id": "081b1ebb-16c4-49e0-8120-a5b8b356b269"
+    },
+    {
+      "name": "CsQuota",
+      "id": "3734dfed-9d43-4543-ac01-bdd32875e0eb"
+    }],
   }]
 }
 ```
@@ -62,7 +62,7 @@ Attributes | &nbsp;
 `supportsInfra`<br/>*boolean* | Is infra supported on this service connection.
 `hasWidgets`<br/>*boolean* | Does this service connection have widgets.
 `lastUsageRecord`<br/>*string* | The date which the latest usage record was recorded.
-`quota`<br/>*Array[object]* | The list of quota assigned to the organization.<br/>*includes*: `id`, `name`
+`quotas`<br/>*Array[object]* | The list of quota assigned to the organization.<br/>*includes*: `id`, `name`
 
 
 Optional query parameters | &nbsp;
@@ -88,9 +88,9 @@ Optional query parameters | &nbsp;
       "reachable": true
     },
     "organization": {
-			"name": "System",
-			"id": "5d841eb6-5913-4244-b001-917228e7aa64"
-		},
+      "name": "System",
+      "id": "5d841eb6-5913-4244-b001-917228e7aa64"
+    },
     "metricsEnabled": true,
     "supportsQuotas": true,
     "supportsPricingV2": true,
@@ -100,13 +100,13 @@ Optional query parameters | &nbsp;
     "supportsInfra": true,
     "lastUsageRecord": "2022-03-28T18:59:59.000Z",
     "quotas": [{
-			"name": "DefaultQuota",
-			"id": "081b1ebb-16c4-49e0-8120-a5b8b356b269"
-		},
-		{
-			"name": "CsQuota",
-			"id": "3734dfed-9d43-4543-ac01-bdd32875e0eb"
-		}],
+      "name": "DefaultQuota",
+      "id": "081b1ebb-16c4-49e0-8120-a5b8b356b269"
+    },
+    {
+      "name": "CsQuota",
+      "id": "3734dfed-9d43-4543-ac01-bdd32875e0eb"
+    }],
   }]
 }
 ```
@@ -130,7 +130,7 @@ Attributes | &nbsp;
 `supportsInfra`<br/>*boolean* | Is infra supported on this service connection.
 `hasWidgets`<br/>*boolean* | Does this service connection have widgets.
 `lastUsageRecord`<br/>*string* | The date which the latest usage record was recorded.
-`quota`<br/>*Array[object]* | The list of quota assigned to the organization.<br/>*includes*: `id`, `name`
+`quotas`<br/>*Array[object]* | The list of quota assigned to the organization.<br/>*includes*: `id`, `name`
 
 <!-------------------- GET APIINFO -------------------->
 
@@ -147,30 +147,30 @@ curl -X GET \
 ```
 ```json
 {
-    "data": {
-        "canRegenerateCredentials": true,
-        "fields": [{
-            "key": "endpoint",
-            "value": "https://your_endpoint.com/auth",
-            "sensitive": false,
-            "environmentSpecific": false
-        }, {
-            "key": "api_key",
-            "value": "my_api_key",
-            "sensitive": true,
-            "environmentSpecific": false
-        }, {
-            "key": "secret_key",
-            "value": "my_secret_key",
-            "sensitive": true,
-            "environmentSpecific": false
-        }, {
-            "key": "project_id",
-            "value": "079bdead-61b5-4b38-86ed-dbbf963808ec",
-            "sensitive": false,
-            "environmentSpecific": false
-        }]
-    }
+  "data": {
+    "canRegenerateCredentials": true,
+    "fields": [{
+      "key": "endpoint",
+      "value": "https://your_endpoint.com/auth",
+      "sensitive": false,
+      "environmentSpecific": false
+    }, {
+      "key": "api_key",
+      "value": "my_api_key",
+      "sensitive": true,
+      "environmentSpecific": false
+    }, {
+      "key": "secret_key",
+      "value": "my_secret_key",
+      "sensitive": true,
+      "environmentSpecific": false
+    }, {
+      "key": "project_id",
+      "value": "079bdead-61b5-4b38-86ed-dbbf963808ec",
+      "sensitive": false,
+      "environmentSpecific": false
+    }]
+  }
 }
 ```
 
@@ -201,21 +201,21 @@ curl -X GET \
 ```
 ```json
 {
-    "data": [{
-        "parameter": "jsonCredentials",
-        "id": "ee7f5ba3-3efc-4efd-819b-1dd947b3473a",
-        "value": "JSON representation of credentials here",
-        "serviceConnection": {
-            "id": "d461e683-30c9-4b4e-bab6-def1a3575227"
-        }
-    }, {
-        "parameter": "billingAccountId",
-        "id": "cd404ae3-884d-4b38-a9b7-cd1bba5c0a46",
-        "value": "02C9H96Q-2H1JS2-K9SJD8",
-        "serviceConnection": {
-            "id": "d461e683-30c9-4b4e-bab6-def1a3575227"
-        } 
-    }]
+  "data": [{
+    "parameter": "jsonCredentials",
+    "id": "ee7f5ba3-3efc-4efd-819b-1dd947b3473a",
+    "value": "JSON representation of credentials here",
+    "serviceConnection": {
+      "id": "d461e683-30c9-4b4e-bab6-def1a3575227"
+    }
+  }, {
+    "parameter": "billingAccountId",
+    "id": "cd404ae3-884d-4b38-a9b7-cd1bba5c0a46",
+    "value": "02C9H96Q-2H1JS2-K9SJD8",
+    "serviceConnection": {
+      "id": "d461e683-30c9-4b4e-bab6-def1a3575227"
+    } 
+  }]
 }
 ```
 
@@ -326,45 +326,45 @@ curl -X POST "https://cloudmc_endpoint/api/v2/services/connections" \
 
 ```json
 {
-   "name":"GCP-AmericasRegion",
-	 "type":"gcp",
-	 "serviceCode":"gcp-americas",
-   "trialEnabled": false,
-	 "usageEnabled": false,
-	 "metricsEnabled": false,
-	 "commitmentTrackingEnabled": false,
-	 "groupedParameters": [],
-   "dependentConnection": null,
-	 "locations": [],
-   "organization": {
-		 "id": "9571b279-abaf-4a37-9f39-85d1a915af7d"
-	 },
-   "parameters":[
-      {
-         "parameter":"parentType",
-         "value":"folder"
-      },
-      {
-         "parameter":"parentId",
-         "value":"9123843023"
-      },
-      {
-         "parameter":"jsonCredentials",
-         "value":"<GCP-SERVICE-ACCOUNT-CREDENTIALS>"
-      },
-      {
-         "parameter":"billingAccountId",
-         "value":"141F7D-FDK3D0-F99HW2"
-      },
-      {
-         "parameter":"billingSubAccountsEnabled",
-         "value":""
-      },
-      {
-         "parameter":"billingDatasetName",
-         "value":"cmc_usage"
-      }
-   ]
+  "name":"GCP-AmericasRegion",
+  "type":"gcp",
+  "serviceCode":"gcp-americas",
+  "trialEnabled": false,
+  "usageEnabled": false,
+  "metricsEnabled": false,
+  "commitmentTrackingEnabled": false,
+  "groupedParameters": [],
+  "dependentConnection": null,
+  "locations": [],
+  "organization": {
+    "id": "9571b279-abaf-4a37-9f39-85d1a915af7d"
+  },
+  "parameters":[
+    {
+      "parameter":"parentType",
+      "value":"folder"
+    },
+    {
+      "parameter":"parentId",
+      "value":"9123843023"
+    },
+    {
+      "parameter":"jsonCredentials",
+      "value":"<GCP-SERVICE-ACCOUNT-CREDENTIALS>"
+    },
+    {
+      "parameter":"billingAccountId",
+      "value":"141F7D-FDK3D0-F99HW2"
+    },
+    {
+      "parameter":"billingSubAccountsEnabled",
+      "value":""
+    },
+    {
+      "parameter":"billingDatasetName",
+      "value":"cmc_usage"
+    }
+  ]
 }
 ```
 
