@@ -167,13 +167,13 @@ curl "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afdd
       "isDbAuthentication": true,
       "isLdapAuthentication": false,
       "quotas": [
-			{
-				"name": "unlimited",
-				"id": "3311d69e-12c8-4295-bae0-34e9a1c57982",
-				"serviceConnection": {
-					"id": "78f55cd7-47c9-47ac-a6a0-203b838d1507"
-          }
+        {
+         "name": "unlimited",
+         "id": "3311d69e-12c8-4295-bae0-34e9a1c57982",
+         "serviceConnection": {
+         "id": "78f55cd7-47c9-47ac-a6a0-203b838d1507"
         }
+       }
       ],
       "ldap": {
         "deleted": false,
@@ -289,6 +289,8 @@ Response | &nbsp;
 ```
 ```json
 {
+  "taskId": "aee1862d-c187-43eb-be12-754c24022dfc",
+  "taskStatus": "PENDING",
   "data": {
     "lineage": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
     "quotas": [
@@ -318,9 +320,7 @@ Response | &nbsp;
     "name": "Shopify",
     "id": "85487519-54e3-4dad-9c42-3a5ff7f1a359",
     "entryPoint": "shopify"
-  },
-  "taskId": "aee1862d-c187-43eb-be12-754c24022dfc",
-  "taskStatus": "PENDING"
+  }
 }
 ```
 
