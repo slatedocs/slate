@@ -19,47 +19,47 @@ curl "https://cloudmc_endpoint/api/v2/identity_providers" \
 ```json
 {
   "data": [{
-      "provider": "GOOGLE",
-      "displayName": "Google",
-      "logo": "aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vaWR23nRpdHkvaW1hZ2VzL2ctbG9nby5wbmc=",
-      "enableSingleLogout": false,
-      "organization": {
-				"id": "5d841eb6-5913-4244-b001-917228e7aa64",
-				"customDomain": {
-					"domain": "portal.dev.cloudmc.io",
-					"id": "b662888e-76e5-4617-833e-304bbacfab38"
-				}
-			},
-      "identityProviderUsers": [
-        {
-          "user": {
-            "id": "0c4hc34e-ff76-48de-8976-7cb2fc89aa96"
-          },
-          "subjectId": "totallyFakeSubjectID"
-        }
-      ],
-      "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceae5",
-      "connectionName": "Google",
-      "type": "OIDC",
-      "rank": "1",
-      "parameters": [
-        {
-          "parameter": "issuerURL",
-          "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceab1",
-          "value": "https://accounts.google.com"
+    "provider": "GOOGLE",
+    "displayName": "Google",
+    "logo": "aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vaWR23nRpdHkvaW1hZ2VzL2ctbG9nby5wbmc=",
+    "enableSingleLogout": false,
+    "organization": {
+      "id": "5d841eb6-5913-4244-b001-917228e7aa64",
+      "customDomain": {
+        "domain": "portal.dev.cloudmc.io",
+        "id": "b662888e-76e5-4617-833e-304bbacfab38"
+      }
+    },
+    "identityProviderUsers": [
+      {
+        "user": {
+          "id": "0c4hc34e-ff76-48de-8976-7cb2fc89aa96"
         },
-        {
-          "parameter": "clientSecret",
-          "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceab3",
-          "value": "sssshhhhhhhhh"
-        },
-        {
-          "parameter": "clientID",
-          "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceab4",
-          "value": "shhhID"
-        }
-      ]
-    }]
+        "subjectId": "totallyFakeSubjectID"
+      }
+    ],
+    "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceae5",
+    "connectionName": "Google",
+    "type": "OIDC",
+    "rank": "1",
+    "parameters": [
+      {
+        "parameter": "issuerURL",
+        "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceab1",
+        "value": "https://accounts.google.com"
+      },
+      {
+        "parameter": "clientSecret",
+        "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceab3",
+        "value": "sssshhhhhhhhh"
+      },
+      {
+        "parameter": "clientID",
+        "id": "02b3cbd5-9286-4cd7-b47e-22b2fb9ceab4",
+        "value": "shhhID"
+      }
+    ]
+  }]
 }
 ```
 List the identity providers configured on the system.
@@ -98,24 +98,24 @@ curl -X POST "https://cloudmc_endpoint/api/v2/identity_providers" \
 
 ```js
 {
-	"provider": "CUSTOM",
-	"type": "OIDC",
-	"connectionName": "CloudMC Google",
-	"displayName": "Google",
-	"parameters": [
-		{
-			"parameter": "issuerURL",
-			"value": "https://accounts.google.com"
-		},
-		{
-			"parameter": "clientId",
-			"value": "secret"
-		},
-		{
-			"parameter": "clientSecret",
-			"value": "secret"
-		}
-	]
+  "provider": "CUSTOM",
+  "type": "OIDC",
+  "connectionName": "CloudMC Google",
+  "displayName": "Google",
+  "parameters": [
+    {
+      "parameter": "issuerURL",
+      "value": "https://accounts.google.com"
+    },
+    {
+      "parameter": "clientId",
+      "value": "secret"
+    },
+    {
+      "parameter": "clientSecret",
+      "value": "secret"
+    }
+  ]
 }
 ```
 > The above command return JSON structured like this:
@@ -183,25 +183,25 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/identity_providers/c84cfe41-929b-47
 
 ```js
 {
-	"provider": "CUSTOM",
-	"type": "OIDC",
+  "provider": "CUSTOM",
+  "type": "OIDC",
     "id": "c84cfe41-929b-47c9-bde4-b55a10bd2774",
-	"connectionName": "CloudMC Google",
-	"displayName": "Google",
-	"parameters": [
-		{
-			"parameter": "issuerURL",
-			"value": "https://accounts.google.com"
-		},
-		{
-			"parameter": "clientId",
-			"value": "secret"
-		},
-		{
-			"parameter": "clientSecret",
-			"value": "secret"
-		}
-	]
+  "connectionName": "CloudMC Google",
+  "displayName": "Google",
+  "parameters": [
+    {
+      "parameter": "issuerURL",
+      "value": "https://accounts.google.com"
+    },
+    {
+      "parameter": "clientId",
+      "value": "secret"
+    },
+    {
+      "parameter": "clientSecret",
+      "value": "secret"
+    }
+  ]
 }
 ```
 > The above command return JSON structured like this:
@@ -295,33 +295,33 @@ curl "https://cloudmc_endpoint/api/v2/identity_providers/default_providers" \
 
 ```json
 {
-	"data": {
-		"AUTH0": {
-			"logo": "https://cdn.auth0.com/styleguide/components/1.0.8/media/logos/img/badge.png",
-			"supportSingleLogout": false,
-			"issuerURL": "https://YOUR_AUTH0_DOMAIN",
-			"displayName": "Auth0"
-		},
-		"MICROSOFT": {
-			"logo": "https://docs.microsoft.com/en-us/azure/active-directory/develop/media/howto-add-branding-in-azure-ad-apps/ms-symbollockup_mssymbol_19.png",
-			"supportSingleLogout": false,
-			"issuerURL": "https://login.microsoftonline.com/common/v2.0",
-			"displayName": "Microsoft"
-		},
-		"OKTA": {
-			"logo": " data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...",
-			"supportSingleLogout": true,
-			"issuerURL": "https://YOUR_OKTA_DOMAIN",
-			"displayName": "Okta"
-		},
-		"GOOGLE": {
-			"logo": "/static/img/google_signin.svg",
-			"prompt": "login",
-			"supportSingleLogout": false,
-			"issuerURL": "https://accounts.google.com",
-			"displayName": "Google"
-		}
-	}
+  "data": {
+    "AUTH0": {
+      "logo": "https://cdn.auth0.com/styleguide/components/1.0.8/media/logos/img/badge.png",
+      "supportSingleLogout": false,
+      "issuerURL": "https://YOUR_AUTH0_DOMAIN",
+      "displayName": "Auth0"
+    },
+    "MICROSOFT": {
+      "logo": "https://docs.microsoft.com/en-us/azure/active-directory/develop/media/howto-add-branding-in-azure-ad-apps/ms-symbollockup_mssymbol_19.png",
+      "supportSingleLogout": false,
+      "issuerURL": "https://login.microsoftonline.com/common/v2.0",
+      "displayName": "Microsoft"
+    },
+    "OKTA": {
+      "logo": " data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...",
+      "supportSingleLogout": true,
+      "issuerURL": "https://YOUR_OKTA_DOMAIN",
+      "displayName": "Okta"
+    },
+    "GOOGLE": {
+      "logo": "/static/img/google_signin.svg",
+      "prompt": "login",
+      "supportSingleLogout": false,
+      "issuerURL": "https://accounts.google.com",
+      "displayName": "Google"
+    }
+  }
 }
 ```
 List the default identity providers configured on the system.

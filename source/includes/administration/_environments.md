@@ -26,23 +26,21 @@ curl "https://cloudmc_endpoint/api/v2/environments" \
       "mode": "project"
     },
     "defaultRole": {
-      "creationDate": "2020-01-02T16:04:27.000Z",
-      "version": 1,
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "name": "Owner",
       "isSystem": false,
       "isDefault": false,
       "deleted": false,
-      "name": "Owner",
-      "alias": "owner",
-      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
       "isFixed": true,
-      "defaultScope": "ENV"
+      "defaultScope": "ENV",
+      "creationDate": "2020-01-02T16:04:27.000Z"
     },
     "membership": "MANY_USERS",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "organization": {
       "id": "a9f93785-0545-4876-8241-3b19b9a86721",
-      "name": "sg1",
-      "entryPoint": "sg1"
+      "name": "Acme",
+      "entryPoint": "acme"
     },
     "allowExternalMembers": false,
     "state": "PROVISIONED",
@@ -95,23 +93,21 @@ curl "https://cloudmc_endpoint/api/v2/environments/487a2745-bb8a-44bc-adb1-e3b04
       "mode": "project"
     },
     "defaultRole": {
-      "creationDate": "2020-01-02T16:04:27.000Z",
-      "version": 1,
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "name": "Owner",
       "isSystem": false,
       "isDefault": false,
       "deleted": false,
-      "name": "Owner",
-      "alias": "owner",
-      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
       "isFixed": true,
-      "defaultScope": "ENV"
+      "defaultScope": "ENV",
+      "creationDate": "2020-01-02T16:04:27.000Z"
     },
     "membership": "MANY_USERS",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "organization": {
       "id": "a9f93785-0545-4876-8241-3b19b9a86721",
-      "name": "sg1",
-      "entryPoint": "sg1"
+      "name": "Acme",
+      "entryPoint": "acme"
     },
     "allowExternalMembers": false,
     "state": "PROVISIONING",
@@ -197,36 +193,34 @@ Response | &nbsp;
 ```
 ```json
 {
+  "taskId": "a82113b9-7f76-4354-ae27-b18b0204d50f",
+  "status": "PENDING",
   "data": {
+    "id": "a83e131f-4114-432b-a3fb-fd4c58907860",
+    "name": "environment-name",
     "defaultRole": {
-      "creationDate": "2019-09-04T19:40:11.000Z",
-      "version": 1,
+      "id": "9f4d940d-708d-4784-98bd-926195691e34",
+      "name": "Owner",
       "isSystem": false,
       "isDefault": false,
       "deleted": false,
-      "name": "Owner",
-      "alias": "owner",
-      "id": "9f4d940d-708d-4784-98bd-926195691e34",
       "isFixed": true,
-      "defaultScope": "ENV"
+      "defaultScope": "ENV",
+      "creationDate": "2019-09-04T19:40:11.000Z"
     },
     "membership": "MANY_USERS",
     "deleted": false,
     "organization": {
-      "name": "organization-name",
       "id": "52fd201e-aa82-4a27-86b3-ea9650a7fb1e",
+      "name": "organization-name",
       "entryPoint": "system"
     },
-    "name": "environment-name",
-    "id": "a83e131f-4114-432b-a3fb-fd4c58907860",
     "allowExternalMembers": false,
     "state": "PENDING",
     "serviceConnection": {
       "id": "95ed7fa3-6f51-405e-b2c3-de43f20de2c3"
     }
-  },
-  "taskId": "a82113b9-7f76-4354-ae27-b18b0204d50f",
-  "status": "PENDING"
+  }
 }
 ```
 
@@ -276,21 +270,23 @@ Response | &nbsp;
 ```
 ```json
 {
+  "taskId": "105cddf8-4507-4131-87eb-fe383bbd882b",
+  "taskStatus": "PENDING",
   "data": {
+    "id": "d77de7ad-274e-4ec9-8776-8d748b0671fd",
+    "name": "skynet-beta-v2",
     "metadata": {
       "mode": "project"
     },
     "defaultRole": {
-      "creationDate": "2020-01-02T16:04:27.000Z",
-      "version": 1,
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "name": "Owner",
       "isSystem": false,
       "isDefault": false,
       "deleted": false,
-      "name": "Owner",
-      "alias": "owner",
-      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
       "isFixed": true,
-      "defaultScope": "ENV"
+      "defaultScope": "ENV",
+      "creationDate": "2020-01-02T16:04:27.000Z",
     },
     "description": "Environment for the Skynet project (updated)",
     "membership": "MANY_USERS",
@@ -301,8 +297,6 @@ Response | &nbsp;
       "id": "f6ece376-de9e-45d5-8719-82a279664ea9",
       "entryPoint": "system"
     },
-    "name": "skynet-beta-v2",
-    "id": "d77de7ad-274e-4ec9-8776-8d748b0671fd",
     "allowExternalMembers": false,
     "state": "PROVISIONED",
     "serviceConnection": {
@@ -311,9 +305,7 @@ Response | &nbsp;
       "id": "8901494c-01ee-4d6b-bd12-cd5347127039",
       "type": "cloudstack"
     }
-  },
-  "taskId": "105cddf8-4507-4131-87eb-fe383bbd882b",
-  "taskStatus": "PENDING"
+  }
 }
 ```
 
@@ -391,8 +383,8 @@ curl "https://cloudmc_endpoint/api/v2/environments/[env-id]/members" \
         "membership": "All"
       },
       "environment": {
-				"id": "094e1dee-164b-4b32-be29-e6b4e27e7713"
-			},
+        "id": "094e1dee-164b-4b32-be29-e6b4e27e7713"
+      },
       "scopeQualifier": "ENV"
     },
   ]
@@ -555,23 +547,21 @@ Update the default membership of an environment that you own.
       "mode": "project"
     },
     "defaultRole": {
-      "creationDate": "2020-01-02T16:04:27.000Z",
-      "version": 1,
+      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
+      "name": "Owner",
       "isSystem": false,
       "isDefault": false,
       "deleted": false,
-      "name": "Owner",
-      "alias": "owner",
-      "id": "b7c48102-350e-40b9-9a3e-b7a0b3cfa535",
       "isFixed": true,
-      "defaultScope": "ENV"
+      "defaultScope": "ENV",
+      "creationDate": "2020-01-02T16:04:27.000Z"
     },
     "membership": "MANY_USERS",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "organization": {
       "id": "a9f93785-0545-4876-8241-3b19b9a86721",
-      "name": "sg1",
-      "entryPoint": "sg1"
+      "name": "Acme",
+      "entryPoint": "acme"
     },
     "allowExternalMembers": false,
     "state": "PROVISIONING",
