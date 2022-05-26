@@ -49,7 +49,6 @@ curl "https://cloudmc_endpoint/api/v2/roles?environment_id=4865a023-1dd5-45a3-a2
             }
          ],
          "name":"viewer",
-         "alias":"viewer",
          "id":"f405a594-56c7-43d4-b790-ab8c616253fc",
          "isFixed":true,
          "defaultScope":"ENV",

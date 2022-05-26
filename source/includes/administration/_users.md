@@ -34,30 +34,11 @@ curl "https://cloudmc_endpoint/api/v2/users" \
     "serviceConnections": [
       {
         "organizationId": "5d841eb6-5913-4244-b001-917228e7aa64",
-        "commitmentTrackingEnabled": true,
-        "metricsTrackingEnabled": false,
-        "serviceCode": "azure",
-        "iconOverrideUrl": "",
-        "lastUsageRecord": "2022-05-23T00:00:00Z",
-        "name": "Microsoft Azure",
-        "locations": [],
-        "id": "2ebe2a97-7c20-47c0-80ed-a784bb7b6554",
-        "state": "PROVISIONED",
-        "type": "azure",
-        "reachable": true
+        "name": "Microsoft Azure"
       },
       {
         "organizationId": "5d841eb6-5913-4244-b001-917228e7aa64",
-        "commitmentTrackingEnabled": false,
-        "metricsTrackingEnabled": false,
-        "serviceCode": "swift-test",
-        "iconOverrideUrl": "",
-        "name": "swifttest",
-        "locations": [],
-        "id": "7580a845-9c0c-4496-a577-01fa665c4a1f",
-        "state": "PROVISIONED",
-        "type": "swift",
-        "reachable": true
+        "name": "swifttest"
       }
     ],
     "lastLogin": "2022-05-20T15:56:27.000Z",
@@ -69,7 +50,6 @@ curl "https://cloudmc_endpoint/api/v2/users" \
     "tfaEnabled": false,
     "deleted": false,
     "receivesEmailNotifications": false,
-    "version": 1,
     "canResendUserCreationEmail": true,
     "backupCodesRemaining": 0,
     "primaryRoleBinding": {
@@ -107,7 +87,6 @@ Attributes | &nbsp;
 `failedLoginCount`<br/>*integer* | The count of failed logins attempted by the user.
 `isBusinessContact`<br/>*boolean* | Indicates whether the user is a business contact.
 `isTechnicalContact`<br/>*boolean* | Indicates whether the user is a technical contact.
-`version`<br/>*integer* | The version of the user.
 `receivesEmailNotifications`<br/>*boolean* | Indicates whether the user email notifications.
 `canResendUserCreationEmail`<br/>*boolean* | Indicates whether the user creation email can be sent to the user.
 `backupCodesRemaining`<br/>*integer* | The number of backup codes remaining for the user.
@@ -165,7 +144,6 @@ curl "https://cloudmc_endpoint/api/v2/users/fdf60a19-980d-4380-acab-914485111305
     "tfaEnabled": false,
     "deleted": false,
     "receivesEmailNotifications": false,
-    "version": 1,
     "canResendUserCreationEmail": true,
     "backupCodesRemaining": 0,
     "primaryRoleBinding": {
@@ -203,7 +181,6 @@ Attributes | &nbsp;
 `failedLoginCount`<br/>*integer* | The count of failed logins attempted by the user.
 `isBusinessContact`<br/>*boolean* | Indicates whether the user is a business contact.
 `isTechnicalContact`<br/>*boolean* | Indicates whether the user is a technical contact.
-`version`<br/>*integer* | The version of the user.
 `receivesEmailNotifications`<br/>*boolean* | Indicates whether the user email notifications.
 `canResendUserCreationEmail`<br/>*boolean* | Indicates whether the user creation email can be sent to the user.
 `backupCodesRemaining`<br/>*integer* | The number of backup codes remaining for the user.
@@ -274,6 +251,8 @@ The responses' `data` field contains the created [user](#administration-users) w
 
 ```json
 {
+  "taskId": "633a85e5-447b-41db-a9a2-da986325955c",
+  "taskStatus": "PENDING",
   "data": {
     "id": "c1ad55a9-0301-4925-bedc-106d31a73047",
     "userName": "bkenobi",
@@ -291,7 +270,6 @@ The responses' `data` field contains the created [user](#administration-users) w
     "serviceConnections": [],
     "status": "ACTIVE",
     "tfaEnabled": false,
-    "version": 1,
     "organization": {
       "id": "bdb2d571-2878-462c-8162-9a034d5ab602",
       "name": "System"
@@ -305,9 +283,7 @@ The responses' `data` field contains the created [user](#administration-users) w
         "isFixed": true
       }
     }
-  },
-  "taskId": "633a85e5-447b-41db-a9a2-da986325955c",
-  "taskStatus": "PENDING"
+  }
 }
 ```
 
