@@ -171,8 +171,8 @@ curl "https://cloudmc_endpoint/api/v2/organizations/03bc22bd-adc4-46b8-988d-afdd
          "name": "unlimited",
          "id": "3311d69e-12c8-4295-bae0-34e9a1c57982",
          "serviceConnection": {
-         "id": "78f55cd7-47c9-47ac-a6a0-203b838d1507"
-        }
+          "id": "78f55cd7-47c9-47ac-a6a0-203b838d1507"
+         }
        }
       ],
       "ldap": {
