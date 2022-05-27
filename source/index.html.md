@@ -18,6 +18,7 @@ includes:
   - budgets
   - comments
   - companies
+  - custom_field_values
   - departments
   - products
   - purchase_orders
