@@ -225,6 +225,117 @@ Attributes | &nbsp;
 ---- | -----------
 `data`<br/>*Array[object]* | An array of objects that describe the service connection parameters.<br/>*includes*: `parameter`, `id`, `value` and `serviceConnection.id`
 
+<!-------------------- GET SERVICE DESCRIPTOR -------------------->
+### Retrieve descriptor
+
+`GET /services/descriptors/:pluginType`
+
+```shell
+# Retrieve service descriptor
+
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/services/descriptors/gcp/parameters"
+```
+
+> Request body example:
+
+```json
+{
+    "data": {
+        "type": "gcp",
+        "entityDescriptors": [
+            {
+                "type": "externalips",
+                "serviceType": "gcp",
+                "system": false,
+                "operations": {
+                    "release": {
+                        "name": "release",
+                        "serviceType": "gcp",
+                        "immediateAction": false,
+                        "isDownload": false,
+                        "defaultOperationType": "DELETE",
+                        "permissionLevel": "BASE"
+                    },
+                    ...
+                },
+                "costEstimators": [],
+                "viewBuilders": [
+                    {
+                        "serviceType": "gcp",
+                        "view": "LIST",
+                        "defaultView": false,
+                        "defaultSpecificView": false
+                    },
+                    ...
+                ]
+            },
+            ...
+        ],
+        "infraEntityDescriptors": [],
+        "supportsInfra": false,
+        "supportedWidgets": [],
+        "hasPluginEnvironmentRoles": false,
+        "quotaMetricIdentifiers": [
+            "instance.cpu.reserved_cores",
+            ...
+        ],
+        "supportsQuota": true,
+        "supportsEnvironmentMetrics": false,
+        "supportsApiCredentials": false,
+        "supportsPolicies": true,
+        "supportsUsage": true,
+        "supportsPricingV2": true,
+        "supportsCaching": false,
+        "supportsMetric": true,
+        "metricDescriptors": [
+            {
+                "metricIdentifier": "instance.cpu.utilization",
+                "nameLabelKey": "metrics.instances.cpu_utilization.label",
+                "unitLabelKey": "metrics.instances.cpu_utilization.unit",
+                "entityType": "instances",
+                "resourceMetricType": "GAUGE"
+            },
+            ...
+        ],
+        "entityRelationships": {
+            "vpntunnels": [
+                {
+                    "entityType": "networks",
+                    "relationshipType": "PARENT"
+                }
+            ],
+            ...
+        },
+        "extensions": {
+            "ksdk": {}
+        }
+    }
+}
+```
+
+Attributes                                  | &nbsp;
+------------------------------------------- | --------------------------------------------------------
+`type`<br/>*string*                         | The type of the service descriptor.
+`entityDescriptors`<br/>*Array[object]*     | An array of entity descriptors, each with operations, view builders and cost estimators definition.
+`infraEntityDescriptors`<br/>*Array[object]*| An array of entity descriptors specific to Infra.
+`metricDescriptors`<br/>*Array[object]*     | An array of metric descriptors.
+`entityRelationships`<br/>*Array[object]*   | An array of relationships between entities.
+`supportedWidgets`<br/>*Array[string]*      | An array of identifiers for supported widgets.
+`quotaMetricIdentifiers`<br/>*Array[string]*| An array of identifiers for quota metric.
+`extensions`<br/>*Map*                      | A map of extensions for this service descriptor.
+`hasPluginEnvironmentRoles`<br/>*boolean*   | Whether or not this service descriptor has plugin environment roles.
+`supportsInfra`<br/>*boolean*               | Whether or not this service descriptor supports infra.
+`supportsQuota`<br/>*boolean*               | Whether or not this service descriptor supports quota.
+`supportsEnvironmentMetrics`<br/>*boolean*  | Whether or not this service descriptor supports environment metrics.
+`supportsApiCredentials`<br/>*boolean*      | Whether or not this service descriptor supports API credentials.
+`supportsPolicies`<br/>*boolean*            | Whether or not this service descriptor supports policies.
+`supportsUsage`<br/>*boolean*               | Whether or not this service descriptor supports usage.
+`supportsPricingV2`<br/>*boolean*           | Whether or not this service descriptor supports pricing (V2).
+`supportsCaching`<br/>*boolean*             | Whether or not this service descriptor supports caching.
+
+This call returns a list of service descriptors which represents the metadata of a service connection.
 
 <!-------------------- GET SERVICE DESCRIPTOR PARAMETERS -------------------->
 ### Retrieve descriptor parameters
