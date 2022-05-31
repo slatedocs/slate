@@ -164,7 +164,7 @@ includes:
   - kubernetes/k8_roles
   - kubernetes/k8_rolebindings
   - kubernetes/k8_releases
-  - kubernetes/k8_charts  
+  - kubernetes/k8_charts
   - azure
   - azure/compute
   - azure/instances

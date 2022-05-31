@@ -1,5 +1,6 @@
 ## Pricings
 
+The pricing determines the price for each product defined for a selected catalog. When prices are created, updated, or deleted with an effective date equal to or less than the current date a rollback is propagated to regenerate the affected prices.
 
 <!-------------------- LIST PRICINGS -------------------->
 ### List pricings
