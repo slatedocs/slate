@@ -113,6 +113,12 @@ curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
 -d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": 22, "priority": "highest"}, "steps": {"data": [{"name": "step one", "description": "Step 1 description", "expected-results": "result"}, {"name": "step two", "expected-results": "result2"}] }}}'
+
+# create an automated type test with automated fields
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/4566/tests.json \
+-d '{"data": { "type": "tests", "attributes": {"name": "one", "author-id": "2", "test-type": "ApiTest", "automated-fields": {"automated_test_design": "Test one design"}}  } }'
 ```
 
 This endpoint creates a test in your project.
@@ -128,6 +134,7 @@ Parameters | Description | required? |
 data/attributes/name | name | true |
 data/attributes/author-id | user-id of author - [users list](#users) | true (unless using PAT) |
 data/attributes/description | Test description | false |
+data/attributes/test-type | By default - ApiTest. Options: ScriptedTest, ApiTest, FireCracker, xBotTest, EggplantTest | false |
 data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution | false |
@@ -264,6 +271,7 @@ Available parameters | Description |
 --------- | ------- |
 data/attributes/name | name |
 data/attributes/description | Test description |
+data/attributes/test-type | By default - ApiTest. Options: ScriptedTest, ApiTest, FireCracker, xBotTest, EggplantTest | false |
 data/attributes/assigned-to-id | user or group assigned-to id (not Display ID) - [users list](#users) [groups list](#get-all-groups-at-your-project) | false |
 data/attributes/assigned-to-type | assigned-to type (user or group) | false |
 data/attributes/planned-execution | date field of planned-execution |
