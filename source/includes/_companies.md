@@ -194,7 +194,8 @@ curl 'https://app.procurementexpress.com/api/v1/companies/1'
     "show_remaining_budget_to_teammember": false,
     "allow_open_draft_access": true,
     "link_budgets_to_qbo_account": false,
-    "is_quickbooks_connected": true
+    "is_quickbooks_connected": true,
+    "is_sage_connected": true,
   },
   "custom_fields": [
     {
@@ -336,6 +337,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/details'
     "po_fields": ["Date", "Budgets", "From", "PO number", "Net Amount"],
     "reserve_po_number": false,
     "is_quickbooks_connected": true
+    "is_sage_connected": true
   },
   "custom_fields": [
     {
