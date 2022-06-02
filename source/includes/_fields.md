@@ -100,7 +100,6 @@ All the Types listed below can be referred through looking at the Affinity web a
 | 5     | Location                | This type enables you to add a smart Google Maps location as a value. Eg: Address                                                                                                           |
 | 6     | Text                    | This type enables you to add a long text block as a value. Eg: Summary                                                                                                                      |
 | 7     | Ranked Dropdown         | This type allows you to add values in a particular order as well as assign colors to them. This is the equivalent of a pick list. Eg: Status, Priority, Ranking                             |
-| 8     | Opportunity             | This type enables you to add an opportunity object.                                                                                                                                         |
 
 <aside class="notice">
   <h6>Note</h6>
