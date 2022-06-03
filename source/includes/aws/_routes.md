@@ -52,7 +52,7 @@ CIDR blocks undergo validation and correction when creating a route, below are e
 | `53.100.233.76`           | `53.100.233.76/32` | Valid IPv4 addresses without a CIDR mask are automatically appended the most specific CIDR mask.                                                       |
 | `00.300.01.9/32`          | Rejected         | Invalid IPv4 address.                                                                                                                                  |
 | `53.100.233.76/70`        | Rejected         | Invalid CIDR mask.                                                                                                                                     |
-| `169.254.169.0/22`        | Rejected         | Any block within 169.254.169.0/22 is rejected because is within AWS's link local address space, overlapping addresses such as `169.254.0.0/16` are fine. |
+| `169.254.169.0/22`        | Rejected         | Any CIDR blocks under `169.254.169.0/22` are rejected because they are within AWS's link local address space. Overlapping blocks such as `169.254.0.0/16` are fine, but the traffic within `169.254.169.0/22` is still reserved to AWS. |
 | `2001:db8:1234:1a00::/56` | Rejected         | IPv6 CIDR blocks, even if they are properly formatted, are not supported at this time.                                                                 |
 
 <!-------------------- DELETE ROUTES -------------------->
