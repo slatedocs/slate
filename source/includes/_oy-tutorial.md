@@ -305,5 +305,37 @@ Preview for one-time payment link
 
 Preview for reusable payment link
 
+## Xero Integration
+
+Xero is an accounting platform that is mainly used by companies. We have integrated our system to Xero system in order to help you optimize your workflow. By connecting your OY! account to your Xero account, you do not have to login to your Xero account. Means that you do not have to manually record your transaction that happened in OY! to Xero. You will get seamless experience of recording your transaction.
+
+### How it works?
+
+Once you have connected your Xero account in OY!, any transaction that happened in OY! will be automatically recorded to your Xero tenant account. Upon successful connection, we will trigger creation of new Bank Account, which is OY! Balance Bank Account. Any transaction that happened in OY! will be recorded in that bank account, to SPEND or RECEIVE money transaction. Then, you will be required to map your Xero’s Chart of Account. Mapping your Chart of Accounts will help us to put your transaction into a correct Account.
+
+### Connect your Xero
+
+1. Login to your dashboard. In the sidebar, select Integration menu.
+2. You will see Xero menu. Click “Connect” to connect your Xero account to OY!. You will be redirected to Xero’s login page. Once you have successfully logged in to Xero, a notification will appear.
+3. Upon success connect to Xero, we will create a new Bank Account into your Xero account, named “OY! balance” in which any transaction happened in OY! will be recorded there.
+
+### Map your Chart of Account
+
+1. Once you have successfully connected to Xero, you will be directed to a page to map your Chart of Account.
+2. Then, map each product to the corresponding Account. Any transaction using each product will be put into the chart of account you defined in this page. Note: For Bulk Disbursement, you also can define in the create campaign page. 
+3. You can change the CoA mapping anytime as needed, just go to Integration >> Xero >> Configuration.
+
+### Record Transaction to Xero
+
+1. Now, your OY! account has been connected to your Xero account and each products has been mapped to its corresponding Chart of Account.
+2. Any success transaction that happened in OY! will be recorded to Xero with the corresponding Account you defined in Mapping Account menu.
+3. Transaction in OY! will be treated as SPEND or RECEIVE money transaction in a bank account (OY! Balance). 
+4. Each transaction will contains of two rows. Row 1 contains of amount of transaction where row 2 contains of admin fee.
+5. In this version, any tax will be excluded. Means that you will need to input manually the tax invoice you obtained from OY! team to your Xero.
+
+### Disconnected your Xero 
+
+1. To disconnect your Xero account from OY!, open the Integration menu on the sidebar. Then select “Disconnect”.
+2. Then, you will be disconnected from Xero. Any transaction that you execute via OY! will not be recorded into Xero.
 
 
