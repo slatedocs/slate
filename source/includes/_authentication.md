@@ -29,7 +29,7 @@ print(response.text)
 
 > If authentication is successful, you should expect to see {"is_logged_in":true}
 
-Apollo uses API keys to allow access to the API. You may request an API key [here](https://www.apollo.io/app/#/settings/integrations/api)
+Apollo uses API keys to allow access to the API. You may request an API key [here](https://developer.apollo.io/keys/)
 
 Apollo expects the API key to be included in all API requests to the server as a query string parameter. 
 
