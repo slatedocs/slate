@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
 
 toc_footers:
-  - <a href='https://developer.apollo.io/keys/'>Sign Up for an API Key</a>
+  - <a href='https://app.apollo.io/#/settings/integrations/api'>Sign Up for an API Key</a>
 
 includes:
   - introduction
