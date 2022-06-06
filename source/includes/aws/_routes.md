@@ -8,7 +8,7 @@ The target is the internet gateway that's attached to your VPC.
 
 <!-------------------- CREATE ROUTES -------------------->
 
-### Create Route
+#### Create Route
 
 ```shell
 curl -X POST \
