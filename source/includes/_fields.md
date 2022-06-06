@@ -43,6 +43,7 @@ more.
   "id": 1234,
   "name": "Deal Status",
   "list_id": 11,
+  "enrichment_source": "none",
   "value_type": 7,
   "allows_multiple": false,
   "track_changes": true,
@@ -77,14 +78,15 @@ Affinity is extremely flexible and customizable, and a lot of that power comes f
 value types for fields. Numbers, dates, and locations are all examples of value types, and you can search,
 sort, or filter all of them.
 
-| Attribute        | Type     | Description                                                                                                                                                                                                  |
-| ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| id               | integer  | The unique identifier of the field object.                                                                                                                                                                   |
-| name             | string   | The name of the field.                                                                                                                                                                                       |
-| list_id          | integer  | The unique identifier of the list that the field object belongs to if it is specific to a list. This is `null` if the field is global.                                                                       |
-| allows_multiple  | boolean  | This determines whether multiple values can be added to a single cell for the field.                                                                                                                         |
-| dropdown_options | object[] | Affinity supports pre-entered dropdown options for fields of the "Ranked Dropdown" value_type. The array is empty unless there are valid dropdown options for the field of the "Ranked Dropdown" value type. |
-| value_type       | integer  | This field describes what values can be associated with the field. This can be one of many values, as described in the table below.                                                                          |
+| Attribute        | Type     | Description                                                                                                                                                                                                               |
+| ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------       |
+| id               | integer  | The unique identifier of the field object.                                                                                                                                                                                |
+| name             | string   | The name of the field.                                                                                                                                                                                                    |
+| list_id          | integer  | The unique identifier of the list that the field object belongs to if it is specific to a list. This is `null` if the field is global.                                                                                    |
+| allows_multiple  | boolean  | This determines whether multiple values can be added to a single cell for the field.                                                                                                                                      |
+| dropdown_options | object[] | Affinity supports pre-entered dropdown options for fields of the "Ranked Dropdown" value_type. The array is empty unless there are valid dropdown options for the field of the "Ranked Dropdown" value type.              |
+| value_type       | integer  | This field describes what values can be associated with the field. This can be one of many values, as described in the table below.                                                                                       |
+| enrichment_source| string   | The data source for the enriched field. Will appear as none for custom fields and certain list-specific fields (e.g. Status). Fields auto-created for certain integrations will also be called out here (e.g. Mailchimp). |
 
 ### Field Value Types
 
@@ -162,11 +164,6 @@ Pass the `value_type` to fetch fields of specific value types. Otherwise, all fi
 
 Pass the `with_modified_names` flag to return the fields such that the names have the list name prepended to them in the format `[List Name] Field Name` (i.e. `[Deals] Status`).
 
-<aside class="notice">
-  <h6>Note</h6>
-    <p>Results returned with <code>list_id: null</code> mean they do not belong to a specific list and thus are global fields.</p>
-</aside>
-
 ### Query Parameters
 
 | Parameter           | Type    | Required | Description                                                                |
@@ -178,6 +175,14 @@ Pass the `with_modified_names` flag to return the fields such that the names hav
 ### Returns
 
 An array of all the fields requested.
+
+<aside class="notice">
+  <h6>Note</h6>
+  <ul>
+    <li>Results returned with <code>list_id: null</code> mean they do not belong to a specific list and thus are global fields.</li>
+    <li>Field endpoint does not return any Crunchbase fields.</li>
+  </ul>
+</aside>
 
 ## Create Field
 
@@ -197,6 +202,7 @@ curl -X POST "https://api.affinity.co/fields" \
   "id": 59,
   "name": "[Deals] Amount",
   "list_id": 11,
+  "enrichment_source": "none",
   "value_type": 3,
   "allows_multiple": false,
   "track_changes": false,

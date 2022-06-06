@@ -2,7 +2,7 @@
 
 ## 2022-05-05
 
-- Added `enrichment_source` field to `GET /fields` response.
+- Added `enrichment_source` documentation to [Fields](#fields).
 
 ## 2022-04-11
 
@@ -31,8 +31,8 @@
 
 ## 2022-01-28
 
-- Added `organization.merged` webhook event to `Organization` object type.
-- Added `mentioned_person_ids` and `is_meeting` fields to note response.
+- Added `organization.merged` event to [Webhooks](#webhooks).
+- Added `mentioned_person_ids` and `is_meeting` fields to [Notes](#notes).
 
 ## 2021-11-22
 
@@ -48,24 +48,24 @@
 
 ## 2021-10-04
 
-- Updates to Example Responses
-- Responsive tweaks
+- Updates to Example Responses.
+- Responsive tweaks.
 
 ## 2021-09-07
 
 - Revamped API documentation
-  - Added [Common Use Cases](#common-use-cases) section
-  - Added [Rate Limits](#rate-limits) section
-  - Updates to `PUT` and `POST` cURL examples
+  - Added [Common Use Cases](#common-use-cases) section.
+  - Added [Rate Limits](#rate-limits) section.
+  - Updates to `PUT` and `POST` cURL examples.
 
 ## 2021-08-18
 
-- Fixed typo in the API docs where `entity_id` and `creator_id` was in path paramaters when they should be inside the payload parameters for [Create a New List Entry](#create-a-new-list-entry)
+- Fixed typo in the API docs where `entity_id` and `creator_id` was in path paramaters when they should be inside the payload parameters for [Create a New List Entry](#create-a-new-list-entry).
 
 ## 2021-07-28
 
-- Fixed typo in Relationship Strength section
+- Fixed typo in Relationship Strength section.
 
 ## 2021-05-05
 
-- Updated API rate limit information
+- Updated API rate limit information.

@@ -75,7 +75,11 @@ The Field Value webhook events do not include enrichment events by default. To e
 
 <aside class="notice">
   <h6>Note</h6>
-  <p>Examples of our webhook responses can be found in the <a href="https://support.affinity.co/hc/en-us/articles/4413976035085-Webhook-Responses">Help Center</a>.</p>
+  <ul>
+    <li>Examples of our webhook responses can be found in the <a href="https://support.affinity.co/hc/en-us/articles/4413976035085-Webhook-Responses">Help Center</a>.</li>
+    <li>Field webhooks are not fired for Crunchbase fields.</li>
+    <li>Field value webhooks are fired with `null` values for Crunchbase fields.</li>
+  </ul>
 </aside>
 
 ## Get All Webhook Subscriptions

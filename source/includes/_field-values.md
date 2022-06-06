@@ -163,6 +163,7 @@ An array of all the field values associated with the supplied `person`,
     <li>
       <p>Smart fields cannot be retrieved using the field values endpoint. Smart field values can be retrieved using the <code>with_interaction_dates</code> parameter on the <code><a href="#get-a-specific-person">GET /persons/{person_id}</a></code> or <code><a href="#get-a-specific-organization">GET /organizations/{organization_id}</a></code> endpoints. The people associated with smart fields can be retrieved using the <code>with_interaction_persons</code> on the <code><a href="#get-a-specific-person">GET /persons/{person_id}</a></code> or <code><a href="#get-a-specific-organization">GET /organizations/{organization_id}</a></code> endpoints.</p>
     </li>
+    <li>Field values endpoint does return Crunchbase fields, but with <code>null</code> values.</li>
   </ul>
 </aside>
 
