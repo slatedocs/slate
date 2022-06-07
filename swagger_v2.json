@@ -2485,6 +2485,30 @@
           "items": {
             "type": "object",
             "properties": {
+              "depth": {
+                "type": "string"
+              },
+              "price": {
+                "type": "string"
+              },
+              "size": {
+                "type": "integer"
+              }
+
+            }
+          }
+        },
+        "last_updated_at":{
+          "type": "integer"
+        },
+        "sell": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "depth": {
+                "type": "string"
+              },
               "price": {
                 "type": "string"
               },
@@ -2494,34 +2518,27 @@
             }
           }
         },
-        "sell": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "price": {
-                "type": "string"
-              },
-              "size": {
-                "type": "integer"
-              }
-            }
-          }
+        "symbol": {
+          "type": "string"
         }
       },
       "example": {
         "buy": [
           {
+          "depth": "983",  
           "price": "9187.5",
           "size": 205640
           }
         ],
+        "last_updated_at":1654589595784000,
         "sell": [
           {
+          "depth": "1185",  
           "price": "9188.0",
           "size": 113752
           }
         ]
+        ,"symbol":"BTCUSDT"
       }
     },
     "Trades": {

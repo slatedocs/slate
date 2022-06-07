@@ -2799,16 +2799,20 @@ p JSON.parse(result)
   "result": {
     "buy": [
       {
+        "depth": "983",
         "price": "9187.5",
         "size": 205640
       }
     ],
+    "last_updated_at": 1654589595784000,
     "sell": [
       {
+        "depth": "1185",
         "price": "9188.0",
         "size": 113752
       }
-    ]
+    ],
+    "symbol": "BTCUSDT"
   }
 }
 ```
@@ -4344,16 +4348,20 @@ This operation does not require authentication.
 {
   "buy": [
     {
+      "depth": "983",
       "price": "9187.5",
       "size": 205640
     }
   ],
+  "last_updated_at": 1654589595784000,
   "sell": [
     {
+      "depth": "1185",
       "price": "9188.0",
       "size": 113752
     }
-  ]
+  ],
+  "symbol": "BTCUSDT"
 }
 
 ```
@@ -4365,11 +4373,15 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |buy|[object]|false|none|none|
+|» depth|string|false|none|none|
 |» price|string|false|none|none|
 |» size|integer|false|none|none|
+|last_updated_at|integer|false|none|none|
 |sell|[object]|false|none|none|
+|» depth|string|false|none|none|
 |» price|string|false|none|none|
 |» size|integer|false|none|none|
+|symbol|string|false|none|none|
 
 <h2 id="tocStrades">Trades</h2>
 
