@@ -1,8 +1,8 @@
-### Custom UI Settings
+## Custom UI Settings
 
 <!-------------------- FIND CUSTOM UI SETTINGS -------------------->
 
-#### Find custom UI settings associated to an organization
+### Find custom UI settings associated to an organization
 
 `GET /reseller/settings/custom_ui/find?organizationId=:id`
 
@@ -51,7 +51,7 @@ Attributes | &nbsp;
 
 
 <!-------------------- GET CUSTOM UI SETTINGS -------------------->
-#### Retrieve custom UI settings
+### Retrieve custom UI settings
 
 `GET /reseller/settings/custom_ui/:id`
 
@@ -96,7 +96,7 @@ Attributes | &nbsp;
 `redirectRoles`<br/>*Array[string]* | The list of roles that users of the reseller will be redirected to the new UI. Possible values are `reseller`,`admin`,`user`,`guest`.
 
 <!-------------------- CREATE CUSTOM UI SETTINGS -------------------->
-#### Create custom UI settings
+### Create custom UI settings
 
 `POST /reseller/settings/custom_ui`
 
@@ -158,7 +158,7 @@ Optional | &nbsp;
 `redirectRoles`<br/>*Array[string]* | The list of roles that users of the reseller will be redirected to the new UI. Possible values are `reseller`,`admin`,`user`,`guest`.
 
 <!-------------------- UPDATE CUSTOM UI SETTINGS -------------------->
-#### Update custom UI settings
+### Update custom UI settings
 
 `PUT /reseller/settings/custom_ui/:id`
 
@@ -225,7 +225,7 @@ Optional | &nbsp;
 `redirectRoles`<br/>*Array[string]* | The list of roles that users of the reseller will be redirected to the new UI. Possible values are `reseller`,`admin`,`user`,`guest`.
 
 <!-------------------- DELETE CUSTOM UI SETTINGS -------------------->
-#### Delete custom UI settings
+### Delete custom UI settings
 
 `DELETE /reseller/settings/custom_ui/:id`
 
