@@ -48,6 +48,7 @@ includes:
   - administration/custom_navigation
   - administration/metrics
   - administration/caches
+  - administration/custom_ui_settings
   - cloudstack
   - cloudstack/compute # Compute section
   - cloudstack/instances

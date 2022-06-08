@@ -10,7 +10,7 @@ Retrieve the billing settings associated to an organization. If the `organizatio
 
 ```shell
 # Retrieve the billing settings
-curl "https://cloudmc_endpoint/api/rest/reseller/settings/billing/find?organizationId=10572c3d-16e5-450f-8af8-a01e50dc52d4" \
+curl "https://cloudmc_endpoint/api/v2/reseller/settings/billing/find?organizationId=10572c3d-16e5-450f-8af8-a01e50dc52d4" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve billing settings
-curl "https://cloudmc_endpoint/api/rest/reseller/settings/billing/f7ad28a8-1227-44de-9785-6dbd556f3bda" \
+curl "https://cloudmc_endpoint/api/v2/reseller/settings/billing/f7ad28a8-1227-44de-9785-6dbd556f3bda" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -111,7 +111,7 @@ Create new billing settings.
 
 ```shell
 # Creates a new billing settings
-curl -X POST "https://cloudmc_endpoint/api/rest/reseller/settings/billing" \
+curl -X POST "https://cloudmc_endpoint/api/v2/reseller/settings/billing" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -179,7 +179,7 @@ Updates the billing settings of an organization.
 
 ```shell
 # Updates an existing billing settings for an organization
-curl -X PUT "https://cloudmc_endpoint/api/rest/reseller/settings/billing/d785ffcb-9b03-478d-a49b-52a2ccedf1b8 \
+curl -X PUT "https://cloudmc_endpoint/api/v2/reseller/settings/billing/d785ffcb-9b03-478d-a49b-52a2ccedf1b8 \
    -H "MC-Api-Key: your_api_key"
    -H "Content-Type: application/json" \
    -d "request-body"
@@ -251,7 +251,7 @@ Optional | &nbsp;
 Delete an existing billing settings.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/api/rest/reseller/settings/billing/d785ffcb-9b03-478d-a49b-52a2ccedf1b8" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/reseller/settings/billing/d785ffcb-9b03-478d-a49b-52a2ccedf1b8" \
    -H "MC-Api-Key: your_api_key"
 ```
 
