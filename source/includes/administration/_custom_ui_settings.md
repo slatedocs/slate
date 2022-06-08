@@ -27,7 +27,6 @@ curl "https://cloudmc_endpoint/api/rest/reseller/settings/custom_ui/find?organiz
     "enabled": true,
     "customUIRootUrl": "https://newui.example.com",
     "domainToken": "example.com",
-    "gotoParam": "target",
     "applyTags": [],
     "denyTags": [],
     "redirectRoles": []
@@ -45,7 +44,6 @@ Attributes | &nbsp;
 `enabled`<br/>*boolean* | If the custom ui redirection is enabled or not.
 `customUIRootUrl`<br/>*string* | The base root that the user will be redirected to once the user is login.
 `domainToken`<br/>*string* | The domain name that will be used in the authentication cookie. The cookie must be acceptable by both the reseller organization custom domain and the url provided in this configuration.
-`gotoParam`<br/>*string* | Parameter name to get path to redirect the user to.
 `applyTags`<br/>*Array[string]* | The list organization tags that will redirect the user to the custom ui if they match. 
 `denyTags`<br/>*Array[string]* | The list organization tags that will not redirect the user to the custom ui if they match.
 `redirectRoles`<br/>*Array[string]* | The list of roles that users will be redirected to the new UI. Possible values are `reseller`,`admin`,`user`,`guest`.
@@ -76,7 +74,6 @@ curl "https://cloudmc_endpoint/api/rest/reseller/settings/custom_ui/d785ffcb-9b0
     "enabled": true,
     "customUIRootUrl": "https://newui.example.com",
     "domainToken": "example.com",
-    "gotoParam": "target",
     "applyTags": [],
     "denyTags": [],
     "redirectRoles": []
@@ -94,7 +91,6 @@ Attributes | &nbsp;
 `enabled`<br/>*boolean* | If the custom ui redirection is enabled or not.
 `customUIRootUrl`<br/>*string* | The base root that the user will be redirected to once the user is login.
 `domainToken`<br/>*string* | The domain name that will be used in the authentication cookie. The cookie must be acceptable by both the reseller organization custom domain and the url provided in this configuration.
-`gotoParam`<br/>*string* | Parameter name to get path to redirect the user to.
 `applyTags`<br/>*Array[string]* | The list organization tags that will redirect the user to the custom ui if they match.
 `denyTags`<br/>*Array[string]* | The list organization tags that will not redirect the user to the custom ui if they match.
 `redirectRoles`<br/>*Array[string]* | The list of roles that users will be redirected to the new UI.  Possible values are `reseller`,`admin`,`user`,`guest`.
@@ -122,7 +118,6 @@ curl -X POST "https://cloudmc_endpoint/api/rest/reseller/settings/custom_ui" \
   "enabled": true,
   "customUIRootUrl": "https://newui.example.com",
   "domainToken": "example.com",
-  "gotoParam": "target",
   "applyTags": [],
   "denyTags": [],
   "redirectRoles": []
@@ -142,7 +137,6 @@ curl -X POST "https://cloudmc_endpoint/api/rest/reseller/settings/custom_ui" \
     "enabled": true,
     "customUIRootUrl": "https://newui.example.com",
     "domainToken": "example.com",
-    "gotoParam": "target",
     "applyTags": [],
     "denyTags": [],
     "redirectRoles": []
@@ -159,7 +153,6 @@ Optional | &nbsp;
 `organization.id`<br/>*UUID* | The organization id that the custom UI settings are linked to. If the `organizationId` is omitted, the authenticated user's organization will be used.
 `customUIRootUrl`<br/>*string* | The base root that the user will be redirected to once the user is login. Required if the custom ui is enabled.
 `domainToken`<br/>*string* | The domain name that will be used in the authentication cookie. The cookie must be acceptable by both the reseller organization custom domain and the url provided in this configuration. Required if the custom ui is enabled.
-`gotoParam`<br/>*string* | Parameter name to get path to redirect the user to.
 `applyTags`<br/>*Array[string]* | The list organization tags that will redirect the user to the custom ui if they match.
 `denyTags`<br/>*Array[string]* | The list organization tags that will not redirect the user to the custom ui if they match.
 `redirectRoles`<br/>*Array[string]* | The list of roles that users will be redirected to the new UI. Possible values are `reseller`,`admin`,`user`,`guest`.
@@ -191,7 +184,6 @@ curl -X PUT "https://cloudmc_endpoint/api/rest/reseller/settings/custom_ui/d785f
   "enabled": true,
   "customUIRootUrl": "https://newui.example.com",
   "domainToken": "example.com",
-  "gotoParam": "target",
   "applyTags": [],
   "denyTags": [],
   "redirectRoles": []
@@ -211,7 +203,6 @@ curl -X PUT "https://cloudmc_endpoint/api/rest/reseller/settings/custom_ui/d785f
     "enabled": true,
     "customUIRootUrl": "https://newui.example.com",
     "domainToken": "example.com",
-    "gotoParam": "target",
     "applyTags": [],
     "denyTags": [],
     "redirectRoles": []
@@ -227,9 +218,8 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ---------- | -----------
-`customUIRootUrl`<br/>*string* | The base root that the user will be redirected to once the user is login. . Required if the custom ui is enabled.
-`domainToken`<br/>*string* | The domain name that will be used in the authentication cookie. The cookie must be acceptable by both the reseller organization custom domain and the url provided in this configuration. . Required if the custom ui is enabled.
-`gotoParam`<br/>*string* | Parameter name to get path to redirect the user to.
+`customUIRootUrl`<br/>*string* | The base root that the user will be redirected to once the user is login. Required if the custom ui is enabled.
+`domainToken`<br/>*string* | The domain name that will be used in the authentication cookie. The cookie must be acceptable by both the reseller organization custom domain and the url provided in this configuration. Required if the custom ui is enabled.
 `applyTags`<br/>*Array[string]* | The list organization tags that will redirect the user to the custom ui if they match.
 `denyTags`<br/>*Array[string]* | The list organization tags that will not redirect the user to the custom ui if they match.
 `redirectRoles`<br/>*Array[string]* | The list of roles that users will be redirected to the new UI.  Possible values are `reseller`,`admin`,`user`,`guest`.
