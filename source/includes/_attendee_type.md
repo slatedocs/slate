@@ -414,3 +414,56 @@ Parameter |  Type   | Description
 event_uri | string  | The event_uri for the desired event
    id     | integer | The id for the desired attendee type
 
+
+## Available Seats
+
+```javascript
+fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/<id>/available-seats', {
+  method: 'GET',
+  headers: {
+    'Authorization': '<your token>',
+  }
+})
+```
+
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+
+> Make sure you replace &lt;event uri&gt; with the event uri for the event.
+
+> Make sure you replace &lt;id&gt; with the id for the attendee type to obtain. 
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+  "meta: {
+    "available: 999,
+    "occupied": 5
+  }
+}
+```
+
+>Example of Not Found (404) response: 
+
+```http
+HTTP/1.1 404 Not Found
+{
+  {
+    "message": "Couldn't find AttendeeType"
+  }
+}
+```
+
+This endpoint get an attendee type and return his available seats
+
+### HTTP Request
+
+`GET /v1/events/event_uri/attendee_types/id/available_seats`
+
+### Path Parameters
+
+Parameter |  Type   | Description
+--------- | ------- | -----------
+event_uri | string  | The event_uri for the desired event
+   id     | integer | The id for the desired attendee type

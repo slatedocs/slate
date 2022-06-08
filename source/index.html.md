@@ -13,6 +13,7 @@ includes:
   - introduction
   - attendees
   - attendee_type
+  - activation
   - events
   - fields
   - pricing_tier
