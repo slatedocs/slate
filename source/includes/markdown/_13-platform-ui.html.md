@@ -56,7 +56,10 @@ https://app-server.com/widget?workspace=12345&task=23456&user=34567&locale=en&at
         "title": "MSB-3 As a user, I see a flexible widget",
         "subtitle": "Jira Cloud Story · Open in Jira Cloud",
         "subicon_url": "https://jira.com/icons/subicon.png",
-        "footer": "Last updated in Jira Cloud 10 minutes ago",
+        "footer": {
+          "footer_type": "updated",
+          "last_updated_at": "2012-02-22T02:06:58.147Z"
+        },
         "comment_count": 12,
         "fields": [
             {
