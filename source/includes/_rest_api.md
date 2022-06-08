@@ -4373,14 +4373,14 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |buy|[object]|false|none|none|
-|» depth|string|false|none|none|
+|» depth|string|false|none|sum of size till that price level|
 |» price|string|false|none|none|
-|» size|integer|false|none|none|
+|» size|integer|false|none|for derivatives -> number of contracts, for spot -> amount in underlying|
 |last_updated_at|integer|false|none|none|
 |sell|[object]|false|none|none|
-|» depth|string|false|none|none|
+|» depth|string|false|none|sum of size till that price level|
 |» price|string|false|none|none|
-|» size|integer|false|none|none|
+|» size|integer|false|none|for derivatives -> number of contracts, for spot -> amount in underlying|
 |symbol|string|false|none|none|
 
 <h2 id="tocStrades">Trades</h2>

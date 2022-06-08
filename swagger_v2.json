@@ -2486,13 +2486,15 @@
             "type": "object",
             "properties": {
               "depth": {
-                "type": "string"
+                "type": "string",
+                "description": "sum of size till that price level"
               },
               "price": {
                 "type": "string"
               },
               "size": {
-                "type": "integer"
+                "type": "integer",
+                "description": "for derivatives -> number of contracts, for spot -> amount in underlying"
               }
 
             }
@@ -2507,13 +2509,15 @@
             "type": "object",
             "properties": {
               "depth": {
-                "type": "string"
+                "type": "string",
+                "description": "sum of size till that price level"
               },
               "price": {
                 "type": "string"
               },
               "size": {
-                "type": "integer"
+                "type": "integer",
+                "description": "for derivatives -> number of contracts, for spot -> amount in underlying"
               }
             }
           }
