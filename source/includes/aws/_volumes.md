@@ -35,7 +35,6 @@ curl -X GET \
             "size": 1,
             "snapshotId": "",
             "state": "available",
-            "volumeId": "vol-02929c8a1bcbf5f5f",
             "iops": 100,
             "tags": [],
             "volumeType": "gp2",
@@ -64,7 +63,6 @@ Retrieve a list of all volumes in a given [environment](#administration-environm
 | `size` <br/>*int*                   | The size of the volume in GiB.                                                                            |
 | `snapshotId` <br/>*string*          | The snapshot from which the volume was created.                                                           |
 | `state` <br/>*string*               | The state of the volume (creating, available, in-use, deleting, deleted, error).                          |
-| `volumeId` <br/>*string*            | The volume ID.                                                                                            |
 | `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. |
 | `tags` <br/>*Array[object]*         | Any tags assigned to the volume. Tags are key value pairs.                                                |
 | `volumeType` <br/>*string*          | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).                                      |
@@ -102,7 +100,6 @@ curl -X GET \
     "size": 8,
     "snapshotId": "snap-0299d083f0ce6cd12",
     "state": "in-use",
-    "volumeId": "vol-0c8dd88e0743c368b",
     "iops": 100,
     "tags": [],
     "volumeType": "gp2",
@@ -127,7 +124,6 @@ Retrieve a volume in a given [environment](#administration-environments).
 | `size` <br/>*int*                   | The size of the volume in GiB.                                                                            |
 | `snapshotId` <br/>*string*          | The snapshot from which the volume was created.                                                           |
 | `state` <br/>*string*               | The state of the volume (creating, available, in-use, deleting, deleted, error).                          |
-| `volumeId` <br/>*string*            | The volume ID.                                                                                            |
 | `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. |
 | `tags` <br/>*Array[object]*         | Any tags assigned to the volume. Tags are key value pairs.                                                |
 | `volumeType` <br/>*string*          | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).                                      |
@@ -238,11 +234,9 @@ Modify a volume in a given environment [environment](#administration-environment
 | `name`<br/>*string*                 | The volume name of the root device volume (for example, /dev/sda1).                                       |
 | `attachments` <br/>*Array[object]*  | The list of instances to which the volume is attached.                                                    |                                                                                                                                  |
 | `size` <br/>*int*                   | The size of the volume in GiB.                                                                            |
-| `volumeId` <br/>*string*            | The volume ID.                                                                                            |
 | `iops` <br/>*int*                   | Describes the maximum number of input/output operations per second (IOPS) that the volume should provide. |
 | `volumeType` <br/>*string*          | The Amazon EBS volume type (gp2, gp3, io1, io2, st1, sc1, standard).                                      |
 | `multiAttachEnabled` <br/>*boolean* | Indicates whether the volume is enabled for Multi-Attach.                                                 |
-
 
 
 <!-------------------- DELETE A VOLUME -------------------->
