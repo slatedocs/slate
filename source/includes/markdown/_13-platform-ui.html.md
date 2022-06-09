@@ -617,7 +617,7 @@ Apps built on App Components are manually reviewed before they are accessible wi
 
 <hr>
 
-## General Guidelines
+## Publishing Checklist
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
