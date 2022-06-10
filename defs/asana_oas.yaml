@@ -547,14 +547,23 @@ tags:
       drive measurable results.
   - name: Jobs
     description: >-
-      Jobs represent processes that handle asynchronous work.
+      Jobs represent processes that handle asynchronous work. A Job created when an
+      endpoint requests an action
+      that will be handled asynchronously, such as project or task duplication. 
 
-      Jobs are created when an endpoint requests an action that will be handled
-      asynchronously. Such as project or task duplication.
 
       Only the creator of the duplication process can access the duplication
-      status
-      of the new object.
+      status of the new object.
+
+
+      *Note*: With any work that is handled asynchronously
+      (e.g., [project instantation from a template](/docs/instantiate-a-project-from-a-project-template),
+      duplicating a [task](/docs/duplicate-a-task) or [project](/docs/duplicate-a-project),
+      etc.),
+      the *intermittent states* of newly-created objects may not be consistent. That
+      is, object properties may
+      return different values each time when polled until the job `status` has returned
+      a `succeeded` value.
   - name: Organization Exports
     description: >-
       An *organization_export* object represents a request to export the
@@ -2785,7 +2794,7 @@ components:
             status:
               description: >-
                 The current status of this job. The value is one of: `not_started`,
-                `in_progress`, `completed`, or `failed`.
+                `in_progress`, `succeeded`, or `failed`.
               type: string
               enum:
                 - not_started
@@ -3505,7 +3514,7 @@ components:
               example: '12345'
             team:
               description: >-
-                *Create-only*. The team that this project is shared with.
+                The team that this project is shared with.
               type: string
               example: '12345'
     ProjectResponse:
@@ -3561,7 +3570,7 @@ components:
                 - $ref: '#/components/schemas/TeamCompact'
                 - type: object
                   description: >-
-                    *Create-only*. The team that this project is shared with.
+                    The team that this project is shared with.
             icon:
               description: >-
                 The icon for a project.
@@ -9804,7 +9813,10 @@ paths:
         - name: parent
           required: true
           in: query
-          description: Globally unique identifier for object to fetch statuses from.
+          description: >-
+            Globally unique identifier for object to fetch statuses from. Must be
+            a GID
+            for a project, portfolio, or goal.
           schema:
             type: string
           example: '159874'
@@ -10385,7 +10397,8 @@ paths:
         - name: assignee
           in: query
           description: >-
-            The assignee to filter tasks on.
+            The assignee to filter tasks on. If searching for unassigned tasks, assignee.any
+            = null can be specified.
 
             *Note: If you specify `assignee`, you must also specify the
             `workspace` to filter on.*
@@ -10999,7 +11012,8 @@ paths:
       summary: Set dependencies for a task
       description: >-
         Marks a set of tasks as dependencies of this task, if they are not
-        already dependencies. *A task can have at most 15 dependencies*.
+        already dependencies. *A task can have at most 30 dependents and dependencies
+        combined*.
       tags:
         - Tasks
       operationId: addDependenciesForTask
@@ -11129,7 +11143,7 @@ paths:
       summary: Set dependents for a task
       description: >-
         Marks a set of tasks as dependents of this task, if they are not already
-        dependents. *A task can have at most 30 dependents*.
+        dependents. *A task can have at most 30 dependents and dependencies combined*.
       tags:
         - Tasks
       operationId: addDependentsForTask
@@ -12287,7 +12301,7 @@ paths:
         the authorized user.
       tags:
         - Teams
-      operationId: getTeamsForWorkspcae
+      operationId: getTeamsForWorkspace
       responses:
         200:
           description: >-

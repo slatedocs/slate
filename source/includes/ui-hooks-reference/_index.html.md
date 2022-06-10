@@ -1452,7 +1452,9 @@ An error response object indicating a forbidden request (i.e., a status code of 
     }
   ],
   "type": "checkbox",
-  "value": "checkbox_option_1"
+  "value": [
+    "opt-in"
+  ]
 }
 
 ```
@@ -1475,7 +1477,7 @@ A Modal Form field that accepts checkbox input. Limit 10 options.
 |» id<span class="param-type"> string</span>|The ID of the option.|
 |» label<span class="param-type"> string</span>|The label of the option. Limit 80 characters.|
 |type<span class="param-type"> string</span>|The type of Modal Form field.|
-|value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the IDs of the chosen CheckboxOption objects.|
+|value<span class="param-type"> [string]</span>|*Optional*. The values for the form field, which are the IDs of the chosen CheckboxOption objects.|
 
 #### Enumerated Values
 

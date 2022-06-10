@@ -5400,9 +5400,11 @@ Returns a compact representation of all of the parent goals of a goal.
 </pre>
 
 <span class="description">
-Jobs represent processes that handle asynchronous work.
-Jobs are created when an endpoint requests an action that will be handled asynchronously. Such as project or task duplication.
+Jobs represent processes that handle asynchronous work. A Job created when an endpoint requests an action that will be handled asynchronously, such as project or task duplication. 
+
 Only the creator of the duplication process can access the duplication status of the new object.
+
+*Note*: With any work that is handled asynchronously (e.g., [project instantation from a template](/docs/instantiate-a-project-from-a-project-template), duplicating a [task](/docs/duplicate-a-task) or [project](/docs/duplicate-a-project), etc.), the *intermittent states* of newly-created objects may not be consistent. That is, object properties may return different values each time when polled until the job `status` has returned a `succeeded` value.
 </span>
 
 </section>
@@ -8470,7 +8472,7 @@ Returns the full record of the newly created project.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
+|»» team<span class="param-type"> string</span>|The team that this project is shared with.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
 
@@ -9165,7 +9167,7 @@ Returns the complete updated project record.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
+|»» team<span class="param-type"> string</span>|The team that this project is shared with.|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10064,7 +10066,7 @@ Returns the full record of the newly created project.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
+|»» team<span class="param-type"> string</span>|The team that this project is shared with.|
 |/team_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the team.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -10578,7 +10580,7 @@ Returns the full record of the newly created project.
 |»» owner<span class="param-type"> string¦null</span>|The current owner of the project, may be null.|
 |»» public<span class="param-type"> boolean</span>|True if the project is public to its team.|
 |»» start_on<span class="param-type"> string(date)¦null</span>|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter. Additionally, `start_on` and `due_on` cannot be the same date.*|
-|»» team<span class="param-type"> string</span>|*Create-only*. The team that this project is shared with.|
+|»» team<span class="param-type"> string</span>|The team that this project is shared with.|
 |/workspace_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the workspace or organization.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -14794,7 +14796,7 @@ Returns the compact status update records for all updates on the object.
 
 |Name|Description|
 |---|---|
-|?parent<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for object to fetch statuses from.|
+|?parent<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for object to fetch statuses from. Must be a GID for a project, portfolio, or goal.|
 |?created_since<span class="param-type"> string(date-time)</span>|Only return statuses that have been created since the given time.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -17420,7 +17422,7 @@ For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](/
 |---|---|
 |?limit<span class="param-type"> integer</span>|Results per page.|
 |?offset<span class="param-type"> string</span>|Offset token.|
-|?assignee<span class="param-type"> string</span>|The assignee to filter tasks on.|
+|?assignee<span class="param-type"> string</span>|The assignee to filter tasks on. If searching for unassigned tasks, assignee.any = null can be specified.|
 |?project<span class="param-type"> string</span>|The project to filter tasks on.|
 |?section<span class="param-type"> string</span>|The section to filter tasks on.|
 |?workspace<span class="param-type"> string</span>|The workspace to filter tasks on.|
@@ -17431,7 +17433,7 @@ For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](/
 
 #### Detailed descriptions
 
-**assignee**: The assignee to filter tasks on.
+**assignee**: The assignee to filter tasks on. If searching for unassigned tasks, assignee.any = null can be specified.
 *Note: If you specify `assignee`, you must also specify the `workspace` to filter on.*
 
 **section**: The section to filter tasks on.
@@ -20198,7 +20200,7 @@ $result = $client->tasks->addDependenciesForTask($task_gid, array('field' => 'va
 </p>
 
 <span class="description">
-Marks a set of tasks as dependencies of this task, if they are not already dependencies. *A task can have at most 15 dependencies*.
+Marks a set of tasks as dependencies of this task, if they are not already dependencies. *A task can have at most 30 dependents and dependencies combined*.
 </span>
 
 <h3 id="set-dependencies-for-a-task-parameters">Parameters</h3>
@@ -20573,7 +20575,7 @@ $result = $client->tasks->addDependentsForTask($task_gid, array('field' => 'valu
 </p>
 
 <span class="description">
-Marks a set of tasks as dependents of this task, if they are not already dependents. *A task can have at most 30 dependents*.
+Marks a set of tasks as dependents of this task, if they are not already dependents. *A task can have at most 30 dependents and dependencies combined*.
 </span>
 
 <h3 id="set-dependents-for-a-task-parameters">Parameters</h3>
@@ -21980,7 +21982,7 @@ Returns the full record for a single team.
 <section>
 ## Get teams in a workspace
 
-<a id="opIdgetTeamsForWorkspcae"></a>
+<a id="opIdgetTeamsForWorkspace"></a>
 
 > Code samples
 
@@ -21996,7 +21998,7 @@ const asana = require('asana');
 
 const client = asana.Client.create().useAccessToken('PERSONAL_ACCESS_TOKEN');
 
-client.teams.getTeamsForWorkspcae(workspaceGid, {param: "value", param: "value", opt_pretty: true})
+client.teams.getTeamsForWorkspace(workspaceGid, {param: "value", param: "value", opt_pretty: true})
     .then((result) => {
         console.log(result);
     });
@@ -22007,7 +22009,7 @@ import asana
 
 client = asana.Client.access_token('PERSONAL_ACCESS_TOKEN')
 
-result = client.teams.get_teams_for_workspcae(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
+result = client.teams.get_teams_for_workspace(workspace_gid, {'param': 'value', 'param': 'value'}, opt_pretty=True)
 ```
 
 ```ruby
@@ -22017,7 +22019,7 @@ client = Asana::Client.new do |c|
     c.authentication :access_token, 'PERSONAL_ACCESS_TOKEN'
 end
 
-result = client.teams.get_teams_for_workspcae(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
+result = client.teams.get_teams_for_workspace(workspace_gid: 'workspace_gid', param: "value", param: "value", options: {pretty: true})
 ```
 
 ```java
@@ -22025,7 +22027,7 @@ import com.asana.Client;
 
 Client client = Client.accessToken("PERSONAL_ACCESS_TOKEN");
 
-List<Team> result = client.teams.getTeamsForWorkspcae(workspaceGid)
+List<Team> result = client.teams.getTeamsForWorkspace(workspaceGid)
     .option("pretty", true)
     .execute();
 ```
@@ -22036,7 +22038,7 @@ require 'php-asana/vendor/autoload.php';
 
 $client = Asana\Client::accessToken('PERSONAL_ACCESS_TOKEN');
 
-$result = $client->teams->getTeamsForWorkspcae($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
+$result = $client->teams->getTeamsForWorkspace($workspace_gid, array('param' => 'value', 'param' => 'value'), array('opt_pretty' => 'true'))
 ```
 
 > 200 Response
@@ -27216,7 +27218,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Job), bu
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|status<span class="param-type"> string</span>|The current status of this job. The value is one of: `not_started`, `in_progress`, `completed`, or `failed`.|
+|status<span class="param-type"> string</span>|The current status of this job. The value is one of: `not_started`, `in_progress`, `succeeded`, or `failed`.|
 
 #### Enumerated Values
 
@@ -27285,7 +27287,7 @@ A *job* is an object representing a process that handles asynchronous work.
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the task.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|status<span class="param-type"> string</span>|The current status of this job. The value is one of: `not_started`, `in_progress`, `completed`, or `failed`.|
+|status<span class="param-type"> string</span>|The current status of this job. The value is one of: `not_started`, `in_progress`, `succeeded`, or `failed`.|
 
 #### Enumerated Values
 
@@ -28336,7 +28338,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |permalink_url<span class="param-type"> string</span>|A url that points directly to the object within Asana.|
-|team<span class="param-type"> object</span>|*Create-only*. The team that this project is shared with.|
+|team<span class="param-type"> object</span>|The team that this project is shared with.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|The name of the team.|
