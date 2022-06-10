@@ -472,7 +472,7 @@ Use the polling endpoint provided in the successful response of the get booking 
 
 *API endpoint*
 
-`GET /pricing/v1.0/{SessionKey}/booking/{OutboundLegId};{InboundLegId}`
+`GET /pricing/v1.0/{SessionKey}/booking/{OutboundLegId}|{InboundLegId}`
 
 <aside class="notice">
   Please note that the actual polling endpoint will be provided in the successful response of the <a href="#get-booking-details">Get booking details</a> request.
@@ -488,17 +488,6 @@ Use the polling endpoint provided in the successful response of the get booking 
 | Parameter | Description |
 | --------- | ------- |
 | ```apiKey``` <br><span class="required">REQUIRED</span> | Your API Key. |
-
-*REQUEST BODY (from live pricing response)*
-
-| Parameter | Description |
-| --------- | ------- |
-| ```OutboundLegId``` <br><span class="required">REQUIRED</span> | The outbound leg Id of the itinerary |
-| ```InboundLegId``` <br><span class="optional">OPTIONAL</span> | The inbound leg Id of the itinerary for return flights |
-| ```adults``` <br><span class="optional">OPTIONAL</span> | Number of adults (16+ years). Must be between 1 and 8.  |
-| ```children``` <br><span class="optional">OPTIONAL</span> | Number of children (1-16 years). Can be between 0 and 8.  |
-| ```infants``` <br><span class="optional">OPTIONAL</span> | Number of infants (under 12 months). Can be between 0 and 8.  |
-
 
 
 
