@@ -651,9 +651,12 @@ components:
           example: 'Please review and change your input'
         value:
           description: >-
-            *Optional*. The value for the form field, which is the IDs of the chosen CheckboxOption objects.
-          type: string
-          example: 'checkbox_option_1'
+            *Optional*. The values for the form field, which are the IDs of the chosen CheckboxOption objects.
+          type: array
+          items:
+            type: string
+          example:
+            - 'opt-in'
         options:
           description: >-
             An array (minimum length: 1) of CheckboxOption objects.
