@@ -68,7 +68,8 @@ All admin settings events operate on the _Workspace_ resource type except for `w
 | workspace_personal_access_token_disabled             | The workspace's global personal access token setting was disabled. |
 | workspace_app_admin_approval_setting_changed         | The workspace's specific app approval setting was changed.     |
 | workspace_require_app_approvals_of_type_changed      | The workspace's global app approval setting was changed. |
-
+| workspace_form_is_embeddable_forms_enabled           | Embeddable forms is enabled in admin |
+| workspace_form_is_embeddable_forms_disabled          | Embeddable forms is disabled in admin |
 ### Roles
  
 All role events operate on the _User_ resource type.
