@@ -21,19 +21,19 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #182628 !default;
+$nav-bg: #4D576A !default;
 $examples-bg: #2e3336 !default;
 $code-bg: #1e2224 !default;
 $code-annotation-bg: #0b5054 !default;
-$nav-subitem-bg: #0c5054 !default;
-$nav-active-bg: #148cb1 !default;
-$nav-active-parent-bg: #0c5054 !default; // parent links of the current section
+$nav-subitem-bg: #434D60 !default;
+$nav-active-bg: #364053 !default;
+$nav-active-parent-bg: #4D576A !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #1e2224 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #f2f2f2 !default;
-$aside-notice-bg: #8fbcd4 !default;
+$main-bg: #ffffff !default;
+$aside-notice-bg: #F5F7FA !default;
 $aside-warning-bg: #c97a7e !default;
 $aside-success-bg: #6ac174 !default;
 $search-notice-bg: #c97a7e !default;
@@ -65,7 +65,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Raleway", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-size: 16px;
 }
 

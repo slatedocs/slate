@@ -8,7 +8,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php: PHP
 
 toc_footers:
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <div>&copy; Dynamhex Inc. 2022</div>
 
 includes:
   - errors
