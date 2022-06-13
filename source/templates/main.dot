@@ -140,7 +140,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_{{=s.rep
 
 {{? block.rows.length}}|Name|Description|
 |---|---|{{?}}
-{{~ block.rows :p}}|{{=p.displayName}}<span class="param-type"> {{=p.safeType}}</span>|{{=p.description || 'none'}}|
+{{~ block.rows :p}}|{{=p.displayName}}<span class="param-type"> {{=p.safeType}}</span>{{= p.required ? '<div class="param-required">required</div>' : ''}}|{{=p.description || 'none'}}|
 {{~}}
 {{~}}
 {{? (blocks[0].rows.length === 0) && (blocks.length === 1) }}
