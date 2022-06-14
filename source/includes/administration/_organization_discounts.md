@@ -214,7 +214,7 @@ Required | &nbsp;
 `packageDiscount`<br/>*number* | The discount value that will be applied to all products within the applied pricing.
 `discountedProducts`<br/>*object[string, number]* | A mapping between product IDs and discount values. All pricing products specified will have the discount value applied to them.
 `discountedCategories`<br/>*object[string, number]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them.
-`startDate`<br/>*date* | The start date of the discount.
+`startDate`<br/>*date* | The start date of the discount. Must be before the earliest ongoing billing cycle startDate.
 
 Optional | &nbsp;
 ------- | -----------
