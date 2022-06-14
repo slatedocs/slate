@@ -12,6 +12,9 @@ gem "middleman-syntax"
 # Plugin for middleman to generate Github pages
 gem 'middleman-gh-pages'
 
+# For deploying to Mautic's live server
+gem 'middleman-deploy', '~> 1.0'
+
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.3.0"
 
@@ -25,6 +28,6 @@ platforms :mri_18 do
   gem "ruby18_source_location"
 end
 
-gem "rake", "~> 10.4.0"
+gem "rake", "~> 12.3.3"
 
 gem 'therubyracer', :platforms => :ruby

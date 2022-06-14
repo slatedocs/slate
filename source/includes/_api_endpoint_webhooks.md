@@ -35,6 +35,7 @@ $webhook = $webhookApi->get($id);
     "name": "test",
     "description": "Created via API",
     "webhookUrl": "https:\/\/johndoe.com",
+    "secret": "webhookSecretKey",
     "eventsOrderbyDir": "DESC",
     "category": {
       "createdByUser": "John Doe",
@@ -75,6 +76,7 @@ id|int|ID of the webhook
 name|string|Title of the webhook
 description|string|Description of the webhook
 webhookUrl|string|Url to send the webhook payload to
+secret|string|Secret key used for authenticity verification
 eventsOrderbyDir| Order direction for queued events in one webhook. Can be "DESC" or "ASC"
 isPublished|bool|Published state
 publishUp|datetime/null|Date/time when the webhook should be published
@@ -111,6 +113,7 @@ $webhooks = $webhookApi->getList($searchFilter, $start, $limit, $orderBy, $order
       "name": "Deleted contact",
       "description": "Notify me when a contact is deleted",
       "webhookUrl": "https:\/\/johndoe.com",
+      "secret": "webhookSecretKey",
       "eventsOrderbyDir": "DESC",
       "category": null,
       "triggers": [
@@ -122,7 +125,7 @@ $webhooks = $webhookApi->getList($searchFilter, $start, $limit, $orderBy, $order
 ```
 #### HTTP Request
 
-`GET /webhooks`
+`GET /hooks`
 
 **Query Parameters**
 
@@ -154,6 +157,7 @@ $data = array(
     'name' => 'test',
     'description' => 'Created via API',
     'webhookUrl' => 'http://some.url',
+    'secret': 'webhookSecretKey',
     'eventsOrderbyDir' => "ASC",
     'triggers' => array(
         'mautic.lead_post_save_update',
@@ -177,6 +181,7 @@ id|int|ID of the webhook
 name|string|Title of the webhook
 description|string|Description of the webhook
 webhookUrl|string|URL to send the webhook payload to
+secret|string|(Optional) Secret key used for authenticity verification
 eventsOrderbyDir| Order direction for queued events in one webhook. Can be "DESC" or "ASC"
 isPublished|bool|Published state
 
@@ -225,6 +230,7 @@ id|int|ID of the webhook
 name|string|Title of the webhook
 description|string|Description of the webhook
 webhookUrl|string|Url to send the webhook payload to
+secret|string|Secret key used for authenticity verification
 eventsOrderbyDir| Order direction for queued events in one webhook. Can be "DESC" or "ASC"
 isPublished|bool|Published state
 

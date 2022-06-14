@@ -117,16 +117,17 @@ $companies = $companyApi->getList($searchFilter, $start, $limit, $orderBy, $orde
 ```json
 {
   "total": 13,
-  "companies": [{  
-    "isPublished":true,
-    "dateAdded":"2016-10-25T09:46:36+00:00",
-    "createdBy":1,
-    "createdByUser":"John Doe",
-    "dateModified":null,
-    "modifiedBy":null,
-    "modifiedByUser":null,
-    "id":176,
-    "fields":{  
+  "companies": {
+    "176": {  
+      "isPublished":true,
+      "dateAdded":"2016-10-25T09:46:36+00:00",
+      "createdBy":1,
+      "createdByUser":"John Doe",
+      "dateModified":null,
+      "modifiedBy":null,
+      "modifiedByUser":null,
+      "id":176,
+      "fields":{  
         "core":{  
             "companywebsite":{  
                 "id":"91",
@@ -173,7 +174,7 @@ $companies = $companyApi->getList($searchFilter, $start, $limit, $orderBy, $orde
     }
   },
   [...]
-  ]
+  }
 }
 ```
 Returns a list of contact companies available to the user. This list is not filterable.
@@ -181,6 +182,16 @@ Returns a list of contact companies available to the user. This list is not filt
 #### HTTP Request
 
 `GET /companies`
+
+** Query Parameters **
+
+Name|Description
+----|-----------
+search|String or search command to filter entities by.
+start|Starting row for the entities returned. Defaults to 0.
+limit|Limit number of entities to return. Defaults to the system configuration for pagination (30).
+orderBy|Column to sort by. Can use any column listed in the response.
+orderByDir|Sort direction: asc or desc.
 
 #### Response
 
@@ -204,12 +215,13 @@ fields|array|Custom fields for the company
 
 ### Create Company
 ```php
-<?php 
+<?php
 
 $data = array(
     'companyname' => 'test',
     'companyemail' => 'test@company.com',
     'companycity' => 'Raleigh',
+    'overwriteWithBlank' => true
 );
 
 $company = $companyApi->create($data);
@@ -226,6 +238,7 @@ Name|Description
 ----|-----------
 companyname|Company name is the only required field. Other company fields can be sent with a value
 isPublished|A value of 0 or 1
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 
@@ -272,6 +285,7 @@ Name|Description
 ----|-----------
 companyname|Company name is the only required field. Other company fields can be sent with a value
 isPublished|A value of 0 or 1
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 

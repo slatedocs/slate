@@ -61,6 +61,8 @@ $data = $dataApi->getList();
         },
         "Email Widgets":{
             "emails.in.time":"Emails in time",
+            "sent.email.to.contacts":"Sent email to contacts",
+            "most.hit.email.redirects":"Most hit email redirects",
             "ignored.vs.read.emails":"Ignored vs read",
             "upcoming.emails":"Upcoming emails",
             "most.sent.emails":"Most sent emails",
@@ -89,7 +91,7 @@ $data = $dataApi->get($type, $options);
 
 `GET /data/{type}?dateFrom={YYYY-mm-dd}&dateTo={YYYY-mm-dd}&timeUnit={m}`
 
-Returns response which can be directly visualized byt the [chartJS](http://www.chartjs.org/) library.
+Returns response which can be directly visualized by the [chartJS](http://www.chartjs.org/) library.
 
 #### Response
 
@@ -156,6 +158,65 @@ Returns raw format which can be more easily processed.
     }
 }
 ```
+
+
+### "Emails in time" widget
+
+#### Filter parameters
+
+**filter[companyId] (int)**
+Filter only emails from contacts assigned to provided company.
+
+**filter[campaignId (int)**
+Filter only emails from contacts that were sent as part of provided campaign.
+
+**filter[segmentId] (int)**
+Filter only emails from contacts assigned to provided segment.
+
+#### Dataset parameter
+**dataset (array)**
+- sent
+- opened
+- unsubscribed
+- clicked
+- bounced
+- failed
+Provide more datasets in response based on request.
+
+#### HTTP Request:
+`GET /api/data/emails.in.time?dateFrom={YYYY-mm-dd}&dateTo={YYYY-mm-dd}&timeUnit={m}&filter[campaignId]={int}&filter[companyId]={int}&filter[segmentId]={int}&withCounts&dataset[]=sent&dataset[]=opened&dataset[]=unsubscribed&dataset[]=clicked`
+
+### "Sent email to contacts" widget
+
+#### Filter parameters
+
+**filter[companyId] (int)**
+Filter only emails from contacts assigned to provided company.
+
+**filter[campaignId (int)**
+Filter only emails from contacts that were sent as part of provided campaign.
+
+**filter[segmentId] (int)**
+Filter only emails from contacts assigned to provided segment.
+
+#### HTTP Request:
+`GET /api/data/sent.email.to.contacts?dateFrom={YYYY-mm-dd}&dateTo={YYYY-mm-dd}&timeUnit={m}&filter[campaignId]={int}&filter[companyId]={int}&filter[segmentId]={int}&limit=10&offset=0`
+
+### "Most hit email redirects" widgets
+
+#### Filter parameters
+
+**filter[companyId] (int)**
+Filter only emails from contacts assigned to provided company.
+
+**filter[campaignId (int)**
+Filter only emails from contacts that were sent as part of provided campaign.
+
+**filter[segmentId] (int)**
+Filter only emails from contacts assigned to provided segment.
+
+#### HTTP Request:
+`GET /api/data/most.hit.email.redirects?dateFrom={YYYY-mm-dd}&dateTo={YYYY-mm-dd}&timeUnit={m}&filter[campaignId]={int}&filter[companyId]={int}&filter[segmentId]={int}&limit=10&offset=0`
 
 **Available data URL query params**
 

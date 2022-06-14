@@ -6,41 +6,52 @@ Mautic provides a means for plugins to inject custom JavaScript into mtc.js, the
 
 ```php
 <?php
-// plugins/HelloWorldPlugin/Event/BuildJsSubscriber.php
 
-namespace MauticPlugin\HelloWorldBundle\EventListener;
+namespace Mautic\PageBundle\EventListener;
 
 use Mautic\CoreBundle\CoreEvents;
 use Mautic\CoreBundle\Event\BuildJsEvent;
+use Mautic\PageBundle\Event\TrackingEvent;
+use Mautic\PageBundle\PageEvents;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
- * Class BuildJsSubscriber
- */
-class BuildJsSubscriber extends CommonSubscriber
+class TrackingSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @return array
-     */
     public static function getSubscribedEvents()
     {
-        return array(
-            CoreEvents::BUILD_MAUTIC_JS => array('onBuildJs', 0)
+        return [
+            CoreEvents::BUILD_MAUTIC_JS    => ['onBuildJs', 0],
+            PageEvents::ON_CONTACT_TRACKED => ['onContactTracked', 0],
+        ];
+    }
+
+    public function onBuildJs(BuildJsEvent $event)
+    {
+        $event->appendJs(
+            <<<JS
+
+        document.addEventListener('mauticPageEventDelivered', function(e) {
+            var detail   = e.detail;
+            if (detail.response && detail.response.events && detail.response.events.tracked) {
+                console.log(detail.response.events.tracked);
+            }
+      });
+
+JS
         );
     }
 
-    /**
-     * @param BuildJsEvent $event
-     *
-     * @return void
-     */
-    public function onBuildJs(BuildJsEvent $event)
+    public function onContactTracked(TrackingEvent $event)
     {
-        $js = <<<JS
-MauticJS.documentReady(function() {
-    // Determine what planet this is coming from
-});
-JS;
-        $event->appendJs($js, 'HelloWorld');
+        $contact  = $event->getContact();
+        $response = $event->getResponse();
+
+        $response->set(
+            'tracked',
+            [
+                'email' => $contact->getEmail()
+            ]
+        );
     }
 }
 ```
@@ -48,8 +59,16 @@ JS;
 To inject custom Javascript into mtc.js, use an [event listener](#events) for the `CoreEvents::BUILD_MAUTIC_JS` event. This event receives a `Mautic\CoreBundle\Event\BuildJsEvent` object where `$event->appendJs($js, $sectionName);` can be used to inject the script's code.
 
 <aside class="warning">
+Note that the code that triggers the tracking call to Mautic has a priority of -255. Thus, any listener to this event should use a priority greater than -255.
+</aside>
+
+<aside class="warning">
 Only native Javascript or <a href="#mauticjs-api-functions">MauticJs API functions</a> should be used since jQuery and other libraries are not guaranteed to be available in 3rd party websites.
 </aside>
+
+## Hooking into the Tracking Process and Returning Custom Responses
+
+If it's desired to do something during the request to track the contact (`/mtc/event`) or append to the payload returned to the tracking code which can be leveraged by custom javascript injected through `CoreEvents::BUILD_MAUTIC_JS`, subscribe to the `PageEvents::ON_CONTACT_TRACKED` event. The listener can inject a custom payload through the `Mautic\PageBundle\Event\TrackingEvent::set` method. This will expose the payload to the tracking code's `mauticPageEventDelivered` event in the `detail.response.events` object. See the PHP code example. 
 
 ## JS Form Processing Hooks
 
@@ -237,4 +256,30 @@ MauticFormCallback['replaceWithFormName'] = {
 ```
 
 Called prior to default enabling of the submit button.  Receives no values. Return `True` to skip the default enabling of the submit button.
+
+### onShowNextPage()
+
+```js
+MauticFormCallback['replaceWithFormName'] = {
+    onShowNextPage: function (pageNumber) {
+         // called prior to going to the next page
+    },
+};
+```
+
+Called prior to going to the next page in the form. Useful to adjust the DOM prior to making the page visible.
+
+
+### onShowPreviousPage()
+
+```js
+MauticFormCallback['replaceWithFormName'] = {
+    onShowPreviousPage: function (pageNumber) {
+         // called prior to going back to previous page
+    },
+};
+```
+
+Called prior to going back to a previous page in the form. Useful to adjust the DOM prior to making the page visible.
+
 

@@ -38,6 +38,8 @@ $page = $pageApi->get($id);
         "modifiedByUser": "Joe Smith",
         "category": "Events",
         "language": "en",
+        "template": "blank",
+        "customHtml": "<!DOCTYPE ...",
         "hits": 0,
         "uniqueHits": 0,
         "variantHits": 0,
@@ -84,6 +86,8 @@ dateModified|datetime/null|Date/time page was last modified
 modifiedBy|int|ID of the user that last modified the page
 modifiedByUser|string|Name of the user that last modified the page
 language|string|Language locale of the page
+template|string|Template of the page
+customHtml|string|Static HTML of the page
 hits|int|Total page hit count
 uniqueHits|int|Unique page hit count
 revision|int|Page revision
@@ -124,6 +128,7 @@ $pages = $pageApi->getList($searchFilter, $start, $limit, $orderBy, $orderByDir,
             "modifiedByUser": "Joe Smith",
             "category": "Events",
             "language": "en",
+            "template": "blank",
             "hits": 0,
             "uniqueHits": 0,
             "variantHits": 0,
@@ -169,7 +174,7 @@ Same as [Get Page](#get-page).
 
 ### Create Page
 ```php
-<?php 
+<?php
 
 $data = array(
     'title'        => 'Page A',

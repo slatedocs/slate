@@ -35,3 +35,11 @@ configure :build do
   # set :http_prefix, "/Content/images/"
 end
 
+activate :deploy do |deploy|
+  deploy.method   = :sftp
+  deploy.port     = 22
+  deploy.path     = ENV["SSH_DEPLOYMENT_PATH"]
+  deploy.host     = ENV["SSH_HOST"]
+  deploy.user     = ENV["SSH_USER"]
+  deploy.password = ENV["SSH_PASSWORD"]
+end

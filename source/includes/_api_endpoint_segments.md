@@ -31,6 +31,7 @@ $segment = $segmentApi->get($id);
         "dateModified": "2015-07-21T14:12:03-05:00",
         "modifiedBy": 1,
         "modifiedByUser": "Joe Smith",
+        "category": null,
         "name": "Segment A",
         "alias": "segment-a",
         "description": "This is my first segment created via API.",
@@ -71,6 +72,7 @@ createdByUser|string|Name of the user that created the segment
 dateModified|datetime/null|Date/time segment was last modified
 modifiedBy|int|ID of the user that last modified the segment
 modifiedByUser|string|Name of the user that last modified the segment
+category|object/null|Object with the category details
 name|string|Segment name
 alias|string|Segment alias
 description|string|Segment description
@@ -108,6 +110,7 @@ $segments = $segmentApi->getList($searchFilter, $start, $limit, $orderBy, $order
         "dateModified": "2015-07-21T14:12:03-05:00",
         "modifiedBy": 1,
         "modifiedByUser": "Joe Smith",
+        "category": null,
         "name": "Segment A",
         "alias": "segment-a",
         "description": "This is my first segment created via API.",
@@ -133,6 +136,17 @@ Returns a list of contact segments available to the user. This list is not filte
 
 `GET /segments`
 
+**Query Parameters**
+
+Name|Description
+----|-----------
+search|String or search command to filter entities by.
+start|Starting row for the entities returned. Defaults to 0.
+limit|Limit number of entities to return. Defaults to the system configuration for pagination (30).
+orderBy|Column to sort by. Can use any column listed in the response.
+orderByDir|Sort direction: asc or desc.
+publishedOnly|Only return currently published entities.
+
 #### Response
 
 `Expected Response Code: 200`
@@ -152,6 +166,7 @@ createdByUser|string|Name of the user that created the segment
 dateModified|datetime/null|Date/time segment was last modified
 modifiedBy|int|ID of the user that last modified the segment
 modifiedByUser|string|Name of the user that last modified the segment
+category|object/null|Object with the category details
 name|string|Segment name
 alias|string|Segment alias
 description|string|Segment description
@@ -330,6 +345,42 @@ Manually add a contact to a specific segment.
 #### HTTP Request
 
 `POST /segments/SEGMENT_ID/contact/CONTACT_ID/add`
+
+#### Response
+
+`Expected Response Code: 200`
+
+See JSON code example.
+
+
+### Add Contacts to a Segment
+
+```php
+<?php
+
+//...
+$contactIds = ['ids'=>[ 1, 45, 39]];
+$response = $segmentApi->addContact($segmentId, $contactIds);
+if (!isset($response['success'])) {
+    // handle error
+}
+```
+```json
+{
+     "success":true,
+     "details":{
+        "1" :{"success":true},
+        "45":{"success":true},
+        "39":{"success":false}
+     }
+}
+```
+
+Manually add contacts to a specific segment.
+
+#### HTTP Request
+
+`POST /segments/SEGMENT_ID/contacts/add`
 
 #### Response
 

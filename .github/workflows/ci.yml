@@ -1,0 +1,31 @@
+name: Build developer docs (and deploy on push)
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.3.1
+        bundler-cache: true
+    - name: install deps
+      run: bundle install
+    - name: build docs
+      run: bundle exec middleman build
+    - name: deploy docs
+      if: ${{ github.event_name == 'push' }}
+      run: bundle exec middleman deploy
+      env:
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        SSH_DEPLOYMENT_PATH: ${{ secrets.SSH_PATH }}
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}

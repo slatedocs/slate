@@ -79,15 +79,15 @@ For example, if your `javascript.ini` file contained the following
 translation strings:
 
 ```ini
-mautic.core.dynamicContent="Dynamic Content"
-mautic.core.dynamicContent.new="Dynamic Content %number%"
+mautic.core.dynamic_content="Dynamic Content"
+mautic.core.dynamic_content.new="Dynamic Content %number%"
 ```
 
 You can request those translation strings in your javascript by
 passing the key to the `Mautic.translate()` function.
 
 ```js
-Mautic.translate("mautic.core.dynamicContent");
+Mautic.translate("mautic.core.dynamic_content");
 // outputs "Dynamic Content"
 ```
 
@@ -95,6 +95,6 @@ String interpolation for messages with variables works with js
 translations just as you'd expect.
 
 ```js
-Mautic.translate("mautic.core.dynamicContent.new", {number: 4});
+Mautic.translate("mautic.core.dynamic_content.new", {number: 4});
 // outputs "Dynamic Content 4"
 ```

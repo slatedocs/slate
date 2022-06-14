@@ -11,10 +11,12 @@ toc_footers:
 
 includes:
   - introduction
+  - cache
   - plugin_intro
   - plugin_migrations
   - plugin_migrations_1.2
   - plugin_migrations_2.0
+  - plugin_migrations_3.0
   - plugin_structure
   - plugin_install
   - plugin_config
@@ -43,6 +45,12 @@ includes:
   - plugin_database
   - plugin_permissions
   - plugin_configuration
+  - plugin_integrations
+  - plugin_integrations_migrations
+  - plugin_integrations_authentication
+  - plugin_integrations_configuration
+  - plugin_integrations_sync
+  - plugin_integrations_builder
   - plugin_manipulating_contacts
   - plugin_extending_intro
   - plugin_extending_api
@@ -70,12 +78,14 @@ includes:
   - plugin_misc_events
   - plugin_misc_translated_entities.md
   - plugin_misc_variant_entities.md
+  - marketplace.md
   - themes
   - api_intro
   - api_authorization
   - api_authorization_oauth1a
   - api_authorization_oauth2
   - api_authorization_basic
+  - api_rate_limiter
   - api_libraries
   - api_endpoints
   - api_endpoint_assets
@@ -95,11 +105,15 @@ includes:
   - api_endpoint_pages
   - api_endpoint_point_actions
   - api_endpoint_point_triggers
+  - api_endpoint_reports
   - api_endpoint_roles
   - api_endpoint_segments
   - api_endpoint_smses
   - api_endpoint_stages
   - api_endpoint_stats
+  - api_endpoint_tags
+  - api_endpoint_themes
+  - api_endpoint_tweets
   - api_endpoint_users
   - api_endpoint_webhooks
   - webhooks

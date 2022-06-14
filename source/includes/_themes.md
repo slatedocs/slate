@@ -8,15 +8,15 @@ The themes use the same templating formats as [Symfony's twig templates](http://
  
  Each theme directory must have at least a config.json file and a html directory with the public facing template's for the feature's it supports. All themes should have a `html/message.html.twig` file.  See below for a typical directory structure:
    
-  themes/blank/<br />
-  - - - [config.json](#theme-config-file)<br />
-  - - - [thumbnail.png](#theme-thumbnail)<br />
-  - - - html/ <br />
-  - - - - - - [base.html.twig](#theme-html-files)<br />
-  - - - - - - [email.html.twig](#theme-html-files)<br />
-  - - - - - - [form.html.twig](#theme-html-files)<br />
-  - - - - - - [message.html.twig](#theme-html-files)<br />
-  - - - - - - [page.html.twig](#theme-html-files)<br />
+`themes/blank/`
+- [`config.json`](#theme-config-file)
+- [`thumbnail.png`](#theme-thumbnail)
+- `html/`
+  - [`base.html.twig`](#theme-html-files)
+  - [`email.html.twig`](#theme-html-files)
+  - [`form.html.twig`](#theme-html-files)
+  - [`message.html.twig`](#theme-html-files)
+  - [`page.html.twig`](#theme-html-files)
 
 ## Theme zip package
 
@@ -75,7 +75,7 @@ When the theme is opened in the builder, the div with attribute `data-slot="text
 Example:
 
 ```html
-<div data-slot=”text”>
+<div data-slot="text">
     <a>@JaneDoe</a> has invited you to join Awesome inc!
 </div>
 ```
@@ -106,7 +106,7 @@ Example:
 
 ```html
 <div data-slot-container="1">
-    <div data-slot=”text”>
+    <div data-slot="text">
         <a>@JaneDoe</a> has invited you to join Awesome inc!
     </div>
 </div>
@@ -129,7 +129,7 @@ Example:
 ```html
 <div data-section="1">
     <div data-slot-container="1">
-        <div data-slot=”text”>
+        <div data-slot="text">
             <a>@JaneDoe</a> has invited you to join Awesome inc!
         </div>
     </div>
@@ -139,15 +139,15 @@ Example:
 
 ### Section Wrapper
 
-Section wrapper must have 100% width of the browser window. You thus have to split your theme into several "rows" if you want to enable the users to change the background of each section. The section wrapper can be any block HTML element with attribute `data-section-wrapper`.
+Section wrapper must have 100% width of the browser window. You thus have to split your theme into several "rows" if you want to enable the users to change the background of each section. The section wrapper can be any block HTML element with attribute `data-section-wrapper="1"`.
 
 Example:
 
 ```html
-<div data-slot-container="1">
+<div data-section-wrapper="1">
     <div data-section="1">
       <div data-slot-container="1">
-          <div data-slot=”text”>
+          <div data-slot="text">
               <a>@JaneDoe</a> has invited you to join Awesome inc!
           </div>
       </div>

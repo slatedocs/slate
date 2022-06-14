@@ -216,3 +216,20 @@ Delete a category.
 **Properties**
 
 Same as [Get Category](#get-category).
+
+### Assign a Category
+
+To assign a category to an entity simply set `category = [ID]` to the payload. For example this is how a category 123 can be asssigned to a new Asset:
+
+```php
+$data = array(
+    'title' => 'PDF sent as a API request',
+    'storageLocation' => 'remote',
+    'file' => 'https://www.mautic.org/media/logos/logo/Mautic_Logo_DB.pdf'
+    'category' => 123
+);
+
+$asset = $assetApi->create($data);
+```
+
+The category must exist in the Mautic instance and the entity must support categories,

@@ -1,10 +1,12 @@
 # Introduction
 
-Welcome to the Mautic Developer Documentation. This documentation will go over how to build a Mautic Plugin that extends the features of Mautic, how to build custom themes, and and how to integrate applications outside of Mautic using its REST API.
+Welcome to the Mautic Developer Documentation. This documentation will go over how to build a Mautic Plugin that extends the features of Mautic, how to build custom themes, and how to integrate applications outside of Mautic using its REST API. 
 
 ## Submitting Code to Mautic
 
 Development is open and available to any member of the Mautic community. All fixes and improvements are done through pull requests to the code on [GitHub](https://github.com/mautic/mautic). This code is open source and publicly available.
+
+Read all about [contributing to Mautic](https://contribute.mautic.org/contributing-to-mautic/developer) as a Developer.
 
 Read more about the PR process on the Mautic [Governance](https://www.mautic.org/about/governance) page.
 
@@ -35,6 +37,24 @@ It is assumed that the system already has [composer](https://getcomposer.org) an
 To setup the developer environment, simply fork and clone the source from [GitHub](https://github.com/mautic/mautic). Then Run `composer install` on the source.
 
 Open your browser and complete the installation through the Mautic installer.
+You can also execute the install process from command line:
+* Add a `local.php` file in app/config
+* Edit the `local.php` file using the following template (adapt to your own settings):
+```php
+<?php
+$parameters = array(
+	'db_driver' => 'pdo_mysql',
+	'db_host' => 'localhost',
+	'db_table_prefix' => null,
+	'db_port' => '3306',
+	'db_name' => 'mautic',
+	'db_user' => 'root',
+	'db_password' => 'root_password',
+	'db_backup_tables' => true,
+	'db_backup_prefix' => 'bak_',
+);
+```
+* Execute the following command and add your own options: `php bin/console mautic:install http://your.mautic.instance`
 
 ### Environments
 
@@ -42,7 +62,7 @@ There are three environments in Mautic: prod, dev, and test.
 
 **prod** is used when accessing the site through index.php.
 
-**dev** is used when accessing the site through index_dev.php. Using Mautic in the dev environment will activate Symfony's profiler toolbar, has more strict error handling, will display information about exceptions, and will not cache as much (see below). Note that steps should be taken to ensure index_dev.php is not accessible to the public as it could potentially reveal sensitive information. It is restricted to localhost by default. However, there are two ways to allow access to index_dev.php from a non-localhost. The first option is to set a header from the web-server with the IP addresses assigned to `MAUTIC_DEV_HOSTS`. The second and easier option is to add an array to your installation's `app/config/local.php` file as `'dev_hosts' = ['123.123.123.123', '124.124.124.124'],` then clear the [cache](#cache).
+**dev** is used when accessing the site through index_dev.php. Using Mautic in the dev environment will activate Symfony's profiler toolbar, has more strict error handling, will display information about exceptions, and will not cache as much (see below). Note that steps should be taken to ensure index_dev.php is not accessible to the public as it could potentially reveal sensitive information. It is restricted to localhost by default. However, there are two ways to allow access to index_dev.php from a non-localhost. The first option is to set a header from the web-server with the IP addresses assigned to `MAUTIC_DEV_HOSTS`. The second and easier option is to add an array to your installation's `app/config/local.php` file as `'dev_hosts' = ['123.123.123.123', '124.124.124.124'],` then clear the [cache](#cache). **Note**: If you're using PHP-FPM (e.g. when using Docker/DDEV), you need to have `cgi.fix_pathinfo = 1` in your PHP configuration, otherwise `/index_dev.php/*` might not work. Read more about the implications of this setting [here](https://serverfault.com/questions/627903/is-the-php-option-cgi-fix-pathinfo-really-dangerous-with-nginx-php-fpm).
 
 **test** is used mainly for PHP Unit Tests.
 
@@ -59,3 +79,4 @@ Symfony makes heavy use of a filesystem cache. Frequently clearing this cache wi
  <aside class="warning">
  If you get class could not be found or cannot redeclare class errors when using the cache:clear command, manually delete the app/cache/ENV folder then run the command and/or browse to the site to rebuild.
  </aside>
+ 

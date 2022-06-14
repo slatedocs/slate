@@ -137,7 +137,10 @@ datetime|datetime|Date and time related to the note.
 ```php
 <?php 
 
+$contactID = 1;
+
 $data = array(
+    'lead' => $contactID,
     'text' => 'Note A',
     'type' => 'general',
 );

@@ -26,12 +26,12 @@ if ($auth->validateAccessToken()) {
     }
 }
 ```
+<aside class="warning">
+Mautic supports only the authorization_code, refresh_token and client_credentials grant types.
+</aside>
+
 #### Authorization
 ##### Step One - Obtain Authorization Code
-
-<aside class="warning">
-Mautic supports only the authorization_code and refresh_token grant types.
-</aside>
 
 Redirect the user to the authorize endpoint `oauth/v2/authorize`:
 
@@ -97,7 +97,11 @@ This data should be stored in a secure location and used to authenticate API req
 
 The response's `expires_in` is the number of seconds the access token is good for and may differ based on what is configured in Mautic. The code handling the authorization process should generate an expiration timestamp based on that value. For example `<?php $expiration = time() + $response['expires_in']; ?>`. If the access token has expired, the refresh_token should be used to obtain a new access token.
 
-The refresh token is by default good for 14 days in which the user will need to reauthorize the application with Mautic. However, the refresh token's expiration time is configurable through Mautic's Configuration. 
+By default, the refresh token is valid for 14 days.
+- If your application requests a new access token using the refresh token within 14 days, no user interaction is needed. Your application gets both a new access token and a new refresh token (which is valid for another 14 days after it's issued);
+- If your application does not request a new token using the refresh token within 14 days, user interaction is required in order to get new tokens.
+
+The refresh token's expiration time is configurable through Mautic's Configuration. 
 
 <aside class="notice">
 The application should monitor for a <code>400 Bad Response</code> response when requesting a new access token and redirect the user back through the authorization process.
@@ -125,6 +129,32 @@ The response returned should be a JSON encoded string:
         token_type: "bearer",
         scope: "",
         refresh_token: "REFRESH_TOKEN"
+    }
+</pre>
+
+#### Client Credentials
+
+The Client Credentials grant is used when applications request an access token to access their own resources, not on behalf of a user.
+
+To obtain a new access token, a POST should be made to the access token's endpoint `oauth/v2/token` using the `client_credentials` grant type.
+
+<pre class="inline">
+POST /oauth/v2/token
+    
+client_id=CLIENT_ID
+    &client_secret=CLIENT_SECRET
+    &grant_type=client_credentials
+</pre>
+(note that the post body has been wrapped for legibility)
+
+The response returned should be a JSON encoded string:
+
+<pre class="inline">
+    {
+        access_token: "NEW_ACCESS_TOKEN",
+        expires_in: 3600,
+        token_type: "bearer",
+        scope: ""
     }
 </pre>
 

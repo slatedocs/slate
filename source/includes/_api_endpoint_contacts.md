@@ -123,6 +123,7 @@ See JSON code example.
 Name|Type|Description
 ----|----|-----------
 id|int|ID of the contact
+isPublished|Boolean|True if the contact is published
 dateAdded|datetime|Date/time contact was created
 createdBy|int|ID of the user that created the contact
 createdByUser|string|Name of the user that created the contact
@@ -136,6 +137,9 @@ dateIdentified|datetime/null|Date/time when the contact identified themselves
 color|string|Hex value given to contact from Point Trigger definitions based on the number of points the contact has been awarded
 ipAddresses|array|Array of IPs currently associated with this contact
 fields|array|Array of all contact fields with data grouped by field group. See JSON code example for format. This array includes an "all" key that includes an single level array of fieldAlias => contactValue pairs.
+tags|array|Array of tags associated with this contact. See JSON code example for format.
+utmtags|array|Array of UTM Tags associated with this contact. See JSON code example for format.
+doNotContact|array|Array of Do Not Contact objects. See JSON code example for format.
 
 ### List Contacts
 ```php
@@ -147,8 +151,8 @@ $contacts = $contactApi->getList($searchFilter, $start, $limit, $orderBy, $order
 ```json
 {
     "total": "1",
-    "contacts": [
-        {
+    "contacts": {
+        "47": {
             "id": 47,
             "isPublished": true,
             "dateAdded": "2015-07-21T12:27:12-05:00",
@@ -228,9 +232,37 @@ $contacts = $contactApi->getList($searchFilter, $start, $limit, $orderBy, $order
 
                     "...": "..."
                 }
-            }
+            },
+            "tags": [{
+              "tag": "aTag"
+            },
+            {
+              "tag": "bTag"
+            }],
+            "utmtags" : [{
+              "id": 1,
+              "query": {
+                "page": "asd",
+                "cid": "fb1"
+              },
+              "referer": "https://example.com/",
+              "remoteHost": "example.com",
+              "userAgent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0",
+              "utmCampaign": "abcampaign",
+              "utmContent": "page",
+              "utmMedium": "social",
+              "utmSource": "fb",
+              "utmTerm": "test1"
+            }],
+            "doNotContact": [{
+                "id": 2,
+                "reason": 2,
+                "comments": "",
+                "channel": "email",
+                "channelId": null
+            }]
         }
-    ]
+    }
 }
 ```
 Get a list of contacts.
@@ -246,10 +278,33 @@ Name|Description
 search|String or search command to filter entities by.
 start|Starting row for the entities returned. Defaults to 0.
 limit|Limit number of entities to return. Defaults to the system configuration for pagination (30).
-orderBy|Column to sort by. Can use any column listed in the response.
+orderBy|Column to sort by. Can use any column listed in the response. However, all properties in the response that are written in camelCase need to be changed a bit. Before every capital add an underscore `_` and then change the capital letters to non-capital letters. So `dateIdentified` becomes `date_identified`, `modifiedByUser` becomes `modified_by_user` etc.
 orderByDir|Sort direction: asc or desc.
 publishedOnly|Only return currently published entities.
 minimal|Return only array of entities without additional lists in it.
+where|An array of advanced where conditions
+order|An array of advanced order statements
+
+#### Advanced filtering
+
+In some cases you may want to filter by specific value(s). Use URL params like this:
+
+In PHP:
+```php
+$where = [
+  [
+    'col' => 'phone',
+    'expr' => 'in',
+    'val' => '444444444,888888888',
+  ]
+];
+```
+This design allows to add multiple conditions in the same request.
+
+If you are not using PHP, here is URL-encoded example of the above where array:
+`GET https://[your_mauitc_domain]/api/contacts?where%5B0%5D%5Bcol%5D=phone&where%5B0%5D%5Bexpr%5D=in&where%5B0%5D%5Bval%5D=444444444,888888888`
+
+[List of available expressions](https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/query-builder.html#the-expr-class)
 
 #### Response
 
@@ -269,7 +324,8 @@ $data = array(
     'firstname' => 'Jim',
     'lastname'  => 'Contact',
     'email'     => 'jim@his-site.com',
-    'ipAddress' => $_SERVER['REMOTE_ADDR']
+    'ipAddress' => $_SERVER['REMOTE_ADDR'],
+    'overwriteWithBlank' => true,
 );
 
 $contact = $contactApi->create($data);
@@ -288,6 +344,7 @@ Name|Description
 ipAddress|IP address to associate with the contact
 lastActive|Date/time in UTC; preferablly in the format of Y-m-d H:m:i but if that format fails, the string will be sent through PHP's strtotime then formatted
 owner|ID of a Mautic user to assign this contact to
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 
@@ -297,6 +354,49 @@ owner|ID of a Mautic user to assign this contact to
 
 Same as [Get Contact](#get-contact).
 
+### Create Batch Contact
+```php
+<?php
+
+$data = array(
+    array(
+	'firstname' => 'Jim',
+	'lastname'  => 'Contact',
+	'email'     => 'jim@his-site.com',
+	'ipAddress' => $_SERVER['REMOTE_ADDR']
+    ),
+    array(
+    	'firstname' => 'John',
+	'lastname'  => 'Doe',
+	'email'     => 'john@his-site.com',
+	'ipAddress' => $_SERVER['REMOTE_ADDR']
+    )
+);
+$contact = $contactApi->createBatch($data);
+```
+Create a batch of new contacts.
+
+#### HTTP Request
+
+`POST /contacts/batch/new`
+
+** Post Parameters **
+
+Name|Description
+----|-----------
+*|Any contact field alias can be posted as a parameter.  For example, firstname, lastname, email, etc.
+ipAddress|IP address to associate with the contact
+lastActive|Date/time in UTC; preferablly in the format of Y-m-d H:m:i but if that format fails, the string will be sent through PHP's strtotime then formatted
+owner|ID of a Mautic user to assign this contact to
+
+#### Response
+
+`Expected Response Code: 201`
+
+** Properties **
+
+Array of contacts. Record is the same as [Get Contact](#get-contact).
+
 ### Edit Contact
 ```php
 <?php
@@ -304,7 +404,7 @@ Same as [Get Contact](#get-contact).
 $id   = 1;
 $data = array(
     'email'     => 'jim-new-address@his-site.com',
-    'ipAddress' => $_SERVER['REMOTE_ADDR']
+    'ipAddress' => $_SERVER['REMOTE_ADDR'],    
 );
 
 // Create new a contact of ID 1 is not found?
@@ -335,6 +435,7 @@ Name|Description
 ipAddress|IP address to associate with the contact
 lastActive|Date/time in UTC; preferably in the format of Y-m-d H:m:i but if that format fails, the string will be sent through PHP's strtotime then formatted
 owner|ID of a Mautic user to assign this contact to
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
 
 #### Response
 
@@ -345,6 +446,70 @@ If `PATCH`, the expected response code is `200`.
 ** Properties **
 
 Same as [Get Contact](#get-contact).
+
+> Note: In order to remove tag from contact add minus `-` before it.
+> For example: `tags: ['one', '-two']`  - sending this in request body will add tag `one` and remove tag `two` from contact.
+
+### Edit Batch Contact
+```php
+<?php
+
+$data = array(
+    array(
+        'id'        => 1,
+        'firstname' => 'Jim',
+        'lastname'  => 'Contact',
+        'email'     => 'jim@his-site.com',
+        'ipAddress' => $_SERVER['REMOTE_ADDR']
+    ),
+    array(
+        'id'        => 1,
+        'firstname' => 'John',
+        'lastname'  => 'Doe',
+        'email'     => 'john@his-site.com',
+        'ipAddress' => $_SERVER['REMOTE_ADDR']
+    )
+);
+
+$contact = $contactApi->editBatch($data);
+```
+Edit several contacts in one request.  Note that this supports PUT or PATCH depending on the desired behavior.
+
+**PUT** creates a contact if the given ID does not exist and clears all the contact information, adds the information from the request.
+**PATCH** fails if the contact with the given ID does not exist and updates the contact field values with the values form the request.
+
+#### HTTP Request
+
+To edit a contact and return a 404 if the contact is not found:
+
+`PATCH /contacts/batch/edit`
+
+To edit a contact and create a new one if the contact is not found:
+
+`PUT /contacts/batch/edit`
+
+**Post Parameters**
+
+Name|Description
+----|-----------
+*|Any contact field alias can be posted as a parameter.  For example, firstname, lastname, email, etc.
+ipAddress|IP address to associate with the contact
+lastActive|Date/time in UTC; preferably in the format of Y-m-d H:m:i but if that format fails, the string will be sent through PHP's strtotime then formatted
+owner|ID of a Mautic user to assign this contact to
+overwriteWithBlank|If true, then empty values are set to fields. Otherwise empty values are skipped
+
+#### Response
+
+If `PUT`, the expected response code is `200` if the contact was edited or `201` if created.
+
+If `PATCH`, the expected response code is `200`.
+
+**Properties**
+
+Contacts array. Record same as [Get Contact](#get-contact).
+
+> Note: In order to remove tag from contact add minus `-` before it.
+> For example: `tags: ['one', '-two']`  - sending this in request body will add tag `one` and remove tag `two` from contact.
 
 ### Delete Contact
 ```php
@@ -366,15 +531,43 @@ Delete a contact.
 
 Same as [Get Contact](#get-contact).
 
+### Delete Batch Contact
+```php
+<?php
+$data = array(1, 2);
+$contact = $contactApi->deleteBatch($data);
+```
+Delete contacts.
+
+#### HTTP Request
+
+`DELETE /contacts/batch/delete`
+
+If you are not using PHP, here is a URL example:
+
+`DELETE https://[your_mautic_domain]/api/contacts/batch/delete?ids=1,2`
+
+#### Response
+
+`Expected Response Code: 200`
+
+**Properties**
+
+Contacts array. Record same as [Get Contact](#get-contact).
+
 ### Add Do Not Contact
 ```php
 <?php
 
-$data = array(
-     'eventName' => 'Score via api',
-     'actionName' => 'Adding',
- );
 $contactApi->addDnc($contactId, $channel, $reason, $channelId, $comments);
+```
+
+```json
+{
+  "channelId": "26",
+  "reason": "Integration issued DNC",
+  "comments": "Unsubscribed via API"
+}
 ```
 
 Add a contact to DNC list
@@ -383,14 +576,14 @@ Add a contact to DNC list
 
 To add Do Not Contact entry to a contact:
 
-`PATCH /contacts/ID/dnc/add/CHANNEL`
+`POST /contacts/ID/dnc/CHANNEL/add`
 
-** Data Parameters (optional) **
+**Data Parameters (optional)**
 
 Name|Description
 ----|-----------
 channel|Channel of DNC. For example 'email', 'sms'... Default is email.
-reason|Int value of the reason. Use Contacts constants: Contacts::UNSUBSCRIBED, Contacts::BOUNCED, Contacts::MANUAL. Default is Manual
+reason|Int value of the reason. Use Contacts constants: Contacts::UNSUBSCRIBED (1), Contacts::BOUNCED (2), Contacts::MANUAL (3). Default is Manual
 channelId|ID of the entity which was the reason for unsubscription
 comments|A text describing details of DNC entry
 
@@ -401,7 +594,7 @@ Same as [Get Contact](#get-contact).
 ### Remove from Do Not Contact
 ```php
 <?php
-$contactApi->addDnc($contactId, $channel);
+$contactApi->removeDnc($contactId, $channel);
 ```
 
 Remove a contact from DNC list
@@ -410,9 +603,9 @@ Remove a contact from DNC list
 
 To remove Do Not Contact entry from a contact:
 
-`PATCH /contacts/ID/dnc/remove/CHANNEL`
+`POST /contacts/ID/dnc/CHANNEL/remove`
 
-** Data Parameters (optional) **
+**Data Parameters (optional)**
 
 Name|Description
 ----|-----------
@@ -421,6 +614,78 @@ channel|Channel of DNC. For example 'email', 'sms'... Default is email.
 #### Response
 
 Same as [Get Contact](#get-contact).
+
+### Add UTM Tags
+```php
+<?php
+
+$data = array(
+    'utm_campaign' => 'apicampaign',
+    'utm_source'   => 'fb',
+    'utm_medium'   => 'social',
+    'utm_content'  => 'fbad',
+    'utm_term'     => 'mautic api',
+    'useragent'    => 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0',
+    'url'          => '/product/fbad01/',
+    'referer'      => 'https://google.com/q=mautic+api',
+    'query'        => ['cid'=>'abc','cond'=>'new'], // or as string with "cid=abc&cond=new"
+    'remotehost'   => 'example.com',
+    'lastActive'   => '2017-01-17T00:30:08+00:00'
+ );
+$contactApi->addUtm($contactId, $data);
+```
+
+Add UTM tags to a contact
+
+#### HTTP Request
+
+To add UTM tag entry to a contact:
+
+`POST /contacts/ID/utm/add`
+
+**UTM Parameters (required)**
+
+While the parameter array is required, each utm tag entry is optional.
+
+Name|Description
+----|-----------
+utm_campaign|The UTM Campaign parameter
+utm_source|The UTM Source parameter
+utm_medium|The UTM Medium parameter
+utm_content|The UTM Content parameter
+utm_term|The UTM Term parameter
+useragent|The browsers UserAgent. If provided a new Device entry will be created if necessary.
+url|The page url
+referer|The URL of the referer,
+query|Any extra query parameters you wish to include. Array or http query string
+remotehost|The Host name
+lastActive|The date that the action occured. Contacts lastActive date will be updated if included. Date format required `2017-01-17T00:30:08+00:00`.
+
+#### Response
+
+Same as [Get Contact](#get-contact) with the added UTM Tags.
+
+### Remove UTM Tags from a contact
+```php
+<?php
+$contactApi->removeUtm($contactId, $utmId);
+```
+
+Remove a set of UTM Tags from a contact
+
+#### HTTP Request
+
+To remove UTM Tags from a contact:
+
+`POST /contacts/ID/utm/UTMID/remove`
+
+**Data Parameters**
+
+None required.
+
+#### Response
+
+Same as [Get Contact](#get-contact) without the removed UTM Tags.
 
 ### Add Points
 ```php
@@ -441,7 +706,7 @@ To add points to a contact and return a 404 if the lead is not found:
 
 `POST /contacts/ID/points/plus/POINTS`
 
-** Data Parameters (optional) **
+**Data Parameters (optional)**
 
 Name|Description
 ----|-----------
@@ -475,7 +740,7 @@ To subtract points from a contact and return a 404 if the contact is not found:
 
 `POST /contacts/ID/points/minus/POINTS`
 
-** Data Parameters (optional) **
+**Data Parameters (optional)**
 
 Name|Description
 ----|-----------
@@ -737,7 +1002,7 @@ See [Campaigns](#campaigns).
 
 $events = $contactApi->getEvents($id, $search, $includeEvents, $excludeEvents, $orderBy, $orderByDir, $page);
 ```
-Warining: Deprecated. Use `getActivityForContact` instead.
+Warning: Deprecated. Use `getActivityForContact` instead.
 
 ** Query Parameters **
 
@@ -747,8 +1012,7 @@ id|Contact ID
 filters[search]|String or search command to filter events by.
 filters[includeEvents][]|Array of event types to include.
 filters[excludeEvents][]|Array of event types to exclude.
-orderBy|Column to sort by. Can use any column listed in the response.
-orderByDir|Sort direction: asc or desc.
+order|Array of Column and Direction [COLUMN, DIRECTION].
 page|What page number to load
 
 ```json
@@ -803,7 +1067,7 @@ Get a list of contact events the contact created.
 
 `GET /contacts/ID/events`
 
-Warining: Deprecated. Use `GET /contacts/ID/activity` instead.
+Warning: Deprecated. Use `GET /contacts/ID/activity` instead.
 
 #### Response
 
@@ -845,9 +1109,9 @@ filters[includeEvents][]|Array of event types to include.
 filters[excludeEvents][]|Array of event types to exclude.
 filters[dateFrom]|Date from filter. Must be type of `\DateTime` for the PHP API libary and in format `Y-m-d H:i:s` for HTTP param
 filters[dateTo]|Date to filter. Must be type of `\DateTime` for the PHP API libary and in format `Y-m-d H:i:s` for HTTP param
-orderBy|Column to sort by. Can use any column listed in the response.
-orderByDir|Sort direction: asc or desc.
+order|Array of Column and Direction [COLUMN, DIRECTION].
 page|What page number to load
+limit|Limit of events per page
 
 ```json
 {
@@ -1255,7 +1519,7 @@ page|What page number to load
 
 #### HTTP Request
 
-`GET /contacts/events`
+`GET /contacts/activity`
 
 #### Response
 

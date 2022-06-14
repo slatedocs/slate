@@ -43,7 +43,16 @@ $asset = $assetApi->get($id);
         "downloadCount": 10,
         "uniqueDownloadCount": 8,
         "revision": 1,
-        "category": "Whitepapers",
+        "category": {
+            "createdByUser": "John Doe",
+            "modifiedByUser": "John Doe",
+            "id": 19,
+            "title": "test",
+            "alias": "test",
+            "description": null,
+            "color": null,
+            "bundle": "asset"
+        },
         "extension": "pdf",
         "mime": "application/pdf",
         "size": 269128,
@@ -84,7 +93,7 @@ modifiedByUser|string|Name of the user that last modified the asset
 downloadCount|int|Total number of downloads
 uniqueDownloadCount|int|Unique number of downloads
 revision|int|Revision version
-category|string/null|Name of the category
+category|object/null|Object with the category details
 extension|string|Extension of the asset
 mime|string|Mime type of the asset
 size|int|Filesize of the asset in bytes
@@ -119,7 +128,7 @@ $assets = $assetApi->getList($searchFilter, $start, $limit, $orderBy, $orderByDi
             "downloadCount": 10,
             "uniqueDownloadCount": 8,
             "revision": 1,
-            "category": "Whitepapers",
+            "category": null,
             "extension": "pdf",
             "mime": "application/pdf",
             "size": 269128,

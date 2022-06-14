@@ -1,5 +1,7 @@
 ## Install/Upgrade
 
+**THIS IS NOW DEPRECATED AND DISCOURAGED FROM USE. USE THE [INTEGRATION FRAMEWORK'S MIGRATION](#plugin-schema) INSTEAD.**
+
 ```php
 <?php
 // plugins/HelloWorldBundle/HelloWorldBundle.php
@@ -53,7 +55,7 @@ class HelloWorldBundle extends PluginBundleBase
             case '1.0':
                 switch ($platform) {
                     case 'mysql':
-                        $queries[] = 'ALTER TABLE ' . MAUTIC_TABLE_PREFIX . 'worlds CHANGE CHANGE description description LONGTEXT DEFAULT NULL';
+                        $queries[] = 'ALTER TABLE ' . MAUTIC_TABLE_PREFIX . 'worlds CHANGE description LONGTEXT DEFAULT NULL';
                         break;
     
                     case 'postgresql':

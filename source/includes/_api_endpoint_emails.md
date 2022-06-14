@@ -145,6 +145,7 @@ category|object/null|Category information
 unsubscribeForm|int|Id of the form displayed in the unsubscribe page
 dynamicContent|object|Dynamic content configuration
 lists|array|Array of segment IDs which should be added to the segment email
+assetAttachments|array|asset IDs Array for email attachment
 
 ### List Emails
 ```php
@@ -418,6 +419,8 @@ $email = $emailApi->sendToContact($emailId, $contactId);
 ```
 Send a predefined email to existing contact.
 
+Assets can be referenced for attaching documents (either ids of existing assets or ids returned by the [Create Asset](https://github.com/mautic/developer-documentation/blob/master/source/includes/_api_endpoint_assets.md#create-asset)).
+
 #### HTTP Request
 
 `POST /emails/ID/contact/CONTACT_ID/send`
@@ -427,6 +430,7 @@ Send a predefined email to existing contact.
 Name|Type|Description
 ----|----|-----------
 tokens|array|Array of tokens in email
+assetAttachments|array|Array of asset ids
 
 #### Response
 
@@ -461,5 +465,26 @@ Send a segment email to linked segment(s).
     "success": 1,
     "sentCount": 1,
     "failedCount": 0
+}
+```
+
+### Create a reply to a send email send row
+
+This endpoint can create a record that a specific email stat row received a reply. It will also mark an email send stat as read.
+
+#### HTTP Request
+
+`POST /emails/reply/TRACKING_HASH`
+
+Tracking hash is created as unique hash for each email send stat record.
+
+#### Response
+
+`Expected Response Code: 200`
+
+**Properties**
+```json
+{
+    "success": 1,
 }
 ```

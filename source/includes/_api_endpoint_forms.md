@@ -319,7 +319,12 @@ $data = array(
     'description' => 'API test',
     'fields' => array(
         array(
-            'label' => 'field name',
+            'label' => 'A field that will be added',
+            'type' => 'text'
+        ),
+        array(
+            'id' => 1,
+            'label' => 'A field that will be edited',
             'type' => 'text'
         )
     ),
@@ -342,6 +347,8 @@ $createIfNotFound = true;
 $form = $formApi->edit($id, $data, $createIfNotFound);
 ```
 Edit a new form. Note that this supports PUT or PATCH depending on the desired behavior.
+
+Make sure that whenever you want to edit a form field that you include the form field id in the request. Fields without an id are assumed to be new fields.
 
 **PUT** creates a form if the given ID does not exist and clears all the form information, adds the information from the request. Form fields and actions will be also deleted if not present in the request.
 **PATCH** fails if the form with the given ID does not exist and updates the form field values with the values form the request.
@@ -500,7 +507,7 @@ formId|ID of the form you want to get submissions for
 search|String or search command to filter entities by.
 start|Starting row for the entities returned. Defaults to 0.
 limit|Limit number of entities to return. Defaults to the system configuration for pagination (30).
-orderBy|Column to sort by. Can use any column listed in the response.
+orderBy|Column to sort by. Can use any column listed in the response, also can use column of joined table with prefix. Sort by submitted date is `s.date_submitted`
 orderByDir|Sort direction: asc or desc.
 publishedOnly|Only return currently published entities.
 minimal|Return only array of entities without additional lists in it.

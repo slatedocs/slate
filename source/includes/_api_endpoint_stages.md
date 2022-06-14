@@ -246,7 +246,7 @@ Same as [Get Stage](#get-stage).
 <?php
 
 //...
-$response = $stageApi->addContact($contactId, $stageId);
+$response = $stageApi->addContact($stageId, $contactId);
 if (!isset($response['success'])) {
     // handle error
 }
@@ -276,7 +276,7 @@ See JSON code example.
 <?php
 
 //...
-$response = $stageApi->removeContact($contactId, $stageId);
+$response = $stageApi->removeContact($stageId, $contactId);
 if (!isset($response['success'])) {
     // handle error
 }

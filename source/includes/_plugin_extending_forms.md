@@ -23,7 +23,9 @@ class FormSubscriber extends CommonSubscriber
     static public function getSubscribedEvents()
     {
         return array(
-            FormEvents::FORM_ON_BUILD => array('onFormBuilder', 0)
+            FormEvents::FORM_ON_BUILD     => array('onFormBuilder', 0),
+            FormEvents::ON_FORM_VALIDATE  => ['onFormValidate', 0],
+
         );
     }
 
@@ -59,7 +61,9 @@ class FormSubscriber extends CommonSubscriber
             'helloworld.customfield',
             [
                 'eventName' => HelloWorldEvents::FORM_VALIDATION,
-                'fieldType' => 'helloworld.customfield' // Optional - otherwise all fields will be sent through this listener for validation
+                'fieldType' => 'helloworld.customfield', // Optional - otherwise all fields will be sent through this listener for validation
+                'formType' => \MauticPlugin\HelloWorldBundle\Form\Type\HelloWorldType::class // Optional - otherwise just default required option should be generated to validation tab 
+                
             ]
         );
 
@@ -77,6 +81,22 @@ class FormSubscriber extends CommonSubscriber
                 'template' => 'HelloWorldBundle:SubscribedEvents\FormField:customfield.html.php'
             ]
         );
+    }
+    
+    
+    /**
+     * @param Events\ValidationEvent $event
+     */
+    public function onFormValidate(Events\ValidationEvent $event)
+    {
+        $field = $event->getField();
+        if ($field->getType() === 'helloworld.customfield' && !empty($field->getValidation()['c_enable'])) {
+            if (empty($field->getValidation()['helloworld_customfield_enable_validationmsg'])) {
+                $event->failedValidation($field->getValidation()['helloworld_customfield_enable_validationmsg']);
+            } else {
+                $event->failedValidation('plugin.helloworld.formfield.customfield.invalid');
+            }
+        }
     }
 }
 ```
@@ -127,5 +147,6 @@ Key|Required|Type|Description
 ---|--------|----|-----------
 **eventName**|REQUIRED|string|The name of the custom event that will be dispatched to validate the form or specific field
 **fieldType**|optional|string|The key to a custom form type (for example something registered by `addFormField()`) to limit this listener to. Otherwise every field will be sent to listener.
+**formType**|optional|string|Form type class to generate additional fields to validator tab
   
 The listener for the form event will receive a `Mautic\FormBundle\Event\ValidationEvent` object. Obtain the field with `$event->getField();` do the logic then to fail a validation, execute `$event->failedValidation('I said so.');`.

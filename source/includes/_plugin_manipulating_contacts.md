@@ -70,7 +70,7 @@ $uniqueLeadFields    = $this->getModel('lead.field')->getUniqueIdentiferFields()
 $uniqueLeadFieldData = array();
 
 // Check if unique identifier fields are included
-$inList = array_intersect_key($leadFields, $availableLeadFields);
+$inList = array_intersect_key($leadFields, $uniqueLeadFields);
 foreach ($inList as $k => $v) {
     if (empty($query[$k])) {
         unset($inList[$k]);

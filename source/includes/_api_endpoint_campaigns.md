@@ -104,7 +104,7 @@ order|int|Order in relation to the other events (used for levels)
 properties|object|Configured properties for the event
 triggerMode|string|"immediate", "interval" or "date"
 triggerDate|datetime/null|Date/time of when the event should trigger if triggerMode is "date"
-triggerInterval|int/null|Interval for when the event should trigger 
+triggerInterval|int/null|Interval for when the event should trigger
 triggerIntervalUnit|string|Interval unit for when the event should trigger. Options are i = minutes, h = hours, d = days, m = months, y = years
 children|array|Array of this event's children ,
 parent|object/null|This event's parent
@@ -120,8 +120,8 @@ $campaigns = $campaignApi->getList($searchFilter, $start, $limit, $orderBy, $ord
 ```json
 {
     "total": 1,
-    "campaigns": [
-        {
+    "campaigns": {
+        "3": {
             "id": 3,
             "name": "Welcome Campaign",
             "description": null,
@@ -174,7 +174,7 @@ $campaigns = $campaignApi->getList($searchFilter, $start, $limit, $orderBy, $ord
                 }
             }
         }
-    ]
+    }
 }
 ```
 #### HTTP Request
@@ -243,7 +243,7 @@ See JSON code example.
 
 ### Create Campaign
 ```php
-<?php 
+<?php
 
 $data = array(
     'name'        => 'Campaign A',
@@ -275,6 +275,31 @@ isPublished|A value of 0 or 1
 **Properties**
 
 Same as [Get Campaign](#get-campaign).
+
+
+
+### Clone A Campaign
+```php
+<?php
+
+$camnpaignId = 12;
+
+$campaign = $campaignApi->cloneCampaign($campaignId);
+```
+Clone an existing campaign. To see more advanced example with campaign events and so on, see the unit tests.
+
+#### HTTP Request
+
+`POST /campaigns/clone/CAMPAIGN_ID`
+
+#### Response
+
+`Expected Response Code: 201`
+
+**Properties**
+
+Same as [Get Campaign](#get-campaign).
+
 
 ### Edit Campaign
 ```php
@@ -381,7 +406,7 @@ See JSON code example.
 <?php
 
 //...
-$response = $listApi->removeContact($contactId, $listId);
+$response = $listApi->removeContact($campaignId, $contactId);
 if (!isset($response['success'])) {
     // handle error
 }
