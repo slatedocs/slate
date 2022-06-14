@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.3.2)
+    activesupport (6.1.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -16,15 +16,15 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     contracts (0.13.0)
     dotenv (2.7.6)
     erubis (2.7.0)
     execjs (2.7.0)
-    fast_blank (1.0.0)
-    fastimage (2.2.4)
-    ffi (1.15.0)
-    haml (5.2.1)
+    fast_blank (1.0.1)
+    fastimage (2.2.5)
+    ffi (1.15.4)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     hamster (3.0.0)
@@ -38,18 +38,18 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     memoist (0.16.2)
-    middleman (4.4.0)
+    middleman (4.4.2)
       coffee-script (~> 2.2)
       haml (>= 4.0.5)
       kramdown (>= 2.3.0)
-      middleman-cli (= 4.4.0)
-      middleman-core (= 4.4.0)
+      middleman-cli (= 4.4.2)
+      middleman-core (= 4.4.2)
     middleman-autoprefixer (3.0.0)
       autoprefixer-rails (~> 10.0)
       middleman-core (>= 4.0.0)
-    middleman-cli (4.4.0)
+    middleman-cli (4.4.2)
       thor (>= 0.17.0, < 2.0)
-    middleman-core (4.4.0)
+    middleman-core (4.4.2)
       activesupport (>= 6.1, < 7.0)
       addressable (~> 2.4)
       backports (~> 3.6)
@@ -80,27 +80,27 @@ GEM
     middleman-syntax (3.2.0)
       middleman-core (>= 3.2)
       rouge (~> 3.2)
-    mini_portile2 (2.6.1)
+    mini_portile2 (2.8.0)
     minitest (5.14.4)
-    nokogiri (1.12.3)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.13.4)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     padrino-helpers (0.15.1)
       i18n (>= 0.6.7, < 2)
       padrino-support (= 0.15.1)
       tilt (>= 1.4.1, < 3)
     padrino-support (0.15.1)
-    parallel (1.20.1)
+    parallel (1.21.0)
     parslet (2.0.0)
     public_suffix (4.0.6)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redcarpet (3.5.1)
     rexml (3.2.5)
-    rouge (3.26.0)
+    rouge (3.28.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -122,7 +122,7 @@ GEM
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     webrick (1.7.0)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
@@ -132,7 +132,7 @@ DEPENDENCIES
   middleman-autoprefixer (~> 3.0)
   middleman-sprockets (~> 4.1)
   middleman-syntax (~> 3.2)
-  nokogiri (~> 1.12.1)
+  nokogiri (~> 1.13.3)
   redcarpet (~> 3.5.0)
   rouge (~> 3.21)
   sass
@@ -142,4 +142,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.20
+   2.2.22
