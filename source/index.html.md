@@ -1928,6 +1928,13 @@ ID | category | sub_category | category_vi | sub_category_vi
 29 | DELIVERY_LATER | WORK_TIME | Hẹn lại thời gian giao | Hẹn giao lại giờ hành chính
 30 | DELIVERY_LATER | DATE | Hẹn lại thời gian giao | Hẹn ngày giao/Hẹn Thời gian giao/Hẹn sau/Hẹn lại ngày/Hẹn giao sau/Hẹn giao thời điểm khác
 31 | OTHER | SUB_OTHER | Các lý do khác / chưa xác định | Lý do khác
+32 | REJECT_GOODS | SUB_OTHER | Từ chối nhận hàng | Lý do khác
+33 | CONTACT_RECEIVER | SUB_OTHER | Liên hệ người nhận | Lý do khác
+34 | COVID | SUB_OTHER | Ảnh hưởng của covid | Lý do khác
+35 | DELIVERY_LATER | SUB_OTHER | Hẹn lại thời gian giao | Lý do khác
+36 | SHIPPER_ACTION | SUB_OTHER | Shipper | Lý do khác
+37 | SHOP | SUB_OTHER | Shop | Lý do khác
+38 | WRONG_INFOMATION | SUB_OTHER | Sai thông tin người nhận | Lý do khác
 
 ## Tracking Print
 
