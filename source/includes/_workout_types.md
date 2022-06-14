@@ -61,7 +61,6 @@ Id         | Description                  |  Location            |  Family      
 64	       |	EBIKING                     |    OUTDOOR           |  BIKING              | 
 65	       |	TICKR_OFFLINE               |    OUTDOOR           |  N/A                 | 
 66	       |	YOGA                        |    INDOOR            |  GYM                 |
-66	       |	YOGA                        |    INDOOR            |  GYM                 |
 67	       |	RUNNING_RACE                |    OUTDOOR           |  RUNNING             | 
 68	       |	BIKING_INDOOR_VIRTUAL       |    INDOOR            |  BIKING              | 
 255        |  UNKNOWN                     |                      |                      | 
