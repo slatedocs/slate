@@ -299,6 +299,8 @@ the App Server with the user-specified inputs. When the rule is triggered, Asana
 
 Rule Actions are a part of [Asana Rules](https://asana.com/guide/help/premium/rules).
 
+_Note: An App Server must be hosted in order for Rule Actions to function. For a brief list of popular hosting options, see [Hosting](/docs/hosting)._
+
 ### Rule Action Configurations
 
 | Property          | Description                                                                                  |
@@ -594,6 +596,24 @@ Timeliness is provided by the addition of an expiration parameter: `expires_at`.
 
 The burden of verifying the request has not expired is on the app. Without this check, the App Server is vulnerable to 
 replay attacks.
+
+<hr>
+
+## Hosting
+
+<span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
+
+Apps built with App Components allow end users to interact with resources external to Asana. As such an [App Server](/docs/app-server) is required in order for your app to function.
+
+The following list includes providers and services commonly used for hosting an app server:
+
+* [Amazon Web Services (AWS)](https://aws.amazon.com/)
+* [Google Cloud](https://cloud.google.com/)
+* [Heroku](https://www.heroku.com/platform)
+* [Microsoft Azure](https://azure.microsoft.com/)
+* [IBM Cloud](https://www.ibm.com/cloud/)
+
+During development, you may choose to use [ngrok](https://ngrok.com/), which creates a public URL that "tunnels" into localhost. We do not advise the use of ngrok beyond testing and debugging purposes.
 
 <hr>
 
