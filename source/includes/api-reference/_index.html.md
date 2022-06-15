@@ -13716,8 +13716,7 @@ $result = $client->sections->updateSection($section_gid, array('field' => 'value
   "data": {
     "insert_after": "987654",
     "insert_before": "86420",
-    "name": "Next Actions",
-    "project": "13579"
+    "name": "Next Actions"
   }
 }
 ```
@@ -13775,7 +13774,6 @@ Returns the complete updated section record.
 |»» insert_after<span class="param-type"> string</span>|An existing section within this project after which the added section should be inserted. Cannot be provided together with insert_before.|
 |»» insert_before<span class="param-type"> string</span>|An existing section within this project before which the added section should be inserted. Cannot be provided together with insert_after.|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
-|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |/section_gid<span class="param-type"> string</span><div class="param-required">required</div>|The globally unique identifier for the section.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -14088,8 +14086,7 @@ $result = $client->sections->createSectionForProject($project_gid, array('field'
   "data": {
     "insert_after": "987654",
     "insert_before": "86420",
-    "name": "Next Actions",
-    "project": "13579"
+    "name": "Next Actions"
   }
 }
 ```
@@ -14139,7 +14136,6 @@ Returns the full record of the newly created section.
 |»» insert_after<span class="param-type"> string</span>|An existing section within this project after which the added section should be inserted. Cannot be provided together with insert_before.|
 |»» insert_before<span class="param-type"> string</span>|An existing section within this project before which the added section should be inserted. Cannot be provided together with insert_after.|
 |»» name<span class="param-type"> string</span><div class="param-required">required</div>|The text to be displayed as the section name. This cannot be an empty string.|
-|»» project<span class="param-type"> string</span><div class="param-required">required</div>|*Create-Only* The project to create the section in|
 |/project_gid<span class="param-type"> string</span><div class="param-required">required</div>|Globally unique identifier for the project.|
 |?opt_pretty<span class="param-type"> boolean</span>|Provides “pretty” output.|
 |?opt_fields<span class="param-type"> array[string]</span>|Defines fields to return.|
@@ -27099,7 +27095,7 @@ A generic Asana Resource, containing a globally unique identifier.
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The `resource_subtype`s for `status` objects represent the type of their parent.|
 |» title<span class="param-type"> string</span>|The title of the status update.|
-|followers<span class="param-type"> [object]</span>|Array of users following this goal.|
+|followers<span class="param-type"> [object]</span>|Array of users who are members of this goal.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
@@ -28205,7 +28201,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |»» resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
-|» color<span class="param-type"> string</span>|The color associated with the status update.|
+|» color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |» created_at<span class="param-type"> string(date-time)</span>|The time at which this resource was created.|
 |» created_by<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -28213,7 +28209,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» name<span class="param-type"> string</span>|*Read-only except when same user as requester*. The user’s name.|
 |» html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |» modified_at<span class="param-type"> string(date-time)</span>|The time at which this project status was last modified.<br>*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*|
-|» text<span class="param-type"> string</span>|The text content of the status update.|
+|» text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |» title<span class="param-type"> string</span>|The title of the project status update.|
 |current_status_update<span class="param-type"> object</span>|A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -28508,9 +28504,9 @@ A *project status* is an update on the progress of a particular project, and is 
 |---|---|
 |gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
-|color<span class="param-type"> string</span>|The color associated with the status update.|
+|color<span class="param-type"> string</span><div class="param-required">required</div>|The color associated with the status update.|
 |html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
-|text<span class="param-type"> string</span>|The text content of the status update.|
+|text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |title<span class="param-type"> string</span>|The title of the project status update.|
 |author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|
@@ -28855,8 +28851,8 @@ A *status update* is an update on the progress of a particular project, portfoli
 |resource_type<span class="param-type"> string</span>|The base type of this resource.|
 |html_text<span class="param-type"> string</span>|[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.|
 |resource_subtype<span class="param-type"> string</span>|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The `resource_subtype`s for `status` objects represent the type of their parent.|
-|status_type<span class="param-type"> string</span>|The type associated with the status update. This represents the current state of the object this object is on.|
-|text<span class="param-type"> string</span>|The text content of the status update.|
+|status_type<span class="param-type"> string</span><div class="param-required">required</div>|The type associated with the status update. This represents the current state of the object this object is on.|
+|text<span class="param-type"> string</span><div class="param-required">required</div>|The text content of the status update.|
 |title<span class="param-type"> string</span>|The title of the status update.|
 |author<span class="param-type"> object</span>|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» gid<span class="param-type"> string</span>|Globally unique identifier of the resource, as a string.|

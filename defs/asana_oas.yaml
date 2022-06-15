@@ -2750,7 +2750,7 @@ components:
               items:
                 $ref: '#/components/schemas/UserCompact'
               description: >-
-                Array of users following this goal.
+                Array of users who are members of this goal.
             time_period:
               allOf:
                 - $ref: '#/components/schemas/TimePeriodCompact'
@@ -3977,11 +3977,6 @@ components:
     SectionRequest:
       type: object
       properties:
-        project:
-          description: >-
-            *Create-Only* The project to create the section in
-          type: string
-          example: '13579'
         name:
           description: >-
             The text to be displayed as the section name. This cannot be
