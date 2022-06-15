@@ -235,6 +235,9 @@ components:
       description: >-
         The response to a successful lookup request.
       type: object
+      required:
+        - resource_name
+        - resource_url
       properties:
         resource_name:
           description: >-
@@ -270,6 +273,9 @@ components:
       description: >-
         An option for a checkbox field (i.e., an object in the field's `options` array).
       type: object
+      required:
+        - id
+        - label
       properties:
         id:
           description: >-
@@ -285,6 +291,9 @@ components:
       description: >-
         An option for a dropdown field (i.e., an object in the field's `options` array).
       type: object
+      required:
+        - id
+        - label
       properties:
         id:
           description: >-
@@ -335,6 +344,10 @@ components:
       description: >-
         A Modal Form "field" that displays static text. Fields of this type do not collect user input.
       type: object
+      required:
+        - id
+        - type
+        - name
       properties:
         type:
           description: >-
@@ -357,6 +370,9 @@ components:
       description: >-
         A Modal Form field that accepts single-line text input.
       type: object
+      required:
+        - id
+        - type
       properties:
         type:
           description: >-
@@ -413,6 +429,9 @@ components:
       description: >-
         A Modal Form field that accepts multi-line text input.
       type: object
+      required:
+        - id
+        - type
       properties:
         type:
           description: >-
@@ -461,6 +480,9 @@ components:
       description: >-
         A Modal Form field that accepts rich text input.
       type: object
+      required:
+        - id
+        - type
       properties:
         type:
           description: >-
@@ -509,6 +531,10 @@ components:
       description: >-
         A Modal Form field that accepts input via a dropdown list. Limit 50 options.
       type: object
+      required:
+        - id
+        - type
+        - options
       properties:
         type:
           description: >-
@@ -566,6 +592,10 @@ components:
       description: >-
         A Modal Form field that accepts radio button input. Limit 5 options.
       type: object
+      required:
+        - id
+        - type
+        - options
       properties:
         type:
           description: >-
@@ -615,6 +645,10 @@ components:
       description: >-
         A Modal Form field that accepts checkbox input. Limit 10 options.
       type: object
+      required:
+        - id
+        - type
+        - options
       properties:
         type:
           description: >-
@@ -667,6 +701,9 @@ components:
       description: >-
         A Modal Form field that accepts date input.
       type: object
+      required:
+        - id
+        - type
       properties:
         type:
           description: >-
@@ -710,6 +747,9 @@ components:
       description: >-
         A Modal Form field that accepts datetime input.
       type: object
+      required:
+        - id
+        - type
       properties:
         type:
           description: >-
@@ -753,6 +793,10 @@ components:
       description: >-
         A Modal Form field that accepts typeahead input.
       type: object
+      required:
+        - id
+        - type
+        - typeahead_url
       properties:
         type:
           description: >-
@@ -809,18 +853,24 @@ components:
       description: >-
         Contains the metadata that describes how to display and manage a form.
       type: object
+      required:
+        - metadata
+        - template
       properties:
         template:
-          description: >- 
+          description: >-
             The interface name and version of a distinct form UI layout. A `template` is directly associated with a particular `metadata` schema.
           type: string
           enum:
             - form_metadata_v0
           example: 'form_metadata_v0'
         metadata:
-          description: >- 
+          description: >-
             The metadata (i.e., underlying definition) of a form. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.
           type: object
+          required:
+            - fields
+            - title
           properties:
             title:
               description: >-
@@ -832,10 +882,10 @@ components:
                 An array of form field objects that are rendered in the order they are in the array. Limit of 30 fields.
 
 
-                Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date), 
-                [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown), 
-                [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button), 
-                [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text), 
+                Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),
+                [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),
+                [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),
+                [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),
                 [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
               type: array
             submit_button_text:
@@ -881,10 +931,10 @@ components:
                       A form field object.
 
 
-                      Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date), 
-                      [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown), 
-                      [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button), 
-                      [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text), 
+                      Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),
+                      [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),
+                      [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),
+                      [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),
                       [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
                     type: object
     ActionFormSubmissionRequest:
@@ -914,14 +964,17 @@ components:
       description: >-
         A Widget footer that displays the timestamp of the resource's creation time.
       type: object
+      required:
+        - created_at
+        - footer_type
       properties:
         footer_type:
-          description:  >- 
+          description:  >-
             The type of Widget footer.
           type: string
           enum:
             - created
-          example: 'created'  
+          example: 'created'
         created_at:
           description: >-
             The time (in ISO-8601 date format) to show in the footer.
@@ -929,6 +982,9 @@ components:
           example: '2012-02-22T02:06:58.147Z'
     WidgetFooter-CustomText:
       type: object
+      required:
+        - footer_type
+        - text
       description: >-
         A Widget footer that displays custom text and an optional icon.
       properties:
@@ -1035,6 +1091,8 @@ components:
       type: object
       description: >-
         The response to an action request.
+      required:
+        - action_result
       properties:
         error:
           description: >-
@@ -1062,6 +1120,9 @@ components:
       description: >-
         An option for a radio button field (i.e., an object in the field's `options` array).
       type: object
+      required:
+        - id
+        - label
       properties:
         id:
           description: >-
@@ -1082,6 +1143,9 @@ components:
       description: >-
         An object describing a typeahead result.
       type: object
+      required:
+        - title
+        - value
       properties:
         title:
           description: >-
@@ -1139,6 +1203,8 @@ components:
       description: >-
         The response to a successful typeahead request.
       type: object
+      required:
+        - items
       properties:
         header:
           description: >-
@@ -1170,14 +1236,17 @@ components:
       description: >-
         A Widget footer that displays the timestamp of the resource's last updated time.
       type: object
+      required:
+        - footer_type
+        - last_updated_at
       properties:
         footer_type:
-          description:  >- 
+          description:  >-
             The type of Widget footer.
           type: string
           enum:
             - updated
-          example: 'updated'  
+          example: 'updated'
         last_updated_at:
           description: >-
             The time (in ISO-8601 date format) to show in the footer.
@@ -1187,9 +1256,12 @@ components:
       description: >-
         A Widget field that displays a timestamp and an optional icon.
       type: object
+      required:
+        - name
+        - type
       properties:
         type:
-          description:  >- 
+          description:  >-
             The type of Widget field.
           type: string
           enum:
@@ -1214,9 +1286,14 @@ components:
       description: >-
         A Widget field that displays custom text in a colored "pill" format.
       type: object
+      required:
+        - color
+        - name
+        - text
+        - type
       properties:
         type:
-          description:  >- 
+          description:  >-
             The type of Widget field.
           type: string
           enum:
@@ -1258,9 +1335,13 @@ components:
       description: >-
         A Widget field that displays custom text with an optional icon.
       type: object
+      required:
+        - name
+        - text
+        - type
       properties:
         type:
-          description:  >- 
+          description:  >-
             The type of Widget field.
           type: string
           enum:
@@ -1285,18 +1366,25 @@ components:
       description: >-
         An object containing information about the widget.
       type: object
+      required:
+        - metadata
+        - template
       properties:
         template:
-          description: >-  
+          description: >-
             The interface name and version of a distinct widget UI layout. A `template` is directly associated with a particular `metadata` schema.
           type: string
           enum:
             - summary_with_details_v0
           example: 'summary_with_details_v0'
         metadata:
-          description: >- 
+          description: >-
             The metadata (i.e., underlying definition) of a widget. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.
           type: object
+          required:
+            - fields
+            - footer
+            - title
           properties:
             error:
               description: >-
@@ -1331,7 +1419,7 @@ components:
             footer:
               type: object
               description: >-
-                Contains the information to display a footer on the Widget. 
+                Contains the information to display a footer on the Widget.
 
 
                 Valid schemas: [WidgetFooter-Created](/docs/widget-footer-created), [WidgetFooter-CustomText](/docs/widget-footer-custom-text), [WidgetFooter-Updated](/docs/widget-footer-updated).
@@ -1416,7 +1504,7 @@ paths:
       summary: Get Lookup typeahead results
       description: >-
         Gets typeahead results to render as a dropdown list in the resource lookup input field.
-        
+
 
         When the user types into the lookup input field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list. When the user selects an item from the list, Asana will send a [resource attach](/docs/resource-attach) request to the app server, then process the response and render the attached resource in the widget.
       tags:
@@ -1482,7 +1570,7 @@ paths:
       summary: Get Modal Form typeahead results
       description: >-
         If a Modal Form form field is of type `typehead`, this operation gets typeahead results to render as a dropdown list.
-        
+
 
         When the user types into a Modal Form form field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list.
       tags:
@@ -1518,7 +1606,7 @@ paths:
       summary: Get Rule Action typeahead results
       description: >-
         In a Rule Action typeahead form field, this operation gets typeahead results to render as a dropdown list.
-        
+
 
         When the user types into a Rule Action form field, Asana will send a request containing the entered string to the application's `typeahead_url`. The list of [TypeaheadItem](/docs/typeahead-item)s in the response will then be rendered in a dropdown list.
       tags:
@@ -1549,7 +1637,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-      
+
   /{on_change_callback}:
     post:
       summary: On change callback

@@ -431,7 +431,7 @@ The callback request made to an App Server when a form is submitted.
 
 **field_object**: A form field object.
 
-Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),  [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),  [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),  [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),  [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
+Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date), [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown), [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button), [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text), [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
 
 <h3 id="on-submit-callback-responses">Responses</h3>
 
@@ -980,7 +980,7 @@ The form is submitted when the user chooses to create their Rule. Asana will cre
 
 **field_object**: A form field object.
 
-Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),  [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),  [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),  [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),  [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
+Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date), [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown), [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button), [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text), [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)
 
 <h3 id="on-action-submit-callback-responses">Responses</h3>
 
@@ -1360,8 +1360,8 @@ The response to a successful lookup request.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|The error that should be displayed to the user|
-|resource_name<span class="param-type"> string</span>|The name of the attached resource|
-|resource_url<span class="param-type"> string</span>|The URL of the attached resource|
+|resource_name<span class="param-type"> string</span><div class="param-required">required</div>|The name of the attached resource|
+|resource_url<span class="param-type"> string</span><div class="param-required">required</div>|The URL of the attached resource|
 
 </section><hr>
 <section>
@@ -1469,14 +1469,14 @@ A Modal Form field that accepts checkbox input. Limit 10 options.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
-|options<span class="param-type"> [object]</span>|An array (minimum length: 1) of CheckboxOption objects.|
-|» id<span class="param-type"> string</span>|The ID of the option.|
-|» label<span class="param-type"> string</span>|The label of the option. Limit 80 characters.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|options<span class="param-type"> [object]</span><div class="param-required">required</div>|An array (minimum length: 1) of CheckboxOption objects.|
+|» id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the option.|
+|» label<span class="param-type"> string</span><div class="param-required">required</div>|The label of the option. Limit 80 characters.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 |value<span class="param-type"> [string]</span>|*Optional*. The values for the form field, which are the IDs of the chosen CheckboxOption objects.|
 
 #### Enumerated Values
@@ -1519,12 +1519,12 @@ A Modal Form field that accepts date input.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
 |placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 
 #### Enumerated Values
 
@@ -1566,12 +1566,12 @@ A Modal Form field that accepts datetime input.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
 |placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 
 #### Enumerated Values
 
@@ -1621,15 +1621,15 @@ A Modal Form field that accepts input via a dropdown list. Limit 50 options.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
-|options<span class="param-type"> [object]</span>|An array (minimum length: 1) of DropdownOption objects.|
+|options<span class="param-type"> [object]</span><div class="param-required">required</div>|An array (minimum length: 1) of DropdownOption objects.|
 |» icon_url<span class="param-type"> string</span>|*Optional*. The URL for the icon beside the label. If not present, no icon will be displayed.|
-|» id<span class="param-type"> string</span>|The ID of the option.|
-|» label<span class="param-type"> string</span>|The label of the option. Limit 80 characters.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|» id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the option.|
+|» label<span class="param-type"> string</span><div class="param-required">required</div>|The label of the option. Limit 80 characters.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 |value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the ID of the chosen DropdownOption object.|
 |width<span class="param-type"> string</span>|*Optional*. The width of the form field. If not provided, the default value will be `"full"`.|
 
@@ -1676,12 +1676,12 @@ A Modal Form field that accepts multi-line text input.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
 |placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 |value<span class="param-type"> string</span>|The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 3000 characters.|
 
 #### Enumerated Values
@@ -1731,15 +1731,15 @@ A Modal Form field that accepts radio button input. Limit 5 options.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
-|options<span class="param-type"> [object]</span>|An array (minimum length: 1) of RadioOption objects.|
-|» id<span class="param-type"> string</span>|The ID of the option.|
-|» label<span class="param-type"> string</span>|The label of the option. Limit 80 characters.|
+|options<span class="param-type"> [object]</span><div class="param-required">required</div>|An array (minimum length: 1) of RadioOption objects.|
+|» id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the option.|
+|» label<span class="param-type"> string</span><div class="param-required">required</div>|The label of the option. Limit 80 characters.|
 |» sub_label<span class="param-type"> string</span>|*Optional*. The label to display as subtext for the `label`.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 |value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the ID of the chosen RadioOption object.|
 
 #### Enumerated Values
@@ -1783,12 +1783,12 @@ A Modal Form field that accepts rich text input.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
 |placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 |value<span class="param-type"> string</span>|The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 3000 characters.|
 
 #### Enumerated Values
@@ -1833,12 +1833,12 @@ A Modal Form field that accepts single-line text input.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
 |placeholder<span class="param-type"> string</span>|The placeholder for the input, which is shown if the field has no value. If not provided, there will be no placeholder.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 |value<span class="param-type"> string</span>|The value of the field. If not provided, the field will be empty and the form cannot be submitted if it is required. Limit 200 characters.|
 |width<span class="param-type"> string</span>|*Optional*. The width of the form field. If not provided, the default value will be `"full"`.|
 
@@ -1879,9 +1879,9 @@ A Modal Form "field" that displays static text. Fields of this type do not colle
 
 |Name|Description|
 |---|---|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
-|name<span class="param-type"> string</span>|The text (i.e., label) for the field. Limit 50 characters.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|name<span class="param-type"> string</span><div class="param-required">required</div>|The text (i.e., label) for the field. Limit 50 characters.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
 
 #### Enumerated Values
 
@@ -1925,12 +1925,12 @@ A Modal Form field that accepts typeahead input.
 |Name|Description|
 |---|---|
 |error<span class="param-type"> string</span>|*Optional*. The developer-specified error message displayed to the user if there is an error with the chosen value.|
-|id<span class="param-type"> string</span>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
+|id<span class="param-type"> string</span><div class="param-required">required</div>|The ID of the field, which is used to reference the field. These should be unique across the entire form.|
 |is_required<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field is required to submit the form. If this property is not specified, the value is assumed `false`.|
 |is_watched<span class="param-type"> boolean</span>|*Optional*. Indicates whether the field should be watched. Fields that are watched send requests to the `on_change` URL specified in the form metadata to get updated form information. If this property is not specified, the value is assumed `false`.|
 |name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 50 characters.|
-|type<span class="param-type"> string</span>|The type of Modal Form field.|
-|typeahead_url<span class="param-type"> string</span>|The URL that Asana uses to request typehead results from the application server.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Modal Form field.|
+|typeahead_url<span class="param-type"> string</span><div class="param-required">required</div>|The URL that Asana uses to request typehead results from the application server.|
 |value<span class="param-type"> string</span>|*Optional*. The value for the form field, which is the ID of the chosen TypeaheadListItem object.|
 |width<span class="param-type"> string</span>|*Optional*. The width of the form field. If not provided, the default value will be `"full"`.|
 
@@ -1976,13 +1976,13 @@ Contains the metadata that describes how to display and manage a form.
 
 |Name|Description|
 |---|---|
-|metadata<span class="param-type"> object</span>|The metadata (i.e., underlying definition) of a form. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
-|» fields<span class="param-type"> array</span>|An array of form field objects that are rendered in the order they are in the array. Limit of 30 fields.<br><br>Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date),  [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown),  [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button),  [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text),  [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)|
+|metadata<span class="param-type"> object</span><div class="param-required">required</div>|The metadata (i.e., underlying definition) of a form. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
+|» fields<span class="param-type"> array</span><div class="param-required">required</div>|An array of form field objects that are rendered in the order they are in the array. Limit of 30 fields.<br><br>Valid object schemas: [FormField-Checkbox](/docs/form-field-checkbox), [FormField-Date](/docs/form-field-date), [FormField-Datetime](/docs/form-field-datetime), [FormField-Dropdown](/docs/form-field-dropdown), [FormField-MultiLineText](/docs/form-field-multi-line-text), [FormField-RadioButton](/docs/form-field-radio-button), [FormField-RichText](/docs/form-field-rich-text), [FormField-SingleLineText](/docs/form-field-single-line-text), [FormField-StaticText](/docs/form-field-static-text), [FormField-Typeahead](/docs/form-field-typeahead)|
 |» on_change_callback<span class="param-type"> string</span>|The URL to POST the form to whenever watched field values are changed.|
 |» on_submit_callback<span class="param-type"> string</span>|The URL to POST the form to when the user clicks the submit button. If this is field is omitted then the submission button will be disabled. This is useful if the user must enter information in a watched field first, such as to show additional fields.|
 |» submit_button_text<span class="param-type"> string</span>|The text to display on the form’s submit button. If not provided, the default text “Submit” will be displayed on the button.|
-|» title<span class="param-type"> string</span>|The title of the form, which is displayed at the top of the creation form|
-|template<span class="param-type"> string</span>|The interface name and version of a distinct form UI layout. A `template` is directly associated with a particular `metadata` schema.|
+|» title<span class="param-type"> string</span><div class="param-required">required</div>|The title of the form, which is displayed at the top of the creation form|
+|template<span class="param-type"> string</span><div class="param-required">required</div>|The interface name and version of a distinct form UI layout. A `template` is directly associated with a particular `metadata` schema.|
 
 #### Enumerated Values
 
@@ -2089,12 +2089,12 @@ The response to an action request.
 
 |Name|Description|
 |---|---|
-|action_result<span class="param-type"> string</span>|Specifies any additional information that the app wants to send to Asana on completion of the action. Can only be `resources_created` or `ok`.|
+|action_result<span class="param-type"> string</span><div class="param-required">required</div>|Specifies any additional information that the app wants to send to Asana on completion of the action. Can only be `resources_created` or `ok`.|
 |error<span class="param-type"> string</span>|The error that should be displayed to the user|
 |resources_created<span class="param-type"> [object]</span>|A field with the data corresponding to the action_result value. Each action_result has its own data field shape that Asana expects. `resources_created` expects the name and url of the resources that the action created.|
 |» error<span class="param-type"> string</span>|The error that should be displayed to the user|
-|» resource_name<span class="param-type"> string</span>|The name of the attached resource|
-|» resource_url<span class="param-type"> string</span>|The URL of the attached resource|
+|» resource_name<span class="param-type"> string</span><div class="param-required">required</div>|The name of the attached resource|
+|» resource_url<span class="param-type"> string</span><div class="param-required">required</div>|The URL of the attached resource|
 
 #### Enumerated Values
 
@@ -2135,8 +2135,8 @@ An object describing a typeahead result.
 |---|---|
 |icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the title|
 |subtitle<span class="param-type"> string</span>|The subtitle of the typeahead item|
-|title<span class="param-type"> string</span>|The title of the typeahead item|
-|value<span class="param-type"> string</span>|The value of the typeahead item|
+|title<span class="param-type"> string</span><div class="param-required">required</div>|The title of the typeahead item|
+|value<span class="param-type"> string</span><div class="param-required">required</div>|The value of the typeahead item|
 
 </section><hr>
 <section>
@@ -2174,11 +2174,11 @@ The response to a successful typeahead request.
 |Name|Description|
 |---|---|
 |header<span class="param-type"> string</span>|*Optional*. Header text to display above the list of typeahead results. If no `header` is passed in or the value is an empty string, only the typeahead results with be rendered.|
-|items<span class="param-type"> [object]</span>|Array of [TypeaheadItem](/docs/typeahead-item) objects that indicate typeahead results.|
+|items<span class="param-type"> [object]</span><div class="param-required">required</div>|Array of [TypeaheadItem](/docs/typeahead-item) objects that indicate typeahead results.|
 |» icon_url<span class="param-type"> string</span>|The URL of the icon to display next to the title|
 |» subtitle<span class="param-type"> string</span>|The subtitle of the typeahead item|
-|» title<span class="param-type"> string</span>|The title of the typeahead item|
-|» value<span class="param-type"> string</span>|The value of the typeahead item|
+|» title<span class="param-type"> string</span><div class="param-required">required</div>|The title of the typeahead item|
+|» value<span class="param-type"> string</span><div class="param-required">required</div>|The value of the typeahead item|
 
 </section><hr>
 <section>
@@ -2244,8 +2244,8 @@ A Widget field that displays a timestamp and an optional icon.
 |---|---|
 |datetime<span class="param-type"> string</span>|The time (in ISO-8601 date format) to display next to the icon.|
 |icon_url<span class="param-type"> string</span>|*Optional*. The URL of the icon to display next to the time.|
-|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
-|type<span class="param-type"> string</span>|The type of Widget field.|
+|name<span class="param-type"> string</span><div class="param-required">required</div>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Widget field.|
 
 #### Enumerated Values
 
@@ -2283,10 +2283,10 @@ A Widget field that displays custom text in a colored "pill" format.
 
 |Name|Description|
 |---|---|
-|color<span class="param-type"> string</span>|The color of the pill.|
-|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
-|text<span class="param-type"> string</span>|The text to show in the field. Limit 40 characters.|
-|type<span class="param-type"> string</span>|The type of Widget field.|
+|color<span class="param-type"> string</span><div class="param-required">required</div>|The color of the pill.|
+|name<span class="param-type"> string</span><div class="param-required">required</div>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
+|text<span class="param-type"> string</span><div class="param-required">required</div>|The text to show in the field. Limit 40 characters.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Widget field.|
 
 #### Enumerated Values
 
@@ -2341,9 +2341,9 @@ A Widget field that displays custom text with an optional icon.
 |Name|Description|
 |---|---|
 |icon_url<span class="param-type"> string</span>|*Optional*. The URL of the icon to display next to the text.|
-|name<span class="param-type"> string</span>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
-|text<span class="param-type"> string</span>|The text to show in the field. Limit 40 characters.|
-|type<span class="param-type"> string</span>|The type of Widget field.|
+|name<span class="param-type"> string</span><div class="param-required">required</div>|The text (i.e., label) to show in the title of the field. Limit 40 characters.|
+|text<span class="param-type"> string</span><div class="param-required">required</div>|The text to show in the field. Limit 40 characters.|
+|type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Widget field.|
 
 #### Enumerated Values
 
@@ -2379,8 +2379,8 @@ A Widget footer that displays the timestamp of the resource's creation time.
 
 |Name|Description|
 |---|---|
-|created_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) to show in the footer.|
-|footer_type<span class="param-type"> string</span>|The type of Widget footer.|
+|created_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) to show in the footer.|
+|footer_type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Widget footer.|
 
 #### Enumerated Values
 
@@ -2417,9 +2417,9 @@ A Widget footer that displays custom text and an optional icon.
 
 |Name|Description|
 |---|---|
-|footer_type<span class="param-type"> string</span>|The text to show in the footer.|
+|footer_type<span class="param-type"> string</span><div class="param-required">required</div>|The text to show in the footer.|
 |icon_url<span class="param-type"> string</span>|*Optional*. The icon to show in the footer next to the text. If not provided, no icon will be shown.|
-|text<span class="param-type"> string</span>|The text to show in the footer.|
+|text<span class="param-type"> string</span><div class="param-required">required</div>|The text to show in the footer.|
 
 #### Enumerated Values
 
@@ -2455,8 +2455,8 @@ A Widget footer that displays the timestamp of the resource's last updated time.
 
 |Name|Description|
 |---|---|
-|footer_type<span class="param-type"> string</span>|The type of Widget footer.|
-|last_updated_at<span class="param-type"> string</span>|The time (in ISO-8601 date format) to show in the footer.|
+|footer_type<span class="param-type"> string</span><div class="param-required">required</div>|The type of Widget footer.|
+|last_updated_at<span class="param-type"> string</span><div class="param-required">required</div>|The time (in ISO-8601 date format) to show in the footer.|
 
 #### Enumerated Values
 
@@ -2500,15 +2500,15 @@ An object containing information about the widget.
 
 |Name|Description|
 |---|---|
-|metadata<span class="param-type"> object</span>|The metadata (i.e., underlying definition) of a widget. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
+|metadata<span class="param-type"> object</span><div class="param-required">required</div>|The metadata (i.e., underlying definition) of a widget. `metadata` must exist alongside a `template`, and its schema must be specific to the value of that `template`.|
 |» error<span class="param-type"> string</span>|The error that should be displayed to the user|
-|» fields<span class="param-type"> array</span>|A list of fields showing data from external resources (i.e., an array of WidgetField objects). A Widget must contain at least 1 field and no more than 5 fields.<br><br>Valid object schemas: [WidgetField-DatetimeWithIcon](/docs/widget-field-datetime-with-icon), [WidgetField-Pill](/docs/widget-field-pill), [WidgetField-TextWithIcon](/docs/widget-field-text-with-icon).|
-|» footer<span class="param-type"> object</span>|Contains the information to display a footer on the Widget. <br><br>Valid schemas: [WidgetFooter-Created](/docs/widget-footer-created), [WidgetFooter-CustomText](/docs/widget-footer-custom-text), [WidgetFooter-Updated](/docs/widget-footer-updated).|
+|» fields<span class="param-type"> array</span><div class="param-required">required</div>|A list of fields showing data from external resources (i.e., an array of WidgetField objects). A Widget must contain at least 1 field and no more than 5 fields.<br><br>Valid object schemas: [WidgetField-DatetimeWithIcon](/docs/widget-field-datetime-with-icon), [WidgetField-Pill](/docs/widget-field-pill), [WidgetField-TextWithIcon](/docs/widget-field-text-with-icon).|
+|» footer<span class="param-type"> object</span><div class="param-required">required</div>|Contains the information to display a footer on the Widget.<br><br>Valid schemas: [WidgetFooter-Created](/docs/widget-footer-created), [WidgetFooter-CustomText](/docs/widget-footer-custom-text), [WidgetFooter-Updated](/docs/widget-footer-updated).|
 |» num_comments<span class="param-type"> integer</span>|The number of comments to display on the lower right corner of the widget. If not provided, no comment count will be shown|
 |» subicon_url<span class="param-type"> string</span>|The URL of the subicon next to the subtitle . If not provided, no icon will be shown|
 |» subtitle<span class="param-type"> string</span>|The text to show under the title of the widget, next to "Open in {App Name}". If not provided, the resource_name from the app definition will be used as default|
-|» title<span class="param-type"> string</span>|The text to show in the title of the widget. Max length of 200 chars.|
-|template<span class="param-type"> string</span>|The interface name and version of a distinct widget UI layout. A `template` is directly associated with a particular `metadata` schema.|
+|» title<span class="param-type"> string</span><div class="param-required">required</div>|The text to show in the title of the widget. Max length of 200 chars.|
+|template<span class="param-type"> string</span><div class="param-required">required</div>|The interface name and version of a distinct widget UI layout. A `template` is directly associated with a particular `metadata` schema.|
 
 #### Enumerated Values
 
