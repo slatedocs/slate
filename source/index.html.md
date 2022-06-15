@@ -45,6 +45,7 @@ includes:
   - administration/billing_settings
   - administration/billing_providers
   - administration/tax_providers
+  - administration/invoice_configuration
   - administration/custom_navigation
   - administration/metrics
   - administration/caches
