@@ -1,0 +1,17 @@
+site_name: MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+theme:
+  name: material
+  logo: assets/logo-arrow-sans-medium-black.svg
+extra_css:
+  - stylesheets/extra.css
+copyright: Copyright &copy; 2022 MSKCC
+nav:
+  - Home: index.md
+  - About: about.md
+  - Resources:
+    - "Labs": labs.md
+    - Balloon: games/balloon.md
+  - Rides:
+    - "Scary Coaster": rides/scary.md
+    - "Drop of Doom": rides/drop.md
+
