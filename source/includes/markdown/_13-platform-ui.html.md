@@ -748,6 +748,39 @@ After you have completed development of your app (and you have addressed the gui
 
 <hr class="full-line">
 
+# Troubleshooting
+
+## Common Issues
+### App Component shows "Something went wrong. Try again later."
+
+This typically happens when we receive a response from the app server that we do not understand. To ensure that Asana is able to read the response from the app server, check that the app server is returning the required properties listed in the corresponding schema of the endpoint being called (see [App Component Schemas](/docs/app-component-schemas)). Additionally, for certain properties like `color` and `width`, check that the value the app server is returning is a valid option under the *Enumerated Values* dropdown of an App Component schema.
+
+Another reason that you may be seeing this message is when your app server is not using CORS. In order to update the Asana user interface (e.g., populating a Widget with external data), requests are made from the client to your app server. As such, enabling and configuring CORS is required. See [Security](https://developers.asana.com/docs/authorization) for more information.
+
+### App server endpoints are not being triggered
+
+Check that the endpoint paths saved for your app in the [developer console](https://app.asana.com/0/developer-console) match the endpoint paths that you created for your app server. For example, your app server's endpoint to [GET Form Metadata](/docs/get-form-metadata) might be `https://app.example.com/form/metadata`, while in your app's settings it is saved as `https://app.example.com/metadata`. Since these paths are non-matching, when Asana makes a request to [GET Form Metadata](/docs/get-form-metadata), it will be making requests to `https://app.example.com/metadata` instead of `https://app.example.com/form/metadata`.
+
+Additionally, some app server responses may contain an `on_change_callback` and an `on_submit_callback` property. Check that the endpoints provided for these values are what you expected.
+
+### Unable to trigger installation process again
+
+In the event that you would like to test your app's installation flow again, you can visit `https://app.asana.com/-/install_platform_ui_app?app_id=<app_client_id>`. You can find your `app_client_id` in the URL of your app in the [developer console](https://app.asana.com/0/developer-console).
+
+### App Component - Rule Action: App server is not receiving a response back from Asana
+
+The app server for Rule Action must be hosted in order for Rule Actions to function. For a brief list of popular hosting options, see [Hosting](/docs/hosting).
+
+### App does not appear in the app gallery of my organization
+
+Ensure that your app is added to your organization. This can be done in your app's setting in the [developer console](https://app.asana.com/0/developer-console) under **Install your app** > **Add an organization**.
+
+<br>
+<br>
+For any questions on App Components, as well as an opportunity to engage with other developers in the community, feel free to visit our [App Components forum](https://forum.asana.com/c/api/app-components-beta/150)
+
+<hr class="full-line">
+
 # Additional Resources
 
 ## Configurations
