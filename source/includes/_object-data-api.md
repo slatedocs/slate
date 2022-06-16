@@ -1633,7 +1633,7 @@ PersonResponsible@odata.bind | the @odata.id of the employee you want to assign 
 
 ## Object Attachments
 
-There are two types of file attachments on records. Files can be attached to the Private Document Attachment grid on a record or to the File type field of an object.  To access files in the Private Document Attachment grid use the system reserved property: ILX.Attachments.  To access files in the File type field use the system name of the field.  Currently, only downloading files from the File type field is available. Document Control uses this file type field and an example is added below showing how to access the released and effective version of document control files. 
+There are two types of file attachments on records. Files can be attached to the Private Document Attachment grid on a record or to the File type field of an object.  To access files in the Private Document Attachment grid use the system reserved property: ILX.Attachments.  To access files in the File type field use the system name of the field. Document Control uses this file type field and an example is added below showing how to access the released and effective version of document control files. 
 
 ### Requesting Private Documents
 
@@ -1911,7 +1911,123 @@ Parameter | Description
 intelex_object | The Intelex system name of the object eg. IncidentsObject
 id|The Intelex UID of the record or document being accessed
 
+### Uploading Document Control Files
+The first step for File type is to upload document. The file must be attached to the request as form-data. File size is configurable via web.config setting AttachmentMaxFileSize. There are two endpoints to upload file, difference is in the responses.
 
+> Example Request
+ 
+```javascript
+var fs = require("fs");
+var request = require("request");
+var options = { method: 'POST',
+  url: 'https://intelex_url/api/v2/FileUpload',
+  headers: { 'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+  formData: 
+   { '': 
+      { value: 'fs.createReadStream("C:\\Document.docx")',
+        options: { filename: 'C:\\Document.docx', contentType: null } } 
+	} 
+};
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  console.log(body);
+});
+```
+> Example Response
+
+```javascript
+[ "47df4cec-50ad-4da5-a820-7827985a77bb" ]
+```
+
+#### Endpoint 1
+This will return UID for the newly created file. The UID then can be attached to a record.
+##### POST /FileUpload
+
+##### Header Parameters
+Parameter | Description | Value
+--------- | ----------- | -----
+content-type | The multipart/form-data content type is intended to allow information providers to express file upload requests uniformly, and to provide a MIME-compatible representation for file upload responses. | multipart/form-data
+
+##### Returns
+
+201 Created with Array of File UID
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+> Example Request
+ 
+```javascript
+var fs = require("fs");
+var request = require("request");
+var options = { method: 'POST',
+  url: 'https://intelex_url/api/v2/object/SysFileInfoEntity',
+  headers: { 'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+  formData: 
+   { '': 
+      { value: 'fs.createReadStream("C:\\Document.docx")',
+        options: { filename: 'C:\\Document.docx', contentType: null } } 
+	} 
+};
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  console.log(body);
+});
+```
+> Example Response:
+
+```json
+{
+    "@odata.context": “string”,
+    "@odata.type": "#Intelex.SysFileInfoEntity",
+    "@odata.id": “string”,
+    "@odata.editLink": "string",
+    "Id": "string",
+    "DateModified": "string",
+    "DateCreated": "string",
+    "Content@odata.mediaReadLink": "string",
+    "FileExtension": "string",
+    "Name": "string: filename",
+    "Size": number
+}
+```
+#### Endpoint 2
+This will return Edm for the newly created file. The @data.id link then can be used to attached to a record.
+
+##### POST /object/SysFileInfoEntity
+##### Header Parameters
+Parameter | Description | Value
+--------- | ----------- | -----
+content-type | The multipart/form-data content type is intended to allow information providers to express file upload requests uniformly, and to provide a MIME-compatible representation for file upload responses. | multipart/form-data
+
+##### Returns
+201 Created with newly created SysFileInfoEntity
+
+### Attaching Document Control Files
+Once you have <b>@odata.id</b> of FileInfo, you can use that to attach to an object with File field. It is similar to [Modifying Object Data](#modifying-object-data)
+> Example Request
+
+```
+{
+  ....
+  "FileInput@odata.bind": "http://torwdtahmed02.intelex.com/devlogin/inspections/api/v2/object/SysFileInfoEntity(47df4cec-50ad-4da5-a820-7827985a77bb)"
+}
+```
+##### POST /object/{intelex_object}
+
+##### Request Parameters
+Parameter | Description
+--------- | -----------
+intelex_object | The Intelex system name of the object eg. IncidentsObject
+
+##### Request Body
+If intelex object has field FileInput (of type <b>File</b>), then Post body should contain this to attach file
+
+"FileInput@odata.bind": @odata.id from file upload response"
+
+
+
+### Detaching Document Control File
+It is same as detaching a reference field in [Modifying Object Data](#modifying-object-data).
+There is Intelex service that periodically cleans orphan files.
 ## Object Merge Templates
 
 Object merge templates allow you to extract data from any Intelex object and export it into a Microsoft Word® or PDF document, depending on the configuration of the merge template. By mapping 'MergeFields' in the Word document to data fields in a particular Intelex object, you are able to export dynamically generated files populated with object record data you need, such as employee names, hire dates, etc. You can use dot notations to drill down to child objects and populate their data.
