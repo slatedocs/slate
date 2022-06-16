@@ -9,9 +9,9 @@ nav:
   - Home: index.md
   - About: about.md
   - Resources:
-    - "Labs": labs.md
-    - Balloon: games/balloon.md
-  - Rides:
-    - "Scary Coaster": rides/scary.md
-    - "Drop of Doom": rides/drop.md
-
+    - Labs: resources/labs.md
+    - Vitals: resources/vitals.md
+  - "Coming Soon":
+    - Demographics: coming-soon/demographics.md
+    - "Adverse Events": coming-soon/adverseEvents.md
+    - Medications: coming-soon/medications.md

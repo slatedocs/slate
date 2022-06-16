@@ -1,17 +1,50 @@
-# Welcome to MkDocs
+# Getting Started
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+The MSK Blaze API is organized around REST. Each FHIR resource type currently supports [read](http://build.fhir.org/http.html#read) and [search](http://build.fhir.org/http.html#search) capabilities.
 
-## Commands
+## Authentication
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+In order to make use of Blaze, you’ll need to be set up as an MSK “partner” so that you can consume clinical research data. If you would like to request access to data for a research study at MSK, please send a request to rtmcritds@mskcc.org.
 
-## Project layout
+Authentication is based on the Client Credentials grant. This means that clients will need to generate an access token and supply it in the headers of each request being made. Once you are established as a partner, you’ll be given a `client_id` and a `client_secret`, which you will use for generating tokens and using them to make authenticated requests to the server.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Generating Tokens
+
+To generate access tokens, partners need to make a POST request to the appropriate endpoint using the MSK provided `client_id` and `client_secret`:
+
+## Hosts
+
+### Staging
+
+```
+https://test/
+```
+
+### Production
+
+```
+https://test/
+```
+
+Request
+```
+POST /msk-apim/external/msk-oidc/oauth2/token HTTP/1.1
+Host: 
+Content-Type:
+client_id=
+client_secret=
+grant_type=
+scope=
+```
+
+Response
+```json
+{
+    "token_type": "",
+    "access_token": "",
+    "scope": "",
+    "expires_in": ,
+    "consented_on": 
+}
+```
+
