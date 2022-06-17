@@ -301,7 +301,7 @@ Rule Actions are a part of [Asana Rules](https://asana.com/guide/help/premium/ru
 
 _Note: An App Server must be hosted in order for Rule Actions to function. For a brief list of popular hosting options, see [Hosting](/docs/hosting)._
 
-To see an example app server written for Rule Actions see our [app-components-rule-action-example-app](https://github.com/Asana/app-components-rule-action-example-app) on GitHub.
+To see an example app server written for Rule Actions, see our [app-components-rule-action-example-app](https://github.com/Asana/app-components-rule-action-example-app) on GitHub.
 
 ### Rule Action Configurations
 
@@ -899,7 +899,7 @@ That's it! At this point, feel free to keep exploring how changes in the server 
 
 <span class="beta-indicator">BETA</span> - For access, please see [Overview of App Components](/docs/overview-of-app-components)
 
-To explore the capabilities of Rule Actions see our [app-components-rule-action-example-app](https://github.com/Asana/app-components-rule-action-example-app) on GitHub. Follow the instructions outlined in the repository's `README.md` to get started.
+To explore the capabilities of Rule Actions, see our [app-components-rule-action-example-app](https://github.com/Asana/app-components-rule-action-example-app) on GitHub. Follow the instructions outlined in the repository's `README.md` to get started.
 
 <hr>
 
