@@ -219,6 +219,9 @@ fetch('https://core.eventtia.com/v1/events/', {
       is_template: false,
       event_uri: "event_uri",
       timezone: "America/Bogota",
+      available_languages: {
+                              "available": ["en", "es"],
+                              "default": "en"},
       location: {
         "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
         "address": "Event address",
@@ -234,21 +237,21 @@ fetch('https://core.eventtia.com/v1/events/', {
         small:  "url_image",
         medium: "url_image",
         large: "url_image",
-      }
+      },
       logo: {
         filename: "file_name",
         thumb: "url_image",
         small: "url_image",
         medium: "url_image",
         large: "url_image",
-      }  
+      }
     }
   }
   }
 })
 ```
 
-> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate.
 
 > Example of a successful (200) response:
 
@@ -256,7 +259,7 @@ fetch('https://core.eventtia.com/v1/events/', {
 HTTP/1.1 200 OK
 {
   "data": {
-    id: "21", 
+    id: "21",
     "type": "events",
     "attributes": {
       "name": "Event name",
@@ -344,7 +347,9 @@ logo | file | logo for this event.
 banner_image | file | banner image for this event.
 currency | string | your event currency for payments and invoices ['COP', 'USD', 'EUR', 'ARS', 'BRL', 'CLP', 'MXN', 'PEN', 'GBP', 'JOD', 'UYU', 'PYG', 'AED', 'CAD', 'VND', 'PHP', 'AUD', 'BOB', 'TND', 'SGD', 'CHF', 'CFA', 'ZAR', 'INR']
 date_format | string | event date format ['dd/mm/yyyy', 'mm/dd/yyyy']. 
-time_format | string | event time format ['hours_24', 'am_pm']. 
+time_format | string | event time format ['hours_24', 'am_pm'].
+available_languages | json | includes available key ( array with availables languages for event ) and default key ( a string with a single required language, included in available languages array)
+
 
 ## Update Event
 
@@ -369,6 +374,9 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
       is_template: false,
       event_uri: "event_uri",
       timezone: "America/Bogota",
+      available_languages: {
+                              "available": ["en", "es"],
+                              "default": "en"},
       location: {
         "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
         "address": "Event address",
@@ -511,7 +519,8 @@ logo | file | logo for this event.
 banner_image | file | banner image for this event.
 currency | string | your event currency for payments and invoices ['COP', 'USD', 'EUR', 'ARS', 'BRL', 'CLP', 'MXN', 'PEN', 'GBP', 'JOD', 'UYU', 'PYG', 'AED', 'CAD', 'VND', 'PHP', 'AUD', 'BOB', 'TND', 'SGD', 'CHF', 'CFA', 'ZAR', 'INR']
 date_format | string | event date format ['dd/mm/yyyy', 'mm/dd/yyyy']. 
-time_format | string | event time format ['hours_24', 'am_pm']. 
+time_format | string | event time format ['hours_24', 'am_pm'].
+available_languages | json | includes available key ( array with availables languages for event ) and default key ( a string with a single required language, included in available languages array)
 
 ## Destroy Event
 ```javascript
@@ -625,7 +634,10 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/settings', {
         date_format: "dd/mm/yyyy",
         time_format: "am_pm",
         google_analytics_tracking_code: "A78Y55ABCD",
-        google_tag_manager_code: "11223ABCDE"
+        google_tag_manager_code: "11223ABCDE",
+        available_languages: {
+                              "available": ["en", "es"],
+                              "default": "en"}
       }
     }
   }
@@ -660,7 +672,10 @@ HTTP/1.1 200 OK
       "date_format": "dd/mm/yyyy",
       "time_format": "am_pm",
       "google_analytics_tracking_code": "33445ABCDE",
-      "google_tag_manager_code": "11223ABCDE"
+      "google_tag_manager_code": "11223ABCDE",
+      "available_languages": {
+                              "available": ["en", "es"],
+                              "default": "en"},
     },
     "relationships": {
       "event": {
@@ -717,5 +732,6 @@ pay_u_test_mode | boolean | when testing your payments won't be any charge to yo
 currency | string | your event currency for payments and invoices ['COP', 'USD', 'EUR', 'ARS', 'BRL', 'CLP', 'MXN', 'PEN', 'GBP', 'JOD', 'UYU', 'PYG', 'AED', 'CAD', 'VND', 'PHP', 'AUD', 'BOB', 'TND', 'SGD', 'CHF', 'CFA', 'ZAR', 'INR']
 vat_alias | string | how do you want to call your vat value
 vat_value | integer/float | Your event vat value
+available_languages | json | includes available key ( array with availables languages for event ) and default key ( a string with a single required language, included in available languages array)
 
 
