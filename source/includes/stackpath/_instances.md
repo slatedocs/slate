@@ -173,3 +173,13 @@ Optional | Description | Default
 ------- | -----------  |---------
 `containerRemoteAccessCommand`<br/>*string* | The command to execute on the container instance. ex. /bin/bash | /bin/bash
 `vmRemoteAccessType`<br/>*VmRemoteAccessType* | The remote access type. Can be either SERIAL or VNC. Invalid value will be ignored and the default will be used. | SERIAL
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task ID.
+`status`<br/>*string* | The status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details required to access the instance's console.
+`result.sshCommand`<br/>*String* | The command to execute to access the instance's console.
+`result.clientSecret`<br/>*String* | The secret used to login, for which you will be prompted after executing the `sshCommand`.
+`result.clientId`<br/>*UUID* | The id of the client used to login.
