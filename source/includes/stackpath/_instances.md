@@ -156,6 +156,7 @@ curl -X POST \
     "created": "2021-04-20T20:58:59.952881-04:00",
     "result": {
       "clientId": "1e15e2050fe44771c5dd82dcf07c",
+      "clientSecret": "c3507b64a1cfe8a973d7aa234d7581dd99c732e2c1184f9ac90f803b83ad1887",
       "sshCommand": "ssh -p 9600 -t test-stack-8x5ppioikq-env.w-jdias-cmp-wi-jdias-edh-ord-0.container-0.0cbc2e63dffa4fa6b183fafeeb575c95@container-console.edgeengine.io /bin/bash"
     }
   }
@@ -172,3 +173,13 @@ Optional | Description | Default
 ------- | -----------  |---------
 `containerRemoteAccessCommand`<br/>*string* | The command to execute on the container instance. ex. /bin/bash | /bin/bash
 `vmRemoteAccessType`<br/>*VmRemoteAccessType* | The remote access type. Can be either SERIAL or VNC. Invalid value will be ignored and the default will be used. | SERIAL
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task ID.
+`status`<br/>*string* | The status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details required to access the instance's console.
+`result.sshCommand`<br/>*String* | The command to execute to access the instance's console.
+`result.clientSecret`<br/>*String* | The secret used to login, for which you will be prompted after executing the `sshCommand`.
+`result.clientId`<br/>*UUID* | The id of the client used to login.
