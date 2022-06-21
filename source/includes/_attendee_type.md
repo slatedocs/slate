@@ -27,7 +27,7 @@ HTTP/1.1 200 OK
       "attributes": {
         "name": "Attendee type name",
         "description": "attendee_type_description",
-        "price": "34",
+        "price": "34.2",
         "limit": 25,
         "confirmation_required": false,
         "allow_public_registration": false,
@@ -62,6 +62,7 @@ Parameter |  Type   | Description
 --------- | ------- | -----------
 event_uri | string  | The event_uri for the desired event
 page | json | A page object as described <a href="#pagination">here</a>
+available_seats | boolean | activate an optional attribute (seats availability)
 
 
 ## Get Attendee Type
@@ -92,7 +93,7 @@ HTTP/1.1 200 OK
     "attributes": {
       "name": "Attendee type name",
       "description": "Attendee type description",
-      "price": "34",
+      "price": "34.2",
       "limit": 25,
       "confirmation_required": false,
       "allow_public_registration": false,
@@ -168,9 +169,9 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/', {
     id: 62527
     type: "attendee_type",
     attributes: {
-      name: "Attendee type name",
-      description: "Attendee type description",
-      price: 34,
+      name: { es:"Attendee type name", en: "Attendee type name"},
+      description: { es:"Attendee type description", en: "Attendee type description"},
+      price: 34.2,
       limit: 25,
       confirmation_required: false,
       allow_public_registration: false,
@@ -195,9 +196,9 @@ HTTP/1.1 200 OK
     "id": "62527",
     "type": "attendee_types",
     "attributes": {
-      "name": "Attendee type name",
-      "description": "Attendee type description",
-      "price": "34",
+      "name": {"es": "Attendee type name", "en": "Attendee type name"},
+      "description": {"es": "Attendee type description", "en": "Attendee type description"},
+      "price": "34.2",
       "limit": 25,
       "confirmation_required": false,
       "allow_public_registration": false,
@@ -226,7 +227,7 @@ HTTP/1.1 422 Unprocessable Entity
 {
   "message": {
     "price": [
-      "must be an integer"
+      "must be a decimal"
     ]
   }
 }
@@ -242,9 +243,9 @@ This endpoint create an attendee type and return it
 
 Parameter  |  Type   | Description
 ---------  | ------- | -----------
-name       | string  | name for attendee type
-description| string  | description for attendee type
-price      | integer | price for attendee type
+name       | json  | keys belongs to available languages for attendee type's event and its value, Example: {es: "Invitado", en: "Guest"}
+description| json  | keys belongs to available languages for attendee type's event and its value, Example: {es: "descripcion de invitado", en: "Guest's description"}
+price      | decimal | price for attendee type
 limit      | integer | attendees limit for this attendee type
 confirmation_required | boolean | confirmation required for attendee type
 allow_public_registration | boolean | allow public registration for this attendee type
@@ -264,7 +265,7 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>/attendee_types/<id>', {
     attributes: {
       name: "Attendee type name",
       description: "Attendee type description",
-      price: 34,
+      price: 34.2,
       limit: 25,
       confirmation_required: false,
       allow_public_registration: false,
@@ -293,7 +294,7 @@ HTTP/1.1 200 OK
     "attributes": {
       "name": "Attendee type name",
       "description": "Attendee type description",
-      "price": "34",
+      "price": "34.2",
       "limit": 25,
       "confirmation_required": false,
       "allow_public_registration": false,
@@ -347,7 +348,7 @@ Parameter  |  Type   | Description
 ---------  | ------- | -----------
 name       | string  | name for attendee type
 description| string  | description for attendee type
-price      | integer | price for attendee type
+price      | decimal | price for attendee type
 limit      | integer | attendees limit for this attendee type
 confirmation_required | boolean | confirmation required for attendee type
 allow_public_registration | boolean | allow public registration for this attendee type
