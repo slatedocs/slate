@@ -786,6 +786,19 @@ tags:
       Asana will try to resend the webhook for up to 24 hours before giving up.
 
 
+      For a visual tour of getting started with webhooks, feel free to review the
+      following video (and [source code](https://github.com/Asana/devrel-examples/tree/master/javascript/webhooks-nodejs)).
+
+
+      <div style="padding:35% 0 0 0;position:relative;width:52%">
+        <iframe src="https://player.vimeo.com/video/721606792?h=5d8cdb532f&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" title="App Components:
+      Getting Started">
+        </iframe>
+      </div>
+
+
       #### The webhook "handshake"
 
       In order to ensure that the receiving server is available to receive
@@ -1668,6 +1681,13 @@ components:
                       type: string
                       example: default_task
                       nullable: true
+            size:
+              description: >-
+                The size of the attachment in bytes. Only present when the `resource_subtype`
+                is `asana`.
+              type: integer
+              readOnly: true
+              example: 12345
             view_url:
               description: >-
                 The URL where the attachment can be viewed, which may be

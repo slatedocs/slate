@@ -114,6 +114,7 @@ $result = $client->attachments->getAttachment($attachment_gid, array('param' => 
       "resource_subtype": "default_task"
     },
     "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
+    "size": 12345,
     "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
   }
 }
@@ -469,6 +470,7 @@ url: string
       "resource_subtype": "default_task"
     },
     "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
+    "size": 12345,
     "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
   }
 }
@@ -24196,6 +24198,14 @@ However, webhooks _require_ a server to be accessible over the internet at all t
 
 Webhooks and events streams are served from the same infrastructure, where, on average, events are delivered within a minute of occurring. This system is designed for at most once delivery, meaning in exceptional circumstances we may fail to deliver events. Furthermore, webhooks cannot be replayed once delivered. For these reasons, if your use case requires strong guarantees about processing all changes on a resource and cannot tolerate any missing events, regardless of how rare that might be, we recommend building a fallback polling system that fetches the resource periodically as well. Note that, if your server does not respond to a webhook with a successful HTTP status code within 10 seconds, Asana will try to resend the webhook for up to 24 hours before giving up.
 
+For a visual tour of getting started with webhooks, feel free to review the following video (and [source code](https://github.com/Asana/devrel-examples/tree/master/javascript/webhooks-nodejs)).
+
+<div style="padding:35% 0 0 0;position:relative;width:52%">
+  <iframe src="https://player.vimeo.com/video/721606792?h=5d8cdb532f&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="App Components: Getting Started">
+  </iframe>
+</div>
+
 #### The webhook "handshake"
 In order to ensure that the receiving server is available to receive incoming events from a webhook Asana will `POST` to the requested target endpoint during the webhook creation request. In other words, the outgoing webhook creation request will wait to return until another full `POST` request from Asana's servers to the target has been completed, *then* the webhook creation request can return with a successful response.
 
@@ -26158,6 +26168,7 @@ A `Compact` object is the same as the [full response object](/docs/tocS_Attachme
     "resource_subtype": "default_task"
   },
   "permanent_url": "https://s3.amazonaws.com/assets/123/Screenshot.png",
+  "size": 12345,
   "view_url": "https://www.dropbox.com/s/123/Screenshot.png"
 }
 
@@ -26185,6 +26196,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |» name<span class="param-type"> string</span>|The name of the task.|
 |» resource_subtype<span class="param-type"> string¦null</span>|The resource subtype of the parent resource that the filter applies to.|
 |permanent_url<span class="param-type"> string(uri)¦null</span>|none|
+|size<span class="param-type"> integer</span>|The size of the attachment in bytes. Only present when the `resource_subtype` is `asana`.|
 |view_url<span class="param-type"> string(uri)¦null</span>|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
 
 </section><hr>
