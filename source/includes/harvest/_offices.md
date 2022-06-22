@@ -201,6 +201,7 @@ List all of an organization's offices.
 | per_page | Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.
 | page | A cursor for use in pagination.  Returns the n-th chunk of `per_page` objects.
 | render_as | This parameter defines how to represent the list of offices. The default value is 'list', which returns a flat list of offices.  If this is set to 'tree', offices are represented in a tree-like structure where they may include sub-offices as `children`
+| external_id | If supplied, only return office(s) with that external ID.
 
 <br>
 [See noteworthy response attributes.] (#the-office-object)
