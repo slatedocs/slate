@@ -405,7 +405,7 @@ Attributes | &nbsp;
 `created`<br/>*Date* | The task's creation date.
 `result`<br/>*Object* | The task result, containing details of the password reset.
 `result.username`<br/>*string* | The administrator username created on the instance.
-`result.password`<br/>*string* | The password for the newly created instance. Only set if password authentication is configured on the instance.
+`result.password`<br/>*string* | The password for the newly created instance.
 
 <!-------------------- START AN INSTANCE -------------------->
 
