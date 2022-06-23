@@ -210,6 +210,35 @@ curl -X POST \
   "password": "SomePassw0rdVal!d"
 }
 ```
+> The above command(s) return(s) JSON structured like this:
+
+```json
+{
+  "taskId": "00b76dbe-f9de-4f2b-9434-5a7d93fb7112",
+  "taskStatus": "SUCCESS"
+}
+```
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/tasks/00b76dbe-f9de-4f2b-9434-5a7d93fb7112"
+```
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+  "data": {
+    "id": "00b76dbe-f9de-4f2b-9434-5a7d93fb7112",
+    "status": "SUCCESS",
+    "created": "2021-04-20T20:58:59.952881-04:00",
+    "result": {
+      "username": "johndoe",
+      "password": "SomePassw0rdVal!d",
+      ...
+    }
+  }
+}
+```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
@@ -229,9 +258,20 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. The password is mandatory if the sshkey is not provided.
-`sshkey`<br/>*string* | The ssh key public portion that will be assigned to the user on the machine. This cannot be used for a Windows based OS.
+`password`<br/>*string* | The password of the administrator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. The password is mandatory if the SSH key is not provided.
+`sshkey`<br/>*string* | The SSH key public portion that will be assigned to the user on the machine. This cannot be used for a Windows based OS.
 `publicIpAddressId`<br/>*string* | The fully qualified id of the public IP address to associate to the instance.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task's ID.
+`status`<br/>*string* | The task's status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details of the newly created instance.
+`result.securityType`<br/>*string* | The security type used to secure the instance. Either `password` or `sshKey`.
+`result.username`<br/>*string* | The administrator username created on the instance.
+`result.password`<br/>*string* | The password for the newly created instance. Only set if password authentication is configured on the instance.
+`result.sshkey`<br/>*string* | The SSH key for the newly created instance. Only set if SSH key authentication is configured on the instance.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
@@ -316,7 +356,36 @@ curl -X POST \
 
 ```json
 {
-  "password": "SomePassw0rdVal!d"
+  "password": "my-new-password"
+}
+```
+> The above command(s) return(s) JSON structured like this:
+
+```json
+{
+  "taskId": "00b76dbe-f9de-4f2b-9434-5a7d93fb7112",
+  "taskStatus": "SUCCESS"
+}
+```
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/tasks/00b76dbe-f9de-4f2b-9434-5a7d93fb7112"
+```
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+  "data": {
+    "id": "00b76dbe-f9de-4f2b-9434-5a7d93fb7112",
+    "status": "SUCCESS",
+    "created": "2021-04-20T20:58:59.952881-04:00",
+    "result": {
+      "username": "johndoe",
+      "password": "my-new-password",
+      ...
+    }
+  }
 }
 ```
 
@@ -328,6 +397,15 @@ For Windows instances, reset the administrator account and reset the Remote Desk
 Optional | &nbsp;
 ------ | -----------
 `password`<br/>*string* | The password of the administator account. It must be between between 12 and 72 characters and must be a combination of 3 of the following patterns : Special characters, Uppercase, Lowercase and Numbers. If not provided, a new password is generated.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task's ID.
+`status`<br/>*string* | The task's status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details of the password reset.
+`result.username`<br/>*string* | The administrator username created on the instance.
+`result.password`<br/>*string* | The password for the newly created instance. Only set if password authentication is configured on the instance.
 
 <!-------------------- START AN INSTANCE -------------------->
 

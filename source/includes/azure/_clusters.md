@@ -129,6 +129,34 @@ curl -X POST \
 	"sshkey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCguvgDRuUF/wijOJCNmYlQHujCmUHl/i0Ubos4nHy5uCBdn1LGF+PG3TpJqO1LUWqpHaPl4yN7bpsdXyq6a9nxe0C1bQ4FK6P5qm0X320uvqv34jwTPsIbnhw9I317df+xJyXXsL/P5vS4ULPMC5UZjWm4BYe7did4zmXXhA/zmLY6cUg19sZp5r5SUQcf5xHAqO3cQVZwzBhBMwroflZZ59zNpxy+xXPBqC3IdusF2yTDW7bwCQHESUOsd9XhwrzCB+1wETKjLpk0wkWj8G2j1pkKGRpv60QcG85lbZvQAg54v3HYD7fVJCaz9gJJoiyRBnqQ6XVxam5bZgiMKa0J johndoe@machine.local"
 }
 ```
+> The above command(s) return(s) JSON structured like this:
+
+```json
+{
+  "taskId": "ba0d9e44-ce89-4cc0-9c90-da1dcde1a8ac",
+  "taskStatus": "SUCCESS"
+}
+```
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/tasks/ba0d9e44-ce89-4cc0-9c90-da1dcde1a8ac"
+```
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+	"data": {
+		"id": "ba0d9e44-ce89-4cc0-9c90-da1dcde1a8ac",
+		"status": "SUCCESS",
+		"created": "2022-06-23T13:11:07.03164-04:00",
+		"result": {
+			"sshKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZcbdHKq1YK4vV5gtemy5SzngDhU3mSGhsxyBe4uKvEwk4shzRBPRc8uvOm0KrzB9KkbuxR3OJ1TbFVijnmvrOGIacN7BsJENBcBsrjjHW3vNPF0ZaJWts+lUPL+6BcuDTNUSyDTpAI1Xs/a3P5E7kOQumiwjlXIwuyJyGIk5Lt2FmZgDSCuZ4fjuUGgQq27RDya7G/eB5eKD9ohmXM567VHWvGQKUV4RdNDM0W4YuQYCAsaLwaKhFMOxr1AK5YOgyJYVVZn280bOx2qDyp6fTN49UTbkOtcQz+S8d2PRLaplY3QVPtelV47s2Gawgl8i3jiXGBbMV6WllLM+ujZy7 ",
+			...
+		}
+	}
+}
+```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters</code>
 
@@ -149,6 +177,14 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `rootUsername`<br/>*string* | The user name to create a root user on cluster.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task's ID.
+`status`<br/>*string* | The task's status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details of the newly created cluster.
+`result.sshKey`<br/>*string* | The SSH key for the newly created cluseter.
 
 <!-------------------- DELETE A CLUSTER -------------------->
 
