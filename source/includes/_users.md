@@ -888,6 +888,52 @@ authentication_token you need to login again.
 | -------------------- | ------ | -------------------- |
 | authentication_token | header | Authentication token |
 
+## Deactivate Account
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/users/deactivate_account',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl https://app.procurementexpress.com/api/v1/users/deactivate_account
+  -X POST
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+}
+```
+
+Deactivate user account and send email to support team to proceed with deactivation.
+Once the account is deactivated, user won't be able to login to their account, or
+access their data using API. And also After account is deactivated, user will be
+automatically logout from the web application.
+
+### HTTP Request
+
+`POST https://app.procurementexpress.com/api/v1/users/deactivate_account`
+
+### Query Parameters
+
+| Param                | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company Id           |
+
 ## List domain matching companies
 
 ```ruby
