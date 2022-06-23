@@ -220,7 +220,7 @@ curl -X GET 'https://partner.oyindonesia.com/api/balance'
 
 Lastly, all transactions can be monitored from the OY! dashboard which includes all the transaction details.
 
-![API Disbursement](images/api_disburse_list.png)
+![API Disbursement](images/api_disburse_error_reason.png)
 
 ![API Disbursement](images/api_disburse_success.png)
 
@@ -350,12 +350,12 @@ _In-Progress_
 
 As your individual disbursements are executed, the status of your bulk disbursement campaign will indicate an in-progress status. 
 
-![Bulk Disburse](../images/bulk_disburse_in_progress.png)
+![Bulk Disburse](../images/bulk_disburse_error_reason.png)
 
 _Incomplete_
 
-The status of your bulk disbursement will change to incomplete once all of the listed transactions have been executed and the relevant final statuses of Failed or partially Failed have been assigned.
-![Notif Pending - 1  Initial](https://user-images.githubusercontent.com/79620482/125020227-aefbe680-e0a2-11eb-9b92-09e57106c413.png)
+The status of your bulk disbursement will change to incomplete once all of the listed transactions have been executed and the relevant final statuses of Failed or partially Failed have been assigned. The failed transactions will be shown the failed reason and can be retried.
+![Notif Pending - 1  Initial](../images/bulk_disburse_list_incomplete.png)
 
 
 _Finish_
