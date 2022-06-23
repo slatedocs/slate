@@ -151,6 +151,7 @@ curl -X POST \
 		"status": "SUCCESS",
 		"created": "2022-06-23T13:11:07.03164-04:00",
 		"result": {
+      "rootUsername": "root_nzk",
 			"sshKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZcbdHKq1YK4vV5gtemy5SzngDhU3mSGhsxyBe4uKvEwk4shzRBPRc8uvOm0KrzB9KkbuxR3OJ1TbFVijnmvrOGIacN7BsJENBcBsrjjHW3vNPF0ZaJWts+lUPL+6BcuDTNUSyDTpAI1Xs/a3P5E7kOQumiwjlXIwuyJyGIk5Lt2FmZgDSCuZ4fjuUGgQq27RDya7G/eB5eKD9ohmXM567VHWvGQKUV4RdNDM0W4YuQYCAsaLwaKhFMOxr1AK5YOgyJYVVZn280bOx2qDyp6fTN49UTbkOtcQz+S8d2PRLaplY3QVPtelV47s2Gawgl8i3jiXGBbMV6WllLM+ujZy7 ",
 			...
 		}
@@ -184,7 +185,8 @@ Attributes | &nbsp;
 `status`<br/>*string* | The task's status.
 `created`<br/>*Date* | The task's creation date.
 `result`<br/>*Object* | The task result, containing details of the newly created cluster.
-`result.sshKey`<br/>*string* | The SSH key for the newly created cluseter.
+`result.rootUsername`<br/>*string* | The username for the root user on the newly created cluster.
+`result.sshKey`<br/>*string* | The SSH key for the newly created cluster.
 
 <!-------------------- DELETE A CLUSTER -------------------->
 
