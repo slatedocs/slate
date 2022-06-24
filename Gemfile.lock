@@ -42,7 +42,6 @@ GEM
     i18n (0.7.0)
     json (1.8.6)
     kramdown (1.17.0)
-    libv8 (3.16.14.19)
     listen (2.10.1)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
@@ -99,7 +98,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redcarpet (3.3.4)
-    ref (2.0.0)
     rouge (1.9.1)
     sass (3.4.25)
     sprockets (2.12.5)
@@ -113,9 +111,6 @@ GEM
       sprockets (~> 2.0)
       tilt (~> 1.1)
     temple (0.8.2)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (1.4.1)
@@ -139,7 +134,6 @@ DEPENDENCIES
   rake (~> 10.4.2)
   redcarpet (~> 3.3.2)
   rouge (~> 1.9.0)
-  therubyracer (~> 0.12)
 
 BUNDLED WITH
    1.17.3

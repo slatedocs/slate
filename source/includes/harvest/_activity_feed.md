@@ -7,7 +7,7 @@ The activity feed is the list of activities on a candidate's profile, including 
 {
   "notes": [
     {
-      "id": 12345,
+      "id": 123456,
       "created_at": "2014-03-26T20:11:40Z",
       "body": "Very mysterious.",
       "user": {
