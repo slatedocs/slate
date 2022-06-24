@@ -172,7 +172,7 @@ body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .toc-list-h3 {
@@ -183,7 +183,7 @@ body {
 
   .toc-h3 {
     padding-left: $nav-padding + $nav-indent + $nav-indent;
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .toc-footer {
@@ -465,6 +465,10 @@ body {
 
     tr:last-child {
       border-bottom: 1px solid #ccc;
+    }
+
+    td:first-child {
+      font-family: monospace;
     }
 
     tr:nth-child(odd) > td {

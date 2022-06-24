@@ -50,11 +50,11 @@ NEW_FUEL_CH4_PER_SHORT_TON = 0.2892
 NEW_FUEL_N2O_PER_SHORT_TON = 14.955
 ```
 
-To edit or add fuel types and their conversion constants, open the [models](https://github.com/sunnysanwar/fuel-co2-conv-api.git) folder where you will see the different files named after the endpoints. Edit the file that is specific to the conversion you want to make.
+To edit or add fuel types and their conversion constants, open the [models](https://github.com/sunnysanwar/dynm-api.git) folder where you will see the different files named after the endpoints. Edit the file that is specific to the conversion you want to make.
 
-For example, go to [carbon_dioxide_conversion.rb](https://github.com/sunnysanwar/fuel-co2-conv-api/blob/main/app/models/carbon_dioxide_conversion.rb) to New Fuel to CO2 with the following conversion constants.
+For example, go to [carbon_dioxide_conversion.rb](https://github.com/sunnysanwar/dynm-api/blob/main/carbon_footprint/lookups/carbon_dioxide_conversion.py) to New Fuel to CO2 with the following conversion constants.
 
-<iframe src="images/dynm-updating-conversions.mp4" height="320" width="560" allowfullscreen="" frameborder="0"></iframe>
+<iframe src="images/dynm-updating-conversions.mp4" height="320" width="560" allowfullscreen="" frameborder="0" style="padding-left: 20px"></iframe>
 
 ## Home Energy
 
@@ -1698,7 +1698,7 @@ Fuel consumption by vehicles used to conduct company-financed travel. Examples i
 | amount               | float   | true     | Fuel amount entered for the row.                                                                                              |
 | units                | string  | true     | Selected unit of measurement.(e.g.mile)                                                                                       |
 | emission_dataset     | string  | true     | Emission factors database including emission factors for EPA(US based) and DEFRA(UK Based)                                    |
-| category             | string  | true     | The transportation category which can be one of ‘Upstream T&D’, ‘Business Travel’ or ‘Employee Commute’.                      |
+| category             | string  | true     | The transportation category which can be one of 'Upstream T&D', 'Business Travel' or 'Employee Commute'.                      |
 | mode_of_transport    | string  | true     | The method of transport which can be one of Air, Car, Bus, Rail or Ferry.                                                     |
 | vehicle_type         | string  | true     | The type of vehicle used. e.g for Car mode, Average Car - Diesel.                                                             |
 | activity_type        | string  | true     | The activity type under which the row entry falls under. Can be either Fuel Use, Distance Activity or Custom Emission Factor. |
@@ -1882,7 +1882,7 @@ Electricity and other sources of energy purchased from your local utility (that 
 | units                | string  | required | Selected unit of measurement. e.g kWh.                                                               |
 | emission_factor_type | string  | required | Type of emission factor selected. Can be either Residual Mix,                                        | Location Based/Grid Average or Custom Emission Factor.                                                            |
 | facilities           | list    | required | List of all facilities with facility information for each i.e facility_id, grid_region and country   |
-| approach             | string  | required | Calculation approach selected                                                                        | Can be either of ‘Purchased Electricity - Market Based’, ‘Purchased Electricity - Location Based’ or ‘Heat/Steam’ |
+| approach             | string  | required | Calculation approach selected                                                                        | Can be either of 'Purchased Electricity - Market Based', 'Purchased Electricity - Location Based' or 'Heat/Steam' |
 | gwp_dataset_revision | string  | required | The selected GWP dataset revision e.g 2014 IPCC Fifth Assessment.                                    |
 | scope                | string  | required | The scope under which this row falls under. Required for aggregation and summaries. Fixed to Scope 2 |
 
@@ -2017,7 +2017,7 @@ Records or invoices from your maintenance company show the amount and type of re
 | facility_id          | string  | required | Id of the facility selected. e.g 5.                                                                                    |
 | year                 | integer | required | Selected year for the row. e.g 2018.                                                                                   |
 | fuel_source          | string  | required | Source of fuel for the mobile combustion row. e.g Motor Gasoline.                                                      |
-| calculation_method   | string  | required | Calculation approach used. Either of ‘Sales Approach (Product)’, ‘Sales Approach (User)’ or ‘Lifecycle Stage Approach’ |
+| calculation_method   | string  | required | Calculation approach used. Either of 'Sales Approach (Product)', 'Sales Approach (User)' or 'Lifecycle Stage Approach' |
 | equipment_type       | string  | false    | Type of air conditioning and refrigeration equipment.                                                                  |
 | refrigerant          | string  | required | Type of refrigerant gas whose emissions are being calculated e.g HFC-134a.                                             |
 | gwp_dataset_revision | string  | required | The selected GWP dataset revision e.g 2014 IPCC Fifth Assessment.                                                      |
@@ -3159,7 +3159,7 @@ Endpoint for recording activity and emissions data for Stationary energy sources
 
 | Param                     | Type    | Required | Description                                                                                                                                                                                             |
 | ------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category ‘Emissions from fuel combustion within the city boundary’ within Stationary Combustion’s category ‘I.1 RESIDENTIAL BUILDINGS’ |
+| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category 'Emissions from fuel combustion within the city boundary' within Stationary Combustion's category 'I.1 RESIDENTIAL BUILDINGS' |
 | scope                     | string  | true     | The appropriate scope. One of 1, 2 or 3                                                                                                                                                                 |
 | description               | string  | nullable | General description of the row activity or calculation.                                                                                                                                                 |
 | activity                  | string  | true     | The emission type or activity being reported on e.g Biodiesels                                                                                                                                          |
@@ -3170,7 +3170,7 @@ Endpoint for recording activity and emissions data for Stationary energy sources
 | activity_amount           | float   | true     | Amount of the units of the selected activity to report on. eg 100                                                                                                                                       |
 | activity_units            | string  | true     | Measurement units for the activity data e.g kWh                                                                                                                                                         |
 | activity_multiplier_units | string  | nullable | Units to be used if you wish to convert your data e.g kWh                                                                                                                                               |
-| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won’t be used rather this figure will be used. E.g 1.0                                        |
+| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won't be used rather this figure will be used. E.g 1.0                                        |
 | oxidation_factor          | float   | nullable | Overrides default oxidation factor(1) e.g 1.0                                                                                                                                                           |
 | gases                     | string  | nullable | Selection of gases in the reported emissions                                                                                                                                                            |
 | manual_emissions_data     | boolean | true     | Indicates whether to use manually entered emission data or to calculate from an emission dataset. Defaults to false.                                                                                    |
@@ -3470,7 +3470,7 @@ Endpoint for recording activity and emissions data for Transportation sources.
 
 | Param                     | Type    | Required | Description                                                                                                                                                                                             |
 | ------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category ‘Emissions from fuel combustion within the city boundary’ within Stationary Combustion’s category ‘I.1 RESIDENTIAL BUILDINGS’ |
+| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category 'Emissions from fuel combustion within the city boundary' within Stationary Combustion's category 'I.1 RESIDENTIAL BUILDINGS' |
 | scope                     | string  | true     | The appropriate scope. One of 1, 2 or 3                                                                                                                                                                 |
 | fleet_type                | string  | true     | The type of fleet used in calculation e.g Municipal                                                                                                                                                     |
 | method                    | string  | true     | The calculation approach to be used in calculation e.g Fuel sales approach                                                                                                                              |
@@ -3483,7 +3483,7 @@ Endpoint for recording activity and emissions data for Transportation sources.
 | activity_amount           | float   | true     | Amount of the units of the selected activity to report on. eg 100                                                                                                                                       |
 | activity_units            | string  | true     | Measurement units for the activity data e.g kWh                                                                                                                                                         |
 | activity_multiplier_units | string  | nullable | Units to be used if you wish to convert your data e.g kWh                                                                                                                                               |
-| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won’t be used rather this figure will be used. E.g 1.0                                        |
+| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won't be used rather this figure will be used. E.g 1.0                                        |
 | oxidation_factor          | float   | nullable | Overrides default oxidation factor(1) e.g 1.0                                                                                                                                                           |
 | gases                     | string  | nullable | Selection of gases in the reported emissions                                                                                                                                                            |
 | manual_emissions_data     | boolean | true     | Indicates whether to use manually entered emission data or to calculate from an emission dataset. Defaults to false.                                                                                    |
@@ -3781,7 +3781,7 @@ Endpoint for recording activity and emissions data for Waste sources.
 
 | Param                     | Type    | Required | Description                                                                                                                                                                                             |
 | ------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category ‘Emissions from fuel combustion within the city boundary’ within Stationary Combustion’s category ‘I.1 RESIDENTIAL BUILDINGS’ |
+| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category 'Emissions from fuel combustion within the city boundary' within Stationary Combustion's category 'I.1 RESIDENTIAL BUILDINGS' |
 | scope                     | string  | true     | The appropriate scope. One of 1, 2 or 3                                                                                                                                                                 |
 | treatment_activity        | string  | true     | The waste treatment type being reported on e.g Landfill sites - Methane commitment                                                                                                                      |
 | waste_type                | string  | true     | The type of waste used in calculation e.g Sludge                                                                                                                                                        |
@@ -3793,7 +3793,7 @@ Endpoint for recording activity and emissions data for Waste sources.
 | activity_amount           | float   | true     | Amount of the units of the selected activity to report on. eg 100                                                                                                                                       |
 | activity_units            | string  | true     | Measurement units for the activity data e.g kWh                                                                                                                                                         |
 | activity_multiplier_units | string  | nullable | Units to be used if you wish to convert your data e.g kWh                                                                                                                                               |
-| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won’t be used rather this figure will be used. E.g 1.0                                        |
+| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won't be used rather this figure will be used. E.g 1.0                                        |
 | oxidation_factor          | float   | nullable | Overrides default oxidation factor(1) e.g 1.0                                                                                                                                                           |
 | gases                     | string  | nullable | Selection of gases in the reported emissions                                                                                                                                                            |
 | manual_emissions_data     | boolean | true     | Indicates whether to use manually entered emission data or to calculate from an emission dataset. Defaults to false.                                                                                    |
@@ -4091,7 +4091,7 @@ Endpoint for recording activity and emissions data for IPPU sources.
 
 | Param                     | Type    | Required | Description                                                                                                                                                                                             |
 | ------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category ‘Emissions from fuel combustion within the city boundary’ within Stationary Combustion’s category ‘I.1 RESIDENTIAL BUILDINGS’ |
+| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category 'Emissions from fuel combustion within the city boundary' within Stationary Combustion's category 'I.1 RESIDENTIAL BUILDINGS' |
 | scope                     | string  | true     | The appropriate scope. One of 1, 2 or 3                                                                                                                                                                 |
 | industry                  | string  | true     | The industry being reported e.g Mineral                                                                                                                                                                 |
 | industrial_process        | string  | true     | The industrial process being reported e.g Cement production (2.A.1)                                                                                                                                     |
@@ -4103,7 +4103,7 @@ Endpoint for recording activity and emissions data for IPPU sources.
 | activity_amount           | float   | true     | Amount of the units of the selected activity to report on. eg 100                                                                                                                                       |
 | activity_units            | string  | true     | Measurement units for the activity data e.g kWh                                                                                                                                                         |
 | activity_multiplier_units | string  | nullable | Units to be used if you wish to convert your data e.g kWh                                                                                                                                               |
-| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won’t be used rather this figure will be used. E.g 1.0                                        |
+| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won't be used rather this figure will be used. E.g 1.0                                        |
 | oxidation_factor          | float   | nullable | Overrides default oxidation factor(1) e.g 1.0                                                                                                                                                           |
 | gases                     | string  | nullable | Selection of gases in the reported emissions                                                                                                                                                            |
 | manual_emissions_data     | boolean | true     | Indicates whether to use manually entered emission data or to calculate from an emission dataset. Defaults to false.                                                                                    |
@@ -4396,7 +4396,7 @@ Endpoint for recording activity and emissions data for AFOLU sources.
 
 | Param                     | Type    | Required | Description                                                                                                                                                                                             |
 | ------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category ‘Emissions from fuel combustion within the city boundary’ within Stationary Combustion’s category ‘I.1 RESIDENTIAL BUILDINGS’ |
+| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category 'Emissions from fuel combustion within the city boundary' within Stationary Combustion's category 'I.1 RESIDENTIAL BUILDINGS' |
 | scope                     | string  | true     | The appropriate scope. One of 1, 2 or 3                                                                                                                                                                 |
 | description               | string  | nullable | General description of the row activity or calculation.                                                                                                                                                 |
 | activity                  | string  | true     | The agricultural emission type or activity being reported on e.g Forest land                                                                                                                            |
@@ -4407,7 +4407,7 @@ Endpoint for recording activity and emissions data for AFOLU sources.
 | activity_amount           | float   | true     | Amount of the units of the selected activity to report on. eg 100                                                                                                                                       |
 | activity_units            | string  | true     | Measurement units for the activity data e.g kWh                                                                                                                                                         |
 | activity_multiplier_units | string  | nullable | Units to be used if you wish to convert your data e.g kWh                                                                                                                                               |
-| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won’t be used rather this figure will be used. E.g 1.0                                        |
+| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won't be used rather this figure will be used. E.g 1.0                                        |
 | oxidation_factor          | float   | nullable | Overrides default oxidation factor(1) e.g 1.0                                                                                                                                                           |
 | gases                     | string  | nullable | Selection of gases in the reported emissions                                                                                                                                                            |
 | manual_emissions_data     | boolean | true     | Indicates whether to use manually entered emission data or to calculate from an emission dataset. Defaults to false.                                                                                    |
@@ -4700,7 +4700,7 @@ Endpoint for recording activity and emissions data for Other Scope 3 sources.
 
 | Param                     | Type    | Required | Description                                                                                                                                                                                             |
 | ------------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category ‘Emissions from fuel combustion within the city boundary’ within Stationary Combustion’s category ‘I.1 RESIDENTIAL BUILDINGS’ |
+| gpc_ref                   | string  | true     | The GPC reference string for this category e.g I.1.1 for the sub-category 'Emissions from fuel combustion within the city boundary' within Stationary Combustion's category 'I.1 RESIDENTIAL BUILDINGS' |
 | scope                     | string  | true     | The appropriate scope. One of 1, 2 or 3                                                                                                                                                                 |
 | description               | string  | nullable | General description of the row activity or calculation.                                                                                                                                                 |
 | activity                  | string  | true     | The emission type or activity being reported on e.g Food                                                                                                                                                |
@@ -4710,7 +4710,7 @@ Endpoint for recording activity and emissions data for Other Scope 3 sources.
 | activity_amount           | float   | true     | Amount of the units of the selected activity to report on. eg 100                                                                                                                                       |
 | activity_units            | string  | true     | Measurement units for the activity data e.g kWh                                                                                                                                                         |
 | activity_multiplier_units | string  | nullable | Units to be used if you wish to convert your data e.g kWh                                                                                                                                               |
-| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won’t be used rather this figure will be used. E.g 1.0                                        |
+| activity_multiplier       | float   | nullabke | An override value for converting activity data. If provided the conversion from activity_multiplier_units won't be used rather this figure will be used. E.g 1.0                                        |
 | oxidation_factor          | float   | nullable | Overrides default oxidation factor(1) e.g 1.0                                                                                                                                                           |
 | gases                     | string  | nullable | Selection of gases in the reported emissions                                                                                                                                                            |
 | manual_emissions_data     | boolean | true     | Indicates whether to use manually entered emission data or to calculate from an emission dataset. Defaults to false.                                                                                    |
