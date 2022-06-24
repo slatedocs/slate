@@ -7,7 +7,8 @@ extra_css:
 copyright: Copyright &copy; 2022 MSKCC
 nav:
   - Home: index.md
-  - About: about.md
+  - Authentication: authentication.md
+  - Pagination: pagination.md
   - Resources:
     - Labs: resources/labs.md
     - Vitals: resources/vitals.md
@@ -15,3 +16,5 @@ nav:
     - Demographics: coming-soon/demographics.md
     - "Adverse Events": coming-soon/adverseEvents.md
     - Medications: coming-soon/medications.md
+  - Blog: blog.md
+  - Release Notes: releasenotes.md
