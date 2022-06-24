@@ -1,16 +1,14 @@
 # Getting Started
 
-The MSK Blaze API is organized around REST. Each FHIR resource type currently supports [read](http://build.fhir.org/http.html#read) and [search](http://build.fhir.org/http.html#search) capabilities.
+Memorial Sloan Kettering Cancer Center (MSK) allows pre-approved sponsors to securely access and retrieve clinical trial data on demand from the MSK HL7 FHIR server, also known as Blaze. The MSK Blaze API is organized around REST. Each FHIR resource type currently supports [read](http://build.fhir.org/http.html#read) and [search](http://build.fhir.org/http.html#search) capabilities.
 
-## Authentication
+## Data Sources
 
-In order to make use of Blaze, you’ll need to be set up as an MSK “partner” so that you can consume clinical research data. If you would like to request access to data for a research study at MSK, please send a request to rtmcritds@mskcc.org.
+Data supporting electronic direct data extraction is obtained from multiple MSK applications. The goal is always to integrate as close to the source application as possible. The integration decisions are made on a case-by-case basis per data domain. If unable to integrate directly with the source application, then only an approved enterprise solution such as the Institutional Data Warehouse (IDB) or Unified Data Fabric will be leveraged to extract the data. 
 
-Authentication is based on the Client Credentials grant. This means that clients will need to generate an access token and supply it in the headers of each request being made. Once you are established as a partner, you’ll be given a `client_id` and a `client_secret`, which you will use for generating tokens and using them to make authenticated requests to the server.
+## FHIR Version
 
-## Generating Tokens
-
-To generate access tokens, partners need to make a POST request to the appropriate endpoint using the MSK provided `client_id` and `client_secret`:
+MSK's resources are built according [FHIR version ***](http://hl7.org/fhir/directory.html)
 
 ## Hosts
 
