@@ -237,13 +237,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#making-requests" class="md-nav__link">
-    Making Requests
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -487,13 +480,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#making-requests" class="md-nav__link">
-    Making Requests
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -515,27 +501,75 @@
 <h2 id="protocol-access">Protocol Access</h2>
 <p>All data access is restricted on a per protocol basis. It is assumed that incoming requests to Blaze always contains a researchstudy parameter, which identifies what research study the client is requesting data for. This information is used in combination with the researchstudy parameter to authorize requests.</p>
 <h2 id="generating-access-tokens">Generating Access Tokens</h2>
-<p>To generate access tokens, partners need to make a POST request to the appropriate endpoint using the MSK provided <code>client_id</code> and <code>client_secret</code>.</p>
-<p>Request</p>
-<pre><code>POST /msk-apim/external/msk-oidc/oauth2/token HTTP/1.1
-Host: 
-Content-Type:
-client_id=
-client_secret=
-grant_type=
-scope=
-</code></pre>
-<p>Response</p>
-<pre><code class="language-json">{
-    &quot;token_type&quot;: &quot;&quot;,
-    &quot;access_token&quot;: &quot;&quot;,
-    &quot;scope&quot;: &quot;&quot;,
-    &quot;expires_in&quot;: ,
-    &quot;consented_on&quot;: 
-}
-</code></pre>
-<h2 id="making-requests">Making Requests</h2>
-<p>To make requests, include the bearer token you generated in your requests as a part of the Authorization header and an additional x-partnerid header must also be included.</p>
+<p><div class="highlight"><pre><span></span><code>POST /msk-apim/external/msk-oidc/oauth2/token
+</code></pre></div>
+This endpoint is use to to generate an access token, <strong>access tokens</strong> must be included in all resources endpoints.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Required</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>client_id</code></td>
+<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span> Unique Sponsor MSK FHIR Blaze ClientID</td>
+</tr>
+<tr>
+<td align="left"><code>client_secret</code></td>
+<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span> Unique Sponsor MSK FHIR Blaze ClientSecret</td>
+</tr>
+<tr>
+<td align="left"><code>grant_type</code></td>
+<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span> Use value: client_credentials</td>
+</tr>
+<tr>
+<td align="left"><code>scope</code></td>
+<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span>  Use value: full</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">C# - RestSharp</label><label for="__tabbed_1_2">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestClient</span><span class="p">(</span><span class="s">&quot;BASE_URL_PLUS_TOKEN_PATH&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">client</span><span class="p">.</span><span class="n">Timeout</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">-</span><span class="m">1</span><span class="p">;</span><span class="w"></span>
+<span class="kt">var</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span><span class="w"></span>
+<span class="n">request</span><span class="p">.</span><span class="n">AddHeader</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">request</span><span class="p">.</span><span class="n">AddParameter</span><span class="p">(</span><span class="s">&quot;client_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MSK_PROVIDED_CLIENTID&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">request</span><span class="p">.</span><span class="n">AddParameter</span><span class="p">(</span><span class="s">&quot;client_secret&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MSK_PROVIDED_SECRET&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">request</span><span class="p">.</span><span class="n">AddParameter</span><span class="p">(</span><span class="s">&quot;grant_type&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client_credentials&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">request</span><span class="p">.</span><span class="n">AddParameter</span><span class="p">(</span><span class="s">&quot;scope&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;full&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">IRestResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span><span class="w"></span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">Content</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">http.client</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s2">&quot;BASE_URL&quot;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;client_id=MSK_PROVIDED_CLIENTID&amp;client_secret=MSK_PROVIDED_SECRET&amp;grant_type=client_credentials&amp;scope=full&#39;</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/msk-apim/external/msk-oidc/oauth2/token&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Response Example
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AAIgYjViOTE2M2I4NDllNjZjOWQ5NjU0NjhkNmNhYzRkODYq65uQhqOGeqVSCDv0lXV26qPr9cfIal10SXlRiw0RDTAbBgqeRMSTbL6EqQSPIxCVYRwBWyaITs9QJG375CCmVX2bux4ocVUlGiGHg5qrXIAOESCGor32u89RVZxfw7I&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;consented_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1656086348</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
 <blockquote>
 <p>Note: MSK HL7 FHIR server only exposes JSON.</p>
 </blockquote>
