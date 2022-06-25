@@ -7,33 +7,64 @@ Authentication is based on the Client Credentials grant. This means that clients
 All data access is restricted on a per protocol basis. It is assumed that incoming requests to Blaze always contains a researchstudy parameter, which identifies what research study the client is requesting data for. This information is used in combination with the researchstudy parameter to authorize requests.
 
 ## Generating Access Tokens
-
-To generate access tokens, partners need to make a POST request to the appropriate endpoint using the MSK provided `client_id` and `client_secret`.
-
-Request
 ```
-POST /msk-apim/external/msk-oidc/oauth2/token HTTP/1.1
-Host: 
-Content-Type:
-client_id=
-client_secret=
-grant_type=
-scope=
+POST /msk-apim/external/msk-oidc/oauth2/token
 ```
+This endpoint is use to to generate an access token, **access tokens** must be included in all resources endpoints.
 
-Response
+| Required     | Description                          |
+| :---------- | :----------------------------------- |
+| `client_id`       | :material-check: Unique Sponsor MSK FHIR Blaze ClientID  |
+| `client_secret`       |:material-check: Unique Sponsor MSK FHIR Blaze ClientSecret |
+| `grant_type`    | :material-check: Use value: client_credentials |
+| `scope`         |:material-check:  Use value: full|
+   
+
+=== "C# - RestSharp"
+
+    ``` c#
+    var client = new RestClient("BASE_URL_PLUS_TOKEN_PATH");
+    client.Timeout = -1;
+    var request = new RestRequest(Method.POST);
+    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.AddParameter("client_id", "MSK_PROVIDED_CLIENTID");
+    request.AddParameter("client_secret", "MSK_PROVIDED_SECRET");
+    request.AddParameter("grant_type", "client_credentials");
+    request.AddParameter("scope", "full");
+    IRestResponse response = client.Execute(request);
+    Console.WriteLine(response.Content);
+    ```
+
+=== "Python"
+
+    ``` python
+    import http.client
+
+    conn = http.client.HTTPSConnection("BASE_URL")
+    payload = 'client_id=MSK_PROVIDED_CLIENTID&client_secret=MSK_PROVIDED_SECRET&grant_type=client_credentials&scope=full'
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    conn.request("POST", "/msk-apim/external/msk-oidc/oauth2/token", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    print(data.decode("utf-8"))
+    ```
+
+
+
+Response Example
 ```json
 {
-    "token_type": "",
-    "access_token": "",
-    "scope": "",
-    "expires_in": ,
-    "consented_on": 
+    "token_type": "Bearer",
+    "access_token": "AAIgYjViOTE2M2I4NDllNjZjOWQ5NjU0NjhkNmNhYzRkODYq65uQhqOGeqVSCDv0lXV26qPr9cfIal10SXlRiw0RDTAbBgqeRMSTbL6EqQSPIxCVYRwBWyaITs9QJG375CCmVX2bux4ocVUlGiGHg5qrXIAOESCGor32u89RVZxfw7I",
+    "scope": "full",
+    "expires_in": 3600,
+    "consented_on": 1656086348
 }
 ```
 
-## Making Requests
 
-To make requests, include the bearer token you generated in your requests as a part of the Authorization header and an additional x-partnerid header must also be included.
+
 
 > Note: MSK HL7 FHIR server only exposes JSON.

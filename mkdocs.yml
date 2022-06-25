@@ -35,3 +35,13 @@ nav:
     - Medications: coming-soon/medications.md
     - RECIST: coming-soon/recist.md
   - Releases: releases.md
+markdown_extensions:
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
