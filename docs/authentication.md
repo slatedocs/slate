@@ -12,7 +12,7 @@ POST /msk-apim/external/msk-oidc/oauth2/token
 ```
 This endpoint is use to to generate an access token, **access tokens** must be included in all resources endpoints.
 
-| Required     | Description                          |
+| Parameters    | Description                          |
 | :---------- | :----------------------------------- |
 | `client_id`       | :material-check: Unique Sponsor MSK FHIR Blaze ClientID  |
 | `client_secret`       |:material-check: Unique Sponsor MSK FHIR Blaze ClientSecret |
