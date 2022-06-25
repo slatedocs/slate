@@ -2,19 +2,36 @@ site_name: MSK BLAZE FHIR DEVELOPER DOCUMENTATION
 theme:
   name: material
   logo: assets/logo-arrow-sans-medium-black.svg
+#  features:
+    # - navigation.tabs
 extra_css:
   - stylesheets/extra.css
 copyright: Copyright &copy; 2022 MSKCC
+extra:
+  social:
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/memorialsloankettering/
+    - icon: fontawesome/brands/facebook-f
+      link: https://www.facebook.com/memorialsloankettering
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/MSKCancerCenter
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/user/mskcc
+    - icon: fontawesome/brands/linkedin-in
+      link: https://www.linkedin.com/company/memorial-sloan-kettering-cancer-center/mycompany/
+
+
 nav:
   - Home: index.md
   - Authentication: authentication.md
+  - Searching: searching.md
   - Pagination: pagination.md
-  - Resources:
+  - Available Resources:
+    - Demographics: resources/demographics.md
     - Labs: resources/labs.md
     - Vitals: resources/vitals.md
+    - "Adverse Events": resources/adverse-events.md
   - "Coming Soon":
-    - Demographics: coming-soon/demographics.md
-    - "Adverse Events": coming-soon/adverseEvents.md
     - Medications: coming-soon/medications.md
-  - Blog: blog.md
-  - Release Notes: releasenotes.md
+    - RECIST: coming-soon/recist.md
+  - Releases: releases.md
