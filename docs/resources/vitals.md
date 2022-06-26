@@ -1,17 +1,188 @@
-# Welcome to MkDocs
+```
+GET /msk-apim/external/v1/crit/blaze/api/observations
+-H Authorization: Bearer {access_token} 
+```
+This endpoint is used request the Lab FHIR resource
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+|# | Parameters    | Description                          |
+|:-| :---------- | :----------------------------------- |
+|A1| `researchstudy`       | :material-check: MSK unique study number  |
+|A2|`category`       |:material-check: Default value: **vital-signs** |
+|A3|`x-partnerid` |:material-check: suply given partnerid|
+|A4|Filter: Optional Parameters go to [Filter page](/searching) |
 
-## Commands
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+=== "C# "
 
-## Project layout
+    ``` c# linenums="1"
+    var client = new RestClient("BASE_URL_PLUS_API_PATH?category={A2}&x-partnerid={A3}&researchstudy={A1}");
+    client.Timeout = -1;
+    var request = new RestRequest(Method.GET);
+    request.AddHeader("Authorization", "Bearer {ACCESS_TOKEN}");
+    IRestResponse response = client.Execute(request);
+    Console.WriteLine(response.Content);
+    ```
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+=== "Python"
+
+    ``` python linenums="1"
+    import http.client
+
+    conn = http.client.HTTPSConnection("BASE_URL")
+    payload = ''
+    headers = {
+    'Authorization': 'Bearer {ACCESS_TOKEN}'
+    }
+    conn.request("GET", "API_PATH?category={A2}&x-partnerid={A3}&researchstudy={A1}", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    print(data.decode("utf-8"))
+    ```
+Response Example
+
+```json
+  {
+        "resourceType": "Bundle",
+        "identifier": {
+            "system": "https://datapedia.mskcc.org/index.php/IDB.PROTOCOL",
+            "value": "FHIR-T"
+        },
+        "type": "searchset",
+        "total": 2,
+        "link": [
+            {
+                "relation": "self",
+                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+            },
+            {   
+                "relation": "first",
+                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+            },
+            {
+                "relation": "last",
+                "url": null
+            },
+            {
+                "relation": "previous",
+                "url": null
+            },
+            {
+                "relation": "next",
+                "url": null
+            }
+            ],
+    "entry": [
+        {
+            "id": 500009814,
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations/500009814",
+            "resource": {
+                "id": 500009814,
+                "resourceType": "Observation",
+                "extension": [
+                    {
+                        "valueCode": "FHIR-T",
+                        "url": "http://hl7.org/fhir/StructureDefinition/workflow-researchStudy"
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID",
+                        "value": 500009814
+                    }
+                ],
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ],
+                        "text": "Laboratory"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "704-7",
+                            "display": "ABAS"
+                        }
+                    ],
+                    "text": "ABAS"
+                },
+                "subject": {
+                    "reference": "Patient/10081007"
+                },
+                "effectiveDateTime": "2021-12-07T08:06:00+00:00",
+                "issued": "2021-12-07T08:06:00+00:00",
+                "referenceRange": [
+                    {
+                        "text": "0.0-0.2"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 500009863,
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations/500009863",
+            "resource": {
+                "id": 500009863,
+                "resourceType": "Observation",
+                "extension": [
+                    {
+                        "valueCode": "FHIR-T",
+                        "url": "http://hl7.org/fhir/StructureDefinition/workflow-researchStudy"
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID",
+                        "value": 500009863
+                    }
+                ],
+                "status": "final",
+                "category": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                "code": "laboratory",
+                                "display": "Laboratory"
+                            }
+                        ],
+                        "text": "Laboratory"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://loinc.org",
+                            "code": "13945-1",
+                            "display": "URBC"
+                        }
+                    ],
+                    "text": "URBC"
+                },
+                "subject": {
+                    "reference": "Patient/10081007"
+                },
+                "effectiveDateTime": "2021-12-07T08:18:00+00:00",
+                "issued": "2021-12-07T08:18:00+00:00",
+                "valueQuantity": {
+                    "value": 4,
+                    "unit": "/HPF"
+                },
+                "referenceRange": [
+                    {
+                        "text": "0-3"
+                    }
+                ]
+            }
+        }
+    ]
+}
+  
+```

@@ -15,34 +15,14 @@ MSK's resources are built according [FHIR version ***](http://hl7.org/fhir/direc
 ### Staging
 
 ```
-https://test/
+https://apigateway.apps.stageapi.mskcc.org
 ```
 
 ### Production
 
 ```
-https://test/
+https://apigateway.apps.prodapi.mskcc.org
 ```
 
-Request
-```
-POST /msk-apim/external/msk-oidc/oauth2/token HTTP/1.1
-Host: 
-Content-Type:
-client_id=
-client_secret=
-grant_type=
-scope=
-```
 
-Response
-```json
-{
-    "token_type": "",
-    "access_token": "",
-    "scope": "",
-    "expires_in": ,
-    "consented_on": 
-}
-```
 

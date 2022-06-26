@@ -7,7 +7,7 @@ This endpoint is used request the Lab FHIR resource
 |# | Parameters    | Description                          |
 |:-| :---------- | :----------------------------------- |
 |A1| `researchstudy`       | :material-check: MSK unique study number  |
-|A2|`category`       |:material-check: Default value: laboratory |
+|A2|`category`       |:material-check: Default value: **laboratory** |
 |A3|`x-partnerid` |:material-check: suply given partnerid|
 |A4|Filter: Optional Parameters go to [Filter page](/searching) |
 
@@ -38,10 +38,10 @@ This endpoint is used request the Lab FHIR resource
     data = res.read()
     print(data.decode("utf-8"))
     ```
-Response Example
 
-```json
-  {
+??? success "Successful Payload Example"
+    ```
+      {
         "resourceType": "Bundle",
         "identifier": {
             "system": "https://datapedia.mskcc.org/index.php/IDB.PROTOCOL",
@@ -183,6 +183,9 @@ Response Example
             }
         }
     ]
-}
+    }
   
-```
+    ```
+
+
+

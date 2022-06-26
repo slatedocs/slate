@@ -36,6 +36,8 @@ nav:
 markdown_extensions:
   - pymdownx.superfences
   - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true 
   - attr_list
