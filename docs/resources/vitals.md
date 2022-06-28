@@ -9,7 +9,7 @@ This endpoint is used request the Lab FHIR resource
 |A1| `researchstudy`       | :material-check: MSK unique study number  |
 |A2|`category`       |:material-check: Default value: **vital-signs** |
 |A3|`x-partnerid` |:material-check: suply given partnerid|
-|A4|Filter: Optional Parameters go to [Filter page](/searching) |
+|A4|Filter: Optional Parameters go to [Filter page](/../searching) |
 
 
 === "C# "

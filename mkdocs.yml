@@ -32,6 +32,7 @@ nav:
   - "Coming Soon":
     - Medications: coming-soon/medications.md
     - RECIST: coming-soon/recist.md
+  - Identifiers: identifiers.md
   - Releases: releases.md
 markdown_extensions:
   - pymdownx.superfences

@@ -562,29 +562,11 @@
 <p>MSK's resources are built according <a href="http://hl7.org/fhir/directory.html">FHIR version ***</a></p>
 <h2 id="hosts">Hosts</h2>
 <h3 id="staging">Staging</h3>
-<div class="highlight"><pre><span></span><code>https://test/
+<div class="highlight"><pre><span></span><code>https://apigateway.apps.stageapi.mskcc.org
 </code></pre></div>
 <h3 id="production">Production</h3>
-<div class="highlight"><pre><span></span><code>https://test/
+<div class="highlight"><pre><span></span><code>https://apigateway.apps.prodapi.mskcc.org
 </code></pre></div>
-<p>Request
-<div class="highlight"><pre><span></span><code>POST /msk-apim/external/msk-oidc/oauth2/token HTTP/1.1
-Host: 
-Content-Type:
-client_id=
-client_secret=
-grant_type=
-scope=
-</code></pre></div></p>
-<p>Response
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;consented_on&quot;</span><span class="p">:</span><span class="w"> </span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div></p>
 
               
             </article>
