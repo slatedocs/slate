@@ -176,8 +176,8 @@ Optional | Description | Default
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*string* | The task ID.
-`status`<br/>*string* | The status.
+`id`<br/>*string* | The task's ID.
+`status`<br/>*string* | The task's status.
 `created`<br/>*Date* | The task's creation date.
 `result`<br/>*Object* | The task result, containing details required to access the instance's console.
 `result.sshCommand`<br/>*String* | The command to execute to access the instance's console.
