@@ -1,14 +1,21 @@
 ---
-title: API Reference
+title: Vendor Review
 
 language_tabs: # must be one of https://git.io/vQNgJ
+
   - shell
   - ruby
-  - python
   - javascript
+  - cURL
+  -JSON
+
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/wc-marketplace/wc-marketplace.github.io'>Contribute to WCMp REST API Docs</a>
+  - <a href='https://wc-marketplace.com/knowledgebase/wcmp-hooks-filters/'>WCMp Hooks & Filters</a>
+  - <a href='https://wc-marketplace.com/support-forum/forum/wcmp-core/'>WCMp Support</a>
+  - <a href='https://wc-marketplace.com/'>WCMp Official Website</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,127 +26,146 @@ search: true
 code_clipboard: true
 
 meta:
-  - name: description
-    content: Documentation for the Kittn API
+  - name: Vendors Review 
+    content: Documentation for the Vendors Review API
 ---
 
-# Introduction
+# VENDORS - REVIEWS
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This API request help you retrieve all the vendor's review
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Get all reviews from a vendor 
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+  
+{
+    "id": 6,
+    "rating_count": 3,
+    "avg_rating": "2.0",
+    "reviews_list": [
+        {
+            "id": 471,
+            "review_content": "Nice album!",
+            "review_rating": 2,
+            "reviewer_id": "11",
+            "reviewer_name": "abc",
+            "reviewer_email": "abc@gmail.com",
+            "reviewer_verified": false,
+            "date_created": "2022-03-04T12:08:14",
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews/471"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 299,
+            "review_content": "Nice vendor!",
+            "review_rating": 2,
+            "reviewer_id": "1",
+            "reviewer_name": "superadmin",
+            "reviewer_email": "neda@dualcube.com",
+            "reviewer_verified": false,
+            "date_created": "2022-02-28T10:19:55",
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews/299"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 469,
+            "review_content": "Nice album!",
+            "review_rating": 2,
+            "reviewer_id": "11",
+            "reviewer_name": "abc",
+            "reviewer_email": "abc@gmail.com",
+            "reviewer_verified": false,
+            "date_created": "2022-02-28T10:05:59",
+            "_links": {
+                "self": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews/469"
+                    }
+                ],
+                "collection": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews"
+                    }
+                ],
+                "up": [
+                    {
+                        "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+
 ]
 ```
 
-This endpoint retrieves all kittens.
+list of all the vendors reviews created on your site by calling the WCMp vendors API and using the GET method.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET [site_url]/wp-json/wcmp/v1/vendors/[vendor_id]/reviews`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter |  Description
+--------- | -----------
+Id  | Unique identifier for the resource  
+rating_count | The total rating of a vendor   
+avg_rating | Shows the average rating of the vendor 
+reviews_list| The list of vendor review 
+vendor_id | Unique identifier for the vendor  
+review_id | Unique identifier for a review 
+reviewer_id   | The data that the reviewer has created 
+
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — insert correct site URL and vendor ID !
 </aside>
 
-## Get a Specific Kitten
+# Get single review of a vendor 
 
 ```ruby
 require 'kittn'
@@ -171,29 +197,61 @@ let max = api.kittens.get(2);
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "id": 471,
+    "review_content": "Nice album!",
+    "review_rating": 2,
+    "reviewer_id": "11",
+    "reviewer_name": "abc",
+    "reviewer_email": "abc@gmail.com",
+    "reviewer_verified": false,
+    "date_created": "2022-03-04T12:08:14",
+    "_links": {
+        "self": [
+            {
+                "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews/471"
+            }
+        ],
+        "collection": [
+            {
+                "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews"
+            }
+        ],
+        "up": [
+            {
+                "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6"
+            }
+        ]
+    }
 }
+
+
 ```
 
-This endpoint retrieves a specific kitten.
+
+List of of a single  vendors reviews created on your site by calling the WCMp vendors API and using the GET method.
+
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST [site_url]/wp-json/wcmp/v1/vendors/[vendor_id]/reviews/[review_id]`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+vendor_id | Unique identifier for the vendor 
+reviews_id | Unique identifier for a review 
+review_content | Displays the particular review posted 
+review_rating | Displays the particular review 
+reviewer_name | Displays the name of the reviewer 
+reviewer_email | Displays  the reviewers email  address
+reviewer_verified | Displays the verified status of the reviewer  
+date_created | Displays the verified status of the reviewer  
 
-## Delete a Specific Kitten
+
+# Create a new vendor review: 
 
 ```ruby
 require 'kittn'
@@ -225,17 +283,44 @@ let max = api.kittens.delete(2);
 > The above command returns JSON structured like this:
 
 ```json
+
 {
-  "id": 2,
-  "deleted" : ":("
+    "id": 3,
+    "review_content": "HAPPY CUSTOMER!",
+    "review_rating": 2,
+    "reviewer_id": "4",
+    "reviewer_name": "abc",
+    "reviewer_email": "abc@gmail.com",
+    "reviewer_verified": false,
+    "date_created": "2022-05-13T06:44:44",
+    "_links": {
+        "self": [
+            {
+                "href": "http://wcmpdemos.com/demo1/wp-json/wcmp/v1/vendors/2/reviews/3"
+            }
+        ],
+        "collection": [
+            {
+                "href": "http://wcmpdemos.com/demo1/wp-json/wcmp/v1/vendors/2/reviews"
+            }
+        ],
+        "up": [
+            {
+                "href": "http://wcmpdemos.com/demo1/wp-json/wcmp/v1/vendors/2"
+            }
+        ]
+    }
 }
+
 ```
 
-This endpoint deletes a specific kitten.
+
+A new vendor review can be created by calling this MultivenorX API and by using the POST method
+
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST [site_url]/wp-json/wcmp/v1/vendors/[vendor_id]/reviews`
 
 ### URL Parameters
 
@@ -243,3 +328,55 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
 
+# Update a single vendor review: 
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 474,
+    "review_content": "Nice vendor!",
+    "review_rating": 2,
+    "reviewer_id": "11",
+    "reviewer_name": "abc",
+    "reviewer_email": "abc@gmail.com",
+    "reviewer_verified": false,
+    "date_created": "2022-03-16T06:28:10",
+    "_links": {
+        "self": [
+            {
+                "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews/474"
+            }
+        ],
+        "collection": [
+            {
+                "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6/reviews"
+            }
+        ],
+        "up": [
+            {
+                "href": "http://wcmpdemos.com/neda/wp-json/wcmp/v1/vendors/6"
+            }
+        ]
+    }
+}
+
+
+```
+
+A single vendor review can be created by calling this MultivenorX API and by using the POST method :
+
+### HTTP Request
+
+`POST [site_url]/wp-json/wcmp/v1/vendors/[vendor_id]/reviews/[review_id]`
+
+
+# Delete  a  vendor review: 
+
+
+Remove a vendor review  by calling this MultivendorX vendors API and using the DELETE method.
+
+### HTTP Request
+
+`DELETE [site_url]/wp-json/wcmp/v1/vendors/[vendor_id]/reviews/[review_id]`
