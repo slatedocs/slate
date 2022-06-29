@@ -510,6 +510,35 @@ curl -X POST \
 }
 ```
 
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+  "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
+  "taskStatus": "PENDING"
+}
+```
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/tasks/c50390c7-9d5b-4af4-a2da-e2a2678a83e8"
+```
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+  "data": {
+    "id": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
+    "status": "SUCCESS",
+    "created": "2021-04-20T20:58:59.952881-04:00",
+    "result": {
+      "id": "6564997542943928188",
+      "command": "ssh my-user@192.0.0.1"
+    }
+  }
+}
+```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=get_ssh</code>
 
 Retrieve a command to allow you to SSH into a give running instance.
@@ -518,6 +547,15 @@ Required | &nbsp;
 ------ | -----------
 `sshKeyId`<br/>*string* | The id of an existing SSH key already save in the environment. Mutually exclusive with `publicKey`.
 `publicKey`<br/>*string* | The SSH key text. Mutually exclusive with `sshKeyId`. A new SSH key will be save in the environment.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task ID.
+`status`<br/>*string* | The status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details required to access the instance's console.
+`result.id`<br/>*String* | The id of the instance being accessed by the SSH command.
+`result.command`<br/>*String* | The command to execute to access the instance's console.
 
 <!-------------------- SET WINDOWS PASSWORD -------------------->
 
@@ -538,6 +576,36 @@ curl -X POST \
 }
 ```
 
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+  "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
+  "taskStatus": "PENDING"
+}
+```
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/tasks/c50390c7-9d5b-4af4-a2da-e2a2678a83e8"
+```
+> The above command(s) return(s) JSON structured like this:
+
+```js
+{
+  "data": {
+    "id": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
+    "status": "SUCCESS",
+    "created": "2021-04-20T20:58:59.952881-04:00",
+    "result": {
+      "externalIpAddress": "192.0.0.1",
+      "username": "my-user",
+      "password": "my-generated-password"
+    }
+  }
+}
+```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=set_windows_password</code>
 
 Set and retrieve a generated password to a given user on a running Windows instance.
@@ -545,6 +613,16 @@ Set and retrieve a generated password to a given user on a running Windows insta
 Required | &nbsp;
 ------ | -----------
 `username`<br/>*string* | The username.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task ID.
+`status`<br/>*string* | The status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details required to access the instance's console.
+`result.externalIpAddress`<br/>*String* | The instance's external IP address.
+`result.username`<br/>*String* | The username.
+`result.password`<br/>*String* | The password for the given user.
 
 <!-------------------- MANAGE GROUP MEMBERSHIP -------------------->
 
