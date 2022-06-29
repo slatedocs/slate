@@ -4,10 +4,19 @@
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
 
-The Kittn API uses the following error codes:
+The Master API uses the following error codes:
 
+**Example error object**
 
-Error Code | Meaning
+|ATTRIBUTE|TYPE|DESCRIPTION|
+|---|---|---|
+|type|	string |The type of error returned.|
+|message|	string|A human-readable message giving more details about the error.|
+|fields|	object|The invalid fields and their associated errors. Only applies to validation errors.|
+
+**Error codes and meaning**
+
+ERROR CODES | MEANING
 ---------- | -------
 400 | Bad Request -- Your request is invalid.
 401 | Unauthorized -- Your API key is wrong.

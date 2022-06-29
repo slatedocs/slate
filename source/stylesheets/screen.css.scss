@@ -74,7 +74,7 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
+    max-width: 70%;
     margin-bottom: $logo-margin;
   }
 
@@ -533,7 +533,7 @@ html, body {
     &>p { margin: 0; }
 
     a {
-      color: #fff;
+      color: #111;
       text-decoration: none;
       border-bottom: dashed 1px #ccc;
     }
@@ -550,7 +550,7 @@ html, body {
     &>p {
       background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;
-      color: #eee;
+      color: #02002a;
     }
   }
 }
@@ -612,7 +612,7 @@ html, body {
 }
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #909090;
+  color: #02002a;
 }
 
 .highlight, .highlight .w {

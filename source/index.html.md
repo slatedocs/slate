@@ -3,7 +3,6 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
   - python
   - javascript
 
@@ -23,28 +22,58 @@ meta:
     content: Documentation for the Kittn API
 ---
 
-# Introduction
+# About Master EKYC
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+The Master EKYC provides a set of components to capture identity documents and selfie photos and videos for the purpose of identiy verification
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The SDK offers a number of benefits to help you create the best identity verification experience for your customers:
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+- Carefully designed UI to guide your customers through the entire photo and video capture process
+- Modular design to help you seamlessly integrate the photo and video capture process into your application flow
+- Advanced image quality detection technology to ensure the quality of the captured images meets the requirement of the Onfido identity verification process, guaranteeing the best success rate
+- Direct image upload to the Onfido service, to simplify integration
 
-# Authentication
 
-> To authorize, use this code:
+# API Reference
+This is an API documentations.
+## Overview
+List and flow API Application
+### Token authentication
+- API tokens
+- SDK tokens
+- Mobile tokens
 
-```ruby
-require 'kittn'
+<aside class="success">
+Remember — Request is authenticated!
+</aside>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+### Postman collection
+You can run the Master EKYC API version 3.4 collection in Postman:
+`Run in Postman` -> Automatically open Postman and import standard collection
+
+The API version 3.4 Postman collection is at version 1.0.
+
+In your Postman environment, you'll need to define the apiToken and baseUrl variables. See region base URLs for baseUrl options.
+
+
+### Rate limits
+Master EKYC's API enforces a maximum volume of requests per minute for all clients. Unless contractually agreed otherwise, the maximum rate is 400 requests per minute.
+
+For sandbox requests, the rate limit is 30 requests per minute.
+
+Any request over the limit will return a `429 Too Many Requests error.`
+
+## Core resources
+An applicant represents an individual who will be the subject of a check. An applicant must exist before a check can be initiated.
+### Register OTP
+- OTP object
+- OTP verify
+
+`POST | http://example.com/api/verify_otp`
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+import request
+api = request.request()
 ```
 
 ```shell
@@ -54,54 +83,12 @@ curl "api_endpoint_here" \
 ```
 
 ```javascript
-const kittn = require('kittn');
+const kittn = require();
 
-let api = kittn.authorize('meowmeowmeow');
+let api = kittn.authorize();
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> Register OTP returns JSON structured like this:
 
 ```json
 [
@@ -122,124 +109,126 @@ let kittens = api.kittens.get();
 ]
 ```
 
-This endpoint retrieves all kittens.
+|Attribute | Type| Description|
+|--------- | ---|----------|
+|id |string| Description of parameter|
 
-### HTTP Request
 
-`GET http://example.com/api/kittens`
+### Register User Document
+- Document object
+- Check Liveness Document
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+`POST | http://example.com/api/check_liveness_document`
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+import request
+api = request.request()
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
+# With shell, you can just pass the correct header with each request
+curl "api_endpoint_here" \
   -H "Authorization: meowmeowmeow"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const kittn = require();
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+let api = kittn.authorize();
 ```
 
-> The above command returns JSON structured like this:
+> Register User Document returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+[
+  {
+    "id": 1,
+    "name": "Fluffums",
+    "breed": "calico",
+    "fluffiness": 6,
+    "cuteness": 7
+  },
+  {
+    "id": 2,
+    "name": "Max",
+    "breed": "unknown",
+    "fluffiness": 5,
+    "cuteness": 10
+  }
+]
 ```
 
-This endpoint retrieves a specific kitten.
+|Attribute | Type| Description|
+|--------- | ---|----------|
+|id |string| Description of parameter|
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
-### HTTP Request
+### Register User Video
+- Video object
+- Check liveness Video
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+`POST | http://example.com/api/check_liveness_video`
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
+import request
+api = request.request()
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
+# With shell, you can just pass the correct header with each request
+curl "api_endpoint_here" \
   -H "Authorization: meowmeowmeow"
 ```
 
 ```javascript
-const kittn = require('kittn');
+const kittn = require();
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+let api = kittn.authorize();
 ```
 
-> The above command returns JSON structured like this:
+> Register User Video returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+[
+  {
+    "id": 1,
+    "name": "Fluffums",
+    "breed": "calico",
+    "fluffiness": 6,
+    "cuteness": 7
+  },
+  {
+    "id": 2,
+    "name": "Max",
+    "breed": "unknown",
+    "fluffiness": 5,
+    "cuteness": 10
+  }
+]
 ```
 
-This endpoint deletes a specific kitten.
+|Attribute | Type| Description|
+|--------- | ---|----------|
+|id |string| Description of parameter|
 
-### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+# Web SDK
+This is Web SDK Document
+## Overview
+Overview of SDK 
+## Getting started
+Content of Web SDK Document
 
-### URL Parameters
+# Android SDK
+This is Android SDK document
+## Overview
+Overview of Android SDK 
+## Getting started
+Content of Android SDK Document
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+# iOS SDK
+This is iOS SDK document
+## Overview
+Overview of iOS SDK 
+## Getting started
+Content of iOS SDK Document
