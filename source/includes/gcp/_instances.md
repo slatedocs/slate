@@ -532,7 +532,8 @@ curl -X POST \
     "status": "SUCCESS",
     "created": "2021-04-20T20:58:59.952881-04:00",
     "result": {
-      "command": "ssh my-user@192.0.0.1",
+      "id": "6564997542943928188",
+      "command": "ssh my-user@192.0.0.1"
     }
   }
 }
@@ -553,6 +554,7 @@ Attributes | &nbsp;
 `status`<br/>*string* | The status.
 `created`<br/>*Date* | The task's creation date.
 `result`<br/>*Object* | The task result, containing details required to access the instance's console.
+`result.id`<br/>*String* | The id of the instance being accessed by the SSH command.
 `result.command`<br/>*String* | The command to execute to access the instance's console.
 
 <!-------------------- SET WINDOWS PASSWORD -------------------->
