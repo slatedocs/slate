@@ -138,7 +138,7 @@ curl -X POST \
 ```js
 {
   "taskId": "c50390c7-9d5b-4af4-a2da-e2a2678a83e8",
-  "taskStatus": "SUCCESS"
+  "taskStatus": "PENDING"
 }
 ```
 ```shell

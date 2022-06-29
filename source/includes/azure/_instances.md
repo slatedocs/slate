@@ -215,7 +215,7 @@ curl -X POST \
 ```json
 {
   "taskId": "00b76dbe-f9de-4f2b-9434-5a7d93fb7112",
-  "taskStatus": "SUCCESS"
+  "taskStatus": "PENDING"
 }
 ```
 ```shell
@@ -364,7 +364,7 @@ curl -X POST \
 ```json
 {
   "taskId": "00b76dbe-f9de-4f2b-9434-5a7d93fb7112",
-  "taskStatus": "SUCCESS"
+  "taskStatus": "PENDING"
 }
 ```
 ```shell
