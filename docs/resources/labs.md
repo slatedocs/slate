@@ -2,14 +2,14 @@
 GET /msk-apim/external/v1/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 ```
-This endpoint is used request the Lab FHIR resource
+This endpoint uses the [Observation FHIR](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource to request Lab data 
 
 |# | Parameters    | Description                          |
 |:-| :---------- | :----------------------------------- |
 |A1| `researchstudy`       | :material-check: MSK unique study number  |
 |A2|`category`       |:material-check: Default value: **laboratory** |
 |A3|`x-partnerid` |:material-check: suply given partnerid|
-|A4|Filter: Optional Parameters go to [Filter page](../searching) |
+|A4|Filter: Optional Parameters go to [Filter page](/searching) |
 
 
 === "C# "

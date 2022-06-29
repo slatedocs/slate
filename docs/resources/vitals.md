@@ -2,7 +2,7 @@
 GET /msk-apim/external/v1/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 ```
-This endpoint is used request the Lab FHIR resource
+This endpoint uses the [Observation FHIR](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource to request Vital Signs data 
 
 |# | Parameters    | Description                          |
 |:-| :---------- | :----------------------------------- |

@@ -13,7 +13,7 @@
     
     
       
-        <title>Searching - MSK BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Identifiers - MSK BLAZE FHIR DEVELOPER DOCUMENTATION</title>
       
     
     
@@ -89,7 +89,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Searching
+              Identifiers
             
           </span>
         </div>
@@ -202,19 +202,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../searching/" class="md-nav__link">
         Searching
       </a>
-      
     </li>
   
 
@@ -392,11 +384,19 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../identifiers/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Identifiers
       </a>
+      
     </li>
   
 
@@ -446,10 +446,8 @@
                 
 
 
-  <h1>Searching</h1>
+  <h1>Identifiers</h1>
 
-<p>Filtering parameters are <strong>optional</strong>, be aware that some combinations might not return a payload, this does not mean that there is anything wrong with the filtering, it is just that there is no data for such combination.  </p>
-<p>If you feel that there should be data, please contact us.</p>
 <table>
 <thead>
 <tr>
@@ -459,28 +457,8 @@
 </thead>
 <tbody>
 <tr>
-<td>_count</td>
-<td>It is used to control the number of records to return inside the bundle, by default is 50 records, we recommend using this parameter wisely to avoid timeout errors.</td>
-</tr>
-<tr>
-<td>date</td>
-<td>When the date parameter is used, it must be use in the form of &amp;date=OpMM/DD/YYY where OP is the Operator for that date, the following are the allow values: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (&lt; )</li><li>gt (&gt;)</li><li>ge (&gt;=)</li><li>Le ( &lt;=)</li></ul></td>
-</tr>
-<tr>
-<td>page</td>
-<td>It used for paging, for examples how to use this, refer to section FHIR paging</td>
-</tr>
-<tr>
-<td>id</td>
-<td>It used to return only the record for a given subjectID</td>
-</tr>
-<tr>
-<td>researchstudy</td>
-<td>MSK IRB number used to identify **</td>
-</tr>
-<tr>
-<td>studyid</td>
-<td>(Not yet available) SponsorID</td>
+<td><a href="#IDB.Protocol">IDB.Protocol</a></td>
+<td>Protocol Description info will go here</td>
 </tr>
 </tbody>
 </table>
@@ -499,7 +477,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../authentication/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Authentication" rel="prev">
+        <a href="../coming-soon/recist/" class="md-footer__link md-footer__link--prev" aria-label="Previous: RECIST" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -508,20 +486,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Authentication
+              RECIST
             </div>
           </div>
         </a>
       
       
         
-        <a href="../pagination/" class="md-footer__link md-footer__link--next" aria-label="Next: Pagination" rel="next">
+        <a href="../releases/" class="md-footer__link md-footer__link--next" aria-label="Next: Releases" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Pagination
+              Releases
             </div>
           </div>
           <div class="md-footer__button md-icon">
