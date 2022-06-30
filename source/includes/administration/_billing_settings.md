@@ -43,8 +43,8 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The configured billing settings' id.
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
 `version`<br/>*integer* | The billing settings version.
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.
+`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 `bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
 `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
@@ -93,8 +93,8 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The configured billing settings' id.
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
 `version`<br/>*integer* | The billing settings version.
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.
+`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 `bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
 `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
@@ -157,8 +157,8 @@ curl -X POST "https://cloudmc_endpoint/api/v2/reseller/settings/billing" \
 
 Required | &nbsp;
 ---------- | -----------
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoices is marked in review. Cannot be less than 2 days.
+`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 
@@ -231,8 +231,8 @@ Required | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The configured billing settings' id.
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is drafted. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review a draft invoice before it is automatically issued to the customer.
+`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.
+`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
 `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 

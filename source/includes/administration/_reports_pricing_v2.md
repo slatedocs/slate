@@ -293,7 +293,7 @@ Report Attributes | &nbsp;
 `tax_name1`<br/>*String* | The name of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax name<b>.
 `tax_amount1`<br/>*String* | The amount of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax amount<b>.
 `invoice_number`<br/>*String* | The human-readable number of the invoice.
-`status`<br/>*String* | The status of the invoice. Possible values are: USAGE_PENDING, DRAFT, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*String* | The status of the invoice. Possible values are: IN_PROGRESS, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID, ERROR.
 `due_date`<br/>*String* | The date the invoice is due.
 `credit_card_transaction_id`<br/>*String* | The confirmation number returned from the payment provider for the invoice.
 `billing_start_date`<br/>*String* | The billing start date of the invoice.

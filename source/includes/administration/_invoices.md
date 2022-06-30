@@ -585,7 +585,7 @@ curl "https://cloudmc_endpoint/api/v2/invoices/find/efd32752-c6f2-45cf-b494-cc6b
                 ],
                 "startDate": "2021-09-15T00:00:00Z"
             },
-            "status": "USAGE_PENDING"
+            "status": "IN_PROGRESS"
         }
     ]
 }
@@ -600,9 +600,9 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
 `invoiceId`<br/>*string* | The human readable id.
-`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*enum* | The status of the invoice. Possible values are: IN_PROGRESS, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID, ERROR.
 `createdDate`<br/>*date* | The created date of the invoice.
-`draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
+`draftedDate`<br/>*date* | The date the invoice was marked in review. Is null if status is still IN_PROGRESS.
 `issuedDate`<br/>*date* | The date the invoice was issued.
 `dueDate`<br/>*date* | The date the invoice is due.
 `organization.id`<br/>*UUID* | The UUID of the organization the invoice belongs to.
@@ -1272,7 +1272,7 @@ curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e
                 ],
                 "startDate": "2021-09-15T00:00:00Z"
             },
-            "status": "USAGE_PENDING"
+            "status": "IN_PROGRESS"
         }
     ]
 }
@@ -1287,9 +1287,9 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
 `invoiceId`<br/>*string* | The human readable id.
-`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*enum* | The status of the invoice. Possible values are: IN_PROGRESS, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID, ERROR.
 `createdDate`<br/>*date* | The created date of the invoice.
-`draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
+`draftedDate`<br/>*date* | The date the invoice was marked in review. Is null if status is still IN_PROGRESS.
 `issuedDate`<br/>*date* | The date the invoice was issued.
 `dueDate`<br/>*date* | The date the invoice is due.
 `organization.id`<br/>*UUID* | The UUID of the organization the invoice belongs to.
@@ -1414,7 +1414,7 @@ Report Attributes | &nbsp;
 `tax_name1`<br/>*String* | The name of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax name<b>.
 `tax_amount1`<br/>*String* | The amount of the tax. Depends on the `tax_code`, reseller billing address and customer billing address. <b>There can be more than one tax amount<b>.
 `invoice_number`<br/>*String* | The human-readable number of the invoice.
-`status`<br/>*String* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*String* | The status of the invoice. Possible values are: IN_PROGRESS, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID, ERROR.
 `due_date`<br/>*String* | The date the invoice is due.
 `credit_card_transaction_id`<br/>*String* | The confirmation number returned from the payment provider for the invoice.
 `billing_start_date`<br/>*String* | The billing start date of the invoice.
@@ -1428,8 +1428,8 @@ Report Attributes | &nbsp;
 Manually approve an invoice in the 'IN_REVIEW' state and issue the invoice to the customer by email. If the invoice is already in the 'ISSUED' state, an empty response will be returned and an email will not be sent. If the invoice is in any other state, an error will be thrown.
 
 ```shell
-# Approve a draft invoice
-curl -X PUT "https://cloudmc_endpoint/api/v2/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/approve" \
+# Approve an in review invoice
+curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/approve" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -2046,9 +2046,9 @@ Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | The UUID of the invoice.
 `invoiceId`<br/>*string* | The human readable id.
-`status`<br/>*enum* | The status of the invoice. Possible values are: USAGE_PENDING, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID.
+`status`<br/>*enum* | The status of the invoice. Possible values are: IN_PROGRESS, IN_REVIEW, ISSUED, OVERDUE, PAID, VOID, ERROR.
 `createdDate`<br/>*date* | The created date of the invoice.
-`draftedDate`<br/>*date* | The date the invoice was drafted. Is null if status is still USAGE_PENDING.
+`draftedDate`<br/>*date* | The date the invoice was marked in review. Is null if status is still IN_PROGRESS.
 `issuedDate`<br/>*date* | The date the invoice was issued.
 `dueDate`<br/>*date* | The date the invoice is due.
 `organization.id`<br/>*UUID* | The UUID of the organization the invoice belongs to.
