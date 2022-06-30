@@ -338,7 +338,6 @@ Attributes | &nbsp;
 `status`<br/>*string* | The task's status.
 `created`<br/>*Date* | The task's creation date.
 `result`<br/>*Object* | The task result, containing details of the created instance.
-`result.`<br/>*string* | The administrator username created on the instance.
 `result.name`<br/>*string* | The name of the instance.
 `result.region`<br/>*string* | The region where the instance was deployed.
 `result.imageId`<br/>*string* | The ID of the AMI used to launch the instance.
