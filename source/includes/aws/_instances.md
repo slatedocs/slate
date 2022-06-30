@@ -246,6 +246,56 @@ curl -X POST \
 }
 ```
 
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/tasks/7135ae25-8488-4bc5-a289-285c84a00a84"
+```
+
+> The above command(s) return(s) JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": "7135ae25-8488-4bc5-a289-285c84a00a84",
+    "status": "SUCCESS",
+    "created": "2021-04-20T20:58:59.952881-04:00",
+    "result": {
+      "name": "i-pspensieri-virhq",
+			"imageId": "ami-04505e74c0741db8d",
+      "sshKey": {
+				"keyName": "ssh-pspensieri-wjigo",
+        "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nMEIEowIBAAKCAQEA3h9R/BwcvfdA9CyZcJ9F/MZpeRlTdLGr2YULl9IWMXehpjae\nhckwYIYSfsaiGJE6Y9ChZFpfn1pKjZXH1/9YYcSFMh/hrh341oD/WRH851hMagbi\nK5Bo69XcPYLi34eCs4owFXQcpvMMiuhzxQXbfbVDPSdEHA+6Td9JbX/yPdm9m0Ag\n6yMYJBK3qGjFNzUFKGI51K/zKpxf4eQIpVaG9Lt4WtFQK3Biy0eR38MmcBmp3QVN\n3WOq5gk7NlcCsdHn4UV/UuI0DGsQcLaQ/ZyM+75lXpVe18pPy3aZNGcnuSQ2oqpg\nEsbCcv7L+YCPGiF1eJkQu0K2fEOm23qHf7CuSQIDAQABAoIBAH9T9OtQMimzUsil\nyE+G/deo5U1F91EtiBVo7vxYseApc8CUDssiSVkLgg6qTsFGfvI45ktggvAWEiaX\ndbeb6E4jGTdijzwAcmSEDdxBM3hqZWNiDsRqQ7rtHRMltGfuhj3lOSsTJFmPeeEm\n3zZR5UBqZ+DmYWS0n1eEZ9MdRP+ugFR+VMYYoxoD5h6NemOEXUnFGq8Drtzj/JAG\ncEqAJPbOJeSmWfgPaUjmfWrFrctL3H4oS802OBpDObmk2tG738w9o4ttC1oSXdW+\nw5tqAKNJxPyxS+jDtA1eiB5KbPiLDeg/6aDIdyKzICCzsRzOQEtTNp9J7UBoy9LA\nosuv2wECgYEA8nQEMd5vW0NK/KV17+lWQ8+B9qyEewr3Z9MxU4PDF+K+jlh7obUn\nK/C/JZqr0xhex3nZgg+WXFPPnOMWCxLI2o3MuDsfaLs7se99iCt6cgtf6i3keM2e\nsoUl1tDYqWFvqPvqQPGkWcS4l2rxh8RrfcKLdigZGPAWMff/8CaxNjsCgYEA6oh/\nQCMSGB4Bu6Yj8cEDYi13WJuImCyZdN5Ezd/UF3j/xXchW2SPM6KaQrikBgjWFqcs\nKhORFjMvA/YnGNSF4Tkar+q6WlCL4YCXf7O6/aDs0Q+cx1WDE8gmvuvvPApi9KlF\n4yikpQG4cslMnh5UFFIMt+L30BEK64rcydplsUsCgYA4BXSerT3fwYnHHNhGag0D\nuCPYgn5OC/ekptjj6jMfBsZvD6TpdXkqnwMbxkRjj2L/Bnmqor1kcf0rzBDg2CNO\n1Krz+r1ELtcZQzQnTZyKU3SDIL2E6EX+C+P1YeZeJORvEF5NSUhncZwRaKWMcGdB\n9LzSvWsnJvqJ6zrZG6eg1wKBgA+mPf90l59+WRVBV8Ko42XorL7/2dR1nWO79RFb\nrxZF36M4eMRVaGzEm9B564/vhQGL9Bl2psa5cZitExzICYrmuY4ldnvSRhMs9m7x\n+jc0RrkIdqiiXxWx1EwHCDaURK4YoW4v5xSPkdQu9GrUkT2t3+VhQrHigT0ITgU2\nCnUTAoGBAJVtiAdLq7zJrsb+QjGCJnNMrV9lG3WmR15/TFkoNPygG17XcymaWCDc\n/nN7J9gjH/GozL8a1OtqNHWczydfKU7DNMhCoyml0RS0454FMPNkT4R6P7UfOk2o\nGjr5AV04BLNdutLlEc2ny+ce8R1/S/uGdP0p31OoFUEHRjLFqlkG\n-----END RSA PRIVATE KEY-----"
+			},
+			"blockDeviceMappings": [
+				{
+					"volumeType": "gp2",
+					"encrypted": false,
+					"size": 8,
+					"fastRestored": false,
+					"attachmentDeviceName": "/dev/sda1",
+					"deleteOnTermination": true,
+					"type": "Root",
+					"multiAttachEnabled": false,
+					"rootDeviceImageId": "ami-04505e74c0741db8d"
+				}
+			],
+			"instanceType": "c1.medium",
+			"threadsPerCore": 0,
+			"coreCount": 0,
+			"maxCount": 1,
+			"tags": {},
+			"securityGroupId": "sg-056a936ec78d4a651",
+			"vpcId": "vpc-084ca52571cec5c12",
+			"releaseElasticIp": true,
+			"minCount": 1,
+			"region": "us-east-1",
+			"securityGroupScope": "ALL"
+		}
+  }
+}
+```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
 Create a new instance in a given [environment](#administration-environments).
@@ -282,7 +332,29 @@ Create a new instance in a given [environment](#administration-environments).
 | `vpcId` <br/>*string* | The id of the VPC in which the instance will be deployed. This must be specified if there is no default VPC in the selected region or if you decide to provide a subnet. |
 |`subnetId` <br/>*string* | The id of the subnet in which the instance will be deployed. If this is not specified, the instance will be deployed in one of the default subnets in the default VPC. The subnet specified must belong to the VPC specified.
 
-
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*string* | The task's ID.
+`status`<br/>*string* | The task's status.
+`created`<br/>*Date* | The task's creation date.
+`result`<br/>*Object* | The task result, containing details of the created instance.
+`result.`<br/>*string* | The administrator username created on the instance.
+`result.name`<br/>*string* | The name of the instance.
+`result.region`<br/>*string* | The region where the instance was deployed.
+`result.imageId`<br/>*string* | The ID of the AMI used to launch the instance.
+`result.sshKey`<br/>*Object* | The SSH key details.
+`result.sshKey.keyName`<br/>*string* | The name of the SSH key to be used to connect to this instance.
+`result.sshKey.privateKey`<br/>*string* | The private SSH key to be used to connect to this instance.
+`result.blockDeviceMappings`<br/>*Object* | Volumes attached to the instance on launch.
+`result.instanceType`<br/>*string* | The instance type.
+`result.threadsPerCore`<br/>*int* | The number of threads per CPU core.
+`result.coreCount`<br/>*int* | The number of CPU cores for the instance.
+`result.minCount`<br/>*int* | The minimum number of instances to create.
+`result.maxCount`<br/>*int* | The maximum number of instances to create.
+`result.tags`<br/>*Array[object]* | Any tags assigned to the instance. Tags are key value pairs.
+`result.securityGroupId`<br/>*string* | The ID of the security group.
+`result.vpcId`<br/>*string* | [EC2-VPC] The ID of the VPC in which the instance is running.
+`result.securityGroupScope`<br/>*string* | Represents the scope of the security group. Possible values are CUSTOM, DEFAULT and ALL.
 
 <aside class="notice">
 If the security group scope of the instance is CUSTOM, then the ipPolicies field is required.

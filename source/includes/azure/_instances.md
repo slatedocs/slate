@@ -367,6 +367,7 @@ curl -X POST \
   "taskStatus": "PENDING"
 }
 ```
+
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
