@@ -61,7 +61,7 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
-
+  padding: 30px 0 0 10px;
   // language selector for mobile devices
   .lang-selector {
     display: none;
@@ -75,7 +75,8 @@ html, body {
   .logo {
     display: block;
     max-width: 70%;
-    margin-bottom: $logo-margin;
+    // margin-bottom: $logo-margin;
+    margin: $logo-margin auto;
   }
 
   &>.search {
@@ -153,13 +154,14 @@ html, body {
 
   // This is the currently selected ToC entry
   .toc-link.active {
-    background-color: $nav-active-bg;
+    background-color: $color-primary;
     color: $nav-active-text;
+    border-radius: 5px;
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
-    background-color: $nav-active-parent-bg;
+    background-color: transparent;
     color: $nav-active-parent-text;
   }
 
@@ -248,6 +250,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
+  padding: 30px 0 0 20px;
   margin-left: $nav-width;
   position: relative;
   z-index: 10;
@@ -279,26 +282,26 @@ html, body {
 
 .lang-selector {
   display: flex;
-  background-color: $lang-select-bg;
+  background-color: $color-primary;
   width: 100%;
   font-weight: bold;
   overflow-x: auto;
   a {
     display: inline;
-    color: $lang-select-text;
+    color: $nav-active-text;
     text-decoration: none;
     padding: 0 10px;
     line-height: 30px;
     outline: 0;
 
     &:active, &:focus {
-      background-color: $lang-select-pressed-bg;
-      color: $lang-select-pressed-text;
+      background-color: $color-primary;
+      color: $nav-active-text;
     }
 
     &.active {
       background-color: $lang-select-active-bg;
-      color: $lang-select-active-text;
+      color: $detail-text;
     }
   }
 
@@ -441,6 +444,7 @@ html, body {
   }
 
   p, li, dt, dd {
+    color: $detail-text;
     line-height: 1.6;
     margin-top: 0;
   }
@@ -467,7 +471,7 @@ html, body {
     padding-bottom: 1em;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-    background: $aside-notice-bg;
+    background: $aside-warning-bg;
     line-height: 1.6;
 
     &.warning {
@@ -571,7 +575,7 @@ html, body {
   }
 
   .page-wrapper {
-    margin-left: 0;
+    margin-left: 0px;
   }
 
   #nav-button {
@@ -612,7 +616,7 @@ html, body {
 }
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #02002a;
+  color: #999;
 }
 
 .highlight, .highlight .w {

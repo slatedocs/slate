@@ -14,43 +14,41 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // CUSTOMIZE SLATE
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
-
 // BACKGROUND COLORS
 ////////////////////
 $nav-bg: #ffffff !default;
 $examples-bg: #ffffff !default;
-$code-bg: #383838 !default;
+$code-bg: #2d2b33 !default;
 $code-annotation-bg: #ffffff !default;
 $nav-subitem-bg: #ffffff !default;
-$nav-active-bg: #F3F7F9 !default;
-$nav-active-parent-bg: #F3F7F9 !default; // parent links of the current section
+$nav-active-bg: #f3f7f9 !default;
+$nav-active-parent-bg: #f3f7f9 !default; // parent links of the current section
 $lang-select-border: #000 !default;
-$lang-select-bg: #F3F7F9 !default;
+$lang-select-bg: #f3f7f9 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #ffffff !default;
-$aside-notice-bg: #F3F7F9 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
+$aside-notice-bg: #f3f7f9 !default;
+$aside-warning-bg: #FFF2F2 !default;
+$aside-success-bg: #e8f8fd !default;
 $search-notice-bg: #c97a7e !default;
-
+$color-primary: #38c5ea !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #111 !default; // main content text color
-$nav-text: #111 !default;
-$nav-active-text: #111 !default;
-$nav-active-parent-text: #111 !default; // parent links of the current section
-$lang-select-text: #111 !default; // color of unselected language tab text
-$lang-select-active-text: #111 !default; // color of selected language tab text
-$lang-select-pressed-text: #111 !default; // color of language tab text when mouse is pressed
-
+$main-text: #0e314c !default; // main content text color
+$nav-text: #0e314c !default;
+$nav-active-text: #fff !default;
+$nav-active-parent-text: #0e314c !default; // parent links of the current section
+$lang-select-text: #0e314c !default; // color of unselected language tab text
+$lang-select-active-text: #0e314c !default; // color of selected language tab text
+$lang-select-pressed-text: #0e314c !default; // color of language tab text when mouse is pressed
+$detail-text: #6084a4 !default;
 
 // SIZES
 ////////////////////
@@ -66,11 +64,11 @@ $h1-margin-bottom: 25px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
 
-
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 
@@ -80,17 +78,17 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono",
+    "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
+    serif;
   font-size: 12px;
   line-height: 1.5;
 }
 
-
 // OTHER
 ////////////////////
-$nav-footer-border-color: #666 !default;
-$search-box-border-color: #666 !default;
-
+$nav-footer-border-color: rgb(99, 102, 112) !default;
+$search-box-border-color: rgb(99, 102, 112) !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 // INTERNAL
@@ -98,6 +96,6 @@ $search-box-border-color: #666 !default;
 // These settings are probably best left alone.
 
 %break-words {
-    word-break: break-all;
-    hyphens: auto;
+  word-break: break-all;
+  hyphens: auto;
 }
