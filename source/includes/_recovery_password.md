@@ -3,7 +3,7 @@
 ## Request Recovery Password
 
 ```javascript
-fetch('https://core.eventtia.com/v1/password', {
+fetch('https://core.eventtia.com/en/v1/passwords', {
   method: 'POST',
   body: {
     data: {
@@ -35,7 +35,7 @@ This endpoint request the reset password token and return it
 
 ### HTTP Request
 
-`POST /v1/password`
+`POST en/v1/passwords`
 
 
 ### Body Parameters
@@ -48,7 +48,7 @@ locale  | string | desired language e.g. "en", "es" or "fr"
 ## Update Password
 
 ```javascript
-fetch('https://core.eventtia.com/v1/password', {
+fetch('https://core.eventtia.com/en/v1/passwords', {
   method: 'PUT',
   body: {
     data: {
@@ -93,7 +93,7 @@ This endpoint updates the password of the user
 
 ### HTTP Request
 
-`PUT /v1/password`
+`PUT en/v1/passwords`
 
 ### Body Parameters
 
