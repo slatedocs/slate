@@ -28,7 +28,6 @@ HTTP/1.1 200 OK
         "end_date": "2020-04-15 15:54:57 -0500",
         "active_modules": "[8]",
         "fields_data": "{}",
-        "budget": 0.0,
         "attendance_mode": "online",
         "is_template": false,
         "event_uri": "event_uri",
@@ -39,7 +38,6 @@ HTTP/1.1 200 OK
           "country": "Colombia.",
           "city": "Medellín",
         },
-        "default_language": "es",
         "virtual_timezone": "America/Bogota",
         "total_attendees": 0,
         "banner": {
@@ -120,7 +118,6 @@ HTTP/1.1 200 OK
       "end_date": "2020-04-15 15:54:57 -0500",
       "active_modules": "[0, 1]",
       "fields_data": "{}",
-      "budget": 0.0,
       "attendance_mode": "online",
       "is_template": false,
       "event_uri": "event_uri",
@@ -131,7 +128,6 @@ HTTP/1.1 200 OK
         "country": "Colombia.",
         "city": "Medellín",
       },
-      "default_language": "es",
       "virtual_timezone": "America/Bogota",
       "total_attendees": 0,
       "cloned_from_id": "2",
@@ -205,7 +201,7 @@ fetch('https://core.eventtia.com/v1/events/', {
   },
   body: {
   data: {
-    id: "21", 
+    id: "21",
     type: "events",
     attributes: {
       name: "Event name",
@@ -214,23 +210,24 @@ fetch('https://core.eventtia.com/v1/events/', {
       end_date: "2020-04-15 15:54:57 -0500",
       active_modules: "[0, 1]",
       fields_data: "{}",
-      budget: 545.00,
       attendance_mode: "online",
       is_template: false,
       event_uri: "event_uri",
       timezone: "America/Bogota",
-      available_languages: {
-                              "available": ["en", "es"],
-                              "default": "en"},
+      settings: {
+        "time_format": "hours_24",
+        "date_format": "mm/dd/yyyy",
+        "available_languages": {
+            "available": ["en", "es"],
+            "default": "en"
+        }        },
       location: {
         "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
         "address": "Event address",
         "country": "Colombia.",
         "city": "Medellín",
       },
-      default_language: "es",
       virtual_timezone: "America/Bogota",
-      total_attendees: 0,
       banner: {
         filename: "file_name",
         thumb: "url_image",
@@ -268,7 +265,6 @@ HTTP/1.1 200 OK
       "end_date": "2020-04-15 15:54:57 -0500",
       "active_modules": "[0, 1]",
       "fields_data": "{}",
-      "budget": 0.0,
       "attendance_mode": "online",
       "is_template": false,
       "event_uri": "event_uri",
@@ -279,7 +275,6 @@ HTTP/1.1 200 OK
         "country": "Colombia.",
         "city": "Medellín",
       },
-      "default_language": "es",
       "virtual_timezone": "America/Bogota",
       "total_attendees": 0,
       "banner": {
@@ -338,7 +333,6 @@ Parameter | Type | Description
 name | string | name of event. 
 description | string | description of event.
 start_date | date | starting date for event, must be before end date of event.
-budget | float | budget for event.
 is_template | boolean | this event is a template.
 cloned_from_id | integer | event id from this event was cloned
 attendance_mode | string | event attendance mode ['offline', 'mixed', 'online']. 
@@ -369,23 +363,24 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
       end_date: "2020-04-15 15:54:57 -0500",
       active_modules: "[0, 1]",
       fields_data: "{}",
-      budget: 545.00,
       attendance_mode: "online",
       is_template: false,
       event_uri: "event_uri",
       timezone: "America/Bogota",
-      available_languages: {
-                              "available": ["en", "es"],
-                              "default": "en"},
+      settings: {
+        "time_format": "hours_24",
+        "date_format": "mm/dd/yyyy",
+        "available_languages": {
+            "available": ["en", "es"],
+            "default": "en"}
+             },
       location: {
         "coordinates": { "lat": 6.2518400, "lng": -75.5635900 },
         "address": "Event address",
         "country": "Colombia.",
         "city": "Medellín",
       },
-      default_language: "es",
       virtual_timezone: "America/Bogota",
-      total_attendees: 0,
       cloned_from_id: "12",
       banner: {
         filename: "file_name",
@@ -400,8 +395,8 @@ fetch('https://core.eventtia.com/v1/events/<event_uri>', {
         small: "url_image",
         medium: "url_image",
         large: "url_image",
-      }  
-    }, 
+      }
+    },
     relationships: {
       settings: {
         data: {
@@ -433,7 +428,6 @@ HTTP/1.1 200 OK
       "end_date": "2020-04-15 15:54:57 -0500",
       "active_modules": "[0, 1]",
       "fields_data": "{}",
-      "budget": 0.0,
       "attendance_mode": "virtual",
       "is_template": "false",
       "event_uri": "event_uri",
@@ -444,7 +438,6 @@ HTTP/1.1 200 OK
         "country": "Colombia.",
         "city": "Medellín",
       },
-      "default_language": "es",
       "virtual_timezone": "America/Bogota",
       "total_attendees": 0,
       "cloned_from_id": "1",
@@ -510,7 +503,6 @@ Parameter | Type | Description
 name | string | name of event. 
 description | string | description of event.
 start_date | date | starting date for event, must be before end date of event.
-budget | float | budget for event.
 is_template | boolean | this event is a template.
 cloned_from_id | integer | event id from this event was cloned
 attendance_mode | string | event type ['offline', 'mixed', 'online']. 
@@ -551,7 +543,6 @@ HTTP/1.1 200 OK
       "end_date": "2020-04-15 15:54:57 -0500",
       "active_modules": "[8]",
       "fields_data": "{}",
-      "budget": 0.0,
       "attendance_mode": "virtual",
       "is_template": false,
       "event_uri": "event_uri",
@@ -562,7 +553,6 @@ HTTP/1.1 200 OK
         "country": "Colombia.",
         "city": "Medellín",
       },
-      "default_language": "es",
       "virtual_timezone": "America/Bogota",
       "total_attendees": 0,
       "banner": {
