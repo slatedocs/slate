@@ -187,5 +187,30 @@ This endpoint uses the [Observation FHIR](http://hl7.org/fhir/StructureDefinitio
   
     ```
 
+## Lab Payload Mapping
+
+|# | Parameters   | Description                          |
+|:-| :--------- | :----------------------------------- |
+|1|`fullUrl`       | :material-check: MSK unique study number  |
+|2|`resourceType` |Specifies the type of [FHIR of resource (Observation)](https://www.hl7.org/fhir/observation-definitions.html#Observation){:target="blank"} that was use to build it.   |
+||`extension[0].url`|URL can be used to find more information about the valueCode |
+||`extension[0].valueCode`|Holds the unique MSK research name via  [FHIR Extension](https://www.hl7.org/fhir/R4/extensibility.html){:target="blank"}|
+||`extension[1].url`|URL can be used to find more information about the valueCode |
+||`extension[1].valueCode`|Holds the unique sponsor name via [FHIR Extension](https://www.hl7.org/fhir/R4/extensibility.html){:target="blank"}|
+||`identifier.system`||
+||`identifier.value`||
+||`status`||
+||`category.coding.system`||
+||`category.coding.code`||
+||`category.coding.display`||
+||`category.text`||
+||`subject.reference`||
+||`encounter.display`||
+||`effectiveDateTime`||
+||`issued`||
+||`valueQuantity.value`||
+||`valueQuantity.unit`||
+||`referenceRange`||
+||Filter: Optional Parameters go to [Filter page](/searching) |
 
 

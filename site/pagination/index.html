@@ -448,10 +448,33 @@
 
   <h1>Pagination</h1>
 
-<p>The FHIR Payload is returned as a FHIR Bundle, and is a collection of resources that can contain from zero resources to the actual count of the available resources based your query search. It is good practice not to return all data, by default we are capping the number of resources to fifty; however, this number is configurable via a parameter _count. We advise keeping this default value to prevent database timeouts.</p>
-<p>Paging is presented via the link Bundle attribute. The link attribute identifies the Links related to this Bundle.</p>
-<p><img alt="pagination example" src="../pagination.png" /></p>
-<p>In the figure above there are total of 87 resources, and it set to only return 50 resources. In order to obtain the remaining 37 records, the <code>"relation" : "next"</code> json object must be used to read the value of the computed URL value.   </p>
+<p>The FHIR Payload is returned as a <a href="https://www.hl7.org/fhir/bundle.html" target="blank">FHIR Bundle</a>, and is a collection of resources that can contain from zero resources to the actual count of the available resources based your query search. It is good practice not to return all data, by default we are capping the number of resources to fifty; however, this number is configurable via a parameter _count. We advise keeping this default value to prevent database timeouts.</p>
+<p><a href="https://www.hl7.org/fhir/http.html#paging" target="blank">Paging</a> is presented via the link <a href="https://www.hl7.org/fhir/bundle-definitions.html#Bundle.link" target="blank">Bundle attribute</a>. The link attribute identifies the Links related to this Bundle.</p>
+<div class="highlight"><pre><span></span><code>&quot;total&quot;: 105,
+    &quot;link&quot;: [
+        {
+            &quot;relation&quot;: &quot;self&quot;,
+            &quot;url&quot;: &quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&amp;researchstudy={MSK_UNIQUE_STUDY_NUMBER}&amp;x-partnerid={x-partnerid}&amp;page=1&quot;
+        },
+        {
+            &quot;relation&quot;: &quot;first&quot;,
+            &quot;url&quot;: &quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&amp;researchstudy={MSK_UNIQUE_STUDY_NUMBER}&amp;x-partnerid={x-partnerid}&amp;page=1&quot;
+        },
+        {
+            &quot;relation&quot;: &quot;last&quot;,
+            &quot;url&quot;: &quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&amp;researchstudy={MSK_UNIQUE_STUDY_NUMBER}&amp;x-partnerid={x-partnerid}&amp;page=3&quot;
+        },
+        {
+            &quot;relation&quot;: &quot;previous&quot;,
+            &quot;url&quot;: null
+        },
+        {
+            &quot;relation&quot;: &quot;next&quot;,
+            &quot;url&quot;: &quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&amp;researchstudy={MSK_UNIQUE_STUDY_NUMBER}&amp;x-partnerid={x-partnerid}&amp;page=2&quot;
+        }
+    ],
+</code></pre></div>
+<p>In the payload above there are total of 105 resources, and it set to only return 50 resources. In order to obtain the remaining 55 records, the <code>"relation" : "next"</code> json object must be used to read the value of the computed URL value.   </p>
 <p>Note: The parameter <code>page</code> is used, and in this case it is stated as 2.  </p>
 <p>You can use the “self”, “first”, “last” and “previous” to navigate back and forth to obtain previous resources.  </p>
 
