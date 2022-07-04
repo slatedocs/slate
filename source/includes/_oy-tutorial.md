@@ -315,56 +315,44 @@ Once you have connected your Xero account in OY!, any transaction that happened 
 
 ### Connect your Xero
 
-1. Login to your dashboard. In the sidebar, select Integration menu.
-
+- Login to your dashboard. In the sidebar, select Integration menu.
 ![Integration Menu](images/xero/menu.png)
 
-2. You will see Xero menu. Click “Connect” to connect your Xero account to OY!. You will be redirected to Xero’s login page. Once you have successfully logged in to Xero, a notification will appear.
-
+- You will see Xero menu. Click “Connect” to connect your Xero account to OY!. You will be redirected to Xero’s login page. Once you have successfully logged in to Xero, a notification will appear.
 ![Product List](images/xero/product_list.png)
 
 Preview for Xero's login page
-
 ![Xero's Login Page](images/xero/login_xero.png)
-
 ![Consent Page](images/xero/consent_page.png)
 
 Preview for Notification
-
 ![Notification](images/xero/connect_success_notification.png)
 
-3. Upon success connect to Xero, we will create a new Bank Account into your Xero account, named “OY! balance” in which any transaction happened in OY! will be recorded there.
-
+- Upon success connect to Xero, we will create a new Bank Account into your Xero account, named “OY! balance” in which any transaction happened in OY! will be recorded there.
 ![New Account](images/xero/new_account.png)
 
 ### Map your Chart of Account
 
-1. Once you have successfully connected to Xero, you will be directed to a page to map your Chart of Account.
-
+- Once you have successfully connected to Xero, you will be directed to a page to map your Chart of Account.
 ![Configure Account Page](images/xero/coa_mapping.png)
 
-2. Then, map each product to the corresponding Account. Any transaction using each product will be put into the chart of account you defined in this page. Note: For Bulk Disbursement, you also can define in the create campaign page. 
-
+- Then, map each product to the corresponding Account. Any transaction using each product will be put into the chart of account you defined in this page. Note: For Bulk Disbursement, you also can define in the create campaign page. 
 ![Mapping Modal](images/xero/coa_mapping_modal.png)
-
 ![Mapping Modal](images/xero/coa_mapping_modal_2.png)
 
 Preview for Mapping in Create Campaign Page
-
 ![Mapping in Create Campaign Page](images/xero/bulk_disburse_with_xero.png)
 
-3. You can change the CoA mapping anytime as needed, just go to Integration >> Xero >> Configuration.
+- You can change the CoA mapping anytime as needed, just go to Integration >> Xero >> Configuration.
 
 ### Record Transaction to Xero
 
-1. Now, your OY! account has been connected to your Xero account and each products has been mapped to its corresponding Chart of Account.
-2. Any success transaction that happened in OY! will be recorded to Xero with the corresponding Account you defined in Mapping Account menu.
-3. Transaction in OY! will be treated as SPEND or RECEIVE money transaction in a bank account (OY! Balance). 
-4. Each transaction will contains of two rows. Row 1 contains of amount of transaction where row 2 contains of admin fee.
-5. In this version, any tax will be excluded. Means that you will need to input manually the tax invoice you obtained from OY! team to your Xero.
-
+- Now, your OY! account has been connected to your Xero account and each products has been mapped to its corresponding Chart of Account.
+- Any success transaction that happened in OY! will be recorded to Xero with the corresponding Account you defined in Mapping Account menu.
+- Transaction in OY! will be treated as SPEND or RECEIVE money transaction in a bank account (OY! Balance). 
+- Each transaction will contains of two rows. Row 1 contains of amount of transaction where row 2 contains of admin fee.
+- In this version, any tax will be excluded. Means that you will need to input manually the tax invoice you obtained from OY! team to your Xero.
 ![Recorded Transaction](images/xero/recorded_transaction.png)
-
 ![Recorded Transaction](images/xero/recorded_transaction_2.png)
 
 ### Disconnected your Xero 
