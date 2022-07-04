@@ -700,7 +700,39 @@ The details that you can see are;
 
 ![Invoice](images/create_new_invoice_2.png)
 
+### Monitoring the invoices/account receivable
+
+12.09
+
+All of the created invoices can be monitored through your dashboard (Invoice List).
+
+The transaction details that you can see are;
+
+| Column Name           | Definition                                                                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Invoice Number  | The number of the invoice created                                                                  |
+| Customer Name          | The name of the customer whom the invoice belongs to                                        |
+| Amount Billed         | The amount billed for that particular transaction                                                                                                                  |
+| Admin Fee             | The admin fee charged for that particular transaction                                                                                                              |
+| Amount Received       | The amount received / the amount of payment made by the user. This will only be filled in if the user has completed the payment.                                   |
+| Invoice Date  | The date of the invoice.                                                                                                                                                        |
+| Payment Date        | The date of payment (if the invoice has been successfully paid by the customer) |
+| Due Date      | The invoice due date                                                                                                                           |
+| Days Past Due | How many days an invoice has gone unpaid past the due date. For example, if due date is 1 July and the invoice is not paid by 4 July, then Days Past Due will be filled in with 3                                                                                                                            |                                                                                                              |
+| Status                | The transaction status. Possible values are CREATED, PAID, CANCELLED, and OVERDUE                                                  |
+
+There are several actions that you can take for the created invoice:
+1. Send invoice --> To send the invoice to the customer's defined email
+2. Download invoice --> To download the PDF file of the invoice
+3. Delete --> To delete the invoice. Only invoice with status CREATED can be deleted
+
+
+
 ### Creating a Customer for Account Receivable/Invoice
+
+There are 2 ways to create a Customer:
+
+Option 1: Through "Create Invoice" menu
 
 ![Invoice](images/add_new_customer.png)
 
@@ -711,9 +743,32 @@ The details that you can see are;
 
 For Tax Type, the explanation is as follows:
 
-| No tax           | Tax will not be added upon the subtotal                                                                                                                          |
-| PPN 10% Exclusive            | PPN 10% of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN will be 10% of the 10,000 = 1,000                |
-| PPN 10% Inclusive          | Tax will not be added upon the subtotal because the subtotal is assumed to be tax inclusive   |
+| No tax           | Tax will not be added upon the subtotal  |                                                                                         | PPN 11% Exclusive| PPN 11% of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN will be 11% of the 10,000 = 1,100                         |
+| PPN 10% Inclusive| Tax will not be added upon the subtotal because the subtotal is assumed to be tax inclusive   |
+
+Option 2: Through "Customer Management" menu
+
+12.06
+12.07
+12.08
+
+
+1. Click "Customer Management" sidebar under the "Account Receivable" menu
+2. Click "Add new customer"
+3. Fill in Customer ID, Customer Name (mandatory), PIC Name, Customer Phone Number, Tax Type (mandatory), Customer Email, Address.
+4. Click save
+
+12.31
+
+All of the created customer can be monitored through your dashboard (Customer List). There are several actions that you take for the customer data:
+1. Edit --> To edit the data of the customer
+2. Activate/Deactivate --> To deactivate / reactivate the customer
+
+If you click the hyperlink of Customer ID, you will be able to see the detailed data of the customer, including the list of invoices belonging to that customer.
+
+12.33
+
+
 
 ### Amount Customization for Account Receivable/Invoice
 
