@@ -84,9 +84,10 @@ curl "https://cloudmc_endpoint/api/v2/commitments" \
 }
 ```
 
+
 Optional Query Parameters | &nbsp;
 --- | ---
-`organization_id`<br/>*UUID* | The id of the organization that owns the commitment. If not provided, will default to the calling user's organization.
+`organization_id`<br/>*UUID* | The id of the organization that is associated to the commitment. If not provided, will default to the calling user's organization.
 `from`<br/>*string* | Used as part of a date range query. Denotes the inclusive start date in the format YYYY-MM-DD. Cannot be after `to`.
 `to`<br/>*string* | Used as part of a date range query. Denotes the exclusive end date in the format YYYY-MM-DD. Cannot be before `from`.
 
@@ -96,7 +97,7 @@ Attributes | &nbsp;
 ---- | ---
 `id`<br/>*string* | The id of the commitment.
 `name`<br/>*string* | The name of the commitment.
-`organization`<br/>*Organization* | The organization that owns the commitment.
+`organization`<br/>*Organization* | The organization that is associated to the commitment.
 `committedProducts`<br/>*Array[CommittedProduct]* | The list of products, commitment levels and negotiated price associated to the commitment.
 `pricingMethod`<br/>*enum* | The pricing method of the commitment. Possible values are: `FIXED_PRICE` and `UTILITY_DISCOUNT`. Used to define how the effective price of the commitment is calculated.
 `rateType`<br/>*enum* | The rate type of the commitment. Applies only to commitments with pricing method `UTILITY_DISCOUNT`. Possible values are: `FIXED_RATE` and `VARIABLE_RATE`.
@@ -188,7 +189,7 @@ Attributes | &nbsp;
 ---- | ---
 `id`<br/>*string* | The id of the commitment.
 `name`<br/>*string* | The name of the commitment.
-`organization`<br/>*Organization* | The organization that owns the commitment.
+`organization`<br/>*Organization* | The organization that is associated to the commitment.
 `committedProducts`<br/>*Array[CommittedProduct]* | The list of products, commitment levels and negotiated price associated to the commitment.
 `pricingMethod`<br/>*enum* | The pricing method of the commitment. Possible values are: `FIXED_PRICE` and `UTILITY_DISCOUNT`. Used to define how the effective price of the commitment is calculated.
 `rateType`<br/>*enum* | The rate type of the commitment. Applies only to commitments with pricing method `UTILITY_DISCOUNT`. Possible values are: `FIXED_RATE` and `VARIABLE_RATE`.
@@ -363,7 +364,7 @@ curl "https://cloudmc_endpoint/api/v2/commitments" \
 Attributes | &nbsp;
 ---- | ---
 `name`<br/>*string* | The name of the commitment.
-`organization`<br/>*Organization* | The organization that owns the commitment.
+`organization`<br/>*Organization* | The organization that is associated to the commitment.
 `committedProducts`<br/>*Array[CommittedProduct]* | The list of products, commitment levels and negotiated price associated to the commitment.
 `pricingMethod`<br/>*enum* | The pricing method of the commitment. Possible values are: `FIXED_PRICE` and `UTILITY_DISCOUNT`. Used to define how the effective price of the commitment is calculated.
 `rateType`<br/>*enum* | The rate type of the commitment. Applies only to commitments with pricing method `UTILITY_DISCOUNT`. Possible values are: `FIXED_RATE` and `VARIABLE_RATE`.
