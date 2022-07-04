@@ -42,6 +42,10 @@ curl "https://cloudmc_endpoint/api/v2/commitments" \
     "name": "SleepyCo",
     "id": "42a54cde-0e5d-4168-9827-5967ded6095e"
    },
+   "reseller": {
+      "name": "SleepyParentCo",
+      "id": "55a89cde-0e5d-4168-9827-5967ded6095e"
+   },
    "name": "fixed price commitment",
    "id": "52a54cde-0e5d-4168-9827-5967ded6095e",
    "terminated": false,
@@ -72,6 +76,10 @@ curl "https://cloudmc_endpoint/api/v2/commitments" \
    "organization": {
     "name": "SleepyCo",
     "id": "42a54cde-0e5d-4168-9827-5967ded6095e"
+   },
+   "reseller": {
+      "name": "SleepyParentCo",
+      "id": "55a89cde-0e5d-4168-9827-5967ded6095e"
    },
    "name": "fixed rate commitment",
    "id": "62a54cde-0e5d-4168-9827-5967ded6095e",
@@ -175,6 +183,10 @@ curl "https://cloudmc_endpoint/api/v2/commitments/52a54cde-0e5d-4168-9827-5967de
          "name": "SleepyCo",
          "id": "42a54cde-0e5d-4168-9827-5967ded6095e"
       },
+      "reseller": {
+         "name": "SleepyParentCo",
+         "id": "55a89cde-0e5d-4168-9827-5967ded6095e"
+      },
       "name": "fixed price commitment",
       "id": "52a54cde-0e5d-4168-9827-5967ded6095e",
       "terminated": false,
@@ -190,6 +202,7 @@ Attributes | &nbsp;
 `id`<br/>*string* | The id of the commitment.
 `name`<br/>*string* | The name of the commitment.
 `organization`<br/>*Organization* | The organization that is associated to the commitment.
+`reseller`<br/>*Organization* | The organization that owns the commitment.
 `committedProducts`<br/>*Array[CommittedProduct]* | The list of products, commitment levels and negotiated price associated to the commitment.
 `pricingMethod`<br/>*enum* | The pricing method of the commitment. Possible values are: `FIXED_PRICE` and `UTILITY_DISCOUNT`. Used to define how the effective price of the commitment is calculated.
 `rateType`<br/>*enum* | The rate type of the commitment. Applies only to commitments with pricing method `UTILITY_DISCOUNT`. Possible values are: `FIXED_RATE` and `VARIABLE_RATE`.
