@@ -702,7 +702,7 @@ The details that you can see are;
 
 ### Monitoring the invoices/account receivable
 
-12.09
+![Invoice](images/invoice_list.png)
 
 All of the created invoices can be monitored through your dashboard (Invoice List).
 
@@ -721,11 +721,18 @@ The transaction details that you can see are;
 | Days Past Due | How many days an invoice has gone unpaid past the due date. For example, if due date is 1 July and the invoice is not paid by 4 July, then Days Past Due will be filled in with 3                                                                                                                            |                                                                                                              |
 | Status                | The transaction status. Possible values are CREATED, PAID, CANCELLED, and OVERDUE                                                  |
 
+In terms of status, below are the status mapping between API Invoice and status in dashboard
+| API Invoice Status         | Dashboard status                                                                                                                                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| CREATED, WAITING PAYMENT, FAILED  | CREATED                                                             |
+| COMPLETE | PAID                                                           |
+| EXPIRED  | CANCELLED                                                          |
+
+
 There are several actions that you can take for the created invoice:
 1. Send invoice --> To send the invoice to the customer's defined email
 2. Download invoice --> To download the PDF file of the invoice
 3. Delete --> To delete the invoice. Only invoice with status CREATED can be deleted
-
 
 
 ### Creating a Customer for Account Receivable/Invoice
@@ -743,14 +750,16 @@ Option 1: Through "Create Invoice" menu
 
 For Tax Type, the explanation is as follows:
 
-| No tax           | Tax will not be added upon the subtotal  |                                                                                         | PPN 11% Exclusive| PPN 11% of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN will be 11% of the 10,000 = 1,100                         |
+| Tax Type         | Definition                                                                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| No tax           | Tax will not be added upon the subtotal  |                                                                                         | PPN 11% Exclusive| PPN 11% of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN will be 11% of the 10,000 = 1,100                                     |
 | PPN 10% Inclusive| Tax will not be added upon the subtotal because the subtotal is assumed to be tax inclusive   |
 
 Option 2: Through "Customer Management" menu
 
-12.06
-12.07
-12.08
+![Invoice](images/customer_management_home.png)
+
+![Invoice](images/customer_management_add_customer_1.png)
 
 
 1. Click "Customer Management" sidebar under the "Account Receivable" menu
@@ -758,7 +767,7 @@ Option 2: Through "Customer Management" menu
 3. Fill in Customer ID, Customer Name (mandatory), PIC Name, Customer Phone Number, Tax Type (mandatory), Customer Email, Address.
 4. Click save
 
-12.31
+![Invoice](images/customer_management_home.png)
 
 All of the created customer can be monitored through your dashboard (Customer List). There are several actions that you take for the customer data:
 1. Edit --> To edit the data of the customer
@@ -766,7 +775,7 @@ All of the created customer can be monitored through your dashboard (Customer Li
 
 If you click the hyperlink of Customer ID, you will be able to see the detailed data of the customer, including the list of invoices belonging to that customer.
 
-12.33
+![Invoice](images/customer_management_detail.png)
 
 
 
