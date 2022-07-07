@@ -837,10 +837,16 @@ p JSON.parse(result)
   "order_type": "limit_order",
   "stop_order_type": "stop_loss_order",
   "stop_price": "string",
+  "trail_amount": "string",
   "stop_trigger_method": "mark_price",
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
   "post_only": "true",
   "reduce_only": "true",
+  "close_on_trigger": "true",
   "client_order_id": "string"
 }
 ```
@@ -1296,6 +1302,104 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Add/Update Bracket order
+
+<a id="opIdbracketOrder"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.put('https://api.delta.exchange/v2/orders/bracket', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/v2/orders/bracket \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.put 'https://api.delta.exchange/v2/orders/bracket',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /orders/bracket`
+
+> Body parameter
+
+```json
+{
+  "id": 0,
+  "product_id": 0,
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
+  "bracket_trail_amount": "string"
+}
+```
+
+<h3 id="add/update-bracket-order-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[BracketOrderRequest](#schemabracketorderrequest)|true|Bracket Order which needs to be updated |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true
+}
+```
+
+<h3 id="add/update-bracket-order-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if orders could not be updated|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 ## Cancel all open orders
 
 <a id="opIdcancelAllOrders"></a>
@@ -1461,10 +1565,16 @@ p JSON.parse(result)
       "order_type": "limit_order",
       "stop_order_type": "stop_loss_order",
       "stop_price": "string",
+      "trail_amount": "string",
       "stop_trigger_method": "mark_price",
+      "bracket_stop_loss_limit_price": "string",
+      "bracket_stop_loss_price": "string",
+      "bracket_take_profit_limit_price": "string",
+      "bracket_take_profit_price": "string",
       "time_in_force": "gtc",
       "post_only": "true",
       "reduce_only": "true",
+      "close_on_trigger": "true",
       "client_order_id": "string"
     }
   ],
@@ -1485,10 +1595,16 @@ p JSON.parse(result)
 |»» order_type|body|string|false|none|
 |»» stop_order_type|body|string|false|none|
 |»» stop_price|body|string|false|none|
+|»» trail_amount|body|string|false|none|
 |»» stop_trigger_method|body|string|false|none|
+|»» bracket_stop_loss_limit_price|body|string|false|none|
+|»» bracket_stop_loss_price|body|string|false|none|
+|»» bracket_take_profit_limit_price|body|string|false|none|
+|»» bracket_take_profit_price|body|string|false|none|
 |»» time_in_force|body|string|false|none|
 |»» post_only|body|string|false|none|
 |»» reduce_only|body|string|false|none|
+|»» close_on_trigger|body|string|false|none|
 |»» client_order_id|body|string|false|none|
 |» product_id|body|integer|false|none|
 
@@ -1512,6 +1628,8 @@ p JSON.parse(result)
 |»» post_only|false|
 |»» reduce_only|true|
 |»» reduce_only|false|
+|»» close_on_trigger|true|
+|»» close_on_trigger|false|
 
 > Example responses
 
@@ -3974,10 +4092,16 @@ This operation does not require authentication.
   "order_type": "limit_order",
   "stop_order_type": "stop_loss_order",
   "stop_price": "string",
+  "trail_amount": "string",
   "stop_trigger_method": "mark_price",
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
   "post_only": "true",
   "reduce_only": "true",
+  "close_on_trigger": "true",
   "client_order_id": "string"
 }
 
@@ -3996,10 +4120,16 @@ This operation does not require authentication.
 |order_type|string|false|none|none|
 |stop_order_type|string|false|none|none|
 |stop_price|string|false|none|none|
+|trail_amount|string|false|none|none|
 |stop_trigger_method|string|false|none|none|
+|bracket_stop_loss_limit_price|string|false|none|none|
+|bracket_stop_loss_price|string|false|none|none|
+|bracket_take_profit_limit_price|string|false|none|none|
+|bracket_take_profit_price|string|false|none|none|
 |time_in_force|string|false|none|none|
 |post_only|string|false|none|none|
 |reduce_only|string|false|none|none|
+|close_on_trigger|string|false|none|none|
 |client_order_id|string|false|none|none|
 
 #### Enumerated Values
@@ -4022,6 +4152,8 @@ This operation does not require authentication.
 |post_only|false|
 |reduce_only|true|
 |reduce_only|false|
+|close_on_trigger|true|
+|close_on_trigger|false|
 
 <h2 id="tocSarrayofcreateorderrequest">ArrayOfCreateOrderRequest</h2>
 
@@ -4037,10 +4169,16 @@ This operation does not require authentication.
     "order_type": "limit_order",
     "stop_order_type": "stop_loss_order",
     "stop_price": "string",
+    "trail_amount": "string",
     "stop_trigger_method": "mark_price",
+    "bracket_stop_loss_limit_price": "string",
+    "bracket_stop_loss_price": "string",
+    "bracket_take_profit_limit_price": "string",
+    "bracket_take_profit_price": "string",
     "time_in_force": "gtc",
     "post_only": "true",
     "reduce_only": "true",
+    "close_on_trigger": "true",
     "client_order_id": "string"
   }
 ]
@@ -4099,6 +4237,37 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[[EditOrderRequest](#schemaeditorderrequest)]|false|none|[edit order object]|
+
+<h2 id="tocSbracketorderrequest">BracketOrderRequest</h2>
+
+<a id="schemabracketorderrequest"></a>
+
+```json
+{
+  "id": 0,
+  "product_id": 0,
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
+  "bracket_trail_amount": "string"
+}
+
+```
+
+*bracket order object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer|false|none|none|
+|product_id|integer|false|none|none|
+|bracket_stop_loss_limit_price|string|false|none|none|
+|bracket_stop_loss_price|string|false|none|none|
+|bracket_take_profit_limit_price|string|false|none|none|
+|bracket_take_profit_price|string|false|none|none|
+|bracket_trail_amount|string|false|none|none|
 
 <h2 id="tocSdeleteorderrequest">DeleteOrderRequest</h2>
 

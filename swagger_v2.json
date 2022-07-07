@@ -602,6 +602,53 @@
         }
       }
     },
+    "/orders/bracket": {
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Add/Update Bracket order",
+        "operationId": "bracketOrder",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order",
+            "description": "Bracket Order which needs to be updated ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BracketOrderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns back success response",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if orders could not be updated",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/orders/all": {
       "delete": {
         "tags": [
@@ -2246,11 +2293,26 @@
         "stop_price": {
           "type": "string"
         },
+        "trail_amount": {
+          "type": "string"
+        },
         "stop_trigger_method": {
           "type": "string",
           "enum": [
             "mark_price", "last_traded_price", "spot_price"
           ]
+        },
+        "bracket_stop_loss_limit_price": {
+          "type": "string"
+        },
+        "bracket_stop_loss_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_limit_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_price": {
+          "type": "string"
         },
         "time_in_force": {
           "type": "string",
@@ -2268,6 +2330,13 @@
           ]
         },
         "reduce_only": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "close_on_trigger": {
           "type": "string",
           "enum": [
             "true",
@@ -2308,6 +2377,33 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/EditOrderRequest"
+      }
+    },
+    "BracketOrderRequest": {
+      "type": "object",
+      "description": "bracket order object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "product_id": {
+          "type": "integer"
+        },
+        "bracket_stop_loss_limit_price": {
+          "type": "string"
+        },
+        "bracket_stop_loss_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_limit_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_price": {
+          "type": "string"
+        },
+        "bracket_trail_amount": {
+          "type": "string"
+        }
       }
     },
     "DeleteOrderRequest": {
