@@ -1753,6 +1753,52 @@
         }
       }
     },
+    "/products/?states=expired": {
+      "get": {
+        "tags": [
+          "Settlement Prices"
+        ],
+        "summary": "Get product settlement prices",
+        "operationId": "getProduct",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "states",
+            "description": "Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired ",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "size of a single page for paginated request, default: 100",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Product"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
     "/history/candles": {
       "get": {
         "summary": "GET ohlc candles",
@@ -2384,10 +2430,12 @@
       "description": "bracket order object",
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "required": true
         },
         "product_id": {
-          "type": "integer"
+          "type": "integer",
+          "required": true
         },
         "bracket_stop_loss_limit_price": {
           "type": "string"

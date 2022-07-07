@@ -3610,6 +3610,171 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
+<h1 id="delta-exchange-api-v2-settlement-prices">Settlement Prices</h1>
+
+## Get product settlement prices
+
+<a id="opIdgetProduct"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/v2/products/?states=expired', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/products/?states=expired?states=expired \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/products/?states=expired',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /products/?states=expired`
+
+<h3 id="get-product-settlement-prices-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|states|query|string|false|Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired |
+|page_size|query|string|false|size of a single page for paginated request, default: 100|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "id": 0,
+    "symbol": "string",
+    "description": "string",
+    "created_at": "string",
+    "updated_at": "string",
+    "settlement_time": "string",
+    "notional_type": "vanilla",
+    "impact_size": 0,
+    "initial_margin": 0,
+    "maintenance_margin": "string",
+    "contract_value": "string",
+    "contract_unit_currency": "string",
+    "tick_size": "string",
+    "product_specs": {},
+    "state": "live",
+    "trading_status": "operational",
+    "max_leverage_notional": "string",
+    "default_leverage": "string",
+    "initial_margin_scaling_factor": "string",
+    "maintenance_margin_scaling_factor": "string",
+    "taker_commission_rate": "string",
+    "maker_commission_rate": "string",
+    "liquidation_penalty_factor": "string",
+    "contract_type": "string",
+    "position_size_limit": 0,
+    "basis_factor_max_limit": "string",
+    "is_quanto": true,
+    "funding_method": "string",
+    "annualized_funding": "string",
+    "price_band": "string",
+    "underlying_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "quoting_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "settling_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "spot_index": {
+      "id": 0,
+      "symbol": "string",
+      "constituent_exchanges": [
+        {}
+      ],
+      "underlying_asset_id": 0,
+      "quoting_asset_id": 0,
+      "index_type": "spot_pair"
+    }
+  }
+}
+```
+
+<h3 id="get-product-settlement-prices-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of products|Inline|
+
+<h3 id="get-product-settlement-prices-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|notional_type|vanilla|
+|notional_type|inverse|
+|state|live|
+|state|expired|
+|state|upcoming|
+|trading_status|operational|
+|trading_status|disrupted_cancel_only|
+|trading_status|disrupted_post_only|
+|deposit_status|enabled|
+|deposit_status|disabled|
+|withdrawal_status|enabled|
+|withdrawal_status|disabled|
+|index_type|spot_pair|
+|index_type|fixed_interest_rate|
+|index_type|floating_interest_rate|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
 # Schemas
 
 <h2 id="tocSapisuccessresponse">ApiSuccessResponse</h2>
