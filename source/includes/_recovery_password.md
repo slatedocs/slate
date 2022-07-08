@@ -6,6 +6,7 @@
 fetch('https://core.eventtia.com/en/v1/passwords', {
   method: 'POST',
   body: {
+    recaptcha_token: "",
     data: {
       type: "users",
       attributes: {
