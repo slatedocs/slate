@@ -246,6 +246,8 @@ includes:
   - aws/elastic_ips
   - aws/cidr_blocks
   - aws/cidr_reservations
+  - aws/kubernetes # Kubernetes section
+  - aws/clusters
   - purestorage
   - purestorage/object_storage_api_credentials
   - purestorage/buckets
