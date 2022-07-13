@@ -138,3 +138,25 @@ Attributes | &nbsp;
 `numberOfNodes` <br/> *integer* | The total number of nodes in the cluster.
 `name` <br/> *string* | The name of the cluster.
 `caCert` <br> *string* | The certificate authority data for the cluster.
+<!-------------------- DELETE A CLUSTER -------------------->
+
+#### Delete a cluster
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/api/v2/services/aws/test-area/clusters/test-cluster-1"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters/:id</code>
+
+Delete a cluster. A cluster can only be deleted if it is in ACTIVE or FAILED state.
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+  "taskId":"c4e7adce-5944-410f-85e1-f74ee7ac215b",
+  "taskStatus":"PENDING"
+}
+``` 
