@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://roboticcrowd.com'>Robotic Crowd の製品ページはこちら</a>
+  - <a href='https://autoro.io'>AUTORO の製品ページはこちら</a>
 
 includes:
   - errors
@@ -21,7 +21,7 @@ meta:
 
 # Overview
 
-このドキュメントは、[Robotic Crowd](https://roboticcrowd.com) のREST APIエンドポイントと
+このドキュメントは、[AUTORO](https://autoro.io) のREST APIエンドポイントと
 その使い方をまとめています。
 
 ここではコマンドラインでの利用で記述していますので、各プログラミング言語でも同様にできますので、適宜読み替えを行なってください。
@@ -30,7 +30,7 @@ meta:
 
 ここで紹介する API のエンドポイントのドメインは、次のものです。
 
-`https://api.roboticcrowd.com/`
+`https://api.autoro.io/`
 
 全てのエンドポイントはこのドメイン以下に設定されています。
 
@@ -40,7 +40,7 @@ meta:
 > cURL での認証情報の送信
 
 ```shell
-curl --location --request GET "https://api.roboticcrowd.com/v1/path/to/endpoint" \
+curl --location --request GET "https://api.autoro.io/v1/path/to/endpoint" \
   --header "Authorization: Bearer [your_jwt_token]" 
 ```
 
@@ -49,7 +49,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/path/to/endpoint"
 > 例えば具体的には、次のようになります。
 
 ```shell
-curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" \
+curl --location --request POST "https://api.autoro.io/v1/session_queues" \
   --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2FwaS5yb2JvdGljY3Jvd2QuY29tLyIsImlzcyI6ImNvbnNvbGUucm9ib3RpY2Nyb3dkLmNvbSIsInN1YiI6Iklqb2lJaXdpWjNKaGJuUnpJanA3SW0iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ.fpJ-Ho1IvdRdDdBD-ncp7Xkbijj6UmcboUODi_XtMJk" \
   --header "content-type: application/json" \
   --data "{
@@ -59,9 +59,9 @@ curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" 
 
 > *`path/to/endpoint` と `[your_jwt_token]` は、正しいエンドポイントに置き換えてください。
 
-Robotic Crowd では、API の認証にJWTを使っています。JWTは、プロジェクト内で作成した API Key のaccess_key_id と secret_access_key から作成することができます。API Key は、
+AUTORO では、API の認証にJWTを使っています。JWTは、プロジェクト内で作成した API Key のaccess_key_id と secret_access_key から作成することができます。API Key は、
 プロジェクトオーナー権限をもつユーザーがプロジェクト管理画面から作成する事ができます。
-API Key の作成については、[こちらの記事](https://support.roboticcrowd.com/docs/management-2/%e3%81%9d%e3%81%ae%e4%bb%96%e3%81%ae%e8%a8%ad%e5%ae%9a/api%e3%82%ad%e3%83%bc%e3%81%ae%e7%99%ba%e8%a1%8c/)を参照してください。
+API Key の作成については、[こちらの記事](https://support.autoro.io/docs/management-2/%e3%81%9d%e3%81%ae%e4%bb%96%e3%81%ae%e8%a8%ad%e5%ae%9a/api%e3%82%ad%e3%83%bc%e3%81%ae%e7%99%ba%e8%a1%8c/)を参照してください。
 
 クライアント側で JWT を作成する事を想定していますが、JWT トークンを取得するためのエンドポイントも用意しています。
 
@@ -123,9 +123,9 @@ JWT は、base64 エンコードされた、 JSON 形式の header と payload �
 
 ```json
 {
-  "iss": "console.roboticcrowd.com",
+  "iss": "console.autoro.io",
   "sub": "IjoiIiwiZ3JhbnRzIjp7Im",
-  "aud": "https://api.roboticcrowd.com/",
+  "aud": "https://api.autoro.io/",
   "nbf": 1450471147,
   "exp": 1450473747,
   "scopes": "session_queue.write session_queue.read access_token.create"
@@ -136,15 +136,15 @@ JWT は、base64 エンコードされた、 JSON 形式の header と payload �
 
 ### iss
 
-`iss` は、トークンの発行者を示すデータです。`console.roboticcrowd.com` を設定してください。
+`iss` は、トークンの発行者を示すデータです。`console.autoro.io` を設定してください。
 
 ### sub
 
-`sub` は、API Key を作成した時に決定される Robotic Crowd 内で一意の ID です。利用する API Key の `access_key_id` をセットしてください。 Robotic Crowd は、`sub` を一人のユーザーとして認識します。
+`sub` は、API Key を作成した時に決定される AUTORO 内で一意の ID です。利用する API Key の `access_key_id` をセットしてください。 AUTORO は、`sub` を一人のユーザーとして認識します。
 
 ### aud
 
-`aud` は、トークンを受け取るURLです。`https://api.roboticcrowd.com/` である必要があります。
+`aud` は、トークンを受け取るURLです。`https://api.autoro.io/` である必要があります。
 
 ### nbf
 
@@ -193,7 +193,7 @@ HMACSHA256(
 
 署名は、トークンの信頼性を担保するパートになっています。署名は、 header と payload をそれぞれ base64 エンコードした文字列を `.` で接続し、 `secret_access_key` でハッシュ値を計算したものになります。ですので、 `secret_access_key` が安全に保存されている事は非常に重要になります。
 
-Robotic Crowd では、 `secret_access_key` は、暗号化されデータベースに保存されています。生の `secret_access_key` は、API Key を生成したタイミングで一度だけ表示されます。そして2度とやりとりされることはありません。
+AUTORO では、 `secret_access_key` は、暗号化されデータベースに保存されています。生の `secret_access_key` は、API Key を生成したタイミングで一度だけ表示されます。そして2度とやりとりされることはありません。
 
 署名を検証することにより、ペイロードが改ざんされていないことを確認する事ができます。
 
@@ -209,7 +209,7 @@ echo -n '{"alg":"HS256","typ":"JWT"}' | base64
 > payloadを生成する
 
 ```shell
-echo -n '{"iss": "console.roboticcrowd.com","sub": "IjoiIiwiZ3JhbnRzIjp7Im","aud": "https://api.roboticcrowd.com/","nbf": 1450471147,"exp": 1450473747,"scopes": "session_queue.write session_queue.read access_token.create"}' | \
+echo -n '{"iss": "console.autoro.io","sub": "IjoiIiwiZ3JhbnRzIjp7Im","aud": "https://api.autoro.io/","nbf": 1450471147,"exp": 1450473747,"scopes": "session_queue.write session_queue.read access_token.create"}' | \
 base64 | \
 tr -d '='
 
@@ -275,7 +275,7 @@ JWT は、header と payload が base64 で誰でもデコードできてしま�
 > tokenを取得する
 
 ```shell
-curl --location --request POST "https://api.roboticcrowd.com/v1/token" \
+curl --location --request POST "https://api.autoro.io/v1/token" \
   --header "content-type: application/json" \
   --data "{
   \"access_key_id\": \"your_access_key_id\",
@@ -295,7 +295,7 @@ JWT は、クライアントサイドで生成することを推奨していま�
 ### HTTP Request
 
 `
-  POST https://api.roboticcrowd.com/v1/token
+  POST https://api.autoro.io/v1/token
 `
 
 ### パラメーター
@@ -352,7 +352,7 @@ params 内のオブジェクトとして設定した key と value は、ワー�
 > POST /v1/session_queues
 
 ```shell
-curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" \
+curl --location --request POST "https://api.autoro.io/v1/session_queues" \
   --header "Authorization: Bearer [jwt_token]" \
   --header "content-type: application/json" \
   --data "{
@@ -395,7 +395,7 @@ curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" 
 ### HTTP Request
 
 `
-POST https://api.roboticcrowd.com/v1/session_queues
+POST https://api.autoro.io/v1/session_queues
 `
 
 ### パラメーター
@@ -408,7 +408,7 @@ POST https://api.roboticcrowd.com/v1/session_queues
 
 **説明**
 
-ワークフローを指定する ID です。ワークフロー ID は、Robotic Crowd のプロジェクト画面から確認できます。
+ワークフローを指定する ID です。ワークフロー ID は、AUTORO のプロジェクト画面から確認できます。
 
 #### params
 
@@ -431,7 +431,7 @@ Session Queue Schema のJSONオブジェクトを返却します。
 > GET /v1/session_queues
 
 ```shell
-curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?page=1&per_page=3&query=before:2019-10-11%20after:2019-07-01" \
+curl --location --request GET "https://api.autoro.io/v1/session_queues?page=1&per_page=3&query=before:2019-10-11%20after:2019-07-01" \
   --header "Authorization: Bearer [your_jwt]"
 ```
 
@@ -510,7 +510,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
 ### HTTP Request
 
 `
-  GET https://api.roboticcrowd.com/v1/session_queues?page=1&per_page=10&query=
+  GET https://api.autoro.io/v1/session_queues?page=1&per_page=10&query=
 `
 
 ### クエリパラメーター
@@ -523,7 +523,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
 
 **説明**
 
-検索条件を文字列で指定します。検索条件については、[こちら](https://docs.roboticcrowd.com/search/session)に詳細があります。
+検索条件を文字列で指定します。検索条件については、[こちら](https://docs.autoro.io/search/session)に詳細があります。
 
 #### per_page
 
@@ -563,7 +563,7 @@ Session Queue Schema のトータル件数が格納されています。
 > DELETE /v1/session_queues/{session_queue_id}/cancel
 
 ```shell
-curl --location --request DELETE "https://api.roboticcrowd.com/v1/session_queues/{session_queue_id}/cancel" \
+curl --location --request DELETE "https://api.autoro.io/v1/session_queues/{session_queue_id}/cancel" \
   --header "Authorization: Bearer [jwt_token]" \
   --header "content-type: application/json"
 ```
@@ -575,7 +575,7 @@ curl --location --request DELETE "https://api.roboticcrowd.com/v1/session_queues
 ### HTTP Request
 
 `
-DELETE https://api.roboticcrowd.com/v1/session_queues/{session_queue_id}/cancel
+DELETE https://api.autoro.io/v1/session_queues/{session_queue_id}/cancel
 `
 
 ### session_queue_id（実行キューID）の確認方法
@@ -630,7 +630,7 @@ Workflow とは、自動化設定そのものです。外部からワークフ�
 > GET /v1/workflows
 
 ```shell
-curl --location --request GET "https://api.roboticcrowd.com/v1/workflows?page=1&per_page=10" \
+curl --location --request GET "https://api.autoro.io/v1/workflows?page=1&per_page=10" \
   --header "Authorization: Bearer [your_jwt]"
 ```
 
@@ -673,7 +673,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/workflows?page=1&
 ### HTTP Request
 
 `
-GET https://api.roboticcrowd.com/v1/workflows?page=1&per_page=10
+GET https://api.autoro.io/v1/workflows?page=1&per_page=10
 `
 
 ### クエリパラメーター

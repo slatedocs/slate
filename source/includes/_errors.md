@@ -1,6 +1,6 @@
 # Errors
 
-Robotic Crowd が返却する API のエラーコードです。
+AUTORO が返却する API のエラーコードです。
 
 Code | Description
 ---------- | -------
