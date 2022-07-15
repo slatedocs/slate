@@ -1,8 +1,11 @@
+Laboratory data are mapped to FHIR's [Observation](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource. Laboratory data are obtained via HL7 message from MSK's Laboratory Information System (LIS). If available in the source data, a LOINC code is mapped to `code.coding.code`. Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.
+
+
+## Required Parameters
 ```
 GET /msk-apim/external/v1/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 ```
-This endpoint uses the [Observation FHIR](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource to request Lab data 
 
 |# | Parameters    | Description                          |
 |:-| :---------- | :----------------------------------- |
@@ -11,6 +14,7 @@ This endpoint uses the [Observation FHIR](http://hl7.org/fhir/StructureDefinitio
 |A3|`x-partnerid` |:material-check: suply given partnerid|
 |A4|Filter: Optional Parameters go to [Filter page](/searching) |
 
+## Example Request
 
 === "C# "
 
@@ -38,9 +42,10 @@ This endpoint uses the [Observation FHIR](http://hl7.org/fhir/StructureDefinitio
     data = res.read()
     print(data.decode("utf-8"))
     ```
+## Example Response
 
 ??? success "Successful Payload Example"
-    ```
+    ```json
       {
         "resourceType": "Bundle",
         "identifier": {
@@ -187,30 +192,36 @@ This endpoint uses the [Observation FHIR](http://hl7.org/fhir/StructureDefinitio
   
     ```
 
-## Lab Payload Mapping
+## Field Definitions
 
-|# | Parameters   | Description                          |
-|:-| :--------- | :----------------------------------- |
-|1|`fullUrl`       | :material-check: MSK unique study number  |
-|2|`resourceType` |Specifies the type of [FHIR of resource (Observation)](https://www.hl7.org/fhir/observation-definitions.html#Observation){:target="blank"} that was use to build it.   |
-||`extension[0].url`|URL can be used to find more information about the valueCode |
-||`extension[0].valueCode`|Holds the unique MSK research name via  [FHIR Extension](https://www.hl7.org/fhir/R4/extensibility.html){:target="blank"}|
-||`extension[1].url`|URL can be used to find more information about the valueCode |
-||`extension[1].valueCode`|Holds the unique sponsor name via [FHIR Extension](https://www.hl7.org/fhir/R4/extensibility.html){:target="blank"}|
-||`identifier.system`||
-||`identifier.value`||
-||`status`||
-||`category.coding.system`||
-||`category.coding.code`||
-||`category.coding.display`||
-||`category.text`||
-||`subject.reference`||
-||`encounter.display`||
-||`effectiveDateTime`||
-||`issued`||
-||`valueQuantity.value`||
-||`valueQuantity.unit`||
-||`referenceRange`||
-||Filter: Optional Parameters go to [Filter page](/searching) |
+|  Field                     | Description                                |
+| -------------------------- | ------------------------------------------ |
+| `id`                       | Unique identifier for each record          |
+| `extension[0].url`         | FHIR researchstudy extension documentation |
+| `extension[0].valueCode`   | MSKCC IRB Protocol Number                  |
+| `extension[1].url`         |                                            |
+| `extension[1].valueCode`   | Sponsor Study Number                       |
+| `identifier.system`        |                                            |
+| `identifier.value`         | Unique identifier for each record          |
+| `status`                   | Hardcoded to "final"                       |
+| `category.coding.system`   | FHIR Observation category documentation    |
+| `category.coding.code`     | FHIR Observation category code             |
+| `category.coding.display`  | FHIR Observation category display          |
+| `category.text`            | FHIR Observation category                  |
+| `code.coding.system`       | LOINC website                              |
+| `code.coding.code`         | LOINC code                                 |
+| `code.coding.display`      | MSKCC test code                            |
+| `code.text`                | MSKCC test code                            |
+| `subject.reference`        | "Patient/" + Sponsor assigned subject ID   |
+| `encounter.display`        | Protocol visit                             |
+| `effectiveDateTime`        | Collection datetime                        |
+| `issued`                   | Collection datetime                        |
+| `valueQuantity.value`      | Numeric result                             |
+| `valueQuantity.unit`       | MSKCC Unit                                 |
+| `referenceRange.text`      | Reference range                            |
+| `valueString`              | Text result                                |
+
+
+
 
 
