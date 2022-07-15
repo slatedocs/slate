@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#required-parameters" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -269,9 +274,59 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Demographics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Demographics
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    Required Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-definitions" class="md-nav__link">
+    Field Definitions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -436,6 +491,42 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    Required Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-definitions" class="md-nav__link">
+    Field Definitions
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -450,7 +541,73 @@
 
   <h1>Demographics</h1>
 
-
+<p>Demographics data are mapped to FHIR's <a href="http://hl7.org/fhir/patient.html" target="blank">Patient</a> resource. Data is pulled into the Clinical Research Data Warehouse from MSK's Revenue Management System (RMS). Patients are identified by the sponsor subject ID.</p>
+<h2 id="required-parameters">Required Parameters</h2>
+<h2 id="example-request">Example Request</h2>
+<h2 id="example-response">Example Response</h2>
+<h2 id="field-definitions">Field Definitions</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sponsor assigned subject ID</code></td>
+<td>FD_SUBJECT_STUDY_ID</td>
+</tr>
+<tr>
+<td><code>extension[0].url</code></td>
+<td>FHIR Patient documentation</td>
+</tr>
+<tr>
+<td><code>extension[0].valueCode</code></td>
+<td>MSKCC IRB Protocol Number</td>
+</tr>
+<tr>
+<td><code>extension[1].url</code></td>
+<td>FHIR Race documentation</td>
+</tr>
+<tr>
+<td><code>extension[1].valueCode</code></td>
+<td>FHIR Race code</td>
+</tr>
+<tr>
+<td><code>extension[2].url</code></td>
+<td>FHIR Ethnicity documentation</td>
+</tr>
+<tr>
+<td><code>extension[2].valueCode</code></td>
+<td>FHIR Ethnicity code</td>
+</tr>
+<tr>
+<td><code>extension[3].url</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>extension[3].valueCode</code></td>
+<td>Sponsor Study Number</td>
+</tr>
+<tr>
+<td><code>identifier.system</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>identifier.value</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>Gender</td>
+</tr>
+<tr>
+<td><code>birthDate</code></td>
+<td>Year of birth</td>
+</tr>
+</tbody>
+</table>
 
               
             </article>

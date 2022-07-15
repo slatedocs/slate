@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#required-parameters" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -297,9 +302,59 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Vitals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Vitals
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    Required Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-definitions" class="md-nav__link">
+    Field Definitions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -436,6 +491,42 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    Required Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    Example Request
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    Example Response
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#field-definitions" class="md-nav__link">
+    Field Definitions
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -450,10 +541,11 @@
 
   <h1>Vitals</h1>
 
-<p><div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/observations
+<p>Vitals data are mapped to FHIR's <a href="http://hl7.org/fhir/StructureDefinition/Observation" target="blank">Observation</a> resource. Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.</p>
+<h2 id="required-parameters">Required Parameters</h2>
+<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 </code></pre></div>
-This endpoint uses the <a href="http://hl7.org/fhir/StructureDefinition/Observation" target="blank">Observation FHIR</a> resource to request Vital Signs data </p>
 <table>
 <thead>
 <tr>
@@ -485,6 +577,7 @@ This endpoint uses the <a href="http://hl7.org/fhir/StructureDefinition/Observat
 </tr>
 </tbody>
 </table>
+<h2 id="example-request">Example Request</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">C# </label><label for="__tabbed_1_2">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -527,8 +620,10 @@ This endpoint uses the <a href="http://hl7.org/fhir/StructureDefinition/Observat
 </div>
 </div>
 </div>
-<p>Response Example</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<h2 id="example-response">Example Response</h2>
+<details class="success">
+<summary>Successful Payload Example</summary>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bundle&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://datapedia.mskcc.org/index.php/IDB.PROTOCOL&quot;</span><span class="p">,</span><span class="w"></span>
@@ -672,6 +767,9 @@ This endpoint uses the <a href="http://hl7.org/fhir/StructureDefinition/Observat
 <span class="w">    </span><span class="p">]</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
+</details>
+<h2 id="field-definitions">Field Definitions</h2>
+<p>ANNA TODO</p>
 
               
             </article>
