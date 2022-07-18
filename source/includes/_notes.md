@@ -90,6 +90,8 @@ Returns all notes attached to a `person`, `organization`, `opportunity`.
 | organization_id | integer | false    | A unique identifier that represents an Organization that was tagged in the retrieved notes.   |
 | opportunity_id  | integer | false    | A unique identifier that represents an Opportunity that was tagged in the retrieved notes.    |
 | creator_id      | integer | false    | A unique identifier that represents an Affinity user whose created notes should be retrieved. |
+| page_size       | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                   |
+| page_token      | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results. |  
 
 ### Returns
 
