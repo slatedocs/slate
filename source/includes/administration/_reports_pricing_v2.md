@@ -8,7 +8,7 @@ Reports using the pricing v2 engine.
 
 `GET /reports/organization_pricing?organization_id=:id&start_date:=end_date=&end_date=:end_date`
 
-Retrieves a list of usage grouped by currency and containing categories and their products. There is a cost sum at the currency, category and product level of granularity. Generates a report using applied pricings from the closest reseller to the organization, not including itself.
+Retrieves a list of usage grouped by currency and containing categories and their products. There is a cost sum at the currency, category and product level of granularity. Generates a report using pricing packages from the closest reseller to the organization, not including itself.
 
 **Query Parameters**
 
@@ -235,15 +235,15 @@ curl --request GET \
 
 Customer Report Attributes | &nbsp;
 ---------- | -----------
-`organizations`<br/>*Array[Object]* | Returns an array of organizations for the usage. There will be one entry per organization and applied pricing combination found for the time period.
+`organizations`<br/>*Array[Object]* | Returns an array of organizations for the usage. There will be one entry per organization and pricing package combination found for the time period.
 `organizations.currency`<br/>*string* | The short-name of the currency.
 `organizations.total`<br/>*string* | A string containing the total of all usage.
 `organizations.categories`<br/>*Array[Object]* | An array of category objects. Contains all categories that had usage for the period.
 `organizations.categories.name`<br/>*Object* | A map of short language codes to their translated category names.
 `organizations.categories.subTotal`<br/>*string* | A string with the subtotal of usage for the category. It is the summed up product usage.
-`organizations.appliedPricing`<br/>*Object* | The applied pricing for this organization entry.
-`organizations.appliedPricing.id`<br/>*UUID* | The applied pricing for this organization entry.
-`organizations.appliedPricing.name`<br/>*Object* | A map of short language codes to their translated name for the applied pricing.
+`organizations.appliedPricing`<br/>*Object* | The pricing package for this organization entry.
+`organizations.appliedPricing.id`<br/>*UUID* | The pricing package for this organization entry.
+`organizations.appliedPricing.name`<br/>*Object* | A map of short language codes to their translated name for the pricing package.
 `startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the report.
 `endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the report.
 `reportGenerated`<br/>*boolean* | Whether or not a report could be generated for this time period.

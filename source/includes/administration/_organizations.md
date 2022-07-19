@@ -1093,8 +1093,8 @@ curl "https://cloudmc_endpoint/api/v2/organizations/87895f43-51c1-43cc-b987-7e30
         "id": "de6cf332-14b2-4da8-8522-3dfe12fcd0da"
       },
       "name": {
-        "en": "Applied Pricing",
-        "fr": "Applied Pricing"
+        "en": "Pricing Package",
+        "fr": "Pricing Package"
       },
       "id": "92041aa8-7784-45b0-aa85-76376ede784d",
       "creationDate": "2021-09-13T15:18:38.000Z",

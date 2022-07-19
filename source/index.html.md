@@ -22,7 +22,7 @@ includes:
   - administration/notifications
   - administration/products
   - administration/pricings
-  - administration/applied_pricings
+  - administration/pricing_packages
   - administration/rollbacks
   - administration/invoices
   - administration/payments

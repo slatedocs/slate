@@ -68,21 +68,53 @@ curl "https://cloudmc_endpoint/api/v2/reseller/settings/billing/f7ad28a8-1227-44
 
 ```json
 {
-  "data": {
-    "organization": {
-      "id": "10572c3d-16e5-450f-8af8-a01e50dc52d4"
-    },
-    "id": "f7ad28a8-1227-44de-9785-6dbd556f3bda",
-    "version": 1,
-    "daysBeforeAutoDraft": 3,
-    "daysBeforeAutoApproval": 3,
-    "daysBeforeAutoPayment": 5,
-    "bccEmails": ["finance.support@company.com", "monitoring@company.com"],
-    "daysBeforeCardWarnings": [30],
-    "customerInformation": ["accountId"],
-    "address": ["Address line 1", "Address line 2", "etc."],
-    "termsAndConditions": "My terms and conditions..."
-  }
+   "data":{
+      "daysBeforeAutoDraft":5,
+      "minimumDaysInvoicePeriod":15,
+      "bccEmails":[
+         "email@cloudops.com"
+      ],
+      "address":{
+         "country":"USA",
+         "province":"Georgia",
+         "city":"Atlanta",
+         "postalCode":"30328",
+         "businessName":"Org",
+         "lineOne":"123 Example Street"
+      },
+      "daysBeforeAutoApproval":3,
+      "version":93,
+      "defaultPricingPackage":{
+         "id":"8358f8d6-1f2d-4bb9-bb0a-f8ce51dfa19c"
+      },
+      "daysBeforeCardWarnings":[
+         24
+      ],
+      "termsAndConditions":"Terms",
+      "defaultCurrency":"USD",
+      "organization":{
+         "name":"Org",
+         "customFieldDefinitions":[
+            {
+               "field":"account_number",
+               "id":"31b7350a-3c41-4d64-b58b-c7bfbc45abbb",
+               "nameTranslations":{
+                  "en":"Account Number"
+               },
+               "descriptionTranslations":{
+                  "en":"Account number"
+               }
+            }
+          ],
+         "id":"5ff3a3d8-41a8-4ca2-813f-7d5af4cfc872"
+      },
+      "billingDay":1,
+      "customerInformation":[
+         "account_number"
+      ],
+      "id":"0ada48d2-2c3b-4930-8427-d0087ec32551",
+      "daysBeforeAutoPayment":1
+   }
 }
 ```
 
@@ -92,11 +124,17 @@ Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | The configured billing settings' id.
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
+`organization.name`<br/>*string* | The name of the organization that the billing settings are linked to. It cannot be changed.
+`organization.customFieldDefinitions`<br/>*Array[object]* | The defined custom field of a customer, contains the field name, id, and translation data. Only returned if the org has custom fields enabled and present.
 `version`<br/>*integer* | The billing settings version.
+`defaultCurrency`<br/>*string* | The currency that will be used by default on an invoice.
+`defaultPricingPackage.id`<br/>*UUID* | The pricing package id that is used to derive the usage data costs for non-billable organizations, usage reports will be available to view but invoices will not be generated for non-billable organizations.
+`billingDay`<br/>*integer* | The day of the month in which new billing cycles are started.
 `daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.
 `daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
 `daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
+`minimumDaysInvoicePeriod`<br/>*integer* | The minimum amount of days an organization has been onboarded for before an invoice is generated.
+`bccEmails`<br/>*Array[string]* | List of email addresses to include as Blind Carbon Copy (BCC) when sending emails to customers upon billing exceptions.
 `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
@@ -165,6 +203,7 @@ Required | &nbsp;
 Optional | &nbsp;
 ---------- | -----------
 `organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. If the `organizationId` is omitted, the authenticated user's organization will be used.
+`defaultPricingPackage.id`<br/>*UUID* | The id of the default pricing package, if there is none specified then usage from non-billable organizations will not be derived a cost.
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
 `termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
@@ -238,6 +277,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ---------- | -----------
+`defaultPricingPackage.id`<br/>*UUID* | The id of the default pricing package, if there is none specified then usage from non-billable organizations will not be derived a cost.
 `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
 `address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
 `termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.

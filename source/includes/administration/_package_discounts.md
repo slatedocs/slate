@@ -1,17 +1,17 @@
 ## Applied Pricing Discounts
 
-The discount allows the assignment of a percentage discount or credit to an applied pricing.
+The discount allows the assignment of a percentage discount or credit to a pricing package.
 
 <!-------------------- LIST APPLIED PRICING DISCOUNTS -------------------->
 ### List applied pricing discounts
 
-`GET /applied_pricings/:applied_pricing_id/discounts?type=:type`
+`GET /pricing_packages/:pricing_package_id/discounts?type=:type`
 
-Retrieve the list of discounts associated with an applied pricing.
+Retrieve the list of discounts associated with a pricing package.
 
 ```shell
-# Retrieve applied pricing discount list
-curl "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts?type=PERCENTAGE" \
+# Retrieve pricing package discount list
+curl "https://cloudmc_endpoint/rest/pricing_packages/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts?type=PERCENTAGE" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -34,7 +34,7 @@ curl "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-c
         "fr": "Réduction Estival"
       },
       "id": "18db7bc6-8be1-48bb-bab1-77a7d696fa3b",
-      "appliedPricing": {
+      "pricingPackage": {
         "id": "efd32752-c6f2-45cf-b494-cc6be8a45845"
       },
       "startDate": "2021-07-20T15:57:16.132Z",
@@ -54,13 +54,13 @@ Attributes | &nbsp;
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discounts. All pricing products specified will have the discount value applied to them.
 `durationDays`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
 `type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
-`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing.
+`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the pricing package.
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `isDeactivated`<br/>*boolean* | Whether or not the discount is deactivated. Defaults to false.
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them.
 `name`<br/>*Map[String, String]* | The name translations of the discount.
-`appliedPricing`<br/>*Object* | The applied pricing being discounted.
-`appliedPricing.id`<br/>*UUID* | The UUID of the applied pricing.
+`pricingPackage`<br/>*Object* | The pricing package being discounted.
+`pricingPackage.id`<br/>*UUID* | The UUID of the pricing package.
 `applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `startDate`<br/>*date* | The start date of the discount.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date.
@@ -69,13 +69,13 @@ Attributes | &nbsp;
 <!-------------------- GET APPLIED PRICING DISCOUNT -------------------->
 ### Get applied pricing discount
 
-`GET /applied_pricings/:applied_pricing_id/discounts/:id`
+`GET /pricing_packages/:pricing_package_id/discounts/:id`
 
 Retrieve a discount's details.
 
 ```shell
-# Retrieve applied pricing discount list
-curl "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
+# Retrieve pricing package discount list
+curl "https://cloudmc_endpoint/rest/pricing_packages/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -98,7 +98,7 @@ curl "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-c
         "fr": "Réduction Estival"
       },
       "id": "18db7bc6-8be1-48bb-bab1-77a7d696fa3b",
-      "appliedPricing": {
+      "pricingPackage": {
         "id": "efd32752-c6f2-45cf-b494-cc6be8a45845"
       },
       "startDate": "2021-07-20T15:57:16.132Z",
@@ -114,13 +114,13 @@ Attributes | &nbsp;
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discounts. All pricing products specified will have the discount value applied to them.
 `durationDays`<br/>*integer* | Duration of the discount once it has been applied to a customer. If not provided the discount will last indefinitely, or until credit values are reached.
 `type`<br/>*enum* | The type of the discount. It could be either "PERCENTAGE" or "CREDIT".
-`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing.
+`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the pricing package.
 `discountScope`<br/>*enum* | The scope of the discount. It could be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `isDeactivated`<br/>*boolean* | Whether or not the discount is deactivated. Defaults to false.
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them.
 `name`<br/>*Map[String, String]* | The name translations of the discount.
-`appliedPricing`<br/>*Object* | The applied pricing being discounted.
-`appliedPricing.id`<br/>*UUID* | The UUID of the applied pricing.
+`pricingPackage`<br/>*Object* | The pricing package being discounted.
+`pricingPackage.id`<br/>*UUID* | The UUID of the pricing package.
 `applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `startDate`<br/>*date* | The start date of the discount.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date.
@@ -129,13 +129,13 @@ Attributes | &nbsp;
 <!-------------------- CREATE APPLIED PRICING DISCOUNT -------------------->
 ### Create applied pricing discount
 
-`POST /applied_pricings/:applied_pricing_id/discounts`
+`POST /pricing_packages/:pricing_package_id/discounts`
 
 Create a new discount
 
 ```shell
-# Creates a new applied pricing discount
-curl -X POST "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts" \
+# Creates a new pricing package discount
+curl -X POST "https://cloudmc_endpoint/rest/pricing_packages/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -180,7 +180,7 @@ curl -X POST "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45c
         "fr": "Réduction Estival"
       },
       "id": "18db7bc6-8be1-48bb-bab1-77a7d696fa3b",
-      "appliedPricing": {
+      "pricingPackage": {
         "id": "efd32752-c6f2-45cf-b494-cc6be8a45845"
       },
       "startDate": "2021-07-23T00:00:00.000Z",
@@ -196,7 +196,7 @@ Required | &nbsp;
 `startDate`<br/>*date* | The start date of the discount.
 `applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `discountScope`<br/>*enum* | The scope of the discount. It can be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
-`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
+`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the pricing package. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discount values. All pricing products specified will have the discount value applied to them. Required to be non-empty if scope is "PRODUCTS". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 
@@ -208,13 +208,13 @@ Optional | &nbsp;
 <!-------------------- EDIT APPLIED PRICING DISCOUNT -------------------->
 ### Edit applied pricing discount
 
-`PUT /applied_pricings/:applied_pricing_id/discounts/:id`
+`PUT /pricing_packages/:pricing_package_id/discounts/:id`
 
 Edit an existing discount that hasn't ended. Only the name and cutoff date can be edited for current discount. All fields can be edited for upcoming discounts.
 
 ```shell
 # Edit an existing discount
-curl -X PUT "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/pricing_packages/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -257,7 +257,7 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf
         "fr": "Réduction estival fin d'été"
       },
       "id": "18db7bc6-8be1-48bb-bab1-77a7d696fa3b",
-      "appliedPricing": {
+      "pricingPackage": {
         "id": "efd32752-c6f2-45cf-b494-cc6be8a45845"
       },
       "startDate": "2021-07-23T00:00:00.000Z",
@@ -273,7 +273,7 @@ Optional | &nbsp;
 `startDate`<br/>*date* | The start date of the discount.
 `applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `discountScope`<br/>*enum* | The scope of the discount. It can be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
-`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the applied pricing. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
+`packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the pricing package. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedProducts`<br/>*Map[UUID, BigDecimal]* | A mapping of the desired priced product IDs and discount values. All pricing products specified will have the discount value applied to them. Required to be non-empty if scope is "PRODUCTS". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date.
@@ -282,12 +282,12 @@ Optional | &nbsp;
 <!-------------------- DELETE APPLIED PRICING DISCOUNT -------------------->
 ### Delete applied pricing discount
 
-`DELETE /applied_pricings/:applied_pricing_id/discounts/:id`
+`DELETE /pricing_packages/:pricing_package_id/discounts/:id`
 
 Delete a discount. This operation can only be performed on discounts that have status UPCOMING.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/pricing_packages/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -303,13 +303,13 @@ curl -X DELETE "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-4
 <!-------------------- DEACTIVATE APPLIED PRICING DISCOUNT -------------------->
 ### Deactivate applied pricing discount
 
-`PUT /applied_pricings/:applied_pricing_id/discounts/:id/deactivate`
+`PUT /pricing_packages/:pricing_package_id/discounts/:id/deactivate`
 
 Deactivate a discount. This operation can only be performed on discounts that have status CURRENT or ENDED.
 Deactivated is a final state, cannot be reactivated.
 
 ```shell
-curl -X PUT "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b/deactivate" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/pricing_packages/efd32752-c6f2-45cf-b494-cc6be8a45845/discounts/18db7bc6-8be1-48bb-bab1-77a7d696fa3b/deactivate" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -333,7 +333,7 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/applied_pricings/efd32752-c6f2-45cf
         "fr": "Réduction estival fin d'été"
       },
       "id": "18db7bc6-8be1-48bb-bab1-77a7d696fa3b",
-      "appliedPricing": {
+      "pricingPackage": {
         "id": "efd32752-c6f2-45cf-b494-cc6be8a45845"
       },
       "startDate": "2020-07-23T00:00:00.000Z",

@@ -1,17 +1,17 @@
-## Applied Pricings
+## Pricing packages
 
-The applied pricing allows the assignment of pricing to organization with a determined scope.
+The pricing package allows the assignment of pricing to organization with a determined scope.
 
-<!-------------------- LIST APPLIED PRICINGS -------------------->
-### List applied pricings
+<!-------------------- LIST PRICING PACKAGES -------------------->
+### List pricing packages
 
-`GET /applied_pricings`
+`GET /pricing_packages`
 
-Retrieves a list of applied pricings configured in the system.
+Retrieves a list of pricing packages configured in the system.
 
 ```shell
 # Retrieve applied pricing list
-curl "https://cloudmc_endpoint/api/v2/applied_pricings" \
+curl "https://cloudmc_endpoint/api/v2/pricing_packages" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -55,38 +55,38 @@ curl "https://cloudmc_endpoint/api/v2/applied_pricings" \
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | The UUID of the applied pricing.
-`pricingDefinition`<br/>*Object* | The pricing definition associated with the applied pricing.
+`id`<br/>*UUID* | The UUID of the pricing package.
+`pricingDefinition`<br/>*Object* | The pricing definition associated with the pricing package.
 `pricingDefinition.id`<br/>*UUID* | The UUID of the pricing.
 `pricingDefinition.supportedCurrencies`<br/>*Array[string]* | The list of currencies associated to the pricing.
 `pricingDefinition.organization.id`<br/>*UUID* | The UUID of the organization owning of the pricing definition.
 `pricingDefinition.name`<br/>*Object* | Mapped object containing the pricing name in different languages.
 `pricingDefinition.description`<br/>*Object* | Mapped object containing the pricing description in different languages.
 `pricingDefinition.effectiveDate`<br/>*date* | The date to which the pricing will be applicable from.
-`organization`<br/>*Object* | The object representing the organization owning the applied pricing.
+`organization`<br/>*Object* | The object representing the organization owning the pricing package.
 `organization.id`<br/>*UUID* | The UUID of the organization.
 `organization.name`<br/>*string* | The name of the organization.
-`startDate`<br/>*date* | The start date of the applied pricing.
-`endDate`<br/>*date* | The end date of the applied pricing. If it is not present, there is no end date defined.
-`currency`<br/>*string* | The currency associated to the applied pricing.
-`scopeQualifier`<br/>*string* | Scope qualifier of the applied pricing. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
+`startDate`<br/>*date* | The start date of the pricing package.
+`endDate`<br/>*date* | The end date of the pricing package. If it is not present, there is no end date defined.
+`currency`<br/>*string* | The currency associated to the pricing package.
+`scopeQualifier`<br/>*string* | Scope qualifier of the pricing package. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
 `scopeOrganization`<br/>*Object* | The organization to which the scope is applied to.
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
 `scopeOrganization.name`<br/>*string* | The name of the organization.
-`creationDate`<br/>*Object* | The date the applied pricing was created.
-`status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, FUTURE.
+`creationDate`<br/>*Object* | The date the pricing package was created.
+`status`<br/>*string* | The status of the pricing package. Possible values are : ACTIVE, EXPIRED, FUTURE.
 
 
-<!-------------------- GET APPLIED PRICING -------------------->
-### Retrieve an applied pricing
+<!-------------------- GET PRICING PACKAGE -------------------->
+### Retrieve a pricing package
 
-`GET /applied_pricings/:id`
+`GET /pricing_packages/:id`
 
-Retrieve an applied pricing's details.
+Retrieve a pricing package's details.
 
 ```shell
 # Retrieve an applied pricing
-curl "https://cloudmc_endpoint/api/v2/applied_pricings/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
+curl "https://cloudmc_endpoint/api/v2/pricing_packages/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 ```
 > The above command returns a JSON structured like this:
@@ -128,37 +128,37 @@ curl "https://cloudmc_endpoint/api/v2/applied_pricings/03bc22bd-adc4-46b8-988d-a
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | The UUID of the applied pricing.
-`pricingDefinition`<br/>*Object* | The pricing definition associated with the applied pricing.
+`id`<br/>*UUID* | The UUID of the pricing package.
+`pricingDefinition`<br/>*Object* | The pricing definition associated with the pricing package.
 `pricingDefinition.id`<br/>*UUID* | The UUID of the pricing.
 `pricingDefinition.supportedCurrencies`<br/>*Array[string]* | The list of currencies associated to the pricing.
 `pricingDefinition.organization.id`<br/>*UUID* | The UUID of the organization owning of the pricing definition.
 `pricingDefinition.name`<br/>*Object* | Mapped object containing the pricing name in different languages.
 `pricingDefinition.description`<br/>*Object* | Mapped object containing the pricing description in different languages.
 `pricingDefinition.effectiveDate`<br/>*date* | The date to which the pricing will be applicable from.
-`organization`<br/>*Object* | The object representing the organization owning the applied pricing.
+`organization`<br/>*Object* | The object representing the organization owning the pricing package.
 `organization.id`<br/>*UUID* | The UUID of the organization.
 `organization.name`<br/>*string* | The name of the organization.
-`startDate`<br/>*date* | The start date of the applied pricing.
-`endDate`<br/>*date* | The end date of the applied pricing. If it is not present, there is no end date defined.
-`currency`<br/>*string* | The currency associated to the applied pricing.
-`scopeQualifier`<br/>*string* | Scope qualifier of the applied pricing. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
+`startDate`<br/>*date* | The start date of the pricing package.
+`endDate`<br/>*date* | The end date of the pricing package. If it is not present, there is no end date defined.
+`currency`<br/>*string* | The currency associated to the pricing package.
+`scopeQualifier`<br/>*string* | Scope qualifier of the pricing package. Possible values are : GLOBAL, ORG_TOPLEVEL, ORG_SUBS, ORG_BASE, ORG_TREE.
 `scopeOrganization`<br/>*Object* | The organization to which the scope is applied to.
 `scopeOrganization.id`<br/>*UUID* | The UUID of the organization.
 `scopeOrganization.name`<br/>*string* | The name of the organization.
-`creationDate`<br/>*Object* | The date the applied pricing was created.
-`status`<br/>*string* | The status of the applied pricing. Possible values are : ACTIVE, EXPIRED, FUTURE.
+`creationDate`<br/>*Object* | The date the pricing package was created.
+`status`<br/>*string* | The status of the pricing package. Possible values are : ACTIVE, EXPIRED, FUTURE.
 
-<!-------------------- CREATE APPLIED PRICING -------------------->
-### Create applied pricing
+<!-------------------- CREATE PRICING PACKAGE -------------------->
+### Create pricing package
 
-`POST /applied_pricings`
+`POST /pricing_packages`
 
-Create a new applied pricing.
+Create a new pricing package. If an organization does not have a default pricing package assigned to it, then the first time a pricing package is created under that organization the billing settings will be automatically updated.
 
 ```shell
 # Creates a new pricing
-curl -X POST "https://cloudmc_endpoint/api/v2/applied_pricings" \
+curl -X POST "https://cloudmc_endpoint/api/v2/pricing_packages" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -204,28 +204,28 @@ curl -X POST "https://cloudmc_endpoint/api/v2/applied_pricings" \
 
 Required | &nbsp;
 ------- | -----------
-`organization.id` <br/>*UUID* | The UUID of the organization the applied pricing belongs to. 
-`pricingDefinition.id` <br/>*UUID* | the UUID of the pricing that will be used in the applied pricing.
-`scopeQualifier` <br/>*string* | The scope qualifier for the applied pricing. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
-`currency` <br/>*String* | The currency used for the applied pricing. The value is a ISO 4217 currency code that is part of the pricing selected. 
-`startDate` <br/>*Date* | The start date for the applied pricing.
+`organization.id` <br/>*UUID* | The UUID of the organization the pricing package belongs to. 
+`pricingDefinition.id` <br/>*UUID* | the UUID of the pricing that will be used in the pricing package.
+`scopeQualifier` <br/>*string* | The scope qualifier for the pricing package. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
+`currency` <br/>*String* | The currency used for the pricing package. The value is a ISO 4217 currency code that is part of the pricing selected. 
+`startDate` <br/>*Date* | The start date for the pricing package.
 
 Optional | &nbsp;
 ------- | -----------
-`endDate` <br/>*Date* | The end date for the applied pricing. 
+`endDate` <br/>*Date* | The end date for the pricing package. 
 `scopeOrganization.id` <br/>*UUID* | The UUID of the organization that the scope is targeting. Only required for scopes : ORG_BASE, ORG_TREE, ORG_SUBS.
 
 
-<!-------------------- UPDATE APPLIED PRICING -------------------->
-### Update applied pricing
+<!-------------------- UPDATE PRICING PACKAGE -------------------->
+### Update pricing package
 
-`PUT /applied_pricings/:id`
+`PUT /pricing_packages/:id`
 
-Update an applied pricing. Updates to the pricing, the scope, start date and end date may cause charges to be rolled back.
+Update a pricing package. Updates to the pricing, the scope, start date and end date may cause charges to be rolled back.
 
 ```shell
 # Update an applied pricing
-curl -X PUT "https://cloudmc_endpoint/api/v2/applied_pricings/8bb5e457-41c3-410b-aced-b9c694ff141a" \
+curl -X PUT "https://cloudmc_endpoint/api/v2/pricing_packages/8bb5e457-41c3-410b-aced-b9c694ff141a" \
    -H "MC-Api-Key: your_api_key"
 ```
 
@@ -291,25 +291,25 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/applied_pricings/8bb5e457-41c3-410b
 
 Required | &nbsp;
 ------- | -----------
-`organization.id` <br/>*UUID* | The UUID of the organization the applied pricing belongs to. 
-`pricingDefinition.id` <br/>*UUID* | the UUID of the pricing that will be used in the applied pricing.
-`scopeQualifier` <br/>*string* | The scope qualifier for the applied pricing. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
-`currency` <br/>*String* | The currency used for the applied pricing. The value is a ISO 4217 currency code that is part of the pricing selected. 
-`startDate` <br/>*Date* | The start date for the applied pricing.
+`organization.id` <br/>*UUID* | The UUID of the organization the pricing package belongs to. 
+`pricingDefinition.id` <br/>*UUID* | the UUID of the pricing that will be used in the pricing package.
+`scopeQualifier` <br/>*string* | The scope qualifier for the pricing package. Possible values are : ORG_BASE, ORG_TREE, ORG_SUB, ORG_TOPLEVEL, GLOBAL.
+`currency` <br/>*String* | The currency used for the pricing package. The value is a ISO 4217 currency code that is part of the pricing selected. 
+`startDate` <br/>*Date* | The start date for the pricing package.
 
 Optional | &nbsp;
 ------- | -----------
-`endDate` <br/>*Date* | The end date for the applied pricing. 
+`endDate` <br/>*Date* | The end date for the pricing package. 
 `scopeOrganization.id` <br/>*UUID* | The UUID of the organization that the scope is targeting. Only required for scopes : ORG_BASE, ORG_TREE, ORG_SUBS.
 
-### Delete applied pricing
+### Delete pricing package
 
-`DELETE /applied_pricings/:id`
+`DELETE /pricing_packages/:id`
 
-Delete an existing applied pricing. Deleting an applied pricing that is ACTIVE or EXPIRED may cause charges to be rolled back.
+Delete an existing pricing package. Deleting a pricing package that is ACTIVE or EXPIRED may cause charges to be rolled back.
 
 ```shell
-curl -X DELETE "https://cloudmc_endpoint/api/v2/applied_pricings/d08b9332-d26e-42fe-b272-3071f2d64839" \
+curl -X DELETE "https://cloudmc_endpoint/api/v2/pricing_packages/d08b9332-d26e-42fe-b272-3071f2d64839" \
    -H "MC-Api-Key: your_api_key"
 ```
 
