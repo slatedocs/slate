@@ -1,21 +1,349 @@
 # Input fields
 
 
+## List fields
+
+```javascript
+fetch('https://core.eventtia.com/v1/events/event_uri/fields/', {
+  method: 'GET',
+  headers: {
+    'Authorization': '<your token>',
+  }
+})
+```
+
+> Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
+
+> Make sure you replace &lt;event uri&gt; with the event uri for the event. 
+
+> Example of a successful (200) response:
+
+```shell
+
+
+```
+
+```http
+HTTP/1.1 200 OK
+{
+    "data": [
+        {
+            "id": "31",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 name, locale: en",
+                    "es": "326 name, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": "letters"
+                },
+                "type": "Fields::TextField",
+                "order": 1,
+                "entity_id": 4,
+                "default": true,
+                "validation_type": "letters",
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        },
+        {
+            "id": "32",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 last_name, locale: en",
+                    "es": "326 last_name, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": "letters"
+                },
+                "type": "Fields::TextField",
+                "order": 2,
+                "entity_id": 4,
+                "default": true,
+                "validation_type": "letters",
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        },
+        {
+            "id": "33",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 email, locale: en",
+                    "es": "326 email, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": "letters"
+                },
+                "type": "Fields::TextField",
+                "order": 3,
+                "entity_id": 4,
+                "default": true,
+                "validation_type": "letters",
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        },
+        {
+            "id": "34",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 company, locale: en",
+                    "es": "326 company, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": "letters"
+                },
+                "type": "Fields::TextField",
+                "order": 4,
+                "entity_id": 4,
+                "default": true,
+                "validation_type": "letters",
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        },
+        {
+            "id": "35",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 phone, locale: en",
+                    "es": "326 phone, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": "telephone"
+                },
+                "type": "Fields::TextField",
+                "order": 5,
+                "entity_id": 4,
+                "default": true,
+                "validation_type": "telephone",
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        },
+        {
+            "id": "36",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 jobtitle, locale: en",
+                    "es": "326 jobtitle, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": "letters"
+                },
+                "type": "Fields::TextField",
+                "order": 7,
+                "entity_id": 4,
+                "default": true,
+                "validation_type": "letters",
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        },
+        {
+            "id": "37",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 alternative_email, locale: en",
+                    "es": "326 alternative_email, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": "letters"
+                },
+                "type": "Fields::TextField",
+                "order": 9,
+                "entity_id": 4,
+                "default": true,
+                "validation_type": "letters",
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        },
+        {
+            "id": "38",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 city, locale: en",
+                    "es": "326 city, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": null
+                },
+                "type": "Fields::CityField",
+                "order": 6,
+                "entity_id": 4,
+                "default": true,
+                "file": null
+            }
+        },
+        {
+            "id": "39",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 birthdate, locale: en",
+                    "es": "326 birthdate, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": null
+                },
+                "type": "Fields::DateTimeField",
+                "order": 8,
+                "entity_id": 4,
+                "default": true,
+                "include_time": null,
+                "upper_bound": null,
+                "lower_bound": null,
+                "file": null
+            }
+        },
+        {
+            "id": "40",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "326 photo, locale: en",
+                    "es": "326 photo, locale: es"
+                },
+                "values": null,
+                "settings": {
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "validation_type": null
+                },
+                "type": "Fields::ImageField",
+                "order": 11,
+                "entity_id": 4,
+                "default": true,
+                "file": null
+            }
+        },
+        {
+            "id": "41",
+            "type": "fields",
+            "attributes": {
+                "name": {
+                    "en": "Alergic",
+                    "es": "Es alergico"
+                },
+                "values": null,
+                "settings": {
+                    "display": true,
+                    "filterable": true,
+                    "available_public_listings": true
+                },
+                "validations": {
+                    "required": true
+                },
+                "type": "Fields::TextField",
+                "order": 99,
+                "entity_id": 4,
+                "default": false,
+                "validation_type": null,
+                "repeat_value": null,
+                "allowed_values": null,
+                "file": null
+            }
+        }
+    ],
+    "links": {
+        "first": "https://dev-api.eventtia.com/api/v1/en/v1/events/a07243b1ff/fields?page[number]=1",
+        "last": "https://dev-api.eventtia.com/api/v1/en/v1/events/a07243b1ff/fields?page[number]=1",
+        "prev": null,
+        "next": null
+    }
+}
+```
+
+> Example of a 404 response:
+
+```http
+HTTP/1.1 404 Not Found
+{
+    
+    "message": "Couldn't find Event"
+        
+}
+```
+
+This endpoint allows you a list field info.
+
+### HTTP Request
+
+`GET /v1/events/:event_uri/fields`
+
+### Get Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+event_uri | string | The event_uri for the desired event.
+
 ## Create field
 
 > To create a new field, use this code:
 
 ```shell
 # Get your token for further authorization
-curl "https://core.eventtia.com/v1/fields" \
+curl "https://core.eventtia.com/v1/events/:event_uri/fields" \
   -H 'Content-Type: application/json' \
   -X POST -d '{
   "data": {
-    "type": "field",
+    "type": "fields",
     "attributes": {
       "name": {"es": "Nombre", "en": "Name"},
-      "entity_type": "AttendeeType",
-      "entity_id": 1,
       "required": true,
       "order": 0,
       "available_public_listings": true,
@@ -30,7 +358,7 @@ curl "https://core.eventtia.com/v1/fields" \
 
 ```javascript
 // Get your token for further authorization
-fetch("https://core.eventtia.com/v1/fields", {
+fetch("https://core.eventtia.com/v1/events/:event_uri/fields", {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -38,11 +366,9 @@ fetch("https://core.eventtia.com/v1/fields", {
   },
   body: {
     data: {
-    type: "field",
+    type: "fields",
     attributes: {
       name: {es: "Nombre", en: "Name"},
-      entity_type: "AttendeeType",
-      entity_id: 1,
       required: true,
       order: 0,
       available_public_listings: true,
@@ -111,15 +437,13 @@ You may provide field names and options in multiple languages. Currently, Englis
 
 ### HTTP Request
 
-`POST /v1/fields`
+`POST /v1/events/:event_uri/fields`
 
 ### Query Parameters for Text Field
 
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'name', 'es': 'nombre'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 required | boolean | Specify if the field is required.
 order | integer | Field order in the form.
 available_public_listings | boolean | Field info visible on public sections.
@@ -136,8 +460,6 @@ allowed_values | Array | You may provide allowed values for this field if you wa
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'name', 'es': 'nombre'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -149,8 +471,6 @@ maximum_characters | integer | Maximum of allowed characters for this field
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'name', 'es': 'nombre'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -162,8 +482,6 @@ Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'Favorite sport', 'es': 'Deporte favorito'}.
 values | Array of Obejcts | options for this field eg [{en: 'Automotive', es: 'Automotores', uuid: 'uuide'}, {en: 'Computers', es: 'Computadores', uuid: 'uuidop'}]. You must provide an unique uuid for each option.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -176,8 +494,6 @@ Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'Products and services', 'es': 'Productos y servicios'}.
 values | Array of Obejcts | options for this field eg [{en: '', es: 'Futbol', uuid: 'uuide'}, {en: 'Golf', es: 'Golf', uuid: 'uuidop'}]. You must provide an unique uuid for each option.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -189,8 +505,6 @@ control_type | string | check_boxes or dropdown_list
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'date', 'es': 'fecha'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -202,8 +516,6 @@ include_time | boolean | Include time picker element
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'city', 'es': 'ciudad'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -214,8 +526,6 @@ type | string | Fields::CityField
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'Image', 'es': 'imagen'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -226,8 +536,6 @@ type | string | Fields::ImageField
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'File', 'es': 'Archivo'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -238,8 +546,6 @@ type | string | Fields::FileField
 Parameter | Type | Description
 --------- | ---- | -----------
 name | Hash | Field name e.g  {en: 'Terms and conditions', 'es': 'Terminos y condiciones'}.
-entity_type | string | Field entity type 'AttendeeType'
-entity_id | integer | Id of AttendeeType.
 order | integer | Field order in the form.
 display | boolean | Show field on public form´s.
 submitted_type | string | 'Attendee' entity that will be answering this field.
@@ -254,15 +560,13 @@ terms_file | file | you must attach a file terms_mode is file
 
 ```shell
 # Get your token for further authorization
-curl "https://core.eventtia.com/v1/fields/<id>" \
+curl "https://core.eventtia.com/v1/events/:event_uri/fields/:id/<id>" \
   -H 'Content-Type: application/json' \
   -X PUT -d '{
   "data": {
     "type": "field",
     "attributes": {
       "name": {"es": "Nombre", "en": "Name"},
-      "entity_type": "AttendeeType",
-      "entity_id": 1,
       "required": true,
       "order": 0,
       "available_public_listings": true,
@@ -277,7 +581,7 @@ curl "https://core.eventtia.com/v1/fields/<id>" \
 
 ```javascript
 // Get your token for further authorization
-fetch("https://core.eventtia.com/v1/fields/<id>", {
+fetch("https://core.eventtia.com/v1/events/:event_uri/fields/:id/<id>", {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -335,13 +639,15 @@ This endpoint allows you update a field info.
 
 ### HTTP Request
 
-`PUT /v1/fields/:id`
+`PUT /v1/events/:event_uri/fields/:id`
 
 ### Path Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | The id for the desired field
+event_uri | integer | The event_uri for the desired event
+id | integer | The id for the field
+
 
 ## Destroy Field
 
@@ -349,7 +655,7 @@ id | integer | The id for the desired field
 
 
 ```javascript
-fetch("https://core.eventtia.com/v1/fields/<id>", {
+fetch("https://core.eventtia.com/v1/fields/:id<id>", {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json',
@@ -392,3 +698,68 @@ This endpoint allows you destroy a field info.
 Parameter | Type | Description
 --------- | ---- | -----------
 id | integer | The id for the desired field
+
+
+## Change Order
+
+> To change order info, use this code:
+
+```shell
+# Get your token for further authorization
+curl "https://core.eventtia.com/v1/events/:event_uri/change-order/<id>" \
+  -H 'Content-Type: application/json' \
+  -X PUT -d '{
+    "ordered_ids": {"20":3,"44":2}
+}'
+```
+
+```javascript
+// Get your token for further authorization
+fetch("https://core.eventtia.com/v1/events/:event_uri/fields/:id/<id>", {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': '<your token>'
+  },
+  {
+    ordered_ids: '<{"20":3,"44":2}>'
+  }
+})
+```
+
+> Example of a successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+    "status": 200
+}
+```
+
+> Example of a 422 response:
+
+```http
+HTTP/1.1 422 Unprocessable Entity
+{
+    
+    "message": "ExceptionHandler::RecordInvalid"
+        
+}
+```
+
+This endpoint allows you update a Change Order info.
+
+### HTTP Request
+
+`PUT /v1/events/:event_uri/fields/change-order`
+
+### Path Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+event_uri | string | The event_uri for the desired event.
+
+### Body Parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+ordered_ids | json | Send of key (field_id) and value (order), example {"31":10, "32":9}
