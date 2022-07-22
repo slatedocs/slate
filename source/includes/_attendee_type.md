@@ -496,7 +496,7 @@ HTTP/1.1 200 OK
 {
     "data": [
         {
-            "id": "31",
+            "id": "1",
             "type": "fields",
             "attributes": {
                 "name": {
@@ -512,246 +512,18 @@ HTTP/1.1 200 OK
                 },
                 "type": "Fields::TextField",
                 "order": 1,
-                "entity_id": 4,
+                "entity_id": 1,
                 "default": true,
                 "validation_type": "letters",
                 "repeat_value": null,
                 "allowed_values": null,
-                "file": null
-            }
-        },
-        {
-            "id": "32",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 last_name, locale: en",
-                    "es": "326 last_name, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": "letters"
-                },
-                "type": "Fields::TextField",
-                "order": 2,
-                "entity_id": 4,
-                "default": true,
-                "validation_type": "letters",
-                "repeat_value": null,
-                "allowed_values": null,
-                "file": null
-            }
-        },
-        {
-            "id": "33",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 email, locale: en",
-                    "es": "326 email, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": "letters"
-                },
-                "type": "Fields::TextField",
-                "order": 3,
-                "entity_id": 4,
-                "default": true,
-                "validation_type": "letters",
-                "repeat_value": null,
-                "allowed_values": null,
-                "file": null
-            }
-        },
-        {
-            "id": "34",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 company, locale: en",
-                    "es": "326 company, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": "letters"
-                },
-                "type": "Fields::TextField",
-                "order": 4,
-                "entity_id": 4,
-                "default": true,
-                "validation_type": "letters",
-                "repeat_value": null,
-                "allowed_values": null,
-                "file": null
-            }
-        },
-        {
-            "id": "35",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 phone, locale: en",
-                    "es": "326 phone, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": "telephone"
-                },
-                "type": "Fields::TextField",
-                "order": 5,
-                "entity_id": 4,
-                "default": true,
-                "validation_type": "telephone",
-                "repeat_value": null,
-                "allowed_values": null,
-                "file": null
-            }
-        },
-        {
-            "id": "36",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 jobtitle, locale: en",
-                    "es": "326 jobtitle, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": "letters"
-                },
-                "type": "Fields::TextField",
-                "order": 7,
-                "entity_id": 4,
-                "default": true,
-                "validation_type": "letters",
-                "repeat_value": null,
-                "allowed_values": null,
-                "file": null
-            }
-        },
-        {
-            "id": "37",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 alternative_email, locale: en",
-                    "es": "326 alternative_email, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": "letters"
-                },
-                "type": "Fields::TextField",
-                "order": 9,
-                "entity_id": 4,
-                "default": true,
-                "validation_type": "letters",
-                "repeat_value": null,
-                "allowed_values": null,
-                "file": null
-            }
-        },
-        {
-            "id": "38",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 city, locale: en",
-                    "es": "326 city, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": null
-                },
-                "type": "Fields::CityField",
-                "order": 6,
-                "entity_id": 4,
-                "default": true,
-                "file": null
-            }
-        },
-        {
-            "id": "39",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 birthdate, locale: en",
-                    "es": "326 birthdate, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": null
-                },
-                "type": "Fields::DateTimeField",
-                "order": 8,
-                "entity_id": 4,
-                "default": true,
-                "include_time": null,
-                "upper_bound": null,
-                "lower_bound": null,
-                "file": null
-            }
-        },
-        {
-            "id": "40",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 photo, locale: en",
-                    "es": "326 photo, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": null
-                },
-                "type": "Fields::ImageField",
-                "order": 11,
-                "entity_id": 4,
-                "default": true,
                 "file": null
             }
         }
     ],
     "meta": {
         "fields_order": {
-            "31": 10,
-            "32": 9,
-            "33": 4,
-            "34": 5,
-            "35": 7,
-            "36": 8,
-            "37": 1,
-            "38": 2,
-            "39": 3,
-            "40": 6
+            "1": 1
         }
     }
 }
