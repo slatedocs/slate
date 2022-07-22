@@ -51,32 +51,7 @@ HTTP/1.1 200 OK
                 "allowed_values": null,
                 "file": null
             }
-        },
-        {
-            "id": "32",
-            "type": "fields",
-            "attributes": {
-                "name": {
-                    "en": "326 last_name, locale: en",
-                    "es": "326 last_name, locale: es"
-                },
-                "values": null,
-                "settings": {
-                    "available_public_listings": true
-                },
-                "validations": {
-                    "validation_type": "letters"
-                },
-                "type": "Fields::TextField",
-                "order": 2,
-                "entity_id": 4,
-                "default": true,
-                "validation_type": "letters",
-                "repeat_value": null,
-                "allowed_values": null,
-                "file": null
-            }
-        },
+        }
   	],
     "links": {
         "first": "https://dev-api.eventtia.com/api/v1/en/v1/events/a07243b1ff/fields?page[number]=1",
