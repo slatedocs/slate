@@ -267,6 +267,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../adverse-events/" class="md-nav__link">
+        Adverse Events
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../demographics/" class="md-nav__link">
         Demographics
       </a>
@@ -355,20 +369,6 @@
     <li class="md-nav__item">
       <a href="../vitals/" class="md-nav__link">
         Vitals
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../adverse-events/" class="md-nav__link">
-        Adverse Events
       </a>
     </li>
   
@@ -541,7 +541,10 @@
 
   <h1>Labs</h1>
 
-<p>Laboratory data are mapped to FHIR's <a href="http://hl7.org/fhir/StructureDefinition/Observation" target="blank">Observation</a> resource. Laboratory data are obtained via HL7 message from MSK's Laboratory Information System (LIS). If available in the source data, a LOINC code is mapped to <code>code.coding.code</code>. Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.</p>
+<p>Laboratory data are mapped to FHIR's <a href="http://hl7.org/fhir/StructureDefinition/Observation" target="blank">Observation</a> resource. Laboratory data are obtained via HL7 message from MSK's Laboratory Information System (LIS). Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.</p>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> If available in the source data, a LOINC code is mapped to <code>code.coding.code</code>, otherwise the <code>code.coding.code</code> does not appear in the response. Please refer to the protocol specific Data Transfer Specification for more information.</p>
+</blockquote>
 <h2 id="required-parameters">Required Parameters</h2>
 <div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
@@ -779,11 +782,11 @@
 <tbody>
 <tr>
 <td><code>id</code></td>
-<td>Unique identifier for each record</td>
+<td>MSKCC Unique Identifier</td>
 </tr>
 <tr>
 <td><code>extension[0].url</code></td>
-<td>FHIR researchstudy extension documentation</td>
+<td>FHIR researchStudy extension documentation</td>
 </tr>
 <tr>
 <td><code>extension[0].valueCode</code></td>
@@ -803,11 +806,11 @@
 </tr>
 <tr>
 <td><code>identifier.value</code></td>
-<td>Unique identifier for each record</td>
+<td>MSKCC Unique Identifier</td>
 </tr>
 <tr>
 <td><code>status</code></td>
-<td>Hardcoded to "final"</td>
+<td>Hardcoded to <code>final</code></td>
 </tr>
 <tr>
 <td><code>category.coding.system</code></td>
@@ -827,7 +830,7 @@
 </tr>
 <tr>
 <td><code>code.coding.system</code></td>
-<td>LOINC website</td>
+<td>LOINC documentation</td>
 </tr>
 <tr>
 <td><code>code.coding.code</code></td>
@@ -843,7 +846,7 @@
 </tr>
 <tr>
 <td><code>subject.reference</code></td>
-<td>"Patient/" + Sponsor assigned subject ID</td>
+<td><code>Patient/</code> + Sponsor assigned subject ID</td>
 </tr>
 <tr>
 <td><code>encounter.display</code></td>
@@ -851,11 +854,11 @@
 </tr>
 <tr>
 <td><code>effectiveDateTime</code></td>
-<td>Collection datetime</td>
+<td>Specimen collection datetime</td>
 </tr>
 <tr>
 <td><code>issued</code></td>
-<td>Collection datetime</td>
+<td>Specimen datetime</td>
 </tr>
 <tr>
 <td><code>valueQuantity.value</code></td>
@@ -866,12 +869,12 @@
 <td>MSKCC Unit</td>
 </tr>
 <tr>
-<td><code>referenceRange.text</code></td>
-<td>Reference range</td>
-</tr>
-<tr>
 <td><code>valueString</code></td>
 <td>Text result</td>
+</tr>
+<tr>
+<td><code>referenceRange.text</code></td>
+<td>Reference range</td>
 </tr>
 </tbody>
 </table>

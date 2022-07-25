@@ -267,6 +267,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../adverse-events/" class="md-nav__link">
+        Adverse Events
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../demographics/" class="md-nav__link">
         Demographics
       </a>
@@ -356,20 +370,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../adverse-events/" class="md-nav__link">
-        Adverse Events
-      </a>
     </li>
   
 
@@ -769,7 +769,92 @@
 </code></pre></div>
 </details>
 <h2 id="field-definitions">Field Definitions</h2>
-<p>ANNA TODO</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>MSKCC Unique Identifier</td>
+</tr>
+<tr>
+<td><code>extension[0].url</code></td>
+<td>FHIR researchStudy extension documentation</td>
+</tr>
+<tr>
+<td><code>extension[0].valueCode</code></td>
+<td>MSKCC IRB Protocol Number</td>
+</tr>
+<tr>
+<td><code>extension[1].url</code></td>
+<td>MSKCC identifiers documentation</td>
+</tr>
+<tr>
+<td><code>extension[1].valueCode</code></td>
+<td>Sponsor Study Number</td>
+</tr>
+<tr>
+<td><code>identifier.system</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>identifier.value</code></td>
+<td>MSKCC Unique Identifier</td>
+</tr>
+<tr>
+<td><code>category.coding.system</code></td>
+<td>FHIR observation documentation</td>
+</tr>
+<tr>
+<td><code>category.coding.code</code></td>
+<td>hardcoded to <code>vital-signs</code></td>
+</tr>
+<tr>
+<td><code>category.coding.display</code></td>
+<td>hardcoded to <code>Vital Signs</code></td>
+</tr>
+<tr>
+<td><code>category.text</code></td>
+<td>hardcoded to <code>Vital Signs</code></td>
+</tr>
+<tr>
+<td><code>code.coding.system</code></td>
+<td>Loinc documentation</td>
+</tr>
+<tr>
+<td><code>code.coding.code</code></td>
+<td>Vital Sign Value</td>
+</tr>
+<tr>
+<td><code>code.coding.display</code></td>
+<td>Vital Sign Item Type</td>
+</tr>
+<tr>
+<td><code>code.text</code></td>
+<td>Vital Sign Item Type</td>
+</tr>
+<tr>
+<td><code>subject.reference</code></td>
+<td><code>Patient/</code> + Sponsor assigned subject ID</td>
+</tr>
+<tr>
+<td><code>encounter.display</code></td>
+<td>Protocol visit</td>
+</tr>
+<tr>
+<td><code>effectiveDateTime</code></td>
+<td>Collection datetime</td>
+</tr>
+<tr>
+<td><code>issued</code></td>
+<td>Collection datetime</td>
+</tr>
+</tbody>
+</table>
 
               
             </article>
@@ -801,13 +886,13 @@
       
       
         
-        <a href="../adverse-events/" class="md-footer__link md-footer__link--next" aria-label="Next: Adverse Events" rel="next">
+        <a href="../../coming-soon/medications/" class="md-footer__link md-footer__link--next" aria-label="Next: Medications" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Adverse Events
+              Medications
             </div>
           </div>
           <div class="md-footer__button md-icon">
