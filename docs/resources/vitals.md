@@ -196,4 +196,24 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
     ```
 ## Field Definitions
 
-ANNA TODO
+| Field                     | Description                                |
+| ------------------------- | ------------------------------------------ |
+| `id`                      | MSKCC Unique Identifier                    |
+| `extension[0].url`        | FHIR researchStudy extension documentation |
+| `extension[0].valueCode`  | MSKCC IRB Protocol Number                  |
+| `extension[1].url`        | MSKCC identifiers documentation            |
+| `extension[1].valueCode`  | Sponsor Study Number                       |
+| `identifier.system`       |                                            |
+| `identifier.value`        | MSKCC Unique Identifier                    |
+| `category.coding.system`  | FHIR observation documentation             |
+| `category.coding.code`    | hardcoded to `vital-signs`                 |
+| `category.coding.display` | hardcoded to `Vital Signs`                 |
+| `category.text`           | hardcoded to `Vital Signs`                 |
+| `code.coding.system`      | Loinc documentation                        |
+| `code.coding.code`        | Vital Sign Value                           |
+| `code.coding.display`     | Vital Sign Item Type                       |
+| `code.text`               | Vital Sign Item Type                       |
+| `subject.reference`       | `Patient/` + Sponsor assigned subject ID   |
+| `encounter.display`       | Protocol visit                             |
+| `effectiveDateTime`       | Collection datetime                        |
+| `issued`                  | Collection datetime                        |
