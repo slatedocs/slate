@@ -16,16 +16,18 @@ meta:
     content: Documentation for the Kittn API
 ---
 
+# Introduction
+
+Castupload provides a RESTful JSON API with token-based authentication. You can request an API key with [our support](https://www.castupload.com/contact/new). The permission scope of the API key varies depending on the use case, so when contacting us be sure to specify the desired use case (e.g. you plan on using Castupload data for a website).
+
 # Authentication
 
-> To authorize, use this code:
+Once you have been issued an API key you can use the following code to authorize requests:
 
 ```shell
 curl "api_endpoint_here" \
   -H "Authorization: Token token=API_KEY"
 ```
-
-Castupload uses API keys to allow access to the API. You can request an API key with [our support](http://www.castupload.com/contact/new).
 
 Castupload expects the API key to be included in all API requests to the server in a header that looks like the following:
 
