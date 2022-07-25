@@ -8,4 +8,25 @@ Adverse event data are mapped to FHIR's [Adverse Event](http://hl7.org/fhir/adve
 
 ## Field Definitions
 
-ANNA TODO
+| Field                                               | Description                                |
+| --------------------------------------------------- | ------------------------------------------ |
+| `id`                                                | ??                                         |
+| `extension[0].url`                                  | MSKCC identifiers documentation            |
+| `extension[0].valueCode`                            | Sponsor Study Number                       |
+| `identifier.system`                                 |                                            |
+| `identifier.value`                                  | Data Source                                |
+| `actuality`                                         |                                            |
+| `event.coding.system`                               |                                            |
+| `event.coding.display`                              |                                            |
+| `subject.reference`                                 | Patient/ + Sponsor assigned subject ID     |
+| `subject.display`                                   | Sponsor assigned subject ID                |
+| `date`                                              | Adverse Event Start Date                   |
+| `outcome.coding.system`                             | FHIR Adverse Event Outcome documentation   |
+| `outcome.coding.code`                               |                                            |
+| `outcome.coding.display`                            |                                            |
+| `suspectEntity.causality.assessment.coding.system`  | FHIR Adverse Event Causality documentation |
+| `suspectEntity.causality.assessment.coding.display` |                                            |
+| `suspectEntity.causality.productRelatedness`        |                                            |
+| `study.reference`                                   | Study/ + MSKCC IRB Number                  |
+| `study.identifier.value`                            | ??                                         |
+| `study.display`                                     | hardcoded to AdverseEvent                  |

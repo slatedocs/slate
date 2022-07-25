@@ -8,7 +8,7 @@ Data supporting electronic direct data extraction is obtained from multiple MSK 
 
 ## FHIR Version
 
-MSK's resources are built according [FHIR version ***](http://hl7.org/fhir/directory.html)
+MSK's resources are built according [FHIR version 4.1.0](http://hl7.org/fhir/directory.html)
 
 ## Hosts
 
@@ -23,6 +23,3 @@ https://apigateway.apps.stageapi.mskcc.org
 ```
 https://apigateway.apps.prodapi.mskcc.org
 ```
-
-
-
