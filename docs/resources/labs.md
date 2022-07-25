@@ -1,5 +1,6 @@
-Laboratory data are mapped to FHIR's [Observation](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource. Laboratory data are obtained via HL7 message from MSK's Laboratory Information System (LIS). If available in the source data, a LOINC code is mapped to `code.coding.code`. Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.
+Laboratory data are mapped to FHIR's [Observation](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource. Laboratory data are obtained via HL7 message from MSK's Laboratory Information System (LIS). Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.
 
+> **_NOTE:_** If available in the source data, a LOINC code is mapped to `code.coding.code`, otherwise the `code.coding.code` does not appear in the response. Please refer to the protocol specific Data Transfer Specification for more information.
 
 ## Required Parameters
 ```
@@ -42,6 +43,7 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
     data = res.read()
     print(data.decode("utf-8"))
     ```
+
 ## Example Response
 
 ??? success "Successful Payload Example"
@@ -191,37 +193,31 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
     }
   
     ```
-
 ## Field Definitions
 
-|  Field                     | Description                                |
+| Field                      | Description                                |
 | -------------------------- | ------------------------------------------ |
-| `id`                       | Unique identifier for each record          |
-| `extension[0].url`         | FHIR researchstudy extension documentation |
+| `id`                       | MSKCC Unique Identifier                    |
+| `extension[0].url`         | FHIR researchStudy extension documentation |
 | `extension[0].valueCode`   | MSKCC IRB Protocol Number                  |
 | `extension[1].url`         |                                            |
 | `extension[1].valueCode`   | Sponsor Study Number                       |
 | `identifier.system`        |                                            |
-| `identifier.value`         | Unique identifier for each record          |
-| `status`                   | Hardcoded to "final"                       |
+| `identifier.value`         | MSKCC Unique Identifier                    |
+| `status`                   | Hardcoded to `final`                       |
 | `category.coding.system`   | FHIR Observation category documentation    |
 | `category.coding.code`     | FHIR Observation category code             |
 | `category.coding.display`  | FHIR Observation category display          |
 | `category.text`            | FHIR Observation category                  |
-| `code.coding.system`       | LOINC website                              |
+| `code.coding.system`       | LOINC documentation                        |
 | `code.coding.code`         | LOINC code                                 |
 | `code.coding.display`      | MSKCC test code                            |
 | `code.text`                | MSKCC test code                            |
-| `subject.reference`        | "Patient/" + Sponsor assigned subject ID   |
+| `subject.reference`        | `Patient/` + Sponsor assigned subject ID   |
 | `encounter.display`        | Protocol visit                             |
-| `effectiveDateTime`        | Collection datetime                        |
-| `issued`                   | Collection datetime                        |
+| `effectiveDateTime`        | Specimen collection datetime               |
+| `issued`                   | Specimen datetime                          |
 | `valueQuantity.value`      | Numeric result                             |
 | `valueQuantity.unit`       | MSKCC Unit                                 |
-| `referenceRange.text`      | Reference range                            |
 | `valueString`              | Text result                                |
-
-
-
-
-
+| `referenceRange.text`      | Reference range                            |

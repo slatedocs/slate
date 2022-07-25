@@ -53,7 +53,10 @@ This endpoint is use to to generate an access token, **access tokens** must be i
 
 
 
-Response Example
+## Response Example
+
+> **_NOTE:_** MSK HL7 FHIR server only exposes JSON.
+
 ```json
 {
     "token_type": "Bearer",
@@ -63,8 +66,3 @@ Response Example
     "consented_on": 1656086348
 }
 ```
-
-
-
-
-> Note: MSK HL7 FHIR server only exposes JSON.

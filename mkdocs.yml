@@ -25,10 +25,10 @@ nav:
   - Searching: searching.md
   - Pagination: pagination.md
   - Available Resources:
+    - "Adverse Events": resources/adverse-events.md
     - Demographics: resources/demographics.md
     - Labs: resources/labs.md
     - Vitals: resources/vitals.md
-    - "Adverse Events": resources/adverse-events.md
   - "Coming Soon":
     - Medications: coming-soon/medications.md
     - RECIST: coming-soon/recist.md
