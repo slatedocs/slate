@@ -332,3 +332,87 @@ Successful requests will return a json payload of the project that was updated a
   ]
 }
 ```
+
+## Duplicating a project
+
+```shell
+curl https://api.handshq.com/v1/projects/[id]/duplications \
+  -H "Accept: application/json" \
+  -H "Authorization: bearer [api_token]" \
+  -H "Content-Type: application/json" \
+  --request POST \
+  -d '[json_payload]'
+```
+
+> Example Project duplicated payload.
+
+```json
+  {
+    "user_email": "maddox@daystrom.com",
+    "project": {
+      "name": "My duplicated project",
+      "start_date": "2022-12-20",
+      "end_date": "2023-12-20",
+      "reference": "abcd1234",
+      "fields_attributes": {
+        "1": "My field value"
+      }
+    }
+  }
+
+```
+
+This endpoint allows you to duplicate a project that exists within the division that is registered with the API token you provide.
+
+### Request
+
+`POST https://api.handshq.com/v1/projects/[id]/duplications`
+
+### Required Parameters
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+user_email | String | Yes | The email of the HandsHQ user who will be marked as the author of the project
+
+### Allowed Project Parameters
+All parameters must be nested within `project`
+
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+name | String | Yes | Name of your duplicated project, used for document titles, names of PDF documents etc.
+start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
+end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
+reference | String | No | Your internal reference for a project e.g. 'RA01'
+fields_attributes | Object | No | More information available [here](#for-project-creation)
+
+### Response
+
+The project is duplicated asynchronously, so will not be available at this point. Successful requests will return a json payload detailing the duplication process and a `201` status code.  The duplication process information provides the id of the duplication process, the time that the duplication was requested and the current status of the duplication process - queued, in progress, complete or failed.
+
+If you wish to access the status of the duplication process, and check if the duplicated project and version pdf has been generated, you can use the duplication process id to poll for the current status of the duplication process - futher information [here](#)
+
+> 201
+
+```json
+{ "data": {
+  "id": "f38aadd81a124b2ab14695e88629f4b8",
+  "type": "project_duplication",
+  "attributes": {
+    "requested_at": "2022-01-01T00:00:00+00:00",
+    "status": "complete"
+  },
+  "relationships": {
+    "project": {
+      "data": {
+        "id": "123",
+        "type": "project"
+      }
+    },
+    "version_pdf": {
+      "data": {
+        "id": "456",
+        "type": "version_pdf"
+      }
+    }
+  }
+}
+```
