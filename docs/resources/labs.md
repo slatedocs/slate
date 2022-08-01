@@ -10,10 +10,12 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
 
 |# | Parameters    | Description                          |
 |:-| :---------- | :----------------------------------- |
-|A1| `researchstudy`       | :material-check: MSK unique study number  |
-|A2|`category`       |:material-check: Default value: **laboratory** |
-|A3|`x-partnerid` |:material-check: suply given partnerid|
+|A1| `researchstudy`       | :material-asterisk: MSK unique study number  |
+|A2|`category`       |:material-asterisk: Default value: **laboratory** |
+|A3|`x-partnerid` |:material-asterisk: suply given partnerid|
 |A4|Filter: Optional Parameters go to [Filter page](/searching) |
+
+:material-asterisk: Indicates a required field.
 
 ## Example Request
 

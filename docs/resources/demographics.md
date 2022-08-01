@@ -1,6 +1,10 @@
 Demographics data are mapped to FHIR's [Patient](http://hl7.org/fhir/patient.html){:target="blank"} resource. Data flows from MSK's Revenue Management System (RMS) into the Clinical Research Data Warehouse. Patients are identified by the sponsor subject ID.
 
 ## Required Parameters
+```
+GET /msk-apim/external/v1/crit/blaze/api/Patient
+-H Authorization: Bearer {access_token} 
+```
 
 ## Example Request
 
