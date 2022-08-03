@@ -457,7 +457,7 @@ send_email_invite* | No | boolean | If true, an email will be sent to the user a
 employee_id | No | string | The user's external employee id.
 
 \* - A newly created user will not be able to login until they create a password via the invitation link or configured in an SSO system.
-\** - The employee_id feature is available only for customers with the Expert Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.
+\** - The employee_id feature is available only for customers with the Advanced and Expert Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.
 
 ## POST: Add E-mail Address To User
 
