@@ -179,7 +179,7 @@ List all of an organization's Greenhouse users. If the querystring param `user_a
 | updated_before  | Return only users that were updated before this timestamp. Timestamp must be in in [ISO-8601] (#general-considerations) format.
 | updated_after   | Return only users that were updated at or after this timestamp. Timestamp must be in in [ISO-8601] (#general-considerations) format.
 | email           | Return a single user who has this e-mail address as their primary e-mail or a secondary e-mail.
-| user_attributes | Return users along with their `custom_fields` and `keyed_custom_fields` hash values. Must be set to `true` to return user attributes in results.
+| user_attributes | When `true`, include user attributes. Otherwise excludes user attributes. Defaults to `false`.
 
 <br>
 [See noteworthy response attributes.] (#the-user-object)

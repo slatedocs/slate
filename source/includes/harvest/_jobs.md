@@ -932,7 +932,7 @@ curl -X PATCH 'https://harvest.greenhouse.io/v1/jobs/{id}'
 
 ### Custom Field Parameters
 
-The custom field parameter structure is different in the PATCH method then in GET methods and responses. Certain type of custom fields require different elements to be included, while deleting a field requires a specific argument. What follows is the description of each item in a custom field element and what is required depending on the type.
+The custom field parameter structure is different in the PATCH method than in GET methods and responses. Certain type of custom fields require different elements to be included, while deleting a field requires a specific argument. What follows is the description of each item in a custom field element and what is required depending on the type.
 
 | Parameter    | Required for                 | Description                                                                                                                                                                                                                                                                                                        |
 | ------------ | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
