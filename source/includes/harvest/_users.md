@@ -366,11 +366,14 @@ On-Behalf-Of | ID of the user issuing this request. Required for auditing purpos
 
 ### JSON Body Parameters
 
-Parameter | Required | Type | Description
---------- | ----------- | ----------- | -----------
-first_name | No | string | The user's new first name. If included, this cannot be blank.
-last_name | No | string | The user's new last name. If included, this cannot be blank.
-employee_id* | No | string | The user's external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization.
+| Parameter      | Required | Type         | Description                                                                                                                                 |
+|----------------|----------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| first_name     | No       | string       | The user's new first name. If included, this cannot be blank.                                                                               |
+| last_name      | No       | string       | The user's new last name. If included, this cannot be blank.                                                                                |
+| employee_id*   | No       | string       | The user's external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization. |
+| office_ids     | No       | Array        | Replace the current offices for this user with new offices. An empty array will remove all offices on this user.                            |
+| department_ids | No       | Array        | Replace the current departments for this user with new departments. An empty array will remove all departments on this user.                |
+| custom_fields  | No       | custom_field | Array of hashes containing new custom field values. Passing an empty array does nothing.                                                    |
 
 \* - If the employee_id feature is not enabled for your organization, attempting to edit this field will raise an API Error. The "employee_id" element exists in both the "user" element as a look-up mechanism and in the "payload" element as a patching mechanism.
 
@@ -435,7 +438,66 @@ curl -X PATCH 'https://harvest.greenhouse.io/v2/users/disable'
     "bob@email.org"
   ],
   "employee_id": "user-123",
-  "linked_candidate_ids": [123, 654]
+  "linked_candidate_ids": [123, 654],
+  "departments": [
+    {
+      "id": 25907,
+      "name": "Marketing",
+      "parent_id": 25908,
+      "parent_department_external_id": "13473",
+      "child_ids": [50852, 50891],
+      "child_department_external_ids": ["13473", "123473"],
+      "external_id": "15679"
+    }
+  ],
+  "custom_fields": {
+    "equipment": "Laptop",
+    "shirt_size": "M",
+    "hiring_specialties": [
+      "Engineers",
+      "Executives"
+    ],
+    "trained_for_interviews": true,
+    "recruiting_partner": {
+      "name": "Johnny Recruiter",
+      "email": "johnny@example.com",
+      "user_id": 4000000000
+    }
+  },
+  "keyed_custom_fields": {
+    "equipment": {
+      "name": "Equipment",
+      "type": "short_text",
+      "value": "Laptop"
+    },
+    "shirt_size": {
+      "name": "Shirt Size",
+      "type": "single_select",
+      "value": "M"
+    },
+    "hiring_specialties": {
+      "name": "Hiring Specialties",
+      "type": "multi_select",
+      "value": [
+        "Engineers",
+        "Executives"
+      ]
+    },
+    "trained_for_interviews": {
+      "name": "Trained for interviews",
+      "type": "boolean",
+      "value": true
+    },
+    "recruiting_partner": {
+      "name": "Recruiting Partner",
+      "type": "user",
+      "value": {
+        "name": "Johnny Recruiter",
+        "email": "johnny@example.com",
+        "user_id": 4000000000
+      }
+    }
+  }
 }
 ```
 
@@ -494,7 +556,66 @@ curl -X PATCH 'https://harvest.greenhouse.io/v2/users/enable'
     "bob@email.org"
   ],
   "employee_id": "221",
-  "linked_candidate_ids": [123, 654]
+  "linked_candidate_ids": [123, 654],
+  "departments": [
+    {
+      "id": 25907,
+      "name": "Marketing",
+      "parent_id": 25908,
+      "parent_department_external_id": "13473",
+      "child_ids": [50852, 50891],
+      "child_department_external_ids": ["13473", "123473"],
+      "external_id": "15679"
+    }
+  ],
+  "custom_fields": {
+    "equipment": "Laptop",
+    "shirt_size": "M",
+    "hiring_specialties": [
+      "Engineers",
+      "Executives"
+    ],
+    "trained_for_interviews": true,
+    "recruiting_partner": {
+      "name": "Johnny Recruiter",
+      "email": "johnny@example.com",
+      "user_id": 4000000000
+    }
+  },
+  "keyed_custom_fields": {
+    "equipment": {
+      "name": "Equipment",
+      "type": "short_text",
+      "value": "Laptop"
+    },
+    "shirt_size": {
+      "name": "Shirt Size",
+      "type": "single_select",
+      "value": "M"
+    },
+    "hiring_specialties": {
+      "name": "Hiring Specialties",
+      "type": "multi_select",
+      "value": [
+        "Engineers",
+        "Executives"
+      ]
+    },
+    "trained_for_interviews": {
+      "name": "Trained for interviews",
+      "type": "boolean",
+      "value": true
+    },
+    "recruiting_partner": {
+      "name": "Recruiting Partner",
+      "type": "user",
+      "value": {
+        "name": "Johnny Recruiter",
+        "email": "johnny@example.com",
+        "user_id": 4000000000
+      }
+    }
+  }
 }
 ```
 
