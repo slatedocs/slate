@@ -172,6 +172,7 @@ The timestamps below are Eastern Time.
 
 | Date                    | Description                                                                                                                       |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| August 1, 2022 12:00:00PM | Making `content_type` required for attachments unless uploading using a URL.
 | May 18, 2021 12:00:00PM | Added `video_conferencing_url` to Scheduled Interview object.
 | May 3, 2021 05:00:00PM | Added `priority` to Job Stages object.
 | May 3, 2021 04:00:00PM | Added `job_post_id` field to application's response object.
