@@ -53,16 +53,16 @@ An organization's Greenhouse users.
 
 ### Noteworthy Attributes
 
-| Attribute              | Description                                                                                                                                                                                                                                                                                                                                                                         |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id                     | The user's unique identifier                                                                                                                                                                                                                                                                                                                                                        |
-| site_admin             | If `true`, this user is a site admin, which means the user has full permissions on all non-private jobs.                                                                                                                                                                                                                                                                            |
-| primary_email_address  | The e-mail address this user has designated as his or her primary e-mail address. This value should always also be in the emails array.                                                                                                                                                                                                                                             |
+| Attribute          | Description                                                                                                                                                                                                                                                                                                                                                                         |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                 | The user's unique identifier                                                                                                                                                                                                                                                                                                                                                        |
+| site_admin         | If `true`, this user is a site admin, which means the user has full permissions on all non-private jobs.                                                                                                                                                                                                                                                                            |
+| primary_email_address | The e-mail address this user has designated as his or her primary e-mail address. This value should always also be in the emails array.                                                                                                                                                                                                                                             |
 | linked_candidate_ids[] | Contains the IDs of candidate records containing this user's personal applications. In other words, the records containing this user's personal interview records and information.                                                                                                                                                                                                  |
-| **offices              | An array containing the [offices](#offices) this job is associated with.                                                                                                                                                                                                                                                                                                            |
-| **departments          | 	An array containing the [department](#departments) which this job belongs to.                                                                                                                                                                                                                                                                                                      |
-| custom_fields          | 	Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.                                                                                                                                                                                                              |
-| keyed_custom_fields	   | This contains the same information as custom_fields but formatted in a different way that includes more information. This will tell you the type of custom field data to expect, the text name of custom field, and the value. The key of this hash is the custom field’s immutable field key, which will not change even if the name of the custom field is changed in Greenhouse. |
+| offices            | An array containing the [offices](#offices) this user is associated with.                                                                                                                                                                                                                                                                                                           |
+| departments        | 	An array containing the [department](#departments) which this user is associated with.                                                                                                                                                                                                                                                                                             |
+| custom_fields      | 	Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.                                                                                                                                                                                                              |
+| keyed_custom_fields	 | This contains the same information as custom_fields but formatted in a different way that includes more information. This will tell you the type of custom field data to expect, the text name of custom field, and the value. The key of this hash is the custom field’s immutable field key, which will not change even if the name of the custom field is changed in Greenhouse. |
 
 ## GET: List Users
 
@@ -179,7 +179,7 @@ List all of an organization's Greenhouse users. If the querystring param `user_a
 | updated_before  | Return only users that were updated before this timestamp. Timestamp must be in in [ISO-8601] (#general-considerations) format.
 | updated_after   | Return only users that were updated at or after this timestamp. Timestamp must be in in [ISO-8601] (#general-considerations) format.
 | email           | Return a single user who has this e-mail address as their primary e-mail or a secondary e-mail.
-| user_attributes | Return users along with their `custom_fields` and `keyed_custom_fields` hash values. Must be set to `true` to return user attribute in results.
+| user_attributes | Return users along with their `custom_fields` and `keyed_custom_fields` hash values. Must be set to `true` to return user attributes in results.
 
 <br>
 [See noteworthy response attributes.] (#the-user-object)
@@ -379,7 +379,7 @@ On-Behalf-Of | ID of the user issuing this request. Required for auditing purpos
 
 ### Custom Field Parameters
 
-The custom field parameter structure is different in the PATCH method then in GET methods and responses. Certain type of custom fields require different elements to be included, while deleting a field requires a specific argument. What follows is the description of each item in a custom field element and what is required depending on the type.
+The custom field parameter structure is different in the PATCH method than in GET methods and responses. Certain type of custom fields require different elements to be included, while deleting a field requires a specific argument. What follows is the description of each item in a custom field element and what is required depending on the type.
 
 | Parameter    | Required for                 | Description                                                                                                                                                                                                                                                                                                       |
 | ------------ | ---------------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -388,11 +388,7 @@ The custom field parameter structure is different in the PATCH method then in GE
 | value        | all                          | The value field contains the new custom field value. In most cases this will be a string or a number. In the case of single-select or multi-select custom fields, this will be a custom field option id or an array of custom field option ids, respectively. |
 | delete_value | n/a                          | When this element is included with a value of `"true"` (note, string true, not boolean true) the custom field value will be removed from Greenhouse. Note that updating a custom field value to nil or a blank string will not work, as validations require these to be non-blank values.                           |
 
-\* At this time, user custom fields only supports the following field types: single_select, multi_select, yes_no, and user
-
-### HTTP Request
-
-`PATCH https://harvest.greenhouse.io/v2/users/`
+\* At this time, user attributes only supports the following field types: single_select, multi_select, yes_no, and user
 
 ## PATCH: Disable User
 
@@ -439,6 +435,21 @@ curl -X PATCH 'https://harvest.greenhouse.io/v2/users/disable'
   ],
   "employee_id": "user-123",
   "linked_candidate_ids": [123, 654],
+  "offices": [
+    {
+      "id": 47013,
+      "name": "San Francisco",
+      "location": {
+        "name": "San Francisco, California"
+      },
+      "primary_contact_user_id": 150894,
+      "parent_id": 50850,
+      "parent_office_external_id": "14680",
+      "child_ids": [50852, 50891],
+      "child_office_external_ids": ["13473", "123473"],
+      "external_id": "15679"
+    }
+  ],
   "departments": [
     {
       "id": 25907,
@@ -557,6 +568,21 @@ curl -X PATCH 'https://harvest.greenhouse.io/v2/users/enable'
   ],
   "employee_id": "221",
   "linked_candidate_ids": [123, 654],
+  "offices": [
+    {
+      "id": 47013,
+      "name": "San Francisco",
+      "location": {
+        "name": "San Francisco, California"
+      },
+      "primary_contact_user_id": 150894,
+      "parent_id": 50850,
+      "parent_office_external_id": "14680",
+      "child_ids": [50852, 50891],
+      "child_office_external_ids": ["13473", "123473"],
+      "external_id": "15679"
+    }
+  ],
   "departments": [
     {
       "id": 25907,
@@ -716,7 +742,19 @@ curl -X POST 'https://harvest.greenhouse.io/v1/users'
   "last_name": "Smith",
   "email": "bob@email.org",
   "send_email_invite": true,
-  "employee_id": "ABC12345"
+  "employee_id": "ABC12345",
+  "office_ids": [47013],
+  "department_ids": [25907],
+  "custom_fields": [
+    {
+      "name_key": "shirt_size",
+      "value": "Medium"
+    },
+    {
+      "id": 12345,
+      "value": "Laptop"
+    }
+  ]
 }
 ```
 > The above command returns a JSON response, structured like this:
@@ -736,7 +774,49 @@ curl -X POST 'https://harvest.greenhouse.io/v1/users'
         "bob@email.org"
     ],
     "employee_id": "ABC12345",
-    "linked_candidate_ids": [123, 654]
+    "linked_candidate_ids": [123, 654],
+    "offices": [
+    {
+      "id": 47013,
+      "name": "San Francisco",
+      "location": {
+        "name": "San Francisco, California"
+      },
+      "primary_contact_user_id": 150894,
+      "parent_id": 50850,
+      "parent_office_external_id": "14680",
+      "child_ids": [50852, 50891],
+      "child_office_external_ids": ["13473", "123473"],
+      "external_id": "15679"
+    }
+    ],
+    "departments": [
+    {
+      "id": 25907,
+      "name": "Marketing",
+      "parent_id": 25908,
+      "parent_department_external_id": "13473",
+      "child_ids": [50852, 50891],
+      "child_department_external_ids": ["13473", "123473"],
+      "external_id": "15679"
+    }
+    ],
+    "custom_fields": {
+    "equipment": "Laptop",
+    "shirt_size": "Medium"
+    },
+    "keyed_custom_fields": {
+    "equipment": {
+      "name": "Equipment",
+      "type": "short_text",
+      "value": "Laptop"
+    },
+    "shirt_size": {
+      "name": "Shirt Size",
+      "type": "single_select",
+      "value": "Medium"
+    }
+    }
 }
 ```
 
@@ -755,16 +835,34 @@ On-Behalf-Of | ID of the user issuing this request. Required for auditing purpos
 
 ### JSON Body Parameters
 
-Parameter | Required | Type | Description
---------- | ----------- | ----------- | -----------
-first_name | Yes | string | The user's first name
-last_name | Yes | string | The user's last name
-email | Yes | string | The user's email address. Must be a valid email address.
-send_email_invite* | No | boolean | If true, an email will be sent to the user alerting them of any new job permissions that have been assigned to them. Emails are never sent when permissions are removed. If false, nothing happens. Default is false.
-employee_id | No | string | The user's external employee id.
+| Parameter          | Required | Type         | Description                                                                                                                                                                                                           |
+|--------------------|----------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| first_name         | Yes      | string       | The user's first name                                                                                                                                                                                                 |
+| last_name          | Yes      | string       | The user's last name                                                                                                                                                                                                  |
+| email              | Yes      | string       | The user's email address. Must be a valid email address.                                                                                                                                                              |
+| send_email_invite* | No       | boolean      | If true, an email will be sent to the user alerting them of any new job permissions that have been assigned to them. Emails are never sent when permissions are removed. If false, nothing happens. Default is false. |
+| employee_id        | No       | string       | The user's external employee id.                                                                                                                                                                                      |
+| office_ids         | No       | Array        | The office value(s) associated with a user. Must be a valid set of office IDs. Passing an empty array does nothing.                                                                                                   |
+| department_ids     | No       | Array        | The department value(s) associated with a user. Must be a valid set of department IDs. Passing an empty array does nothing.                                                                                           |
+| custom_fields      | No       | custom_field | Array of hashes containing new custom field values.  Passing an empty array does nothing.                                                                                                                             |
 
 \* - A newly created user will not be able to login until they create a password via the invitation link or configured in an SSO system.
+
 \** - The employee_id feature is available only for customers with the Advanced and Expert Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.
+
+### Custom Field Parameters
+
+The custom field parameter structure is different in the POST method than in GET methods and responses. Certain type of custom fields require different elements to be included. What follows is the description of each item in a custom field element and what is required depending on the type.
+
+| Parameter    | Required for                 | Description                                                                                                                                                                                                                                                                                                       |
+| ------------ | ---------------------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id           | all                          | The custom field id for this particular custom field. One of this or name_key is required.                                                                                                                                                                                                                        |
+| name_key     | all                          | The field key for this custom field. This can be found in Greenhouse while editing custom options as "Immutable Field Key". This or id is required for all custom field elements.                                                                                                                                 |
+| value        | all                          | The value field contains the new custom field value. In most cases this will be a string or a number. In the case of single-select or multi-select custom fields, this will be a custom field option id or an array of custom field option ids, respectively. |
+
+
+\* At this time, user attributes only supports the following field types: single_select, multi_select, yes_no, and user
+
 
 ## POST: Add E-mail Address To User
 
