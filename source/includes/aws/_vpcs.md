@@ -158,5 +158,17 @@ Delete a VPC in a given [environment](#administration-environments).
 
 | Attributes                 | &nbsp;                                        |
 |----------------------------|-----------------------------------------------|
-| `taskId` <br/>*string*     | The task id related to the VPC deletion. |
+| `taskId` <br/>*string*     | The task id related to the VPC deletion.      |
 | `taskStatus` <br/>*string* | The status of the operation.                  |
+
+The following entities will also be deleted in the following order.
+
+| Entities            | &nbsp;                                                                  |
+|---------------------|-------------------------------------------------------------------------|
+| `Nodegroups`        | The nodegroups of kubernetes clusters that are associated with the VPC. |
+| `Clusters`          | The kubernetes clusters with subnets that are associated with the VPC.  |
+| `Instances`         | The instances that are associated with the VPC.                         |
+| `Subnets`           | The subnets that are associated with the VPC.                           |
+| `Internet gateways` | The internet gateways that are associated with the VPC.                 |
+| `Route tables`      | The route tables that are associated with the VPC.                      |
+| `Security groups`   | The security groups that are associated with the VPC.                   |

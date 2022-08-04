@@ -204,3 +204,12 @@ Delete a Subnetwork in a given [environment](#administration-environments).
 | -------------------------- | ------------------------------------------- |
 | `taskId` <br/>_string_     | The task id related to the subnet deletion. |
 | `taskStatus` <br/>_string_ | The status of the operation.                |
+
+The following entities will also be deleted in the following order.
+
+| Entities            | &nbsp;                                                                     |
+|---------------------|----------------------------------------------------------------------------|
+| `Nodegroups`        | The nodegroups of kubernetes clusters that are associated with the subnet. |
+| `Clusters`          | The kubernetes clusters that are associated with the subnet.               |
+| `Instances`         | The instances that are associated with the subnet.                         |
+| `Network interface` | The network interfaces that are associated with the subnet.                |
