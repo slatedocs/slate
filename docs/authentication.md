@@ -1,23 +1,25 @@
-In order to make use of Blaze, you’ll need to be set up as an MSK “partner” so that you can consume clinical research data. If you would like to request access to data for a research study at MSK, please send a request to rtmcritds@mskcc.org.
+In order to make use of Blaze, you’ll need to be set up as an MSK “partner” so that you can consume clinical research data. If you would like to request access to data for a research study at MSK, please send a request to [rtmcritds@mskcc.org](mailto:rtmcritds@mskcc.org).
 
-Authentication is based on the Client Credentials grant. This means that clients will need to generate an access token and supply it in the headers of each request being made. Once you are established as a partner, you’ll be given a `client_id` and a `client_secret`, which you will use for generating tokens and using them to make authenticated requests to the server.
+Authentication is based on the Client Credentials grant. This means that clients will need to generate an access token and supply it in the headers of each request being made. Once you are established as a partner, you will receive a `client_id` and a `client_secret`, which you will use to generate token make authenticated requests to the server.
 
 ## Protocol Access
 
-All data access is restricted on a per protocol basis. It is assumed that incoming requests to Blaze always contains a researchstudy parameter, which identifies what research study the client is requesting data for. This information is used in combination with the researchstudy parameter to authorize requests.
+All data access is granted on a per protocol basis therefore, it is a requirement that incoming requests to Blaze always contain a `researchstudy` parameter. The value passed into this parameter in combination with the "partner" credentials are used to validate and authorize requests.
 
 ## Generating Access Tokens
+
+**Access tokens** must be included in all resources endpoints. To generate a token using the following endpoint,
 ```
 POST /msk-apim/external/msk-oidc/oauth2/token
 ```
-This endpoint is use to to generate an access token, **access tokens** must be included in all resources endpoints.
 
-| Parameters    | Description                          |
-| :---------- | :----------------------------------- |
-| `client_id`       | :material-check: Unique Sponsor MSK FHIR Blaze ClientID  |
-| `client_secret`       |:material-check: Unique Sponsor MSK FHIR Blaze ClientSecret |
-| `grant_type`    | :material-check: Use value: client_credentials |
-| `scope`         |:material-check:  Use value: full|
+
+| Parameter       | Required/Optional | Description                                                |
+| --------------- | ----------------- |----------------------------------------------------------- |
+| `client_id`     |  required         | MSK provided unique client ID                              |
+| `client_secret` |  required         | MSK provided unique client secret                          |
+| `grant_type`    |  required         | Use value: `client_credentials`             |
+| `scope`         |  required         | Use value: `full`                          |
    
 
 === "C# - RestSharp"
@@ -55,7 +57,7 @@ This endpoint is use to to generate an access token, **access tokens** must be i
 
 ## Response Example
 
-> **_NOTE:_** MSK HL7 FHIR server only exposes JSON.
+> **_NOTE:_** MSK HL7 FHIR server only exposes data in JSON format.
 
 ```json
 {

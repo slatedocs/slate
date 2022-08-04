@@ -6,14 +6,14 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 
 ```
 
-|# | Parameters    | Description                          |
-|:-| :---------- | :----------------------------------- |
-|A1| `researchstudy`       | :material-asterisk: MSK unique study number  |
-|A2|`category`       |:material-asterisk: Default value: **vital-signs** |
-|A3|`x-partnerid` |:material-asterisk: suply given partnerid|
-|A4|Filter: Optional Parameters go to [Filter page](/searching) | |
+| Parameters      | Required/Optional | Description                          |
+| --------------  | ----------------- | ------------------------------------ |
+| `researchstudy` | required          | MSK unique study number  |
+| `category`      | required          | Default value: **vital-signs** |
+| `x-partnerid`   | required          | suply given partnerid|
 
-:material-asterisk: Indicates a required field.
+For a list of optional filtering parameters visit the [Searching page](/searching).
+
 
 ## Example Request
 
@@ -23,7 +23,7 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 
 | Field                                               | Description                                |
 | --------------------------------------------------- | ------------------------------------------ |
-| `id`                                                | ??                                         |
+| `id`                                                |                                            |
 | `extension[0].url`                                  | MSKCC identifiers documentation            |
 | `extension[0].valueCode`                            | Sponsor Study Number                       |
 | `identifier.system`                                 |                                            |
@@ -41,5 +41,5 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 | `suspectEntity.causality.assessment.coding.display` |                                            |
 | `suspectEntity.causality.productRelatedness`        |                                            |
 | `study.reference`                                   | Study/ + MSKCC IRB Number                  |
-| `study.identifier.value`                            | ??                                         |
+| `study.identifier.value`                            |                                            |
 | `study.display`                                     | hardcoded to AdverseEvent                  |

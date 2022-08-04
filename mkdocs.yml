@@ -1,7 +1,8 @@
-site_name: MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+site_name: CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
 theme:
   name: material
-  logo: assets/logo-arrow-sans-medium-black.svg
+  # logo: assets/logo-arrow-sans-medium-black.svg
+  logo: assets/msk-logo.svg
 extra_css:
   - stylesheets/extra.css
 copyright: Copyright &copy; 2022 MSKCC
