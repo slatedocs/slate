@@ -46,7 +46,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nodegroups?cluster_id=:cluster_id<</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nodegroups?cluster_id=:cluster_id</code>
 
 Optional | &nbsp; 
 -------- | ------
