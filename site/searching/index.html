@@ -13,7 +13,7 @@
     
     
       
-        <title>Searching - MSK BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Searching - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
       
     
     
@@ -71,9 +71,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../assets/msk-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+            CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -156,12 +156,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../assets/msk-logo.svg" alt="logo">
 
     </a>
-    MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+    CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -372,8 +372,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../coming-soon/recist/" class="md-nav__link">
-        RECIST
+      <a href="../coming-soon/response/" class="md-nav__link">
+        Response
       </a>
     </li>
   
@@ -448,39 +448,45 @@
 
   <h1>Searching</h1>
 
-<p>Filtering parameters are <strong>optional</strong>, be aware that some combinations might not return a payload, this does not mean that there is anything wrong with the filtering, it is just that there is no data for such combination.  </p>
-<p>If you feel that there should be data, please contact us.</p>
+<p>Filtering parameters are <strong>optional</strong> and some combinations might not return a payload. If you feel that there should be data for a particular combination of filters, please reach out to <a href="mailto:rtmcritds@mskcc.org">rtmcritds@mskcc.org</a>.</p>
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
+<th>Required/Optional</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>_count</td>
-<td>It is used to control the number of records to return inside the bundle, by default is 50 records, we recommend using this parameter wisely to avoid timeout errors.</td>
+<td>optional</td>
+<td>Controls the number of records returned in the bundle. If a value is not specified, the default is 50 records. We recommend using this parameter wisely to avoid timeout errors.</td>
 </tr>
 <tr>
 <td>date</td>
-<td>When the date parameter is used, it must be use in the form of &amp;date=OpMM/DD/YYY where OP is the Operator for that date, the following are the allow values: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (&lt; )</li><li>gt (&gt;)</li><li>ge (&gt;=)</li><li>Le ( &lt;=)</li></ul></td>
-</tr>
-<tr>
-<td>page</td>
-<td>It is used for paging, for examples how to use this, refer to section FHIR paging</td>
+<td>optional</td>
+<td>Must follow the format <code>&amp;date=OpMM/DD/YYY</code> where OP is the Operator for that date. Acceptable values include: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (&lt; )</li><li>gt (&gt;)</li><li>ge (&gt;=)</li><li>le ( &lt;=)</li></ul></td>
 </tr>
 <tr>
 <td>id</td>
-<td>It is used to return only the record for a given subjectID</td>
+<td>optional</td>
+<td>Returns the record for a given subject ID</td>
+</tr>
+<tr>
+<td>page</td>
+<td>optional</td>
+<td>Used to retrieve data on a particular page. Refer to <a href="../pagination/">pagination</a> for more details.</td>
 </tr>
 <tr>
 <td>researchstudy</td>
-<td>MSK IRB number used to identify **</td>
+<td>required</td>
+<td>MSK unique study number</td>
 </tr>
 <tr>
 <td>studyid</td>
-<td>(Not yet available) SponsorID</td>
+<td>(Not yet available)</td>
+<td>Sponsor study ID</td>
 </tr>
 </tbody>
 </table>
@@ -536,7 +542,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2022 MSKCC
+      Copyright &copy; 2022 MSK
     </div>
   
   

@@ -13,7 +13,7 @@
     
     
       
-        <title>Authentication - MSK BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Authentication - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
       
     
     
@@ -76,9 +76,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../assets/msk-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+            CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -161,12 +161,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../assets/msk-logo.svg" alt="logo">
 
     </a>
-    MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+    CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -420,8 +420,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../coming-soon/recist/" class="md-nav__link">
-        RECIST
+      <a href="../coming-soon/response/" class="md-nav__link">
+        Response
       </a>
     </li>
   
@@ -525,37 +525,41 @@
 
   <h1>Authentication</h1>
 
-<p>In order to make use of Blaze, you’ll need to be set up as an MSK “partner” so that you can consume clinical research data. If you would like to request access to data for a research study at MSK, please send a request to rtmcritds@mskcc.org.</p>
-<p>Authentication is based on the Client Credentials grant. This means that clients will need to generate an access token and supply it in the headers of each request being made. Once you are established as a partner, you’ll be given a <code>client_id</code> and a <code>client_secret</code>, which you will use for generating tokens and using them to make authenticated requests to the server.</p>
+<p>Authentication is based on the Client Credentials grant. Once you are established as a partner, you will receive a <code>client_id</code> and a <code>client_secret</code>, which are required to generate tokens and make authenticated requests to the server. Valid access tokens are expected it in the headers of each request.</p>
 <h2 id="protocol-access">Protocol Access</h2>
-<p>All data access is restricted on a per protocol basis. It is assumed that incoming requests to Blaze always contains a researchstudy parameter, which identifies what research study the client is requesting data for. This information is used in combination with the researchstudy parameter to authorize requests.</p>
+<p>All data access is granted on a per protocol basis therefore, it is expected that incoming requests to Blaze always contain a <code>researchstudy</code> parameter. The value passed into this parameter in combination with the "partner" credentials are used to validate and authorize requests.</p>
 <h2 id="generating-access-tokens">Generating Access Tokens</h2>
-<p><div class="highlight"><pre><span></span><code>POST /msk-apim/external/msk-oidc/oauth2/token
-</code></pre></div>
-This endpoint is use to to generate an access token, <strong>access tokens</strong> must be included in all resources endpoints.</p>
+<p><strong>Access tokens</strong> must be included in all resources endpoints. To generate a token use the following endpoint and listed parameters:
+<div class="highlight"><pre><span></span><code>POST /msk-apim/external/msk-oidc/oauth2/token
+</code></pre></div></p>
 <table>
 <thead>
 <tr>
-<th align="left">Parameters</th>
-<th align="left">Description</th>
+<th>Parameter</th>
+<th>Required/Optional</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>client_id</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span> Unique Sponsor MSK FHIR Blaze ClientID</td>
+<td><code>client_id</code></td>
+<td>required</td>
+<td>MSK provided unique client ID</td>
 </tr>
 <tr>
-<td align="left"><code>client_secret</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span> Unique Sponsor MSK FHIR Blaze ClientSecret</td>
+<td><code>client_secret</code></td>
+<td>required</td>
+<td>MSK provided unique client secret</td>
 </tr>
 <tr>
-<td align="left"><code>grant_type</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span> Use value: client_credentials</td>
+<td><code>grant_type</code></td>
+<td>required</td>
+<td>Use value: <code>client_credentials</code></td>
 </tr>
 <tr>
-<td align="left"><code>scope</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z"/></svg></span>  Use value: full</td>
+<td><code>scope</code></td>
+<td>required</td>
+<td>Use value: <code>full</code></td>
 </tr>
 </tbody>
 </table>
@@ -592,7 +596,7 @@ This endpoint is use to to generate an access token, <strong>access tokens</stro
 </div>
 <h2 id="response-example">Response Example</h2>
 <blockquote>
-<p><strong><em>NOTE:</em></strong> MSK HL7 FHIR server only exposes JSON.</p>
+<p><strong><em>NOTE:</em></strong> MSK HL7 FHIR server only exposes data in JSON format.</p>
 </blockquote>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span><span class="w"></span>
@@ -654,7 +658,7 @@ This endpoint is use to to generate an access token, <strong>access tokens</stro
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2022 MSKCC
+      Copyright &copy; 2022 MSK
     </div>
   
   

@@ -1,10 +1,12 @@
 # Getting Started
 
-Memorial Sloan Kettering Cancer Center (MSK) allows pre-approved sponsors to securely access and retrieve clinical trial data on demand from the MSK HL7 FHIR server, also known as Blaze. The MSK Blaze API is organized around REST. Each FHIR resource type currently supports [read](http://build.fhir.org/http.html#read) and [search](http://build.fhir.org/http.html#search) capabilities.
+Memorial Sloan Kettering Cancer Center (MSK) allows pre-approved sponsors to securely access and retrieve clinical trial data on demand from MSK's HL7-FHIR server, also known as Blaze. The MSK Blaze API is organized around REST and each FHIR resource type currently supports [read](http://build.fhir.org/http.html#read) and [search](http://build.fhir.org/http.html#search) capabilities. The API is currently managed by MSK's Clinical Research IT department (CRIT).
+
+In order to make use of Blaze to consume clinical research data, you’ll need to be set up as an MSK “partner”. If you are interested in leveraging this API for a research study conducted at MSK, please send a request to [rtmcritds@mskcc.org](mailto:rtmcritds@mskcc.org) with your organization name and study number.
 
 ## Data Sources
 
-Data supporting electronic direct data extraction is obtained from multiple MSK applications. The goal is always to integrate as close to the source application as possible. The integration decisions are made on a case-by-case basis per data domain. If unable to integrate directly with the source application, then only an approved enterprise solution such as the Institutional Data Warehouse (IDB) or Unified Data Fabric will be leveraged to extract the data. 
+Data supporting electronic direct data exchange is obtained from multiple MSK applications. The goal is always to integrate as close to the source application as possible. The integration decisions are made on a case-by-case basis per data domain. If unable to integrate directly with the source application, then only an approved enterprise solution such as the Institutional Data Warehouse (IDB) or Unified Data Fabric is leveraged to extract the data. 
 
 ## FHIR Version
 

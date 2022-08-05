@@ -9,14 +9,13 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 ```
 
-|# | Parameters    | Description                          |
-|:-| :---------- | :----------------------------------- |
-|A1| `researchstudy`       | :material-asterisk: MSK unique study number  |
-|A2|`category`       |:material-asterisk: Default value: **vital-signs** |
-|A3|`x-partnerid` |:material-asterisk: suply given partnerid|
-|A4|Filter: Optional Parameters go to [Filter page](/../searching) |
+| Parameters      | Required/Optional | Description                       |
+| --------------- | ----------------- | --------------------------------- |
+| `researchstudy` | required          | MSK unique study number           |
+| `category`      | required          | For vitals data, use `vital-signs`|
+| `x-partnerid`   | required          | MSK provided partner ID           |
 
-:material-asterisk: Indicates a required field.
+For a list of optional filtering parameters visit the [Searching page](/searching).
 
 ## Example Request
 
@@ -200,18 +199,18 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
 
 | Field                     | Description                                |
 | ------------------------- | ------------------------------------------ |
-| `id`                      | MSKCC Unique Identifier                    |
+| `id`                      | MSK Unique Identifier                      |
 | `extension[0].url`        | FHIR researchStudy extension documentation |
-| `extension[0].valueCode`  | MSKCC IRB Protocol Number                  |
-| `extension[1].url`        | MSKCC identifiers documentation            |
+| `extension[0].valueCode`  | MSK unique study number                    |
+| `extension[1].url`        | MSK identifiers documentation              |
 | `extension[1].valueCode`  | Sponsor Study Number                       |
 | `identifier.system`       |                                            |
-| `identifier.value`        | MSKCC Unique Identifier                    |
+| `identifier.value`        | MSK Unique Identifier                      |
 | `category.coding.system`  | FHIR observation documentation             |
 | `category.coding.code`    | hardcoded to `vital-signs`                 |
 | `category.coding.display` | hardcoded to `Vital Signs`                 |
 | `category.text`           | hardcoded to `Vital Signs`                 |
-| `code.coding.system`      | Loinc documentation                        |
+| `code.coding.system`      | LOINC documentation                        |
 | `code.coding.code`        | Vital Sign Value                           |
 | `code.coding.display`     | Vital Sign Item Type                       |
 | `code.text`               | Vital Sign Item Type                       |

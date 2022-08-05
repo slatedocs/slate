@@ -13,7 +13,7 @@
     
     
       
-        <title>Vitals - MSK BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Vitals - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
       
     
     
@@ -76,9 +76,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href="../.." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../../assets/msk-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+            CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -161,12 +161,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href="../.." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../../assets/msk-logo.svg" alt="logo">
 
     </a>
-    MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+    CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -429,8 +429,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../coming-soon/recist/" class="md-nav__link">
-        RECIST
+      <a href="../../coming-soon/response/" class="md-nav__link">
+        Response
       </a>
     </li>
   
@@ -549,35 +549,30 @@
 <table>
 <thead>
 <tr>
-<th align="left">#</th>
-<th align="left">Parameters</th>
-<th align="left">Description</th>
+<th>Parameters</th>
+<th>Required/Optional</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">A1</td>
-<td align="left"><code>researchstudy</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> MSK unique study number</td>
+<td><code>researchstudy</code></td>
+<td>required</td>
+<td>MSK unique study number</td>
 </tr>
 <tr>
-<td align="left">A2</td>
-<td align="left"><code>category</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> Default value: <strong>vital-signs</strong></td>
+<td><code>category</code></td>
+<td>required</td>
+<td>For vitals data, use <code>vital-signs</code></td>
 </tr>
 <tr>
-<td align="left">A3</td>
-<td align="left"><code>x-partnerid</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> suply given partnerid</td>
-</tr>
-<tr>
-<td align="left">A4</td>
-<td align="left">Filter: Optional Parameters go to <a href="/../searching">Filter page</a></td>
-<td align="left"></td>
+<td><code>x-partnerid</code></td>
+<td>required</td>
+<td>MSK provided partner ID</td>
 </tr>
 </tbody>
 </table>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> Indicates a required field.</p>
+<p>For a list of optional filtering parameters visit the <a href="/searching">Searching page</a>.</p>
 <h2 id="example-request">Example Request</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">C# </label><label for="__tabbed_1_2">Python</label></div>
 <div class="tabbed-content">
@@ -780,7 +775,7 @@
 <tbody>
 <tr>
 <td><code>id</code></td>
-<td>MSKCC Unique Identifier</td>
+<td>MSK Unique Identifier</td>
 </tr>
 <tr>
 <td><code>extension[0].url</code></td>
@@ -788,11 +783,11 @@
 </tr>
 <tr>
 <td><code>extension[0].valueCode</code></td>
-<td>MSKCC IRB Protocol Number</td>
+<td>MSK unique study number</td>
 </tr>
 <tr>
 <td><code>extension[1].url</code></td>
-<td>MSKCC identifiers documentation</td>
+<td>MSK identifiers documentation</td>
 </tr>
 <tr>
 <td><code>extension[1].valueCode</code></td>
@@ -804,7 +799,7 @@
 </tr>
 <tr>
 <td><code>identifier.value</code></td>
-<td>MSKCC Unique Identifier</td>
+<td>MSK Unique Identifier</td>
 </tr>
 <tr>
 <td><code>category.coding.system</code></td>
@@ -824,7 +819,7 @@
 </tr>
 <tr>
 <td><code>code.coding.system</code></td>
-<td>Loinc documentation</td>
+<td>LOINC documentation</td>
 </tr>
 <tr>
 <td><code>code.coding.code</code></td>
@@ -908,7 +903,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2022 MSKCC
+      Copyright &copy; 2022 MSK
     </div>
   
   

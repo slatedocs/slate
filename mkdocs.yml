@@ -5,7 +5,7 @@ theme:
   logo: assets/msk-logo.svg
 extra_css:
   - stylesheets/extra.css
-copyright: Copyright &copy; 2022 MSKCC
+copyright: Copyright &copy; 2022 MSK
 extra:
   social:
     - icon: fontawesome/brands/instagram
@@ -31,7 +31,7 @@ nav:
       - Vitals: resources/vitals.md
   - "Coming Soon":
       - Medications: coming-soon/medications.md
-      - RECIST: coming-soon/recist.md
+      - Response: coming-soon/response.md
   - Identifiers: identifiers.md
   - "Release Notes": release-notes.md
 markdown_extensions:

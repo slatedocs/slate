@@ -8,14 +8,13 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 ```
 
-|# | Parameters    | Description                          |
-|:-| :---------- | :----------------------------------- |
-|A1| `researchstudy`       | :material-asterisk: MSK unique study number  |
-|A2|`category`       |:material-asterisk: Default value: **laboratory** |
-|A3|`x-partnerid` |:material-asterisk: suply given partnerid|
-|A4|Filter: Optional Parameters go to [Filter page](/searching) |
+| Parameters      | Required/Optional | Description                   |
+| --------------- | ----------------- | ----------------------------- |
+| `researchstudy` | required          | MSK unique study number       |
+| `category`      | required          | For lab data, use `laboratory` |
+| `x-partnerid`   | required          | MSK provided partner ID       |
 
-:material-asterisk: Indicates a required field.
+For a list of optional filtering parameters visit the [Searching page](/searching).
 
 ## Example Request
 
@@ -199,13 +198,13 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
 
 | Field                      | Description                                |
 | -------------------------- | ------------------------------------------ |
-| `id`                       | MSKCC Unique Identifier                    |
+| `id`                       | MSK Unique Identifier                      |
 | `extension[0].url`         | FHIR researchStudy extension documentation |
-| `extension[0].valueCode`   | MSKCC IRB Protocol Number                  |
+| `extension[0].valueCode`   | MSK IRB Protocol Number                    |
 | `extension[1].url`         |                                            |
 | `extension[1].valueCode`   | Sponsor Study Number                       |
 | `identifier.system`        |                                            |
-| `identifier.value`         | MSKCC Unique Identifier                    |
+| `identifier.value`         | MSK Unique Identifier                      |
 | `status`                   | Hardcoded to `final`                       |
 | `category.coding.system`   | FHIR Observation category documentation    |
 | `category.coding.code`     | FHIR Observation category code             |
@@ -213,13 +212,13 @@ GET /msk-apim/external/v1/crit/blaze/api/observations
 | `category.text`            | FHIR Observation category                  |
 | `code.coding.system`       | LOINC documentation                        |
 | `code.coding.code`         | LOINC code                                 |
-| `code.coding.display`      | MSKCC test code                            |
-| `code.text`                | MSKCC test code                            |
+| `code.coding.display`      | MSK test code                              |
+| `code.text`                | MSK test code                              |
 | `subject.reference`        | `Patient/` + Sponsor assigned subject ID   |
 | `encounter.display`        | Protocol visit                             |
 | `effectiveDateTime`        | Specimen collection datetime               |
 | `issued`                   | Specimen datetime                          |
 | `valueQuantity.value`      | Numeric result                             |
-| `valueQuantity.unit`       | MSKCC Unit                                 |
+| `valueQuantity.unit`       | Test Unit                                  |
 | `valueString`              | Text result                                |
 | `referenceRange.text`      | Reference range                            |

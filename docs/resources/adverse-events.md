@@ -8,9 +8,8 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 
 | Parameters      | Required/Optional | Description                          |
 | --------------  | ----------------- | ------------------------------------ |
-| `researchstudy` | required          | MSK unique study number  |
-| `category`      | required          | Default value: **vital-signs** |
-| `x-partnerid`   | required          | suply given partnerid|
+| `researchstudy` | required          | MSK unique study number              |
+| `x-partnerid`   | required          | MSK provided partner ID              |
 
 For a list of optional filtering parameters visit the [Searching page](/searching).
 
@@ -24,7 +23,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | Field                                               | Description                                |
 | --------------------------------------------------- | ------------------------------------------ |
 | `id`                                                |                                            |
-| `extension[0].url`                                  | MSKCC identifiers documentation            |
+| `extension[0].url`                                  | MSK identifiers documentation              |
 | `extension[0].valueCode`                            | Sponsor Study Number                       |
 | `identifier.system`                                 |                                            |
 | `identifier.value`                                  | Data Source                                |
@@ -40,6 +39,6 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | `suspectEntity.causality.assessment.coding.system`  | FHIR Adverse Event Causality documentation |
 | `suspectEntity.causality.assessment.coding.display` |                                            |
 | `suspectEntity.causality.productRelatedness`        |                                            |
-| `study.reference`                                   | Study/ + MSKCC IRB Number                  |
+| `study.reference`                                   | Study/ + MSK unique study number           |
 | `study.identifier.value`                            |                                            |
-| `study.display`                                     | hardcoded to AdverseEvent                  |
+| `study.display`                                     | hardcoded to `AdverseEvent`                |

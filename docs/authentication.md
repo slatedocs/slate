@@ -1,14 +1,12 @@
-In order to make use of Blaze, you’ll need to be set up as an MSK “partner” so that you can consume clinical research data. If you would like to request access to data for a research study at MSK, please send a request to [rtmcritds@mskcc.org](mailto:rtmcritds@mskcc.org).
-
-Authentication is based on the Client Credentials grant. This means that clients will need to generate an access token and supply it in the headers of each request being made. Once you are established as a partner, you will receive a `client_id` and a `client_secret`, which you will use to generate token make authenticated requests to the server.
+Authentication is based on the Client Credentials grant. Once you are established as a partner, you will receive a `client_id` and a `client_secret`, which are required to generate tokens and make authenticated requests to the server. Valid access tokens are expected it in the headers of each request.
 
 ## Protocol Access
 
-All data access is granted on a per protocol basis therefore, it is a requirement that incoming requests to Blaze always contain a `researchstudy` parameter. The value passed into this parameter in combination with the "partner" credentials are used to validate and authorize requests.
+All data access is granted on a per protocol basis therefore, it is expected that incoming requests to Blaze always contain a `researchstudy` parameter. The value passed into this parameter in combination with the "partner" credentials are used to validate and authorize requests.
 
 ## Generating Access Tokens
 
-**Access tokens** must be included in all resources endpoints. To generate a token using the following endpoint,
+**Access tokens** must be included in all resources endpoints. To generate a token use the following endpoint and listed parameters:
 ```
 POST /msk-apim/external/msk-oidc/oauth2/token
 ```

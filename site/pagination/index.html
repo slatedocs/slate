@@ -13,7 +13,7 @@
     
     
       
-        <title>Pagination - MSK BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Pagination - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
       
     
     
@@ -71,9 +71,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../assets/msk-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -83,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+            CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -156,12 +156,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../assets/msk-logo.svg" alt="logo">
 
     </a>
-    MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+    CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -372,8 +372,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../coming-soon/recist/" class="md-nav__link">
-        RECIST
+      <a href="../coming-soon/response/" class="md-nav__link">
+        Response
       </a>
     </li>
   
@@ -448,8 +448,8 @@
 
   <h1>Pagination</h1>
 
-<p>The FHIR Payload is returned as a <a href="https://www.hl7.org/fhir/bundle.html" target="blank">FHIR Bundle</a>, and is a collection of resources that can contain from zero resources to the actual count of the available resources based your query search. It is good practice not to return all data, by default we are capping the number of resources to fifty; however, this number is configurable via a parameter _count. We advise keeping this default value to prevent database timeouts.</p>
-<p><a href="https://www.hl7.org/fhir/http.html#paging" target="blank">Paging</a> is presented via the link <a href="https://www.hl7.org/fhir/bundle-definitions.html#Bundle.link" target="blank">Bundle attribute</a>. The link attribute identifies the Links related to this Bundle.</p>
+<p>The FHIR Payload is returned as a <a href="https://www.hl7.org/fhir/bundle.html" target="blank">FHIR Bundle</a>, and is a collection of resources that match the query parameters. By default MSK returns 50 resources per page; however, this number is configurable via the <code>_count</code> parameter. We advise keeping this default value to prevent timeouts.</p>
+<p><a href="https://www.hl7.org/fhir/http.html#paging" target="blank">Paging</a> is presented via the link <a href="https://www.hl7.org/fhir/bundle-definitions.html#Bundle.link" target="blank">Bundle attribute</a>. The link attribute returns all links related to this Bundle.</p>
 <div class="highlight"><pre><span></span><code>&quot;total&quot;: 105,
     &quot;link&quot;: [
         {
@@ -474,8 +474,7 @@
         }
     ],
 </code></pre></div>
-<p>In the payload above there are total of 105 resources, and it set to only return 50 resources. In order to obtain the remaining 55 records, the <code>"relation" : "next"</code> json object must be used to read the value of the computed URL value.   </p>
-<p>Note: The parameter <code>page</code> is used, and in this case it is stated as 2.  </p>
+<p>There are <code>total</code> of 105 resources returned in the payload above but only 50 resources are actually available in the first page. In order to obtain the remaining 55 resources, iterate through the next pages using the <code>"relation" : "next"</code> computed URL values.</p>
 <p>You can use the “self”, “first”, “last” and “previous” to navigate back and forth to obtain previous resources.  </p>
 
               
@@ -529,7 +528,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2022 MSKCC
+      Copyright &copy; 2022 MSK
     </div>
   
   
