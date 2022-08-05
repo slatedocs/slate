@@ -248,6 +248,28 @@ includes:
   - aws/cidr_reservations
   - aws/kubernetes # Kubernetes section
   - aws/clusters
+  - aws/nodegroups
+  - aws/k8_namespaces
+  - aws/k8_workloads
+  - aws/k8_pods
+  - aws/k8_deployments
+  - aws/k8_daemonsets
+  - aws/k8_statefulsets
+  - aws/k8_networking
+  - aws/k8_services
+  - aws/k8_ingresses
+  - aws/k8_ingresses_v1
+  - aws/k8_configuration
+  - aws/k8_configmaps
+  - aws/k8_secrets
+  - aws/k8_storage
+  - aws/k8_storageclasses
+  - aws/k8_persistentvolumes
+  - aws/k8_persistentvolumeclaims
+  - aws/k8_accesscontrol
+  - aws/k8_serviceaccounts
+  - aws/k8_roles
+  - aws/k8_rolebindings
   - purestorage
   - purestorage/object_storage_api_credentials
   - purestorage/buckets
