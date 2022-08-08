@@ -2,7 +2,7 @@
 
 Memorial Sloan Kettering Cancer Center (MSK) allows pre-approved sponsors to securely access and retrieve clinical trial data on demand from MSK's HL7-FHIR server, also known as Blaze. The MSK Blaze API is organized around REST and each FHIR resource type currently supports [read](http://build.fhir.org/http.html#read) and [search](http://build.fhir.org/http.html#search) capabilities. The API is currently managed by MSK's Clinical Research IT department (CRIT).
 
-In order to make use of Blaze to consume clinical research data, you’ll need to be set up as an MSK “partner”. If you are interested in leveraging this API for a research study conducted at MSK, please send a request to [rtmcritds@mskcc.org](mailto:rtmcritds@mskcc.org) with your organization name and study number.
+In order to make use of Blaze to consume clinical research data, you’ll need to be set up as an MSK “partner”. If you are interested in leveraging this API for a research study conducted at MSK, please send a request to [ctdata@mskcc.org](mailto:ctdata@mskcc.org) with your organization name and study number.
 
 ## Data Sources
 

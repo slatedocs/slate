@@ -1,4 +1,4 @@
-Filtering parameters are **optional** and some combinations might not return a payload. If you feel that there should be data for a particular combination of filters, please reach out to [rtmcritds@mskcc.org](mailto:rtmcritds@mskcc.org).
+Filtering parameters are **optional** and some combinations might not return a payload. If you feel that there should be data for a particular combination of filters, please reach out to [ctdata@mskcc.org](mailto:ctdata@mskcc.org).
 
 
 | Parameter      | Required/Optional | Description |
