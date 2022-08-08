@@ -405,3 +405,30 @@ Object: **Product**
 Attributes | &nbsp;
 --- | ---
 `id`<br/>*UUID* | The id of the product.
+
+
+<!-------------------- DELETE COMMITMENT -------------------->
+### Delete commitment
+
+`DELETE /commitments/:id`
+
+Deletes a commitment that has already been created for an organization.
+
+A commitment can only be deleted if it has no closed billing cycles associated to it. This means that a commitment will likely only be able to be deleted within a month of creation at most.
+
+```shell
+# delete commitment
+curl "https://cloudmc_endpoint/api/v2/id" \
+   -X DELETE -H "MC-Api-Key: your_api_key"
+```
+
+> The above command returns a JSON structured like this:
+
+# Response body example
+```json
+{
+	"taskId": "taskId...",
+	"taskStatus": "SUCCESS"
+}
+```
+
