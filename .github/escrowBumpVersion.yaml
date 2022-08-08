@@ -1,0 +1,60 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Bump Escrow Version
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  pull_request:
+    branches:
+      - cmc-dev
+    types:
+      - closed
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # Only run on pr merged on master
+    if: github.event.pull_request.merged == true
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.JENKINS_PAT }}
+
+      - uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: deposit_information.json
+          property: DepositVersion
+        id: getVersion
+
+      - name: Display current version
+        run: echo "Found version ${{steps.getVersion.outputs.value}}"
+      
+      - uses: actions-ecosystem/action-bump-semver@v1
+        id: bumpVersion
+        with:
+          current_version: ${{steps.getVersion.outputs.value}}
+          level: minor
+
+      - name: Display new version
+        run: echo "Bumped version ${{steps.bumpVersion.outputs.new_version}}"
+
+      # Runs a single command using the runners shell
+      - uses: jossef/action-set-json-field@v1
+        with:
+          file: deposit_information.json
+          field: DepositVersion
+          value: ${{ steps.bumpVersion.outputs.new_version }}
+
+      - uses: EndBug/add-and-commit@v8 # You can change this to use a specific version.
+        with:
+          add: 'deposit_information.json'
+          message: 'Bump escrow version to ${{ steps.bumpVersion.outputs.new_version }}'
+
