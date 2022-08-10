@@ -1375,7 +1375,7 @@ rejection_reason_id | No | integer | The ID of the reason why this application w
 notes | No | string | Notes on why this application was rejected. These will be added to the activity feed.
 rejection_email | No | hash | An email will be sent to the candidate notifying them of this rejection.
 rejection_email.send_email_at | No | string | The rejection email will be delayed until this time.
-rejection_email.email_template_id | Yes, if sending rejection_email | string | The template to use for the rejection email.
+rejection_email.email_template_id | Yes, if sending rejection_email | string | The template to use for the rejection email. Template must be an organization wide email template.
 
 ## PATCH: Update Rejection Reason
 
