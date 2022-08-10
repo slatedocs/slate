@@ -27,31 +27,35 @@ curl "https://cloudmc_endpoint/api/v2/reseller/settings/billing/find?organizatio
     "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
+    "invoiceTag": {
+      "id": "f3003247-b147-4f8f-b625-bc963a6cb6e3",
+      "name": "non-invoiceable"
+    },
     "bccEmails": ["finance.support@company.com", "monitoring@company.com"],
     "daysBeforeCardWarnings": [30],
     "customerInformation": ["accountId"],
     "address": ["Address line 1", "Address line 2", "etc."],
-    "termsAndConditions": "My terms and conditions...",
+    "termsAndConditions": "My terms and conditions..."
   }
 }
 ```
 
 Retrieve the billing settings associated to an organization.
 
-Attributes | &nbsp;
----------- | -----------
-`id`<br/>*UUID* | The configured billing settings' id.
-`organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
-`version`<br/>*integer* | The billing settings version.
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
-`daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
-`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
-`customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
-`address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
-`termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
-
+| Attributes                                    | &nbsp;                                                                                                                                                     |
+|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`<br/>*UUID*                               | The configured billing settings' id.                                                                                                                       |
+| `organization.id`<br/>*UUID*                  | The organization id that the billing settings are linked to. It cannot be changed.                                                                         |
+| `version`<br/>*integer*                       | The billing settings version.                                                                                                                              |
+| `daysBeforeAutoDraft`<br/>*integer*           | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days. |
+| `daysBeforeAutoApproval`<br/>*integer*        | The number of days to review an in review invoice before it is automatically issued to the customer.                                                       |
+| `daysBeforeAutoPayment`<br/>*integer*         | The number of days after the invoice has been issued before the customer's credit card is automatically charged.                                           |
+| `invoiceTag`<br/>*object*                     | Specify a tag that can be used to mark organizations as not invoiceable.                                                                                   |
+| `bccEmails`<br/>*Array[string]*               | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.                                                        |
+| `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.                         |
+| `customerInformation`<br/>*Array[string]*     | The list of client custom fields to display in the invoice.                                                                                                |
+| `address`<br/>*Array[string]*                 | The address to display in the invoice. Each address field will be a row in the address block.                                                              |
+| `termsAndConditions`<br/>*string*             | The terms and conditions to display in the invoice.                                                                                                        |
 
 <!-------------------- GET BILLING SETTINGS -------------------->
 #### Retrieve billing settings
@@ -90,6 +94,10 @@ curl "https://cloudmc_endpoint/api/v2/reseller/settings/billing/f7ad28a8-1227-44
       "daysBeforeCardWarnings":[
          24
       ],
+      "invoiceTag": {
+        "id": "f3003247-b147-4f8f-b625-bc963a6cb6e3",
+        "name": "non-invoiceable"
+      },
       "termsAndConditions":"Terms",
       "defaultCurrency":"USD",
       "organization":{
@@ -120,25 +128,26 @@ curl "https://cloudmc_endpoint/api/v2/reseller/settings/billing/f7ad28a8-1227-44
 
 Retrieve the billing settings associated to the billing settings id.
 
-Attributes | &nbsp;
----------- | -----------
-`id`<br/>*UUID* | The configured billing settings' id.
-`organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
-`organization.name`<br/>*string* | The name of the organization that the billing settings are linked to. It cannot be changed.
-`organization.customFieldDefinitions`<br/>*Array[object]* | The defined custom field of a customer, contains the field name, id, and translation data. Only returned if the org has custom fields enabled and present.
-`version`<br/>*integer* | The billing settings version.
-`defaultCurrency`<br/>*string* | The currency that will be used by default on an invoice.
-`defaultPricingPackage.id`<br/>*UUID* | The pricing package id that is used to derive the usage data costs for non-billable organizations, usage reports will be available to view but invoices will not be generated for non-billable organizations.
-`billingDay`<br/>*integer* | The day of the month in which new billing cycles are started.
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
-`daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
-`minimumDaysInvoicePeriod`<br/>*integer* | The minimum amount of days an organization has been onboarded for before an invoice is generated.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as Blind Carbon Copy (BCC) when sending emails to customers upon billing exceptions.
-`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
-`customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
-`address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
-`termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
+| Attributes                                                | &nbsp;                                                                                                                                                                                                        |
+|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`<br/>*UUID*                                           | The configured billing settings' id.                                                                                                                                                                          |
+| `organization.id`<br/>*UUID*                              | The organization id that the billing settings are linked to. It cannot be changed.                                                                                                                            |
+| `organization.name`<br/>*string*                          | The name of the organization that the billing settings are linked to. It cannot be changed.                                                                                                                   |
+| `organization.customFieldDefinitions`<br/>*Array[object]* | The defined custom field of a customer, contains the field name, id, and translation data. Only returned if the org has custom fields enabled and present.                                                    |
+| `version`<br/>*integer*                                   | The billing settings version.                                                                                                                                                                                 |
+| `defaultCurrency`<br/>*string*                            | The currency that will be used by default on an invoice.                                                                                                                                                      |
+| `defaultPricingPackage.id`<br/>*UUID*                     | The pricing package id that is used to derive the usage data costs for non-billable organizations, usage reports will be available to view but invoices will not be generated for non-billable organizations. |
+| `billingDay`<br/>*integer*                                | The day of the month in which new billing cycles are started.                                                                                                                                                 |
+| `daysBeforeAutoDraft`<br/>*integer*                       | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.                                                    |
+| `daysBeforeAutoApproval`<br/>*integer*                    | The number of days to review an in review invoice before it is automatically issued to the customer.                                                                                                          |
+| `daysBeforeAutoPayment`<br/>*integer*                     | The number of days after the invoice has been issued before the customer's credit card is automatically charged.                                                                                              |
+| `minimumDaysInvoicePeriod`<br/>*integer*                  | The minimum amount of days an organization has been onboarded for before an invoice is generated.                                                                                                             |
+| `invoiceTag`<br/>*object*                                 | Specify a tag that can be used to mark organizations as not invoiceable.                                                                                                                                      |
+| `bccEmails`<br/>*Array[string]*                           | List of email addresses to include as Blind Carbon Copy (BCC) when sending emails to customers upon billing exceptions.                                                                                       |
+| `daysBeforeCardWarnings`<br/>*Array[integer]*             | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.                                                                            |
+| `customerInformation`<br/>*Array[string]*                 | The list of client custom fields to display in the invoice.                                                                                                                                                   |
+| `address`<br/>*Array[string]*                             | The address to display in the invoice. Each address field will be a row in the address block.                                                                                                                 |
+| `termsAndConditions`<br/>*string*                         | The terms and conditions to display in the invoice.                                                                                                                                                           |
 
 <!-------------------- CREATE BILLING SETTINGS -------------------->
 #### Create billing settings
@@ -163,6 +172,9 @@ curl -X POST "https://cloudmc_endpoint/api/v2/reseller/settings/billing" \
   "daysBeforeAutoApproval": 3,
   "daysBeforeAutoPayment": 5,
   "daysBeforeAutoDraft": 3,
+  "invoiceTag": {
+    "name": "non-invoiceable"
+  },
   "bccEmails": ["finance.support@company.com", "monitoring@company.com"],
   "daysBeforeCardWarnings": [30],
   "customerInformation": ["accountId"],
@@ -184,6 +196,10 @@ curl -X POST "https://cloudmc_endpoint/api/v2/reseller/settings/billing" \
     "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
+    "invoiceTag": {
+      "id": "f3003247-b147-4f8f-b625-bc963a6cb6e3",
+      "name": "non-invoiceable"
+    },
     "bccEmails": ["finance.support@company.com", "monitoring@company.com"],
     "daysBeforeCardWarnings": [30],
     "customerInformation": ["accountId"],
@@ -193,21 +209,22 @@ curl -X POST "https://cloudmc_endpoint/api/v2/reseller/settings/billing" \
 }
 ```
 
-Required | &nbsp;
----------- | -----------
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoices is marked in review. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
-`daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
-`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
+| Required                                      | &nbsp;                                                                                                                                                      |
+|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `daysBeforeAutoDraft`<br/>*integer*           | The number of days after the billing date to continue gathering missing customer usage before the invoices is marked in review. Cannot be less than 2 days. |
+| `daysBeforeAutoApproval`<br/>*integer*        | The number of days to review an in review invoice before it is automatically issued to the customer.                                                        |
+| `daysBeforeAutoPayment`<br/>*integer*         | The number of days after the invoice has been issued before the customer's credit card is automatically charged.                                            |
+| `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.                          |
 
-Optional | &nbsp;
----------- | -----------
-`organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. If the `organizationId` is omitted, the authenticated user's organization will be used.
-`defaultPricingPackage.id`<br/>*UUID* | The id of the default pricing package, if there is none specified then usage from non-billable organizations will not be derived a cost.
-`customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
-`address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
-`termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
+| Optional                                  | &nbsp;                                                                                                                                               |
+|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `organization.id`<br/>*UUID*              | The organization id that the billing settings are linked to. If the `organizationId` is omitted, the authenticated user's organization will be used. |
+| `defaultPricingPackage.id`<br/>*UUID*     | The id of the default pricing package, if there is none specified then usage from non-billable organizations will not be derived a cost.             |
+| `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.                                                                                          |
+| `address`<br/>*Array[string]*             | The address to display in the invoice. Each address field will be a row in the address block.                                                        |
+| `termsAndConditions`<br/>*string*         | The terms and conditions to display in the invoice.                                                                                                  |
+| `invoiceTag`<br/>*object*                 | Specify a tag that can be used to mark organizations as not invoiceable.                                                                             |
+| `bccEmails`<br/>*Array[string]*           | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.                                                  |
 
 <!-------------------- UPDATE BILLING SETTINGS -------------------->
 #### Update billing settings
@@ -236,6 +253,10 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/reseller/settings/billing/d785ffcb-
    "daysBeforeAutoDraft": 3,
   "daysBeforeAutoApproval": 3,
   "daysBeforeAutoPayment": 5,
+  "invoiceTag": {
+    "id": "f3003247-b147-4f8f-b625-bc963a6cb6e3",
+    "name": "non-invoiceable"
+  },
   "bccEmails": ["finance.support@company.com", "monitoring@company.com"],
   "daysBeforeCardWarnings": [30],
   "customerInformation": ["accountId"],
@@ -257,6 +278,10 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/reseller/settings/billing/d785ffcb-
     "daysBeforeAutoDraft": 3,
     "daysBeforeAutoApproval": 3,
     "daysBeforeAutoPayment": 5,
+    "invoiceTag": {
+      "id": "f3003247-b147-4f8f-b625-bc963a6cb6e3",
+      "name": "non-invoiceable"
+    },
     "bccEmails": ["finance.support@company.com", "monitoring@company.com"],
     "daysBeforeCardWarnings": [30],
     "customerInformation": ["accountId"],
@@ -266,22 +291,23 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/reseller/settings/billing/d785ffcb-
 }
 ```
 
-Required | &nbsp;
----------- | -----------
-`id`<br/>*UUID* | The configured billing settings' id.
-`organization.id`<br/>*UUID* | The organization id that the billing settings are linked to. It cannot be changed.
-`daysBeforeAutoDraft`<br/>*integer* | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days.
-`daysBeforeAutoApproval`<br/>*integer* | The number of days to review an in review invoice before it is automatically issued to the customer.
-`daysBeforeAutoPayment`<br/>*integer* | The number of days after the invoice has been issued before the customer's credit card is automatically charged.
-`daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.
+| Required                                      | &nbsp;                                                                                                                                                     |
+|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`<br/>*UUID*                               | The configured billing settings' id.                                                                                                                       |
+| `organization.id`<br/>*UUID*                  | The organization id that the billing settings are linked to. It cannot be changed.                                                                         |
+| `daysBeforeAutoDraft`<br/>*integer*           | The number of days after the billing date to continue gathering missing customer usage before the invoice is marked in review. Cannot be less than 2 days. |
+| `daysBeforeAutoApproval`<br/>*integer*        | The number of days to review an in review invoice before it is automatically issued to the customer.                                                       |
+| `daysBeforeAutoPayment`<br/>*integer*         | The number of days after the invoice has been issued before the customer's credit card is automatically charged.                                           |
+| `daysBeforeCardWarnings`<br/>*Array[integer]* | Specify the number of days before notifying a customer of an expiring credit card. You can specify 1 to 5 values between 1 and 60.                         |
 
-Optional | &nbsp;
----------- | -----------
-`defaultPricingPackage.id`<br/>*UUID* | The id of the default pricing package, if there is none specified then usage from non-billable organizations will not be derived a cost.
-`customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.
-`address`<br/>*Array[string]* | The address to display in the invoice. Each address field will be a row in the address block.
-`termsAndConditions`<br/>*string* | The terms and conditions to display in the invoice.
-`bccEmails`<br/>*Array[string]* | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.
+| Optional                                  | &nbsp;                                                                                                                                   |
+|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `defaultPricingPackage.id`<br/>*UUID*     | The id of the default pricing package, if there is none specified then usage from non-billable organizations will not be derived a cost. |
+| `customerInformation`<br/>*Array[string]* | The list of client custom fields to display in the invoice.                                                                              |
+| `address`<br/>*Array[string]*             | The address to display in the invoice. Each address field will be a row in the address block.                                            |
+| `termsAndConditions`<br/>*string*         | The terms and conditions to display in the invoice.                                                                                      |
+| `invoiceTag`<br/>*object*                 | Specify a tag that can be used to mark organizations as not invoiceable.                                                                 |
+| `bccEmails`<br/>*Array[string]*           | List of email addresses to include as BCC when sending emails to customers upon billing exceptions.                                      |
 
 <!-------------------- DELETE BILLING SETTINGS -------------------->
 #### Delete billing settings
