@@ -138,6 +138,55 @@ Attributes | &nbsp;
 `numberOfNodes` <br/> *integer* | The total number of nodes in the cluster.
 `name` <br/> *string* | The name of the cluster.
 `caCert` <br> *string* | The certificate authority data for the cluster.
+<!-------------------- Create A CLUSTER -------------------->
+
+#### Create a cluster
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request body" \
+   "https://cloudmc_endpoint/api/v2/services/aws-aaaa/test-env/clusters"
+```
+> Request body examples:
+
+```js
+// Create a cluster
+{
+  "name": "my-cluster",
+  "version": "1.22",
+  "vpcId": "vpc-1234",
+  "subnetIds": ["subnet-1", "subnet-2"],
+  "numberOfNodes": "2",
+  "instanceType": "t3.medium",
+  "diskSize": "20"
+}
+  ```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+	"taskId": "3f045006-07db-470b-927b-6b2cfe9821af",
+	"taskStatus": "PENDING"
+}
+```
+  
+<code>CREATE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/clusters</code>
+
+Create a new cluster.
+
+Required | &nbsp;
+------- | -----------
+`name`<br/>*string* | The display name of the cluster (unique). It cannot be changed after creation.
+`version`<br/>*string* | The Kubernetes version of the cluster.
+`vpcId`<br/>*string* | The ID of the vpc used for the cluster resources.
+`subnetIds`<br/>*List* | The subnet IDs in your VPC where the control plane may place elastic network interfaces (ENIs) to facilitate communication with your cluster.
+`numberOfNodes` <br/>*string* | Number of nodes in the primary node group for this cluster. You can resize the cluster after creation.
+`instanceType`<br/>*string* | Machine type of the nodes in the default node group for this cluster.
+`diskSize`<br/>*string* | Size of the attached EBS volume for each node.
+
 <!-------------------- DELETE A CLUSTER -------------------->
 
 #### Delete a cluster
