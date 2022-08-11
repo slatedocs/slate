@@ -158,9 +158,9 @@ curl -X POST \
   "version": "1.22",
   "vpcId": "vpc-1234",
   "subnetIds": ["subnet-1", "subnet-2"],
-  "numberOfNodes": "2",
+  "numberOfNodes": 2,
   "instanceType": "t3.medium",
-  "diskSize": "20"
+  "diskSize": 20
 }
   ```
 
@@ -183,9 +183,9 @@ Required | &nbsp;
 `version`<br/>*string* | The Kubernetes version of the cluster.
 `vpcId`<br/>*string* | The ID of the vpc used for the cluster resources.
 `subnetIds`<br/>*List* | The subnet IDs in your VPC where the control plane may place elastic network interfaces (ENIs) to facilitate communication with your cluster.
-`numberOfNodes` <br/>*string* | Number of nodes in the primary node group for this cluster. You can resize the cluster after creation.
+`numberOfNodes` <br/>*int* | Number of nodes in the primary node group for this cluster. You can resize the cluster after creation.
 `instanceType`<br/>*string* | Machine type of the nodes in the default node group for this cluster.
-`diskSize`<br/>*string* | Size of the attached EBS volume for each node.
+`diskSize`<br/>*int* | Size of the attached EBS volume for each node in GiB.
 
 <!-------------------- DELETE A CLUSTER -------------------->
 
