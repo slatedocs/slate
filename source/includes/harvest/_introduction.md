@@ -170,17 +170,18 @@ Unless otherwise specified, API methods generally conform to the following:
 
 The timestamps below are Eastern Time.
 
-| Date                    | Description                                                                                                                       |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Date                          | Description                                                                                                                       |
+|-------------------------------| --------------------------------------------------------------------------------------------------------------------------------- |
+| October 18, 2022 12:00:00PM   | Added ability to create and update User Attributes to the [Users](#users) endpoints
 | September 22, 2022 12:00:00PM | Updated [DELETE: Destroy Openings](#delete-destroy-openings) to a v2 endpoint. The v1 endpoint will be deprecated in a future release. Users and partners should switch over to the v2 endpoint as soon as possible to avoid issues with your integration.
-| September 12, 2022 12:00:00PM  | Added `created_at` field for application's attachments object.
-| September 9, 2022 12:00:00PM | Added [PATCH: Convert Prospect To Candidate](#patch-convert-prospect-to-candidate) endpoint to allow conversion of a prospect application to a candidate application on a selected job.
-| August 1, 2022 12:00:00PM | Making `content_type` required for attachments unless uploading using a URL.
-| May 18, 2021 12:00:00PM | Added `video_conferencing_url` to Scheduled Interview object.
-| May 3, 2021 05:00:00PM | Added `priority` to Job Stages object.
-| May 3, 2021 04:00:00PM | Added `job_post_id` field to application's response object.
-| April 21, 2021 11:00:00AM | Added ability to change external_id for custom field options.
-| April 13, 2021 01:00:00PM | Added ability to change user permission level to basic.
+| September 12, 2022 12:00:00PM | Added `created_at` field for application's attachments object.
+| September 9, 2022 12:00:00PM  | Added [PATCH: Convert Prospect To Candidate](#patch-convert-prospect-to-candidate) endpoint to allow conversion of a prospect application to a candidate application on a selected job.
+| August 1, 2022 12:00:00PM     | Making `content_type` required for attachments unless uploading using a URL.
+| May 18, 2021 12:00:00PM       | Added `video_conferencing_url` to Scheduled Interview object.
+| May 3, 2021 05:00:00PM        | Added `priority` to Job Stages object.
+| May 3, 2021 04:00:00PM        | Added `job_post_id` field to application's response object.
+| April 21, 2021 11:00:00AM     | Added ability to change external_id for custom field options.
+| April 13, 2021 01:00:00PM     | Added ability to change user permission level to basic.
 | September 28, 2020 12:00:00PM | "Required" field added to Demographic Questions.
 | September 23, 2020 03:00:00PM | Attachments have been added at the application level. Previously, an aggregation of all attachments on all applications was included at the candidate level and not at all in the applications endpoint. Now, the applications endpoint includes attachments specific to each application and the candidates endpoint includes attachments in each application specific to that application.
 | September 10, 2020 05:00:00PM | A new querystring parameter has been added to [job post](#job-posts) GET requests to return Board-level Introductions and Conclusions (if present). When included in a request, the "content" or "internal_content" fields will return a concatenated string that includes the Board-level introduction, the Post-level description, and the Board-level conclusion. |

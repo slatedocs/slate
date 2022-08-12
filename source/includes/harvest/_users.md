@@ -366,14 +366,16 @@ On-Behalf-Of | ID of the user issuing this request. Required for auditing purpos
 
 ### JSON Body Parameters
 
-| Parameter      | Required | Type         | Description                                                                                                                                 |
-|----------------|----------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| first_name     | No       | string       | The user's new first name. If included, this cannot be blank.                                                                               |
-| last_name      | No       | string       | The user's new last name. If included, this cannot be blank.                                                                                |
-| employee_id*   | No       | string       | The user's external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization. |
-| office_ids     | No       | Array        | Replace the current offices for this user with new offices. An empty array will remove all offices on this user.                            |
-| department_ids | No       | Array        | Replace the current departments for this user with new departments. An empty array will remove all departments on this user.                |
-| custom_fields  | No       | custom_field | Array of hashes containing new custom field values. Passing an empty array does nothing.                                                    |
+| Parameter               | Required | Type         | Description                                                                                                                                                         |
+|-------------------------|----------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| first_name              | No       | string       | The user's new first name. If included, this cannot be blank.                                                                                                       |
+| last_name               | No       | string       | The user's new last name. If included, this cannot be blank.                                                                                                        |
+| employee_id*            | No       | string       | The user's external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization.                         |
+| office_ids              | No       | Array        | Replace the current offices for this user with new offices. An empty array will remove all offices on this user.                                                    |
+| external_office_ids     | No       | Array        | This may be used instead of `office_ids` and represents the ID of the office in an external system. If this is used, `office_ids` must be blank and vice versa.     |
+| department_ids          | No       | Array        | Replace the current departments for this user with new departments. An empty array will remove all departments on this user.                                        |
+| external_department_ids | No       | Array        | This may be used instead of `department_ids` and represents the ID of the department in an external system. If used, `department_ids` must be blank and vice versa. |
+| custom_fields           | No       | custom_field | Array of hashes containing new custom field values. Passing an empty array does nothing.                                                                            |
 
 \* - If the employee_id feature is not enabled for your organization, attempting to edit this field will raise an API Error. The "employee_id" element exists in both the "user" element as a look-up mechanism and in the "payload" element as a patching mechanism.
 
@@ -835,16 +837,18 @@ On-Behalf-Of | ID of the user issuing this request. Required for auditing purpos
 
 ### JSON Body Parameters
 
-| Parameter          | Required | Type         | Description                                                                                                                                                                                                           |
-|--------------------|----------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| first_name         | Yes      | string       | The user's first name                                                                                                                                                                                                 |
-| last_name          | Yes      | string       | The user's last name                                                                                                                                                                                                  |
-| email              | Yes      | string       | The user's email address. Must be a valid email address.                                                                                                                                                              |
-| send_email_invite* | No       | boolean      | If true, an email will be sent to the user alerting them of any new job permissions that have been assigned to them. Emails are never sent when permissions are removed. If false, nothing happens. Default is false. |
-| employee_id        | No       | string       | The user's external employee id.                                                                                                                                                                                      |
-| office_ids         | No       | Array        | The office value(s) associated with a user. Must be a valid set of office IDs. Passing an empty array does nothing.                                                                                                   |
-| department_ids     | No       | Array        | The department value(s) associated with a user. Must be a valid set of department IDs. Passing an empty array does nothing.                                                                                           |
-| custom_fields      | No       | custom_field | Array of hashes containing new custom field values.  Passing an empty array does nothing.                                                                                                                             |
+| Parameter               | Required | Type         | Description                                                                                                                                                                                                           |
+|-------------------------|----------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| first_name              | Yes      | string       | The user's first name                                                                                                                                                                                                 |
+| last_name               | Yes      | string       | The user's last name                                                                                                                                                                                                  |
+| email                   | Yes      | string       | The user's email address. Must be a valid email address.                                                                                                                                                              |
+| send_email_invite*      | No       | boolean      | If true, an email will be sent to the user alerting them of any new job permissions that have been assigned to them. Emails are never sent when permissions are removed. If false, nothing happens. Default is false. |
+| employee_id             | No       | string       | The user's external employee id.                                                                                                                                                                                      |
+| office_ids              | No       | Array        | The office value(s) associated with a user. Must be a valid set of office IDs. Passing an empty array does nothing.                                                                                                   |
+| external_office_ids     | No       | Array        | This may be used instead of `office_ids` and represents the ID of the office in an external system. If this is used, `office_ids` must be blank and vice versa.                                                       |
+| department_ids          | No       | Array        | The department value(s) associated with a user. Must be a valid set of department IDs. Passing an empty array does nothing.                                                                                           |
+| external_department_ids | No       | Array        | This may be used instead of `department_ids` and represents the ID of the department in an external system. If this is used, `department_ids` must be blank and vice versa.                                           |
+| custom_fields           | No       | custom_field | Array of hashes containing new custom field values.  Passing an empty array does nothing.                                                                                                                             |
 
 \* - A newly created user will not be able to login until they create a password via the invitation link or configured in an SSO system.
 
