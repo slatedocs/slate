@@ -543,6 +543,41 @@
 
 <p>Adverse event data are mapped to FHIR's <a href="http://hl7.org/fhir/adverseevent.html" target="blank">Adverse Event</a> resource. This is not a visit specific data element and does not require any adjudication by study staff.</p>
 <h2 id="required-parameters">Required Parameters</h2>
+<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
+-H Authorization: Bearer {access_token} 
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th align="left">#</th>
+<th align="left">Parameters</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">A1</td>
+<td align="left"><code>researchstudy</code></td>
+<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> MSK unique study number</td>
+</tr>
+<tr>
+<td align="left">A2</td>
+<td align="left"><code>category</code></td>
+<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> Default value: <strong>vital-signs</strong></td>
+</tr>
+<tr>
+<td align="left">A3</td>
+<td align="left"><code>x-partnerid</code></td>
+<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> suply given partnerid</td>
+</tr>
+<tr>
+<td align="left">A4</td>
+<td align="left">Filter: Optional Parameters go to <a href="/searching">Filter page</a></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> Indicates a required field.</p>
 <h2 id="example-request">Example Request</h2>
 <h2 id="example-response">Example Response</h2>
 <h2 id="field-definitions">Field Definitions</h2>
