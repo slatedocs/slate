@@ -6,22 +6,12 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 
 ```
 
-<<<<<<< HEAD
-|# | Parameters    | Description                          |
-|:-| :---------- | :----------------------------------- |
-|A1| `researchstudy`       | :material-asterisk: MSK unique study number  |
-|A2|`x-partnerid` |:material-asterisk: suply given partnerid|
-|A3|Filter: Optional Parameters go to [Filter page](/searching) | |
-=======
 | Parameters      | Required/Optional | Description                          |
 | --------------  | ----------------- | ------------------------------------ |
 | `researchstudy` | required          | MSK unique study number              |
 | `x-partnerid`   | required          | MSK provided partner ID              |
 
 For a list of optional filtering parameters visit the [Searching page](/searching).
->>>>>>> 6d01252a06372d84cb3d8877b948de71bb1c9983
-
-
 ## Example Request
 === "C# "
 
