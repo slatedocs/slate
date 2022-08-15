@@ -1,10 +1,11 @@
-site_name: MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+site_name: CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
 theme:
   name: material
-  logo: assets/logo-arrow-sans-medium-black.svg
+  # logo: assets/logo-arrow-sans-medium-black.svg
+  logo: assets/msk-logo.svg
 extra_css:
   - stylesheets/extra.css
-copyright: Copyright &copy; 2022 MSKCC
+copyright: Copyright &copy; 2022 MSK
 extra:
   social:
     - icon: fontawesome/brands/instagram
@@ -18,31 +19,29 @@ extra:
     - icon: fontawesome/brands/linkedin-in
       link: https://www.linkedin.com/company/memorial-sloan-kettering-cancer-center/mycompany/
 
-
 nav:
   - Home: index.md
   - Authentication: authentication.md
   - Searching: searching.md
   - Pagination: pagination.md
   - Available Resources:
-    - "Adverse Events": resources/adverse-events.md
-    - Demographics: resources/demographics.md
-    - Labs: resources/labs.md
-    - Vitals: resources/vitals.md
+      - "Adverse Events": resources/adverse-events.md
+      - Demographics: resources/demographics.md
+      - Labs: resources/labs.md
+      - Vitals: resources/vitals.md
   - "Coming Soon":
-    - Medications: coming-soon/medications.md
-    - RECIST: coming-soon/recist.md
+      - Medications: coming-soon/medications.md
+      - Response: coming-soon/response.md
   - Identifiers: identifiers.md
-  - Releases: releases.md
+  - "Release Notes": release-notes.md
 markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
   - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-

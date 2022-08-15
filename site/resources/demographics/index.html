@@ -9,11 +9,11 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.4">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
     
     
       
-        <title>Demographics - MSK BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Demographics - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
       
     
     
@@ -76,9 +76,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href="../.." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../../assets/msk-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+            CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -161,12 +161,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="MSK BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href="../.." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
       
-  <img src="../../assets/logo-arrow-sans-medium-black.svg" alt="logo">
+  <img src="../../assets/msk-logo.svg" alt="logo">
 
     </a>
-    MSK BLAZE FHIR DEVELOPER DOCUMENTATION
+    CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -429,8 +429,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../coming-soon/recist/" class="md-nav__link">
-        RECIST
+      <a href="../../coming-soon/response/" class="md-nav__link">
+        Response
       </a>
     </li>
   
@@ -466,8 +466,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../releases/" class="md-nav__link">
-        Releases
+      <a href="../../release-notes/" class="md-nav__link">
+        Release Notes
       </a>
     </li>
   
@@ -546,6 +546,30 @@
 <div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/Patient
 -H Authorization: Bearer {access_token} 
 </code></pre></div>
+<<<<<<< HEAD
+=======
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Required/Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>researchstudy</code></td>
+<td>required</td>
+<td>MSK unique study number</td>
+</tr>
+<tr>
+<td><code>x-partnerid</code></td>
+<td>required</td>
+<td>MSK provided partner ID</td>
+</tr>
+</tbody>
+</table>
+>>>>>>> 6d01252a06372d84cb3d8877b948de71bb1c9983
 <h2 id="example-request">Example Request</h2>
 <h2 id="example-response">Example Response</h2>
 <h2 id="field-definitions">Field Definitions</h2>
@@ -567,7 +591,7 @@
 </tr>
 <tr>
 <td><code>extension[0].valueCode</code></td>
-<td>MSKCC IRB Protocol Number</td>
+<td>MSK unique study number</td>
 </tr>
 <tr>
 <td><code>extension[1].url</code></td>
@@ -587,7 +611,7 @@
 </tr>
 <tr>
 <td><code>extension[3].url</code></td>
-<td>MSKCC identifiers documentation</td>
+<td>MSK identifiers documentation</td>
 </tr>
 <tr>
 <td><code>extension[3].valueCode</code></td>
@@ -663,7 +687,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2022 MSKCC
+      Copyright &copy; 2022 MSK
     </div>
   
   
@@ -734,7 +758,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f758a944.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
       
     
   </body>

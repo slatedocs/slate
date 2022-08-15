@@ -1,13 +1,11 @@
-Filtering parameters are **optional**, be aware that some combinations might not return a payload, this does not mean that there is anything wrong with the filtering, it is just that there is no data for such combination.  
-
-If you feel that there should be data, please contact us.
+Filtering parameters are **optional** and some combinations might not return a payload. If you feel that there should be data for a particular combination of filters, please reach out to [ctdata@mskcc.org](mailto:ctdata@mskcc.org).
 
 
-| Parameter      | Description |
-| -----------    | ----------- |
-| _count         |  It is used to control the number of records to return inside the bundle, by default is 50 records, we recommend using this parameter wisely to avoid timeout errors. |
-| date           | When the date parameter is used, it must be use in the form of &date=OpMM/DD/YYY where OP is the Operator for that date, the following are the allow values: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (< )</li><li>gt (>)</li><li>ge (>=)</li><li>Le ( <=)</li></ul>|
-| page | It is used for paging, for examples how to use this, refer to section FHIR paging |
-| id | It is used to return only the record for a given subjectID |
-| researchstudy | MSK IRB number used to identify ** |
-| studyid | (Not yet available) SponsorID |
+| Parameter      | Required/Optional | Description |
+| -----------    | ----------------- | ----------- |
+| _count         | optional          | Controls the number of records returned in the bundle. If a value is not specified, the default is 50 records. We recommend using this parameter wisely to avoid timeout errors. |
+| date           | optional          | Must follow the format `&date=OpMM/DD/YYY` where OP is the Operator for that date. Acceptable values include: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (< )</li><li>gt (>)</li><li>ge (>=)</li><li>le ( <=)</li></ul>|
+| id             | optional          | Returns the record for a given subject ID |
+| page           | optional          | Used to retrieve data on a particular page. Refer to [pagination](pagination.md) for more details. |
+| researchstudy  | required          | MSK unique study number |
+| studyid        | (Not yet available)| Sponsor study ID |

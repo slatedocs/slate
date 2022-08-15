@@ -6,6 +6,7 @@ GET /msk-apim/external/v1/crit/blaze/api/Patient
 -H Authorization: Bearer {access_token} 
 ```
 
+<<<<<<< HEAD
 
 |# | Parameters    | Description                          |
 |:-| :---------- | :----------------------------------- |
@@ -14,6 +15,12 @@ GET /msk-apim/external/v1/crit/blaze/api/Patient
 
 
 :material-asterisk: Indicates a required field.
+=======
+| Parameters      | Required/Optional | Description                          |
+| --------------  | ----------------- | ------------------------------------ |
+| `researchstudy` | required          | MSK unique study number              |
+| `x-partnerid`   | required          | MSK provided partner ID              |
+>>>>>>> 6d01252a06372d84cb3d8877b948de71bb1c9983
 
 ## Example Request
 === "C# "
@@ -187,12 +194,12 @@ GET /msk-apim/external/v1/crit/blaze/api/Patient
 | ----------------------------- | ----------------------------    |
 | `id`                          | Sponsor assigned subject ID     |
 | `extension[0].url`            | FHIR Patient documentation      |
-| `extension[0].valueCode`      | MSKCC IRB Protocol Number       |
+| `extension[0].valueCode`      | MSK unique study number         |
 | `extension[1].url`            | FHIR Race documentation         |
 | `extension[1].valueCode`      | FHIR Race code                  |
 | `extension[2].url`            | FHIR Ethnicity documentation    |
 | `extension[2].valueCode`      | FHIR Ethnicity code             |
-| `extension[3].url`            | MSKCC identifiers documentation |
+| `extension[3].url`            | MSK identifiers documentation   |
 | `extension[3].valueCode`      | Sponsor Study Number            |
 | `identifier.system`           |
 | `identifier.value`            | Data Source                     |

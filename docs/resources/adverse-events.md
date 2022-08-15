@@ -6,13 +6,21 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 
 ```
 
+<<<<<<< HEAD
 |# | Parameters    | Description                          |
 |:-| :---------- | :----------------------------------- |
 |A1| `researchstudy`       | :material-asterisk: MSK unique study number  |
 |A2|`x-partnerid` |:material-asterisk: suply given partnerid|
 |A3|Filter: Optional Parameters go to [Filter page](/searching) | |
+=======
+| Parameters      | Required/Optional | Description                          |
+| --------------  | ----------------- | ------------------------------------ |
+| `researchstudy` | required          | MSK unique study number              |
+| `x-partnerid`   | required          | MSK provided partner ID              |
 
-:material-asterisk: Indicates a required field.
+For a list of optional filtering parameters visit the [Searching page](/searching).
+>>>>>>> 6d01252a06372d84cb3d8877b948de71bb1c9983
+
 
 ## Example Request
 === "C# "
@@ -319,8 +327,8 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 
 | Field                                               | Description                                |
 | --------------------------------------------------- | ------------------------------------------ |
-| `id`                                                | ??                                         |
-| `extension[0].url`                                  | MSKCC identifiers documentation            |
+| `id`                                                |                                            |
+| `extension[0].url`                                  | MSK identifiers documentation              |
 | `extension[0].valueCode`                            | Sponsor Study Number                       |
 | `identifier.system`                                 |                                            |
 | `identifier.value`                                  | Data Source                                |
@@ -336,6 +344,6 @@ GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 | `suspectEntity.causality.assessment.coding.system`  | FHIR Adverse Event Causality documentation |
 | `suspectEntity.causality.assessment.coding.display` |                                            |
 | `suspectEntity.causality.productRelatedness`        |                                            |
-| `study.reference`                                   | Study/ + MSKCC IRB Number                  |
-| `study.identifier.value`                            | ??                                         |
-| `study.display`                                     | hardcoded to AdverseEvent                  |
+| `study.reference`                                   | Study/ + MSK unique study number           |
+| `study.identifier.value`                            |                                            |
+| `study.display`                                     | hardcoded to `AdverseEvent`                |
