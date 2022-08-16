@@ -211,3 +211,50 @@ already registered otherwise returns `false`.
 | ------ | ------- | ----------             |
 | email  | string  | email address to check |
 
+## Error Logs
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.procurementexpress.com/api/v1/error_logs',
+  headers = {
+      authentication_token: 'your token',
+      app_company_id: '1'
+  }
+)
+```
+
+```shell
+curl --request GET \
+  --url https://app.procurementexpress.com/api/v1/error_logs \
+  --header 'app_company_id: 1' \
+  --header 'authentication_token: your token' \
+  --header 'content-type: application/json'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "success": true
+  }
+  ....
+]
+```
+
+PO creation failed on Pushcart due to error. Post that error on Slack error channel. And once done return success true.
+
+### HTTP Request
+
+`GET https://app.procurementexpress.com/api/v1/error_logs`
+
+### Query Parameters
+
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| app_company_id       | header | Company ID           |
+| authentication_token | header | Authentication Token |
+| error_message        | string | Error Message        |
+| option               | hash   | Department ID, Budget ID, Supplier ID, Approver ID, etc |
