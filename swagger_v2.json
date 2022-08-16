@@ -1803,7 +1803,7 @@
       "get": {
         "summary": "GET ohlc candles",
         "tags": [
-          "OHLC Candles"
+          "Historical data/ OHLC Candles"
         ],
         "operationId": "getCandles",
         "deprecated": false,
@@ -1825,7 +1825,7 @@
             "in": "query",
             "name": "symbol",
             "type": "string",
-            "description": "product symbol needs to pass to get data, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}",
+            "description": "product symbol needs to pass to get data, to get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}",
             "required": true
           },
           {
@@ -1869,7 +1869,7 @@
       "get": {
         "summary": "GET product history sparkline",
         "tags": [
-          "OHLC Candles"
+          "Historical data/ OHLC Candles"
         ],
         "operationId": "getSparklines",
         "deprecated": false,

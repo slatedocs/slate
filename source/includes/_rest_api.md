@@ -1,3 +1,17 @@
+---
+title: Delta Exchange Api V2
+language_tabs:
+  - python: Python
+  - shell: Shell
+  - ruby: Ruby
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
 <h1 id="ApiSection" class="section-header">Rest Api</h1>
 This section documents the latest(v2) api for trading on Delta Exchange. The REST API has endpoints for account and order management as well as public market data.
 
@@ -3329,211 +3343,6 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-v2-ohlc-candles">OHLC Candles</h1>
-
-Get price data
-
-## GET ohlc candles
-
-<a id="opIdgetCandles"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://api.delta.exchange/v2/history/candles', params={
-  'resolution': '1m',  'symbol': 'string',  'start': '0',  'end': '0'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/v2/history/candles?resolution=1m&symbol=string&start=0&end=0 \
-  -H 'Accept: application/json'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.delta.exchange/v2/history/candles',
-  params: {
-  'resolution' => 'string',
-'symbol' => 'string',
-'start' => 'integer',
-'end' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /history/candles`
-
-<h3 id="get-ohlc-candles-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|resolution|query|string|true|none|
-|symbol|query|string|true|product symbol needs to pass to get data, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}|
-|start|query|integer|true|Start time|
-|end|query|integer|true|End time|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|resolution|1m|
-|resolution|3m|
-|resolution|5m|
-|resolution|15m|
-|resolution|30m|
-|resolution|1h|
-|resolution|2h|
-|resolution|4h|
-|resolution|6h|
-|resolution|1d|
-|resolution|7d|
-|resolution|30d|
-|resolution|1w|
-|resolution|2w|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": [
-    {
-      "time": 0,
-      "open": 0,
-      "high": 0,
-      "low": 0,
-      "close": 0,
-      "volume": 0
-    }
-  ]
-}
-```
-
-<h3 id="get-ohlc-candles-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|ohlc|Inline|
-
-<h3 id="get-ohlc-candles-responseschema">Response Schema</h3>
-
-<aside class="success">
-This operation does not require authentication.
-</aside>
-
-## GET product history sparkline
-
-<a id="opIdgetSparklines"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://api.delta.exchange/v2/history/sparklines', params={
-  'symbols': 'string'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/v2/history/sparklines?symbols=string \
-  -H 'Accept: application/json'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get 'https://api.delta.exchange/v2/history/sparklines',
-  params: {
-  'symbols' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /history/sparklines`
-
-<h3 id="get-product-history-sparkline-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|symbols|query|string|true|comma separated product symbols|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": {
-    "MARK:BTCUSD_31Oct": [
-      [
-        1594214051,
-        0.00003826
-      ],
-      [
-        1594214051,
-        0.00003826
-      ]
-    ],
-    "SPOT:BTCUSD_31Oct": [
-      [
-        1594215270,
-        0.00003826
-      ]
-    ]
-  }
-}
-```
-
-<h3 id="get-product-history-sparkline-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|product history sparkline|Inline|
-
-<h3 id="get-product-history-sparkline-responseschema">Response Schema</h3>
-
-<aside class="success">
-This operation does not require authentication.
-</aside>
-
 <h1 id="delta-exchange-api-v2-stats">Stats</h1>
 
 Get Volume Stats
@@ -3770,6 +3579,209 @@ p JSON.parse(result)
 |index_type|spot_pair|
 |index_type|fixed_interest_rate|
 |index_type|floating_interest_rate|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-historical-data-ohlc-candles">Historical data/ OHLC Candles</h1>
+
+## GET ohlc candles
+
+<a id="opIdgetCandles"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/v2/history/candles', params={
+  'resolution': '1m',  'symbol': 'string',  'start': '0',  'end': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/history/candles?resolution=1m&symbol=string&start=0&end=0 \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/history/candles',
+  params: {
+  'resolution' => 'string',
+'symbol' => 'string',
+'start' => 'integer',
+'end' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /history/candles`
+
+<h3 id="get-ohlc-candles-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|resolution|query|string|true|none|
+|symbol|query|string|true|product symbol needs to pass to get data, to get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}|
+|start|query|integer|true|Start time|
+|end|query|integer|true|End time|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|resolution|1m|
+|resolution|3m|
+|resolution|5m|
+|resolution|15m|
+|resolution|30m|
+|resolution|1h|
+|resolution|2h|
+|resolution|4h|
+|resolution|6h|
+|resolution|1d|
+|resolution|7d|
+|resolution|30d|
+|resolution|1w|
+|resolution|2w|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "time": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "volume": 0
+    }
+  ]
+}
+```
+
+<h3 id="get-ohlc-candles-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|ohlc|Inline|
+
+<h3 id="get-ohlc-candles-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+## GET product history sparkline
+
+<a id="opIdgetSparklines"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/v2/history/sparklines', params={
+  'symbols': 'string'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/history/sparklines?symbols=string \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/history/sparklines',
+  params: {
+  'symbols' => 'string'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /history/sparklines`
+
+<h3 id="get-product-history-sparkline-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|symbols|query|string|true|comma separated product symbols|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "MARK:BTCUSD_31Oct": [
+      [
+        1594214051,
+        0.00003826
+      ],
+      [
+        1594214051,
+        0.00003826
+      ]
+    ],
+    "SPOT:BTCUSD_31Oct": [
+      [
+        1594215270,
+        0.00003826
+      ]
+    ]
+  }
+}
+```
+
+<h3 id="get-product-history-sparkline-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|product history sparkline|Inline|
+
+<h3 id="get-product-history-sparkline-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication.
