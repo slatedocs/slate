@@ -226,11 +226,16 @@ RestClient.get(
 ```
 
 ```shell
-curl --request GET \
-  --url https://app.procurementexpress.com/api/v1/error_logs \
-  --header 'app_company_id: 1' \
-  --header 'authentication_token: your token' \
-  --header 'content-type: application/json'
+curl "https://app.procurementexpress.com/api/v1/error_logs"
+  -X GET
+  -H 'app_company_id: 1'
+  -H 'authentication_token: your token'
+  -H 'content-type: application/json'
+  -D 'error_message=Your error message'
+  -D 'options[department_id]=1'
+  -D 'options[supplier_id]=2'
+  -D 'options[approver_id]=3'
+  -D 'options[budget_id]=4'
 ```
 
 > The above command returns JSON structured like this:
@@ -240,7 +245,6 @@ curl --request GET \
   {
     "success": true
   }
-  ....
 ]
 ```
 
@@ -252,9 +256,12 @@ PO creation failed on Pushcart due to error. Post that error on Slack error chan
 
 ### Query Parameters
 
-| Params               | Type   | Description          |
-| -------------------- | ------ | -------------------- |
-| app_company_id       | header | Company ID           |
-| authentication_token | header | Authentication Token |
-| error_message        | string | Error Message        |
-| option               | hash   | Department ID, Budget ID, Supplier ID, Approver ID, etc |
+| Params                 | Type   | Description          |
+| --------------------   | ------ | -------------------- |
+| app_company_id         | header | Company ID           |
+| authentication_token   | header | Authentication Token |
+| error_message          | string | Error Message        |
+| options[department_id] | hash   | Department ID        |
+| options[supplier_id]   | hash   | Supplier ID          |
+| options[approver_id]   | hash   | Approver ID          |
+| options[budget_id]     | hash   | Budget ID            |
