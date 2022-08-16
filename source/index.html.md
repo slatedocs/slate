@@ -18,6 +18,7 @@ includes:
   - personnel
   - roles
   - personnel_roles
+  - personnel_assignments
   - pagination
   - associations
   - errors
