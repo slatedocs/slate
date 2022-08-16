@@ -390,6 +390,8 @@ fields_attributes | Object | No | More information available [here](#for-project
 
 ### Response
 
+Successful requests will return a json payload of the project duplication process and a 201 status code.
+
 > 201
 
 ```json
