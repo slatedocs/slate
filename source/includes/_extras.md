@@ -256,12 +256,12 @@ PO creation failed on Pushcart due to error. Post that error on Slack error chan
 
 ### Query Parameters
 
-| Params                 | Type   | Description          |
-| --------------------   | ------ | -------------------- |
-| app_company_id         | header | Company ID           |
-| authentication_token   | header | Authentication Token |
-| error_message          | string | Error Message        |
-| options[department_id] | hash   | Department ID        |
-| options[supplier_id]   | hash   | Supplier ID          |
-| options[approver_id]   | hash   | Approver ID          |
-| options[budget_id]     | hash   | Budget ID            |
+| Params                 | Type     | Description          |
+| --------------------   | ------   | -------------------- |
+| app_company_id         | header   | Company ID           |
+| authentication_token   | header   | Authentication Token |
+| error_message          | string   | Error Message        |
+| options[department_id] | string   | Department ID        |
+| options[supplier_id]   | string   | Supplier ID          |
+| options[approver_id]   | string   | Approver ID          |
+| options[budget_id]     | string   | Budget ID            |
