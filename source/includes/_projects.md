@@ -256,7 +256,7 @@ This endpoint allows you to update a project for the division who is registered 
 
 ### Request
 
-`PATCH https://api.handshq.com/v1/projects/#{project_id}`
+`PATCH https://api.handshq.com/v1/projects/[project_id]`
 
 
 ### Allowed Project Parameters
@@ -364,6 +364,10 @@ curl https://api.handshq.com/v1/projects/[id]/duplications \
 
 This endpoint allows you to duplicate a project that exists within the division that is registered with the API token you provide.
 
+The project is duplicated asynchronously, so will not be available at this point. Successful requests will return a json payload detailing the duplication process and a `201` status code.  The duplication process information provides the id of the duplication process, the time that the duplication was requested and the current status of the duplication process - queued, in progress, complete or failed.
+
+If you wish to access the status of the duplication process, and check if the duplicated project and version pdf has been generated, you can use the duplication process id to poll for the current status of the duplication process - further information [here](#)
+
 ### Request
 
 `POST https://api.handshq.com/v1/projects/[id]/duplications`
@@ -386,31 +390,181 @@ fields_attributes | Object | No | More information available [here](#for-project
 
 ### Response
 
-The project is duplicated asynchronously, so will not be available at this point. Successful requests will return a json payload detailing the duplication process and a `201` status code.  The duplication process information provides the id of the duplication process, the time that the duplication was requested and the current status of the duplication process - queued, in progress, complete or failed.
-
-If you wish to access the status of the duplication process, and check if the duplicated project and version pdf has been generated, you can use the duplication process id to poll for the current status of the duplication process - futher information [here](#)
-
 > 201
 
 ```json
-{ "data": {
-  "id": "f38aadd81a124b2ab14695e88629f4b8",
-  "type": "project_duplication",
-  "attributes": {
-    "requested_at": "2022-01-01T00:00:00+00:00",
-    "status": "complete"
-  },
-  "relationships": {
-    "project": {
-      "data": {
-        "id": "123",
-        "type": "project"
-      }
+{
+  "data": {
+    "id": "f38aadd81a124b2ab14695e88629f4b8",
+    "type": "project_duplication",
+    "attributes": {
+      "status": "queued",
+      "requested_at": "2022-01-01T00:00:00+00:00"
     },
-    "version_pdf": {
-      "data": {
-        "id": "456",
-        "type": "version_pdf"
+    "relationships": {
+      "project": {
+        "data": null
+      },
+      "original_project": {
+        "data": {
+          "id": "224436",
+          "type": "original_project"
+        }
+      },
+      "version_pdf": {
+        "data": null
+      }
+    }
+  }
+}
+```
+
+## Viewing project duplication process
+
+```shell
+curl https://api.handshq.com/v1/project_duplications/[id] \
+  -H "Accept: application/json" \
+  -H "Authorization: bearer [api_token]" \
+  -H "Content-Type: application/json" \
+  --request GET
+```
+
+This endpoint allows you to view the duplication process of a project, by polling us with the id returned from duplicating the project. You can view the duplication process of projects within the division that is registered with the API token you provide.
+
+The duplication process can have the following statuses: "queued", "in_progress", "complete" and "failed". We recommend you poll this endpoint no more than twice a minute.
+
+If the status is complete, it means the duplicated project has been generated as well as the corresponding version pdf for that duplicated project.
+
+If the duplication status has failed, this could mean either the duplication of the project has failed, or the project duplication was a success and the version pdf generation failed. You can determine the cause of the failure within the relationships of the response. If an id exists for the project and not the version pdf, the duplication was successful and the pdf generation failed. If neither project nor version pdf id exist, the project duplication failed.
+
+If the version pdf takes longer than 10 minutes to generate, the duplication process is considered a failure - although the project will have been duplicated.
+
+### Request
+
+`GET https://api.handshq.com/v1/project_duplications/[id]`
+
+### Response
+
+Successful requests will return a json payload of the project duplication process and a `200` status code.
+
+> 200
+
+> Queued:
+
+```json
+{
+  "data": {
+    "id": "f38aadd81a124b2ab14695e88629f4b8",
+    "type": "project_duplication",
+    "attributes": {
+      "status": "queued",
+      "requested_at": "2022-01-01T00:00:00+00:00"
+    },
+    "relationships": {
+      "project": {
+        "data": null
+      },
+      "original_project": {
+        "data": {
+          "id": "123",
+          "type": "original_project"
+        }
+      },
+      "version_pdf": {
+        "data": null
+      }
+    }
+  }
+}
+```
+
+> In Progress:
+
+```json
+{
+  "data": {
+    "id": "f38aadd81a124b2ab14695e88629f4b8",
+    "type": "project_duplication",
+    "attributes": {
+      "status": "in_progress",
+      "requested_at": "2022-01-01T00:00:00+00:00"
+    },
+    "relationships": {
+      "project": {
+        "data": null
+      },
+      "original_project": {
+        "data": {
+          "id": "123",
+          "type": "original_project"
+        }
+      },
+      "version_pdf": {
+        "data": null
+      }
+    }
+  }
+}
+```
+
+> Complete:
+
+```json
+{
+  "data": {
+    "id": "f38aadd81a124b2ab14695e88629f4b8",
+    "type": "project_duplication",
+    "attributes": {
+      "status": "complete",
+      "requested_at": "2022-01-01T00:00:00+00:00"
+    },
+    "relationships": {
+      "project": {
+        "data": {
+          "id": "456",
+          "type": "project"
+        }
+      },
+      "original_project": {
+        "data": {
+          "id": "123",
+          "type": "original_project"
+        }
+      },
+      "version_pdf": {
+        "data": {
+          "id": "789",
+          "type": "version_pdf"
+        }
+      }
+    }
+  }
+}
+```
+
+> Failed:
+
+```json
+{
+  "data": {
+    "id": "f38aadd81a124b2ab14695e88629f4b8",
+    "type": "project_duplication",
+    "attributes": {
+      "status": "failed",
+      "requested_at": "2022-01-01T00:00:00+00:00"
+    },
+    "relationships": {
+      "project": {
+        "data": null
+      },
+      "original_project": {
+        "data": {
+          "id": "123",
+          "type": "original_project"
+        }
+      },
+      "version_pdf": {
+        "data": null
       }
     }
   }
