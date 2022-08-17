@@ -133,6 +133,7 @@ The body of an event subscription will vary depending on the type of event being
 
   - The `History` describing what caused the creation of a new `Version`
     - Included description of the latest change
+    - The context will provide the reason why the version was created
 
 
   - The `Version` of a `Project` which had been generated into a PDF

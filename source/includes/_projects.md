@@ -480,7 +480,9 @@ This endpoint allows you to duplicate a project that exists within the division 
 
 The project is duplicated asynchronously, so will not be available at this point. Successful requests will return a json payload detailing the duplication process and a `201` status code.  The duplication process information provides the id of the duplication process, the time that the duplication was requested and the current status of the duplication process - queued, in progress, complete or failed.
 
-If you wish to access the status of the duplication process, and check if the duplicated project and version pdf has been generated, you can use the duplication process id to poll for the current status of the duplication process - further information [here](#)
+If you wish to access the status of the duplication process, and check if the duplicated project and version pdf has been generated, you can use the duplication process id to poll for the current status of the duplication process - further information [here](#viewing-project-duplication-process)
+
+You can also be notified when a version pdf has been generated through our version_pdf_created webhook. The context for why the version pdf was generated will identify whether it was a result of a project duplication.
 
 ### Request
 
