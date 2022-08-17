@@ -4,8 +4,6 @@ Versions of a project can be reviewed by the personnel that have been assigned t
 
 A personnel can review multiple versions of a project, and you can use this endpoint to access their latest review.
 
-You can access the latest review for a personnel on a project by providing the personnel assignment id, or the id of the project and personnel you wish to view the review for.
-
 ## Viewing latest reviews for a project
 
 ```shell
@@ -28,7 +26,11 @@ Personnel assignments and signatures will be included in the response, and you c
 
 Successful requests will return a json payload of the latest reviews and a `200` status code.
 
+Results in `data` are [paginated](#pagination)
+
 > 200
+
+> Reviews have been requested
 
 ```json
   {
@@ -99,6 +101,20 @@ Successful requests will return a json payload of the latest reviews and a `200`
   }
 ```
 
+> No personnel have been added to project or reviews have not been requested
+
+```json
+{
+  "data": [],
+  "included": [],
+  "meta": {
+    "pagination": {
+      "requested_page": 1,
+      "total_pages": 0
+    }
+  }
+}
+```
 ## Viewing latest review for a personnel on a project
 
 ```shell
@@ -119,6 +135,8 @@ This endpoint allows you to view the latest review that exists for a personnel o
 
 Personnel assignments and signatures will be included in the response, and you can use the personnel assignment relationship to determine the personnel that the review was generated for.
 
+You can access the latest review by providing the personnel assignment id, or the id of the project and personnel you wish to view the review for.
+
 ### Request
 
 `GET https://api.handshq.com/v1/personnel_assignments/[id]/latest_review`
@@ -131,7 +149,7 @@ OR
 
 Successful requests will return a json payload of the latest review and a `200` status code.
 
-A 404 will be returned if a latest review does not exist or cannot be found.
+A 404 will be returned if a reviews have not been requested or a review cannot be found.
 
 > 200
 

@@ -23,6 +23,8 @@ This endpoint allows you to view the personnel assignments that exist for a proj
 
 Successful requests will return a json payload of the personnel assignments and a `200` status code.
 
+Results in `data` are [paginated](#pagination)
+
 > 200
 
 ```json
