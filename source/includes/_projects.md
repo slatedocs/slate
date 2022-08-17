@@ -498,7 +498,7 @@ All parameters must be nested within `project`
 
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
-name | String | Yes | Name of your duplicated project, used for document titles, names of PDF documents etc.
+name | String | No | Name of your duplicated project, used for document titles, names of PDF documents etc. If not provided, this will default to the name of the original project suffixed with Copy.
 start_date | Date | No | To denote when your project starts, used in conjunction with `end_date` to denote whether project is still active.
 end_date | Date | No | To denote when your project ends, used in conjunction with `start_date` to denote whether project is still active.
 reference | String | No | Your internal reference for a project e.g. 'RA01'
