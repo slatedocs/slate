@@ -150,7 +150,7 @@ OR
 
 Successful requests will return a json payload of the latest review and a `200` status code.
 
-A 404 will be returned if a reviews have not been requested or a review cannot be found.
+A 404 will be returned if reviews have not been requested or a review cannot be found.
 
 > 200
 

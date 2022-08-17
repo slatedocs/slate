@@ -147,7 +147,7 @@ curl https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/a
 
 This endpoint allows you to add a personnel to a project within the division that is registered with the API token you provide. You have the option to determine the role of the personnel on the project, by providing the id of the role. This role must have already been assigned to the personnel.
 
-Once a personnel is added to a project, if reviews have been requested for that project, a review will automatically be generated for that personnel. A user email must be provided along with this request, and this will be used to identify and mark the requester of the review.
+Once a personnel is added to a project, if reviews have been requested for that project, a review will automatically be generated for that personnel. A user email must be provided along with this request, and this email will be used to identify the requester of the review.
 
 ### Request
 
