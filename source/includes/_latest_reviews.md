@@ -1,8 +1,10 @@
 # Latest Reviews
 
-Versions of a project can be reviewed by the personnel that have been assigned to that project.
+A version of a project can be reviewed by the personnel that have been assigned to that project.
 
-A personnel can review multiple versions of a project, and you can use this endpoint to access their latest review.
+A personnel can review multiple versions of a project, and you can use this endpoint to access their review for the latest version of the project.
+
+Reviews will only be found once reviews have been requested for a version.
 
 ## Viewing latest reviews for a project
 
@@ -15,8 +17,7 @@ curl https://api.handshq.com/v1/projects/[project_id]/latest_reviews \
 
 This endpoint allows you to view the latest reviews that exist for a project, within the division that is registered with the API token you provide.
 
-Personnel assignments and signatures will be included in the response, and you can use the personnel assignment relationship to determine the personnel that the review was generated for.
-
+Personnel assignments and signatures will be included in the response, and the personnel the review was generated for can be determined through the personnel assignment relationships.
 
 ### Request
 
@@ -133,7 +134,7 @@ curl https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/l
 
 This endpoint allows you to view the latest review that exists for a personnel on a project, within the division that is registered with the API token you provide.
 
-Personnel assignments and signatures will be included in the response, and you can use the personnel assignment relationship to determine the personnel that the review was generated for.
+Personnel assignments and signatures will be included in the response, and the personnel the review was generated for can be determined through the personnel assignment relationships.
 
 You can access the latest review by providing the personnel assignment id, or the id of the project and personnel you wish to view the review for.
 
@@ -211,12 +212,6 @@ A 404 will be returned if a reviews have not been requested or a review cannot b
       "links": {
         "signature_url": "https://example-signature.png"
       }
-    }],
-    "meta": {
-      "pagination": {
-        "requested_page": 1,
-        "total_pages": 1
-      }
-    }
+    }]
   }
 ```
