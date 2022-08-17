@@ -333,6 +333,120 @@ Successful requests will return a json payload of the project that was updated a
 }
 ```
 
+## Archiving projects
+
+```shell
+curl https://api.handshq.com/v1/projects/[project_id]/archive \
+  -H "Accept: application/json" \
+  -H "Authorization: bearer [api_token]" \
+  --request PATCH
+```
+
+> 200
+
+```json
+ {
+  "data": {
+  "id": "123",
+  "type": "project",
+  "attributes": {
+    "name": "Example Project",
+    "reference": "123",
+    "start_date": "2022-01-01",
+    "end_date": "2023-01-01",
+    "archived_at": "2022-01-01T00:00:00+00:00",
+    "state": "approved"
+  },
+  "relationships": {
+    "fields": {
+      "data": [{
+        "id": "456",
+        "type": "field"
+      }]
+    },
+    "user": {
+      "data": {
+        "id": "789",
+        "type": "user"
+      }
+    }
+  },
+  "links": {
+    "app_url": "https://handshq.com/projects/123"
+    }
+  }
+}
+```
+
+This endpoint allows you to archive a project within the division that is registered with the API token you provide.
+
+### Request
+
+`GET https://api.handshq.com/v1/projects/[project_id]/archive`
+
+### Response
+
+Successful requests will return a json payload of the archived project and a `200` status code.
+
+A 404 will be returned if you try to archive a project that has already been archived.
+
+## Unarchiving projects
+
+```shell
+curl https://api.handshq.com/v1/projects/[project_id]/unarchive \
+  -H "Accept: application/json" \
+  -H "Authorization: bearer [api_token]" \
+  --request PATCH
+```
+
+> 200
+
+```json
+ {
+  "data": {
+  "id": "123",
+  "type": "project",
+  "attributes": {
+    "name": "Example Project",
+    "reference": "123",
+    "start_date": "2022-01-01",
+    "end_date": "2023-01-01",
+    "archived_at": null,
+    "state": "approved"
+  },
+  "relationships": {
+    "fields": {
+      "data": [{
+        "id": "456",
+        "type": "field"
+      }]
+    },
+    "user": {
+      "data": {
+        "id": "789",
+        "type": "user"
+      }
+    }
+  },
+  "links": {
+    "app_url": "https://handshq.com/projects/123"
+    }
+  }
+}
+```
+
+This endpoint allows you to unarchive a project within the division that is registered with the API token you provide.
+
+### Request
+
+`GET https://api.handshq.com/v1/projects/[project_id]/unarchive`
+
+### Response
+
+Successful requests will return a json payload of the archived project and a `200` status code.
+
+A 404 will be returned if you try to unarchive a project that has not already been archived.
+
 ## Duplicating a project
 
 ```shell
