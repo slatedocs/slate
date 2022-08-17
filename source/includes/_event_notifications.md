@@ -23,6 +23,12 @@ The body of an event subscription will vary depending on the type of event being
           "id": "50",
           "type": "version"
         }
+      },
+      "project": {
+        "data": {
+          "id":"40",
+          "type":"project"
+        }
       }
     },
     "links": {
@@ -61,6 +67,7 @@ The body of an event subscription will vary depending on the type of event being
         "reason": "Jane D. created the project",
         "createdAt": "2021-11-05T11:29:32.955+00:00",
         "displayNumber": 0,
+        "context": "project_created",
         "eventType": "generic"
       },
       "relationships": {
@@ -69,6 +76,9 @@ The body of an event subscription will vary depending on the type of event being
             "id": "19",
             "type": "project"
           }
+        },
+        "message": {
+          "data": null
         }
       }
     },
@@ -136,6 +146,201 @@ The body of an event subscription will vary depending on the type of event being
   <li>The URL of the PDF (as described in "links" => "content") is only valid for 48 hours.</li>
   <li>This event may fire on occasion for the same version, in cases where a PDF is being regenerated (e.g. in the case of digital signatures)</li>
 </aside>
+
+## Project Archived
+
+```json
+ {
+   "data": {
+      "id": "123",
+      "type": "project",
+      "attributes": {
+        "name": "Example Project",
+        "reference": "123",
+        "start_date": "2022-01-01",
+        "end_date": "2023-01-01",
+        "archived_at": "2022-01-01T00:00:00+00:00",
+        "state": "approved"
+      },
+      "relationships": {
+         "fields": {
+            "data": [{
+              "id":"456",
+              "type":"field"
+            }]
+         },
+         "user": {
+            "data": {
+              "id": "789",
+              "type": "user"
+            }
+         }
+      },
+      "links": {
+         "app_url": "https://handshq.com/projects/123"
+      }
+   },
+   "meta": {
+      "event_type": "project_archived"
+   }
+}
+```
+### Data:
+
+  - The attributes of the project, along with IDs of the project's user (author) and fields.
+
+## Project Archived
+
+```json
+ {
+   "data": {
+      "id": "123",
+      "type": "project",
+      "attributes": {
+        "name": "Example Project",
+        "reference": "123",
+        "start_date": "2022-01-01",
+        "end_date": "2023-01-01",
+        "archived_at": "null",
+        "state": "approved"
+      },
+      "relationships": {
+         "fields": {
+            "data": [{
+              "id":"456",
+              "type":"field"
+            }]
+         },
+         "user": {
+            "data": {
+              "id": "789",
+              "type": "user"
+            }
+         }
+      },
+      "links": {
+         "app_url": "https://handshq.com/projects/123"
+      }
+   },
+   "meta": {
+      "event_type": "project_unarchived"
+   }
+}
+```
+### Data:
+
+  - The attributes of the project, along with IDs of the project's user (author) and fields.
+
+## Personnel Assignment Created
+
+```json
+ {
+   "data": {
+      "id": "123",
+      "type": "personnel_assignment",
+      "relationships": {
+         "personnel": {
+            "data": {
+               "id": "1",
+               "type": "personnel"
+            }
+         },
+         "project": {
+            "data": {
+               "id": "2",
+               "type": "project"
+            }
+         },
+         "role": {
+            "data": {
+               "id": "3",
+               "type": "role"
+            }
+         }
+      }
+   },
+   "meta": {
+      "event_type":"personnel_assignment_created"
+   }
+}
+```
+### Data:
+
+  - The attributes of the personnel assignment, along with IDs of the assignment's personnel, project and role.
+
+## Personnel Assignment Updated
+
+```json
+ {
+   "data": {
+      "id": "123",
+      "type": "personnel_assignment",
+      "relationships": {
+         "personnel": {
+            "data": {
+               "id": "1",
+               "type": "personnel"
+            }
+         },
+         "project": {
+            "data": {
+               "id": "2",
+               "type": "project"
+            }
+         },
+         "role": {
+            "data": {
+               "id": "3",
+               "type": "role"
+            }
+         }
+      }
+   },
+   "meta": {
+      "event_type":"personnel_assignment_updated"
+   }
+}
+```
+### Data:
+
+  - The attributes of the personnel assignment, along with IDs of the assignment's personnel, project and role.
+
+## Personnel Assignment Deleted
+
+```json
+ {
+   "data": {
+      "id": "123",
+      "type": "personnel_assignment",
+      "relationships": {
+         "personnel": {
+            "data": {
+               "id": "1",
+               "type": "personnel"
+            }
+         },
+         "project": {
+            "data": {
+               "id": "2",
+               "type": "project"
+            }
+         },
+         "role": {
+            "data": {
+               "id": "3",
+               "type": "role"
+            }
+         }
+      }
+   },
+   "meta": {
+      "event_type":"personnel_assignment_deleted"
+   }
+}
+```
+### Data:
+
+  - The attributes of the personnel assignment, along with IDs of the assignment's personnel, project and role.
 
 
 ## Role Created

@@ -83,6 +83,11 @@ Events currently supported are:
 
 ### RAMS
 - `version_pdf_created` - this is fired after we have generated and stored a project version PDF, which is now ready to be downloaded. Please note that the event is scoped to look for subscriptions which were created by the same division that the project belongs to.
+- `project_archived` - this is fired after a project is archived (via the HandsHQ app or via the API).
+- `project_unarchived` - this is fired after a project is unarchived (via the HandsHQ app or via the API).
+- `personnel_assignment_created` - this is fired after a personnel has been added to a project (via the HandsHQ app or via the API).
+- `personnel_assignment_updated` - this is fired after a personnel role has been updated on a project (via the HandsHQ app or via the API).
+- `personnel_assignment_deleted` - this is fired after a personnel has been removed from a project (via the HandsHQ app or via the API).
 
 ### Training Register
 <p> The below events are available to customers with Training Register </p>
