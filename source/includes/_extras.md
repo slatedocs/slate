@@ -232,6 +232,7 @@ curl "https://app.procurementexpress.com/api/v1/error_logs"
   -H 'authentication_token: your token'
   -H 'content-type: application/json'
   -D 'error_message=Your error message'
+  -D 'website_url=http://www.amazon.com'
   -D 'options[department_id]=1'
   -D 'options[supplier_id]=2'
   -D 'options[approver_id]=3'
@@ -256,12 +257,13 @@ PO creation failed on Pushcart due to error. Post that error on Slack error chan
 
 ### Query Parameters
 
-| Params                 | Type     | Description          |
-| --------------------   | ------   | -------------------- |
-| app_company_id         | header   | Company ID           |
-| authentication_token   | header   | Authentication Token |
-| error_message          | string   | Error Message        |
-| options[department_id] | string   | Department ID        |
-| options[supplier_id]   | string   | Supplier ID          |
-| options[approver_id]   | string   | Approver ID          |
-| options[budget_id]     | string   | Budget ID            |
+| Params                 | Type             | Description          |
+| --------------------   | ------           | -------------------- |
+| app_company_id         | header           | Company ID           |
+| authentication_token   | header           | Authentication Token |
+| error_message          | string (required)| Error Message        |
+| website_url            | string (required)| Website URL          |
+| options[department_id] | string           | Department ID        |
+| options[supplier_id]   | string           | Supplier ID          |
+| options[approver_id]   | string           | Approver ID          |
+| options[budget_id]     | string           | Budget ID            |
