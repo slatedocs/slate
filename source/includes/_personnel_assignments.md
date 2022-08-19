@@ -229,7 +229,7 @@ curl https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/a
   }
 ```
 
-This endpoint allows you to update the role of a personnel on a project for the division that is registered with the API token you provide. You can either update the assignment by providing the personnel assignment id, or the project id and personnel id.
+This endpoint allows you to update a personnel on a project for the division that is registered with the API token you provide. You can either update the assignment by providing the personnel assignment id, or the project id and personnel id.
 
 ### Request
 
@@ -238,6 +238,14 @@ This endpoint allows you to update the role of a personnel on a project for the 
 OR
 
 `PATCH https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/assignment`
+
+### Allowed Personnel Assignment Parameters
+
+All parameters must be nested within `personnel_assignment`
+
+Parameter | Format | Required | Description
+--------- | ------ | -------- | -----------
+role_id | String | No | ID of the role the personnel should have on the project. The personnel must already have this role.
 
 ### Response
 
