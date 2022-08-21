@@ -110,6 +110,11 @@ This endpoint retrieves all users.
 
 ### Query Parameters - [pagination](#pagination)
 
+Parameters* | Description                              |
+--------- |------------------------------------------|
+email | Filter a user by email address           |
+active | Get only active users, if equal to 'true'. |
+
 Here's the examples of the JSON requests and response that you may get when submitting a GET request
 
 ### PAT Support
