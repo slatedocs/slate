@@ -22,7 +22,8 @@ HTTP/1.1 200 OK
       "id": 1,
       "type": "users",
       "attributes":{
-        "name": "User Name",
+        "first_name": "first Name",
+        "last_name": "last Name",
         "phone": "788965455",
         "password": "securepassword",
         "password_confirmation": "securepassword",
@@ -68,7 +69,8 @@ HTTP/1.1 200 OK
         "id": "1",
         "type": "users",
         "attributes": {
-            "name": "user name",
+            "first_name": "first Name",
+            "last_name": "last Name",
             "email": "email@eventtia.com",
             "account_name": "eventtia"
         },
@@ -117,7 +119,8 @@ fetch('https://core.eventtia.com/v1/users/', {
     data: {
     type: "users",
     attributes:{
-        name: "User Name",
+        first_name: "first Name",
+        last_name: "last Name",
         phone: 788965455,
         password: "SecurePassword",
         password_confirmation: "SecurePassword",
@@ -139,7 +142,8 @@ HTTP/1.1 200 OK
         "id": "1",
         "type": "users",
         "attributes": {
-            "name": "user name",
+            "first_name": "first Name",
+            "last_name": "last Name",
             "email": "email@eventtia.com",
             "account_name": "eventtia"
         },
@@ -188,7 +192,8 @@ fetch('https://core.eventtia.com/v1/users/<id>', {
     data: {
     type: "users",
     attributes:{
-        name: "User Name",
+        first_name: "first Name",
+        last_name: "last Name",
         phone: 788965455,
         password: "SecurePassword",
         password_confirmation: "SecurePassword",
@@ -212,7 +217,8 @@ HTTP/1.1 200 OK
         "id": "1",
         "type": "users",
         "attributes": {
-            "name": "user name",
+            "first_name": "first Name",
+            "last_name": "last Name",
             "email": "email@eventtia.com",
             "account_name": "eventtia"
         },
@@ -278,7 +284,8 @@ HTTP/1.1 200 OK
         "id": "1",
         "type": "users",
         "attributes": {
-            "name": "user name",
+            "first_name": "first Name",
+            "last_name": "last Name",
             "email": "email@eventtia.com",
             "account_name": "eventtia"
         },
