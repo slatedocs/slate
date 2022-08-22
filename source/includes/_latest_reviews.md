@@ -4,7 +4,9 @@ A version of a project can be reviewed by the personnel that have been assigned 
 
 A personnel can review multiple versions of a project, and you can use this endpoint to access their review for the latest version of the project.
 
-Reviews will only be found once reviews have been requested for a version.
+Reviews will only be found once personnel have been added to the project and reviews have been requested for this version of the project. If you add a personnel to a project after reviews have been requested for that version, a review will automatically be created.
+
+A review can have the state of requested, accepted or rejected. Reviews that have been accepted will have a corresponding signature.
 
 ## Viewing latest reviews for a project
 
@@ -25,7 +27,7 @@ Personnel assignments and signatures will be included in the response, and the p
 
 ### Response
 
-Successful requests will return a json payload of the latest reviews and a `200` status code.
+Successful requests will return a json payload of the latest reviews and a `200` status code. An empty collection indicates personnel have not yet been added to the project, or reviews have not yet been requested for this version of the project.
 
 Results in `data` are [paginated](#pagination)
 
@@ -150,7 +152,8 @@ OR
 
 Successful requests will return a json payload of the latest review and a `200` status code.
 
-A 404 will be returned if reviews have not been requested or a review cannot be found.
+An empty object indicates reviews have not yet been requested for this version of the project.
+
 
 > 200
 
@@ -214,4 +217,12 @@ A 404 will be returned if reviews have not been requested or a review cannot be 
       }
     }]
   }
+```
+
+> Reviews have not been requested for this version of the project
+
+```json
+{
+  "data": null
+}
 ```
