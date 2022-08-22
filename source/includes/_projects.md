@@ -642,6 +642,8 @@ If the version pdf takes longer than 10 minutes to generate, the duplication pro
 
 Successful requests will return a json payload of the project duplication process and a `200` status code.
 
+Once the duplication process is complete, you can access the project and version that was generated using the project id and version pdf id returned in the response, along with the following endpoints - [viewing a specific project](#viewing-a-specific-project) & [viewing a specific version pdf](#viewing-a-specific-version-pdf)
+
 > 200
 
 > Queued:
