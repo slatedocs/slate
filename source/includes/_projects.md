@@ -110,6 +110,83 @@ with_fields | Boolean | No | If set to true will include the fields of projects 
 Successful requests will return a json payload of that division's projects and a `200` status code.
 Results in `data` are [paginated](#pagination)
 
+## Viewing a specific project
+
+```shell
+curl https://api.handshq.com/v1/projects/[id] \
+  -H "Accept: application/json" \
+  -H "Authorization: bearer [api_token]" \
+  --request GET
+```
+
+This endpoint allows you to view a specific project for the division that is registered with the API token you provide.
+
+### Request
+
+`GET https://api.handshq.com/v1/projects/[project_id]`
+
+### Response
+
+Successful requests will return a json payload of the project a `200` status code.
+
+> 200
+
+```json
+{
+  "data": {
+    "id": "1",
+    "type": "project",
+    "attributes": {
+      "name": "My Project",
+      "start_date": "2021-12-20" ,
+      "end_date": "2022-12-20",
+      "reference": "abc123",
+      "archived_at": null,
+      "state": "not_submitted"
+    },
+    "relationships": {
+      "user": {
+        "data": {
+          "id":"8",
+          "type":"user"
+        }
+      },
+      "fields":{
+        "data":[
+          {
+            "id":"248",
+            "type":"field"
+          }
+        ]
+      }
+    },
+    "links": {
+      "app_url": "https://app.handshq.com/projects/1"
+    }
+  },
+  "included":[
+    {
+      "id":"248",
+      "type":"field",
+      "attributes":{
+        "label":"Client reference",
+        "required":null,
+        "value":"DEF345",
+        "data_type":"string"
+      },
+      "relationships":{
+        "fieldset":{
+          "data":{
+            "id":"58",
+            "type":"fieldset"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
 ## Creating a project
 
 ```shell
