@@ -1,4 +1,4 @@
-# Password Recovery
+# Passwords
 
 ## Request Recovery Password
 
@@ -103,3 +103,61 @@ Parameter  |  Type   | Description
 reset_password_token | string | recover password token
 password | string | your new password
 confirmation_password | string | your new password
+
+
+## Change Password
+
+```javascript
+fetch('https://core.eventtia.com/en/v1/passwords/change', {
+  method: 'PUT',
+  body: {
+    data: {
+      type: 'users',
+      attributes: {
+        current_password: '<your token>',
+        new_password: '<your new password>',
+        new_password_confirmation: '<your new password>'
+      }
+    }
+  }
+})
+```
+> Make sure you replace &lt;your current password&gt; with your current password.
+
+> Make sure you replace &lt;your new password&gt; with your new password.
+
+> Example of successful (200) response:
+
+```http
+HTTP/1.1 200 OK
+{
+    "message": 301
+}
+```
+
+> Example of Unprocessable Entity (422) response:
+
+```http
+HTTP/1.1 422 Unprocessable Entity
+{
+  "message": {
+    "current_password": [
+      106
+    ]
+  }
+}
+```
+
+This endpoint changes the password of the user
+
+### HTTP Request
+
+`PUT en/v1/passwords/change`
+
+### Body Parameters
+
+Parameter  |  Type   | Description
+---------  | ------- | -----------
+current_password | string | current password
+new_password | string | your new password
+new_confirmation_password | string | your new password

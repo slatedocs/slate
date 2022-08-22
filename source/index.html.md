@@ -23,7 +23,7 @@ includes:
   - workshops
   - commercial_plans
   - account_subscriptions
-  - recovery_password
+  - passwords
 
 search: true
 ---
