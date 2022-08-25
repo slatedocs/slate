@@ -156,10 +156,6 @@ we now have ability to create new Purchase order on behalf of other users. For s
 
 To use this feature, you need to pass other user's id in `purchase_order[on_behalf_of]` params
 
-### Copy
-
-You can check `can_copy` boolean flag in the api response to make sure whether or not current logged in user can copy the purchase order.
-
 ### QuickBooks Account
 
 If QuickBooks is connected, then customer also have ability to map QuickBooks Account with their PEX Budget,
@@ -638,6 +634,10 @@ unique purchase order id, that was returned upon product creation.
 PurchaseOrder's `status` will be `approved` if all of the approvers have already
 approved this purchase order. You can find list of approvers in `approver_requests`
 attribute.
+
+### Copy
+
+You can check `can_copy` boolean flag in the api response to make sure whether or not current logged in user can copy the purchase order.
 
 ### HTTP Request
 
