@@ -9,6 +9,7 @@ search: true
 includes:
   - home
   - oy-tutorial
+  - business-app
   - sending-payments
   - accepting-payments
   - faq
