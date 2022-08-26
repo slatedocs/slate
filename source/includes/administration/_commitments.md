@@ -250,9 +250,9 @@ Attributes | &nbsp;
 Creates a commitment to be associated with an organization.
 
 ```shell
-# Retrieve organization commitment list
+# Create a commitment
 curl "https://cloudmc_endpoint/api/v2/commitments" \
-   -H "MC-Api-Key: your_api_key"
+   -X POST -H "MC-Api-Key: your_api_key"
 ```
 
 > Request body example for FIXED_PRICE commitments
@@ -432,3 +432,40 @@ curl "https://cloudmc_endpoint/api/v2/id" \
 }
 ```
 
+<!-------------------- TERMINATE COMMITMENT -------------------->
+### Terminate commitment
+
+`POST /commitments/:id/terminate`
+
+Terminates a commitment that spans a closed billing cycle.
+
+A commitment cannot be deleted if it has a closed billing cycle associated to it. Therefore, it has to be terminated.
+
+A reprocess of the usage may be necessary if the termination date of the commitment is before the current date.
+
+```shell
+# terminate commitment
+curl "https://cloudmc_endpoint/api/v2/id/terminate" \
+   -X POST -H "MC-Api-Key: your_api_key" -d '{"endDate": "YYYY-MM-DD"}'
+```
+
+Attributes | &nbsp;
+---- | ---
+`endDate`<br/>*string* | The termination date of the commitment. The termination date has to correspond to the end date of the current billing cycle or the next billing cycle.
+
+> Request body example for a terminated commitments
+
+```json
+{
+   "endDate": "2022-09-01"
+}
+```
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "75a68ec2-d63e-4bc9-b485-8d5a3cc33d4f",
+    "taskStatus": "SUCCESS"
+}
+```
