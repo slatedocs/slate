@@ -266,8 +266,8 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|contract_types|query|string|false|Comma separated list of contract types|
-|states|query|string|false|Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired |
+|contract_types|query|string|false|Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot|
+|states|query|string|false|Comma separated list of states e.g. upcoming,live,expired,settled to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired |
 |after|query|string|false|after cursor for paginated request|
 |before|query|string|false|before cursor for paginated request|
 |page_size|query|string|false|size of a single page for paginated request, default: 100|
@@ -596,7 +596,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|contract_types|query|string|false|Comma separated list of contract types|
+|contract_types|query|string|false|Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot|
 
 > Example responses
 
@@ -1525,7 +1525,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.post('https://api.delta.exchange/v2/orders/batch', params={
+r = requests.post('https://api.delta.exchange/v2/orders/', params={
 
 }, headers = headers)
 
@@ -1535,7 +1535,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X POST https://api.delta.exchange/v2/orders/batch \
+curl -X POST https://api.delta.exchange/v2/orders/ \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1556,7 +1556,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.post 'https://api.delta.exchange/v2/orders/batch',
+result = RestClient.post 'https://api.delta.exchange/v2/orders/',
   params: {
   }, headers: headers
 
@@ -1564,7 +1564,7 @@ p JSON.parse(result)
 
 ```
 
-`POST /orders/batch`
+`POST /orders/`
 
 > Body parameter
 
@@ -1716,7 +1716,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.put('https://api.delta.exchange/v2/orders/batch', params={
+r = requests.put('https://api.delta.exchange/v2/orders/', params={
 
 }, headers = headers)
 
@@ -1726,7 +1726,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X PUT https://api.delta.exchange/v2/orders/batch \
+curl -X PUT https://api.delta.exchange/v2/orders/ \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1747,7 +1747,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.put 'https://api.delta.exchange/v2/orders/batch',
+result = RestClient.put 'https://api.delta.exchange/v2/orders/',
   params: {
   }, headers: headers
 
@@ -1755,7 +1755,7 @@ p JSON.parse(result)
 
 ```
 
-`PUT /orders/batch`
+`PUT /orders/`
 
 batch order edit 
 
@@ -1858,7 +1858,7 @@ headers = {
   'timestamp': '****'
 }
 
-r = requests.delete('https://api.delta.exchange/v2/orders/batch', params={
+r = requests.delete('https://api.delta.exchange/v2/orders/', params={
 
 }, headers = headers)
 
@@ -1868,7 +1868,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X DELETE https://api.delta.exchange/v2/orders/batch \
+curl -X DELETE https://api.delta.exchange/v2/orders/ \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
@@ -1889,7 +1889,7 @@ headers = {
   'timestamp' => '****'
 }
 
-result = RestClient.delete 'https://api.delta.exchange/v2/orders/batch',
+result = RestClient.delete 'https://api.delta.exchange/v2/orders/',
   params: {
   }, headers: headers
 
@@ -1897,7 +1897,7 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /orders/batch`
+`DELETE /orders/`
 
 > Body parameter
 

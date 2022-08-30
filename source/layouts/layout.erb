@@ -103,7 +103,6 @@ under the License.
         <% if language_tabs.any? %>
         
           <div class="lang-selector">
-          <input type=button value="Show/Hide" onclick="showHideDiv('foo');">
             <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
                 <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>

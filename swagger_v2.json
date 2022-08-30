@@ -146,13 +146,13 @@
           {
             "in": "query",
             "name": "contract_types",
-            "description": "Comma separated list of contract types",
+            "description": "Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot",
             "type": "string"
           },
           {
             "in": "query",
             "name": "states",
-            "description": "Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired ",
+            "description": "Comma separated list of states e.g. upcoming,live,expired,settled to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired ",
             "type": "string"
           },
           {
@@ -250,7 +250,7 @@
           {
             "name": "contract_types",
             "in": "query",
-            "description": "Comma separated list of contract types",
+            "description": "Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot",
             "required": false,
             "type": "string"
           }
@@ -696,7 +696,7 @@
         }
       }
     },
-    "/orders/batch": {
+    "/orders/": {
       "post": {
         "tags": [
           "Orders"
