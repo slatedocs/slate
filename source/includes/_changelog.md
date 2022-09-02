@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-09-02
+
+- Added `entity_type` and `exclude_dropdown_options` documentation to [Fields](#fields).
+
 ## 2022-05-05
 
 - Added `enrichment_source` documentation to [Fields](#fields).
