@@ -24,6 +24,10 @@ includes:
   - commercial_plans
   - account_subscriptions
   - passwords
+  - permissions
+  - roles
+  - role_permissions
+  - role_categories
 
 search: true
 ---
