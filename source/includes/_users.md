@@ -122,8 +122,6 @@ fetch('https://core.eventtia.com/v1/users/', {
         first_name: "first Name",
         last_name: "last Name",
         phone: 788965455,
-        password: "SecurePassword",
-        password_confirmation: "SecurePassword",
         email: "user@eventtia.com"
           		             }
 	}
@@ -178,7 +176,6 @@ Parameter | Type | Description
 name | string | The User's name.
 email | string | The User's corporate email.
 phone | string | The User's phone.
-password | string | The User's password.
 
 ## Update User
 
