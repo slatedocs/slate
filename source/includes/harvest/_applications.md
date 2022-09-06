@@ -1057,6 +1057,56 @@ to_stage_id | Yes | integer | The ID of the job stage this application should be
 
 [See noteworthy response attributes.] (#the-application-object)
 
+## PATCH: Convert Propsect To Candidate
+
+```shell
+curl -X PATCH 'https://harvest.greenhouse.io/v1/applications/{id}/convert_prospect'
+-H "Content-Type: application/json"
+-H "On-Behalf-Of: {greenhouse user ID}"
+-H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"
+```
+
+> The above command takes a JSON request, structured like this:
+
+```json
+{
+  "job_id": 123456,
+  "initial_stage_id": 234567
+}
+```
+
+> The above returns a JSON response, structured like this:
+
+```json
+{
+  "success": true,
+  "old_application_id": 1234321,
+  "new_application_id": 43234323,
+  "new_job_id": 123456,
+  "new_stage_id": 234567
+}
+```
+
+Converts a prospect application to a a candidate on a job. If a non-prospect application is provided, an error will be returned.
+
+### HTTP Request
+
+`POST https://harvest.greenhouse.io/v1/applications/{id}/convert_prospect`
+
+### Headers
+
+Header | Description
+--------- | -----------
+On-Behalf-Of | ID of the user issuing this request. Required for auditing purposes.
+
+
+### JSON Body Parameters
+
+Parameter | Required | Type | Description
+--------- | ----------- | ----------- | ----------- | -----------
+job_id | Yes | integer | The ID of the job this prospect will become a candidate on.
+initial_stage_id | No | integer | The stage on the destination job this application should be placed in. If this is omitted, the application will be sent to the job's initial stage
+
 ## POST: Add Attachment to Application
 
 ```shell
