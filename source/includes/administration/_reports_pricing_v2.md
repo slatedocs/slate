@@ -248,7 +248,7 @@ Customer Report Attributes | &nbsp;
 `startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the report.
 `endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the report.
 `orgDeleted`<br/>*boolean* | Whether or not the organization is deleted.
-`metadata`<br/>*object* | Additional information about the deletion event of the organization (optional).
+`metadata`<br/>*object* | Additional information about the deletion event of the organization.
 `reportGenerated`<br/>*boolean* | Whether or not a report could be generated for this time period.
 
 <!------------------- GET REVENUE TAXATION REPORT --------------------->
