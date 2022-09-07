@@ -1091,7 +1091,7 @@ Converts a prospect application to a a candidate on a job. If a non-prospect app
 
 ### HTTP Request
 
-`POST https://harvest.greenhouse.io/v1/applications/{id}/convert_prospect`
+`PATCH https://harvest.greenhouse.io/v1/applications/{id}/convert_prospect`
 
 ### Headers
 
