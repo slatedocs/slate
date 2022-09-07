@@ -201,6 +201,7 @@ curl --request GET \
         "name": "JasonOrg",
         "total": "5244.00",
         "currency": "CAD",
+        "orgDeleted": "false",
         "categories": [
           {
             "name": {
@@ -246,6 +247,8 @@ Customer Report Attributes | &nbsp;
 `organizations.appliedPricing.name`<br/>*Object* | A map of short language codes to their translated name for the pricing package.
 `startDate`<br/>*string* | An ISO-8601 instant format string representing the start of the report.
 `endDate`<br/>*string* | An ISO-8601 instant format string representing the end of the report.
+`orgDeleted`<br/>*boolean* | Whether or not the organization is deleted.
+`metadata`<br/>*object* | Additional information about the deletion event of the organization (optional).
 `reportGenerated`<br/>*boolean* | Whether or not a report could be generated for this time period.
 
 <!------------------- GET REVENUE TAXATION REPORT --------------------->
