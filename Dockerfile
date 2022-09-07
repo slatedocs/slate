@@ -3,6 +3,7 @@ COPY . /usr/src/app
 VOLUME /usr/src/app
 EXPOSE 4567
 
+ENV BUNDLER_VERSION=2.1.4
 WORKDIR /usr/src/app
 
 RUN apk add --update nodejs g++ make

@@ -116,7 +116,7 @@ Attributes | &nbsp;
 `status`<br/>*enum* | The status of the commitment. Possible values are: `IN_PROGRESS`, `UPCOMING`, and `EXPIRED`.
 `type`<br/>*enum* | The type of the commitment. Currently limited to only `RESOURCE`.
 `fixedPrice`<br/>*double* | The effective price for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
-`fixedPriceTaxCode`<br/>*double* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`fixedPriceTaxCode`<br/>*TaxCode* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
 `startDate`<br/>*date* | The start date of the commitment.
 `endDate`<br/>*date* | The end date of the commitment.
 `terminated`<br/>*Boolean* | A flag denoting whether or not the commitment is terminated. This value is not directly tied to the status. 
@@ -148,6 +148,13 @@ Attributes | &nbsp;
 --- | ---
 `id`<br/>*UUID* | The id of the product.
 `sku`<br/>*string* | The sku of the product.
+
+Object: **TaxCode**
+
+Attributes | &nbsp;
+--- | ---
+`code`<br/>*UUID* | The tax code.
+`description`<br/>*Product* | Optional description or category for given tax code.
 
 <!-------------------- GET COMMITMENT -------------------->
 ### Get commitment
@@ -218,7 +225,7 @@ Attributes | &nbsp;
 `status`<br/>*enum* | The status of the commitment. Possible values are: `IN_PROGRESS`, `UPCOMING`, and `EXPIRED`.
 `type`<br/>*enum* | The type of the commitment. Currently limited to only `RESOURCE`.
 `fixedPrice`<br/>*double* | The effective price for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
-`fixedPriceTaxCode`<br/>*double* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`fixedPriceTaxCode`<br/>*TaxCode* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
 `startDate`<br/>*date* | The start date of the commitment.
 `endDate`<br/>*date* | The end date of the commitment.
 `terminated`<br/>*Boolean* | A flag denoting whether or not the commitment is terminated. This value is not directly tied to the status. 
@@ -250,6 +257,13 @@ Attributes | &nbsp;
 --- | ---
 `id`<br/>*UUID* | The id of the product.
 `sku`<br/>*string* | The sku of the product.
+
+Object: **TaxCode**
+
+Attributes | &nbsp;
+--- | ---
+`code`<br/>*UUID* | The tax code.
+`description`<br/>*Product* | Optional description or category for given tax code.
 
 
 <!-------------------- CREATE COMMITMENT -------------------->
@@ -401,7 +415,7 @@ Attributes | &nbsp;
 `rateType`<br/>*enum* | The rate type of the commitment. Applies only to commitments with pricing method `UTILITY_DISCOUNT`. Possible values are: `FIXED_RATE` and `VARIABLE_RATE`.
 `type`<br/>*enum* | The type of the commitment. Currently limited to only `RESOURCE`.
 `fixedPrice`<br/>*double* | The effective price for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
-`fixedPriceTaxCode`<br/>*double* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`fixedPriceTaxCode`<br/>*TaxCode* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
 `startDate`<br/>*date* | The start date of the commitment. The start date must be specified. A commitment's date range cannot span a billing cycle with an issued invoice.
 `endDate`<br/>*date* | The end date of the commitment. An indefinite end date can be set by omitting the `endDate` field from the request body.
 
@@ -424,6 +438,13 @@ Object: **Product**
 Attributes | &nbsp;
 --- | ---
 `id`<br/>*UUID* | The id of the product.
+
+Object: **TaxCode**
+
+Attributes | &nbsp;
+--- | ---
+`code`<br/>*UUID* | The tax code.
+`description`<br/>*Product* | Optional description or category for given tax code.
 
 
 <!-------------------- DELETE COMMITMENT -------------------->
