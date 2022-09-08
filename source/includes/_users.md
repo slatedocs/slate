@@ -217,7 +217,6 @@ password | string | The User's password.
 is_admin | bolean | Specifies whether the user you are creating is an administrator or not.
 role_category_ids | array | Specifies the categories the user is associated with. This is required in case your user isn't an administrator.
 
-
 ## Update User
 
 ```javascript
