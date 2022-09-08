@@ -2,7 +2,7 @@
 ## List Role Categories
 
 ```javascript
-fetch('https://core.eventtia.com/v1/role_categories/<id>', {
+fetch('https://core.eventtia.com/v1/role_categories/', {
   method: 'GET',
   headers: {
     'Authorization': '<your token>',
@@ -35,7 +35,7 @@ HTTP/1.1 200 OK
 }
 
 ```
-This endpoint list role_categories return it
+This endpoint allows you to list the role categories you have associated with your account.
 
 ### HTTP Request
 
@@ -87,7 +87,7 @@ HTTP/1.1 404 Not Found
 }
 ```
 
-This endpoint return an role category
+This endpoint returns a role category given an id
 
 ### HTTP Request
 
@@ -97,7 +97,7 @@ This endpoint return an role category
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | id for the desired role_categories
+id | integer | id for the desired role category
 
 ## Create Role Category
 
@@ -143,7 +143,7 @@ HTTP/1.1 200 OK
 HTTP/1.1 422 Unprocessable Entity
 ```
 
-This endpoint create an role category and return it
+This endpoint creates a role category and returns it
 
 ### HTTP Request
 
@@ -153,7 +153,7 @@ This endpoint create an role category and return it
 
 Parameter | Type | Description
 --------- | ---- | -----------
-name | string | The Role category name.
+name | string | Role category name.
 
 ## Update Role Category
 
@@ -205,7 +205,7 @@ HTTP/1.1 404 Not Found
 }
 ```
 
-This endpoint update an role category and return it
+This endpoint updates a role category and return it
 
 ### HTTP Request
 
@@ -215,13 +215,13 @@ This endpoint update an role category and return it
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | The id for the desired role_category
+id | integer | id for the desired role category
 
 ### Body Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-name | string | The role category name.
+name | string | Role category name.
 
 ## Destroy Role Category
 ```javascript
@@ -253,7 +253,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint destroy a role category and return it
+This endpoint destroys a role category and returns it
 
 ### HTTP Request
 
@@ -263,4 +263,4 @@ This endpoint destroy a role category and return it
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | The id for the desired role category
+id | integer | Id for the desired role category

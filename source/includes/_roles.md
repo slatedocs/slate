@@ -35,7 +35,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint return a list of roles
+This endpoint returns a list of roles that your account have configured
 
 ### HTTP Request
 
@@ -88,7 +88,7 @@ HTTP/1.1 404 Not Found
 }
 ```
 
-This endpoint return an role
+This endpoint returns a role given an id
 
 ### HTTP Request
 
@@ -143,7 +143,7 @@ HTTP/1.1 200 OK
 HTTP/1.1 422 Unprocessable Entity
 ```
 
-This endpoint create an role and return it
+This endpoint creates a role and return it
 
 ### HTTP Request
 
@@ -153,7 +153,7 @@ This endpoint create an role and return it
 
 Parameter | Type | Description
 --------- | ---- | -----------
-name | string | The Role's name.
+name | string | Role's name.
 
 ## Update Role
 
@@ -208,7 +208,7 @@ HTTP/1.1 200 OK
 HTTP/1.1 422 Unprocessable Entity
 ```
 
-This endpoint update an role and return it
+This endpoint allows you to update a role information and associate or revoke permissions to the users that have associated it.
 
 ### HTTP Request
 
@@ -218,13 +218,13 @@ This endpoint update an role and return it
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | The id for the desired role
+id | integer | id of the desired role
 
 ### Body Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-name | string | The Role's name.
+name | string | Role's name.
 permission | string | Permission
 
 ## Destroy Role
@@ -257,7 +257,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-This endpoint destroy a role and return it
+This endpoint destroys a role and return it
 
 ### HTTP Request
 

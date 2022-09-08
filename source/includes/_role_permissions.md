@@ -2,7 +2,7 @@
 ## List Role Permissions
 
 ```javascript
-fetch('https://core.eventtia.com/v1/roles/<id>/role_permissions/<id>', {
+fetch('https://core.eventtia.com/v1/roles/<id>/role_permissions/', {
   method: 'GET',
   headers: {
     'Authorization': '<your token>',
@@ -53,7 +53,7 @@ HTTP/1.1 200 OK
 }
 
 ```
-This endpoint list role_permissions belongs to roles and permissions and return it
+This endpoint list all role permissions related to a given role
 
 ### HTTP Request
 
@@ -63,5 +63,5 @@ This endpoint list role_permissions belongs to roles and permissions and return 
 
 Parameter |  Type   | Description
 --------- | ------- | -----------
-id | integer | The id for the desired role
+id | integer | id for the desired role
 page | json | A page object as described <a href="#pagination">here</a>

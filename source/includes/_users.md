@@ -19,7 +19,7 @@ HTTP/1.1 200 OK
 {
 "data": [
     {
-      "id": "1",
+      "id": 1,
       "type": "users",
       "attributes": {
           "first_name": "first Name",
@@ -214,7 +214,7 @@ last_name | string | The User's last name.
 email | string | The User's corporate email.
 phone | string | The User's phone.
 password | string | The User's password.
-is_admin | bolean | The User's is_admin.
+is_admin | bolean | specifies whether the user you are creating is an administrator or not.
 role_category_ids | array | The User's role category ids.
 
 
@@ -314,8 +314,8 @@ name | string | The User's name.
 email | string | The User's corporate email.
 phone | string | The User's phone.
 password | string | The User's password.
-is_admin | bolean | The User's is_admin.
-role_category_ids | array | The User's role category ids.
+is_admin | bolean | specifies whether the user you are creating is an administrator or not.
+role_category_ids | array | Specifies the categories the user is associated with. This is required in case your user isn't an administrator.
 
 ## Destroy User
 ```javascript
