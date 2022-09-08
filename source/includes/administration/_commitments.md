@@ -424,7 +424,6 @@ curl "https://cloudmc_endpoint/api/v2/id" \
 
 > The above command returns a JSON structured like this:
 
-# Response body example
 ```json
 {
 	"taskId": "taskId...",
