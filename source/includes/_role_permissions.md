@@ -43,13 +43,7 @@ HTTP/1.1 200 OK
       }
     },
   }
-  ],
-  "links": {
-      "first": "http://localhost:3000/api/v1/es/v1/roles/1/role_permissions?page[number]=1",
-      "last": "http://localhost:3000/api/v1/es/v1/roles/1/role_permissions?page[number]=1",
-      "prev": null,
-      "next": null
-    }
+  ]
 }
 
 ```
@@ -63,5 +57,5 @@ This endpoint list all role permissions related to a given role
 
 Parameter |  Type   | Description
 --------- | ------- | -----------
-id | integer | id for the desired role
+id | integer | Id for the desired role
 page | json | A page object as described <a href="#pagination">here</a>

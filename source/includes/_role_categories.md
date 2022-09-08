@@ -25,13 +25,7 @@ HTTP/1.1 200 OK
         "name": "grupo 1"
       }
     }
-  ],
-  "links": {
-      "first": "http://localhost:3000/api/v1/es/v1/role_categories?page[number]=1",
-      "last": "http://localhost:3000/api/v1/es/v1/role_categories?page[number]=1",
-      "prev": null,
-      "next": null
-    }
+  ]
 }
 
 ```
@@ -97,7 +91,7 @@ This endpoint returns a role category given an id
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | id for the desired role category
+id | integer | Id for the desired role category
 
 ## Create Role Category
 
@@ -215,7 +209,7 @@ This endpoint updates a role category and return it
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | id for the desired role category
+id | integer | Id for the desired role category
 
 ### Body Parameters
 

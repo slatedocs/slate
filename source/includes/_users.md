@@ -214,8 +214,8 @@ last_name | string | The User's last name.
 email | string | The User's corporate email.
 phone | string | The User's phone.
 password | string | The User's password.
-is_admin | bolean | specifies whether the user you are creating is an administrator or not.
-role_category_ids | array | The User's role category ids.
+is_admin | bolean | Specifies whether the user you are creating is an administrator or not.
+role_category_ids | array | Specifies the categories the user is associated with. This is required in case your user isn't an administrator.
 
 
 ## Update User
@@ -314,7 +314,7 @@ name | string | The User's name.
 email | string | The User's corporate email.
 phone | string | The User's phone.
 password | string | The User's password.
-is_admin | bolean | specifies whether the user you are creating is an administrator or not.
+is_admin | bolean | Specifies whether the user you are creating is an administrator or not.
 role_category_ids | array | Specifies the categories the user is associated with. This is required in case your user isn't an administrator.
 
 ## Destroy User

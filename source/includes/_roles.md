@@ -25,13 +25,7 @@ HTTP/1.1 200 OK
         "name": "admin"
       }
     }
-  ],
-  "links": {
-    "first": "http://localhost:3000/api/v1/es/v1/roles?page[number]=1",
-    "last": "http://localhost:3000/api/v1/es/v1/roles?page[number]=1",
-    "prev": null,
-    "next": null
-  }
+  ]
 }
 ```
 
@@ -98,7 +92,7 @@ This endpoint returns a role given an id
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | id for the desired role
+id | integer | Id for the desired role
 
 ## Create Role
 
@@ -218,7 +212,7 @@ This endpoint allows you to update a role information and associate or revoke pe
 
 Parameter | Type | Description
 --------- | ---- | -----------
-id | integer | id of the desired role
+id | integer | Id of the desired role
 
 ### Body Parameters
 
