@@ -111,7 +111,7 @@ fetch('https://core.eventtia.com/v1/role_categories/', {
     }
   }
   }
-}
+})
 ```
 > Make sure you replace &lt;your token&gt; with the JWT you get when you authenticate. 
 
@@ -165,7 +165,7 @@ fetch('https://core.eventtia.com/v1/role_categories/<id>', {
         }
     }
   }
-}}
+})
 
 ```
 
