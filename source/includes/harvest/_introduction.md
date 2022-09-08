@@ -172,6 +172,7 @@ The timestamps below are Eastern Time.
 
 | Date                    | Description                                                                                                                       |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| September 9, 2022 12:00:00PM | Added [PATCH: Convert Prospect To Candidate](#patch-convert-prospect-to-candidate) endpoint to allow conversion of a prospect application to a candidate application on a selected job.
 | August 1, 2022 12:00:00PM | Making `content_type` required for attachments unless uploading using a URL.
 | May 18, 2021 12:00:00PM | Added `video_conferencing_url` to Scheduled Interview object.
 | May 3, 2021 05:00:00PM | Added `priority` to Job Stages object.
