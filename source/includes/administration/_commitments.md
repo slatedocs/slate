@@ -418,7 +418,7 @@ A commitment can only be deleted if it has no closed billing cycles associated t
 
 ```shell
 # delete commitment
-curl "https://cloudmc_endpoint/api/v2/id" \
+curl "https://cloudmc_endpoint/api/v2/commitments/:id" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 ```
 
@@ -444,7 +444,7 @@ A reprocess of the usage may be necessary if the termination date of the commitm
 
 ```shell
 # terminate commitment
-curl "https://cloudmc_endpoint/api/v2/id/terminate" \
+curl "https://cloudmc_endpoint/api/v2/commitments/:id/terminate" \
    -X POST -H "MC-Api-Key: your_api_key" -d '{"endDate": "YYYY-MM-DD"}'
 ```
 
@@ -468,3 +468,80 @@ Attributes | &nbsp;
     "taskStatus": "SUCCESS"
 }
 ```
+
+<!-------------------- UPDATE COMMITMENT -------------------->
+### Update commitment
+
+`PUT /commitments/:id`
+
+Update the attributes of a commitment for an organization
+
+If an invoice hasn't been issued to the customer, all of the attributes of the commitment can be updated.
+
+A commitment that is pre-paid can be updated, **but** it will be terminated and a new commitment will be created with the updated attributes and will be effective at the start at the end of the current billing cycle.
+
+```shell
+# update commitment
+curl "https://cloudmc_endpoint/api/v2/commitments/:id" \
+   -X PUT -H "MC-Api-Key: your_api_key" -d '{ ... }'
+```
+
+> Request body example
+
+```json
+{
+   "id": "60d16762-bec2-4d5a-916d-15c81b6c2d98"
+   "name": "updated fixed monthly price commitment",
+   "committedProducts": [
+      {
+         "product": {
+            "id": "73ebf9c8-ecf7-4ee6-b881-150023d5f422"
+         },
+         "committedAmount": 1234.0
+      }
+   ],
+   "pricingMethod": "FIXED_PRICE",
+   "type": "RESOURCE",
+   "fixedPrice": 550.0,
+   "fixedPriceTaxCode": {
+       "code": "SI086690",
+       "description": "IT Services"
+   },
+   "startDate": "2022-06-01T00:00:00Z",
+   "endDate": "2023-01-01T00:00:00Z"
+}
+```
+
+
+> The above command returns a JSON structured like this:
+
+```json
+{
+    "taskId": "75a68ec2-d63e-4bc9-b485-8d5a3cc33d4f",
+    "taskStatus": "SUCCESS"
+}
+```
+
+Attributes | &nbsp;
+---- | ---
+`id`<br/>*string* | The identifier of the commitment.
+`name`<br/>*string* | The name of the commitment.
+`organization`<br/>*Organization* | The organization that is associated to the commitment.
+`reseller`<br/>*Organization* | The organization that owns the commitment.
+`committedProducts`<br/>*Array[CommittedProduct]* | The list of products, commitment levels and negotiated price associated to the commitment.
+`pricingMethod`<br/>*enum* | The pricing method of the commitment. Possible values are: `FIXED_PRICE` and `UTILITY_DISCOUNT`. Used to define how the effective price of the commitment is calculated.
+`rateType`<br/>*enum* | The rate type of the commitment. Applies only to commitments with pricing method `UTILITY_DISCOUNT`. Possible values are: `FIXED_RATE` and `VARIABLE_RATE`.
+`type`<br/>*enum* | The type of the commitment. Currently limited to only `RESOURCE`.
+`fixedPrice`<br/>*double* | The effective price for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`fixedPriceTaxCode`<br/>*TaxCode* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`startDate`<br/>*date* | The start date of the commitment. The start date must be specified. A commitment's date range cannot span a billing cycle with an issued invoice.
+`endDate`<br/>*date* | The end date of the commitment. An indefinite end date can be set by omitting the `endDate` field from the request body.
+
+**_NOTE:_** The organization and the reseller attribute cannot be updated
+
+Object: **TaxCode**
+
+Attributes | &nbsp;
+--- | ---
+`code`<br/>*UUID* | The tax code.
+`description`<br/>*Product* | Optional description or category for given tax code.
