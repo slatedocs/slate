@@ -95,7 +95,8 @@ Applications associate [candidates](#candidates) with [jobs](#jobs). There are 2
         {
             "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
             "url": "https://prod-heroku.s3.amazonaws.com/...",
-            "type": "offer_packet"
+            "type": "offer_packet",
+            "created_at": "2020-09-27T18:45:27.137Z"
         }
     ]
 
@@ -197,7 +198,8 @@ curl -X GET 'https://harvest.greenhouse.io/v1/applications'
         {
             "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
             "url": "https://prod-heroku.s3.amazonaws.com/...",
-            "type": "offer_packet"
+            "type": "offer_packet",
+            "created_at": "2020-09-27T18:45:27.137Z"
         }
     ]
 },
@@ -291,7 +293,8 @@ curl -X GET 'https://harvest.greenhouse.io/v1/applications'
         {
             "filename": "Jack_Smith_Offer_Packet_09_27_2020.pdf",
             "url": "https://prod-heroku.s3.amazonaws.com/...",
-            "type": "offer_packet"
+            "type": "offer_packet",
+            "created_at": "2020-09-27T18:45:27.137Z"
         }
     ]
   }
@@ -392,7 +395,8 @@ curl -X GET 'https://harvest.greenhouse.io/v1/applications/{id}'
         {
             "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
             "url": "https://prod-heroku.s3.amazonaws.com/...",
-            "type": "offer_packet"
+            "type": "offer_packet",
+            "created_at": "2020-09-27T18:45:27.137Z"
         }
     ]
 }
@@ -679,7 +683,8 @@ curl -X PATCH 'https://harvest.greenhouse.io/v1/applications/{id}'
       {
           "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
           "url": "https://prod-heroku.s3.amazonaws.com/...",
-          "type": "offer_packet"
+          "type": "offer_packet",
+          "created_at": "2020-09-27T18:45:27.137Z"
       }
   ]
 }
@@ -796,7 +801,8 @@ curl -X POST 'https://harvest.greenhouse.io/v1/applications/{id}/advance'
       {
           "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
           "url": "https://prod-heroku.s3.amazonaws.com/...",
-          "type": "offer_packet"
+          "type": "offer_packet",
+          "created_at": "2020-09-27T18:45:27.137Z"
       }
   ]
 }
@@ -910,7 +916,8 @@ curl -X POST 'https://harvest.greenhouse.io/v1/applications/{id}/transfer_to_job
       {
           "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
           "url": "https://prod-heroku.s3.amazonaws.com/...",
-          "type": "offer_packet"
+          "type": "offer_packet",
+          "created_at": "2020-09-27T18:45:27.137Z"
       }
   ]
 }
@@ -1027,7 +1034,8 @@ curl -X POST 'https://harvest.greenhouse.io/v1/applications/{id}/move'
       {
           "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
           "url": "https://prod-heroku.s3.amazonaws.com/...",
-          "type": "offer_packet"
+          "type": "offer_packet",
+          "created_at": "2020-09-27T18:45:27.137Z"
       }
   ]
 }
@@ -1248,7 +1256,8 @@ curl -X POST 'https://harvest.greenhouse.io/v1/applications/{id}/hire'
       {
           "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
           "url": "https://prod-heroku.s3.amazonaws.com/...",
-          "type": "offer_packet"
+          "type": "offer_packet",
+          "created_at": "2020-09-27T18:45:27.137Z"
       }
   ]
 }
@@ -1398,7 +1407,8 @@ curl -X POST 'https://harvest.greenhouse.io/v1/applications/{id}/reject'
       {
           "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
           "url": "https://prod-heroku.s3.amazonaws.com/...",
-          "type": "offer_packet"
+          "type": "offer_packet",
+          "created_at": "2020-09-27T18:45:27.137Z"
       }
   ]
 }
@@ -1562,7 +1572,8 @@ curl -X POST 'https://harvest.greenhouse.io/v1/applications/{id}/unreject'
       {
           "filename": "John_Locke_Offer_Packet_09_27_2017.pdf",
           "url": "https://prod-heroku.s3.amazonaws.com/...",
-          "type": "offer_packet"
+          "type": "offer_packet",
+          "created_at": "2020-09-27T18:45:27.137Z"
       }
   ]
 ```
