@@ -136,8 +136,6 @@ Successful requests will return a json payload of the latest version pdf and a `
         "reason": "Katie M. edited the project",
         "createdAt": "2022-01-01T00:00:00+00:00",
         "displayNumber": 2,
-        "nadminUserShortName": "Katie M.",
-        "context": "project_edited",
         "eventType": "generic"
       },
       "relationships": {

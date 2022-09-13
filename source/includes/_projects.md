@@ -559,7 +559,7 @@ The project is duplicated asynchronously, so will not be available at this point
 
 If you wish to access the status of the duplication process, and check if the duplicated project and version pdf has been generated, you can use the duplication process id to poll for the current status of the duplication process - further information [here](#viewing-project-duplication-process)
 
-You can also be notified when a version pdf has been generated through our version_pdf_created webhook. The context for why the version pdf was generated will identify whether it was a result of a project duplication.
+You can also be notified when a version pdf has been generated through our version_pdf_created webhook. The payload will contain the reason that the version pdf was generated and will identify whether it was a result of a project duplication.
 
 ### Request
 
