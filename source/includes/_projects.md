@@ -590,7 +590,7 @@ Successful requests will return a json payload of the project duplication proces
 ```json
 {
   "data": {
-    "id": "f38aadd81a124b2ab14695e88629f4b8",
+    "id": "0654478193284b93844884632ed5ff32",
     "type": "project_duplication",
     "attributes": {
       "status": "queued",
@@ -602,7 +602,7 @@ Successful requests will return a json payload of the project duplication proces
       },
       "original_project": {
         "data": {
-          "id": "224436",
+          "id": "123",
           "type": "original_project"
         }
       },
