@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 2.14.0
+
+*September 15, 2022*
+
+* Fix Vagrantfile gem install for ruby >= 2.6 (thanks @Cyb0rk)
+* Disable file watcher in run_build() for sake of qemu on arm64 (thanks @anapsix)
+* Expand deprecated git.io links to full url in docs (thanks @judge2020)
+* Bump nokogiri from 1.13.4 to 1.13.8
+* Bump rouge from 3.28.0 to 3.30.0
+
 ## Version 2.13.0
 
 *April 22, 2022*
