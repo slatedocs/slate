@@ -58,7 +58,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices/find/efd32752-c6f2-45cf-b494-cc6b
                             "scope": "ALL_PRODUCTS",
                             "typeString": "PERCENTAGE",
                             "discount": {
-                                "applyToNewCustomersOnly": false,
                                 "discountedProducts": {},
                                 "type": "PERCENTAGE",
                                 "packageDiscount": 22.0,
@@ -94,7 +93,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices/find/efd32752-c6f2-45cf-b494-cc6b
                             "scope": "ALL_PRODUCTS",
                             "typeString": "CREDIT",
                             "discount": {
-                                "applyToNewCustomersOnly": false,
                                 "discountedProducts": {},
                                 "type": "CREDIT",
                                 "packageDiscount": 250000.0,
@@ -234,7 +232,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices/find/efd32752-c6f2-45cf-b494-cc6b
                                     "scope": "CATEGORIES",
                                     "typeString": "PERCENTAGE",
                                     "discount": {
-                                        "applyToNewCustomersOnly": false,
                                         "discountedProducts": {},
                                         "type": "PERCENTAGE",
                                         "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889",
@@ -285,7 +282,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices/find/efd32752-c6f2-45cf-b494-cc6b
                                     "scope": "ALL_PRODUCTS",
                                     "typeString": "PERCENTAGE",
                                     "discount": {
-                                        "applyToNewCustomersOnly": false,
                                         "discountedProducts": {},
                                         "type": "PERCENTAGE",
                                         "packageDiscount": 22.0,
@@ -511,7 +507,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices/find/efd32752-c6f2-45cf-b494-cc6b
                                             "scope": "PRODUCTS",
                                             "typeString": "PERCENTAGE",
                                             "discount": {
-                                                "applyToNewCustomersOnly": false,
                                                 "discountedProducts": {
                                                     "a36933e3-697a-4093-9057-18aed07479ea": 50
                                                 },
@@ -745,7 +740,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e
                             "scope": "ALL_PRODUCTS",
                             "typeString": "PERCENTAGE",
                             "discount": {
-                                "applyToNewCustomersOnly": false,
                                 "discountedProducts": {},
                                 "type": "PERCENTAGE",
                                 "packageDiscount": 22.0,
@@ -781,7 +775,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e
                             "scope": "ALL_PRODUCTS",
                             "typeString": "CREDIT",
                             "discount": {
-                                "applyToNewCustomersOnly": false,
                                 "discountedProducts": {},
                                 "type": "CREDIT",
                                 "packageDiscount": 250000.0,
@@ -921,7 +914,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e
                                     "scope": "CATEGORIES",
                                     "typeString": "PERCENTAGE",
                                     "discount": {
-                                        "applyToNewCustomersOnly": false,
                                         "discountedProducts": {},
                                         "type": "PERCENTAGE",
                                         "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889",
@@ -972,7 +964,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e
                                     "scope": "ALL_PRODUCTS",
                                     "typeString": "PERCENTAGE",
                                     "discount": {
-                                        "applyToNewCustomersOnly": false,
                                         "discountedProducts": {},
                                         "type": "PERCENTAGE",
                                         "packageDiscount": 22.0,
@@ -1198,7 +1189,6 @@ curl "https://cloudmc_endpoint/api/v2/invoices?organization_id=289ec5fb-0970-44e
                                             "scope": "PRODUCTS",
                                             "typeString": "PERCENTAGE",
                                             "discount": {
-                                                "applyToNewCustomersOnly": false,
                                                 "discountedProducts": {
                                                     "a36933e3-697a-4093-9057-18aed07479ea": 50
                                                 },
@@ -1476,7 +1466,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
                             "scope": "ALL_PRODUCTS",
                             "typeString": "PERCENTAGE",
                             "discount": {
-                                "applyToNewCustomersOnly": false,
                                 "discountedProducts": {},
                                 "type": "PERCENTAGE",
                                 "packageDiscount": 22.0,
@@ -1522,7 +1511,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
                             "scope": "ALL_PRODUCTS",
                             "typeString": "CREDIT",
                             "discount": {
-                                "applyToNewCustomersOnly": false,
                                 "discountedProducts": {},
                                 "type": "CREDIT",
                                 "packageDiscount": 250000.0,
@@ -1650,7 +1638,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
                                     "scope": "CATEGORIES",
                                     "typeString": "PERCENTAGE",
                                     "discount": {
-                                        "applyToNewCustomersOnly": false,
                                         "discountedProducts": {},
                                         "type": "PERCENTAGE",
                                         "referenceId": "6ee154d1-4318-47bb-bb18-2e605c227889",
@@ -1698,7 +1685,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
                                     "scope": "ALL_PRODUCTS",
                                     "typeString": "PERCENTAGE",
                                     "discount": {
-                                        "applyToNewCustomersOnly": false,
                                         "discountedProducts": {},
                                         "type": "PERCENTAGE",
                                         "packageDiscount": 22.0,
@@ -1735,7 +1721,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
                                     "scope": "CATEGORIES",
                                     "typeString": "CREDIT",
                                     "discount": {
-                                        "applyToNewCustomersOnly": false,
                                         "discountedProducts": {},
                                         "type": "CREDIT",
                                         "referenceId": "85d5fc06-142a-4e04-9a27-2bf08b3c1be0",
@@ -1950,7 +1935,6 @@ curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8
                                             "scope": "PRODUCTS",
                                             "typeString": "PERCENTAGE",
                                             "discount": {
-                                                "applyToNewCustomersOnly": false,
                                                 "discountedProducts": {
                                                     "a36933e3-697a-4093-9057-18aed07479ea": 50
                                                 },
