@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.4">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
     
     
       
@@ -250,14 +250,14 @@
       
       
         <label class="md-nav__link" for="__nav_5">
-          Available Resources
+          Available Data Domains
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Available Resources" data-md-level="1">
+      <nav class="md-nav" aria-label="Available Data Domains" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Available Resources
+          Available Data Domains
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -354,7 +354,7 @@
   
     <li class="md-nav__item">
       <a href="../labs/" class="md-nav__link">
-        Labs
+        Laboratory Results
       </a>
     </li>
   
@@ -368,7 +368,7 @@
   
     <li class="md-nav__item">
       <a href="../vitals/" class="md-nav__link">
-        Vitals
+        Vital Signs
       </a>
     </li>
   
@@ -473,6 +473,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact-us/" class="md-nav__link">
+        Contact Us
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -546,33 +561,28 @@
 <div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 
 </code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-|# | Parameters    | Description                          |
-|:-| :---------- | :----------------------------------- |
-|A1| <code>researchstudy</code>       | <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> MSK unique study number  |
-|A2|<code>x-partnerid</code> |<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> suply given partnerid|
-|A3|Filter: Optional Parameters go to <a href="/searching">Filter page</a> | |
-=======
-| Parameters      | Required/Optional | Description                          |
-| --------------  | ----------------- | ------------------------------------ |
-| <code>researchstudy</code> | required          | MSK unique study number              |
-| <code>x-partnerid</code>   | required          | MSK provided partner ID              |</p>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Required/Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>researchstudy</code></td>
+<td>required</td>
+<td>MSK unique study number</td>
+</tr>
+<tr>
+<td><code>x-partnerid</code></td>
+<td>required</td>
+<td>MSK provided partner ID</td>
+</tr>
+</tbody>
+</table>
 <p>For a list of optional filtering parameters visit the <a href="/searching">Searching page</a>.</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>6d01252a06372d84cb3d8877b948de71bb1c9983</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="example-request">Example Request</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">C# </label><label for="__tabbed_1_2">Python</label></div>
 <div class="tabbed-content">
@@ -1102,7 +1112,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f758a944.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
       
     
   </body>

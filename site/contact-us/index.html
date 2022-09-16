@@ -13,7 +13,7 @@
     
     
       
-        <title>Searching - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Contact Us - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
       
     
     
@@ -89,7 +89,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Searching
+              Contact Us
             
           </span>
         </div>
@@ -202,19 +202,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../searching/" class="md-nav__link">
         Searching
       </a>
-      
     </li>
   
 
@@ -422,11 +414,19 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../contact-us/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Contact Us
       </a>
+      
     </li>
   
 
@@ -461,50 +461,10 @@
                 
 
 
-  <h1>Searching</h1>
+  <h1>Contact Us</h1>
 
-<p>Filtering parameters are <strong>optional</strong> and some combinations might not return a payload. If you feel that there should be data for a particular combination of filters, please reach out to <a href="mailto:ctdata@mskcc.org">ctdata@mskcc.org</a>.</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Required/Optional</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>_count</td>
-<td>optional</td>
-<td>Controls the number of records returned in the bundle. If a value is not specified, the default is 50 records. We recommend using this parameter wisely to avoid timeout errors.</td>
-</tr>
-<tr>
-<td>date</td>
-<td>optional</td>
-<td>Must follow the format <code>&amp;date=OpMM/DD/YYY</code> where OP is the Operator for that date. Acceptable values include: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (&lt; )</li><li>gt (&gt;)</li><li>ge (&gt;=)</li><li>le ( &lt;=)</li></ul></td>
-</tr>
-<tr>
-<td>id</td>
-<td>optional</td>
-<td>Returns the record for a given subject ID</td>
-</tr>
-<tr>
-<td>page</td>
-<td>optional</td>
-<td>Used to retrieve data on a particular page. Refer to <a href="../pagination/">pagination</a> for more details.</td>
-</tr>
-<tr>
-<td>researchstudy</td>
-<td>required</td>
-<td>MSK unique study number</td>
-</tr>
-<tr>
-<td>studyid</td>
-<td>(Not yet available)</td>
-<td>Sponsor study ID</td>
-</tr>
-</tbody>
-</table>
+<p>Click <a href="https://www.mskcc.org/research-programs/clinical-trial-direct-data-exchange-program">here</a> to learn more about MSK's Direct Data Exchange Program. </p>
+<p>To access trial data through our FHIR server please email us at <a href="mailto:ctdata@mskcc.org">ctdata@mskcc.org</a> and include your  organization name and study number. Please allow 24-48 hours for a response to email inquiries. </p>
 
               
             </article>
@@ -520,7 +480,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../authentication/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Authentication" rel="prev">
+        <a href="../release-notes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Release Notes" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -529,26 +489,11 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Authentication
+              Release Notes
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../pagination/" class="md-footer__link md-footer__link--next" aria-label="Next: Pagination" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Pagination
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
       
     </nav>
   

@@ -1,5 +1,5 @@
 
-Vitals data are mapped to FHIR's [Observation](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource. Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.
+Vital signs data are mapped to FHIR's [Observation](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource. Each record is mapped to a trial visit and pushed into the Clinical Research Data Warehouse.
 
 
 ## Required Parameters

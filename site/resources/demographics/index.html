@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.4">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
     
     
       
@@ -250,14 +250,14 @@
       
       
         <label class="md-nav__link" for="__nav_5">
-          Available Resources
+          Available Data Domains
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Available Resources" data-md-level="1">
+      <nav class="md-nav" aria-label="Available Data Domains" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Available Resources
+          Available Data Domains
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -318,36 +318,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#indicates-a-required-field" class="md-nav__link">
-     Indicates a required field.
-  </a>
-  
-    <nav class="md-nav" aria-label=" Indicates a required field.">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#example-request" class="md-nav__link">
     Example Request
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#example-response" class="md-nav__link">
     Example Response
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#field-definitions" class="md-nav__link">
     Field Definitions
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -367,7 +354,7 @@
   
     <li class="md-nav__item">
       <a href="../labs/" class="md-nav__link">
-        Labs
+        Laboratory Results
       </a>
     </li>
   
@@ -381,7 +368,7 @@
   
     <li class="md-nav__item">
       <a href="../vitals/" class="md-nav__link">
-        Vitals
+        Vital Signs
       </a>
     </li>
   
@@ -486,6 +473,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact-us/" class="md-nav__link">
+        Contact Us
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -518,36 +520,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#indicates-a-required-field" class="md-nav__link">
-     Indicates a required field.
-  </a>
-  
-    <nav class="md-nav" aria-label=" Indicates a required field.">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#example-request" class="md-nav__link">
     Example Request
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#example-response" class="md-nav__link">
     Example Response
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#field-definitions" class="md-nav__link">
     Field Definitions
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -565,34 +554,13 @@
                 
 
 
+  <h1>Demographics</h1>
+
 <p>Demographics data are mapped to FHIR's <a href="http://hl7.org/fhir/patient.html" target="blank">Patient</a> resource. Data flows from MSK's Revenue Management System (RMS) into the Clinical Research Data Warehouse. Patients are identified by the sponsor subject ID.</p>
 <h2 id="required-parameters">Required Parameters</h2>
 <div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/Patient
--H Authorization: Bearer {access_token} 
+-H Authorization: Bearer {access_token}
 </code></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<table>
-<thead>
-<tr>
-<th align="left">#</th>
-<th align="left">Parameters</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">A1</td>
-<td align="left"><code>researchstudy</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> MSK unique study number</td>
-</tr>
-<tr>
-<td align="left">A2</td>
-<td align="left"><code>x-partnerid</code></td>
-<td align="left"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> suply given partnerid</td>
-</tr>
-</tbody>
-</table>
-<h1 id="indicates-a-required-field"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13h-6.6l4.7 4.7-1.4 1.4-4.7-4.7V21h-2v-6.7L6.3 19l-1.4-1.4L9.4 13H3v-2h6.6L4.9 6.3l1.4-1.4L11 9.6V3h2v6.4l4.6-4.6L19 6.3 14.3 11H21v2Z"/></svg></span> Indicates a required field.</h1>
 <table>
 <thead>
 <tr>
@@ -611,11 +579,6 @@
 <td><code>x-partnerid</code></td>
 <td>required</td>
 <td>MSK provided partner ID</td>
-</tr>
-<tr>
-<td>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 6d01252a06372d84cb3d8877b948de71bb1c9983</td>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -893,13 +856,13 @@
       
       
         
-        <a href="../labs/" class="md-footer__link md-footer__link--next" aria-label="Next: Labs" rel="next">
+        <a href="../labs/" class="md-footer__link md-footer__link--next" aria-label="Next: Laboratory Results" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Labs
+              Laboratory Results
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -985,7 +948,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f758a944.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a877e258.min.js"></script>
       
     
   </body>

@@ -1,1 +1,1 @@
-Expected release date- end of Q3 2022
+Expected release date- end of Q4 2022
