@@ -1,22 +1,22 @@
-# Errors
+# Errores
 
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+<b>Errores HTTP:</b>
+Es vital para el desarrollador conocer los posibles errores HTTP que va a recibir de nuestra API. En la siguiente tabla explicaremos el código del error, el nombre de mismo y su descripción. Esto puede orientar a los desarrolladores que consuman nuestros servicios y se encuentren con esto.
 </aside>
 
-The Kittn API uses the following error codes:
+El API de Knowledge USB, utiliza los siguientes códigos de error:
 
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+Código | Nombre | Descripción
+---------- | ------- | ----------
+400 | Bad Request | Petición invalida.
+401 | Unauthorized | API KEY Erronea o no tienes permiso para consumir ese servicio.
+403 | Forbidden | No puedes consumir este servicio por permisos.
+404 | Not Found | Respuesta sin resultados.
+405 | Method Not Allowed | Método HTTP inapropiado para la petición.
+406 | Not Acceptable | Solo se aceptan peticiones en formato JSON.
+410 | Gone | Petición eliminada del servidor.
+429 | Too Many Requests | Cantidad muy alta de peticiones, espere por favor.
+500 | Internal Server Error | Error de servidor, intente más tarde por favor.
+503 | Service Unavailable | Estamos en mantenimiento, por favor intente más tarde.
