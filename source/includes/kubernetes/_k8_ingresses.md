@@ -10,7 +10,7 @@ Ingress v1beta1 has been deprecated in this API as of 26.7.0 following the remov
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1beta1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses"
 ```
 
 > The above command returns a JSON structured like this:
