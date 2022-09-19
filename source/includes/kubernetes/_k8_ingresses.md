@@ -1,13 +1,16 @@
 ### Ingresses V1Beta1
 
+Ingress v1beta1 has been deprecated in this API as of 26.7.0 following the removal of support by kubernetes. Please use the <a href="#kubernetes-ingresses-v1">ingress v1 api instead</a>.
+
 <!-------------------- LIST INGRESSES V1Beta1 -------------------->
+<!-- 
 
 #### List ingresses V1Beta1
 
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1beta1"
 ```
 
 > The above command returns a JSON structured like this:
@@ -93,7 +96,8 @@ Retrieve a list of all ingresses V1Beta1 in a given [environment](#administratio
 
 Note that the list is not complete, since it is referring to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
-<!-------------------- GET AN INGRESS V1Beta1 -------------------->
+<!-------------------- GET AN INGRESS V1Beta1 --------------------->
+<!-- 
 
 #### Get an ingress V1Beta1
 
@@ -155,6 +159,7 @@ Retrieve an ingress V1Beta1 and all its info in a given [environment](#administr
 Note that the list is not complete, since it is referring to the [kubernetes api details](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md).
 
 <!-------------------- CREATE INGRESS V1Beta1 -------------------->
+<!-- 
 
 #### Create an ingress V1Beta1
 
@@ -218,7 +223,8 @@ Return value:
 | `taskId` <br/>_string_     | The id corresponding to the create ingress task. |
 | `taskStatus` <br/>_string_ | The status of the operation.                     |
 
-<!-------------------- REPLACE AN INGRESS V1Beta1 -------------------->
+<!-------------------- REPLACE AN INGRESS V1Beta1 ------------------->
+<!-- 
 
 #### Replace an ingress V1Beta1
 
@@ -304,6 +310,7 @@ Return value:
 | `taskStatus` <br/>_string_ | The status of the operation.                      |
 
 <!-------------------- DELETE AN INGRESS V1Beta1 -------------------->
+<!-- 
 
 #### Delete an ingress V1Beta1
 

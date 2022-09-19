@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses"
 ```
 
 > The above command returns a JSON structured like this:
@@ -73,7 +73,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses</code>
 
 Retrieve a list of all ingresses V1 in a given [environment](#administration-environments).
 
@@ -100,7 +100,7 @@ Note that the list is not complete, since it is referring to the [kubernetes api
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1/cloudmc/cmc-stg"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/cloudmc/cmc-stg"
 ```
 
 > The above command returns a JSON structured like this:
@@ -134,7 +134,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1/:id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id</code>
 
 Retrieve an ingress V1 and all its info in a given [environment](#administration-environments).
 
@@ -161,7 +161,7 @@ Note that the list is not complete, since it is referring to the [kubernetes api
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses"
   Content-Type: application/json
   {
   "apiVersion": "networking.k8s.io/v1",
@@ -199,7 +199,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses</code>
 
 Create an ingress V1 in a given [environment](#administration-environments).
 
@@ -229,7 +229,7 @@ Return value:
 ```shell
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1/ingress-name/default"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/ingress-name/default"
 ```
 > Request body example:
 
@@ -293,7 +293,7 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1/:id</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id</code>
 
 Replace an ingress V1 in a given [environment](#administration-environments).
 
@@ -318,7 +318,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1/test-ingress/default"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/test-ingress/default"
 ```
 
 > The above command returns a JSON structured like this:
@@ -330,7 +330,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id</code>
 
 Delete an ingress V1 from a given [environment](#administration-environments).
 

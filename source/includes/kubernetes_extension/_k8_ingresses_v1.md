@@ -7,7 +7,7 @@
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -73,7 +73,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1?cluster_id=:cluster_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses?cluster_id=:cluster_id</code>
 
 Retrieve a list of all ingresses V1 in a given [environment](#administration-environments).
 
@@ -104,7 +104,7 @@ Note that the list is not complete, since it is referring to the [kubernetes api
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1/cloudmc/cmc-stg?cluster_id=a_cluster_id"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/cloudmc/cmc-stg?cluster_id=a_cluster_id"
 ```
 
 > The above command returns a JSON structured like this:
@@ -138,7 +138,7 @@ curl -X GET \
 }
 ```
 
-<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1/:id?cluster_id=:cluster_id</code>
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
 Retrieve an ingress V1 and all its info in a given [environment](#administration-environments).
 
@@ -169,7 +169,7 @@ Note that the list is not complete, since it is referring to the [kubernetes api
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses"
   Content-Type: application/json
   {
   "apiVersion": "networking.k8s.io/v1",
@@ -207,7 +207,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1/:id?cluster_id=:cluster_id</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
 Create an ingress V1 in a given [environment](#administration-environments).
 
@@ -241,7 +241,7 @@ Return value:
 ```shell
 curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1/ingress-name/default?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/ingress-name/default?cluster_id=test-cluster"
 ```
 > Request body example:
 
@@ -305,7 +305,7 @@ curl -X PUT \
 }
 ```
 
-<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1/:id?cluster_id=:cluster_id</code>
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
 Replace an ingress V1 in a given [environment](#administration-environments).
 
@@ -334,7 +334,7 @@ Return value:
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingressesv1/test-ingress/default?cluster_id=test-cluster"
+   "https://cloudmc_endpoint/api/v2/services/a_service/an_environment/ingresses/test-ingress/default?cluster_id=test-cluster"
 ```
 
 > The above command returns a JSON structured like this:
@@ -346,7 +346,7 @@ curl -X DELETE \
 }
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingressesv1/:id?cluster_id=:cluster_id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/ingresses/:id?cluster_id=:cluster_id</code>
 
 Delete an ingress V1 from a given [environment](#administration-environments).
 
