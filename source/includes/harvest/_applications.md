@@ -1095,7 +1095,7 @@ curl -X PATCH 'https://harvest.greenhouse.io/v1/applications/{id}/convert_prospe
 }
 ```
 
-Converts a prospect application to a a candidate on a job. If a non-prospect application is provided, an error will be returned.
+Converts a prospect application to a candidate on a job. If a non-prospect application is provided, an error will be returned.
 
 ### HTTP Request
 
