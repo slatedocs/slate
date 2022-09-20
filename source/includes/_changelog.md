@@ -1,5 +1,9 @@
 # Changelog
 
+## 2022-09-06
+
+- Added [Rate Limit](#rate-limit) endpoint and documentation. Moved from a daily to a per minute per user limit. Monthly per account limits remain the same.
+
 ## 2022-09-02
 
 - Added `entity_type` and `exclude_dropdown_options` documentation to [Fields](#fields).

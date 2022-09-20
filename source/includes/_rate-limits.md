@@ -2,9 +2,11 @@
 
 ## API Rate Limits
 
+For our rate limit endpoint, please refer to <a href="#rate-limit-endpoint">Rate Limit endpoint</a>.
+
 ### Plan Tier Limits
 
-Your account plan tier will limit the number of requests each API key can make per month.
+Your account plan tier will limit the overall number of requests you can make per month.
 Current rate limits by plan tier are:
 
 | Plan Tier     | Calls per month |
@@ -13,9 +15,11 @@ Current rate limits by plan tier are:
 | Premium       | 100,000         |
 | Enterprise    | Unlimited       |
 
-### Daily API Limits
+This monthly account-level limit resets at the end of each calendar month.
 
-All API requests will be halted at 450K per user, per day. Your daily limit will reset the next day at 12AM (midnight) Pacific Time.
+### Per Minute API Limits
+
+All API requests will be halted at 900 per user, per minute.
 
 <aside class="notice">
   <h6>Note</h6>

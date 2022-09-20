@@ -27,6 +27,7 @@ includes:
   - reminders
   - webhooks
   - whoami
+  - rate-limit-endpoint
   - spacer
   - changelog
 ---
