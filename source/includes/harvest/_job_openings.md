@@ -246,13 +246,21 @@ Parameter | Required | Type | Description
 --------- | ----------- | ----------- | -----------
 ids | yes | Array | An array of opening ids to delete. Important to note that these are not `opening_id` from the other endpoints, but the unique `id` identifier.
 
-**Notes**: The v1 version of this endpoint was deprecated because it allowed deletions of openings that would be prevented in Greenhouse, thus circumventing data validations set by our engineering and product teams. The v2 version only allows for the deletion for closed, unfilled openings. This endpoint will respect opening deletion data validation rules *as they currently exist* in Greenhouse. This could mean the behavior of this endpoint may change and Greenhouse does not consider it a breaking change.
+**Notes**: The v1 version of this endpoint has been deprecated because it allowed integrations to delete open or filled openings that were otherwise prevented by data validations in the Greenhouse Recruiting UI. 
 
-The response will include the provided IDs that were actually deleted and the IDs that failed to be deleted. IDs can fail for any number of reasons, including the provided ID does not exist, the provided ID leads to an opening tied to an application or offer, or the opening is currently open for applications. If the organization has disabled the ability to destroy openings or if the On-Behalf-Of User does not have the ability to edit the given job, a 403 will be returned. 
+The v2 version of this endpoint only allows closed, unfilled openings to be deleted and respects data validation rules as they exist in Greenhouse Recruiting. When the v1 endpoint is deprecated, some integrations may experience errors if they relied on deleting active or filled openings. Since the behavior adheres to the data validation guidelines established in Greenhouse Recruiting, Greenhouse does not consider these issues a breaking change.
 
-API keys which were granted access to the v1 endpoint will automatically have access to the v2 endpoint.
+In the v2 version, response messages will include both IDs that were successfully deleted and any IDs that could not be deleted. Failed deletions can occur for a number of reasons, including the following examples:
+- The provided ID does not exist
+- The provided ID leads to an opening tied to an application or offer
+- The opening is currently open for applications
 
-The v1 endpoint will eventually be deactivated. Customers or partners using this endpoint should begin using the v2 endpoint as soon as possible.
+If the organization has deactivated the ability to destroy openings or if the On-Behalf-Of User does not have the ability to edit the given job, a 403 error will be returned.
+
+The v1 endpoint will eventually be deactivated, and customers or partners using should begin using the v2 endpoint as soon as possible to avoid issues with their integration.
+ 
+API keys that were granted access to the v1 endpoint will automatically have access to the v2 endpoint.
+
 
 > The above returns a JSON response, structured like this
 
