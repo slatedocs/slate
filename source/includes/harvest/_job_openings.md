@@ -229,7 +229,10 @@ curl -X DELETE 'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings'
 
 ### HTTP Request
 
-`DELETE https://harvest.greenhouse.io/v1/jobs/{job_id}/openings`
+**DEPRECATED** ~~`DELETE https://harvest.greenhouse.io/v1/jobs/{job_id}/openings`~~
+
+`DELETE https://harvest.greenhouse.io/v2/jobs/{job_id}/openings`
+
 
 ### Headers
 
@@ -243,15 +246,24 @@ Parameter | Required | Type | Description
 --------- | ----------- | ----------- | -----------
 ids | yes | Array | An array of opening ids to delete. Important to note that these are not `opening_id` from the other endpoints, but the unique `id` identifier.
 
-**Note**: Closed/Filled openings can't be destroyed. This request is idempotent and will return the number of items destroyed, the number of closed items that couldn't be destroyed, and the number of IDs that could not be found. If you were to run the same request twice, the destroyed ID count would decrease and the invalid ID count would increase.
+**Notes**: The v1 version of this endpoint was deprecated because it allowed deletions of openings that would be prevented in Greenhouse, thus circumventing data validations set by our engineering and product teams. The v2 version only allows for the deletion for closed, unfilled openings. This endpoint will respect opening deletion data validation rules *as they currently exist* in Greenhouse. This could mean the behavior of this endpoint may change and Greenhouse does not consider it a breaking change.
+
+The response will include the provided IDs that were actually deleted and the IDs that failed to be deleted. IDs can fail for any number of reasons, including the provided ID does not exist, the provided ID leads to an opening tied to an application or offer, or the opening is currently open for applications. If the organization has disabled the ability to destroy openings or if the On-Behalf-Of User does not have the ability to edit the given job, a 403 will be returned. 
+
+API keys which were granted access to the v1 endpoint will automatically have access to the v2 endpoint.
+
+The v1 endpoint will eventually be deactivated. Customers or partners using this endpoint should begin using the v2 endpoint as soon as possible.
 
 > The above returns a JSON response, structured like this
 
 ```
 {
-    "success": "2 opening(s) destroyed. 1 opening(s) were closed and not destroyed. 0 id(s) were not found."
+    "success": true
+    "deleted_ids": [123, 456],
+    "failed_ids": [789]
 }
 ```
+
 
 ## PATCH: Edit Openings
 

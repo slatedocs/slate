@@ -1065,7 +1065,7 @@ to_stage_id | Yes | integer | The ID of the job stage this application should be
 
 [See noteworthy response attributes.] (#the-application-object)
 
-## PATCH: Convert Propsect To Candidate
+## PATCH: Convert Prospect To Candidate
 
 ```shell
 curl -X PATCH 'https://harvest.greenhouse.io/v1/applications/{id}/convert_prospect'
