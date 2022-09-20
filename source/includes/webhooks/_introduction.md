@@ -175,24 +175,30 @@ If a web hook is disabled, it will not trigger when the event occurs. Web hooks 
 
 ## Retry policy
 
-In the event of a failed web hook request (due to timeout, a non HTTP 200 response, or network issues), Greenhouse will attempt a maximum of 12 retries with exponential backoff according to this formula:
-`(retry_count ** 4) + 15 + (rand(30) * (retry_count + 1))` (i.e. 15, 16, 31, 96, 271, ... seconds + a random amount of time). It will perform 12 retries over approximately 12 hours.
+In the event of a failed webhook request (due to timeout, a non HTTP 200 response, or network issues), Greenhouse will attempt a maximum of 6 retries according to the formula on the right:
 
-This table contains approximate retry waiting times:
+This formula increases the amount of time between each retry, while assigning a random number of seconds to avoid consistent failures from overload or contention.
 
-| Retry number | Next retry backoff | Total waiting time |
-|---| -------------------| -------------------- |
-| 1 |     0d  0h  0m 30s |     0d  0h  0m 30s |
-| 2 |     0d  0h  0m 46s |     0d  0h  1m 16s |
-| 3 |     0d  0h  1m 16s |     0d  0h  2m 32s |
-| 4 |     0d  0h  2m 36s |     0d  0h  5m  8s |
-| 5 |     0d  0h  5m 46s |     0d  0h 10m 54s |
-| 6 |     0d  0h 12m 10s |     0d  0h 23m  4s |
-| 7 |     0d  0h 23m 36s |     0d  0h 46m 40s |
-| 8 |     0d  0h 42m 16s |     0d  1h 28m 56s |
-| 9 |     0d  1h 10m 46s |     0d  2h 39m 42s |
-| 10 |     0d  1h 52m  6s |     0d  4h 31m 48s |
-| 11 |     0d  2h 49m 40s |     0d  7h 21m 28s |
-| 12 |     0d  4h  7m 16s |     0d 11h 28m 44s |
+Greenhouse will attempt 6 retries over the course of 15 hours.
 
-Note: This table was calculated under the assumption that `rand(30)` always returns 15.
+```
+RETRY_DELAY_MINUTES = [1, 15, 60, 120, 240, 480]
+
+sidekiq_retry_in do |index, _exception|
+  seconds_delay = (RETRY_DELAY_MINUTES[index] || RETRY_DELAY_MINUTES.last) * 60
+  offset = rand(30) * (index + 1)
+
+  seconds_delay + offset
+end
+```
+
+The table below outlines the estimated wait time for each retry request, assuming that rand(30) always returns 0.
+
+| Retry number | Next Retry in | Total waiting time |
+| ------------ | ------------- | ------------------ |
+|       1      |        1m     |        0h  1m      |
+|       2      |       15m     |        0h 16m      |
+|       3      |       60m     |        1h 16m      |
+|       4      |      120m     |        3h 16m      |
+|       5      |      240m     |        7h 16m      |
+|       6      |      480m     |       15h 16m      |
