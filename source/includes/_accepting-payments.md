@@ -24,7 +24,7 @@ Our virtual accounts are adjustable according to your needs. We offer options of
 
 2. **Create VA number via Dashboard** - Do not have enough resources to integrate with API VA? Do not worry, you can create a VA number easily via OY! Dashboard. No need to write some codes!
 
-3. **Support multiple banks** - Currently, we support virtual accounts (VA) at 7 banks: BCA, BNI, Mandiri, BRI, Permata, CIMB Niaga, and BTPN
+3. **Support multiple banks** - Currently, we support virtual accounts (VA) at 8 banks: BCA, BNI, Mandiri, BRI, Permata, CIMB Niaga, BTPN, and Bank Syariah Indonesia (BSI)
 
 4. **Real-time settlement for majority of the banks** - Payment into a VA will settle in your OY! dashboard on a real-time basis for the majority of the banks (note: for BCA, the settlement will take place H+2 after payment is made into the VA)
 
@@ -270,27 +270,10 @@ For further details regarding OY!'s extensive API VA Aggregator capabilities and
 | Bank Mandiri           | Open Amount, Closed Amount                     |                  
 | BRI                    | Open Amount, Closed Amount                     | 
 | BCA                    | Open Amount, Closed Amount                     | 
-| Bank Permata           | Open Amount, Closed Amount                     |
-| CIMB Niaga             | Open Amount, Closed Amount                     | 
+| Bank Permata / Permata Syariah| Open Amount, Closed Amount              |
+| CIMB Niaga / CIMB Niaga Syariah| Open Amount, Closed Amount             | 
 | BTPN                   | Open Amount, Closed Amount                     | 
-
-| Bank (Virtual Account) | SKN Supported | RTGS Supported | Payment from ATM | Payment from m-banking / i-banking (intra bank) | Payment from business account (m-banking/i-banking) | Payment from m-banking/i-banking (inter bank) |
-| ---------------------- | ------------- | -------------- | ---------------- | ----------------------------------------------- | --------------------------------------------------- | --------------------------------------------- |
-| Bank Mandiri           | Yes           | Yes            | Yes              | Yes                                             | Yes                                                 | Yes                                           |
-| BRI                    | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-| BNI                    | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-| BCA                    | No            | No             | Yes              | Yes                                             | No                                                  | Yes                                           |
-| Bank Permata           | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-| CIMB Niaga             | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-
-| Bank (Virtual Account) | Payment from Teller (Inter and Intra Banks)    | SWIFT Payment | Intra bank transfer fees |
-| ---------------------- | ---------------------------------------------- | ------------- | ------------------------ |
-| Bank Mandiri           | Yes                                            | No            | Rp 0                     |
-| BRI                    | Yes                                            | No            | Rp 1000                  |
-| BNI                    | Yes                                            | No            | Rp 0                     |
-| BCA                    | Yes (Teller BCA); No (Teller from other banks) | No            | Rp 0                     |
-| Bank Permata           | Yes                                            | No            | Rp 5000                  |
-| CIMB Niaga             | Yes                                            | Yes           | Rp 0                     |
+| BSI (Bank Syariah Indonesia)| Closed Amount                             |
 
 ## Payment Links/Invoice
 
@@ -1066,27 +1049,11 @@ Click [here](https://api-docs.oyindonesia.com/#https-request-send-payment-invoic
 | Bank Mandiri           | Open Amount, Closed Amount                     |                  
 | BRI                    | Open Amount, Closed Amount                     | 
 | BCA                    | Open Amount, Closed Amount                     | 
-| Bank Permata           | Open Amount, Closed Amount                     |
-| CIMB Niaga             | Open Amount, Closed Amount                     | 
+| Bank Permata / Permata Syariah| Open Amount, Closed Amount              |
+| CIMB Niaga / CIMB Niaga Syariah | Open Amount, Closed Amount            | 
 | BTPN                   | Open Amount, Closed Amount                     | 
+| Bank Syariah Indonesia (BSI)| Closed Amount                             | 
 
-| Bank (Virtual Account) | SKN Supported | RTGS Supported | Payment from ATM | Payment from m-banking / i-banking (intra bank) | Payment from business account (m-banking/i-banking) | Payment from m-banking/i-banking (inter bank) |
-| ---------------------- | ------------- | -------------- | ---------------- | ----------------------------------------------- | --------------------------------------------------- | --------------------------------------------- |
-| Bank Mandiri           | Yes           | Yes            | Yes              | Yes                                             | Yes                                                 | Yes                                           |
-| BRI                    | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-| BNI                    | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-| BCA                    | No            | No             | Yes              | Yes                                             | No                                                  | Yes                                           |
-| Bank Permata           | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-| CIMB Niaga             | Yes           | Yes            | Yes              | Yes                                             | No                                                  | Yes                                           |
-
-| Bank (Virtual Account) | Payment from Teller (Inter and Intra Banks)    | SWIFT Payment | Intra bank transfer fees |
-| ---------------------- | ---------------------------------------------- | ------------- | ------------------------ |
-| Bank Mandiri           | Yes                                            | No            | Rp 0                     |
-| BRI                    | Yes                                            | No            | Rp 1000                  |
-| BNI                    | Yes                                            | No            | Rp 0                     |
-| BCA                    | Yes (Teller BCA); No (Teller from other banks) | No            | Rp 0                     |
-| Bank Permata           | Yes                                            | No            | Rp 5000                  |
-| CIMB Niaga             | Yes                                            | Yes           | Rp 0                     |
 
 ## API E-Wallet Aggregator
 
