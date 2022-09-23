@@ -172,6 +172,7 @@ The timestamps below are Eastern Time.
 
 | Date                    | Description                                                                                                                       |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| September 22, 2022 12:00:00PM | Updated [DELETE: Destroy Openings](#delete-destroy-openings) to a v2 endpoint. The v1 endpoint will be deprecated in a future release. Users and partners should switch over to the v2 endpoint as soon as possible to avoid issues with your integration.
 | September 12, 2022 12:00:00PM  | Added `created_at` field for application's attachments object.
 | September 9, 2022 12:00:00PM | Added [PATCH: Convert Prospect To Candidate](#patch-convert-prospect-to-candidate) endpoint to allow conversion of a prospect application to a candidate application on a selected job.
 | August 1, 2022 12:00:00PM | Making `content_type` required for attachments unless uploading using a URL.
