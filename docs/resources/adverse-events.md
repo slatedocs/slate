@@ -315,25 +315,33 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 
 ## Field Definitions
 
-| Field                                               | Description                                |
-| --------------------------------------------------- | ------------------------------------------ |
-| `id`                                                |                                            |
-| `extension[0].url`                                  | MSK identifiers documentation              |
-| `extension[0].valueCode`                            | Sponsor Study Number                       |
-| `identifier.system`                                 |                                            |
-| `identifier.value`                                  | Data Source                                |
-| `actuality`                                         |                                            |
-| `event.coding.system`                               |                                            |
-| `event.coding.display`                              |                                            |
-| `subject.reference`                                 | Patient/ + Sponsor assigned subject ID     |
-| `subject.display`                                   | Sponsor assigned subject ID                |
-| `date`                                              | Adverse Event Start Date                   |
-| `outcome.coding.system`                             | FHIR Adverse Event Outcome documentation   |
-| `outcome.coding.code`                               |                                            |
-| `outcome.coding.display`                            |                                            |
-| `suspectEntity.causality.assessment.coding.system`  | FHIR Adverse Event Causality documentation |
-| `suspectEntity.causality.assessment.coding.display` |                                            |
-| `suspectEntity.causality.productRelatedness`        |                                            |
-| `study.reference`                                   | Study/ + MSK unique study number           |
-| `study.identifier.value`                            |                                            |
-| `study.display`                                     | hardcoded to `AdverseEvent`                |
+| Field                                               | Description                                                |
+| --------------------------------------------------- | ---------------------------------------------------------- |
+| `id`                                                |                                                            |
+| `extension[0].url`                                  | MSK identifiers documentation                              |
+| `extension[0].valueCode`                            | Sponsor Study Number                                       |
+| `extension[1].url`                                  | MSK identifiers documentation                              |
+| `extension[1].valueCode`                            | Start date as it appears in the source system              |
+| `extension[2].url`                                  | MSK identifiers documentation                              |
+| `extension[2].valueCode`                            | End date as it appears in the source system                |
+| `extension[3].url`                                  | MSK identifiers documentation                              |
+| `extension[3].valueCode`                            | System generated sequential sub number of an adverse event |
+| `extension[4].url`                                  | MSK identifiers documentation                              |
+| `extension[4].valueCode`                            | Whether or not an event was verified in the source system  |
+| `identifier.system`                                 |                                                            |
+| `identifier.value`                                  | Data Source                                                |
+| `actuality`                                         |                                                            |
+| `event.coding.system`                               |                                                            |
+| `event.coding.display`                              |                                                            |
+| `subject.reference`                                 | Patient/ + Sponsor assigned subject ID                     |
+| `subject.display`                                   | Sponsor assigned subject ID                                |
+| `date`                                              | Adverse Event Start Date                                   |
+| `outcome.coding.system`                             | FHIR Adverse Event Outcome documentation                   |
+| `outcome.coding.code`                               |                                                            |
+| `outcome.coding.display`                            |                                                            |
+| `suspectEntity.causality.assessment.coding.system`  | FHIR Adverse Event Causality documentation                 |
+| `suspectEntity.causality.assessment.coding.display` |                                                            |
+| `suspectEntity.causality.productRelatedness`        |                                                            |
+| `study.reference`                                   | Study/ + MSK unique study number                           |
+| `study.identifier.value`                            |                                                            |
+| `study.display`                                     | hardcoded to `AdverseEvent`                                |

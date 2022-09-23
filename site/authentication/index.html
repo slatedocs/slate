@@ -13,7 +13,7 @@
     
     
       
-        <title>Authentication - CRIT BLAZE FHIR DEVELOPER DOCUMENTATION</title>
+        <title>Authentication - Clinical Research FHIR Guide</title>
       
     
     
@@ -76,7 +76,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-header__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="Clinical Research FHIR Guide" class="md-header__button md-logo" aria-label="Clinical Research FHIR Guide" data-md-component="logo">
       
   <img src="../assets/msk-logo.svg" alt="logo">
 
@@ -88,7 +88,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
+            Clinical Research FHIR Guide
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -161,12 +161,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" class="md-nav__button md-logo" aria-label="CRIT BLAZE FHIR DEVELOPER DOCUMENTATION" data-md-component="logo">
+    <a href=".." title="Clinical Research FHIR Guide" class="md-nav__button md-logo" aria-label="Clinical Research FHIR Guide" data-md-component="logo">
       
   <img src="../assets/msk-logo.svg" alt="logo">
 
     </a>
-    CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
+    Clinical Research FHIR Guide
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -540,7 +540,7 @@
 
   <h1>Authentication</h1>
 
-<p>Authentication is based on the Client Credentials grant. Once you are established as a partner, you will receive a <code>client_id</code> and a <code>client_secret</code>, which are required to generate tokens and make authenticated requests to the server. Valid access tokens are expected it in the headers of each request.</p>
+<p>Authentication is based on the Client Credentials grant. After being registered as a partner, your oganization will receive a <code>client_id</code> and a <code>client_secret</code>. These keys are required to generate tokens and make authenticated requests to the server. Valid access tokens are expected in the headers of each request.</p>
 <h2 id="protocol-access">Protocol Access</h2>
 <p>All data access is granted on a per protocol basis therefore, it is expected that incoming requests to Blaze always contain a <code>researchstudy</code> parameter. The value passed into this parameter in combination with the "partner" credentials are used to validate and authorize requests.</p>
 <h2 id="generating-access-tokens">Generating Access Tokens</h2>

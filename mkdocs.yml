@@ -1,4 +1,4 @@
-site_name: CRIT BLAZE FHIR DEVELOPER DOCUMENTATION
+site_name: Clinical Research FHIR Guide
 theme:
   name: material
   # logo: assets/logo-arrow-sans-medium-black.svg

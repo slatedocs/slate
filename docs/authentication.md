@@ -1,4 +1,4 @@
-Authentication is based on the Client Credentials grant. Once you are established as a partner, you will receive a `client_id` and a `client_secret`, which are required to generate tokens and make authenticated requests to the server. Valid access tokens are expected it in the headers of each request.
+Authentication is based on the Client Credentials grant. After being registered as a partner, your oganization will receive a `client_id` and a `client_secret`. These keys are required to generate tokens and make authenticated requests to the server. Valid access tokens are expected in the headers of each request.
 
 ## Protocol Access
 
