@@ -668,7 +668,7 @@ For further details on the parameters definition and proper usage, please refer 
 
 ## Account Payable
 
-OY! Account Payable product provides the capability to record, create approval level, and auto payment for invoice payable without hassle. Account Payable is made through the OY! dashboard, so no technical integration is required to use this product. 
+OY! Account Payable product provides the capability to record, create approval levels, and scheduled payment for invoice payables without hassle. Account Payable is made through the OY! dashboard, so no technical integration is required to use this product. 
 
 ### How to Use Account Payable via Dashboard
 
@@ -687,18 +687,18 @@ You can create new invoice to be paid and set up payment by following this step:
     Purchase Type | You can choose between purchase order, service fee, bill, subscription fee, and reimbursement
     Invoice Number | The number of the invoice that you get from your vendor/supplier
     Invoice Date | The date of the invoice
-    Due Date | Due date of a transaction as mention in invoice. Your approver will be reminder to approved on D-7, D-3, and D-1 from the invoice due date
+    Due Date | Due date of a transaction as mentioned in the invoice. Your approver will be reminded to approve on D-7, D-3, and D-1 from the invoice due date
     PO/PR Number (optional)	| The reference PO/PR number from your company to track this invoice
     Note | The note for this invoice
-    Vendor | The name of the vendor that this invoice belongs to. You can choose the name of the vendor on the dropdown. To create a new vendor, follow the instruction here
+    Vendor | The name of the vendor that this invoice belongs to. You can choose the name of the vendor from the dropdown menu. To create a new vendor, follow the instruction here
     Product Description | The name and/or description of the product
     Quantity | The quantity of the product
     Price | Unit price of the product
     Total | Total price of the product (Total = Quantity x Price)
     Subtotal | The total price of all the products
-    PPn | PPn that should be paid to the vendor. PPn will be calculate from subtotal. You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
-    PPh | PPh that should be deduct from the vendor. PPh will be calculate from subtotal.You can set up this when create the vendor or edit in 'Vendor Management' menu under Account Payable
-    Total Pay to Vendor | Total amount that will pay to vendor after complete approval
+    PPn | PPn that should be paid to the vendor. PPn is calculated from subtotal amount. You can set up the tax during vendor addition or edit in 'Vendor Management' menu under Account Payable
+    PPh | PPh that should be deducted from the vendor. PPh is calculated from subtotal amount.You can set up the tax during vendor addition or edit in 'Vendor Management' menu under Account Payable
+    Total Pay to Vendor | Total amount that will be paid to vendor on scheduled date, post approval
     Reference Documents (Upload document) | The supporting documents that you want to record related to this invoice. Accept PDF files only. Maximum 7 documents (maximum 2.5MB each)
     Note: Maximum 20 rows for line item detail
 
@@ -709,18 +709,21 @@ You can create new invoice to be paid and set up payment by following this step:
 
     Parameter | Description
     ------ | -----------
-    Payment Amount | Amount that will be automatically paid to vendor after approval.
-    Due Date | The due date of the payment. The due date cannot do back date or more than due date that set in the first page (record invoice). Notification will be send to approval D-7, D-3, and D-1 if the status is waiting aproval.
-    Status | Status of the invoice payment. You can choose Paid' for record intention and this amount will not be paid automatically by system. Choose 'Unpaid' for
-    Remaining Amount | Total pay to vendor - subtotal. This amount should be 0 to continue the process.
+    Payment Amount | Amount that will be automatically paid to vendor on scheduled date
+    Due Date | The due date of the payment. The due date cannot do back date or more than due date that set in the first page (record invoice). Notification will be send to approval D-7, D-3, and D-1 if the status is waiting aproval
+    Status | Status of the invoice payment. You can choose 'Paid' for record intention and this amount will not be paid by system. Choose 'Unpaid' for incoming transaction that needs to be paid
+    Scheduled Payment | Time of the payment. You can prepare the balance prior to scheduled payment time and make sure the payment date is based on your preference and will only be executed post approval
+    Remaining Amount | Total pay to vendor - subtotal. This amount should be 0 to continue the process
 
     **Image Payment Page**
-    ![AP Invoice Creation Two](images/accountPayable/invoice_creation_2.png)
+    ![AP Invoice Creation Two](images/accountPayable/AP - Scheduled Payment.png)
 
-    ![AP Invoice Creation Transaction List](images/accountPayable/invoice_creation_transaction_list.png)
+    ![AP Invoice Scheduled Payment Detai](images/accountPayable/AP - Scheduled Payment Details.png)
+
+    ![AP Detail Transaction](images/accountPayable/AP - Trx Detail.png)
 
 9. Status: Waiting Payment, Partially Paid, Complete and Cancelled
-Congratulations! You have finish your first invoice payable set up. below is the list of statuses you will find on 'Invoice List'
+Congratulations! You have finished your first invoice payable set up. Below are the list of statuses you will find on 'Invoice List'
 
     Parameter | Description
     ------ | -----------
@@ -730,7 +733,9 @@ Congratulations! You have finish your first invoice payable set up. below is the
     Complete | All payment of the invoice is complete
 
     **List of the Invoice Payable**
-    ![AP Invoice List Payable](images/accountPayable/invoice_list_payable.png)
+    ![AP Invoice List Payable](images/accountPayable/Trx List - 1.1 Initial - All Trx.png)
+
+
 
 ### How to Create, Edit and Inactivate Vendor Data ###
 
@@ -744,9 +749,9 @@ Parameter | Description
 ------ | -----------
 Vendor ID (Optional) | Unique ID of the vendor from your company. This is not mandatory
 Vendor Name | The company/vendor name. Make sure the vendor name matches the vendor NPWP (if any) to help your company tax record
-Vendor Address (Optional) | Vendor address to be record. This is not mandatory
+Vendor Address (Optional) | Vendor address to be recorded. This is not mandatory
 Bank Name | Recipient bank name. You can choose using drop down
-Account Number | Recipient bank account number. You can check the inquiry by click 'Get Account Name' after fill the account number
+Account Number | Recipient bank account number. You can check the inquiry by clicking 'Get Account Name' after filling the account number
 PIC Name | The PIC name of this vendor
 PIC Email | The PIC or recipient email. Payment/transfer receipt will be send automatically to this email after complete payment
 PIC WhatsApp (optional) | The PIC WhatsApp number for your record
@@ -755,16 +760,14 @@ Vendor NPWP (optional) | The vendor NPWP number record that can be use for compa
 NPWP Document (optional) | Vendor NPWP document to be record. Accept PDF and JPG format. Maximum 10 MB
 PPn (optional) | PPn type of this vendor. Default of the setting is Not Subject to PPn.
 SKB Document (optional) | Vendor SKB Document to be record. Accept PDF and JPG format. Maximum 10 MB
+Not subject of PPh | Tax will not be added upon the subtotal |
+Not subject of PPn | Tax will not be added upon the subtotal |
+PPN Exclusive | PPN of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN is 11% of the 10,000 = 1,100 |
+PPN Inclusive | Tax will not be added upon the subtotal because the subtotal is assumed to be tax inclusive |
 
-| Not subject of PPh | Tax will not be added upon the subtotal |
+**Each vendor only have 1 type of PPh setting and 1 type of PPn setting**
 
-| Not subject of PPn | Tax will not be added upon the subtotal |
-| PPN 10% Exclusive | PPN 10% of the subtotal will be added upon the subtotal of the invoice. For example is subtotal is 10,000, then the PPN will be 10% of the 10,000 = 1,000 |
-| PPN 10% Inclusive | Tax will not be added upon the subtotal because the subtotal is assumed to be tax inclusive |
-
-Each vendor only have 1 type of PPh setting and 1 type of PPn setting
-
-There will be auto email PPh every 1st day in a month that contain all the PPh from your vendor in the previous month. This report will help company for tax payment & reporting, and generate 'Faktur Pajak' to your vendor.
+There will be an PPh email sent on the 1st day of each month that contains all the PPh from your vendors in the previous month. This report can help company with tax payment & reporting, and 'Faktur Pajak' generation to your vendor.
 
 **Create New Vendor**
 ![VM Vendor Creation](images/vendorManagement/creation.png)
@@ -777,7 +780,7 @@ There will be auto email PPh every 1st day in a month that contain all the PPh f
 
 **How to Set Up Invoice Payable Approval**
 
-You can set up multi level approval from OY's users. There will be 4 type or user: Super Admin, Admin, Approver, and Maker
+You can set up multi level approval from OY's users. There will be 4 type of users: Super Admin, Admin, Approver, and Maker
 
 **Approval Layer Set Up**
 
@@ -790,4 +793,3 @@ Detailed step-by-step instructions on setting up user management and the differe
 Multi-layer Approval will improve your control over your bulk disburse transaction especially for big amount of money. You can setup up to 3 layers of approver before the transaction instruction is executed. By assigning proper approver and amount limitation, you can avoid a huge trouble on your business operational caused by incorrect transfer amount.
 
 Default approval: Super Admin, Admin, and Approval.
-
