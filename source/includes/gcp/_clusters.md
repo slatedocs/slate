@@ -186,7 +186,7 @@ Required | &nbsp;
 `shortRegion`<br/>*string* | A short version of the region name.
 `shortZone`<br/>*string* | A short version of the zone name.
 `currentMasterVersion`<br/>*string* | The version of GKE used for this cluster.
-`nodeCount` <br/>*number* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
+`nodeCount` <br/>*integer* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
 `nodeType`<br/>*string* | The machine types of the nodes in the default node pool of this cluster.
 `networkName`<br/>*string* | The network that the Kubernetes cluster is in.
 `subnetName`<br/>*string* | Subnetwork to which the cluster will belong. The subnetwork specified must belong the network specified.
