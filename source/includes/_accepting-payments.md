@@ -681,18 +681,18 @@ The details that you can see are;
 
 
 * Create Invoice form with flexible Payment Link Expiry Time
-![Invoice](images/accountReceivable/AR - Expiry Datetime.png)
+![Invoice](images/accountReceivable/AR_expiry_datetime.png)
 
 * Link Expiry Time is reflected on the Account Receivable PDF in OY! dashboard and email sent to customers.
-![Invoice](images/accountReceivable/AR - detailed timeline.png)
+![Invoice](images/accountReceivable/AR_detailed_timeline.png)
 
 * Adjustable invoice status for “Invoice Only” invoices
-![Invoice](images/accountReceivable/AR - editable status.png)
+![Invoice](images/accountReceivable/AR_editable_status.png)
 
 
 ### Monitoring the invoices/account receivable
 
-![Invoice](images/accountReceivable/AR - analytics.png)
+![Invoice](images/accountReceivable/AR_analytics.png)
 
 All of the created invoices can be monitored through your dashboard (Invoice List).
 
@@ -754,9 +754,9 @@ For Tax Type, the explanation is as follows:
 
 Option 2: Through "Customer Management" menu
 
-![Invoice](images/accountReceivable/AR - customer management pphppn.png)
+![Invoice](images/accountReceivable/AR_customer.png)
 
-![Invoice](images/accountReceivable/AR - penambahan customer.png)
+![Invoice](images/accountReceivable/AR_new_customer.png)
 
 
 1. Click "Customer Management" sidebar under the "Account Receivable" menu
@@ -764,7 +764,7 @@ Option 2: Through "Customer Management" menu
 3. Fill in Customer ID, Customer Name (mandatory), PIC Name, Customer Phone Number, Tax Type (mandatory), Customer Email, Address.
 4. Click "Save"
 
-![Invoice](images/accountReceivable/AR - customer management pphppn.png)
+![Invoice](images/accountReceivable/AR_new_customer.png)
 
 All of the created customer can be monitored through your dashboard (Customer List). There are several actions that you take for the customer data:
 1. Edit --> To edit the data of the customer
@@ -788,7 +788,7 @@ OY! has a feature that allows you to add the price of the subtotal (addition) an
 3. Fill in the description
 4. Fill in the amount
 
-![Invoice](images/accountReceivable/AR - penambahan kolom.png)
+![Invoice](images/accountReceivable/AR_kolom.png)
 
 
 ### How to Use Payment Link/Invoice via API
@@ -1018,7 +1018,7 @@ How to customize the UI via Payment Link or Account Receivable
 
 ![Payment Link](images/ui_customization_settings_icon.png)
 
-![Account Receivable](images/accountReceivable/AR - analytics.png)
+![Account Receivable](images/accountReceivable/AR_analytics.png)
 
 - You will be redirected to the Settings page
 
@@ -1063,13 +1063,13 @@ For your convenience, you can now distribute invoice to your users through Whats
 There will be 3 different ways to distribute the invoice via Whatsapp and there is a maximum of one Whatsapp message per unpaid invoice. When the status is paid, users will get a payment confirmation from Whatsapp too.
 
 * Option 1 - via invoice details
-![WhatsApp Flow via detail](images/accountReceivable/Kirim Invoice by WA - 2.1 Detail Invoice - Kirim Invoice via WA.png)
+![WhatsApp Flow via detail](images/accountReceivable/AR_WA_Table.png)
 
 * Option 2 - via new invoice creation
-![WhatsApp Flow via new invoice](images/accountReceivable/Kirim Invoice by WA - 2.1 Buat Invoice Baru - Kirim Invoice by WA.png)
+![WhatsApp Flow via new invoice](source/images/accountReceivable/AR_WA_Creation.png)
 
 * Option 3 - via invoice table
-![WhatsApp Flow via table](images/accountReceivable/Kirim Invoice by WA - 1.1 List Invoice - Kirim Invoice by WA.png)
+![WhatsApp Flow via table](images/accountReceivable/AR_WA_Table.png)
 
 
 

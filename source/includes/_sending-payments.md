@@ -716,11 +716,11 @@ You can create new invoice to be paid and set up payment by following this step:
     Remaining Amount | Total pay to vendor - subtotal. This amount should be 0 to continue the process
 
     **Image Payment Page**
-    ![AP Invoice Creation Two](images/accountPayable/AP - Scheduled Payment.png)
+    ![AP Invoice Creation Two](images/accountPayable/AP_scheduled_payment.png)
 
-    ![AP Invoice Scheduled Payment Detai](images/accountPayable/AP - Scheduled Payment Details.png)
+    ![AP Invoice Scheduled Payment Detai](images/accountPayable/AP_Scheduled_Payment_Details.png)
 
-    ![AP Detail Transaction](images/accountPayable/AP - Trx Detail.png)
+    ![AP Detail Transaction](images/accountPayable/AP_Trx_detail.png)
 
 9. Status: Waiting Payment, Partially Paid, Complete and Cancelled
 Congratulations! You have finished your first invoice payable set up. Below are the list of statuses you will find on 'Invoice List'
@@ -733,7 +733,7 @@ Congratulations! You have finished your first invoice payable set up. Below are 
     Complete | All payment of the invoice is complete
 
     **List of the Invoice Payable**
-    ![AP Invoice List Payable](images/accountPayable/Trx List - 1.1 Initial - All Trx.png)
+![AP Invoice List](images/accountPayable/AP_Trx_detail.png)
 
 
 
