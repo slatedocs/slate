@@ -75,9 +75,6 @@ The body of an event subscription will vary depending on the type of event being
             "id": "19",
             "type": "project"
           }
-        },
-        "message": {
-          "data": null
         }
       }
     },
