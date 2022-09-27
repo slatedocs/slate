@@ -1,33 +1,33 @@
-# Latest Reviews
+# Latest Document Reviews
 
-A version of a project can be reviewed by the personnel that have been assigned to that project.
+A version of a document can be reviewed by the personnel that have been assigned to that project.
 
-A personnel can review multiple versions of a project, and you can use this endpoint to access their review for the latest version of the project.
+A personnel can review multiple versions of a document, and you can use this endpoint to access their review for the latest version of the document.
 
-Reviews will only be found once personnel have been added to the project and reviews have been requested for this version of the project. If you add a personnel to a project after reviews have been requested for that version, a review will automatically be created.
+Reviews will only be found once personnel have been added to the project and reviews have been requested for this version of the document. If you add a personnel to a project after reviews have been requested for that version of a document, a review will automatically be created.
 
 A review can have the state of requested, accepted or rejected. Reviews that have been accepted will have a corresponding signature.
 
-## Viewing latest reviews for a project
+## Viewing latest document reviews for a project
 
 ```shell
-curl https://api.handshq.com/v1/projects/[project_id]/latest_reviews \
+curl https://api.handshq.com/v1/projects/[project_id]/latest_document_reviews \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]" \
   --request GET
 ```
 
-This endpoint allows you to view the latest reviews that exist for a project, within the division that is registered with the API token you provide.
+This endpoint allows you to view the latest document reviews that exist for a project, within the division that is registered with the API token you provide.
 
 Personnel assignments and signatures will be included in the response, and the personnel the review was generated for can be determined through the personnel assignment relationships.
 
 ### Request
 
-`GET https://api.handshq.com/v1/projects/[project_id]/latest_reviews`
+`GET https://api.handshq.com/v1/projects/[project_id]/latest_document_reviews`
 
 ### Response
 
-Successful requests will return a json payload of the latest reviews and a `200` status code. An empty collection indicates personnel have not yet been added to the project, or reviews have not yet been requested for this version of the project.
+Successful requests will return a json payload of the latest document reviews and a `200` status code. An empty collection indicates personnel have not yet been added to the project, or reviews have not yet been requested for this version of the document.
 
 Results in `data` are [paginated](#pagination)
 
@@ -118,41 +118,41 @@ Results in `data` are [paginated](#pagination)
   }
 }
 ```
-## Viewing latest review for a personnel on a project
+## Viewing latest document review for a personnel on a project
 
 ```shell
-curl https://api.handshq.com/v1/personnel_assignments/[id]/latest_review \
+curl https://api.handshq.com/v1/personnel_assignments/[id]/latest_document_review \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]" \
   --request GET
 ```
 
 ```shell
-curl https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/latest_review \
+curl https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/latest_document_review \
   -H "Accept: application/json" \
   -H "Authorization: bearer [api_token]" \
   --request GET
 ```
 
-This endpoint allows you to view the latest review that exists for a personnel on a project, within the division that is registered with the API token you provide.
+This endpoint allows you to view the latest document review that exists for a personnel on a project, within the division that is registered with the API token you provide.
 
 Personnel assignments and signatures will be included in the response, and the personnel the review was generated for can be determined through the personnel assignment relationships.
 
-You can access the latest review by providing the personnel assignment id, or the id of the project and personnel you wish to view the review for.
+You can access the latest document review by providing the personnel assignment id, or the id of the project and personnel you wish to view the review for.
 
 ### Request
 
-`GET https://api.handshq.com/v1/personnel_assignments/[id]/latest_review`
+`GET https://api.handshq.com/v1/personnel_assignments/[id]/latest_document_review`
 
 OR
 
-`GET https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/latest_review`
+`GET https://api.handshq.com/v1/projects/[project_id]/personnel/[personnel_id]/latest_document_review`
 
 ### Response
 
-Successful requests will return a json payload of the latest review and a `200` status code.
+Successful requests will return a json payload of the latest document review and a `200` status code.
 
-An empty object indicates reviews have not yet been requested for this version of the project.
+An empty object indicates reviews have not yet been requested for this version of the document.
 
 
 > 200
@@ -219,7 +219,7 @@ An empty object indicates reviews have not yet been requested for this version o
   }
 ```
 
-> Reviews have not been requested for this version of the project
+> Reviews have not been requested for this version of the document
 
 ```json
 {

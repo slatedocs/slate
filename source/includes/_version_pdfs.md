@@ -1,6 +1,6 @@
 # Version PDFs
 
-A version pdf is a pdf representation of the current version of the project. As a project changes over time, different versions are generated, and these versions can have pdf representations generated.
+A version pdf is a pdf representation of the current version of the project. As a project changes over time, different versions are generated, and these versions can have pdf representations.
 
 ## Viewing a specific version pdf
 

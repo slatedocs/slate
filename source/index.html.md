@@ -20,7 +20,7 @@ includes:
   - roles
   - personnel_roles
   - personnel_assignments
-  - latest_reviews
+  - latest_document_reviews
   - pagination
   - associations
   - errors
