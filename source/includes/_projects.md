@@ -104,7 +104,7 @@ Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
 reference | String | No | Only projects with a matching reference will be returned
 with_fields | Boolean | No | If set to true will include the fields of projects in the `included` section of the response, see the [fields index](#fields-index) endpoint for an example of the attributes on fields.
-archived_status | String | No | Returns only archived projects if set to 'archived', unarchived projects if set to 'unarchived', and all project if set to 'all'. When no query param is specified, the entire collection will be returned.
+archived_status | String | No | Returns only archived projects if set to 'archived', unarchived projects if set to 'unarchived', and all projects if set to 'all'. When no query parameter is specified, the entire collection will be returned.
 
 ### Response
 
