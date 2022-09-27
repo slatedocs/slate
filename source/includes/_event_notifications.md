@@ -189,7 +189,7 @@ The body of an event subscription will vary depending on the type of event being
 
   - The attributes of the project, along with IDs of the project's user (author) and fields.
 
-## Project Archived
+## Project Unarchived
 
 ```json
  {
