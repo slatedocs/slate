@@ -86,7 +86,7 @@ Events currently supported are:
 - `project_archived` - this is fired after a project is archived (via the HandsHQ app or via the API).
 - `project_unarchived` - this is fired after a project is unarchived (via the HandsHQ app or via the API).
 - `personnel_assignment_created` - this is fired after a personnel has been added to a project (via the HandsHQ app or via the API).
-- `personnel_assignment_updated` - this is fired after a personnel role has been updated on a project (via the HandsHQ app or via the API).
+- `personnel_assignment_updated` - this is fired after a personnel has been updated on a project (via the HandsHQ app or via the API).
 - `personnel_assignment_deleted` - this is fired after a personnel has been removed from a project (via the HandsHQ app or via the API).
 
 ### Training Register
