@@ -69,7 +69,7 @@ curl -X GET \
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`nodeCount`<br/>*number* | Number of nodes in the cluster.
+`nodeCount`<br/>*integer* | Number of nodes in the cluster.
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster.
@@ -129,7 +129,7 @@ curl -X GET \
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`nodeCount`<br/>*number* | Number of nodes in the cluster.
+`nodeCount`<br/>*integer* | Number of nodes in the cluster.
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster.
