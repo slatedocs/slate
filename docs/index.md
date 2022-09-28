@@ -13,7 +13,7 @@ Data supporting electronic direct data exchange is obtained from multiple MSK ap
 MSK's FHIR Server capabilities, including which version MSK's resources are built in ([4.1.0](http://hl7.org/fhir/directory.html)), are specified in the Capability Statement.
 
 ```
-GET /msk-apim/external/v1/crit/blaze/api/metadata
+GET /msk-apim/external/v2/crit/blaze/api/metadata
 -H Authorization: Bearer {access_token} 
 ```
 

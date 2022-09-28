@@ -4,14 +4,14 @@ Laboratory data are mapped to FHIR's [Observation](http://hl7.org/fhir/Structure
 
 ## Required Parameters
 ```
-GET /msk-apim/external/v1/crit/blaze/api/observations
+GET /msk-apim/external/v2/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 ```
 
 | Parameters      | Required/Optional | Description                   |
 | --------------- | ----------------- | ----------------------------- |
 | `researchstudy` | required          | MSK unique study number       |
-| `category`      | required          | For lab data, use `laboratory` |
+| `category`      | required          | For lab data, use `laboratory`|
 | `x-partnerid`   | required          | MSK provided partner ID       |
 
 For a list of optional filtering parameters visit the [Searching page](/searching).
@@ -60,11 +60,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
         "link": [
             {
                 "relation": "self",
-                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
             },
             {   
                 "relation": "first",
-                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
             },
             {
                 "relation": "last",
@@ -82,7 +82,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     "entry": [
         {
             "id": 500009814,
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations/500009814",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations/500009814",
             "resource": {
                 "id": 500009814,
                 "resourceType": "Observation",
@@ -135,7 +135,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
         },
         {
             "id": 500009863,
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations/500009863",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations/500009863",
             "resource": {
                 "id": 500009863,
                 "resourceType": "Observation",
