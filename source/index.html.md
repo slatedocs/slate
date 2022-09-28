@@ -14,10 +14,13 @@ includes:
   - event_subscriptions
   - event_notifications
   - projects
+  - version_pdfs
   - fields
   - personnel
   - roles
   - personnel_roles
+  - personnel_assignments
+  - latest_document_reviews
   - pagination
   - associations
   - errors
