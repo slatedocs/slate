@@ -1417,6 +1417,8 @@ Report Attributes | &nbsp;
 
 Manually approve an invoice in the 'IN_REVIEW' state and issue the invoice to the customer by email. If the invoice is already in the 'ISSUED' state, an empty response will be returned and an email will not be sent. If the invoice is in any other state, an error will be thrown.
 
+Invoices that have a total of $0 will automatically be marked as 'PAID' when approved from the 'IN_REVIEW' state.
+
 ```shell
 # Approve an in review invoice
 curl -X PUT "https://cloudmc_endpoint/rest/invoices/20e9b8d8-b1cb-4462-b6e8-fbb8416b2cbb/approve" \
