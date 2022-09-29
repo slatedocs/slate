@@ -2,7 +2,7 @@ Adverse event data are mapped to FHIR's [Adverse Event](http://hl7.org/fhir/adve
 
 ## Required Parameters
 ```
-GET /msk-apim/external/v1/crit/blaze/api/AdverseEvent
+GET /msk-apim/external/v2/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 
 ```
 
@@ -54,15 +54,15 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     "link": [
         {
             "relation": "self",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=1"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=1"
         },
         {
             "relation": "first",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=1"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=1"
         },
         {
             "relation": "last",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=347"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=347"
         },
         {
             "relation": "previous",
@@ -70,12 +70,12 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
         },
         {
             "relation": "next",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=2"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/adverseevent?researchstudy=FHIR-T&_count=3&page=2"
         }
     ],
     "entry": [
         {
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/adverseevent?researchstudy=FHIR-T&Id=10081004",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/adverseevent?researchstudy=FHIR-T&Id=10081004",
             "resource": {
                 "resourceType": "AdverseEvent",
                 "id": "10081004",
@@ -153,7 +153,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
             }
         },
         {
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/adverseevent?researchstudy=FHIR-T&Id=10081004",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/adverseevent?researchstudy=FHIR-T&Id=10081004",
             "resource": {
                 "resourceType": "AdverseEvent",
                 "id": "10081004",
@@ -231,7 +231,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
             }
         },
         {
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/adverseevent?researchstudy=FHIR-T&Id=10081004",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/adverseevent?researchstudy=FHIR-T&Id=10081004",
             "resource": {
                 "resourceType": "AdverseEvent",
                 "id": "10081004",

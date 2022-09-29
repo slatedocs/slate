@@ -7,15 +7,15 @@ The FHIR Payload is returned as a [FHIR Bundle](https://www.hl7.org/fhir/bundle.
     "link": [
         {
             "relation": "self",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=1"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=1"
         },
         {
             "relation": "first",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=1"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=1"
         },
         {
             "relation": "last",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=3"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=3"
         },
         {
             "relation": "previous",
@@ -23,7 +23,7 @@ The FHIR Payload is returned as a [FHIR Bundle](https://www.hl7.org/fhir/bundle.
         },
         {
             "relation": "next",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=2"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy={MSK_UNIQUE_STUDY_NUMBER}&x-partnerid={x-partnerid}&page=2"
         }
     ],
 ```

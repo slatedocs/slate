@@ -3,7 +3,7 @@ Demographics data are mapped to FHIR's [Patient](http://hl7.org/fhir/patient.htm
 ## Required Parameters
 
 ```
-GET /msk-apim/external/v1/crit/blaze/api/Patient
+GET /msk-apim/external/v2/crit/blaze/api/Patient
 -H Authorization: Bearer {access_token}
 ```
 
@@ -55,15 +55,15 @@ GET /msk-apim/external/v1/crit/blaze/api/Patient
     "link": [
         {
             "relation": "self",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/patients?researchstudy=FHIR-T&page=1"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/patients?researchstudy=FHIR-T&page=1"
         },
         {
             "relation": "first",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/patients?researchstudy=FHIR-T&page=1"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/patients?researchstudy=FHIR-T&page=1"
         },
         {
             "relation": "last",
-            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/patients?researchstudy=FHIR-T&page=1"
+            "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/patients?researchstudy=FHIR-T&page=1"
         },
         {
             "relation": "previous",
@@ -76,7 +76,7 @@ GET /msk-apim/external/v1/crit/blaze/api/Patient
     ],
     "entry": [
         {
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/patient/10081001",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/patient/10081001",
             "resource": {
                 "resourceType": "Patient",
                 "id": "10081001",
@@ -109,7 +109,7 @@ GET /msk-apim/external/v1/crit/blaze/api/Patient
             }
         },
         {
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/patient/10081004",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/patient/10081004",
             "resource": {
                 "resourceType": "Patient",
                 "id": "10081004",
@@ -142,7 +142,7 @@ GET /msk-apim/external/v1/crit/blaze/api/Patient
             }
         },
         {
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/patient/10081007",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/patient/10081007",
             "resource": {
                 "resourceType": "Patient",
                 "id": "10081007",

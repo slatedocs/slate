@@ -558,7 +558,7 @@
 
 <p>Vital signs data are mapped to FHIR's <a href="http://hl7.org/fhir/StructureDefinition/Observation" target="blank">Observation</a> resource. Each record is mapped to a trial visit and pushed into the Clinical Research Data Warehouse.</p>
 <h2 id="required-parameters">Required Parameters</h2>
-<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v1/crit/blaze/api/observations
+<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v2/crit/blaze/api/observations
 -H Authorization: Bearer {access_token} 
 </code></pre></div>
 <table>
@@ -645,11 +645,11 @@
 <span class="w">        </span><span class="nt">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">            </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&amp;researchstudy=FHIR-T&amp;x-partnerid={A3}&amp;page=1&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&amp;researchstudy=FHIR-T&amp;x-partnerid={A3}&amp;page=1&quot;</span><span class="w"></span>
 <span class="w">            </span><span class="p">},</span><span class="w"></span>
 <span class="w">            </span><span class="p">{</span><span class="w">   </span>
 <span class="w">                </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;first&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations?category=laboratory&amp;researchstudy=FHIR-T&amp;x-partnerid={A3}&amp;page=1&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&amp;researchstudy=FHIR-T&amp;x-partnerid={A3}&amp;page=1&quot;</span><span class="w"></span>
 <span class="w">            </span><span class="p">},</span><span class="w"></span>
 <span class="w">            </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;last&quot;</span><span class="p">,</span><span class="w"></span>
@@ -667,7 +667,7 @@
 <span class="w">    </span><span class="nt">&quot;entry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009814</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations/500009814&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations/500009814&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009814</span><span class="p">,</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Observation&quot;</span><span class="p">,</span><span class="w"></span>
@@ -720,7 +720,7 @@
 <span class="w">        </span><span class="p">},</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009863</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v1/crit/blaze/api/observations/500009863&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations/500009863&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009863</span><span class="p">,</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Observation&quot;</span><span class="p">,</span><span class="w"></span>
