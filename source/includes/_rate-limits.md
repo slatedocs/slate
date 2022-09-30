@@ -2,7 +2,7 @@
 
 ## API Rate Limits
 
-For our rate limit endpoint, please refer to <a href="#rate-limit-endpoint">Rate Limit endpoint</a>.
+For our rate limit endpoint, please refer to <a href="#rate-limit">Rate Limit endpoint</a>.
 
 ### Plan Tier Limits
 

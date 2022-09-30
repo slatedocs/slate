@@ -1,5 +1,8 @@
 # Changelog
 
+## 2022-09-30
+- Updated href="#rate-limit-endpoint" </a> to href="#rate-limit"
+
 ## 2022-09-06
 
 - Added [Rate Limit](#rate-limit) endpoint and documentation. Moved from a daily to a per minute per user limit. Monthly per account limits remain the same.
