@@ -80,3 +80,10 @@ Thanks to the following people who have submitted major pull requests:
 - [@cvkef](https://github.com/cvkef)
 
 Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
+
+Running with docker
+--------------------
+
+- Build: `docker run --rm --name slate -v $(pwd)/build:/srv/slate/build -v $(pwd)/source:/srv/slate/source slatedocs/slate build`
+- Middleman: `docker run --rm --name slate -p 4567:4567 -v $(pwd)/source:/srv/slate/source slatedocs/slate serve`
+- Push: `./deploy.sh --push-only`
