@@ -2,7 +2,7 @@
 
 ## Version 2.14.0
 
-*September 15, 2022*
+*October 03, 2022*
 
 * Fix Vagrantfile gem install for ruby >= 2.6 (thanks @Cyb0rk)
 * Disable file watcher in run_build() for sake of qemu on arm64 (thanks @anapsix)
