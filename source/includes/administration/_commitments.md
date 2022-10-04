@@ -36,7 +36,11 @@ curl "https://cloudmc_endpoint/api/v2/commitments" \
    "endDate": "2023-01-01T00:00:00Z",
    "pricingMethod": "FIXED_PRICE",
    "type": "RESOURCE",
-   "fixedPrice": 500.0,
+   "fixedPrice": 500.0, 
+   "fixedPriceTaxCode": {
+     "code": "SI086690",
+     "description": "IT Services"
+   }, 
    "createdAt": "2022-06-17T18:48:07Z",
    "organization": {
     "name": "SleepyCo",
@@ -112,6 +116,7 @@ Attributes | &nbsp;
 `status`<br/>*enum* | The status of the commitment. Possible values are: `IN_PROGRESS`, `UPCOMING`, and `EXPIRED`.
 `type`<br/>*enum* | The type of the commitment. Currently limited to only `RESOURCE`.
 `fixedPrice`<br/>*double* | The effective price for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`fixedPriceTaxCode`<br/>*TaxCode* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
 `startDate`<br/>*date* | The start date of the commitment.
 `endDate`<br/>*date* | The end date of the commitment.
 `terminated`<br/>*Boolean* | A flag denoting whether or not the commitment is terminated. This value is not directly tied to the status. 
@@ -143,6 +148,13 @@ Attributes | &nbsp;
 --- | ---
 `id`<br/>*UUID* | The id of the product.
 `sku`<br/>*string* | The sku of the product.
+
+Object: **TaxCode**
+
+Attributes | &nbsp;
+--- | ---
+`code`<br/>*UUID* | The tax code.
+`description`<br/>*Product* | Optional description or category for given tax code.
 
 <!-------------------- GET COMMITMENT -------------------->
 ### Get commitment
@@ -178,7 +190,11 @@ curl "https://cloudmc_endpoint/api/v2/commitments/52a54cde-0e5d-4168-9827-5967de
       "pricingMethod": "FIXED_PRICE",
       "type": "RESOURCE",
       "fixedPrice": 500.0,
-      "createdAt": "2022-06-17T18:48:07Z",
+      "fixedPriceTaxCode": {
+         "code": "SI086690",
+         "description": "IT Services"
+      },
+     "createdAt": "2022-06-17T18:48:07Z",
       "organization": {
          "name": "SleepyCo",
          "id": "42a54cde-0e5d-4168-9827-5967ded6095e"
@@ -209,6 +225,7 @@ Attributes | &nbsp;
 `status`<br/>*enum* | The status of the commitment. Possible values are: `IN_PROGRESS`, `UPCOMING`, and `EXPIRED`.
 `type`<br/>*enum* | The type of the commitment. Currently limited to only `RESOURCE`.
 `fixedPrice`<br/>*double* | The effective price for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`fixedPriceTaxCode`<br/>*TaxCode* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
 `startDate`<br/>*date* | The start date of the commitment.
 `endDate`<br/>*date* | The end date of the commitment.
 `terminated`<br/>*Boolean* | A flag denoting whether or not the commitment is terminated. This value is not directly tied to the status. 
@@ -241,6 +258,13 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the product.
 `sku`<br/>*string* | The sku of the product.
 
+Object: **TaxCode**
+
+Attributes | &nbsp;
+--- | ---
+`code`<br/>*UUID* | The tax code.
+`description`<br/>*Product* | Optional description or category for given tax code.
+
 
 <!-------------------- CREATE COMMITMENT -------------------->
 ### Create commitment
@@ -271,6 +295,10 @@ curl "https://cloudmc_endpoint/api/v2/commitments" \
    "pricingMethod": "FIXED_PRICE",
    "type": "RESOURCE",
    "fixedPrice": 500.0,
+   "fixedPriceTaxCode": {
+      "code": "SI086690",
+      "description": "IT Services"
+   },
    "organization": {
       "id": "e2c00fdb-d493-422c-889f-eb734806b80e"
    },
@@ -299,6 +327,10 @@ curl "https://cloudmc_endpoint/api/v2/commitments" \
       "pricingMethod": "FIXED_PRICE",
       "type": "RESOURCE",
       "fixedPrice": 500.0,
+      "fixedPriceTaxCode": {
+        "code": "SI086690",
+        "description": "IT Services"
+      },
       "createdAt": "2022-06-29T21:03:36.708Z",
       "organization": {
          "name": "subOrg",
@@ -383,6 +415,7 @@ Attributes | &nbsp;
 `rateType`<br/>*enum* | The rate type of the commitment. Applies only to commitments with pricing method `UTILITY_DISCOUNT`. Possible values are: `FIXED_RATE` and `VARIABLE_RATE`.
 `type`<br/>*enum* | The type of the commitment. Currently limited to only `RESOURCE`.
 `fixedPrice`<br/>*double* | The effective price for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
+`fixedPriceTaxCode`<br/>*TaxCode* | The chosen tax code for this commitment. Applies only to commitments with pricing method `FIXED_PRICE`.
 `startDate`<br/>*date* | The start date of the commitment. The start date must be specified. A commitment's date range cannot span a billing cycle with an issued invoice.
 `endDate`<br/>*date* | The end date of the commitment. An indefinite end date can be set by omitting the `endDate` field from the request body.
 
@@ -405,6 +438,13 @@ Object: **Product**
 Attributes | &nbsp;
 --- | ---
 `id`<br/>*UUID* | The id of the product.
+
+Object: **TaxCode**
+
+Attributes | &nbsp;
+--- | ---
+`code`<br/>*UUID* | The tax code.
+`description`<br/>*Product* | Optional description or category for given tax code.
 
 
 <!-------------------- DELETE COMMITMENT -------------------->
