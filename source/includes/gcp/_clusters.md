@@ -69,7 +69,7 @@ curl -X GET \
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`nodeCount`<br/>*number* | Number of nodes in the cluster.
+`nodeCount`<br/>*integer* | Number of nodes in the cluster.
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster.
@@ -129,7 +129,7 @@ curl -X GET \
 Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
-`nodeCount`<br/>*number* | Number of nodes in the cluster.
+`nodeCount`<br/>*integer* | Number of nodes in the cluster.
 `endpoint`<br/>*string* | The IP address of the cluster's master node. All interactions with the Kubernetes API are done through the master node.
 `location` <br/> *string* | The zone or region in which the cluster is running. For regional clusters, your cluster nodes may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster.
@@ -168,7 +168,7 @@ curl -X POST \
   "shortRegion": "northamerica-northeast1",
   "shortZone": "northamerica-northeast1-a",
   "currentMasterVersion": "1.17.12-gke.1501",
-  "nodeCount":"3",
+  "nodeCount":3,
   "nodeType":"e2-highcpu-16",
   "networkName": "default",
   "subnetName": "default"
@@ -186,7 +186,7 @@ Required | &nbsp;
 `shortRegion`<br/>*string* | A short version of the region name.
 `shortZone`<br/>*string* | A short version of the zone name.
 `currentMasterVersion`<br/>*string* | The version of GKE used for this cluster.
-`nodeCount` <br/>*string* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
+`nodeCount` <br/>*integer* | The number of nodes in the primary node pool of this cluster. This must be greater than 0.
 `nodeType`<br/>*string* | The machine types of the nodes in the default node pool of this cluster.
 `networkName`<br/>*string* | The network that the Kubernetes cluster is in.
 `subnetName`<br/>*string* | Subnetwork to which the cluster will belong. The subnetwork specified must belong the network specified.

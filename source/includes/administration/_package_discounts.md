@@ -21,7 +21,6 @@ curl "https://cloudmc_endpoint/rest/pricing_packages/efd32752-c6f2-45cf-b494-cc6
 {
   "data": [
     {
-      "applyToNewCustomersOnly": true,
       "discountedProducts": {},
       "durationDays": 60,
       "type": "PERCENTAGE",
@@ -61,7 +60,6 @@ Attributes | &nbsp;
 `name`<br/>*Map[String, String]* | The name translations of the discount.
 `pricingPackage`<br/>*Object* | The pricing package being discounted.
 `pricingPackage.id`<br/>*UUID* | The UUID of the pricing package.
-`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `startDate`<br/>*date* | The start date of the discount.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date.
 `status`<br/>*enum* | The status of the discount. Possible values are: UPCOMING, CURRENT, ENDED.
@@ -85,7 +83,6 @@ curl "https://cloudmc_endpoint/rest/pricing_packages/efd32752-c6f2-45cf-b494-cc6
 {
   "data": [
     {
-      "applyToNewCustomersOnly": true,
       "discountedProducts": {},
       "durationDays": 60,
       "type": "PERCENTAGE",
@@ -121,7 +118,6 @@ Attributes | &nbsp;
 `name`<br/>*Map[String, String]* | The name translations of the discount.
 `pricingPackage`<br/>*Object* | The pricing package being discounted.
 `pricingPackage.id`<br/>*UUID* | The UUID of the pricing package.
-`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `startDate`<br/>*date* | The start date of the discount.
 `cutoffDate`<br/>*date* | The date on which the discount will no longer be offered to customers who have not already received it. If not provided, the discount will always be offered after the start date.
 `status`<br/>*enum* | The status of the discount. Possible values are: UPCOMING, CURRENT, ENDED.
@@ -157,7 +153,6 @@ curl -X POST "https://cloudmc_endpoint/rest/pricing_packages/efd32752-c6f2-45cf-
   },
   "discountScope": "CATEGORIES", 
   "cutoffDate": "2021-07-24T00:00:00.000Z",
-  "applyToNewCustomersOnly": false,
 }
 ```
 
@@ -166,7 +161,6 @@ curl -X POST "https://cloudmc_endpoint/rest/pricing_packages/efd32752-c6f2-45cf-
 ```json
 {
   "data": {
-      "applyToNewCustomersOnly": false,
       "discountedProducts": {},
       "durationDays": 60,
       "type": "PERCENTAGE",
@@ -194,7 +188,6 @@ Required | &nbsp;
 `name`<br/>*Map[String, String]* | The name translations of the discount.
 `type`<br/>*enum* | The type of the discount. It can be either "PERCENTAGE" or "CREDIT".
 `startDate`<br/>*date* | The start date of the discount.
-`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `discountScope`<br/>*enum* | The scope of the discount. It can be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the pricing package. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
@@ -234,7 +227,6 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/pricing_packages/efd32752-c6f2-45cf
   },
   "discountScope": "CATEGORIES", 
   "cutoffDate": "2021-08-24T00:00:00.000Z",
-  "applyToNewCustomersOnly": false,
 }
 ```
 
@@ -243,7 +235,6 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/pricing_packages/efd32752-c6f2-45cf
 ```json
 {
   "data": {
-      "applyToNewCustomersOnly": false,
       "discountedProducts": {},
       "durationDays": 60,
       "type": "PERCENTAGE",
@@ -271,7 +262,6 @@ Optional | &nbsp;
 ------- | -----------
 `name`<br/>*Map[String, String]* | The name translations of the discount.
 `startDate`<br/>*date* | The start date of the discount.
-`applyToNewCustomersOnly`<br/>*boolean* | If true, the discount will only be applied to organizations created after the discount start date.
 `discountScope`<br/>*enum* | The scope of the discount. It can be either "ALL_PRODUCTS", "CATEGORIES" or "PRODUCTS".
 `packageDiscount`<br/>*BigDecimal* | The discount value that will be applied to all products within the pricing package. Only required if the scope is "ALL_PRODUCTS". The value must be between (0,100] for a percentage discount and greater than 0 for a credit.
 `discountedCategories`<br/>*Map[UUID, BigDecimal]* | A mapping between category IDs and discount values. All pricing products within a category will have the discount value applied to them. Required to be non-empty if scope is "CATEGORIES". All discount values must be between (0,100] for a percentage discount and greater than 0 for a credit.
@@ -318,7 +308,6 @@ curl -X PUT "https://cloudmc_endpoint/api/v2/pricing_packages/efd32752-c6f2-45cf
 ```json
 {
   "data": {
-      "applyToNewCustomersOnly": false,
       "discountedProducts": {},
       "durationDays": 60,
       "type": "PERCENTAGE",
