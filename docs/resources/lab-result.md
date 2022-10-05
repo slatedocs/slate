@@ -2,21 +2,21 @@ Laboratory data are mapped to FHIR's [Observation](http://hl7.org/fhir/Structure
 
 > **_NOTE:_** If available in the source data, a LOINC code is mapped to `code.coding.code`, otherwise the `code.coding.code` does not appear in the response. Please refer to the protocol specific Data Transfer Specification for more information.
 
-## Required Parameters
+## Request
 ```
-GET /msk-apim/external/v2/crit/blaze/api/observations
+GET /msk-apim/external/v2/crit/blaze/api/observation
 -H Authorization: Bearer {access_token} 
 ```
-
-| Parameters      | Required/Optional | Description                   |
-| --------------- | ----------------- | ----------------------------- |
-| `researchstudy` | required          | MSK unique study number       |
-| `category`      | required          | For lab data, use `laboratory`|
-| `x-partnerid`   | required          | MSK provided partner ID       |
+### Query Parameters
+| Parameters      | Type   | Is Required | Description                   |
+| --------------- | ------ | ----------- | ----------------------------- |
+| `category`      | string | true        | For lab data use `laboratory` |
+| `researchstudy` | string | true        | MSK unique study number       |
+| `x-partnerid`   | string | true        | MSK provided partner ID       |
 
 For a list of optional filtering parameters visit the [Searching page](/searching).
 
-## Example Request
+### Example Code
 
 === "C# "
 
@@ -45,7 +45,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     print(data.decode("utf-8"))
     ```
 
-## Example Response
+## Response
 
 ??? success "Successful Payload Example"
     ```json
@@ -60,11 +60,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
         "link": [
             {
                 "relation": "self",
-                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
             },
             {   
                 "relation": "first",
-                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
             },
             {
                 "relation": "last",
@@ -82,7 +82,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     "entry": [
         {
             "id": 500009814,
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations/500009814",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009814",
             "resource": {
                 "id": 500009814,
                 "resourceType": "Observation",
@@ -135,7 +135,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
         },
         {
             "id": 500009863,
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observations/500009863",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009863",
             "resource": {
                 "id": 500009863,
                 "resourceType": "Observation",
@@ -194,7 +194,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     }
   
     ```
-## Field Definitions
+### Field Definitions
 
 | Field                      | Description                                |
 | -------------------------- | ------------------------------------------ |

@@ -1,19 +1,21 @@
 Demographics data are mapped to FHIR's [Patient](http://hl7.org/fhir/patient.html){:target="blank"} resource. Data flows from MSK's Revenue Management System (RMS) into the Clinical Research Data Warehouse. Patients are identified by the sponsor subject ID.
 
-## Required Parameters
+## Request
 
 ```
 GET /msk-apim/external/v2/crit/blaze/api/Patient
 -H Authorization: Bearer {access_token}
 ```
+### Query Parameters
+| Parameters      | Type    | Is Required  | Description                          |
+| --------------  | ------- | ------------ | ------------------------------------ |
+| {id}            | string  | conditional* | Sponsor assigned subject ID          |
+| `researchstudy` | string  | conditional* | MSK unique study number              |
+| `x-partnerid`   | string  | true         | MSK provided partner ID              |
 
-| Parameters      | Required/Optional | Description                          |
-| --------------  | ----------------- | ------------------------------------ |
-| `researchstudy` | required          | MSK unique study number              |
-| `x-partnerid`   | required          | MSK provided partner ID              |
+*Patient search requests require one of the following to return data: researchstudy or {id}. Patient requests submitted using {id} will return data only if that subject is part of the studies `x-partnerid` has access to.
 
-
-## Example Request
+### Example Code
 === "C# "
 
     ``` c# linenums="1"
@@ -41,7 +43,8 @@ GET /msk-apim/external/v2/crit/blaze/api/Patient
     print(data.decode("utf-8"))
     ```
 
-## Example Response
+## Response
+
 ??? success "Successful Payload Example"
     ```json
     {
@@ -179,7 +182,7 @@ GET /msk-apim/external/v2/crit/blaze/api/Patient
   
     ```
 
-## Field Definitions
+### Field Definitions
 
 |  Field                        | Description                     |
 | ----------------------------- | ----------------------------    |

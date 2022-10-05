@@ -13,7 +13,7 @@
     
     
       
-        <title>Adverse Events - Clinical Research FHIR Guide</title>
+        <title>Adverse Event - Clinical Research FHIR Guide</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#required-parameters" class="md-skip">
+        <a href="#request" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Adverse Events
+              Adverse Event
             
           </span>
         </div>
@@ -250,14 +250,14 @@
       
       
         <label class="md-nav__link" for="__nav_5">
-          Available Data Domains
+          Available Resources
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Available Data Domains" data-md-level="1">
+      <nav class="md-nav" aria-label="Available Resources" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Available Data Domains
+          Available Resources
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -275,12 +275,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Adverse Events
+          Adverse Event
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Adverse Events
+        Adverse Event
       </a>
       
         
@@ -297,30 +297,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#required-parameters" class="md-nav__link">
-    Required Parameters
+  <a href="#request" class="md-nav__link">
+    Request
   </a>
+  
+    <nav class="md-nav" aria-label="Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code" class="md-nav__link">
+    Example Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-request" class="md-nav__link">
-    Example Request
+  <a href="#response" class="md-nav__link">
+    Response
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-response" class="md-nav__link">
-    Example Response
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#field-definitions" class="md-nav__link">
     Field Definitions
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -339,8 +358,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../demographics/" class="md-nav__link">
-        Demographics
+      <a href="../patient/" class="md-nav__link">
+        Patient (Demographics)
       </a>
     </li>
   
@@ -353,8 +372,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/" class="md-nav__link">
-        Laboratory Results
+      <a href="../lab-result/" class="md-nav__link">
+        Observation (Labs)
       </a>
     </li>
   
@@ -367,8 +386,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../vitals/" class="md-nav__link">
-        Vital Signs
+      <a href="../vital-sign/" class="md-nav__link">
+        Observation (Vitals)
       </a>
     </li>
   
@@ -416,7 +435,7 @@
   
     <li class="md-nav__item">
       <a href="../../coming-soon/medications/" class="md-nav__link">
-        Medications
+        MedicationStatement (All meds)
       </a>
     </li>
   
@@ -513,30 +532,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#required-parameters" class="md-nav__link">
-    Required Parameters
+  <a href="#request" class="md-nav__link">
+    Request
   </a>
+  
+    <nav class="md-nav" aria-label="Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-code" class="md-nav__link">
+    Example Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-request" class="md-nav__link">
-    Example Request
+  <a href="#response" class="md-nav__link">
+    Response
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-response" class="md-nav__link">
-    Example Response
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#field-definitions" class="md-nav__link">
     Field Definitions
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -554,36 +592,40 @@
                 
 
 
-  <h1>Adverse Events</h1>
+  <h1>Adverse Event</h1>
 
 <p>Adverse event data are mapped to FHIR's <a href="http://hl7.org/fhir/adverseevent.html" target="blank">Adverse Event</a> resource. This is not a visit specific data element and does not require any adjudication by study staff.</p>
-<h2 id="required-parameters">Required Parameters</h2>
+<h2 id="request">Request</h2>
 <div class="highlight"><pre><span></span><code>GET /msk-apim/external/v2/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 
 </code></pre></div>
+<h3 id="query-parameters">Query Parameters</h3>
 <table>
 <thead>
 <tr>
 <th>Parameters</th>
-<th>Required/Optional</th>
+<th>Type</th>
+<th>Is Required</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>researchstudy</code></td>
-<td>required</td>
+<td>string</td>
+<td>true</td>
 <td>MSK unique study number</td>
 </tr>
 <tr>
 <td><code>x-partnerid</code></td>
-<td>required</td>
+<td>string</td>
+<td>true</td>
 <td>MSK provided partner ID</td>
 </tr>
 </tbody>
 </table>
 <p>For a list of optional filtering parameters visit the <a href="/searching">Searching page</a>.</p>
-<h2 id="example-request">Example Request</h2>
+<h3 id="example-code">Example Code</h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">C# </label><label for="__tabbed_1_2">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -626,7 +668,7 @@
 </div>
 </div>
 </div>
-<h2 id="example-response">Example Response</h2>
+<h2 id="response">Response</h2>
 <details class="success">
 <summary>Successful Payload Example</summary>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
@@ -898,7 +940,7 @@
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </details>
-<h2 id="field-definitions">Field Definitions</h2>
+<h3 id="field-definitions">Field Definitions</h3>
 <table>
 <thead>
 <tr>
@@ -1052,13 +1094,13 @@
       
       
         
-        <a href="../demographics/" class="md-footer__link md-footer__link--next" aria-label="Next: Demographics" rel="next">
+        <a href="../patient/" class="md-footer__link md-footer__link--next" aria-label="Next: Patient (Demographics)" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Demographics
+              Patient (Demographics)
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -3,12 +3,12 @@ August 2022
 
 #### New
 - Tech-stack rewrite
-- Release of new data domains
-    - Adverse Events (Adverse Event resource)
-    - Demographics (Patient resource)
+- Release of new resources
+    - Adverse Events
+    - Patient (demographics)
 -  Documentation implemented using GitHub Pages
 #### Enhancements
-- Visit description added to Laboratory Results and Vital Signs
+- Visit description added to Observation for laboratory results and vital signs
 
 ## Version 1.0.0
 
