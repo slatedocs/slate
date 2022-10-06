@@ -130,7 +130,19 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
       "id": 1,
       "status": "pending",
       "approver_name": "Gillian Neary",
-      "approver_id": 2
+      "approver_id": 2,
+      "accept_token": ".....",
+      "reject_token": "......",
+      "delegate_id": null
+    },
+    {
+      "id": 1,
+      "status": "pending",
+      "approver_name": "Gillian Neary (on behalf of John Doe)",
+      "approver_id": 3,
+      "accept_token": ".....",
+      "reject_token": "......",
+      "delegate_id": 2
     }
   ]
 }
@@ -338,7 +350,19 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1'
       "id": 1,
       "status": "pending",
       "approver_name": "Gillian Neary",
-      "approver_id": 2
+      "approver_id": 2,
+      "accept_token": ".....",
+      "reject_token": "......",
+      "delegate_id": null
+    },
+    {
+      "id": 1,
+      "status": "pending",
+      "approver_name": "Gillian Neary (on behalf of John Doe)",
+      "approver_id": 3,
+      "accept_token": ".....",
+      "reject_token": "......",
+      "delegate_id": 2
     }
   ]
 }
@@ -616,8 +640,18 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1'
       "status": "pending",
       "approver_name": "Gillian Neary",
       "approver_id": 2,
-      "accept_token": "17943-344853-20171017053411......",
-      "reject_token": "17943-344853-20171017053411......"
+      "accept_token": ".....",
+      "reject_token": "......",
+      "delegate_id": null
+    },
+    {
+      "id": 1,
+      "status": "pending",
+      "approver_name": "Gillian Neary (on behalf of John Doe)",
+      "approver_id": 3,
+      "accept_token": ".....",
+      "reject_token": "......",
+      "delegate_id": 2
     }
   ],
   "supplier": {
@@ -634,6 +668,14 @@ unique purchase order id, that was returned upon product creation.
 PurchaseOrder's `status` will be `approved` if all of the approvers have already
 approved this purchase order. You can find list of approvers in `approver_requests`
 attribute.
+
+### delegate approvers
+
+If the approver who is assigned to given purchase order is on holiday mode and also delegate approver is selected
+then json repsonse will contains `delegate_id: x` which means, that request should be approved/rejected by the user
+matching the delegate_id.
+
+Also notice the `approver_name` which contains the naming format `Approver xxx (on behalf of Approver yyy)`.
 
 ### Copy
 

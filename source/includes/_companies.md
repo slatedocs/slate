@@ -535,6 +535,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/all_approvers'
     "id": 1,
     "email": "admin@example.com",
     "name": "Admin User",
+    "approver_name": "Admin User",
     "phone_number": "",
     "setup_incomplete": false,
     "employer_id": 1,
@@ -551,6 +552,8 @@ curl 'https://app.procurementexpress.com/api/v1/companies/all_approvers'
     "id": 2,
     "email": "accountant@example.com",
     "name": "Accountant User",
+    "name": "Accountant User",
+    "approver_name": "Approver User (on behalf of Accountant User)",
     "phone_number": "",
     "setup_incomplete": false,
     "employer_id": 2,
@@ -567,6 +570,12 @@ curl 'https://app.procurementexpress.com/api/v1/companies/all_approvers'
 ```
 
 Retrieves the list of all approvers for current company regardless of auto approval routing
+
+### Holiday Delegates
+
+Also Note that, because approvers can enable holiday mode and add other approvers as their delegate approvers, in above json response
+you will also see `approver_name` column, which contains the name of either delegated approver name, or original approver name.
+This column is useful, if you want to display any requests that are delegated on behalf of holiday approver.
 
 ### HTTP Request
 
