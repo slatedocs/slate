@@ -6,20 +6,21 @@ All data access is granted on a per protocol basis therefore, it is expected tha
 
 ## Generating Access Tokens
 
-**Access tokens** must be included in all resources endpoints. To generate a token use the following endpoint and listed parameters:
+**Access tokens** must be included in all resources endpoints. To generate a token use the following endpoint and listed parameters.
+
+### Request
 ```
 POST /msk-apim/external/msk-oidc/oauth2/token
 ```
-
-
-| Parameter       | Required/Optional | Description                                                |
-| --------------- | ----------------- |----------------------------------------------------------- |
-| `client_id`     |  required         | MSK provided unique client ID                              |
-| `client_secret` |  required         | MSK provided unique client secret                          |
-| `grant_type`    |  required         | Use value: `client_credentials`             |
-| `scope`         |  required         | Use value: `full`                          |
+#### Query Parameters
+| Parameter       | Type   | Is Required | Description                           |
+| --------------- | ------ | ----------- |-------------------------------------- |
+| `client_id`     | string |  true       | MSK provided unique client ID         |
+| `client_secret` | string |  true       | MSK provided unique client secret     |
+| `grant_type`    | string |  true       | Use value: `client_credentials`       |
+| `scope`         | string |  true       | Use value: `full`                     |
    
-
+#### Example Code
 === "C# - RestSharp"
 
     ``` c#
@@ -53,7 +54,7 @@ POST /msk-apim/external/msk-oidc/oauth2/token
 
 
 
-## Response Example
+### Response Example
 
 > **_NOTE:_** MSK HL7 FHIR server only exposes data in JSON format.
 

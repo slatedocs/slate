@@ -251,14 +251,14 @@
       
       
         <label class="md-nav__link" for="__nav_5">
-          Available Data Domains
+          Available Resources
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Available Data Domains" data-md-level="1">
+      <nav class="md-nav" aria-label="Available Resources" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Available Data Domains
+          Available Resources
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -268,8 +268,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/adverse-events/" class="md-nav__link">
-        Adverse Events
+      <a href="../resources/adverse-event/" class="md-nav__link">
+        Adverse Event
       </a>
     </li>
   
@@ -282,8 +282,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/demographics/" class="md-nav__link">
-        Demographics
+      <a href="../resources/patient/" class="md-nav__link">
+        Patient (Demographics)
       </a>
     </li>
   
@@ -296,8 +296,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/labs/" class="md-nav__link">
-        Laboratory Results
+      <a href="../resources/lab-result/" class="md-nav__link">
+        Observation (Labs)
       </a>
     </li>
   
@@ -310,8 +310,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/vitals/" class="md-nav__link">
-        Vital Signs
+      <a href="../resources/vital-sign/" class="md-nav__link">
+        Observation (Vitals)
       </a>
     </li>
   
@@ -359,7 +359,7 @@
   
     <li class="md-nav__item">
       <a href="../coming-soon/medications/" class="md-nav__link">
-        Medications
+        MedicationStatement (All meds)
       </a>
     </li>
   
@@ -463,48 +463,57 @@
 
   <h1>Searching</h1>
 
-<p>Filtering parameters are <strong>optional</strong> and some combinations might not return a payload. If you feel that there should be data for a particular combination of filters, please reach out to <a href="mailto:ctdata@mskcc.org">ctdata@mskcc.org</a>.</p>
+<p>Most parameters are optional and some combinations might not return a payload. If you feel that there should be data for a particular combination of filters, please reach out to <a href="mailto:ctdata@mskcc.org">ctdata@mskcc.org</a>.</p>
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
-<th>Required/Optional</th>
+<th>Type</th>
+<th>Is Required</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>_count</td>
-<td>optional</td>
-<td>Controls the number of records returned in the bundle. If a value is not specified, the default is 50 records. We recommend using this parameter wisely to avoid timeout errors.</td>
+<td>integer</td>
+<td>false</td>
+<td>Controls the number of records returned in the bundle. The default is <code>50</code> records. Use this parameter wisely to avoid timeout errors.</td>
 </tr>
 <tr>
 <td>date</td>
-<td>optional</td>
-<td>Must follow the format <code>&amp;date=OpMM/DD/YYY</code> where OP is the Operator for that date. Acceptable values include: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (&lt; )</li><li>gt (&gt;)</li><li>ge (&gt;=)</li><li>le ( &lt;=)</li></ul></td>
+<td>date</td>
+<td>false</td>
+<td>Must follow the format <code>&amp;date=OpMM/DD/YYYY</code> where OP is the Operator for that date. Acceptable values include: <ul><li>eq (==)</li><li>ne (! =)</li><li>lt (&lt; )</li><li>gt (&gt;)</li><li>ge (&gt;=)</li><li>le ( &lt;=)</li></ul></td>
 </tr>
 <tr>
 <td>id</td>
-<td>optional</td>
-<td>Returns the record for a given subject ID</td>
+<td>string</td>
+<td>false</td>
+<td>Returns the record for a given ID</td>
 </tr>
 <tr>
 <td>page</td>
-<td>optional</td>
+<td>integer</td>
+<td>false</td>
 <td>Used to retrieve data on a particular page. Refer to <a href="../pagination/">pagination</a> for more details.</td>
 </tr>
 <tr>
 <td>researchstudy</td>
-<td>required</td>
+<td>string</td>
+<td>true*</td>
 <td>MSK unique study number</td>
 </tr>
 <tr>
 <td>studyid</td>
-<td>(Not yet available)</td>
+<td>string</td>
+<td>**</td>
 <td>Sponsor study ID</td>
 </tr>
 </tbody>
 </table>
+<p>*True for all resource requests except /Patient, which require one of the following to return data: researchstudy or {id}. Patient requests submitted using {id} will return data only if that subject is part of the studies <code>x-partnerid</code> has access to.</p>
+<p>** Not available yet</p>
 
               
             </article>

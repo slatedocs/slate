@@ -1,18 +1,19 @@
 Adverse event data are mapped to FHIR's [Adverse Event](http://hl7.org/fhir/adverseevent.html){:target="blank"} resource. This is not a visit specific data element and does not require any adjudication by study staff.
 
-## Required Parameters
+## Request
 ```
 GET /msk-apim/external/v2/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 
 ```
-
-| Parameters      | Required/Optional | Description                          |
-| --------------  | ----------------- | ------------------------------------ |
-| `researchstudy` | required          | MSK unique study number              |
-| `x-partnerid`   | required          | MSK provided partner ID              |
+### Query Parameters
+| Parameters      | Type   | Is Required | Description                          |
+| --------------  | ------ | ----------- | ------------------------------------ |
+| `researchstudy` | string | true        | MSK unique study number              |
+| `x-partnerid`   | string | true        | MSK provided partner ID              |
 
 For a list of optional filtering parameters visit the [Searching page](/searching).
-## Example Request
+
+### Example Code
 === "C# "
 
     ``` c# linenums="1"
@@ -40,7 +41,9 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     print(data.decode("utf-8"))
     ```
 
-## Example Response
+
+## Response
+
 ??? success "Successful Payload Example"
     ```json
     {
@@ -313,7 +316,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
   
     ```
 
-## Field Definitions
+### Field Definitions
 
 | Field                                               | Description                                                |
 | --------------------------------------------------- | ---------------------------------------------------------- |

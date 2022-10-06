@@ -235,12 +235,45 @@
     Generating Access Tokens
   </a>
   
+    <nav class="md-nav" aria-label="Generating Access Tokens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request
+  </a>
+  
+    <nav class="md-nav" aria-label="Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#example-code" class="md-nav__link">
+    Example Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#response-example" class="md-nav__link">
     Response Example
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -299,14 +332,14 @@
       
       
         <label class="md-nav__link" for="__nav_5">
-          Available Data Domains
+          Available Resources
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Available Data Domains" data-md-level="1">
+      <nav class="md-nav" aria-label="Available Resources" data-md-level="1">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
-          Available Data Domains
+          Available Resources
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -316,8 +349,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/adverse-events/" class="md-nav__link">
-        Adverse Events
+      <a href="../resources/adverse-event/" class="md-nav__link">
+        Adverse Event
       </a>
     </li>
   
@@ -330,8 +363,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/demographics/" class="md-nav__link">
-        Demographics
+      <a href="../resources/patient/" class="md-nav__link">
+        Patient (Demographics)
       </a>
     </li>
   
@@ -344,8 +377,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/labs/" class="md-nav__link">
-        Laboratory Results
+      <a href="../resources/lab-result/" class="md-nav__link">
+        Observation (Labs)
       </a>
     </li>
   
@@ -358,8 +391,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/vitals/" class="md-nav__link">
-        Vital Signs
+      <a href="../resources/vital-sign/" class="md-nav__link">
+        Observation (Vitals)
       </a>
     </li>
   
@@ -407,7 +440,7 @@
   
     <li class="md-nav__item">
       <a href="../coming-soon/medications/" class="md-nav__link">
-        Medications
+        MedicationStatement (All meds)
       </a>
     </li>
   
@@ -515,12 +548,45 @@
     Generating Access Tokens
   </a>
   
+    <nav class="md-nav" aria-label="Generating Access Tokens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    Request
+  </a>
+  
+    <nav class="md-nav" aria-label="Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    Query Parameters
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#example-code" class="md-nav__link">
+    Example Code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#response-example" class="md-nav__link">
     Response Example
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -544,40 +610,48 @@
 <h2 id="protocol-access">Protocol Access</h2>
 <p>All data access is granted on a per protocol basis therefore, it is expected that incoming requests to Blaze always contain a <code>researchstudy</code> parameter. The value passed into this parameter in combination with the "partner" credentials are used to validate and authorize requests.</p>
 <h2 id="generating-access-tokens">Generating Access Tokens</h2>
-<p><strong>Access tokens</strong> must be included in all resources endpoints. To generate a token use the following endpoint and listed parameters:
+<p><strong>Access tokens</strong> must be included in all resources endpoints. To generate a token use the following endpoint and listed parameters.</p>
+<h3 id="request">Request</h3>
 <div class="highlight"><pre><span></span><code>POST /msk-apim/external/msk-oidc/oauth2/token
-</code></pre></div></p>
+</code></pre></div>
+<h4 id="query-parameters">Query Parameters</h4>
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
-<th>Required/Optional</th>
+<th>Type</th>
+<th>Is Required</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>client_id</code></td>
-<td>required</td>
+<td>string</td>
+<td>true</td>
 <td>MSK provided unique client ID</td>
 </tr>
 <tr>
 <td><code>client_secret</code></td>
-<td>required</td>
+<td>string</td>
+<td>true</td>
 <td>MSK provided unique client secret</td>
 </tr>
 <tr>
 <td><code>grant_type</code></td>
-<td>required</td>
+<td>string</td>
+<td>true</td>
 <td>Use value: <code>client_credentials</code></td>
 </tr>
 <tr>
 <td><code>scope</code></td>
-<td>required</td>
+<td>string</td>
+<td>true</td>
 <td>Use value: <code>full</code></td>
 </tr>
 </tbody>
 </table>
+<h4 id="example-code">Example Code</h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">C# - RestSharp</label><label for="__tabbed_1_2">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -609,7 +683,7 @@
 </div>
 </div>
 </div>
-<h2 id="response-example">Response Example</h2>
+<h3 id="response-example">Response Example</h3>
 <blockquote>
 <p><strong><em>NOTE:</em></strong> MSK HL7 FHIR server only exposes data in JSON format.</p>
 </blockquote>
