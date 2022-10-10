@@ -17,14 +17,14 @@ The API is accessible at **https://skyscanner.net/g/referrals/v1**
 
 There is one main endpoint with the following URL structure:
 
-`https://skyscanner.net/g/referrals/v1/{vertical}/{pagetype}?adId=1100662&campaignId=13416&mediaPartnerId={yourmediapartnerID}`
+`https://skyscanner.net/g/referrals/v1/{vertical}/{pagetype}?mediaPartnerId={yourmediapartnerID}`
 
 The endpoint serves only GET requests and responds with HTTP status 301 redirecting to the desired Skyscanner page.
 
 For the different possible values of the parameters and additional query parameters check the tables below.
 
 We use [Impact](https://impact.com/) to track the redirects and associate them with the referral source.
-You will need to include the 3 Impact tracking parameters as query parameters in your requests. Please
+You will need to include Impact tracking parameters as query parameters in your requests. Please
 check the `TRACKING QUERY PARAMETERS` section below for more details on the parameters. Although the
 parameters are optional, the redirects will not be correctly tracked without them.
 
@@ -55,10 +55,9 @@ using it for new referral links, as it will become fully deprecated eventually.
 
 | Parameter | Description |
 | --------- | ------- |
-| ```mediaPartnerId``` <br><span class="required">REQUIRED</span> | The Impact partner ID as found at Impact.com. |
-| ```adId``` <br><span class="required">REQUIRED</span> | This is an Impact ID used to identify your ad type. This should always be set to `1100662`. |
-| ```campaignId``` <br><span class="required">REQUIRED</span> | This is an Impact ID used to identify our Skyscanner Programme. This should always be set to `13416`. |
-| ```utm_term``` <br><span class="required">OPTIONAL</span> | Additional alphanumeric tracking parameter you can add to your text links for additional tracking. This will be reported on Impact as Sub Id 2.  |
+| ```mediaPartnerId``` <br><span class="required">REQUIRED</span> | Your Impact partner ID as found at Impact.com. |
+| ```adId``` <br><span class="optional">OPTIONAL</span> | This is an Impact ID used to identify your ad type. If none is provided, `1477112` will be used. This will be reported on Impact as `Other Referral`. |
+| ```utm_term``` <br><span class="optional">OPTIONAL</span> | Additional alphanumeric tracking parameter you can add to your text links for additional tracking. This will be reported on Impact as Sub Id 2.  |
 
 ## Examples
 
@@ -66,11 +65,11 @@ An example including some of the parameters looks like:
 
 Please try to avoid using `locale`, `market` and `currency`, as these values will be governed by Skyscanner market detection logic on the Skyscanner site. If you believe you need to use these, please discuss with your account manager.
 
-`GET https://skyscanner.net/g/referrals/v1/flights/day-view/?origin=cdg&destination=edi&outboundDate=<%= config[:fullenddate] %>&utm_term=summer&mediaPartnerId=2796596&campaignId=13416&adId=1100662`
+`GET https://skyscanner.net/g/referrals/v1/flights/day-view/?origin=cdg&destination=edi&outboundDate=<%= config[:fullenddate] %>&utm_term=summer&mediaPartnerId=2850210`
 
-`GET https://skyscanner.net/g/referrals/v1/flights/calendar-month-view/?origin=cdg&destination=edi&iym=1910&utm_term=summer&mediaPartnerId=2796596&campaignId=13416&adId=1100662`
+`GET https://skyscanner.net/g/referrals/v1/flights/calendar-month-view/?origin=cdg&destination=edi&iym=1910&utm_term=summer&mediaPartnerId=2850210`
 
-`GET https://skyscanner.net/g/referrals/v1/cars/day-view/?pickupPlace=BCN&dropoffPlace=BCN&pickupTime=<%= config[:fullstartdate] %>T10:00&dropoffTime=<%= config[:fullenddate] %>T10:00&driverAge=42&mediaPartnerId=2796596&campaignId=13416&adId=1100662`
+`GET https://skyscanner.net/g/referrals/v1/cars/day-view/?pickupPlace=BCN&dropoffPlace=BCN&pickupTime=<%= config[:fullstartdate] %>T10:00&dropoffTime=<%= config[:fullenddate] %>T10:00&driverAge=42&mediaPartnerId=2850210`
 
 Preferred airlines:
 You can find IATA airline codes [here](https://www.iata.org/publications/pages/code-search.aspx)
