@@ -41,6 +41,19 @@ html, body {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
+.notify-banner {
+  padding: 20px 10px;
+  background-color: #e30f0f;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
 #toc > ul > li > a > span {
   float: right;
   background-color: #29a8bb;
@@ -58,6 +71,7 @@ html, body {
 }
 
 .toc-wrapper {
+  padding-top: 60px;
   transition: left 0.3s ease-in-out;
 
   overflow-y: auto;
@@ -569,6 +583,7 @@ html, body {
 
     &.open {
       left: 0;
+      z-index: 110;
     }
   }
 
