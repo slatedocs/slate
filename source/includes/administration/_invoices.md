@@ -590,6 +590,7 @@ Optional Query Parameters | &nbsp;
 ---------- | -----------
 `includeAllSubOrgs`<br/>*boolean* | Whether or not to include sub-organizations of sub-organizations or just direct sub-organizations of the reseller.
 `billingCycle`<br/>*String* | The cycle which the invoice belongs to. Format is `MM-YYYY`
+`includeNoUsageInvoices`<br/>*boolean* | Whether or not to include invoices which have no usage.
 
 Attributes | &nbsp;
 ---- | -----------
