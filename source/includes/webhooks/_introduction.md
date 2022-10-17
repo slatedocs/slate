@@ -66,7 +66,7 @@ Currently, Web Hooks for all event types include these common attributes:
 | `application.candidate.phone_numbers[].type` | One of: `home`, `work`, `mobile`, `skype`, `other`
 | `application.candidate.addresses[].type` | Application Candidate Addresses Type
 | `application.candidate.email_addresses[].type` | One of: `personal`, `work`, `other`
-| `application.candidate.attachments[].type` | One of: `admin_only`, `public`, `cover_letter`, `offer_packet`, `resume`, `take_home_test`, `offer_letter`, `signed_offer_letter`
+| `application.candidate.attachments[].type` | One of: `admin_only`, `public`, `cover_letter`, `offer_packet`, `resume`, `take_home_test`, `offer_letter`, `signed_offer_letter` <br/><br/> Note: Attachments expire in 7 days.
 | `application.candidate.external_id` | An arbitrary ID provided by an external source; does not map to another entity in Greenhouse.
 | `application.prospect` | If true, this is a prospect application which means that the associated person is a prospect and has not yet applied for this job. (Only prospects will have non-null values for `prospect_owner`, `prospect_pool`, or `prospect_stage` under `prospect_detail`)  |
 | `application.prospect_detail.prospect_owner` | The user responsible for keeping track of the prospect. Either null or a user's `id` and `name` |
