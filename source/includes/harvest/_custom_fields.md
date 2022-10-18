@@ -60,9 +60,9 @@ An organization's custom_fields.
 | id | The custom field's unique identifier |
 | name | The field's name in Greenhouse |
 | active | Boolean value which is false if the custom field has been deleted, true otherwise. |
-| field_type | One of job, candidate, application, offer, opening, rejection_question, referral_question. This is also included in the URL as an argument, which will return only custom fields that match the given type.
+| field_type | One of job, candidate, application, offer, opening, rejection_question, referral_question, or user_attribute. This is also included in the URL as an argument, which will return only custom fields that match the given type.
 | priority | Numeric field used for ordering in Greenhouse.
-| value_type | One of short_text, long_text, yes_no, single_select, multi_select, currency, currency_range, number, number_range, date, url, or user
+| value_type | One of short_text, long_text, yes_no, single_select, multi_select, currency, currency_range, number, number_range, date, url, or user. For the user_attribute field type, only the following value types are supported currently: single_select, multi_select, yes_no, and user
 | private | Boolean value to say if this field is private in Greenhouse.
 | required | The object this field exists on can not be saved if this value is not set.
 | require_approval | Only applicable to job and opening custom fields, changes to this fields requires an approval flow in Greenhouse to be re-done.
@@ -133,7 +133,7 @@ curl 'https://harvest.greenhouse.io/v1/custom_fields/{field_type}'
 
 | Parameter | Description |
 |-----------|-------------|
-| *field_type | Returns only custom fields of this type. For example, if “offer” is included in the URL as the field_type, the endpoint will only return custom fields with the “offer” field type.  One of: `offer`, `candidate`, `application`, `job`, `rejection_question`, `referral_question`.
+| *field_type | Returns only custom fields of this type. For example, if “offer” is included in the URL as the field_type, the endpoint will only return custom fields with the “offer” field type.  One of: `offer`, `candidate`, `application`, `job`, `rejection_question`, `referral_question`, `user_attribute`.
 
 ### Querystring parameters
 
@@ -317,8 +317,8 @@ curl -X POST 'https://harvest.greenhouse.io/v1/custom_fields/'
 |-----------|-------------|-------------|-------------|
 | name | string | yes | The field's name in Greenhouse |
 | description | string | no | The field's description in Greenhouse |
-| field_type | string | yes | One of job, candidate, application, offer, opening, rejection_question, referral_question.
-| value_type | string | yes | One of short_text, long_text, yes_no, single_select, multi_select, currency, currency_range, number, number_range, date, url, or user
+| field_type | string | yes | One of job, candidate, application, offer, opening, rejection_question, referral_question, user_attribute.
+| value_type | string | yes | One of short_text, long_text, yes_no, single_select, multi_select, currency, currency_range, number, number_range, date, url, or user. For the user_attribute field type, only the following value types are supported currently: single_select, multi_select, yes_no, and user
 | private | boolean | no | Boolean value to say if this field is private in Greenhouse. Defaults to false if not provided for non-offer custom fields. For offer custom fields, private is always true.
 | required | boolean | no | Boolean value to determine if this field must be filled out in order to save the custom field. Only used for job, offer, and opening type custom fields. Defaults to false.
 | require_approval | boolean | no | Boolean value to determine if changes to this custom field triggers re-approvals. Only used for job and opening custom fields. Defaults to false.

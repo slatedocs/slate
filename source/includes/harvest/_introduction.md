@@ -170,57 +170,58 @@ Unless otherwise specified, API methods generally conform to the following:
 
 The timestamps below are Eastern Time.
 
-| Date                    | Description                                                                                                                       |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Date                          | Description                                                                                                                       |
+|-------------------------------| --------------------------------------------------------------------------------------------------------------------------------- |
+| October 18, 2022 12:00:00PM   | Added ability to create and update User Attributes to the [Users](#users) endpoints
 | September 22, 2022 12:00:00PM | Updated [DELETE: Destroy Openings](#delete-destroy-openings) to a v2 endpoint. The v1 endpoint will be deprecated in a future release. Users and partners should switch over to the v2 endpoint as soon as possible to avoid issues with your integration.
-| September 12, 2022 12:00:00PM  | Added `created_at` field for application's attachments object.
-| September 9, 2022 12:00:00PM | Added [PATCH: Convert Prospect To Candidate](#patch-convert-prospect-to-candidate) endpoint to allow conversion of a prospect application to a candidate application on a selected job.
-| August 1, 2022 12:00:00PM | Making `content_type` required for attachments unless uploading using a URL.
-| May 18, 2021 12:00:00PM | Added `video_conferencing_url` to Scheduled Interview object.
-| May 3, 2021 05:00:00PM | Added `priority` to Job Stages object.
-| May 3, 2021 04:00:00PM | Added `job_post_id` field to application's response object.
-| April 21, 2021 11:00:00AM | Added ability to change external_id for custom field options.
-| April 13, 2021 01:00:00PM | Added ability to change user permission level to basic.
+| September 12, 2022 12:00:00PM | Added `created_at` field for application's attachments object.
+| September 9, 2022 12:00:00PM  | Added [PATCH: Convert Prospect To Candidate](#patch-convert-prospect-to-candidate) endpoint to allow conversion of a prospect application to a candidate application on a selected job.
+| August 1, 2022 12:00:00PM     | Making `content_type` required for attachments unless uploading using a URL.
+| May 18, 2021 12:00:00PM       | Added `video_conferencing_url` to Scheduled Interview object.
+| May 3, 2021 05:00:00PM        | Added `priority` to Job Stages object.
+| May 3, 2021 04:00:00PM        | Added `job_post_id` field to application's response object.
+| April 21, 2021 11:00:00AM     | Added ability to change external_id for custom field options.
+| April 13, 2021 01:00:00PM     | Added ability to change user permission level to basic.
 | September 28, 2020 12:00:00PM | "Required" field added to Demographic Questions.
 | September 23, 2020 03:00:00PM | Attachments have been added at the application level. Previously, an aggregation of all attachments on all applications was included at the candidate level and not at all in the applications endpoint. Now, the applications endpoint includes attachments specific to each application and the candidates endpoint includes attachments in each application specific to that application.
 | September 10, 2020 05:00:00PM | A new querystring parameter has been added to [job post](#job-posts) GET requests to return Board-level Introductions and Conclusions (if present). When included in a request, the "content" or "internal_content" fields will return a concatenated string that includes the Board-level introduction, the Post-level description, and the Board-level conclusion. |
-| May 28, 2020 05:00:00PM | Candidate photos have been removed from Greenhouse and will no longer be accepted as a field to be anonymized in [PUT Anonymize Candidates](#put-anonymize-candidate) |
-| May 5, 2020 12:00:00PM | Added "interview_step" field to the scorecards response. This provides the "ID" of the existing "interview" field. The "name" sub-element of the "interview_step" element should match the current "interview" element. The "interview" field is maintained for backward compatibility.
-| Apr 22, 2020 09:00:00AM | Added external_id as field to the [Custom Field Option object](#the-custom-field-options-object). |
-| Apr 13, 2020 09:00:00AM | The V1 endpoints for [PATCH: Edit User], [PATCH: Disable User], and [PATCH: Enable User] have been deprecated. Users should move to the V2 endpoints as soon as convenient. This change was made to take advantage of additional ways to look up users in Greenhouse. |
-| Apr 12, 2020 09:00:00AM | V1 of [PATCH: Update Job Post] has been deprecated. Updating a job post's status has been extracted to [PATCH: Update Job Post Status], while updating all other properties remains on [PATCH: Update Job Post]. The new endpoint more accurately reflects the permissions required by the On-Behalf-Of user to access and edit the Job Post's properties. |
-| Apr 5, 2020 09:00:00AM | Added V2 of [POST: Scheduled Interviews](#post-scheduled-interviews) and [PATCH: Scheduled Interviews](#patch-scheduled-interviews). Deprecated V1. |
-| Jan 30, 2020 05:30:00PM | Added ability to update custom field values in a [PATCH: Job Openings](#patch-edit-openings) request |
-| Jan 30, 2020 05:30:00PM | Added ability to re-open a closed job opening in a [PATCH: Job Openings](#patch-edit-openings) request |
-| Jan 15, 2020 04:00:00PM | Added ability to update a rejection reason on a rejected application. [PATCH: Update Rejection Reason](#patch-update-rejection-reason) |
-| Dec 20, 2019 04:00:00PM | Added ability to assign custom field values in a [POST: Job Openings](#post-create-new-openings) request |
-| Nov 26, 2019 11:00:00 AM | Updated the error response text to be more descriptive when attempting to delete a required custom field |
-| Nov 26, 2019 11:00:00 AM | Added ability to update custom fields on an application's current offer via [PATCH: Update Current Offer](#patch-update-current-offer) |
-| Nov 12, 2019 10:00:00 AM | Added a v2 version of [PATCH: Edit User](#patch-edit-user-v2), [PATCH: Disable User](#patch-disable-user-v2), and [PATCH: Enable User](#patch-enable-user-v2)
-| Oct 7, 2019 03:00:00 PM | Added custom fields to openings on organizations with this option enabled. [GET: Openings](#get-list-job-openings)
-| Oct 1, 2019 11:00:00AM | Added ability to filter offers by start_date with starts_before and starts_after. [GET: Offers](#get-list-offers) |
-| Sep 18, 2019 01:00:00PM | Added ability to create prospect applications for existing candidates/prospects [POST: Add Application to Candidate/Prospect](#post-add-application-to-candidate-prospect) |
-| Aug 12, 2019 05:00:00PM | Prospect post data will return in Job Posts endpoints. |
-| Jul 31, 2019 01:00:00PM | Added ability to filter demographic data answers by created_at and updated_at dates [GET: Demographic Answers](#get-list-demographic-answers) |
-| Jul 17, 2019 01:00:00PM | Added ability to update the current offer on an application via [PATCH: Update Current Offer](#patch-update-current-offer) |
-| Jul 17, 2019 01:00:00PM | Added ability to post new attachments to applications via [POST: Add Attachment to Application](#post-add-attachment-to-application) |
-| Jun 26, 2019 12:00:00PM | Added ability to create new Offices linked by external parent ids to [POST: Add Office](#post-add-office).                        |
-| Jun 26, 2019 12:00:00PM | Added ability to create new Departments linked by external parent ids to [POST: Add Department](#post-add-department).            |
-| Jun 26, 2019 12:00:00PM | Added child and parent office external IDs to the [Office object](#the-office-object).                                            |
-| Jun 26, 2019 12:00:00PM | Added child and parent department external IDs to the [Department object](#the-department-object).                                |
-| Jun 12, 2019 02:00:00PM | Added `prospective_department` and `prospective_office` to the [Application object](#the-application-object).                     |
-| Jun 7, 2019 02:00:00PM  | Added default interviewers and estimated duration to the [Job Stage object](#the-job-stage-object)                                |
-| May 24, 2019 01:00:00PM | Added ability to set location on job posts via office and custom location id via [PATCH: Update Job Post](#patch-update-job-post) |
-| May 24, 2019 01:00:00PM | Added `schedulable` field to [Job Stages Endpoints](#job-stages)                                                                  |
-| May 24, 2019 01:00:00PM | Added `first_published_at` field to [Job Posts Endpoints](#job-posts)                                                             |
-| May 15, 2019 05:00:00PM | Added ability to change prospect pool and stage via [PATCH: Update Application](#patch-update-application)                        |
-| May 15, 2019 03:15:00PM | Added `opening` field to [Offers](#offers).                                                                                       |
-| May 7, 2019 03:30:00PM  | Added [Demographic Data endpoints](#demographic-data)                                                                             |
-| Apr 8 , 2019 04:00:00PM | Added `interviewer` to [Scorecard object](#the-scorecard-object)                                                                  |
-| Mar 18, 2019 03:30:00PM | Added ability to delete a Candidate Tag via [DELETE: Destroy a Candidate Tag](#delete-destroy-a-candidate-tag)                    |
-| Mar 6, 2019 02:15:00PM  | Added `linked_candidate_ids` to [Users Endpoints](#users)                                                                         |
-| Feb 28, 2019 02:34:00PM | Added `primary_email_address` to [Users Endpoints](#users)                                                                        |
-| Feb 28, 2019 12:30:00PM | Added `updated_at` to [Jobs Endpoints](#jobs)                                                                                     |
-| Feb 13, 2019 03:30:00PM | Added ability to create new candidate tags via [POST: Add New Candidate Tag](#post-add-new-candidate-tag)                         |
-| Feb 1, 2019 11:28:00AM  | Added partial response (HTTP Status code 202) to [POST: Create Job](#post-create-job)                                             |
-| Jan 8, 2019 12:00:00PM  | Added `can_email` flag to [Candidates Endpoints](#the-candidate-object)                                                           |
+| May 28, 2020 05:00:00PM       | Candidate photos have been removed from Greenhouse and will no longer be accepted as a field to be anonymized in [PUT Anonymize Candidates](#put-anonymize-candidate) |
+| May 5, 2020 12:00:00PM        | Added "interview_step" field to the scorecards response. This provides the "ID" of the existing "interview" field. The "name" sub-element of the "interview_step" element should match the current "interview" element. The "interview" field is maintained for backward compatibility.
+| Apr 22, 2020 09:00:00AM       | Added external_id as field to the [Custom Field Option object](#the-custom-field-options-object). |
+| Apr 13, 2020 09:00:00AM       | The V1 endpoints for [PATCH: Edit User], [PATCH: Disable User], and [PATCH: Enable User] have been deprecated. Users should move to the V2 endpoints as soon as convenient. This change was made to take advantage of additional ways to look up users in Greenhouse. |
+| Apr 12, 2020 09:00:00AM       | V1 of [PATCH: Update Job Post] has been deprecated. Updating a job post's status has been extracted to [PATCH: Update Job Post Status], while updating all other properties remains on [PATCH: Update Job Post]. The new endpoint more accurately reflects the permissions required by the On-Behalf-Of user to access and edit the Job Post's properties. |
+| Apr 5, 2020 09:00:00AM        | Added V2 of [POST: Scheduled Interviews](#post-scheduled-interviews) and [PATCH: Scheduled Interviews](#patch-scheduled-interviews). Deprecated V1. |
+| Jan 30, 2020 05:30:00PM       | Added ability to update custom field values in a [PATCH: Job Openings](#patch-edit-openings) request |
+| Jan 30, 2020 05:30:00PM       | Added ability to re-open a closed job opening in a [PATCH: Job Openings](#patch-edit-openings) request |
+| Jan 15, 2020 04:00:00PM       | Added ability to update a rejection reason on a rejected application. [PATCH: Update Rejection Reason](#patch-update-rejection-reason) |
+| Dec 20, 2019 04:00:00PM       | Added ability to assign custom field values in a [POST: Job Openings](#post-create-new-openings) request |
+| Nov 26, 2019 11:00:00 AM      | Updated the error response text to be more descriptive when attempting to delete a required custom field |
+| Nov 26, 2019 11:00:00 AM      | Added ability to update custom fields on an application's current offer via [PATCH: Update Current Offer](#patch-update-current-offer) |
+| Nov 12, 2019 10:00:00 AM      | Added a v2 version of [PATCH: Edit User](#patch-edit-user-v2), [PATCH: Disable User](#patch-disable-user-v2), and [PATCH: Enable User](#patch-enable-user-v2)
+| Oct 7, 2019 03:00:00 PM       | Added custom fields to openings on organizations with this option enabled. [GET: Openings](#get-list-job-openings)
+| Oct 1, 2019 11:00:00AM        | Added ability to filter offers by start_date with starts_before and starts_after. [GET: Offers](#get-list-offers) |
+| Sep 18, 2019 01:00:00PM       | Added ability to create prospect applications for existing candidates/prospects [POST: Add Application to Candidate/Prospect](#post-add-application-to-candidate-prospect) |
+| Aug 12, 2019 05:00:00PM       | Prospect post data will return in Job Posts endpoints. |
+| Jul 31, 2019 01:00:00PM       | Added ability to filter demographic data answers by created_at and updated_at dates [GET: Demographic Answers](#get-list-demographic-answers) |
+| Jul 17, 2019 01:00:00PM       | Added ability to update the current offer on an application via [PATCH: Update Current Offer](#patch-update-current-offer) |
+| Jul 17, 2019 01:00:00PM       | Added ability to post new attachments to applications via [POST: Add Attachment to Application](#post-add-attachment-to-application) |
+| Jun 26, 2019 12:00:00PM       | Added ability to create new Offices linked by external parent ids to [POST: Add Office](#post-add-office).                        |
+| Jun 26, 2019 12:00:00PM       | Added ability to create new Departments linked by external parent ids to [POST: Add Department](#post-add-department).            |
+| Jun 26, 2019 12:00:00PM       | Added child and parent office external IDs to the [Office object](#the-office-object).                                            |
+| Jun 26, 2019 12:00:00PM       | Added child and parent department external IDs to the [Department object](#the-department-object).                                |
+| Jun 12, 2019 02:00:00PM       | Added `prospective_department` and `prospective_office` to the [Application object](#the-application-object).                     |
+| Jun 7, 2019 02:00:00PM        | Added default interviewers and estimated duration to the [Job Stage object](#the-job-stage-object)                                |
+| May 24, 2019 01:00:00PM       | Added ability to set location on job posts via office and custom location id via [PATCH: Update Job Post](#patch-update-job-post) |
+| May 24, 2019 01:00:00PM       | Added `schedulable` field to [Job Stages Endpoints](#job-stages)                                                                  |
+| May 24, 2019 01:00:00PM       | Added `first_published_at` field to [Job Posts Endpoints](#job-posts)                                                             |
+| May 15, 2019 05:00:00PM       | Added ability to change prospect pool and stage via [PATCH: Update Application](#patch-update-application)                        |
+| May 15, 2019 03:15:00PM       | Added `opening` field to [Offers](#offers).                                                                                       |
+| May 7, 2019 03:30:00PM        | Added [Demographic Data endpoints](#demographic-data)                                                                             |
+| Apr 8 , 2019 04:00:00PM       | Added `interviewer` to [Scorecard object](#the-scorecard-object)                                                                  |
+| Mar 18, 2019 03:30:00PM       | Added ability to delete a Candidate Tag via [DELETE: Destroy a Candidate Tag](#delete-destroy-a-candidate-tag)                    |
+| Mar 6, 2019 02:15:00PM        | Added `linked_candidate_ids` to [Users Endpoints](#users)                                                                         |
+| Feb 28, 2019 02:34:00PM       | Added `primary_email_address` to [Users Endpoints](#users)                                                                        |
+| Feb 28, 2019 12:30:00PM       | Added `updated_at` to [Jobs Endpoints](#jobs)                                                                                     |
+| Feb 13, 2019 03:30:00PM       | Added ability to create new candidate tags via [POST: Add New Candidate Tag](#post-add-new-candidate-tag)                         |
+| Feb 1, 2019 11:28:00AM        | Added partial response (HTTP Status code 202) to [POST: Create Job](#post-create-job)                                             |
+| Jan 8, 2019 12:00:00PM        | Added `can_email` flag to [Candidates Endpoints](#the-candidate-object)                                                           |
