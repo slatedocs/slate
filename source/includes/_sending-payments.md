@@ -816,31 +816,39 @@ You can create new virtual card by following these steps:
 2. Choose “Production” environment
 3. Click “Virtual Card” under *Send Money* menu
 4. Click “Add New Card”
-
-![VCC Dashboard](images/virtualCard/vcc_emptystate.png)
-
 5. Choose “Card Type” either single use or multiple use and click “Next”
-
-![VCC Card Type](images/virtualCard/vcc_cardtype.png)
-
 6. Fill in Cardholder details and Card details
-![VCC Form](images/virtualCard/vcc_form1.png)
-![VCC Form](images/virtualCard/vcc_form2.png)
-
 7. Once submitted, Virtual Card will be in “waiting for approval” state
 8. After approval step, the card is ready to be used for transactions
-
-![VCC Detail](images/virtualCard/vcc_info.png)
-
+9. Once card is used for transaction, it will appears in “Virtual Card” page and sent through email to Cardholder
 
 **Notes:** OY! balance would be put on pending once card is created.
 
-9. Once card is used for transaction, it will appears in “Virtual Card” page and sent through email to Cardholder
+* Virtual Card Dashboard
+
+![VCC Dashboard](images/virtualCard/vcc_emptystate.png)
+
+* Virtual Card Type
+
+![VCC Card Type](images/virtualCard/vcc_cardtype.png)
+
+* Virtual Card Form
+
+![VCC Form](images/virtualCard/vcc_form1.png)
+
+![VCC Form](images/virtualCard/vcc_form2.png)
+
+* Virtual Card Information
+
+![VCC Detail](images/virtualCard/vcc_info.png)
+
+* Virtual Card
 
 ![VCC Transaction Detail](images/virtualCard/vcc_txndetail.png)
+
 ![VCC Transaction Email](images/virtualCard/vcc_txnemail.png)
 
-10. Card Status
+**Card Status**
 
 Status| Description
 ------ | -----------
@@ -852,7 +860,7 @@ Need top-up | New card has been created, but with 0 limit OR card limit is back 
 Expired | Card is expired or intentionally archived permanently.
 Rejected | Card is rejected by Approver.
 
-11. Transaction Status
+**Transaction Status** 
 
 Transaction Status | Description
 ------ | -----------
@@ -864,17 +872,17 @@ Failed | Transction was decline
 ### How to Set Approver
 
 1. During first time product activation, prompt to fill in Approver data will be triggered
+2. Fill in the approver details
+3. Tick T&C and confirm your Approver details
+4. Approver will receive confirmation email 
+
+* Add New Approver
 
 ![VCC Add Approver](images/virtualCard/vcc_addapprover.png)
 
-2. Fill in the approver details
+* Approver Form
+
 ![VCC Approver Form](images/virtualCard/vcc_approverform.png)
-
-3. Tick T&C and confirm your Approver details
-![VCC Confirmation](images/virtualCard/vcc_confirmation.png)
-
-4. Approver will receive confirmation email 
-![VCC Approval Email](images/virtualCard/vcc_appemail.png)
 
 **Notes**: Approver data cannot be added or edited through dashboard for security purposes. Please contact our business representative for helps
 
@@ -892,7 +900,7 @@ Email | Recipient bank name. You can choose using drop down
 
 ![VCC Card List](images/virtualCard/vcc_cardlist.png)
 
-3. Card actions
+**Card actions** 
 
 Card Actions | Description
 ------ | -----------
@@ -953,9 +961,15 @@ Steps to use card for online transaction:
 
 
 **Notes**
+
 * Transaction will be settled following bank’s instruction
+
 * Usage of card will directly reduce card limit and hold OY! balance
+
 * For refund, please kindly contact the merchant where you make the purchase at. OY! is not responsible to perform refund prior receiving the fund back from the merchant
+
     * Refund duration will dependent on the merchant and the bank
+
     * Once refund has been issued, the balance will be returned back to your OY! balance
+
 * It is user’s responsibility to block card usage whenever fraudulent transactions found. OY! is not responsible for the transaction.
