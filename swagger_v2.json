@@ -257,7 +257,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of live tickers for all products",
+            "description": "List of live tickers for all products, including IV for option strikes",
             "schema": {
               "allOf": [
                 {
@@ -298,7 +298,7 @@
         ],
         "responses": {
           "200": {
-            "description": "ticker data for requested product",
+            "description": "ticker data for requested product, including IV for option strikes",
             "schema": {
               "allOf": [
                 {
@@ -696,7 +696,7 @@
         }
       }
     },
-    "/orders/": {
+    "/orders/batch": {
       "post": {
         "tags": [
           "Orders"
