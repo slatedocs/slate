@@ -793,3 +793,169 @@ Detailed step-by-step instructions on setting up user management and the differe
 Multi-layer Approval will improve your control over your bulk disburse transaction especially for big amount of money. You can setup up to 3 layers of approver before the transaction instruction is executed. By assigning proper approver and amount limitation, you can avoid a huge trouble on your business operational caused by incorrect transfer amount.
 
 Default approval: Super Admin, Admin, and Approval.
+
+
+
+## Virtual Card
+OY! Virtual Card product provides the capability to create customized virtual cards and manage subscriptions without hassle. Virtual Card can be generated through the OY! dashboard, so no technical integration is required to use this product.
+
+
+**Key Features** 
+
+Condition | Description
+------ | -----------
+**Card creation** | OY! can use the funds directly from your OY! balance for virtual card needs. It is essential to top-up your OY! balance based on your card limit. Please contact our business representative (https://docs.oyindonesia.com/partner@oyindonesia.com) for further details about this feature.
+**Card control** | Create and control the card based on your requirements. You can set amount, validity period, renewal frequency and even transaction limitations directly through dashboard. Moreover, you can block and deactivate virtual card real-time! Everything on your fingertips.
+**Real-time transaction** | Transactions can be tracked easily through dashboard real-time. There is no need to wait until the end of month for full statement.
+
+
+### How to Use Virtual Card Feature via Dashboard
+You can create new virtual card by following these steps:
+
+1. Log on to your OY! dashboard
+2. Choose “Production” environment
+3. Click “Virtual Card” under *Send Money* menu
+4. Click “Add New Card”
+
+![VCC Dashboard](images/virtualCard/vcc_emptystate.png)
+
+5. Choose “Card Type” either single use or multiple use and click “Next”
+
+![VCC Card Type](images/virtualCard/vcc_cardtype.png)
+
+6. Fill in Cardholder details and Card details
+![VCC Form](images/virtualCard/vcc_form1.png)
+![VCC Form](images/virtualCard/vcc_form2.png)
+
+7. Once submitted, Virtual Card will be in “waiting for approval” state
+8. After approval step, the card is ready to be used for transactions
+
+![VCC Detail](images/virtualCard/vcc_info.png)
+
+
+**Notes:** OY! balance would be put on pending once card is created.
+
+9. Once card is used for transaction, it will appears in “Virtual Card” page and sent through email to Cardholder
+
+![VCC Transaction Detail](images/virtualCard/vcc_txndetail.png)
+![VCC Transaction Email](images/virtualCard/vcc_txnemail.png)
+
+10. Card Status
+
+Status| Description
+------ | -----------
+Pending Approval | Card has been requested but approval is not yet given. Request can only stay valid for 14 days.
+Active | Card is ready to be used for transaction.
+Active with Warning | Card is active with balance, but only <15% balance remaining.
+Inactive | Card has been deactivated, but still contain limit.
+Need top-up | New card has been created, but with 0 limit OR card limit is back to 0 and pass renewal time due to insufficient balance.
+Expired | Card is expired or intentionally archived permanently.
+Rejected | Card is rejected by Approver.
+
+11. Transaction Status
+
+Transaction Status | Description
+------ | -----------
+Successful | Card has been used for transaction successfully
+Failed | Transction was decline
+
+
+
+### How to Set Approver
+
+1. During first time product activation, prompt to fill in Approver data will be triggered
+
+![VCC Add Approver](images/virtualCard/vcc_addapprover.png)
+
+2. Fill in the approver details
+![VCC Approver Form](images/virtualCard/vcc_approverform.png)
+
+3. Tick T&C and confirm your Approver details
+![VCC Confirmation](images/virtualCard/vcc_confirmation.png)
+
+4. Approver will receive confirmation email 
+![VCC Approval Email](images/virtualCard/vcc_appemail.png)
+
+**Notes**: Approver data cannot be added or edited through dashboard for security purposes. Please contact our business representative for helps
+
+Parameter | Description
+------ | -----------
+Name | Unique ID of the vendor from your company. This is not mandatory
+Position | The company/vendor name. Make sure the vendor name matches the vendor NPWP (if any) to help your company tax record
+Phone Number | Vendor address to be record. This is not mandatory
+Email | Recipient bank name. You can choose using drop down
+
+
+### How to Manage Card
+1. Click “See All Virtual Cards”
+2. Click the card that needs to be managed
+
+![VCC Card List](images/virtualCard/vcc_cardlist.png)
+
+3. Card actions
+
+Card Actions | Description
+------ | -----------
+Resend Card Info | Card has been used for transaction successfully
+Edit Information | Transction was declined
+Block | To temporarily lock the card, limit remains in the card
+Archive |To permanently lock the card, limit will be 0
+Renew Limit | To renew card limit with amount that has been approved during request. Applicable for new card with 0 limit, or existing card with less than 100% limit
+Resend Approval Notification | To remind Approver to approve the card request
+Delete | Only applicable for "Waiting for Approval" card
+
+
+
+### How to Set Up Card Config
+1. Click “Virtual Card Settings”
+2. Select Department / Category / Approver
+3. You can choose to whether add new, edit existing or delete
+4. Click save changes
+
+* Department page prior to “Edit Department” button
+
+![VCC Department](images/virtualCard/vcc_dept.png)
+
+* Edit Department page
+
+![VCC Edit Department](images/virtualCard/vcc_editdept.png)
+
+* Category page
+
+![VCC Category](images/virtualCard/vcc_cat.png)
+
+* Approver Page
+
+![VCC Approver](images/virtualCard/vcc_approver.png)
+
+
+
+### How to Transact with Card
+
+Steps to use card for online transaction:
+
+1. Access your card information via email and enter OTP
+2. Once accessed, input all of you card information into merchant side under “Credit / Debit Card” Option
+    1. Input 16 digit number, expiry date (MM/YY) and CVV
+3. Submit the information and proceed with the transaction and transaction is successful
+
+**Failed Transaction Possible Reasons**
+
+1. Card utilized more than 
+    1. requested frequency (multiple use vs single use)
+    2. available limit
+2. Card is inactive
+3. Card is expired
+4. Invalid card number
+5. Invalid expiry date
+6. Invalid CVV
+7. Issuer network not supported
+
+
+**Notes**
+* Transaction will be settled following bank’s instruction
+* Usage of card will directly reduce card limit and hold OY! balance
+* For refund, please kindly contact the merchant where you make the purchase at. OY! is not responsible to perform refund prior receiving the fund back from the merchant
+    * Refund duration will dependent on the merchant and the bank
+    * Once refund has been issued, the balance will be returned back to your OY! balance
+* It is user’s responsibility to block card usage whenever fraudulent transactions found. OY! is not responsible for the transaction.
