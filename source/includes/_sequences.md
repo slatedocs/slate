@@ -136,7 +136,7 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "send_email_from_email_account_id": "email_account_id",
     "sequence_active_in_other_campaigns": false,
     "sequence_no_email": false,
-    "sequence_finished_in_other_campaigns": false,    
+    "sequence_finished_in_other_campaigns": false   
 }' "https://api.apollo.io/v1/emailer_campaigns/REPLACE_WITH_SEQUENCE_ID/add_contact_ids"
 ```
 
@@ -153,7 +153,7 @@ data = {
     "send_email_from_email_account_id": "email_account_id",
     "sequence_active_in_other_campaigns": False,
     "sequence_no_email": False,
-    "sequence_finished_in_other_campaigns": False,    
+    "sequence_finished_in_other_campaigns": False    
 }
 
 headers = {
