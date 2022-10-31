@@ -666,6 +666,60 @@ Lastly, all transactions can be monitored from the OY! dashboard which includes 
 
 For further details on the parameters definition and proper usage, please refer to our [API Documentation](https://api-docs.oyindonesia.com/#biller-api).
 
+## Feature: Resend Callback
+
+### Key Features
+
+Retry Callback allows you to resend a callback of your transaction to your system. Initially, OY! will send a callback to your system after your transaction status has been updated. If your system failed to receive the callback, this feature can help you to retry the callback process. The process can be done in two ways
+
+
+1. Automated retry callback
+If the callback is not successfully received on the first try, the system will automatically retry the callback delivery. If that callback is still not received by the client's system, the system will automatically retry until 5 occurrences. The interval of the sending process will be detailed in the Callback Interval section. If all automated Retry Callbacks have been sent but still returned failed, the system will send an email notification to the email address set in the configuration.
+
+2. Manual retry callback
+Besides the automated process, you can manually request a callback via the dashboard.
+
+### Registration and Set Up
+
+Follow the instruction below to activate retry callback
+
+1. Login to your account in OY! Dashboard
+2. Open “Settings” and choose “Developer Option”. Choose “Callback Configuration”
+3. Fill your callback URL in the related product that you want to activate. Make sure the format is right. You can click URL String Validation button to validate the URL format.
+4. If you want to activate automated retry callback, check the Enable Automatic Retry Callback and fill in the email. The email will be used to receive a notification if all the automatic callback attempts have been made but still fail
+5. Click "Save Changes". The configuration will not able to be saved if the callback URL or/and email format are not valid.
+
+
+![Resend Callback](images/api_disburse_retry_callback_developer_option.png)
+
+Don't forget to whitelist these IPs in order to be able to receive callback from OY: 54.151.191.85 and 54.179.86.72
+
+If you want to manually resend a callback, you can follow the instruction below
+
+1. Login to your account in OY! Dashboard
+2. Open the API Disbursement menu
+3. Click the "Resend Callback" button in the related transaction
+
+
+![Resend Callback](images/api_disburse_resend_callback.png)
+
+
+
+### Callback Interval
+1st retry: realtime (after the first failed log received)
+2nd retry: 1 min (after callback failed log for the 1st retry is received)
+3rd retry: 2 mins (after callback failed log for the 2nd retry is received)
+4th retry: 13 mins (after callback failed log for the 3rd retry is received)
+5th retry: 47 mins (after callback failed log for the 4th retry is received)
+
+If all automated Retry Callback (all the 5 attempts) has been sent but we still get a Failed response from your end, our system will send an automated email notification to the  email address that has been set in the configuration earlier
+
+
+### Idempotency Key
+To implement automated retry callback, you need to handle the idempotency logic in your system using the below key:
+
+API Disburse: trx_id
+
 ## Account Payable
 
 OY! Account Payable product provides the capability to record, create approval levels, and scheduled payment for invoice payables without hassle. Account Payable is made through the OY! dashboard, so no technical integration is required to use this product. 
