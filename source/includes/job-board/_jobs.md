@@ -211,6 +211,29 @@ content | If set to `true`, include the full post description, department, and o
       "requires_consent": true,
       "retention_period": 12345
     }
+  ],
+  "location_based_rules": [
+    {
+      "id": 12345,
+      "name": "New York City",
+      "hidden": false,
+      "remote": false,
+      "pay_inputs": [
+        {
+          "id": 67890,
+          "blurb": "If you live in NYC, your pay will fall into the indicated pay band.",
+          "title": "New York Pay",
+          "pay_input_ranges": [
+            {
+              "id": 13579,
+              "maximum": "130000.0",
+              "minimum": "110000.0",
+              "currency_type": "USD"
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
 ```
@@ -281,6 +304,7 @@ job_id | ID of the job to retrieve
 Parameter | Description
 --------- | -----------
 *questions | If set to `true`, include additional fields in the response:<br><br>- `questions`: An array of custom questions defined for this job post<br>- `location_questions`: An array of questions used to capture the applicant's location (included only if the job post has the location configured as "optional" or "required")<br>- `compliance`: An array of questions used by government contractors to capture applicant information to comply with EEOC regulations (included only if the job post has EEOC questions enabled)<br>- `demographic_questions`: An object containing demographic questions and related information (included only if your organization has Greenhouse Inclusion, and the job post has demographic questions enabled)
+*pay_transparency | If set to `true`, include an array of location based rules with pay transparency information defined for this job post.
 
 ### Questions / Location Questions / Compliance
 
