@@ -226,8 +226,8 @@ content | If set to `true`, include the full post description, department, and o
           "pay_input_ranges": [
             {
               "id": 13579,
-              "maximum": "130000.0",
-              "minimum": "110000.0",
+              "maximum": "130000.00",
+              "minimum": "110000.00",
               "currency_type": "USD"
             }
           ]
