@@ -663,7 +663,7 @@ Keys -
     <dd>This is a flag showing if the portfolio is in liquidation risk.</dd>
     <dd>
     <dl>
-    <dt>ideally when -</dt>
+    ideally when -
     <dd>
     <dl>
     <dt>blocked_margin < im_w_ucf + commissions</dt>
