@@ -663,7 +663,7 @@ Keys -
     <dt>index_symbol</dt>
     <dd>This is the coin on which portfolio margin is enabled.</dd>
     <dt>positions_upl</dt>
-    <dd>This is unrealised cashflows (UCF) of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices. Unrealised cashflow is positive for long options and negative for short options. More details in user guide.</dd>
+    <dd>This is unrealised cashflows (UCF) of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices. Unrealised cashflow is positive for long options and negative for short options. More details in [user guide](https://guides.delta.exchange/delta-exchange-user-guide/trading-guide/margin-explainer/portfolio-margin).</dd>
     <dt>im_w_ucf</dt>
     <dd>This is the initial margin (IM) requirement for the portfolio. IM is computed as max(risk_margin, margin_floor) - UCF.</dd>
     <dd>If UCF > max(risk_margin, margin_floor) then IM is negative. Negative margin requirement results in increase in your balance available for trading.</dd>
