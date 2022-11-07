@@ -463,7 +463,8 @@ Channel provides updates for margin blocked for different assets, these updates 
     "type": "margins",
     "balance": "1.0012",
     "order_margin": "0.121212",     // Margin blocked in open orders
-    "position_margin: "0.101212",   // Margin blocked in position
+    "position_margin": "0.101212",  // Margin blocked in position
+    "portfolio_margin": "2.333"     // Margin blocked for current portfolio
     "commission": "0.00012",        // commissions blocked in position and order
     "asset_id": 2                   // BTC
 }
@@ -663,7 +664,7 @@ Keys -
     <dd>This is a flag showing if the portfolio is in liquidation risk.</dd>
     <dd>
     <dl>
-    <dt>ideally when -</dt>
+    ideally when -
     <dd>
     <dl>
     <dt>blocked_margin < im_w_ucf + commissions</dt>
