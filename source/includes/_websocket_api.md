@@ -628,51 +628,59 @@ Channel provides updates for details of margin values for portfolio, these updat
 
 Keys - 
 
-- im_w_ucf -
-        This is the final initial margin requirement of the portfolio.
-          im_w_ucf = max(risk_margin, margin_floor) - ucf
-- im_wo_ucf -
-        This is the initial margin requirement of the portfolio without ucf
-          im_wo_ucf = max(risk_margin, margin_floor) - ucf
-- mm_w_ucf -
-        This is the final maintenance margin requirement of the portfolio.
-          mm_w_ucf = 80% * max(risk_margin, margin_floor) - ucf
-- mm_wo_ucf -
-        This is the maintenance margin requirement of the portfolio without ucf.
-          mm_wo_ucf = 80% * max(risk_margin, margin_floor)
-- commission -
-        This is the commission required for the portfolio. It is added on top of the initial margin requirement.
-- blocked_margin - 
-        This is the actual blocked margin that we were able to block from the wallet balance to fullfill the initial margin and commissions requirement
-- futures_margin_floor - 
-        This is the Margin Floor requirement contributed by futures
-- long_options_margin_floor -
-        This is the Margin Floor requirement contributed by long options position/orders
-- short_options_margin_floor - 
-        This is the Margin Floor requirement contributed by short options position/orders
-- margin_floor - 
-          margin_floor = long_options_margin_floor + short_options_margin_floor
-- risk_margin - 
-          This is the Risk Margin requirement calculated as per our stress scenarios
-- risk_matrix -
-          Matrix showing details for all the stress scenarios 
-- positions_upl - 
-          This is the UCF which summations of all positions marked at mark price. More details in user guide
-- liquidation_risk
-          This is a flag showing if the portfolio is in liquidation risk.
-            ideally when 
-              blocked_margin < im_w_ucf + commissions
-                In such situation the portfolio is not sufficiently margined
-                After some cusion we start sending liquidation_risk as true indicating a potential liquidation 
-                So while placing new orders this deficit also needs to be fulfilled along with any additional margin requirement for the order
-              blocked_margin < mm_w_ucf
-                This is our liquidation condition
-- under_liquidation
-          This is a flag showing if the portfolio is under liquidation.
-          During this process we follow all our liquidation steps which can be seen here
-- under_liquidation
-          This is the shortfall value in margin to not be under liquidation risk
-
+<dl>
+    <dt>im_w_ucf</dt>
+    <dd>This is the final initial margin requirement of the portfolio.</dd>
+    <dd>im_w_ucf = max(risk_margin, margin_floor) - ucf</dd>
+    <dt>im_wo_ucf</dt>
+    <dd>This is the initial margin requirement of the portfolio without UCF.</dd>
+    <dd>im_wo_ucf = max(risk_margin, margin_floor)</dd>
+    <dt>mm_w_ucf</dt>
+    <dd>This is the final maintenance margin requirement of the portfolio.</dd>
+    <dd>mm_w_ucf = 80% * max(risk_margin, margin_floor) - ucf</dd>
+    <dt>mm_wo_ucf</dt>
+    <dd>This is the maintenance margin requirement of the portfolio without ucf.</dd>
+    <dd>mm_wo_ucf = 80% * max(risk_margin, margin_floor)</dd>
+    <dt>commission</dt>
+    <dd>This is the commission required for the portfolio. It is added on top of the initial margin requirement.</dd>
+    <dt>blocked_margin</dt>
+    <dd>This is the actual blocked margin that we were able to block from the wallet balance to fullfill the initial margin and commissions requirement of the portfolio.</dd>
+    <dt>futures_margin_floor</dt>
+    <dd>This is the Margin Floor requirement contributed by futures position/orders.</dd>
+    <dt>long_options_margin_floor</dt>
+    <dd>This is the Margin Floor requirement contributed by long options position/orders.</dd>
+    <dt>short_options_margin_floor</dt>
+    <dd>This is the Margin Floor requirement contributed by short options position/orders.</dd>
+    <dt>margin_floor</dt>
+    <dd>margin_floor = long_options_margin_floor + short_options_margin_floor</dd>
+    <dt>risk_margin</dt>
+    <dd>This is the Risk Margin requirement calculated as per our stress scenarios.</dd>
+    <dt>risk_matrix</dt>
+    <dd>Matrix showing details for all the stress scenarios.</dd>
+    <dt>positions_upl</dt>
+    <dd>This is the UCF which is summations of all positions marked at mark price. More details in user guide.</dd>
+    <dt>liquidation_risk</dt>
+    <dd>This is a flag showing if the portfolio is in liquidation risk.</dd>
+    <dd>
+    <dl>
+    <dt>ideally when -</dt>
+    <dd>
+    <dl>
+    <dt>blocked_margin < im_w_ucf + commissions</dt>
+    <dd>In such situation the portfolio is not sufficiently margined. After some cusion we start sending liquidation_risk as true indicating a potential liquidation.</dd>
+    <dd>So while placing new orders this deficit also needs to be fulfilled along with any additional margin requirement for the order.</dd>
+    <dt>blocked_margin < mm_w_ucf</dt>
+    <dd>This is our liquidation condition</dd>
+    </dl>
+    </dd>
+    </dl>
+    </dd>
+    <dt>under_liquidation</dt>
+    <dd>This is a flag showing if the portfolio is under liquidation.</dd>
+    <dd>During this process we follow all our liquidation steps which can be seen in user docs.</dd>
+    <dt>margin_shortfall</dt>
+    <dd>This is the shortfall value in margin to be topped up to not be under liquidation risk.</dd>
+</dl>
 
 ```
 // portfolio margin update
@@ -690,15 +698,7 @@ Keys -
     "im_w_ucf": "100",
     "positions_upl": "0",
     "risk_margin": "100",
-    "risk_matrix": {
-        "down":[
-            {"is_worst":false,"pnl":"230.03686162","price_shock":"10"}
-        ],
-        "unchanged":[
-            {"is_worst":false,"pnl":"230.03686162","price_shock":"10"}
-        ],
-        "up":[]
-    },
+    "risk_matrix":{"down":[{"is_worst":false,"pnl":"230.03686162","price_shock":"10"}],"unchanged":[{"is_worst":false,"pnl":"230.03686162","price_shock":"10"}],"up":[]},
     "futures_margin_floor": "20",
     "short_options_margin_floor": "20",
     "long_options_margin_floor": "20",
