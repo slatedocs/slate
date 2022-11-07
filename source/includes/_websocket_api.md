@@ -624,63 +624,9 @@ Auto Deleverage Liquidations of a position can be tracked by reason: "adl" in th
 ```
 
 ## PortfolioMargins
-Channel provides updates for details of margin values for portfolio, these updates are provided every 2 seconds.
+Channel provides updates for portfolio margin values of the selected sub-account. These updates are sent every 2 seconds. In case portfolio margin is not enabled on the selected sub-account, no updates will be sent on this channel.
 
-Keys - 
-
-<dl>
-    <dt>im_w_ucf</dt>
-    <dd>This is the final initial margin requirement of the portfolio.</dd>
-    <dd>im_w_ucf = max(risk_margin, margin_floor) - ucf</dd>
-    <dt>im_wo_ucf</dt>
-    <dd>This is the initial margin requirement of the portfolio without UCF.</dd>
-    <dd>im_wo_ucf = max(risk_margin, margin_floor)</dd>
-    <dt>mm_w_ucf</dt>
-    <dd>This is the final maintenance margin requirement of the portfolio.</dd>
-    <dd>mm_w_ucf = 80% * max(risk_margin, margin_floor) - ucf</dd>
-    <dt>mm_wo_ucf</dt>
-    <dd>This is the maintenance margin requirement of the portfolio without ucf.</dd>
-    <dd>mm_wo_ucf = 80% * max(risk_margin, margin_floor)</dd>
-    <dt>commission</dt>
-    <dd>This is the commission required for the portfolio. It is added on top of the initial margin requirement.</dd>
-    <dt>blocked_margin</dt>
-    <dd>This is the actual blocked margin that we were able to block from the wallet balance to fullfill the initial margin and commissions requirement of the portfolio.</dd>
-    <dt>futures_margin_floor</dt>
-    <dd>This is the Margin Floor requirement contributed by futures position/orders.</dd>
-    <dt>long_options_margin_floor</dt>
-    <dd>This is the Margin Floor requirement contributed by long options position/orders.</dd>
-    <dt>short_options_margin_floor</dt>
-    <dd>This is the Margin Floor requirement contributed by short options position/orders.</dd>
-    <dt>margin_floor</dt>
-    <dd>margin_floor = long_options_margin_floor + short_options_margin_floor</dd>
-    <dt>risk_margin</dt>
-    <dd>This is the Risk Margin requirement calculated as per our stress scenarios.</dd>
-    <dt>risk_matrix</dt>
-    <dd>Matrix showing details for all the stress scenarios.</dd>
-    <dt>positions_upl</dt>
-    <dd>This is the UCF which is summations of all positions marked at mark price. More details in user guide.</dd>
-    <dt>liquidation_risk</dt>
-    <dd>This is a flag showing if the portfolio is in liquidation risk.</dd>
-    <dd>
-    <dl>
-    ideally when -
-    <dd>
-    <dl>
-    <dt>blocked_margin < im_w_ucf + commissions</dt>
-    <dd>In such situation the portfolio is not sufficiently margined. After some cusion we start sending liquidation_risk as true indicating a potential liquidation.</dd>
-    <dd>So while placing new orders this deficit also needs to be fulfilled along with any additional margin requirement for the order.</dd>
-    <dt>blocked_margin < mm_w_ucf</dt>
-    <dd>This is our liquidation condition</dd>
-    </dl>
-    </dd>
-    </dl>
-    </dd>
-    <dt>under_liquidation</dt>
-    <dd>This is a flag showing if the portfolio is under liquidation.</dd>
-    <dd>During this process we follow all our liquidation steps which can be seen in user docs.</dd>
-    <dt>margin_shortfall</dt>
-    <dd>This is the shortfall value in margin to be topped up to not be under liquidation risk.</dd>
-</dl>
+UCF: is unrealised cashflows of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices.
 
 ```
 // portfolio margin update
@@ -710,6 +656,48 @@ Keys -
 }
 
 ```
+
+Keys - 
+
+<dl>
+    <dt>index_symbol</dt>
+    <dd>This is the coin on which portfolio margin is enabled.</dd>
+    <dt>positions_upl</dt>
+    <dd>This is unrealised cashflows (UCF) of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices. More details in user guide.</dd>
+    <dt>im_w_ucf</dt>
+    <dd>This is the initial margin (IM) requirement for the portfolio. IM is computed as max(risk_margin, margin_floor) - UCF.</dd>
+    <dd>If the Wallet Balance (ex spot orders) is less than IM then you would only be able to place orders that reduce the risk of the portfolio.</dd>
+    <dt>im_wo_ucf</dt>
+    <dd>This is IM without UCF.</dd>
+    <dt>mm_w_ucf</dt>
+    <dd>This is the maintenance margin (MM) requirement for the portfolio. MM is computed as 80% * max(risk_margin, margin_floor) - UCF.</dd>
+    <dd>If the Wallet Balance (ex spot orders) is less than MM then the portfolio will go into liquidation.</dd>
+    <dd></dd>
+    <dt>mm_wo_ucf</dt>
+    <dd>This is MM without UCF.</dd>
+    <dt>commission</dt>
+    <dd>This is the trading fees blocked for the open orders/positions (for closing the positions) in the portfolio.</dd>
+    <dd>This is in addition to the IM requirement.</dd>
+    <dt>blocked_margin</dt>
+    <dd>The margin actually blocked for your portfolio. If your Wallet Balance (ex spot orders) is greater than IM + commission then blocked_margin = IM + commissions. Otherwise blocked_margin is equal to the maximum amout we are able to block to meet the portfolio margin requirement.</dd>
+    <dd>If blocked_margin < MM then the portfolio goes into liquidation.</dd>
+    <dt>liquidation_risk</dt>
+    <dd>This flag indicates if the portfolio is at liquidation risk.</dd>
+    <dd>This flag is set to TRUE when blocked_margin < im_w_ucf + commissions.</dd>
+    <dt>under_liquidation</dt>
+    <dd>This flag is set to TRUE when the portfolio is under liquidation.</dd>
+    <dt>margin_shortfall</dt>
+    <dd>This is the minimum topup amount needed to bring the portfolio out of liquidation risk state.</dd>
+    <dt>risk_margin</dt>
+    <dd>The maximum likely loss of the portfolio under the various simulated stress scenarios.</dd>
+    <dt>risk_matrix</dt>
+    <dd>Matrix showing the profit/loss of the portfolio under various simulated stress scenarios.</dd>
+    <dd> Profit/loss for each position and open order is computed with reference to the prevailing mark prices. Positive numbers indicate profit and negative numbers indicate loss.</dd>
+    <dt>margin_floor</dt>
+    <dd>Margin Floor is the minimum risk_margin required for a portfolio. </dd>
+    <dd>It is comprised of sum of futures_margin_floor, long_options_margin_floor, short_options_margin_floor</dd>
+</dl>
+
 <!-- 
 ## Trading Notitifications
 
