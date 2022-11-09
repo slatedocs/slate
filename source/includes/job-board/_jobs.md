@@ -290,7 +290,7 @@ job_id | ID of the job to retrieve
 Parameter | Description
 --------- | -----------
 *questions | If set to `true`, include additional fields in the response:<br><br>- `questions`: An array of custom questions defined for this job post<br>- `location_questions`: An array of questions used to capture the applicant's location (included only if the job post has the location configured as "optional" or "required")<br>- `compliance`: An array of questions used by government contractors to capture applicant information to comply with EEOC regulations (included only if the job post has EEOC questions enabled)<br>- `demographic_questions`: An object containing demographic questions and related information (included only if your organization has Greenhouse Inclusion, and the job post has demographic questions enabled)
-*pay_transparency | If set to `true`, include an array of location based rules with pay transparency information defined for this job post.
+*pay_transparency | If set to `true`, include an array of `pay_input_ranges` with the pay range information defined for this job post.
 
 ### Questions / Location Questions / Compliance
 
