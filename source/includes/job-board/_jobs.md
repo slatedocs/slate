@@ -212,27 +212,13 @@ content | If set to `true`, include the full post description, department, and o
       "retention_period": 12345
     }
   ],
-  "location_based_rules": [
+  "pay_input_ranges": [
     {
-      "id": 12345,
-      "name": "New York City",
-      "hidden": false,
-      "remote": false,
-      "pay_inputs": [
-        {
-          "id": 67890,
-          "blurb": "If you live in NYC, your pay will fall into the indicated pay band.",
-          "title": "New York Pay",
-          "pay_input_ranges": [
-            {
-              "id": 13579,
-              "maximum": "130000.00",
-              "minimum": "110000.00",
-              "currency_type": "USD"
-            }
-          ]
-        }
-      ]
+      "min_cents":5000000,
+      "max_cents":7500000,
+      "currency_type":"USD",
+      "title":"NYC Salary Range",
+      "blurb":"In order to provide transparency..."
     }
   ]
 }
