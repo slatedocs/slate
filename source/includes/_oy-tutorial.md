@@ -309,7 +309,7 @@ Preview for reusable payment link
 
 Xero is an accounting platform that is mainly used by companies. We have integrated our system to Xero system in order to help you optimize your workflow. By connecting your OY! account to your Xero account, you do not have to login to your Xero account. Means that you do not have to manually record your transaction that happened in OY! to Xero. You will get seamless experience of recording your transaction.
 
-### How it works?
+### How does it works?
 
 Once you have connected your Xero account in OY!, any transaction that happened in OY! will be automatically recorded to your Xero tenant account. Upon successful connection, we will trigger creation of new Bank Account, which is OY! Balance Bank Account. Any transaction that happened in OY! will be recorded in that bank account, to SPEND or RECEIVE money transaction. Then, you will be required to map your Xero’s Chart of Account. Mapping your Chart of Accounts will help us to put your transaction into a correct Account.
 
@@ -360,4 +360,29 @@ Preview for Mapping in Create Campaign Page
 1. To disconnect your Xero account from OY!, open the Integration menu on the sidebar. Then select “Disconnect”.
 2. Then, you will be disconnected from Xero. Any transaction that you execute via OY! will not be recorded into Xero.
 
+## Accurate Integration
+Accurate is a local accounting platform that is mainly used by companies in Indonesia. We have integrated our system to Accurate system in order to help you optimize your workflow. By connecting your OY! account to your Accurate account, you do not have to log in to your Accurate account. This means that you do not have to manually record your transaction that happened in OY! to Accurate. You will get a seamless experience of recording your transaction.
 
+### How does it works?
+Once you have connected your Accurate account in OY!, any transaction that happened in OY! will be automatically recorded to your Accurate account. Upon successful connection, we will trigger the creation of a new Bank Account, which is OY! Balance Bank Account. Transactions that happened in OY! will be recorded in that bank account, to PEMASUKAN or PENGELUARAN module. Then, you will be required to map your Accurate’s Chart of Account (in Accurate, it is Akun Perkiraan). Mapping your Chart of Accounts will help us to put your transaction into the correct Account.
+
+### Connect your Accurate
+1. Login to your OY! dashboard. In the sidebar, select the Integration menu.
+2. You will see Accurate menu. Click “Connect” to connect your Accurate account to OY!. You will be redirected to Accurate’s login page. 
+3. Once you have successfully logged in to Accurate, you will be required to select the database that you want to connect with your OY! account.
+4. If the connection process success, a notification will appear.
+5. Upon success connecting to Accurate, we will create a new Bank Account into your Accurate account, named “OY! balance” in which any transaction that happened in OY! will be recorded there.
+
+### Map your Chart of Account (Akun Perkiraan)
+1. Once you have successfully connected to Accurate, you will be directed to a page to map your Chart of Account (Akun Perkiraan).
+2. Then, map each product to the corresponding Account. Any transaction using each product will be put into the Chart of Accounts you defined on this page. Note: For Bulk Disbursement, you also can define on the create campaign page. 
+3. You can change the CoA mapping anytime as needed, just go to Integration >> Accurate >> Configuration.
+
+### Record Transaction to Accurate
+1. Now, your OY! account has been connected to your Accurate account and each product has been mapped to its corresponding Chart of Account.
+2. Any successful transaction that happened in OY! will be recorded to Accurate with the corresponding Account you defined in the Mapping Account menu.
+3. Transactions in OY! will be recorded in Pengeluaran or Pemasukan module, under OY! Balance bank account.
+
+### Disconnected your Accurate 
+1. To disconnect your Accurate account from OY!, open the Integration menu on the sidebar. Then select “Disconnect”.
+2. Then, you will be disconnected from Accurate. Any transaction that you execute via OY! will not be recorded in Accurate
