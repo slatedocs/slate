@@ -326,7 +326,7 @@ List all of an organization's job posts.
 | updated_after | Return only job posts that were updated at or after this timestamp. Timestamp must be in in [ISO-8601] (#general-considerations) format.
 | live | If `true`, return only live job posts.
 | active | If `true`, only return active job posts.  If `false`, only return deleted job posts.  When omitted, return both active and deleted job posts.
-| full_content | If `true`, returns the board introduction, description, and board conclusion as one `content` or `internal_content` element.  When omitted, only returns the post's editable description.
+| full_content | If `true`, returns the board introduction, description, pay transparency ranges, and board conclusion as one `content` or `internal_content` element.  When omitted, only returns the post's editable description.
 
 <br>
 [See noteworthy response attributes.](#the-job-post-object)
@@ -491,7 +491,7 @@ Get a single job post.
 
 | Parameter | Description |
 |-----------|-------------|
-| full_content | If `true`, returns the board introduction, description, and board conclusion as one `content` or `internal_content` element.  When omitted, only returns the post's editable description.
+| full_content | If `true`, returns the board introduction, description, pay transparency ranges, and board conclusion as one `content` or `internal_content` element.  When omitted, only returns the post's editable description.
 
 <br>
 [See noteworthy response attributes.](#the-job-post-object)
@@ -704,7 +704,7 @@ id | The ID of the job whose job posts you want to retrieve
 | Parameter | Description |
 |-----------|-------------|
 | active | If `true`, only return active job posts.  If `false`, only return deleted job posts.  When omitted, return both active and deleted job posts.
-| full_content | If `true`, returns the board introduction, description, and board conclusion as one `content` or `internal_content` element.  When omitted, only returns the post's editable description.
+| full_content | If `true`, returns the board introduction, description, pay transparency ranges, and board conclusion as one `content` or `internal_content` element.  When omitted, only returns the post's editable description.
 
 
 
@@ -882,7 +882,7 @@ Parameter | Description
 --------- | -----------
 | content | If present, will return the text of the job post as posted to the external job board.
 | questions | If present, will return an array of questions associated with this job post.
-| full_content | If `true`, returns the board introduction, description, and board conclusion as one `content` or `internal_content` element.  When omitted, only return the post's editable description.
+| full_content | If `true`, returns the board introduction, description, pay transparency ranges, and board conclusion as one `content` or `internal_content` element.  When omitted, only return the post's editable description.
 
 
 <br>
