@@ -33,6 +33,9 @@ html, body {
   background-color: $main-bg;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
+  direction: rtl;
+  text-align: right;
+  font-family: 'IRANSans';
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -274,6 +277,8 @@ html, body {
     right: 0;
     top: 0;
     bottom: 0;
+    direction: ltr;
+    text-align: left;
   }
 
   .lang-selector {
@@ -338,6 +343,8 @@ html, body {
     box-sizing: border-box;
     display: block;
     text-shadow: $main-embossed-text-shadow;
+
+    font-family: 'IRANSans';
 
     @extend %left-col;
   }
@@ -444,7 +451,7 @@ html, body {
   }
 
   p, li, dt, dd {
-    line-height: 1.6;
+    line-height: 2;
     margin-top: 0;
   }
 
@@ -529,6 +536,9 @@ html, body {
 
     float:right;
     clear:right;
+    
+    direction: ltr;
+    text-align: left;
 
     box-sizing: border-box;
     text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
@@ -549,6 +559,8 @@ html, body {
   }
 
   blockquote {
+    direction: rtl;
+    text-align: right;
     &>p {
       background-color: $code-annotation-bg;
       border-radius: 5px;
