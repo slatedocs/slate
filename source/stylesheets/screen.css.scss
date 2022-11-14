@@ -437,7 +437,8 @@ body {
       vertical-align: top;
       line-height: 1.6;
       code {
-        white-space: nowrap;
+        white-space: normal;
+        word-wrap: break-word;
       }
     }
 
@@ -628,7 +629,7 @@ body {
   }
 
   .toc-wrapper .lang-selector {
-    display: block;
+    display: none;
   }
 
   .page-wrapper .lang-selector {

@@ -30,7 +30,7 @@
     },
     {
       "name": "Positions",
-      "description": "Get Open positions, Change Position Margin, Close Position"
+      "description": "Get Open positions, Change Position Margin, Close Position, Close All Position"
     },
     {
       "name": "TradeHistory",
@@ -51,6 +51,10 @@
     {
       "name": "OHLC Candles",
       "description": "Get price data"
+    },
+    {
+      "name": "Stats",
+      "description": "Get Volume Stats"
     }
   ],
   "schemes": [
@@ -142,13 +146,13 @@
           {
             "in": "query",
             "name": "contract_types",
-            "description": "Comma separated list of contract types",
+            "description": "Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot",
             "type": "string"
           },
           {
             "in": "query",
             "name": "states",
-            "description": "Comma separated list of states",
+            "description": "Comma separated list of states e.g. upcoming,live,expired,settled to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired ",
             "type": "string"
           },
           {
@@ -242,9 +246,18 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "contract_types",
+            "in": "query",
+            "description": "Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "List of live tickers for all products",
+            "description": "List of live tickers for all products, including IV for option strikes",
             "schema": {
               "allOf": [
                 {
@@ -285,7 +298,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of live tickers for all products",
+            "description": "ticker data for requested product, including IV for option strikes",
             "schema": {
               "allOf": [
                 {
@@ -584,6 +597,53 @@
                   }
                 }
               ]
+            }
+          }
+        }
+      }
+    },
+    "/orders/bracket": {
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Add/Update Bracket order",
+        "operationId": "bracketOrder",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order",
+            "description": "Bracket Order which needs to be updated ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BracketOrderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns back success response",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if orders could not be updated",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         }
@@ -1359,6 +1419,65 @@
         }
       }
     },
+    "/positions/close_all": {
+      "post": {
+        "tags": [
+          "Positions"
+        ],
+        "operationId": "closeAllPosition",
+        "summary": "Close all positions ",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "close_all",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "close_all_portfolio",
+                "close_all_isolated",
+                "user_id"
+              ],
+              "properties": {
+                "close_all_portfolio": {
+                  "type": "boolean"
+                },
+                "close_all_isolated": {
+                  "type": "boolean"
+                },
+                "user_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns back success response",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if not able to close all positions",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/l2orderbook/{symbol}": {
       "get": {
         "tags": [
@@ -1634,11 +1753,57 @@
         }
       }
     },
+    "/products/?states=expired": {
+      "get": {
+        "tags": [
+          "Settlement Prices"
+        ],
+        "summary": "Get product settlement prices",
+        "operationId": "getProduct",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "states",
+            "description": "Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired ",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "size of a single page for paginated request, default: 100",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Product"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
     "/history/candles": {
       "get": {
         "summary": "GET ohlc candles",
         "tags": [
-          "OHLC Candles"
+          "Historical data/ OHLC Candles"
         ],
         "operationId": "getCandles",
         "deprecated": false,
@@ -1660,7 +1825,7 @@
             "in": "query",
             "name": "symbol",
             "type": "string",
-            "description": "product symbol needs to pass to get data, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}",
+            "description": "product symbol needs to pass to get data, to get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}",
             "required": true
           },
           {
@@ -1704,7 +1869,7 @@
       "get": {
         "summary": "GET product history sparkline",
         "tags": [
-          "OHLC Candles"
+          "Historical data/ OHLC Candles"
         ],
         "operationId": "getSparklines",
         "deprecated": false,
@@ -1733,6 +1898,38 @@
                   "properties": {
                     "result": {
                       "$ref": "#/definitions/SparklineData"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/stats": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get volume stats",
+        "operationId": "getStat",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "sum of turnover in the last 7 and 30 days along with  Total Volume in the last 24 hours (in USD)",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Stats"
                     }
                   }
                 }
@@ -2142,11 +2339,26 @@
         "stop_price": {
           "type": "string"
         },
+        "trail_amount": {
+          "type": "string"
+        },
         "stop_trigger_method": {
           "type": "string",
           "enum": [
             "mark_price", "last_traded_price", "spot_price"
           ]
+        },
+        "bracket_stop_loss_limit_price": {
+          "type": "string"
+        },
+        "bracket_stop_loss_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_limit_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_price": {
+          "type": "string"
         },
         "time_in_force": {
           "type": "string",
@@ -2164,6 +2376,13 @@
           ]
         },
         "reduce_only": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "close_on_trigger": {
           "type": "string",
           "enum": [
             "true",
@@ -2204,6 +2423,35 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/EditOrderRequest"
+      }
+    },
+    "BracketOrderRequest": {
+      "type": "object",
+      "description": "bracket order object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "required": true
+        },
+        "product_id": {
+          "type": "integer",
+          "required": true
+        },
+        "bracket_stop_loss_limit_price": {
+          "type": "string"
+        },
+        "bracket_stop_loss_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_limit_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_price": {
+          "type": "string"
+        },
+        "bracket_trail_amount": {
+          "type": "string"
+        }
       }
     },
     "DeleteOrderRequest": {
@@ -2381,43 +2629,64 @@
           "items": {
             "type": "object",
             "properties": {
+              "depth": {
+                "type": "string",
+                "description": "sum of size till that price level"
+              },
               "price": {
                 "type": "string"
               },
               "size": {
-                "type": "integer"
+                "type": "integer",
+                "description": "for derivatives -> number of contracts, for spot -> amount in underlying"
               }
+
             }
           }
+        },
+        "last_updated_at":{
+          "type": "integer"
         },
         "sell": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
+              "depth": {
+                "type": "string",
+                "description": "sum of size till that price level"
+              },
               "price": {
                 "type": "string"
               },
               "size": {
-                "type": "integer"
+                "type": "integer",
+                "description": "for derivatives -> number of contracts, for spot -> amount in underlying"
               }
             }
           }
+        },
+        "symbol": {
+          "type": "string"
         }
       },
       "example": {
         "buy": [
           {
+          "depth": "983",  
           "price": "9187.5",
           "size": 205640
           }
         ],
+        "last_updated_at":1654589595784000,
         "sell": [
           {
+          "depth": "1185",  
           "price": "9188.0",
           "size": 113752
           }
         ]
+        ,"symbol":"BTCUSDT"
       }
     },
     "Trades": {
@@ -2548,20 +2817,71 @@
         "$ref": "#/definitions/Transaction"
       }
     },
+    "greeks": {
+      "type": "object",
+      "properties": {
+        "delta": {
+          "type": "string"
+        },
+        "gamma": {
+          "type": "string"
+        },
+        "rho": {
+          "type": "string"
+        },
+        "theta": {
+          "type": "string"
+        },
+        "vega": {
+          "type": "string"
+        }
+      }
+    },
+    "price_band": {
+      "type": "object",
+      "properties": {
+        "lower_limit": {
+          "type": "string"
+        },
+        "upper_limit": {
+          "type": "string"
+        }
+      }
+    },
+    "quotes": {
+      "type": "object",
+      "properties": {
+        "ask_iv": {
+          "type": "string"
+        },
+        "ask_size": {
+          "type": "string"
+        },
+        "best_ask": {
+          "type": "string"
+        },
+        "best_bid": {
+          "type": "string"
+        },
+        "bid_iv": {
+          "type": "string"
+        },
+        "bid_size": {
+          "type": "string"
+        }
+      }
+    },
     "Ticker": {
       "type": "object",
       "properties": {
-        "product_id": {
+        "close": {
           "type": "integer"
         },
-        "symbol": {
+        "contract_type": {
           "type": "string"
         },
-        "timestamp": {
-          "type": "integer"
-        },
-        "open": {
-          "type": "number"
+        "greeks": {
+          "$ref": "#/definitions/greeks"
         },
         "high": {
           "type": "number"
@@ -2569,17 +2889,50 @@
         "low": {
           "type": "number"
         },
-        "close": {
-          "type": "number"
-        },
-        "volume": {
-          "type": "integer"
-        },
         "mark_price": {
           "type": "string"
         },
+        "mark_vol": {
+          "type": "string"
+        },
+        "oi": {
+          "type": "string"
+        },
+        "oi_value": {
+          "type": "string"
+        },
+        "oi_value_symbol": {
+          "type": "string"
+        },
+        "oi_value_usd": {
+          "type": "string"
+        },
+        "open": {
+          "type": "number"
+        },
+        "price_band": {
+          "$ref": "#/definitions/price_band"
+        },
+        "product_id": {
+          "type": "number"
+        },
+        "quotes": {
+          "$ref": "#/definitions/quotes"
+        },
+        "size": {
+          "type": "number"
+        },
         "spot_price": {
           "type": "string"
+        },
+        "strike_price": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "number"
         },
         "turnover": {
           "type": "number"
@@ -2590,8 +2943,8 @@
         "turnover_usd": {
           "type": "number"
         },
-        "contract_type": {
-          "type": "string"
+        "volume": {
+          "type": "integer"
         }
       }
     },
@@ -2653,6 +3006,23 @@
         "description": "array of timestamp and closing value"
       },
       "example": {"MARK:BTCUSD_31Oct": [[1594214051,0.00003826],[1594214051,0.00003826]],"SPOT:BTCUSD_31Oct": [[1594215270,0.00003826]]}
+    },
+    "Stats":{
+      "type": "object",
+      "properties": {
+        "last_30_days_volume": {
+          "type": "integer",
+          "description": "sum of turnover usd in the last 30 days"
+        },
+        "last_7_days_volume": {
+          "type": "integer",
+          "description": "sum of turnover usd in the last 7 days"
+        },
+        "total_volume": {
+          "type": "integer",
+          "description": "sum of turnover usd in the last 24 hours"
+        }
+      }
     }
   }
 }

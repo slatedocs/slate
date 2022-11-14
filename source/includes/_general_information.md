@@ -78,4 +78,4 @@ https://api.delta.exchange/v2/products?page_size=30
 https://api.delta.exchange/v2/products?page_size=30&after=after_cursor_from_last_request
 
 ## Data Centers 
-Delta Exchange data centers are in **AWS Ireland**
+Delta Exchange data centers are in **AWS Tokyo**

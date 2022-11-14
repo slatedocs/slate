@@ -11,11 +11,12 @@ Access url
 - Production - wss://socket.delta.exchange
 - Testnet - wss://testnet-socket.delta.exchange
 
+ You will be disconnected, if there is no activity within 60 after making connection.
 # Subscribing to Channels
 
 ## Subscribe
 
-To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for. This message is mandatory — you will be disconnected if no subscribe has been received within 60 seconds.
+To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for.
 
 To specify contracts within each channel, just pass a list of symbols inside the channel payload.
 
@@ -462,7 +463,8 @@ Channel provides updates for margin blocked for different assets, these updates 
     "type": "margins",
     "balance": "1.0012",
     "order_margin": "0.121212",     // Margin blocked in open orders
-    "position_margin: "0.101212",   // Margin blocked in position
+    "position_margin": "0.101212",  // Margin blocked in position
+    "portfolio_margin": "2.333"     // Margin blocked for current portfolio
     "commission": "0.00012",        // commissions blocked in position and order
     "asset_id": 2                   // BTC
 }
@@ -621,6 +623,85 @@ Auto Deleverage Liquidations of a position can be tracked by reason: "adl" in th
 }
     
 ```
+
+## PortfolioMargins
+Channel provides updates for portfolio margin values of the selected sub-account. These updates are sent every 2 seconds. In case portfolio margin is not enabled on the selected sub-account, no updates will be sent on this channel.
+
+For detailed description of portfolio magrgin please see [user guide](https://guides.delta.exchange/delta-exchange-user-guide/trading-guide/margin-explainer/portfolio-margin)
+
+UCF: is unrealised cashflows of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices.
+
+```
+// portfolio margin update
+
+{
+    "type": "portfolio_margins",
+    "user_id": 1,
+    "asset_id": 2,                   // BTC
+    "index_symbol": ".DEXBTUSDT",
+    liquidation_risk: false,
+    "blocked_margin": "100",
+    "mm_wo_ucf": "80",
+    "mm_w_ucf": "80",
+    "im_wo_ucf": "100",
+    "im_w_ucf": "100",
+    "positions_upl": "0",
+    "risk_margin": "100",
+    "risk_matrix":{"down":[{"is_worst":false,"pnl":"230.03686162","price_shock":"10"}],"unchanged":[{"is_worst":false,"pnl":"230.03686162","price_shock":"10"}],"up":[]},
+    "futures_margin_floor": "20",
+    "short_options_margin_floor": "20",
+    "long_options_margin_floor": "20",
+    "under_liquidation": false,
+    "commission": "3.444",
+    "margin_floor": "60",
+    "timestamp": 1544091555086559,
+    "margin_shortfall": "4.5"             // key sent when liquidation_risk is true 
+}
+
+```
+
+Keys - 
+
+<dl>
+    <dt>index_symbol</dt>
+    <dd>This is the coin on which portfolio margin is enabled.</dd>
+    <dt>positions_upl</dt>
+    <dd>This is unrealised cashflows (UCF) of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices. Unrealised cashflow is positive for long options and negative for short options.</dd>
+    <dt>im_w_ucf</dt>
+    <dd>This is the initial margin (IM) requirement for the portfolio. IM is computed as max(risk_margin, margin_floor) - UCF.</dd>
+    <dd>If UCF > max(risk_margin, margin_floor) then IM is negative. Negative margin requirement results in increase in your balance available for trading.</dd>
+    <dd>If the Wallet Balance (ex spot orders) is less than IM then you would only be able to place orders that reduce the risk of the portfolio.</dd>
+    <dt>im_wo_ucf</dt>
+    <dd>This is IM without UCF.</dd>
+    <dt>mm_w_ucf</dt>
+    <dd>This is the maintenance margin (MM) requirement for the portfolio. MM is computed as 80% * max(risk_margin, margin_floor) - UCF.</dd>
+    <dd>If the Wallet Balance (ex spot orders) is less than MM then the portfolio will go into liquidation.</dd>
+    <dd></dd>
+    <dt>mm_wo_ucf</dt>
+    <dd>This is MM without UCF.</dd>
+    <dt>commission</dt>
+    <dd>This is the trading fees blocked for the open orders/positions (for closing the positions) in the portfolio.</dd>
+    <dd>This is in addition to the IM requirement.</dd>
+    <dt>blocked_margin</dt>
+    <dd>The margin actually blocked for your portfolio. If your Wallet Balance (ex spot orders) is greater than IM + commission then blocked_margin = IM + commissions. Otherwise blocked_margin is equal to the maximum amout we are able to block to meet the portfolio margin requirement.</dd>
+    <dd>If blocked_margin < MM then the portfolio goes into liquidation.</dd>
+    <dt>liquidation_risk</dt>
+    <dd>This flag indicates if the portfolio is at liquidation risk.</dd>
+    <dd>This flag is set to TRUE when blocked_margin < im_w_ucf + commissions.</dd>
+    <dt>under_liquidation</dt>
+    <dd>This flag is set to TRUE when the portfolio is under liquidation.</dd>
+    <dt>margin_shortfall</dt>
+    <dd>This is the minimum topup amount needed to bring the portfolio out of liquidation risk state.</dd>
+    <dt>risk_margin</dt>
+    <dd>The maximum likely loss of the portfolio under the various simulated stress scenarios.</dd>
+    <dt>risk_matrix</dt>
+    <dd>Matrix showing the profit/loss of the portfolio under various simulated stress scenarios.</dd>
+    <dd> Profit/loss for each position and open order is computed with reference to the prevailing mark prices. Positive numbers indicate profit and negative numbers indicate loss.</dd>
+    <dt>margin_floor</dt>
+    <dd>Margin Floor is the minimum risk_margin required for a portfolio. </dd>
+    <dd>It is comprised of sum of futures_margin_floor, long_options_margin_floor, short_options_margin_floor</dd>
+</dl>
+
 <!-- 
 ## Trading Notitifications
 

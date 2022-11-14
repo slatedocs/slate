@@ -252,8 +252,8 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|contract_types|query|string|false|Comma separated list of contract types|
-|states|query|string|false|Comma separated list of states|
+|contract_types|query|string|false|Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot|
+|states|query|string|false|Comma separated list of states e.g. upcoming,live,expired,settled to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired |
 |after|query|string|false|after cursor for paginated request|
 |before|query|string|false|before cursor for paginated request|
 |page_size|query|string|false|size of a single page for paginated request, default: 100|
@@ -578,6 +578,12 @@ p JSON.parse(result)
 
 `GET /tickers`
 
+<h3 id="get-tickers-for-products-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|contract_types|query|string|false|Comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps,move_options,spreads, turbo_call_options, turbo_put_options, spot|
+
 > Example responses
 
 > 200 Response
@@ -587,20 +593,46 @@ p JSON.parse(result)
   "success": true,
   "result": [
     {
-      "product_id": 0,
-      "symbol": "string",
-      "timestamp": 0,
-      "open": 0,
+      "close": 0,
+      "contract_type": "string",
+      "greeks": {
+        "delta": "string",
+        "gamma": "string",
+        "rho": "string",
+        "theta": "string",
+        "vega": "string"
+      },
       "high": 0,
       "low": 0,
-      "close": 0,
-      "volume": 0,
       "mark_price": "string",
+      "mark_vol": "string",
+      "oi": "string",
+      "oi_value": "string",
+      "oi_value_symbol": "string",
+      "oi_value_usd": "string",
+      "open": 0,
+      "price_band": {
+        "lower_limit": "string",
+        "upper_limit": "string"
+      },
+      "product_id": 0,
+      "quotes": {
+        "ask_iv": "string",
+        "ask_size": "string",
+        "best_ask": "string",
+        "best_bid": "string",
+        "bid_iv": "string",
+        "bid_size": "string"
+      },
+      "size": 0,
       "spot_price": "string",
+      "strike_price": "string",
+      "symbol": "string",
+      "timestamp": 0,
       "turnover": 0,
       "turnover_symbol": "string",
       "turnover_usd": 0,
-      "contract_type": "string"
+      "volume": 0
     }
   ]
 }
@@ -610,7 +642,7 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live tickers for all products|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live tickers for all products, including IV for option strikes|Inline|
 
 <h3 id="get-tickers-for-products-responseschema">Response Schema</h3>
 
@@ -677,20 +709,46 @@ p JSON.parse(result)
 {
   "success": true,
   "result": {
-    "product_id": 0,
-    "symbol": "string",
-    "timestamp": 0,
-    "open": 0,
+    "close": 0,
+    "contract_type": "string",
+    "greeks": {
+      "delta": "string",
+      "gamma": "string",
+      "rho": "string",
+      "theta": "string",
+      "vega": "string"
+    },
     "high": 0,
     "low": 0,
-    "close": 0,
-    "volume": 0,
     "mark_price": "string",
+    "mark_vol": "string",
+    "oi": "string",
+    "oi_value": "string",
+    "oi_value_symbol": "string",
+    "oi_value_usd": "string",
+    "open": 0,
+    "price_band": {
+      "lower_limit": "string",
+      "upper_limit": "string"
+    },
+    "product_id": 0,
+    "quotes": {
+      "ask_iv": "string",
+      "ask_size": "string",
+      "best_ask": "string",
+      "best_bid": "string",
+      "bid_iv": "string",
+      "bid_size": "string"
+    },
+    "size": 0,
     "spot_price": "string",
+    "strike_price": "string",
+    "symbol": "string",
+    "timestamp": 0,
     "turnover": 0,
     "turnover_symbol": "string",
     "turnover_usd": 0,
-    "contract_type": "string"
+    "volume": 0
   }
 }
 ```
@@ -699,7 +757,7 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of live tickers for all products|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|ticker data for requested product, including IV for option strikes|Inline|
 
 <h3 id="get-ticker-for-a-product-by-symbol-responseschema">Response Schema</h3>
 
@@ -779,10 +837,16 @@ p JSON.parse(result)
   "order_type": "limit_order",
   "stop_order_type": "stop_loss_order",
   "stop_price": "string",
+  "trail_amount": "string",
   "stop_trigger_method": "mark_price",
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
   "post_only": "true",
   "reduce_only": "true",
+  "close_on_trigger": "true",
   "client_order_id": "string"
 }
 ```
@@ -1238,6 +1302,104 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Add/Update Bracket order
+
+<a id="opIdbracketOrder"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.put('https://api.delta.exchange/v2/orders/bracket', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/v2/orders/bracket \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.put 'https://api.delta.exchange/v2/orders/bracket',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /orders/bracket`
+
+> Body parameter
+
+```json
+{
+  "id": 0,
+  "product_id": 0,
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
+  "bracket_trail_amount": "string"
+}
+```
+
+<h3 id="add/update-bracket-order-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[BracketOrderRequest](#schemabracketorderrequest)|true|Bracket Order which needs to be updated |
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true
+}
+```
+
+<h3 id="add/update-bracket-order-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if orders could not be updated|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 ## Cancel all open orders
 
 <a id="opIdcancelAllOrders"></a>
@@ -1403,10 +1565,16 @@ p JSON.parse(result)
       "order_type": "limit_order",
       "stop_order_type": "stop_loss_order",
       "stop_price": "string",
+      "trail_amount": "string",
       "stop_trigger_method": "mark_price",
+      "bracket_stop_loss_limit_price": "string",
+      "bracket_stop_loss_price": "string",
+      "bracket_take_profit_limit_price": "string",
+      "bracket_take_profit_price": "string",
       "time_in_force": "gtc",
       "post_only": "true",
       "reduce_only": "true",
+      "close_on_trigger": "true",
       "client_order_id": "string"
     }
   ],
@@ -1427,10 +1595,16 @@ p JSON.parse(result)
 |»» order_type|body|string|false|none|
 |»» stop_order_type|body|string|false|none|
 |»» stop_price|body|string|false|none|
+|»» trail_amount|body|string|false|none|
 |»» stop_trigger_method|body|string|false|none|
+|»» bracket_stop_loss_limit_price|body|string|false|none|
+|»» bracket_stop_loss_price|body|string|false|none|
+|»» bracket_take_profit_limit_price|body|string|false|none|
+|»» bracket_take_profit_price|body|string|false|none|
 |»» time_in_force|body|string|false|none|
 |»» post_only|body|string|false|none|
 |»» reduce_only|body|string|false|none|
+|»» close_on_trigger|body|string|false|none|
 |»» client_order_id|body|string|false|none|
 |» product_id|body|integer|false|none|
 
@@ -1454,6 +1628,8 @@ p JSON.parse(result)
 |»» post_only|false|
 |»» reduce_only|true|
 |»» reduce_only|false|
+|»» close_on_trigger|true|
+|»» close_on_trigger|false|
 
 > Example responses
 
@@ -1956,7 +2132,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 <h1 id="delta-exchange-api-v2-positions">Positions</h1>
 
-Get Open positions, Change Position Margin, Close Position
+Get Open positions, Change Position Margin, Close Position, Close All Position
 
 ## Get position
 
@@ -2259,6 +2435,103 @@ p JSON.parse(result)
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if position margin could not be changed|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <h3 id="add/remove-position-margin-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Close all positions 
+
+<a id="opIdcloseAllPosition"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/v2/positions/close_all', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/v2/positions/close_all \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/v2/positions/close_all',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /positions/close_all`
+
+> Body parameter
+
+```json
+{
+  "close_all_portfolio": true,
+  "close_all_isolated": true,
+  "user_id": 0
+}
+```
+
+<h3 id="close-all-positions--parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|none|
+|» close_all_portfolio|body|boolean|true|none|
+|» close_all_isolated|body|boolean|true|none|
+|» user_id|body|integer|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true
+}
+```
+
+<h3 id="close-all-positions--responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if not able to close all positions|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -2644,16 +2917,20 @@ p JSON.parse(result)
   "result": {
     "buy": [
       {
+        "depth": "983",
         "price": "9187.5",
         "size": 205640
       }
     ],
+    "last_updated_at": 1654589595784000,
     "sell": [
       {
+        "depth": "1185",
         "price": "9188.0",
         "size": 113752
       }
-    ]
+    ],
+    "symbol": "BTCUSDT"
   }
 }
 ```
@@ -3052,9 +3329,248 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-<h1 id="delta-exchange-api-v2-ohlc-candles">OHLC Candles</h1>
+<h1 id="delta-exchange-api-v2-stats">Stats</h1>
 
-Get price data
+Get Volume Stats
+
+## Get volume stats
+
+<a id="opIdgetStat"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/v2/stats', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/stats \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/stats',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /stats`
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "last_30_days_volume": 0,
+    "last_7_days_volume": 0,
+    "total_volume": 0
+  }
+}
+```
+
+<h3 id="get-volume-stats-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|sum of turnover in the last 7 and 30 days along with  Total Volume in the last 24 hours (in USD)|Inline|
+
+<h3 id="get-volume-stats-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-settlement-prices">Settlement Prices</h1>
+
+## Get product settlement prices
+
+<a id="opIdgetProduct"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/v2/products/?states=expired', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/products/?states=expired?states=expired \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/products/?states=expired',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /products/?states=expired`
+
+<h3 id="get-product-settlement-prices-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|states|query|string|false|Comma separated list of states e.g. to get expired contracts https://api.delta.exchange/v2/products?contract_types=call_options&states=expired |
+|page_size|query|string|false|size of a single page for paginated request, default: 100|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "id": 0,
+    "symbol": "string",
+    "description": "string",
+    "created_at": "string",
+    "updated_at": "string",
+    "settlement_time": "string",
+    "notional_type": "vanilla",
+    "impact_size": 0,
+    "initial_margin": 0,
+    "maintenance_margin": "string",
+    "contract_value": "string",
+    "contract_unit_currency": "string",
+    "tick_size": "string",
+    "product_specs": {},
+    "state": "live",
+    "trading_status": "operational",
+    "max_leverage_notional": "string",
+    "default_leverage": "string",
+    "initial_margin_scaling_factor": "string",
+    "maintenance_margin_scaling_factor": "string",
+    "taker_commission_rate": "string",
+    "maker_commission_rate": "string",
+    "liquidation_penalty_factor": "string",
+    "contract_type": "string",
+    "position_size_limit": 0,
+    "basis_factor_max_limit": "string",
+    "is_quanto": true,
+    "funding_method": "string",
+    "annualized_funding": "string",
+    "price_band": "string",
+    "underlying_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "quoting_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "settling_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0,
+      "deposit_status": "enabled",
+      "withdrawal_status": "enabled",
+      "base_withdrawal_fee": "string",
+      "min_withdrawal_amount": "string"
+    },
+    "spot_index": {
+      "id": 0,
+      "symbol": "string",
+      "constituent_exchanges": [
+        {}
+      ],
+      "underlying_asset_id": 0,
+      "quoting_asset_id": 0,
+      "index_type": "spot_pair"
+    }
+  }
+}
+```
+
+<h3 id="get-product-settlement-prices-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of products|Inline|
+
+<h3 id="get-product-settlement-prices-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|notional_type|vanilla|
+|notional_type|inverse|
+|state|live|
+|state|expired|
+|state|upcoming|
+|trading_status|operational|
+|trading_status|disrupted_cancel_only|
+|trading_status|disrupted_post_only|
+|deposit_status|enabled|
+|deposit_status|disabled|
+|withdrawal_status|enabled|
+|withdrawal_status|disabled|
+|index_type|spot_pair|
+|index_type|fixed_interest_rate|
+|index_type|floating_interest_rate|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
+<h1 id="delta-exchange-api-v2-historical-data-ohlc-candles">Historical data/ OHLC Candles</h1>
 
 ## GET ohlc candles
 
@@ -3110,7 +3626,7 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |resolution|query|string|true|none|
-|symbol|query|string|true|product symbol needs to pass to get data, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}|
+|symbol|query|string|true|product symbol needs to pass to get data, to get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}|
 |start|query|integer|true|Start time|
 |end|query|integer|true|End time|
 
@@ -3739,10 +4255,16 @@ This operation does not require authentication.
   "order_type": "limit_order",
   "stop_order_type": "stop_loss_order",
   "stop_price": "string",
+  "trail_amount": "string",
   "stop_trigger_method": "mark_price",
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
   "post_only": "true",
   "reduce_only": "true",
+  "close_on_trigger": "true",
   "client_order_id": "string"
 }
 
@@ -3761,10 +4283,16 @@ This operation does not require authentication.
 |order_type|string|false|none|none|
 |stop_order_type|string|false|none|none|
 |stop_price|string|false|none|none|
+|trail_amount|string|false|none|none|
 |stop_trigger_method|string|false|none|none|
+|bracket_stop_loss_limit_price|string|false|none|none|
+|bracket_stop_loss_price|string|false|none|none|
+|bracket_take_profit_limit_price|string|false|none|none|
+|bracket_take_profit_price|string|false|none|none|
 |time_in_force|string|false|none|none|
 |post_only|string|false|none|none|
 |reduce_only|string|false|none|none|
+|close_on_trigger|string|false|none|none|
 |client_order_id|string|false|none|none|
 
 #### Enumerated Values
@@ -3787,6 +4315,8 @@ This operation does not require authentication.
 |post_only|false|
 |reduce_only|true|
 |reduce_only|false|
+|close_on_trigger|true|
+|close_on_trigger|false|
 
 <h2 id="tocSarrayofcreateorderrequest">ArrayOfCreateOrderRequest</h2>
 
@@ -3802,10 +4332,16 @@ This operation does not require authentication.
     "order_type": "limit_order",
     "stop_order_type": "stop_loss_order",
     "stop_price": "string",
+    "trail_amount": "string",
     "stop_trigger_method": "mark_price",
+    "bracket_stop_loss_limit_price": "string",
+    "bracket_stop_loss_price": "string",
+    "bracket_take_profit_limit_price": "string",
+    "bracket_take_profit_price": "string",
     "time_in_force": "gtc",
     "post_only": "true",
     "reduce_only": "true",
+    "close_on_trigger": "true",
     "client_order_id": "string"
   }
 ]
@@ -3864,6 +4400,37 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[[EditOrderRequest](#schemaeditorderrequest)]|false|none|[edit order object]|
+
+<h2 id="tocSbracketorderrequest">BracketOrderRequest</h2>
+
+<a id="schemabracketorderrequest"></a>
+
+```json
+{
+  "id": 0,
+  "product_id": 0,
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
+  "bracket_trail_amount": "string"
+}
+
+```
+
+*bracket order object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer|false|none|none|
+|product_id|integer|false|none|none|
+|bracket_stop_loss_limit_price|string|false|none|none|
+|bracket_stop_loss_price|string|false|none|none|
+|bracket_take_profit_limit_price|string|false|none|none|
+|bracket_take_profit_price|string|false|none|none|
+|bracket_trail_amount|string|false|none|none|
 
 <h2 id="tocSdeleteorderrequest">DeleteOrderRequest</h2>
 
@@ -4113,16 +4680,20 @@ This operation does not require authentication.
 {
   "buy": [
     {
+      "depth": "983",
       "price": "9187.5",
       "size": 205640
     }
   ],
+  "last_updated_at": 1654589595784000,
   "sell": [
     {
+      "depth": "1185",
       "price": "9188.0",
       "size": 113752
     }
-  ]
+  ],
+  "symbol": "BTCUSDT"
 }
 
 ```
@@ -4134,11 +4705,15 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |buy|[object]|false|none|none|
+|» depth|string|false|none|sum of size till that price level|
 |» price|string|false|none|none|
-|» size|integer|false|none|none|
+|» size|integer|false|none|for derivatives -> number of contracts, for spot -> amount in underlying|
+|last_updated_at|integer|false|none|none|
 |sell|[object]|false|none|none|
+|» depth|string|false|none|sum of size till that price level|
 |» price|string|false|none|none|
-|» size|integer|false|none|none|
+|» size|integer|false|none|for derivatives -> number of contracts, for spot -> amount in underlying|
+|symbol|string|false|none|none|
 
 <h2 id="tocStrades">Trades</h2>
 
@@ -4314,26 +4889,17 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |*anonymous*|[[Transaction](#schematransaction)]|false|none|none|
 
-<h2 id="tocSticker">Ticker</h2>
+<h2 id="tocSgreeks">greeks</h2>
 
-<a id="schematicker"></a>
+<a id="schemagreeks"></a>
 
 ```json
 {
-  "product_id": 0,
-  "symbol": "string",
-  "timestamp": 0,
-  "open": 0,
-  "high": 0,
-  "low": 0,
-  "close": 0,
-  "volume": 0,
-  "mark_price": "string",
-  "spot_price": "string",
-  "turnover": 0,
-  "turnover_symbol": "string",
-  "turnover_usd": 0,
-  "contract_type": "string"
+  "delta": "string",
+  "gamma": "string",
+  "rho": "string",
+  "theta": "string",
+  "vega": "string"
 }
 
 ```
@@ -4342,20 +4908,136 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|product_id|integer|false|none|none|
-|symbol|string|false|none|none|
-|timestamp|integer|false|none|none|
-|open|number|false|none|none|
+|delta|string|false|none|none|
+|gamma|string|false|none|none|
+|rho|string|false|none|none|
+|theta|string|false|none|none|
+|vega|string|false|none|none|
+
+<h2 id="tocSprice_band">price_band</h2>
+
+<a id="schemaprice_band"></a>
+
+```json
+{
+  "lower_limit": "string",
+  "upper_limit": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lower_limit|string|false|none|none|
+|upper_limit|string|false|none|none|
+
+<h2 id="tocSquotes">quotes</h2>
+
+<a id="schemaquotes"></a>
+
+```json
+{
+  "ask_iv": "string",
+  "ask_size": "string",
+  "best_ask": "string",
+  "best_bid": "string",
+  "bid_iv": "string",
+  "bid_size": "string"
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ask_iv|string|false|none|none|
+|ask_size|string|false|none|none|
+|best_ask|string|false|none|none|
+|best_bid|string|false|none|none|
+|bid_iv|string|false|none|none|
+|bid_size|string|false|none|none|
+
+<h2 id="tocSticker">Ticker</h2>
+
+<a id="schematicker"></a>
+
+```json
+{
+  "close": 0,
+  "contract_type": "string",
+  "greeks": {
+    "delta": "string",
+    "gamma": "string",
+    "rho": "string",
+    "theta": "string",
+    "vega": "string"
+  },
+  "high": 0,
+  "low": 0,
+  "mark_price": "string",
+  "mark_vol": "string",
+  "oi": "string",
+  "oi_value": "string",
+  "oi_value_symbol": "string",
+  "oi_value_usd": "string",
+  "open": 0,
+  "price_band": {
+    "lower_limit": "string",
+    "upper_limit": "string"
+  },
+  "product_id": 0,
+  "quotes": {
+    "ask_iv": "string",
+    "ask_size": "string",
+    "best_ask": "string",
+    "best_bid": "string",
+    "bid_iv": "string",
+    "bid_size": "string"
+  },
+  "size": 0,
+  "spot_price": "string",
+  "strike_price": "string",
+  "symbol": "string",
+  "timestamp": 0,
+  "turnover": 0,
+  "turnover_symbol": "string",
+  "turnover_usd": 0,
+  "volume": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|close|integer|false|none|none|
+|contract_type|string|false|none|none|
+|greeks|[greeks](#schemagreeks)|false|none|none|
 |high|number|false|none|none|
 |low|number|false|none|none|
-|close|number|false|none|none|
-|volume|integer|false|none|none|
 |mark_price|string|false|none|none|
+|mark_vol|string|false|none|none|
+|oi|string|false|none|none|
+|oi_value|string|false|none|none|
+|oi_value_symbol|string|false|none|none|
+|oi_value_usd|string|false|none|none|
+|open|number|false|none|none|
+|price_band|[price_band](#schemaprice_band)|false|none|none|
+|product_id|number|false|none|none|
+|quotes|[quotes](#schemaquotes)|false|none|none|
+|size|number|false|none|none|
 |spot_price|string|false|none|none|
+|strike_price|string|false|none|none|
+|symbol|string|false|none|none|
+|timestamp|number|false|none|none|
 |turnover|number|false|none|none|
 |turnover_symbol|string|false|none|none|
 |turnover_usd|number|false|none|none|
-|contract_type|string|false|none|none|
+|volume|integer|false|none|none|
 
 <h2 id="tocSarrayoftickers">ArrayOfTickers</h2>
 
@@ -4364,20 +5046,46 @@ This operation does not require authentication.
 ```json
 [
   {
-    "product_id": 0,
-    "symbol": "string",
-    "timestamp": 0,
-    "open": 0,
+    "close": 0,
+    "contract_type": "string",
+    "greeks": {
+      "delta": "string",
+      "gamma": "string",
+      "rho": "string",
+      "theta": "string",
+      "vega": "string"
+    },
     "high": 0,
     "low": 0,
-    "close": 0,
-    "volume": 0,
     "mark_price": "string",
+    "mark_vol": "string",
+    "oi": "string",
+    "oi_value": "string",
+    "oi_value_symbol": "string",
+    "oi_value_usd": "string",
+    "open": 0,
+    "price_band": {
+      "lower_limit": "string",
+      "upper_limit": "string"
+    },
+    "product_id": 0,
+    "quotes": {
+      "ask_iv": "string",
+      "ask_size": "string",
+      "best_ask": "string",
+      "best_bid": "string",
+      "bid_iv": "string",
+      "bid_size": "string"
+    },
+    "size": 0,
     "spot_price": "string",
+    "strike_price": "string",
+    "symbol": "string",
+    "timestamp": 0,
     "turnover": 0,
     "turnover_symbol": "string",
     "turnover_usd": 0,
-    "contract_type": "string"
+    "volume": 0
   }
 ]
 
@@ -4492,4 +5200,25 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |**additionalProperties**|[integer]|false|none|array of timestamp and closing value|
+
+<h2 id="tocSstats">Stats</h2>
+
+<a id="schemastats"></a>
+
+```json
+{
+  "last_30_days_volume": 0,
+  "last_7_days_volume": 0,
+  "total_volume": 0
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|last_30_days_volume|integer|false|none|sum of turnover usd in the last 30 days|
+|last_7_days_volume|integer|false|none|sum of turnover usd in the last 7 days|
+|total_volume|integer|false|none|sum of turnover usd in the last 24 hours|
 

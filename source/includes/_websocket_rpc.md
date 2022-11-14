@@ -4,6 +4,8 @@ You can make requests over rpc (Remote Procedure Call) using the socket api. Alm
 Remote Procedure Call (RPC) is a protocol that one program can use to request a service from a program located in another computer in a network without having to understand network details. RPC uses the client/server model. The requesting program is a client and the service-providing program is the server.
 
 The client sends request message to the server and then waits for the response. 
+Socket connection needs to be [authenticated](/#authenticating-a-connection) to make RPC requests.
+
 ## Request Message
 The request message must be JSON object with the following fields.
 

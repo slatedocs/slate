@@ -98,8 +98,10 @@ under the License.
       <div class="content">
         <%= page_content %>
       </div>
+      
       <div class="dark-box">
         <% if language_tabs.any? %>
+        
           <div class="lang-selector">
             <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
