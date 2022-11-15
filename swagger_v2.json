@@ -55,6 +55,10 @@
     {
       "name": "Stats",
       "description": "Get Volume Stats"
+    },
+    {
+      "name": "MMP",
+      "description": "Market maker protection"
     }
   ],
   "schemes": [
@@ -1938,6 +1942,68 @@
           }
         }
       }
+    },
+    "/users/update_mmp": {
+      "put": {
+        "tags": [
+          "MMP"
+        ],
+        "summary": "Update MMP config",
+        "operationId": "updateMMP",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "mmp_config",
+            "description": "mmp config for a given underlying asset",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MMPConfigUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns back the User Preference which contains mmp config",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/UserPreference"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Returns error if mmp is not enabled on the account",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      },
+    },
+    "/users/reset_mmp": {
+      
     }
   },
   "securityDefinitions": {
@@ -3021,6 +3087,46 @@
         "total_volume": {
           "type": "integer",
           "description": "sum of turnover usd in the last 24 hours"
+        }
+      }
+    },
+    "MMPConfigUpdateRequest": {
+      "type": "object",
+      "description": "MMP config for an underlying",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "required": true
+        },
+        "window_interval": {
+          "type": "integer"
+        },
+        "freeze_interval": {
+          "type": "integer"
+        },
+        "trade_limit": {
+          "type": "string"
+        },
+        "delta_limit": {
+          "type": "string"
+        },
+        "vega_limit": {
+          "type": "string"
+        }
+      }
+    },
+    "UserPreference": {
+      "type": "object",
+      "description": "User trading preferences",
+      "properties": {
+        "user_id": {
+          "type": "integer"
+        },
+        "default_auto_topup": {
+          "type": "boolean"
+        },
+        "mmp_config": {
+          "type": "object"
         }
       }
     }

@@ -3405,6 +3405,114 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
+<h1 id="delta-exchange-api-v2-mmp">MMP</h1>
+
+Market maker protection
+
+## Update MMP config
+
+<a id="opIdupdateMMP"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.put('https://api.delta.exchange/v2/users/update_mmp', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/v2/users/update_mmp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.put 'https://api.delta.exchange/v2/users/update_mmp',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /users/update_mmp`
+
+> Body parameter
+
+```json
+{
+  "asset": "string",
+  "window_interval": 0,
+  "freeze_interval": 0,
+  "trade_limit": "string",
+  "delta_limit": "string",
+  "vega_limit": "string"
+}
+```
+
+<h3 id="update-mmp-config-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[MMPConfigUpdateRequest](#schemammpconfigupdaterequest)|true|mmp config for a given underlying asset|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "user_id": 0,
+    "default_auto_topup": true,
+    "mmp_config": {}
+  }
+}
+```
+
+<h3 id="update-mmp-config-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the User Preference which contains mmp config|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if mmp is not enabled on the account|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="update-mmp-config-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 <h1 id="delta-exchange-api-v2-settlement-prices">Settlement Prices</h1>
 
 ## Get product settlement prices
@@ -3429,7 +3537,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/v2/products/?states=expired?states=expired \
+curl -X GET https://api.delta.exchange/v2/products/?states=expired \
   -H 'Accept: application/json'
 
 ```
@@ -5221,4 +5329,56 @@ This operation does not require authentication.
 |last_30_days_volume|integer|false|none|sum of turnover usd in the last 30 days|
 |last_7_days_volume|integer|false|none|sum of turnover usd in the last 7 days|
 |total_volume|integer|false|none|sum of turnover usd in the last 24 hours|
+
+<h2 id="tocSmmpconfigupdaterequest">MMPConfigUpdateRequest</h2>
+
+<a id="schemammpconfigupdaterequest"></a>
+
+```json
+{
+  "asset": "string",
+  "window_interval": 0,
+  "freeze_interval": 0,
+  "trade_limit": "string",
+  "delta_limit": "string",
+  "vega_limit": "string"
+}
+
+```
+
+*MMP config for an underlying*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|asset|string|false|none|none|
+|window_interval|integer|false|none|none|
+|freeze_interval|integer|false|none|none|
+|trade_limit|string|false|none|none|
+|delta_limit|string|false|none|none|
+|vega_limit|string|false|none|none|
+
+<h2 id="tocSuserpreference">UserPreference</h2>
+
+<a id="schemauserpreference"></a>
+
+```json
+{
+  "user_id": 0,
+  "default_auto_topup": true,
+  "mmp_config": {}
+}
+
+```
+
+*User trading preferences*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|user_id|integer|false|none|none|
+|default_auto_topup|boolean|false|none|none|
+|mmp_config|object|false|none|none|
 
