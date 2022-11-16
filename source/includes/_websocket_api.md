@@ -461,15 +461,15 @@ Channel provides updates for margin blocked for different assets, these updates 
 // margin update
 {
     "type": "margins",
-    "balance": "1.0012",
+    "balance": "1.0012",            // wallet balance = deposits - withdrawals + realised_cashflows
     "available_balance": "0.1",     // available balance for trading
-    "order_margin": "0.121212",     // Margin blocked in open orders
-    "position_margin": "0.101212",  // Margin blocked in position
-    "portfolio_margin": "2.333"     // Margin blocked for current portfolio. Same as blocked margin in portfolio margins channel.
-    "commission": "0.00012",        // commissions blocked in position and order
+    "order_margin": "0.121212",     // Margin blocked in isolated margined open orders
+    "position_margin": "0.101212",  // Margin blocked in isolated margined positions
+    "commission": "0.00012",        // commissions blocked in isolated margined positions and orders
+    "portfolio_margin": "2.333"     // Margin blocked for portfolio margined positions and orders. Same as blocked margin in portfolio margins channel.
     "asset_id": 2                   // BTC
     "asset_symbol": "BTC",          // BTC
-    "unvested_amount": "0.05"       // amount unvested
+    "unvested_amount": "0.05"       // amount locked. Relevant only for DETO
     "timestamp": 1668570144,        // unix timestamp in microseconds
 }
 ```
@@ -649,7 +649,7 @@ UCF: is unrealised cashflows of your portfolio. These are the cashflows (negativ
     "mm_w_ucf": "80",
     "im_wo_ucf": "100",
     "im_w_ucf": "100",
-    "positions_upl": "0",
+    "positions_upl": "0", 
     "risk_margin": "100",
     "risk_matrix":{"down":[{"is_worst":false,"pnl":"230.03686162","price_shock":"10"}],"unchanged":[{"is_worst":false,"pnl":"230.03686162","price_shock":"10"}],"up":[]},
     "futures_margin_floor": "20",
