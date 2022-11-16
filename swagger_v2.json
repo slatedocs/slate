@@ -2000,10 +2000,54 @@
             }
           }
         }
-      },
+      }
     },
     "/users/reset_mmp": {
-      
+      "put": {
+        "tags": [
+          "MMP"
+        ],
+        "summary": "Reset MMP",
+        "operationId": "resetMMP",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "reset_mmp",
+            "description": "reset mmp config for a given underlying asset",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MMPResetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns back the User Preference which contains mmp config",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if mmp is not enabled on the account",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -2431,7 +2475,8 @@
           "enum": [
             "gtc",
             "ioc",
-            "fok"
+            "fok",
+            "mmp"
           ]
         },
         "post_only": {
@@ -3112,6 +3157,16 @@
         },
         "vega_limit": {
           "type": "string"
+        }
+      }
+    },
+    "MMPResetRequest": {
+      "type": "object",
+      "description": "MMP config for an underlying",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "required": true
         }
       }
     },

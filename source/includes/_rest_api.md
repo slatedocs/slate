@@ -3513,6 +3513,98 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Reset MMP
+
+<a id="opIdresetMMP"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.put('https://api.delta.exchange/v2/users/reset_mmp', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/v2/users/reset_mmp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.put 'https://api.delta.exchange/v2/users/reset_mmp',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /users/reset_mmp`
+
+> Body parameter
+
+```json
+{
+  "asset": "string"
+}
+```
+
+<h3 id="reset-mmp-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[MMPResetRequest](#schemammpresetrequest)|true|reset mmp config for a given underlying asset|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true
+}
+```
+
+<h3 id="reset-mmp-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the User Preference which contains mmp config|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if mmp is not enabled on the account|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 <h1 id="delta-exchange-api-v2-settlement-prices">Settlement Prices</h1>
 
 ## Get product settlement prices
@@ -5358,6 +5450,25 @@ This operation does not require authentication.
 |trade_limit|string|false|none|none|
 |delta_limit|string|false|none|none|
 |vega_limit|string|false|none|none|
+
+<h2 id="tocSmmpresetrequest">MMPResetRequest</h2>
+
+<a id="schemammpresetrequest"></a>
+
+```json
+{
+  "asset": "string"
+}
+
+```
+
+*MMP config for an underlying*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|asset|string|false|none|none|
 
 <h2 id="tocSuserpreference">UserPreference</h2>
 
