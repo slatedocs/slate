@@ -1220,12 +1220,12 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_ids|query|string|false|comma separated product ids|
+|product_ids|query|string|false|comma separated product ids, if not specified, all the orders will be returned|
 |states|query|string|false|comma separated list of states - open,pending|
-|contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the orders will be returned|
+|contract_types|query|string|false|comma separated contract types, if not specified, all the orders will be returned|
 |order_types|query|string|false|comma separated order types|
-|start_time|query|integer|false|from time in micro-seconds in epoc|
-|end_time|query|integer|false|from time in micro-seconds in epoc|
+|start_time|query|integer|false|from time in micro-seconds in epoc; referring to the order creation time |
+|end_time|query|integer|false|from time in micro-seconds in epoc; referring to the order creation time |
 |after|query|string|false|after cursor for pagination|
 |before|query|string|false|before cursor for pagination|
 |page_size|query|integer|false|number of records per page|
@@ -2194,8 +2194,8 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_ids|query|string|false|comma separated product ids|
-|contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the open positions will be returned|
+|product_ids|query|string|false|comma separated product ids, if not specified, all the open positions will be returned|
+|contract_types|query|string|false|comma separated contract types, if not specified, all the open positions will be returned|
 
 #### Enumerated Values
 
