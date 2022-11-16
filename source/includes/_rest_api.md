@@ -2134,92 +2134,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 Get Open positions, Change Position Margin, Close Position, Close All Position
 
-## Get position
 
-<a id="opIdgetPositions"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/v2/positions', params={
-  'product_id': '0'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/v2/positions?product_id=0 \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/v2/positions',
-  params: {
-  'product_id' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /positions`
-
-<h3 id="get-position-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_id|query|integer|true|id of the product|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": {
-    "size": 0,
-    "entry_price": "string"
-  }
-}
-```
-
-<h3 id="get-position-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Open position for the give product id|Inline|
-
-<h3 id="get-position-responseschema">Response Schema</h3>
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
 
 ## Get margined positions
 
@@ -2328,7 +2243,92 @@ p JSON.parse(result)
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
+## Get position
 
+<a id="opIdgetPositions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/positions', params={
+  'product_id': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/positions?product_id=0 \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/positions',
+  params: {
+  'product_id' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /positions`
+
+<h3 id="get-position-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_id|query|integer|true|id of the product|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "size": 0,
+    "entry_price": "string"
+  }
+}
+```
+
+<h3 id="get-position-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Open position for the give product id|Inline|
+
+<h3 id="get-position-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
 ## Add/Remove position margin
 
 <a id="opIdchangePositionMargin"></a>
