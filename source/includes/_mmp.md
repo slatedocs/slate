@@ -16,7 +16,7 @@ MMP is available on request and is manully enabled by Delta Exchange team. It is
 
 3. trade_limit: Trade limit in terms of the underlying (like 10 btc) for which mmp is triggered. Trade limit is direction agnostic. Buy and sell orders are added and dont offset each other.
 
-4. delta_limit: Delta notional limit in terms of the underlying. This takes into account the sign of delta for a contract. So, if you trade 10 btc worth of an call option with 0.1 delta and 10 btc worth of put option with -0.05 delta, then net delta notional is 10*0.1 + 10*(-0.05) = 5 btc. Delta for futures contract is 1.
+4. delta_limit: Delta notional limit in terms of the underlying. This takes into account the sign of delta for a contract. So, if you trade 10 btc worth of an call option with 0.1 delta and 10 btc worth of put option with -0.05 delta, then net delta notional is 10 * 0.1 + 10 * (-0.05) = 5 btc. Delta for futures contract is 1.
    
 5. vega_limit: Vega notional limit in terms of the underlying. 
 
