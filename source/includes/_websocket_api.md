@@ -462,11 +462,15 @@ Channel provides updates for margin blocked for different assets, these updates 
 {
     "type": "margins",
     "balance": "1.0012",
+    "available_balance": "0.1",     // available balance for trading
     "order_margin": "0.121212",     // Margin blocked in open orders
     "position_margin": "0.101212",  // Margin blocked in position
-    "portfolio_margin": "2.333"     // Margin blocked for current portfolio
+    "portfolio_margin": "2.333"     // Margin blocked for current portfolio. Same as blocked margin in portfolio margins channel.
     "commission": "0.00012",        // commissions blocked in position and order
     "asset_id": 2                   // BTC
+    "asset_symbol": "BTC",          // BTC
+    "unvested_amount": "0.05"       // amount unvested
+    "timestamp": 1668570144,        // unix timestamp in microseconds
 }
 ```
 
@@ -640,7 +644,7 @@ UCF: is unrealised cashflows of your portfolio. These are the cashflows (negativ
     "asset_id": 2,                   // BTC
     "index_symbol": ".DEXBTUSDT",
     liquidation_risk: false,
-    "blocked_margin": "100",
+    "blocked_margin": "100", // Margin blocked for current portfolio. Same as portfolio_margin in margins channel.
     "mm_wo_ucf": "80",
     "mm_w_ucf": "80",
     "im_wo_ucf": "100",
@@ -654,7 +658,7 @@ UCF: is unrealised cashflows of your portfolio. These are the cashflows (negativ
     "under_liquidation": false,
     "commission": "3.444",
     "margin_floor": "60",
-    "timestamp": 1544091555086559,
+    "timestamp": 1544091555086559, //timestamp in microseconds
     "margin_shortfall": "4.5"             // key sent when liquidation_risk is true 
 }
 
