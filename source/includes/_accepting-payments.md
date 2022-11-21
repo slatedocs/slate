@@ -1147,12 +1147,12 @@ All details regarding your created e-wallet and its payments can be retrieved vi
 
 ### E-Wallet Details
 
-| E-Wallet Issuer    | E-Wallet Code     | Minimum Expiration Time                        | Maximum Expiration Time                        | Redirection Feature |
-| ------------------ | ----------------- | ---------------------------------------------- | ---------------------------------------------- | ------------------- |
-| OVO                | ovo_ewallet       | Parameter is ignored, always set to 55 seconds | Parameter is ignored, always set to 55 seconds | Not supported       |
-| ShopeePay          | shopeepay_ewallet | 1 minute                                       | 60 minutes                                     | Support             |
-| Linkaja            | linkaja_ewallet   | Parameter is ignored, always set to 5 minutes  | Parameter is ignored, always set to 5 minutes  | Support             |
-| DANA               | dana_ewallet      | 1 minute                                       | 60 minutes                                     | Support             |
+| E-Wallet Issuer    | E-Wallet Code     | Minimum Expiration Time                        | Maximum Expiration Time                        | Redirection Feature | Refund Feature     |
+| ------------------ | ----------------- | ---------------------------------------------- | ---------------------------------------------- | ------------------- | ------------------ |
+| OVO                | ovo_ewallet       | Parameter is ignored, always set to 55 seconds | Parameter is ignored, always set to 55 seconds | Not supported       | Not supported      |
+| ShopeePay          | shopeepay_ewallet | 1 minute                                       | 60 minutes                                     | Support             | Full               |
+| Linkaja            | linkaja_ewallet   | Parameter is ignored, always set to 5 minutes  | Parameter is ignored, always set to 5 minutes  | Support             | Full               |
+| DANA               | dana_ewallet      | 1 minute                                       | 60 minutes                                     | Support             | Full, Partial      |
 
 ## API Payment Routing
 
@@ -1275,3 +1275,34 @@ To implement automated retry callback, you need to handle the idempotency logic 
 Payment Link - Invoice: tx_ref_number
 VA: trx_id
 Ewallet: trx_id OR ref_number
+
+## Feature: Refund E-wallet
+
+### Key Features
+Refund features allow you to refund a successful e-wallet transaction to your end-users. A refund can either be full or partial. A full refund will give your end-users or payers their entire payment amount back (100%). A partial refund will return up to the total amount paid to your end-users or payers. These requirements must be met in order for a refund transaction to be issued:
+
+1. Refunds can only be issued up to 7 days after transaction is success/complete.
+2. You have enough balance that allows us to deduct the amount of the transaction that should be refunded.
+3. A refund can only be issued once, whether it is a full or partial refund.
+
+| E-Wallet Issuer    | Refund Feature     |
+| ------------------ | ------------------ |
+| OVO                | Not supported      |
+| ShopeePay          | Full               |
+| Linkaja            | Full               |
+| DANA               | Full, Partial      |
+
+### How to Use
+
+1. Log in to your OY! Bisnis dashboard with your username and password that you registered with.
+2. Click on the product page you desired.
+  - Payment Link : Click “Payment Link” and choose “One Time”/“Reusable”
+  - VA Aggregator : Click “Virtual Account” and choose “Incoming Payment”
+  - Payment Routing ; Click “Payment Routing”
+3. You can see a transaction that should be refunded
+4. On “Action” column, you can click the the three-dots button and click “Refund E-Wallet”. ![Refund E-wallet](images/ewallet_refund_action.png)
+5. If you try to trigger refund after the time limit or outside operational hours, an error modal will show up and you can not continue the refund process. ![Refund E-wallet](images/ewallet_refund_operational.png)
+6. You can fill the amount of refund, only for partial refund. ![Refund E-wallet](images/ewallet_refund_amount.png)
+7. Make sure that you have enough balance to issue a refund. If you do not have enough balance, an error message will show up. You can top up your balance via “Top Up” feature. ![Refund E-wallet](images/ewallet_refund_balance.png)
+8. The transaction will change to “Refunded” if the refund is successful. You can not trigger another refund after the refund is successful. The refund button will be disabled.
+9. You can see the refunded transaction in “Account Statement” page by clicking “Transaction Report” and “Account Statement”. ![Refund E-wallet](images/ewallet_refund_account_statement.png)
