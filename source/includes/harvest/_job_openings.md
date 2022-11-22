@@ -257,7 +257,7 @@ In the v2 version, response messages will include both IDs that were successfull
 
 If the organization has deactivated the ability to destroy openings or if the On-Behalf-Of User does not have the ability to edit the given job, a 403 error will be returned.
 
-The v1 endpoint will eventually be deactivated, and customers or partners using should begin using the v2 endpoint as soon as possible to avoid issues with their integration.
+The v1 endpoint has been deactivated as of 11/21/2022. Customers or partners should begin using the v2 endpoint.
  
 API keys that were granted access to the v1 endpoint will automatically have access to the v2 endpoint.
 
