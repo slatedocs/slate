@@ -3096,7 +3096,7 @@
         },
         "cancel_after": {
           "type": "string",
-          "description": "timer value in milliseconds after which orders are to be cancelled"
+          "description": "timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0"
         }
       },
       "example": { "user_id": 1, "cancel_after": "5000"}

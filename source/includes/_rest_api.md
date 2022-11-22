@@ -1,3 +1,21 @@
+---
+title: Delta Exchange Api V2 v1.0.0
+language_tabs:
+  - python: Python
+  - shell: Shell
+  - ruby: Ruby
+language_clients:
+  - python: ""
+  - shell: ""
+  - ruby: ""
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
 <h1 id="ApiSection" class="section-header">Rest Api</h1>
 This section documents the latest(v2) api for trading on Delta Exchange. The REST API has endpoints for account and order management as well as public market data.
 
@@ -5351,7 +5369,7 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |user_id|integer|false|none|none|
-|cancel_after|string|false|none|timer value in milliseconds after which orders are to be cancelled|
+|cancel_after|string|false|none|timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0|
 
 <h2 id="tocScancelafterresponse">CancelAfterResponse</h2>
 
