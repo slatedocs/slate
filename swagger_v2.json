@@ -55,6 +55,14 @@
     {
       "name": "Stats",
       "description": "Get Volume Stats"
+    },
+    {
+      "name": "MMP",
+      "description": "Market maker protection"
+    },
+    {
+      "name": "Dead Man's Switch (Auto Cancel)",
+      "description": "Set up timers for auto orders cancel in case of network malfunctions "
     }
   ],
   "schemes": [
@@ -886,6 +894,65 @@
           },
           "400": {
             "description": "returns error if orders couldnt be deleted",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/orders/cancel_after": {
+      "post": {
+        "tags": [
+          "Dead Man's Switch (Auto Cancel)"
+        ],
+        "summary": "Cancel After",
+        "operationId": "cancelAfter",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "cancel after details",
+            "description": "cancel after details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CancelAfterRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns back the cancel_after configs set",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/CancelAfterResponse"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Returns if configs couldnt be set",
             "schema": {
               "$ref": "#/definitions/ApiErrorResponse"
             }
@@ -1938,6 +2005,112 @@
           }
         }
       }
+    },
+    "/users/update_mmp": {
+      "put": {
+        "tags": [
+          "MMP"
+        ],
+        "summary": "Update MMP config",
+        "operationId": "updateMMP",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "mmp_config",
+            "description": "mmp config for a given underlying asset",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MMPConfigUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns back the User Preference which contains mmp config",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/UserPreference"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Returns error if mmp is not enabled on the account",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/reset_mmp": {
+      "put": {
+        "tags": [
+          "MMP"
+        ],
+        "summary": "Reset MMP",
+        "operationId": "resetMMP",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "reset_mmp",
+            "description": "reset mmp config for a given underlying asset",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MMPResetRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns back the User Preference which contains mmp config",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if mmp is not enabled on the account",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -2368,6 +2541,13 @@
             "fok"
           ]
         },
+        "mmp": {
+          "type": "string",
+          "enum": [
+            "enabled",
+            "disabled"
+          ]
+        },
         "post_only": {
           "type": "string",
           "enum": [
@@ -2416,6 +2596,13 @@
         "size": {
           "type": "integer",
           "description": "total size after editing order"
+        },
+        "mmp": {
+          "type": "string",
+          "enum": [
+            "enabled",
+            "disabled"
+          ]
         }
       }
     },
@@ -3023,6 +3210,88 @@
           "description": "sum of turnover usd in the last 24 hours"
         }
       }
+    },
+    "MMPConfigUpdateRequest": {
+      "type": "object",
+      "description": "MMP config for an underlying",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "required": true
+        },
+        "window_interval": {
+          "type": "integer"
+        },
+        "freeze_interval": {
+          "type": "integer"
+        },
+        "trade_limit": {
+          "type": "string"
+        },
+        "delta_limit": {
+          "type": "string"
+        },
+        "vega_limit": {
+          "type": "string"
+        }
+      }
+    },
+    "MMPResetRequest": {
+      "type": "object",
+      "description": "MMP config for an underlying",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "UserPreference": {
+      "type": "object",
+      "description": "User trading preferences",
+      "properties": {
+        "user_id": {
+          "type": "integer"
+        },
+        "default_auto_topup": {
+          "type": "boolean"
+        },
+        "mmp_config": {
+          "type": "object"
+        }
+      }
+    },
+    "CancelAfterRequest": {
+      "type": "object",
+      "description": "Cancel After Request Object",
+      "properties": {
+        "user_id": {
+          "type": "integer"
+        },
+        "cancel_after": {
+          "type": "string",
+          "description": "timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0"
+        }
+      },
+      "example": { "user_id": 1, "cancel_after": "5000"}
+    },
+    "CancelAfterResponse": {
+      "type": "object",
+      "description": "Cancel After Response Object",
+      "properties": {
+        "cancel_after_enabled": {
+          "type": "string",
+          "enum": [
+            "false",
+            "true"
+          ]
+        },
+        "cancel_after_timestamp": {
+          "type": "string",
+          "description": "timestamp after which orders will get cancelled"
+        }
+      },
+      "example": { "cancel_after_enabled": "true", "cancel_after_timestamp": "1669119262000"}
     }
   }
 }

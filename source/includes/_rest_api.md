@@ -844,6 +844,7 @@ p JSON.parse(result)
   "bracket_take_profit_limit_price": "string",
   "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
+  "mmp": "enabled",
   "post_only": "true",
   "reduce_only": "true",
   "close_on_trigger": "true",
@@ -1099,7 +1100,8 @@ p JSON.parse(result)
   "id": 0,
   "product_id": 0,
   "limit_price": "string",
-  "size": 0
+  "size": 0,
+  "mmp": "enabled"
 }
 ```
 
@@ -1572,6 +1574,7 @@ p JSON.parse(result)
       "bracket_take_profit_limit_price": "string",
       "bracket_take_profit_price": "string",
       "time_in_force": "gtc",
+      "mmp": "enabled",
       "post_only": "true",
       "reduce_only": "true",
       "close_on_trigger": "true",
@@ -1602,6 +1605,7 @@ p JSON.parse(result)
 |»» bracket_take_profit_limit_price|body|string|false|none|
 |»» bracket_take_profit_price|body|string|false|none|
 |»» time_in_force|body|string|false|none|
+|»» mmp|body|string|false|none|
 |»» post_only|body|string|false|none|
 |»» reduce_only|body|string|false|none|
 |»» close_on_trigger|body|string|false|none|
@@ -1624,6 +1628,8 @@ p JSON.parse(result)
 |»» time_in_force|gtc|
 |»» time_in_force|ioc|
 |»» time_in_force|fok|
+|»» mmp|enabled|
+|»» mmp|disabled|
 |»» post_only|true|
 |»» post_only|false|
 |»» reduce_only|true|
@@ -1754,7 +1760,8 @@ batch order edit
       "id": 0,
       "product_id": 0,
       "limit_price": "string",
-      "size": 0
+      "size": 0,
+      "mmp": "enabled"
     }
   ],
   "product_id": 0
@@ -1771,7 +1778,15 @@ batch order edit
 |»» product_id|body|integer|false|none|
 |»» limit_price|body|string|false|none|
 |»» size|body|integer|false|total size after editing order|
+|»» mmp|body|string|false|none|
 |» product_id|body|integer|false|none|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|»» mmp|enabled|
+|»» mmp|disabled|
 
 > Example responses
 
@@ -3405,6 +3420,316 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
+<h1 id="delta-exchange-api-v2-mmp">MMP</h1>
+
+Market maker protection
+
+## Update MMP config
+
+<a id="opIdupdateMMP"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.put('https://api.delta.exchange/v2/users/update_mmp', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/v2/users/update_mmp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.put 'https://api.delta.exchange/v2/users/update_mmp',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /users/update_mmp`
+
+> Body parameter
+
+```json
+{
+  "asset": "string",
+  "window_interval": 0,
+  "freeze_interval": 0,
+  "trade_limit": "string",
+  "delta_limit": "string",
+  "vega_limit": "string"
+}
+```
+
+<h3 id="update-mmp-config-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[MMPConfigUpdateRequest](#schemammpconfigupdaterequest)|true|mmp config for a given underlying asset|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "user_id": 0,
+    "default_auto_topup": true,
+    "mmp_config": {}
+  }
+}
+```
+
+<h3 id="update-mmp-config-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the User Preference which contains mmp config|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if mmp is not enabled on the account|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="update-mmp-config-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Reset MMP
+
+<a id="opIdresetMMP"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.put('https://api.delta.exchange/v2/users/reset_mmp', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/v2/users/reset_mmp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.put 'https://api.delta.exchange/v2/users/reset_mmp',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /users/reset_mmp`
+
+> Body parameter
+
+```json
+{
+  "asset": "string"
+}
+```
+
+<h3 id="reset-mmp-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[MMPResetRequest](#schemammpresetrequest)|true|reset mmp config for a given underlying asset|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true
+}
+```
+
+<h3 id="reset-mmp-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the User Preference which contains mmp config|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if mmp is not enabled on the account|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+<h1 id="delta-exchange-api-v2-dead-man-s-switch-auto-cancel-">Dead Man's Switch (Auto Cancel)</h1>
+
+Set up timers for auto orders cancel in case of network malfunctions 
+
+## Cancel After
+
+<a id="opIdcancelAfter"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/v2/orders/cancel_after', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/v2/orders/cancel_after \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/v2/orders/cancel_after',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /orders/cancel_after`
+
+> Body parameter
+
+```json
+{
+  "user_id": 1,
+  "cancel_after": "5000"
+}
+```
+
+<h3 id="cancel-after-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CancelAfterRequest](#schemacancelafterrequest)|true|cancel after details|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "cancel_after_enabled": "true",
+    "cancel_after_timestamp": "1669119262000"
+  }
+}
+```
+
+<h3 id="cancel-after-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the cancel_after configs set|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns if configs couldnt be set|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="cancel-after-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|cancel_after_enabled|false|
+|cancel_after_enabled|true|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 <h1 id="delta-exchange-api-v2-settlement-prices">Settlement Prices</h1>
 
 ## Get product settlement prices
@@ -3429,7 +3754,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/v2/products/?states=expired?states=expired \
+curl -X GET https://api.delta.exchange/v2/products/?states=expired \
   -H 'Accept: application/json'
 
 ```
@@ -4262,6 +4587,7 @@ This operation does not require authentication.
   "bracket_take_profit_limit_price": "string",
   "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
+  "mmp": "enabled",
   "post_only": "true",
   "reduce_only": "true",
   "close_on_trigger": "true",
@@ -4290,6 +4616,7 @@ This operation does not require authentication.
 |bracket_take_profit_limit_price|string|false|none|none|
 |bracket_take_profit_price|string|false|none|none|
 |time_in_force|string|false|none|none|
+|mmp|string|false|none|none|
 |post_only|string|false|none|none|
 |reduce_only|string|false|none|none|
 |close_on_trigger|string|false|none|none|
@@ -4311,6 +4638,8 @@ This operation does not require authentication.
 |time_in_force|gtc|
 |time_in_force|ioc|
 |time_in_force|fok|
+|mmp|enabled|
+|mmp|disabled|
 |post_only|true|
 |post_only|false|
 |reduce_only|true|
@@ -4339,6 +4668,7 @@ This operation does not require authentication.
     "bracket_take_profit_limit_price": "string",
     "bracket_take_profit_price": "string",
     "time_in_force": "gtc",
+    "mmp": "enabled",
     "post_only": "true",
     "reduce_only": "true",
     "close_on_trigger": "true",
@@ -4363,7 +4693,8 @@ This operation does not require authentication.
   "id": 0,
   "product_id": 0,
   "limit_price": "string",
-  "size": 0
+  "size": 0,
+  "mmp": "enabled"
 }
 
 ```
@@ -4378,6 +4709,14 @@ This operation does not require authentication.
 |product_id|integer|false|none|none|
 |limit_price|string|false|none|none|
 |size|integer|false|none|total size after editing order|
+|mmp|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mmp|enabled|
+|mmp|disabled|
 
 <h2 id="tocSarrayofeditorderrequest">ArrayOfEditOrderRequest</h2>
 
@@ -4389,7 +4728,8 @@ This operation does not require authentication.
     "id": 0,
     "product_id": 0,
     "limit_price": "string",
-    "size": 0
+    "size": 0,
+    "mmp": "enabled"
   }
 ]
 
@@ -5221,4 +5561,124 @@ This operation does not require authentication.
 |last_30_days_volume|integer|false|none|sum of turnover usd in the last 30 days|
 |last_7_days_volume|integer|false|none|sum of turnover usd in the last 7 days|
 |total_volume|integer|false|none|sum of turnover usd in the last 24 hours|
+
+<h2 id="tocSmmpconfigupdaterequest">MMPConfigUpdateRequest</h2>
+
+<a id="schemammpconfigupdaterequest"></a>
+
+```json
+{
+  "asset": "string",
+  "window_interval": 0,
+  "freeze_interval": 0,
+  "trade_limit": "string",
+  "delta_limit": "string",
+  "vega_limit": "string"
+}
+
+```
+
+*MMP config for an underlying*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|asset|string|false|none|none|
+|window_interval|integer|false|none|none|
+|freeze_interval|integer|false|none|none|
+|trade_limit|string|false|none|none|
+|delta_limit|string|false|none|none|
+|vega_limit|string|false|none|none|
+
+<h2 id="tocSmmpresetrequest">MMPResetRequest</h2>
+
+<a id="schemammpresetrequest"></a>
+
+```json
+{
+  "asset": "string"
+}
+
+```
+
+*MMP config for an underlying*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|asset|string|false|none|none|
+
+<h2 id="tocSuserpreference">UserPreference</h2>
+
+<a id="schemauserpreference"></a>
+
+```json
+{
+  "user_id": 0,
+  "default_auto_topup": true,
+  "mmp_config": {}
+}
+
+```
+
+*User trading preferences*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|user_id|integer|false|none|none|
+|default_auto_topup|boolean|false|none|none|
+|mmp_config|object|false|none|none|
+
+<h2 id="tocScancelafterrequest">CancelAfterRequest</h2>
+
+<a id="schemacancelafterrequest"></a>
+
+```json
+{
+  "user_id": 1,
+  "cancel_after": "5000"
+}
+
+```
+
+*Cancel After Request Object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|user_id|integer|false|none|none|
+|cancel_after|string|false|none|timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0|
+
+<h2 id="tocScancelafterresponse">CancelAfterResponse</h2>
+
+<a id="schemacancelafterresponse"></a>
+
+```json
+{
+  "cancel_after_enabled": "true",
+  "cancel_after_timestamp": "1669119262000"
+}
+
+```
+
+*Cancel After Response Object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cancel_after_enabled|string|false|none|none|
+|cancel_after_timestamp|string|false|none|timestamp after which orders will get cancelled|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|cancel_after_enabled|false|
+|cancel_after_enabled|true|
 
