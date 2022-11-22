@@ -3405,6 +3405,116 @@ p JSON.parse(result)
 This operation does not require authentication.
 </aside>
 
+<h1 id="delta-exchange-api-v2-dead-man-s-switch-auto-cancel-">Dead Man's Switch (Auto Cancel)</h1>
+
+Set up timers for auto orders cancel in case of network malfunctions 
+
+## Cancel After
+
+<a id="opIdcancelAfter"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/v2/orders/cancel_after', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/v2/orders/cancel_after \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/v2/orders/cancel_after',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /orders/cancel_after`
+
+> Body parameter
+
+```json
+{
+  "user_id": 1,
+  "cancel_after": "5000"
+}
+```
+
+<h3 id="cancel-after-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CancelAfterRequest](#schemacancelafterrequest)|true|cancel after details|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "cancel_after_enabled": "true",
+    "cancel_after_timestamp": "1669119262000"
+  }
+}
+```
+
+<h3 id="cancel-after-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the cancel_after configs set|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns if configs couldnt be set|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="cancel-after-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|cancel_after_enabled|false|
+|cancel_after_enabled|true|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 <h1 id="delta-exchange-api-v2-settlement-prices">Settlement Prices</h1>
 
 ## Get product settlement prices
@@ -3429,7 +3539,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/v2/products/?states=expired?states=expired \
+curl -X GET https://api.delta.exchange/v2/products/?states=expired \
   -H 'Accept: application/json'
 
 ```
@@ -5221,4 +5331,53 @@ This operation does not require authentication.
 |last_30_days_volume|integer|false|none|sum of turnover usd in the last 30 days|
 |last_7_days_volume|integer|false|none|sum of turnover usd in the last 7 days|
 |total_volume|integer|false|none|sum of turnover usd in the last 24 hours|
+
+<h2 id="tocScancelafterrequest">CancelAfterRequest</h2>
+
+<a id="schemacancelafterrequest"></a>
+
+```json
+{
+  "user_id": 1,
+  "cancel_after": "5000"
+}
+
+```
+
+*Cancel After Request Object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|user_id|integer|false|none|none|
+|cancel_after|string|false|none|timer value in milliseconds after which orders are to be cancelled|
+
+<h2 id="tocScancelafterresponse">CancelAfterResponse</h2>
+
+<a id="schemacancelafterresponse"></a>
+
+```json
+{
+  "cancel_after_enabled": "true",
+  "cancel_after_timestamp": "1669119262000"
+}
+
+```
+
+*Cancel After Response Object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cancel_after_enabled|string|false|none|none|
+|cancel_after_timestamp|string|false|none|timestamp after which orders will get cancelled|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|cancel_after_enabled|false|
+|cancel_after_enabled|true|
 
