@@ -59,6 +59,10 @@
     {
       "name": "MMP",
       "description": "Market maker protection"
+    },
+    {
+      "name": "Dead Man's Switch (Auto Cancel)",
+      "description": "Set up timers for auto orders cancel in case of network malfunctions "
     }
   ],
   "schemes": [
@@ -890,6 +894,65 @@
           },
           "400": {
             "description": "returns error if orders couldnt be deleted",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/orders/cancel_after": {
+      "post": {
+        "tags": [
+          "Dead Man's Switch (Auto Cancel)"
+        ],
+        "summary": "Cancel After",
+        "operationId": "cancelAfter",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "cancel after details",
+            "description": "cancel after details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CancelAfterRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns back the cancel_after configs set",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/CancelAfterResponse"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Returns if configs couldnt be set",
             "schema": {
               "$ref": "#/definitions/ApiErrorResponse"
             }
@@ -2475,8 +2538,14 @@
           "enum": [
             "gtc",
             "ioc",
-            "fok",
-            "mmp"
+            "fok"
+          ]
+        },
+        "mmp": {
+          "type": "string",
+          "enum": [
+            "enabled",
+            "disabled"
           ]
         },
         "post_only": {
@@ -2527,6 +2596,13 @@
         "size": {
           "type": "integer",
           "description": "total size after editing order"
+        },
+        "mmp": {
+          "type": "string",
+          "enum": [
+            "enabled",
+            "disabled"
+          ]
         }
       }
     },
@@ -3184,6 +3260,38 @@
           "type": "object"
         }
       }
+    },
+    "CancelAfterRequest": {
+      "type": "object",
+      "description": "Cancel After Request Object",
+      "properties": {
+        "user_id": {
+          "type": "integer"
+        },
+        "cancel_after": {
+          "type": "string",
+          "description": "timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0"
+        }
+      },
+      "example": { "user_id": 1, "cancel_after": "5000"}
+    },
+    "CancelAfterResponse": {
+      "type": "object",
+      "description": "Cancel After Response Object",
+      "properties": {
+        "cancel_after_enabled": {
+          "type": "string",
+          "enum": [
+            "false",
+            "true"
+          ]
+        },
+        "cancel_after_timestamp": {
+          "type": "string",
+          "description": "timestamp after which orders will get cancelled"
+        }
+      },
+      "example": { "cancel_after_enabled": "true", "cancel_after_timestamp": "1669119262000"}
     }
   }
 }
