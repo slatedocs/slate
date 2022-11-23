@@ -172,6 +172,7 @@ The timestamps below are Eastern Time.
 
 | Date                          | Description                                                                                                                       |
 |-------------------------------| --------------------------------------------------------------------------------------------------------------------------------- |
+| November 21, 2022 12:00:00PM  | Deprecated version 1 of the [DELETE: Destroy Openings](#delete-destroy-openings) endpoint. Only v2 is available going forward. 
 | October 18, 2022 12:00:00PM   | Added ability to create and update User Attributes to the [Users](#users) endpoints
 | September 22, 2022 12:00:00PM | Updated [DELETE: Destroy Openings](#delete-destroy-openings) to a v2 endpoint. The v1 endpoint will be deprecated in a future release. Users and partners should switch over to the v2 endpoint as soon as possible to avoid issues with your integration.
 | September 12, 2022 12:00:00PM | Added `created_at` field for application's attachments object.
