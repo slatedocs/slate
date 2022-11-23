@@ -1,6 +1,6 @@
 # Accepting Payments
 
-## VA Aggregator
+## VA 1Aggregator
 
 Businesses are struggling to manage hundreds or even thousands of physical bank accounts that are used for different purposes. It causes significant overhead cost in terms of the amount of account maintenance and man hours needed for reporting and reconciliation purposes, combining different information from different accounts.
 
