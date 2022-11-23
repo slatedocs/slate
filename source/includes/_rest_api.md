@@ -1222,12 +1222,12 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_ids|query|string|false|comma separated product ids, if not specified, all the orders will be returned|
+|product_ids|query|string|false|comma separated product ids|
 |states|query|string|false|comma separated list of states - open,pending|
-|contract_types|query|string|false|comma separated contract types, if not specified, all the orders will be returned|
+|contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the orders will be returned|
 |order_types|query|string|false|comma separated order types|
-|start_time|query|integer|false|from time in micro-seconds in epoc; referring to the order creation time |
-|end_time|query|integer|false|from time in micro-seconds in epoc; referring to the order creation time |
+|start_time|query|integer|false|from time in micro-seconds in epoc|
+|end_time|query|integer|false|from time in micro-seconds in epoc|
 |after|query|string|false|after cursor for pagination|
 |before|query|string|false|before cursor for pagination|
 |page_size|query|integer|false|number of records per page|
@@ -2149,115 +2149,6 @@ To perform this operation, you must be sign the request using your api key and s
 
 Get Open positions, Change Position Margin, Close Position, Close All Position
 
-
-
-## Get margined positions
-
-<a id="opIdgetMarginedPositions"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/v2/positions/margined', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/v2/positions/margined \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/v2/positions/margined',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /positions/margined`
-
-<h3 id="get-margined-positions-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_ids|query|string|false|comma separated product ids, if not specified, all the open positions will be returned|
-|contract_types|query|string|false|comma separated contract types, if not specified, all the open positions will be returned|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": [
-    {
-      "user_id": 0,
-      "size": 0,
-      "entry_price": "string",
-      "margin": "string",
-      "liquidation_price": "string",
-      "bankruptcy_price": "string",
-      "adl_level": 0,
-      "product_id": 0,
-      "product_symbol": "string",
-      "commission": "string",
-      "realized_pnl": "string",
-      "realized_funding": "string"
-    }
-  ]
-}
-```
-
-<h3 id="get-margined-positions-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all open positions|Inline|
-
-<h3 id="get-margined-positions-responseschema">Response Schema</h3>
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
 ## Get position
 
 <a id="opIdgetPositions"></a>
@@ -2344,6 +2235,115 @@ p JSON.parse(result)
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
+
+## Get margined positions
+
+<a id="opIdgetMarginedPositions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/positions/margined', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/positions/margined \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/positions/margined',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /positions/margined`
+
+<h3 id="get-margined-positions-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_ids|query|string|false|comma separated product ids|
+|contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the open positions will be returned|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "user_id": 0,
+      "size": 0,
+      "entry_price": "string",
+      "margin": "string",
+      "liquidation_price": "string",
+      "bankruptcy_price": "string",
+      "adl_level": 0,
+      "product_id": 0,
+      "product_symbol": "string",
+      "commission": "string",
+      "realized_pnl": "string",
+      "realized_funding": "string"
+    }
+  ]
+}
+```
+
+<h3 id="get-margined-positions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all open positions|Inline|
+
+<h3 id="get-margined-positions-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 ## Add/Remove position margin
 
 <a id="opIdchangePositionMargin"></a>
@@ -3685,7 +3685,6 @@ p JSON.parse(result)
 
 ```json
 {
-  "user_id": 1,
   "cancel_after": "5000"
 }
 ```
@@ -5639,7 +5638,6 @@ This operation does not require authentication.
 
 ```json
 {
-  "user_id": 1,
   "cancel_after": "5000"
 }
 
@@ -5651,7 +5649,6 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|user_id|integer|false|none|none|
 |cancel_after|string|false|none|timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0|
 
 <h2 id="tocScancelafterresponse">CancelAfterResponse</h2>
