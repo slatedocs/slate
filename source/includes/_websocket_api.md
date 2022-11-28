@@ -323,6 +323,20 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 }
 ```
 
+## spot_30mtwap_price
+
+**spot_30mtwap_price** channel provides a real time feed of the 30 min twap of underlying index prices. This is the price used for settlement of options.
+
+```
+// Spot 30 minutes twap Price Response
+{
+    symbol: ".DEXBTUSDT",
+    price: "0.0014579",
+    type: "spot_30mtwap_price",
+    timestamp: 1561634049751430
+}
+```
+
 ## funding_rate
 
 **funding_rate** channel provides a real time feed of funding rates for perpetual contracts.
