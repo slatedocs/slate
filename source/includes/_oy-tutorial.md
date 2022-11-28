@@ -372,6 +372,8 @@ Once you have connected your Accurate account in OY!, any transaction that happe
 3. Once you have successfully logged in to Accurate, you will be required to select the database that you want to connect with your OY! account.
 4. If the connection process success, a notification will appear.
 5. Upon success connecting to Accurate, we will create a new Bank Account into your Accurate account, named “OY! balance” in which any transaction that happened in OY! will be recorded there.
+6. In your Accurate Dashboard, you can see that OY! Indonesia app will be listed in the Accurate Store >> Aplikasi Saya menu.
+7. Note: A fee of IDR 20k/month will be added to your Accurate billing.
 
 ### Map your Chart of Account (Akun Perkiraan)
 1. Once you have successfully connected to Accurate, you will be directed to a page to map your Chart of Account (Akun Perkiraan).
@@ -385,4 +387,5 @@ Once you have connected your Accurate account in OY!, any transaction that happe
 
 ### Disconnected your Accurate 
 1. To disconnect your Accurate account from OY!, open the Integration menu on the sidebar. Then select “Disconnect”.
-2. Then, you will be disconnected from Accurate. Any transaction that you execute via OY! will not be recorded in Accurate
+2. Then, you will be disconnected from Accurate. Any transaction that you execute via OY! will not be recorded in Accurate.
+3. Note: To remove the bill, please make sure you also uninstall OY! app in your Accurate dashboard.
