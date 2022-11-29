@@ -5649,7 +5649,7 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cancel_after|string|false|none|timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0|
+|cancel_after|string|false|none|Timer value in milliseconds after which orders are to be cancelled. To disable deadman switch and keep your orders open, set cancel_after to 0.|
 
 <h2 id="tocScancelafterresponse">CancelAfterResponse</h2>
 

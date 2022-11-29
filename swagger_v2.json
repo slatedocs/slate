@@ -3267,7 +3267,7 @@
       "properties": {
         "cancel_after": {
           "type": "string",
-          "description": "timer value in milliseconds after which orders are to be cancelled. To cancel any previous timeout and keep your orders open, pass a cancel_after of 0"
+          "description": "Timer value in milliseconds after which orders are to be cancelled. To disable deadman switch and keep your orders open, set cancel_after to 0."
         }
       },
       "example": { "cancel_after": "5000"}
