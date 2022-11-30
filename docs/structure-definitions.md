@@ -1,5 +1,5 @@
 
-| Parameter                                                | Description                                               |
+| Name                                                     | Description                                               |
 | ------------------------------                           | --------------------------------------------------------- |
 |[CIS](#CIS)                                               |MSK EHR System                                            |
 |[CRDB](#CRDB)                                             |Clinical Research Database                                |
