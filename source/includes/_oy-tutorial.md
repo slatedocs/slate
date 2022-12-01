@@ -105,6 +105,18 @@ After you have completed the fund transfer to OY! Indonesia, you need to perform
 
 ![Success Failed Confirmation](images/success_failed_confirmation.png)
 
+- Top Up using BCA via Unique Code
+  Now, we provide you with a new method for BCA. Top-up using BCA with a unique code allows you to top up your balance in a real-time manner. You do not have to confirm manually as we will automatically detect your top-up and reflect it to your balance.
+
+Steps:
+
+1. Click on “BCA Unique Code” tab.
+2. Input the amount you want to top up. Note: The operational hour for this method is every day, from 4 AM to 8 PM. Outside those hours, this method will be closed.
+3. The minimum amount that we allow for this method is IDR11,000. It is because we will SUBTRACT your amount with the assigned unique code. Please note that the amount that will be reflected in your balance is the full amount you input in this step, not the amount that has been subtracted with the unique code.
+4. Confirm your amount.
+5. Transfer the exact nominal that appeared on the screen to the bank account stated on the page.
+6. After the transaction is successful, the ORIGINAL AMOUNT will be reflected in your balance.
+
 ## Withdrawal
 
 When you want to withdraw, do the following steps:
