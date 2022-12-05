@@ -94,13 +94,13 @@ def get_time_stamp():
     epoch = datetime.datetime(1970,1,1)
     return str(int((d - epoch).total_seconds()))
 
-url = "https://testnet-api.delta.exchange/orders"
+url = "https://testnet-api.delta.exchange/v2/orders"
 
 # Get open orders
 payload = ''
 method = 'GET'
 timestamp = get_time_stamp()
-path = '/orders'
+path = '/v2/orders'
 query_string = '?product_id=1&state=open'
 signature_data = method + timestamp + path + query_string + payload
 signature = generate_signature(api_secret, signature_data)
