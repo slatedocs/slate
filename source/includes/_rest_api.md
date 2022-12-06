@@ -1304,7 +1304,144 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Add/Update Bracket order
+## Place Bracket Order
+
+<a id="opIdplaceBracketOrder"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/v2/orders/bracket', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/v2/orders/bracket \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/v2/orders/bracket',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /orders/bracket`
+
+> Body parameter
+
+```json
+{
+  "product_id": 0,
+  "take_profit_order": {
+    "order_type": "string",
+    "stop_price": "string",
+    "limit_price": "string"
+  },
+  "stop_loss_order": {
+    "order_type": "string",
+    "stop_price": "string",
+    "limit_price": "string",
+    "trail_amount": "string"
+  },
+  "stop_trigger_method": "string"
+}
+```
+
+<h3 id="place-bracket-order-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|» product_id|body|integer|true|none|
+|take_profit_order|body|[Take Profit Order](#schematakeprofitorder)|false|Take profit order which needs to be created|
+|stop_loss_order|body|[Stop Loss Order](#schemastoplossorder)|false|Stop loss order which needs to be created|
+|» stop_trigger_method|body|string|false|none
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "take_profit_order": {
+      "stop_order_type": "take_profit_order",
+      "bracket_order": true,
+      "reduce_only": true,
+      "stop_trigger_method": "mark_price",
+      "product_id": 0,
+      "size": 1,
+      ....
+    },
+    "stop_loss_order": {
+      "stop_order_type": "stop_loss_order",
+      "bracket_order": true,
+      "reduce_only": true,
+      "stop_trigger_method": "mark_price",
+      "product_id": 0,
+      "size": 1,
+      ....
+    }
+  }
+}
+```
+
+<h3 id="place-bracket-order-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the bracker order object.|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns [error](#place-bracket-order-error-description) if bracket order could not be placed|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="place-bracket-order-responseschema">Response Schema</h3>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|stop_trigger_method|mark_price|
+|stop_trigger_method|last_traded_price|
+|stop_trigger_method|stop_price|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Edit Bracket order
 
 <a id="opIdbracketOrder"></a>
 
@@ -1379,7 +1516,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[BracketOrderRequest](#schemabracketorderrequest)|true|Bracket Order which needs to be updated |
+|body|body|[EditBracketOrderRequest](#schemabracketorderrequest)|true|Bracket Order which needs to be updated |
 
 > Example responses
 
@@ -4740,7 +4877,7 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |*anonymous*|[[EditOrderRequest](#schemaeditorderrequest)]|false|none|[edit order object]|
 
-<h2 id="tocSbracketorderrequest">BracketOrderRequest</h2>
+<h2 id="tocSbracketorderrequest">EditBracketOrderRequest</h2>
 
 <a id="schemabracketorderrequest"></a>
 
@@ -4757,7 +4894,7 @@ This operation does not require authentication.
 
 ```
 
-*bracket order object*
+*edit bracket order object*
 
 ### Properties
 
@@ -4770,6 +4907,71 @@ This operation does not require authentication.
 |bracket_take_profit_limit_price|string|false|none|none|
 |bracket_take_profit_price|string|false|none|none|
 |bracket_trail_amount|string|false|none|none|
+
+
+<h2 id="tocStakeprofitorder">TakeProfitOrder</h2>
+
+<a id="schematakeprofitorder"></a>
+
+```json
+{
+  "order_type": "string",
+  "stop_price": "string",
+  "limit_price": "string",
+}
+
+```
+
+*take profit order*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|order_type|string|true|none|none|
+|stop_price|string|true|none|none|
+|limit_price|string|false|none|Required for limit order|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|order_type|limit_order|
+|order_type|market_order|
+
+
+<h2 id="tocSstoplossorder">StopLossOrder</h2>
+
+<a id="schemastoplossorder"></a>
+
+```json
+{
+  "order_type": "string",
+  "stop_price": "string",
+  "limit_price": "string",
+  "trail_amount": "string"
+}
+
+```
+
+*stop loss order*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|order_type|string|true|none|none|
+|stop_price|string|true|none|Required if trail amount is missing|
+|trail_amount|string|false|none|Only trail amount or stop price should be set|
+|limit_price|string|false|none|Required for limit order|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|order_type|limit_order|
+|order_type|market_order|
+
 
 <h2 id="tocSdeleteorderrequest">DeleteOrderRequest</h2>
 
