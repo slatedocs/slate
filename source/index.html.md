@@ -224,6 +224,9 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   ],
   "country": "DE",
   "state": "DE-RP",
+  "special_skills": {
+    "403": "gut"
+  },
   "unions": [
     "bffs"
   ],
