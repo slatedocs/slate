@@ -110,7 +110,8 @@ To perform this operation, you must be sign the request using your api key and s
 
 <h1 id="delta-exchange-api-v2-indices">Indices</h1>
 
-Get Indices List
+Get Indices List.
+Indices refer to spot price indices that Delta Exchange creates by combining spot prices of prominent crypto exchanges. These indices form the underlying of futures and options contracts listed on Delta Exchange. All details of indices on Delta Exchange are available [here](https://www.delta.exchange/indices).
 
 ## Get indices
 
