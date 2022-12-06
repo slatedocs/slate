@@ -65,6 +65,7 @@ Ratelimit-Reset: 1597048500
 * `Ratelimit-Reset`: the timestamp when the quota resets
 
 # Changelog
+- (2022-12-06) **ActorProfile#show**: Add `unions`
 - (2022-09-09) **ActorProfile#index**: Add `updated_at` as selectable field
 - (2022-01-26) **ActorProfile#show**: Add `pitches`, `figures`, `native_dialects`, `sport_skills`, `special_skills`
 - (2022-01-12) **ActorProfile#show**: Add new fields `station` / `theatre` / `writer` to Vita
@@ -223,6 +224,9 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   ],
   "country": "DE",
   "state": "DE-RP",
+  "unions": [
+    "bffs"
+  ],
   "pictures": [
     {
       "id": 140,
