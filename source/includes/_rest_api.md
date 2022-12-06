@@ -1306,6 +1306,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Place Bracket Order
 
+A bracket order is a set of TP and SL order. For a bracket order , size need not be specified as it closes the entire position. For a given contract, you can have multiple bracket orders for open orders but only a single bracket order for any open position.
 <a id="opIdplaceBracketOrder"></a>
 
 > Code samples
@@ -1386,8 +1387,8 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |» product_id|body|integer|true|none|
-|take_profit_order|body|[Take Profit Order](#schematakeprofitorder)|false|Take profit order which needs to be created|
-|stop_loss_order|body|[Stop Loss Order](#schemastoplossorder)|false|Stop loss order which needs to be created|
+|take_profit_order|body|[Bracket: Take Profit Order](#schematakeprofitorder)|false|Take profit order which needs to be created|
+|stop_loss_order|body|[Bracket: Stop Loss Order](#schemastoplossorder)|false|Stop loss order which needs to be created|
 |» stop_trigger_method|body|string|false|none
 
 > Example responses
@@ -1541,7 +1542,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Cancel all open orders
 
-Cancels all orders for a given product id. If product id is not provided, it cancels orders for provided contract types. If none of them are provided, it cancels all the orders.
+Cancels all orders for a given product id. If product id is not provided, it cancels orders for provided contract types. If none of them are provided, it cancels all the orders. Provide either product id or list of contract types at a time. If both are provided, contract types will be ignored.
 <a id="opIdcancelAllOrders"></a>
 
 > Code samples
@@ -1692,7 +1693,7 @@ p JSON.parse(result)
 
 `POST /orders/batch`
 
-Orders in a batch should belong to the same contract. 
+Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50.
 
 > Body parameter
 
@@ -2289,93 +2290,6 @@ To perform this operation, you must be sign the request using your api key and s
 
 Get Open positions, Change Position Margin, Close Position, Close All Position
 
-## Get position
-
-<a id="opIdgetPositions"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/v2/positions', params={
-  'product_id': '0'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/v2/positions?product_id=0 \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/v2/positions',
-  params: {
-  'product_id' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /positions`
-
-<h3 id="get-position-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_id|query|integer|true|id of the product|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": {
-    "size": 0,
-    "entry_price": "string"
-  }
-}
-```
-
-<h3 id="get-position-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Open position for the give product id|Inline|
-
-<h3 id="get-position-responseschema">Response Schema</h3>
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
 ## Get margined positions
 
 <a id="opIdgetMarginedPositions"></a>
@@ -2483,6 +2397,95 @@ p JSON.parse(result)
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
+
+## Get position
+
+<a id="opIdgetPositions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/positions', params={
+  'product_id': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/positions?product_id=0 \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/positions',
+  params: {
+  'product_id' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /positions`
+
+<h3 id="get-position-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_id|query|integer|true|id of the product|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "size": 0,
+    "entry_price": "string"
+  }
+}
+```
+
+<h3 id="get-position-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Open position for the give product id|Inline|
+
+<h3 id="get-position-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+
 
 ## Add/Remove position margin
 
@@ -4912,7 +4915,7 @@ This operation does not require authentication.
 |bracket_trail_amount|string|false|none|none|
 
 
-<h2 id="tocStakeprofitorder">TakeProfitOrder</h2>
+<h2 id="tocStakeprofitorder">Bracket: TakeProfitOrder</h2>
 
 <a id="schematakeprofitorder"></a>
 
@@ -4925,7 +4928,7 @@ This operation does not require authentication.
 
 ```
 
-*take profit order*
+*bracket: take profit order*
 
 ### Properties
 
@@ -4943,7 +4946,7 @@ This operation does not require authentication.
 |order_type|market_order|
 
 
-<h2 id="tocSstoplossorder">StopLossOrder</h2>
+<h2 id="tocSstoplossorder">Bracket: StopLossOrder</h2>
 
 <a id="schemastoplossorder"></a>
 
@@ -4957,7 +4960,7 @@ This operation does not require authentication.
 
 ```
 
-*stop loss order*
+*bracket: stop loss order*
 
 ### Properties
 
