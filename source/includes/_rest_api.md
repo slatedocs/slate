@@ -1541,6 +1541,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Cancel all open orders
 
+Cancels all orders for a given product id. If product id is not provided, it cancels orders for provided contract types. If none of them are provided, it cancels all the orders.
 <a id="opIdcancelAllOrders"></a>
 
 > Code samples
@@ -5016,8 +5017,8 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|product_id|integer|false|none|cancel all orders for particular product, cancels orders for all products if not provided|
-|contract_types|string|false|none|comma separated list of desired contract types|
+|product_id|integer|false|none|cancel all orders for particular product.|
+|contract_types|string|false|none|comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps etc.|
 |cancel_limit_orders|string|false|none|set as true to cancel open limit orders|
 |cancel_stop_orders|string|false|none|set as true to cancel stop orders|
 
