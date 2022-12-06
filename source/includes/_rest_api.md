@@ -183,7 +183,7 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of indices (Spot underlyings, Interest Rates indexes)|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)| [List of indices] (#schemaarrayofindices)|Inline|
 
 <h3 id="get-indices-responseschema">Response Schema</h3>
 
