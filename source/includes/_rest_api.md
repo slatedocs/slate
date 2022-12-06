@@ -1691,6 +1691,8 @@ p JSON.parse(result)
 
 `POST /orders/batch`
 
+Orders in a batch should belong to the same contract. 
+
 > Body parameter
 
 ```json
