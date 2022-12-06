@@ -218,3 +218,22 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | `encounter.display`       | Protocol visit                             |
 | `effectiveDateTime`       | Collection datetime                        |
 | `issued`                  | Collection datetime                        |
+
+
+## Value Set
+
+Values supported by MSK include but are not limited to:
+<ul>
+<li>Blood Pressure BP Systolic</li>
+<li>Blood Pressure Diastolic</li>
+<li>Blood Pressure Positioning</li>
+<li>BSA m2</li>
+<li>Height (centimeters)</li>
+<li>Last recorded Height</li>
+<li>Pulse Ox (SpO2)</li>
+<li>Pulse/Heart Rate</li>
+<li>Resp Rate</li>
+<li>Temperature F</li>
+<li>Temperature Temp C</li>
+<li>Weight (kilograms)</li>
+</ul>
