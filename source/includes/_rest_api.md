@@ -1435,7 +1435,7 @@ p JSON.parse(result)
 |---|---|
 |stop_trigger_method|mark_price|
 |stop_trigger_method|last_traded_price|
-|stop_trigger_method|stop_price|
+|stop_trigger_method|spot_price|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1730,7 +1730,7 @@ p JSON.parse(result)
 |» orders|body|[[CreateOrderRequest](#schemacreateorderrequest)]|false|[A create order object]|
 |»» product_id|body|integer|true|none|
 |»» limit_price|body|string|false|none|
-|»» size|body|integer|false|none|
+|»» size|body|integer|false|Max allowed size limit in a batch is 50|
 |»» side|body|string|false|side for which to place order|
 |»» order_type|body|string|false|none|
 |»» stop_order_type|body|string|false|none|
