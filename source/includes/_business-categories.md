@@ -17,9 +17,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
-  https://tools.brightlocal.com/seo-tools/api/v1/business-categories/USA
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v1/business-categories/USA?api-key=<INSERT_API_KEY>'
 ```
 
 ```csharp

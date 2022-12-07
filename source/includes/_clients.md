@@ -270,12 +270,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=My+Sample+Query' \	
-  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/search
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/search?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&q=My+Sample+Query'
 ```
 
 ```csharp

@@ -339,11 +339,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf/1
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/1?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -597,11 +593,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -699,12 +691,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=My+Sample+Query' \	
-  https://tools.brightlocal.com/seo-tools/api/v4/rf/search
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/search?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&q=My+Sample+Query'
 ```
 
 ```csharp
@@ -784,11 +771,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -918,11 +901,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/count
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/count?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -983,11 +962,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/growth
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/141/reviews/growth?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -1053,11 +1028,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf/141/directories
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/141/directories?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -1235,11 +1206,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf/141//directories/stats
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/141/directories/stats?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -1330,11 +1297,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v4/rf/141//stars/count
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/rf/141/stars/count?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp

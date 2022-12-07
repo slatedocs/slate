@@ -289,11 +289,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
-  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get-all
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get-all?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
@@ -373,12 +369,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=50' \
-  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v2/lsrc/get?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&campaign-id=50'
 ```
 
 ```csharp
@@ -570,12 +561,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=50' \
-  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/history/get
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v2/lsrc/history/get?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&campaign-id=50'
 ```
 
 ```csharp
@@ -654,12 +640,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'campaign-id=9636' \
-  https://tools.brightlocal.com/seo-tools/api/v2/lsrc/results/get
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v2/lsrc/results/get?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&campaign-id=9636'
 ```
 
 ### Get Report Results
