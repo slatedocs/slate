@@ -386,12 +386,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'report-id=860' \
-  https://tools.brightlocal.com/seo-tools/api/v4/lscu
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/lscu?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&report-id=860'
 ```
 
 ```csharp
@@ -667,12 +662,7 @@ print_r($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=Bodega+Wine+Bar' \
-  https://tools.brightlocal.com/seo-tools/api/v4/lscu/search
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v4/lscu/search?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&q=Bodega+Wine+Bar'
 ```
 
 ### Search Reports

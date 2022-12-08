@@ -19,13 +19,7 @@ var_dump($response->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'country=USA' \   
- -d 'location=12555' \   
-  https://tools.brightlocal.com/seo-tools/api/v1/geo-locations/bing
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v1/geo-locations/bing?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&country=USA&location=12555'
 ```
 
 ```csharp
@@ -76,13 +70,7 @@ var_dump($response->getResult());
 ```
 
 ```shell
-```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \  
- -d 'location=12555' \   
-  https://tools.brightlocal.com/seo-tools/api/v1/geo-locations/google
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v1/geo-locations/google?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>&location=12555'
 ```
 
 ```csharp

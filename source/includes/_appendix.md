@@ -27,11 +27,7 @@ print_r($responseByCountry->getResult());
 ```
 
 ```shell
-curl -X GET \
- -d 'api-key=<INSERT_API_KEY>' \
- -d 'sig=<INSERT_API_SIG>' \
- -d 'expires=<INSERT_API_EXPIRES>' \
- https://tools.brightlocal.com/seo-tools/api/v1/directories/all
+curl -X GET 'https://tools.brightlocal.com/seo-tools/api/v1/directories/all?api-key=<INSERT_API_KEY>&sig=<INSERT_API_SIG>&expires=<INSERT_API_EXPIRES>'
 ```
 
 ```csharp
