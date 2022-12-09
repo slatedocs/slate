@@ -470,8 +470,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../identifiers/" class="md-nav__link">
-        Identifiers
+      <a href="../../structure-definitions/" class="md-nav__link">
+        Structure Definitions
       </a>
     </li>
   
@@ -595,6 +595,9 @@
   <h1>Adverse Event</h1>
 
 <p>Adverse event data are mapped to FHIR's <a href="http://hl7.org/fhir/adverseevent.html" target="blank">Adverse Event</a> resource. This is not a visit specific data element and does not require any adjudication by study staff.</p>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> The data set available does not currently include lab toxicities.</p>
+</blockquote>
 <h2 id="request">Request</h2>
 <div class="highlight"><pre><span></span><code>GET /msk-apim/external/v2/crit/blaze/api/AdverseEvent
 -H Authorization: Bearer {access_token} 

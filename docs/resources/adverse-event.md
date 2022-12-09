@@ -1,5 +1,7 @@
 Adverse event data are mapped to FHIR's [Adverse Event](http://hl7.org/fhir/adverseevent.html){:target="blank"} resource. This is not a visit specific data element and does not require any adjudication by study staff.
 
+> **_NOTE:_** The data set available does not currently include lab toxicities.
+
 ## Request
 ```
 GET /msk-apim/external/v2/crit/blaze/api/AdverseEvent
