@@ -93,7 +93,6 @@ url = "https://api.apollo.io/v1/tasks/search"
 querystring = {
     "api_key": "YOUR API KEY HERE",
     "sort_by_field": "task_created_at",
-    "per_page": 200,
     "open_factor_names": [
         "task_types"
     ]
@@ -421,4 +420,3 @@ print(response.text)
 | Parameter                    | Description                                                     | Example        |
 | ---------------------------- | --------------------------------------------------------------- | -------------- |
 | open_factor_names (required) | This is a required field and must be passed in with the request | ["task_types"] |
-| per_page                     | how many tasks to return per page. Max = 200                    | 100            |

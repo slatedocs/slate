@@ -294,7 +294,6 @@ print(response.text)
 | sort_by_field       | Possible values: "account_last_activity_date" or "account_created_at"                                           |
 | sort_ascending      | Possible values: true or false                                                                                  |
 | page                | which page to return. Defaults to 1                                                                             |
-| per_page            | how many accounts to return per page. Max = 200                                                                 |
 
 ## Get a List of Account Stages
 
