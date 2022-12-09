@@ -32,7 +32,7 @@ nav:
   - Coming Soon:
       - "MedicationStatement (All meds)": coming-soon/medications.md
       - Response: coming-soon/response.md
-  - Identifiers: identifiers.md
+  - Structure Definitions: structure-definitions.md
   - "Release Notes": release-notes.md
   - "Contact Us": contact-us.md
 markdown_extensions:
