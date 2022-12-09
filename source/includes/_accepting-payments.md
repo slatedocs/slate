@@ -54,7 +54,6 @@ Example:
 
 * A static VA with a closed amount can be updated with a new closed amount hence it can work as a bill to be paid for a particular customer
 * A static VA can be updated to a single use so it will be the last payment received from a particular customer
-* A dynamic VA with a closed amount is updated to an opened amount so that it can accept payments for any amount
 
 All of the VA information, even after they are updated, is available on the OY! dashboard or via API. Once a VA is updated, the new set of configuration will apply for that VA and the previous configure is overridden and no longer applicable
 
