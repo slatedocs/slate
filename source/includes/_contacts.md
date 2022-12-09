@@ -459,7 +459,6 @@ contact_stage_ids | An array of stage ids the contact must belong to. Refer to /
 sort_by_field | Possible values: "contact_last_activity_date", "contact_email_last_opened_at", "contact_email_last_clicked_at", "contact_created_at", or "contact_updated_at"
 sort_ascending | Possible values: true or false
 page | which page to return. Defaults to 1
-per_page | how many contacts to return per page. Max = 200
 
 ## Get a List of Contact Stages
 
