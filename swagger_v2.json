@@ -63,6 +63,10 @@
     {
       "name": "Dead Man's Switch (Auto Cancel)",
       "description": "Set up timers for auto orders cancel in case of network malfunctions "
+    },
+    {
+      "name": "Account",
+      "description": "Account level settings"
     }
   ],
   "schemes": [
@@ -115,12 +119,13 @@
         ],
         "operationId": "getIndices",
         "summary": "Get indices",
+        "description": "Indices refer to spot price indices that Delta Exchange creates by combining spot prices of prominent crypto exchanges. These indices form the underlying of futures and options contracts listed on Delta Exchange. All details of indices on Delta Exchange are available [here](https://www.delta.exchange/indices).",
         "produces": [
           "application/json"
         ],
         "responses": {
           "200": {
-            "description": "List of indices (Spot underlyings, Interest Rates indexes)",
+            "description": "List of indices",
             "schema": {
               "allOf": [
                 {
@@ -519,7 +524,7 @@
           {
             "in": "query",
             "name": "product_ids",
-            "description": "comma separated product ids",
+            "description": "comma separated product ids, if not specified, all the orders will be returned",
             "type": "string"
           },
           {
@@ -556,13 +561,13 @@
           {
             "in": "query",
             "name": "start_time",
-            "description": "from time in micro-seconds in epoc",
+            "description": "from time in micro-seconds in epoc; referring to the order creation time",
             "type": "integer"
           },
           {
             "in": "query",
             "name": "end_time",
-            "description": "from time in micro-seconds in epoc",
+            "description": "from time in micro-seconds in epoc; referring to the order creation time",
             "type": "integer"
           },
           {
@@ -611,11 +616,12 @@
       }
     },
     "/orders/bracket": {
-      "put": {
+      "post": {
         "tags": [
           "Orders"
         ],
-        "summary": "Add/Update Bracket order",
+        "summary": "Place Bracket order",
+        "description": "A bracket order is a set of TP and SL order. For a bracket order , size need not be specified as it closes the entire position. For a given contract, you can have multiple bracket orders for open orders but only a single bracket order for any open position.",
         "operationId": "bracketOrder",
         "consumes": [
           "application/json"
@@ -637,7 +643,53 @@
             "description": "Bracket Order which needs to be updated ",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/BracketOrderRequest"
+              "$ref": "#/definitions/CreateBracketOrderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns back success response",
+            "schema": {
+              "$ref": "#/definitions/ApiSuccessResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error if orders could not be updated",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Edit Bracket order",
+        "description": "A bracket order is a set of TP and SL order. You can specify bracket order with an order that will create a new position. Use this api to change the bracket params attached with an order.",
+        "operationId": "bracketOrder",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "order",
+            "description": "Bracket Order which needs to be updated ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditBracketOrderRequest"
             }
           }
         ],
@@ -663,6 +715,7 @@
           "Orders"
         ],
         "summary": "Cancel all open orders",
+        "description": "Cancels all orders for a given product id. If product id is not provided, it cancels orders for provided contract types. If none of them are provided, it cancels all the orders. Provide either product id or list of contract types at a time. If both are provided, contract types will be ignored.",
         "operationId": "cancelAllOrders",
         "consumes": [
           "application/json"
@@ -710,6 +763,7 @@
           "Orders"
         ],
         "summary": "Create batch orders",
+        "description": "Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50.",
         "operationId": "batchCreate",
         "consumes": [
           "application/json"
@@ -1380,13 +1434,13 @@
           {
             "in": "query",
             "name": "product_ids",
-            "description": "comma separated product ids",
+            "description": "comma separated product ids. If not specified any parameters, all the open positions will be returned",
             "type": "string"
           },
           {
             "in": "query",
             "name": "contract_types",
-            "description": "comma separated list of desired contract types, if not specified any parameters then, all the open positions will be returned",
+            "description": "comma separated list of desired contract types. If not specified any parameters then, all the open positions will be returned",
             "type": "string",
             "enum":[
               "futures",
@@ -2013,6 +2067,7 @@
         ],
         "summary": "Update MMP config",
         "operationId": "updateMMP",
+        "description": "Market maker protection is available on demand to RMM. More info [here](https://guides.delta.exchange).",
         "consumes": [
           "application/json"
         ],
@@ -2107,6 +2162,45 @@
             "description": "Returns error if mmp is not enabled on the account",
             "schema": {
               "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/trading_preferences": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get users trading preferences",
+        "operationId": "getTradingPreferences",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User trading preferences attached to the account",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/UserPreference"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -2544,8 +2638,12 @@
         "mmp": {
           "type": "string",
           "enum": [
-            "enabled",
-            "disabled"
+            "disabled",
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
           ]
         },
         "post_only": {
@@ -2600,8 +2698,12 @@
         "mmp": {
           "type": "string",
           "enum": [
-            "enabled",
-            "disabled"
+            "disabled",
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
           ]
         }
       }
@@ -2612,13 +2714,68 @@
         "$ref": "#/definitions/EditOrderRequest"
       }
     },
-    "BracketOrderRequest": {
+    "CreateBracketOrderRequest": {
+      "type": "object",
+      "description": "bracket order object",
+      "properties": {
+        "product_id": {
+          "type": "integer",
+          "required": true
+        },
+        "stop_loss_order": {
+          "type": "object",
+          "properties": {
+            "order_type": {
+              "type": "string",
+              "enum": ["limit_order", "market_order"]
+            },
+            "stop_price": {
+              "type": "string"
+            },
+            "trail_amount": {
+              "type": "string",
+              "description": "Use trail amount if you want a trailing stop order. Required if stop price is empty."
+            },
+            "limit_price": {
+              "type": "string",
+              "description": "Required if its a limit order"
+            }
+          }
+        },
+        "take_profit_order": {
+          "type": "object",
+          "properties": {
+            "order_type": {
+              "type": "string",
+              "enum": ["limit_order", "market_order"]
+            },
+            "stop_price": {
+              "type": "string"
+            },
+            "limit_price": {
+              "type": "string",
+              "description": "Required if its a limit order"
+            }
+          }
+        },
+        "stop_trigger_method": {
+          "type": "string",
+          "enum": [
+            "mark_price",
+            "last_traded_price",
+            "spot_price"
+          ]
+        }
+      }
+    },
+    "EditBracketOrderRequest": {
       "type": "object",
       "description": "bracket order object",
       "properties": {
         "id": {
           "type": "integer",
-          "required": true
+          "required": true,
+          "description": "Order ID for which bracket params are being updated"
         },
         "product_id": {
           "type": "integer",
@@ -3220,19 +3377,35 @@
           "required": true
         },
         "window_interval": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Window interval in seconds"
         },
         "freeze_interval": {
-          "type": "integer"
+          "type": "integer",
+          "description": "MMP freeze interval in seconds. Setting this to zero will require a manual reset once mmp is triggered."
         },
         "trade_limit": {
-          "type": "string"
+          "type": "string",
+          "description": "Notional trade limit for mmp to trigger (in USDT)"
         },
         "delta_limit": {
-          "type": "string"
+          "type": "string",
+          "description": "Delta Adjusted notional trade limit for mmp to trigger (in USDT)"
         },
         "vega_limit": {
-          "type": "string"
+          "type": "string",
+          "description": "vega traded limit for mmp to trigger (in USDT)"
+        },
+        "mmp": {
+          "type": "string",
+          "description": "Specify mmp flag for the config update",
+          "enum": [
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
+          ]
         }
       }
     },
@@ -3243,6 +3416,17 @@
         "asset": {
           "type": "string",
           "required": true
+        },
+        "mmp": {
+          "type": "string",
+          "description": "specify mmp flag to reset",
+          "enum": [
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
+          ]
         }
       }
     },
@@ -3254,10 +3438,20 @@
           "type": "integer"
         },
         "default_auto_topup": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Default auto topup setting for newly acquired positions (only for isolated mode)"
         },
         "mmp_config": {
-          "type": "object"
+          "type": "object",
+          "description": "Config object for market maker protection (only for MMP enabled accounts)"
+        },
+        "deto_for_commission": {
+          "type": "boolean",
+          "description": "Flag to determine whether to pay commissions in deto"
+        },
+        "vip_level": {
+          "type": "integer",
+          "description": "VIP level for this account. Customers get better fee discounting for higher VIP levels"
         }
       }
     },
