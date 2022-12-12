@@ -278,11 +278,13 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
 
 **l2_updates** channel provides initial snapshot and then incremental orderbook data.
 
+**NOTE: This channel is currently in beta version, only use for testing."**
+
 **How to maintain orderbook locally using this channel:**
 
 1) When you subscribe to this channel, the first message with “action”= “snapshot” resembles the complete l2_orderbook at this time. “asks” and “bids” are arrays of [“price”, “size”]. (size is number of contracts at this price)
 
-2) After this initial snapshot, messages will be with “action” = “update”, resembling the difference between current and previous orderbook state. “asks” and “bids” are arrays of [“price”, “new size”].
+2) After the initial snapshot, messages will be with “action” = “update”, resembling the difference between current and previous orderbook state. “asks” and “bids” are arrays of [“price”, “new size”].
 Case price already exists -> if the size is 0, delete this price level. If the size changes, replace the size with new size.
 e.g. for the above snapshot and update messages: in the ask side, price level of “16919.0” will be deleted. size at price level “16919.5" will be changed from “1193” to “710".
 Case price doesn’t exists -> insert the price level.
