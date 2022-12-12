@@ -110,8 +110,7 @@ To perform this operation, you must be sign the request using your api key and s
 
 <h1 id="delta-exchange-api-v2-indices">Indices</h1>
 
-Get Indices List.
-Indices refer to spot price indices that Delta Exchange creates by combining spot prices of prominent crypto exchanges. These indices form the underlying of futures and options contracts listed on Delta Exchange. All details of indices on Delta Exchange are available [here](https://www.delta.exchange/indices).
+Get Indices List
 
 ## Get indices
 
@@ -158,6 +157,8 @@ p JSON.parse(result)
 
 `GET /indices`
 
+Indices refer to spot price indices that Delta Exchange creates by combining spot prices of prominent crypto exchanges. These indices form the underlying of futures and options contracts listed on Delta Exchange. All details of indices on Delta Exchange are available [here](https://www.delta.exchange/indices).
+
 > Example responses
 
 > 200 Response
@@ -184,7 +185,7 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)| [List of indices] (#schemaarrayofindices)|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of indices|Inline|
 
 <h3 id="get-indices-responseschema">Response Schema</h3>
 
@@ -1223,12 +1224,12 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|product_ids|query|string|false|comma separated product ids|
+|product_ids|query|string|false|comma separated product ids, if not specified, all the orders will be returned|
 |states|query|string|false|comma separated list of states - open,pending|
 |contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the orders will be returned|
 |order_types|query|string|false|comma separated order types|
-|start_time|query|integer|false|from time in micro-seconds in epoc|
-|end_time|query|integer|false|from time in micro-seconds in epoc|
+|start_time|query|integer|false|from time in micro-seconds in epoc; referring to the order creation time|
+|end_time|query|integer|false|from time in micro-seconds in epoc; referring to the order creation time|
 |after|query|string|false|after cursor for pagination|
 |before|query|string|false|before cursor for pagination|
 |page_size|query|integer|false|number of records per page|
@@ -1305,10 +1306,9 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Place Bracket Order
+## Place Bracket order
 
-A bracket order is a set of TP and SL order. For a bracket order , size need not be specified as it closes the entire position. For a given contract, you can have multiple bracket orders for open orders but only a single bracket order for any open position.
-<a id="opIdplaceBracketOrder"></a>
+<a id="opIdbracketOrder"></a>
 
 > Code samples
 
@@ -1363,23 +1363,25 @@ p JSON.parse(result)
 
 `POST /orders/bracket`
 
+A bracket order is a set of TP and SL order. For a bracket order , size need not be specified as it closes the entire position. For a given contract, you can have multiple bracket orders for open orders but only a single bracket order for any open position.
+
 > Body parameter
 
 ```json
 {
   "product_id": 0,
+  "stop_loss_order": {
+    "order_type": "limit_order",
+    "stop_price": "string",
+    "trail_amount": "string",
+    "limit_price": "string"
+  },
   "take_profit_order": {
-    "order_type": "string",
+    "order_type": "limit_order",
     "stop_price": "string",
     "limit_price": "string"
   },
-  "stop_loss_order": {
-    "order_type": "string",
-    "stop_price": "string",
-    "limit_price": "string",
-    "trail_amount": "string"
-  },
-  "stop_trigger_method": "string"
+  "stop_trigger_method": "mark_price"
 }
 ```
 
@@ -1387,10 +1389,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|» product_id|body|integer|true|none|
-|take_profit_order|body|[Bracket: Take Profit Order](#schematakeprofitorder)|false|Take profit order which needs to be created|
-|stop_loss_order|body|[Bracket: Stop Loss Order](#schemastoplossorder)|false|Stop loss order which needs to be created|
-|» stop_trigger_method|body|string|false|none
+|body|body|[CreateBracketOrderRequest](#schemacreatebracketorderrequest)|true|Bracket Order which needs to be updated |
 
 > Example responses
 
@@ -1398,27 +1397,7 @@ p JSON.parse(result)
 
 ```json
 {
-  "success": true,
-  "result": {
-    "take_profit_order": {
-      "stop_order_type": "take_profit_order",
-      "bracket_order": true,
-      "reduce_only": true,
-      "stop_trigger_method": "mark_price",
-      "product_id": 0,
-      "size": 1,
-      ....
-    },
-    "stop_loss_order": {
-      "stop_order_type": "stop_loss_order",
-      "bracket_order": true,
-      "reduce_only": true,
-      "stop_trigger_method": "mark_price",
-      "product_id": 0,
-      "size": 1,
-      ....
-    }
-  }
+  "success": true
 }
 ```
 
@@ -1426,18 +1405,8 @@ p JSON.parse(result)
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the bracker order object.|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns [error](#place-bracket-order-error-description) if bracket order could not be placed|[ApiErrorResponse](#schemaapierrorresponse)|
-
-<h3 id="place-bracket-order-responseschema">Response Schema</h3>
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|stop_trigger_method|mark_price|
-|stop_trigger_method|last_traded_price|
-|stop_trigger_method|spot_price|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|[ApiSuccessResponse](#schemaapisuccessresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if orders could not be updated|[ApiErrorResponse](#schemaapierrorresponse)|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -1500,6 +1469,8 @@ p JSON.parse(result)
 
 `PUT /orders/bracket`
 
+A bracket order is a set of TP and SL order. You can specify bracket order with an order that will create a new position. Use this api to change the bracket params attached with an order.
+
 > Body parameter
 
 ```json
@@ -1514,11 +1485,11 @@ p JSON.parse(result)
 }
 ```
 
-<h3 id="add/update-bracket-order-parameters">Parameters</h3>
+<h3 id="edit-bracket-order-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[EditBracketOrderRequest](#schemabracketorderrequest)|true|Bracket Order which needs to be updated |
+|body|body|[EditBracketOrderRequest](#schemaeditbracketorderrequest)|true|Bracket Order which needs to be updated |
 
 > Example responses
 
@@ -1530,7 +1501,7 @@ p JSON.parse(result)
 }
 ```
 
-<h3 id="add/update-bracket-order-responses">Responses</h3>
+<h3 id="edit-bracket-order-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1543,7 +1514,6 @@ To perform this operation, you must be sign the request using your api key and s
 
 ## Cancel all open orders
 
-Cancels all orders for a given product id. If product id is not provided, it cancels orders for provided contract types. If none of them are provided, it cancels all the orders. Provide either product id or list of contract types at a time. If both are provided, contract types will be ignored.
 <a id="opIdcancelAllOrders"></a>
 
 > Code samples
@@ -1598,6 +1568,8 @@ p JSON.parse(result)
 ```
 
 `DELETE /orders/all`
+
+Cancels all orders for a given product id. If product id is not provided, it cancels orders for provided contract types. If none of them are provided, it cancels all the orders. Provide either product id or list of contract types at a time. If both are provided, contract types will be ignored.
 
 > Body parameter
 
@@ -1735,7 +1707,7 @@ Orders in a batch should belong to the same contract. Max allowed size limit in 
 |» orders|body|[[CreateOrderRequest](#schemacreateorderrequest)]|false|[A create order object]|
 |»» product_id|body|integer|true|none|
 |»» limit_price|body|string|false|none|
-|»» size|body|integer|false|Max allowed size limit in a batch is 50|
+|»» size|body|integer|false|none|
 |»» side|body|string|false|side for which to place order|
 |»» order_type|body|string|false|none|
 |»» stop_order_type|body|string|false|none|
@@ -2291,114 +2263,6 @@ To perform this operation, you must be sign the request using your api key and s
 
 Get Open positions, Change Position Margin, Close Position, Close All Position
 
-## Get margined positions
-
-<a id="opIdgetMarginedPositions"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/v2/positions/margined', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/v2/positions/margined \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/v2/positions/margined',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /positions/margined`
-
-<h3 id="get-margined-positions-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_ids|query|string|false|comma separated product ids|
-|contract_types|query|string|false|comma separated list of desired contract types, if not specified any parameters then, all the open positions will be returned|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|contract_types|futures|
-|contract_types|perpetual_futures|
-|contract_types|call_options|
-|contract_types|put_options|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": [
-    {
-      "user_id": 0,
-      "size": 0,
-      "entry_price": "string",
-      "margin": "string",
-      "liquidation_price": "string",
-      "bankruptcy_price": "string",
-      "adl_level": 0,
-      "product_id": 0,
-      "product_symbol": "string",
-      "commission": "string",
-      "realized_pnl": "string",
-      "realized_funding": "string"
-    }
-  ]
-}
-```
-
-<h3 id="get-margined-positions-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all open positions|Inline|
-
-<h3 id="get-margined-positions-responseschema">Response Schema</h3>
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
 ## Get position
 
 <a id="opIdgetPositions"></a>
@@ -2486,7 +2350,113 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Get margined positions
 
+<a id="opIdgetMarginedPositions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/positions/margined', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/positions/margined \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/positions/margined',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /positions/margined`
+
+<h3 id="get-margined-positions-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_ids|query|string|false|comma separated product ids. If not specified any parameters, all the open positions will be returned|
+|contract_types|query|string|false|comma separated list of desired contract types. If not specified any parameters then, all the open positions will be returned|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|contract_types|futures|
+|contract_types|perpetual_futures|
+|contract_types|call_options|
+|contract_types|put_options|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "user_id": 0,
+      "size": 0,
+      "entry_price": "string",
+      "margin": "string",
+      "liquidation_price": "string",
+      "bankruptcy_price": "string",
+      "adl_level": 0,
+      "product_id": 0,
+      "product_symbol": "string",
+      "commission": "string",
+      "realized_pnl": "string",
+      "realized_funding": "string"
+    }
+  ]
+}
+```
+
+<h3 id="get-margined-positions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all open positions|Inline|
+
+<h3 id="get-margined-positions-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
 
 ## Add/Remove position margin
 
@@ -4884,9 +4854,62 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |*anonymous*|[[EditOrderRequest](#schemaeditorderrequest)]|false|none|[edit order object]|
 
-<h2 id="tocSbracketorderrequest">EditBracketOrderRequest</h2>
+<h2 id="tocScreatebracketorderrequest">CreateBracketOrderRequest</h2>
 
-<a id="schemabracketorderrequest"></a>
+<a id="schemacreatebracketorderrequest"></a>
+
+```json
+{
+  "product_id": 0,
+  "stop_loss_order": {
+    "order_type": "limit_order",
+    "stop_price": "string",
+    "trail_amount": "string",
+    "limit_price": "string"
+  },
+  "take_profit_order": {
+    "order_type": "limit_order",
+    "stop_price": "string",
+    "limit_price": "string"
+  },
+  "stop_trigger_method": "mark_price"
+}
+
+```
+
+*bracket order object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|product_id|integer|false|none|none|
+|stop_loss_order|object|false|none|none|
+|» order_type|string|false|none|none|
+|» stop_price|string|false|none|none|
+|» trail_amount|string|false|none|Use trail amount if you want a trailing stop order. Required if stop price is empty.|
+|» limit_price|string|false|none|Required if its a limit order|
+|take_profit_order|object|false|none|none|
+|» order_type|string|false|none|none|
+|» stop_price|string|false|none|none|
+|» limit_price|string|false|none|Required if its a limit order|
+|stop_trigger_method|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|order_type|limit_order|
+|order_type|market_order|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_trigger_method|mark_price|
+|stop_trigger_method|last_traded_price|
+|stop_trigger_method|spot_price|
+
+<h2 id="tocSeditbracketorderrequest">EditBracketOrderRequest</h2>
+
+<a id="schemaeditbracketorderrequest"></a>
 
 ```json
 {
@@ -4901,84 +4924,19 @@ This operation does not require authentication.
 
 ```
 
-*edit bracket order object*
+*bracket order object*
 
 ### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer|false|none|none|
+|id|integer|false|none|Order ID for which bracket params are being updated|
 |product_id|integer|false|none|none|
 |bracket_stop_loss_limit_price|string|false|none|none|
 |bracket_stop_loss_price|string|false|none|none|
 |bracket_take_profit_limit_price|string|false|none|none|
 |bracket_take_profit_price|string|false|none|none|
 |bracket_trail_amount|string|false|none|none|
-
-
-<h2 id="tocStakeprofitorder">Bracket: TakeProfitOrder</h2>
-
-<a id="schematakeprofitorder"></a>
-
-```json
-{
-  "order_type": "string",
-  "stop_price": "string",
-  "limit_price": "string",
-}
-
-```
-
-*bracket: take profit order*
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|order_type|string|true|none|none|
-|stop_price|string|true|none|none|
-|limit_price|string|false|none|Required for limit order|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|order_type|limit_order|
-|order_type|market_order|
-
-
-<h2 id="tocSstoplossorder">Bracket: StopLossOrder</h2>
-
-<a id="schemastoplossorder"></a>
-
-```json
-{
-  "order_type": "string",
-  "stop_price": "string",
-  "limit_price": "string",
-  "trail_amount": "string"
-}
-
-```
-
-*bracket: stop loss order*
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|order_type|string|true|none|none|
-|stop_price|string|true|none|Required if trail amount is missing|
-|trail_amount|string|false|none|Only trail amount or stop price should be set|
-|limit_price|string|false|none|Required for limit order|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|order_type|limit_order|
-|order_type|market_order|
-
 
 <h2 id="tocSdeleteorderrequest">DeleteOrderRequest</h2>
 
@@ -5021,8 +4979,8 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|product_id|integer|false|none|cancel all orders for particular product.|
-|contract_types|string|false|none|comma separated list of contract types e.g. futures,perpetual_futures,call_options, put_options, interest_rate_swaps etc.|
+|product_id|integer|false|none|cancel all orders for particular product, cancels orders for all products if not provided|
+|contract_types|string|false|none|comma separated list of desired contract types|
 |cancel_limit_orders|string|false|none|set as true to cancel open limit orders|
 |cancel_stop_orders|string|false|none|set as true to cancel stop orders|
 
