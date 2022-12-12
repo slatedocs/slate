@@ -846,7 +846,7 @@ p JSON.parse(result)
   "bracket_take_profit_limit_price": "string",
   "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
-  "mmp": "enabled",
+  "mmp": "disabled",
   "post_only": "true",
   "reduce_only": "true",
   "close_on_trigger": "true",
@@ -1103,7 +1103,7 @@ p JSON.parse(result)
   "product_id": 0,
   "limit_price": "string",
   "size": 0,
-  "mmp": "enabled"
+  "mmp": "disabled"
 }
 ```
 
@@ -1688,7 +1688,7 @@ Orders in a batch should belong to the same contract. Max allowed size limit in 
       "bracket_take_profit_limit_price": "string",
       "bracket_take_profit_price": "string",
       "time_in_force": "gtc",
-      "mmp": "enabled",
+      "mmp": "disabled",
       "post_only": "true",
       "reduce_only": "true",
       "close_on_trigger": "true",
@@ -1742,8 +1742,12 @@ Orders in a batch should belong to the same contract. Max allowed size limit in 
 |»» time_in_force|gtc|
 |»» time_in_force|ioc|
 |»» time_in_force|fok|
-|»» mmp|enabled|
 |»» mmp|disabled|
+|»» mmp|mmp1|
+|»» mmp|mmp2|
+|»» mmp|mmp3|
+|»» mmp|mmp4|
+|»» mmp|mmp5|
 |»» post_only|true|
 |»» post_only|false|
 |»» reduce_only|true|
@@ -1875,7 +1879,7 @@ batch order edit
       "product_id": 0,
       "limit_price": "string",
       "size": 0,
-      "mmp": "enabled"
+      "mmp": "disabled"
     }
   ],
   "product_id": 0
@@ -1899,8 +1903,12 @@ batch order edit
 
 |Parameter|Value|
 |---|---|
-|»» mmp|enabled|
 |»» mmp|disabled|
+|»» mmp|mmp1|
+|»» mmp|mmp2|
+|»» mmp|mmp3|
+|»» mmp|mmp4|
+|»» mmp|mmp5|
 
 > Example responses
 
@@ -3595,6 +3603,8 @@ p JSON.parse(result)
 
 `PUT /users/update_mmp`
 
+Market maker protection is available on demand to RMM. More info [here](https://guides.delta.exchange).
+
 > Body parameter
 
 ```json
@@ -3604,7 +3614,8 @@ p JSON.parse(result)
   "freeze_interval": 0,
   "trade_limit": "string",
   "delta_limit": "string",
-  "vega_limit": "string"
+  "vega_limit": "string",
+  "mmp": "mmp1"
 }
 ```
 
@@ -3624,7 +3635,9 @@ p JSON.parse(result)
   "result": {
     "user_id": 0,
     "default_auto_topup": true,
-    "mmp_config": {}
+    "mmp_config": {},
+    "deto_for_commission": true,
+    "vip_level": 0
   }
 }
 ```
@@ -3703,7 +3716,8 @@ p JSON.parse(result)
 
 ```json
 {
-  "asset": "string"
+  "asset": "string",
+  "mmp": "mmp1"
 }
 ```
 
@@ -3838,6 +3852,93 @@ p JSON.parse(result)
 |---|---|
 |cancel_after_enabled|false|
 |cancel_after_enabled|true|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+<h1 id="delta-exchange-api-v2-account">Account</h1>
+
+Account level settings
+
+## Get users trading preferences
+
+<a id="opIdgetTradingPreferences"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/users/trading_preferences', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/users/trading_preferences \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/users/trading_preferences',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /users/trading_preferences`
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "user_id": 0,
+    "default_auto_topup": true,
+    "mmp_config": {},
+    "deto_for_commission": true,
+    "vip_level": 0
+  }
+}
+```
+
+<h3 id="get-users-trading-preferences-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|User trading preferences attached to the account|Inline|
+
+<h3 id="get-users-trading-preferences-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -4700,7 +4801,7 @@ This operation does not require authentication.
   "bracket_take_profit_limit_price": "string",
   "bracket_take_profit_price": "string",
   "time_in_force": "gtc",
-  "mmp": "enabled",
+  "mmp": "disabled",
   "post_only": "true",
   "reduce_only": "true",
   "close_on_trigger": "true",
@@ -4751,8 +4852,12 @@ This operation does not require authentication.
 |time_in_force|gtc|
 |time_in_force|ioc|
 |time_in_force|fok|
-|mmp|enabled|
 |mmp|disabled|
+|mmp|mmp1|
+|mmp|mmp2|
+|mmp|mmp3|
+|mmp|mmp4|
+|mmp|mmp5|
 |post_only|true|
 |post_only|false|
 |reduce_only|true|
@@ -4781,7 +4886,7 @@ This operation does not require authentication.
     "bracket_take_profit_limit_price": "string",
     "bracket_take_profit_price": "string",
     "time_in_force": "gtc",
-    "mmp": "enabled",
+    "mmp": "disabled",
     "post_only": "true",
     "reduce_only": "true",
     "close_on_trigger": "true",
@@ -4807,7 +4912,7 @@ This operation does not require authentication.
   "product_id": 0,
   "limit_price": "string",
   "size": 0,
-  "mmp": "enabled"
+  "mmp": "disabled"
 }
 
 ```
@@ -4828,8 +4933,12 @@ This operation does not require authentication.
 
 |Property|Value|
 |---|---|
-|mmp|enabled|
 |mmp|disabled|
+|mmp|mmp1|
+|mmp|mmp2|
+|mmp|mmp3|
+|mmp|mmp4|
+|mmp|mmp5|
 
 <h2 id="tocSarrayofeditorderrequest">ArrayOfEditOrderRequest</h2>
 
@@ -4842,7 +4951,7 @@ This operation does not require authentication.
     "product_id": 0,
     "limit_price": "string",
     "size": 0,
-    "mmp": "enabled"
+    "mmp": "disabled"
   }
 ]
 
@@ -5739,7 +5848,8 @@ This operation does not require authentication.
   "freeze_interval": 0,
   "trade_limit": "string",
   "delta_limit": "string",
-  "vega_limit": "string"
+  "vega_limit": "string",
+  "mmp": "mmp1"
 }
 
 ```
@@ -5751,11 +5861,22 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |asset|string|false|none|none|
-|window_interval|integer|false|none|none|
-|freeze_interval|integer|false|none|none|
-|trade_limit|string|false|none|none|
-|delta_limit|string|false|none|none|
-|vega_limit|string|false|none|none|
+|window_interval|integer|false|none|Window interval in seconds|
+|freeze_interval|integer|false|none|MMP freeze interval in seconds. Setting this to zero will require a manual reset once mmp is triggered.|
+|trade_limit|string|false|none|Notional trade limit for mmp to trigger (in USDT)|
+|delta_limit|string|false|none|Delta Adjusted notional trade limit for mmp to trigger (in USDT)|
+|vega_limit|string|false|none|vega traded limit for mmp to trigger (in USDT)|
+|mmp|string|false|none|Specify mmp flag for the config update|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mmp|mmp1|
+|mmp|mmp2|
+|mmp|mmp3|
+|mmp|mmp4|
+|mmp|mmp5|
 
 <h2 id="tocSmmpresetrequest">MMPResetRequest</h2>
 
@@ -5763,7 +5884,8 @@ This operation does not require authentication.
 
 ```json
 {
-  "asset": "string"
+  "asset": "string",
+  "mmp": "mmp1"
 }
 
 ```
@@ -5775,6 +5897,17 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |asset|string|false|none|none|
+|mmp|string|false|none|specify mmp flag to reset|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|mmp|mmp1|
+|mmp|mmp2|
+|mmp|mmp3|
+|mmp|mmp4|
+|mmp|mmp5|
 
 <h2 id="tocSuserpreference">UserPreference</h2>
 
@@ -5784,7 +5917,9 @@ This operation does not require authentication.
 {
   "user_id": 0,
   "default_auto_topup": true,
-  "mmp_config": {}
+  "mmp_config": {},
+  "deto_for_commission": true,
+  "vip_level": 0
 }
 
 ```
@@ -5796,8 +5931,10 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |user_id|integer|false|none|none|
-|default_auto_topup|boolean|false|none|none|
-|mmp_config|object|false|none|none|
+|default_auto_topup|boolean|false|none|Default auto topup setting for newly acquired positions (only for isolated mode)|
+|mmp_config|object|false|none|Config object for market maker protection (only for MMP enabled accounts)|
+|deto_for_commission|boolean|false|none|Flag to determine whether to pay commissions in deto|
+|vip_level|integer|false|none|VIP level for this account. Customers get better fee discounting for higher VIP levels|
 
 <h2 id="tocScancelafterrequest">CancelAfterRequest</h2>
 

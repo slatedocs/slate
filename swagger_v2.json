@@ -63,6 +63,10 @@
     {
       "name": "Dead Man's Switch (Auto Cancel)",
       "description": "Set up timers for auto orders cancel in case of network malfunctions "
+    },
+    {
+      "name": "Account",
+      "description": "Account level settings"
     }
   ],
   "schemes": [
@@ -2063,6 +2067,7 @@
         ],
         "summary": "Update MMP config",
         "operationId": "updateMMP",
+        "description": "Market maker protection is available on demand to RMM. More info [here](https://guides.delta.exchange).",
         "consumes": [
           "application/json"
         ],
@@ -2157,6 +2162,45 @@
             "description": "Returns error if mmp is not enabled on the account",
             "schema": {
               "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/trading_preferences": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get users trading preferences",
+        "operationId": "getTradingPreferences",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User trading preferences attached to the account",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/UserPreference"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -2594,8 +2638,12 @@
         "mmp": {
           "type": "string",
           "enum": [
-            "enabled",
-            "disabled"
+            "disabled",
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
           ]
         },
         "post_only": {
@@ -2650,8 +2698,12 @@
         "mmp": {
           "type": "string",
           "enum": [
-            "enabled",
-            "disabled"
+            "disabled",
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
           ]
         }
       }
@@ -3325,19 +3377,35 @@
           "required": true
         },
         "window_interval": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Window interval in seconds"
         },
         "freeze_interval": {
-          "type": "integer"
+          "type": "integer",
+          "description": "MMP freeze interval in seconds. Setting this to zero will require a manual reset once mmp is triggered."
         },
         "trade_limit": {
-          "type": "string"
+          "type": "string",
+          "description": "Notional trade limit for mmp to trigger (in USDT)"
         },
         "delta_limit": {
-          "type": "string"
+          "type": "string",
+          "description": "Delta Adjusted notional trade limit for mmp to trigger (in USDT)"
         },
         "vega_limit": {
-          "type": "string"
+          "type": "string",
+          "description": "vega traded limit for mmp to trigger (in USDT)"
+        },
+        "mmp": {
+          "type": "string",
+          "description": "Specify mmp flag for the config update",
+          "enum": [
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
+          ]
         }
       }
     },
@@ -3348,6 +3416,17 @@
         "asset": {
           "type": "string",
           "required": true
+        },
+        "mmp": {
+          "type": "string",
+          "description": "specify mmp flag to reset",
+          "enum": [
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
+          ]
         }
       }
     },
@@ -3359,10 +3438,20 @@
           "type": "integer"
         },
         "default_auto_topup": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Default auto topup setting for newly acquired positions (only for isolated mode)"
         },
         "mmp_config": {
-          "type": "object"
+          "type": "object",
+          "description": "Config object for market maker protection (only for MMP enabled accounts)"
+        },
+        "deto_for_commission": {
+          "type": "boolean",
+          "description": "Flag to determine whether to pay commissions in deto"
+        },
+        "vip_level": {
+          "type": "integer",
+          "description": "VIP level for this account. Customers get better fee discounting for higher VIP levels"
         }
       }
     },
