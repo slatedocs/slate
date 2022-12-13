@@ -278,46 +278,44 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
 
 **l2_updates** channel provides initial snapshot and then incremental orderbook data.
 
-**NOTE: This channel is currently in beta version, only use for testing."**
-
-**How to maintain orderbook locally using this channel:**
-
-1) When you subscribe to this channel, the first message with “action”= “snapshot” resembles the complete l2_orderbook at this time. “asks” and “bids” are arrays of [“price”, “size”]. (size is number of contracts at this price)
-
-2) After the initial snapshot, messages will be with “action” = “update”, resembling the difference between current and previous orderbook state. “asks” and “bids” are arrays of [“price”, “new size”].
-Case price already exists -> if the size is 0, delete this price level. If the size changes, replace the size with new size.
-e.g. for the above snapshot and update messages: in the ask side, price level of “16919.0” will be deleted. size at price level “16919.5" will be changed from “1193” to “710".
-Case price doesn’t exists -> insert the price level.
-e.g. for the above snapshot and update messages: in the bids side there was no price level of “16918.5”, so add a new level of “16918.5" of size “304”.
-
-3) “asks” are sorted in increasing order of price. “bids” are sorted in decreasing order of price. This is true for both “snapshot” and “update” messages.
-
-4) “sequence_no” field must be used to check any messages were dropped. “sequence_no” must be +1 of the last message.
-e.g. In the snapshot message it is 6199, and the update message has 6200. The next update message must have 6201.
-If you miss a message, resubscribe to the channel, and start from the beginning.
-
 ```
 // Initial snapshot response
 {
-  “action”:“snapshot”,
-  “asks”:[[“16919.0”, “1087"], [“16919.5”, “1193"], [“16920.0”, “510"]],
-  “bids”:[[“16918.0", “602”], [“16917.5", “1792”], [“16917.0", “2039”]],
-  “last_update_timestamp”:1670822410723558,
-  “sequence_no”:6199,
-  “symbol”:“BTCUSDT”,
-  “type”:“l2_updates”
+  "action":"snapshot",
+  "asks":[["16919.0", "1087"], ["16919.5", "1193"], ["16920.0", "510"]],
+  "bids":[["16918.0", "602"], ["16917.5", "1792"], ["16917.0", "2039"]],
+  "last_update_timestamp":1670822410723558,
+  "sequence_no":6199,
+  "symbol":"BTCUSDT",
+  "type":"l2_updates"
 }
 
 // Incremental update response
 {
-  “action”:“update”,
-  “asks”:[[“16919.0”, “0"], [“16919.5”, “710"]],
-  “bids”:[[“16918.5", “304”]],
-  “sequence_no”:6200,
-  “symbol”:“BTCUSDT”,
-  “type”:“l2_updates”
+  "action":"update",
+  "asks":[["16919.0", "0"], ["16919.5", "710"]],
+  "bids":[["16918.5", "304"]],
+  "sequence_no":6200,
+  "symbol":"BTCUSDT",
+  "type":"l2_updates"
 }
 ```
+
+### How to maintain orderbook locally using this channel:
+
+1) When you subscribe to this channel, the first message with "action"= "snapshot" resembles the complete l2_orderbook at this time. "asks" and "bids" are arrays of ["price", "size"]. (size is number of contracts at this price)
+
+2) After the initial snapshot, messages will be with "action" = "update", resembling the difference between current and previous orderbook state. "asks" and "bids" are arrays of ["price", "new size"].
+Case price already exists -> if the size is 0, delete this price level. If the size changes, replace the size with new size.
+e.g. for the above snapshot and update messages: in the ask side, price level of "16919.0" will be deleted. size at price level "16919.5" will be changed from "1193" to "710".
+Case price doesn’t exists -> insert the price level.
+e.g. for the above snapshot and update messages: in the bids side there was no price level of "16918.5", so add a new level of "16918.5" of size "304".
+
+1) "asks" are sorted in increasing order of price. "bids" are sorted in decreasing order of price. This is true for both "snapshot" and "update" messages.
+
+2) "sequence_no" field must be used to check any messages were dropped. "sequence_no" must be +1 of the last message.
+e.g. In the snapshot message it is 6199, and the update message has 6200. The next update message must have 6201.
+If you miss a message, resubscribe to the channel, and start from the beginning.
 
 ## all_trades
 
