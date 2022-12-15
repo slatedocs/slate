@@ -53,19 +53,19 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     {
             "resourceType": "Bundle",
             "identifier": {
-                "system": "https://datapedia.mskcc.org/index.php/IDB.PROTOCOL",
+                "system": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol",
                 "value": "FHIR-T"
             },
             "type": "searchset",
-            "total": 2,
+            "total": 1,
             "link": [
                 {
                     "relation": "self",
-                    "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+                    "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=vital-signs&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
                 },
                 {   
                     "relation": "first",
-                    "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+                    "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=vital-signs&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
                 },
                 {
                     "relation": "last",
@@ -83,19 +83,23 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
         "entry": [
             {
                 "id": 500009814,
-                "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009814",
+                "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=vital-signs&researchStudy=FHIR-T&subject=10081007&Id=500009814",
                 "resource": {
                     "id": 500009814,
                     "resourceType": "Observation",
                     "extension": [
                         {
+                            "url": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol"
                             "valueCode": "FHIR-T",
-                            "url": "http://hl7.org/fhir/StructureDefinition/workflow-researchStudy"
-                        }
+                        },
+                        {
+                            "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID"
+                            "valueCode": "C75326",
+                        },
                     ],
                     "identifier": [
                         {
-                            "system": "https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID",
+                            "system": "https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID",
                             "value": 500009814
                         }
                     ],
@@ -104,91 +108,34 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
                         {
                             "coding": [
                                 {
-                                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                                    "code": "laboratory",
-                                    "display": "Laboratory"
+                                    "system": "http://hl7.org/fhir/2021Mar/valueset-observation-category.html",
+                                    "code": "vital-signs",
+                                    "display": "Vital Signs"
                                 }
                             ],
-                            "text": "Laboratory"
+                            "text": "Vital Signs"
                         }
                     ],
                     "code": {
                         "coding": [
                             {
-                                "system": "http://loinc.org",
-                                "code": "704-7",
-                                "display": "ABAS"
+                                "system": "https://fhir.mskcc.org/resources/vital-sign/#value-set",
+                                "display": "Pulse/Heart Rate"
                             }
                         ],
-                        "text": "ABAS"
+                        "text": "Pulse/Heart Rate"
                     },
                     "subject": {
                         "reference": "Patient/10081007"
+                    },
+                    "encounter": {
+                        "display": "CYCLE1_DAY1"
                     },
                     "effectiveDateTime": "2021-12-07T08:06:00+00:00",
                     "issued": "2021-12-07T08:06:00+00:00",
-                    "referenceRange": [
-                        {
-                            "text": "0.0-0.2"
-                        }
-                    ]
-                }
-            },
-            {
-                "id": 500009863,
-                "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009863",
-                "resource": {
-                    "id": 500009863,
-                    "resourceType": "Observation",
-                    "extension": [
-                        {
-                            "valueCode": "FHIR-T",
-                            "url": "http://hl7.org/fhir/StructureDefinition/workflow-researchStudy"
-                        }
-                    ],
-                    "identifier": [
-                        {
-                            "system": "https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID",
-                            "value": 500009863
-                        }
-                    ],
-                    "status": "final",
-                    "category": [
-                        {
-                            "coding": [
-                                {
-                                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                                    "code": "laboratory",
-                                    "display": "Laboratory"
-                                }
-                            ],
-                            "text": "Laboratory"
-                        }
-                    ],
-                    "code": {
-                        "coding": [
-                            {
-                                "system": "http://loinc.org",
-                                "code": "13945-1",
-                                "display": "URBC"
-                            }
-                        ],
-                        "text": "URBC"
-                    },
-                    "subject": {
-                        "reference": "Patient/10081007"
-                    },
-                    "effectiveDateTime": "2021-12-07T08:18:00+00:00",
-                    "issued": "2021-12-07T08:18:00+00:00",
                     "valueQuantity": {
-                        "value": 4,
-                        "unit": "/HPF"
-                    },
-                    "referenceRange": [
-                        {
-                            "text": "0-3"
-                        }
-                    ]
+                        "value": 93
+                    }
                 }
             }
         ]
@@ -200,21 +147,41 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | Field                     | Description                                |
 | ------------------------- | ------------------------------------------ |
 | `id`                      | MSK Unique Identifier                      |
-| `extension[0].url`        | FHIR researchStudy extension documentation |
+| `extension[0].url`        | Reference to structure definition          |
 | `extension[0].valueCode`  | MSK unique study number                    |
-| `extension[1].url`        | MSK identifiers documentation              |
+| `extension[1].url`        | Reference to structure definition          |
 | `extension[1].valueCode`  | Sponsor Study Number                       |
-| `identifier.system`       |                                            |
+| `identifier.system`       | Reference to structure definition          |
 | `identifier.value`        | MSK Unique Identifier                      |
+| `status`                  | Always `final`                             |
 | `category.coding.system`  | FHIR observation documentation             |
-| `category.coding.code`    | hardcoded to `vital-signs`                 |
-| `category.coding.display` | hardcoded to `Vital Signs`                 |
-| `category.text`           | hardcoded to `Vital Signs`                 |
-| `code.coding.system`      | LOINC documentation                        |
-| `code.coding.code`        | Vital Sign Value                           |
+| `category.coding.code`    | Always `vital-signs`                       |
+| `category.coding.display` | Always `Vital Signs`                       |
+| `category.text`           | Always `Vital Signs`                       |
+| `code.coding.system`      |                                            |
 | `code.coding.display`     | Vital Sign Item Type                       |
 | `code.text`               | Vital Sign Item Type                       |
 | `subject.reference`       | `Patient/` + Sponsor assigned subject ID   |
 | `encounter.display`       | Protocol visit                             |
 | `effectiveDateTime`       | Collection datetime                        |
 | `issued`                  | Collection datetime                        |
+| `valueQuantity.value`     | Vital sign value                           |
+
+
+## Value Set
+
+Values supported by MSK include but are not limited to:
+<ul>
+<li>Blood Pressure BP Systolic</li>
+<li>Blood Pressure Diastolic</li>
+<li>Blood Pressure Positioning</li>
+<li>BSA m2</li>
+<li>Height (centimeters)</li>
+<li>Last recorded Height</li>
+<li>Pulse Ox (SpO2)</li>
+<li>Pulse/Heart Rate</li>
+<li>Resp Rate</li>
+<li>Temperature F</li>
+<li>Temperature Temp C</li>
+<li>Weight (kilograms)</li>
+</ul>
