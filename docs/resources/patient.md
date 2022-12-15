@@ -50,7 +50,7 @@ GET /msk-apim/external/v2/crit/blaze/api/Patient
     {
     "resourceType": "Bundle",
     "identifier": {
-        "system": "https://mskcc.github.io/critfhirdeveloper/identifiers/#IDB.Protocol",
+        "system": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#IDB.Protocol",
         "value": "FHIR-T"
     },
     "type": "searchset",
@@ -97,7 +97,7 @@ GET /msk-apim/external/v2/crit/blaze/api/Patient
                         "valueCode": "NON"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#SponsorID",
                         "valueCode": "C3861001"
                     }
                 ],
@@ -130,7 +130,7 @@ GET /msk-apim/external/v2/crit/blaze/api/Patient
                         "valueCode": "NON"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#SponsorID",
                         "valueCode": "C3861001"
                     }
                 ],
@@ -163,7 +163,7 @@ GET /msk-apim/external/v2/crit/blaze/api/Patient
                         "valueCode": "NON"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#SponsorID",
                         "valueCode": "C3861001"
                     }
                 ],

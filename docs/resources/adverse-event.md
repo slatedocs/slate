@@ -51,7 +51,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     {
     "resourceType": "Bundle",
     "identifier": {
-        "system": "https://mskcc.github.io/critfhirdeveloper/identifiers/#IDB.Protocol",
+        "system": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#IDB.Protocol",
         "value": "FHIR-T"
     },
     "type": "searchset",
@@ -86,19 +86,19 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
                 "id": "10081004",
                 "extension": [
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#SponsorID",
                         "valueCode": "C3861001"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#StartDate",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#StartDate",
                         "valueCode": "07/05/2021"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#EventSequenceNo",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#EventSequenceNo",
                         "valueCode": "1"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#Verified",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#Verified",
                         "valueCode": "0"
                     }
                 ],
@@ -164,19 +164,19 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
                 "id": "10081004",
                 "extension": [
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#SponsorID",
                         "valueCode": "C3861001"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#StartDate",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#StartDate",
                         "valueCode": "07/05/2021"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#EventSequenceNo",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#EventSequenceNo",
                         "valueCode": "1"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#Verified",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#Verified",
                         "valueCode": "0"
                     }
                 ],
@@ -242,19 +242,19 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
                 "id": "10081004",
                 "extension": [
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#SponsorID",
                         "valueCode": "C3861001"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#StartDate",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#StartDate",
                         "valueCode": "07/05/2021"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#EventSequenceNo",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#EventSequenceNo",
                         "valueCode": "1"
                     },
                     {
-                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/#Verified",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/structure-definitions/#Verified",
                         "valueCode": "0"
                     }
                 ],
