@@ -284,7 +284,7 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
   "action":"snapshot",
   "asks":[["16919.0", "1087"], ["16919.5", "1193"], ["16920.0", "510"]],
   "bids":[["16918.0", "602"], ["16917.5", "1792"], ["16917.0", "2039"]],
-  "last_update_timestamp":1670822410723558,
+  "timestamp":1671140718980723,
   "sequence_no":6199,
   "symbol":"BTCUSDT",
   "type":"l2_updates"
@@ -297,7 +297,8 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
   "bids":[["16918.5", "304"]],
   "sequence_no":6200,
   "symbol":"BTCUSDT",
-  "type":"l2_updates"
+  "type":"l2_updates",
+  "timestamp": 1671140769059031
 }
 ```
 
