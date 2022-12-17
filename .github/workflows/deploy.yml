@@ -6,9 +6,12 @@ on:
 
 jobs:
   deploy:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
     env:
-      ruby-version: 2.5
+      ruby-version: 2.6
 
     steps:
     - uses: actions/checkout@v2
@@ -20,9 +23,9 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: vendor/bundle
-        key: gems-${{ runner.os }}-${{ matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+        key: gems-${{ runner.os }}-${{ env.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
-          gems-${{ runner.os }}-${{ matrix.ruby-version }}-
+          gems-${{ runner.os }}-${{ env.ruby-version }}-
           gems-${{ runner.os }}-
 
     - run: bundle config set deployment 'true'

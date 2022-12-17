@@ -1,5 +1,39 @@
 # Changelog
 
+## Version 2.13.0
+
+*April 22, 2022*
+
+* __Drop support for ruby 2.5__
+* Bump rouge from 3.26.1 to 3.28.0
+* Formally support ruby 3.1
+* Bump nokogiri from 1.12.5 to 1.13.4
+* Build docker images for multiple architectures (e.g. `aarch64`)
+* Remove `VOLUME` declaration from Dockerfile (thanks @aemengo)
+
+The security vulnerabilities reported against recent versions of nokogiri should not affect slate users with a regular setup.
+
+## Version 2.12.0
+
+*November 04, 2021*
+
+* Bump nokogiri from 1.12.3 to 1.12.5
+* Bump ffi from 1.15.0 to 1.15.4
+* Bump rouge from 3.26.0 to 3.26.1
+* Bump middleman from 4.4.0 to 4.4.2
+* Remove unnecessary files from docker images
+
+## Version 2.11.0
+
+*August 12, 2021*
+
+* __[Security]__ Bump addressable transitive dependency from 2.7.0 to 2.8.0
+* Support specifying custom meta tags in YAML front-matter
+* Bump nokogiri from 1.11.3 to 1.12.3 (minimum supported version is 1.11.4)
+* Bump middleman-autoprefixer from 2.10.1 to 3.0.0
+* Bump jquery from 3.5.1 to 3.6.0
+* Bump middleman from [`d180ca3`](https://github.com/middleman/middleman/commit/d180ca337202873f2601310c74ba2b6b4cf063ec) to 4.4.0
+
 ## Version 2.10.0
 
 *April 13, 2021*
