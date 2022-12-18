@@ -13,7 +13,10 @@ TEMPLATE = """
 ## {endpoint}
 
 ```shell
-curl -X ? https://api.simplyprint.io/{{id}}{full_endpoint} -H "accept: application/json"
+curl https://api.simplyprint.io/{{id}}{full_endpoint} \\
+  -X ? \\
+  -H 'accept: application/json' \\
+  -H 'X-API-KEY: {{API_KEY}}'
 ```
 
 > Success response
@@ -59,8 +62,9 @@ for folder in folders:
             if endpoint_dir != folder:
                 endpoint = endpoint_dir + "/" + file[:-4]
 
-            out += TEMPLATE.format(endpoint=endpoint, full_endpoint=endpoint_path + "/" + file[:-4])
-    
+            out += TEMPLATE.format(endpoint=endpoint,
+                                   full_endpoint=endpoint_path + "/" + file[:-4])
+
     if len(out.splitlines()) == 1:
         print("Skipping empty folder: " + folder)
         continue

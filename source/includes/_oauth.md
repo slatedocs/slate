@@ -3,7 +3,10 @@
 ## Token
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/oauth/Token -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/oauth/Token \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -23,7 +26,10 @@ TODO
 ## Authorize
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/oauth/Authorize -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/oauth/Authorize \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response

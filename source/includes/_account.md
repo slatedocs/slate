@@ -1,29 +1,12 @@
 # Account
 
-## Test
-
-```shell
-curl -X ? https://api.simplyprint.io/{id}/account/Test -H "accept: application/json"
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/account/Test`
-
-TODO
-
 ## GetGroups
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/GetGroups -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/GetGroups \
+  -X GET \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -43,7 +26,10 @@ TODO
 ## SetLocalPCCookie
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/SetLocalPCCookie -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/SetLocalPCCookie \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -63,7 +49,10 @@ TODO
 ## GetStatistics
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/GetStatistics -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/GetStatistics \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -83,7 +72,10 @@ TODO
 ## SaveAutoQueueDefaults
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/SaveAutoQueueDefaults -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/SaveAutoQueueDefaults \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -103,7 +95,10 @@ TODO
 ## rank/Delete
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/settings/rank/Delete -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/settings/rank/Delete \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -123,7 +118,10 @@ TODO
 ## rank/Create
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/settings/rank/Create -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/settings/rank/Create \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -143,7 +141,10 @@ TODO
 ## rank/Update
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/settings/rank/Update -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/settings/rank/Update \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -163,7 +164,10 @@ TODO
 ## billing/Test
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/account/billing/Test -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/account/billing/Test \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response

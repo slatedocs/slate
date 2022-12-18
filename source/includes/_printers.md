@@ -3,7 +3,10 @@
 ## Delete
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/Delete -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/Delete \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -23,7 +26,10 @@ TODO
 ## SetJobNotifications
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/SetJobNotifications -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/SetJobNotifications \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -43,7 +49,10 @@ TODO
 ## HasPlugin
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/HasPlugin -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/HasPlugin \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -63,7 +72,10 @@ TODO
 ## actions/ClearBed
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/ClearBed -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/ClearBed \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -83,7 +95,10 @@ TODO
 ## actions/Start
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/Start -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/Start \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -103,7 +118,10 @@ TODO
 ## actions/UninstallOpPlugin
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/UninstallOpPlugin -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/UninstallOpPlugin \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -123,7 +141,10 @@ TODO
 ## actions/CreateJob
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/CreateJob -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/CreateJob \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -143,7 +164,10 @@ TODO
 ## actions/Resume
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/Resume -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/Resume \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -163,7 +187,10 @@ TODO
 ## actions/InstallOpPlugin
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/InstallOpPlugin -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/InstallOpPlugin \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -183,7 +210,10 @@ TODO
 ## actions/Pause
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/Pause -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/Pause \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -203,7 +233,10 @@ TODO
 ## actions/Get
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/Get -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/Get \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -223,7 +256,10 @@ TODO
 ## actions/Cancel
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/actions/Cancel -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/actions/Cancel \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -243,7 +279,10 @@ TODO
 ## logs/RequestLogs
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/logs/RequestLogs -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/logs/RequestLogs \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -263,7 +302,10 @@ TODO
 ## logs/GetLogs
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/logs/GetLogs -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/logs/GetLogs \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -283,7 +325,10 @@ TODO
 ## settings/GetPrinterSettings
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/settings/GetPrinterSettings -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/settings/GetPrinterSettings \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -303,7 +348,10 @@ TODO
 ## settings/GetModelSettings
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/settings/GetModelSettings -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/settings/GetModelSettings \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -323,7 +371,10 @@ TODO
 ## settings/AutoBedLeveling
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/settings/AutoBedLeveling -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/settings/AutoBedLeveling \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -343,7 +394,10 @@ TODO
 ## settings/UploadCustomImage
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/settings/UploadCustomImage -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/settings/UploadCustomImage \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -363,7 +417,10 @@ TODO
 ## settings/SavePrinterSettings
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/printers/settings/SavePrinterSettings -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/printers/settings/SavePrinterSettings \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response

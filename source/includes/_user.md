@@ -3,7 +3,10 @@
 ## AppReauth
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/user/AppReauth -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/user/AppReauth \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response

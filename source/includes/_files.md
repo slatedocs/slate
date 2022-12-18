@@ -3,7 +3,10 @@
 ## GetFiles
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/files/GetFiles -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/files/GetFiles \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -23,7 +26,10 @@ TODO
 ## SavePrefs
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/files/SavePrefs -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/files/SavePrefs \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -43,7 +49,10 @@ TODO
 ## MoveFiles
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/files/MoveFiles -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/files/MoveFiles \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -63,7 +72,10 @@ TODO
 ## GetFolder
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/files/GetFolder -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/files/GetFolder \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -83,7 +95,10 @@ TODO
 ## UpdateFile
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/files/UpdateFile -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/files/UpdateFile \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -103,7 +118,10 @@ TODO
 ## MoveFolder
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/files/MoveFolder -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/files/MoveFolder \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response

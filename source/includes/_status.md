@@ -3,7 +3,10 @@
 ## S3UserFiles
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/status/S3UserFiles -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/status/S3UserFiles \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -23,7 +26,10 @@ TODO
 ## API
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/status/API -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/status/API \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -43,7 +49,10 @@ TODO
 ## PrivateAPI
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/status/PrivateAPI -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/status/PrivateAPI \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -63,7 +72,10 @@ TODO
 ## AppAPI
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/status/AppAPI -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/status/AppAPI \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -83,7 +95,10 @@ TODO
 ## S3Cdn
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/status/S3Cdn -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/status/S3Cdn \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -103,7 +118,10 @@ TODO
 ## Mail
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/status/Mail -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/status/Mail \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -123,7 +141,10 @@ TODO
 ## OAuthAPI
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/status/OAuthAPI -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/status/OAuthAPI \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response

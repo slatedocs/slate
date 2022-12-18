@@ -3,7 +3,10 @@
 ## Delete
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/Delete -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/Delete \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -23,7 +26,10 @@ TODO
 ## Create
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/Create -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/Create \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -43,7 +49,10 @@ TODO
 ## Unassign
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/Unassign -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/Unassign \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -63,7 +72,10 @@ TODO
 ## Assign
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/Assign -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/Assign \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -83,7 +95,10 @@ TODO
 ## GetFilament
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/GetFilament -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/GetFilament \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -103,7 +118,10 @@ TODO
 ## type/Delete
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/type/Delete -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/type/Delete \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -123,7 +141,10 @@ TODO
 ## type/Create
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/type/Create -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/type/Create \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -143,7 +164,10 @@ TODO
 ## type/Update
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/filament/type/Update -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/filament/type/Update \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response

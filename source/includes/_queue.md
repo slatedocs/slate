@@ -3,7 +3,10 @@
 ## UpdateItem
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/queue/UpdateItem -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/queue/UpdateItem \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -23,7 +26,10 @@ TODO
 ## SetOrder
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/queue/SetOrder -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/queue/SetOrder \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -43,7 +49,10 @@ TODO
 ## DeleteItem
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/queue/DeleteItem -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/queue/DeleteItem \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -63,7 +72,10 @@ TODO
 ## SliceReplaceModel
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/queue/SliceReplaceModel -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/queue/SliceReplaceModel \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -83,7 +95,10 @@ TODO
 ## AddItem
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/queue/AddItem -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/queue/AddItem \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -103,7 +118,10 @@ TODO
 ## EmptyQueue
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/queue/EmptyQueue -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/queue/EmptyQueue \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -123,7 +141,10 @@ TODO
 ## GetItems
 
 ```shell
-curl -X ? https://api.simplyprint.io/{id}/queue/GetItems -H "accept: application/json"
+curl https://api.simplyprint.io/{id}/queue/GetItems \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
