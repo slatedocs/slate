@@ -1,89 +1,381 @@
 # Printers
 
-## Get printer(s)
+## Delete
 
 ```shell
-curl --request GET \
-  --url http://api.simplyprint.io/v1/actions/printers/get \
-  --header 'Authorization: Bearer {YOUR_TOKEN_HERE}'
+curl -X ? https://api.simplyprint.io/{id}/printers/Delete -H "accept: application/json"
 ```
 
-```php
-<?php
-//Coming soon...
-?>
-```
-
-> Success return:
+> Success response
 
 ```json
 {
-  "data": {
-    "printers": [
-      {
-        "id": 1,
-        "name": "My Ender-3",
-        "org_id": 1,
-        "printer_status": "operational",
-        "active_print_job": 0,
-        "online": true
-      },
-      {
-        "id": 2,
-        "name": "My Prusa Mini",
-        "org_id": 1,
-        "printer_status": "printing",
-        "active_print_job": 189,
-        "online": true
-      }
-    ]
-  }
+    "TODO": "TODO"
 }
 ```
 
-This endpoint retrieves one, or multiple printers.
+### Request
+
+`? /{id}/printers/Delete`
+
+TODO
+
+## SetJobNotifications
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/SetJobNotifications -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
 
 ### Request
 
-`GET /v1/printers/get`
+`? /{id}/printers/SetJobNotifications`
 
-### Query Parameters
+TODO
 
-Parameter | Required | Description
---------- | ------- | -----------
-id | false | A single, or multiple _(comma separated)_ printer ID's
-org_id | false | If you're a member of multiple organizations, and only wish to get printers from one
-
-## Preheat
+## HasPlugin
 
 ```shell
-curl --request GET \
-  --url http://api.simplyprint.io/v1/actions/printers/preheat?id={PRINTER_ID(S)} \
-  --header 'Authorization: Bearer {YOUR_TOKEN_HERE}'
+curl -X ? https://api.simplyprint.io/{id}/printers/HasPlugin -H "accept: application/json"
 ```
 
-```php
-<?php
-//Coming soon...
-?>
-```
-
-> Success return:
+> Success response
 
 ```json
-...
+{
+    "TODO": "TODO"
+}
 ```
 
-This endpoint retrieves a specific kitten.
+### Request
 
-### HTTP Request
+`? /{id}/printers/HasPlugin`
 
-`GET /v1/actions/printers/preheat?id={PRINTER_ID(S)}`
+TODO
 
-### Query Parameters
+## actions/ClearBed
 
-Parameter | Required | Description
---------- | ------- | -----------
-id | true | A single, or multiple _(comma separated)_ printer ID's
-temp | false | Target temperature for the printer(s). Defaults to `200`
-type | false | Whether to heat the nozzle, bed or both. Options are; `nozzle` _(default)_, `bed`, `both`
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/ClearBed -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/ClearBed`
+
+TODO
+
+## actions/Start
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/Start -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/Start`
+
+TODO
+
+## actions/UninstallOpPlugin
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/UninstallOpPlugin -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/UninstallOpPlugin`
+
+TODO
+
+## actions/CreateJob
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/CreateJob -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/CreateJob`
+
+TODO
+
+## actions/Resume
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/Resume -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/Resume`
+
+TODO
+
+## actions/InstallOpPlugin
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/InstallOpPlugin -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/InstallOpPlugin`
+
+TODO
+
+## actions/Pause
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/Pause -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/Pause`
+
+TODO
+
+## actions/Get
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/Get -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/Get`
+
+TODO
+
+## actions/Cancel
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/actions/Cancel -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/actions/Cancel`
+
+TODO
+
+## logs/RequestLogs
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/logs/RequestLogs -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/logs/RequestLogs`
+
+TODO
+
+## logs/GetLogs
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/logs/GetLogs -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/logs/GetLogs`
+
+TODO
+
+## settings/GetPrinterSettings
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/settings/GetPrinterSettings -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/settings/GetPrinterSettings`
+
+TODO
+
+## settings/GetModelSettings
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/settings/GetModelSettings -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/settings/GetModelSettings`
+
+TODO
+
+## settings/AutoBedLeveling
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/settings/AutoBedLeveling -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/settings/AutoBedLeveling`
+
+TODO
+
+## settings/UploadCustomImage
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/settings/UploadCustomImage -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/settings/UploadCustomImage`
+
+TODO
+
+## settings/SavePrinterSettings
+
+```shell
+curl -X ? https://api.simplyprint.io/{id}/printers/settings/SavePrinterSettings -H "accept: application/json"
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/printers/settings/SavePrinterSettings`
+
+TODO

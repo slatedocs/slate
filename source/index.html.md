@@ -3,13 +3,22 @@ title: SimplyPrint API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell: cURL
-  - python: Python 3
+#  - python: Python 3
 
 toc_footers:
   - <a href='https://simplyprint.io' target='_blank'>SimplyPrint</a>
+  - <a href='https://help.simplyprint.io' target='_blank'>Help Center</a>
 
 includes:
+  - files
+  - filament
+  - account
+  - status
+  - queue
+  - user
+  - oauth
   - printers
+  - printers_old
   - errors
 
 search: true
@@ -17,10 +26,10 @@ search: true
 code_clipboard: true
 
 meta:
-- name: description
-  content: Documentation for the SimplyPrint API
-- name: keywords
-  content: SimplyPrint API,SimplyPrint Documentation
+  - name: description
+    content: Documentation for the SimplyPrint API
+  - name: keywords
+    content: SimplyPrint API,SimplyPrint Documentation
 
 # TODO; Add open graph tags
 ---
