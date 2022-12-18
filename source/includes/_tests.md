@@ -51,6 +51,7 @@ https://api.practitest.com/api/v2/projects/4566/tests.json?relationships=true
         "version": null,
         "priority": null,
         "duration-estimate": "00:00:00",
+        "test-type":"ScriptedTest",
         "custom-fields": {
         "---f-8282": "High",
         },
@@ -191,6 +192,7 @@ https://api.practitest.com/api/v2/projects/4566/tests/45893.json
       "version": null,
       "priority": null,
       "duration-estimate": "00:00:00",
+      "test-type":"ScriptedTest",
       "custom-fields": {
       "---f-8282": "High",
       },
