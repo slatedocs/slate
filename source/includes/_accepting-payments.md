@@ -40,6 +40,7 @@ Our virtual accounts are adjustable according to your needs. We offer options of
 | Amount Type     | Opened Amount Virtual Account | VA that accepts payment of any amount                                                                        |
 | Usage Frequency | Single Use Virtual Account    | VA that expires after a single payment. A single use configuration can only be set up for a dynamic VA       |
 | Usage Frequency | Multiple Use Virtual Account  | VA that only expires when expiration date is reached or when it is manually deactivated                      |
+| VA Number       | Customized or predetermined   | You may personalize the VA suffix using the numbers you want (e.g. your end-users' phone number or billing number). To enable VA number customization, please contact your Business Representative         |
 
 7. **Capability to update VA** Attribute that can be updated:
    * amount
@@ -497,6 +498,7 @@ During testing, you can set the transaction amount to a certain mock value to si
 
 
 **Mock Credentials for Testing**
+
 Specifically for payment via Credit Card or Debit Card, you may use the below credentials to simulate payment for a successful transaction in staging environment
 
 | Card Details          | Values                     |
