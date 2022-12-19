@@ -495,6 +495,18 @@ During testing, you can set the transaction amount to a certain mock value to si
 | QRIS                 | Failure during refund process                                                                                                                                            | Amount is less than 55,000 or greater than 66,000 | Refund Failed     |
 | E-Wallet - LinkAja   | Failure during refund process                                                                                                                                            | Amount is less than 55,000 or greater than 66,000 | Refund Failed     |
 
+
+**Mock Credentials for Testing**
+Specifically for payment via Credit Card or Debit Card, you may use the below credentials to simulate payment for a successful transaction in staging environment
+
+| Card Details          | Values                     |
+| ----------------------| ---------------------------|
+|Card Number            | 2223000000000007           |
+|Card Expired Month/Year| 01/39                      |
+|Card CVN               | 100                        |
+|Card Holder Name       | Testing                    |
+
+
 ### How to Use Payment Link via Dashboard
 
 One-time Link
