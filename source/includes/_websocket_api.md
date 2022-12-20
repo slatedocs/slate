@@ -19,7 +19,7 @@ Access url
 
 To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for.
 
-To specify contracts within each channel, just pass a list of symbols inside the channel payload. Mention "all" in the list of symbols if you want to receive updates across all the contracts. Please note that snapshots are sent only for specified symbols,meaning no snapshots are sent for symbol: "all".
+To specify contracts within each channel, just pass a list of symbols inside the channel payload. Mention ***["all"]*** in symbols if you want to receive updates across all the contracts. Please note that snapshots are sent only for specified symbols,meaning no snapshots are sent for symbol: ***"all"***.
 
 Once a subscribe message is received the server will respond with a subscriptions message that lists all channels you are subscribed to. Subsequent subscribe messages will add to the list of subscriptions. 
 
@@ -245,7 +245,7 @@ ws.send({
 
 The ticker channel provides price change data for the last 24 hrs (rolling window). It is published every 5 seconds.
 
-On subscribing to **v2/ticker** channel, socket server will emit messages with type 'ticker' in response. To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+On subscribing to **v2/ticker** channel, socket server will emit messages with type 'ticker' in response. To receive updates on all the contracts, pass ***["all"]***  in symbols. By default, no updates are sent.
 
 > Ticker Sample
 
@@ -259,6 +259,20 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
                 "name": "v2/ticker",
                 "symbols": [
                     "BTCUSD_28Dec"
+                ]
+            }
+        ]
+    }
+}
+// Subscribe to all the symbols
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "v2/ticker",
+                "symbols": [
+                    "all"
                 ]
             }
         ]
@@ -323,7 +337,7 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
 
 ## all_trades
 
-**all_trades** channel provides a real time feed of all trades (fills). To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+**all_trades** channel provides a real time feed of all trades (fills). To receive updates on all the contracts, pass ***["all"]*** in symbols. By default, no updates are sent.
 
 > All Trades Sample
 
@@ -360,7 +374,7 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
 ## mark_price
 
 **mark_price** channel provides a real time feed of mark price. This is the price on which all open positions are marked for liquidation.Please note that the product symbol is prepended with a "MARK:" to subscribe for mark price.
-To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+To receive updates on all the contracts, pass ***["all"]*** in symbols. By default, no updates are sent.
 
 > Mark Price Sample
 
@@ -463,7 +477,7 @@ This is the price used for settlement of options. Specifying symbols when subscr
 ## funding_rate
 
 **funding_rate** channel provides a real time feed of funding rates for perpetual contracts.
-To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+To receive updates on all the contracts, pass ***["all"]*** in symbols. By default, no updates are sent.
 
 > Funding Rate Sample
 
@@ -609,7 +623,7 @@ Subscribe to **candlestick_${resolution}** channel for updates.
 List of supported resolutions
 ["1m","3m","5m","15m","30m","1h","2h","4h","6h","12h","1d","1w","2w","30d"]
 
-To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+To receive updates on all the contracts, pass ***["all"]*** in symbols. By default, no updates are sent.
 
 >OHLC candles update sample
 
@@ -681,7 +695,7 @@ Channel provides updates for margin blocked for different assets, these updates 
 Channel provides updates for change in position. Need to pass list of product symbols while subscribing. these updates are provided only on change of position.
 
 A snapshot of current open position will be sent after subscribing a symbol, incremental updates will be sent on trade executions.
-To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+To receive updates on all the contracts, pass ***["all"]*** in symbols. By default, no updates are sent.
 > Positions Sample
 
 ```
@@ -693,6 +707,19 @@ To receive updates on all the contracts, pass ***"all"***  in the list of symbol
             {
                 "name": "positions",
                 "symbols": ["BTCUSD_29Mar"]
+            }
+        ]
+    }
+}
+
+//Subscribe for all the symbols
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "positions",
+                "symbols": ["all"]
             }
         ]
     }
@@ -760,7 +787,7 @@ Any of the following events can be tracked by the reason field in this channel
 - self_trade
 
 
-To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+To receive updates on all the contracts, pass ***["all"]*** in symbols. By default, no updates are sent.
 > Orders Sample
 
 ```
@@ -846,7 +873,7 @@ Channel provides updates for fills. Need to pass list of product symbols while s
 All updates will have incremental seq_id. seq_id is separate for each symbol.
 
 Auto Deleverage Liquidations of a position can be tracked by reason: "adl" in the user_trades channel.
-To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
+To receive updates on all the contracts, pass ***["all"]*** in symbols. By default, no updates are sent.
 
 > User Trades Sample
 
@@ -891,8 +918,6 @@ Channel provides updates for portfolio margin values of the selected sub-account
 For detailed description of portfolio magrgin please see [user guide](https://guides.delta.exchange/delta-exchange-user-guide/trading-guide/margin-explainer/portfolio-margin)
 
 UCF: is unrealised cashflows of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices.
-
-To receive updates on all the contracts, pass ***"all"***  in the list of symbols. By default, no updates are sent.
 
 > Portfolio Margin Sample
 
