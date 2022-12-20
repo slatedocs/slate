@@ -9,7 +9,7 @@ toc_footers:
   - <a target="_blank" href="https://wc-marketplace.com/knowledgebase/wcmp-hooks-filters/">MultiVendorX Hooks and Filters</a>
   - <a target="_blank" href="https://multivendorx.com/get-help/">MultiVendorX Product Documentation</a>
   - <a target="_blank" href="https://multivendorx.com/support-forum/">Connect to MultiVendorX Support</a>
-  - <a target="_blank" href="https://multivendorx.com/support-forum/">Contribute to MultiVendorX Ideas</a>
+  - <a target="_blank" href="https://multivendorx.com/support-forum/">Contribute to MultiVendorX </a>
   - <a target="_blank" href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
