@@ -304,12 +304,14 @@ By default, no updates are sent.
 }
 ```
 
-<!-- ## l1_orderbook
+## l1_orderbook
 
 **l1_orderbook** channel provides snapshot of the latest level1 orderbook.
 
 To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
 To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+
+By default, no updates are sent.
 
 > L1 Orderbook Sample
 
@@ -322,7 +324,7 @@ To receive updates on a specific contract type, pass contract type in the symbol
             {
                 "name": "l1_orderbook",
                 "symbols": [
-                    "BTCUSD_28Dec"
+                    "ETHUSDT"
                 ]
             }
         ]
@@ -333,14 +335,18 @@ To receive updates on a specific contract type, pass contract type in the symbol
 ```
 // l1 orderbook Response
 {
-    "symbol": "BTCUSD_28Dec",
-    "product_id": 3,
-    "type": "l2_orderbook",
-    "timestamp": 1561634049751430,
-    "buy": [{"limit_price":"0.0014577","size":62},{"limit_price":"0.0014571","size":28}],
-    "sell": [{"limit_price":"6229.0","size":15964},{"limit_price":"6229.5","size":3504},{"limit_price":"6230.0","size":15964},{"limit_price":"6231.0","size":15957}]
+  "ask_qty":"839",
+  "best_ask":"1211.3",
+  "best_bid":"1211.25",
+  "bid_qty":"772",
+  "last_sequence_no":1671603257645135,
+  "last_updated_at":1671603257623000,
+  "product_id":176,"symbol":"ETHUSDT",
+  "timestamp":1671603257645134,
+  "type":"l1_orderbook"
 }
-``` -->
+```
+
 
 ## l2_orderbook
 
@@ -357,7 +363,7 @@ To receive updates on a specific contract type, pass contract type in the symbol
             {
                 "name": "l2_orderbook",
                 "symbols": [
-                    "BTCUSD_28Dec"
+                    "ETHUSDT"
                 ]
             }
         ]
@@ -368,12 +374,14 @@ To receive updates on a specific contract type, pass contract type in the symbol
 ```
 // l2 orderbook Response
 {
-    "symbol": "BTCUSD_28Dec",
-    "product_id": 3,
-    "type": "l2_orderbook",
-    "timestamp": 1561634049751430,
-    "buy": [{"limit_price":"0.0014577","size":62},{"limit_price":"0.0014571","size":28}],
-    "sell": [{"limit_price":"6229.0","size":15964},{"limit_price":"6229.5","size":3504},{"limit_price":"6230.0","size":15964},{"limit_price":"6231.0","size":15957}]
+  "type":"l2_orderbook"
+  "symbol":"ETHUSDT",
+  "product_id": 176,
+  "buy": [{"limit_price":"101.5","size":10,"depth":"10"},{"limit_price":"101.0","size":28,"depth":"38"}],
+  "sell": [{"limit_price":"102.0","size":20,"depth":"20"},{"limit_price":"102.5","size":"25","depth":"45"},{"limit_price":"103.0","size":30,"depth":"75"}],
+  "last_sequence_no": 1671600134033215,
+  "last_updated_at": 1671600133884000,
+  "timestamp":1671600134033215,
 }
 ```
 
@@ -1068,7 +1076,6 @@ Keys -
     <dd>Margin Floor is the minimum risk_margin required for a portfolio. </dd>
     <dd>It is comprised of sum of futures_margin_floor, long_options_margin_floor, short_options_margin_floor</dd>
 </dl>
-
 
 ## MMP Trigger
 Channel provides updates when MMP is triggered. MMP should be enabled by the Delta team for this channel to work. 
