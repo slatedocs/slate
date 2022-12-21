@@ -693,7 +693,7 @@ By default, no updates are sent.
 Sample Subscribe Request
 {
   "name": "candlestick_1m",                 // "candlestick_" + resolution
-  "symbols": [ "BTCUSD", "ETHUSDT" ]        // product symbol
+  "symbols": [ "BTCUSDT" ]        // product symbol
 }
 
 
@@ -707,7 +707,7 @@ Sample feed response
     "low": 9220,
     "open": 9221,
     "resolution": "1m",
-    "symbol": "BTCUSD_P",
+    "symbol": "BTCUSDT",
     "timestamp": 1596015289339699,
     "type": "candlestick_1m",
     "volume": 1.2
