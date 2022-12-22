@@ -1078,7 +1078,7 @@ Keys -
 </dl>
 
 ## MMP Trigger
-Channel provides updates when MMP is triggered. MMP should be enabled by the Delta team for this channel to work. 
+Channel provides updates when MMP is triggered. MMP should be enabled by the Delta team for this channel to work. Read more about market maker protection [here](https://guides.delta.exchange/delta-exchange-user-guide/market-makers-guide/market-maker-protection).  
 
 > MMP Trigger Sample
 
