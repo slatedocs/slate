@@ -249,7 +249,7 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
 To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
 To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 
-By default, no updates are sent.
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
 
 > Ticker Sample
 
@@ -306,12 +306,10 @@ By default, no updates are sent.
 
 ## l1_orderbook
 
-**l1_orderbook** channel provides snapshot of the latest level1 orderbook.
-
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
-
-By default, no updates are sent.
+**l1_orderbook** channel provides level1 orderbook updates. You need to send the list of symbols for which you would like to subscribe to L1 orderbook. You can also subscribe to 
+orderbooks of category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to L1 channel without specifying the symbols list, you will not receive any data.
 
 > L1 Orderbook Sample
 
@@ -350,7 +348,8 @@ By default, no updates are sent.
 
 ## l2_orderbook
 
-**l2_orderbook** channel provides snapshot of the latest level2 orderbook.Specifying symbols when subscribing to l2_orderbook is necessary to receive updates. No updates are sent for symbol: ***"all"***
+**l2_orderbook** channel provides the complete level2 orderbook for the sepecified list of symbols at a pre-determined frequency. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols. Unlike L1 orderbook channel, L2 ordebook channel doesnt accept prodcut category names or "all" as valid synbols. 
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
 
 > L2 Orderbook Sample
 
@@ -391,7 +390,8 @@ By default, no updates are sent.
 To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
 To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 
-By default, no updates are sent.
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
+
 
 > All Trades Sample
 
@@ -431,7 +431,8 @@ By default, no updates are sent.
 To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
 To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 
-By default, no updates are sent.
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
+
 > Mark Price Sample
 
 ```
@@ -537,7 +538,8 @@ This is the price used for settlement of options. Specifying symbols when subscr
 To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
 To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 
-By default, no updates are sent.
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
+
 
 > Funding Rate Sample
 
@@ -685,7 +687,7 @@ List of supported resolutions
  
 To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 
-By default, no updates are sent.
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
 
 >OHLC candles update sample
 
@@ -754,13 +756,14 @@ Channel provides updates for margin blocked for different assets, these updates 
 ```
 
 ## Positions
-Channel provides updates for change in position. Need to pass list of product symbols while subscribing. these updates are provided only on change of position.
+This channel provides updates whenever there is any change in your open positions. Need to pass list of product symbols while subscribing. these updates are provided only on change of position.
 
 A snapshot of current open position will be sent after subscribing a symbol, incremental updates will be sent on trade executions.
 To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
 To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 
-By default, no updates are sent.
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
+
 > Positions Sample
 
 ```
