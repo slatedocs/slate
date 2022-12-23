@@ -272,7 +272,7 @@ An organization's candidates.
 | website_addresses[].type | One of: ["personal", "company", "portfolio", "blog", "other"]
 | recruiter | The recruiter [user](#users) who is responsible for this candidate.
 | coordinator | The coordinator [user](#users) who is responsible for this candidate.
-| attachments[].type | One of: ["resume", "cover_letter", "admin_only", "public", "offer_packet", "offer_letter", "take_home_test", "other"]
+| attachments[].type | One of: ["resume", "cover_letter", "offer_packet", "offer_letter", "take_home_test", "other"]
 | attachments[].url | URLs expire in 30 days.
 | custom_fields | Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.
 | keyed_custom_fields | This contains the same information as custom_fields but formatted in a different way that includes more information.  This will tell you the type of custom field data to expect, the text name of custom field, and the value.  The key of this hash is the custom field's immutable field key, which will not change even if the name of the custom field is changed in Greenhouse.
