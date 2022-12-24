@@ -245,11 +245,10 @@ ws.send({
 
 The ticker channel provides price change data for the last 24 hrs (rolling window). It is published every 5 seconds.
 
-On subscribing to **v2/ticker** channel, socket server will emit messages with type 'ticker' in response. 
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
-
-By default, no updates are sent.
+You need to send the list of symbols for which you would like to subscribe to ticker channel. You can also subscribe to 
+ticker updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to ticker channel without specifying the symbols list, you will not receive any data.
 
 > Ticker Sample
 
@@ -306,12 +305,10 @@ By default, no updates are sent.
 
 ## l1_orderbook
 
-**l1_orderbook** channel provides snapshot of the latest level1 orderbook.
-
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
-
-By default, no updates are sent.
+**l1_orderbook** channel provides level1 orderbook updates. You need to send the list of symbols for which you would like to subscribe to L1 orderbook. You can also subscribe to 
+orderbook updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to L1 channel without specifying the symbols list, you will not receive any data.
 
 > L1 Orderbook Sample
 
@@ -350,7 +347,8 @@ By default, no updates are sent.
 
 ## l2_orderbook
 
-**l2_orderbook** channel provides snapshot of the latest level2 orderbook.Specifying symbols when subscribing to l2_orderbook is necessary to receive updates. No updates are sent for symbol: ***"all"***
+**l2_orderbook** channel provides the complete level2 orderbook for the sepecified list of symbols at a pre-determined frequency. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols. Unlike L1 orderbook channel, L2 ordebook channel doesnt accept prodcut category names or "all" as valid synbols. 
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
 
 > L2 Orderbook Sample
 
@@ -388,10 +386,10 @@ By default, no updates are sent.
 ## all_trades
 
 **all_trades** channel provides a real time feed of all trades (fills).
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
-
-By default, no updates are sent.
+You need to send the list of symbols for which you would like to subscribe to all trades channel. You can also subscribe to
+all trades updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to all_trades channel without specifying the symbols list, you will not receive any data.
 
 > All Trades Sample
 
@@ -428,10 +426,11 @@ By default, no updates are sent.
 ## mark_price
 
 **mark_price** channel provides a real time feed of mark price. This is the price on which all open positions are marked for liquidation.Please note that the product symbol is prepended with a "MARK:" to subscribe for mark price.
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+You need to send the list of symbols for which you would like to subscribe to mark price channel. You can also subscribe to 
+mark price updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to mark price channel without specifying the symbols list, you will not receive any data.
 
-By default, no updates are sent.
 > Mark Price Sample
 
 ```
@@ -443,7 +442,7 @@ By default, no updates are sent.
             {
                 "name": "mark_price",
                 "symbols": [
-                    "MARK:BTCUSD_28Dec"
+                    "MARK:C-BTC-13000-301222"
                 ]
             }
         ]
@@ -454,12 +453,23 @@ By default, no updates are sent.
 ```
 // Mark Price Response
 {
-    symbol: "MARK:BTCUSD_28Dec",
-    product_id: 7,
-    type: "mark_price",
-    price: "0.00401010",
-    annualized_basis: "25.12",    // in %
-    timestamp: 1561634049751430
+    "ask_iv":null,
+    "ask_qty":null,
+    "best_ask":null,
+    "best_bid":"9532",
+    "bid_iv":"5.000",
+    "bid_qty":"896",
+    "delta":"0",
+    "gamma":"0",
+    "implied_volatility":"0",
+    "price":"3910.088012",
+    "price_band":{"lower_limit":"3463.375340559572217228510815","upper_limit":"4354.489445440427782771489185"},
+    "product_id":39687,
+    "rho":"0",
+    "symbol":"MARK:C-BTC-13000-301222",
+    "timestamp":1671867039712836,
+    "type":"mark_price",
+    "vega":"0"
 }
 ```
 
@@ -534,11 +544,11 @@ This is the price used for settlement of options. Specifying symbols when subscr
 
 **funding_rate** channel provides a real time feed of funding rates for perpetual contracts.
 
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+You need to send the list of symbols for which you would like to subscribe to funding rate channel. You can also subscribe to funding rate updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to funding rate channel without specifying the symbols list, you will not receive any data.
 
-By default, no updates are sent.
-
+ 
 > Funding Rate Sample
 
 ```
@@ -683,9 +693,9 @@ Subscribe to **candlestick_${resolution}** channel for updates.
 List of supported resolutions
 ["1m","3m","5m","15m","30m","1h","2h","4h","6h","12h","1d","1w","2w","30d"]
  
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
-
-By default, no updates are sent.
+You need to send the list of symbols for which you would like to subscribe to candlesticks channel. You can also subscribe to candlesticks
+updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+Please note that if you subscribe to candlsticks channel without specifying the symbols list, you will not receive any data.
 
 >OHLC candles update sample
 
@@ -754,13 +764,14 @@ Channel provides updates for margin blocked for different assets, these updates 
 ```
 
 ## Positions
-Channel provides updates for change in position. Need to pass list of product symbols while subscribing. these updates are provided only on change of position.
+This channel provides updates whenever there is any change in your open positions.
 
 A snapshot of current open position will be sent after subscribing a symbol, incremental updates will be sent on trade executions.
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+You need to send the list of symbols for which you would like to subscribe to positions channel. You can also subscribe to positions 
+updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to positions channel without specifying the symbols list, you will not receive any data.
 
-By default, no updates are sent.
 > Positions Sample
 
 ```
@@ -852,10 +863,11 @@ Any of the following events can be tracked by the reason field in this channel
 - self_trade
 
 
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+You need to send the list of symbols for which you would like to subscribe to orders channel. You can also subscribe to orders
+updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to orders channel without specifying the symbols list, you will not receive any data.
 
-By default, no updates are sent.
 > Orders Sample
 
 ```
@@ -941,10 +953,10 @@ Channel provides updates for fills. Need to pass list of product symbols while s
 All updates will have incremental seq_id. seq_id is separate for each symbol.
 
 Auto Deleverage Liquidations of a position can be tracked by reason: "adl" in the user_trades channel.
-To receive updates on all the contracts, pass ***"all"*** in the symbols list in this format: `{ "symbols": ["all"] }`. 
-To receive updates on a specific contract type, pass contract type in the symbols list. For example, to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
-
-By default, no updates are sent.
+You need to send the list of symbols for which you would like to subscribe to user trades channel. You can also subscribe to user trades
+updates for category of products by sending category names. For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to user trades channel without specifying the symbols list, you will not receive any data.
 
 > User Trades Sample
 
