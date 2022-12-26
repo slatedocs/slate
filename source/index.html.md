@@ -1,14 +1,14 @@
 ---
-title: WC Marketplace REST API Docs
+title: MultiVendorX REST API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell: cURL
 
 toc_footers:
-  - <a target="_blank" href="https://github.com/wc-marketplace/wc-marketplace.github.io">Contribute to WCMp REST API Docs</a>
-  - <a target="_blank" href="https://wc-marketplace.com/knowledgebase/wcmp-hooks-filters/">WCMp Hooks and Filters</a>
-  - <a target="_blank" href="https://wc-marketplace.com/knowledgebase/wcmp-setup-guide/">WCMp Product Documentation</a>
-  - <a target="_blank" href="https://wc-marketplace.com/support-forum/forum/wcmp-core/">Connect to WCMp Support</a>
+  - <a target="_blank" href="https://github.com/wc-marketplace/wc-marketplace.github.io">Contribute to MultiVendorX REST API Docs</a>
+  - <a target="_blank" href="https://wc-marketplace.com/knowledgebase/wcmp-hooks-filters/">MultiVendorX Hooks and Filters</a>
+  - <a target="_blank" href="https://multivendorx.com/get-help/">MultiVendorX Product Documentation</a>
+  - <a target="_blank" href="https://multivendorx.com/support-forum/">Connect to MultiVendorX Support</a>
   - <a target="_blank" href="https://wc-marketplace.com/support-forum/forum/future-ideas/">Contribute to WCMp Ideas</a>
   - <a target="_blank" href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
