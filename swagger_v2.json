@@ -2067,7 +2067,7 @@
         ],
         "summary": "Update MMP config",
         "operationId": "updateMMP",
-        "description": "Market maker protection is available on demand to RMM. More info [here](https://guides.delta.exchange).",
+        "description": "Channel provides updates when MMP is triggered. Market maker protection is available to registered market makers by default. Others can reach out to support for getting access to MMP. More info [here](https://guides.delta.exchange/delta-exchange-user-guide/market-makers-guide/market-maker-protection).",
         "consumes": [
           "application/json"
         ],
@@ -2470,6 +2470,36 @@
         },
         "spot_index": {
           "$ref": "#/definitions/Index"
+        }
+      }
+    },
+    "ProductCategories": {
+      "type": "object",
+      "description": "List of all the product category names on delta exchange. Please refer to this list while subscribing to various public and private channels on delta exchange websocket",
+      "properties": {
+        "PutOptions": {
+          "type": "string",
+          "description": "put_options"
+        },
+        "CallOptions": {
+          "type": "string",
+          "description": "call_options"
+        },
+        "MoveOptions": {
+          "type": "string",
+          "description": "move_options"
+        },
+        "Spot": {
+          "type": "string",
+          "description": "spot"
+        },
+        "Futures": {
+          "type": "string",
+          "description": "futures"
+        },
+        "Perpetual Futures": {
+          "type": "string",
+          "description": "perpetual_futures"
         }
       }
     },

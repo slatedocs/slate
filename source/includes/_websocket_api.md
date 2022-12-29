@@ -14,15 +14,6 @@ Access url
 
  You will be disconnected, if there is no activity within 60 after making connection.
 
-# Product Categories
-
-List of all the category names that should be used for subscribing to various public and private channels are listed here.
-
-1. Put Options (symbol: ***put_options***)
-2. Call Options (symbol: ***call_options***)
-3. Futures (symbol: ***futures***)
-4. Perpetual Futures (symbol: ***perpetual_futures***)
-
 # Subscribing to Channels
 
 ## Subscribe
@@ -256,7 +247,7 @@ ws.send({
 The ticker channel provides price change data for the last 24 hrs (rolling window). It is published every 5 seconds.
 
 You need to send the list of symbols for which you would like to subscribe to ticker channel. You can also subscribe to 
-ticker updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+ticker updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to ticker channel without specifying the symbols list, you will not receive any data.
 
@@ -316,7 +307,7 @@ Please note that if you subscribe to ticker channel without specifying the symbo
 ## l1_orderbook
 
 **l1_orderbook** channel provides level1 orderbook updates. You need to send the list of symbols for which you would like to subscribe to L1 orderbook. You can also subscribe to 
-orderbook updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+orderbook updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to L1 channel without specifying the symbols list, you will not receive any data.
 
@@ -397,7 +388,7 @@ Please note that if you subscribe to L2 channel without specifying the symbols l
 
 **all_trades** channel provides a real time feed of all trades (fills).
 You need to send the list of symbols for which you would like to subscribe to all trades channel. You can also subscribe to
-all trades updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+all trades updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to all_trades channel without specifying the symbols list, you will not receive any data.
 
@@ -437,7 +428,7 @@ Please note that if you subscribe to all_trades channel without specifying the s
 
 **mark_price** channel provides a real time feed of mark price. This is the price on which all open positions are marked for liquidation.Please note that the product symbol is prepended with a "MARK:" to subscribe for mark price.
 You need to send the list of symbols for which you would like to subscribe to mark price channel. You can also subscribe to 
-mark price updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+mark price updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to mark price channel without specifying the symbols list, you will not receive any data.
 
@@ -554,7 +545,7 @@ This is the price used for settlement of options. Specifying symbols when subscr
 
 **funding_rate** channel provides a real time feed of funding rates for perpetual contracts.
 
-You need to send the list of symbols for which you would like to subscribe to funding rate channel. You can also subscribe to funding rate updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+You need to send the list of symbols for which you would like to subscribe to funding rate channel. You can also subscribe to funding rate updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to funding rate channel without specifying the symbols list, you will not receive any data.
 
@@ -704,7 +695,7 @@ List of supported resolutions
 ["1m","3m","5m","15m","30m","1h","2h","4h","6h","12h","1d","1w","2w","30d"]
  
 You need to send the list of symbols for which you would like to subscribe to candlesticks channel. You can also subscribe to candlesticks
-updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 Please note that if you subscribe to candlsticks channel without specifying the symbols list, you will not receive any data.
 
 >OHLC candles update sample
@@ -739,7 +730,7 @@ Sample feed response
 Private channels require clients to authenticate.
 
 ## Margins
-Channel provides updates for margin blocked for different assets, these updates are provided only on change of margin.
+This channel provides updates on wallet balances. Updates are sent for a specific asset whenever there is a change in wallet balances and margins for that asset. 
 
 > Margins Sample
 
@@ -778,7 +769,7 @@ This channel provides updates whenever there is any change in your open position
 
 A snapshot of current open position will be sent after subscribing a symbol, incremental updates will be sent on trade executions.
 You need to send the list of symbols for which you would like to subscribe to positions channel. You can also subscribe to positions 
-updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to positions channel without specifying the symbols list, you will not receive any data.
 
@@ -874,7 +865,7 @@ Any of the following events can be tracked by the reason field in this channel
 
 
 You need to send the list of symbols for which you would like to subscribe to orders channel. You can also subscribe to orders
-updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to orders channel without specifying the symbols list, you will not receive any data.
 
@@ -964,7 +955,7 @@ All updates will have incremental seq_id. seq_id is separate for each symbol.
 
 Auto Deleverage Liquidations of a position can be tracked by reason: "adl" in the user_trades channel.
 You need to send the list of symbols for which you would like to subscribe to user trades channel. You can also subscribe to user trades
-updates for category of products by sending [category-names](/#product-categories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
 If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
 Please note that if you subscribe to user trades channel without specifying the symbols list, you will not receive any data.
 
@@ -1100,7 +1091,7 @@ Keys -
 </dl>
 
 ## MMP Trigger
-Channel provides updates when MMP is triggered.Market maker protection is available to registered market makers by default. Others can reach out to support for getting access to MMP. More info [here](https://guides.delta.exchange/delta-exchange-user-guide/market-makers-guide/market-maker-protection).  
+Channel provides updates when MMP is triggered. Market maker protection is available to registered market makers by default. Others can reach out to support for getting access to MMP. More info [here](https://guides.delta.exchange/delta-exchange-user-guide/market-makers-guide/market-maker-protection).  
 
 > MMP Trigger Sample
 
