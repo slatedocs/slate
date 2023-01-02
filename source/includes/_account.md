@@ -1,32 +1,9 @@
 # Account
 
-## GetGroups
+## Test
 
 ```shell
-curl https://api.simplyprint.io/{id}/account/GetGroups \
-  -X GET \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/account/GetGroups`
-
-TODO
-
-## SetLocalPCCookie
-
-```shell
-curl https://api.simplyprint.io/{id}/account/SetLocalPCCookie \
+curl https://api.simplyprint.io/{id}/account/Test \
   -X ? \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -42,7 +19,30 @@ curl https://api.simplyprint.io/{id}/account/SetLocalPCCookie \
 
 ### Request
 
-`? /{id}/account/SetLocalPCCookie`
+`? /{id}/account/Test`
+
+TODO
+
+## GetGroups
+
+```shell
+curl https://api.simplyprint.io/{id}/account/GetGroups \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/account/GetGroups`
 
 TODO
 
@@ -158,28 +158,5 @@ curl https://api.simplyprint.io/{id}/account/settings/rank/Update \
 ### Request
 
 `? /{id}/account/settings/rank/Update`
-
-TODO
-
-## billing/Test
-
-```shell
-curl https://api.simplyprint.io/{id}/account/billing/Test \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/account/billing/Test`
 
 TODO

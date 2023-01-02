@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://simplyprint.io' target='_blank'>SimplyPrint</a>
-  - <a href='https://help.simplyprint.io' target='_blank'>Help Center</a>
+  - <a href='https://help.simplyprint.io' target='_blank'>Need help?</a>
 
 includes:
   - files
@@ -39,7 +39,7 @@ meta:
 <aside class="notice">
   <b>The SimplyPrint API is under construction!</b>
 
-  This means this site contains no real documentation yet, but it will soon.
+  This means this site is unfinished, and many endpoints are not yet documented. If you have any questions, please contact us via our <a href="https://help.simplyprint.io">helpdesk</a>.
 </aside>
 
 Welcome to the **SimplyPrint API**!

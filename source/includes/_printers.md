@@ -23,29 +23,6 @@ curl https://api.simplyprint.io/{id}/printers/Delete \
 
 TODO
 
-## SetJobNotifications
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/SetJobNotifications \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/SetJobNotifications`
-
-TODO
-
 ## HasPlugin
 
 ```shell
@@ -115,29 +92,6 @@ curl https://api.simplyprint.io/{id}/printers/actions/Start \
 
 TODO
 
-## actions/UninstallOpPlugin
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/actions/UninstallOpPlugin \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/actions/UninstallOpPlugin`
-
-TODO
-
 ## actions/CreateJob
 
 ```shell
@@ -181,29 +135,6 @@ curl https://api.simplyprint.io/{id}/printers/actions/Resume \
 ### Request
 
 `? /{id}/printers/actions/Resume`
-
-TODO
-
-## actions/InstallOpPlugin
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/actions/InstallOpPlugin \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/actions/InstallOpPlugin`
 
 TODO
 
@@ -276,10 +207,10 @@ curl https://api.simplyprint.io/{id}/printers/actions/Cancel \
 
 TODO
 
-## logs/RequestLogs
+## logs/ReadLog
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/logs/RequestLogs \
+curl https://api.simplyprint.io/{id}/printers/logs/ReadLog \
   -X ? \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -295,14 +226,14 @@ curl https://api.simplyprint.io/{id}/printers/logs/RequestLogs \
 
 ### Request
 
-`? /{id}/printers/logs/RequestLogs`
+`? /{id}/printers/logs/ReadLog`
 
 TODO
 
-## logs/GetLogs
+## logs/DeleteLog
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/logs/GetLogs \
+curl https://api.simplyprint.io/{id}/printers/logs/DeleteLog \
   -X ? \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -318,121 +249,6 @@ curl https://api.simplyprint.io/{id}/printers/logs/GetLogs \
 
 ### Request
 
-`? /{id}/printers/logs/GetLogs`
-
-TODO
-
-## settings/GetPrinterSettings
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/settings/GetPrinterSettings \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/settings/GetPrinterSettings`
-
-TODO
-
-## settings/GetModelSettings
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/settings/GetModelSettings \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/settings/GetModelSettings`
-
-TODO
-
-## settings/AutoBedLeveling
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/settings/AutoBedLeveling \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/settings/AutoBedLeveling`
-
-TODO
-
-## settings/UploadCustomImage
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/settings/UploadCustomImage \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/settings/UploadCustomImage`
-
-TODO
-
-## settings/SavePrinterSettings
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/settings/SavePrinterSettings \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/settings/SavePrinterSettings`
+`? /{id}/printers/logs/DeleteLog`
 
 TODO

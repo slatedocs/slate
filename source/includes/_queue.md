@@ -69,29 +69,6 @@ curl https://api.simplyprint.io/{id}/queue/DeleteItem \
 
 TODO
 
-## SliceReplaceModel
-
-```shell
-curl https://api.simplyprint.io/{id}/queue/SliceReplaceModel \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/queue/SliceReplaceModel`
-
-TODO
-
 ## AddItem
 
 ```shell
