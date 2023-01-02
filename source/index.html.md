@@ -3,9 +3,8 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
+  - curl
+ 
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,227 +18,268 @@ search: true
 code_clipboard: true
 
 meta:
-  - name: description
-    content: Documentation for the Kittn API
+  - name: AuthNull
+    content: Documentation for the AuthNull api
 ---
 
-# Introduction
+# Generating APIs using Goa Design 
+The Goa tool accepts the Go design package import path as input and produces the
+interface as well as the glue that binds the service and client code with the
+underlying transport. The code is specific to the API so that for example there
+is no need to cast or "bind" any data structure prior to using the request
+payload or response result. The design may define validations in which case the
+generated code takes care of validating the incoming request payload prior to
+invoking the service method on the server, and validating the response prior to
+invoking the client code.
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## Installation
+ 
+```bash
+go install goa.design/goa/v3/cmd/goa@v3
+```
+Current Release: `v3.10.2`
+ 
+The API Auto Generation are explained in detail below,
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This repository manages all the microservices for Authnull support.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+1. Design
+Initiate the repository and enable Go modules support:
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```bash
+mkdir -p clients/design
+cd clients
+go mod init clients
 ```
 
-```python
-import kittn
+Open the file clients/design/design.go and add the API spec for each module:
+Please refer the design.go file under /design folder. (The below snippet is already added)
+[https://github.com/authnull0/authnull-microservices/blob/development/clients/design/design.go](https://github.com/authnull0/authnull-microservices/blob/development/clients/design/design.go)
 
-api = kittn.authorize('meowmeowmeow')
 ```
+// Main API declaration
+API("app_management", func() { #8 in design.go }
+//Service declaration with all methods(add-app, list-all, edit-app, delete-app) and Swagger API specification file
+var _ = Service("app", func() { Description("The App service allows access to app management modules") Method("add-app", func() { #19 in design.go }}
+//Configure the custom types `var AppManagement = ResultType("application/vnd.app", func() { #60 in design.go
+}
+```
+
+2. Implement
+Run the below command to generate the wrapper /implementation codes.(This step to be added in docker file as well)
+```
+goa gen clients/design
+```
+This produces a gen directory with the following directory structure:
+
+```
+gen ├── calc │   ├── client.go │   ├── endpoints.go │   └── service.go └── 
+http ├── calc │   ├── client │   │   ├── cli.go │   │   ├── client.go │   │
+   ├── encode_decode.go │   │   ├── paths.go │   │   └── types.go │   └── server 
+   │   ├── encode_decode.go │   ├── paths.go │   ├── server.go │   └── types.go
+    ├── cli │   └── calc │   └── cli.go ├── openapi.json └── openapi.yaml 7 
+```
+
+directories, 15 files
+* calc contains the service endpoints and interface as well as a service client.
+* http contains the HTTP transport layer. This layer maps the service endpoints to HTTP handlers server side and HTTP client methods client side. The http directory also contains a complete OpenAPI 3.0 spec for the service.
+The goa tool can also generate example implementations for both the service and client.
+
+```
+ goa example clients/design
+```
+
+3. Run
+Please compile and run the service as below
+
+```
+cd authnull-microservices\clients
+go build .\cmd\app_management\
+./app_management
+```
+
+
+# User Groups
+
+## Add Groups
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+curl "https://api.authnull.kloudlearn.com/api/v1/instances/list" \
+  -H "Authorization: AuthNull"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
 
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
+ {
+    "domainId": 1,
+    "groupName": "sefali",
+    "roles": "Admin",
+    "users": [],
+    "otpMethod": "Email",
+    "metaData": "Foo, Bar",
+    "baseDn": "xxx",
+    "applications": [],
+    "ou": "abc",
+    "cn": "xyz"
+}
 ]
 ```
 
-This endpoint retrieves all kittens.
+This will add the users to Group.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST https://api.authnull.kloudlearn.com/api/v1/instances/list`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+DomainId | true | This is the unique ID assigned by the registry to the domain. .
+GroupName | false | Name of the group.
+Roles | true | Roles is the user is admin or user it signify.
+Users | true | a person who uses or operates something..
+OTPMethod | true | It is a one time password method.
+Metadata | true | Data that provide information about other data.
+Application | true | The action of putting something into operation.
+Ou | true | An organizational unit (OU) is a container within a Microsoft Active Directory domain which can hold users, groups and computers.
+cn | true | If set to true, the result will also include cats.
+BaseDn | true | If set to true, the result will also include cats.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — This is for Add Groups!
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## List All Groups
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
+curl "https://api.authnull.kloudlearn.com/api/v1/groups/listAll" \
+  -H "Authorization: AuthNull"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+[
+ {
+    "domainId": 1,
+    "pageId": 1,
+    "pageSize": 10,
+    "filter": "sefali"
 }
+]
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This is to show all list of Groups.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://api.authnull.kloudlearn.com/api/v1/groups/listAll`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Default | Description
+--------- | ------- | -----------
+DomainId | true | This is the unique ID assigned by the registry to the domain. .
+Filter | true | This help to search any parameter by their.
+PageId | true | PageId is the similar to page number.
+PageSize | true | Paper size standards govern the size of sheets of paper used as writing paper, stationery, cards, and for some printed documents.
 
-## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
+<aside class="success">
+Remember — This is for List All Groups!
+</aside>
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Delete Group
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl "https://api.authnull.kloudlearn.com/api/v1/groups/deleteGroup" \
+  -H "Authorization: AuthNull"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
 
 > The above command returns JSON structured like this:
 
 ```json
+[
 {
-  "id": 2,
-  "deleted" : ":("
+    "groupId": 56
 }
+]
 ```
 
-This endpoint deletes a specific kitten.
+This will delete the users to Group.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`POST https://api.authnull.kloudlearn.com/api/v1/groups/deleteGroup`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Parameter | Default | Description
+--------- | ------- | -----------
+GroupID | false | Numbers of the group shows by group ID.
+
+
+<aside class="success">
+Remember — This is for Delete Groups!
+</aside>
+
+## Update Groups
+
+```shell
+curl "https://api.authnull.kloudlearn.com/api/v1/groups/updateGroup" \
+  -H "Authorization: AuthNull"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+[
+ {
+    "groupId": 78,
+    "domainId": 1,
+    "groupName": "Sefali",
+    "roles": "",
+    "users": [112],
+    "otpMethod": "DID",
+    "metaData": "hello",
+    "applications":[26],
+    "ou": "xxx",
+    "cn": "xxx"
+}
+]
+```
+
+This will Updated the users to Group.
+
+### HTTP Request
+
+`PUT https://api.authnull.kloudlearn.com/api/v1/groups/updateGroup`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+DomainId | true | This is the unique ID assigned by the registry to the domain. .
+GroupName | false | Name of the group.
+Roles | true | Roles is the user is admin or user it signify.
+Users | true | a person who uses or operates something..
+OTPMethod | true | It is a one time password method.
+Metadata | true | Data that provide information about other data.
+Application | true | The action of putting something into operation.
+Ou | true | An organizational unit (OU) is a container within a Microsoft Active Directory domain which can hold users, groups and computers.
+cn | true | If set to true, the result will also include cats.
+BaseDn | true | If set to true, the result will also include cats.
+
+<aside class="success">
+Remember — This is for Update Groups!
+</aside>
+
 
