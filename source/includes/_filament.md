@@ -178,8 +178,6 @@ To update existing filament, you need to provide a `fid` query parameter, which 
 | -------------------- |
 | `CREATE_FILAMENT` |
 
-TODO; Checked by albert - not sure if this is correct
-
 ### Request
 
 `POST /{id}/filament/Create`
