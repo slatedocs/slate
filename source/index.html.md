@@ -13,12 +13,11 @@ includes:
   - files
   - filament
   - account
-  - status
   - queue
   - user
   - oauth
   - printers
-  - printers_old
+  - permissions
   - errors
 
 search: true

@@ -1,5 +1,51 @@
 # Queue
 
+## AddItem
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/AddItem \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/queue/AddItem`
+
+TODO
+
+## GetItems
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/GetItems \
+  -X ? \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+    "TODO": "TODO"
+}
+```
+
+### Request
+
+`? /{id}/queue/GetItems`
+
+TODO
+
 ## UpdateItem
 
 ```shell
@@ -20,29 +66,6 @@ curl https://api.simplyprint.io/{id}/queue/UpdateItem \
 ### Request
 
 `? /{id}/queue/UpdateItem`
-
-TODO
-
-## SetOrder
-
-```shell
-curl https://api.simplyprint.io/{id}/queue/SetOrder \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/queue/SetOrder`
 
 TODO
 
@@ -69,10 +92,10 @@ curl https://api.simplyprint.io/{id}/queue/DeleteItem \
 
 TODO
 
-## AddItem
+## SetOrder
 
 ```shell
-curl https://api.simplyprint.io/{id}/queue/AddItem \
+curl https://api.simplyprint.io/{id}/queue/SetOrder \
   -X ? \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -88,7 +111,7 @@ curl https://api.simplyprint.io/{id}/queue/AddItem \
 
 ### Request
 
-`? /{id}/queue/AddItem`
+`? /{id}/queue/SetOrder`
 
 TODO
 
@@ -112,28 +135,5 @@ curl https://api.simplyprint.io/{id}/queue/EmptyQueue \
 ### Request
 
 `? /{id}/queue/EmptyQueue`
-
-TODO
-
-## GetItems
-
-```shell
-curl https://api.simplyprint.io/{id}/queue/GetItems \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/queue/GetItems`
 
 TODO

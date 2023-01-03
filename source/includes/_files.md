@@ -132,6 +132,27 @@ curl https://api.simplyprint.io/{id}/files/GetFolder?id=5290 \
 > Success response
 
 ```json
+{
+  "status": true,
+  "message": null,
+  "folder": {
+    "id": 5290,
+    "name": "org_folder_called_benchy",
+    "org": true,
+    "permissions": {
+      "view": [
+        112,
+        151
+      ],
+      "upload": [
+        112
+      ],
+      "modify": [
+        112
+      ]
+    }
+  }
+}
 ```
 
 This endpoint returns details about a given folder.
@@ -139,6 +160,25 @@ This endpoint returns details about a given folder.
 ### Request
 
 `GET /{id}/files/GetFolder`
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `id` | integer | yes | Folder ID to get details for. |
+
+### Response
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+| `folder` | object | Folder object. |
+| `folder.id` | integer | Folder ID. |
+| `folder.name` | string | Folder name. |
+| `folder.org` | boolean | True if the folder is an organization folder.<br>**Requires Print Farm plan** |
+| `folder.permissions` | object|null | Folder permissions. |
+| `folder.permissions.view` | array | Array of [group IDs](#get-company-groups) that can view the folder. |
+| `folder.permissions.upload` | array | Array of [group IDs](#get-company-groups) that can upload files to the folder. |
+| `folder.permissions.modify` | array | Array of [group IDs](#get-company-groups) that can modify the folder. |
 
 ## Move Folder
 

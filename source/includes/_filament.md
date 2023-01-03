@@ -201,12 +201,12 @@ To update existing filament, you need to provide a `fid` query parameter, which 
 | `filament_type` | string | yes | Filament type. |
 | `cost` | float | no | Cost of filament. |
 | `currency` | string | no | Currency of `cost`.<br>**Max 3 characters** |
-| `custom_note` | string | no | Custom note. |
+| `custom_note` | string | no | Custom note.<br>**Max 1000 characters** |
 | `prod_id` | string | no | Filament product id. |
 | `brand` | string | yes | Filament brand. |
 | `brand_id` | integer | no | Filament brand id. |
 | `filgroup_id` | integer | no | Target SimplyPrint filament group id to insert filament into. |
-| `spool_id` | integer | no | Spool id. |
+| `spool_id` | integer | no | Filament spool id. |
 | `slicing_settings` | object | yes | Slicing settings. |
 | `slicing_settings.nozzle_temp` | integer | yes | Nozzle temperature. |
 | `slicing_settings.nozzle_fl_temp` | integer | yes | Nozzle first layer temperature. |
