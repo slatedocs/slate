@@ -131,7 +131,7 @@ You must replace <code>apps</code> with your personal API key.
 
 
 ```shell
-curl "POST 'https://api.authnull.kloudlearn.com/api/v1/apps/listAll' \" \
+curl "POST 'https://api.authnull.kloudlearn.com/api/v1/apps/listAll' " 
   -H "Authorization: Authnull"
 ```
 
@@ -175,7 +175,7 @@ List All Apps.
 
 
 ```shell
-curl "DELETE 'https://api.authnull.kloudlearn.com/api/v1/apps/deleteApp' \" \
+curl "DELETE 'https://api.authnull.kloudlearn.com/api/v1/apps/deleteApp' " 
   -H "Authorization: Authnull"
 ```
 
@@ -205,9 +205,15 @@ domainId | Domain Id in which the app belongs to.
 <aside class="success">
 App Deleted !
 </aside>
-# User Groups
 
-## Add Groups
+# Groups
+Welcome to the Groups! You can use our API to access Groups API endpoints, which can get information on various Groups in our database.
+
+We have language bindings in Shell and HTTP! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+# Add Groups
+## Add
+
 
 ```shell
 curl "https://api.authnull.kloudlearn.com/api/v1/instances/list" \
@@ -259,7 +265,8 @@ BaseDn | true | If set to true, the result will also include cats.
 Remember — This is for Add Groups!
 </aside>
 
-## List All Groups
+# List All Groups
+## List
 
 ```shell
 curl "https://api.authnull.kloudlearn.com/api/v1/groups/listAll" \
@@ -300,7 +307,9 @@ PageSize | true | Paper size standards govern the size of sheets of paper used a
 Remember — This is for List All Groups!
 </aside>
 
-## Delete Group
+# Delete Groups
+
+## Delete
 
 ```shell
 curl "https://api.authnull.kloudlearn.com/api/v1/groups/deleteGroup" \
@@ -335,7 +344,9 @@ GroupID | false | Numbers of the group shows by group ID.
 Remember — This is for Delete Groups!
 </aside>
 
-## Update Groups
+# Update Groups
+
+##Update
 
 ```shell
 curl "https://api.authnull.kloudlearn.com/api/v1/groups/updateGroup" \
