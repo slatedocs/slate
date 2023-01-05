@@ -6,9 +6,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - http
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
+  - <a href='https://authnull.com/contactus'>Sign Up for a Developer Key</a>
+ 
 includes:
   - errors
 
@@ -49,7 +48,7 @@ To authenticate users using the authnull service, users will need to provide the
 ## List All Instances
   List All Instances lists all the instances that are present .
   ```shell
-  POST 'https://api.authnull.com/api/v1/instances/list' \
+  POST 'https://api.authnull.kloudlearn.com/api/v1/instances/list' \
 ```
 ```http
 POST /api/v1/instances/list HTTP/1.1
@@ -98,7 +97,7 @@ All the instances listed below.
 ## Add Instances
 Add Instances Adds particular instances to the existing list.
 ```shell
-POST 'https://api.authnull.com/api/v1/instances/add-instance' \
+POST 'https://api.authnull.kloudlearn.com/api/v1/instances/add-instance' \
 ```
 ```http
 POST /api/v1/instances/add-instance HTTP/1.1
@@ -136,7 +135,7 @@ Instance added to the list.
 ## Update Instances
 It updates the instances that are present.
 ```shell
-PUT 'https://api.authnull.com/api/v1/instances/update-instance' \
+PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/update-instance' \
 ```
 ```http
 PUT /api/v1/instances/update-instance HTTP/1.1
@@ -170,7 +169,7 @@ Instance updated.
 ```
 ## Add Groups To Machines
 ```shell
-PUT 'https://api.authnull.com/api/v1/instances/addGroupsToMachines' \
+PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/addGroupsToMachines' \
 ```
 ```http
 PUT /api/v1/instances/addGroupsToMachines HTTP/1.1
@@ -208,7 +207,7 @@ Group added to Machine
 # EPM Group Management
 ## List All EPM Group
 ```shell
-POST 'https://api.authnull.com/api/v1/epmGroupManagement/listAllEPMGroup' \
+POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/listAllEPMGroup' \
 ```
 ```http
 POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1
@@ -245,7 +244,7 @@ EPM GRoup listed.
 ```
 ## Add EPM Group
 ```shell
-POST 'https://api.authnull.com/api/v1/epmGroupManagement/addEPMGroup' \
+POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/addEPMGroup' \
 ```
 ```http
 POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1
@@ -279,7 +278,7 @@ EPM Group added.
 ```
 ## Delete EPM Group
 ```shell
-DELETE 'https://api.authnull.com/api/v1/epmGroupManagement/deleteEPMGroup' \
+DELETE 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/deleteEPMGroup' \
 ```
 ```http
 DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1
@@ -310,7 +309,7 @@ EPM Group  deleted.
 ```
 ## Update EPM Group Users
 ```shell
-PUT 'https://api.authnull.com/api/v1/epmGroupManagement/updateEPMGroupUsers' \
+PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupUsers' \
 ```
 ```http
 PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1
@@ -344,7 +343,7 @@ EPM Group Users Updated.
 ```
 ## Update EPM Group Cred Escalation
 ```shell
-PUT 'https://api.authnull.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
+PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
 ```
 ```http
 PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1
@@ -378,7 +377,7 @@ EPM Group Cred Escalation Updated.
 ```
 ## Update EPM Group Status
 ```shell
-PUT 'https://api.authnull.com/api/v1/epmGroupManagement/updateEPMGroupStatus' \
+PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupStatus' \
 ```
 ```http
 PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1
@@ -442,7 +441,7 @@ This is a PRD for the Linux user management service (LUMS) covering the followin
 
 
 ```shell
-curl "https://api.authnull.com/api/v1/add-linux-user-info" 
+curl "https://api.authnull.kloudlearn.com/api/v1/add-linux-user-info" 
   -H "Authorization: AuthNull"
 ```
 ```HTTP
@@ -490,7 +489,7 @@ Remember — This is for Add in LUMs!
 
 
 ```shell
-curl "https://api.authnull.com/api/v1/list-all-lums" 
+curl "https://api.authnull.kloudlearn.com/api/v1/list-all-lums" 
   -H "Authorization: AuthNull"
 ```
 
@@ -553,7 +552,7 @@ Remember — This is for Add in LUMs!
 ## Delete Linux User
 
 ```shell
-curl "https://api.authnull.com/api/v1/delete-user" 
+curl "https://api.authnull.kloudlearn.com/api/v1/delete-user" 
   -H "Authorization: AuthNull"
 ```
 
@@ -595,7 +594,7 @@ Remember — This is for Add in LUMs!
 
 
 ```shell
-curl "https://api.authnull.com/api/v1/addUserToMachine" 
+curl "https://api.authnull.kloudlearn.com/api/v1/addUserToMachine" 
   -H "Authorization: AuthNull"
 ```
 
@@ -646,7 +645,7 @@ We have language bindings in Shell and HTTP! You can view code examples in the d
 ## updateEPMUserWallet
 
 ```shell
-curl "https://api.authnull.com/api/v1/updateEPMUserWallet" 
+curl "https://api.authnull.kloudlearn.com/api/v1/updateEPMUserWallet" 
   -H "Authorization: AuthNull"
 ```
 
@@ -693,7 +692,7 @@ Remember — This is for Add in LUMs!
 ## linuxEpmCredentialEscalation
 
 ```shell
-curl "https://api.authnull.com/api/v1/linuxEpmCredentialEscalation" 
+curl "https://api.authnull.kloudlearn.com/api/v1/linuxEpmCredentialEscalation" 
   -H "Authorization: AuthNull"
 ```
 
@@ -741,7 +740,7 @@ Remember — This is for Add in LUMs!
 ## updateEpmUserInfo
 
 ```shell
-curl "https://api.authnull.com/api/v1/updateEpmUserInfo" 
+curl "https://api.authnull.kloudlearn.com/api/v1/updateEpmUserInfo" 
   -H "Authorization: AuthNull"
 ```
 
@@ -816,7 +815,7 @@ You must replace <code>apps</code> with your personal API key.
 
 
 ```shell
-curl "POST 'https://api.authnull.com/api/v1/apps/listAll' " 
+curl "POST 'https://api.authnull.kloudlearn.com/api/v1/apps/listAll' " 
   -H "Authorization: Authnull"
 ```
 
@@ -858,7 +857,7 @@ List All Apps.
 
 
 ```shell
-curl "DELETE 'https://api.authnull.com/api/v1/apps/deleteApp' " 
+curl "DELETE 'https://api.authnull.kloudlearn.com/api/v1/apps/deleteApp' " 
   -H "Authorization: Authnull"
 ```
 
@@ -898,7 +897,7 @@ We have language bindings in Shell and HTTP! You can view code examples in the d
 
 
 ```shell
-curl "https://api.authnull.com/api/v1/instances/list" \
+curl "https://api.authnull.kloudlearn.com/api/v1/instances/list" \
   -H "Authorization: AuthNull"
 ```
 
@@ -955,7 +954,7 @@ Remember — This is for Add Groups!
 ## List All Groups
 
 ```shell
-curl "https://api.authnull.com/api/v1/groups/listAll" \
+curl "https://api.authnull.kloudlearn.com/api/v1/groups/listAll" \
   -H "Authorization: AuthNull"
 ```
 
@@ -998,7 +997,7 @@ Remember — This is for List All Groups!
 ## Delete Groups
 
 ```shell
-curl "https://api.authnull.com/api/v1/groups/deleteGroup" \
+curl "https://api.authnull.kloudlearn.com/api/v1/groups/deleteGroup" \
   -H "Authorization: AuthNull"
 ```
 
@@ -1037,7 +1036,7 @@ Remember — This is for Delete Groups!
 ## Update Groups
 
 ```shell
-curl "https://api.authnull.com/api/v1/groups/updateGroup" \
+curl "https://api.authnull.kloudlearn.com/api/v1/groups/updateGroup" \
   -H "Authorization: AuthNull"
 ```
 
@@ -1124,7 +1123,7 @@ In multitasking computer operating systems, a daemon (/ˈdiːmən/ or /ˈdeɪmə
 ## Save ActiveDirectory Configure
 
 ```shell
-curl "https://api.authnull.com/api/v1/saveActiveDirectoryConfig" \
+curl "https://api.authnull.kloudlearn.com/api/v1/saveActiveDirectoryConfig" \
   -H "Authorization: AuthNull"
 ```
 
@@ -1172,7 +1171,7 @@ Remember — This is for save ActiveDirectory Configure!
 ## Import Users
 
 ```shell
-curl "https://api.authnull.com/api/v1/importUsers" \
+curl "https://api.authnull.kloudlearn.com/api/v1/importUsers" \
   -H "Authorization: AuthNull"
 ```
 
@@ -1221,7 +1220,7 @@ Remember — This is for Import Users!
 ## Get Import Status
 
 ```shell
-curl "https://api.authnull.com/api/v1/getImportStatus" \
+curl "https://api.authnull.kloudlearn.com/api/v1/getImportStatus" \
   -H "Authorization: AuthNull"
 ```
 
@@ -1263,7 +1262,7 @@ For mapping api we need to reconfigure the api:
 ## Reconfigure Active Directory
 
 ```shell
-curl "https://api.authnull.com/api/v1/reConfigure" \
+curl "https://api.authnull.kloudlearn.com/api/v1/reConfigure" \
   -H "Authorization: AuthNull"
 ```
 
