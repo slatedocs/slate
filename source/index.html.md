@@ -48,7 +48,7 @@ This documentation goes through authenticating and how to use the API. To get st
 
 To get an API key you'll need a SimplyPrint account that is either a member of an organization or has at least the [SimplyPrint Pro plan](https://simplyprint.io/#pricing).
 
-To create your own API key you first need a SimplyPrint account, you can go to your [account settings](https://simplyprint.io/account/settings) and create a new API key.
+To create your own API key you first need a SimplyPrint account, you can go to your [account settings](https://simplyprint.io/panel/user_settings/security) and create a new API key.
 
 TODO; Create API key page and explain how to create an API key.
 
