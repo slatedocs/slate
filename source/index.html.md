@@ -1569,5 +1569,3 @@ proof |  A set of objects that contain one or more.
 As part of the process of working with verifiable credentials (VCs), you not only have to issue credentials, but sometimes you also have to revoke them. In this article, we go over the Status property part of the VC specification and take a closer look at the revocation process, why we may want to revoke credentials and some data and privacy implications.
 
 
-
-
