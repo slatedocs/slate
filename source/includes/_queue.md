@@ -43,7 +43,7 @@ You must specify either a filesystem id or a file to upload.
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `filesystem` | string | no | The filesystem id of the file to add to the queue. |
-| `amount` | int | no | The amount of prints to add to the queue.<br>**Default: 1** |
+| `amount` | integer | no | The amount of prints to add to the queue.<br>**Default: 1** |
 
 #### File upload
 
@@ -146,7 +146,7 @@ This endpoint returns the queue for the specified or all printers.
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `p` | int | no | The printer id to get the queue for. If not specified, the queue for all printers will be returned. |
+| `p` | integer | no | The printer id to get the queue for. If not specified, the queue for all printers will be returned. |
 
 ### Response
 
@@ -157,12 +157,12 @@ This endpoint returns the queue for the specified or all printers.
 | `queue` | object | The queue object. |
 | `queue.fits` | boolean | TODO |
 | `queue.items` | array | An array of queue item objects. |
-| `queue.items[].id` | int | The queue item id. |
-| `queue.items[].index` | int | The queue item index. |
+| `queue.items[].id` | integer | The queue item id. |
+| `queue.items[].index` | integer | The queue item index. |
 | `queue.items[].filename` | string | The queue item filename. |
 | `queue.items[].model` | boolean | True if the queue item is a model. |
-| `queue.items[].left` | int | The amount of prints left to print. |
-| `queue.items[].printed` | int | The amount of prints that have been printed. |
+| `queue.items[].left` | integer | The amount of prints left to print. |
+| `queue.items[].printed` | integer | The amount of prints that have been printed. |
 | `queue.items[].for` | object | For which printers, models and groups this queue item is for. |
 | `queue.items[].for.printers` | array | An array of printer ids. |
 | `queue.items[].for.models` | array | An array of printer model ids. |
@@ -170,18 +170,18 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.items[].analysis` | object | The analysis object. |
 | `queue.items[].analysis.slicer` | string | The slicer used to slice the file. |
 | `queue.items[].analysis.filament` | array | An array of filament lengths. |
-| `queue.items[].analysis.estimate` | int | The estimated print time in seconds. |
+| `queue.items[].analysis.estimate` | integer | The estimated print time in seconds. |
 | `queue.items[].analysis.movement` | object | The movement object. |
 | `queue.items[].analysis.temps` | object | The temperatures object. |
 | `queue.items[].analysis.temps.tool` | object | Temperature for each tool (extruder). |
-| `queue.items[].analysis.temps.bed` | int | Temperature for the bed. |
-| `queue.items[].analysis.temps.pset` | int | TODO |
+| `queue.items[].analysis.temps.bed` | integer | Temperature for the bed. |
+| `queue.items[].analysis.temps.pset` | integer | TODO |
 | `queue.items[].analysis.modelSize` | object | The model size object. Represented as `x`, `y` and `z` values in millimeters. |
 | `queue.items[].analysis.printArea` | object | The print area object. Represented as `maxX`, `minX`, `maxY`, `minY`, `maxZ` and `minZ` values in millimeters. |
 | `queue.items[].analysis.minDeltaRadius` | float | Minimum radius for delta printers. |
-| `queue.items[].analysis.v` | int | The analysis version. |
+| `queue.items[].analysis.v` | integer | The analysis version. |
 | `queue.items[].user` | string | The user name of who added the queue item. |
-| `queue.items[].user_id` | int | The user id of who added the queue item. |
+| `queue.items[].user_id` | integer | The user id of who added the queue item. |
 
 ## Update queue item
 
@@ -231,7 +231,7 @@ This endpoint updates the queue item with the specified id.
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `job` | int | yes | The queue item id to update. |
+| `job` | integer | yes | The queue item id to update. |
 
 #### Request body
 
@@ -240,7 +240,7 @@ This endpoint updates the queue item with the specified id.
 | `for_groups` | array | no | An array of group ids to assign the queue item to. |
 | `for_models` | array | no | An array of printer model ids to assign the queue item to. |
 | `for_printers` | array | no | An array of printer ids to assign the queue item to. |
-| `amount` | int | no | The new amount to set. |
+| `amount` | integer | no | The new amount to set. |
 
 ### Response
 
@@ -278,7 +278,7 @@ This endpoint deletes the queue item with the specified id.
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `job` | int | yes | The queue item id to delete. |
+| `job` | integer | yes | The queue item id to delete. |
 
 ### Response
 
@@ -316,9 +316,9 @@ This endpoint changes the order of the queue items by moving the queue item with
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `job` | int | yes | The queue item id to move. |
-| `from` | int | yes | The current position of the queue item. |
-| `to` | int | yes | The new position of the queue item. |
+| `job` | integer | yes | The queue item id to move. |
+| `from` | integer | yes | The current position of the queue item. |
+| `to` | integer | yes | The new position of the queue item. |
 
 ### Response
 

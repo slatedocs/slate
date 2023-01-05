@@ -14,7 +14,6 @@ includes:
   - filament
   - account
   - queue
-# - oauth
   - printers
   - permissions
   - errors

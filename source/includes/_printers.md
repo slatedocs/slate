@@ -30,7 +30,7 @@ This endpoint can be used to delete a printer from the database, or to disconnec
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `pid` | integer | yes | The ID of the printer to delete. |
-| `just_connection` | integer | no | If set to 1, the Pi connection will be deleted. If set to 0, the printer and connection will be permanently deleted.<br>**Default: 0** |
+| `just_connection` | integer | no | If set to 1, only the Pi connection will be deleted. Otherwise, the printer will be permanently deleted.<br>**Default: 0** |
 
 ### Response
 
@@ -226,57 +226,12 @@ To start a print job you must either specify a `filesystem` ID, a `queue_file` I
 | `message` | string | Error message if `status` is false. |
 | `files` | array | Array of started print job objects. |
 | `files[].name` | string | The name of the file. |
-| `files[].analysis` | object | The analysis of the file. This has been documented in the [Save autoqueue defaults endpoint.](#save-autoqueue-defaults). |
+| `files[].analysis` | object | The analysis of the file. This has been documented in the [Get queue items endpoint](#get-queue-items). |
 | `files[].printers` | integer[] | The IDs of the printers that the print job was started on. |
-| `files[].queued` | boolean | True if the print job was queued. |
+| `files[].queued` | boolean | TODO |
+| `jobIds` | integer[] | The IDs of the print jobs that were started. |
 
-## actions/Resume
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/actions/Resume \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/actions/Resume`
-
-TODO
-
-## actions/Pause
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/actions/Pause \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
-
-### Request
-
-`? /{id}/printers/actions/Pause`
-
-TODO
-
-## actions/Get
+## Get printer info
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/actions/Get \
@@ -285,25 +240,19 @@ curl https://api.simplyprint.io/{id}/printers/actions/Get \
   -H 'X-API-KEY: {API_KEY}'
 ```
 
-> Success response
-
-```json
-{
-    "TODO": "TODO"
-}
-```
+<aside class="warning">
+  This endpoint has not been implemented yet.
+</aside>
 
 ### Request
 
 `? /{id}/printers/actions/Get`
 
-TODO
-
-## actions/Cancel
+## Pause print job
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/actions/Cancel \
-  -X ? \
+curl https://api.simplyprint.io/{id}/printers/actions/Pause?pid=1234 \
+  -X POST \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
@@ -312,21 +261,35 @@ curl https://api.simplyprint.io/{id}/printers/actions/Cancel \
 
 ```json
 {
-    "TODO": "TODO"
+  "status": true,
+  "message": null
 }
 ```
 
+This endpoint can be used to pause one or multiple print jobs. The printers have to be in the `PRINTING` state.
+
 ### Request
 
-`? /{id}/printers/actions/Cancel`
+`POST /{id}/printers/actions/Pause`
 
-TODO
+#### Query parameters
 
-## logs/ReadLog
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `pid` | integer or integer[] | yes | The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PRINTING` state** |
+
+#### Response
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+
+## Resume print job
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/logs/ReadLog \
-  -X ? \
+curl https://api.simplyprint.io/{id}/printers/actions/Resume?pid=1234 \
+  -X POST \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
@@ -335,35 +298,92 @@ curl https://api.simplyprint.io/{id}/printers/logs/ReadLog \
 
 ```json
 {
-    "TODO": "TODO"
+  "status": true,
+  "message": null
 }
 ```
 
 ### Request
 
-`? /{id}/printers/logs/ReadLog`
+`POST /{id}/printers/actions/Resume`
 
-TODO
+#### Query parameters
 
-## logs/DeleteLog
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `pid` | integer or integer[] | yes | The ID(s) of the printer to resume. Resume multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PAUSED` state** |
+
+#### Response
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+
+## Cancel print job
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/logs/DeleteLog \
-  -X ? \
+curl https://api.simplyprint.io/{id}/printers/actions/Cancel?pid=1234 \
+  -X POST \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
+```
+
+> Request body
+
+```json
+{
+  "reason": 3,
+  "comment": "Cancel comment"
+}
 ```
 
 > Success response
 
 ```json
 {
-    "TODO": "TODO"
+  "status": true,
+  "message": null
 }
 ```
 
+| Required permission | Description |
+| ------------------- | ----------- |
+| `CANCEL_OTHERS_PRINTS` | Need permission to cancel other users' prints if the print job was started by another user. |
+
+This endpoint can be used to cancel one or multiple print jobs. The printers have to be in the `PRINTING`, `PAUSED` or `PAUSING` state.
+
 ### Request
 
-`? /{id}/printers/logs/DeleteLog`
+`POST /{id}/printers/actions/Cancel`
 
-TODO
+#### Query parameters
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `pid` | integer or integer[] | yes | The ID(s) of the printer to cancel. Cancel multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PRINTING`, `PRINTER_PAUSED` or `PRINTER_PAUSING` state** |
+
+#### Request body
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `reason` | integer | no | The reason for cancelling the print job. See [Cancel reasons](#cancel-reasons). Depending on the `require_cancel_reason` organization setting, this field may be required. |
+| `comment` | string | no | A comment for the cancel reason. Depending on the `require_comment` organization setting, this field may be required.<br>**Max length: 500 characters** |
+
+### Response
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+
+## Cancel reasons
+
+| ID | Description |
+| -- | ----------- |
+| 1 | Print failed |
+| 2 | Regretted print |
+| 3 | No filament extruded / nozzle clog |
+| 4 | Fell of the plate |
+| 5 | Not enough filament |
+| 6 | Other |
