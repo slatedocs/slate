@@ -1093,6 +1093,234 @@ Remember — This is for Update Groups!
 # LUMS Agent
 
 # AD Agent (Daemon)
+The Active Directory Agent is a Windows service that provides transparent user identification for Windows Active Directory-based networks. The Active Directory Agent (also called the "AD Agent") collects information from several sources simultaneously and populates a single session table that identifies the current user for each active workstation on the network
+The Oracle Enterprise Manager Console works with Intelligent Agents and a Communication Daemon to gather information about the network environment, communicate with network objects, and manage jobs and events. Topics discussed in this chapter include:
+
+1. Agents.
+
+2.Communication Daemon.
+
+3. Daemon Manager.
+
+### Daemon
+In multitasking computer operating systems, a daemon (/ˈdiːmən/ or /ˈdeɪmən/)[1] is a computer program that runs as a background process, rather than being under the direct control of an interactive user. Traditionally, the process names of a daemon end with the letter d, for clarification that the process is in fact a daemon, and for differentiation between a daemon and a normal computer program.
+## Installation 
+1. To install a new forest, you must be logged on as the local Administrator for the computer.
+
+2. To install a new child domain or new domain tree, you must be logged on as a member of the Enterprise Admins group.
+
+3. To install an additional domain controller in an existing domain, you must be a member of the Domain Admins group.
+
+
+## Configuration File
+1. The windows server of 2012 and above is needed.
+
+2. You need access to window server to install okta Active Directory agent.
+
+3.The agent host server must be a member of the same windows domain as your active directory.
+
+4. The windows server where the agent reside must be on at all time.
+
+## Save ActiveDirectory Configure
+
+```shell
+curl "https://api.authnull.kloudlearn.com/api/v1/saveActiveDirectoryConfig" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/saveActiveDirectoryConfig HTTP/1.1
+
+```json
+[
+ {
+    "DirectoryName":"xyz-xyz-xyz", 
+    "AccountName":"abc-abc-abc", 
+    "App URL":"www.kloudlearn.com", 
+    "DomainId":"1",
+}
+]
+```
+
+This will save ActiveDirectory Configure.
+
+### HTTP Request
+
+`POST api/v1/saveActiveDirectoryConfig HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+DirectoryName | Name of Directory.
+App URL | App URL is url for app.
+AccountName | Name of the Account.
+DomainId | This is the unique ID assigned by the registry to the domain. 
+
+### HTTP response
+
+`successfully Save ActiveDirectory Configure`
+
+
+<aside class="success">
+Remember — This is for save ActiveDirectory Configure!
+</aside>
+
+## Restart the Agent
+ For Restart the agent what will happen is the installation will complete and all the api incluging the Active Directory will configure and import the group and the user to active directory of the AuthNull.
+
+## Import Users
+
+```shell
+curl "https://api.authnull.kloudlearn.com/api/v1/importUsers" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/importUsers HTTP/1.1
+
+```json
+[
+{
+    "LDAPHost":"ldap.forumsys.com",
+    "LDAPPort":"389",
+    "BaseDN":"dc=example,dc=com",
+    "Filter":"(ou=italians)",
+    "BindDN":"BindDN",
+    "DomainID":"91"
+}
+]
+```
+
+This will Import Users.
+
+### HTTP Request
+
+`POST api/v1/importUsers HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+LDAPHost | LDAPHost.
+LDAPPort | LDAPPort.
+BaseDN | BaseDN.
+Filter | Filter. 
+BindDN | BindDN. 
+DomainID | DomainID. 
+
+### HTTP response
+
+`successfully Import Users`
+
+
+<aside class="success">
+Remember — This is for Import Users!
+</aside>
+
+## Get Import Status
+
+```shell
+curl "https://api.authnull.kloudlearn.com/api/v1/getImportStatus" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/getImportStatus HTTP/1.1
+
+```json
+[
+{
+    "DirectoryName":"ldap.forumsys.com"
+}
+]
+```
+
+This will Get Import Status.
+
+### HTTP Request
+
+`POST api/v1/getImportStatus HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+DirectoryName | Name of the Directory.
+
+### HTTP response
+
+`successfully Get Import Status`
+
+
+<aside class="success">
+Remember — This is for Get Import Status!
+</aside>
+
+## Mapping api 
+For mapping api we need to reconfigure the api:
+
+## Reconfigure Active Directory
+
+```shell
+curl "https://api.authnull.kloudlearn.com/api/v1/reConfigure" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/reConfigure HTTP/1.1
+
+```json
+[
+FieldMappings: {
+
+email “john@kloudone.com”,
+
+slack: “JohnDoe”,
+
+username: “John”,
+
+department: “IT”,
+
+group: “groupA”,
+
+subgroup: “subgroupA”,
+
+roles: “admin”,
+
+location: “India”,
+
+region: “United States”,
+
+primaryApp: “kloudone”,
+
+fax: “1234567890”
+
+}
+]
+```
+
+This will reConfigure Active Directory.
+
+### HTTP Request
+
+`POST api/v1/reConfigure HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+GroupID | GrouId is the id of group.
+FieldMappings | FieldMappings is the mapping of the field.
+
+### HTTP response
+
+`successfully reConfigure Active Directory`
+
+
+<aside class="success">
+Remember — This is for reConfigure Active Directory!
+</aside>
 
 # CSV Agent
 
@@ -1155,8 +1383,11 @@ To illustrate this lifecycle, we will use the example of redeeming an alumni dis
 ## Create DID for Holder/Wallet User
 ### Holder:
 A role an entity might perform by possessing one or more verifiable credentials and generating verifiable presentations from them.  A holder is usually, but not always, a subject of the verifiable credentials they are holding. Holders store their credentials in credential repositories.Example holders include students, employees, and customers.
+
 ### Query Parameters
+
 A verifiable presentation is typically composed of the following properties:
+
 Parameter | Description
 --------- | -----------
  id| The id property is optional and MAY be used to provide a unique identifier for the presentation.
@@ -1184,7 +1415,9 @@ A verifiable credential MUST have an issuer property.
 ### Issuer
 The value of the issuer property MUST be either a URI or an object containing an id property. It is RECOMMENDED that the URI in the issuer or its id be one which, if dereferenced, results in a document containing machine-readable information about the issuer that can be used to verify the information expressed in the credential.
 It is also possible to express additional information about the issuer by associating an object with the issuer property.
+
 ### Query Parameters
+
 Parameter | Description
 --------- | -----------
 id | The id property is optional and MAY be used to provide a unique identifier for the presentation.
@@ -1220,7 +1453,9 @@ A verifiable credential contains claims about one or more subjects. This specifi
 A verifiable credential MUST have a credentialSubject property.
 ### Credential Subject
 The value of the credentialSubject property is defined as a set of objects that contain one or more properties that are each related to a subject of the verifiable credential. Each object MAY contain an id.
+
 ### Query Parameters
+
 Parameter | Description
 --------- | -----------
 id | The id property is optional and MAY be used to provide a unique identifier for the presentation.
@@ -1331,6 +1566,7 @@ verifiableCredential | Date of issue raised.
 proof |  A set of objects that contain one or more.
 
 ## Revoke Verifiable Credential (VC)
+As part of the process of working with verifiable credentials (VCs), you not only have to issue credentials, but sometimes you also have to revoke them. In this article, we go over the Status property part of the VC specification and take a closer look at the revocation process, why we may want to revoke credentials and some data and privacy implications.
 
 
 
