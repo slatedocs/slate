@@ -3,7 +3,6 @@ title: SimplyPrint API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell: cURL
-#  - python: Python 3
 
 toc_footers:
   - <a href='https://simplyprint.io' target='_blank'>SimplyPrint</a>
@@ -81,16 +80,6 @@ If you are part of an organization, you might need to ask your organization admi
 ```shell
 curl {base_url}/account/Test \
   --header 'X-API-KEY: {API_KEY}'
-```
-
-```python
-import requests
-
-url = "{base_url}/account/Test"
-
-r = requests.get(url, headers={'X-API-KEY': '{API_KEY}'})
-
-print(r.json())
 ```
 
 > Success return:
