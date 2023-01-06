@@ -1,98 +1,40 @@
 # Printers
 
-## Permanently delete or disconnect printer
+## Get printer info
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/Delete?pid=1234&just_connection=1 \
+curl https://api.simplyprint.io/{id}/printers/actions/Get \
+  -X ? \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
 
-> Success response
-
-```json
-{
-  "status": true,
-  "message": null
-}
-```
-
-| Required permissions |
-| -------------------- |
-| `PRINTER_EDIT` |
-
-This endpoint can be used to delete a printer from the database, or to disconnect a pi from a printer. This is useful if you want to change the printer that is connected to a pi.
+<aside class="warning">
+  This endpoint has not been implemented yet, and is just a placeholder for now.
+</aside>
 
 ### Request
 
-`GET /{id}/printers/Delete`
+`? /{id}/printers/actions/Get`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer | yes | The ID of the printer to delete. |
-| `just_connection` | integer | no | If set to 1, only the Pi connection will be deleted. Otherwise, the printer will be permanently deleted.<br>**Default: 0** |
-
-### Response
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-
-## Clear print bed
+## List printers
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/actions/ClearBed?pid=1234 \
-  -X POST \
+curl https://api.simplyprint.io/{id}/printers/actions/List \
+  -X ? \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
 
-> Request body
-
-```json
-{
-  "success": true,
-  "rating": 4
-}
-```
-
-> Success response
-
-```json
-{
-  "status": true,
-  "message": null
-}
-```
-
-This endpoint can be used to clear the print bed of a printer.
+<aside class="warning">
+  This endpoint has not been implemented yet, and is just a placeholder for now.
+</aside>
 
 ### Request
 
-`POST /{id}/printers/actions/ClearBed`
+`? /{id}/printers/actions/List`
 
-#### Query parameters
-
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer | yes | The ID(s) of the printer to clear, comma separated. These printers have to be in either the `operational` or `offline` states. |
-
-#### Request body
-
-| Field | Type | Required | Description |
-| ----- | ---- | -------- | ----------- |
-| `success` | boolean | no | True if the print was successful.<br>**Default: false** |
-| `rating` | integer | no | The rating of the print. Don't send this field if you do not want to rate the print. |
-
-### Response
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-
-## Create print job (WIP)
+## Start print / create job
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesystem=291 \
@@ -193,23 +135,6 @@ To start a print job you must either specify a `filesystem` ID, a `queue_file` I
 | `files[].printers` | integer[] | The IDs of the printers that the print job was started on. |
 | `files[].queued` | boolean | TODO |
 | `jobIds` | integer[] | The IDs of the print jobs that were started. |
-
-## Get printer info
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/actions/Get \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-<aside class="warning">
-  This endpoint has not been implemented yet.
-</aside>
-
-### Request
-
-`? /{id}/printers/actions/Get`
 
 ## Pause print job
 
@@ -332,6 +257,98 @@ This endpoint can be used to cancel one or multiple print jobs. The printers hav
 | ----- | ---- | -------- | ----------- |
 | `reason` | integer | no | The reason for cancelling the print job. See [Cancel reasons](#cancel-reasons). Depending on the `require_cancel_reason` organization setting, this field may be required. |
 | `comment` | string | no | A comment for the cancel reason. Depending on the `require_comment` organization setting, this field may be required.<br>**Max length: 500 characters** |
+
+### Response
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+
+## Clear print bed
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/actions/ClearBed?pid=1234 \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Request body
+
+```json
+{
+  "success": true,
+  "rating": 4
+}
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+This endpoint can be used to clear the print bed of a printer.
+
+### Request
+
+`POST /{id}/printers/actions/ClearBed`
+
+#### Query parameters
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `pid` | integer | yes | The ID(s) of the printer to clear, comma separated. These printers have to be in either the `operational` or `offline` states. |
+
+#### Request body
+
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| `success` | boolean | no | True if the print was successful.<br>**Default: false** |
+| `rating` | integer | no | The rating of the print. Don't send this field if you do not want to rate the print. |
+
+### Response
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+
+## Delete / disconnect printer
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/Delete?pid=1234&just_connection=1 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+| Required permissions |
+| -------------------- |
+| `PRINTER_EDIT` |
+
+This endpoint can be used to delete a printer from the database, or to disconnect a pi from a printer. This is useful if you want to change the printer that is connected to a pi.
+
+### Request
+
+`GET /{id}/printers/Delete`
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `pid` | integer | yes | The ID of the printer to delete. |
+| `just_connection` | integer | no | If set to 1, only the Pi connection will be deleted. Otherwise, the printer will be permanently deleted.<br>**Default: 0** |
 
 ### Response
 
