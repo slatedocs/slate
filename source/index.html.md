@@ -6,9 +6,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - http
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
+  - <a href='https://authnull.com/contactus'>Sign Up for a Developer Key</a>
+ 
 includes:
   - errors
 
@@ -1567,7 +1566,5 @@ proof |  A set of objects that contain one or more.
 
 ## Revoke Verifiable Credential (VC)
 As part of the process of working with verifiable credentials (VCs), you not only have to issue credentials, but sometimes you also have to revoke them. In this article, we go over the Status property part of the VC specification and take a closer look at the revocation process, why we may want to revoke credentials and some data and privacy implications.
-
-
 
 
