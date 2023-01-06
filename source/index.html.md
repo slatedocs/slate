@@ -9,11 +9,11 @@ toc_footers:
   - <a href='https://help.simplyprint.io' target='_blank'>Need help?</a>
 
 includes:
-  - files
-  - filament
-  - account
-  - queue
   - printers
+  - filament
+  - files
+  - queue
+  - account
   - permissions
   - errors
 

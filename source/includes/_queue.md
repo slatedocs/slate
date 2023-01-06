@@ -36,20 +36,10 @@ This endpoint adds a file to the queue. The file can either be a file on the fil
 
 `POST /{id}/queue/AddItem`
 
-You must specify either a filesystem id or a file to upload.
-
-#### Parameters
-
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `filesystem` | string | no | The filesystem id of the file to add to the queue. |
 | `amount` | integer | no | The amount of prints to add to the queue.<br>**Default: 1** |
-
-#### File upload
-
-| File | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `file` | stl/3mf/obj/gcode/gco/nc/npg | no | The file to add to the queue.<br>**Max file size: 100MB (bigger files must be uploaded to the filesystem first)** |
 
 ### Response
 

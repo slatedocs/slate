@@ -39,43 +39,6 @@ This endpoint can be used to delete a printer from the database, or to disconnec
 | `status` | boolean | True if the request was successful. |
 | `message` | string | Error message if `status` is false. |
 
-## Check if OctoPrint plugin is installed
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/HasPlugin?pid=1234&plugin=PrintTimeGenius \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-> Success response
-
-```json
-{
-  "status": true,
-  "message": null,
-  "has": true
-}
-```
-
-This endpoint can be used to check if a printer has a plugin installed. The plugins are checked by ... ? TODO
-
-### Request
-
-`GET /{id}/printers/HasPlugin`
-
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer | yes | The ID of the printer to check. |
-| `plugin` | string | yes | The name of the plugin key to check. |
-
-### Response
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `has` | boolean | True if the printer has the plugin. |
-
 ## Clear print bed
 
 ```shell
