@@ -15,10 +15,8 @@ curl https://api.simplyprint.io/{id}/account/settings/rank/Create \
 {
   "ranks": [
     {
-      "title": "name of group in danish/default",
-      "title_en": "name of group in english",
-      "description": "group description in danish/default",
-      "description_en": "group description in english",
+      "title": "name of group",
+      "description": "group description",
       "sort_order": 3,
       "permissions": "{\"view_news\":true,\"org_admin\":true,\"panel_printing\":true,\"printer_restart\":true,\"printer_edit\":true,\"bed_leveling\":true,\"gcode_profiles\":true,\"printer_settings\":true,\"filament_settings\":true,\"change_filament\":true,\"create_filament\":true,\"see_filament_tab\":true,\"view_users\":true,\"change_user_rank\":true,\"manual_user_email_confirm\":true,\"invite_users\":true,\"delete_user\":true,\"org_user_registration_settings\":true,\"org_hub_settings\":true,\"org_rank_management\":true,\"org_view_statistics\":true,\"refill_quota\":true,\"custom_slicer_profiles\":true,\"org_profiles\":true,\"all_slicer_modes\":true,\"queue_remove_all\":true,\"org_api\":true,\"create_org_folder\":true,\"cancel_others\":true,\"see_who_printed\":true,\"max_print_size\":[],\"default_slicer_mode\":2}"
     }
@@ -34,10 +32,8 @@ curl https://api.simplyprint.io/{id}/account/settings/rank/Create \
   "message": null,
   "data": [
     {
-      "title": "name of group in danish/default",
-      "title_en": "name of group in english",
-      "description": "group description in danish/default",
-      "description_en": "group description in english",
+      "title": "name of group",
+      "description": "group description",
       "company_id": 2,
       "company_type": 2,
       "sort_order": 3,
@@ -65,10 +61,8 @@ This endpoint creates a new group in the company.
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `ranks` | array | yes | Array of groups to create. |
-| `ranks[].title` | string | yes | The name of the group in danish or the name of the group if `title_en` is not set. |
-| `ranks[].title_en` | string | no | The name of the group in english. |
-| `ranks[].description` | string | no | The description of the group in danish or the description of the group if `description_en` is not set. |
-| `ranks[].description_en` | string | no | The description of the group in english. |
+| `ranks[].title` | string | yes | The name of the group. |
+| `ranks[].description` | string | no | The description of the group. |
 | `ranks[].sort_order` | integer | yes | The sort index of the group. |
 | `ranks[].permissions` | string | yes | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
 
@@ -96,10 +90,8 @@ curl https://api.simplyprint.io/{id}/account/settings/rank/Update \
   "ranks": [
     {
       "id": 319,
-      "title": "name of group in danish/default",
-      "title_en": "name of group in english",
-      "description": "group description in danish/default",
-      "description_en": "group description in english",
+      "title": "TITLE",
+      "description": "DESCRIPTION",
       "permissions": "{\"view_news\":true,\"org_admin\":true,\"panel_printing\":true,\"printer_restart\":true,\"printer_edit\":true,\"bed_leveling\":true,\"gcode_profiles\":true,\"printer_settings\":true,\"filament_settings\":true,\"change_filament\":true,\"create_filament\":true,\"see_filament_tab\":true,\"view_users\":true,\"change_user_rank\":true,\"manual_user_email_confirm\":true,\"invite_users\":true,\"delete_user\":true,\"org_user_registration_settings\":true,\"org_hub_settings\":true,\"org_rank_management\":true,\"org_view_statistics\":true,\"refill_quota\":true,\"custom_slicer_profiles\":true,\"org_profiles\":true,\"all_slicer_modes\":true,\"queue_remove_all\":true,\"org_api\":true,\"create_org_folder\":true,\"cancel_others\":true,\"see_who_printed\":true,\"max_print_size\":[],\"default_slicer_mode\":2}",
       "sort_order": 3,
     }
@@ -117,9 +109,7 @@ curl https://api.simplyprint.io/{id}/account/settings/rank/Update \
     {
       "id": 319,
       "title": "NAME",
-      "title_en": "",
-      "description": "DESCRIPTIONs",
-      "description_en": "",
+      "description": "DESCRIPTION",
       "company_id": 2,
       "company_type": 2,
       "permissions": "{\"view_news\":true,\"org_admin\":true,\"panel_printing\":true,\"printer_restart\":true,\"printer_edit\":true,\"bed_leveling\":true,\"gcode_profiles\":true,\"printer_settings\":true,\"filament_settings\":true,\"change_filament\":true,\"create_filament\":true,\"see_filament_tab\":true,\"view_users\":true,\"change_user_rank\":true,\"manual_user_email_confirm\":true,\"invite_users\":true,\"delete_user\":true,\"org_user_registration_settings\":true,\"org_hub_settings\":true,\"org_rank_management\":true,\"org_view_statistics\":true,\"refill_quota\":true,\"custom_slicer_profiles\":true,\"org_profiles\":true,\"all_slicer_modes\":true,\"queue_remove_all\":true,\"org_api\":true,\"create_org_folder\":true,\"cancel_others\":true,\"see_who_printed\":true,\"max_print_size\":[],\"default_slicer_mode\":2}",
@@ -148,12 +138,10 @@ This endpoint updates the groups in the company.
 | --------- | ---- | -------- | ----------- |
 | `ranks` | array | yes | Array of groups to update. |
 | `ranks[].id` | integer | yes | The id of the group to update. |
-| `ranks[].title` | string | no | The name of the group in danish or the name of the group if `title_en` is not set. |
-| `ranks[].title_en` | string | no | The name of the group in english. |
-| `ranks[].description` | string | no | The description of the group in danish or the description of the group if `description_en` is not set. |
-| `ranks[].description_en` | string | no | The description of the group in english. |
+| `ranks[].title` | string | no | The name of the group. |
+| `ranks[].description` | string | no | The description of the group. |
 | `ranks[].permissions` | string | no | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
-| `ranks[].company_type` | integer | no | The type of the company. |
+| `ranks[].sort_order` | integer | no | The sort index of the group. |
 
 ### Response
 
@@ -163,10 +151,8 @@ This endpoint updates the groups in the company.
 | `message` | string | Error message if `status` is false. |
 | `data` | array | Array of the updated groups. |
 | `data[].id` | integer | The id of the group. |
-| `data[].title` | string | The name of the group in danish or the name of the group if `title_en` is not set. |
-| `data[].title_en` | string | The name of the group in english. |
-| `data[].description` | string | The description of the group in danish or the description of the group if `description_en` is not set. |
-| `data[].description_en` | string | The description of the group in english. |
+| `data[].title` | string | The name of the group. |
+| `data[].description` | string | The description of the group. |
 | `data[].company_id` | integer | The id of the company. |
 | `data[].company_type` | integer | The type of the company. |
 | `data[].permissions` | string | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
