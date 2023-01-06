@@ -51,6 +51,8 @@ To authenticate users using the authnull service, users will need to provide the
 
 # Endpoint Instance Management 
 
+Endpoint management is the process of actively monitoring, detecting, and preventing malware attacks on devices that are connected to a network. This is typically done to implement security policies and monitor suspicious activities on endpoints.Its can be done by
+
 1.Inventory / management of Endpoints or servers (windows, linux, macos and others) 
 
 2.Active Directory Sync for users (one way only). 
@@ -65,7 +67,7 @@ To authenticate users using the authnull service, users will need to provide the
   List All Instances lists all the instances that are present .  
 
   ```shell
-  POST 'https://api.authnull.kloudlearn.com/api/v1/instances/list' \
+  curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/instances/list' \
 ```
 
 ```http
@@ -87,21 +89,21 @@ POST /api/v1/instances/list HTTP/1.1
 Parameter  | Description
 --------- | -----------
  domainId | Domain Id of the Apps
- instance_name | Name of the instance
- os_id | Id of the OS used
-public_ip | Public Ip of the instance
-private_ip | Private Ip of the Instance
+ instanceName | Name of the instance
+ osId | Id of the OS used
+publicIp | Public Ip of the instance
+privateIp | Private Ip of the Instance
 totalUser | Total number of Users
 hostName | Name of the host
 status | Status of the instances
 
 ### HTTP Response
-
+`All the instances listed below.`
 <aside class="success">
 All the instances listed below.
 </aside>
 
-```
+```json
 {
     "domainId": 1,
     "groupId": 1,
@@ -124,7 +126,7 @@ All the instances listed below.
 Add Instances adds particular instances to the existing list.
 
 ```shell
-POST 'https://api.authnull.kloudlearn.com/api/v1/instances/add-instance' \
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/instances/add-instance' \
 ```
 
 ```http
@@ -133,11 +135,11 @@ POST /api/v1/instances/add-instance HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "instance_name": "abc-xyz",
-  "os_id": 1,
-  "public_ip": "192.168.1.1",
-  "private_ip": "172.64.32.1"
+  "domainId": 1,
+  "instanceName": "abc-xyz",
+  "osId": 1,
+  "publicIp": "192.168.1.1",
+  "privateIp": "172.64.32.1"
 }
 ```
 
@@ -148,22 +150,22 @@ POST /api/v1/instances/add-instance HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- MachineKey| Machine Key of the instances
- os_id | Id of the OS used
+ machineKey| Machine Key of the instances
+ osId | Id of the OS used
 publicIpAddress | Public Ip of the instance
 privateIpAddress | Private Ip of the Instance
 
 ### HTTP Response
-
+`Instance added to the list.`
 <aside class="success">
 Instance added to the list.
 </aside>
 
 ```json
 {
-    "Instance_id": "11",
-    "Code": "201",
-    "Message": "Success"
+    "instanceId": "11",
+    "code": "201",
+    "message": "Success"
 }
 ```
 
@@ -172,7 +174,7 @@ Instance added to the list.
 It updates the instances that are present.
 
 ```shell
-PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/update-instance' \
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/update-instance' \
 ```
 
 ```http
@@ -181,8 +183,8 @@ PUT /api/v1/instances/update-instance HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "instance_id": 2,
+  "domainId": 1,
+  "instanceId": 2,
   "status": "updated"
 }
 ```
@@ -194,11 +196,12 @@ PUT /api/v1/instances/update-instance HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- instance_id | Instance Id of the used
+ domainId| Domain Id of the instances
+ instanceId | Instance Id of the used
 status| status of the instances whether it is updated or not.
 
 ### HTTP Response
+`Instance updated.`
 
 <aside class="success">
 Instance updated.
@@ -206,8 +209,8 @@ Instance updated.
 
 ```json
 {
-    "domain_id": "11",
-    "instance_id": "201",
+    "domainId": "11",
+    "instanceId": "201",
     "status": "Success"
 }
 ```
@@ -216,7 +219,7 @@ Instance updated.
 It adds groups to existing machines.
 
 ```shell
-PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/addGroupsToMachines' \
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/addGroupsToMachines' \
 ```
 
 ```http
@@ -239,12 +242,13 @@ PUT /api/v1/instances/addGroupsToMachines HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- instance_id | Instance Id of the used
-group_id | Group Id 
+ domainId| Domain Id of the instances
+ instanceId | Instance Id of the used
+groupId | Group Id 
 actions | whether Group is added to machines or not.
 
 ### HTTP Response
+`Group added to Machine`
 
 <aside class="success">
 Group added to Machine
@@ -252,25 +256,25 @@ Group added to Machine
 
 ```json
 {
-    "domain_id": "11",
-    "instance_id": "201",
-    "group_id": 23,
+    "domainId": "11",
+    "instanceId": "201",
+    "groupId": 23,
   "actions":"added"
 }
 ```
 
 
 
-# EPM Group Management
+# Endpoint Group Management
 
 Enterprise Performance Management (EPM)  helps you analyze, understand, and report on your business. EPM refers to the processes designed to help organizations plan, budget, forecast, and report on business performance as well as consolidate and finalize financial results 
 
-## List All EPM Group
+## List All Endpoint
 
-It list all the EPM Group that are present.
+It list all the Endpoint that are present.
 
 ```shell
-POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/listAllEPMGroup' \
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/listAllEPMGroup' \
 ```
 
 ```http
@@ -279,9 +283,9 @@ POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "page_id": 2,
-  "page_size": 23,
+  "domainId": 1,
+  "pageId": 2,
+  "pageSize": 23,
   "filter":"added"
   }
 ```
@@ -293,33 +297,34 @@ POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- page_id | Page id
-page_size | Size of the Page
+ domainId| Domain Id of the instances
+ pageId | Page id
+pageSize | Size of the Page
 filter | filter
 
 ### HTTP Response
+`Endpoint listed.`
 
 <aside class="success">
-EPM GRoup listed.
+Endpoint listed.
 </aside>
 
 ```json
 {
-  "domain_id": 1,
-  "page_id": 2,
-  "page_size": 23,
+  "domainId": 1,
+  "pageId": 2,
+  "pageSize": 23,
   "filter":"added"
   }
 ```
 
 
-## Add EPM Group
+## Add Endpoint
 
-It adds the EPM Group to the present list.
+It adds the Endpoint to the present list.
 
 ```shell
-POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/addEPMGroup' \
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/addEPMGroup' \
 ```
 
 ```http
@@ -328,9 +333,9 @@ POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "group_name": "Blue",
-  "Users":"Stephen"
+  "domainId": 1,
+  "groupName": "Blue",
+  "users":"Stephen"
   }
 ```
 
@@ -341,31 +346,31 @@ POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- group_name | Name of the group
+ domainId| Domain Id of the instances
+ groupName | Name of the group
 users | Name of the Users
 
 ### HTTP Response
-
+`Endpoint added.`
 <aside class="success">
-EPM Group added.
+Endpoint added.
 </aside>
 
 ```json
 {
-  "domain_id": 1,
-  "group_name": "Blue",
-  "Users":"Stephen"
+  "domainId": 1,
+  "groupName": "Blue",
+  "users":"Stephen"
   }
 ```
 
 
-## Delete EPM Group
+## Delete Endpoint
 
-It is used to delete the EPM Group from the existing list.
+It is used to delete the Endpoint from the existing list.
 
 ```shell
-DELETE 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/deleteEPMGroup' \
+curl --location --request DELETE 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/deleteEPMGroup' \
 ```
 
 ```http
@@ -374,8 +379,8 @@ DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3"
+  "domainId": 1,
+  "epmroupId": "3"
   }
 ```
 
@@ -386,28 +391,28 @@ DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- EPMGroupId | Id of the group
+ domainId| Domain Id of the instances
+ epmGroupId | Id of the group
 
 ### HTTP Response
-
+`Endpoint`
 <aside class="success">
-EPM Group  deleted.
+Endpoint  deleted.
 </aside>
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3",
+  "domainId": 1,
+  "epmGroupId": "3",
   }
 ```
 
-## Update EPM Group Users
+## Update Endpoint Users
 
-It updates EPM Group Users.
+It updates Endpoint Users.
 
 ```shell
-PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupUsers' \
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupUsers' \
 ```
 
 ```http
@@ -416,9 +421,9 @@ PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3",
-  "Users":["Shawn","ben"]
+  "domainId": 1,
+  "epmGroupId": "3",
+  "users":["Shawn","ben"]
   }
 ```
 
@@ -429,30 +434,31 @@ PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- EPMGroupId | Id of the group
- Users | Arreys of users
+ domainId| Domain Id of the instances
+ epmGroupId | Id of the group
+ users | Arreys of users
 
 ### HTTP Response
+Endpoint Users Updated.
 
 <aside class="success">
-EPM Group Users Updated.
+Endpoint Users Updated.
 </aside>
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3",
-  "Users":["Shawn","ben"]
+  "domainId": 1,
+  "epmGroupId": "3",
+  "users":["Shawn","ben"]
   }
 ```
 
-## Update EPM Group Cred Escalation
+## Update Endpoint Cred Escalation
 
-It updates EPM Group Cred escalation.
+It updates Endpoint Cred escalation.
 
 ```shell
-PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
 ```
 
 ```http
@@ -461,9 +467,9 @@ PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3",
-  "PrivilegedUsers":"Shawn"
+  "domainId": 1,
+  "epmGroupId": "3",
+  "privilegedUsers":"Shawn"
   }
 ```
 
@@ -474,31 +480,31 @@ PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- EPMGroupId | Id of the group
- PrivilegedUsers | Privileged users
+ domainId| Domain Id of the instances
+ epmGroupId | Id of the group
+ privilegedUsers | Privileged users
 
 ### HTTP Response
-
+Endpoint Cred Escalation Updated.
 <aside class="success">
-EPM Group Cred Escalation Updated.
+Endpoint Cred Escalation Updated.
 </aside>
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3",
- "PrivilegedUsers":"Shawn"
+  "domainId": 1,
+  "epmGroupId": "3",
+ "privilegedUsers":"Shawn"
   }
 ```
 
 
-## Update EPM Group Status
+## Update Endpoint Status
 
-It updates EPM Group status.
+It updates Endpoint status.
 
 ```shell
-PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupStatus' \
+curl-- PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupStatus' \
 ```
 
 ```http
@@ -507,9 +513,9 @@ PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3",
-  "Status":"Success"
+  "domainId": 1,
+  "epmGroupId": "3",
+  "status":"Success"
   }
 ```
 
@@ -520,29 +526,28 @@ PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- domain_id| Domain Id of the instances
- EPMGroupId | Id of the group
- Status | Status
+ domainId| Domain Id of the instances
+ epmGroupId | Id of the group
+ status | Status
 
 ### HTTP Response
+`Endpoint Status Updated.`
 
 <aside class="success">
-EPM Group Status Updated.
+Endpoint Status Updated.
 </aside>
 
 ```json
 {
-  "domain_id": 1,
-  "EPMGroupId": "3",
-  "Status":"Success"
+  "domainId": 1,
+  "epmGroupId": "3",
+  "status":"Success"
   }
 ```
 
 
-# Activity Session Management 
 
-
-# LUMS (Linux User Management)
+# Linux User Management
 This is a PRD for the Linux user management service (LUMS) covering the following use case:
 
 1.Provision new users from a SSO console
@@ -556,15 +561,15 @@ This is a PRD for the Linux user management service (LUMS) covering the followin
 5.Provision and manage users with Just In Time (JIT) entitlements., i.e. escalate privileges. 
 
 ## Add Linux User
-
+It adds Linux user to the list.
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/add-linux-user-info" 
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/add-linux-user-info" 
   -H "Authorization: AuthNull"
 ```
 ```HTTP
 POST /api/v1/add-linux-user-info HTTP/1.1
-
+```
 
 
 
@@ -589,49 +594,49 @@ This will add the users to LUMs.
 
 Parameter | Description
 --------- | ------- | -----------
-UserName | an identification used by a person with access to a computer, network, or online service..
-AuthMethod | Authentication is the process of determining whether someone or something is, in fact, who or what it says it is..
-UserType | Roles is the user is admin or user it signify.
-CustomMapping | It expresses ideas, thoughts and relationships among and between different spatial elements in multiple dimensions..
+userName | an identification used by a person with access to a computer, network, or online service..
+authMethod | Authentication is the process of determining whether someone or something is, in fact, who or what it says it is..
+userType | Roles is the user is admin or user it signify.
+customMapping | It expresses ideas, thoughts and relationships among and between different spatial elements in multiple dimensions..
 
 ### HTTP response
 
-`successfully Added`
+`Linux user added successfully`
 
 
 <aside class="success">
-Remember — This is for Add in LUMs!
+Linux User added successfully.
 </aside>
  
 ## List All Linux User
-
+It list all the Linux user.
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/list-all-lums" 
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/list-all-lums" 
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 POST /api/v1/list-all-lums HTTP/1.1
-
+```
 
 
 
 ```json
 [
 {
-    "CredentialType":"xyz",
-     "HomeDir":"xyz", 
-     "LinuxUserId":"1", 
-     "LinuxUserName":"sefali", 
-     "PasswordManaged":"xyz-xyz", 
-     "PrivilegedUser":"xyz-xyz-xyz", 
-     "Source":"xyz", 
-     "Status":"active", 
-     "SyncMethod":"xyz", 
-     "TTLPassword":"xyz", 
-     "TTLUser":"xyz", 
-     "UserType":"zyx"
+    "credentialType":"xyz",
+     "homeDir":"xyz", 
+     "linuxUserId":"1", 
+     "linuxUserName":"sefali", 
+     "passwordManaged":"xyz-xyz", 
+     "privilegedUser":"xyz-xyz-xyz", 
+     "source":"xyz", 
+     "status":"active", 
+     "syncMethod":"xyz", 
+     "ttlPassword":"xyz", 
+     "ttlUser":"xyz", 
+     "userType":"zyx"
 }
 ]
 ```
@@ -645,18 +650,18 @@ This will add the users to LUMs.
 
 Parameter | Description
 --------- | ------- | -----------
-CredentialType |  Credentials refer to the verification of identity or tools for authentication.
-HomeDir |  A home directory is a file system directory on a multiuser operating system containing files for a given user of the system.
-LinuxUserId | A UID (user identifier) is a number assigned by Linux to each user on the system. This number is used to identify the user to the system and to determine which system resources the user can access. 
-LinuxUserName | A username is a distinctive alphabetical and numerical set of characters used to identify and gain access to a computing system.
-PasswordManaged | Password management is a set of principles and best practices to be followed by users while storing and managing passwords in an efficient manner to secure passwords as much as they can to prevent unauthorized access.
-PrivilegedUser | A user that is authorized (and therefore, trusted) to perform security-relevant functions that ordinary users are not authorized to perform.
-Source | In general, a source is the location from which information is gathered. 
-Status | Alternatively called state, status is the current condition a device or user.
-SyncMethod | This module provides a portable way of using operating system dependent functionality.
-TTLPassword | TTL.
-TTLUser | A computer cluster is a set of computers that work together so that they can be viewed as a single system. 
-UserType | A user type defines a class of users, such as administrators, ordinary users, operators, and so on.
+credentialType |  Credentials refer to the verification of identity or tools for authentication.
+homeDir |  A home directory is a file system directory on a multiuser operating system containing files for a given user of the system.
+linuxUserId | A UID (user identifier) is a number assigned by Linux to each user on the system. This number is used to identify the user to the system and to determine which system resources the user can access. 
+linuxUserName | A username is a distinctive alphabetical and numerical set of characters used to identify and gain access to a computing system.
+passwordManaged | Password management is a set of principles and best practices to be followed by users while storing and managing passwords in an efficient manner to secure passwords as much as they can to prevent unauthorized access.
+privilegedUser | A user that is authorized (and therefore, trusted) to perform security-relevant functions that ordinary users are not authorized to perform.
+source | In general, a source is the location from which information is gathered. 
+status | Alternatively called state, status is the current condition a device or user.
+syncMethod | This module provides a portable way of using operating system dependent functionality.
+ttlPassword | TTL.
+ttlUser | A computer cluster is a set of computers that work together so that they can be viewed as a single system. 
+userType | A user type defines a class of users, such as administrators, ordinary users, operators, and so on.
 
 ### HTTP response
 
@@ -664,20 +669,20 @@ UserType | A user type defines a class of users, such as administrators, ordinar
 
 
 <aside class="success">
-Remember — This is for Add in LUMs!
+Linux User listed.
 </aside>
  
 ## Delete Linux User
 
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/delete-user" 
+curl --location --request DELETE "https://api.authnull.kloudlearn.com/api/v1/delete-user" 
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 POST /api/v1/delete-user HTTP/1.1
-
+```
 
 
 
@@ -699,14 +704,14 @@ This will delete the users to LUMs.
 
 Parameter | Description
 --------- | ------- | -----------
-LinuxUserId | A UID (user identifier) is a number assigned by Linux to each user on the system. This number is used to identify the user to the system and to determine which system resources the user can access. 
+linuxUserId | A UID (user identifier) is a number assigned by Linux to each user on the system. This number is used to identify the user to the system and to determine which system resources the user can access. 
 
 ### HTTP response
 
-`successfully Deleted`
+`Linux User successfully deleted.`
 
 <aside class="success">
-Remember — This is for Add in LUMs!
+Linux User deleted.
 </aside>
 
 
@@ -764,9 +769,8 @@ verificationMethod | the identifier of the public kry that can verify the signat
 jws | the digital signature value
 
 
-To illustrate this lifecycle, we will use the example of redeeming an alumni discount from a university. In the example below, Pat receives an alumni verifiable credential from a university, and Pat stores the verifiable credential in a digital wallet.
 
-```
+```json
 {
   
   "@context": [
@@ -835,7 +839,7 @@ proof | If present, the value of the proof property ensures that the presentatio
 
 The example below shows a verifiable presentation that embeds verifiable credentials.
 
-```
+```json
  Basic structure of a presentation
 {
   "@context": [
@@ -870,7 +874,7 @@ credentialSubject |  A set of objects that contain one or more properties that a
 
 Usage of issuer expanded property:
 
-```
+```json
 {
   "@context": [
     "https://www.kloudone.com/2018/credentials/v1",
@@ -912,7 +916,7 @@ credentialSubject |  A set of objects that contain one or more properties that a
 
  Usage of the credentialSubject property:
 
-```
+```json
 {
   "@context": [
     "https://www.kloudone.com/2018/credentials/v1",
@@ -949,7 +953,7 @@ issuanceDate | Date of issue raised.
 credentialSubject |  A set of objects that contain one or more properties that are each related to a subject of the verifiable credential.
 Usage of issuer expanded property:
 
-```
+```json
 {
   "@context": [
     "https://www.kloudone.com/2018/credentials/v1",
@@ -987,7 +991,7 @@ issuanceDate | Date of issue raised.
 credentialSubject |  A set of objects that contain one or more properties that are each related to a subject of the verifiable credential.
  Usage of the credentialSubject property:
 
-```
+```json
 {
   "@context": [
     "https://www.kloudone.com/2018/credentials/v1",
@@ -1017,7 +1021,7 @@ issuer | Name of the issuer
 issuanceDate | Date of issue raised.
 credentialSubject |  A set of objects that contain one or more properties that are each related to a subject of the verifiable credential.
 
-```
+```json
 {
   
   "@context": [
@@ -1067,7 +1071,7 @@ credentialSubject |  A set of objects that contain one or more properties that a
 ## Presentation Request (PR)
 Presentations MAY be used to combine and present credentials. They can be packaged in such a way that the authorship of the data is verifiable. The data in a presentation is often all about the same subject, but there is no limit to the number of subjects or issuers in the data. The aggregation of information from multiple verifiable credentials is a typical use of verifiable presentations.
 
-```
+```json
 {
   "@context": [
     "hhttps://kloudlearn.edu/issuers/565049",
@@ -1116,12 +1120,13 @@ Content-Length: 139
 
 
 ```shell
-curl "POST 'https://api.authnull.kloudlearn.com/api/v1/apps/listAll' \" \
+curl --location --request "POST 'https://api.authnull.kloudlearn.com/api/v1/apps/listAll' \" \
   -H "Authorization: Authnull"
 ```
 
-```HTTP
+```http
 POST /api/v1/apps/listAll HTTP/1.1
+```
 
 ```json
 {
@@ -1155,7 +1160,7 @@ All the apps are listed.
 List ALL Apps
 </aside>
 
-```
+```json
 {
     "totalApps": 54,
     "totalPages": 6,
@@ -1178,12 +1183,13 @@ List ALL Apps
 
 
 ```shell
-curl "DELETE 'https://api.authnull.kloudlearn.com/api/v1/apps/deleteApp' \" \
+curl --location --request "DELETE 'https://api.authnull.kloudlearn.com/api/v1/apps/deleteApp' \" \
   -H "Authorization: Authnull"
 ```
 
 ```HTTP
 DELETE /api/v1/apps/deleteApp HTTP/1.1;
+```
 
 
 ```json
@@ -1218,15 +1224,16 @@ Welcome to the Groups! You can use our API to access Groups API endpoints, which
 We have language bindings in Shell and HTTP! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 ## Add Groups
-
+It adds group to the existing list.
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/instances/list" \
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/instances/list" \
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 POST api/v1/instances/list HTTP/1.1
+```
 
 ```json
 [
@@ -1255,34 +1262,37 @@ This will add the users to Group.
 
 Parameter | Description
 --------- | ------- | -----------
-DomainId | This is the unique ID assigned by the registry to the domain. .
-GroupName | Name of the group.
-Roles | Roles is the user is admin or user it signify.
-Users | a person who uses or operates something..
-OTPMethod | It is a one time password method.
-Metadata | Data that provide information about other data.
-Application | The action of putting something into operation.
-Ou | An organizational unit (OU) is a container within a Microsoft Active Directory domain which can hold users, groups and computers.
+domainId | This is the unique ID assigned by the registry to the domain. .
+groupName | Name of the group.
+roles | Roles is the user is admin or user it signify.
+users | a person who uses or operates something..
+otpMethod | It is a one time password method.
+metadata | Data that provide information about other data.
+application | The action of putting something into operation.
+ou | An organizational unit (OU) is a container within a Microsoft Active Directory domain which can hold users, groups and computers.
 cn | If set to true, the result will also include cats.
-BaseDn | If set to true, the result will also include cats.
+baseDn | If set to true, the result will also include cats.
 
 ### HTTP response
 
-`successfully Added`
+`Group added successfully`
 
 
 <aside class="success">
-Remember — This is for Add Groups!
+Group added successfully.
 </aside>
 
 ## List All Groups
+It lists all the groups.
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/groups/listAll" \
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/groups/listAll" \
   -H "Authorization: AuthNull"
 ```
 
-```HTTP
+```http
+POST /api/v1/groups/listAll HTTP/1.1
+```
 
 ```json
 [
@@ -1305,28 +1315,29 @@ This is to show all list of Groups.
 
 Parameter | Description
 --------- | -----------
-DomainId | This is the unique ID assigned by the registry to the domain. .
-Filter | This help to search any parameter by their.
-PageId | PageId is the similar to page number.
-PageSize | Paper size standards govern the size of sheets of paper used as writing paper, stationery, cards, and for some printed documents.
+domainId | This is the unique ID assigned by the registry to the domain. .
+filter | This help to search any parameter by their.
+pageId | PageId is the similar to page number.
+pageSize | Paper size standards govern the size of sheets of paper used as writing paper, stationery, cards, and for some printed documents.
 
 ### HTTP Response
 
-`successfully shown allt the list of Groups`
+`group deleted successfully`
 
 <aside class="success">
-Remember — This is for List All Groups!
+Group listed successfully.
 </aside>
 
 ## Delete Groups
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/groups/deleteGroup" \
+curl --location --request DELETE "https://api.authnull.kloudlearn.com/api/v1/groups/deleteGroup" \
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 DELETE /api/v1/groups/deleteGroup HTTP/1.1
+```
 
 ```json
 [
@@ -1346,26 +1357,27 @@ This will delete the users to Group.
 
 Parameter | Description
 --------- | ------- | -----------
-GroupID |Numbers of the group shows by group ID.
+groupID |Numbers of the group shows by group ID.
 
 ### HTTP Response
 
-`successfully Group is Deleted`
+`Group Deleted successfully`
 
 
 <aside class="success">
-Remember — This is for Delete Groups!
+Group deleted successfully
 </aside>
 
 ## Update Groups
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/groups/updateGroup" \
+curl --location --request PUT "https://api.authnull.kloudlearn.com/api/v1/groups/updateGroup" \
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 PUT /api/v1/groups/updateGroup HTTP/1.1
+```
 
 ```json
 [
@@ -1394,23 +1406,23 @@ This will Updated the users to Group.
 
 Parameter | Description
 --------- | -----------
-DomainId | This is the unique ID assigned by the registry to the domain. .
-GroupName | Name of the group.
-Roles | Roles is the user is admin or user it signify.
-Users | a person who uses or operates something..
-OTPMethod | It is a one time password method.
-Metadata | Data that provide information about other data.
-Application |The action of putting something into operation.
-Ou | An organizational unit (OU) is a container within a Microsoft Active Directory domain which can hold users, groups and computers.
+domainId | This is the unique ID assigned by the registry to the domain. .
+groupName | Name of the group.
+roles | Roles is the user is admin or user it signify.
+users | a person who uses or operates something..
+otpMethod | It is a one time password method.
+metadata | Data that provide information about other data.
+application |The action of putting something into operation.
+ou | An organizational unit (OU) is a container within a Microsoft Active Directory domain which can hold users, groups and computers.
 cn | If set to true, the result will also include cats.
-BaseDn | If set to true, the result will also include cats.
+baseDn | If set to true, the result will also include cats.
 
-###HTTP Response
+### HTTP Response
 
-`successfully shown the "Activate" and "De-activate" Groups`
+`Groups updated successfully.`
 
 <aside class="success">
-Remember — This is for Update Groups!
+Groups updated successfully.
 </aside>
 
 # LUMS Agent
@@ -1451,7 +1463,7 @@ Once installed, unpack the helm binary and add it to your PATH and you are good 
 Add Machine Api adds particular instances to the existing list.
 
 ```shell
-POST 'https://api.authnull.kloudlearn.com/api/v1/machine/add-machine' \
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/machine/add-machine' \
 ```
 
 ```http
@@ -1460,11 +1472,11 @@ POST /api/v1/instances/add-instance HTTP/1.1
 
 ```json
 {
-  "domain_id": 1,
-  "instance_name": "abc-xyz",
-  "os_id": 1,
-  "public_ip": "192.168.1.1",
-  "private_ip": "172.64.32.1"
+  "domainId": 1,
+  "instanceName": "abc-xyz",
+  "osId": 1,
+  "publicIp": "192.168.1.1",
+  "privateIp": "172.64.32.1"
 }
 ```
 
@@ -1475,8 +1487,8 @@ POST /api/v1/instances/add-instance HTTP/1.1
 ### Query Parameter
 Parameter  | Description
 --------- | -----------
- MachineKey| Machine Key of the instances
- os_id | Id of the OS used
+ machineKey| Machine Key of the instances
+ osId | Id of the OS used
 publicIpAddress | Public Ip of the instance
 privateIpAddress | Private Ip of the Instance
 
@@ -1488,9 +1500,9 @@ Instance added to the list.
 
 ```json
 {
-    "Instance_id": "11",
-    "Code": "201",
-    "Message": "Success"
+    "instanceId": "11",
+    "code": "201",
+    "message": "Success"
 }
 ```
 
@@ -1500,7 +1512,7 @@ Instance added to the list.
 LUMS Agents maintained by checking Privilige Status API, this happens periodically to check whether the users/groups priviliges are updatedor not.
 
 
-# AD Agent (Daemon)
+# AD Agent 
 The Active Directory Agent is a Windows service that provides transparent user identification for Windows Active Directory-based networks. The Active Directory Agent (also called the "AD Agent") collects information from several sources simultaneously and populates a single session table that identifies the current user for each active workstation on the network
 The Oracle Enterprise Manager Console works with Intelligent Agents and a Communication Daemon to gather information about the network environment, communicate with network objects, and manage jobs and events. Topics discussed in this chapter include:
 
@@ -1532,20 +1544,21 @@ In multitasking computer operating systems, a daemon (/ˈdiːmən/ or /ˈdeɪmə
 ## Save ActiveDirectory Configure
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/saveActiveDirectoryConfig" \
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/saveActiveDirectoryConfig" \
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 POST api/v1/saveActiveDirectoryConfig HTTP/1.1
+```
 
 ```json
 [
  {
-    "DirectoryName":"xyz-xyz-xyz", 
-    "AccountName":"abc-abc-abc", 
-    "App URL":"www.kloudlearn.com", 
-    "DomainId":"1",
+    "directoryName":"xyz-xyz-xyz", 
+    "accountName":"abc-abc-abc", 
+    "appUrl":"www.kloudlearn.com", 
+    "domainId":"1",
 }
 ]
 ```
@@ -1560,18 +1573,18 @@ This will save ActiveDirectory Configure.
 
 Parameter | Description
 --------- | ------- | -----------
-DirectoryName | Name of Directory.
-App URL | App URL is url for app.
-AccountName | Name of the Account.
-DomainId | This is the unique ID assigned by the registry to the domain. 
+directoryName | Name of Directory.
+appUrl | App URL is url for app.
+accountName | Name of the Account.
+domainId | This is the unique ID assigned by the registry to the domain. 
 
 ### HTTP response
 
-`successfully Save ActiveDirectory Configure`
+` ActiveDirectory Configure successfully saved`
 
 
 <aside class="success">
-Remember — This is for save ActiveDirectory Configure!
+ActiveDirectory Configure successfully saved
 </aside>
 
 ## Restart the Agent
@@ -1580,22 +1593,23 @@ Remember — This is for save ActiveDirectory Configure!
 ## Import Users
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/importUsers" \
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/importUsers" \
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 POST api/v1/importUsers HTTP/1.1
+```
 
 ```json
 [
 {
-    "LDAPHost":"ldap.forumsys.com",
-    "LDAPPort":"389",
-    "BaseDN":"dc=example,dc=com",
-    "Filter":"(ou=italians)",
-    "BindDN":"BindDN",
-    "DomainID":"91"
+    "ldapHost":"ldap.forumsys.com",
+    "ldapPort":"389",
+    "baseDN":"dc=example,dc=com",
+    "filter":"(ou=italians)",
+    "bindDN":"BindDN",
+    "domainID":"91"
 }
 ]
 ```
@@ -1610,31 +1624,32 @@ This will Import Users.
 
 Parameter | Description
 --------- | ------- | -----------
-LDAPHost | LDAPHost.
-LDAPPort | LDAPPort.
-BaseDN | BaseDN.
-Filter | Filter. 
-BindDN | BindDN. 
-DomainID | DomainID. 
+ldapHost | LDAPHost.
+ldapPort | LDAPPort.
+baseDN | BaseDN.
+filter | Filter. 
+bindDN | BindDN. 
+domainID | DomainID. 
 
 ### HTTP response
 
-`successfully Import Users`
+`successfully Imported Users`
 
 
 <aside class="success">
-Remember — This is for Import Users!
+successfully Imported Users
 </aside>
 
 ## Get Import Status
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/getImportStatus" \
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/getImportStatus" \
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 POST api/v1/getImportStatus HTTP/1.1
+```
 
 ```json
 [
@@ -1654,15 +1669,15 @@ This will Get Import Status.
 
 Parameter | Description
 --------- | ------- | -----------
-DirectoryName | Name of the Directory.
+directoryName | Name of the Directory.
 
 ### HTTP response
 
-`successfully Get Import Status`
+`Imported status successfully`
 
 
 <aside class="success">
-Remember — This is for Get Import Status!
+Imported status successfully
 </aside>
 
 ## Mapping api 
@@ -1671,12 +1686,13 @@ For mapping api we need to reconfigure the api:
 ## Reconfigure Active Directory
 
 ```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/reConfigure" \
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/reConfigure" \
   -H "Authorization: AuthNull"
 ```
 
 ```HTTP
 POST api/v1/reConfigure HTTP/1.1
+```
 
 ```json
 [
@@ -1718,16 +1734,16 @@ This will reConfigure Active Directory.
 
 Parameter | Description
 --------- | ------- | -----------
-GroupID | GrouId is the id of group.
-FieldMappings | FieldMappings is the mapping of the field.
+groupID | GrouId is the id of group.
+fieldMappings | FieldMappings is the mapping of the field.
 
 ### HTTP response
 
-`successfully reConfigure Active Directory`
+`successfully reConfigured Active Directory`
 
 
 <aside class="success">
-Remember — This is for reConfigure Active Directory!
+successfully reConfigured Active Directory
 </aside>
 
 # CSV Agent
@@ -1759,7 +1775,7 @@ The CSV Agent is a tool that allows you to import users to the Authnull system a
 ```http
 POST /api/v1/import-csv HTTP/1.1
 ```
-```
+```shell
 curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/import-csv' \
 ```
 
