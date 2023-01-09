@@ -1,0 +1,256 @@
+
+# Endpoint Group Management
+Enterprise Performance Management (EPM)  helps you analyze, understand, and report on your business. EPM refers to the processes designed to help organizations plan, budget, forecast, and report on business performance as well as consolidate and finalize financial results
+
+## List All Endpoint Group
+It list all the Endpoint that are present.
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/listAllEPMGroup' \
+```
+
+```http
+POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"pageId": 2,
+"pageSize": 23,
+"filter":"added"
+}
+```
+### HTTP Request
+`POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+pageId | Page id
+pageSize | Size of the Page
+filter | filter
+
+### HTTP Response
+
+`Endpoint listed.`
+
+```json
+{
+"domainId": 1,
+"pageId": 2,
+"pageSize": 23,
+"filter":"added"
+}
+```
+<aside class="success">
+Endpoint listed.
+</aside>
+
+## Add Endpoint Group
+It adds the Endpoint to the present list.
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/addEPMGroup' \
+```
+
+```http
+POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"groupName": "Blue",
+"users":"Stephen"
+}
+```
+### HTTP Request
+`POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+groupName | Name of the group
+users | Name of the Users
+
+### HTTP Response
+`Endpoint added.`
+
+```json
+{
+"domainId": 1,
+"groupName": "Blue",
+"users":"Stephen"
+}
+```
+<aside class="success">
+Endpoint added.
+</aside>
+
+## Delete Endpoint Group
+It is used to delete the Endpoint from the existing list.
+
+```shell
+curl --location --request DELETE 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/deleteEPMGroup' \
+```
+
+```http
+DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"epmroupId": "3"
+}
+```
+### HTTP Request
+`DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+epmGroupId | Id of the group
+
+### HTTP Response
+
+`Endpoint`
+
+```json
+{
+"domainId": 1,
+"epmGroupId": "3",
+}
+```
+<aside class="success">
+Endpoint  deleted.
+</aside>
+
+## Update Endpoint Group Users
+It updates Endpoint Users.
+
+```shell
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupUsers' \
+```
+
+```http
+PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"epmGroupId": "3",
+"users":["Shawn","ben"]
+}
+```
+### HTTP Request
+`PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+epmGroupId | Id of the group
+users | Arreys of users
+
+### HTTP Response
+
+`Endpoint Users Updated.`
+
+```json
+{
+"domainId": 1,
+"epmGroupId": "3",
+"users":["Shawn","ben"]
+}
+```
+<aside class="success">
+Endpoint Users Updated.
+</aside>
+
+## Update Endpoint Group Cred Escalation
+It updates Endpoint Cred escalation.
+
+```shell
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
+```
+
+```http
+PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"epmGroupId": "3",
+"privilegedUsers":"Shawn"
+}
+```
+### HTTP Request
+`PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+epmGroupId | Id of the group
+privilegedUsers | Privileged users
+
+### HTTP Response
+`Endpoint Cred Escalation Updated.`
+
+```json
+{
+"domainId": 1,
+"epmGroupId": "3",
+"privilegedUsers":"Shawn"
+}
+```
+<aside class="success">
+Endpoint Cred Escalation Updated.
+</aside>
+
+## Update Endpoint Group Status
+It updates Endpoint status.
+
+```shell
+curl-- PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupStatus' \
+```
+
+```http
+PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"epmGroupId": "3",
+"status":"Success"
+}
+```
+### HTTP Request
+`PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+epmGroupId | Id of the group
+status | Status
+
+### HTTP Response
+`Endpoint Status Updated.`
+
+```json
+{
+"domainId": 1,
+"epmGroupId": "3",
+"status":"Success"
+}
+```
+<aside class="success">
+Endpoint Status Updated.
+</aside>

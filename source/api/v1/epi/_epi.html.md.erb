@@ -1,0 +1,210 @@
+# Endpoint Instance Management
+Endpoint management is the process of actively monitoring, detecting, and preventing malware attacks on devices that are connected to a network. This is typically done to implement security policies and monitor suspicious activities on endpoints.Its can be done by
+
+1.Inventory / management of Endpoints or servers (windows, linux, macos and others) 
+
+2.Active Directory Sync for users (one way only). 
+
+3.Workflows to control permissions
+
+4.Linux user management through Linux User Management Service.
+
+## List All Instances
+List All Instances lists all the instances that are present .
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/instances/list' \
+```
+
+```http
+POST /api/v1/instances/list HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"groupId":1
+}
+```
+### HTTP Request
+`POST /api/v1/instances/list HTTP/1.1`
+
+### Query Parameter
+
+Parameter  | Description
+--------- | -----------
+domainId | Domain Id of the Apps
+instanceName | Name of the instance
+osId | Id of the OS used
+publicIp | Public Ip of the instance
+privateIp | Private Ip of the Instance
+totalUser | Total number of Users
+hostName | Name of the host
+status | Status of the instances
+
+### HTTP Response
+
+`All the instances listed below.`
+
+```json
+{
+  "domainId": 1,
+  "groupId": 1,
+  "instances": [
+      {
+          "totalUsers": 2,
+          "instanceName": "lap",
+          "osName": "RedHat",
+          "publicIp": "qw12",
+          "privateIp": "",
+          "hostName": "",
+          "status": "active",
+          "instanceId": 1
+      }
+```
+
+<aside class="success">
+All the instances listed below.
+</aside>
+
+## Add Instances
+Add Instances adds particular instances to the existing list.
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/instances/add-instance' \
+```
+
+```http
+POST /api/v1/instances/add-instance HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"instanceName": "abc-xyz",
+"osId": 1,
+"publicIp": "192.168.1.1",
+"privateIp": "172.64.32.1"
+}
+```
+### HTTP Request
+`POST /api/v1/instances/add-instance HTTP/1.1`
+
+### Query Parameter
+
+Parameter  | Description
+--------- | -----------
+machineKey| Machine Key of the instances
+osId | Id of the OS used
+publicIpAddress | Public Ip of the instance
+privateIpAddress | Private Ip of the Instance
+
+### HTTP Response
+
+`Instance added to the list.`
+
+```json
+{
+"domainId": 1,
+"instanceName": "abc-xyz",
+"osId": 1,
+"publicIp": "192.168.1.1",
+"privateIp": "172.64.32.1"
+}
+```
+<aside class="success">
+Instance added to the list.
+</aside>
+
+## Update Instances
+It updates the instances that are present.
+
+```shell
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/update-instance' \
+```
+
+```http
+PUT /api/v1/instances/update-instance HTTP/1.1
+```
+
+```json
+{
+"domainId": 1,
+"instanceId": 2,
+"status": "updated"
+}
+```
+### HTTP Request
+`PUT /api/v1/instances/add-instance HTTP/1.1`
+
+### Query Parameter
+
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+instanceId | Instance Id of the used
+status| status of the instances whether it is updated or not.
+
+### HTTP Response
+
+`Instance updated.`
+
+```json
+{
+  "domainId": "11",
+  "instanceId": "201",
+  "status": "Success"
+}
+```
+
+<aside class="success">
+Instance updated.
+</aside>
+
+## Add Groups To Machines
+
+It adds groups to existing machines.
+
+```shell
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/addGroupsToMachines' \
+```
+
+```http
+PUT /api/v1/instances/addGroupsToMachines HTTP/1.1
+```
+
+```json
+{
+"domain_id": 1,
+"instance_id": 2,
+"group_id": 23,
+"actions":"added"
+}
+```
+### HTTP Request
+`PUT /api/v1/instances/addGroupsToMachines/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+instanceId | Instance Id of the used
+groupId | Group Id
+actions | whether Group is added to machines or not.
+
+### HTTP Response
+
+`Group added to Machine`
+
+```json
+{
+  "domainId": "11",
+  "instanceId": "201",
+  "groupId": 23,
+"actions":"added"
+}
+```
+
+<aside class="success">
+Group added to Machine
+</aside>

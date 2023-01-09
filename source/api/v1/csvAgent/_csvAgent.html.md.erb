@@ -1,0 +1,33 @@
+# CSV Agent
+
+The CSV Agent is a tool that allows you to import users to the Authnull system and add them to the Authnull LDAP server. It also enables these users to authenticate to multiple Linux endpoints within an organization using passwordless authentication through Authnull.
+
+
+
+## Prerequisites
+
+- A CSV file containing the user information to be imported
+- Multiple Linux endpoints configured to accept passwordless authentication through Authnull
+
+## Procedure
+
+1. Log in to the Authnull portal.
+2. Navigate to the "Users" page.
+3. Click on the "Import" button.
+4. Select the CSV file you want to upload and click "Import".
+5. The CSV Agent will automatically detect the CSV file and begin the import process.
+6. The CSV Agent will create new user accounts in Authnull and add them to the Authnull LDAP server.
+7. The CSV Agent will also enable these new users to authenticate to multiple Linux endpoints within the organization using passwordless authentication through Authnull.
+
+## Troubleshooting
+
+- If the CSV Agent is not detecting the CSV file, check that it is placed in the correct location and that the CSV Agent is running.
+- If a Linux endpoint is not accepting passwordless authentication, check that it is properly configured to do so. Consult the endpoint documentation for instructions on how to enable this feature.
+
+```http
+POST /api/v1/import-csv HTTP/1.1
+```
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/import-csv' 
+```

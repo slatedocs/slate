@@ -1,0 +1,90 @@
+# LUMS Agent
+
+## Installation Steps 
+(How to Install/ Download)
+
+### Helm install lumsAgent.chart
+
+Helm helps you manage Kubernetes applications — Helm Charts help you define, install, and upgrade even the most complex Kubernetes application.
+
+Charts are easy to create, version, share, and publish
+
+
+
+Install Helm with a package manager, or download a binary.
+
+`
+brew install helm
+`
+
+
+brew install helm
+
+
+Once installed, unpack the helm binary and add it to your PATH and you are good to go! Check the docs for further installation and usage instructions.
+
+## Configuration File 
+(How to setup)
+
+1.Now generate API key from authnull,after the generation of the API Key save the config file and restart the LUMS Agent.
+
+
+2.Register API triggers from agent
+
+3.Send new Key API and periodically check new key from agent if there are any .
+
+
+## Add Machine Api
+
+Add Machine Api adds particular instances to the existing list.
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/machine/add-machine' \
+```
+
+```http
+POST /api/v1/instances/add-instance HTTP/1.1
+```
+
+```json
+{
+  "domainId": 1,
+  "instanceName": "abc-xyz",
+  "osId": 1,
+  "publicIp": "192.168.1.1",
+  "privateIp": "172.64.32.1"
+}
+```
+
+### HTTP Request
+`POST /api/v1/machine/add-machine HTTP/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+ machineKey| Machine Key of the instances
+ osId | Id of the OS used
+publicIpAddress | Public Ip of the instance
+privateIpAddress | Private Ip of the Instance
+
+### HTTP Response
+
+```json
+{
+    "instanceId": "11",
+    "code": "201",
+    "message": "Success"
+}
+```
+
+<aside class="success">
+Instance added to the list.
+</aside>
+
+
+
+## Maintenance
+LUMS Agents maintained by checking Privilige Status API, this happens periodically to check whether the users/groups priviliges are updatedor not.
+
+
+
