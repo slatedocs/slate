@@ -13,7 +13,55 @@ curl "api_endpoint_here" \
 Content-Type: application/json
 Content-Length: 139
 ```
-## List All
+## Add Apps
+Add Apps adds the particular apps to the list.
+
+```shell
+curl --location --request "POST 'https://api.authnull.kloudlearn.com/api/v1/apps/addApp' \" \
+  -H "Authorization: Authnull"
+```
+
+```HTTP
+POST /api/v1/apps/addApp HTTP/1.1;
+```
+
+```json
+{
+"domainId":11,
+"appName":"bella",
+"typeRegistration":"admin",
+"appUrl":"",
+"content":3,
+"fileName":"den"
+}
+```
+### HTTP Request
+`POST /api/v1/apps/addApp HTTP/1.1`
+
+### Query Parameters
+Parameter | Description
+--------- | -----------
+ domainid| Id of the App that needs to be added.
+appName | Name of the app.
+typeRegistration | Type of the registration.
+appUrl | Url of the app.
+content | content
+fileName | Name of the file.
+
+### HTTP Response
+The app is added to the list.
+
+```json
+{
+"status":"success",
+"message":"Apps added Successfully"
+}
+```
+<aside class="success">
+App added !
+</aside>
+
+## List All Apps
   List All gives us the entire list of Apps that are present.
 
 ```shell
@@ -72,7 +120,7 @@ pageSize | page size represents the number of apps to be returned in the respons
 List ALL Apps
 </aside>
 
-## Delete
+## Delete Apps
   Delete Apps removes the particular apps from the list.
 
 ```shell
@@ -110,3 +158,54 @@ domainId | Domain Id in which the app belongs to.
 <aside class="success">
 App Deleted !
 </aside>
+
+## Edit Apps
+Edit Apps makes changes the particular apps.
+
+```shell
+curl --location --request "PUT 'https://api.authnull.kloudlearn.com/api/v1/apps/editApp' \" \
+  -H "Authorization: Authnull"
+```
+
+```HTTP
+PUT /api/v1/apps/editApp HTTP/1.1;
+```
+
+```json
+{
+"id":11,
+"domainId":2,
+ "appName":"Ben",
+ "typeRegistration":"admin"
+}
+```
+### HTTP Request
+`PUT /api/v1/apps/editApp HTTP/1.1`
+
+### Query Parameters
+Parameter | Description
+--------- | -----------
+  id | Id of the app.
+ domainid| Id of the App that needs to be added.
+appName | Name of the app.
+typeRegistration | Type of the registration.
+
+### HTTP Response
+The changes updated to the particular app.
+
+```json
+{
+"status":"success",
+"message":"Apps edited Successfully"
+}
+```
+<aside class="success">
+App edited!
+</aside>
+
+
+
+
+
+
+

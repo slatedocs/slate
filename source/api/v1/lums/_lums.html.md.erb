@@ -1,256 +1,364 @@
+# LUMS (Linux User Management)
+This is a PRD for the Linux user management service (LUMS) covering the following use case:
 
-# Endpoint Group Management
-Enterprise Performance Management (EPM)  helps you analyze, understand, and report on your business. EPM refers to the processes designed to help organizations plan, budget, forecast, and report on business performance as well as consolidate and finalize financial results
+1.Provision new users from a SSO console
 
-## List All Endpoint Group
-It list all the Endpoint that are present.
+2.Provision users with temporary passwords
+
+3.Do password management of all local users with a secrets management service like Vault. 
+
+4.Provision users with temporary ssh keys
+
+5.Provision and manage users with Just In Time (JIT) entitlements., i.e. escalate privileges. 
+
+## Add Linux User
+
+
 ```shell
-curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/listAllEPMGroup' \
+curl "https://api.authnull.kloudlearn.com/api/v1/add-linux-user-info" 
+  -H "Authorization: AuthNull"
 ```
 
-```http
-POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1
-```
+```HTTP
+POST /api/v1/add-linux-user-info HTTP/1.1
+
+
+
 
 ```json
+[
 {
-"domainId": 1,
-"pageId": 2,
-"pageSize": 23,
-"filter":"added"
+    "Username":"sefali",
+    "AuthMethod":"s",
+    "UserType":"6",
+    "CustomMapping":"6"
 }
+]
 ```
+
+This will add the users to LUMs.
+
 ### HTTP Request
-`POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1`
 
-### Query Parameter
-Parameter  | Description
---------- | -----------
-domainId| Domain Id of the instances
-pageId | Page id
-pageSize | Size of the Page
-filter | filter
+`POST /api/v1/add-linux-user-info HTTP/1.1`
 
-### HTTP Response
+### Query Parameters
 
-`Endpoint listed.`
+Parameter | Description
+--------- | ------- | -----------
+UserName | an identification used by a person with access to a computer, network, or online service..
+AuthMethod | Authentication is the process of determining whether someone or something is, in fact, who or what it says it is..
+UserType | Roles is the user is admin or user it signify.
+CustomMapping | It expresses ideas, thoughts and relationships among and between different spatial elements in multiple dimensions..
+
+### HTTP response
+
+`successfully Added`
+
+
+<aside class="success">
+Remember — This is for Add in LUMs!
+</aside>
+ 
+## List All Linux User
+
+
+```shell
+curl "https://api.authnull.kloudlearn.com/api/v1/list-all-lums" 
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST /api/v1/list-all-lums HTTP/1.1
+
+
+
 
 ```json
+[
 {
-"domainId": 1,
-"pageId": 2,
-"pageSize": 23,
-"filter":"added"
+    "CredentialType":"xyz",
+     "HomeDir":"xyz", 
+     "LinuxUserId":"1", 
+     "LinuxUserName":"sefali", 
+     "PasswordManaged":"xyz-xyz", 
+     "PrivilegedUser":"xyz-xyz-xyz", 
+     "Source":"xyz", 
+     "Status":"active", 
+     "SyncMethod":"xyz", 
+     "TTLPassword":"xyz", 
+     "TTLUser":"xyz", 
+     "UserType":"zyx"
 }
+]
 ```
+This will add the users to LUMs.
+
+### HTTP Request
+
+`POST /api/v1/list-all-lums HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+CredentialType |  Credentials refer to the verification of identity or tools for authentication.
+HomeDir |  A home directory is a file system directory on a multiuser operating system containing files for a given user of the system.
+LinuxUserId | A UID (user identifier) is a number assigned by Linux to each user on the system. This number is used to identify the user to the system and to determine which system resources the user can access. 
+LinuxUserName | A username is a distinctive alphabetical and numerical set of characters used to identify and gain access to a computing system.
+PasswordManaged | Password management is a set of principles and best practices to be followed by users while storing and managing passwords in an efficient manner to secure passwords as much as they can to prevent unauthorized access.
+PrivilegedUser | A user that is authorized (and therefore, trusted) to perform security-relevant functions that ordinary users are not authorized to perform.
+Source | In general, a source is the location from which information is gathered. 
+Status | Alternatively called state, status is the current condition a device or user.
+SyncMethod | This module provides a portable way of using operating system dependent functionality.
+TTLPassword | TTL.
+TTLUser | A computer cluster is a set of computers that work together so that they can be viewed as a single system. 
+UserType | A user type defines a class of users, such as administrators, ordinary users, operators, and so on.
+
+### HTTP response
+
+`successfully shown list of all linux user`
+
+
 <aside class="success">
-Endpoint listed.
+Remember — This is for Add in LUMs!
+</aside>
+ 
+## Delete Linux User
+
+```shell
+curl "https://api.authnull.kloudlearn.com/api/v1/delete-user" 
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+DELETE /api/v1/delete-user HTTP/1.1
+
+
+
+
+```json
+[
+{
+    "linuxUserId": "1"
+}
+]
+```
+
+This will delete the users to LUMs.
+
+### HTTP Request
+
+`DELETE /api/v1/delete-user HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+LinuxUserId | A UID (user identifier) is a number assigned by Linux to each user on the system. This number is used to identify the user to the system and to determine which system resources the user can access. 
+
+### HTTP response
+
+`successfully Deleted`
+
+<aside class="success">
+Remember — This is for Add in LUMs!
 </aside>
 
-## Add Endpoint Group
-It adds the Endpoint to the present list.
+## Add user to machine
+
+
 ```shell
-curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/addEPMGroup' \
+curl "https://api.authnull.kloudlearn.com/api/v1/addUserToMachine" 
+  -H "Authorization: AuthNull"
 ```
 
-```http
-POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1
-```
+```HTTP
+POST /api/v1/addUserToMachine HTTP/1.1
+
+
+
 
 ```json
+[
 {
-"domainId": 1,
-"groupName": "Blue",
-"users":"Stephen"
+    "domainId":"1", 
+    "instanceId":"1", 
+    "userIds":"1",
 }
+]
 ```
+
+This will add User To Machine.
+
 ### HTTP Request
-`POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1`
 
-### Query Parameter
-Parameter  | Description
---------- | -----------
-domainId| Domain Id of the instances
-groupName | Name of the group
-users | Name of the Users
+`POST /api/v1/addUserToMachine HTTP/1.1`
 
-### HTTP Response
-`Endpoint added.`
+### Query Parameters
 
-```json
-{
-"domainId": 1,
-"groupName": "Blue",
-"users":"Stephen"
-}
-```
+Parameter | Description
+--------- | ------- | -----------
+domainId | Domain Id of the instances.
+instanceId |Instance Id of the used
+userIds | userId is used
+
+### HTTP response
+
+`successfully add user to machine`
+
 <aside class="success">
-Endpoint added.
+Remember — This is for Add in LUMs!
 </aside>
 
-## Delete Endpoint Group
-It is used to delete the Endpoint from the existing list.
+
+## EPM User Management
+Welcome to the EPM User Management! You can use our API to access EPM User Management API endpoints, which can get information on various EPM User Management in our database.
+
+We have language bindings in Shell and HTTP! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+## updateEPMUserWallet
 
 ```shell
-curl --location --request DELETE 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/deleteEPMGroup' \
+curl "https://api.authnull.kloudlearn.com/api/v1/updateEPMUserWallet" 
+  -H "Authorization: AuthNull"
 ```
 
-```http
-DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1
-```
+```HTTP
+POST /api/v1/updateEPMUserWallet HTTP/1.1
+
+
+
 
 ```json
+[
 {
-"domainId": 1,
-"epmroupId": "3"
+    "linux_user_id":"1", 
+    "server_group_name":"xyz-xyz-xyz", 
+    "authnull_user_name":"abc-abc-abd", 
+    "authnull_user_group":"xyz-xyz-xyz",
 }
+]
 ```
+
+This will Update EPM User Wallet.
+
 ### HTTP Request
-`DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1`
 
-### Query Parameter
-Parameter  | Description
---------- | -----------
-domainId| Domain Id of the instances
-epmGroupId | Id of the group
+`POST /api/v1/updateEPMUserWallet HTTP/1.1`
 
-### HTTP Response
+### Query Parameters
 
-`Endpoint`
+Parameter | Description
+--------- | ------- | -----------
+linux_user_id | linuxUserId is for linux user.
+server_group_name |ServerGroupName is for lums.
+authnull_user_name | AuthNull user name is the name.
+authnull_user_group | AuthNull user group is for group.
 
-```json
-{
-"domainId": 1,
-"epmGroupId": "3",
-}
-```
+### HTTP response
+
+`successfully Update EPM User Wallet`
+
 <aside class="success">
-Endpoint  deleted.
+Remember — This is for Add in LUMs!
 </aside>
 
-## Update Endpoint Group Users
-It updates Endpoint Users.
+## linuxEpmCredentialEscalation
 
 ```shell
-curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupUsers' \
+curl "https://api.authnull.kloudlearn.com/api/v1/linuxEpmCredentialEscalation" 
+  -H "Authorization: AuthNull"
 ```
 
-```http
-PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1
-```
+```HTTP
+POST /api/v1/linuxEpmCredentialEscalation HTTP/1.1
+
+
+
 
 ```json
+[
 {
-"domainId": 1,
-"epmGroupId": "3",
-"users":["Shawn","ben"]
+    "linux_user_id":"1", 
+    "user_name":"xyz", 
+    "privileged_user":"abc", 
+    "escalation_time_limit":"10:00",
 }
+]
 ```
+
+This will linux Epm CredentialEscalation.
+
 ### HTTP Request
-`PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1`
 
-### Query Parameter
-Parameter  | Description
---------- | -----------
-domainId| Domain Id of the instances
-epmGroupId | Id of the group
-users | Arreys of users
+`POST /api/v1/linuxEpmCredentialEscalation HTTP/1.1`
 
-### HTTP Response
+### Query Parameters
 
-`Endpoint Users Updated.`
+Parameter | Description
+--------- | ------- | -----------
+linux_user_id | linuxUserId is for linux user.
+user_name | user name is for lums.
+privileged_user | AuthNull user name is the name.
+escalation_time_limit | escalation time limit.
 
-```json
-{
-"domainId": 1,
-"epmGroupId": "3",
-"users":["Shawn","ben"]
-}
-```
+### HTTP response
+
+`successfully Update EPM User Wallet`
+
 <aside class="success">
-Endpoint Users Updated.
+Remember — This is for Add in LUMs!
 </aside>
 
-## Update Endpoint Group Cred Escalation
-It updates Endpoint Cred escalation.
+
+## updateEpmUserInfo
 
 ```shell
-curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
+curl "https://api.authnull.kloudlearn.com/api/v1/updateEpmUserInfo" 
+  -H "Authorization: AuthNull"
 ```
 
-```http
-PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1
-```
+```HTTP
+POST /api/v1/updateEpmUserInfo HTTP/1.1
+
+
+
 
 ```json
+[
 {
-"domainId": 1,
-"epmGroupId": "3",
-"privilegedUsers":"Shawn"
+    "linux_user_id":"1",
+    "username":"xyz-xyz-xyz", 
+    "auth_method":"abc", 
+    "user_type":"abc", 
+    "credential_type":"abc", 
+    "custom_mapping":"asd";
 }
+]
 ```
+
+This will update Epm User Information.
+
 ### HTTP Request
-`PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1`
 
-### Query Parameter
-Parameter  | Description
---------- | -----------
-domainId| Domain Id of the instances
-epmGroupId | Id of the group
-privilegedUsers | Privileged users
+`POST /api/v1/updateEpmUserInfo HTTP/1.1`
 
-### HTTP Response
-`Endpoint Cred Escalation Updated.`
+### Query Parameters
 
-```json
-{
-"domainId": 1,
-"epmGroupId": "3",
-"privilegedUsers":"Shawn"
-}
-```
+Parameter | Description
+--------- | ------- | -----------
+linux_user_id | linuxUserId is for linux user.
+username | user name is for lums.
+auth_method | AuthNull authentication methad.
+user_type | Type of user.
+credential_type | credential type.
+custom_mapping | custom mapping.
+
+### HTTP response
+
+`successfully Update EPM User Information`
+
 <aside class="success">
-Endpoint Cred Escalation Updated.
-</aside>
-
-## Update Endpoint Group Status
-It updates Endpoint status.
-
-```shell
-curl-- PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupStatus' \
-```
-
-```http
-PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1
-```
-
-```json
-{
-"domainId": 1,
-"epmGroupId": "3",
-"status":"Success"
-}
-```
-### HTTP Request
-`PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1`
-
-### Query Parameter
-Parameter  | Description
---------- | -----------
-domainId| Domain Id of the instances
-epmGroupId | Id of the group
-status | Status
-
-### HTTP Response
-`Endpoint Status Updated.`
-
-```json
-{
-"domainId": 1,
-"epmGroupId": "3",
-"status":"Success"
-}
-```
-<aside class="success">
-Endpoint Status Updated.
+Remember — This is for Add in LUMs!
 </aside>

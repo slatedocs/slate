@@ -1,4 +1,4 @@
-# Endpoint Instance Management
+# Endpoint Management
 Endpoint management is the process of actively monitoring, detecting, and preventing malware attacks on devices that are connected to a network. This is typically done to implement security policies and monitor suspicious activities on endpoints.Its can be done by
 
 1.Inventory / management of Endpoints or servers (windows, linux, macos and others) 
@@ -116,7 +116,7 @@ privateIpAddress | Private Ip of the Instance
 Instance added to the list.
 </aside>
 
-## Update Instances
+## Update Instances Status
 It updates the instances that are present.
 
 ```shell
@@ -208,3 +208,144 @@ actions | whether Group is added to machines or not.
 <aside class="success">
 Group added to Machine
 </aside>
+
+## Remove Groups To Machines
+
+It remove groups to existing machines.
+
+```shell
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/removeGroupsToMachines' \
+```
+
+```http
+PUT /api/v1/instances/removeGroupsToMachines HTTP/1.1
+```
+
+```json
+{
+"domain_id": 1,
+"instance_id": 2,
+"group_id": 23,
+"actions":"added"
+}
+```
+### HTTP Request
+`PUT /api/v1/instances/removeGroupsToMachines/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+instanceId | Instance Id of the used
+groupId | Group Id
+actions | whether Group is added to machines or not.
+
+### HTTP Response
+
+`Group added to Machine`
+
+```json
+{
+  "domainId": "11",
+  "instanceId": "201",
+  "groupId": 23,
+"actions":"added"
+}
+```
+
+<aside class="success">
+Group added to Machine
+</aside>
+
+## Add User From Machines
+
+It adds usere to existing machines.
+
+```shell
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/addusersToMachines' \
+```
+
+```http
+PUT /api/v1/instances/adduserToMachines HTTP/1.1
+```
+
+```json
+
+  {
+    "instanceIds":["1","2"],
+    "domainId":1,
+    "userIds":[106,103]
+}
+
+```
+### HTTP Request
+`PUT /api/v1/instances/addusersToMachines/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+instanceIds | Instance Id of the used
+userId | Users id of users
+
+### HTTP Response
+
+`Add user to Machine`
+
+```json
+{
+    "code": 200,
+    "message": "Successfully Added"
+}
+```
+
+<aside class="success">
+Group added to Machine
+</aside>
+
+## Remove User From Machines
+
+It Remove usere to existing machines.
+
+```shell
+curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/instances/removeusersToMachines' \
+```
+
+```http
+PUT /api/v1/instances/removeuserToMachines HTTP/1.1
+```
+
+```json
+
+  {
+    "instanceIds":["1","2"],
+    "domainId":1,
+    "userIds":[106,103]
+}
+
+```
+### HTTP Request
+`PUT /api/v1/instances/removeusersToMachines/1.1`
+
+### Query Parameter
+Parameter  | Description
+--------- | -----------
+domainId| Domain Id of the instances
+instanceIds | Instance Id of the used
+userId | Users id of users
+
+### HTTP Response
+
+`User remove to Machine`
+
+```json
+{
+    "code": 200,
+    "message": "Successfully Remove"
+}
+```
+
+<aside class="success">
+Group added to Machine
+</aside>
+

@@ -2,12 +2,15 @@
 Enterprise Performance Management (EPM)  helps you analyze, understand, and report on your business. EPM refers to the processes designed to help organizations plan, budget, forecast, and report on business performance as well as consolidate and finalize financial results
 ## List All Endpoint Group
 It list all the Endpoint that are present.
+
 ```shell
 curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/listAllEPMGroup' \
 ```
+
 ```http
 POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1
 ```
+
 ```json
 {
   "domainId": 1,
@@ -44,6 +47,7 @@ Endpoint listed.
 
 ## Add Endpoint Group
 It adds the Endpoint to the present list.
+
 ```shell
 curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/addEPMGroup' \
 ```
@@ -85,6 +89,7 @@ Endpoint added.
 
 ## Delete Endpoint Group
 It is used to delete the Endpoint from the existing list.
+
 ```shell
 curl --location --request DELETE 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/deleteEPMGroup' \
 ```
@@ -163,6 +168,7 @@ Endpoint Users Updated.
 
 ## Update Endpoint Group Cred Escalation
 It updates Endpoint Cred escalation.
+
 ```shell
 curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
 ```
@@ -203,6 +209,7 @@ Endpoint Cred Escalation Updated.
 
 ## Update Endpoint Group Status
 It updates Endpoint status.
+
 ```shell
 curl-- PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupStatus' \
 ```
