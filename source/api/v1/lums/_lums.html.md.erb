@@ -11,7 +11,7 @@ This is a PRD for the Linux user management service (LUMS) covering the followin
 
 5.Provision and manage users with Just In Time (JIT) entitlements., i.e. escalate privileges. 
 
-## Add Linux User
+## Add User
 
 
 ```shell
@@ -60,7 +60,7 @@ CustomMapping | It expresses ideas, thoughts and relationships among and between
 Remember — This is for Add in LUMs!
 </aside>
  
-## List All Linux User
+## List All User
 
 
 ```shell
@@ -124,7 +124,7 @@ UserType | A user type defines a class of users, such as administrators, ordinar
 Remember — This is for Add in LUMs!
 </aside>
  
-## Delete Linux User
+## Delete User
 
 ```shell
 curl "https://api.authnull.kloudlearn.com/api/v1/delete-user" 
@@ -212,12 +212,7 @@ Remember — This is for Add in LUMs!
 </aside>
 
 
-## EPM User Management
-Welcome to the EPM User Management! You can use our API to access EPM User Management API endpoints, which can get information on various EPM User Management in our database.
-
-We have language bindings in Shell and HTTP! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-## updateEPMUserWallet
+## update Endpoint User Wallet
 
 ```shell
 curl "https://api.authnull.kloudlearn.com/api/v1/updateEPMUserWallet" 
@@ -264,55 +259,7 @@ authnull_user_group | AuthNull user group is for group.
 Remember — This is for Add in LUMs!
 </aside>
 
-## linuxEpmCredentialEscalation
-
-```shell
-curl "https://api.authnull.kloudlearn.com/api/v1/linuxEpmCredentialEscalation" 
-  -H "Authorization: AuthNull"
-```
-
-```HTTP
-POST /api/v1/linuxEpmCredentialEscalation HTTP/1.1
-
-
-
-
-```json
-[
-{
-    "linux_user_id":"1", 
-    "user_name":"xyz", 
-    "privileged_user":"abc", 
-    "escalation_time_limit":"10:00",
-}
-]
-```
-
-This will linux Epm CredentialEscalation.
-
-### HTTP Request
-
-`POST /api/v1/linuxEpmCredentialEscalation HTTP/1.1`
-
-### Query Parameters
-
-Parameter | Description
---------- | ------- | -----------
-linux_user_id | linuxUserId is for linux user.
-user_name | user name is for lums.
-privileged_user | AuthNull user name is the name.
-escalation_time_limit | escalation time limit.
-
-### HTTP response
-
-`successfully Update EPM User Wallet`
-
-<aside class="success">
-Remember — This is for Add in LUMs!
-</aside>
-
-
-## updateEpmUserInfo
+## update Endpoint User Info
 
 ```shell
 curl "https://api.authnull.kloudlearn.com/api/v1/updateEpmUserInfo" 
