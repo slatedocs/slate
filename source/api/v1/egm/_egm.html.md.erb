@@ -166,46 +166,6 @@ Endpoint Users Updated.
 Endpoint Users Updated.
 </aside>
 
-## Update Endpoint Group Cred Escalation
-It updates Endpoint Cred escalation.
-
-```shell
-curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupCredEscalation' \
-```
-
-```http
-PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1
-```
-
-```json
-{
-  "domainId": 1,
-  "epmGroupId": "3",
-  "privilegedUsers":"Shawn"
-  }
-```
-### HTTP Request
-`PUT /api/v1/epmGroupManagement/updateEPMGroupCredEscalation HTTP/1.1`
-
-### Query Parameter
-Parameter  | Description
---------- | -----------
- domainId| Domain Id of the instances
- epmGroupId | Id of the group
- privilegedUsers | Privileged users
-### HTTP Response
-`Endpoint Cred Escalation Updated.`
-
-```json
-{
-  "domainId": 1,
-  "epmGroupId": "3",
- "privilegedUsers":"Shawn"
-  }
-```
-<aside class="success">
-Endpoint Cred Escalation Updated.
-</aside>
 
 ## Update Endpoint Group Status
 It updates Endpoint status.
