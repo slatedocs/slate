@@ -11,7 +11,23 @@
 
 <p align="center"><em>The example above was created with Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
 
-Features
+**Prerequisite**
+1. Install docker
+`brew install docker`
+2. Install docker compose
+`brew install docker-compose`
+
+**How to Run in Local**
+------------
+1. Build the Docker image: 
+`docker-compose build`
+2. Start the container:
+`docker-compose up -d`
+3. To check the container logs:
+`docker-compose logs -f`
+4. Open the application in your web browser by visiting `http://localhost:4567/`
+
+**Features**
 ------------
 
 * **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [PayPal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
@@ -32,7 +48,7 @@ Features
 
 Getting started with Slate is super easy! Simply press the green "use this template" button above and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](https://slatedocs.github.io/slate/).
 
-Getting Started with Slate
+**Getting Started with Slate**
 ------------------------------
 
 To get started with Slate, please check out the [Getting Started](https://github.com/slatedocs/slate/wiki#getting-started)
@@ -43,7 +59,7 @@ We support running Slate in three different ways:
 * [Using Vagrant](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Vagrant)
 * [Using Docker](https://github.com/slatedocs/slate/wiki/Using-Slate-in-Docker)
 
-Companies Using Slate
+**Companies Using Slate**
 ---------------------------------
 
 * [NASA](https://api.nasa.gov)
@@ -59,14 +75,14 @@ Companies Using Slate
 
 You can view more in [the list on the wiki](https://github.com/slatedocs/slate/wiki/Slate-in-the-Wild).
 
-Questions? Need Help? Found a bug?
+**Questions? Need Help? Found a bug?**
 --------------------
 
 If you've got questions about setup, deploying, special feature implementation in your fork, or just want to chat with the developer, please feel free to [start a thread in our Discussions tab](https://github.com/slatedocs/slate/discussions)!
 
 Found a bug with upstream Slate? Go ahead and [submit an issue](https://github.com/slatedocs/slate/issues). And, of course, feel free to submit pull requests with bug fixes or changes to the `dev` branch.
 
-Contributors
+**Contributors**
 --------------------
 
 Slate was built by [Robert Lord](https://lord.io) while at [TripIt](https://www.tripit.com/). The project is now maintained by [Matthew Peveler](https://github.com/MasterOdin) and [Mike Ralphson](https://github.com/MikeRalphson).

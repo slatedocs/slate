@@ -1,0 +1,17 @@
+version: '3'
+services:
+  slate:
+    build: .
+    command: ["build"]
+    volumes:
+      - "./build:/srv/slate/build"
+      - "./source:/srv/slate/source"
+  slate_serve:
+    image: slatedocs/slate
+    command: ["serve"]
+    ports:
+      - "4567:4567"
+    volumes:
+      - "./source:/srv/slate/source"
+    depends_on:
+      - slate
