@@ -6,6 +6,7 @@ August 2022
 - Release of new resources
     - Adverse Events
     - Patient (demographics)
+    - Medication Statement
 -  Documentation implemented using GitHub Pages
 #### Enhancements
 - Visit description added to Observation for laboratory results and vital signs

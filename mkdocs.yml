@@ -27,10 +27,10 @@ nav:
   - "Available Resources":
       - "Adverse Event": resources/adverse-event.md
       - "Patient (Demographics)": resources/patient.md
+      - "Medication Statement": resources/medications.md
       - "Observation (Labs)": resources/lab-result.md
       - "Observation (Vitals)": resources/vital-sign.md
   - Coming Soon:
-      - "MedicationStatement (All meds)": coming-soon/medications.md
       - Response: coming-soon/response.md
   - Structure Definitions: structure-definitions.md
   - "Release Notes": release-notes.md
