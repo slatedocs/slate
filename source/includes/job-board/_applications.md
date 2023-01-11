@@ -287,6 +287,7 @@ Note that all 3 fields must be included. If only `location` is sent and `latitud
 **Field validations:** 
 
 * `first_name`, `last_name`, and `email` fields are required 
+* `first_name`, `last_name`, and `email` fields cannot be greater than 255 characters long
 * `first_name`, `last_name`, and `phone` fields must not contain a URL
 * `email` field must contain a valid email address
 * `educations` object must contain valid `school_name_id`, `degree_id`, `discipline_id`, `start_date`, and `end_date`
