@@ -32,7 +32,7 @@ Follow the steps below to create an account:
 
 *Please note that your username cannot be changed once the registration form is submitted.*
 
-![Creating Account](images/creating_account_1.jpg)
+![Creating Account](images/desktop_register.png)
 
 **2. Activate your account**: Once the registration is submitted, an activation link will be sent to the email registered.
 Once you are successfully logged in, you will be able to try our product suites in staging/test environment, where you can execute money-in and money-out dummy transactions (without real money movement).
