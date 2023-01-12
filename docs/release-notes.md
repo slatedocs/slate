@@ -1,3 +1,10 @@
+## Version 2.1.0
+
+#### New
+- Release of new resources
+    - Diagnostic Report (Response data)
+    - Observation (Response Imaging - lesion measurements)
+
 ## Version 2.0.0 
 August 2022
 
