@@ -1,0 +1,12 @@
+# Priviliged Access Management(PAM)
+To use the AuthNull service and custom PAM modules to authenticate users and import users from LDAP to the AuthNull platform, you will need to follow the steps provided by AuthNull.
+Here is a general outline of the steps you might need to follow:
+
+1.Download and install the AuthNull agent and AuthNull daemon on your Linux system. You can find instructions for downloading and installing the AuthNull agent and AuthNull daemon in the AuthNull documentation.
+
+2.Configure the AuthNull agent and authnull daemon to connect to the AuthNull service and your LDAP server. You will need to provide the AuthNull agent and AuthNull daemon with the necessary credentials and connection details to connect to the AuthNull service and your LDAP server.
+
+3.Start the AuthNull daemon. The AuthNull daemon should automatically import users from your LDAP server to the AuthNull platform.
+
+4.Restart the service that you want to authenticate users using the AuthNull service. The AuthNull agent should automatically configure PAM to use the custom PAM modules and the AuthNull service for authentication.
+To authenticate users using the AuthNull service, users will need to provide their login credentials to the service using a method such as Webauthn, SMS OTP, MOTP, or DID. The AuthNull documentation should provide instructions for using these authentication methods.

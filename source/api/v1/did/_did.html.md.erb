@@ -1,0 +1,360 @@
+# Decentralized Identities
+## Request Verificable Credential in Wallet
+A verifiable credential can represent all of the same information that a physical credential represents. The addition of technologies, such as digital signatures, makes verifiable credentials more tamper-evident and more trustworthy than their physical counterparts. It also represent statements made by an issuer in a tamper-evident and privacy-respecting manner.A verifiable credential is a set of tamper-evident claims and metadata that cryptographically prove who issued it.
+Examples of verifiable credentials include digital employee identification cards, digital birth certificates, and digital educational certificates.
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/requestVerificableCredential' \
+```
+
+```http
+PUT /api/v1/requestVerificableCredential HTTP/1.1
+```
+```
+{
+  "@context": [
+    "https://www.kloudone.com/2018/credentials/v1",
+  ],
+  "id": "http://kloudlearn.edu/credentials/1872",
+  "type": ["VerifiableCredential", "AlumniCredential"],
+  "issuer": "https://kloudlearn.edu/issuers/565049",
+  "issuanceDate": "2022-05-01T19:23:24Z",
+  "credentialSubject": {
+    "id": "did:kloudlearn:ebfeb1f712ebc6f1c276e12ec21",
+    "alumniOf": {
+      "id": "did:kloudlearn:c276e12ec21ebfeb1f712ebc6f1",
+      "name": [{
+        "value": "Example University",
+        "lang": "en"
+      }, {
+        "value": "Exemple d'Université",
+        "lang": "fr"
+      }]
+    }
+  },
+  "proof": {
+    "type": "RsaSignature2018",
+    "created": "2022-06-18T21:19:10Z",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "https://kloudlearn.edu/issuers/565049#key-1",
+    "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..TCYt5X
+      sITJX1CxPCT8yAV-TVkIEq_PbChOMqsLfRoPsnsgw5WEuts01mq-pQy7UJiN5mgRxD-WUc
+      X16dUEMGlv50aqzpqh4Qktb3rk-BuQy72IFLOqV0G_zS245-kronKb78cPN25DGlcTwLtj
+      PAYuNzVBAh4vGHSrQyHUdBBPM"
+  }
+}
+```
+### HTTP Request
+`POST https://api.authnull.kloudlearn.com/api/v1/requestVerificableCredential HTTP/1.1`
+
+### Query Parameters
+Parameter | Description
+--------- | -----------
+context | set the context,which establishes the special terms used such as 'issuer'
+id | specify the identifier for the credential
+type | the credential type,which declare what to expect in the credential
+issuer | the entity that issued the credential
+issuanceDate | when the credential was issued
+credentialSubject | claims about the subject of the credential
+alumniOf | assertion about the only subject of the credential
+proof | digital proof that makes the credential tamper-evident
+created | the date the signature was created
+proofOfPurpose | purpose of the proof
+verificationMethod | the identifier of the public kry that can verify the signature
+jws | the digital signature value
+To illustrate this lifecycle, we will use the example of redeeming an alumni discount from a university. In the example below, Pat receives an alumni verifiable credential from a university, and Pat stores the verifiable credential in a digital wallet.
+
+### HTTP Response
+`succesfully Request Verificable Credential in Wallet`
+
+## Create DID for Holder/Wallet User
+### Holder:
+A role an entity might perform by possessing one or more verifiable credentials and generating verifiable presentations from them.  A holder is usually, but not always, a subject of the verifiable credentials they are holding. Holders store their credentials in credential repositories.Example holders include students, employees, and customers.
+
+
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/walletUser' \
+```
+
+```http
+PUT /api/v1/instances/walletUser HTTP/1.1
+```
+```json
+ Basic structure of a presentation
+{
+  "@context": [
+    "https://www.kloudone.com/2018/credentials/v1",
+  ],
+  "id": "urn:uuid:3978344f-8596-4c3a-a978-8fcaba3903c5",
+  "type": ["VerifiablePresentation", "CredentialManagerPresentation"],
+  "verifiableCredential": [{  }],
+  "proof": [{  }]
+}
+```
+
+### HTTP Request
+`POST https://api.authnull.kloudlearn.com/api/v1/walletUser HTTP/1.1`
+
+### Query Parameters
+
+A verifiable presentation is typically composed of the following properties:
+
+Parameter | Description
+--------- | -----------
+ id| The id property is optional and MAY be used to provide a unique identifier for the presentation.
+type | The type property is required and expresses the type of presentation, such as VerifiablePresentation.
+verifiableCredential | If present, the value of the verifiableCredential property MUST be constructed from one or more verifiable credentials, or of data derived from verifiable credentials in a cryptographically verifiable format.
+holder | If present, the value of the holder property is expected to be a URI for the entity that is generating the presentation.
+proof | If present, the value of the proof property ensures that the presentation is verifiable.
+The example below shows a verifiable presentation that embeds verifiable credentials.
+
+### HTTP Response
+`succesfully Create DID for Holder/Wallet User`
+
+##  Create DID for Issuer
+This specification defines a property for expressing the issuer of a verifiable credential.
+A verifiable credential MUST have an issuer property.
+### Issuer
+The value of the issuer property MUST be either a URI or an object containing an id property. It is RECOMMENDED that the URI in the issuer or its id be one which, if dereferenced, results in a document containing machine-readable information about the issuer that can be used to verify the information expressed in the credential.
+It is also possible to express additional information about the issuer by associating an object with the issuer property.
+
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/issuer' \
+```
+
+```http
+PUT /api/v1/issuer HTTP/1.1
+```
+```json
+{
+  "@context": [
+    "https://www.kloudone.com/2018/credentials/v1",
+  ],
+  "id": "http://kloudlearn.edu/credentials/3732",
+  "type": ["VerifiableCredential", "UniversityDegreeCredential"],
+  "issuer": {
+    "id": "did:kloudlearn:76e12ec712ebc6f1c221ebfeb1f",
+    "name": "Example University"
+  },
+  "issuanceDate": "2010-01-01T19:23:24Z",
+  "credentialSubject": {
+    "id": "did:kloudone:ebfeb1f712ebc6f1c276e12ec21",
+    "degree": {
+      "type": "BachelorDegree",
+      "name": "Bachelor of Science and Arts"
+    }
+  }
+}
+```
+### HTTP Request
+`POST https://api.authnull.kloudlearn.com/api/v1/issuer HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+id | The id property is optional and MAY be used to provide a unique identifier for the presentation.
+type | The type property is required and expresses the type of presentation, such as VerifiablePresentation.
+issuer | Name of the issuer
+issuanceDate | Date of issue raised.
+credentialSubject |  A set of objects that contain one or more properties that are each related to a subject of the verifiable credential.
+Usage of issuer expanded property:
+
+### HTTP Response
+`succesfully Create DID for Issuer`
+
+## Issue Verifiable Credential to Wallet
+A verifiable credential contains claims about one or more subjects. This specification defines a credentialSubject property for the expression of claims about one or more subjects.
+A verifiable credential MUST have a credentialSubject property.
+### Credential Subject
+The value of the credentialSubject property is defined as a set of objects that contain one or more properties that are each related to a subject of the verifiable credential. Each object MAY contain an id.
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/issueVerifiableCredential' \
+```
+
+```http
+PUT /api/v1/issueVerifiableCredential HTTP/1.1
+```
+```json
+{
+  "@context": [
+    "https://www.kloudone.com/2018/credentials/v1",
+  ],
+  "id": "http://kloudlearn.edu/credentials/3732",
+  "type": ["VerifiableCredential", "UniversityDegreeCredential"],
+  "issuer": "https://kloudlearn.edu/issuers/565049",
+  "issuanceDate": "2022-01-01T00:00:00Z",
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "degree": {
+      "type": "BachelorDegree",
+      "name": "Bachelor of Science and Arts"
+    }
+  }
+}
+```
+### HTTP Request
+`POST https://api.authnull.kloudlearn.com/api/v1/issueVerifiableCredential HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+id | The id property is optional and MAY be used to provide a unique identifier for the presentation.
+type | The type property is required and expresses the type of presentation, such as VerifiablePresentation.
+issuer | Name of the issuer
+issuanceDate | Date of issue raised.
+credentialSubject |  A set of objects that contain one or more properties that are each related to a subject of the verifiable credential.
+ Usage of the credentialSubject property:
+
+ ### HTTP Response
+`succesfully Issue Verifiable Credential to Wallet`
+
+## Create Verifiable Credential in Authnull
+A verifiable credential can represent all of the same information that a physical credential represents. The addition of technologies, such as digital signatures, makes verifiable credentials more tamper-evident and more trustworthy than their physical counterparts.
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/createVerifiableCredential' \
+```
+
+```http
+PUT /api/v1/createVerifiableCredential HTTP/1.1
+```
+```json
+{
+  
+  "@context": [
+    "https://www.kloudone.com/2018/credentials/v1",
+  ],
+  
+  "id": "http://kloudlearn.edu/credentials/3732",
+  
+  "type":  ["VerifiableCredential", "UniversityDegreeCredential"],
+  
+  "issuer": "https://kloudlearn.edu/issuers/565049",
+  
+  "issuanceDate": "2010-01-01T19:23:24Z",
+  
+  "credentialSubject": {
+    
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    
+    "alumniOf": {
+      "id": "did:example:c276e12ec21ebfeb1f712ebc6f1",
+      "name": [{
+        "value": "kloudlearn",
+        "lang": "en"
+      }]
+    }
+  },
+  
+  
+  "proof": {
+    
+    "type": "kloudelearn2022",
+    
+    "created": "2022-09-18T21:19:10Z",
+    
+    "proofPurpose": "assertionMethod",
+    
+    "verificationMethod": "https://kloudlearn.edu/issuers/565049",
+    
+    "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..TCYt5X
+      sITJX1CxPCT8yAV-TVkIEq_PbChOMqsLfRoPsnsgw5WEuts01mq-pQy7UJiN5mgRxD-WUc
+      X16dUEMGlv50aqzpqh4Qktb3rk-BuQy72IFLOqV0G_zS245-kronKb78cPN25DGlcTwLtj
+      PAYuNzVBAh4vGHSrQyHUdBBPM"
+  }
+}
+```
+### HTTP Request
+`POST https://api.authnull.kloudlearn.com/api/v1/createVerifiableCredential HTTP/1.1`
+
+### Query Parameters
+Parameter | Description
+--------- | -----------
+id | The id property is optional and MAY be used to provide a unique identifier for the presentation.
+type | The type property is required and expresses the type of presentation, such as VerifiablePresentation.
+issuer | Name of the issuer
+issuanceDate | Date of issue raised.
+credentialSubject |  A set of objects that contain one or more properties that are each related to a subject of the verifiable credential.
+
+ ### HTTP Response
+ `succesfully Create Verifiable Credential in Authnull`
+
+## Presentation Request (PR)
+Presentations MAY be used to combine and present credentials. They can be packaged in such a way that the authorship of the data is verifiable. The data in a presentation is often all about the same subject, but there is no limit to the number of subjects or issuers in the data. The aggregation of information from multiple verifiable credentials is a typical use of verifiable presentations.
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/presentationRequest' \
+```
+
+```http
+PUT /api/v1/presentationRequest HTTP/1.1
+```
+
+```json
+{
+  "@context": [
+    "hhttps://kloudlearn.edu/issuers/565049",
+  ],
+  "id": "urn:uuid:3978344f-8596-4c3a-a978-8fcaba3903c5",
+  "type": ["VerifiablePresentation", "CredentialManagerPresentation"],
+  "verifiableCredential": [{  }],
+  "proof": [{  }]
+}
+```
+### HTTP Request
+`POST https://api.authnull.kloudlearn.com/api/v1/presentationRequest HTTP/1.1`
+
+### Query Parameters
+Parameter | Description
+--------- | -----------
+id | The id property is optional and MAY be used to provide a unique identifier for the presentation.
+type | The type property is required and expresses the type of presentation, such as VerifiablePresentation.
+issuer | Name of the issuer
+verifiableCredential | Date of issue raised.
+proof |  A set of objects that contain one or more.
+
+ ### HTTP Response
+ `succesfully Presentation Request`
+
+## Revoke Verifiable Credential (VC)
+As part of the process of working with verifiable credentials (VCs), you not only have to issue credentials, but sometimes you also have to revoke them. In this article, we go over the Status property part of the VC specification and take a closer look at the revocation process, why we may want to revoke credentials and some data and privacy implications.
+
+```shell
+curl --location --request POST 'https://api.authnull.kloudlearn.com/api/v1/revokeVerifiableCredential' \
+```
+
+```http
+POST /api/v1/revokeVerifiableCredential HTTP/1.1
+```
+
+```json
+{
+  "@context": [
+    "hhttps://kloudlearn.edu/issuers/565049",
+  ],
+  "id": "urn:uuid:3978344f-8596-4c3a-a978-8fcaba3903c5",
+  "type": ["VerifiablePresentation", "CredentialManagerPresentation"],
+  "verifiableCredential": [{  }],
+  "proof": [{  }]
+}
+```
+### HTTP Request
+`POST https://api.authnull.kloudlearn.com/api/v1/revokeVerifiableCredential HTTP/1.1`
+
+### Query Parameters
+Parameter | Description
+--------- | -----------
+id | The id property is optional and MAY be used to provide a unique identifier for the presentation.
+type | The type property is required and expresses the type of presentation, such as VerifiablePresentation.
+issuer | Name of the issuer
+verifiableCredential | Date of issue raised.
+proof |  A set of objects that contain one or more.
+
+### HTTP Response
+`succesfully Revoke Verifiable Credential`
+

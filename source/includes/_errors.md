@@ -11,5 +11,3 @@ Error Code | Meaning
 ---------- | -------
 400 | StatusBadRequest -- Your request is invalid.
 401 | StatusUnauthorized -- Your API key is wrong.
-403 | StatusForbidden -- The AuthNull requested is hidden for administrators only.
-404 | Not Found -- The specified AuthNull could not be found.

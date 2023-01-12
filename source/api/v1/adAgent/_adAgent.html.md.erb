@@ -1,0 +1,236 @@
+
+# AD Agent
+
+The Active Directory Agent is a Windows service that provides transparent user identification for Windows Active Directory-based networks. The Active Directory Agent (also called the "AD Agent") collects information from several sources simultaneously and populates a single session table that identifies the current user for each active workstation on the network
+The Oracle Enterprise Manager Console works with Intelligent Agents and a Communication Daemon to gather information about the network environment, communicate with network objects, and manage jobs and events. Topics discussed in this chapter include:
+
+1. Agents.
+
+2.Communication Daemon.
+
+3. Daemon Manager.
+
+### Daemon
+In multitasking computer operating systems, a daemon (/ˈdiːmən/ or /ˈdeɪmən/)[1] is a computer program that runs as a background process, rather than being under the direct control of an interactive user. Traditionally, the process names of a daemon end with the letter d, for clarification that the process is in fact a daemon, and for differentiation between a daemon and a normal computer program.
+## Installation 
+1. To install a new forest, you must be logged on as the local Administrator for the computer.
+
+2. To install a new child domain or new domain tree, you must be logged on as a member of the Enterprise Admins group.
+
+3. To install an additional domain controller in an existing domain, you must be a member of the Domain Admins group.
+
+
+## Configuration File
+1. The windows server of 2012 and above is needed.
+
+2. You need access to window server to install okta Active Directory agent.
+
+3.The agent host server must be a member of the same windows domain as your active directory.
+
+4. The windows server where the agent reside must be on at all time.
+
+## Save ActiveDirectory Configuration
+
+```shell
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/saveActiveDirectoryConfig" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/saveActiveDirectoryConfig HTTP/1.1
+```
+
+```json
+[
+ {
+    "directoryName":"xyz-xyz-xyz", 
+    "accountName":"abc-abc-abc", 
+    "appUrl":"www.kloudlearn.com", 
+    "domainId":"1",
+}
+]
+```
+
+Active Directory is a directory service or container which stores data objects on your local network environment. The service records data on users, devices, applications, groups, and devices in a hierarchical structure.
+Active Directory enables users to log on to and manage a variety of resources from one location. Login credentials are unified so that it is easier to manage multiple devices without having to enter account details to access each individual machine.
+
+### HTTP Request
+
+`POST api/v1/saveActiveDirectoryConfig HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+directoryName | Name of Directory.
+appUrl | App URL is url for app.
+accountName | Name of the Account.
+domainId | This is the unique ID assigned by the registry to the domain. 
+
+### HTTP response
+
+` ActiveDirectory Configure successfully saved`
+
+
+<aside class="success">
+ActiveDirectory Configure successfully saved
+</aside>
+
+## Restart the Agent
+ For Restart the agent what will happen is the installation will complete and all the api incluging the Active Directory will configure and import the group and the user to active directory of the AuthNull.
+
+## Import Users
+
+```shell
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/importUsers" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/importUsers HTTP/1.1
+```
+
+```json
+[
+{
+    "ldapHost":"ldap.forumsys.com",
+    "ldapPort":"389",
+    "baseDN":"dc=example,dc=com",
+    "filter":"(ou=italians)",
+    "bindDN":"BindDN",
+    "domainID":"91"
+}
+]
+```
+
+This will Import Users.
+
+### HTTP Request
+
+`POST api/v1/importUsers HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+ldapHost | LDAPHost.
+ldapPort | LDAPPort.
+baseDN | BaseDN.
+filter | Filter. 
+bindDN | BindDN. 
+domainID | DomainID. 
+
+### HTTP response
+
+`successfully Imported Users`
+
+
+<aside class="success">
+successfully Imported Users
+</aside>
+
+## Get Import Status
+
+```shell
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/getImportStatus" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/getImportStatus HTTP/1.1
+```
+
+```json
+[
+{
+    "DirectoryName":"ldap.forumsys.com"
+}
+]
+```
+
+This will Get Import Status.
+
+### HTTP Request
+
+`POST api/v1/getImportStatus HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+directoryName | Name of the Directory.
+
+### HTTP response
+
+`Imported status successfully`
+
+
+<aside class="success">
+Imported status successfully
+</aside>
+
+## Mapping api 
+For mapping api we need to reconfigure the api:
+
+## Reconfigure Active Directory
+
+```shell
+curl --location --request POST "https://api.authnull.kloudlearn.com/api/v1/reConfigure" \
+  -H "Authorization: AuthNull"
+```
+
+```HTTP
+POST api/v1/reConfigure HTTP/1.1
+```
+
+```json
+[
+FieldMappings: {
+
+email "john@kloudone.com",
+
+slack: "JohnDoe",
+
+username: "John",
+
+department: "IT",
+
+group: "groupA",
+
+subgroup: "subgroupA",
+
+roles: "admin",
+
+location: "India",
+
+region: "United States",
+
+primaryApp: "kloudone",
+
+fax: "1234567890"
+
+}
+]
+```
+
+This will reConfigure Active Directory.
+
+### HTTP Request
+
+`POST api/v1/reConfigure HTTP/1.1`
+
+### Query Parameters
+
+Parameter | Description
+--------- | ------- | -----------
+groupID | GrouId is the id of group.
+fieldMappings | FieldMappings is the mapping of the field.
+
+### HTTP response
+
+`successfully reConfigured Active Directory`
+
+
+<aside class="success">
+successfully reConfigured Active Directory
+</aside>
