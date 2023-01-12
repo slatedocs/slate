@@ -124,49 +124,6 @@ Parameter  | Description
 Endpoint  deleted.
 </aside>
 
-## Update Endpoint Group Users
-It updates Endpoint Users.
-
-```shell
-curl --location --request PUT 'https://api.authnull.kloudlearn.com/api/v1/epmGroupManagement/updateEPMGroupUsers' \
-```
-
-```http
-PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1
-```
-
-```json
-{
-  "domainId": 1,
-  "epmGroupId": "3",
-  "users":["Shawn","ben"]
-  }
-```
-### HTTP Request
-`PUT /api/v1/epmGroupManagement/updateEPMGroupUsers HTTP/1.1`
-
-### Query Parameter
-Parameter  | Description
---------- | -----------
- domainId| Domain Id of the instances
- epmGroupId | Id of the group
- users | Arreys of users
-
-### HTTP Response
-Endpoint Users Updated.
-
-```json
-{
-  "domainId": 1,
-  "epmGroupId": "3",
-  "users":["Shawn","ben"]
-  }
-```
-<aside class="success">
-Endpoint Users Updated.
-</aside>
-
-
 ## Update Endpoint Group Status
 It updates Endpoint status.
 
