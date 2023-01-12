@@ -21,7 +21,7 @@ If you tick the 'Remember this device' option, you are not required to input an 
 
 Analytics feature allows you to get some insights about your earning and spending transaction that happened in OY!. With this feature, you can get information about how much money you have spent and how much money you have earned in a time interval. You can see your transaction growth on daily, weekly, or monthly basis. You also can select the time range. You will get some insights about the trend of your business transaction. Therefore, this feature can help you to generate new business decision to grow your business.
 
-![Dashboard Analytics Image](images/desktop_analytics_spendingearning.png)
+![Dashboard Analytics Image](images/desktop_analytics_spend_earn.png)
 
 * You can select which time granularity and time period you want to see you transaction growth with. 
 * The increase and decrease indicator will compare your transaction performance from the time period you select vs the previous period. 
@@ -29,7 +29,7 @@ Analytics feature allows you to get some insights about your earning and spendin
 
 For VA, Payment Link, and E-wallet users. Now you can see the comparison of conversion between each payment method your end users are using. This data can be a great insight for you so you know which channel most of your users are using.
 
-![Dashboard Analytics Payment Method](images/desktop_analytics_payment_method.png)
+![Dashboard Analytics Payment Method](images/desktop_analytics_paymethod.png)
 
 ## User Management
 
@@ -395,23 +395,23 @@ Once you have connected your Accurate account in OY!, any transaction that happe
 1. Login to your OY! dashboard. In the sidebar, select the Integration menu.
 2. You will see Accurate menu. Click “Connect” to connect your Accurate account to OY!. You will be redirected to Accurate’s login page. 
 
-[Connect Accurate](images/desktop_accurate_connect.png)
+![Connect Accurate](images/desktop_accurate_connect.png)
 
 3. After login to your Accurate account, click Allow to allow conection between OY! and Accurate.
-[User Consent Accurate](images/desktop_accurate_authorize.png)
+![User Consent Accurate](images/desktop_accurate_authorize.png)
 
 4. Next, please select an Accurate database that you want to connect with your OY! account.
-[Accurate Select Database](images/desktop_accurate_select_database.png)
+![Accurate Select Database](images/desktop_accurate_select_database.png)
 
 5. Once you have successfully connected to Accurate, a notification in your OY! dashboard will appear and you can see your status is now "Connected/Terhubung".
 
-[Accurate Connected](images/desktop_accurate_connected_status.png)
+![Accurate Connected](images/desktop_accurate_connected_status.png)
 
 6. Upon success connecting to Accurate, we will create a new Bank Account into your Accurate account, named “OY! balance” in which any transaction that happened in OY! will be recorded there.
 
 7. In your Accurate Dashboard, you can see that OY! Indonesia app will be listed in the Accurate Store >> Aplikasi Saya menu.
-[Accurate Listing](images/desktop_accurate_listing.png)
-[Accurate Aplikasi saya](images/desktop_accurate_aplikasisaya.png)
+![Accurate Listing](images/desktop_accurate_listing.png)
+![Accurate Aplikasi saya](images/desktop_accurate_aplikasisaya.png)
 
 8. Note: A fee of IDR 20k/month will be added to your Accurate billing.
 
@@ -420,7 +420,7 @@ Once you have connected your Accurate account in OY!, any transaction that happe
 2. Click on "Configure" to map your Chart of Account (Akun Perkiraan).
 2. Then, map each product to the corresponding Account. Any transaction using each product will be put into the Chart of Accounts you defined on this page. Note: For Bulk Disbursement, you also can define on the create campaign page. 
 
-[Accurate Config COA](images/desktop_accurate_config_coa.png)
+![Accurate Config COA](images/desktop_accurate_config_coa.png)
 
 3. You can change the CoA mapping anytime as needed, just go to Integration >> Accurate >> Configure.
 
@@ -432,7 +432,7 @@ Once you have connected your Accurate account in OY!, any transaction that happe
 ### Disconnected your Accurate 
 1. To disconnect your Accurate account from OY!, open the Integration menu on the sidebar. Then select “Disconnect”.
 
-[Accurate Connected](images/desktop_accurate_connected_status.png)
+![Accurate Connected](images/desktop_accurate_connected_status.png)
 
 2. Then, you will be disconnected from Accurate. Any transaction that you execute via OY! will not be recorded in Accurate.
 3. Note: To remove the bill, please make sure you also uninstall OY! app in your Accurate dashboard.
