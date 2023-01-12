@@ -4,10 +4,14 @@
 
 To be able to login to Dashboard;
 
-1. Make sure the username and password that you input are correct
-2. Click 'Request OTP' button and input the OTP in the PIN Authentication field. The OTP will be sent to the email associated with your username.
+1. Go to https://desktop-business.oyindonesia.com/login. 
+2. Make sure the username and password that you input are correct.
 
-![Login OTP](images/Login_OTP.jpg)
+![Login page](images/desktop_login.png)
+
+3. You will be redirected to the input the OTP page. The OTP will be sent to the email associated with your username. Then, input the OTP number.
+
+![Login OTP](images/desktop_login_otp.png)
 
 ![Email OTP](images/email_otp.png)
 
@@ -67,16 +71,14 @@ Here's how you can access the top-up menu on your dashboard;
 
 1.  Login to Dashboard.
 2.  Go to Transaction Report -> Account Statement.
-3.  Click the 'How To Top Up' button.
+3.  Click the 'How To Top Up' button. There are 2 ways in which you can top up your OY account:
 
-There are 2 ways in which you can top up your OY account:
-
-- Top Up via Virtual Account
+### Top Up via Virtual Account
   The Virtual Account number information can be found on 'How to Top Up Balance via VA' tab once you click the 'How To Top Up' button. If you choose to top up via VA, the topped up amount will be credited into your account real-time and you do not need to send any manual confirmation to OY
 
-![VA Topup](images/vatopupnobni.png)
+![VA Topup](images/desktop_topup.png)
 
-- Manual Top Up via Bank Transfer
+### Manual Top Up via Bank Transfer
   Aside from Virtual Account, you can also transfer the top up money to OY's giro account. If you choose to top up via this method, you need to perform a manual confirmation in order that your money can be credited into your account.
 
 After you have completed the fund transfer to OY! Indonesia, you need to perform the following steps;
@@ -105,7 +107,7 @@ After you have completed the fund transfer to OY! Indonesia, you need to perform
 
 ![Success Failed Confirmation](images/success_failed_confirmation.png)
 
-- Top Up using BCA via Unique Code
+### Top Up using BCA with Unique Code
   Now, we provide you with a new method for BCA. Top-up using BCA with a unique code allows you to top up your balance in a real-time manner. You do not have to confirm manually as we will automatically detect your top-up and reflect it to your balance.
 
 Steps:
