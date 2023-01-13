@@ -227,8 +227,6 @@ Refers to the options available for single-select and multi-select custom fields
 
 ## POST: Create Custom Field
 
-NOTE: this endpoint currently only supports creating custom fields for applications.
-
 ```shell
 curl -X POST 'https://harvest.greenhouse.io/v1/custom_fields/'
 -H "Content-Type: application/json"
