@@ -348,7 +348,7 @@ Please note that if you subscribe to L1 channel without specifying the symbols l
 
 ## l2_orderbook
 
-**l2_orderbook** channel provides the complete level2 orderbook for the sepecified list of symbols at a pre-determined frequency. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols on a single connection. Unlike L1 orderbook channel, L2 ordebook channel doesnt accept prodcut category names or "all" as valid synbols. 
+**l2_orderbook** channel provides the complete level2 orderbook for the sepecified list of symbols at a pre-determined frequency. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols on a single connection. Unlike L1 orderbook channel, L2 orderbook channel does not accept product category names or "all" as valid symbols. 
 Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
 
 > L2 Orderbook Sample
@@ -383,6 +383,51 @@ Please note that if you subscribe to L2 channel without specifying the symbols l
   "timestamp":1671600134033215,
 }
 ```
+
+## l2_updates
+
+**l2_updates** channel provides initial snapshot and then incremental orderbook data. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols on a single connection. l2_updates channel does not accept product category names or "all" as valid symbols. 
+Please note that if you subscribe to l2_updates channel without specifying the symbols list, you will not receive any data.
+
+```
+// Initial snapshot response
+{
+  "action":"snapshot",
+  "asks":[["16919.0", "1087"], ["16919.5", "1193"], ["16920.0", "510"]],
+  "bids":[["16918.0", "602"], ["16917.5", "1792"], ["16917.0", "2039"]],
+  "timestamp":1671140718980723,
+  "sequence_no":6199,
+  "symbol":"BTCUSDT",
+  "type":"l2_updates"
+}
+
+// Incremental update response
+{
+  "action":"update",
+  "asks":[["16919.0", "0"], ["16919.5", "710"]],
+  "bids":[["16918.5", "304"]],
+  "sequence_no":6200,
+  "symbol":"BTCUSDT",
+  "type":"l2_updates",
+  "timestamp": 1671140769059031
+}
+```
+
+### How to maintain orderbook locally using this channel:
+
+1) When you subscribe to this channel, the first message with "action"= "snapshot" resembles the complete l2_orderbook at this time. "asks" and "bids" are arrays of ["price", "size"]. (size is number of contracts at this price)
+
+2) After the initial snapshot, messages will be with "action" = "update", resembling the difference between current and previous orderbook state. "asks" and "bids" are arrays of ["price", "new size"].
+Case price already exists -> if the size is 0, delete this price level. If the size changes, replace the size with new size.
+e.g. for the above snapshot and update messages: in the ask side, price level of "16919.0" will be deleted. size at price level "16919.5" will be changed from "1193" to "710".
+Case price doesn’t exists -> insert the price level.
+e.g. for the above snapshot and update messages: in the bids side there was no price level of "16918.5", so add a new level of "16918.5" of size "304".
+
+1) "asks" are sorted in increasing order of price. "bids" are sorted in decreasing order of price. This is true for both "snapshot" and "update" messages.
+
+2) "sequence_no" field must be used to check any messages were dropped. "sequence_no" must be +1 of the last message.
+e.g. In the snapshot message it is 6199, and the update message has 6200. The next update message must have 6201.
+If you miss a message, resubscribe to the channel, and start from the beginning.
 
 ## all_trades
 
