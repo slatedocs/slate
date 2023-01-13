@@ -348,7 +348,7 @@ Please note that if you subscribe to L1 channel without specifying the symbols l
 
 ## l2_orderbook
 
-**l2_orderbook** channel provides the complete level2 orderbook for the sepecified list of symbols at a pre-determined frequency. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols on a single connection. Unlike L1 orderbook channel, L2 ordebook channel doesnt accept prodcut category names or "all" as valid synbols. 
+**l2_orderbook** channel provides the complete level2 orderbook for the sepecified list of symbols at a pre-determined frequency. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols on a single connection. Unlike L1 orderbook channel, L2 orderbook channel does not accept product category names or "all" as valid symbols. 
 Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
 
 > L2 Orderbook Sample
@@ -386,7 +386,8 @@ Please note that if you subscribe to L2 channel without specifying the symbols l
 
 ## l2_updates
 
-**l2_updates** channel provides initial snapshot and then incremental orderbook data.
+**l2_updates** channel provides initial snapshot and then incremental orderbook data. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols on a single connection. l2_updates channel does not accept product category names or "all" as valid symbols. 
+Please note that if you subscribe to l2_updates channel without specifying the symbols list, you will not receive any data.
 
 ```
 // Initial snapshot response
