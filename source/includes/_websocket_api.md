@@ -5,6 +5,7 @@ Websocket api can be used for the following use cases
 - Get real time feed of market data, this includes L2 and L3 orderbook and recent trades.
 - Get price feeds - Mark prices of different contracts, price feed of underlying indexes etc.
 - Get account specific notifications like fills, liquidations, [ADL](https://www.delta.exchange/user-guide/docs/trading-guide/ADL/) and PnL updates.
+- Get account specific updates on orders ,positions and wallets.
 
 Access url
 
@@ -12,15 +13,16 @@ Access url
 - Testnet - wss://testnet-socket.delta.exchange
 
  You will be disconnected, if there is no activity within 60 after making connection.
+
 # Subscribing to Channels
 
 ## Subscribe
 
 To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for.
 
-To specify contracts within each channel, just pass a list of symbols inside the channel payload.
+To specify contracts within each channel, just pass a list of symbols inside the channel payload. Mention ***["all"]*** in symbols if you want to receive updates across all the contracts. Please note that snapshots are sent only for specified symbols,meaning no snapshots are sent for symbol: ***"all"***.
 
-Once a subscribe message is received the server will respond with a subscriptions message that lists all channels you are subscribed to. Subsequent subscribe messages will add to the list of subscriptions.
+Once a subscribe message is received the server will respond with a subscriptions message that lists all channels you are subscribed to. Subsequent subscribe messages will add to the list of subscriptions. 
 
 > Subscription Sample
 
@@ -43,6 +45,12 @@ Once a subscribe message is received the server will respond with a subscription
                 "symbols": [
                     "BTCUSD_28Dec"
                 ]
+            },
+            {
+                "name": "funding_rate",
+                "symbols": [
+                    "all"
+                ]
             }
         ]
     }
@@ -63,6 +71,12 @@ Once a subscribe message is received the server will respond with a subscription
             "symbols": [
                 "BTCUSD_28Dec",
                 "ETHBTC_28Dec"
+            ]
+        },
+        {
+            "name": "funding_rate",
+            "symbols": [
+                "all"
             ]
         }
     ]
@@ -232,9 +246,43 @@ ws.send({
 
 The ticker channel provides price change data for the last 24 hrs (rolling window). It is published every 5 seconds.
 
-On subscribing to **v2/ticker** channel, socket server will emit messages with type 'ticker' in response.
+You need to send the list of symbols for which you would like to subscribe to ticker channel. You can also subscribe to 
+ticker updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to ticker channel without specifying the symbols list, you will not receive any data.
 
 > Ticker Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "v2/ticker",
+                "symbols": [
+                    "BTCUSD_28Dec"
+                ]
+            }
+        ]
+    }
+}
+// Subscribe to all the symbols
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "v2/ticker",
+                "symbols": [
+                    "all"
+                ]
+            }
+        ]
+    }
+}
+```
 
 ```
 // Response
@@ -247,7 +295,7 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
     "product_id": 56,
     "size": 1254631,                        // num of contracts traded
     "spot_price": "0.00001326",             
-    "symbol": "ADABTC",
+    "symbol": "BTCUSD_28Dec",
     timestamp: 1595242187705121,            // in us
     "turnover": 16.805033569999996,         // turnover reported in settling symbol
     "turnover_symbol": "BTC",               // settling symbol
@@ -256,21 +304,83 @@ On subscribing to **v2/ticker** channel, socket server will emit messages with t
 }
 ```
 
+## l1_orderbook
+
+**l1_orderbook** channel provides level1 orderbook updates. You need to send the list of symbols for which you would like to subscribe to L1 orderbook. You can also subscribe to 
+orderbook updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to L1 channel without specifying the symbols list, you will not receive any data.
+
+> L1 Orderbook Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "l1_orderbook",
+                "symbols": [
+                    "ETHUSDT"
+                ]
+            }
+        ]
+    }
+}
+```
+
+```
+// l1 orderbook Response
+{
+  "ask_qty":"839",
+  "best_ask":"1211.3",
+  "best_bid":"1211.25",
+  "bid_qty":"772",
+  "last_sequence_no":1671603257645135,
+  "last_updated_at":1671603257623000,
+  "product_id":176,"symbol":"ETHUSDT",
+  "timestamp":1671603257645134,
+  "type":"l1_orderbook"
+}
+```
+
+
 ## l2_orderbook
 
-**l2_orderbook** channel provides snapshot of the latest level2 orderbook.
+**l2_orderbook** channel provides the complete level2 orderbook for the sepecified list of symbols at a pre-determined frequency. The frequency of updates may vary for different symbols. You can only subscribe to upto 20 symbols on a single connection. Unlike L1 orderbook channel, L2 ordebook channel doesnt accept prodcut category names or "all" as valid synbols. 
+Please note that if you subscribe to L2 channel without specifying the symbols list, you will not receive any data.
 
 > L2 Orderbook Sample
 
 ```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "l2_orderbook",
+                "symbols": [
+                    "ETHUSDT"
+                ]
+            }
+        ]
+    }
+}
+```
+
+```
 // l2 orderbook Response
 {
-    "symbol": "BTCUSD_28Dec",
-    "product_id": 3,
-    "type": "l2_orderbook",
-    "timestamp": 1561634049751430,
-    "buy": [{"limit_price":"0.0014577","size":62},{"limit_price":"0.0014571","size":28}],
-    "sell": [{"limit_price":"6229.0","size":15964},{"limit_price":"6229.5","size":3504},{"limit_price":"6230.0","size":15964},{"limit_price":"6231.0","size":15957}]
+  "type":"l2_orderbook"
+  "symbol":"ETHUSDT",
+  "product_id": 176,
+  "buy": [{"limit_price":"101.5","size":10,"depth":"10"},{"limit_price":"101.0","size":28,"depth":"38"}],
+  "sell": [{"limit_price":"102.0","size":20,"depth":"20"},{"limit_price":"102.5","size":"25","depth":"45"},{"limit_price":"103.0","size":30,"depth":"75"}],
+  "last_sequence_no": 1671600134033215,
+  "last_updated_at": 1671600133884000,
+  "timestamp":1671600134033215,
 }
 ```
 
@@ -321,11 +431,34 @@ If you miss a message, resubscribe to the channel, and start from the beginning.
 ## all_trades
 
 **all_trades** channel provides a real time feed of all trades (fills).
+You need to send the list of symbols for which you would like to subscribe to all trades channel. You can also subscribe to
+all trades updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to all_trades channel without specifying the symbols list, you will not receive any data.
+
+> All Trades Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "all_trades",
+                "symbols": [
+                    "BTCUSD_28Dec"
+                ]
+            }
+        ]
+    }
+}
+```
 
 ```
 // All Trades Response
 {
-    symbol: "BNBBTC_30Nov",
+    symbol: "BTCUSD_28Dec",
     price: "0.0014579",
     size: 100,
     type: "all_trades",
@@ -337,25 +470,76 @@ If you miss a message, resubscribe to the channel, and start from the beginning.
 
 ## mark_price
 
-**mark_price** channel provides a real time feed of mark price. This is the price on which all open positions are marked for liquidation.
+**mark_price** channel provides a real time feed of mark price. This is the price on which all open positions are marked for liquidation.Please note that the product symbol is prepended with a "MARK:" to subscribe for mark price.
+You need to send the list of symbols for which you would like to subscribe to mark price channel. You can also subscribe to 
+mark price updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to mark price channel without specifying the symbols list, you will not receive any data.
 
-Please note that the product symbol is prepended with a "MARK:" to subscribe for mark price.
+> Mark Price Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "mark_price",
+                "symbols": [
+                    "MARK:C-BTC-13000-301222"
+                ]
+            }
+        ]
+    }
+}
+```
 
 ```
 // Mark Price Response
 {
-    symbol: "MARK:BNBBTC_30Nov",
-    product_id: 7,
-    type: "mark_price",
-    price: "0.00401010",
-    annualized_basis: "25.12",    // in %
-    timestamp: 1561634049751430
+    "ask_iv":null,
+    "ask_qty":null,
+    "best_ask":null,
+    "best_bid":"9532",
+    "bid_iv":"5.000",
+    "bid_qty":"896",
+    "delta":"0",
+    "gamma":"0",
+    "implied_volatility":"0",
+    "price":"3910.088012",
+    "price_band":{"lower_limit":"3463.375340559572217228510815","upper_limit":"4354.489445440427782771489185"},
+    "product_id":39687,
+    "rho":"0",
+    "symbol":"MARK:C-BTC-13000-301222",
+    "timestamp":1671867039712836,
+    "type":"mark_price",
+    "vega":"0"
 }
 ```
 
 ## spot_price
 
-**spot_price** channel provides a real time feed of the underlying index prices.
+**spot_price** channel provides a real time feed of the underlying index prices. Specifying symbols when subscribing to spot_price is necessary to receive updates. No updates are sent for symbol: ***"all"***
+
+> Spot Price Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "spot_price",
+                "symbols": [
+                    ".DEBNBBTC"
+                ]
+            }
+        ]
+    }
+}
+```
 
 ```
 // Spot Price Response
@@ -369,7 +553,27 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 
 ## spot_30mtwap_price
 
-**spot_30mtwap_price** channel provides a real time feed of the 30 min twap of underlying index prices. This is the price used for settlement of options.
+**spot_30mtwap_price** channel provides a real time feed of the 30 min twap of underlying index prices. 
+This is the price used for settlement of options. Specifying symbols when subscribing to spot_30mtwap_price is necessary to receive updates. No updates are sent for symbol: ***"all"***
+
+> Spot Price 30mtwap Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "spot_30mtwap_price",
+                "symbols": [
+                    ".DEXBTUSDT"
+                ]
+            }
+        ]
+    }
+}
+```
 
 ```
 // Spot 30 minutes twap Price Response
@@ -385,10 +589,34 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 
 **funding_rate** channel provides a real time feed of funding rates for perpetual contracts.
 
+You need to send the list of symbols for which you would like to subscribe to funding rate channel. You can also subscribe to funding rate updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to funding rate channel without specifying the symbols list, you will not receive any data.
+
+ 
+> Funding Rate Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "funding_rate",
+                "symbols": [
+                    "BTCUSD_28Dec"
+                ]
+            }
+        ]
+    }
+}
+```
+
 ```
 // Funding Rate Response
 {
-    symbol: "BNBBTC_30Nov",
+    symbol: "BTCUSD_28Dec",
     product_id: 7,
     type: "funding_rate",
     funding_rate: "-0.00401010",  // in %
@@ -400,6 +628,20 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 This channel provides updates when markets are disrupted and resumed. On opening, we conduct a single price auction and auction starting and finish events are also published on this channel. To subscribe, you dont need to pass the symbol list. This channel automatically subscribes to all markets by default.
 
 >  Product Updates Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "product_updates"
+            }
+        ]
+    }
+}
+```
 
 ```
 // Market Disruption Response
@@ -456,6 +698,21 @@ This channel provides updates on system wide announcements like scheduled mainte
 
 > Announcements Sample
 
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "announcements"
+            }
+        ]
+    }
+}
+```
+
 ```
 // Maintenance Started Response
 {
@@ -480,6 +737,10 @@ Subscribe to **candlestick_${resolution}** channel for updates.
 
 List of supported resolutions
 ["1m","3m","5m","15m","30m","1h","2h","4h","6h","12h","1d","1w","2w","30d"]
+ 
+You need to send the list of symbols for which you would like to subscribe to candlesticks channel. You can also subscribe to candlesticks
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+Please note that if you subscribe to candlsticks channel without specifying the symbols list, you will not receive any data.
 
 >OHLC candles update sample
 
@@ -487,7 +748,7 @@ List of supported resolutions
 Sample Subscribe Request
 {
   "name": "candlestick_1m",                 // "candlestick_" + resolution
-  "symbols": [ "BTCUSD", "ETHUSDT" ]        // product symbol
+  "symbols": [ "BTCUSDT" ]        // product symbol
 }
 
 
@@ -501,7 +762,7 @@ Sample feed response
     "low": 9220,
     "open": 9221,
     "resolution": "1m",
-    "symbol": "BTCUSD_P",
+    "symbol": "BTCUSDT",
     "timestamp": 1596015289339699,
     "type": "candlestick_1m",
     "volume": 1.2
@@ -513,8 +774,23 @@ Sample feed response
 Private channels require clients to authenticate.
 
 ## Margins
-Channel provides updates for margin blocked for different assets, these updates are provided only on change of margin.
+This channel provides updates on wallet balances. Updates are sent for a specific asset whenever there is a change in wallet balances and margins for that asset. 
 
+> Margins Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "margins"
+            }
+        ]
+    }
+}
+```
 ```
 // margin update
 {
@@ -533,9 +809,43 @@ Channel provides updates for margin blocked for different assets, these updates 
 ```
 
 ## Positions
-Channel provides updates for change in position. Need to pass list of product symbols while subscribing. these updates are provided only on change of position.
+This channel provides updates whenever there is any change in your open positions.
 
 A snapshot of current open position will be sent after subscribing a symbol, incremental updates will be sent on trade executions.
+You need to send the list of symbols for which you would like to subscribe to positions channel. You can also subscribe to positions 
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to positions channel without specifying the symbols list, you will not receive any data.
+
+> Positions Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "positions",
+                "symbols": ["BTCUSD_29Mar"]
+            }
+        ]
+    }
+}
+
+//Subscribe for all the symbols
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "positions",
+                "symbols": ["all"]
+            }
+        ]
+    }
+}
+```
 
 ```
 // Position update
@@ -597,6 +907,28 @@ Any of the following events can be tracked by the reason field in this channel
 - liquidation
 - self_trade
 
+
+You need to send the list of symbols for which you would like to subscribe to orders channel. You can also subscribe to orders
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to orders channel without specifying the symbols list, you will not receive any data.
+
+> Orders Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "orders",
+                "symbols": ["BTCUSD_29Mar"]
+            }
+        ]
+    }
+}
+```
 ```
 // Order update
 
@@ -610,6 +942,7 @@ Any of the following events can be tracked by the reason field in this channel
     "client_order_id": ""               // Client order id
     "size": 100,                        // Order size
     "unfilled_size": 55,                // Unfilled size
+    "average_fill_price": "8999.00"     // nil for unfilled orders
     "limit_price": "9000.00"                  // Price of the order
     "side": "buy"                       // Order side (buy or sell)
     "cancellation_reason": "cancelled_by_user"        // Cancellation reason in case of cancelled order, null otherwise
@@ -648,6 +981,7 @@ Any of the following events can be tracked by the reason field in this channel
       "time_in_force": "gtc",
       "trail_amount": null,
       "unfilled_size": 1,
+      "average_fill_price": "8999.00",
       "user_id": 1132
     }
   ],
@@ -664,7 +998,27 @@ Channel provides updates for fills. Need to pass list of product symbols while s
 All updates will have incremental seq_id. seq_id is separate for each symbol.
 
 Auto Deleverage Liquidations of a position can be tracked by reason: "adl" in the user_trades channel.
+You need to send the list of symbols for which you would like to subscribe to user trades channel. You can also subscribe to user trades
+updates for category of products by sending [category-names](/#schemaproductcategories). For example: to receive updates for put options and futures, refer this: `{"symbols": ["put_options", "futures"]}`.
+If you would like to subscribe for all the listed contracts, pass: `{ "symbols": ["all"] }`.
+Please note that if you subscribe to user trades channel without specifying the symbols list, you will not receive any data.
 
+> User Trades Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "user_trades",
+                "symbols": ["BNBBTC_30Nov"]
+            }
+        ]
+    }
+}
+```
 ```
 // user_trades
 {
@@ -693,6 +1047,22 @@ For detailed description of portfolio magrgin please see [user guide](https://gu
 
 UCF: is unrealised cashflows of your portfolio. These are the cashflows (negative for outgoing and positive for incoming) that will take place if all the positions in your portfolio are closed at prevailing mark prices.
 
+> Portfolio Margin Sample
+
+```
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "portfolio_margins",
+                "symbols": [".DEXBTUSDT"]
+            }
+        ]
+    }
+}
+```
 ```
 // portfolio margin update
 
@@ -764,12 +1134,26 @@ Keys -
     <dd>It is comprised of sum of futures_margin_floor, long_options_margin_floor, short_options_margin_floor</dd>
 </dl>
 
-
 ## MMP Trigger
-Channel provides updates when MMP is triggered. MMP should be enabled by the Delta team for this channel to work. 
+Channel provides updates when MMP is triggered. Market maker protection is available to registered market makers by default. Others can reach out to support for getting access to MMP. More info [here](https://guides.delta.exchange/delta-exchange-user-guide/market-makers-guide/market-maker-protection).  
+
+> MMP Trigger Sample
 
 ```
-// mmp_trigger
+//Subscribe
+{
+    "type": "subscribe",
+    "payload": {
+        "channels": [
+            {
+                "name": "mmp_trigger"
+            }
+        ]
+    }
+}
+```
+```
+// mmp_trigger response
 {
     user_id: 1,
     asset: "BTC",
