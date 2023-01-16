@@ -361,12 +361,13 @@ Preview for Notification
 - Once you have successfully connected to Xero, you will be directed to a page to map your Chart of Account.
 ![Configure Account Page](images/xero/coa_mapping.png)
 
-- Then, map each product to the corresponding Account. Any transaction using each product will be put into the chart of account you defined in this page. Note: For Bulk Disbursement, you also can define in the create campaign page. 
+- Then, map each product to the corresponding Account. Any transaction using each product will be put into the chart of account you defined in this page. 
 ![Mapping Modal](images/xero/coa_mapping_modal.png)
 ![Mapping Modal](images/xero/coa_mapping_modal_2.png)
 
-Preview for Mapping in Create Campaign Page
-![Mapping in Create Campaign Page](images/xero/bulk_disburse_with_xero.png)
+Note: Special for Bulk Disbursement product, you can define the Chart of Account later in the campaign creation process - Step 3 Input Detail page. In the Transaction Category field.
+
+![Bulk Disbursement CoA](images/desktop_accountingapp_bulkdisbursement.png)
 
 - You can change the CoA mapping anytime as needed, just go to Integration >> Xero >> Configuration.
 
@@ -379,6 +380,7 @@ Preview for Mapping in Create Campaign Page
 - In this version, any tax will be excluded. Means that you will need to input manually the tax invoice you obtained from OY! team to your Xero.
 ![Recorded Transaction](images/xero/recorded_transaction.png)
 ![Recorded Transaction](images/xero/recorded_transaction_2.png)
+
 
 ### Disconnected your Xero 
 
@@ -417,17 +419,23 @@ Once you have connected your Accurate account in OY!, any transaction that happe
 
 ### Map your Chart of Account (Akun Perkiraan)
 
-2. Click on "Configure" to map your Chart of Account (Akun Perkiraan).
-2. Then, map each product to the corresponding Account. Any transaction using each product will be put into the Chart of Accounts you defined on this page. Note: For Bulk Disbursement, you also can define on the create campaign page. 
+1. Click on "Configure" to map your Chart of Account (Akun Perkiraan).
+2. Then, map each product to the corresponding Account. Any transaction using each product will be put into the Chart of Accounts you defined on this page. 
 
 ![Accurate Config COA](images/desktop_accurate_config_coa.png)
 
+Note: Special for Bulk Disbursement product, you can define the Chart of Account later in the campaign creation process - Step 3 Input Detail page. In the Transaction Category field.
+
+![Bulk Disbursement CoA](images/desktop_accountingapp_bulkdisbursement.png)
+
 3. You can change the CoA mapping anytime as needed, just go to Integration >> Accurate >> Configure.
+
 
 ### Record Transaction to Accurate
 1. Now, your OY! account has been connected to your Accurate account and each product has been mapped to its corresponding Chart of Account.
 2. Any successful transaction that happened in OY! will be recorded to Accurate with the corresponding Account you defined in the Mapping Account menu.
 3. Transactions in OY! will be recorded in Pengeluaran or Pemasukan module, under OY! Balance bank account.
+
 
 ### Disconnected your Accurate 
 1. To disconnect your Accurate account from OY!, open the Integration menu on the sidebar. Then select “Disconnect”.
