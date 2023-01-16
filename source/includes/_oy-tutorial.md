@@ -232,9 +232,10 @@ Multi Account Management (Children) is a feature that can help you handle comple
 With this feature you will be able to :
 
 1. Have a detailed report on transactions performed by all of children account
-2. Distribute balance between the parent account to children account
-3. Use child account balance to disburse funds
-4. Free admin fee to disburse between related user
+2. Distribute balance between the parent account to children account.
+3. Use child account balance to disburse funds.
+4. Receive money using Payment Link on behalf of child's username.
+5. Free admin fee to disburse between related user.
 
 ### **Registration & Setup**
 
@@ -298,7 +299,8 @@ In Multi Account Management, you will be able to do disbursement using your chil
 2. Select your child balance as a source of fund to do disbursement by selecting “My Subsdiary Balance” and choose the appropriate account.
 3. After choosing the balance you could proceed to do disbursement just like regular disbursement
 
-![Image: Choose SoF - 2. Choose SoF subsidiary.png](../images/Choose_SoF_2_Choose_SoF_subsidiary.png) ![Image: Choose SoF - 4. Type or search sub.png](../images/Choose_SoF_4_Type_or_search_sub.png)
+![Image: Choose SoF - 2. Choose SoF subsidiary.png](images/desktop_disbursement_child_balance_2.png) 
+![Image: Choose SoF - 4. Type or search sub.png](images/desktop_disbursement_child_balance.png)
 
 **D. Create a payment link on behalf of a child account**
 
