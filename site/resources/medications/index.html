@@ -13,7 +13,7 @@
     
     
       
-        <title>Observation (Labs) - Clinical Research FHIR Guide</title>
+        <title>Medication Statement - Clinical Research FHIR Guide</title>
       
     
     
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Observation (Labs)
+              Medication Statement
             
           </span>
         </div>
@@ -293,20 +293,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../medications/" class="md-nav__link">
-        Medication Statement
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -317,12 +303,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Observation (Labs)
+          Medication Statement
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Observation (Labs)
+        Medication Statement
       </a>
       
         
@@ -389,6 +375,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-result/" class="md-nav__link">
+        Observation (Labs)
+      </a>
     </li>
   
 
@@ -592,14 +592,12 @@
                 
 
 
-  <h1>Observation (Labs)</h1>
+  <h1>Medication Statement</h1>
 
-<p>Laboratory data are mapped to FHIR's <a href="http://hl7.org/fhir/StructureDefinition/Observation" target="blank">Observation</a> resource. Laboratory data are obtained via HL7 message from MSK's Laboratory Information System (LIS). Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.</p>
-<blockquote>
-<p><strong><em>NOTE:</em></strong> If available in the source data, a LOINC code is mapped to <code>code.coding.code</code>, otherwise the <code>code.coding.code</code> does not appear in the response. Please refer to the protocol specific Data Transfer Specification for more information.</p>
-</blockquote>
+<p>Medicatation data is a complex data set that is captured in various MSK source systems (i.e. pharmacy, administered, etc.). To provide end users with the cleanest data set possible, MSK standardizes medication data to the <a href="https://www.ohdsi.org/data-standardization/" target="blank">OMOP Common Data Model</a> and for simplicity, makes it available through one FHIR resource - <a href="http://hl7.org/fhir/2021Mar/medicationstatement.html" target="blank">Medication Statement</a>. </p>
+<p>This is not a visit specific data element and does not require any adjudication by study staff.</p>
 <h2 id="request">Request</h2>
-<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v2/crit/blaze/api/observation
+<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v2/crit/blaze/api/MedicationStatement
 -H Authorization: Bearer {access_token} 
 </code></pre></div>
 <h3 id="query-parameters">Query Parameters</h3>
@@ -613,12 +611,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>category</code></td>
-<td>string</td>
-<td>true</td>
-<td>For lab data use <code>laboratory</code></td>
-</tr>
 <tr>
 <td><code>researchstudy</code></td>
 <td>string</td>
@@ -643,7 +635,7 @@
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestClient</span><span class="p">(</span><span class="s">&quot;BASE_URL_PLUS_API_PATH?category={A2}&amp;x-partnerid={A3}&amp;researchstudy={A1}&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestClient</span><span class="p">(</span><span class="s">&quot;BASE_URL_PLUS_API_PATH?researchstudy={A1}&amp;x-partnerid={A2}&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="n">client</span><span class="p">.</span><span class="n">Timeout</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">-</span><span class="m">1</span><span class="p">;</span><span class="w"></span>
 <span class="kt">var</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">GET</span><span class="p">);</span><span class="w"></span>
 <span class="n">request</span><span class="p">.</span><span class="n">AddHeader</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bearer {ACCESS_TOKEN}&quot;</span><span class="p">);</span><span class="w"></span>
@@ -669,7 +661,7 @@
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
 <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{ACCESS_TOKEN}</span><span class="s1">&#39;</span>
 <span class="p">}</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;API_PATH?category=</span><span class="si">{A2}</span><span class="s2">&amp;x-partnerid=</span><span class="si">{A3}</span><span class="s2">&amp;researchstudy=</span><span class="si">{A1}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;API_PATH?researchstudy=</span><span class="si">{A1}</span><span class="s2">&amp;x-partnerid=</span><span class="si">{A2}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
@@ -680,147 +672,174 @@
 <h2 id="response">Response</h2>
 <details class="success">
 <summary>Successful Payload Example</summary>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bundle&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://datapedia.mskcc.org/index.php/IDB.PROTOCOL&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bundle&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#IDB.Protocol&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span><span class="w"></span>
+<span class="p">},</span><span class="w"></span>
+<span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchset&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">453</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/MedicationStatement?researchstudy=FHIR-T&amp;page=1&quot;</span><span class="w"></span>
 <span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchset&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&amp;researchstudy=FHIR-T&amp;x-partnerid={A3}&amp;page=1&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w">   </span>
-<span class="w">            </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;first&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&amp;researchstudy=FHIR-T&amp;x-partnerid={A3}&amp;page=1&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;last&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previous&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;next&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;first&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/MedicationStatement?researchstudy=FHIR-T&amp;page=1&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;last&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/MedicationStatement?researchstudy=FHIR-T&amp;page=10&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previous&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;null&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;next&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/MedicationStatement?researchstudy=FHIR-T&amp;page=2&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">],</span><span class="w"></span>
 <span class="nt">&quot;entry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009814</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009814&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/MedicationStatement?researchstudy=FHIR-T&amp;Id=1294555&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009814</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Observation&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MedicationStatement&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1294555&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;extension&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://hl7.org/fhir/StructureDefinition/workflow-researchStudy&quot;</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://hl7.org/fhir/StructureDefinition/workflow-researchStudy&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C3861001&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40: end datetime derived: populated with idb.hml_client_prescription_hx.hcpx_hx_discontinued_dt when hcpr_status_type = 3 (Discontinued),18: days_supply derived: calculated by formula idb.hml_client_prescription.hcpr_duration_amt * (idb.hml_client_prescri&quot;</span><span class="w"></span>
 <span class="w">                </span><span class="p">}</span><span class="w"></span>
 <span class="w">            </span><span class="p">],</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009814</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;use&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;official&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1294555drug_exposure&quot;</span><span class="w"></span>
 <span class="w">                </span><span class="p">}</span><span class="w"></span>
 <span class="w">            </span><span class="p">],</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;final&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">                        </span><span class="p">{</span><span class="w"></span>
-<span class="w">                            </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://terminology.hl7.org/CodeSystem/observation-category&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                            </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laboratory&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                            </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span><span class="w"></span>
-<span class="w">                        </span><span class="p">}</span><span class="w"></span>
-<span class="w">                    </span><span class="p">],</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">],</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;medicationCodeableConcept&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                    </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://loinc.org&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;704-7&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABAS&quot;</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.nlm.nih.gov/research/umls/rxnorm/index.html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fexofenadine hydrochloride 180 MG Oral Tablet [Allegra]&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fexofenadine hydrochloride 180 MG Oral Tablet [Allegra]&quot;</span><span class="w"></span>
 <span class="w">                    </span><span class="p">}</span><span class="w"></span>
 <span class="w">                </span><span class="p">],</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABAS&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fexofenadine hydrochloride 180 MG Oral Tablet [Allegra]&quot;</span><span class="w"></span>
 <span class="w">            </span><span class="p">},</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081007&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081001&quot;</span><span class="w"></span>
 <span class="w">            </span><span class="p">},</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;effectiveDateTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-12-07T08:06:00+00:00&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;issued&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-12-07T08:06:00+00:00&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;referenceRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;effectivePeriod&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-02-02T08:38:55&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-05-23T08:29:30&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0-0.2&quot;</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient Self-Reported Medication: HML_CLIENT_PRESCRIPTION&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;dosage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1 tab(s) orally once a day, As Needed&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;route&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Oral route&quot;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">},</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;180 milligram&quot;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">},</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;doseAndRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                        </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="nt">&quot;doseQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;milligram&quot;</span><span class="w"></span>
+<span class="w">                            </span><span class="p">},</span><span class="w"></span>
+<span class="w">                            </span><span class="nt">&quot;rateQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                                </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Once daily&quot;</span><span class="w"></span>
+<span class="w">                            </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">]</span><span class="w"></span>
 <span class="w">                </span><span class="p">}</span><span class="w"></span>
 <span class="w">            </span><span class="p">]</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">},</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009863</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009863&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/MedicationStatement?researchstudy=FHIR-T&amp;Id=1427356&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009863</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Observation&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MedicationStatement&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1427356&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;extension&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://hl7.org/fhir/StructureDefinition/workflow-researchStudy&quot;</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://hl7.org/fhir/StructureDefinition/workflow-researchStudy&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C3861001&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;valueCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;18: days_supply derived: calculated by formula idb.hml_client_prescription.hcpr_duration_amt * (idb.hml_client_prescription.hcpr_refills + 1)&quot;</span><span class="w"></span>
 <span class="w">                </span><span class="p">}</span><span class="w"></span>
 <span class="w">            </span><span class="p">],</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500009863</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;use&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;official&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1427356observation&quot;</span><span class="w"></span>
 <span class="w">                </span><span class="p">}</span><span class="w"></span>
 <span class="w">            </span><span class="p">],</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;final&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">                        </span><span class="p">{</span><span class="w"></span>
-<span class="w">                            </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://terminology.hl7.org/CodeSystem/observation-category&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                            </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laboratory&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                            </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span><span class="w"></span>
-<span class="w">                        </span><span class="p">}</span><span class="w"></span>
-<span class="w">                    </span><span class="p">],</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span><span class="w"></span>
-<span class="w">                </span><span class="p">}</span><span class="w"></span>
-<span class="w">            </span><span class="p">],</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;medicationCodeableConcept&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">                </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                    </span><span class="p">{</span><span class="w"></span>
-<span class="w">                        </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://loinc.org&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;13945-1&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;URBC&quot;</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.nlm.nih.gov/research/umls/rxnorm/index.html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;calcium&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;calcium&quot;</span><span class="w"></span>
 <span class="w">                    </span><span class="p">}</span><span class="w"></span>
 <span class="w">                </span><span class="p">],</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;URBC&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;calcium&quot;</span><span class="w"></span>
 <span class="w">            </span><span class="p">},</span><span class="w"></span>
 <span class="w">            </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081007&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081001&quot;</span><span class="w"></span>
 <span class="w">            </span><span class="p">},</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;effectiveDateTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-12-07T08:18:00+00:00&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;issued&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-12-07T08:18:00+00:00&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;valueQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
-<span class="w">                </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/HPF&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;effectivePeriod&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2018-01-31T10:45:45&quot;</span><span class="w"></span>
 <span class="w">            </span><span class="p">},</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;referenceRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">                </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0-3&quot;</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient Self-Reported Medication: HML_CLIENT_PRESCRIPTION&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;dosage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;milligram&quot;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">},</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;doseAndRate&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                        </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="nt">&quot;doseQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                                </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;milligram&quot;</span><span class="w"></span>
+<span class="w">                            </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">]</span><span class="w"></span>
 <span class="w">                </span><span class="p">}</span><span class="w"></span>
 <span class="w">            </span><span class="p">]</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
 <span class="p">]</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
@@ -836,99 +855,103 @@
 <tbody>
 <tr>
 <td><code>id</code></td>
-<td>MSK Unique Identifier</td>
+<td></td>
 </tr>
 <tr>
 <td><code>extension[0].url</code></td>
-<td>FHIR researchStudy extension documentation</td>
+<td>Reference to structure definition</td>
 </tr>
 <tr>
 <td><code>extension[0].valueCode</code></td>
-<td>MSK IRB Protocol Number</td>
+<td>MSK unique study number</td>
 </tr>
 <tr>
 <td><code>extension[1].url</code></td>
-<td></td>
+<td>Reference to structure definition</td>
 </tr>
 <tr>
 <td><code>extension[1].valueCode</code></td>
 <td>Sponsor Study Number</td>
 </tr>
 <tr>
+<td><code>extension[2].url</code></td>
+<td>Reference to structure definition</td>
+</tr>
+<tr>
+<td><code>extension[2].valueCode</code></td>
+<td>A concatenation of applied OMOP rules</td>
+</tr>
+<tr>
+<td><code>identifier.use</code></td>
+<td>Always <code>official</code></td>
+</tr>
+<tr>
 <td><code>identifier.system</code></td>
-<td></td>
+<td>Reference to structure definition</td>
 </tr>
 <tr>
 <td><code>identifier.value</code></td>
-<td>MSK Unique Identifier</td>
+<td>{omop record ID}-{omop table}</td>
 </tr>
 <tr>
 <td><code>status</code></td>
-<td>Hardcoded to <code>final</code></td>
+<td>Always <code>unknown</code></td>
 </tr>
 <tr>
-<td><code>category.coding.system</code></td>
-<td>FHIR Observation category documentation</td>
+<td><code>medicationCodeableConcept.coding.system</code></td>
+<td>Reference to RxNorm</td>
 </tr>
 <tr>
-<td><code>category.coding.code</code></td>
-<td>FHIR Observation category code</td>
+<td><code>medicationCodeableConcept.coding.code</code></td>
+<td>RxNorm drug label</td>
 </tr>
 <tr>
-<td><code>category.coding.display</code></td>
-<td>FHIR Observation category display</td>
+<td><code>medicationCodeableConcept.coding.display</code></td>
+<td>RxNorm drug label</td>
 </tr>
 <tr>
-<td><code>category.text</code></td>
-<td>FHIR Observation category</td>
-</tr>
-<tr>
-<td><code>code.coding.system</code></td>
-<td>LOINC documentation</td>
-</tr>
-<tr>
-<td><code>code.coding.code</code></td>
-<td>LOINC code</td>
-</tr>
-<tr>
-<td><code>code.coding.display</code></td>
-<td>MSK test code</td>
-</tr>
-<tr>
-<td><code>code.text</code></td>
-<td>MSK test code</td>
+<td><code>medicationCodeableConcept.text</code></td>
+<td>RxNorm drug label</td>
 </tr>
 <tr>
 <td><code>subject.reference</code></td>
 <td><code>Patient/</code> + Sponsor assigned subject ID</td>
 </tr>
 <tr>
-<td><code>encounter.display</code></td>
-<td>Protocol visit</td>
+<td><code>effectivePeriod.start</code></td>
+<td>Drug exposure start time</td>
 </tr>
 <tr>
-<td><code>effectiveDateTime</code></td>
-<td>Specimen collection datetime</td>
+<td><code>effectivePeriod.end</code></td>
+<td>Drug exposure end time</td>
 </tr>
 <tr>
-<td><code>issued</code></td>
-<td>Specimen datetime</td>
+<td><code>note.text</code></td>
+<td>Drug source type</td>
 </tr>
 <tr>
-<td><code>valueQuantity.value</code></td>
-<td>Numeric result</td>
+<td><code>dosage.text</code></td>
+<td>Dosage directions</td>
 </tr>
 <tr>
-<td><code>valueQuantity.unit</code></td>
-<td>Test Unit</td>
+<td><code>dosage.route.text</code></td>
+<td>OMOP route concept</td>
 </tr>
 <tr>
-<td><code>valueString</code></td>
-<td>Text result</td>
+<td><code>dosgae.method.text</code></td>
+<td></td>
 </tr>
 <tr>
-<td><code>referenceRange.text</code></td>
-<td>Reference range</td>
+<td><code>dosage.doseAndRate.doseQuantity.value</code></td>
+<td>Dosage value</td>
+</tr>
+<tr>
+<td><code>dosage.doseAndRate.doseQuantity.unit</code></td>
+<td>Dosage unit</td>
+</tr>
+<tr>
+<td><code>dosage.doseAndRate.rateQuantity.unit</code></td>
+<td>Rate</td>
 </tr>
 </tbody>
 </table>
@@ -947,7 +970,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../medications/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Medication Statement" rel="prev">
+        <a href="../patient/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Patient (Demographics)" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -956,20 +979,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Medication Statement
+              Patient (Demographics)
             </div>
           </div>
         </a>
       
       
         
-        <a href="../vital-sign/" class="md-footer__link md-footer__link--next" aria-label="Next: Observation (Vitals)" rel="next">
+        <a href="../lab-result/" class="md-footer__link md-footer__link--next" aria-label="Next: Observation (Labs)" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Observation (Vitals)
+              Observation (Labs)
             </div>
           </div>
           <div class="md-footer__button md-icon">
