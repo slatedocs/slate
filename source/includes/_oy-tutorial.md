@@ -101,6 +101,7 @@ Claim Fund Product
 |View and Export Claim Fund Report| Can view and export | Can view and export | Can view and export | Can view and export |
 
 Account Payable Invoice
+
 | Task | Superadmin | Admin | Approver | Maker
 |-------|-------|-------|-------|-------|
 |Create AP Invoice | Can create| Can create | - | Can create |
@@ -128,6 +129,7 @@ E-Wallet Aggregator
 |View and Export E-Wallet Report| Can view and export | Can view and export | Can view and export | Can view and export |
 
 Account Receivable Invoice
+
 | Task | Superadmin | Admin | Approver | Maker
 |-------|-------|-------|-------|-------|
 |Create AR Invoice | Can create| Can create | Can create | Can create |
