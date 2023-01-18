@@ -37,23 +37,114 @@ If you have a Super Admin role, you are able to add account for your team member
 
 These are the following steps to add new users;
 
-1.  Login to Dashboard
-2.  Go to Accounts -> User Management
+1.  Login to Dashboard.
+2.  Go to Accounts -> User Management.
+3.  Click the 'Create User' button
 
 ![User Management 1](images/user_management_1.png)
 
-3.  Click the 'Create User' button
 4.  Fill in the full name, username, email, phone number (optional), and password
 
 ![User Management 2](images/user_management_2.png)
 
-5.  Choose the role that you want to assign your team member(s) to. You can choose one from the following available role:
-
-- Admin: Has access to all menu, create and approve bulk disbursement and request, view active feature report, manage user list.
-- Sub Account (Approver): Has access to approve disbursement and request, and view active feature report.
-- Sub Account (Maker): Has access to create disbursement and request, and view active feature report
+5.  Choose the role that you want to assign your team member(s) to. You can select between Admin, Approver, and Maker
 
 Aside from adding new users, a Super Admin is also able to edit and delete their existing users through clicking edit/delete button on the User List table.
+
+Here are the access control matrix in OY! Dashboard:
+
+Dashboard features
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Upgrade Account| Can upgrade | Can upgrade | - | - |
+|Analytics| Can view | Can view | Can view | Can view |
+|Account Statement| Can view and export | Can view and export | Can view and export | Can view and export |
+|Settlement Report| Can view and export | Can view and export | Can view and export | Can view and export |
+|Top up Balance | Can top up | Can top up | Can top up | Can top up |
+|Withdraw Balance | Can withdraw | Can withdraw | Can withdraw | Can withdraw |
+|Add User | Can add user | Can add user | - | - |
+|User Profile| Can view and edit | Can view and edit | Can view and edit | Can view and edit |
+|Business Profile| Can view and edit | Can view and edit | Can view and edit | Can view and edit |
+|Authenticator OTP| Has permission | Has permission | Has permission | Has permission |
+|Add Payment Method | Can add | Can add | - | - |
+|Set up auto report | Can set up | Can set up | - | - |
+|Set up auto withdrawal| Can set up | Can set up | - | - |
+|Set up multi approval| Can set up | Can set up | - | - |
+|Set up notification settings| Can set up | Can set up | - | - |
+|Set up developer options| Can set up | Can set up | - | - |
+|Add transaction category| Can add | Can add | - | - |
+|Config Transaction Receipt | Can config | Can config | Can config | Can config |
+
+Multi account Management
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Create Child| Can create| Can create | - | - |
+|Top up Child via Dashboard| Can top up| Can top up | - | - |
+|Disconenct child| Can disconnect | Can disconnect | -| -|
+
+Bulk Disbursement Product
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Create Disbursement Campaign| Can create| Can create | - | Can create |
+|Approve Disbursement Campaign| Can approve| Can approve | Can approve | - |
+|View and Export Bulk Disbursement Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+Claim Fund Product
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Create Claim Fund | Can create| Can create | - | Can create |
+|Approve Claim Fund| Can approve| Can approve | Can approve | - |
+|View and Export Claim Fund Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+Account Payable Invoice
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Create AP Invoice | Can create| Can create | - | Can create |
+|Approve AP Invoice | Can approve | Can approve | Can approve | - |
+|View and Export AP Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+Payment Link One time and Reusable Product
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Create Payment Link| Can create| Can create | Can Create | Can create |
+|View and Export Payment Link Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+Virtual Account
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Create VA via Dashboard| Can create| Can create | Can Create | Can create |
+|View and Export VA Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+E-Wallet Aggregator
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|View and Export E-Wallet Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+Account Receivable Invoice
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|Create AR Invoice | Can create| Can create | Can create | Can create |
+|View and Export AP Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+API Inquiry
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|View and Export API Inquiry Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
+API Transaction Data
+
+| Task | Superadmin | Admin | Approver | Maker
+|-------|-------|-------|-------|-------|
+|View and Export API Transaction Data Report| Can view and export | Can view and export | Can view and export | Can view and export |
+
 
 ## 2-Factor Authentication
 
@@ -61,11 +152,11 @@ To increase the security of your account, you can set up 2-factor Authentication
 
 These are the following steps to set up the 2-factor authentication;
 
-1. Login to Dashboard
-2. Go to Accounts -> Authenticator OTP
+1. Login to Dashboard.
+2. Go to Accounts -> Authenticator OTP.
 3. Download Authenticator App in your smartphone (from Play Store/App Store) or PC (you can download an extension for your browser). Examples of the app: Google Authenticator, Microsoft Authenticator, Authy, etc
-4. Scan the barcode displayed on your OY Dashboard with your Authenticator App OR enter the setup key displayed next to it on your Authenticator App
-5. Please type in the 6-numerical code displayed on your Authenticator App in the 'Authenticator OTP' on OY Dashboard
+4. Scan the barcode displayed on your OY Dashboard with your Authenticator App OR enter the setup key displayed next to it on your Authenticator App.
+5. Please type in the 6-numerical code displayed on your Authenticator App in the 'Authenticator OTP' on OY Dashboard.
 
 ## Top Up
 
@@ -214,17 +305,22 @@ Filter: You are able to filter the settlement report by transaction date (range)
 
 ## Notification
 
-You can enable or disable notification settings for disbursement products if you have a super admin or admin role:
+You can enable or disable notification settings for low balance, send money products and receive money products if you have a super admin or admin role:
 
 1. Login to dashboard https://business.oyindonesia.com/
 2. Go to Settings -> Notification
    ![Notif Disbursement - 1  Initial](https://user-images.githubusercontent.com/79620482/126457509-ca20c24b-9277-4be4-943e-801b79806e65.png)
-
-1. Choose whether or not you want notifications enabled or disabled for Bulk, API, or scheduled disbursements.
+3. If you want to notified by email if your balance is low, set in the "Low Balance" tab. Input the amount threshold and the email where the notification will be sent to.
+4. Choose whether or not you want notifications enabled or disabled for 
+Bulk Disbursement or API Disbursement.
    a. Enable Notification: Email notification will be sent for pending, failed and success transactions.
    b. Disable Success Notification: email notification will only be sent for pending and failed transactions.
-2. The email field: allows the user to add, remove, and edit email notification receivers in this column, which can hold up to three email addresses.
-3. Click ‘Save Changes’
+5. Choose whether or not you want notifications enabled or disabled for 
+Payment Link, or VA.
+   a. Enable Notification: Email notification will be sent for success transactions.
+   b. Disable Success Notification: No email notification will be sent.
+6. The email field: allows the user to add, remove, and edit email notification receivers in this column, which can hold up to three email addresses.
+7. Click ‘Save Changes’
 
 ## Multi Account Management
 
