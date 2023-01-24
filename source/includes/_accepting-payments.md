@@ -499,7 +499,7 @@ During testing, you can set the transaction amount to a certain mock value to si
 
 **Mock Credentials for Testing**
 
-Specifically for payment via Credit Card or Debit Card, you may use the below credentials to simulate payment for a successful transaction in staging environment
+Specifically for payment via Credit Card or Debit Card, you may use the below credentials to simulate an end-to-end payment joruney for a successful transaction in staging environment
 
 | Card Details          | Values                     |
 | ----------------------| ---------------------------|
@@ -507,6 +507,20 @@ Specifically for payment via Credit Card or Debit Card, you may use the below cr
 |Card Expired Month/Year| 01/39                      |
 |Card CVN               | 100                        |
 |Card Holder Name       | Testing                    |
+
+
+**Simulate Credit Card / Debit Card Transaction Callback for Testing**
+As an alternative to the above, if you would like to simulate the callback for Credit Card or Debit Card transaction, but not necessarily the end-to-end payment journey, you may manually send callback by following these steps: 
+
+1. Log in to your OY! Dashboard 
+2. Select Environment: Demo in the top left corner 
+3. Make sure to have inputted your staging callback URL on Settings: 'Developer Options' (tab: Callback Configuration - Payment Link)
+4. Create a payment link in Demo environment
+5. Click on the link and proceed with Credit Card or Debit Card as your payment method 
+6. Copy the Reference Number of the transaction - it should be available under "Transaction Details" 
+7. Return to OY! Dashboard and click on the Settings: 'CC-DC Callback" 
+8. Paste the Reference Number of the transaction and choose whether you would like to simulate a callback for successful transaction or a failed transaction 
+8. Click "Send Callback". OY! will only send callback for a successful transaction whether in staging environment or production environment 
 
 
 ### How to Use Payment Link via Dashboard
