@@ -1189,7 +1189,7 @@ Some business have some use cases that require them to receive and disburse the 
 
 Payment Routing is an API that combines receive money and disburse money features. It allows you to immediately disburse the money once you receive from your customers. By integrating to this API, you will get the end-to-end solutions for your business needs.
 
-For now, you can use Payment Link or Virtual Account for the receive money part.
+For now, you can use Payment Link, Virtual Account, E-Wallet, QRIS for the receive money part.
 
 ### Flow
 
@@ -1198,7 +1198,7 @@ For now, you can use Payment Link or Virtual Account for the receive money part.
 ### Key Features
 
 1. **Accept and disburse money in a real time manner** - By integrating to this API, you will get end-to-end solutions from receive to disburse money. All in real time manner. Note : Some payment methods have H+1 or H+2 settlement period. You have to keep some balance to cater the settlement from the payment methods.
-1. **You can select Payment Link or VA to receive money** - See Payment Link or Virtual Account for more information. More channels are coming soon. Note : Payment Routing only allows closed amount type.
+1. **You can select Payment Link, VA, E-Wallet, and QRIS to receive money** - You can choose Virtual Account, E-Wallet, or QRIS as a payment method to receive the money. We provide all banks offered in VA Aggregator for Virtual Accounts and provide ShopeePay, DANA, LinkAja as payment method for E-Wallet. However, you don't need to worry if you don't have your own UI. You can use our Payment Link to help your customers to complete the payments.
 1. **Transaction tracking and monitoring capability** - You can track all payment routing transactions details through our callback or the OY! dashboard. You will receive callbacks two times, once we have succesfully receive money and once we have successfully disburse money.
 
 ### Use Cases
