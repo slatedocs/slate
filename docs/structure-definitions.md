@@ -1,37 +1,36 @@
 
-| Name                                                     | Description                                                |
-| ------------------------------                           | ---------------------------------------------------------  |
-|[AssessmentId](#AssessmentId)                             |                                                            |
-|[CaseId](#CaseId)                                         |                                                            |
-|[Category](#Category)                                     |                                                            |
-|[CIS](#CIS)                                               | MSK EHR System                                             |
-|[ChangeFromBaseline](#ChangeFromBaseline)                 |                                                            |
-|[ChangeFromNadir](#ChangeFromNadir)                       |                                                            |
-|[ChangeFromPrevious](#ChangeFromPrevious)                 |                                                            |
-|[CRDB](#CRDB)                                             | Clinical Research Database                                 |
-|[CumulativeQuantityId](#CumulativeQuantityId)             |                                                            |
-|[CurrentValue](#CurrentValue)                             |                                                            |
-|[EventSequenceNo](#EventSequenceNo)                       | System generated sequential sub number of an adverse event |
-|[Label](#Label)                                           |                                                            |
-|[LAB_RESULTS.LR_RESULT_GUID](#LAB_RESULTS.LR_RESULT_GUID) | MSK unique lab record number                               |
-|[LesionIdentifier](#LesionIdentifier)                     |                                                            |
-|[IDB.Protocol](#IDB.Protocol)                             | MSK unique study number                                    |
-|[InstanceNumber](#InstanceNumber)                         |                                                            |
-|[Modality](#Modality)                                     |                                                            |
-|[Name](#Name)                                             |                                                            |
-|[Organ](#Organ)                                           |                                                            |
-|[RevisionNumber](#RevisionNumber)                         |                                                            |
-|[RevisionDate](#RevisionDate)                             |                                                            |
-|[RevisionNumber](#RevisionNumber)                         |                                                            |
-|[SeriesDescription](#SeriesDescription)                   |                                                            |
-|[SeriesNumber](#SeriesNumber)                             |                                                            |
-|[SponsorID](#SponsorID)                                   | Sponsor Study Number                                       |
-|[StartDate](#StartDate)                                   | Adverse event start date as it appears in the source system|
-|[State](#State)                                           |                                                            |
-|[Timepoint](#Timepoint)                                   |                                                            |
-|[TrialArmName](#TrialArmName)                             |                                                            |
-|[TrialName](#TrialName)                                   |                                                            |
-|[Unit](#Unit)                                             |                                                            |
-|[Verified](#Verified)                                     | Whether or not an event was verified in the source system  |
+| Name                                                     | Description                                                                                |
+| ------------------------------                           | ---------------------------------------------------------                                  |
+|[AssessmentId](#AssessmentId)                             | Unique response assessment ID                                                              |
+|[CaseId](#CaseId)                                         | Unique response case ID                                                                    |
+|[Category](#Category)                                     | Lesion measurement category                                                                |
+|[CIS](#CIS)                                               | MSK EHR System                                                                             |
+|[ChangeFromBaseline](#ChangeFromBaseline)                 | Measurement change from baseline `+/- {value} mm`                                          |
+|[ChangeFromNadir](#ChangeFromNadir)                       | Measurement change from nadir `+/- {value} mm`                                             |
+|[ChangeFromPrevious](#ChangeFromPrevious)                 | Measurement change from previous `+/- {value} mm`                                          |
+|[CRDB](#CRDB)                                             | Clinical Research Database                                                                 |
+|[CumulativeQuantityId](#CumulativeQuantityId)             | Measurement type <br/>Currently only supporting `targetsum`                                |
+|[CurrentValue](#CurrentValue)                             | Result at given timepoint                                                                  |
+|[EventSequenceNo](#EventSequenceNo)                       | System generated sequential sub number of an adverse event                                 |
+|[Label](#Label)                                           |                                                                                            |
+|[LAB_RESULTS.LR_RESULT_GUID](#LAB_RESULTS.LR_RESULT_GUID) | MSK unique lab record number                                                               |
+|[LesionIdentifier](#LesionIdentifier)                     | Unique lesion identifier                                                                   |
+|[IDB.Protocol](#IDB.Protocol)                             | MSK unique study number                                                                    |
+|[InstanceNumber](#InstanceNumber)                         |                                                                                            |
+|[Modality](#Modality)                                     |                                                                                            |
+|[Name](#Name)                                             |                                                                                            |
+|[Organ](#Organ)                                           |                                                                                            |
+|[RevisionNumber](#RevisionNumber)                         | Case revision number <br/>Only the highest revision number is available at any given time  |
+|[RevisionDate](#RevisionDate)                             | Assessment revision date                                                                   |
+|[SeriesDescription](#SeriesDescription)                   |                                                                                            |
+|[SeriesNumber](#SeriesNumber)                             |                                                                                            |
+|[SponsorID](#SponsorID)                                   | Sponsor Study Number                                                                       |
+|[StartDate](#StartDate)                                   | Adverse event start date as it appears in the source system                                |
+|[State](#State)                                           |                                                                                            |
+|[Timepoint](#Timepoint)                                   |                                                                                            |
+|[TrialArmName](#TrialArmName)                             | Assessment criteria <br/>Currently only supporting `RECIST 1.1`                            |
+|[TrialName](#TrialName)                                   | MSK unique study number as entered in source system                                        |
+|[Unit](#Unit)                                             | Unit of measurement                                                                        |
+|[Verified](#Verified)                                     | Whether or not an event was verified in the source system                                  |
 
 
