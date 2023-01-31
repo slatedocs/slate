@@ -1,6 +1,9 @@
-Laboratory data are mapped to FHIR's [Observation](http://hl7.org/fhir/StructureDefinition/Observation){:target="blank"} resource. Laboratory data are obtained via HL7 message from MSK's Laboratory Information System (LIS). Data are mapped to a trial visit and pushed into the Clinical Research Data Warehouse.
+Laboratory data are mapped to FHIR's [Observation](https://hl7.org/fhir/2021Mar/observation.html){:target="blank"} resource. Data are ingested into the Clinical Research Data Warehouse via HL7 message from MSK's Laboratory Information System (LIS) and mapped to a trial visit by clinical research staff.
 
-> **_NOTE:_** If available in the source data, a LOINC code is mapped to `code.coding.code`, otherwise the `code.coding.code` does not appear in the response. Please refer to the protocol specific Data Transfer Specification for more information.
+> **_NOTE:_** If available in the source data, a LOINC code is mapped to `code.coding.code`, otherwise the `code.coding.code` does not appear in the response. Please refer to the protocol specific Data Transfer Specification for a list of test names and LOINC codes relevant to your study.
+
+For guidance on mapping [LOINC](https://www.cdisc.org/kb/articles/loinc-and-sdtm) codes to [CDISC](https://datascience.cancer.gov/resources/cancer-vocabulary/cdisc-terminology) or for additional test information, such as the analyte measured or specimen type upon which the observation was made, check out [LOINC's FHIR terminology service](https://loinc.org/fhir/). 
+
 
 ## Request
 ```
