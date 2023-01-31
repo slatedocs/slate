@@ -31,12 +31,16 @@ POST /api/v1/add-linux-user-info HTTP/1.1
     "Username":"sefali",
     "AuthMethod":"s",
     "UserType":"6",
-    "CustomMapping":"6"
+    "CustomMapping":"6",
+    "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 
-This will add the users to LUMs.
+`This will add the users to LUMs.
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
@@ -88,11 +92,15 @@ POST /api/v1/list-all-lums HTTP/1.1
      "SyncMethod":"xyz", 
      "TTLPassword":"xyz", 
      "TTLUser":"xyz", 
-     "UserType":"zyx"
+     "UserType":"zyx",
+     "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 This will add the users to LUMs.
+`
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
@@ -140,12 +148,17 @@ DELETE /api/v1/delete-user HTTP/1.1
 ```json
 [
 {
-    "linuxUserId": "1"
+    "linuxUserId": "1",
+    "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 
 This will delete the users to LUMs.
+`
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
@@ -185,11 +198,16 @@ POST /api/v1/addUserToMachine HTTP/1.1
     "domainId":"1", 
     "instanceId":"1", 
     "userIds":"1",
+    "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 
 This will add User To Machine.
+`
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
@@ -232,11 +250,16 @@ POST /api/v1/updateEPMUserWallet HTTP/1.1
     "server_group_name":"xyz-xyz-xyz", 
     "authnull_user_name":"abc-abc-abd", 
     "authnull_user_group":"xyz-xyz-xyz",
+    "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 
 This will Update EPM User Wallet.
+`
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
@@ -280,12 +303,17 @@ POST /api/v1/updateEpmUserInfo HTTP/1.1
     "auth_method":"abc", 
     "user_type":"abc", 
     "credential_type":"abc", 
-    "custom_mapping":"asd";
+    "custom_mapping":"asd",
+    "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 
 This will update Epm User Information.
+`
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 

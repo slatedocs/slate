@@ -16,9 +16,13 @@ POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1
   "domainId": 1,
   "pageId": 2,
   "pageSize": 23,
-  "filter":"added"
+  "filter":"added",
+  "key":"34rfdhuytqwrtttb"
   }
 ```
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
+
 ### HTTP Request
 `POST /api/v1/epmGroupManagement/listAllEPMGroup HTTP/1.1`
 
@@ -60,9 +64,13 @@ POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1
 {
   "domainId": 1,
   "groupName": "Blue",
-  "users":"Stephen"
+  "users":"Stephen",
+  "key":"34rfdhuytqwrtttb"
   }
 ```
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
+
 ### HTTP Request
 `POST /api/v1/epmGroupManagement/addEPMGroup HTTP/1.1`
 
@@ -99,9 +107,14 @@ DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1
 ```json
 {
   "domainId": 1,
-  "epmroupId": "3"
+  "epmroupId": "3",
+  "key":"34rfdhuytqwrtttb"
   }
 ```
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
+
 ### HTTP Request
 `DELETE /api/v1/epmGroupManagement/deleteEPMGroup HTTP/1.1`
 
@@ -137,9 +150,14 @@ PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1
 {
   "domainId": 1,
   "epmGroupId": "3",
-  "status":"Success"
+  "status":"Success",
+  "key":"34rfdhuytqwrtttb"
   }
 ```
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
+
 ### HTTP Request
 `PUT /api/v1/epmGroupManagement/updateEPMGroupStatus HTTP/1.1`
 

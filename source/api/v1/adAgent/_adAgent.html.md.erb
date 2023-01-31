@@ -54,6 +54,10 @@ POST api/v1/saveActiveDirectoryConfig HTTP/1.1
 Active Directory is a directory service or container which stores data objects on your local network environment. The service records data on users, devices, applications, groups, and devices in a hierarchical structure.
 Active Directory enables users to log on to and manage a variety of resources from one location. Login credentials are unified so that it is easier to manage multiple devices without having to enter account details to access each individual machine.
 
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb` 
+
+
 ### HTTP Request
 
 `POST api/v1/saveActiveDirectoryConfig HTTP/1.1`
@@ -98,12 +102,16 @@ POST api/v1/importUsers HTTP/1.1
     "baseDN":"dc=example,dc=com",
     "filter":"(ou=italians)",
     "bindDN":"BindDN",
-    "domainID":"91"
+    "domainID":"91",
+    "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 
 This will Import Users.
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
@@ -143,12 +151,16 @@ POST api/v1/getImportStatus HTTP/1.1
 ```json
 [
 {
-    "DirectoryName":"ldap.forumsys.com"
+    "DirectoryName":"ldap.forumsys.com",
+    "key":"34rfdhuytqwrtttb"
 }
 ]
 ```
 
 This will Get Import Status.
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
@@ -207,13 +219,18 @@ region: "United States",
 
 primaryApp: "kloudone",
 
-fax: "1234567890"
+fax: "1234567890",
+
+"key":"34rfdhuytqwrtttb"
 
 }
 ]
 ```
 
 This will reConfigure Active Directory.
+
+### Header AuthKey
+Authorization Key : `34rfdhuytqwrtttb`
 
 ### HTTP Request
 
