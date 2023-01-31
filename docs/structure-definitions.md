@@ -3,7 +3,7 @@
 | ------------------------------                           | ---------------------------------------------------------                                  |
 |[AssessmentId](#AssessmentId)                             | Unique response assessment ID                                                              |
 |[CaseId](#CaseId)                                         | Unique response case ID                                                                    |
-|[Category](#Category)                                     | Lesion measurement category                                                                |
+|[Category](#Category)                                     | Lesion measurement category `New lesion | Non-target | Target`                             |
 |[CIS](#CIS)                                               | MSK EHR System                                                                             |
 |[ChangeFromBaseline](#ChangeFromBaseline)                 | Measurement change from baseline `+/- {value} mm`                                          |
 |[ChangeFromNadir](#ChangeFromNadir)                       | Measurement change from nadir `+/- {value} mm`                                             |
@@ -12,14 +12,14 @@
 |[CumulativeQuantityId](#CumulativeQuantityId)             | Measurement type <br/>Currently only supporting `targetsum`                                |
 |[CurrentValue](#CurrentValue)                             | Result at given timepoint                                                                  |
 |[EventSequenceNo](#EventSequenceNo)                       | System generated sequential sub number of an adverse event                                 |
-|[Label](#Label)                                           |                                                                                            |
+|[Label](#Label)                                           | Measurement type `Long axis | Short axis | Long ? short axis`                              |
 |[LAB_RESULTS.LR_RESULT_GUID](#LAB_RESULTS.LR_RESULT_GUID) | MSK unique lab record number                                                               |
 |[LesionIdentifier](#LesionIdentifier)                     | Unique lesion identifier                                                                   |
 |[IDB.Protocol](#IDB.Protocol)                             | MSK unique study number                                                                    |
-|[InstanceNumber](#InstanceNumber)                         |                                                                                            |
-|[Modality](#Modality)                                     |                                                                                            |
-|[Name](#Name)                                             |                                                                                            |
-|[Organ](#Organ)                                           |                                                                                            |
+|[InstanceNumber](#InstanceNumber)                         |  **                                                                                        |
+|[Modality](#Modality)                                     | Type of scan `OT | MR | PT | CT`                                                           |
+|[Name](#Name)                                             | Assessment name `Baseline | Follow-up {1-25}`                                              |
+|[Organ](#Organ)                                           | Free text organ                                                                                           |
 |[RevisionNumber](#RevisionNumber)                         | Case revision number <br/>Only the highest revision number is available at any given time  |
 |[RevisionDate](#RevisionDate)                             | Assessment revision date                                                                   |
 |[SeriesDescription](#SeriesDescription)                   |                                                                                            |

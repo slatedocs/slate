@@ -1,4 +1,4 @@
-Lesions measured as part of a response assessment are mapped to FHIR's [Observation](http://hl7.org/fhir/2021Mar/observation.html){:target="blank"} resource. Most fields are available through extensions since they do not map directly to FHIR's Observation fields
+Lesions measured as part of a response assessment are mapped to FHIR's [Observation](https://hl7.org/fhir/2021Mar/observation.html){:target="blank"} resource. Most fields are available through extensions since they do not map directly to FHIR's Observation fields
 
 ## Request
 ```
@@ -259,7 +259,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | `extension[2].url`                         | Reference to structure definition                        |
 | `extension[2].valueString`                 | Organ as entered in source system                        |
 | `extension[3].url`                         | Reference to structure definition                        |
-| `extension[3].valueString`                 | Lesion measurement category                              |
+| `extension[3].valueString`                 | Lesion measurement category `New lesion | Non-target | Target` |
 | `extension[4].url`                         | Reference to structure definition                        |
 | `extension[4].valueString`                 | Lesion state <br/> `Present | Defined | Stable/Improved | Disappeared | Undefined | Uneqv. prog. | Not evaluable | Not assessed | Too small` |                      
 | `extension[5].url`                         | Reference to structure definition                        |

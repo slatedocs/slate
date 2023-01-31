@@ -1,4 +1,4 @@
-Response assessments are available through FHIR's [Diagnostic Report](http://hl7.org/fhir/2021Mar/diagnosticreport.html){:target="blank"}. Most fields are available through extensions since they do not map directly to FHIR's Diagnostic Report fields. Lesions measured as part of the assessment are referenced within the array in the results section.
+Response assessments are available through FHIR's [Diagnostic Report](https://hl7.org/fhir/2021Mar/diagnosticreport.html){:target="blank"}. Most fields are available through extensions since they do not map directly to FHIR's Diagnostic Report fields. Lesions measured as part of the assessment are referenced within the array in the results section.
 
 > **_NOTE:_** Assessments must be signed off by a Principal Investigator in order to be accessible through the FHIR server. The available data set is limited to studies using the RECIST 1.1 criteria. To request data using a different criteria, please contact us at <a href="mailto:ctdata@mskcc.org">ctdata@mskcc.org</a>.
 
