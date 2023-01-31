@@ -26,12 +26,12 @@ nav:
   - Pagination: pagination.md
   - "Available Resources":
       - "Adverse Event": resources/adverse-event.md
+      - "Diagnostic Report (Response)": resources/diagnostic-report.md
       - "Patient (Demographics)": resources/patient.md
       - "Medication Statement": resources/medications.md
       - "Observation (Labs)": resources/lab-result.md
       - "Observation (Vitals)": resources/vital-sign.md
-  - Coming Soon:
-      - Response: coming-soon/response.md
+      - "Observation (Response Imaging)": resources/imaging.md
   - Structure Definitions: structure-definitions.md
   - "Release Notes": release-notes.md
   - "Contact Us": contact-us.md
