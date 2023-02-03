@@ -222,7 +222,7 @@ curl "https://api.affinity.co/webhook/1234" \
 
 `PUT /webhook/{webhook_subscription_id}`
 
-Update webhook subscription with the supplied parameters. If the endpoint returns an invalid response, the webhook update will fail.
+Update webhook subscription with the supplied parameters. A webhook subscription can only be updated by its creator. If the endpoint returns an invalid response, the webhook update will fail.
 
 ### Payload Parameters
 
@@ -254,7 +254,7 @@ curl "https://api.affinity.co/webhook/1234" \
 
 `DELETE /webhook/{webhook_subscription_id}`
 
-Deletes a webhook subscription with a specified `webhook_subscription_id`.
+Deletes a webhook subscription with a specified `webhook_subscription_id`. A webhook subscription can only be deleted by its creator, or an admin.
 
 ### Path Parameters
 
