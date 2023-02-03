@@ -10,4 +10,6 @@ gem 'rouge', '~> 3.21'
 gem 'redcarpet', '~> 3.5.0'
 gem 'nokogiri', '~> 1.12.1'
 gem 'sass'
+# Slate doesn't work with sprockets 4+, see: https://github.com/slatedocs/slate/issues/1244
+gem 'sprockets', '~> 3.7.2'
 gem 'webrick'
