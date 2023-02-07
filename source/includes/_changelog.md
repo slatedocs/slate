@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-02-03
+
+- Added the ability to retrieve Current Organization column data on [Persons](#persons).
+
 ## 2022-09-06
 
 - Added [Rate Limit](#rate-limit) endpoint and documentation. Moved from a daily to a per minute per user limit. Monthly per account limits remain the same.

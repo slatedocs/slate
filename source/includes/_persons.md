@@ -39,6 +39,7 @@ list has a given email address.
     11,
     ...
   ],
+  "current_organization_ids": [1687449],
   "list_entries": [
     {
       "id": 388,
@@ -124,19 +125,21 @@ Dates of the most recent and upcoming interactions with a person are available i
 `with_interaction_dates=true` as a query parameter to the `/persons` or
 the `/persons/{person_id}` endpoints.
 
-| Attribute         | Type        | Description                                                                                                                                                                                                                                                                                           |
-| ----------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                     |
-| id                | integer     | The unique identifier of the person object.                                                                                                                                                                                                                                                           |
-| type              | integer     | The type of person (see below).                                                                                                                                                                                                                                                                       |
-| first_name        | string      | The first name of the person.                                                                                                                                                                                                                                                                         |
-| last_name         | string      | The last name of the person.                                                                                                                                                                                                                                                                          |
-| emails            | string[]    | The email addresses of the person.                                                                                                                                                                                                                                                                    |
-| primary_email     | string      | The email (automatically computed) that is most likely to the current active email address of the person.                                                                                                                                                                                             |
-| organization_ids  | integer[]   | An array of unique identifiers of organizations that the person is associated with.                                                                                                                                                                                                                   |
-| opportunity_ids   | integer[]   | An array of unique identifiers of opportunities that the person is associated with.                                                                                                                                                                                                             |
-| list_entries      | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a Specific Person](#get-a-specific-person) endpoint.                                                                                                                                                   |
-| interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`.  |
-| interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event.  Only returned when passing `with_interaction_dates=true`.                |
+| Attribute                | Type        | Description                                                                                                                                                                                                                                                                                          |
+| ------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                       | integer     | The unique identifier of the person object.                                                                                                                                                                                                                                                          |
+| type                     | integer     | The type of person (see below).                                                                                                                                                                                                                                                                      |
+| first_name               | string      | The first name of the person.                                                                                                                                                                                                                                                                        |
+| last_name                | string      | The last name of the person.                                                                                                                                                                                                                                                                         |
+| emails                   | string[]    | The email addresses of the person.                                                                                                                                                                                                                                                                   |
+| primary_email            | string      | The email (automatically computed) that is most likely to the current active email address of the person.                                                                                                                                                                                            |
+| organization_ids         | integer[]   | An array of unique identifiers of organizations that the person is associated with.                                                                                                                                                                                                                  |
+| opportunity_ids          | integer[]   | An array of unique identifiers of opportunities that the person is associated with. Only returned when `with_opportunities=true`.                                                                                                                                                                                                                  |
+| current_organization_ids | integer[]   | An array of unique identifiers of organizations that the person is currently associated with according to the Affinity Data: Current Organization in-app column. Only returned when `with_current_organizations=true`.                                                                                                                                                                       |
+|                          |
+| list_entries             | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a Specific Person](#get-a-specific-person) endpoint.                                                                                                                                                  |
+| interaction_dates        | object      | An object with six string date fields representing the most recent and upcoming interactions with this person: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date` and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
+| interactions             | object      | An object with six fields nested underneath. Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event. Only returned when passing `with_interaction_dates=true`.                 |
 
 ### Person types
 
@@ -232,16 +235,17 @@ curl "https://api.affinity.co/persons" \
 
 ### Query Parameters
 
-| Parameter                      | Type    | Required | Description                                                                                                                                                                                                                                         |
-| ------------------------------ | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| term                           | string  | false    | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.                                                                                                                   |
-| with_interaction_dates         | boolean | false    | When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.                                                                                                                       |
-| with_interaction_persons       | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates`                                                                                                                                         |
-| with_opportunities             | boolean | false    | When true, opportunity IDs associated with this person will be returned.                                                                                                                                                                            |
-| min_`{interaction type}`_date  | string  | false    | Only returns persons with the given interaction type above the given value. `interaction type` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. This would be used with max interation. |
-| max_`{interaction type>`_date  | string  | false    | Only returns persons with the given interaction type below the given value. `interaction type` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. This would be used with min interation. |
-| page_size                      | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                                                                         |
-| page_token                     | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                                                                     |
+| Parameter                       | Type    | Required | Description                                                                                                                                                                                                                                         |
+| ------------------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| term                            | string  | false    | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.                                                                                                                   |
+| with_interaction_dates          | boolean | false    | When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.                                                                                                                       |
+| with_interaction_persons        | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates`                                                                                                                                         |
+| with_opportunities              | boolean | false    | When true, opportunity IDs will be returned for each person.                                                                                                                                                                            |
+| with_current_organizations      | boolean | false    | When true, the organization IDs of each person's current organizations (according to the Affinity Data: Current Organizations column) will be returned.                                                                                                                                                                              |
+| min\_`{interaction type}`\_date | string  | false    | Only returns persons with the given interaction type above the given value. `interaction type` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. This would be used with max interation. |
+| max\_`{interaction type>`\_date | string  | false    | Only returns persons with the given interaction type below the given value. `interaction type` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, `first_event`, or `next_event`. This would be used with min interation. |
+| page_size                       | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                                                                                                                                                                         |
+| page_token                      | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results.                                                                                                                                                     |
 
 ### Returns
 
@@ -257,7 +261,9 @@ When `with_interaction_dates` is passed in the returned resources will have
 > Example Request
 
 ```shell
-curl "https://api.affinity.co/persons/38706" -u :$APIKEY
+curl "https://api.affinity.co/persons/38706?with_opportunities=true&with_current_organizations=true" \
+  -u :$APIKEY \
+
 ```
 
 > Example Response
@@ -280,6 +286,7 @@ curl "https://api.affinity.co/persons/38706" -u :$APIKEY
     11,
     ...
   ],
+  "current_organization_ids": [1687449],
   "list_entries": [
     {
       "id": 388,
@@ -299,12 +306,13 @@ Fetches a person with a specified `person_id`.
 
 ### Path Parameters
 
-| Parameter                | Type    | Required | Description                                                                                                 |
-| ----------------------   | ------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| person_id                | integer | true     | The unique ID of the person that needs to be retrieved.                                                     |
-| with_interaction_dates   | boolean | false    | When true, interaction dates will be present on the returned resources.                                     |
-| with_interaction_persons | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates` |
-| with_opportunities       | boolean | false    | When true, opportunity IDs associated with this person will be returned.                                      |
+| Parameter                  | Type    | Required | Description                                                                                                 |
+| -------------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| person_id                  | integer | true     | The unique ID of the person that needs to be retrieved.                                                     |
+| with_interaction_dates     | boolean | false    | When true, interaction dates will be present on the returned resources.                                     |
+| with_interaction_persons   | boolean | false    | When true, persons for each interaction will be returned. Used in conjunction with `with_interaction_dates` |
+| with_opportunities         | boolean | false    | When true, opportunity IDs associated with this person will be returned.                                    |
+| with_current_organizations | boolean | false    | When true, the IDs of this person's current organizations (according to the Affinity Data: Current Organizations column) will be returned.                                      |
 
 ### Returns
 
