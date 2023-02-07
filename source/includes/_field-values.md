@@ -28,6 +28,8 @@ As an example for how a field value is created:
   "field_id": 337,
   "list_entry_id": null,
   "entity_id": 38706,
+  "created_at": "2022-10-04T08:54:24.694-04:00",
+  "updated_at": null,
   "value": {
     "city": "San Francisco",
     "state": "California",
@@ -46,6 +48,8 @@ As an example for how a field value is created:
   "field_id": 751,
   "list_entry_id": 605,
   "entity_id": 38706,
+  "created_at": "2021-10-04T08:54:24.694-04:00",
+  "updated_at": "2022-03-04T08:54:24.694-04:00",
   "value": {
     "id": 71,
     "text": "Low",
@@ -55,11 +59,12 @@ As an example for how a field value is created:
 }
 ```
 
-
 Each field value object has a unique `id`.
 
 A field value also has `field_id`, `entity_id`, and `list_entry_id`
 attributes that give it the appropriate associations, as noted in the example above.
+
+The response of retrieving field value items comes back with created_at and updated_at which could be used for later filtering.
 
 A field value can take on many different kinds of values, depending on the
 `field` value type (see [Fields](#fields) section).
@@ -69,7 +74,6 @@ A field value can take on many different kinds of values, depending on the
   <p>When retrieving Field Values from a specific cell in your Affinity list, it may be helpful to think about it as an XY coordinate system. The X coordinate is the List Entry <span class="bold">or</span> Entity and the Y coordinate is the Field ID. You will need to have both to find the appropriate Field Value ID.</p>
 </aside>
 
-
 | Attribute     | Type        | Description                                                                                                                                                     |
 | ------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id            | integer     | The unique identifier of the field value object.                                                                                                                |
@@ -77,6 +81,8 @@ A field value can take on many different kinds of values, depending on the
 | entity_id     | integer     | The unique identifier of the person, organization, or opportunity object the field value is associated with.                                                    |
 | list_entry_id | integer     | The unique identifier of the list entry object the field value is associated with. This only exists if the field the value is associated with is list-specific. |
 | value         | One of many | The value attribute can take on many different types, depending on the field `value_type`. See below for reference.                                             |
+| created_at    | datetime    | The string representing the time when the field value was created.                                                                                              |
+| updated_at    | datetime    | The string representing the last time the field value was updated.                                                                                              |
 
 ### Field Value Value Types
 
@@ -109,6 +115,8 @@ curl "https://api.affinity.co/field-values?person_id=38706" -u :$APIKEY
     "field_id": 337,
     "list_entry_id": null,
     "entity_id": 38706,
+    "created_at": "2021-10-04T08:54:24.694-04:00",
+    "updated_at": "2022-03-04T08:54:24.694-04:00",
     "value": {
       "city": "San Francisco",
       "state": "California",
@@ -124,6 +132,8 @@ curl "https://api.affinity.co/field-values?person_id=38706" -u :$APIKEY
     "entity_type": 0,
     "value_type": 2,
     "entity_id": 65680071,
+    "created_at": "2022-10-04T08:54:24.694-04:00",
+    "updated_at": null,
     "value": "Software Engineer"
   },
   {
@@ -131,6 +141,8 @@ curl "https://api.affinity.co/field-values?person_id=38706" -u :$APIKEY
     "field_id": 198,
     "list_entry_id": null,
     "entity_id": 38706,
+    "created_at": "2022-09-04T08:54:24.694-04:00",
+    "updated_at": null,
     "value": 38659
   },
   ...
@@ -167,7 +179,6 @@ An array of all the field values associated with the supplied `person`,
   </ul>
 </aside>
 
-
 ## Create a New Field Value
 
 > Example Request
@@ -187,6 +198,8 @@ curl -X POST "https://api.affinity.co/field-values" \
   "field_id": 1284,
   "list_entry_id": null,
   "entity_id": 38706,
+  "created_at": "2022-10-04T10:37:19.418-04:00",
+  "updated_at": null,
   "value": "Architecture"
 }
 ```
@@ -197,11 +210,11 @@ Creates a new field value with the supplied parameters.
 
 ### Payload Parameters
 
-| Parameter     | Type    | Required | Description                                                                                                                                                                                       |
-| ------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| field_id      | integer | true     | The unique identifier of the field (column) that the field value is associated with.                                                                                                              |
-| entity_id     | integer | true     | The unique identifier of the entity (person, organization, or opportunity) that the field value is associated with.                                                                               |
-| value         | custom  | true     | See the [Field Value Resource](#the-field-value-resource) section for all value types. The value specified must correspond to the `value_type` of the supplied `field`.                           |
+| Parameter     | Type    | Required | Description                                                                                                                                                                                         |
+| ------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| field_id      | integer | true     | The unique identifier of the field (column) that the field value is associated with.                                                                                                                |
+| entity_id     | integer | true     | The unique identifier of the entity (person, organization, or opportunity) that the field value is associated with.                                                                                 |
+| value         | custom  | true     | See the [Field Value Resource](#the-field-value-resource) section for all value types. The value specified must correspond to the `value_type` of the supplied `field`.                             |
 | list_entry_id | integer | false    | The unique identifier of the list entry (list row) that the field value is associated with. Only specify the `list_entry_id` if the field that the field value is associated with is list specific. |
 
 ### Returns
@@ -227,6 +240,8 @@ curl -X PUT "https://api.affinity.co/field-values/20406836" \
   "field_id": 1284,
   "list_entry_id": null,
   "entity_id": 38706,
+  "created_at": "2022-10-04T10:37:19.418-04:00",
+  "updated_at": "2023-02-06T11:53:08.914-05:00",
   "value": "Healthcare"
 }
 ```

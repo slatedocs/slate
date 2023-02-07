@@ -19,7 +19,8 @@ store logged activity from a prospect's visit to your website.
   "opportunity_ids": [117],
   "parent_id": null,
   "content": "Had a lunch meeting with Jane and John today. They are looking to invest.",
-  "created_at": "2017-03-28 00:38:41 -0700"
+  "created_at": "2017-03-28 00:38:41 -0700",
+  "updated_at": "2017-04-03 00:38:41 -0700"
 }
 ```
 
@@ -37,6 +38,7 @@ Each person, organization, or opportunity will display linked notes on their pro
 | parent_id        | integer   | The unique identifier of the note that this note is a reply to. If this field is `null`, the note is not a reply. Note replies will never have values for `opportunity_ids`, `person_ids`, and `organization_ids`. Only the parent note is associated with an entity. You can fetch the parent note resource to identify the root entity. |
 | content          | string    | The string containing the content of the note.                                                                                                                                                                                                                                                                                            |
 | created_at       | datetime  | The string representing the time when the note was created.                                                                                                                                                                                                                                                                               |
+| updated_at       | datetime  | The string representing the last time the note was updated.                                                                                                                                                                                                                                                                               |
 
 ## Get All Notes
 
@@ -60,7 +62,8 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "opportunity_ids": [117],
     "parent_id":  null,
     "content": "Had a lunch meeting with Jane ... ",
-    "created_at": "2017-03-28 00:38:41 -0700"
+    "created_at": "2017-03-28 00:38:41 -0700",
+    "updated_at": "2017-04-03 00:38:41 -0700"
   },
   {
     "id": 22983,
@@ -72,7 +75,8 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "opportunity_ids": [115],
     "parent_id":  null,
     "content": "Had a lunch meeting @ Google ... ",
-    "created_at": "2018-03-28 00:38:41 -0700"
+    "created_at": "2018-03-28 00:38:41 -0700",
+    "updated_at": null
   },
   ...
 ]
@@ -84,14 +88,14 @@ Returns all notes attached to a `person`, `organization`, `opportunity`.
 
 ### Query Parameters
 
-| Parameter       | Type    | Required | Description                                                                                   |
-| --------------- | ------- | -------- | --------------------------------------------------------------------------------------------- |
-| person_id       | integer | false    | A unique identifier that represents a Person that was tagged in the retrieved notes.          |
-| organization_id | integer | false    | A unique identifier that represents an Organization that was tagged in the retrieved notes.   |
-| opportunity_id  | integer | false    | A unique identifier that represents an Opportunity that was tagged in the retrieved notes.    |
-| creator_id      | integer | false    | A unique identifier that represents an Affinity user whose created notes should be retrieved. |
-| page_size       | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                   |
-| page_token      | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results. |  
+| Parameter       | Type    | Required | Description                                                                                     |
+| --------------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
+| person_id       | integer | false    | A unique identifier that represents a Person that was tagged in the retrieved notes.            |
+| organization_id | integer | false    | A unique identifier that represents an Organization that was tagged in the retrieved notes.     |
+| opportunity_id  | integer | false    | A unique identifier that represents an Opportunity that was tagged in the retrieved notes.      |
+| creator_id      | integer | false    | A unique identifier that represents an Affinity user whose created notes should be retrieved.   |
+| page_size       | number  | false    | How many results to return per page. (Default is the maximum value of 500.)                     |
+| page_token      | string  | false    | The `next_page_token` from the previous response required to retrieve the next page of results. |
 
 ### Returns
 
@@ -119,7 +123,8 @@ curl "https://api.affinity.co/notes/22984" -u :$APIKEY
   "opportunity_ids": [117],
   "parent_id":  null,
   "content": "Had a lunch meeting with Jane ... ",
-  "created_at": "2017-03-28 00:38:41 -0700"
+  "created_at": "2017-03-28 00:38:41 -0700",
+  "updated_at": "2017-04-03 00:38:41 -0700",
 },
 ```
 
@@ -162,7 +167,8 @@ curl -X POST "https://api.affinity.co/notes" \
   "opportunity_ids": [117],
   "parent_id": null,
   "content": "Had a lunch meeting with Jane ... ",
-  "created_at": "2017-03-28 00:38:41 -0700"
+  "created_at": "2017-03-28 00:38:41 -0700",
+  "updated_at": null
 }
 ```
 
@@ -226,7 +232,8 @@ curl -X PUT "https://api.affinity.co/notes/22984" \
   "opportunity_ids": [117],
   "parent_id": null,
   "content": "Had another meeting with Jane ... ",
-  "created_at": "2017-03-28 00:38:41 -0700"
+  "created_at": "2017-03-28 00:38:41 -0700",
+  "updated_at": "2017-04-03 00:38:41 -0700"
 }
 ```
 
@@ -289,4 +296,3 @@ Deletes a note with a specified `note_id`.
   <h6>Note</h6>
   <p>An appropriate error will be returned if you are not the creator of the note you are trying to delete.</p>
 </aside>
-
