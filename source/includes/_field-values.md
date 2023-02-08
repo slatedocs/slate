@@ -64,7 +64,7 @@ Each field value object has a unique `id`.
 A field value also has `field_id`, `entity_id`, and `list_entry_id`
 attributes that give it the appropriate associations, as noted in the example above.
 
-The response of retrieving field value items comes back with created_at and updated_at which could be used for later filtering.
+Use the `created_at` and `updated_at` timestamps on field values to determine when the value(s) for a given field have last been added or changed. Please note that what might amount to an “update” in-product (e.g. for dropdown fields) might result in a newly created field value rather than an updated old one in the API.
 
 A field value can take on many different kinds of values, depending on the
 `field` value type (see [Fields](#fields) section).
