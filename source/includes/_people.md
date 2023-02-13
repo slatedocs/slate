@@ -228,7 +228,21 @@ print(response.text)
                 "hubspot_record_url": "https://app.hubspot.com/sales/25200013/company/699261XXXX",
                 "salesloft_id": "233684XX",
                 "salesloft_url": "https://app.salesloft.com/app/company/233684XX"
-            }
+            },
+            "departments": [
+                "c_suite", 
+                "master_information_technology", 
+                "master_operations"
+            ],
+            "subdepartments": [
+                "operations_executive",
+                "business_service_management_itsm",
+                "operations"
+            ],
+            "functions": [
+                "operations"
+            ],
+            "seniority": "c_suite"
         }
     ]
 }

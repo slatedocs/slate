@@ -399,7 +399,21 @@ print(response.text)
    "personal_emails": [
        "personalemail1@domain.com",
        "personalemail2@domain.com"
-   ]
+   ],
+   "departments": [
+       "c_suite", 
+       "master_information_technology", 
+       "master_operations"
+   ],
+   "subdepartments": [
+       "operations_executive",
+       "business_service_management_itsm",
+       "operations"
+   ],
+   "functions": [
+       "operations"
+   ],
+   "seniority": "c_suite"
 }
 ```
 
@@ -1044,7 +1058,21 @@ print(response.text)
         "personal_emails": [
             "personalemail1@domain.com",
             "personalemail2@domain.com"
-        ]
+        ],
+       "departments": [
+           "c_suite",
+           "master_information_technology",
+           "master_operations"
+       ],
+       "subdepartments": [
+           "operations_executive",
+           "business_service_management_itsm",
+           "operations"
+       ],
+       "functions": [
+           "operations"
+       ],
+       "seniority": "c_suite"
     }
 }
 ```
