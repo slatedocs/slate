@@ -19,16 +19,16 @@ Entity files are files uploaded to a relevant entity. Possible files, for exampl
 }
 ```
 
-| Attribute      | Type     | Description                                                                 |
-| -------------- | -------- | --------------------------------------------------------------------------- |
-| id             | integer  | The unique identifier of the entity file object.                            |
-| name           | string   | The name of the file.                                                       |
-| size           | string   | The size of the file in bytes.                                              |
+| Attribute       | Type     | Description                                                                 |
+| --------------- | -------- | --------------------------------------------------------------------------- |
+| id              | integer  | The unique identifier of the entity file object.                            |
+| name            | string   | The name of the file.                                                       |
+| size            | string   | The size of the file in bytes.                                              |
 | person_id       | integer  | The unique identifier of the person corresponding to the entity file.       |
 | organization_id | integer  | The unique identifier of the organization corresponding to the entity file. |
 | opportunity_id  | integer  | The unique identifier of the opportunity corresponding to the entity file.  |
 | uploader_id     | integer  | The unique identifier of the user who created the entity file.              |
-| created_at     | datetime | The time when the entity file was created.                                  |
+| created_at      | datetime | The time when the entity file was created.                                  |
 
 ## Get All Files
 
