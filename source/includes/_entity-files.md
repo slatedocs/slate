@@ -19,16 +19,16 @@ Entity files are files uploaded to a relevant entity. Possible files, for exampl
 }
 ```
 
-| Attribute      | Type     | Description                                                                 |
-| -------------- | -------- | --------------------------------------------------------------------------- |
-| id             | integer  | The unique identifier of the entity file object.                            |
-| name           | string   | The name of the file.                                                       |
-| size           | string   | The size of the file in bytes.                                              |
+| Attribute       | Type     | Description                                                                 |
+| --------------- | -------- | --------------------------------------------------------------------------- |
+| id              | integer  | The unique identifier of the entity file object.                            |
+| name            | string   | The name of the file.                                                       |
+| size            | string   | The size of the file in bytes.                                              |
 | person_id       | integer  | The unique identifier of the person corresponding to the entity file.       |
 | organization_id | integer  | The unique identifier of the organization corresponding to the entity file. |
 | opportunity_id  | integer  | The unique identifier of the opportunity corresponding to the entity file.  |
 | uploader_id     | integer  | The unique identifier of the user who created the entity file.              |
-| created_at     | datetime | The time when the entity file was created.                                  |
+| created_at      | datetime | The time when the entity file was created.                                  |
 
 ## Get All Files
 
@@ -175,16 +175,27 @@ The actual entity file corresponding to the `entity_file_id`.
   <p>The download location of entity files is provided via a redirect from our endpoint and requires the <code>-L</code> flag.</p>
 </aside>
 
-
 ## Upload Files
 
 > Example Request
 
 ```shell
+# Single file upload
 curl -X POST "https://api.affinity.co/entity-files" \
   -u :$APIKEY \
-  -H "Content-Type: application/json" \
-  -F '{"files": ["@Pitch.pdf", "@10_01_18_meeting.txt", "person_id": 4113456]}'
+  -H 'Content-Type: multipart/form-data' \
+  -F file=@file.txt \
+  -F person_id=1
+```
+
+```shell
+# Multi file upload
+curl -X POST "https://api.affinity.co/entity-files" \
+  -u :$APIKEY \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'files[]=@file1.txt' \
+  -F 'files[]=@file2.txt' \
+  -F person_id=1
 ```
 
 > Example Response
