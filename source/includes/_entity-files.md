@@ -175,16 +175,27 @@ The actual entity file corresponding to the `entity_file_id`.
   <p>The download location of entity files is provided via a redirect from our endpoint and requires the <code>-L</code> flag.</p>
 </aside>
 
-
 ## Upload Files
 
 > Example Request
 
 ```shell
+# Single file upload
 curl -X POST "https://api.affinity.co/entity-files" \
   -u :$APIKEY \
-  -H "Content-Type: application/json" \
-  -F '{"files": ["@Pitch.pdf", "@10_01_18_meeting.txt", "person_id": 4113456]}'
+  -H 'Content-Type: multipart/form-data' \
+  -F file=@file.txt \
+  -F person_id=1
+```
+
+```shell
+# Multi file upload
+curl -X POST "https://api.affinity.co/entity-files" \
+  -u :$APIKEY \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'files[]=@file1.txt' \
+  -F 'files[]=@file2.txt' \
+  -F person_id=1
 ```
 
 > Example Response
