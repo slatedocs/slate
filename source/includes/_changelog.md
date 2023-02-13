@@ -1,11 +1,16 @@
 # Changelog
 
+## 2023-02-10
+
+- Added [Rate Limit Headers](#rate-limit-headers) section to the [Rate Limits](#rate-limits) documentation.
+
 ## 2023-02-08
 
 - Added `created_at` and `updated_at` timestamps to [Field Values](#field-values).
 - Added an `updated_at` timestamp to [Notes](#notes).
 
 ## 2023-02-07
+
 - Added the ability to retrieve Current Organization column data on [Persons](#persons).
 
 ## 2022-09-06
