@@ -16,7 +16,8 @@ Webhooks allow you to be notified of events that happen on your Affinity instanc
     "organization.created",
     "opportunity.created"
   ],
-  "disabled": false
+  "disabled": false,
+  "created_by": 5678
 }
 ```
 
@@ -28,6 +29,7 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 | webhook_url   | string   | The URL to which the webhooks are sent to.                                                                                                                                                                            |
 | subscriptions | string[] | An array of webhook events that are enabled for that endpoint. An empty array indicates subscription to all webhook events. See [below](#supported-webhook-events) for the complete list of supported webhook events. |
 | disabled      | boolean  | If the subscription is disabled, this is true. Otherwise, this is false by default. A subscription may be disabled manually via API or automatically if we are not able to process it.|
+| created_by    | integer  | The unique identifier of the user who created the webhook subscription. |
 
 ## Supported Webhook Events
 
@@ -103,13 +105,15 @@ curl "https://api.affinity.co/webhook" -u :$APIKEY
       "organization.created",
       "opportunity.created"
     ],
-    "disabled": false
+    "disabled": false,
+    "created_by": 5678
   },
   {
     "id": 2345,
     "webhook_url": "https://hooks.example.com/webhook-all",
     "subscriptions": [],
-    "disabled": true
+    "disabled": true,
+    "created_by": 5678
   }
 ]
 ```
@@ -138,7 +142,8 @@ curl "https://api.affinity.co/webhook/1234" -u :$APIKEY
     "organization.created",
     "opportunity.created"
   ],
-  "disabled": false
+  "disabled": false,
+  "created_by": 5678
 }
 ```
 
@@ -173,7 +178,8 @@ curl -X POST "https://api.affinity.co/webhook/subscribe" \
   "id": 1234,
   "webhook_url": "https://hooks.example.com/webhook",
   "subscriptions": [],
-  "disabled": false
+  "disabled": false,
+  "created_by": 5678
 }
 ```
 
@@ -216,7 +222,8 @@ curl "https://api.affinity.co/webhook/1234" \
   "id": 1234,
   "webhook_url": "https://hooks.example.com/webhook",
   "subscriptions": [],
-  "disabled": true
+  "disabled": true,
+  "created_by": 5678
 }
 ```
 

@@ -34,11 +34,11 @@ There is a limit of three webhook subscriptions per Affinity instance.
 
 Each external API call will include headers with rate limit information. This is a convenient way to retrieve your rate limits and usage without needing to hit the [`/rate-limit`](#rate-limit) endpoint. Every API call will respond with the following headers:
 
-| Header                           | Description                                                 |
-| -------------------------------- | ----------------------------------------------------------- |
-| X-Ratelimit-Limit-User           | Number of requests allowed per minute for the user          |
-| X-Ratelimit-Limit-User-Remaining | Number of requests remaining for the user                   |
-| X-Ratelimit-Limit-User-Reset     | Time in seconds before the limit reset for the user         |
-| X-Ratelimit-Limit-Org            | Number of requests allowed per minute for the organization  |
-| X-Ratelimit-Limit-Org-Remaining  | Number of requests remaining for the organization           |
-| X-Ratelimit-Limit-Org-Reset      | Time in seconds before the limit reset for the organization |
+| Header                           | Description                                                  |
+| -------------------------------- | ------------------------------------------------------------ |
+| X-Ratelimit-Limit-User           | Number of requests allowed per minute for the user           |
+| X-Ratelimit-Limit-User-Remaining | Number of requests remaining for the user                    |
+| X-Ratelimit-Limit-User-Reset     | Time in seconds before the limit resets for the user         |
+| X-Ratelimit-Limit-Org            | Number of requests allowed per month for the organization    |
+| X-Ratelimit-Limit-Org-Remaining  | Number of requests remaining for the organization            |
+| X-Ratelimit-Limit-Org-Reset      | Time in seconds before the limit resets for the organization |
