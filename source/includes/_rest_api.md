@@ -1,3 +1,21 @@
+---
+title: Delta Exchange Api V2 v1.0.0
+language_tabs:
+  - python: Python
+  - shell: Shell
+  - ruby: Ruby
+language_clients:
+  - python: ""
+  - shell: ""
+  - ruby: ""
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
 <h1 id="ApiSection" class="section-header">Rest Api</h1>
 This section documents the latest(v2) api for trading on Delta Exchange. The REST API has endpoints for account and order management as well as public market data.
 
@@ -769,7 +787,7 @@ This operation does not require authentication.
 
 <h1 id="delta-exchange-api-v2-orders">Orders</h1>
 
-Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage
+Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage. Rate limits have been introduced recently that allows only set number of operations inside a matching engine in a timeframe. The current rate limits is 500 operations/sec for each product. For ex - placing 50 orders in a batch is equivalent to 50 operations as these orders will be processed by matching engine. Rate limits do not apply when cancelling orders.
 
 ## Place Order
 
@@ -858,7 +876,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[CreateOrderRequest](#schemacreateorderrequest)|true|Order which needs to be created|
+|body|body|[CreateOrderRequest](#schemacreateorderrequest)|true|Order which needs to be created. Rate limits apply.|
 
 > Example responses
 
@@ -1111,7 +1129,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[EditOrderRequest](#schemaeditorderrequest)|true|Order which needs to be edited|
+|body|body|[EditOrderRequest](#schemaeditorderrequest)|true|Order which needs to be edited. Rate limits apply.|
 
 > Example responses
 
@@ -1666,7 +1684,7 @@ p JSON.parse(result)
 
 `POST /orders/batch`
 
-Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50.
+Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50. Rate limits apply.
 
 > Body parameter
 
@@ -1867,7 +1885,7 @@ p JSON.parse(result)
 
 `PUT /orders/batch`
 
-batch order edit 
+Orders to be edited in a batch. Rate limits apply.
 
 > Body parameter
 
@@ -2271,93 +2289,6 @@ To perform this operation, you must be sign the request using your api key and s
 
 Get Open positions, Change Position Margin, Close Position, Close All Position
 
-## Get position
-
-<a id="opIdgetPositions"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.get('https://api.delta.exchange/v2/positions', params={
-  'product_id': '0'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X GET https://api.delta.exchange/v2/positions?product_id=0 \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.get 'https://api.delta.exchange/v2/positions',
-  params: {
-  'product_id' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /positions`
-
-<h3 id="get-position-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|product_id|query|integer|true|id of the product|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "success": true,
-  "result": {
-    "size": 0,
-    "entry_price": "string"
-  }
-}
-```
-
-<h3 id="get-position-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Open position for the give product id|Inline|
-
-<h3 id="get-position-responseschema">Response Schema</h3>
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
 ## Get margined positions
 
 <a id="opIdgetMarginedPositions"></a>
@@ -2461,6 +2392,93 @@ p JSON.parse(result)
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all open positions|Inline|
 
 <h3 id="get-margined-positions-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Get position
+
+<a id="opIdgetPositions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/positions', params={
+  'product_id': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/positions?product_id=0 \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/positions',
+  params: {
+  'product_id' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /positions`
+
+<h3 id="get-position-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|product_id|query|integer|true|id of the product|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "size": 0,
+    "entry_price": "string"
+  }
+}
+```
+
+<h3 id="get-position-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Open position for the give product id|Inline|
+
+<h3 id="get-position-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -3603,7 +3621,7 @@ p JSON.parse(result)
 
 `PUT /users/update_mmp`
 
-Market maker protection is available on demand to RMM. More info [here](https://guides.delta.exchange).
+Channel provides updates when MMP is triggered. Market maker protection is available to registered market makers by default. Others can reach out to support for getting access to MMP. More info [here](https://guides.delta.exchange/delta-exchange-user-guide/market-makers-guide/market-maker-protection).
 
 > Body parameter
 
@@ -4165,7 +4183,7 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |resolution|query|string|true|none|
-|symbol|query|string|true|product symbol needs to pass to get data, to get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}|
+|symbol|query|string|true|To get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} ,for mark price MARK:${symbol}, and for OI data OI:${symbol}|
 |start|query|integer|true|Start time|
 |end|query|integer|true|End time|
 
@@ -4604,6 +4622,35 @@ This operation does not require authentication.
 |trading_status|operational|
 |trading_status|disrupted_cancel_only|
 |trading_status|disrupted_post_only|
+
+<h2 id="tocSproductcategories">ProductCategories</h2>
+
+<a id="schemaproductcategories"></a>
+
+```json
+{
+  "PutOptions": "string",
+  "CallOptions": "string",
+  "MoveOptions": "string",
+  "Spot": "string",
+  "Futures": "string",
+  "Perpetual Futures": "string"
+}
+
+```
+
+*List of all the product category names on delta exchange. Please refer to this list while subscribing to various public and private channels on delta exchange websocket*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|PutOptions|string|false|none|put_options|
+|CallOptions|string|false|none|call_options|
+|MoveOptions|string|false|none|move_options|
+|Spot|string|false|none|spot|
+|Futures|string|false|none|futures|
+|Perpetual Futures|string|false|none|perpetual_futures|
 
 <h2 id="tocSarrayofproducts">ArrayOfProducts</h2>
 

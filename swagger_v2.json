@@ -26,7 +26,7 @@
     },
     {
       "name": "Orders",
-      "description": "Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage"
+      "description": "Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage. Rate limits have been introduced recently that allows only set number of operations inside a matching engine in a timeframe. The current rate limits is 500 operations/sec for each product. For ex - placing 50 orders in a batch is equivalent to 50 operations as these orders will be processed by matching engine. Rate limits do not apply when cancelling orders."
     },
     {
       "name": "Positions",
@@ -355,7 +355,7 @@
           {
             "in": "body",
             "name": "order",
-            "description": "Order which needs to be created",
+            "description": "Order which needs to be created. Rate limits apply.",
             "required": true,
             "schema": {
               "$ref": "#/definitions/CreateOrderRequest"
@@ -469,7 +469,7 @@
           {
             "in": "body",
             "name": "order",
-            "description": "Order which needs to be edited",
+            "description": "Order which needs to be edited. Rate limits apply.",
             "required": true,
             "schema": {
               "$ref": "#/definitions/EditOrderRequest"
@@ -763,7 +763,7 @@
           "Orders"
         ],
         "summary": "Create batch orders",
-        "description": "Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50.",
+        "description": "Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50. Rate limits apply.",
         "operationId": "batchCreate",
         "consumes": [
           "application/json"
@@ -825,7 +825,7 @@
         }
       },
       "put": {
-        "description": "batch order edit ",
+        "description": "Orders to be edited in a batch. Rate limits apply.",
         "summary": "Edit batch orders",
         "tags": [
           "Orders"
@@ -1946,7 +1946,7 @@
             "in": "query",
             "name": "symbol",
             "type": "string",
-            "description": "product symbol needs to pass to get data, to get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} and for mark price MARK:${symbol}",
+            "description": "To get index data pass index symbol like .DEXBTUSDT/ .DEETHUSDT, to get funding history in the same api pass symbol as FUNDING:${symbol} ,for mark price MARK:${symbol}, and for OI data OI:${symbol}",
             "required": true
           },
           {
