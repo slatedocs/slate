@@ -1874,6 +1874,63 @@
         }
       }
     },
+    "/wallets/sub_account_balance_transfer": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "summary": "Request asset transfer",
+        "description": "This api transfers asset from one subaccount to another subaccount or to the main/parent account. Please ensure that the subaccounts involved in the transfer should belong to the same parent account. Requests to transfer assets across subaccounts that belong to different parent accounts will fail. Please make sure that the api key used to make this api request belongs to the main/parent account.",
+        "operationId": "assetTransfer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "assetTransfer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssetTransferSubaccountReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns success message",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {}
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Returns error code",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/products/?states=expired": {
       "get": {
         "tags": [
@@ -3132,6 +3189,27 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/Wallet"
+      }
+    },
+    "AssetTransferSubaccountReq": {
+      "type": "object",
+      "properties": {
+        "transferrer_user_id": {
+          "type": "string",
+          "description": "Debit account"
+        },
+        "transferee_user_id": {
+          "type": "string",
+          "description": "Credit account"
+        },
+        "asset_symbol": {
+          "type": "string",
+          "description": "Asset to transfer"
+        },
+        "amount": {
+          "type": "big_decimal",
+          "description": "Amount to transfer. Only postive values allowed."
+        }
       }
     },
     "Transaction": {
