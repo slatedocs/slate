@@ -61,7 +61,7 @@ An organization's approvals
 | offer_id | The specific offer for this approval. This will be empty for job approvals. |
 | sequential | true or false based on whether the groups in this flow must approve sequentially |
 | version | The specific version of this flow. |
-| approval_type | one of 'offer_job', 'open_job', or 'offer_candidate' |
+| approval_type | One of 'open_job,' 'offer_job' or 'offer_candidate.' `open_job` refers to approval flows to [start recruiting on a job](https://support.greenhouse.io/hc/en-us/articles/201094534-Request-approval-to-start-recruiting-). `offer_job` refers to approval flows to [make offers on a job](https://support.greenhouse.io/hc/en-us/articles/360025776391). `offer_candidate` refers to approval flows for a [candidate offer](https://support.greenhouse.io/hc/en-us/articles/360035625832-Offer-approval-overview). |
 | approval_status | one of 'pending', 'approved', or 'rejected' |
 | job_id | The job for which approval is configured. This always has a value. |
 | requested_by_user_id | The user who requested this approval be started. |
