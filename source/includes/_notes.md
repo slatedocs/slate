@@ -19,6 +19,7 @@ store logged activity from a prospect's visit to your website.
   "opportunity_ids": [117],
   "parent_id": null,
   "content": "Had a lunch meeting with Jane and John today. They are looking to invest.",
+  "type": 0,
   "created_at": "2017-03-28 00:38:41 -0700",
   "updated_at": "2017-04-03 00:38:41 -0700"
 }
@@ -37,6 +38,7 @@ Each person, organization, or opportunity will display linked notes on their pro
 | opportunity_ids  | integer[] | An array of unique identifiers of opportunity objects that are associated with the note.                                                                                                                                                                                                                                                  |
 | parent_id        | integer   | The unique identifier of the note that this note is a reply to. If this field is `null`, the note is not a reply. Note replies will never have values for `opportunity_ids`, `person_ids`, and `organization_ids`. Only the parent note is associated with an entity. You can fetch the parent note resource to identify the root entity. |
 | content          | string    | The string containing the content of the note.                                                                                                                                                                                                                                                                                            |
+| type             | integer   | The type of the note. The supported types are 0 and 2, which represent plain text and HTML notes, respectively.                                                                                                                                                                                                                           |
 | created_at       | datetime  | The string representing the time when the note was created.                                                                                                                                                                                                                                                                               |
 | updated_at       | datetime  | The string representing the last time the note was updated.                                                                                                                                                                                                                                                                               |
 
@@ -62,6 +64,7 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "opportunity_ids": [117],
     "parent_id":  null,
     "content": "Had a lunch meeting with Jane ... ",
+    "type": 0,
     "created_at": "2017-03-28 00:38:41 -0700",
     "updated_at": "2017-04-03 00:38:41 -0700"
   },
@@ -74,7 +77,8 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "organization_ids": [64779194],
     "opportunity_ids": [115],
     "parent_id":  null,
-    "content": "Had a lunch meeting @ Google ... ",
+    "content": "Had a **lunch meeting** @ Google ... ",
+    "type": 2,
     "created_at": "2018-03-28 00:38:41 -0700",
     "updated_at": null
   },
@@ -123,6 +127,7 @@ curl "https://api.affinity.co/notes/22984" -u :$APIKEY
   "opportunity_ids": [117],
   "parent_id":  null,
   "content": "Had a lunch meeting with Jane ... ",
+  "type": 0,
   "created_at": "2017-03-28 00:38:41 -0700",
   "updated_at": "2017-04-03 00:38:41 -0700",
 },
@@ -158,7 +163,7 @@ curl -X POST "https://api.affinity.co/notes" \
 
 ```json
 {
-  "id": 22984,
+  "id": 22985,
   "creator_id": 860197,
   "person_ids": [38706, 89734],
   "is_meeting": false,
@@ -167,6 +172,35 @@ curl -X POST "https://api.affinity.co/notes" \
   "opportunity_ids": [117],
   "parent_id": null,
   "content": "Had a lunch meeting with Jane ... ",
+  "type": 0,
+  "created_at": "2017-03-28 00:38:41 -0700",
+  "updated_at": null
+}
+```
+
+> Example Request Creating An HTML-Type Note
+
+```shell
+curl -X POST "https://api.affinity.co/notes" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -d '{"person_ids": [38706, 624289], "organization_ids": [120611418], "opportunity_ids": [167], "type": 2, "content": "Had a <strong>lunch meeting<strong> with Jane and John today. They want to invest in Acme Corp."}'
+```
+
+> Example Response
+
+```json
+{
+  "id": 22986,
+  "creator_id": 860197,
+  "person_ids": [38706, 89734],
+  "is_meeting": false,
+  "mentioned_person_ids": null,
+  "organization_ids": [64779194],
+  "opportunity_ids": [117],
+  "parent_id": null,
+  "content": "Had a **lunch meeting** with Jane ... ",
+  "type": 2,
   "created_at": "2017-03-28 00:38:41 -0700",
   "updated_at": null
 }
@@ -176,14 +210,7 @@ curl -X POST "https://api.affinity.co/notes" \
 
 Creates a new note with the supplied parameters.
 
-Affinity's Gmail Chrome Extension allows users to save an email as a note in Affinity.
-This same functionality is exposed in our API via the `gmail_id` parameter. Passing in the
-`id` of a Gmail
-[message](https://developers.google.com/gmail/api/v1/reference/users/messages) will
-automatically sync the email to Affinity (if it hasn't synced with Affinity already)
-and associate it with the newly created note. (Make sure that Affinity has access to the
-account that owns the Gmail mesage.) A note associated with an email cannot have any
-`content`.
+Set the `type` parameter to 2 to create an HTML note. See [here](https://support.affinity.co/hc/en-us/articles/360016292631-Rich-text-formatting-for-notes-within-Affinity) for more information on the sorts of rich text formatting we support in notes. Please note that `<a>` tags aren't currently clickable inside the Affinity web app &ndash; though full links are.
 
 ### Path Parameters
 
@@ -193,11 +220,11 @@ account that owns the Gmail mesage.) A note associated with an email cannot have
 | organization_ids | integer[] | false    | An array of unique identifiers of organization objects that are associated with the new note.                                                                                                   |
 | opportunity_ids  | integer[] | false    | An array of unique identifiers of opportunity objects that are associated with the new note.                                                                                                    |
 | content          | string    | false    | The string containing the content of the new note.                                                                                                                                              |
-| gmail_id         | string    | false    | The ID of a Gmail message to save as the content of the note.                                                                                                                                   |
+| type             | integer   | false    | The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively.                                                                                   |
 | creator_id       | integer   | false    | The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.       |
 | created_at       | datetime  | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time. |
 
-Note that either `content` or `gmail_id` must be specified.
+Note that `content` must be specified.
 
 ### Returns
 
@@ -232,6 +259,7 @@ curl -X PUT "https://api.affinity.co/notes/22984" \
   "opportunity_ids": [117],
   "parent_id": null,
   "content": "Had another meeting with Jane ... ",
+  "type": 0,
   "created_at": "2017-03-28 00:38:41 -0700",
   "updated_at": "2017-04-03 00:38:41 -0700"
 }
@@ -259,7 +287,7 @@ The note object that was just updated through this request.
 
 <aside class="notice">
   <h6>Note</h6>
-  <p>You cannot update the content of a note that has mentions. You also cannot update the content of a note associated with an email.</p>
+  <p>You cannot update the content of a note that has mentions. You also cannot update the content of a note associated with an email.<br/>You cannot update the type of a note.</p>  
 </aside>
 
 ## Delete a Note

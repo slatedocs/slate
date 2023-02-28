@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-02-28
+
+- Added the ability to [create HTML notes](#create-a-new-note).
+
 ## 2023-02-10
 
 - Added [Rate Limit Headers](#rate-limit-headers) section to the [Rate Limits](#rate-limits) documentation.
