@@ -206,11 +206,41 @@ curl -X POST "https://api.affinity.co/notes" \
 }
 ```
 
+> Example Request with parent_id
+
+```shell
+curl -X POST "https://api.affinity.co/notes" \
+  -u :$APIKEY \
+  -H "Content-Type: application/json" \
+  -d '{"person_ids": [38706], "organization_ids": [120611418], "parent_id": 22984, "content": "This is a <strong> reply </strong>to the previous note.", "type":2}'
+```
+
+> Example Response
+
+```json
+{
+  "id": 22987,
+  "creator_id": 860197,
+  "person_ids": [],
+  "is_meeting": false,
+  "mentioned_person_ids": null,
+  "organization_ids": [],
+  "opportunity_ids": [],
+  "parent_id": 22984,
+  "content": "This is a reply to the previous note.",
+  "type": 2,
+  "created_at": "2017-03-29 00:38:41 -0700",
+  "updated_at": null
+}
+```
+
 `POST /notes`
 
 Creates a new note with the supplied parameters.
 
 Set the `type` parameter to 2 to create an HTML note. See [here](https://support.affinity.co/hc/en-us/articles/360016292631-Rich-text-formatting-for-notes-within-Affinity) for more information on the sorts of rich text formatting we support in notes. Please note that `<a>` tags aren't currently clickable inside the Affinity web app &ndash; though full links are.
+
+It is possible to create a <strong>reply note</strong> for an existing note by sending `parent_id` as one of the parameters. The parent note should exist and should not be a reply note, having a not null `parent_id` itself. It is possible for a note to have multiple replies. `opportunity_ids`, `person_ids`, and `organization_ids` will be ignored when providing a `parent_id`.
 
 ### Path Parameters
 
@@ -221,6 +251,7 @@ Set the `type` parameter to 2 to create an HTML note. See [here](https://support
 | opportunity_ids  | integer[] | false    | An array of unique identifiers of opportunity objects that are associated with the new note.                                                                                                    |
 | content          | string    | false    | The string containing the content of the new note.                                                                                                                                              |
 | type             | integer   | false    | The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively.                                                                                   |
+| parent_id        | string    | false    | The ID of a note that this note is a reply to.                                                                                                                                                  |
 | creator_id       | integer   | false    | The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.       |
 | created_at       | datetime  | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time. |
 

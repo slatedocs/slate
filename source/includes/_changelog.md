@@ -3,6 +3,7 @@
 ## 2023-02-28
 
 - Added the ability to [create HTML notes](#create-a-new-note).
+- Added the ability to [create a note within a thread](#create-a-new-note).
 
 ## 2023-02-10
 
