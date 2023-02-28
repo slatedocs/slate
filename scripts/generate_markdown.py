@@ -2,11 +2,9 @@
 
 import os
 import re
-import json
+from settings import ENDPOINTS_DIR
 
-ENDPOINTS_DIR = "/home/dnorhoj/Documents/Work/Code/local-site-dev/api/Endpoints"
-#OUTPUT_DIR = "./_generated/"
-OUTPUT_DIR = "../source/includes/"
+OUTPUT_DIR = "./output"
 
 # Template
 TEMPLATE = """
