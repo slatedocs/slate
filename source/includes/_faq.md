@@ -68,7 +68,7 @@ Yes. Disbursements executed through our API Disbursement are all performed in re
 
 **What are the supported banks?**
 
-We currently have 6 available banks for our API VA Aggregator. Please refer to the bank codes [here](https://api-docs.oyindonesia.com/#va-aggregator-bank-code).
+We currently have 11 available banks for our API VA Aggregator. Please refer to the bank codes [here](https://api-docs.oyindonesia.com/#va-aggregator-bank-code).
 
 **Is the amount received in realtime?**
 
@@ -81,14 +81,23 @@ We support payments via bank transfers, credit card, debit card, and QR code fro
 
 * Bank Transfer via Virtual Account: BCA, BNI, BRI, CIMB Niaga, Mandiri, Permata Bank.
 
+* Bank Transfer via Unique Code: BCA
+
 * Credit Card/Debit Card: VISA, Mastercard
 
-* E-Wallet: ShopeePay
+* E-Wallet: ShopeePay, DANA, LinkAja, OVO
 
-* QR Code: Qris
+* QR Code: QRIS
 
 **What are closed and open amounts? What happens when the amount paid by the user is different from the declared amount in the created Payment Links?**
 
 A closed amount is a configuration so that the payment link or invoice can only be paid if the actual declared amount is paid. The user will not be able to pay any amount other than the declared amount.
 
 An opened amount is a configuration so that the payment link or invoice can be paid up to the declared amount (or any, if amount is not declared). If the user pays an amount that is different from the declared amount, the payment link will remain active. The payment link will only reflect a completed status when the full amount is paid in total.
+
+
+## Payment Routing
+**What is the difference between Bank Transfer via Virtual Account and Bank Transfer via Unique Code?**
+Bank Transfer via Virtual Account (VA) will generate specific account number destination for each transaction. You can create an open amount or closed amount transaction using VA. Detail explanation of VA can be seen [here](https://docs.oyindonesia.com/#va-aggregator-accepting-payments). You can create VA Transactions via [API Payment Routing](https://docs.oyindonesia.com/#va-aggregator-accepting-payments) or [VA Aggregator](https://docs.oyindonesia.com/#va-aggregator-accepting-payments) 
+
+Bank Transfer via Unique Code generates unique code for each transaction but the account number destination will always be the same. The total amount paid is subtracted by the unique code. For example, your end user wants to paid a transaction of Rp 100.000 and get Rp 100 as the unique code. The payment uses subtraction approach, so your end user will pay a total of Rp 99.900 to complete the payments. Unique Code also have limitations compared to VA, where you can only create unique code transaction during the operational hours (3 AM - 8.30 PM GMT+7). You can create  Unique Code Transaction only via [API Payment Routing](https://docs.oyindonesia.com/#va-aggregator-accepting-payments)
