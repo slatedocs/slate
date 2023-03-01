@@ -16,3 +16,6 @@ charset = utf-8
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.py]
+indent_size = 4
