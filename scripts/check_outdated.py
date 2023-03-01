@@ -15,6 +15,7 @@ def get_all_endpoints():
 
             endpoints.append(root.split(ENDPOINTS_DIR)[1] + "/" + file[:-4])
 
+    endpoints.sort()
     return endpoints
 
 def get_all_documented_endpoints():
@@ -31,11 +32,20 @@ def get_all_documented_endpoints():
 
                 endpoints.append(match.group(1))
 
+    endpoints.sort()
     return endpoints
 
-print(get_all_endpoints())
-print(get_all_documented_endpoints())
+if __name__ == "__main__":
+    endpoints = get_all_endpoints()
+    documented_endpoints = get_all_documented_endpoints()
 
-print()
+    # Show endpoints that are not documented and endpoints that have been removed
+    print("Undocumented endpoints:")
+    for endpoint in endpoints:
+        if endpoint not in documented_endpoints and not endpoint.startswith("/status/"):
+            print(f"  - {endpoint}")
 
-print(set(get_all_endpoints()) ^ set(get_all_documented_endpoints()))
+    print("Removed endpoints:")
+    for endpoint in documented_endpoints:
+        if endpoint not in endpoints:
+            print(f"  - {endpoint}")
