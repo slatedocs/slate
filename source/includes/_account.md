@@ -3,7 +3,7 @@
 ## Create company groups
 
 ```shell
-curl https://api.simplyprint.io/{id}/account/settings/rank/Create \
+curl https://api.simplyprint.io/{id}/account/settings/groups/Create \
   -X POST \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -56,7 +56,7 @@ This endpoint creates a new group in the company.
 
 ### Request
 
-`POST /{id}/account/settings/rank/Create`
+`POST /{id}/account/settings/groups/Create`
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
@@ -77,7 +77,7 @@ This endpoint creates a new group in the company.
 ## Update company groups
 
 ```shell
-curl https://api.simplyprint.io/{id}/account/settings/rank/Update \
+curl https://api.simplyprint.io/{id}/account/settings/groups/Update \
   -X POST \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -132,7 +132,7 @@ This endpoint updates the groups in the company.
 
 ### Request
 
-`POST /{id}/account/settings/rank/Update`
+`POST /{id}/account/settings/groups/Update`
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
@@ -218,7 +218,7 @@ This endpoint returns a list of groups that exist in the company.
 ## Delete company group
 
 ```shell
-curl https://api.simplyprint.io/{id}/account/settings/rank/Delete \
+curl https://api.simplyprint.io/{id}/account/settings/groups/Delete \
   -X POST \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -252,7 +252,7 @@ curl https://api.simplyprint.io/{id}/account/settings/rank/Delete \
 
 ### Request
 
-`POST /{id}/account/settings/rank/Delete`
+`POST /{id}/account/settings/groups/Delete`
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
@@ -265,3 +265,120 @@ curl https://api.simplyprint.io/{id}/account/settings/rank/Delete \
 | --------- | ---- | ----------- |
 | `status` | boolean | True if the request was successful. |
 | `message` | string | Error message if `status` is false. |
+
+
+## Get statistics
+
+```shell
+curl https://api.simplyprint.io/{id}/account/GetStatistics \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Request body
+
+```json
+{
+  "users": [1234, 1235, 1945],
+  "printers": [1234, 1235, 1945],
+  "start_date": "1677629786",
+  "end_date": "1677629786"
+}
+```
+
+> Success response
+
+```json
+{
+    "status": true,
+    "message": null,
+    "data": {
+        "total_print_seconds": 1234,
+        "total_filament_usage_gram": 1241.1231231,
+        "print_job_count": 123,
+        "regretted_print_jobs": 123,
+        "failed_print_jobs": 123,
+        "printer_error_print_jobs": 123,
+        "done_print_jobs": 123,
+        "date_range": {
+            "from": "2023-02-22",
+            "to": "2023-03-02",
+            "general": false
+        },
+        "printers": {
+            "3104": {
+                "name": "Printer 1",
+                "done": 0,
+                "failed": 0,
+                "printer_error": 0,
+                "regretted": 0,
+                "filament_usage_gram": 0
+            },
+            ...
+        },
+        "print_jobs": [
+            {
+                "date": "2023-02-27",
+                "started": "2023-02-27 11:39:34",
+                "ended": "2023-02-27 11:56:18",
+                "cancelled": 1,
+                "failed": 0,
+                "cancel_reason_type": 5,
+                "print_seconds": 1004,
+                "filament_usage_gram": 0.03758012402132279
+            },
+            ...
+        ]
+    }
+}
+```
+
+This endpoint returns statistics for the user / company.
+
+### Request
+
+`POST /{id}/account/GetStatistics`
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `users` | array | no | Array of user ids to get statistics for. Don't include this parameter to get statistics for all users. |
+| `printers` | array | no | Array of printer ids to get statistics for. Don't include this parameter to get statistics for all printers. |
+| `start_date` | string | no | The start date of the statistics. Provide a unix timestamp in seconds. |
+| `end_date` | string | no | The end date of the statistics. Provide a unix timestamp in seconds. |
+
+### Response
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+| `data` | object | Statistics object. |
+| `data.total_print_seconds` | integer | Total print seconds. |
+| `data.total_filament_usage_gram` | float | Total filament usage in grams. |
+| `data.print_job_count` | integer | Total print job count. |
+| `data.regretted_print_jobs` | integer | Total regretted print job count. |
+| `data.failed_print_jobs` | integer | Total failed print job count. |
+| `data.printer_error_print_jobs` | integer | Total printer error print job count. |
+| `data.done_print_jobs` | integer | Total successful print job count. |
+| `data.date_range` | object | Date range object. |
+| `data.date_range.from` | string | Start date of the statistics. |
+| `data.date_range.to` | string | End date of the statistics. |
+| `data.date_range.general` | boolean | True if the date range is general. |
+| `data.printers` | object | Object of printer statistics. |
+| `data.printers.{id}` | object | Printer statistics object. |
+| `data.printers.{id}.name` | string | Printer name. |
+| `data.printers.{id}.done` | integer | Successful print job count. |
+| `data.printers.{id}.failed` | integer | Failed print job count. |
+| `data.printers.{id}.printer_error` | integer | Printer error print job count. |
+| `data.printers.{id}.regretted` | integer | Regretted print job count. |
+| `data.printers.{id}.filament_usage_gram` | float | Filament usage in grams. |
+| `data.print_jobs` | array | Array of print job statistics. |
+| `data.print_jobs[].date` | string | Date of the print job. |
+| `data.print_jobs[].started` | string | Start time of the print job. |
+| `data.print_jobs[].ended` | string | End time of the print job. |
+| `data.print_jobs[].cancelled` | integer | True if the print job was cancelled. |
+| `data.print_jobs[].failed` | integer | True if the print job failed. |
+| `data.print_jobs[].cancel_reason_type` | integer | The reason for cancelling the print job. |
+| `data.print_jobs[].print_seconds` | integer | Print seconds. |
+| `data.print_jobs[].filament_usage_gram` | float | Filament usage in grams. |

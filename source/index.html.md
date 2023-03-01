@@ -111,7 +111,7 @@ curl {base_url}/account/Test \
 
 To verify that your API key is valid and that you have access to the desired organization, you can make a request to the `/account/Test` endpoint.
 
-To make any request to the SimplyPrint API, you will need to include your API key in the request header. You can do this by including the `X-API-KEY` header in your request. On the right side of this page, you can see an example of how to make a request to the `/account/Test` endpoint using cURL and Python.
+To make any request to the SimplyPrint API, you will need to include your API key in the request header. You can do this by including the `X-API-KEY` header in your request. On the right side of this page, you can see an example of how to make a request to the `/account/Test` endpoint using cURL.
 
 If you are unable to successfully make a request to the `/account/Test` endpoint using the provided example, there may be a few possible issues:
 

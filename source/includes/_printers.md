@@ -3,7 +3,7 @@
 ## Get printer info
 
 ```shell
-curl https://api.simplyprint.io/{id}/printers/actions/Get \
+curl https://api.simplyprint.io/{id}/printers/Get \
   -X ? \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
@@ -13,26 +13,11 @@ curl https://api.simplyprint.io/{id}/printers/actions/Get \
   This endpoint has not been implemented yet, and is just a placeholder for now.
 </aside>
 
-### Request
-
-`? /{id}/printers/actions/Get`
-
-## List printers
-
-```shell
-curl https://api.simplyprint.io/{id}/printers/actions/List \
-  -X ? \
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}'
-```
-
-<aside class="warning">
-  This endpoint has not been implemented yet, and is just a placeholder for now.
-</aside>
+TODO: Document this endpoint.
 
 ### Request
 
-`? /{id}/printers/actions/List`
+`? /{id}/printers/Get`
 
 ## Start print / create job
 
