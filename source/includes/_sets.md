@@ -33,6 +33,7 @@ https://api.practitest.com/api/v2/projects/4566/sets.json?display-ids=2,4
         "project-id": 1230,
         "display-id": 205,
         "name": "first name",
+        "description": "description",
         "instances-count": 0,
         "run-status": "FAILED",
         "last-run": "2017-01-27T13:35:25+00:00",
@@ -95,19 +96,19 @@ Supported - if the user has the permissions to view Runs / TestSets
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/sets.json \
--d '{"data": { "type": "sets", "attributes": {"name": "one", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+-d '{"data": { "type": "sets", "attributes": {"name": "one", "description": "description", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
 # create a Test Set with author
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/sets.json \
--d '{"data": { "type": "sets", "attributes": {"name": "New TestSet with author", "author-id": 4370, "priority": "highest"}  } }'
+-d '{"data": { "type": "sets", "attributes": {"name": "New TestSet with author", "description": "description", "author-id": 4370, "priority": "highest"}  } }'
 
 # create a Test Set with 2 test-ids to become instances:
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X POST https://api.practitest.com/api/v2/projects/4566/sets.json \
--d '{"data": { "type": "sets", "attributes": {"name": "one", "priority": "highest"}, "instances": {"test-ids": [32222,53333]} }}'
+-d '{"data": { "type": "sets", "attributes": {"name": "one", "description": "description", "priority": "highest"}, "instances": {"test-ids": [32222,53333]} }}'
 ```
 This endpoint creates a TestSet in your project.
 
@@ -160,6 +161,7 @@ https://api.practitest.com/api/v2/projects/4566/sets/45893.json
       "project-id": 1230,
       "display-id": 205,
       "name": "first name",
+      "description": "description",
       "instances-count": 0,
       "run-status": "FAILED",
       "last-run": "2017-01-27T13:35:25+00:00",
@@ -197,18 +199,18 @@ Supported - if the user has the permissions to view Runs / TestSets
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN \
 -X PUT https://api.practitest.com/api/v2/projects/4566/sets/45893.json \
--d '{"data": { "type": "sets", "attributes": {"planned-execution":"2017-03-01T12:43:31Z", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
+-d '{"data": { "type": "sets", "attributes": {"planned-execution":"2017-03-01T12:43:31Z", "description": "description", "priority": "highest", "custom-fields": { "---f-22": "Windows", "---f-24": ["ClientA", "ClientB"]}}  } }'
 
 # some more examples:
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
 -X PUT https://api.practitest.com/api/v2/projects/4566/sets/98019.json \
--d '{"data": { "type": "sets", "attributes": {"planned-execution":"2017-03-05T12:43:31Z", "priority": "2-high", "version": "1.5", "custom-fields": { "---f-45510": "5381"}}  } }'
+-d '{"data": { "type": "sets", "attributes": {"planned-execution":"2017-03-05T12:43:31Z", "description": "description", "priority": "2-high", "version": "1.5", "custom-fields": { "---f-45510": "5381"}}  } }'
 
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
 -X PUT https://api.practitest.com/api/v2/projects/4566/sets/98019.json \
--d '{"data": { "type": "sets", "attributes": {"version": "1.5", "custom-fields": { "---f-45390": "Chrome"}}  } }'
+-d '{"data": { "type": "sets", "attributes": {"version": "1.5", "description": "description", "custom-fields": { "---f-45390": "Chrome"}}  } }'
 
 ```
 
@@ -221,6 +223,7 @@ curl -H "Content-Type:application/json" \
       ...
       "planned-execution": "2017-03-01T12:43:31Z",
       "priority": "highest",
+      "description": "description",
       "custom-fields": {
         "---f-22":"my text one",
         "---f-24": ["ClientA", ["ClientB"]]
@@ -296,7 +299,8 @@ curl -H "Content-Type:application/json" \
     "attributes": {
       "project-id": 1230,
       "display-id": 205,
-      "name": "my new cloned testSset",
+      "name": "my new cloned testSet",
+      "description": "description",
       "instances-count": 5,
       "run-status": "NO RUN",
       "last-run": null,
