@@ -266,7 +266,6 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Delete \
 | `status` | boolean | True if the request was successful. |
 | `message` | string | Error message if `status` is false. |
 
-
 ## Get statistics
 
 ```shell
