@@ -1058,12 +1058,16 @@ We provide a placeholder for you to upload invoice and other supporting document
 **Transaction Details**
 Once a transaction is successfully created, all transaction details and updates will be recorded in OY! dashboard
 
-### Registration and Set Up
-**Prerequisites** 
-1. Register an account on the OY! dashboard
-1. Activate your account through the activation link sent via email
-1. Upgrade your account
-1. Upgrade request is approved
+### Registration and Set Up 
+**Prerequisites**
+
+* Register an account on the [OY! dashboard](https://business.oyindonesia.com/register?)
+
+* Activate your account through the activation link sent via email
+
+* Upgrade your account 
+
+* Upgrade request is approved 
 
 ### Testing
 1. Log in to your OY! dashboard
