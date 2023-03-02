@@ -48,6 +48,133 @@ This endpoint adds a file to the queue. The file can either be a file on the fil
 | `status` | boolean | True if the request was successful. |
 | `message` | string | Success message or error message if `status` is false. |
 
+## Get next queue item
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/GetNextItems?p=1234 \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Request body
+
+```json
+{
+  "settings": {
+    "filament": false,
+    "filamentTemps": false,
+    "fit": true,
+    "gcodeAnalysis": false,
+    "printerTemps": false
+  }
+}
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "queue": {
+    "total": 15,
+    "printers": [
+      385
+    ],
+    "matches": [
+      {
+        "id": 1212,
+        "index": 5,
+        "printer": 385,
+        "match": true,
+        "issues": [
+          "size",
+          "temps"
+        ],
+        "missed": 0,
+        "name": "Benchy.gcode",
+        "printed": 2,
+        "left": 1
+      }
+    ]
+  }
+}
+```
+
+> Failed response (Could not find any items that match the specified conditions)
+
+```json
+{
+  "status": true,
+  "message": null,
+  "queue": {
+    "total": 15,
+    "printers": [
+      385
+    ],
+    "matches": [
+      {
+        "printer": 385,
+        "match": false,
+        "issues": [
+          "size",
+          "temps"
+        ],
+        "missed": 4
+      }
+    ]
+  }
+}
+```
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+This endpoint gets the next item in the queue for the specified printer. The next item is the item that has the highest priority. The result will have skipped all items that do not meet the specified conditions.
+
+### Request
+
+`POST /{id}/queue/GetNextItems`
+
+#### Request parameters
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| p | integer[] | yes | Comma separated list of printer ids to get the next items for. |
+
+#### Request body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `settings` | object | no | Conditions that must be met for the next item. |
+| `settings.filament` | boolean | no | Must have enough filament.<br>**Default: true** |
+| `settings.filamentTemps` | boolean | no | Printer's filament temperature must match filament temperature of file.<br>**Default: true** |
+| `settings.fit` | boolean | no | Print must fit printer's bed.<br>**Default: true** |
+| `settings.gcodeAnalysis` | boolean | no | Must have gcode analysis.<br>**Default: true** |
+| `settings.printerTemps` | boolean | no | File must have a max temperature that is lower than the printer's max temperature.<br>**Default: true** |
+
+### Response
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Success message or error message if `status` is false. |
+| `queue` | object | The queue object. |
+| `queue.total` | integer | The total amount of items in the queue. |
+| `queue.printers` | integer[] | The printer ids that were requested. |
+| `queue.matches` | array | The next items for each printer. |
+| `queue.matches[].id` | integer | The id of the next item. Only present if `match` is true. |
+| `queue.matches[].index` | integer | The index of the item in the queue. Only present if `match` is true. |
+| `queue.matches[].printer` | integer | The id of the printer that the item is for. |
+| `queue.matches[].match` | boolean | True if a match was found. |
+| `queue.matches[].issues` | string[] | The issues that are present in the item. Can also have values if an item was matched but would have been catched by other settings. |
+| `queue.matches[].missed` | integer | The amount of items that were skipped. |
+| `queue.matches[].name` | string | The name of the item. Only present if `match` is true. |
+| `queue.matches[].printed` | integer | The amount of completed prints of this item (from print queue). Only present if `match` is true. |
+| `queue.matches[].left` | integer | The amount of prints left (from print queue). Only present if `match` is true. |
+
 ## Get queue items
 
 ```shell
