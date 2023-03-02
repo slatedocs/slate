@@ -1,6 +1,6 @@
 # Files
 
-## Get Files
+## List Files and Folders
 
 ```shell
 curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \

@@ -333,6 +333,10 @@ curl https://api.simplyprint.io/{id}/account/GetStatistics \
 }
 ```
 
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
 This endpoint returns statistics for the user / company.
 
 ### Request

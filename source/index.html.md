@@ -14,6 +14,8 @@ includes:
   - files
   - queue
   - account
+  - jobs
+  - users
   - permissions
   - errors
 
@@ -26,8 +28,15 @@ meta:
     content: Documentation for the SimplyPrint API
   - name: keywords
     content: SimplyPrint API,SimplyPrint Documentation
+  - name: og:title
+    content: SimplyPrint API Reference
+  - name: og:description
+    content: Documentation for the SimplyPrint API
+  - name: og:image
+    content: https://cdn.simplyprint.io/i/static/logo/png/2x/icon_gradient.png
+  - name: og:url
+    content: https://apidocs.simplyprint.io
 
-# TODO; Add open graph tags
 ---
 
 # Getting Started
