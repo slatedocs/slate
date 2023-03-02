@@ -1027,3 +1027,137 @@ Steps to use card for online transaction:
     * Once refund has been issued, the balance will be returned back to your OY! balance
 
 * It is user’s responsibility to block card usage whenever fraudulent transactions found. OY! is not responsible for the transaction.
+
+## International Transfer
+International Transfer product provides the capability for users to transfer across countries from Indonesia at any time. You may create a transaction within OY! dashboard without the need for any technical integration. 
+
+### Key Features
+
+**Account Management**
+When you first create an account, your account will be assigned as a Super Admin role. As a Super Admin, you have the ability to create new sub-accounts and assign different roles to your team such as Admin that is applicable for international transfers. Both Super Admin and Admin may edit or delete created sub-accounts.
+
+Note: it is not necessary to create new sub-accounts in order to use international transfer. The Super Admin and Admin roles allows you to directly create and approve transactions.
+
+Detailed step-by-step instructions on setting up user management and the different role types coming soon.
+
+**Roles & Accessibility**
+Only Super Admin and Admin roles are available to create transactions. All other roles are only allowed to view transaction list, transaction details, filter, export and edit custom column in dashboard.
+
+**Available destinations**
+Current list of countries supported: Singapore
+Current list of currencies supported: Singapore Dollars (SGD), US Dollars (USD)
+
+More countries such as Australia, China, Hongkong, Malaysia, South Korea and United States will be available soon.
+
+**Sender / Recipient Contacts**
+Suppose that you want to create an international transfer on behalf of another entity, you may create an individual / business sender or recipient and input all required information about the sender or recipient. All sender and recipient information will be saved in contacts and may be reused in the future.
+
+**Additional Documents**
+We provide a placeholder for you to upload invoice and other supporting documents for the purpose of transfer and source of funds.
+
+**Transaction Details**
+Once a transaction is successfully created, all transaction details and updates will be recorded in OY! dashboard
+
+### Registration and Set Up
+**Prerequisites** 
+* Register an account on the OY! dashboard
+* Activate your account through the activation link sent via email
+* Upgrade your account
+* Upgrade request is approved
+
+### Testing
+1. Log in to your OY! dashboard
+1. Choose "Staging" environment
+1. Click "Send Money" menu, and choose "International Transfer"
+1. Click "Create New Transaction"
+1. Fill in the necessary details by following the steps explained in the “How to Use” section
+1. Note: To reproduce a failed transaction in staging environment, you may fill the recipient account number as **1234567891**. All other account numbers will result in a successful transaction.
+
+### How to Use
+In order to create international transfers, you need to have sufficient available OY! balance is required in the account. If there is an insufficient available balance in the account, international transfers cannot be created
+ 1. *Create new transaction*: On the OY! dashboard, navigate to Send Payments > International Transfer on your left menu bar. Click “Create New Transaction” on the far righthand side of that page to create a new transfer.
+
+![Create New Transaction](images/internationalTransfer/create_inter_remit.jpg)
+
+ 2. *Input transfer amount details*: You may fill out the amount of transfer in two ways:
+  1. Fill in the send amount (in Rupiah) you would like to transfer, along with the destination currency and country. Our system will automatically convert according to the foreign exchange rate at that time.
+  1. Fill in the recipient amount (in SGD/USD) you would like to transfer, along with the destination currency and country. Our system will automatically convert according to the foreign exchange rate at that time.
+
+![Input Send Amount](images/internationalTransfer/input_amount.jpg)
+
+*Note: If the nominal amount greater than the available balance, then our system will restrict users from proceeding*
+![Balance Less Than Send Amount](images/internationalTransfer/balance_less_than_send_amount.jpg)
+
+ 3. *Input sender details*: Decide whether sender is an individual or business entity, and you will see the corresponding details to fill out for each. Previously saved sender contacts will be displayed at the bottom of this page.
+![List Of Existing Senders](images/internationalTransfer/list_of_existing_senders.jpg)
+
+Create a new individual sender by filling out this form
+
+![Input Individual Sender](images/internationalTransfer/input_individual_sender.jpg)
+
+Create a new business sender by filling out this form
+
+![Input Business Sender](images/internationalTransfer/input_business_sender.jpg)
+
+ 4. *Input recipient details*: Decide whether recipient is an individual or business entity, and you will see the corresponding details to fill out for each. Previously saved recipient contacts will be displayed at the bottom of this page.
+
+![List Of Existing Recipients](images/internationalTransfer/list_of_existing_recipients.jpg)
+
+This will be the form you will need to fill out for individual recipient
+
+Create a new individual recipient by filling out this form
+
+![Input Individual Recipient](images/internationalTransfer/input_individual_recipient.jpg)
+
+Create a new business contact by filling out this form
+
+![Input Business Recipient](images/internationalTransfer/input_business_recipient.jpg)
+
+ 5. *Add supporting information*: In this step, we need to record source of funds, purpose of transfer for the transaction. You may also attach supporting documents to aid the compliance requirements for your transaction.
+
+[!Transfer Reason And Supporting Docs](images/internationalTransfer/transfer_reason_docs.jpg)
+
+ 6. *Summary*: The summary of your transaction will be shown. If all the information is correct, you may click the **Submit** button at the bottom right hand corner of the screen.
+
+[!Summary](images/internationalTransfer/summary.png)
+
+*Note: A fixed quotation rate is created since Input sender details and will be refreshed every 30 minutes. In the case when the quotation expires, a pop up will show to fetch the latest exchange rate and a new quotation is created.*
+
+[!Update Exchange Rate](images/internationalTransfer/update_exchange_rate.png)
+
+If the available balance is insufficient for the new quotation amount, then you will be prompted to change the transfer amount or top up balance.
+
+[!Balance Not Enough](images/internationalTransfer/balance_not_enough.png)
+
+ 7. *Input Password*: For security reasons, OY! will prompt clients to input their password prior to every transaction.
+
+[!Password Filled](images/internationalTransfer/password_filled.png)
+
+Each client has 5 chances to input the correct password. If you failed to input the correct password 5 times, then the transaction will automatically be cancelled.
+
+[!Incorrect Password](images/internationalTransfer/incorrect_password.png)
+
+ 8. *Transaction Status: In Progress, Success, Failed.*
+
+*In Progress*
+
+Once a transaction is successfully created, it will appear in your dashboard the status column will be set as *In Progress*.
+
+[!In Progress Status](images/internationalTransfer/in_progress_transaction.png)
+
+*Success*
+
+Once your transaction is processed successfully, the status column will be updated as Success. Both sender and recipient should have received an email detailing a “Successful Transfer.”
+
+[!Success Email](images/internationalTransfer/success_email.png)
+
+*Failed*
+
+If your transaction has failed to process, the status column will be updated as Failed. Both sender and recipient should have received an email detailing a “Failed Transfer.”
+
+[!Failed Email](images/internationalTransfer/failed_email.png)
+
+ 9. *Check transaction details*: You may check transaction details by clicking on the transaction id on the list of transaction details on dashboard
+
+[!List Of Transactions](images/internationalTransfer/list_of_transactions.png)
+[!Transaction Detail](images/internationalTransfer/transaction_detail.png)
