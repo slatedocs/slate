@@ -327,7 +327,7 @@ List all of an organization's job posts.
 | live | If `true`, return only live job posts.
 | active | If `true`, only return active job posts.  If `false`, only return deleted job posts.  When omitted, return both active and deleted job posts.
 | full_content | If `true`, returns the board introduction, description, pay transparency ranges, and board conclusion as one `content` or `internal_content` element.  When omitted, only returns the post's editable description.
-| internal | If `true`, only return internal job posts.  When omitted, return both internal and external job posts.
+| internal | If `true`, only return internal job posts.  If `false`, only return external job posts.  When omitted, return both internal and external job posts.
 
 <br>
 [See noteworthy response attributes.](#the-job-post-object)
