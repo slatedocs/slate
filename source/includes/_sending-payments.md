@@ -1060,10 +1060,10 @@ Once a transaction is successfully created, all transaction details and updates 
 
 ### Registration and Set Up
 **Prerequisites** 
-* Register an account on the OY! dashboard
-* Activate your account through the activation link sent via email
-* Upgrade your account
-* Upgrade request is approved
+1. Register an account on the OY! dashboard
+1. Activate your account through the activation link sent via email
+1. Upgrade your account
+1. Upgrade request is approved
 
 ### Testing
 1. Log in to your OY! dashboard
@@ -1115,27 +1115,27 @@ Create a new business contact by filling out this form
 
  5. *Add supporting information*: In this step, we need to record source of funds, purpose of transfer for the transaction. You may also attach supporting documents to aid the compliance requirements for your transaction.
 
-[!Transfer Reason And Supporting Docs](images/internationalTransfer/transfer_reason_docs.jpg)
+![Transfer Reason And Supporting Docs](images/internationalTransfer/transfer_reason_docs.jpg)
 
  6. *Summary*: The summary of your transaction will be shown. If all the information is correct, you may click the **Submit** button at the bottom right hand corner of the screen.
 
-[!Summary](images/internationalTransfer/summary.png)
+![Summary](images/internationalTransfer/summary.png)
 
 *Note: A fixed quotation rate is created since Input sender details and will be refreshed every 30 minutes. In the case when the quotation expires, a pop up will show to fetch the latest exchange rate and a new quotation is created.*
 
-[!Update Exchange Rate](images/internationalTransfer/update_exchange_rate.png)
+![Update Exchange Rate](images/internationalTransfer/update_exchange_rate.png)
 
 If the available balance is insufficient for the new quotation amount, then you will be prompted to change the transfer amount or top up balance.
 
-[!Balance Not Enough](images/internationalTransfer/balance_not_enough.png)
+![Balance Not Enough](images/internationalTransfer/balance_not_enough.png)
 
  7. *Input Password*: For security reasons, OY! will prompt clients to input their password prior to every transaction.
 
-[!Password Filled](images/internationalTransfer/password_filled.png)
+![Password Filled](images/internationalTransfer/password_filled.png)
 
 Each client has 5 chances to input the correct password. If you failed to input the correct password 5 times, then the transaction will automatically be cancelled.
 
-[!Incorrect Password](images/internationalTransfer/incorrect_password.png)
+![Incorrect Password](images/internationalTransfer/incorrect_password.png)
 
  8. *Transaction Status: In Progress, Success, Failed.*
 
@@ -1143,21 +1143,21 @@ Each client has 5 chances to input the correct password. If you failed to input 
 
 Once a transaction is successfully created, it will appear in your dashboard the status column will be set as *In Progress*.
 
-[!In Progress Status](images/internationalTransfer/in_progress_transaction.png)
+![In Progress Status](images/internationalTransfer/in_progress_transaction.png)
 
 *Success*
 
 Once your transaction is processed successfully, the status column will be updated as Success. Both sender and recipient should have received an email detailing a “Successful Transfer.”
 
-[!Success Email](images/internationalTransfer/success_email.png)
+![Success Email](images/internationalTransfer/success_email.png)
 
 *Failed*
 
 If your transaction has failed to process, the status column will be updated as Failed. Both sender and recipient should have received an email detailing a “Failed Transfer.”
 
-[!Failed Email](images/internationalTransfer/failed_email.png)
+![Failed Email](images/internationalTransfer/failed_email.png)
 
  9. *Check transaction details*: You may check transaction details by clicking on the transaction id on the list of transaction details on dashboard
 
-[!List Of Transactions](images/internationalTransfer/list_of_transactions.png)
-[!Transaction Detail](images/internationalTransfer/transaction_detail.png)
+![List Of Transactions](images/internationalTransfer/list_of_transactions.png)
+![Transaction Detail](images/internationalTransfer/transaction_detail.png)
