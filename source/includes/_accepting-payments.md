@@ -278,6 +278,27 @@ For further details regarding OY!'s extensive API VA Aggregator capabilities and
 | Bank Danamon           | Open Amount, Closed Amount                     |
 | BSI (Bank Syariah Indonesia)| Closed Amount                             |
 
+
+### Available Payment Channels for VA 
+
+Your end-users may use the below payment channels to pay for their bills via VA
+
+
+| Bank (Virtual Account) | SKN  | RTGS  | ATMs | Intrabank Mobile Banking & Internet Banking | Interbank Internet Banking | Interbank Mobile Banking |
+| ---------------------- | ---  |----  |---- | ------------------------------------------- | --------------------------| ---------------------------- |
+| Bank Mandiri           | Yes  | Yes  | Yes | Yes                                            | Yes                       | Yes                          |
+| BRI                    | Yes  | Yes  | Yes | Yes                                            | No                       | Yes                           |
+| BNI                    | Yes  | Yes  | Yes | Yes                                            | No                       | Yes                           |
+| Permata                | Yes  | Yes  | Yes | Yes                                            | No                       | Yes 
+| CIMB Niaga / CIMB Niaga Syariah | Yes  | Yes | Yes | Yes (Mobile Banking), No (Internet Banking)| No                       | Yes                          |
+| BCA                    | No   | No   | Yes | Yes      | No                                  | No                       |
+| BTPN                   | Yes  | No   | Yes | Yes (Mobile Banking), No (Internet Banking)     | No                       | Yes                          |
+| Maybank                | Yes  | Yes  | Yes | Yes      | No                                  | No                       |
+| Danamon                | Yes  | Yes  | Yes | Yes      | No                                  | No                       |
+| KEB Hana               | No   | No   | Yes | Yes      | No                                  | No                       |
+| BSI                    | No   | No   | Yes | Yes      | Yes                                 | Yes                      |
+
+
 ## Payment Links/Invoice
 
 **Overview**
@@ -1189,7 +1210,7 @@ Some business have some use cases that require them to receive and disburse the 
 
 Payment Routing is an API that combines receive money and disburse money features. It allows you to immediately disburse the money once you receive from your customers. By integrating to this API, you will get the end-to-end solutions for your business needs.
 
-For now, you can use Payment Link, Bank Transfer (via Virtual Account & Unique Code), E-Wallet, QRIS for the receive money part.
+Through API Payment Routing you may create Payment Link transactions and/or receive money via Bank Transfer (via Virtual Account & Unique Code), E-Wallet, QRIS, and Cards.
 
 ### Flow
 
@@ -1198,7 +1219,7 @@ For now, you can use Payment Link, Bank Transfer (via Virtual Account & Unique C
 ### Key Features
 
 1. **Accept and disburse money in a real time manner** - By integrating to this API, you will get end-to-end solutions from receive to disburse money. All in real time manner. Note : Some payment methods have H+1 or H+2 settlement period. You have to keep some balance to cater the settlement from the payment methods.
-1. **You can select Payment Link, Bank Transfer, E-Wallet, and QRIS to receive money** - You can choose Bank Transfer (via Virtual Account & Unique Code), E-Wallet, or QRIS as a payment method to receive the money. We provide all banks offered in VA Aggregator for Virtual Accounts, provide BCA for Unique Code, and provide ShopeePay, DANA, LinkAja as payment method for E-Wallet. However, you don't need to worry if you don't have your own UI. You can use our Payment Link to help your customers to complete the payments.
+1. **You can select Payment Link, Bank Transfer, E-Wallet, and QRIS to receive money** - You can choose Bank Transfer (via Virtual Account & Unique Code), E-Wallet, Cards, or QRIS as a payment method to receive the money. We provide all banks offered in VA Aggregator for Virtual Accounts, BCA for Unique Code, ShopeePay, DANA, LinkAja as payment method for E-Wallet, and Visa/Mastercard for Cards. However, you don't need to worry if you don't have your own UI. You can use our Payment Link to help your customers to complete the payments.
 1. **Transaction tracking and monitoring capability** - You can track all payment routing transactions details through our callback or the OY! dashboard. You will receive callbacks two times, once we have succesfully receive money and once we have successfully disburse money.
 
 ### Use Cases
