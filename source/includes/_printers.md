@@ -4,20 +4,204 @@
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/Get \
-  -X ? \
+  -X POST \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
 
-<aside class="warning">
-  This endpoint has not been implemented yet, and is just a placeholder for now.
-</aside>
+> Request body
 
-TODO: Document this endpoint.
+```json
+{
+  "page": 1,
+  "page_size": 10,
+  "search": "Printer 1"
+}
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "page_amount": 1,
+  "data": [
+    {
+      "id": 385,
+      "sort_order": 6,
+      "printer": {
+        "name": "Mini Printer 1",
+        "state": "printing",
+        "group": 99,
+        "position": 6,
+        "api": "OctoPrint",
+        "ui": "OctoPrint",
+        "ip": "10.78.16.46",
+        "public": 1,
+        "machine": "Raspberry Pi 4 Model B Rev 1.2",
+        "online": true,
+        "region": "eu-west-2",
+        "firmware": "Virtual Marlin",
+        "spVersion": "4.0.5",
+        "temps": {
+          "ambient": 22,
+          "current": {
+            "tool": [
+              210
+            ],
+            "bed": null
+          },
+          "target": {
+            "tool": [
+              210
+            ],
+            "bed": null
+          }
+        },
+        "hasPSU": 1,
+        "psuOn": true,
+        "hasFilSensor": true,
+        "filSensor": true,
+        "filamentRetraction": 250,
+        "model": {
+          "id": 91,
+          "name": "Fabrikator Mini",
+          "brand": "Turnigy",
+          "bedSize": [
+            80,
+            80
+          ],
+          "bedType": "square",
+          "maxHeight": 80,
+          "image": "https:\/\/cdn.simplyprint.io\/i\/printer_types\/turnigy\/fabrikator_mini\/silhouette_sm.png?cacheid=5fe9e77f49198",
+          "hasHeatedBed": false,
+          "extruders": 1,
+          "extruderSettings": null,
+          "maxToolTemp": 240,
+          "maxBedTemp": 0,
+          "filamentWidth": 1.75,
+          "nozzleDia": 0.4,
+          "axes": {
+            "e": {
+              "inverted": false,
+              "speed": 5
+            },
+            "x": {
+              "inverted": false,
+              "speed": 100
+            },
+            "y": {
+              "inverted": false,
+              "speed": 100
+            },
+            "z": {
+              "inverted": false,
+              "speed": 3.5
+            }
+          },
+          "screwOffset": 35,
+          "filamentRetraction": 250,
+          "customBoundingBox": false,
+          "extrudeAbs": 0,
+          "originCenter": 0,
+          "bedBelt": 0,
+          "fwRetract": 0,
+          "extrusionType": 1,
+          "noControl": 0
+        },
+        "hasCam": 1,
+        "hasQueue": {
+          "items": 6,
+          "fits": true
+        },
+        "health": {
+          "usage": 24,
+          "temp": 61,
+          "memory": 19
+        },
+        "unsupported": 0,
+        "latency": null,
+        "outOfOrder": 0
+      },
+      "filament": null,
+      "job": {
+        "id": 552252,
+        "uid": "da69d2a4-e07e-48ff-128a-f88fab1b8f20",
+        "state": "printing",
+        "file": "Benchy.15mm_PLA_MK3S_7h40m.gcode",
+        "percentage": 50,
+        "time": 12627,
+        "canPreview": true,
+        "layer": null
+      }
+    },
+    ...
+  ]
+}
+```
+
+This endpoint returns a list of printers based on the given parameters.
 
 ### Request
 
-`? /{id}/printers/Get`
+`POST /{id}/printers/Get`
+
+#### Query parameters
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `pid` | integer | no | Optional printer ID if you want to get info for a single printer. |
+
+#### Request body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `page` | integer | no | Page number to get. Leave empty for page 1. |
+| `page_size` | integer | no | Number of printers per page. (Between 1 and 100)<br>Default: 10 |
+| `search` | string | no | Search string to filter printers by. |
+
+### Response
+
+Note that `data` will be an object if `pid` is specified, otherwise it will be an array.
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| `status` | boolean | True if the request was successful. |
+| `message` | string | Error message if `status` is false. |
+| `data` | object or array | Printer object(s). |
+| `data.*.id` | integer | Printer ID. |
+| `data.*.sort_order` | integer | The printer's sort index. |
+| `data.*.printer` | object | Printer object. |
+| `data.*.printer.name` | string | Printer's name. |
+| `data.*.printer.state` | string | Printer's state. |
+| `data.*.printer.group` | integer | Printer's group ID. |
+| `data.*.printer.position` | integer | Printer's position in the group. |
+| `data.*.printer.api` | string | Printer's API type. |
+| `data.*.printer.ui` | string | Printer's UI type. |
+| `data.*.printer.ip` | string | Printer's local IP address. |
+| `data.*.printer.public` | boolean | Whether the printer is shown on the company hub. |
+| `data.*.printer.machine` | string | Printer's machine type. |
+| `data.*.printer.online` | boolean | Whether the printer is online. |
+| `data.*.printer.region` | string | What region the printer is online in. |
+| `data.*.printer.firmware` | string | Printer's firmware version. |
+| `data.*.printer.spVersion` | string | Printer's SimplyPrint version. |
+| `data.*.printer.temps` | object | Printer's current temperatures. |
+| `data.*.printer.hasPSU` | boolean | Whether the printer has a SimplyPrint connected PSU. |
+| `data.*.printer.psuOn` | boolean | Whether the printer's PSU is on. |
+| `data.*.printer.hasFilSensor` | boolean | Whether the printer has a filament sensor. |
+| `data.*.printer.filamentRetraction` | integer | Printer's filament retraction distance. |
+| `data.*.printer.model` | string | Printer's model. |
+| `data.*.printer.hasCam` | boolean | Whether the printer has a camera. |
+| `data.*.printer.hasQueue` | object | Data about the printer's queue. Null if the printer doesn't have a queue. |
+| `data.*.printer.hasQueue.items` | integer | Number of items in the printer's queue. |
+| `data.*.printer.hasQueue.fits` | boolean | Whether the printer can physically fit any items in its queue. |
+| `data.*.printer.health` | object | Printer's health data. (CPU usage, temperature, memory usage) |
+| `data.*.printer.unsupported` | boolean | Whether the printer is unsupported. |
+| `data.*.printer.latency` | integer | Printer's latency. |
+| `data.*.printer.outOfOrder` | boolean | Whether the printer is out of order. |
+| `data.*.filament` | object | Printer's filament data. |
+| `data.*.job` | object | Printer's current job data. See [Get Print Jobs](#get-print-jobs) for more info. |
 
 ## Start print / create job
 

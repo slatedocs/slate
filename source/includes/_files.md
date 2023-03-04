@@ -121,7 +121,7 @@ This endpoint moves one or more files to a given folder.
 | `status` | boolean | True if the request was successful. |
 | `message` | string | Success message or error message if `status` is false. |
 
-## Get Folder Details - TODO
+## Get Folder Details
 
 ```shell
 curl https://api.simplyprint.io/{id}/files/GetFolder?id=5290 \

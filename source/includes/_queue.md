@@ -272,7 +272,7 @@ This endpoint returns the queue for the specified or all printers.
 | `status` | boolean | True if the request was successful. |
 | `message` | string | Success message or error message if `status` is false. |
 | `queue` | object | The queue object. |
-| `queue.fits` | boolean | TODO |
+| `queue.fits` | boolean | Whether any items in the queue can be printed on the printer. (due to space, temperature) |
 | `queue.items` | array | An array of queue item objects. |
 | `queue.items[].id` | integer | The queue item id. |
 | `queue.items[].index` | integer | The queue item index. |

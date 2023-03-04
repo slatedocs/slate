@@ -36,7 +36,7 @@ curl https://api.simplyprint.io/{id}/users/GetPaginatedUsers \
             "email_confirmed": true,
             "email": "johndoe@example.com",
             "phone": "",
-            "relation_created_at": "2022-07-28 23:30:14", TODO: CHANGE TIME TO UNIX TIMESTAMP
+            "relation_created_at": "2022-07-28 23:30:14",
             "last_online": "2023-03-02 15:44:44",
             "approved_at": "2022-07-29 11:14:52",
             "org_account": false,

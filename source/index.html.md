@@ -16,6 +16,7 @@ includes:
   - account
   - jobs
   - users
+  - slicer
   - permissions
   - errors
 
