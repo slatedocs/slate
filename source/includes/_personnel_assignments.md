@@ -156,7 +156,7 @@ Once a personnel is added to a project, if reviews have been requested for that 
 ### Required Parameters
 Parameter | Format | Required | Description
 --------- | ------ | -------- | -----------
-user_email | String | Yes | The email of the HandsHQ user who will be marked as the requester of the generated review.
+user_email | String | Yes | The email of the HandsHQ user who will be marked as the requester of the generated review. The user in question must have access to the division that is registered with the API token you provide.
 
 
 ### Allowed Parameters
