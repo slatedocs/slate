@@ -57,6 +57,7 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
     "first_email_date": "2011-11-23T08:12:45.328-08:00",
     "last_email_date": "2012-03-04T05:06:07.890-08:00",
     "last_event_date": "2011-12-11T02:26:56.537-08:00",
+    "last_chat_message_date": "2011-11-01T02:26:56.537-08:00",
     "last_interaction_date": "2012-03-04T05:06:07.890-08:00",
     "next_event_date": "2019-03-04T05:06:07.890-08:00",
     "first_event_date": "2012-01-01T08:18:00.329-08:00",
@@ -76,6 +77,12 @@ We use this database to minimize data entry for you as you use Affinity's CRM pr
     },
     "last_event": {
       "date": "2011-12-11T02:26:56.537-08:00",
+      "person_ids": [
+        123
+      ]
+    },
+    "last_chat_message": {
+      "date": "2011-11-01T02:26:56.537-08:00",
       "person_ids": [
         123
       ]
@@ -133,8 +140,8 @@ the [`GET /organizations/{organization_id}`](#get-a-specific-organization) endpo
 | opportunity_ids   | integer[]   | An array of unique identifiers of opportunities that are associated with the organization                                                                                                                                                                                               |
 | global            | boolean     | Returns whether this organization is a part of Affinity's global dataset of organizations. This is always false if the organization was created by you.                                                                                                                                 |
 | list_entries      | ListEntry[] | An array of list entry resources associated with the organization, only returned as part of the [Get a specific organization](#get-a-specific-organization) endpoint.                                                                                                                   |
-| interaction_dates | object      | An object with six string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_interacton_date`, `first_event_date`, and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
-| interactions      | object      | An object with six fields nested underneath.  Each field corresponds to one of the six interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event (people only returned if passing `with_interaction_persons=true`).  Only returned when passing `with_interaction_dates=true`. |
+| interaction_dates | object      | An object with seven string date fields representing the most recent and upcoming interactions with this organization: `first_email_date`, `last_email_date`, `last_event_date`, `last_chat_message_date`, `last_interacton_date`, `first_event_date`, and `next_event_date`. Only returned when passing `with_interaction_dates=true`. |
+| interactions      | object      | An object with seven fields nested underneath.  Each field corresponds to one of the seven interactions, and includes nested fields for `date` and `person_ids` which indicates the internal people associated with that event (people only returned if passing `with_interaction_persons=true`).  Only returned when passing `with_interaction_dates=true`. |
 
 ## Search for Organizations
 
