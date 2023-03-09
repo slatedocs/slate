@@ -3,6 +3,7 @@
 ## 2023-03-09
 
 - Account for chat messages when returning interaction info on the GET endpoints for [Persons](#persons) and [Organizations](#organizations).
+
 ## 2023-02-28
 
 - Added the ability to [create HTML notes](#create-a-new-note).
