@@ -398,7 +398,8 @@ Please note that if you subscribe to l2_updates channel without specifying the s
   "timestamp":1671140718980723,
   "sequence_no":6199,
   "symbol":"BTCUSDT",
-  "type":"l2_updates"
+  "type":"l2_updates",
+  "cs":2178756498
 }
 
 // Incremental update response
@@ -409,7 +410,8 @@ Please note that if you subscribe to l2_updates channel without specifying the s
   "sequence_no":6200,
   "symbol":"BTCUSDT",
   "type":"l2_updates",
-  "timestamp": 1671140769059031
+  "timestamp": 1671140769059031,
+  "cs":3409694612
 }
 ```
 
@@ -417,17 +419,33 @@ Please note that if you subscribe to l2_updates channel without specifying the s
 
 1) When you subscribe to this channel, the first message with "action"= "snapshot" resembles the complete l2_orderbook at this time. "asks" and "bids" are arrays of ["price", "size"]. (size is number of contracts at this price)
 
-2) After the initial snapshot, messages will be with "action" = "update", resembling the difference between current and previous orderbook state. "asks" and "bids" are arrays of ["price", "new size"].
-Case price already exists -> if the size is 0, delete this price level. If the size changes, replace the size with new size.
-e.g. for the above snapshot and update messages: in the ask side, price level of "16919.0" will be deleted. size at price level "16919.5" will be changed from "1193" to "710".
-Case price doesn’t exists -> insert the price level.
-e.g. for the above snapshot and update messages: in the bids side there was no price level of "16918.5", so add a new level of "16918.5" of size "304".
+2) After the initial snapshot, messages will be with "action" = "update", resembling the difference between current and previous orderbook state. "asks" and "bids" are arrays of ["price", "new size"]. "asks" are sorted in increasing order of price. "bids" are sorted in decreasing order of price. This is true for both "snapshot" and "update" messages.
 
-1) "asks" are sorted in increasing order of price. "bids" are sorted in decreasing order of price. This is true for both "snapshot" and "update" messages.
+3) "sequence_no" field must be used to check any messages were dropped. "sequence_no" must be +1 of the last message. e.g. In the snapshot message it is 6199, and the update message has 6200. The next update message must have 6201. In case of sequence_no mismatch, resubscribe to the channel, and start from the beginning.
 
-2) "sequence_no" field must be used to check any messages were dropped. "sequence_no" must be +1 of the last message.
-e.g. In the snapshot message it is 6199, and the update message has 6200. The next update message must have 6201.
-If you miss a message, resubscribe to the channel, and start from the beginning.
+4) If sequence_no is correct, edit the in-memory orderbook using the "update" message.
+
+Case 1: price already exists, new size is 0 -> Delete this price level.
+
+Case 2: price already exists, new size isn't 0 -> Replace the old size with new size.
+
+Case 3: price doesn’t exists -> insert the price level.
+
+e.g. for the shown snapshot and update messages: in the ask side, price level of "16919.0" will be deleted. Size at price level "16919.5" will be changed from "1193" to "710". In the bids side there was no price level of "16918.5", so add a new level of "16918.5" of size "304".
+
+Checksum: This mechanism assist users in checking the accuracy of orderbook data created using l2_updates. checksum is the "cs" key in the message payload.
+Steps to calculate checksum:
+1) Edit the old in-memory orderbook with the "update" message received.
+2) Create asks_string and bids_string as shown below. where priceN = price at Nth level, sizeN = size at Nth level. Where asks are sorted by price in increasing order and bids in decreasing order.
+asks_string = price0:size0,price1:size1,…,price9:size9
+bids_string = price0:size0,price1:size1,…,price9:size9
+checksum_string = asks_string + "|" + bids_string
+Only consider the first 10 price levels on both sides. If orderbook as less than 10 levels, use only them.
+e.g. After applying the update, the new orderbook becomes ->
+asks = [["100.00", "23"], ["100.05", "34"]]
+bids = [["99.04", "87"], ["98.65", "102"], ["98.30", "16"]]
+checksum_string = "100.00:23,100.05:34|99.04:87,98.65:102,98.30:16"
+3) Calculate the CRC32 value (32-bit unsigned integer) of checksum_string. This should be equal to the checksum provided in the “update” message.
 
 ## all_trades
 
