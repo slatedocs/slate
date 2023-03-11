@@ -3484,6 +3484,220 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Request asset transfer
+
+<a id="opIdassetTransfer"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/v2/wallets/sub_account_balance_transfer', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/v2/wallets/sub_account_balance_transfer \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/v2/wallets/sub_account_balance_transfer',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /wallets/sub_account_balance_transfer`
+
+This api transfers asset from one subaccount to another subaccount or to the main/parent account. Please ensure that the subaccounts involved in the transfer should belong to the same parent account. Requests to transfer assets across subaccounts that belong to different parent accounts will fail. Please make sure that the api key used to make this api request belongs to the main/parent account.
+
+> Body parameter
+
+```json
+{
+  "transferrer_user_id": "string",
+  "transferee_user_id": "string",
+  "asset_symbol": "string",
+  "amount": null
+}
+```
+
+<h3 id="request-asset-transfer-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[AssetTransferSubaccountReq](#schemaassettransfersubaccountreq)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": null
+}
+```
+
+<h3 id="request-asset-transfer-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns success message|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error code|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="request-asset-transfer-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Request subaccount balance transfer history.
+
+<a id="opIdSubaccountTransferHistory"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/wallets/sub_accounts_transfer_history', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/wallets/sub_accounts_transfer_history \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/wallets/sub_accounts_transfer_history',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /wallets/sub_accounts_transfer_history`
+
+This api returns the wallet balance transfers for subaccounts belonging to the parent/main account of an api user. Make sure you are calling this api from the main account. If no subaccount is mentioned in the request, data for all the subacounts will be returned. Use page size to get more entries in a single request.
+
+> Body parameter
+
+```json
+{
+  "subaccount_user_id": "string",
+  "before": "string",
+  "after": "string",
+  "page_size": 10
+}
+```
+
+<h3 id="request-subaccount-balance-transfer-history.-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[SubaccountTransferHistory](#schemasubaccounttransferhistory)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "transferrer_user_id": "string",
+      "transferee_user_id": "string",
+      "asset_symbol": "string",
+      "amount": null,
+      "created_at": "string",
+      "transferee_user": {},
+      "transferrer_user": {}
+    }
+  ],
+  "meta": {
+    "after": "string",
+    "before": "string"
+  }
+}
+```
+
+<h3 id="request-subaccount-balance-transfer-history.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns success message|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error code|[ApiErrorResponse](#schemaapierrorresponse)|
+
+<h3 id="request-subaccount-balance-transfer-history.-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 <h1 id="delta-exchange-api-v2-stats">Stats</h1>
 
 Get Volume Stats
@@ -3957,6 +4171,192 @@ p JSON.parse(result)
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|User trading preferences attached to the account|Inline|
 
 <h3 id="get-users-trading-preferences-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Get subaccounts
+
+<a id="opIdgetSubaccounts"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/sub_accounts', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/sub_accounts \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/sub_accounts',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /sub_accounts`
+
+This api returns all the subaccounts belonging to the same parent/main user. Make sure to call this api from the parent user.
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": [
+    {
+      "id": null,
+      "email": "string",
+      "account_name": "string",
+      "first_name": "string",
+      "last_name": "string",
+      "dob": "string",
+      "country": "string",
+      "phone_number": "string",
+      "margin_mode": "string",
+      "pf_index_symbol": "string",
+      "is_sub_account": true,
+      "is_kyc_done": true
+    }
+  ]
+}
+```
+
+<h3 id="get-subaccounts-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Subaccounts belonging to the same parent account.|Inline|
+
+<h3 id="get-subaccounts-responseschema">Response Schema</h3>
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Get user
+
+<a id="opIdgetUser"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/v2/profile', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/v2/profile \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/v2/profile',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /profile`
+
+This api returns the user object.
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "success": true,
+  "result": {
+    "id": null,
+    "email": "string",
+    "account_name": "string",
+    "first_name": "string",
+    "last_name": "string",
+    "dob": "string",
+    "country": "string",
+    "phone_number": "string",
+    "margin_mode": "string",
+    "pf_index_symbol": "string",
+    "is_sub_account": true,
+    "is_kyc_done": true
+  }
+}
+```
+
+<h3 id="get-user-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|User Object|Inline|
+
+<h3 id="get-user-responseschema">Response Schema</h3>
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -5471,6 +5871,52 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |*anonymous*|[[Wallet](#schemawallet)]|false|none|none|
 
+<h2 id="tocSassettransfersubaccountreq">AssetTransferSubaccountReq</h2>
+
+<a id="schemaassettransfersubaccountreq"></a>
+
+```json
+{
+  "transferrer_user_id": "string",
+  "transferee_user_id": "string",
+  "asset_symbol": "string",
+  "amount": null
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|transferrer_user_id|string|false|none|Debit account|
+|transferee_user_id|string|false|none|Credit account|
+|asset_symbol|string|false|none|Asset to transfer|
+|amount|big_decimal|false|none|Amount to transfer. Only postive values allowed.|
+
+<h2 id="tocSsubaccounttransferhistory">SubaccountTransferHistory</h2>
+
+<a id="schemasubaccounttransferhistory"></a>
+
+```json
+{
+  "subaccount_user_id": "string",
+  "before": "string",
+  "after": "string",
+  "page_size": 10
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|subaccount_user_id|string|false|none|subaccount user id|
+|before|string|false|none|before cursor for pagination|
+|after|string|false|none|after cursor for pagination|
+|page_size|big_decimal|false|none|records per page|
+
 <h2 id="tocStransaction">Transaction</h2>
 
 <a id="schematransaction"></a>
@@ -5550,6 +5996,60 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[[Transaction](#schematransaction)]|false|none|none|
+
+<h2 id="tocSsubaccounttransferlog">SubaccountTransferLog</h2>
+
+<a id="schemasubaccounttransferlog"></a>
+
+```json
+{
+  "transferrer_user_id": "string",
+  "transferee_user_id": "string",
+  "asset_symbol": "string",
+  "amount": null,
+  "created_at": "string",
+  "transferee_user": {},
+  "transferrer_user": {}
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|transferrer_user_id|string|false|none|User id of the account debited with the asset.|
+|transferee_user_id|string|false|none|User id of the account credited with the asset.|
+|asset_symbol|string|false|none|Asset symbol transferred.|
+|amount|big_decimal|false|none|Amount transferred.|
+|created_at|string|false|none|transfer creation date and time|
+|transferee_user|object|false|none|User details|
+|transferrer_user|object|false|none|User details|
+
+<h2 id="tocSarrayofsubaccounttransferlog">ArrayOfSubaccountTransferLog</h2>
+
+<a id="schemaarrayofsubaccounttransferlog"></a>
+
+```json
+[
+  {
+    "transferrer_user_id": "string",
+    "transferee_user_id": "string",
+    "asset_symbol": "string",
+    "amount": null,
+    "created_at": "string",
+    "transferee_user": {},
+    "transferrer_user": {}
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[SubaccountTransferLog](#schemasubaccounttransferlog)]|false|none|none|
 
 <h2 id="tocSgreeks">greeks</h2>
 
@@ -6029,4 +6529,75 @@ This operation does not require authentication.
 |---|---|
 |cancel_after_enabled|false|
 |cancel_after_enabled|true|
+
+<h2 id="tocSuser">User</h2>
+
+<a id="schemauser"></a>
+
+```json
+{
+  "id": null,
+  "email": "string",
+  "account_name": "string",
+  "first_name": "string",
+  "last_name": "string",
+  "dob": "string",
+  "country": "string",
+  "phone_number": "string",
+  "margin_mode": "string",
+  "pf_index_symbol": "string",
+  "is_sub_account": true,
+  "is_kyc_done": true
+}
+
+```
+
+*User Object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer_or_string|false|none|id|
+|email|string|false|none|email|
+|account_name|string|false|none|none|
+|first_name|string|false|none|none|
+|last_name|string|false|none|none|
+|dob|string|false|none|none|
+|country|string|false|none|none|
+|phone_number|string|false|none|none|
+|margin_mode|string|false|none|none|
+|pf_index_symbol|string|false|none|Portfolio index symbol if account is at portfolio margin mode.|
+|is_sub_account|boolean|false|none|none|
+|is_kyc_done|boolean|false|none|none|
+
+<h2 id="tocSarrayofsubaccouns">ArrayOfSubaccouns</h2>
+
+<a id="schemaarrayofsubaccouns"></a>
+
+```json
+[
+  {
+    "id": null,
+    "email": "string",
+    "account_name": "string",
+    "first_name": "string",
+    "last_name": "string",
+    "dob": "string",
+    "country": "string",
+    "phone_number": "string",
+    "margin_mode": "string",
+    "pf_index_symbol": "string",
+    "is_sub_account": true,
+    "is_kyc_done": true
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[User](#schemauser)]|false|none|[User Object]|
 

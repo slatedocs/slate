@@ -1931,6 +1931,68 @@
         }
       }
     },
+    "/wallets/sub_accounts_transfer_history": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "summary": "Request subaccount balance transfer history.",
+        "description": "This api returns the wallet balance transfers for subaccounts belonging to the parent/main account of an api user. Make sure you are calling this api from the main account. If no subaccount is mentioned in the request, data for all the subacounts will be returned. Use page size to get more entries in a single request.",
+        "operationId": "SubaccountTransferHistory",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "subaccountTransferHistory",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubaccountTransferHistory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns success message",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfSubaccountTransferLog"
+                    },
+                    "meta": {
+                      "$ref": "#/definitions/PaginationMeta"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Returns error code",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/products/?states=expired": {
       "get": {
         "tags": [
@@ -2254,6 +2316,86 @@
                   "properties": {
                     "result": {
                       "$ref": "#/definitions/UserPreference"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/sub_accounts": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get subaccounts",
+        "description": "This api returns all the subaccounts belonging to the same parent/main user. Make sure to call this api from the parent user.",
+        "operationId": "getSubaccounts",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subaccounts belonging to the same parent account.",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/ArrayOfSubaccouns"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Get user",
+        "description": "This api returns the user object.",
+        "operationId": "getUser",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Object",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/User"
                     }
                   }
                 }
@@ -3212,6 +3354,28 @@
         }
       }
     },
+    "SubaccountTransferHistory": {
+      "type": "object",
+      "properties": {
+        "subaccount_user_id": {
+          "type": "string",
+          "description": "subaccount user id"
+        },
+        "before": {
+          "type": "string",
+          "description": "before cursor for pagination"
+        },
+        "after": {
+          "type": "string",
+          "description": "after cursor for pagination"
+        },
+        "page_size": {
+          "type": "big_decimal",
+          "description": "records per page",
+          "default": 10
+        }
+      }
+    },
     "Transaction": {
       "type": "object",
       "properties": {
@@ -3267,6 +3431,45 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/Transaction"
+      }
+    },
+    "SubaccountTransferLog": {
+      "type": "object",
+      "properties": {
+        "transferrer_user_id": {
+          "type": "string",
+          "description": "User id of the account debited with the asset."
+        },
+        "transferee_user_id": {
+          "type": "string",
+          "description": "User id of the account credited with the asset."
+        },
+        "asset_symbol": {
+          "type": "string",
+          "description": "Asset symbol transferred."
+        },
+        "amount": {
+          "type": "big_decimal",
+          "description": "Amount transferred."
+        },
+        "created_at": {
+          "type": "string",
+          "description": "transfer creation date and time"
+        },
+        "transferee_user": {
+          "type": "object",
+          "description": "User details"
+        },
+        "transferrer_user":{
+          "type": "object",
+          "description": "User details"
+        }
+      }
+    },
+    "ArrayOfSubaccountTransferLog": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SubaccountTransferLog"
       }
     },
     "greeks": {
@@ -3591,6 +3794,57 @@
         }
       },
       "example": { "cancel_after_enabled": "true", "cancel_after_timestamp": "1669119262000"}
+    },
+    "User": {
+      "type": "object",
+      "description": "User Object",
+      "properties": {
+        "id": {
+          "type": "integer_or_string",
+          "description": "id"
+        },
+        "email": {
+          "type": "string",
+          "description": "email"
+        },
+        "account_name": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "margin_mode": {
+          "type": "string"
+        },
+        "pf_index_symbol": {
+          "type": "string",
+          "description": "Portfolio index symbol if account is at portfolio margin mode."
+        },
+        "is_sub_account": {
+          "type": "boolean"
+        },
+        "is_kyc_done": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ArrayOfSubaccouns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/User"
+      }
     }
   }
 }
