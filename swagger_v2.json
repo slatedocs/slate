@@ -1472,6 +1472,75 @@
         }
       }
     },
+    "/positions/auto_topup": {
+      "put": {
+        "tags": [
+          "Positions"
+        ],
+        "operationId": "changeAutoTopup",
+        "summary": "Auto Topup",
+        "description": "Changes position auto topup flag. Positions automatically inherits auto topup flag of the account. If account level auto topop is set to false, use this api to change auto topup flag for individual positions.",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api-key": [],
+            "signature": [],
+            "timestamp": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "auto_topup",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "product_id",
+                "auto_topup"
+              ],
+              "properties": {
+                "product_id": {
+                  "type": "integer"
+                },
+                "auto_topup": {
+                  "type": "boolean",
+                  "default": "false"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns the position object",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/ApiSuccessResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/definitions/Position"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Returns error if position margin could not be changed",
+            "schema": {
+              "$ref": "#/definitions/ApiErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/positions/change_margin": {
       "post": {
         "tags": [
