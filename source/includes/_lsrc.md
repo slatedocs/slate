@@ -605,7 +605,7 @@ Console.WriteLine(response.GetContent());
 }
 ```
 
-Returns the campaign history IDs associated with all report runs for the specified report (adhoc or scheduled).
+Returns the campaign history IDs associated with all report runs for the specified report (adhoc or scheduled). These IDs can be passed to the "Get Report Results" method to return report URLs and actual ranking data.
 
 ### HTTP Request
 
