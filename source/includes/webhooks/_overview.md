@@ -10,3 +10,5 @@ If we do not receive an HTTP 200 response code we will retry the api call on the
 4. After 72 hours
 
 API Calls will be sent via HTTP POST with the HTTP header `Content-Type: application/json`
+
+It is possible for duplicate webhooks to be made when files are updated or deleted.
