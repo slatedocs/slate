@@ -1,4 +1,3 @@
-
 # Field Value Changes
 
 Field value changes allow you to see historical changes to the values of fields in Affinity.
@@ -11,25 +10,23 @@ historical changes.
 
 ### Multi-valued Fields
 
-| Value | Type                    |
-| ----- | ----------------------- |
-| 0     | Person                  |
-| 1     | Organization            |
-| 2     | Dropdown                |
-| 3     | Number                  |
-| 5     | Location                |
+| Value | Type         |
+| ----- | ------------ |
+| 0     | Person       |
+| 1     | Organization |
+| 3     | Number       |
+| 5     | Location     |
 
 ### Single valued fields
 
-| Value | Type                    |
-| ----- | ----------------------- |
-| 0     | Person                  |
-| 1     | Organization            |
-| 2     | Dropdown                |
-| 3     | Number                  |
-| 4     | Date                    |
-| 5     | Location                |
-| 7     | Ranked Dropdown         |
+| Value | Type            |
+| ----- | --------------- |
+| 0     | Person          |
+| 1     | Organization    |
+| 3     | Number          |
+| 4     | Date            |
+| 5     | Location        |
+| 7     | Ranked Dropdown |
 
 <aside class="notice">
   <h6>Note</h6>
