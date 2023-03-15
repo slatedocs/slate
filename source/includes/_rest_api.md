@@ -1684,7 +1684,7 @@ p JSON.parse(result)
 
 `POST /orders/batch`
 
-Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50. Rate limits apply.
+Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50. Rate limits apply. Please note that fok and ioc are not valid time in force for creating batch orders.
 
 > Body parameter
 
@@ -1722,7 +1722,7 @@ Orders in a batch should belong to the same contract. Max allowed size limit in 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders|
-|» orders|body|[[CreateOrderRequest](#schemacreateorderrequest)]|false|[A create order object]|
+|» orders|body|[[BatchCreateOrderRequest](#schemabatchcreateorderrequest)]|false|[A create order object]|
 |»» product_id|body|integer|true|none|
 |»» limit_price|body|string|false|none|
 |»» size|body|integer|false|none|
@@ -1758,8 +1758,6 @@ Orders in a batch should belong to the same contract. Max allowed size limit in 
 |»» stop_trigger_method|last_traded_price|
 |»» stop_trigger_method|spot_price|
 |»» time_in_force|gtc|
-|»» time_in_force|ioc|
-|»» time_in_force|fok|
 |»» mmp|disabled|
 |»» mmp|mmp1|
 |»» mmp|mmp2|
@@ -5424,6 +5422,125 @@ This operation does not require authentication.
 |reduce_only|false|
 |close_on_trigger|true|
 |close_on_trigger|false|
+
+<h2 id="tocSbatchcreateorderrequest">BatchCreateOrderRequest</h2>
+
+<a id="schemabatchcreateorderrequest"></a>
+
+```json
+{
+  "product_id": 0,
+  "limit_price": "string",
+  "size": 0,
+  "side": "buy",
+  "order_type": "limit_order",
+  "stop_order_type": "stop_loss_order",
+  "stop_price": "string",
+  "trail_amount": "string",
+  "stop_trigger_method": "mark_price",
+  "bracket_stop_loss_limit_price": "string",
+  "bracket_stop_loss_price": "string",
+  "bracket_take_profit_limit_price": "string",
+  "bracket_take_profit_price": "string",
+  "time_in_force": "gtc",
+  "mmp": "disabled",
+  "post_only": "true",
+  "reduce_only": "true",
+  "close_on_trigger": "true",
+  "client_order_id": "string"
+}
+
+```
+
+*A create order object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|product_id|integer|true|none|none|
+|limit_price|string|false|none|none|
+|size|integer|false|none|none|
+|side|string|false|none|side for which to place order|
+|order_type|string|false|none|none|
+|stop_order_type|string|false|none|none|
+|stop_price|string|false|none|none|
+|trail_amount|string|false|none|none|
+|stop_trigger_method|string|false|none|none|
+|bracket_stop_loss_limit_price|string|false|none|none|
+|bracket_stop_loss_price|string|false|none|none|
+|bracket_take_profit_limit_price|string|false|none|none|
+|bracket_take_profit_price|string|false|none|none|
+|time_in_force|string|false|none|none|
+|mmp|string|false|none|none|
+|post_only|string|false|none|none|
+|reduce_only|string|false|none|none|
+|close_on_trigger|string|false|none|none|
+|client_order_id|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|stop_order_type|stop_loss_order|
+|stop_order_type|take_profit_order|
+|stop_trigger_method|mark_price|
+|stop_trigger_method|last_traded_price|
+|stop_trigger_method|spot_price|
+|time_in_force|gtc|
+|mmp|disabled|
+|mmp|mmp1|
+|mmp|mmp2|
+|mmp|mmp3|
+|mmp|mmp4|
+|mmp|mmp5|
+|post_only|true|
+|post_only|false|
+|reduce_only|true|
+|reduce_only|false|
+|close_on_trigger|true|
+|close_on_trigger|false|
+
+<h2 id="tocSarrayofbatchcreateorderrequest">ArrayOfBatchCreateOrderRequest</h2>
+
+<a id="schemaarrayofbatchcreateorderrequest"></a>
+
+```json
+[
+  {
+    "product_id": 0,
+    "limit_price": "string",
+    "size": 0,
+    "side": "buy",
+    "order_type": "limit_order",
+    "stop_order_type": "stop_loss_order",
+    "stop_price": "string",
+    "trail_amount": "string",
+    "stop_trigger_method": "mark_price",
+    "bracket_stop_loss_limit_price": "string",
+    "bracket_stop_loss_price": "string",
+    "bracket_take_profit_limit_price": "string",
+    "bracket_take_profit_price": "string",
+    "time_in_force": "gtc",
+    "mmp": "disabled",
+    "post_only": "true",
+    "reduce_only": "true",
+    "close_on_trigger": "true",
+    "client_order_id": "string"
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[BatchCreateOrderRequest](#schemabatchcreateorderrequest)]|false|none|[A create order object]|
 
 <h2 id="tocSarrayofcreateorderrequest">ArrayOfCreateOrderRequest</h2>
 

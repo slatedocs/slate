@@ -763,7 +763,7 @@
           "Orders"
         ],
         "summary": "Create batch orders",
-        "description": "Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50. Rate limits apply.",
+        "description": "Orders in a batch should belong to the same contract. Max allowed size limit in a batch is 50. Rate limits apply. Please note that fok and ioc are not valid time in force values for creating batch orders.",
         "operationId": "batchCreate",
         "consumes": [
           "application/json"
@@ -787,7 +787,7 @@
               "type": "object",
               "properties": {
                 "orders": {
-                  "$ref": "#/definitions/ArrayOfCreateOrderRequest"
+                  "$ref": "#/definitions/ArrayOfBatchCreateOrderRequest"
                 },
                 "product_id": {
                   "type": "integer"
@@ -2968,6 +2968,117 @@
         "client_order_id": {
           "type": "string"
         }
+      }
+    },
+    "BatchCreateOrderRequest": {
+      "type": "object",
+      "description": "A create order object",
+      "required": [
+        "product_id"
+      ],
+      "properties": {
+        "product_id": {
+          "type": "integer"
+        },
+        "limit_price": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "side": {
+          "type": "string",
+          "description": "side for which to place order",
+          "enum": [
+            "buy",
+            "sell"
+          ]
+        },
+        "order_type": {
+          "type": "string",
+          "enum": [
+            "limit_order",
+            "market_order"
+          ]
+        },
+        "stop_order_type": {
+          "type": "string",
+          "enum": [
+            "stop_loss_order",
+            "take_profit_order"
+          ]
+        },
+        "stop_price": {
+          "type": "string"
+        },
+        "trail_amount": {
+          "type": "string"
+        },
+        "stop_trigger_method": {
+          "type": "string",
+          "enum": [
+            "mark_price", "last_traded_price", "spot_price"
+          ]
+        },
+        "bracket_stop_loss_limit_price": {
+          "type": "string"
+        },
+        "bracket_stop_loss_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_limit_price": {
+          "type": "string"
+        },
+        "bracket_take_profit_price": {
+          "type": "string"
+        },
+        "time_in_force": {
+          "type": "string",
+          "enum": [
+            "gtc"
+          ]
+        },
+        "mmp": {
+          "type": "string",
+          "enum": [
+            "disabled",
+            "mmp1",
+            "mmp2",
+            "mmp3",
+            "mmp4",
+            "mmp5"
+          ]
+        },
+        "post_only": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "reduce_only": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "close_on_trigger": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        },
+        "client_order_id": {
+          "type": "string"
+        }
+      }
+    },
+    "ArrayOfBatchCreateOrderRequest": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/BatchCreateOrderRequest"
       }
     },
     "ArrayOfCreateOrderRequest": {
