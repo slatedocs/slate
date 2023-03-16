@@ -150,13 +150,22 @@ parameter. An appropriate error is returned if an invalid note is supplied.
 
 ## Create a New Note
 
-> Example Request
+> Example Request (JSON)
 
 ```shell
 curl -X POST "https://api.affinity.co/notes" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
   -d '{"person_ids": [38706, 624289], "organization_ids": [120611418], "opportunity_ids": [167], "content": "Had a lunch meeting with Jane and John today. They want to invest in Acme Corp."}'
+```
+
+> Example Request (Form)
+
+```shell
+curl -X POST "https://api.affinity.co/notes" \
+  -u :$APIKEY \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "person_ids[]=38706&person_ids[]=624289&organization_ids[]=120611418&opportunity_ids[]=167&content=Had a lunch meeting with Jane and John today. They want to invest in Acme Corp."
 ```
 
 > Example Response
@@ -178,13 +187,22 @@ curl -X POST "https://api.affinity.co/notes" \
 }
 ```
 
-> Example Request Creating An HTML-Type Note
+> Example Request Creating An HTML-Type Note (JSON)
 
 ```shell
 curl -X POST "https://api.affinity.co/notes" \
   -u :$APIKEY \
   -H "Content-Type: application/json" \
   -d '{"person_ids": [38706, 624289], "organization_ids": [120611418], "opportunity_ids": [167], "type": 2, "content": "Had a <strong>lunch meeting<strong> with Jane and John today. They want to invest in Acme Corp."}'
+```
+
+> Example Request Creating An HTML-Type Note (Form)
+
+```shell
+curl -X POST "https://api.affinity.co/notes" \
+  -u :$APIKEY \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "person_ids[]=38706&person_ids[]=624289&organization_ids[]=120611418&opportunity_ids[]=167&type=2&content=Had a <strong>lunch meeting<strong> with Jane and John today. They want to invest in Acme Corp."
 ```
 
 > Example Response
@@ -246,16 +264,14 @@ It is possible to create a <strong>reply</strong> to an existing note by setting
 
 | Parameter        | Type      | Required | Description                                                                                                                                                                                     |
 | ---------------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| content          | string    | true     | The string containing the content of the new note.                                                                                                                                              |
 | person_ids       | integer[] | false    | An array of unique identifiers of person objects that are associated with the new note.                                                                                                         |
 | organization_ids | integer[] | false    | An array of unique identifiers of organization objects that are associated with the new note.                                                                                                   |
 | opportunity_ids  | integer[] | false    | An array of unique identifiers of opportunity objects that are associated with the new note.                                                                                                    |
-| content          | string    | false    | The string containing the content of the new note.                                                                                                                                              |
 | type             | integer   | false    | The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively.                                                                                   |
 | parent_id        | integer   | false    | The unique identifier of the note to which the newly created note should reply. See comments above.                                                                                             |
 | creator_id       | integer   | false    | The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.       |
 | created_at       | datetime  | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time. |
-
-Note that `content` must be specified.
 
 ### Returns
 
@@ -264,6 +280,11 @@ The note resource created through this request.
 <aside class="notice">
   <h6>Note</h6>
   <p>When creating a note using the API, the user corresponding to the API token will be the creator by default.</p>
+</aside>
+
+<aside class="notice">
+  <h6>Note</h6>
+  <p>To ensure that <code>content</code> gets encoded properly, it is recommended to submit as either <code>application/json</code> or <code>application/x-www-form-urlencoded</code> instead of query parameters.</p>
 </aside>
 
 ## Update a Note
