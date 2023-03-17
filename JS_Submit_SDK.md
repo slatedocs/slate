@@ -39,10 +39,10 @@ window.Anarock.submitLead({
   purpose: 'buy',
   country_code: 'in',
   phone: '9999999999', // valid 10-digits phone number
-  source_id: 1, // check the proper mapping with leads source dashboard
-  sub_source_id: 1, // check the proper mapping with leads subsource dashboard
+<!--   source_id: 1, // check the proper mapping with leads source dashboard -->
+<!--   sub_source_id: 1, // check the proper mapping with leads subsource dashboard -->
   source: 'sms',
-  sub_source: 'sms-december-campaign',
+  subSource: 'sms-december-campaign',
   onLeadSuccessCallback(leadID, data) {
     console.log('lead captured with ID:', leadID)
   },
@@ -120,10 +120,10 @@ call this function to send OTP code to the users' phone number for verification
       name: 'Abc Xyz',
       email: 'abc@test.com',
       purpose: 'buy',
-      source_id: 1, // check the proper mapping with leads source dashboard
-      sub_source_id: 1, // check the proper mapping with leads subsource dashboard
+<!--       source_id: 1, // check the proper mapping with leads source dashboard
+      sub_source_id: 1, // check the proper mapping with leads subsource dashboard -->
       source: 'sms',
-      sub_source: 'sms-december-campaign',
+      subSource: 'sms-december-campaign',
       onLeadSuccessCallback(leadID, data) {
         console.log('lead captured with ID:', leadID)
       },
