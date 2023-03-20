@@ -121,6 +121,17 @@ Currently, Web Hooks for all event types include these common attributes:
                     "unit": "USD"
                 }
             },
+            "compensation_field": {
+                "name": "Compensation Field",
+                "type": "currency",
+                "value": {
+                    "amount": 80000,
+                    "unit": "USD"
+                },
+                "compensation_type": "base",
+                "frequency": "annually",
+                "rationale": "base rationale"
+            },
             "currency_range_field": {
                 "name": "Currency Range Field",
                 "type": "currency_range",
@@ -168,6 +179,8 @@ Currently, Web Hooks for all event types include these common attributes:
 ```
 
 Custom fields may be attached to several objects within the Greenhouse Recruiting system. These fields may appear on candidates, applications, offers, and other objects in the system. These fields share several properties and are always indicated in web hooks by the "custom_fields" element. However, the "value" attribute of custom fields are different depending on the "type" attribute, so you must check the "type" attribute in order to predict what will be included in the value "attribute". As described in the previous section, the type attribute will be one of short_text, long_text, boolean, single_select, multi_select, currency, currency_range, number, number_range, date, url, or user. An example of each of these fields' expected value format are provided.
+
+Compensation Field is a special type of `currency` custom field. If a currency field is marked as a compensation field, three additional fields will be included: `compensation_type`, `rationale`, `frequency`
 
 ## Disabled web hooks
 
