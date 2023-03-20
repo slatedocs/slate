@@ -42,6 +42,30 @@ Each person, organization, or opportunity will display linked notes on their pro
 | created_at       | datetime  | The string representing the time when the note was created.                                                                                                                                                                                                                                                                               |
 | updated_at       | datetime  | The string representing the last time the note was updated.                                                                                                                                                                                                                                                                               |
 
+### Formatting `content` as HTML
+
+> Example `content` payload
+
+```html
+<p>
+  This is normal text. <strong> But this is bold! </strong>
+  <span style="color: rgb(255, 0, 0);"> And this is red! </span>
+</p>
+```
+
+If you would like to format your notes, you can create the note with a `type` of `2` (as described in [Create a New Note](#create-a-new-note)), which will provide some HTML support for `content` when [creating](#create-a-new-note) or [updating](#update-a-note) a note. All currently supported formatting options are described below.
+
+| Style            | Formatting                      | Example                                                                                |
+| ---------------- | ------------------------------- | -------------------------------------------------------------------------------------- |
+| Paragraph        | `<p>` element                   | `<p>I am a paragraph!</p>`                                                             |
+| Bold             | `<strong>` element              | `<p><strong>This text is bold</strong></p>`                                            |
+| Italics          | `<em>` element                  | `<p><em>This text is italicized</em></p>`                                              |
+| Underlined       | `<u>` element                   | `<p><u>This text is underlined</u></p>`                                                |
+| Ordered lists    | `<ol>` + `<li>` elements        | `<ol><li>First item</li><li>Second item</li></ol>`                                     |
+| Unordered lists  | `<ul>` + `<li>` elements        | `<ul><li>An item</li><li>Another item</li></ul>`                                       |
+| Background color | `background-color` inline style | `<p><span style="background-color: rgb(255, 0, 0);"> The background is red</span></p>` |
+| Font color       | `color` inline style            | `<p><span style="color: rgb(255, 0, 0);"> The text color is red</span></p>`            |
+
 ## Get All Notes
 
 > Example Request
@@ -264,11 +288,11 @@ It is possible to create a <strong>reply</strong> to an existing note by setting
 
 | Parameter        | Type      | Required | Description                                                                                                                                                                                     |
 | ---------------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| content          | string    | true     | The string containing the content of the new note.                                                                                                                                              |
+| content          | string    | true     | The string containing the content of the new note. See [formatting options](#formatting-content-as-html) for HTML support.                                                                      |
 | person_ids       | integer[] | false    | An array of unique identifiers of person objects that are associated with the new note.                                                                                                         |
 | organization_ids | integer[] | false    | An array of unique identifiers of organization objects that are associated with the new note.                                                                                                   |
 | opportunity_ids  | integer[] | false    | An array of unique identifiers of opportunity objects that are associated with the new note.                                                                                                    |
-| type             | integer   | false    | The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively.                                                                                   |
+| type             | integer   | false    | The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively. If submitting as HTML, see the [formatting options](#formatting-content-as-html). |
 | parent_id        | integer   | false    | The unique identifier of the note to which the newly created note should reply. See comments above.                                                                                             |
 | creator_id       | integer   | false    | The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.       |
 | created_at       | datetime  | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time. |
@@ -329,9 +353,9 @@ Updates the content of an existing note with `note_id` with the supplied `conten
 
 ### Payload Parameters
 
-| Parameter | Type   | Required | Description                  |
-| --------- | ------ | -------- | ---------------------------- |
-| content   | string | true     | The new content of the note. |
+| Parameter | Type   | Required | Description                                                                                          |
+| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------- |
+| content   | string | true     | The new content of the note. See [formatting options](#formatting-content-as-html) for HTML support. |
 
 ### Returns
 
