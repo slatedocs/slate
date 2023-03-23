@@ -325,7 +325,7 @@ Use the common use cases below to learn how Affinity API endpoints work.
 ## Useful Resources
 
 <ul>
-  <li><a target="_blank" href="https://www.getpostman.com/collections/b40911c8c6bb75cade3e">Postman Collection</a> (Right-click and save as JSON then import into <a href="https://www.postman.com/" target="_blank">Postman</a>)</li>
+  <li><a target="_blank" href="https://api.postman.com/collections/24569247-672ad1d0-5bc6-48d5-8ec0-185d0d3ca43d?access_key=PMAT-01GW5NC2PS8TZGYVQKS3ZQEV8F">Postman Collection</a> (Right-click and save as JSON then import into <a href="https://www.postman.com/" target="_blank">Postman</a>)</li>
   <li><a target="_blank" href="https://zapier.com/apps/affinity/integrations">Affinity Zapier Integrations</a></li>
   <li><a target="_blank" href="https://tray.io/documentation/connectors/service/affinity">Affinity Tray Connectors</a></li>
 </ul>
