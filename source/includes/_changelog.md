@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-03-27
+
+- Added the ability to [create a List](#create-a-new-list)
+
 ## 2023-03-09
 
 - Account for chat messages when returning interaction info on the GET endpoints for [Persons](#persons) and [Organizations](#organizations).
