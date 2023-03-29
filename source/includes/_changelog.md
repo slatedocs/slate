@@ -2,7 +2,9 @@
 
 ## 2023-03-27
 
-- Added the ability to [create a List](#create-a-new-list)
+- Added the ability to [create a List](#create-a-new-list).
+- Updated [Postman collection](#useful-resources) to help developers get started.
+- Added [documentation](#formatting-content-as-html) on formatting options for HTML notes.
 
 ## 2023-03-09
 

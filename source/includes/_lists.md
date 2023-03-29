@@ -1,7 +1,7 @@
 # Lists
 
 Lists are the primary data structure that you can interact with in Affinity. Each list
-manages a collection of either people, organizations or opportunities. We call people, 
+manages a collection of either people, organizations or opportunities. We call people,
 organizations and opportunities "entities".
 
 A list in Affinity is easily represented as a spreadsheet. The rows of the spreadsheet
@@ -43,16 +43,16 @@ person entity. Furthermore, the list would have two "fields" with the names
 }
 ```
 
-| Attribute | Type    | Description                                                                                                   |
-| --------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| id        | integer | The unique identifier of the list object.                                                                     |
-| type      | integer | The type of the entities contained within the list. A list can contain people or organizations, but not both. |
-| name      | string  | The title of the list that is displayed in Affinity.                                                          |
-| public    | boolean | If the list is publicly accessible to all users in your team, this is true. Otherwise, this is false.         |
-| owner_id  | integer | The unique ID of the internal person who owns this list.                                                      |
-| creator_id| integer | The unique ID of the internal person who created the list. If you create a list through the API, the user corresponding to the API token will be the creator. |
-| list_size | integer | The number of list entries contained within the list.                                                         |
-| additional_permissions  | object[] | The list of additional permissions that are associated with this list. Permissions, if any, should have `internal_person_id` which is the unique ID of the internal person and `role_id` which is the role type ID.                                         |
+| Attribute              | Type     | Description                                                                                                                                                                                                                                                                       |
+| ---------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                     | integer  | The unique identifier of the list object.                                                                                                                                                                                                                                         |
+| type                   | integer  | The type of the entities (people, organizations, or opportunities) contained within the list. Each list only supports one entity type.                                                                                                                                            |
+| name                   | string   | The title of the list that is displayed in Affinity.                                                                                                                                                                                                                              |
+| public                 | boolean  | When true, the list is publicly accessible to all users in your Affinity account. When false, the list is private to the list's owner and (explicitly set) additional users.                                                                                                      |
+| owner_id               | integer  | The unique ID of the internal person who owns the list. See [here](https://support.affinity.co/hc/en-us/articles/360029432951-List-Level-Permissions) for permissions held by a list's owner.                                                                                     |
+| creator_id             | integer  | The unique ID of the internal person who created the list. If the list was created via API, this is the internal person corresponding to the API key that was used.                                                                                                               |
+| list_size              | integer  | The number of list entries contained within the list.                                                                                                                                                                                                                             |
+| additional_permissions | object[] | The list of additional internal persons with permissions on the list. Should be a list of objects with `internal_person_id` and `role_id`, where `role_id` comes from the [list-level roles](#list-level-roles) table below. See sample response to the right for expected shape. |
 
 ### List Types
 
@@ -62,15 +62,15 @@ person entity. Furthermore, the list would have two "fields" with the names
 | organization | 1     | Type specifying a list of organizations. |
 | opportunity  | 8     | Type specifying a list of opportunities. |
 
-### Role Types
+### List-level Roles
 
-| Role Type IDs  | Description                              |
-| -------------- | ---------------------------------------- |
-| 0     | Admin role. |
-| 1     | Basic role. |
-| 2     | Standard role. |
+| Role IDs | Description                |
+| -------- | -------------------------- |
+| 0        | List-level "Admin" role    |
+| 1        | List-level "Basic" role    |
+| 2        | List-level "Standard" role |
 
-Refer to <a href="https://support.affinity.co/hc/en-us/articles/360029432951-List-Level-Permissions" target="_blank">List Level Permissions</a> for more details on `Admin`, `Basic` and `Standard` roles.
+See <a href="https://support.affinity.co/hc/en-us/articles/360029432951-List-Level-Permissions" target="_blank">here</a> for details on the permissions held by these roles.
 
 ## Get All Lists
 
@@ -226,21 +226,13 @@ Creates a new list with the supplied parameters.
 
 ### Payload Parameters
 
-| Parameter        | Type      | Required | Description                                                                                        |
-| ---------------- | --------- | -------- | -------------------------------------------------------------------------------------------------- |
-| name  | string | true     | The title of the list that is displayed in Affinity. |
-| type | integer | true    | The type of the entities contained within the list. A list can contain people or organizations, but not both. |
-| is_public  | boolean | true     | When true, the list is publicly accessible to all users in your team. |
-| owner_id  | integer | false     | The unique ID of the internal person who is assigned this list. |
-| additional_permissions  | object[] | false     | The list of additional permissions that are associated with this list. See the [List Resource](#the-list-resource) section for more details on permissions. |
-
-<aside class="notice">
-  <h6>Notes</h6>
-  <ul>
-    <li>If the owner_id is not provided, the user corresponding to the API token will be considered as the owner, which is the same as the creator.</li>
-    <li>Owner of the list will have Admin permissions. Additional permissions can be set for the creator and other users if required.</li>
-  </ul>
-</aside>
+| Parameter              | Type     | Required | Description                                                                                                                                                                                                                                                                                        |
+| ---------------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| name                   | string   | true     | The title of the list that is displayed in Affinity.                                                                                                                                                                                                                                               |
+| type                   | integer  | true     | The type of the entities (people, organizations, or opportunities) contained within the list. Each list only supports one entity type.                                                                                                                                                             |
+| is_public              | boolean  | true     | Set to true to make the list publicly accessible to all users in your Affinity account. Set to false to make the list private to the list's owner and additional users.                                                                                                                            |     |
+| owner_id               | integer  | false    | The unique ID of the internal person who should own the list. Defaults to the owner of the API key being used. See [here](https://support.affinity.co/hc/en-us/articles/360029432951-List-Level-Permissions) for permissions held by a list's owner.                                               |
+| additional_permissions | object[] | false    | A list of additional internal persons and the permissions they should have on the list. Should be a list of objects with `internal_person_id` and `role_id`, where `role_id` comes from the [list-level roles](#list-level-roles) table above. See sample request to the right for expected shape. |
 
 ### Returns
 

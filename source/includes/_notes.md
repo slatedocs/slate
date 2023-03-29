@@ -53,7 +53,7 @@ Each person, organization, or opportunity will display linked notes on their pro
 </p>
 ```
 
-If you would like to format your notes, you can create the note with a `type` of `2` (as described in [Create a New Note](#create-a-new-note)), which will provide some HTML support for `content` when [creating](#create-a-new-note) or [updating](#update-a-note) a note. All currently supported formatting options are described below.
+If you would like to format your notes, create them with `type` equal to `2`, as described in [Create a New Note](#create-a-new-note). All currently supported formatting options are described below.
 
 | Style            | Formatting                      | Example                                                                                |
 | ---------------- | ------------------------------- | -------------------------------------------------------------------------------------- |
@@ -353,9 +353,9 @@ Updates the content of an existing note with `note_id` with the supplied `conten
 
 ### Payload Parameters
 
-| Parameter | Type   | Required | Description                                                                                          |
-| --------- | ------ | -------- | ---------------------------------------------------------------------------------------------------- |
-| content   | string | true     | The new content of the note. See [formatting options](#formatting-content-as-html) for HTML support. |
+| Parameter | Type   | Required | Description                  |
+| --------- | ------ | -------- | ---------------------------- |
+| content   | string | true     | The new content of the note. |
 
 ### Returns
 
