@@ -635,3 +635,29 @@ html, body {
 .copy-clipboard:hover {
   opacity: 0.8;
 }
+
+
+/* Focus Custom CSS STARTS HERE */
+
+.toc-wrapper .logo {
+  margin: 15px auto 0px;
+}
+.cta-doc-link {
+  text-align: center;
+  padding: 24px 6px;
+}
+.cta-doc-link a {
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.6px;
+  background: #2a7ae3;
+  padding: 9px 15px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.cta-doc-link a:hover {
+  background-color: #2eade6;
+  transition: background-color 150ms linear;
+}
+
+

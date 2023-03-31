@@ -73,6 +73,11 @@ under the License.
     </a>
     <div class="toc-wrapper">
       <%= image_tag "logo.png", class: 'logo' %>
+
+      <div class="cta-doc-link">
+        <a href="https://focusnfe.com.br/cadastro?utm_source=cta_documentacao&utm_medium=doc&utm_campaign=teste_gratis" target="_blank">Teste Grátis</a>
+      </div>
+
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -86,7 +91,7 @@ under the License.
       <% end %>
       <% if current_page.data.search %>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Buscar">
         </div>
         <ul class="search-results"></ul>
       <% end %>

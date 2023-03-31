@@ -1,18 +1,40 @@
 ---
-title: API Reference
+title: Focus NFe API v2
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell
+  - php
+  - java
   - ruby
   - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://forum.focusnfe.com.br/' target='_blank'>Fórum Focus NFe</a>
 
 includes:
-  - errors
+  - nfe
+  - nfce
+  - comunicador-focus-nfe
+  - nfse
+  - lote_rps
+  - nfses-recebidas
+  - cte
+  - mdfe
+  - manifestacao
+  - manifestacao-cte
+  - backups
+  - webhooks
+  - email
+  - ncm
+  - cfop
+  - cep
+  - cnae
+  - municipios
+  - cnpjs
+  - empresas
+  - limite-requisicoes
+  - github
 
 search: true
 
@@ -20,7 +42,8 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentação da API REST Focus NFe para emissão de Documentos Fiscais (NFe, NFSe, NFCe, CTe e MDFe)
+
 ---
 
 # Introduction
