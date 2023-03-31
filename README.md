@@ -1,3 +1,35 @@
+
+# Focus NFe API Docs
+
+## Local Development
+
+Clone o repositório localmente:
+
+```sh
+git clone git@github.com:FocusNFe/api-doc.git
+cd api-doc/
+```
+
+Obtenha a imagem docker mais recente:
+```sh
+sudo docker pull slatedocs/slate
+```
+
+Execute o `slate serve` localmente e acesse em [http://localhost:4567/](http://localhost:4567/):
+```sh
+sudo docker run --rm --name slate -p 4567:4567 -v $(pwd):/srv/slate slatedocs/slate serve
+```
+
+## Deploy
+
+TODO
+
+
+
+> Documentação original do _slate_ segue abaixo.
+
+---
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/slatedocs/img/main/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>
