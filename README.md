@@ -15,18 +15,24 @@ Obtenha a imagem docker mais recente:
 sudo docker pull slatedocs/slate
 ```
 
-Execute o `slate serve` localmente e acesse em [http://localhost:4567/](http://localhost:4567/):
+### Devel
+
+Execute o `slate serve` localmente
 ```sh
 sudo docker run --rm --name slate -p 4567:4567 -v $(pwd):/srv/slate slatedocs/slate serve
 ```
+
+Edite e acesse em [localhost:4567](http://localhost:4567).
+
 
 ## Deploy
 
 TODO
 
 
+---
 
-> Documentação original do _slate_ segue abaixo.
+> <br/><br/> Documentação original do _slate_ segue abaixo. <br/><br/>
 
 ---
 
