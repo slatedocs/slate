@@ -28,7 +28,7 @@ Edite os arquivos markdown em `source/includes`, visualize o resultado em [local
 
 ### Deploy
 
-Executado via _GitHub Actions_ a cada alteração na `master` (i.e.: merge de PR).
+Executado automaticamente via _GitHub Actions_ a cada _release_ criado.
 
 Caso deseje fazer deploy manual, fazer build localmente e subir arquivos para _mautic_ por `scp`.
 ```sh

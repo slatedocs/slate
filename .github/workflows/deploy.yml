@@ -1,8 +1,8 @@
 name: Deploy to Focus NFe API Documentation Server
 
 on:
-  push:
-    branches: [ 'main' ]
+  release:
+    types: [published]
 
 jobs:
   deploy:
