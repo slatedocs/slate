@@ -1,0 +1,2765 @@
+{
+  "collection": {
+    "info": {
+      "_postman_id": "672ad1d0-5bc6-48d5-8ec0-185d0d3ca43d",
+      "name": "Affinity Documentation Collection",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "updatedAt": "2023-03-22T21:15:25.000Z"
+    },
+    "item": [
+      {
+        "name": "Lists",
+        "item": [
+          {
+            "name": "Get all lists",
+            "id": "5108870a-c35d-43a4-b6b5-78ed53a9acff",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/lists",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "lists"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific list",
+            "id": "6b29a03b-b58e-4040-8cde-f2ad0aed3496",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/lists/{{default_list_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "lists",
+                  "{{default_list_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a New List",
+            "id": "4433eaab-c383-42bf-801a-e1d8b196e40c",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"NAME\", // The title of the list that is displayed in Affinity.\n    \"type\": 0, // The type of the entities contained within the list. A list can contain people or organizations, but not both.\n    \"is_public\": false, // When true, the list is publicly accessible to all users in your team.\n    \"owner_id\": 111, // The unique ID of the internal person who is assigned this list.\n    \"additional_permissions\": [ //The list of additional permissions that are associated with this list. See the List Resource section for more details on permissions. https://api-docs.affinity.co/#the-list-resource\n        {\n            \"internal_person_id\": 222,\n            \"role_id\": 0\n        }\n    ]\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/lists",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "lists"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "e67679ca-3641-450d-9e0a-d23aa66cf660"
+      },
+      {
+        "name": "List Entries",
+        "item": [
+          {
+            "name": "Get all list entries",
+            "id": "fe5316bc-d987-439b-919e-b5c0568db63e",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/lists/{{default_list_id}}/list-entries",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "lists",
+                  "{{default_list_id}}",
+                  "list-entries"
+                ],
+                "query": [
+                  {
+                    "key": "page_size",
+                    "value": null,
+                    "description": "How many results to return per page. (Default is to return all results.)\n",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_token",
+                    "value": null,
+                    "description": "The next_page_token from the previous response required to retrieve the next page of results.",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific list entry",
+            "id": "e0d2c6ff-7c4a-4a42-b93e-885fa7da5493",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/lists/{{default_list_id}}/list-entries/{{default_list_entry_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "lists",
+                  "{{default_list_id}}",
+                  "list-entries",
+                  "{{default_list_entry_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new list entry",
+            "id": "9cbadfa6-53ae-4ca7-ad7a-b033a143d022",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "entity_id",
+                    "value": "",
+                    "description": "The unique id of the person or organization to add to this list. Opportunities cannot be created using this endpoint. See note below.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "creator_id",
+                    "value": "",
+                    "description": "The id of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/lists/{{default_list_id}}/list-entries",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "lists",
+                  "{{default_list_id}}",
+                  "list-entries"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete a specific list entry",
+            "id": "48bb607e-3c45-4b3e-bee3-396152841c50",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/lists/{{default_list_id}}/list-entries/{insert_list_entry_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "lists",
+                  "{{default_list_id}}",
+                  "list-entries",
+                  "{insert_list_entry_id}"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "79f22a08-6a5c-4014-8a98-d5a6c2a1be73"
+      },
+      {
+        "name": "Fields",
+        "item": [
+          {
+            "name": "Get fields",
+            "id": "4c4444bb-1053-4cae-aba3-01bf1422f99c",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/fields",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "fields"
+                ],
+                "query": [
+                  {
+                    "key": "list_id",
+                    "value": "",
+                    "description": "An unique identifier of the list whose fields are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "value_type",
+                    "value": "",
+                    "description": "The value type of the fields that are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "entity_type",
+                    "value": null,
+                    "description": "The entity type of the fields that are to be retrieved.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_modified_names",
+                    "value": "",
+                    "description": "When true, field names will return in the format [List Name] Field Name.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "exclude_dropdown_options",
+                    "value": null,
+                    "description": "When true, dropdown options will not be returned in the response.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a field",
+            "id": "19fba913-1a62-4a07-9fa7-26170a671671",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "name",
+                    "value": "",
+                    "description": "The name of the field.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "entity_type",
+                    "value": "",
+                    "description": "This describes what type of list this field will be associated with the field. This can be one of three values, see below for all value types.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "value_type",
+                    "value": "",
+                    "description": "This describes what values can be associated with the field. This can be one of many values, see the Field Resource section for all value types.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "list_id",
+                    "value": "",
+                    "description": "The unique identifier of the list that the field object belongs to if it is specific to a list. This is null if the field is global.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "allows_multiple",
+                    "value": "",
+                    "description": "This determines whether multiple values can be added to a single cell for the field.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "is_list_specific",
+                    "value": "",
+                    "description": "This determines whether the field object belongs to a specific list. If set to true, you must pass in the appropriate list_id.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "is_required",
+                    "value": "",
+                    "description": "This determines whether the field object is required.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/fields",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "fields"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete a field",
+            "id": "96e3b650-6239-49a3-ab09-1eef2c3981d4",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/fields/{insert_field_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "fields",
+                  "{insert_field_id}"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "762c47f2-66ad-4e65-8e8b-4169110a7987"
+      },
+      {
+        "name": "Field Values",
+        "item": [
+          {
+            "name": "Get field values",
+            "id": "41f5ce2a-13e8-4665-b532-9f74d718e776",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/field-values",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "field-values"
+                ],
+                "query": [
+                  {
+                    "key": "person_id",
+                    "value": "",
+                    "description": "A unique id that represents a person object whose field values are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_id",
+                    "value": null,
+                    "description": "A unique id that represents an organization object whose field values are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_id",
+                    "value": null,
+                    "description": "A unique id that represents an opportunity object whose field values are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "list_entry_id",
+                    "value": "",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new field value",
+            "id": "e53f0b82-6b50-41cd-a30c-91a097397a8b",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "field_id",
+                    "value": "",
+                    "description": "The unique identifier of the field (column) that the field value is associated with.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "entity_id",
+                    "value": "",
+                    "description": "The unique identifier of the entity (person, organization, or opportunity) that the field value is associated with.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "value",
+                    "value": "",
+                    "description": "See the Field Value Resource section for all value types. The value specified must correspond to the value_type of the supplied field.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "list_entry_id",
+                    "value": "",
+                    "description": "The unique identifier of the list entry (list row) that the field value is associated with. Only specify the list_entry_id if the field that the field value is associated with is list specific.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/field-values",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "field-values"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update a field value",
+            "id": "cdb3b621-03e2-42fe-b327-0f469e200a56",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "value",
+                    "value": "",
+                    "description": "See the Field Value Resource section for all value types. The value specified must correspond to the value_type of the supplied field.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/field-values/{{default_field_value_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "field-values",
+                  "{{default_field_value_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete a field value",
+            "id": "fef3c2b5-65d6-42d6-bcc8-7ef204830721",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "value",
+                    "value": "",
+                    "description": "See the field value resource section for all value types. The value specified must correspond to the value_type of the supplied field.",
+                    "type": "text"
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/field-values/{insert_field_value_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "field-values",
+                  "{insert_field_value_id}"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "03e83ff5-9bdd-4f6d-80b2-9cd191ae0014"
+      },
+      {
+        "name": "Field Value Changes",
+        "item": [
+          {
+            "name": "Get field values changes",
+            "id": "be027807-9dc3-4692-871b-25985e08788e",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/field-value-changes",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "field-value-changes"
+                ],
+                "query": [
+                  {
+                    "key": "field_id",
+                    "value": "{{default_field_id}}",
+                    "description": "A unique id that represents a field object whose field values changes are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "action_type",
+                    "value": "",
+                    "description": "An integer that filters field value changes that were created with this specific action type (see above).",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_id",
+                    "value": null,
+                    "description": "A unique id that represents a person object whose field value changes are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_id",
+                    "value": null,
+                    "description": "A unique id that represents an organization object whose field value changes are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_id",
+                    "value": null,
+                    "description": "A unique id that represents an opportunity object whose field value changes are to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "list_entry_id",
+                    "value": null,
+                    "description": "A unique id that represents a list entry object whose field value changes are to be retrieved.",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "2487aa98-09bb-4b44-b4fa-ff97fbaeaccb"
+      },
+      {
+        "name": "Persons",
+        "item": [
+          {
+            "name": "Search for persons",
+            "id": "9e30d11e-5271-4c4d-b7f7-d4fb06dc64ac",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/persons",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "persons"
+                ],
+                "query": [
+                  {
+                    "key": "term",
+                    "value": null,
+                    "description": "A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_interaction_dates",
+                    "value": null,
+                    "description": "When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_interaction_persons",
+                    "value": null,
+                    "description": "When true, persons for each interaction will be returned. Used in conjunction with with_interaction_dates",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_opportunities",
+                    "value": null,
+                    "description": "When true, opportunity IDs will be returned for each person.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_current_organizations",
+                    "value": null,
+                    "description": "When true, the organization IDs of each person's current organizations (according to the Affinity Data: Current Organizations column) will be returned.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "min_first_email_date",
+                    "value": null,
+                    "description": "Only returns persons with the first_email above the given value. This would be used with max interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "min_last_email_date",
+                    "value": null,
+                    "description": "Only returns persons with the last_email above the given value. This would be used with max interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "min_last_interaction_date",
+                    "value": null,
+                    "description": "Only returns persons with the last_interaction above the given value. This would be used with max interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "min_last_event_date",
+                    "value": null,
+                    "description": "Only returns persons with the last_event above the given value. This would be used with max interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "min_first_event_date",
+                    "value": null,
+                    "description": "Only returns persons with the first_event above the given value. This would be used with max interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "min_next_event_date",
+                    "value": null,
+                    "description": "Only returns persons with the next_event above the given value. This would be used with max interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "max_first_email_date",
+                    "value": null,
+                    "description": "Only returns persons with the first_email below the given value. This would be used with min interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "max_last_email_date",
+                    "value": null,
+                    "description": "Only returns persons with the last_email below the given value. This would be used with min interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "max_last_interaction_date",
+                    "value": null,
+                    "description": "Only returns persons with the last_interaction below the given value. This would be used with min interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "max_last_event_date",
+                    "value": null,
+                    "description": "Only returns persons with the last_event below the given value. This would be used with min interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "max_first_event_date",
+                    "value": null,
+                    "description": "Only returns persons with the first_event below the given value. This would be used with min interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "max_next_event_date",
+                    "value": null,
+                    "description": "Only returns persons with the next_event below the given value. This would be used with min interation.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_size",
+                    "value": null,
+                    "description": "How many results to return per page. (Default is the maximum value of 500.)",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_token",
+                    "value": null,
+                    "description": "The next_page_token from the previous response required to retrieve the next page of results.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific person",
+            "id": "596da433-15b5-4df6-af02-57c46c0f5cc7",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/persons/{{default_external_person_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "persons",
+                  "{{default_external_person_id}}"
+                ],
+                "query": [
+                  {
+                    "key": "with_interaction_dates",
+                    "value": null,
+                    "description": "When true, interaction dates will be present on the returned resources.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_interaction_persons",
+                    "value": null,
+                    "description": "When true, persons for each interaction will be returned. Used in conjunction with with_interaction_dates",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_opportunities",
+                    "value": null,
+                    "description": "When true, opportunity IDs associated with this person will be returned.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_current_organizations",
+                    "value": null,
+                    "description": "When true, the IDs of this person's current organizations (according to the Affinity Data: Current Organizations column) will be returned.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new person",
+            "id": "1e7468a5-01d8-405f-8fdc-8e0e1f5e6aae",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "first_name",
+                    "value": "",
+                    "description": "The first name of the person.",
+                    "type": "text"
+                  },
+                  {
+                    "key": "last_name",
+                    "value": "",
+                    "description": "The last name of the person.",
+                    "type": "text"
+                  },
+                  {
+                    "key": "emails[]",
+                    "value": "",
+                    "description": "The email addresses of the person. If there are no email addresses, please specify an empty array.",
+                    "type": "text"
+                  },
+                  {
+                    "key": "organization_ids[]",
+                    "value": "",
+                    "description": "An array of unique identifiers of organizations that the person is associated with",
+                    "type": "text"
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/persons",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "persons"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update a person",
+            "id": "e81682ad-d01a-4e63-b33c-bee956ae5b26",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "first_name",
+                    "value": "",
+                    "description": "The first name of the person.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "last_name",
+                    "value": "",
+                    "description": "The last name of the person.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "emails[]",
+                    "value": "",
+                    "description": "The email addresses of the person. If there are no email addresses, please specify an empty array.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_ids[]",
+                    "value": "",
+                    "description": "An array of unique identifiers of organizations that the person is associated with",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/persons/{{default_person_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "persons",
+                  "{{default_person_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete a person",
+            "id": "37b2f770-d7a2-4ff0-92fe-a4b333b3b6f9",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/persons/{insert_person_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "persons",
+                  "{insert_person_id}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get global person fields",
+            "id": "9a127540-468c-41bc-995f-c441bb38c144",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/persons/fields",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "persons",
+                  "fields"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "fc197e3d-1398-4d43-98dd-16cc3b4b1ad9"
+      },
+      {
+        "name": "Organizations",
+        "item": [
+          {
+            "name": "Search for organizations",
+            "id": "ea24cea4-31ce-4ecf-a990-c60eb84ca81b",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/organizations",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "organizations"
+                ],
+                "query": [
+                  {
+                    "key": "term",
+                    "value": "affinity",
+                    "description": "A string used to search all the organizations in your team’s address book. This could be a name or a domain name.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_interaction_dates",
+                    "value": "",
+                    "description": "When true, interaction dates will be present on the returned resources. Only organizations that have interactions will be returned.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_interaction_persons",
+                    "value": "",
+                    "description": "When true, persons for each interaction will be returned. Used in conjunction with with_interaction_dates",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_opportunities",
+                    "value": null,
+                    "description": "When true, opportunity IDs associated with this organization will be returned.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "{min,max}_<interaction>_date",
+                    "value": "",
+                    "description": "Only returns organizations with the given interaction type above or below the given value. interaction can be one of first_email, last_email, last_interaction, last_event, first_event, or next_event.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_size",
+                    "value": "",
+                    "description": "How many results to return per page. (Default is the maximum value of 500.)",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_token",
+                    "value": "",
+                    "description": "The next_page_token from the previous response required to retrieve the next page of results.",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific organization",
+            "id": "9258a09d-7de0-433b-adf3-a3b08b0270bc",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/organizations/{{default_organization_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "organizations",
+                  "{{default_organization_id}}"
+                ],
+                "query": [
+                  {
+                    "key": "with_interaction_dates",
+                    "value": null,
+                    "description": "When true, interaction dates will be present on the returned resources.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_interaction_persons",
+                    "value": null,
+                    "description": "When true, persons for each interaction will be returned. Used in conjunction with with_interaction_dates",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "with_opportunities",
+                    "value": null,
+                    "description": "When true, opportunity IDs associated with this organization will be returned.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new organization",
+            "id": "686613db-d21d-427a-9966-f974307a5387",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "name",
+                    "value": "",
+                    "description": "The name of the organization.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "domain",
+                    "value": "",
+                    "description": "The domain name of the organization.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_ids[]",
+                    "value": "",
+                    "description": "An array of unique identifiers of persons that the organization will be associated with.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/organizations",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "organizations"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update an organization",
+            "id": "d43f002c-5aa7-4f58-8f08-11da5d7e77e6",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "name",
+                    "value": "",
+                    "description": "The name of the organization.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "domain",
+                    "value": "",
+                    "description": "The domain name of the organization.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_ids[]",
+                    "value": "",
+                    "description": "An array of unique identifiers of persons that the organization will be associated with.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/organizations/{{default_organization_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "organizations",
+                  "{{default_organization_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete an organization",
+            "id": "64d93429-45a9-4e0f-a5e4-b86a787c0250",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "name",
+                    "value": "Donkey Factory",
+                    "description": "The name of the organization.",
+                    "type": "text"
+                  },
+                  {
+                    "key": "domain",
+                    "value": "",
+                    "description": "The domain name of the organization.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_ids",
+                    "value": "",
+                    "description": "An array of unique identifiers of persons that the organization will be associated with.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/organizations/{insert_organization_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "organizations",
+                  "{insert_organization_id}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get global organizations fields",
+            "id": "413e3a0c-1edc-41c5-8c4a-70ebefc50bc6",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/organizations/fields",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "organizations",
+                  "fields"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "d9d5f353-3cef-4ec6-9599-c589a7752c50"
+      },
+      {
+        "name": "Opportunities",
+        "item": [
+          {
+            "name": "Search for opportunities",
+            "id": "7bab16bf-5877-4256-a9c5-497195fff922",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/opportunities",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "opportunities"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific opportunity",
+            "id": "0a3a7526-d8b5-4b9c-beb4-ba60881ba62e",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/opportunities/{{default_opportunity_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "opportunities",
+                  "{{default_opportunity_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new opportunity",
+            "id": "b0ec6ca1-1ec6-4e07-ab50-4838321c91ef",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "name",
+                    "value": "meow",
+                    "description": "The name of the opportunity.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "list_id",
+                    "value": "91630",
+                    "description": "An unique identifier of the list that the new opportunity will be associated with. This list must be of type opportunity.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_ids[]",
+                    "value": "65676670",
+                    "description": "An array of unique identifiers of persons that the new opportunity will be associated with.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_ids[]",
+                    "value": "",
+                    "description": "An array of unique identifiers of organizations that the new opportunity will be associated with.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/opportunities",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "opportunities"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update an opportunity",
+            "id": "c9cd4c07-7cce-4861-af99-59acee46fe43",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "name",
+                    "value": "",
+                    "description": "The name of the opportunity.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_ids[]",
+                    "value": "",
+                    "description": "An array of unique identifiers of persons that the opportunity will be associated with.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_ids[]",
+                    "value": "",
+                    "description": "An array of unique identifiers of organizations that the opportunity will be associated with.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/opportunities/{{default_opportunity_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "opportunities",
+                  "{{default_opportunity_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete an opportunity",
+            "id": "08b96cfb-90f0-48a2-aa50-4b5cae79c215",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/opportunities/{insert_opportunity_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "opportunities",
+                  "{insert_opportunity_id}"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "6334e612-c479-4687-ad7b-fcff17f1c176"
+      },
+      {
+        "name": "Interactions",
+        "item": [
+          {
+            "name": "Get all interactions",
+            "id": "149499a2-faa1-4a62-8752-f5a9513adfe8",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/interactions",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "interactions"
+                ],
+                "query": [
+                  {
+                    "key": "type",
+                    "value": null,
+                    "description": "The type of interactions to be retrieved.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "logging_type",
+                    "value": null,
+                    "description": "The logging type of interactions to be retrieved.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an external Person that was involved in the interactions.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an Organization that was involved in the interactions.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an Opportunity that was involved in the interactions.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "internal_person_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an internal person that was involved in the interactions.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "direction",
+                    "value": null,
+                    "description": "The direction of the interactions. Only applies to chat message and email.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "start_time",
+                    "value": null,
+                    "description": "A string (formatted according to ISO 8601) representing the start of the time range for the interactions to be retrieved.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "end_time",
+                    "value": null,
+                    "description": "A string (formatted according to ISO 8601) representing the end of the time range for the interactions to be retrieved.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_size",
+                    "value": null,
+                    "description": "How many results to return per page. (Default is the maximum value of 500.)",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_token",
+                    "value": null,
+                    "description": "The next_page_token from the previous response required to retrieve the next page of results.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific interaction",
+            "id": "96fc1eac-0d67-4bdf-bafa-189b61efde03",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/interactions/{{default_interaction_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "interactions",
+                  "{{default_interaction_id}}"
+                ],
+                "query": [
+                  {
+                    "key": "type",
+                    "value": null,
+                    "description": "The type of interaction to be retrieved.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new interaction",
+            "id": "d116b939-b474-4fe8-9405-ba3f0c99b637",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "type",
+                    "value": "",
+                    "description": "The type of interaction to be created. Only meetings (type == 0), calls (type == 1) and chat messages (type == 2) are supported.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_ids[]",
+                    "value": "",
+                    "description": "The list of person IDs that are associated with the event. At least one internal person ID must be included (see Person Resource for more details on internal persons).",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "content",
+                    "value": "",
+                    "description": "The string containing the content of the new interaction.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "direction",
+                    "value": "",
+                    "description": "The direction of the chat message to be created. Only applies to chat messages (type == 2).",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "date",
+                    "value": "",
+                    "description": "A string (formatted according to ISO 8601) representing the date time the interaction occurred.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/interactions",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "interactions"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update an interaction",
+            "id": "9cf9c0c2-78bc-4fb9-8375-467e8ee541b5",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "type",
+                    "value": "",
+                    "type": "text",
+                    "description": "The type of interaction to be updated.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_ids[]",
+                    "value": "",
+                    "type": "text",
+                    "description": "The list of person IDs that are associated with the event.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "content",
+                    "value": "",
+                    "type": "text",
+                    "description": "The string containing the content of the interaction.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "date",
+                    "value": "",
+                    "type": "text",
+                    "description": "A string (formatted according to ISO 8601) representing the date time the interaction occurred.",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/interactions/{{default_interaction_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "interactions",
+                  "{{default_interaction_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete an interaction",
+            "id": "6abe8aa9-b40c-4ddc-8302-23356858e3b7",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/interactions/{{default_interaction_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "interactions",
+                  "{{default_interaction_id}}"
+                ],
+                "query": [
+                  {
+                    "key": "type",
+                    "value": null,
+                    "description": "The type of interaction to be deleted.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "212571e8-f01f-49a9-83d3-f46100aab212"
+      },
+      {
+        "name": "Relationship Strengths",
+        "item": [
+          {
+            "name": "Fetch a relationship strength",
+            "id": "a6fa0c68-3536-4adb-bc94-bb383e631c99",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/relationships-strengths?internal_id={{default_internal_person_id}}&external_id={{default_external_person_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "relationships-strengths"
+                ],
+                "query": [
+                  {
+                    "key": "internal_id",
+                    "value": "{{default_internal_person_id}}",
+                    "description": "The internal person associated with this relationship strength."
+                  },
+                  {
+                    "key": "external_id",
+                    "value": "{{default_external_person_id}}",
+                    "description": "The external person associated with this relationship strength."
+                  }
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "981bfa03-deaa-402c-a0fa-d72e930156c3"
+      },
+      {
+        "name": "Notes",
+        "item": [
+          {
+            "name": "Get all notes",
+            "id": "696df066-4a46-4601-abbb-7d83ea85f69b",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/notes",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "notes"
+                ],
+                "query": [
+                  {
+                    "key": "person_id",
+                    "value": "{{default_external_person_id}}",
+                    "description": "A unique identifier that represents a Person that was tagged in the retrieved notes.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_id",
+                    "value": "{{default_organization_id}}",
+                    "description": "A unique identifier that represents an Organization that was tagged in the retrieved notes.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_id",
+                    "value": "{{default_opportunity_id}}",
+                    "description": "A unique identifier that represents an Opportunity that was tagged in the retrieved notes.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "creator_id",
+                    "value": "{{default_internal_person_id}}",
+                    "description": "A unique identifier that represents an Affinity user whose created notes should be retrieved.",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific note",
+            "id": "5365f6a0-2c20-46b2-a36b-96d0a99caf3f",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/notes/{{default_note_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "notes",
+                  "{{default_note_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new note",
+            "id": "77f5bfb4-794d-4014-9acd-0e2b85062430",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "person_ids[]",
+                    "value": "",
+                    "type": "text",
+                    "description": "An array of unique identifiers of person objects that are associated with the new note.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_ids[]",
+                    "value": "",
+                    "type": "text",
+                    "description": "An array of unique identifiers of organization objects that are associated with the new note.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_ids[]",
+                    "value": "",
+                    "type": "text",
+                    "description": "An array of unique identifiers of opportunity objects that are associated with the new note.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "content",
+                    "value": "",
+                    "type": "text",
+                    "description": "The string containing the content of the new note.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "type",
+                    "value": "",
+                    "type": "text",
+                    "description": "The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "parent_id",
+                    "value": "",
+                    "type": "text",
+                    "description": "The unique identifier of the note to which the newly created note should reply.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "creator_id",
+                    "value": "",
+                    "type": "text",
+                    "description": "The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "created_at",
+                    "value": "",
+                    "type": "text",
+                    "description": "A string (formatted according to ISO 8601) representing the creation time to be recorded for the note. If not provided, defaults to the current time.",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/notes",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "notes"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update a note",
+            "id": "96d7ed43-4274-46af-911a-a7d2d2924ca7",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "content",
+                    "value": "",
+                    "description": "The new content of the note.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/notes/{notes_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "notes",
+                  "{notes_id}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete a note",
+            "id": "6b48e2cf-6e3f-4f75-bd14-825d3429e362",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/notes/{insert_note_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "notes",
+                  "{insert_note_id}"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "829fd5d9-391a-49f3-923e-8df9626a6416"
+      },
+      {
+        "name": "Entity Files",
+        "item": [
+          {
+            "name": "Get all files",
+            "id": "ae869c3a-257d-41ea-82a3-745920f865e8",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/entity-files",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "entity-files"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific file",
+            "id": "888b0f0c-b365-4db0-959d-7d860dc13be8",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/entity-files/download/{{default_entity_file_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "entity-files",
+                  "download",
+                  "{{default_entity_file_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Download File",
+            "id": "314ea336-80e0-42b6-8bb3-55f5fc0b7c6f",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/entity-files/download/{{default_entity_file_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "entity-files",
+                  "download",
+                  "{{default_entity_file_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Upload files",
+            "id": "ce476fd5-e2c3-44a6-a388-518025226c42",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "file",
+                    "value": "",
+                    "description": "A singular file to be uploaded, formatted as form data (multipart/form-data).",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "files",
+                    "value": "",
+                    "description": "An array of files to be uploaded, formatted as form data (multipart/form-data).",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_id",
+                    "value": "",
+                    "description": "The unique identifier of the person object to attach the file(s) to.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_id",
+                    "value": "",
+                    "description": "The unique identifier of the organization object to attach the file(s) to.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_id",
+                    "value": "",
+                    "description": "The unique identifier of the opportunity object to attach the file(s) to.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/entity-files",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "entity-files"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "b7b49e78-fe7f-4667-a5d3-94411f009eef"
+      },
+      {
+        "name": "Reminders",
+        "item": [
+          {
+            "name": "Get Reminders",
+            "id": "4d31387b-d94e-40bf-9128-dcfac68ef6b3",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/reminders",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "reminders"
+                ],
+                "query": [
+                  {
+                    "key": "person_id",
+                    "value": "",
+                    "description": "A unique identifier that represents a Person that was tagged in the retrieved reminders.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an Organization that was tagged in the retrieved reminders.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an Organization that was tagged in the retrieved reminders.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "creator_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an internal person whose created reminders should be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "owner_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an internal person that was assigned to the retrieved reminders.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "completer_id",
+                    "value": null,
+                    "description": "A unique identifier that represents an internal person whose completed reminders should be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "type",
+                    "value": null,
+                    "description": "The type of reminders to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "reset_type",
+                    "value": null,
+                    "description": "The reset type of reminders to be retrieved. Required when type == 1.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "status",
+                    "value": null,
+                    "description": "The status of reminders to be retrieved.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "due_before",
+                    "value": null,
+                    "description": "A string (formatted according to ISO 8601) representing the date that reminders to be retrieved are due before.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "due_after",
+                    "value": null,
+                    "description": "A string (formatted according to ISO 8601) representing the date that reminders to be retrieved are due after.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_size",
+                    "value": null,
+                    "description": "How many results to return per page. (Default is the maximum value of 500.)",
+                    "disabled": true
+                  },
+                  {
+                    "key": "page_token",
+                    "value": null,
+                    "description": "The next_page_token from the previous response required to retrieve the next page of results.",
+                    "disabled": true
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific reminder",
+            "id": "f38d2e33-4eb0-428a-8905-a3e8befb42f1",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/reminders/{{default_reminder_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "reminders",
+                  "{{default_reminder_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new reminder",
+            "id": "57650a92-489e-43b8-b24c-8e69ccc56cf4",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "owner_id",
+                    "value": "",
+                    "description": "A unique identifier that represents an internal person that is assigned to the reminder.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "type",
+                    "value": "",
+                    "description": "The type of reminder to be created.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "person_id",
+                    "value": "",
+                    "description": "A unique identifier that represents a Person that is tagged in the reminder to be created.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "organization_id",
+                    "value": "",
+                    "description": "A unique identifier that represents an Organization that is tagged in the reminder to be created.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "opportunity_id",
+                    "value": "",
+                    "description": "A unique identifier that represents an Opportunity that is tagged in the reminder to be created.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "due_date",
+                    "value": "",
+                    "description": "A string (formatted according to ISO 8601) representing the due date of the reminder to be created. Required when type == 0.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "reminder_days",
+                    "value": "",
+                    "description": "When a recurring reminder is completed or reset, the number of days before the reminder is due again. Required when type == 1.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "reset_type",
+                    "value": "",
+                    "description": "The reset type of reminder to be created. Required when type == 1.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "content",
+                    "value": "",
+                    "description": "The string containing the content of the new reminder.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "is_completed",
+                    "value": "",
+                    "description": "Indicator if the reminder has been completed.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/reminders",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "reminders"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update a reminder",
+            "id": "6b3227ab-3287-4d02-8b41-e33abab0b8fe",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "formdata",
+                "formdata": [
+                  {
+                    "key": "owner_id",
+                    "value": "",
+                    "description": "A unique identifier that represents an internal person that is assigned to the reminder.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "type",
+                    "value": "",
+                    "description": "The type of reminder to be created.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "due_date",
+                    "value": "",
+                    "description": "A string (formatted according to ISO 8601) representing the due date of the reminder to be created. Required when type == 0.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "reminder_days",
+                    "value": "",
+                    "description": "When a recurring reminder is completed or reset, the number of days before the reminder is due again. Required when type == 1.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "reset_type",
+                    "value": "",
+                    "description": "The reset type of reminder to be created. Required when type == 1.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "content",
+                    "value": "",
+                    "description": "The string containing the content of the new reminder.",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "is_completed",
+                    "value": "",
+                    "description": "Indicator if the reminder has been completed.",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/reminders/{{default_reminder_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "reminders",
+                  "{{default_reminder_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete a reminder",
+            "id": "ff044859-f49f-4a4a-97d9-52a545c408a4",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/reminders/{insert_reminder_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "reminders",
+                  "{insert_reminder_id}"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "068814f6-9a1c-49fb-b3bb-bdbb7aedb5c2"
+      },
+      {
+        "name": "Webhooks",
+        "item": [
+          {
+            "name": "Get all webhook subscriptions",
+            "id": "6062bb36-2f31-42a0-b546-82ec2f9210ed",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/webhook",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "webhook"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get a specific webhook subscription",
+            "id": "b8ef10ca-ea4f-4b92-add3-8ac99d4e8917",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/webhook/{{default_webhook_subscription_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "webhook",
+                  "{{default_webhook_subscription_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create a new webhook subscription",
+            "id": "7a5cf501-3e3c-4d94-95f8-5e743784cf0f",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "webhook_url",
+                    "value": "",
+                    "type": "text",
+                    "description": "The URL to which the webhooks will be sent to.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "subscriptions[]",
+                    "value": "",
+                    "type": "text",
+                    "description": "An array of webhook events that will be enabled for that endpoint. Leave out this parameter or pass an empty array to subscribe to all webhook events. You can find the complete list of supported webhook events here.",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/webhook/subscribe",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "webhook",
+                  "subscribe"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Update a webhook subscription",
+            "id": "1fd61fc0-7452-43b5-bcb5-5da9c92689b3",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "webhook_url",
+                    "value": "",
+                    "type": "text",
+                    "description": "The URL to which the webhooks will be sent to.",
+                    "disabled": true
+                  },
+                  {
+                    "key": "subscriptions[]",
+                    "value": "",
+                    "type": "text",
+                    "description": "An array of webhook events that will be enabled for that endpoint. Leave out this parameter or pass an empty array to subscribe to all webhook events. You can find the complete list of supported webhook events here: https://api-docs.affinity.co/#supported-webhook-events ",
+                    "disabled": true
+                  },
+                  {
+                    "key": "disabled",
+                    "value": "",
+                    "type": "text",
+                    "description": "Change the status of a subscription. To enable a subscription, provide the value as false. Otherwise, provide the value as true.",
+                    "disabled": true
+                  }
+                ]
+              },
+              "url": {
+                "raw": "{{BASE_URL}}/webhook/{{default_webhook_subscription_id}}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "webhook",
+                  "{{default_webhook_subscription_id}}"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Delete a specific webhook subscription",
+            "id": "10d9dc59-4ccd-4fb9-8883-ad3b5fbdd7ec",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/webhook/{insert_webhook_subscription_id}",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "webhook",
+                  "{insert_webhook_subscription_id}"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "c0f3be42-745b-467e-bb44-21398bd61511"
+      },
+      {
+        "name": "Whoami",
+        "item": [
+          {
+            "name": "Get whoami",
+            "id": "43690797-e7fa-40f5-b712-7c9390bb0fa2",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/auth/whoami",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "auth",
+                  "whoami"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "0649bcbc-55eb-4ee9-9c12-74da8e6508a7"
+      },
+      {
+        "name": "Rate Limit",
+        "item": [
+          {
+            "name": "Get rate limit information",
+            "id": "49a142fe-fd82-4c35-80c4-b1866476e763",
+            "protocolProfileBehavior": {
+              "disableBodyPruning": true
+            },
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{BASE_URL}}/rate-limit",
+                "host": [
+                  "{{BASE_URL}}"
+                ],
+                "path": [
+                  "rate-limit"
+                ]
+              }
+            },
+            "response": []
+          }
+        ],
+        "id": "78b450ba-b8cd-46bc-b742-b1a0b574ec96"
+      }
+    ],
+    "auth": {
+      "type": "basic",
+      "basic": [
+        {
+          "key": "password",
+          "value": "{{API_KEY}}",
+          "type": "string"
+        }
+      ]
+    },
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "id": "ef3bf390-d853-4757-9a5c-d3d250c50a0e",
+          "type": "text/javascript",
+          "exec": [
+            ""
+          ]
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "id": "5b997470-78a2-4df6-9564-1b1b731968ab",
+          "type": "text/javascript",
+          "exec": [
+            ""
+          ]
+        }
+      }
+    ],
+    "variable": [
+      {
+        "id": "ec09d784-563b-499e-a85c-733e504352d5",
+        "key": "API_KEY",
+        "value": "API KEY"
+      },
+      {
+        "id": "8c674f04-a12b-4a15-991f-ef781596a935",
+        "key": "BASE_URL",
+        "value": "https://api.affinity.co"
+      },
+      {
+        "id": "784f9f43-3a79-4bf5-b58b-7721398cc221",
+        "key": "default_list_id",
+        "value": "Default list ID for GET calls"
+      },
+      {
+        "id": "756c3653-be94-4363-8585-402a6fb609ce",
+        "key": "default_list_entry_id",
+        "value": "Default list entry ID for GET calls"
+      },
+      {
+        "id": "d954a442-df8e-4265-b92a-dfdab33eedfb",
+        "key": "default_field_id",
+        "value": "Default field ID for GET / PUT calls"
+      },
+      {
+        "id": "15322cb4-6225-47f8-a1a6-65bf717f2650",
+        "key": "default_field_value_id",
+        "value": "Default field value ID for GET / PUT calls"
+      },
+      {
+        "id": "27562397-80ac-4dc2-ae39-25f81265ea1b",
+        "key": "default_internal_person_id",
+        "value": "Default internal person ID for GET / PUT calls"
+      },
+      {
+        "id": "ebaf3654-55dc-4dc2-a938-7fa02172f637",
+        "key": "default_external_person_id",
+        "value": "Default external person ID for GET / PUT calls"
+      },
+      {
+        "id": "b0a67d91-951b-4b85-b8c8-50c8c6f38441",
+        "key": "default_organization_id",
+        "value": "Default organization ID for GET / PUT calls"
+      },
+      {
+        "id": "7daf4db2-efd0-4ebc-a51d-f736c32e8f04",
+        "key": "default_opportunity_id",
+        "value": "Default opportunity ID for GET / PUT calls"
+      },
+      {
+        "id": "91758ea8-82bb-49b8-a687-9e12d0353424",
+        "key": "default_entity_id",
+        "value": "Default entity ID for GET / PUT calls"
+      },
+      {
+        "id": "1be7ef7f-055d-4b6b-97f6-bff70140381d",
+        "key": "default_note_id",
+        "value": "Default note ID for GET / PUT calls"
+      },
+      {
+        "id": "c084a8a3-d3ff-4c6d-9385-75a4e5ee2229",
+        "key": "default_entity_file_id",
+        "value": "Default entity file ID for GET / PUT calls"
+      },
+      {
+        "id": "8337e309-d6df-4823-883e-54b6a0940257",
+        "key": "default_webhook_subscription_id",
+        "value": "Default webhook subscription ID for GET / PUT calls"
+      },
+      {
+        "id": "850b46f0-67a1-47b3-9eaf-b5552726a1ff",
+        "key": "default_reminder_id",
+        "value": "Default Reminder ID for GET / PUT calls",
+        "type": "string"
+      },
+      {
+        "id": "16dd5562-9351-4d32-9b35-ee0b4278f9ed",
+        "key": "default_interaction_id",
+        "value": "Default interaction ID for GET / PUT calls",
+        "type": "string"
+      }
+    ]
+  }
+}
