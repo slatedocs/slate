@@ -73,6 +73,11 @@ under the License.
     </a>
     <div class="toc-wrapper">
       <%= image_tag "logo.png", class: 'logo' %>
+
+      <div class="cta-doc-link">
+        <a href="https://focusnfe.com.br/cadastro?utm_source=cta_documentacao&utm_medium=doc&utm_campaign=teste_gratis" target="_blank">Teste Grátis</a>
+      </div>
+
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -86,7 +91,7 @@ under the License.
       <% end %>
       <% if current_page.data.search %>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Buscar">
         </div>
         <ul class="search-results"></ul>
       <% end %>
@@ -133,5 +138,15 @@ under the License.
         <% end %>
       </div>
     </div>
+
+    <div class="postman-buttom">
+        <a href="https://www.postman.com/focusnfe/workspace/focus-nfe/collection/16594649-c7e14737-9d04-42af-8d6e-ec8eb0bf0a8f?ctx=documentation" target="_blank" class="postman-buttom-link">
+            <div class="postman-buttom-text">
+                <span>Exemplos<br>no Postman</span>
+            </div>
+            <img src="https://focusnfe.com.br/wp-content/uploads/2022/03/logo-doc-postman.png" alt="">
+        </a>
+    </div>
+
   </body>
 </html>
