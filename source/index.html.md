@@ -15,7 +15,7 @@ toc_footers:
 includes:
   - nfe
   - nfce
-  - comunicador-focus-nfe
+  - comunicador-focus-nfe.md.erb
   - nfse
   - lote_rps
   - nfses-recebidas
