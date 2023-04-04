@@ -28,7 +28,13 @@ Edite os arquivos markdown em `source/includes`, visualize o resultado em [local
 
 ### Deploy
 
-TODO
+Executado via _GitHub Actions_ a cada alteração na `master` (i.e.: merge de PR).
+
+Caso deseje fazer deploy manual, fazer build localmente e subir arquivos para _mautic_ por `scp`.
+```sh
+sudo docker run --rm --name slate -v $(pwd)/build:/srv/slate/build -v $(pwd):/srv/slate slatedocs/slate build
+scp -s -r ./build/* USER@HOST:/var/www/doc/
+```
 
 
 > <br/><br/><br/><br/> Abaixo, segue documentação original do _slate_.

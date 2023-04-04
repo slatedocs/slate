@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Focus NFe API Documentation Server
 
 on:
   push:
@@ -34,11 +34,47 @@ jobs:
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
 
-    - run: bundle exec middleman build
+    - name: Build
+      run: bundle exec middleman build --clean
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        keep_files: true
+    - name: Deploy via SCP
+      run: |
+          mkdir -p ~/.ssh
+          echo -e "${{ secrets.KEY }}" > ~/.ssh/id_ed25519
+          chmod og-rwx ~/.ssh/id_ed25519
+          scp -s -r -o StrictHostKeyChecking=no ./build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:upload/
+
+    - name: Google Chat Notification
+      run: |
+          curl --location --request POST '${{ secrets.RELEASE_WEBHOOK }}&threadKey=${{ github.event.repository.name }}-release' \
+          --header 'Content-Type: application/json' \
+          --data-raw '{
+            "cards": [
+              {
+                "header": {
+                  "title": "<b>Publicado ${{ github.event.repository.name }} ${{ github.event.release.name }}</b>",
+                  "subtitle": "${{ github.event.release.published_at }} · ${{ github.event.release.author.login }}"
+                },
+                "sections": [
+                  {
+                    "widgets": [
+                      {
+                        "buttons": [
+                          {
+                            "textButton": {
+                              "text": "VER NOTAS",
+                              "onClick": {
+                                "openLink": {
+                                  "url": "${{ github.event.release.html_url }}"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }' || echo "notification failure, but published ok"
