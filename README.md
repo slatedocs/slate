@@ -38,10 +38,15 @@ sudo docker run --rm --name slate -v $(pwd)/build:/srv/slate/build -v $(pwd):/sr
 scp -s -r ./build/* USER@HOST:/var/www/doc/
 ```
 
+### TODO
 
-> <br/><br/><br/><br/> Abaixo, segue documentação original do _slate_.
+* Aprimorar criação de PRs para não apontar para o repo original slate por default - https://github.com/orgs/community/discussions/11729#discussioncomment-4403106
 
----
+<br/><br/><br/>
+> ---
+>> Daqui pra'baixo: documentação original do _slate_.
+> ---
+<br/><br/><br/>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/slatedocs/img/main/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
