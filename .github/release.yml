@@ -1,0 +1,22 @@
+# release.yml
+# https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+---
+
+changelog:
+  exclude:
+    labels:
+      - .hide-on-changelog
+  categories:
+    - title: Melhorias
+      labels:
+        - enhancement
+        - documentation
+    - title: Fixes e Suportes
+      labels:
+        - bug
+    - title: Infraestrutura
+      labels:
+        - devops
+    - title: Não Categorizados
+      labels:
+        - "*"
