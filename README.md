@@ -1,5 +1,5 @@
 
-# Focus NFe API Docs
+# Focus NFe API Doc
 
 ### Local Development
 
@@ -28,9 +28,11 @@ Edite os arquivos markdown em `source/includes`, visualize o resultado em [local
 
 ### Deploy
 
-Executado automaticamente via _GitHub Actions_ a cada _release_ criado.
+Executado automaticamente via _GitHub Actions_ a cada [*release*](https://github.com/FocusNFe/api-doc/releases) criada.
 
-Caso deseje fazer deploy manual, fazer build localmente e subir arquivos para _mautic_ por `scp`.
+#### Deploy Manual
+
+Caso deseje fazer deploy manual, faça build localmente e subir arquivos para _mautic_ por `scp`.
 ```sh
 sudo docker run --rm --name slate -v $(pwd)/build:/srv/slate/build -v $(pwd):/srv/slate slatedocs/slate build
 scp -s -r ./build/* USER@HOST:/var/www/doc/
