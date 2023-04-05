@@ -121,7 +121,7 @@ O arquivo com os dados do CFe S@T deve seguir a estrutura de um arquivo do forma
       "cofins_aliquota_porcentual": "0",
         }
     ],
-    "forma_pagamento":[
+    "formas_pagamento":[
       {
         "forma_pagamento": "03",
         "valor_pagamento": "0.50",
@@ -181,13 +181,13 @@ cofins_aliquota_porcentual | alíquota do COFINS. | 0.00
 Campos do grupo '**formas_pagamento**':
 
 Quando omitido, será considerado a forma de pagamento dinheiro e o valor total do cupom.
-Para emissão de NFCe no Ceará o campo **nome_credenciadora** é obrigatório se forma_pagamento for 03 ou 04 (pagamentos com cartões de crédito ou débito).
+Para emissão de CFe/NFCe no Ceará o campo **nome_credenciadora** é obrigatório se forma_pagamento for 03 ou 04 (pagamentos com cartões de crédito ou débito).
 
 Campo | Descrição
 ----- | ----------
 forma_pagamento | forma de pagamento utilizado na venda. Valores possíveis: 01, 02, 03, 04, 05, 10, 11, 12, 13 ou 99.
 valor_pagamento | valor total utilizado para essa forma de pagamento.
-nome_credenciadora | nome da credenciadora do cartão de débetio/crédito conforme tabela abaixo
+nome_credenciadora | nome da credenciadora do cartão de débito/crédito conforme tabela abaixo
 
 Para mais detalhes sobre os valores possívels em **forma_pagamento** consulte nossa documentação de campos da API NFe/NFCe [aqui](https://campos.focusnfe.com.br/nfe/FormaPagamentoXML.html).
 
