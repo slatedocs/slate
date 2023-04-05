@@ -1,4 +1,4 @@
-name: Deploy to Focus NFe API Documentation Server
+name: Deploy to Focus API Docs Site
 
 on:
   release:
