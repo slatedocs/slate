@@ -1,4 +1,3 @@
-
 # MDF-e
 
 A MDF-e (Manifesto Eletrônico de Documentos Fiscais) é utilizada para rastrear a circulação física da carga em transportes interestaduais, transporte de carga fracionada ou por transporte de bens que utilizam mais de uma NFe.
@@ -22,12 +21,12 @@ Através da API MDF-e é possível:
 
 Método | URL (recurso) | Ação
 -------|-------|-----
-POST |	/v2/mdfe?ref=REFERENCIA	| Cria uma MDF-e e envia para processamento.
-GET	 | /v2/mdfe/REFERENCIA	| Consulta a MDF-e com a referência informada e o seu status de processamento
-DELETE |	/v2/mdfe/REFERENCIA	| Cancela uma MDF-e com a referência informada
-POST |	/v2/mdfe/REFERENCIA/inclusao_condutor	| Inclui um novo condutor.
-POST |	/v2/mdfe/REFERENCIA/inclusao_dfe	| Inclui um novo DFe.
-POST |	/v2/mdfe/REFERENCIA/encerrar	| Encerra uma MDF-e
+POST |  /v2/mdfe?ref=REFERENCIA | Cria uma MDF-e e envia para processamento.
+GET  | /v2/mdfe/REFERENCIA  | Consulta a MDF-e com a referência informada e o seu status de processamento
+DELETE |  /v2/mdfe/REFERENCIA | Cancela uma MDF-e com a referência informada
+POST |  /v2/mdfe/REFERENCIA/inclusao_condutor | Inclui um novo condutor.
+POST |  /v2/mdfe/REFERENCIA/inclusao_dfe  | Inclui um novo DFe.
+POST |  /v2/mdfe/REFERENCIA/encerrar  | Encerra uma MDF-e
 
 ## Campos de um MDF-e
 

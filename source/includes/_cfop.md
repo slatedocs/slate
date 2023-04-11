@@ -1,6 +1,6 @@
 # Consulta de CFOP
 
-CFOP significa "Código Fiscal de Operações e Prestações" e trata-se de um código de quatro dígitos que serve para identificar operações que envolvam a incidência de ICMS ou IPI. 
+CFOP significa "Código Fiscal de Operações e Prestações" e trata-se de um código de quatro dígitos que serve para identificar operações que envolvam a incidência de ICMS ou IPI.
 
 Nós disponibilizamos uma API que você poderá utilizar para fornecer ao seu usuário final uma pesquisa de qual o código CFOP correto para a operação realizada.
 

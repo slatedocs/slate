@@ -1,9 +1,8 @@
-
 # NFSes recebidas (beta)
 
 Da mesma forma que a manifestação de NFe, a API para busca de NFSes recebidas do sistema Focus permite que você consulte as notas de serviço onde sua empresa é a tomadora do serviço nos municípios onde isso é possível. No caso da NFSe, não existe a operação de manifestação. No momento a busca de notas está sendo possível apenas no município de São Paulo.
 
-Através desta documentação deverá ser possível fazer a integração com a API do Focus NFe, caso alguma dúvida permaneça você pode entrar em contato com o suporte através do e-mail suporte@acras.com.br. Através deste canal você pode também solicitar a implementação de algum município que possibilite a busca de notas recebidas de forma automática.
+Através desta documentação deverá ser possível fazer a integração com a API do Focus NFe, caso alguma dúvida permaneça você pode entrar em contato com o suporte através do e-mail suporte@focusnfe.com.br. Através deste canal você pode também solicitar a implementação de algum município que possibilite a busca de notas recebidas de forma automática.
 
 ## URLs
 
@@ -71,32 +70,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class ConsultarTodosManifestos {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String cnpj = "CNPJ_da_sua_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String cnpj = "CNPJ_da_sua_empresa";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfses_recebidas?cnpj="+cnpj);
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfses_recebidas?cnpj="+cnpj);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -151,7 +150,7 @@ puts "Corpo da resposta: " + resposta.body
 // Solicite o seu token para realizar as requisições com nossa equipe de suporte.
  $login = "Token_obtido_no_cadastro_da_empresa";
  $cnpj = "CNPJ_da_sua_empresa";
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
 
  $ch = curl_init();
@@ -159,7 +158,7 @@ puts "Corpo da resposta: " + resposta.body
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
    curl_setopt($ch, CURLOPT_HTTPHEADER, array());
 /* Métodos para realizar a autenticação básica do HTTP.
-   Não é necessário informar campo senha, apenas o campo login. */  
+   Não é necessário informar campo senha, apenas o campo login. */
    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
    curl_setopt($ch, CURLOPT_USERPWD, "$login");
 
@@ -167,7 +166,7 @@ puts "Corpo da resposta: " + resposta.body
  $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 // Mostra na tela o HTTP Code da sua requisição.
    print($http_code);
-// Mostra na tela a mensagem de retorno da API.   
+// Mostra na tela a mensagem de retorno da API.
    print($body);
    curl_close($ch);
 ?>

@@ -1,9 +1,8 @@
-
 # Manifestação - CTe
 
 Da mesma forma que a manifestação de NFe, a API para manifestação de CTe do sistema Focus permite que você consulte todos os conhecimentos de transporte recebidos pela sua empresa e permite que você realize a manifestação frente a receita. No caso da CTe, é necessário realizar a manifestação apenas se houver algum desacordo com a CTe emitida. A API faz ainda a guarda de todos os documentos recebidos para que você consulte quando precisar e recupera todas as MDFes associadas a CTe.
 
-Através desta documentação deverá ser possível fazer a integração com a API do Focus NFe, caso alguma dúvida permaneça você pode entrar em contato com o suporte especializado através do e-mail suporte@acras.com.br.
+Através desta documentação deverá ser possível fazer a integração com a API do Focus NFe, caso alguma dúvida permaneça você pode entrar em contato com o suporte especializado através do e-mail suporte@focusnfe.com.br.
 
 ## URLs
 
@@ -86,39 +85,39 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class Manifestar {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/ctes_recebidas/"+chave+"/desacordo");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/ctes_recebidas/"+chave+"/desacordo");
 
-		/* Aqui criamos um hashmap para receber a chave "tipo" e o valor que pode ser: ciencia, confirmacao, desconhecimento ou nao_realizada. */		
-		HashMap<String, String> tipoManifestacao = new HashMap<String, String>();
-		tipoManifestacao.put("observacoes", "Observações referente ao desacordo informado");
+    /* Aqui criamos um hashmap para receber a chave "tipo" e o valor que pode ser: ciencia, confirmacao, desconhecimento ou nao_realizada. */
+    HashMap<String, String> tipoManifestacao = new HashMap<String, String>();
+    tipoManifestacao.put("observacoes", "Observações referente ao desacordo informado");
 
-		/* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
-		JSONObject json = new JSONObject(TipoManifestacao);
+    /* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
+    JSONObject json = new JSONObject(TipoManifestacao);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.post(ClientResponse.class, json);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -143,7 +142,7 @@ servidor_homologacao = "https://homologacao.focusnfe.com.br/"
 url_envio = servidor_homologacao + "v2/ctes_recebidas/" + chave + "/desacordo"
 
 # altere os campos conforme a nota que será enviada
-tipo_manifestacao = {  
+tipo_manifestacao = {
   observacoes: "Observações referente ao desacordo informado",
 }
 
@@ -185,7 +184,7 @@ puts "Corpo da resposta: " + resposta.body
 /* Aqui enviamos o tipo de manifestação que desejamos realizar.
    Consulte nossa documentação, para conhecer os demais tipos possíveis: https://goo.gl/a9o7hm */
  $tipo = array("observacoes" => "Observações referente ao desacordo informado");
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
  $ch = curl_init();
  curl_setopt($ch, CURLOPT_URL, $server."v2/ctes_recebidas/".$chave."/desacordo");
@@ -201,7 +200,7 @@ puts "Corpo da resposta: " + resposta.body
  $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 // Mostra na tela o HTTP Code da sua requisição.
  print($http_code);
-// Mostra na tela a mensagem de retorno da API.   
+// Mostra na tela a mensagem de retorno da API.
  print($body);
  curl_close($ch);
 ?>
@@ -236,7 +235,7 @@ request.open('POST', url, false, token);
 
 var manifesto = {
 
-	"observacoes": "Observações referente ao desacordo informado"
+  "observacoes": "Observações referente ao desacordo informado"
 };
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
@@ -332,32 +331,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class ConsultarUltimaManifestacao {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/ctes_recebidas/"+chave+"/desacordo");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/ctes_recebidas/"+chave+"/desacordo");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -412,7 +411,7 @@ puts "Corpo da resposta: " + resposta.body
 // Solicite o seu token para realizar as requisições com nossa equipe de suporte.
  $login = "Token_obtido_no_cadastro_da_empresa";
  $chave = "Chave_de_identificação_da_NFe";
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
 
  $ch = curl_init();
@@ -427,7 +426,7 @@ puts "Corpo da resposta: " + resposta.body
  $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 // Mostra na tela o HTTP Code da sua requisição.
  print($http_code);
-// Mostra na tela a mensagem de retorno da API.   
+// Mostra na tela a mensagem de retorno da API.
  print($body);
  curl_close($ch);
 ?>
@@ -484,32 +483,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class ConsultarTodosManifestos {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String cnpj = "CNPJ_da_sua_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String cnpj = "CNPJ_da_sua_empresa";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/ctes_recebidas?cnpj="+cnpj);
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/ctes_recebidas?cnpj="+cnpj);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -564,7 +563,7 @@ puts "Corpo da resposta: " + resposta.body
 // Solicite o seu token para realizar as requisições com nossa equipe de suporte.
  $login = "Token_obtido_no_cadastro_da_empresa";
  $cnpj = "CNPJ_da_sua_empresa";
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
 
  $ch = curl_init();
@@ -572,7 +571,7 @@ puts "Corpo da resposta: " + resposta.body
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
    curl_setopt($ch, CURLOPT_HTTPHEADER, array());
 /* Métodos para realizar a autenticação básica do HTTP.
-   Não é necessário informar campo senha, apenas o campo login. */  
+   Não é necessário informar campo senha, apenas o campo login. */
    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
    curl_setopt($ch, CURLOPT_USERPWD, "$login");
 
@@ -580,7 +579,7 @@ puts "Corpo da resposta: " + resposta.body
  $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 // Mostra na tela o HTTP Code da sua requisição.
    print($http_code);
-// Mostra na tela a mensagem de retorno da API.   
+// Mostra na tela a mensagem de retorno da API.
    print($body);
    curl_close($ch);
 ?>
@@ -668,10 +667,10 @@ Os dados devolvidos no corpo da requisição serão um array de objetos em JSON 
 * **data_emissao**: Data de emissão da NFe.
 * **situacao**: Situação do documento. Pode ser: autorizada, cancelada ou denegada.
 - **tipo_cte**:
-	- **0**: CT-e normal;
-	- **1**: CT-e de complementação de valores;
-	- **2**: CT-e de anulação;
-	- **3**: CT-e substituto.
+  - **0**: CT-e normal;
+  - **1**: CT-e de complementação de valores;
+  - **2**: CT-e de anulação;
+  - **3**: CT-e substituto.
 * **versao**: Versão do documento fiscal. Este número irá mudar apenas se o documento for alterado de alguma forma.
 * **digest_value**: Valor do resumo digital do XML do documento.
 * **carta_correcao**: Conteúdo da carta de correção, se houver.
@@ -784,32 +783,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadNotaEspecificaXml {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/ctes_recebidas/"+chave+".xml");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/ctes_recebidas/"+chave+".xml");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -864,14 +863,14 @@ puts "Corpo da resposta: " + resposta.body
 // Solicite o seu token para realizar as requisições com nossa equipe de suporte.
  $login = "Token_obtido_no_cadastro_da_empresa";
  $chave = "Chave_de_identificação_da_NFe";
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
  $ch = curl_init();
  curl_setopt($ch, CURLOPT_URL, $server."v2/ctes_recebidas/".$chave.".xml");
  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
  curl_setopt($ch, CURLOPT_HTTPHEADER, array());
 /* Métodos para realizar a autenticação básica do HTTP.
-   Não é necessário informar campo senha, apenas o campo login. */  
+   Não é necessário informar campo senha, apenas o campo login. */
  curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  curl_setopt($ch, CURLOPT_USERPWD, "$login");
  $body = curl_exec($ch);
@@ -961,32 +960,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadNotaEspecifica {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/ctes_recebidas/"+chave+".json?completa=1");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/ctes_recebidas/"+chave+".json?completa=1");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1041,7 +1040,7 @@ puts "Corpo da resposta: " + resposta.body
 // Solicite o seu token para realizar as requisições com nossa equipe de suporte.
  $login = "Token_obtido_no_cadastro_da_empresa";
  $chave = "Chave_de_identificação_da_NFe";
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
  $ch = curl_init();
  curl_setopt($ch, CURLOPT_URL, $server."v2/ctes_recebidas/".$chave.".json?completa=1");
@@ -1055,7 +1054,7 @@ puts "Corpo da resposta: " + resposta.body
  $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 // Mostra na tela o HTTP Code da sua requisição.
  print($http_code);
-// Mostra na tela a mensagem de retorno da API.   
+// Mostra na tela a mensagem de retorno da API.
  print($body);
  curl_close($ch);
 ?>
@@ -1136,32 +1135,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadCancelamentoXml {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/ctes_recebidas/"+chave+"/cancelamento.xml");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/ctes_recebidas/"+chave+"/cancelamento.xml");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1216,14 +1215,14 @@ puts "Corpo da resposta: " + resposta.body
 // Solicite o seu token para realizar as requisições com nossa equipe de suporte.
  $login = "Token_obtido_no_cadastro_da_empresa";
  $chave = "Chave_de_identificação_da_NFe";
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
  $ch = curl_init();
  curl_setopt($ch, CURLOPT_URL, $server."v2/ctes_recebidas/".$chave."/cancelamento.xml");
  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
  curl_setopt($ch, CURLOPT_HTTPHEADER, array());
 /* Métodos para realizar a autenticação básica do HTTP.
-   Não é necessário informar campo senha, apenas o campo login. */   
+   Não é necessário informar campo senha, apenas o campo login. */
  curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
  curl_setopt($ch, CURLOPT_USERPWD, "$login");
  $body = curl_exec($ch);
@@ -1310,32 +1309,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadXmlCce {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/ctes_recebidas/"+chave+"/carta_correcao.xml");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/ctes_recebidas/"+chave+"/carta_correcao.xml");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1390,7 +1389,7 @@ puts "Corpo da resposta: " + resposta.body
 // Solicite o seu token para realizar as requisições com nossa equipe de suporte.
  $login = "Token_obtido_no_cadastro_da_empresa";
  $chave = "Chave_de_identificação_da_NFe";
-// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.  
+// Para ambiente de Produção, utilize a URL: https://api.focusnfe.com.br/.
  $server = "https://homologacao.focusnfe.com.br/";
  $ch = curl_init();
  curl_setopt($ch, CURLOPT_URL, $server."v2/ctes_recebidas/".$chave."/carta_correcao.xml");
