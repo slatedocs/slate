@@ -272,7 +272,7 @@ Se utilizado o formato simplificado o corpo da resposta será um array de objeto
 * **sigla_uf**: UF do prestador.
 * **codigo_municipio**: Código IBGE do município do prestador.
 
-Você pode também configurar o gatilho "nfse_recebida" para receber estes dados resumidos diretamente em sua aplicação assim que estiverem disponíveis na API. Consulte a seção de [Gatilhos / Webhooks](#gatilhos-webhooks_gatilhos-webhooks)
+Você pode também configurar o gatilho "nfse_recebida" para receber estes dados resumidos diretamente em sua aplicação assim que estiverem disponíveis na API. Consulte a seção de [Gatilhos / Webhooks](#gatilhos-webhooks).
 
 > Exemplo dos dados de resposta usando o parâmetro completa=1:
 
