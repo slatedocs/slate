@@ -29,7 +29,7 @@ Por exemplo, se você recebe uma NFSe com versao = 60, e ela posteriormente for 
 
 A API busca as últimas atualizações das prefeituras uma vez ao dia.
 
-**Método de consulta**
+### Método de consulta
 
 > Exemplo de como consultar todas as notas recebidas de uma empresa.
 
@@ -245,7 +245,7 @@ Serão devolvidas as 100 primeiras notas encontradas. Para recuperar as demais n
 ]
 ```
 
-**Dados devolvidos**
+### Dados devolvidos
 
 A API irá devolver os seguintes cabeçalhos HTTP:
 
