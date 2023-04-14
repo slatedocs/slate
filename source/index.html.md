@@ -5,7 +5,7 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
   - shell
 
 toc_footers:
-  - <a href='https://www.castupload.com'>&larr; back to Castupload</a>
+  - <a href='https://www.filmmakers.eu'>&larr; back to Filmmakers</a>
 
 search: true
 
@@ -18,7 +18,7 @@ meta:
 
 # Introduction
 
-Castupload provides a RESTful JSON API with token-based authentication. You can request an API key with [our support](https://www.castupload.com/contact/new). The permission scope of the API key varies depending on the use case, so when contacting us be sure to specify the desired use case (e.g. you plan on using Castupload data for a website).
+Filmmakers provides a RESTful JSON API with token-based authentication. You can request an API key with [our support](https://www.filmmakers.eu/contact/new). The permission scope of the API key varies depending on the use case, so when contacting us be sure to specify the desired use case (e.g. you plan on using Filmmakers data for a website).
 
 # Authentication
 
@@ -29,7 +29,7 @@ curl "api_endpoint_here" \
   -H "Authorization: Token token=API_KEY"
 ```
 
-Castupload expects the API key to be included in all API requests to the server in a header that looks like the following:
+Filmmakers expects the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: Token token=API_KEY`
 
@@ -44,7 +44,7 @@ The API supports Cross Origin Resource Sharing (CORS) for AJAX requests from any
 Here's a sample request sent from a browser hitting [https://www.example.com/](https://www.example.com/):
 
 ```
-$ curl -I https://www.castupload.com/api/v1/actor_profiles -H "Origin: https://www.example.com"
+$ curl -I https://www.filmmakers.eu/api/v1/actor_profiles -H "Origin: https://www.example.com"
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: GET
 ```
@@ -75,7 +75,7 @@ Ratelimit-Reset: 1597048500
 ## Get all actor profiles
 
 ```shell
-curl "https://www.castupload.com/api/v1/actor_profiles" \
+curl "https://www.filmmakers.eu/api/v1/actor_profiles" \
   -H "Authorization: Token token=API_KEY"
 ```
 
@@ -106,13 +106,13 @@ The pagination information is included in response HTTP headers, namely `Total` 
 
 ### HTTP Request
 
-`GET https://www.castupload.com/api/v1/actor_profiles`
+`GET https://www.filmmakers.eu/api/v1/actor_profiles`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-page | 1 | Page to display - see "Pagination" above 
+page | 1 | Page to display - see "Pagination" above
 include_picture | false | If set to true, the result will include the profile picture thumbnail in a field named `main_picture_url_tile`.
 picture_version | null | Can be set to `original`, `large` or `thumb` to change the included picture version. The picture will be included in a field named `picture_url`. _(Only applies if `include_picture` is true)_
 fields | name,gender | Can be used to modify the fields included in the response. Possible values are: `age`, `gender`, `first_name`, `last_name`, `name`, `professions`, `languages`, `updated_at`.
@@ -132,13 +132,13 @@ last_name | string |
 professions | array of strings | list of professions, eg. `["schauspieler", "synchronsprecher"]`
 main_picture_url_tile | string | profile picture url (thumbnail version)
 picture_url | string | profile picture url of specified version
-castupload_url | string | url of the profile on castupload
-castupload_professional_url | string | url of the profile on castupload professional (only available when connected)
+castupload_url | string | url of the profile on Filmmakers
+castupload_professional_url | string | url of the profile on Filmmakers for casting directors (only available when connected)
 
 ## Get a specific actor profile
 
 ```shell
-curl "https://www.castupload.com/api/v1/actor_profiles/123" \
+curl "https://www.filmmakers.eu/api/v1/actor_profiles/123" \
   -H "Authorization: Token token=API_KEY"
 ```
 
@@ -149,8 +149,8 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   "id": 162,
   "first_name": "John",
   "last_name": "Doe",
-  "castupload_url": "https://www.castupload.com/actors/john-doe",
-  "castupload_professional_url": "https://www.pro.castupload.com/profil/castupload/162",
+  "castupload_url": "https://www.filmmakers.eu/actors/john-doe",
+  "castupload_professional_url": "https://cd.filmmakers.eu/profil/castupload/162",
   "acting_age_from": 35,
   "acting_age_to": 45,
   "year_of_birth": 1980,
@@ -166,8 +166,8 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   "homepage_url": "www.example.com",
   "imdb_link": "https://www.imdb.com/name/nm0000001",
   "imdb_id": "nm0000001",
-  "facebook_page": "Castupload",
-  "twitter_handle": "Castupload",
+  "facebook_page": "Filmmakers",
+  "twitter_handle": "Filmmakers",
   "instagram_username": "castupload",
   "filmmakers_url": null,
   "sv_url": null,
@@ -235,9 +235,9 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
       "id": 140,
       "copyright": "Jane Doe",
       "created_at": "2021-06-21T16:18:41.087+02:00",
-      "url": "https://static.castupload.com/production/b6ac24ef-7bbc-4486-bfc9-89fdce3a9fde.png",
+      "url": "https://static.filmmakers.eu/production/b6ac24ef-7bbc-4486-bfc9-89fdce3a9fde.png",
       "versions": {
-        "original": "https://static.castupload.com/production/b6ac24ef-7bbc-4486-bfc9-89fdce3a9fde.png",
+        "original": "https://static.filmmakers.eu/production/b6ac24ef-7bbc-4486-bfc9-89fdce3a9fde.png",
         "large": "https://d205pfv3qf1itp.cloudfront.net/s3/castupload-com/production/b6ac24ef-7bbc-4486-bfc9-89fdce3a9fde.png/755095922e94f912e6691c63f7aef9887d069f13c5dc84b581bbabea6761f7d5/c_limit,f_jpg,h_1200,q_80,w_1200",
         "thumb": "https://d205pfv3qf1itp.cloudfront.net/s3/castupload-com/production/b6ac24ef-7bbc-4486-bfc9-89fdce3a9fde.png/8cbb163eb48e440b5e9715e0c551180817f76c7072fd205df3c320bae08548e8/c_crop,f_jpg,h_370,q_80,w_370,x_0,y_0/c_fill,g_North,h_190,w_190"
       },
@@ -260,9 +260,9 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
       "id": 141,
       "copyright": "",
       "created_at": "2021-06-21T16:18:47.460+02:00",
-      "url": "https://static.castupload.com/production/5c5a1832-3ee4-495d-bfb0-03694dab0bd2.png",
+      "url": "https://static.filmmakers.eu/production/5c5a1832-3ee4-495d-bfb0-03694dab0bd2.png",
       "versions": {
-        "original": "https://static.castupload.com/production/5c5a1832-3ee4-495d-bfb0-03694dab0bd2.png",
+        "original": "https://static.filmmakers.eu/production/5c5a1832-3ee4-495d-bfb0-03694dab0bd2.png",
         "large": "https://d205pfv3qf1itp.cloudfront.net/s3/castupload-com/production/5c5a1832-3ee4-495d-bfb0-03694dab0bd2.png/c323525480481e940c6b95eced100afa1b3c23ef2af4431df592b0e492de2211/c_limit,f_jpg,h_1200,q_80,w_1200",
         "thumb": "https://d205pfv3qf1itp.cloudfront.net/s3/castupload-com/production/5c5a1832-3ee4-495d-bfb0-03694dab0bd2.png/e63279986f8a8b40f0d1a99bb14c69918a749a34750248578a95ee17fdc58da7/c_fill,f_jpg,g_North,h_190,q_80,w_190"
       },
@@ -284,17 +284,17 @@ curl "https://www.castupload.com/api/v1/actor_profiles/123" \
   "showreels": [
     {
       "name": "Showreel 2021",
-      "url": "https://www.castupload.com/actors/john-doe/showreels/15",
+      "url": "https://www.filmmakers.eu/actors/john-doe/showreels/15",
       "type": "video"
     },
     {
       "name": "Showreel 2020",
-      "url": "https://www.castupload.com/actors/john-doe/showreels/16",
+      "url": "https://www.filmmakers.eu/actors/john-doe/showreels/16",
       "type": "video"
     },
     {
       "name":"Audioreel 2021",
-      "url":"https://www.castupload.com/actors/john-doe/showreels/17",
+      "url":"https://www.filmmakers.eu/actors/john-doe/showreels/17",
       "type":"audio"
     }
   ],
@@ -375,7 +375,7 @@ This endpoint retrieves a specific actor profile.
 
 ### HTTP Request
 
-`GET https://www.castupload.com/api/v1/actor_profiles/<ID>`
+`GET https://www.filmmakers.eu/api/v1/actor_profiles/<ID>`
 
 ### URL Parameters
 
@@ -405,7 +405,7 @@ See example response to the right for an overview of included fields. Please not
 ## Get talent agency data
 
 ```shell
-curl "https://www.castupload.com/api/v1/talent_agencies/123" \
+curl "https://www.filmmakers.eu/api/v1/talent_agencies/123" \
   -H "Authorization: Token token=API_KEY"
 ```
 
@@ -421,7 +421,7 @@ curl "https://www.castupload.com/api/v1/talent_agencies/123" \
   "showreel_url": "https://www.example.com/showreel",
   "twitter_handle": "@example_agency",
   "public_email": "info@example.com",
-  "picture_url": "https://static.castupload.com/example.png",
+  "picture_url": "https://static.filmmakers.eu/example.png",
   "address": {
     "city": "Mainz",
     "country": "DE",
@@ -438,7 +438,7 @@ This endpoint retrieves a specific talent agency.
 
 ### HTTP Request
 
-`GET https://www.castupload.com/api/v1/talent_agencies/<ID>`
+`GET https://www.filmmakers.eu/api/v1/talent_agencies/<ID>`
 
 ### URL Parameters
 
