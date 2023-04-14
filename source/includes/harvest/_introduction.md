@@ -172,6 +172,7 @@ The timestamps below are Eastern Time.
 
 | Date                          | Description                                                                                                                       |
 |-------------------------------| --------------------------------------------------------------------------------------------------------------------------------- |
+| April 12, 2023 3:00:00PM  | Modified format of request links for [POST: Scheduled Interviews](#post-scheduled-interviews) and [PATCH: Scheduled Interviews](#patch-scheduled-interviews).
 | March 7, 2023 10:00:00AM  | Modified `intenal` querystring parameter on [job post](#job-posts) GET requests to work in the reverse manner. When included in a request and set to `false`, the response will only include external job posts.
 | February 28, 2023 12:00:00PM  | Added `internal` querystring paramater to [job post](#job-posts) GET requests to return only internal job posts. When included in a request and set to `true`, the response will only include internal job posts.
 | November 21, 2022 12:00:00PM  | Deprecated version 1 of the [DELETE: Destroy Openings](#delete-destroy-openings) endpoint. Only v2 is available going forward. 
