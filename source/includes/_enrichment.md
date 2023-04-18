@@ -419,9 +419,7 @@ print(response.text)
 
 This endpoint enriches people information in bulk - the more information you pass in, the more likely we can find a match. 
 
-Up to 10 records can be enriched at the same time through this endpoint. 
-
-Duplicate enrichments of the same record will not be charged credits. 
+Up to 10 records can be enriched at the same time through this endpoint.  
 
 ### Rate Limits
 
