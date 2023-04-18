@@ -248,7 +248,7 @@ print(response.text)
 }
 ```
 
-This endpoint searches for people. Calls to the search endpoint do not cost you credits. They also do not return any email information. To get email information, use the "enrich" endpoint.
+This endpoint searches for people and do not return any email information. To get email information, use the "enrich" endpoint.
 
 `POST https://api.apollo.io/v1/mixed_people/search`
 
