@@ -1,6 +1,4 @@
-
 # NFe
-
 
 Através da API NFe é possível:
 
@@ -16,13 +14,13 @@ Através da API NFe é possível:
 
 Método | URL (recurso) | Ação
 -------|-------|-----
-POST |	/v2/nfe?ref=REFERENCIA	| Cria uma nota fiscal e a envia para processamento.
-GET	 | /v2/nfe/REFERENCIA	| Consulta a nota fiscal com a referência informada e o seu status de processamento
-DELETE |	/v2/nfe/REFERENCIA	| Cancela uma nota fiscal com a referência informada
-POST |	/v2/nfe/REFERENCIA/carta_correcao	| Cria uma carta de correção para a nota fiscal com a referência informada.
-POST |	/v2/nfe/REFERENCIA/email	| Envia um email com uma cópia da nota fiscal com a referência informada
-POST |	/v2/nfe/inutilizacao	| Inutiliza uma numeração da nota fiscal
-POST |	/v2/nfe/importacao?ref=REFERENCIA	| Cria uma nota fiscal a partir da importação de um XML
+POST |  /v2/nfe?ref=REFERENCIA  | Cria uma nota fiscal e a envia para processamento.
+GET  | /v2/nfe/REFERENCIA | Consulta a nota fiscal com a referência informada e o seu status de processamento
+DELETE |  /v2/nfe/REFERENCIA  | Cancela uma nota fiscal com a referência informada
+POST |  /v2/nfe/REFERENCIA/carta_correcao | Cria uma carta de correção para a nota fiscal com a referência informada.
+POST |  /v2/nfe/REFERENCIA/email  | Envia um email com uma cópia da nota fiscal com a referência informada
+POST |  /v2/nfe/inutilizacao  | Inutiliza uma numeração da nota fiscal
+POST |  /v2/nfe/importacao?ref=REFERENCIA | Cria uma nota fiscal a partir da importação de um XML
 
 ## Campos obrigatórios de uma NFe
 
@@ -425,42 +423,42 @@ A lista de campos calculados automaticamente segue abaixo:
 
 | Campo                                     | Somatório de campo dos itens        | Observação                                                  |
 |-------------------------------------------|-------------------------------------|-------------------------------------------------------------|
-| icms_base_calculo                         | icms_base_calculo                   |                                                             |   
-| valor_ipi                                 | ipi_valor                           |                                                             |   
-| icms_valor_total_st                       | icms_valor_st                       |                                                             |   
-| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |   
-| issqn_valor_total                         | issqn_valor                         |                                                             |   
-| issqn_valor_total_deducao                 | issqn_valor_deducao                 |                                                             |   
-| issqn_valor_total_outras_retencoes        | issqn_valor_outras_retencoes        |                                                             |   
-| issqn_valor_total_desconto_incondicionado | issqn_valor_desconto_incondicionado |                                                             |   
-| issqn_valor_total_desconto_condicionado   | issqn_valor_desconto_condicionado   |                                                             |   
-| issqn_valor_total_retencao                | issqn_valor_retencao                |                                                             |   
-| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |   
-| valor_total_ii                            | ii_valor                            |                                                             |   
-| fcp_valor_total                           | fcp_valor                           |                                                             |   
-| fcp_valor_total_uf_destino                | fcp_valor_uf_destino                |                                                             |   
-| fcp_valor_total_st                        | fcp_valor_st                        |                                                             |   
-| fcp_valor_total_retido_st                 | fcp_valor_retido_st                 |                                                             |   
-| icms_valor_total_uf_destino               | icms_valor_uf_destino               |                                                             |   
-| icms_valor_total_uf_remetente             | icms_valor_uf_remetente             |                                                             |   
-| icms_base_calculo                         | icms_base_calculo                   |                                                             |   
-| icms_valor_total                          | icms_valor                          |                                                             |   
-| icms_valor_total_desonerado               | icms_valor_desonerado               |                                                             |   
-| icms_base_calculo_st                      | icms_base_calculo_st                |                                                             |   
-| icms_valor_total_st                       | icms_valor_st                       |                                                             |   
-| valor_frete                               | valor_frete                         |                                                             |   
-| valor_seguro                              | valor_seguro                        |                                                             |   
-| valor_outras_despesas                     | valor_outras_despesas               |                                                             |   
-| valor_desconto                            | valor_desconto                      |                                                             |   
-| valor_ipi_devolvido                       | valor_ipi_devolvido                 |                                                             |   
-| valor_total_tributos                      | valor_total_tributos                |                                                             |   
-| valor_produtos                            | valor_bruto                         | Apenas se inclui_no_total=1                                 |   
-| valor_total_servicos                      | valor_bruto                         | Apenas se inclui_no_total=1 e item de serviço               |   
-| icms_valor_total                          | icms_valor                          | Apenas se icms_situacao_tributaria diferente de40, 41 e 50. |   
-| valor_pis_servicos                        | pis_valor                           | Apenas se item de serviço                                   |   
-| valor_cofins_servicos                     | cofins_valor                        | Apenas se item de serviço                                   |   
-| valor_pis                                 | pis_valor                           | Apenas se não for item de serviço                           |   
-| valor_cofins                              | cofins_valor                        | Apenas se não for item de serviço  
+| icms_base_calculo                         | icms_base_calculo                   |                                                             |
+| valor_ipi                                 | ipi_valor                           |                                                             |
+| icms_valor_total_st                       | icms_valor_st                       |                                                             |
+| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |
+| issqn_valor_total                         | issqn_valor                         |                                                             |
+| issqn_valor_total_deducao                 | issqn_valor_deducao                 |                                                             |
+| issqn_valor_total_outras_retencoes        | issqn_valor_outras_retencoes        |                                                             |
+| issqn_valor_total_desconto_incondicionado | issqn_valor_desconto_incondicionado |                                                             |
+| issqn_valor_total_desconto_condicionado   | issqn_valor_desconto_condicionado   |                                                             |
+| issqn_valor_total_retencao                | issqn_valor_retencao                |                                                             |
+| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |
+| valor_total_ii                            | ii_valor                            |                                                             |
+| fcp_valor_total                           | fcp_valor                           |                                                             |
+| fcp_valor_total_uf_destino                | fcp_valor_uf_destino                |                                                             |
+| fcp_valor_total_st                        | fcp_valor_st                        |                                                             |
+| fcp_valor_total_retido_st                 | fcp_valor_retido_st                 |                                                             |
+| icms_valor_total_uf_destino               | icms_valor_uf_destino               |                                                             |
+| icms_valor_total_uf_remetente             | icms_valor_uf_remetente             |                                                             |
+| icms_base_calculo                         | icms_base_calculo                   |                                                             |
+| icms_valor_total                          | icms_valor                          |                                                             |
+| icms_valor_total_desonerado               | icms_valor_desonerado               |                                                             |
+| icms_base_calculo_st                      | icms_base_calculo_st                |                                                             |
+| icms_valor_total_st                       | icms_valor_st                       |                                                             |
+| valor_frete                               | valor_frete                         |                                                             |
+| valor_seguro                              | valor_seguro                        |                                                             |
+| valor_outras_despesas                     | valor_outras_despesas               |                                                             |
+| valor_desconto                            | valor_desconto                      |                                                             |
+| valor_ipi_devolvido                       | valor_ipi_devolvido                 |                                                             |
+| valor_total_tributos                      | valor_total_tributos                |                                                             |
+| valor_produtos                            | valor_bruto                         | Apenas se inclui_no_total=1                                 |
+| valor_total_servicos                      | valor_bruto                         | Apenas se inclui_no_total=1 e item de serviço               |
+| icms_valor_total                          | icms_valor                          | Apenas se icms_situacao_tributaria diferente de40, 41 e 50. |
+| valor_pis_servicos                        | pis_valor                           | Apenas se item de serviço                                   |
+| valor_cofins_servicos                     | cofins_valor                        | Apenas se item de serviço                                   |
+| valor_pis                                 | pis_valor                           | Apenas se não for item de serviço                           |
+| valor_cofins                              | cofins_valor                        | Apenas se não for item de serviço
 
 ## Status API
 
@@ -583,113 +581,113 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFeAutorizar {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
- 		String url = server.concat("v2/nfe?ref="+ref);
+    String url = server.concat("v2/nfe?ref="+ref);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		/* Aqui são criados as hash's que receberão os dados da nota. */
-		HashMap<String, String> nfe = new HashMap<String, String>();
-		HashMap<String, String> itens = new HashMap<String, String>();
+    /* Aqui são criados as hash's que receberão os dados da nota. */
+    HashMap<String, String> nfe = new HashMap<String, String>();
+    HashMap<String, String> itens = new HashMap<String, String>();
 
-		nfe.put("data_emissao", "2018-01-16T09:38:00");
-		nfe.put("natureza_operacao", "Remessa de Produtos");
-		nfe.put("forma_pagamento", "0");
-		nfe.put("tipo_documento", "1");
-		nfe.put("finalidade_emissao", "1");
-		nfe.put("cnpj_emitente", "51916585000125");
-		nfe.put("nome_emitente", "ACME LTDA");
-		nfe.put("nome_fantasia_emitente", "ACME TESTES");
-		nfe.put("logradouro_emitente", "Rua Interventor Manoel Ribas");
-		nfe.put("numero_emitente", "1355 ");
-		nfe.put("bairro_emitente", "Santa Felicidade");
-		nfe.put("municipio_emitente", "Curitiba");
-		nfe.put("uf_emitente", "PR");
-		nfe.put("cep_emitente", "82320030");
-		nfe.put("telefone_emitente", "44912345678");
-		nfe.put("inscricao_estadual_emitente", "1234567");
-		nfe.put("nome_destinatario", "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL");
-		nfe.put("cpf_destinatario", "51966818092");
-		nfe.put("inscricao_estadual_destinatario", "ISENTO");
-		nfe.put("telefone_destinatario", "19912345678");
-		nfe.put("logradouro_destinatario", "Rua Leonor Campos");
-		nfe.put("numero_destinatario", "29");
-		nfe.put("bairro_destinatario", "Swiss Park");
-		nfe.put("municipio_destinatario", "Campinas");
-		nfe.put("uf_destinatario", "SP");
-		nfe.put("pais_destinatario", "Brasil");
-		nfe.put("cep_destinatario", "13049555");
-		nfe.put("icms_base_calculo", "0");
-		nfe.put("icms_valor_total", "0");
-		nfe.put("icms_base_calculo_st", "0");
-		nfe.put("icms_valor_total_st", "0");
-		nfe.put("icms_modalidade_base_calculo", "0");
-		nfe.put("icms_valor", "0");
-		nfe.put("valor_frete", "0");
-		nfe.put("valor_seguro", "0");
-		nfe.put("valor_total", "1");
-		nfe.put("valor_produtos", "1");
-		nfe.put("valor_desconto", "0.00");
-		nfe.put("valor_ipi", "0");
-		nfe.put("modalidade_frete", "1");
-		itens.put("numero_item","128");
-		itens.put("codigo_produto","1007");
-		itens.put("descricao","Multi Mist 500g");
-		itens.put("cfop","6102");
-		itens.put("unidade_comercial","un");
-		itens.put("quantidade_comercial","1");
-		itens.put("valor_unitario_comercial","1");
-		itens.put("valor_unitario_tributavel","1");
-		itens.put("unidade_tributavel","un");
-		itens.put("codigo_ncm","11041900");
-		itens.put("valor_frete","0");
-		itens.put("valor_desconto","0.00");
-		itens.put("quantidade_tributavel","1");
-		itens.put("valor_bruto","1");
-		itens.put("icms_situacao_tributaria","103");
-		itens.put("icms_origem","0");
-		itens.put("pis_situacao_tributaria","07");
-		itens.put("cofins_situacao_tributaria","07");
-		itens.put("ipi_situacao_tributaria","53");
-		itens.put("ipi_codigo_enquadramento_legal","999");
+    nfe.put("data_emissao", "2018-01-16T09:38:00");
+    nfe.put("natureza_operacao", "Remessa de Produtos");
+    nfe.put("forma_pagamento", "0");
+    nfe.put("tipo_documento", "1");
+    nfe.put("finalidade_emissao", "1");
+    nfe.put("cnpj_emitente", "51916585000125");
+    nfe.put("nome_emitente", "ACME LTDA");
+    nfe.put("nome_fantasia_emitente", "ACME TESTES");
+    nfe.put("logradouro_emitente", "Rua Interventor Manoel Ribas");
+    nfe.put("numero_emitente", "1355 ");
+    nfe.put("bairro_emitente", "Santa Felicidade");
+    nfe.put("municipio_emitente", "Curitiba");
+    nfe.put("uf_emitente", "PR");
+    nfe.put("cep_emitente", "82320030");
+    nfe.put("telefone_emitente", "44912345678");
+    nfe.put("inscricao_estadual_emitente", "1234567");
+    nfe.put("nome_destinatario", "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL");
+    nfe.put("cpf_destinatario", "51966818092");
+    nfe.put("inscricao_estadual_destinatario", "ISENTO");
+    nfe.put("telefone_destinatario", "19912345678");
+    nfe.put("logradouro_destinatario", "Rua Leonor Campos");
+    nfe.put("numero_destinatario", "29");
+    nfe.put("bairro_destinatario", "Swiss Park");
+    nfe.put("municipio_destinatario", "Campinas");
+    nfe.put("uf_destinatario", "SP");
+    nfe.put("pais_destinatario", "Brasil");
+    nfe.put("cep_destinatario", "13049555");
+    nfe.put("icms_base_calculo", "0");
+    nfe.put("icms_valor_total", "0");
+    nfe.put("icms_base_calculo_st", "0");
+    nfe.put("icms_valor_total_st", "0");
+    nfe.put("icms_modalidade_base_calculo", "0");
+    nfe.put("icms_valor", "0");
+    nfe.put("valor_frete", "0");
+    nfe.put("valor_seguro", "0");
+    nfe.put("valor_total", "1");
+    nfe.put("valor_produtos", "1");
+    nfe.put("valor_desconto", "0.00");
+    nfe.put("valor_ipi", "0");
+    nfe.put("modalidade_frete", "1");
+    itens.put("numero_item","128");
+    itens.put("codigo_produto","1007");
+    itens.put("descricao","Multi Mist 500g");
+    itens.put("cfop","6102");
+    itens.put("unidade_comercial","un");
+    itens.put("quantidade_comercial","1");
+    itens.put("valor_unitario_comercial","1");
+    itens.put("valor_unitario_tributavel","1");
+    itens.put("unidade_tributavel","un");
+    itens.put("codigo_ncm","11041900");
+    itens.put("valor_frete","0");
+    itens.put("valor_desconto","0.00");
+    itens.put("quantidade_tributavel","1");
+    itens.put("valor_bruto","1");
+    itens.put("icms_situacao_tributaria","103");
+    itens.put("icms_origem","0");
+    itens.put("pis_situacao_tributaria","07");
+    itens.put("cofins_situacao_tributaria","07");
+    itens.put("ipi_situacao_tributaria","53");
+    itens.put("ipi_codigo_enquadramento_legal","999");
 
-		/* Depois de fazer o input dos dados, são criados os objetos JSON já com os valores das hash's. */
-		JSONObject json = new JSONObject (nfe);
-		JSONObject jsonItens = new JSONObject (itens);
+    /* Depois de fazer o input dos dados, são criados os objetos JSON já com os valores das hash's. */
+    JSONObject json = new JSONObject (nfe);
+    JSONObject jsonItens = new JSONObject (itens);
 
-		/* Aqui adicionamos os objetos JSON nos campos da API como array no JSON principal. */
-		json.append("items", jsonItens);
+    /* Aqui adicionamos os objetos JSON nos campos da API como array no JSON principal. */
+    json.append("items", jsonItens);
 
-		/* É recomendado verificar como os dados foram gerados em JSON e se ele está seguindo a estrutura especificada em nossa documentação.
-		System.out.print(json); */
+    /* É recomendado verificar como os dados foram gerados em JSON e se ele está seguindo a estrutura especificada em nossa documentação.
+    System.out.print(json); */
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas a seguir exibem as informações retornadas pela nossa API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas a seguir exibem as informações retornadas pela nossa API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 
 ```
@@ -856,7 +854,7 @@ var nfe = {
 "valor_produtos": "47.23",
 "modalidade_frete": "0",
 "items": [
-  	{
+    {
       "numero_item": "1",
       "codigo_produto": "1232",
       "descricao": "Cartu00f5es de Visita",
@@ -998,7 +996,7 @@ ou algum problema com o emitente a nota **não será aceita para processamento**
 Caso a nota seja validada corretamente, a nota será **aceita para processamento**. Isto significa que a nota irá para uma fila de processamento
 onde eventualmente será processada (processamento assíncrono). Com isto, a nota poderá ser autorizada ou ocorrer um erro na autorização, de acordo com a validação da SEFAZ.
 
-Para verificar se a nota já foi autorizada, você terá que efetuar uma [consulta](#nfe_consulta) ou se utilizar de [gatilhos](#gatilhos_gatilhos).
+Para verificar se a nota já foi autorizada, você terá que efetuar uma [consulta](#nfe_consulta) ou se utilizar de [gatilhos/webhooks](#gatilhos-webhooks).
 
 ### Reenvio automático em contingência
 
@@ -1130,38 +1128,38 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFeConsulta {
 
-	public static void main(String[] args){
+  public static void main(String[] args){
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfe/"+ref+"?completa=1");
+    String url = server.concat("v2/nfe/"+ref+"?completa=1");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.get(ClientResponse.class);
+    ClientResponse resposta = request.get(ClientResponse.class);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1507,44 +1505,44 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFeCancelamento {
 
-	public static void main(String[] args){
+  public static void main(String[] args){
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
- 		String url = server.concat("v2/nfe/"+ref);
- 		/* Aqui criamos um hashmap para receber a chave "justificativa" e o valor desejado. */
-		HashMap<String, String> justificativa = new HashMap<String, String>();
-		justificativa.put("justificativa", "Informe aqui a sua justificativa para realizar o cancelamento da NFe.");
+    String url = server.concat("v2/nfe/"+ref);
+    /* Aqui criamos um hashmap para receber a chave "justificativa" e o valor desejado. */
+    HashMap<String, String> justificativa = new HashMap<String, String>();
+    justificativa.put("justificativa", "Informe aqui a sua justificativa para realizar o cancelamento da NFe.");
 
-		/* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
-		JSONObject json = new JSONObject(justificativa);
+    /* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
+    JSONObject json = new JSONObject(justificativa);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.delete(ClientResponse.class, json);
+    ClientResponse resposta = request.delete(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-	   /* As três linhas abaixo imprimem as informações retornadas pela API.
+     /* As três linhas abaixo imprimem as informações retornadas pela API.
         * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1570,7 +1568,7 @@ servidor_homologacao = "https://homologacao.focusnfe.com.br/"
 url_envio = servidor_homologacao + "v2/nfe/" + ref
 
 # altere os campos conforme a nota que será enviada
-justificativa_cancelamento = {  
+justificativa_cancelamento = {
   justificativa: "Informe aqui a sua justificativa para realizar o cancelamento da NFe."
 }
 
@@ -1634,7 +1632,7 @@ request.open('DELETE', url, false, token);
 
 var cancelar = {
 
-	"justificativa": "Sua justificativa aqui!"
+  "justificativa": "Sua justificativa aqui!"
 };
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
@@ -1770,45 +1768,45 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFeCCe {
 
-	public static void main(String[] args){
+  public static void main(String[] args){
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfe/"+ref+"/carta_correcao");
+    String url = server.concat("v2/nfe/"+ref+"/carta_correcao");
 
-		/* Aqui criamos um hashmap para receber a chave "correcao" e o valor desejado. */
-		HashMap<String, String> correcao = new HashMap<String, String>();
-		correcao.put("correcao", "Informe aqui os campos que foram corrigidos na NFe.");
+    /* Aqui criamos um hashmap para receber a chave "correcao" e o valor desejado. */
+    HashMap<String, String> correcao = new HashMap<String, String>();
+    correcao.put("correcao", "Informe aqui os campos que foram corrigidos na NFe.");
 
-		/* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
-		JSONObject json = new JSONObject(correcao);
+    /* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
+    JSONObject json = new JSONObject(correcao);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-	   /* As três linhas abaixo imprimem as informações retornadas pela API.
-		* Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+     /* As três linhas abaixo imprimem as informações retornadas pela API.
+    * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1834,7 +1832,7 @@ servidor_homologacao = "https://homologacao.focusnfe.com.br/"
 url_envio = servidor_homologacao + "v2/nfe/" + ref + "/carta_correcao"
 
 # altere os campos conforme a nota que será enviada
-correcao = {  
+correcao = {
   correcao: "Informe aqui os campos que foram corrigidos na NFe."
 }
 
@@ -1898,7 +1896,7 @@ request.open('POST', url, false, token);
 
 var cce = {
 
-	"correcao": "A sua correção aqui!"
+  "correcao": "A sua correção aqui!"
 };
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
@@ -2037,49 +2035,49 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFeEnviaEmail {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfe/"+ref+"/email");
+    String url = server.concat("v2/nfe/"+ref+"/email");
 
-		/* Criamos o um objeto JSON que receberá um JSON Array com a lista de e-mails. */
-		JSONObject json = new JSONObject ();
-		JSONArray listaEmails = new JSONArray();
-		listaEmails.put("email_01@acras.com.br");
-		listaEmails.put("email_02@acras.com.br");
-		listaEmails.put("email_03@acras.com.br");
-		json.put("emails", listaEmails);
+    /* Criamos o um objeto JSON que receberá um JSON Array com a lista de e-mails. */
+    JSONObject json = new JSONObject ();
+    JSONArray listaEmails = new JSONArray();
+    listaEmails.put("email_01@focusnfe.com.br");
+    listaEmails.put("email_02@focusnfe.com.br");
+    listaEmails.put("email_03@focusnfe.com.br");
+    json.put("emails", listaEmails);
 
-		/* Testar se o JSON gerado está dentro do formato esperado.
-		System.out.print(json); */
+    /* Testar se o JSON gerado está dentro do formato esperado.
+    System.out.print(json); */
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -2106,7 +2104,7 @@ url_envio = servidor_homologacao + "v2/nfe/" + ref + "/email"
 
 # altere os campos conforme a nota que será enviada
 emails_destinatarios = {
-  emails: ["email_01@acras.com.br", "email_02@acras.com.br", "email_03@acras.com.br"]
+  emails: ["email_01@focusnfe.com.br", "email_02@focusnfe.com.br", "email_03@focusnfe.com.br"]
 }
 
 # criamos um objeto uri para envio da nota
@@ -2167,7 +2165,7 @@ Passamos o token como quarto parametro deste metodo, como autenticador do HTTP B
 */
 request.open('POST', url, false, token);
 
-var email = ["email1@acras.com.br", "email2@acras.com.br", "email3@acras.com.br"];
+var email = ["email1@focusnfe.com.br", "email2@focusnfe.com.br", "email3@focusnfe.com.br"];
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
 var json = JSON.stringify({"emails": email});
@@ -2201,7 +2199,7 @@ Usamos um dicionario para armazenar os campos e valores que em seguida,
 serao convertidos a JSON e enviados para nossa API
 '''
 emails = {}
-email = "suporte@acras.com.br"
+email = "suporte@focusnfe.com.br"
 emails["emails"] = [email]
 
 r = requests.delete(url+ref+"/email", data=json.dumps(emails), auth=(token,""))
@@ -2245,7 +2243,7 @@ $inutiliza = array (
   "serie" => "1",
   "numero_inicial" => "7",
   "numero_final" => "9",
-  "justificativa" => "Teste de inutilizacao denota"  
+  "justificativa" => "Teste de inutilizacao denota"
 );
 // Inicia o processo de envio das informações usando o cURL.
 $ch = curl_init();
@@ -2278,49 +2276,49 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFeInutilizacao {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
- 		String url = server.concat("v2/nfe/inutilizacao");
+    String url = server.concat("v2/nfe/inutilizacao");
 
- 		/* Aqui criamos um hash que irá receber as chaves e valores esperados para gerar a inutilização. */
-		HashMap<String, String> dadosInutilizacao = new HashMap<String, String>();
-		dadosInutilizacao.put("cnpj", "51916585009999");
-		dadosInutilizacao.put("serie", "9");
-		dadosInutilizacao.put("numero_inicial", "7730");
-		dadosInutilizacao.put("numero_final", "7732");
-		dadosInutilizacao.put("justificativa", "Informe aqui a justificativa para realizar a inutilizacao da numeracao.");
+    /* Aqui criamos um hash que irá receber as chaves e valores esperados para gerar a inutilização. */
+    HashMap<String, String> dadosInutilizacao = new HashMap<String, String>();
+    dadosInutilizacao.put("cnpj", "51916585009999");
+    dadosInutilizacao.put("serie", "9");
+    dadosInutilizacao.put("numero_inicial", "7730");
+    dadosInutilizacao.put("numero_final", "7732");
+    dadosInutilizacao.put("justificativa", "Informe aqui a justificativa para realizar a inutilizacao da numeracao.");
 
-		/* Criamos um objeto JSON que irá receber o input dos dados, para então enviar a requisição. */
-		JSONObject json = new JSONObject (dadosInutilizacao);
+    /* Criamos um objeto JSON que irá receber o input dos dados, para então enviar a requisição. */
+    JSONObject json = new JSONObject (dadosInutilizacao);
 
-		/* Testar se o JSON gerado está dentro do formato esperado.
-		System.out.print(json); */
+    /* Testar se o JSON gerado está dentro do formato esperado.
+    System.out.print(json); */
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int hHttpCode = resposta.getStatus();
+    int hHttpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		 /* As três linhas abaixo imprimem as informações retornadas pela API.
-		  * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(hHttpCode);
-		System.out.printf(body);
-	}
+     /* As três linhas abaixo imprimem as informações retornadas pela API.
+      * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(hHttpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -2343,7 +2341,7 @@ servidor_homologacao = "https://homologacao.focusnfe.com.br/"
 url_envio = servidor_homologacao + "v2/nfe/inutilizacao"
 
 # altere os campos conforme a nota que será enviada
-dados_inutilizacao = {  
+dados_inutilizacao = {
   cnpj: "51916585009999",
   serie: "9",
   numero_inicial: "7730",

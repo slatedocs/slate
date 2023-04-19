@@ -8,7 +8,7 @@ a) a primeira parte é composta de oito dígitos (XX.XXX.XXX) que formam o núme
 
 b) a segunda parte é composta de quatro dígitos (YYYY) que formam o número de ordem. Ele identifica se o cadastro se refere a matriz ou à filiais (0001 - matriz, ou 0002 - filial 1, 0003 - filial 2,...);
 
-c) a terceira parte é composta de dois dígitos (ZZ) que formam o dígito verificador. Ele tem como função verificar se o conteúdo do número base e de origem são válidos.  
+c) a terceira parte é composta de dois dígitos (ZZ) que formam o dígito verificador. Ele tem como função verificar se o conteúdo do número base e de origem são válidos.
 
 
 A FocusNFe disponibiliza uma API que permite consultar alguns dos dados presentes no Cadastro Nacional de Pessoa Jurídica.

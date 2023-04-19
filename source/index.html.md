@@ -60,15 +60,15 @@ Através desta documentação deverá ser possível fazer a integração com a A
 
 ## Como ler este documento?
 
-Você deverá ler primeiramente a introdução, em seguida, a seção sobre o documento que você irá emitir ([NFe](#nfe_nfe), [NFCe](#nfce_nfce) ou [NFSe](#nfse_nfse)).
+Você deverá ler primeiramente a introdução, em seguida, a seção sobre o documento que você irá emitir ([NFe](#nfe), [NFCe](#nfce) ou [NFSe](#nfse)).
 
-Caso você emita NFe ou NFCe, você deverá ler também sobre os [backups](#backups-nfe-e-nfce_backups-nfe-e-nfce).
+Caso você emita NFe ou NFCe, você deverá ler também sobre os [backups](#backups-nfe-nfce-e-cte).
 
-Caso você emita NFe ou NFSe, você poderá ler também sobre os [gatilhos](#gatilhos_gatilhos). O uso de gatilhos no sistema é opcional.
+Caso você emita NFe ou NFSe, você poderá ler também sobre os [gatilhos e webhooks](#gatilhos-webhooks). O uso de gatilhos no sistema é opcional.
 
-Caso você tenha interesse em obter as notas emitidas contra a sua empresa, leia a seção de [manifestação](#manifestacao_manifestacao).
+Caso você tenha interesse em obter as notas emitidas contra a sua empresa, leia a seção de [manifestação](#manifestacao-nfe).
 
-Se sua empresa irá administrar vários clientes que emitem notas, pode ser interessante você ler sobre a seção de [empresas](#empresas_empresas).
+Se sua empresa irá administrar vários clientes que emitem notas, pode ser interessante você ler sobre a seção de [empresas](#empresas).
 
 
 ## Qual documento fiscal você precisa emitir?
@@ -100,7 +100,7 @@ Já a emissão de documentos de forma assíncrona são feitos da seguinte forma:
 4. Nossa API irá informar se o documento ainda está sendo processado, ou se o processamento já finalizou. Neste último caso informa a mensagem de erro ou os dados do documento gerado caso a nota tenha sido autorizada.
 5. Caso o documento ainda esteja em processamento, sua aplicação deverá agendar uma nova consulta dentro de alguns segundos.
 
-Alternativamente, você poderá usar o conceito de [gatilhos](#gatilhos). Neste caso você informa a API qual endereço de sua aplicação deverá ser chamado quando uma nota for autorizada. Neste caso funcionaria assim:
+Alternativamente, você poderá usar o conceito de [gatilhos/webhooks](#gatilhos-webhooks). Neste caso você informa a API qual endereço de sua aplicação deverá ser chamado quando uma nota for autorizada. Neste caso funcionaria assim:
 
 1. Você envia pela API os dados do documento
 2. A API faz uma primeira validação do formato dos dados. Informa sobre inconsistência ou avisa que a nota foi aceita para processamento, como no cenário anterior.

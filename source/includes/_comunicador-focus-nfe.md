@@ -274,9 +274,9 @@ Para emissão da Nota Fiscal de Consumidor Eletrônica será necessário, primei
 - Possuir Certificado Digital modelo A1.
 - Habilitar a emissão de NFCe na Sefaz do Estado do emitente.
 - Gerar os códigos CSC e ID_TOKEN na Sefaz.
-- Realizar o cadastro da empresa emitente em nossa base ([Painel da API](https://app.focusnfe.com.br/) ou [API de Empresas](#empresas_empresas)).
+- Realizar o cadastro da empresa emitente em nossa base ([Painel da API](https://app.focusnfe.com.br/) ou [API de Empresas](#empresas)).
 - Informar os códigos CSC e ID_TOKEN no cadastro do emitente.
-- Importar o Certificado Digital através do Painel da API ou solicitar ao nosso Suporte (suporte@acras.com.br).
+- Importar o Certificado Digital através do Painel da API ou solicitar ao nosso Suporte (suporte@focusnfe.com.br).
 
 A partir disso, será possível utilizar o nosso Comunicador Offline Focus NFe. Ressaltamos que todas as etapas são importantes e, quando não cumpridas, impedem a emissão do documento fiscal.
 
@@ -679,4 +679,3 @@ A geração do XML é feita com base no XML retornado pelo equipamento S@T/MFe.
 Para ter acesso ao instalador do Comunicador Offline Focus NFe e ao código de ativação, entre em contato com a nossa equipe no email suporte@focusnfe.com.br
 
 Caso você ainda não seja nosso cliente, [cadastre-se aqui](http://focusnfe.com.br/cadastro/).
-

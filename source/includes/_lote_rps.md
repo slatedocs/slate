@@ -1,12 +1,10 @@
-
-# Emissão NFSe por arquivo
-
+# NFSe por Arquivo
 
 > Exemplo de um arquivo JSON:
 
 ```json
-{  
-  "prestador":{  
+{
+  "prestador":{
     "cnpj":"18765499000199",
     "inscricao_municipal":"12345",
     "codigo_municipio":"3516200"
@@ -15,7 +13,7 @@
     {
       "data_emissao": "2019-03-19T12:07:26-03:00",
       "natureza_operacao": 1,
-      "servico":{  
+      "servico":{
         "aliquota":3,
         "discriminacao":"Nota fiscal referente a serviços prestados",
         "iss_retido":"false",
@@ -23,11 +21,11 @@
         "codigo_tributario_municipio": "620910000",
         "valor_servicos":1.0
       },
-      "tomador":{  
+      "tomador":{
         "cnpj":"07504505000132",
         "razao_social":"Acras Tecnologia da Informação LTDA",
-        "email":"contato@acras.com.br",
-        "endereco":{  
+        "email":"contato@focusnfe.com.br",
+        "endereco":{
           "logradouro":"Rua Dias da Rocha Filho",
           "numero":"999",
           "complemento":"Prédio 04 - Sala 34C",
@@ -89,7 +87,7 @@ nfse["tomador"]["endereco"]["cep"] = "31999-000"
 nfse["tomador"]["endereco"]["codigo_municipio"] = "9999999"
 nfse["tomador"]["endereco"]["logradouro"] = "João Batista Netos"
 nfse["tomador"]["endereco"]["numero"] = "34"
-nfse["tomador"]["endereco"]["uf"] = "MG"  
+nfse["tomador"]["endereco"]["uf"] = "MG"
 nfse["servico"] = {}
 nfse["servico"]["aliquota"] = "2.92"
 nfse["servico"]["base_calculo"] = "1.00"
@@ -240,8 +238,8 @@ servidor_homologacao = "https://homologacao.focusnfe.com.br/"
 url_envio = servidor_homologacao + "v2/lotes_rps?ref=" + ref
 
 # altere os campos conforme a nota que será enviada
-lote_nfse = {  
-  prestador: {  
+lote_nfse = {
+  prestador: {
     cnpj: "18765499000199",
     inscricao_municipal: "12345",
     codigo_municipio: "3516200"
@@ -250,11 +248,11 @@ lote_nfse = {
     {
       data_emissao: "2017-09-21T22:15:00",
       natureza_operacao: 1,
-      tomador: {  
+      tomador: {
         cnpj: "07504505000132",
         razao_social: "Acras Tecnologia da Informação LTDA",
-        email: "contatoacras.com.br",
-        endereco: {  
+        email: "contato@focusnfe.com.br",
+        endereco: {
           logradouro: "Rua Dias da Rocha Filho",
           numero: "999",
           complemento: "Prédio 04 - Sala 34C",
@@ -264,7 +262,7 @@ lote_nfse = {
           cep: "80045165"
         }
       },
-      servico: {  
+      servico: {
         aliquota: 3,
         discriminacao: "Nota fiscal referente a serviços prestados",
         iss_retido: "false",
@@ -326,7 +324,7 @@ File.open('arquivo_lote_rps.txt', 'w') { |arquivo| arquivo.puts resposta.body }
         "tomador" => array(
           "cnpj" => "07504505000132",
           "razao_social" => "Acras Tecnologia da Informação LTDA",
-          "email" => "contato@acras.com.br",
+          "email" => "contato@focusnfe.com.br",
           "endereco" => array(
             "bairro" => "Jardim America",
             "cep" => "81530900",
@@ -393,8 +391,8 @@ Passamos o token como quarto parametro deste metodo, como autenticador do HTTP B
 */
 request.open('POST', url, false, token);
 
-let lote_nfse = {  
-  "prestador":{  
+let lote_nfse = {
+  "prestador":{
     "cnpj":"51916585000125",
     "inscricao_municipal":"12345",
     "codigo_municipio":"3518800"
@@ -403,11 +401,11 @@ let lote_nfse = {
     {
       "data_emissao":"2018-03-21",
       "natureza_operacao":"1",
-      "tomador":{  
+      "tomador":{
         "cnpj":"07504505000132",
         "razao_social":"Acras Tecnologia da Informacao LTDA",
-        "email":"contato@acras.com.br",
-        "endereco":{  
+        "email":"contato@focusnfe.com.br",
+        "endereco":{
           "logradouro":"Rua Filho da Rocha Bage",
           "numero":"750",
           "complemento":"Sala 07",
@@ -417,7 +415,7 @@ let lote_nfse = {
           "cep":"80045165"
         }
       },
-      "servico":{  
+      "servico":{
         "aliquota":3,
         "discriminacao":"Nota fiscal referente a servicos prestados",
         "iss_retido":"false",

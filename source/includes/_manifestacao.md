@@ -1,4 +1,3 @@
-
 # Manifestação - NFe
 
 A API para manifestação do sistema Focus permite que você consulte todas as notas recebidas pela sua empresa (modelo 55) e permite que você realize a manifestação frente a receita, informando se a operação descrita na nota foi realizada ou não. A API faz ainda a guarda de todos os documentos recebidos para que você consulte quando precisar.
@@ -88,42 +87,42 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class Manifestar {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfes_recebidas/"+chave+"/manifesto");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfes_recebidas/"+chave+"/manifesto");
 
-		/* Aqui criamos um hashmap para receber a chave "tipo" e o valor que pode ser: ciencia, confirmacao, desconhecimento ou nao_realizada. */
-		HashMap<String, String> tipoManifestacao = new HashMap<String, String>();
-		tipoManifestacao.put("tipo", "nao_realizada");
+    /* Aqui criamos um hashmap para receber a chave "tipo" e o valor que pode ser: ciencia, confirmacao, desconhecimento ou nao_realizada. */
+    HashMap<String, String> tipoManifestacao = new HashMap<String, String>();
+    tipoManifestacao.put("tipo", "nao_realizada");
 
-		/* Caso escolha o tipo "nao_realizada", é preciso informar o campo/chave "justificativa".
-		 * TipoManifestacao.put("justificativa", "Informe aqui a sua justificativa do motivo da não realização da operação."); */
+    /* Caso escolha o tipo "nao_realizada", é preciso informar o campo/chave "justificativa".
+     * TipoManifestacao.put("justificativa", "Informe aqui a sua justificativa do motivo da não realização da operação."); */
 
-		/* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
-		JSONObject json = new JSONObject(TipoManifestacao);
+    /* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
+    JSONObject json = new JSONObject(TipoManifestacao);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.post(ClientResponse.class, json);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -244,7 +243,7 @@ request.open('POST', url, false, token);
 
 var manifesto = {
 
-	"tipo": "ciencia"
+  "tipo": "ciencia"
 };
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
@@ -351,32 +350,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class ConsultarUltimaManifestacao {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfes_recebidas/"+chave+"/manifesto");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfes_recebidas/"+chave+"/manifesto");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -503,32 +502,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class ConsultarTodosManifestos {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String cnpj = "CNPJ_da_sua_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String cnpj = "CNPJ_da_sua_empresa";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfes_recebidas?cnpj="+cnpj);
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfes_recebidas?cnpj="+cnpj);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -694,15 +693,15 @@ Os dados devolvidos no corpo da requisição serão um array de objetos em JSON 
 * **data_emissao**: Data de emissão da NFe.
 * **situacao**: Situação da NFe. Pode ser: autorizada, cancelada ou denegada.
 - **manifestacao_destinatario**: Situação atual da manifestação, pode ser:
-	- **nulo**: Se não houve manifestação ainda;
-	- **ciencia**: Se foi confirmada a ciência da operação;
-	- **confirmacao**: Se foi manifestado confirmação da operação;
-	- **desconhecimento**: Se foi manifestado desconhecimento da operação;
-	- **nao_realizada**: Se foi manifestado que operação é conhecida, porém por algum motivo não foi realizada.
+  - **nulo**: Se não houve manifestação ainda;
+  - **ciencia**: Se foi confirmada a ciência da operação;
+  - **confirmacao**: Se foi manifestado confirmação da operação;
+  - **desconhecimento**: Se foi manifestado desconhecimento da operação;
+  - **nao_realizada**: Se foi manifestado que operação é conhecida, porém por algum motivo não foi realizada.
 * **nfe_completa**: Se verdadeiro, indica que temos o XML completo da nota, caso contrário o sistema possui apenas o cabeçalho da nota.
 - **tipo_nfe**:
-	- **1**: Saída;
-	- **0**: Entrada.
+  - **1**: Saída;
+  - **0**: Entrada.
 * **versao**: Versão da nota fiscal. Este número irá mudar apenas se a nota fiscal for alterada de alguma forma.
 * **digest_value**: Valor do resumo digital do XML da nota.
 * **numero_carta_correcao**: Número sequencial da carta de correção, caso tenha sido emitida alguma.
@@ -819,32 +818,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadNotaEspecificaXml {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfes_recebidas/"+chave+".xml");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfes_recebidas/"+chave+".xml");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -996,32 +995,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadNotaEspecifica {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfes_recebidas/"+chave+".json?completa=1");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfes_recebidas/"+chave+".json?completa=1");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1171,32 +1170,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadCancelamentoXml {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfes_recebidas/"+chave+"/cancelamento.xml");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfes_recebidas/"+chave+"/cancelamento.xml");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1345,32 +1344,32 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class DownloadXmlCce {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
-		String chave = "Chave_de_identificação_da_NFe";
+    String login = "Token_obtido_no_cadastro_da_empresa";
+    String chave = "Chave_de_identificação_da_NFe";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
-		String server = "https://homologacao.focusnfe.com.br/";
-		String url = server.concat("v2/nfes_recebidas/"+chave+"/carta_correcao.xml");
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
+    String url = server.concat("v2/nfes_recebidas/"+chave+"/carta_correcao.xml");
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request =  client.resource(url);
-		ClientResponse resposta = request.get(ClientResponse.class);
-		int httpCode = resposta.getStatus();
-		String body = resposta.getEntity(String.class);
+    WebResource request =  client.resource(url);
+    ClientResponse resposta = request.get(ClientResponse.class);
+    int httpCode = resposta.getStatus();
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
