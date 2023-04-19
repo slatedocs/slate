@@ -176,12 +176,12 @@ Disponibilizamos os seguintes métodos de consulta:
 
 Método | URL (recurso) | Ação
 -------|-------|-----
-GET |	/v2/municipios	| Busca todos os municípios ou filtra-os de acordo com parâmetros
-GET |	/v2/municipios/CODIGO_MUNICIPIO	| Busca um município único pelo seu código
-GET |	/v2/municipios/CODIGO_MUNICIPIO/itens_lista_servico	| Busca todos os itens da lista de serviço de acordo com o município ou filtra-os de acordo com parâmetros
-GET |	/v2/municipios/CODIGO_MUNICIPIO/itens_lista_servico/CODIGO	| Busca um item da lista de serviço único pelo seu código de acordo com o município
-GET |	/v2/municipios/CODIGO_MUNICIPIO/codigos_tributarios_municipio	| Busca todos os códigos tributários municípais de acordo com o município ou filtra-os de acordo com parâmetros
-GET |	/v2/municipios/CODIGO_MUNICIPIO/codigos_tributarios_municipio/CODIGO	| Busca um código tributário municipal único pelo seu código de acordo com o município
+GET | /v2/municipios  | Busca todos os municípios ou filtra-os de acordo com parâmetros
+GET | /v2/municipios/CODIGO_MUNICIPIO | Busca um município único pelo seu código
+GET | /v2/municipios/CODIGO_MUNICIPIO/itens_lista_servico | Busca todos os itens da lista de serviço de acordo com o município ou filtra-os de acordo com parâmetros
+GET | /v2/municipios/CODIGO_MUNICIPIO/itens_lista_servico/CODIGO  | Busca um item da lista de serviço único pelo seu código de acordo com o município
+GET | /v2/municipios/CODIGO_MUNICIPIO/codigos_tributarios_municipio | Busca todos os códigos tributários municípais de acordo com o município ou filtra-os de acordo com parâmetros
+GET | /v2/municipios/CODIGO_MUNICIPIO/codigos_tributarios_municipio/CODIGO  | Busca um código tributário municipal único pelo seu código de acordo com o município
 
 Os parâmetros disponíveis para consulta dos municípios são atualmente os seguintes:
 

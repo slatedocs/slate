@@ -1,4 +1,5 @@
 # NFCe
+
 Através da API NFCe é possível:
 
 * Emitir uma Nota Fiscal de Consumidor Eletrônica (NFCe) para qualquer Estado que aceita o uso deste documento.
@@ -73,13 +74,13 @@ Abaixo, iremos mostrar todos os campos de uso mais comum para emissão de uma NF
 
 ### Geral
 
-| Campo                               	| Tipo        	| Obrigatório 	| Descrição                                                                                	| Validação                                                                                                           	|
-|-------------------------------------	|-------------	|-------------	|------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------	|
-| natureza_operacao                   	| texto       	| sim         	| Descrição da natureza de operação.                                                       	| Caso não informado, será utilizado o texto “VENDA AO CONSUMIDOR”.                                                   	|
-| data_emissao                        	| data e hora 	| sim         	| Data e hora de emissão com timezone.                                                     	| Utilize o formato ISO, exemplo 2015-11-19T13:54:31-02:00. Diferença máxima permitida de 5 minutos do horário atual. 	|
-| presenca_comprador                  	| numérico    	| sim         	| Presença do comprador.Valores possíveis:1 – Operação presencial.4 – Entrega a domicílio. 	|                                                                                                                     	|
-| informacoes_adicionais _contribuinte | texto       	| não         	| Informações adicionais.                                                                  	|                                                                                                                     	|
-| cnpj_emitente                       	| texto       	| sim         	| CNPJ da empresa que está emitindo a NFCe.                                                	| CNPJ válido.                                                                                                        	|
+| Campo                                 | Tipo          | Obrigatório   | Descrição                                                                                 | Validação                                                                                                             |
+|-------------------------------------  |-------------  |-------------  |------------------------------------------------------------------------------------------ |---------------------------------------------------------------------------------------------------------------------  |
+| natureza_operacao                     | texto         | sim           | Descrição da natureza de operação.                                                        | Caso não informado, será utilizado o texto “VENDA AO CONSUMIDOR”.                                                     |
+| data_emissao                          | data e hora   | sim           | Data e hora de emissão com timezone.                                                      | Utilize o formato ISO, exemplo 2015-11-19T13:54:31-02:00. Diferença máxima permitida de 5 minutos do horário atual.   |
+| presenca_comprador                    | numérico      | sim           | Presença do comprador.Valores possíveis:1 – Operação presencial.4 – Entrega a domicílio.  |                                                                                                                       |
+| informacoes_adicionais _contribuinte | texto        | não           | Informações adicionais.                                                                   |                                                                                                                       |
+| cnpj_emitente                         | texto         | sim           | CNPJ da empresa que está emitindo a NFCe.                                                 | CNPJ válido.                                                                                                          |
 | modalidade_frete                     | numérico        | sim          | Indica a modalidade do frete da operação. Valores possíveis: '0' – Por conta do emitente; '1' – Por conta do destinatário; '2' – Por conta de terceiros; '9' – Sem frete. |
 | local_destino                        | numérico        | sim |         Local onde a operação irá acontecer. Valores possíveis: '1' – Operação interna; '2' – Operação interestadual; '3' – Operação com exterior. |
 
@@ -148,7 +149,7 @@ Os dados abaixo devem ser enviados dentro de um Array JSON. O nome que este arra
 |--------------------|----------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | forma_pagamento    | valor da lista | sim                                                             | Forma do recebimento. Alguns valores possíveis:01: Dinheiro.02: Cheque.03: Cartão de Crédito.04: Cartão de Débito.05: Crédito Loja.10: Vale Alimentação.11: Vale Refeição.12: Vale Presente.13: Vale Combustível.99: Outros   |
 | valor_pagamento    | numérico       | sim                                                             | Valor do recebimento.   |
-| tipo_integracao    | valor da lista | não                                                             | Tipo de Integração para pagamento. Para NFCe no Ceará é obrigatório informar o campo **nome_credenciadora**, veja as condições em [CFe SAT](#enviador-de-arquivos-s-t-nfce_cfe-s-t). Valores possíveis:1: Pagamento integrado com o sistema de automação da empresa (Ex.: equipamento TEF, Comércio Eletrônico) – Obrigatório informar cnpj_credenciadora e numero_autorizacao.2: Pagamento não integrado com o sistema de automação da empresa (valor padrão).  Informar apenas se forma_pagamento for 03 ou 04. |
+| tipo_integracao    | valor da lista | não                                                             | Tipo de Integração para pagamento. Para NFCe no Ceará é obrigatório informar o campo **nome_credenciadora**, veja as condições em [CFe SAT](#comunicador-offline-focus-nfe-v2_cfe-s-t). Valores possíveis:1: Pagamento integrado com o sistema de automação da empresa (Ex.: equipamento TEF, Comércio Eletrônico) – Obrigatório informar cnpj_credenciadora e numero_autorizacao.2: Pagamento não integrado com o sistema de automação da empresa (valor padrão).  Informar apenas se forma_pagamento for 03 ou 04. |
 | cnpj_credenciadora | numérico       | Obrigatório se tipo_integracao for 1                            | CNPJ da credenciadora do cartão de crédito. Somente CNPJ válido.                             |
 | numero_autorizacao | string         | Obrigatório se tipo_integracao for 1                            | |
 | bandeira_operadora | string         | Obrigatório em algumas UFs se forma_pagamento = 03 ou 04 (pagamento em cartão) | Bandeira da operadora de cartão de crédito e/ou débito. Valores possíveis:01: Visa.02: Mastercard.03: American Express.04: Sorocred.99: Outros.|
@@ -172,41 +173,41 @@ A lista de campos calculados automaticamente segue abaixo:
 
 | Campo                                     | Somatório de campo dos itens        | Observação                                                  |
 |-------------------------------------------|-------------------------------------|-------------------------------------------------------------|
-| icms_base_calculo                         | icms_base_calculo                   |                                                             |   
-| valor_ipi                                 | ipi_valor                           |                                                             |   
-| icms_valor_total_st                       | icms_valor_st                       |                                                             |   
-| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |   
-| issqn_valor_total                         | issqn_valor                         |                                                             |   
-| issqn_valor_total_deducao                 | issqn_valor_deducao                 |                                                             |   
-| issqn_valor_total_outras_retencoes        | issqn_valor_outras_retencoes        |                                                             |   
-| issqn_valor_total_desconto_incondicionado | issqn_valor_desconto_incondicionado |                                                             |   
-| issqn_valor_total_desconto_condicionado   | issqn_valor_desconto_condicionado   |                                                             |   
-| issqn_valor_total_retencao                | issqn_valor_retencao                |                                                             |   
-| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |   
-| valor_total_ii                            | ii_valor                            |                                                             |   
-| fcp_valor_total                           | fcp_valor                           |                                                             |   
-| fcp_valor_total_uf_destino                | fcp_valor_uf_destino                |                                                             |   
-| fcp_valor_total_st                        | fcp_valor_st                        |                                                             |   
-| fcp_valor_total_retido_st                 | fcp_valor_retido_st                 |                                                             |   
-| icms_valor_total_uf_destino               | icms_valor_uf_destino               |                                                             |   
-| icms_valor_total_uf_remetente             | icms_valor_uf_remetente             |                                                             |   
-| icms_base_calculo                         | icms_base_calculo                   |                                                             |   
-| icms_valor_total                          | icms_valor                          |                                                             |   
-| icms_valor_total_desonerado               | icms_valor_desonerado               |                                                             |   
-| icms_base_calculo_st                      | icms_base_calculo_st                |                                                             |   
-| icms_valor_total_st                       | icms_valor_st                       |                                                             |   
-| valor_frete                               | valor_frete                         |                                                             |   
-| valor_seguro                              | valor_seguro                        |                                                             |   
-| valor_outras_despesas                     | valor_outras_despesas               |                                                             |   
-| valor_desconto                            | valor_desconto                      |                                                             |   
-| valor_ipi_devolvido                       | valor_ipi_devolvido                 |                                                             |   
-| valor_total_tributos                      | valor_total_tributos                |                                                             |   
-| valor_produtos                            | valor_bruto                         | Apenas se inclui_no_total=1                                 |   
-| valor_total_servicos                      | valor_bruto                         | Apenas se inclui_no_total=1 e item de serviço               |   
-| icms_valor_total                          | icms_valor                          | Apenas se icms_situacao_tributaria diferente de40, 41 e 50. |   
-| valor_pis_servicos                        | pis_valor                           | Apenas se item de serviço                                   |   
-| valor_cofins_servicos                     | cofins_valor                        | Apenas se item de serviço                                   |   
-| valor_pis                                 | pis_valor                           | Apenas se não for item de serviço                           |   
+| icms_base_calculo                         | icms_base_calculo                   |                                                             |
+| valor_ipi                                 | ipi_valor                           |                                                             |
+| icms_valor_total_st                       | icms_valor_st                       |                                                             |
+| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |
+| issqn_valor_total                         | issqn_valor                         |                                                             |
+| issqn_valor_total_deducao                 | issqn_valor_deducao                 |                                                             |
+| issqn_valor_total_outras_retencoes        | issqn_valor_outras_retencoes        |                                                             |
+| issqn_valor_total_desconto_incondicionado | issqn_valor_desconto_incondicionado |                                                             |
+| issqn_valor_total_desconto_condicionado   | issqn_valor_desconto_condicionado   |                                                             |
+| issqn_valor_total_retencao                | issqn_valor_retencao                |                                                             |
+| issqn_base_calculo                        | issqn_base_calculo                  |                                                             |
+| valor_total_ii                            | ii_valor                            |                                                             |
+| fcp_valor_total                           | fcp_valor                           |                                                             |
+| fcp_valor_total_uf_destino                | fcp_valor_uf_destino                |                                                             |
+| fcp_valor_total_st                        | fcp_valor_st                        |                                                             |
+| fcp_valor_total_retido_st                 | fcp_valor_retido_st                 |                                                             |
+| icms_valor_total_uf_destino               | icms_valor_uf_destino               |                                                             |
+| icms_valor_total_uf_remetente             | icms_valor_uf_remetente             |                                                             |
+| icms_base_calculo                         | icms_base_calculo                   |                                                             |
+| icms_valor_total                          | icms_valor                          |                                                             |
+| icms_valor_total_desonerado               | icms_valor_desonerado               |                                                             |
+| icms_base_calculo_st                      | icms_base_calculo_st                |                                                             |
+| icms_valor_total_st                       | icms_valor_st                       |                                                             |
+| valor_frete                               | valor_frete                         |                                                             |
+| valor_seguro                              | valor_seguro                        |                                                             |
+| valor_outras_despesas                     | valor_outras_despesas               |                                                             |
+| valor_desconto                            | valor_desconto                      |                                                             |
+| valor_ipi_devolvido                       | valor_ipi_devolvido                 |                                                             |
+| valor_total_tributos                      | valor_total_tributos                |                                                             |
+| valor_produtos                            | valor_bruto                         | Apenas se inclui_no_total=1                                 |
+| valor_total_servicos                      | valor_bruto                         | Apenas se inclui_no_total=1 e item de serviço               |
+| icms_valor_total                          | icms_valor                          | Apenas se icms_situacao_tributaria diferente de40, 41 e 50. |
+| valor_pis_servicos                        | pis_valor                           | Apenas se item de serviço                                   |
+| valor_cofins_servicos                     | cofins_valor                        | Apenas se item de serviço                                   |
+| valor_pis                                 | pis_valor                           | Apenas se não for item de serviço                           |
 | valor_cofins                              | cofins_valor                        | Apenas se não for item de serviço
 
 Além disso, caso não seja fornecido, será calculado também o valor total da NFCe (valor_total), calculado da seguinte forma:
@@ -334,100 +335,100 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFCeAutorizar {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfce?ref="+ ref+"&completa=1");
+    String url = server.concat("v2/nfce?ref="+ ref+"&completa=1");
 
-	    /* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+      /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		/* Aqui são criados as hash's que receberão os dados da nota. */
-		HashMap<String, String> nfce = new HashMap<String, String>();
-		HashMap<String, String> itens = new HashMap<String, String>();
-		HashMap<String, String> formasPagamento = new HashMap<String, String>();
+    /* Aqui são criados as hash's que receberão os dados da nota. */
+    HashMap<String, String> nfce = new HashMap<String, String>();
+    HashMap<String, String> itens = new HashMap<String, String>();
+    HashMap<String, String> formasPagamento = new HashMap<String, String>();
 
-		nfce.put("data_emissao", "2018-01-15T16:25:00");
-		nfce.put("consumidor_final", "1");
-		nfce.put("modalidade_frete", "9");
-		nfce.put("natureza_operacao", "Venda ao Consumidor");
-		nfce.put("tipo_documento", "1");
-		nfce.put("finalidade_emissao", "1");
-		nfce.put("presenca_comprador", "1");
-		nfce.put("indicador_inscricao_estadual_destinatario", "9");
-		nfce.put("cnpj_emitente", "51916585000125");
-		nfce.put("cpf_destinatario", "");
-		nfce.put("id_estrangeiro_destinatario", "1234567");
-		nfce.put("nome_destinatario", "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL");
-		nfce.put("informacoes_adicionais_contribuinte", "Documento emitido por ME ou EPP optante pelo Simples Nacional nao gera direito a credito fiscal de ICMS lei 123/2006.");
-		nfce.put("valor_produtos", "1.0000");
-		nfce.put("valor_desconto", "0.0000");
-		nfce.put("valor_total", "1.0000");
-		nfce.put("forma_pagamento", "0");
-		nfce.put("icms_base_calculo", "0.0000");
-		nfce.put("icms_valor_total", "0.0000");
-		nfce.put("icms_base_calculo_st", "0.0000");
-		nfce.put("icms_valor_total_st", "0.0");
-		nfce.put("icms_modalidade_base_calculo", "3");
-		nfce.put("valor_frete", "0.0");
-		itens.put("numero_item", "1");
-		itens.put("unidade_comercial", "PC");
-		itens.put("unidade_tributavel", "PC");
-		itens.put("codigo_ncm", "94019090");
-		itens.put("codigo_produto", "Div.13350000");
-		itens.put("descricao", "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL");
-		itens.put("cfop", "5102");
-		itens.put("valor_unitario_comercial", "1.0000000000");
-		itens.put("valor_unitario_tributavel", "1.0000000000");
-		itens.put("valor_bruto", "1.0000");
-		itens.put("quantidade_comercial", "1.0000");
-		itens.put("quantidade_tributavel", "1.0000");
-		itens.put("quantidade", "1.0000");
-		itens.put("icms_origem", "0");
-		itens.put("icms_base_calculo", "1.00");
-		itens.put("icms_modalidade_base_calculo", "3");
-		itens.put("valor_frete", "0.0");
-		itens.put("valor_outras_despesas", "0.0");
-		itens.put("icms_situacao_tributaria", "102");
-		formasPagamento.put("forma_pagamento", "99");
-		formasPagamento.put("valor_pagamento", "1.0000");
+    nfce.put("data_emissao", "2018-01-15T16:25:00");
+    nfce.put("consumidor_final", "1");
+    nfce.put("modalidade_frete", "9");
+    nfce.put("natureza_operacao", "Venda ao Consumidor");
+    nfce.put("tipo_documento", "1");
+    nfce.put("finalidade_emissao", "1");
+    nfce.put("presenca_comprador", "1");
+    nfce.put("indicador_inscricao_estadual_destinatario", "9");
+    nfce.put("cnpj_emitente", "51916585000125");
+    nfce.put("cpf_destinatario", "");
+    nfce.put("id_estrangeiro_destinatario", "1234567");
+    nfce.put("nome_destinatario", "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL");
+    nfce.put("informacoes_adicionais_contribuinte", "Documento emitido por ME ou EPP optante pelo Simples Nacional nao gera direito a credito fiscal de ICMS lei 123/2006.");
+    nfce.put("valor_produtos", "1.0000");
+    nfce.put("valor_desconto", "0.0000");
+    nfce.put("valor_total", "1.0000");
+    nfce.put("forma_pagamento", "0");
+    nfce.put("icms_base_calculo", "0.0000");
+    nfce.put("icms_valor_total", "0.0000");
+    nfce.put("icms_base_calculo_st", "0.0000");
+    nfce.put("icms_valor_total_st", "0.0");
+    nfce.put("icms_modalidade_base_calculo", "3");
+    nfce.put("valor_frete", "0.0");
+    itens.put("numero_item", "1");
+    itens.put("unidade_comercial", "PC");
+    itens.put("unidade_tributavel", "PC");
+    itens.put("codigo_ncm", "94019090");
+    itens.put("codigo_produto", "Div.13350000");
+    itens.put("descricao", "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL");
+    itens.put("cfop", "5102");
+    itens.put("valor_unitario_comercial", "1.0000000000");
+    itens.put("valor_unitario_tributavel", "1.0000000000");
+    itens.put("valor_bruto", "1.0000");
+    itens.put("quantidade_comercial", "1.0000");
+    itens.put("quantidade_tributavel", "1.0000");
+    itens.put("quantidade", "1.0000");
+    itens.put("icms_origem", "0");
+    itens.put("icms_base_calculo", "1.00");
+    itens.put("icms_modalidade_base_calculo", "3");
+    itens.put("valor_frete", "0.0");
+    itens.put("valor_outras_despesas", "0.0");
+    itens.put("icms_situacao_tributaria", "102");
+    formasPagamento.put("forma_pagamento", "99");
+    formasPagamento.put("valor_pagamento", "1.0000");
 
-		/* Depois de fazer o input dos dados, são criados os objetos JSON já com os valores das hash's. */
-		JSONObject json = new JSONObject (nfce);
-		JSONObject jsonItens = new JSONObject (itens);
-		JSONObject jsonPagamento = new JSONObject (formasPagamento);
+    /* Depois de fazer o input dos dados, são criados os objetos JSON já com os valores das hash's. */
+    JSONObject json = new JSONObject (nfce);
+    JSONObject jsonItens = new JSONObject (itens);
+    JSONObject jsonPagamento = new JSONObject (formasPagamento);
 
-		/* Aqui adicionamos os objetos JSON nos campos da API como array no JSON principal. */
-		json.append("items", jsonItens);
-		json.append("formas_pagamento", jsonPagamento);
+    /* Aqui adicionamos os objetos JSON nos campos da API como array no JSON principal. */
+    json.append("items", jsonItens);
+    json.append("formas_pagamento", jsonPagamento);
 
-		/* É recomendado verificar como os dados foram gerados em JSON e se ele está seguindo a estrutura especificada em nossa documentação.
-		System.out.print(json); */
+    /* É recomendado verificar como os dados foram gerados em JSON e se ele está seguindo a estrutura especificada em nossa documentação.
+    System.out.print(json); */
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas a seguir exibem as informações retornadas pela nossa API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas a seguir exibem as informações retornadas pela nossa API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -645,7 +646,7 @@ var nfce = {
      "icms_aliquota":"0",
      "icms_base_calculo":"0",
      "icms_modalidade_base_calculo":"3"
-    }        
+    }
   ],
     "formas_pagamento":[
         {"forma_pagamento":"1",
@@ -740,7 +741,7 @@ Ao tentar emitir uma NFCe, iremos tentar comunicação com a SEFAZ. Caso a comun
 Será de responsabilidade de nossa API, após devolver o XML e DANFCe temporários, tentar reestabelecer comunicação com a SEFAZ ao longo das próximas 24 horas após a emissão. Quando conseguirmos conectividade novamente serão efetuadas duas ações:
 
 * A nota emitida em contingência será efetividade na SEFAZ e iremos substituir o XML e DANFCe por suas versões definitivas
-* Iremos consultar o status da requisição original. Caso a nota tenha sido autorizada, é feito o cancelamento da nota. Caso ela realmente não tenha sido autorizada, o número é inutilizado. 
+* Iremos consultar o status da requisição original. Caso a nota tenha sido autorizada, é feito o cancelamento da nota. Caso ela realmente não tenha sido autorizada, o número é inutilizado.
 
 É possível que uma nota emitida em contingência não possa ser efetivada devido a erros no XML (como por exemplo, NCM incorreto ou impostos inconsistentes). Neste caso tanto o número da nota original quanto o número da nota em contingência serão inutilizados automaticamente.
 
@@ -818,38 +819,38 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFCeConsulta {
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
- 		String url = server.concat("v2/nfce/"+ref+"?completa=1");
+    String url = server.concat("v2/nfce/"+ref+"?completa=1");
 
- 		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.get(ClientResponse.class);
+    ClientResponse resposta = request.get(ClientResponse.class);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1211,45 +1212,45 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFCeCancelamento {
 
-	public static void main(String[] args){
+  public static void main(String[] args){
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfce/"+ref);
+    String url = server.concat("v2/nfce/"+ref);
 
-		/* Aqui criamos um hashmap para receber a chave "justificativa" e o valor desejado. */		
-		HashMap<String, String> justificativa = new HashMap<String, String>();
-		justificativa.put("justificativa", "Informe aqui a sua justificativa para realizar o cancelamento da NFCe.");
+    /* Aqui criamos um hashmap para receber a chave "justificativa" e o valor desejado. */
+    HashMap<String, String> justificativa = new HashMap<String, String>();
+    justificativa.put("justificativa", "Informe aqui a sua justificativa para realizar o cancelamento da NFCe.");
 
-		/* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
-		JSONObject json = new JSONObject(justificativa);
+    /* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
+    JSONObject json = new JSONObject(justificativa);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.delete(ClientResponse.class, json);
+    ClientResponse resposta = request.delete(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-	   /* As três linhas abaixo imprimem as informações retornadas pela API.
-	    * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+     /* As três linhas abaixo imprimem as informações retornadas pela API.
+      * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1275,7 +1276,7 @@ servidor_homologacao = "https://homologacao.focusnfe.com.br/"
 url_envio = servidor_homologacao + "v2/nfce/" + ref
 
 # altere os campos conforme a nota que será enviada
-justificativa_cancelamento = {  
+justificativa_cancelamento = {
   justificativa: "Informe aqui a sua justificativa para realizar o cancelamento da NFCe."
 }
 
@@ -1368,7 +1369,7 @@ request.open('DELETE', url, false, token);
 
 var cancelar = {
 
-	"justificativa": "Sua justificativa aqui!"
+  "justificativa": "Sua justificativa aqui!"
 };
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
@@ -1492,49 +1493,49 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFCeInutilizacao {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
- 		String url = server.concat("v2/nfce/inutilizacao");
+    String url = server.concat("v2/nfce/inutilizacao");
 
- 		/* Aqui criamos um hash que irá receber as chaves e valores esperados para gerar a inutilização. */
-		HashMap<String, String> dadosInutilizacao = new HashMap<String, String>();
-		dadosInutilizacao.put("cnpj", "51916585009999");
-		dadosInutilizacao.put("serie", "9");
-		dadosInutilizacao.put("numero_inicial", "7730");
-		dadosInutilizacao.put("numero_final", "7732");
-		dadosInutilizacao.put("justificativa", "Informe aqui a justificativa para realizar a inutilizacao da numeracao.");
+    /* Aqui criamos um hash que irá receber as chaves e valores esperados para gerar a inutilização. */
+    HashMap<String, String> dadosInutilizacao = new HashMap<String, String>();
+    dadosInutilizacao.put("cnpj", "51916585009999");
+    dadosInutilizacao.put("serie", "9");
+    dadosInutilizacao.put("numero_inicial", "7730");
+    dadosInutilizacao.put("numero_final", "7732");
+    dadosInutilizacao.put("justificativa", "Informe aqui a justificativa para realizar a inutilizacao da numeracao.");
 
-		/* Criamos um objeto JSON que irá receber o input dos dados, para então enviar a requisição. */
-		JSONObject json = new JSONObject (dadosInutilizacao);
+    /* Criamos um objeto JSON que irá receber o input dos dados, para então enviar a requisição. */
+    JSONObject json = new JSONObject (dadosInutilizacao);
 
-		/* Testar se o JSON gerado está dentro do formato esperado.
-		System.out.print(json); */
+    /* Testar se o JSON gerado está dentro do formato esperado.
+    System.out.print(json); */
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));		
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-	   /* As três linhas abaixo imprimem as informações retornadas pela API.
-	    * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+     /* As três linhas abaixo imprimem as informações retornadas pela API.
+      * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1557,7 +1558,7 @@ servidor_homologacao = "https://homologacao.focusnfe.com.br/"
 url_envio = servidor_homologacao + "v2/nfce/inutilizacao"
 
 # altere os campos conforme a nota que será enviada
-dados_inutilizacao = {  
+dados_inutilizacao = {
   cnpj: "51916585009999",
   serie: "9",
   numero_inicial: "7730",
@@ -1608,7 +1609,7 @@ $inutiliza = array (
   "serie" => "1",
   "numero_inicial" => "107",
   "numero_final" => "109",
-  "justificativa" => "Teste+de+inutilizacao+de+nota"  
+  "justificativa" => "Teste+de+inutilizacao+de+nota"
 );
 // Inicia o processo de envio das informações usando o cURL.
 $ch = curl_init();
@@ -1755,7 +1756,7 @@ Usamos um dicionario para armazenar os campos e valores que em seguida,
 serao convertidos a JSON e enviados para nossa API
 '''
 emails = {}
-email = "suporte@acras.com.br"
+email = "suporte@focusnfe.com.br"
 emails["emails"] = [email]
 
 r = requests.delete(url+ref+"/email", data=json.dumps(emails), auth=(token,""))
@@ -1784,49 +1785,49 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFCeEnviaEmail {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfce/"+ref+"/email");
+    String url = server.concat("v2/nfce/"+ref+"/email");
 
-		/* Criamos o um objeto JSON que receberá um JSON Array com a lista de e-mails. */
-		JSONObject json = new JSONObject ();
-		JSONArray listaEmails = new JSONArray();
-		listaEmails.put("email_01@acras.com.br");
-		listaEmails.put("email_02@acras.com.br");
-		listaEmails.put("email_03@acras.com.br");
-		json.put("emails", listaEmails);
+    /* Criamos o um objeto JSON que receberá um JSON Array com a lista de e-mails. */
+    JSONObject json = new JSONObject ();
+    JSONArray listaEmails = new JSONArray();
+    listaEmails.put("email_01@focusnfe.com.br");
+    listaEmails.put("email_02@focusnfe.com.br");
+    listaEmails.put("email_03@focusnfe.com.br");
+    json.put("emails", listaEmails);
 
-		/* Testar se o JSON gerado está dentro do formato esperado.
-		System.out.print(json); */
+    /* Testar se o JSON gerado está dentro do formato esperado.
+    System.out.print(json); */
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1853,7 +1854,7 @@ url_envio = servidor_homologacao + "v2/nfce/" + ref + "/email"
 
 # altere os campos conforme a nota que será enviada
 emails_destinatarios = {
-  emails: ["email_01@acras.com.br", "email_02@acras.com.br", "email_03@acras.com.br"]
+  emails: ["email_01@focusnfe.com.br", "email_02@focusnfe.com.br", "email_03@focusnfe.com.br"]
 }
 # criamos um objeto uri para envio da nota
 uri = URI(url_envio)
@@ -1946,7 +1947,7 @@ Passamos o token como quarto parametro deste metodo, como autenticador do HTTP B
 */
 request.open('POST', url, false, token);
 
-var email = ["email1@acras.com.br", "email2@acras.com.br", "email3@acras.com.br"];
+var email = ["email1@focusnfe.com.br", "email2@focusnfe.com.br", "email3@focusnfe.com.br"];
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
 var json = JSON.stringify({"emails": email});

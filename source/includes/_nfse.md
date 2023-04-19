@@ -38,7 +38,7 @@ Os campos denotados com (*) são obrigatórios.
    "tomador":{
       "cnpj":"07504505000132",
       "razao_social":"Acras Tecnologia da Informação LTDA",
-      "email":"contato@acras.com.br",
+      "email":"contato@focusnfe.com.br",
       "endereco":{
          "logradouro":"Rua Dias da Rocha Filho",
          "numero":"999",
@@ -101,47 +101,47 @@ informar o número do RPS que será substituído. Municípios que seguem o padr�
   - **telefone**: (String) Telefone do tomador. Tamanho: 11 caracteres.
   - **email**: (String) Email do tomador. Tamanho: 80 caracteres.
   - **endereco**:
-  	  - **logradouro**: (String) Nome do logradouro. Tamanho: 125 caracteres.
-  	  - **tipo_logradouro**: (String) Tipo do logradouro. Usado apenas para alguns municípios. Valor padrão: os 3 primeiros caracteres do logradouro. Tamanho: 3 caracteres.
-  	  - **numero**: (String) Número do endereço. Tamanho: 10 caracteres.
-  	  - **complemento**: (String) Complemento do endereço. Tamanho: 60 caracteres.
-  	  - **bairro**: Bairro. (String) Tamanho: 60 caracteres.
-  	  - **codigo_municipio**: (String) Código IBGE do município.
-  	  - **uf**: (String) UF do endereço. Tamanho: 2 caracteres.
-  	  - **cep**: (String) CEP do endereço. Caracteres não numéricos são ignorados.
+      - **logradouro**: (String) Nome do logradouro. Tamanho: 125 caracteres.
+      - **tipo_logradouro**: (String) Tipo do logradouro. Usado apenas para alguns municípios. Valor padrão: os 3 primeiros caracteres do logradouro. Tamanho: 3 caracteres.
+      - **numero**: (String) Número do endereço. Tamanho: 10 caracteres.
+      - **complemento**: (String) Complemento do endereço. Tamanho: 60 caracteres.
+      - **bairro**: Bairro. (String) Tamanho: 60 caracteres.
+      - **codigo_municipio**: (String) Código IBGE do município.
+      - **uf**: (String) UF do endereço. Tamanho: 2 caracteres.
+      - **cep**: (String) CEP do endereço. Caracteres não numéricos são ignorados.
 
 ### Serviço
 
 - **servico**:
-	- **valor_servicos**(*): (Decimal) Valor dos serviços.
-	- **valor_deducoes**: (Decimal) Valor das deduções.
-	- **valor_pis**: (Decimal) Valor do PIS.
-	- **valor_cofins**: (Decimal) Valor do COFINS.
-	- **valor_inss**: (Decimal) Valor do INSS.
-	- **valor_ir**: (Decimal) Valor do IRRF.
-	- **valor_csll**: (Decimal) Valor do CSLL
-	- **iss_retido**(*): (Boolean) Informar true (verdadeiro) ou false (falso) se o ISS foi retido.
-	- **valor_iss**: (Decimal) Valor do ISS. Campo ignorado por alguns municípios que realizam seu próprio cálculo.
-	- **valor_iss_retido**: (Decimal) Valor do ISS Retido. Campo ignorado em alguns municípios.
-	- **outras_retencoes**: (Decimal) Valor de outras retenções. Campo ignorado em alguns municípios.
-	- **base_calculo**: (Decimal) Base de cálculo do ISS, valor padrão igual ao valor_servicos. Campo ignorado em alguns municípios.
-	- **aliquota**: (Decimal) Aliquota do ISS. Algumas cidades permitem usar 4 dígitos decimais.
-	- **desconto_incondicionado**: (Decimal) Valor do desconto incondicionado. Campo ignorado em alguns municípios.
-	- **desconto_condicionado**: (Decimal) Valor do desconto condicionado. Campo ignorado em alguns municípios.
-	- **item_lista_servico**(*): (String) Informar o código da lista de serviços, normalmente de acordo com a Lei Complementar 116/2003.
-	- **codigo_cnae**: (String) Informar o código CNAE de 7 dígitos. Campo ignorado em alguns municípios.
-	- **codigo_tributario_municipio**: (String) Informar o código tributário de acordo com a tabela de cada município (não há um padrão).
-	- **discriminacao**(*): (String) Discriminação dos serviços. Tamanho: Varia por município.
-	- **codigo_municipio**(*): (String) Informar o código IBGE de 7 dígitos do município de prestação do serviço.
-	- **percentual_total_tributos**: (Decimal) Percentual aproximado de todos os impostos, de acordo com a Lei da Transparência. No momento disponível apenas alguns municípios.
-	- **fonte_total_tributos**: (String) Fonte de onde foi retirada a informação de total de impostos, por exemplo, “IBPT”. No momento disponível apenas para alguns municípios.
+  - **valor_servicos**(*): (Decimal) Valor dos serviços.
+  - **valor_deducoes**: (Decimal) Valor das deduções.
+  - **valor_pis**: (Decimal) Valor do PIS.
+  - **valor_cofins**: (Decimal) Valor do COFINS.
+  - **valor_inss**: (Decimal) Valor do INSS.
+  - **valor_ir**: (Decimal) Valor do IRRF.
+  - **valor_csll**: (Decimal) Valor do CSLL
+  - **iss_retido**(*): (Boolean) Informar true (verdadeiro) ou false (falso) se o ISS foi retido.
+  - **valor_iss**: (Decimal) Valor do ISS. Campo ignorado por alguns municípios que realizam seu próprio cálculo.
+  - **valor_iss_retido**: (Decimal) Valor do ISS Retido. Campo ignorado em alguns municípios.
+  - **outras_retencoes**: (Decimal) Valor de outras retenções. Campo ignorado em alguns municípios.
+  - **base_calculo**: (Decimal) Base de cálculo do ISS, valor padrão igual ao valor_servicos. Campo ignorado em alguns municípios.
+  - **aliquota**: (Decimal) Aliquota do ISS. Algumas cidades permitem usar 4 dígitos decimais.
+  - **desconto_incondicionado**: (Decimal) Valor do desconto incondicionado. Campo ignorado em alguns municípios.
+  - **desconto_condicionado**: (Decimal) Valor do desconto condicionado. Campo ignorado em alguns municípios.
+  - **item_lista_servico**(*): (String) Informar o código da lista de serviços, normalmente de acordo com a Lei Complementar 116/2003.
+  - **codigo_cnae**: (String) Informar o código CNAE de 7 dígitos. Campo ignorado em alguns municípios.
+  - **codigo_tributario_municipio**: (String) Informar o código tributário de acordo com a tabela de cada município (não há um padrão).
+  - **discriminacao**(*): (String) Discriminação dos serviços. Tamanho: Varia por município.
+  - **codigo_municipio**(*): (String) Informar o código IBGE de 7 dígitos do município de prestação do serviço.
+  - **percentual_total_tributos**: (Decimal) Percentual aproximado de todos os impostos, de acordo com a Lei da Transparência. No momento disponível apenas alguns municípios.
+  - **fonte_total_tributos**: (String) Fonte de onde foi retirada a informação de total de impostos, por exemplo, “IBPT”. No momento disponível apenas para alguns municípios.
 
 ### Intermediário
 - **intermediario** (esta seção é ignorada se não suportada pelo município)
-	- **razao_social**: (String) Razão social do intermediário do serviço. Tamanho: 115 caracteres.
-	- **cpf**: (String) CPF do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
-	- **cnpj**: (String) CNPJ do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
-	- **inscricao_municipal**: (String) Inscrição municipal do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
+  - **razao_social**: (String) Razão social do intermediário do serviço. Tamanho: 115 caracteres.
+  - **cpf**: (String) CPF do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
+  - **cnpj**: (String) CNPJ do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
+  - **inscricao_municipal**: (String) Inscrição municipal do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
 
 Alguns municípios podem ter campos adicionais ou algumas regras específicas para preenchimento de campos. Uma boa prática é consultar a nossa [lista de municípios atendidos](https://focusnfe.com.br/cidades-atendidas/) e ver se existe algum artigo escrito sobre especificidades do seu município.
 
@@ -241,85 +241,85 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFSeAutorizar {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
- 		String url = server.concat("v2/nfse?ref="+ref);
+    String url = server.concat("v2/nfse?ref="+ref);
 
- 		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		/* Aqui são criados as hash's que receberão os dados da nota. */
-		HashMap<String, String> nfse = new HashMap<String, String>();
-		HashMap<String, String> prestador = new HashMap<String, String>();
-		HashMap<String, String> tomador = new HashMap<String, String>();
-		HashMap<String, String> tomadorEndereco = new HashMap<String, String>();
-		HashMap<String, String> servico = new HashMap<String, String>();
+    /* Aqui são criados as hash's que receberão os dados da nota. */
+    HashMap<String, String> nfse = new HashMap<String, String>();
+    HashMap<String, String> prestador = new HashMap<String, String>();
+    HashMap<String, String> tomador = new HashMap<String, String>();
+    HashMap<String, String> tomadorEndereco = new HashMap<String, String>();
+    HashMap<String, String> servico = new HashMap<String, String>();
 
-		nfse.put("data_emissao", "2018-01-15T17:40:00");
-		nfse.put("natureza_operacao", "1");
-		prestador.put("cnpj", "51916585000125");
-		prestador.put("inscricao_municipal", "123456");
-		prestador.put("codigo_municipio", "4128104");
-		tomador.put("cpf", "51966818092");
-		tomador.put("razao_social", "ACME LTDA");
-		tomador.put("email", "email-do-tomador@google.com.br");
-		tomadorEndereco.put("bairro", "Jardim America");
-		tomadorEndereco.put("cep", "82620150");
-		tomadorEndereco.put("codigo_municipio", "4106902");
-		tomadorEndereco.put("logradouro", "Rua Paulo Centrone");
-		tomadorEndereco.put("numero", "168");
-		tomadorEndereco.put("uf", "PR");
-		servico.put("discriminacao", "Teste de servico");
-		servico.put("aliquota", "3.00");
-		servico.put("base_calculo", "1.0");
-		servico.put("valor_iss", "0");
-		servico.put("iss_retido", "false");
-		servico.put("codigo_tributario_municipio", "080101");
-		servico.put("item_lista_servico", "0801");
-		servico.put("valor_servicos", "1.0");
-		servico.put("valor_liquido", "1.0");
+    nfse.put("data_emissao", "2018-01-15T17:40:00");
+    nfse.put("natureza_operacao", "1");
+    prestador.put("cnpj", "51916585000125");
+    prestador.put("inscricao_municipal", "123456");
+    prestador.put("codigo_municipio", "4128104");
+    tomador.put("cpf", "51966818092");
+    tomador.put("razao_social", "ACME LTDA");
+    tomador.put("email", "email-do-tomador@google.com.br");
+    tomadorEndereco.put("bairro", "Jardim America");
+    tomadorEndereco.put("cep", "82620150");
+    tomadorEndereco.put("codigo_municipio", "4106902");
+    tomadorEndereco.put("logradouro", "Rua Paulo Centrone");
+    tomadorEndereco.put("numero", "168");
+    tomadorEndereco.put("uf", "PR");
+    servico.put("discriminacao", "Teste de servico");
+    servico.put("aliquota", "3.00");
+    servico.put("base_calculo", "1.0");
+    servico.put("valor_iss", "0");
+    servico.put("iss_retido", "false");
+    servico.put("codigo_tributario_municipio", "080101");
+    servico.put("item_lista_servico", "0801");
+    servico.put("valor_servicos", "1.0");
+    servico.put("valor_liquido", "1.0");
 
-		/* Depois de fazer o input dos dados, são criados os objetos JSON já com os valores das hash's. */
-		JSONObject json = new JSONObject (nfse);
-		JSONObject jsonPrestador = new JSONObject (prestador);
-		JSONObject jsonTomador = new JSONObject (tomador);
-		JSONObject jsonTomadorEndereco = new JSONObject (tomadorEndereco);
-		JSONObject jsonServico = new JSONObject (servico);
+    /* Depois de fazer o input dos dados, são criados os objetos JSON já com os valores das hash's. */
+    JSONObject json = new JSONObject (nfse);
+    JSONObject jsonPrestador = new JSONObject (prestador);
+    JSONObject jsonTomador = new JSONObject (tomador);
+    JSONObject jsonTomadorEndereco = new JSONObject (tomadorEndereco);
+    JSONObject jsonServico = new JSONObject (servico);
 
-		/* Aqui adicionamos os objetos JSON nos campos da API como array no JSON principal. */
-		json.accumulate("prestador", jsonPrestador);
-		json.accumulate("tomador", jsonTomador);
-		jsonTomador.accumulate("endereco", jsonTomadorEndereco);
-		json.accumulate("servico", jsonServico);
+    /* Aqui adicionamos os objetos JSON nos campos da API como array no JSON principal. */
+    json.accumulate("prestador", jsonPrestador);
+    json.accumulate("tomador", jsonTomador);
+    jsonTomador.accumulate("endereco", jsonTomadorEndereco);
+    json.accumulate("servico", jsonServico);
 
-		/* É recomendado verificar como os dados foram gerados em JSON e se ele está seguindo a estrutura especificada em nossa documentação.
-		System.out.print(json); */
+    /* É recomendado verificar como os dados foram gerados em JSON e se ele está seguindo a estrutura especificada em nossa documentação.
+    System.out.print(json); */
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas a seguir exibem as informações retornadas pela nossa API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas a seguir exibem as informações retornadas pela nossa API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -355,7 +355,7 @@ dados_da_nota = {
   tomador: {
       cnpj: "07504505000132",
       razao_social: "Acras Tecnologia da Informação LTDA",
-      email: "contatoacras.com.br",
+      email: "contato@focusnfe.com.br",
       endereco: {
         logradouro: "Rua Dias da Rocha Filho",
         numero: "999",
@@ -429,7 +429,7 @@ puts "Corpo da resposta: " + resposta.body
     "tomador" => array(
       "cnpj" => "07504505000132",
         "razao_social" => "Acras Tecnologia da Informação LTDA",
-        "email" => "contato@acras.com.br",
+        "email" => "contato@focusnfe.com.br",
         "endereco" => array(
           "bairro" => "Jardim America",
           "cep" => "81530900",
@@ -504,7 +504,7 @@ var nfse = {
    "tomador":{
       "cnpj":"07504505000132",
       "razao_social":"Acras Tecnologia da Informacao LTDA",
-      "email":"contato@acras.com.br",
+      "email":"contato@focusnfe.com.br",
       "endereco":{
          "logradouro":"Rua Filho da Rocha Bage",
          "numero":"750",
@@ -570,7 +570,7 @@ ou algum problema com o prestador a nota **não será aceita para processamento*
 Caso a nota seja validada corretamente, a nota será **aceita para processamento**. Isto significa que a nota irá para uma fila de processamento
 onde eventualmente será processada (processamento assíncrono). Com isto, a nota poderá ser autorizada ou ocorrer um erro na autorização de acordo com a validação da prefeitura.
 
-Para verificar se a nota já foi autorizada, você terá que efetuar uma [consulta](#nfse_consulta) ou se utilizar de [gatilhos](#gatilhos_gatilhos).
+Para verificar se a nota já foi autorizada, você terá que efetuar uma [consulta](#nfse_consulta) ou se utilizar de [gatilhos / webhooks](#gatilhos-webhooks).
 
 ## Consulta
 ```python
@@ -611,38 +611,38 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFSeConsulta {
 
-	public static void main(String[] args){
+  public static void main(String[] args){
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
- 		String url = server.concat("v2/nfse/"+ref);
+    String url = server.concat("v2/nfse/"+ref);
 
- 		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = (ClientResponse) request.get(ClientResponse.class);
+    ClientResponse resposta = (ClientResponse) request.get(ClientResponse.class);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -918,45 +918,45 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFSeCancelamento {
 
-	public static void main(String[] args){
+  public static void main(String[] args){
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfse/"+ref);
+    String url = server.concat("v2/nfse/"+ref);
 
- 		/* Aqui criamos um hashmap para receber a chave "justificativa" e o valor desejado. */
-		HashMap<String, String> justificativa = new HashMap<String, String>();
-		justificativa.put("justificativa", "Informe aqui a sua justificativa para realizar o cancelamento da NFSe.");
+    /* Aqui criamos um hashmap para receber a chave "justificativa" e o valor desejado. */
+    HashMap<String, String> justificativa = new HashMap<String, String>();
+    justificativa.put("justificativa", "Informe aqui a sua justificativa para realizar o cancelamento da NFSe.");
 
-		/* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
-		JSONObject json = new JSONObject(justificativa);
+    /* Criamos um objeto JSON para receber a hash com os dados esperado pela API. */
+    JSONObject json = new JSONObject(justificativa);
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.delete(ClientResponse.class, json);
+    ClientResponse resposta = request.delete(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1075,7 +1075,7 @@ request.open('DELETE', url, false, token);
 
 var cancelar = {
 
-	"justificativa": "Sua justificativa aqui!"
+  "justificativa": "Sua justificativa aqui!"
 };
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
@@ -1167,7 +1167,7 @@ Usamos um dicionario para armazenar os campos e valores que em seguida,
 serao convertidos a JSON e enviados para nossa API
 '''
 emails = {}
-email = "suporte@acras.com.br"
+email = "suporte@focusnfe.com.br"
 emails["emails"] = [email]
 
 r = requests.delete(url+ref+"/email", data=json.dumps(emails), auth=(token,""))
@@ -1199,49 +1199,49 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class NFSeEnviaEmail {
 
-	public static void main(String[] args) throws JSONException{
+  public static void main(String[] args) throws JSONException{
 
-		String login = "Token_obtido_no_cadastro_da_empresa";
+    String login = "Token_obtido_no_cadastro_da_empresa";
 
-		/* Substituir pela sua identificação interna da nota. */
-		String ref = "12345";
+    /* Substituir pela sua identificação interna da nota. */
+    String ref = "12345";
 
-		/* Para ambiente de produção use a variável abaixo:
-		String server = "https://api.focusnfe.com.br/"; */
- 		String server = "https://homologacao.focusnfe.com.br/";
+    /* Para ambiente de produção use a variável abaixo:
+    String server = "https://api.focusnfe.com.br/"; */
+    String server = "https://homologacao.focusnfe.com.br/";
 
-		String url = server.concat("v2/nfse/"+ref+"/email");
+    String url = server.concat("v2/nfse/"+ref+"/email");
 
-		/* Criamos o um objeto JSON que receberá um JSON Array com a lista de e-mails. */
-		JSONObject json = new JSONObject ();
-		JSONArray listaEmails = new JSONArray();
-		listaEmails.put("email_01@acras.com.br");
-		listaEmails.put("email_02@acras.com.br");
-		listaEmails.put("email_03@acras.com.br");
-		json.put("emails", listaEmails);
+    /* Criamos o um objeto JSON que receberá um JSON Array com a lista de e-mails. */
+    JSONObject json = new JSONObject ();
+    JSONArray listaEmails = new JSONArray();
+    listaEmails.put("email_01@focusnfe.com.br");
+    listaEmails.put("email_02@focusnfe.com.br");
+    listaEmails.put("email_03@focusnfe.com.br");
+    json.put("emails", listaEmails);
 
-		/* Testar se o JSON gerado está dentro do formato esperado.
-		System.out.print(json); */
+    /* Testar se o JSON gerado está dentro do formato esperado.
+    System.out.print(json); */
 
-		/* Configuração para realizar o HTTP BasicAuth. */
-		Object config = new DefaultClientConfig();
-		Client client = Client.create((ClientConfig) config);
-		client.addFilter(new HTTPBasicAuthFilter(login, ""));
+    /* Configuração para realizar o HTTP BasicAuth. */
+    Object config = new DefaultClientConfig();
+    Client client = Client.create((ClientConfig) config);
+    client.addFilter(new HTTPBasicAuthFilter(login, ""));
 
-		WebResource request = client.resource(url);
+    WebResource request = client.resource(url);
 
-		ClientResponse resposta = request.post(ClientResponse.class, json);
+    ClientResponse resposta = request.post(ClientResponse.class, json);
 
-		int httpCode = resposta.getStatus();
+    int httpCode = resposta.getStatus();
 
-		String body = resposta.getEntity(String.class);
+    String body = resposta.getEntity(String.class);
 
-		/* As três linhas abaixo imprimem as informações retornadas pela API.
-		 * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
-		System.out.print("HTTP Code: ");
-		System.out.print(httpCode);
-		System.out.printf(body);
-	}
+    /* As três linhas abaixo imprimem as informações retornadas pela API.
+     * Aqui o seu sistema deverá interpretar e lidar com o retorno. */
+    System.out.print("HTTP Code: ");
+    System.out.print(httpCode);
+    System.out.printf(body);
+  }
 }
 ```
 
@@ -1268,7 +1268,7 @@ url_envio = servidor_homologacao + "v2/nfse/" + ref + "/email"
 
 # altere os campos conforme a nota que será enviada
 emails_destinatarios = {
-  emails: ["email_01@acras.com.br", "email_02@acras.com.br", "email_03@acras.com.br"]
+  emails: ["email_01@focusnfe.com.br", "email_02@focusnfe.com.br", "email_03@focusnfe.com.br"]
 }
 
 # criamos um objeto uri para envio da nota
@@ -1363,7 +1363,7 @@ Passamos o token como quarto parametro deste metodo, como autenticador do HTTP B
 */
 request.open('POST', url, false, token);
 
-var email = ["email1@acras.com.br", "email2@acras.com.br", "email3@acras.com.br"];
+var email = ["email1@focusnfe.com.br", "email2@focusnfe.com.br", "email3@focusnfe.com.br"];
 
 // Aqui fazermos a serializacao do JSON com os dados da nota e enviamos atraves do metodo usado.
 var json = JSON.stringify({"emails": email});

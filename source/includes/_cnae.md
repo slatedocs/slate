@@ -1,6 +1,6 @@
 # Consulta de CNAE
 
-CNAE significa "Classificação Nacional de Atividades Econômicas " e trata-se de um código numérico responsável por classificar as atividades econômicas no Brasil. 
+CNAE significa "Classificação Nacional de Atividades Econômicas" e trata-se de um código numérico responsável por classificar as atividades econômicas no Brasil.
 
 Nós disponibilizamos uma API que pode ser utilizada para consultar uma base que contém a lista de códigos CNAE do IBGE, assim como a descrição de cada atividade econômica categorizada pelo código.
 
@@ -172,7 +172,7 @@ Disponibilizamos o seguinte método de consulta:
 
 Método | URL (recurso) | Ação
 -------|-------|-----
-GET |	/v2/codigos_cnae	| Busca todos os códigos CNAE ou filtra-os de acordo com parâmetros
+GET | /v2/codigos_cnae  | Busca todos os códigos CNAE ou filtra-os de acordo com parâmetros
 
 Os parâmetros disponíveis para consulta dos códigos CNAE são atualmente os seguintes:
 
