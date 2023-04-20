@@ -83,8 +83,6 @@ This endpoint retrieves all Requirements.
 Parameters* | Description |
 --------- | ------- |
 filter-id | the Requirement's filter id -> showing requirements that are in this filter |
-autofilter-value | if filter is an auto-filter, you can provide the 1st level filter value |
-sub-autofilter-value | if filter is a 2-level auto-filter, and you provided the 1st level autofilter-value, you can provide the 2nd level filter value |
 filter-user-id | if filter uses current_user criteria in it, you should provide which is the this user ([list of user ids](#users)) |
 display-ids | filter Requirements with display-ids (separated by commas) |
 name_exact | filter by Requirement name exact match; case sensitive! |
