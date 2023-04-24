@@ -13,7 +13,7 @@ The post params posted at any update in a particular leads are as follows
   "lead_status": "Final negotiation",
   "last_status": "Visit done",
   "name": "History ",
-  "phone": "+919999999988",
+  "phone": "9999999988",
   "source": "facebook",
   "sub_source": "leadgen",
   "action": "lead_update",
