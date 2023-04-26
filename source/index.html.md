@@ -130,10 +130,10 @@ name | string | Full name (ie. first & last name) _name can be retrieved separat
 first_name | string |
 last_name | string |
 professions | array of strings | list of professions, eg. `["schauspieler", "synchronsprecher"]`
+languages | JSON Object | format `{ "language": "skill level" }`
+updated_at | string | format ISO 8601
 main_picture_url_tile | string | profile picture url (thumbnail version)
 picture_url | string | profile picture url of specified version
-castupload_url | string | url of the profile on Filmmakers
-castupload_professional_url | string | url of the profile on Filmmakers for casting directors (only available when connected)
 
 ## Get a specific actor profile
 
