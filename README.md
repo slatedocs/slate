@@ -87,6 +87,7 @@ $postFields .= "&email=".$email;
 $postFields .= "&source=".$utm_source;
 $postFields .= "&sub_source=".$utm_campaign;
 $postFields .= "&placement=".$utm_term;
+$postFields .= "&purpose=buy";
 $postFields .= "&current_time=".$current_time;
 $postFields .= "&phone=".$phone; // Phone number without country code
 $postFields .= "&country_code=".$country_code; // Standard ISO3166-1 alpha-2 code for a country.
