@@ -97,7 +97,7 @@ Please see the `Query Parameters` for a complete list of potential filter argume
 
 ```ruby
 RestClient.post(
-  'https://app.procurementexpress.com/api/v1/invoices',
+  'https://app.procurementexpress.com/api/v1/invoices/1',
   headers = {
     app_company_id: 1,
     authentication_token: 'your token'
@@ -106,7 +106,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
+curl 'https://app.procurementexpress.com/api/v1/invoices/1'
   -X POST
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -121,7 +121,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
 This endpoint gives acces to detailed information about a specific Invoice.
 
 ### HTTP Request
-`GET /api/v1/invoices`
+`GET /api/v1/invoices/:id`
 
 ### Query Parameters
 
@@ -187,7 +187,42 @@ curl 'https://app.procurementexpress.com/api/v1/invoices'
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
   -H "authentication_token: your token"
-  -d "
+  -d "controller: "
+  -d "action"
+  -d "invoice[invoice_number": null,
+  -d "invoice[issue_date": null,
+  -d "invoice[validation_date": null,
+  -d "invoice[supplier_id": null,
+  -d "invoice[uploaded_date": null,
+  -d "invoice[received_date": null,
+  -d "invoice[due_date": null,
+  -d "invoice[gross_amount": null,
+  -d "invoice[currency_id": null,
+  -d "invoice[invoice_line_items_attributes][][id] = null,
+  -d "invoice[invoice_line_items_attributes][][sequence_no": null,
+  -d "invoice[invoice_line_items_attributes][][description": null,
+  -d "invoice[invoice_line_items_attributes][][unit_price": null,
+  -d "invoice[invoice_line_items_attributes][][quantity": null,
+  -d "invoice[invoice_line_items_attributes][][vat": null,
+  -d "invoice[invoice_line_items_attributes][][net_amount": null,
+  -d "invoice[invoice_line_items_attributes][][base_net_amount": null,
+  -d "invoice[invoice_line_items_attributes][][tax_rate_id": null,
+  -d "invoice[invoice_line_items_attributes][][chart_of_account_id": null,
+  -d "invoice[invoice_line_items_attributes][][purchase_order_id": null,
+  -d "invoice[invoice_line_items_attributes][][purchase_order_item_id": null,
+  -d "invoice[invoice_line_items_attributes][][billable_status": null,
+  -d "invoice[invoice_line_items_attributes][][_destroy": null,
+      "custom_field_values_attributes": [{
+        "id": null,
+        "value": null,
+        "custom_field_id": null
+      }]
+    }],
+    "supplier_invoice_uploads_attributes": [{
+      "id": null,
+      "file": null,
+      "_destroy": null
+    }]
 ```
 > The above command returns JSON structured like this:
 
@@ -327,7 +362,7 @@ Create a new Invoice for the Company ID mentioned in the header.
 
 ```ruby
 RestClient.post(
-  'https://app.procurementexpress.com/api/v1/invoices',
+  'https://app.procurementexpress.com/api/v1/invoices/1/create_comment',
   {
     comment: 'write a comment'
   }
@@ -339,7 +374,7 @@ RestClient.post(
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
+curl 'https://app.procurementexpress.com/api/v1/invoices/1/create_comment'
   -X POST
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
