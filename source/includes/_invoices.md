@@ -93,6 +93,44 @@ Please see the `Query Parameters` for a complete list of potential filter argume
 | invoice_date_filter | string | 'last 7days' | The date-range filter for the updated date with which to filter the Invoice(s) by |
 | page | number |  | The page number for which results are returned (see `Pagination`)
 
+## Inspect an Invoice
+
+```ruby
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/invoices',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+```
+> The above command returns JSON structured like this:
+
+```json
+
+```
+
+This endpoint gives acces to detailed information about a specific Invoice.
+
+### HTTP Request
+`GET /api/v1/invoices`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| --- | --- | --- | --- | --- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
+| 
+
 <-- =============== CREATE =============== -->
 ## Create an Invoice
 
@@ -149,6 +187,7 @@ curl 'https://app.procurementexpress.com/api/v1/invoices'
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
   -H "authentication_token: your token"
+  -d "
 ```
 > The above command returns JSON structured like this:
 
@@ -282,14 +321,16 @@ Create a new Invoice for the Company ID mentioned in the header.
 | supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file |
 
 <-- =============== UPDATE =============== -->
-## Update and Invoice
+## Update an Invoice
 
-<-- =============== ARTICLE =============== -->
-## Article
+## Create a Comment
 
 ```ruby
 RestClient.post(
   'https://app.procurementexpress.com/api/v1/invoices',
+  {
+    comment: 'write a comment'
+  }
   headers = {
     app_company_id: 1,
     authentication_token: 'your token'
@@ -303,20 +344,29 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
   -H "authentication_token: your token"
+  -d "comment: write a comment"
 ```
 > The above command returns JSON structured like this:
 
 ```json
-
+{
+  "id": 21,
+  "comment": "new comment",
+  "invoice_id": 296,
+  "creator_id": 41000,
+  "creator_name": "Team Member",
+  "created_at": 1681988035,
+  "updated_at": 1681988035,
+  "comment_formatted_time": "05:53",
+  "comment_formatted_date": "2023-04-20",
+  "formatted_comment": "<p>new comment</p>"
+}
 ```
 
-Description
-
-### Pagination
-The Invoice list returned is paginated with 10 records per page.
+Leave a comment on an Invoice.
 
 ### HTTP Request
-`GET /api/v1/invoices`
+`POST /api/v1/invoices/:id/create_comment`
 
 ### Query Parameters
 
@@ -324,5 +374,198 @@ The Invoice list returned is paginated with 10 records per page.
 | --- | --- | --- | --- | --- |
 | app_company_id | header | | Company ID number |
 | authentication_token | header | | Authentication Token |
-| 
+| comment | string | | Text to be added as a comment |
 
+## Approve an Invoice
+```ruby
+RestClient.put(
+  'https://app.procurementexpress.com/api/v1/1/invoices/approve',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/1/invoices/approve'
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+Approve an Invoice in the `Pending` status.
+
+### HTTP Request
+`PUT /api/v1/invoices/:id/approve`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| --- | --- | --- | --- | --- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
+
+## Reject an Invoice
+
+```ruby
+RestClient.put(
+  'https://app.procurementexpress.com/api/v1/invoices/1/reject',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/invoices/1/reject'
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+Reject an Invoice in the `Pending` status.
+
+### HTTP Request
+`PUT /api/v1/invoices/:id/reject`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| --- | --- | --- | --- | --- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
+
+## Cancel an Invoice
+
+```ruby
+RestClient.put(
+  'https://app.procurementexpress.com/api/v1/invoices/1/cancel',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel'
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  success: true
+}
+```
+
+Cancel an existing Invoice.
+
+### HTTP Request
+`PUT /api/v1/invoices/:id/cancel`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| --- | --- | --- | --- | --- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
+
+## Archive an Invoice
+
+```ruby
+RestClient.put(
+  'https://app.procurementexpress.com/api/v1/invoices/1/archive',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/archive'
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  success: true
+}
+```
+
+Archive an existing Invoice.
+
+### HTTP Request
+`PUT /api/v1/invoices/:id/archive`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| --- | --- | --- | --- | --- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
+
+## Dearchive an Invoice
+
+```ruby
+RestClient.put(
+  'https://app.procurementexpress.com/api/v1/invoices/1/dearchive',
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/dearchive'
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  success: true
+}
+```
+
+Dearchive an archived Invoice.
+
+### HTTP Request
+`PUT /api/v1/invoices/:id/dearchive`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| --- | --- | --- | --- | --- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
