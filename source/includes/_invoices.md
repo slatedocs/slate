@@ -335,6 +335,204 @@ Create a new Invoice for the Company ID mentioned in the header.
 
 <-- =============== UPDATE =============== -->
 ## Update an Invoice
+```ruby
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/invoices',
+  {
+    "invoice_number": null,
+    "issue_date": null,
+    "validation_date": null,
+    "supplier_id": null,
+    "uploaded_date": null,
+    "received_date": null,
+    "due_date": null,
+    "gross_amount": null,
+    "currency_id": null,
+    "invoice_line_items_attributes": [{
+      "id": null,
+      "sequence_no": null,
+      "description": null,
+      "unit_price": null,
+      "quantity": null,
+      "vat": null,
+      "net_amount": null,
+      "base_net_amount": null,
+      "tax_rate_id": null,
+      "chart_of_account_id": null,
+      "purchase_order_id": null,
+      "purchase_order_item_id": null,
+      "billable_status": null,
+      "_destroy": null,
+      "custom_field_values_attributes": [{
+        "id": null,
+        "value": null,
+        "custom_field_id": null
+      }]
+    }],
+    "supplier_invoice_uploads_attributes": [{
+      "id": null,
+      "file": null,
+      "_destroy": null
+    }]
+  },
+  headers = {
+    app_company_id: 1,
+    authentication_token: 'your token'
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/invoices'
+  -X POST
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+  -d "action: create"
+  -d "invoice[invoice_number] = inv-001",
+  -d "invoice[issue_date] = 2023-01-01",
+  -d "invoice[supplier_id] = null",
+  -d "invoice[received_date] = 2023-01-01",
+  -d "invoice[due_date] = 2023-02-01",
+  -d "invoice[gross_amount] = 1210",
+  -d "invoice[currency_id] = 1000",
+  -d "[invoice[invoice_line_items_attributes][][description] = Airfare",
+  -d "[invoice[invoice_line_items_attributes][][unit_price] = 1000",
+  -d "[invoice[invoice_line_items_attributes][][quantity] = 1",
+  -d "[invoice[invoice_line_items_attributes][][vat] = 21",
+  -d "[invoice[invoice_line_items_attributes][][net_amount] = 1000",
+  -d "[invoice[invoice_line_items_attributes][][purchase_order_id] = 100023456789",
+  -d "[supplier_invoice_uploads_attributes][][file] = https://po-app-staging.s3.amazonaws.com/supplier_invoice_uploads/files/000/000/007/original/test.pdf?1681894799"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "invoice_number": "inv-001",
+  "status": "outstanding",
+  "issue_date": 1681880400,
+  "validation_date": null,
+  "uploaded_date": 1681880400,
+  "due_date": 1681966800,
+  "tax_amount": "0.0",
+  "net_amount": "0.0",
+  "gross_amount": "20.0",
+  "balance_amount": "0.0",
+  "created_at": 1681894799,
+  "updated_at": 1681894799,
+  "currency": {
+    "id": 1000,
+    "iso_code": "EUR",
+    "iso_numeric": "978",
+    "name": "Euro",
+    "symbol": "€",
+    "created_at": "2023-04-19T03:59:57.085-05:00",
+    "updated_at": "2023-04-19T03:59:57.367-05:00"
+  },
+  "supplier": {
+    "id": 45,
+    "name": "Apple",
+    "company_id": 20000,
+    "notes": null,
+    "phone_number": null,
+    "address": null,
+    "email": null,
+    "payment_details": null,
+    "archived": false,
+    "contact_person": null,
+    "tax_number": null,
+    "created_at": "2023-04-19T03:59:57.581-05:00",
+    "updated_at": "2023-04-19T03:59:58.820-05:00",
+    "currency_id": null,
+    "department_ids": [],
+    "third_party_id_mappings": [],
+    "external_vendor_id": null
+  },
+  "invoice_line_items": [{
+    "id": 9,
+    "sequence_no": 1,
+    "description": "Advertising",
+    "unit_price": "100.0",
+    "quantity": "10.0",
+    "vat": "5.0",
+    "net_amount": "1000.0",
+    "base_net_amount": "1000.0",
+    "deleted_at": null,
+    "billable_status": null,
+    "tax_rate_id": null,
+    "chart_of_account_id": null,
+    "invoice_id": 7,
+    "purchase_order_id": 30000,
+    "purchase_order_item_id": 90,
+    "markup_info": null,
+    "created_at": 1681894800,
+    "updated_at": 1681894800
+  }],
+  "purchase_orders": [{
+    "id": 30000,
+    "approval_key": null,
+    "creator_name": "Team Member",
+    "amount": "1600.0",
+    "status": "pending",
+    "supplier_name": "Apple",
+    "keywords": "30000 Apple Team Member  pending 1680.00   iPhone 840.0 800.0   iPhone 840.0 800.0",
+    "created_at": 1681894796000,
+    "currency_id": 1000,
+    "currency_symbol": "€",
+    "currency_iso_code": "EUR",
+    "total_gross_amount": "1680.0",
+    "total_net_amount": "1600.0",
+    "base_gross_amount": 1680.0,
+    "submitted_on": 1681894798000,
+    "share_key": "GCFJSAFMLFVGXFBSFIPQXFUEHHMKXQQN20230419035958",
+    "department_id": null,
+    "department_name": null
+  }],
+  "supplier_invoice_uploads": [{
+    "id": 7,
+    "file_file_name": "test.pdf",
+    "file_content_type": "application/pdf",
+    "file_file_size": 13264,
+    "url": "https://po-app-staging.s3.amazonaws.com/supplier_invoice_uploads/files/000/000/007/original/test.pdf?1681894799"
+  }],
+  "histories": [],
+  "comments": []
+}
+
+```
+
+Update an Invoice. THIS SECTION IS BEING WORKED ON.
+
+### HTTP Request
+`GET /api/v1/invoices/create`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| ------ | ---- | ------- | ----------- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
+| action | string | | The name of the action that processes the request |
+| gross_amount | string | | Gross amount of the invoice |
+| due_date | string | | Due date of the invoice |
+| uploaded_date | string | | Date on which the invoice was uploaded |
+| issue_date | string | | Date on which the invoice was issued |
+| received_date | string | | Date on which the invoice was received |
+| currency_id | string | | ID of the currency used for the invoice |
+| company_id | string | | ID of the company that issued the invoice |
+| invoice_number | string | | Unique identifier for the invoice |
+| supplier_id | string | | ID of the supplier that the invoice is being issued to |
+| invoice_line_items_attributes | array | | An array of invoice line items that belongs to the invoice |
+| invoice_line_items_attributes.description | string | | Description of the invoice line item |
+| invoice_line_items_attributes.unit_price | string | | Price per unit of the invoice line item |
+| invoice_line_items_attributes.quantity | string | | Quantity of the invoice line item |
+| invoice_line_items_attributes.vat | string | | VAT of the invoice line item |
+| invoice_line_items_attributes.net_amount | string | | Net amount of the invoice line item |
+| invoice_line_items_attributes.purchase_order_id | string || ID of the purchase order associated with the invoice line item |
+| invoice_line_items_attributes.purchase_order_item_id | string | | ID of the purchase order item associated with the invoice line item |
+| supplier_invoice_uploads_attributes | array| | An array of invoice uploads that belong to the supplier |
+| supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file URL |
 
 ## Create a Comment
 
