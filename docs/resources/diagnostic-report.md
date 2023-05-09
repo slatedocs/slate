@@ -6,6 +6,7 @@ Response assessments are available through FHIR's [Diagnostic Report](https://hl
 ```
 GET /msk-apim/external/v2/crit/blaze/api/DiagnosticReport
 -H Authorization: Bearer {access_token} 
+-H x-partnerid: {partnerId}
 ```
 ### Query Parameters
 | Parameters      | Type   | Is Required | Description                   |
@@ -20,10 +21,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 === "C# "
 
     ``` c# linenums="1"
-    var client = new RestClient("BASE_URL_PLUS_API_PATH?researchstudy={A1}&x-partnerid={A2}");
+    var client = new RestClient("BASE_URL_PLUS_API_PATH?researchstudy={A1}");
     client.Timeout = -1;
     var request = new RestRequest(Method.GET);
     request.AddHeader("Authorization", "Bearer {ACCESS_TOKEN}");
+    request.AddHeader("x-partnerid", "{partnerId}");
     IRestResponse response = client.Execute(request);
     Console.WriteLine(response.Content);
     ```
@@ -36,9 +38,10 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     conn = http.client.HTTPSConnection("BASE_URL")
     payload = ''
     headers = {
-    'Authorization': 'Bearer {ACCESS_TOKEN}'
+    'Authorization': 'Bearer {ACCESS_TOKEN}',
+    'x-partnerid': '{partnerId}'
     }
-    conn.request("GET", "API_PATH?researchstudy={A1}&x-partnerid={A2}", payload, headers)
+    conn.request("GET", "API_PATH?researchstudy={A1}", payload, headers)
     res = conn.getresponse()
     data = res.read()
     print(data.decode("utf-8"))

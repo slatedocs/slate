@@ -7,6 +7,7 @@ Vital signs data are mapped to FHIR's [Observation](https://hl7.org/fhir/2021Mar
 ```
 GET /msk-apim/external/v2/crit/blaze/api/observation
 -H Authorization: Bearer {access_token} 
+-H x-partnerid: {partnerId}
 ```
 ### Query Parameters
 | Parameters      | Type   | Is Required | Description                       |
@@ -22,10 +23,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 === "C# "
 
     ``` c# linenums="1"
-    var client = new RestClient("BASE_URL_PLUS_API_PATH?category={A2}&x-partnerid={A3}&researchstudy={A1}");
+    var client = new RestClient("BASE_URL_PLUS_API_PATH?category={A2}&researchstudy={A1}");
     client.Timeout = -1;
     var request = new RestRequest(Method.GET);
     request.AddHeader("Authorization", "Bearer {ACCESS_TOKEN}");
+    request.AddHeader("x-partnerid", "{partnerId}");
     IRestResponse response = client.Execute(request);
     Console.WriteLine(response.Content);
     ```
@@ -38,9 +40,10 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     conn = http.client.HTTPSConnection("BASE_URL")
     payload = ''
     headers = {
-    'Authorization': 'Bearer {ACCESS_TOKEN}'
+    'Authorization': 'Bearer {ACCESS_TOKEN}',
+    'x-partnerid': '{partnerId}'
     }
-    conn.request("GET", "API_PATH?category={A2}&x-partnerid={A3}&researchstudy={A1}", payload, headers)
+    conn.request("GET", "API_PATH?category={A2}&researchstudy={A1}", payload, headers)
     res = conn.getresponse()
     data = res.read()
     print(data.decode("utf-8"))
@@ -57,86 +60,157 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
                 "value": "FHIR-T"
             },
             "type": "searchset",
-            "total": 1,
+            "total": 13,
             "link": [
                 {
-                    "relation": "self",
-                    "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=vital-signs&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
-                },
-                {   
-                    "relation": "first",
-                    "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=vital-signs&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+                  "relation": "self",
+                  "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=vital-signs&researchstudy=FHIR-T&page=1"
                 },
                 {
-                    "relation": "last",
-                    "url": null
+                  "relation": "first",
+                  "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=vital-signs&researchstudy=FHIR-T&page=1"
                 },
                 {
-                    "relation": "previous",
-                    "url": null
+                  "relation": "last",
+                  "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=vital-signs&researchstudy=FHIR-T&page=1"
                 },
                 {
-                    "relation": "next",
-                    "url": null
+                  "relation": "previous",
+                  "url": "null"
+                },
+                {
+                  "relation": "next",
+                  "url": "null"
                 }
                 ],
         "entry": [
             {
-                "id": 500009814,
-                "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=vital-signs&researchStudy=FHIR-T&subject=10081007&Id=500009814",
+                "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=vital-signs&researchstudy=FHIR-T&Id=500000832",
                 "resource": {
-                    "id": 500009814,
-                    "resourceType": "Observation",
-                    "extension": [
-                        {
-                            "url": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol"
-                            "valueCode": "FHIR-T",
-                        },
-                        {
-                            "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID"
-                            "valueCode": "C75326",
-                        },
-                    ],
-                    "identifier": [
-                        {
-                            "system": "https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID",
-                            "value": 500009814
-                        }
-                    ],
-                    "status": "final",
-                    "category": [
-                        {
-                            "coding": [
-                                {
-                                    "system": "http://hl7.org/fhir/2021Mar/valueset-observation-category.html",
-                                    "code": "vital-signs",
-                                    "display": "Vital Signs"
-                                }
-                            ],
-                            "text": "Vital Signs"
-                        }
-                    ],
-                    "code": {
-                        "coding": [
-                            {
-                                "system": "https://fhir.mskcc.org/resources/vital-sign/#value-set",
-                                "display": "Pulse/Heart Rate"
-                            }
-                        ],
-                        "text": "Pulse/Heart Rate"
+                "resourceType": "Observation",
+                "id": "500000832",
+                "extension": [
+                    {
+                    "url": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol",
+                    "valueString": "FHIR-T"
                     },
-                    "subject": {
-                        "reference": "Patient/10081007"
-                    },
-                    "encounter": {
-                        "display": "CYCLE1_DAY1"
-                    },
-                    "effectiveDateTime": "2021-12-07T08:06:00+00:00",
-                    "issued": "2021-12-07T08:06:00+00:00",
-                    "valueQuantity": {
-                        "value": 93
+                    {
+                    "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                    "valueString": "C3861001"
                     }
+                ],
+                "identifier": [
+                    {
+                    "system": "https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID",
+                    "value": "500000832"
+                    }
+                ],
+                "status": "final",
+                "category": [
+                    {
+                    "coding": [
+                        {
+                        "system": "http://hl7.org/fhir/2021Mar/valueset-observation-category.html",
+                        "code": "vital-signs",
+                        "display": "Vital Signs"
+                        }
+                    ],
+                    "text": "Vital Signs"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                    {
+                        "system": "https://fhir.mskcc.org/resources/vital-sign/#value-set",
+                        "code": "",
+                        "display": "Pulse/Heart Rate"
+                    }
+                    ],
+                    "text": "Pulse/Heart Rate"
+                },
+                "subject": {
+                    "reference": "Patient/10081004"
+                },
+                "encounter": {
+                    "display": "CYCLE1_DAY1"
+                },
+                "effectiveDateTime": "2021-11-29T07:08:00",
+                "issued": "2023-03-11T16:42:17+05:30",
+                "performer": [
+                    {
+                    "display": "Practitioner/SHEINTUM"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 93,
+                    "unit": "bpm",
+                    "system": "https://ucum.org/"
                 }
+                }
+            },
+            {
+                "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=vital-signs&researchstudy=FHIR-T&Id=500000833",
+                "resource": {
+                "resourceType": "Observation",
+                "id": "500000833",
+                "extension": [
+                    {
+                    "url": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol",
+                    "valueString": "FHIR-T"
+                    },
+                    {
+                    "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                    "valueString": "C3861001"
+                    }
+                ],
+                "identifier": [
+                    {
+                    "system": "https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID",
+                    "value": "500000833"
+                    }
+                ],
+                "status": "final",
+                "category": [
+                    {
+                    "coding": [
+                        {
+                        "system": "http://hl7.org/fhir/2021Mar/valueset-observation-category.html",
+                        "code": "vital-signs",
+                        "display": "Vital Signs"
+                        }
+                    ],
+                    "text": "Vital Signs"
+                    }
+                ],
+                "code": {
+                    "coding": [
+                    {
+                        "system": "https://fhir.mskcc.org/resources/vital-sign/#value-set",
+                        "code": "",
+                        "display": "Pulse Ox (SpO2)"
+                    }
+                    ],
+                    "text": "Pulse Ox (SpO2)"
+                },
+                "subject": {
+                    "reference": "Patient/10081004"
+                },
+                "encounter": {
+                    "display": "CYCLE1_DAY1"
+                },
+                "effectiveDateTime": "2021-11-29T07:08:00",
+                "issued": "2023-03-11T16:42:17+05:30",
+                "performer": [
+                    {
+                    "display": "Practitioner/SHEINTUM"
+                    }
+                ],
+                "valueQuantity": {
+                    "value": 100,
+                    "unit": "SpO2",
+                    "system": "https://ucum.org/"
+                }
+              }
             }
         ]
     }
@@ -148,7 +222,7 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | ------------------------- | ------------------------------------------ |
 | `id`                      | MSK Unique Identifier                      |
 | `extension[0].url`        | Reference to structure definition          |
-| `extension[0].valueCode`  | MSK unique study number                    |
+| `extension[0].valueCode`  | MSK unique Protocol number                 |
 | `extension[1].url`        | Reference to structure definition          |
 | `extension[1].valueCode`  | Sponsor Study Number                       |
 | `identifier.system`       | Reference to structure definition          |
@@ -159,13 +233,17 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | `category.coding.display` | Always `Vital Signs`                       |
 | `category.text`           | Always `Vital Signs`                       |
 | `code.coding.system`      |                                            |
+| `code.coding.code`        | Loinc Code                                 |
 | `code.coding.display`     | Vital Sign Item Type                       |
 | `code.text`               | Vital Sign Item Type                       |
 | `subject.reference`       | `Patient/` + Sponsor assigned subject ID   |
 | `encounter.display`       | Protocol visit                             |
 | `effectiveDateTime`       | Collection datetime                        |
-| `issued`                  | Collection datetime                        |
+| `issued`                  | CRT datetime                               |
+| `performer.display`       | `Practitioner/` + Practitioner (CRT) ID    |
 | `valueQuantity.value`     | Vital sign value                           |
+| `valueQuantity.unit`      | Vital sign unit                            |
+| `valueQuantity.system`    | UCUM Reference                             |
 
 
 ## Value Set

@@ -9,6 +9,7 @@ For guidance on mapping [LOINC](https://www.cdisc.org/kb/articles/loinc-and-sdtm
 ```
 GET /msk-apim/external/v2/crit/blaze/api/observation
 -H Authorization: Bearer {access_token} 
+-H x-partnerid: {partnerId}
 ```
 ### Query Parameters
 | Parameters      | Type   | Is Required | Description                   |
@@ -24,10 +25,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 === "C# "
 
     ``` c# linenums="1"
-    var client = new RestClient("BASE_URL_PLUS_API_PATH?category={A2}&x-partnerid={A3}&researchstudy={A1}");
+    var client = new RestClient("BASE_URL_PLUS_API_PATH?category={A2}&researchstudy={A1}");
     client.Timeout = -1;
     var request = new RestRequest(Method.GET);
     request.AddHeader("Authorization", "Bearer {ACCESS_TOKEN}");
+    request.AddHeader("x-partnerid", "{partnerId}");
     IRestResponse response = client.Execute(request);
     Console.WriteLine(response.Content);
     ```
@@ -40,9 +42,10 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     conn = http.client.HTTPSConnection("BASE_URL")
     payload = ''
     headers = {
-    'Authorization': 'Bearer {ACCESS_TOKEN}'
+    'Authorization': 'Bearer {ACCESS_TOKEN}',
+    'x-partnerid': '{partnerId}'
     }
-    conn.request("GET", "API_PATH?category={A2}&x-partnerid={A3}&researchstudy={A1}", payload, headers)
+    conn.request("GET", "API_PATH?category={A2}&researchstudy={A1}", payload, headers)
     res = conn.getresponse()
     data = res.read()
     print(data.decode("utf-8"))
@@ -55,145 +58,171 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
       {
         "resourceType": "Bundle",
         "identifier": {
-            "system": "https://datapedia.mskcc.org/index.php/IDB.PROTOCOL",
+            "system": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol",
             "value": "FHIR-T"
         },
         "type": "searchset",
-        "total": 2,
+        "total": 103,
         "link": [
             {
-                "relation": "self",
-                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
-            },
-            {   
-                "relation": "first",
-                "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation?category=laboratory&researchstudy=FHIR-T&x-partnerid={A3}&page=1"
+              "relation": "self",
+              "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&researchstudy=FHIR-T&page=1"
             },
             {
-                "relation": "last",
-                "url": null
+              "relation": "first",
+              "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&researchstudy=FHIR-T&page=1"
             },
             {
-                "relation": "previous",
-                "url": null
+              "relation": "last",
+              "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&researchstudy=FHIR-T&page=3"
             },
             {
-                "relation": "next",
-                "url": null
+              "relation": "previous",
+              "url": "null"
+            },
+            {
+              "relation": "next",
+              "url": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&researchstudy=FHIR-T&page=2"
             }
             ],
     "entry": [
         {
-            "id": 500009814,
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009814",
-            "resource": {
-                "id": 500009814,
+                "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&researchstudy=FHIR-T&Id=500009866",
+                "resource": {
                 "resourceType": "Observation",
+                "id": "500009866",
                 "extension": [
-                    {
-                        "valueCode": "FHIR-T",
-                        "url": "http://hl7.org/fhir/StructureDefinition/workflow-researchStudy"
-                    }
+                  {
+                    "url": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol",
+                    "valueString": "FHIR-T"
+                  },
+                  {
+                    "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                    "valueString": "C3861001"
+                  }
                 ],
                 "identifier": [
-                    {
-                        "system": "https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID",
-                        "value": 500009814
-                    }
+                  {
+                    "system": "https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID",
+                    "value": "500009866"
+                  }
                 ],
                 "status": "final",
                 "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                                "code": "laboratory",
-                                "display": "Laboratory"
-                            }
-                        ],
-                        "text": "Laboratory"
-                    }
+                  {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/2021Mar/valueset-observation-category.html",
+                        "code": "laboratory",
+                        "display": "Laboratory"
+                      }
+                    ],
+                    "text": "Laboratory"
+                  }
                 ],
                 "code": {
-                    "coding": [
-                        {
-                            "system": "http://loinc.org",
-                            "code": "704-7",
-                            "display": "ABAS"
-                        }
-                    ],
-                    "text": "ABAS"
+                  "coding": [
+                    {
+                      "system": "https://loinc.org",
+                      "code": "704-7",
+                      "display": "ABAS"
+                    }
+                  ],
+                  "text": "ABAS"
                 },
                 "subject": {
-                    "reference": "Patient/10081007"
+                  "reference": "Patient/10081007"
                 },
-                "effectiveDateTime": "2021-12-07T08:06:00+00:00",
-                "issued": "2021-12-07T08:06:00+00:00",
+                "encounter": {
+                  "display": "CYCLE1_DAY1"
+                },
+                "effectiveDateTime": "2021-12-14T02:03:00",
+                "issued": "2022-02-15T09:47:08+05:30",
+                "performer": [
+                  {
+                    "display": "Practitioner/YAN"
+                  }
+                ],
+                "valueQuantity": {
+                  "value": 0,
+                  "unit": "K/mcL"
+                },
                 "referenceRange": [
-                    {
-                        "text": "0.0-0.2"
-                    }
-                ]
-            }
+                  {
+                    "text": "0.0-0.2"
+                  }
+              ]
+           }
         },
         {
-            "id": 500009863,
-            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/observation/500009863",
+            "fullUrl": "https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&researchstudy=FHIR-T&Id=500009867",
             "resource": {
-                "id": 500009863,
-                "resourceType": "Observation",
-                "extension": [
+            "resourceType": "Observation",
+            "id": "500009867",
+            "extension": [
+                {
+                "url": "https://fhir.mskcc.org/structure-definitions/#IDB.Protocol",
+                "valueString": "FHIR-T"
+                },
+                {
+                "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                "valueString": "C3861001"
+                }
+            ],
+            "identifier": [
+                {
+                "system": "https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID",
+                "value": "500009867"
+                }
+            ],
+            "status": "final",
+            "category": [
+                {
+                "coding": [
                     {
-                        "valueCode": "FHIR-T",
-                        "url": "http://hl7.org/fhir/StructureDefinition/workflow-researchStudy"
+                    "system": "http://hl7.org/fhir/2021Mar/valueset-observation-category.html",
+                    "code": "laboratory",
+                    "display": "Laboratory"
                     }
                 ],
-                "identifier": [
-                    {
-                        "system": "https://datapedia.mskcc.org/index.php/LAB_RESULTS.LR_RESULT_GUID",
-                        "value": 500009863
-                    }
+                "text": "Laboratory"
+                }
+            ],
+            "code": {
+                "coding": [
+                {
+                    "system": "https://loinc.org",
+                    "code": "711-2",
+                    "display": "AEOS"
+                }
                 ],
-                "status": "final",
-                "category": [
-                    {
-                        "coding": [
-                            {
-                                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                                "code": "laboratory",
-                                "display": "Laboratory"
-                            }
-                        ],
-                        "text": "Laboratory"
-                    }
-                ],
-                "code": {
-                    "coding": [
-                        {
-                            "system": "http://loinc.org",
-                            "code": "13945-1",
-                            "display": "URBC"
-                        }
-                    ],
-                    "text": "URBC"
-                },
-                "subject": {
-                    "reference": "Patient/10081007"
-                },
-                "effectiveDateTime": "2021-12-07T08:18:00+00:00",
-                "issued": "2021-12-07T08:18:00+00:00",
-                "valueQuantity": {
-                    "value": 4,
-                    "unit": "/HPF"
-                },
-                "referenceRange": [
-                    {
-                        "text": "0-3"
-                    }
-                ]
-            }
+                "text": "AEOS"
+            },
+            "subject": {
+                "reference": "Patient/10081007"
+            },
+            "encounter": {
+                "display": "CYCLE1_DAY1"
+            },
+            "effectiveDateTime": "2021-12-14T02:03:00",
+            "issued": "2022-02-15T09:47:08+05:30",
+            "performer": [
+                {
+                "display": "Practitioner/YAN"
+                }
+            ],
+            "valueQuantity": {
+                "value": 0.3,
+                "unit": "K/mcL"
+            },
+            "referenceRange": [
+                {
+                "text": "0.0-0.7"
+                }
+            ]
+          }
         }
-    ]
+      ]
     }
   
     ```
@@ -202,11 +231,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | Field                      | Description                                |
 | -------------------------- | ------------------------------------------ |
 | `id`                       | MSK Unique Identifier                      |
-| `extension[0].url`         | FHIR researchStudy extension documentation |
+| `extension[0].url`         | FHIR Structure Definition documentation    |
 | `extension[0].valueCode`   | MSK IRB Protocol Number                    |
-| `extension[1].url`         |                                            |
+| `extension[1].url`         | FHIR Structure Definition documentation    |
 | `extension[1].valueCode`   | Sponsor Study Number                       |
-| `identifier.system`        |                                            |
+| `identifier.system`        | FHIR Structure Definition documentation    |
 | `identifier.value`         | MSK Unique Identifier                      |
 | `status`                   | Hardcoded to `final`                       |
 | `category.coding.system`   | FHIR Observation category documentation    |
@@ -218,10 +247,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 | `code.coding.display`      | MSK test code                              |
 | `code.text`                | MSK test code                              |
 | `subject.reference`        | `Patient/` + Sponsor assigned subject ID   |
-| `encounter.display`        | Protocol visit                             |
 | `effectiveDateTime`        | Specimen collection datetime               |
 | `issued`                   | Specimen datetime                          |
 | `valueQuantity.value`      | Numeric result                             |
 | `valueQuantity.unit`       | Test Unit                                  |
 | `valueString`              | Text result                                |
 | `referenceRange.text`      | Reference range                            |
+| `encounter.display`        | Protocol visit                             |
+| `performer.display`        | `Practitioner/` + Practitioner (CRT) ID    |

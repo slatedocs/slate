@@ -4,6 +4,7 @@
 - Release of new resources
     - Diagnostic Report (Response data)
     - Observation (Response Imaging - lesion measurements)
+    - Group
 
 ## Version 2.0.0 
 August 2022

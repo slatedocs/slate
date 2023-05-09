@@ -9,17 +9,17 @@
       
       
       
-        <link rel="prev" href="../medications/">
+        <link rel="prev" href="../diagnostic-report/">
       
       
-        <link rel="next" href="../vital-sign/">
+        <link rel="next" href="../patient/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>Observation (Labs) - Clinical Research FHIR Guide</title>
+        <title>Group - Clinical Research FHIR Guide</title>
       
     
     
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Observation (Labs)
+              Group
             
           </span>
         </div>
@@ -297,48 +297,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../group/" class="md-nav__link">
-        Group
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../patient/" class="md-nav__link">
-        Patient (Demographics)
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../medications/" class="md-nav__link">
-        Medication Statement
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -349,12 +307,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Observation (Labs)
+          Group
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Observation (Labs)
+        Group
       </a>
       
         
@@ -421,6 +379,48 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patient/" class="md-nav__link">
+        Patient (Demographics)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../medications/" class="md-nav__link">
+        Medication Statement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-result/" class="md-nav__link">
+        Observation (Labs)
+      </a>
     </li>
   
 
@@ -606,15 +606,11 @@
                   
 
 
-  <h1>Observation (Labs)</h1>
+  <h1>Group</h1>
 
-<p>Laboratory data are mapped to FHIR's <a href="https://hl7.org/fhir/2021Mar/observation.html" target="blank">Observation</a> resource. Data are ingested into the Clinical Research Data Warehouse via HL7 message from MSK's Laboratory Information System (LIS) and mapped to a trial visit by clinical research staff.</p>
-<blockquote>
-<p><strong><em>NOTE:</em></strong> If available in the source data, a LOINC code is mapped to <code>code.coding.code</code>, otherwise the <code>code.coding.code</code> does not appear in the response. Please refer to the protocol specific Data Transfer Specification for a list of test names and LOINC codes relevant to your study.</p>
-</blockquote>
-<p>For guidance on mapping <a href="https://www.cdisc.org/kb/articles/loinc-and-sdtm">LOINC</a> codes to <a href="https://datascience.cancer.gov/resources/cancer-vocabulary/cdisc-terminology">CDISC</a> or for additional test information, such as the analyte measured or specimen type upon which the observation was made, check out <a href="https://loinc.org/fhir/">LOINC's FHIR terminology service</a>. </p>
+<p>Response assessments are available through FHIR's <a href="https://hl7.org/fhir/R4/group.html" target="blank">Group</a>.</p>
 <h2 id="request">Request</h2>
-<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v2/crit/blaze/api/observation
+<div class="highlight"><pre><span></span><code>GET /msk-apim/external/v2/crit/blaze/api/Group
 -H Authorization: Bearer {access_token} 
 -H x-partnerid: {partnerId}
 </code></pre></div>
@@ -629,12 +625,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>category</code></td>
-<td>string</td>
-<td>true</td>
-<td>For lab data use <code>laboratory</code></td>
-</tr>
 <tr>
 <td><code>researchstudy</code></td>
 <td>string</td>
@@ -660,7 +650,7 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestClient</span><span class="p">(</span><span class="s">&quot;BASE_URL_PLUS_API_PATH?category={A2}&amp;researchstudy={A1}&quot;</span><span class="p">);</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestClient</span><span class="p">(</span><span class="s">&quot;BASE_URL_PLUS_API_PATH?researchstudy={A1}&quot;</span><span class="p">);</span>
 <span class="n">client</span><span class="p">.</span><span class="n">Timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">;</span>
 <span class="kt">var</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">GET</span><span class="p">);</span>
 <span class="n">request</span><span class="p">.</span><span class="n">AddHeader</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bearer {ACCESS_TOKEN}&quot;</span><span class="p">);</span>
@@ -689,7 +679,7 @@
 <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer </span><span class="si">{ACCESS_TOKEN}</span><span class="s1">&#39;</span><span class="p">,</span>
 <span class="s1">&#39;x-partnerid&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{partnerId}</span><span class="s1">&#39;</span>
 <span class="p">}</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;API_PATH?category=</span><span class="si">{A2}</span><span class="s2">&amp;researchstudy=</span><span class="si">{A1}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;API_PATH?researchstudy=</span><span class="si">{A1}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
@@ -700,169 +690,64 @@
 <h2 id="response">Response</h2>
 <details class="success">
 <summary>Successful Payload Example</summary>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bundle&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#IDB.Protocol&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fhir-t&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;searchset&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&amp;researchstudy=FHIR-T&amp;page=1&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;first&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&amp;researchstudy=FHIR-T&amp;page=1&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;last&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&amp;researchstudy=FHIR-T&amp;page=3&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previous&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;null&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;next&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&amp;researchstudy=FHIR-T&amp;page=2&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="p">],</span>
-<span class="nt">&quot;entry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&amp;researchstudy=FHIR-T&amp;Id=500009866&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Observation&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500009866&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;extension&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#IDB.Protocol&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;valueString&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span>
-<span class="w">              </span><span class="p">},</span>
-<span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;valueString&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C3861001&quot;</span>
-<span class="w">              </span><span class="p">}</span>
-<span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500009866&quot;</span>
-<span class="w">              </span><span class="p">}</span>
-<span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;final&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://hl7.org/fhir/2021Mar/valueset-observation-category.html&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laboratory&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span>
-<span class="w">                  </span><span class="p">}</span>
-<span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span>
-<span class="w">              </span><span class="p">}</span>
-<span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://loinc.org&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;704-7&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABAS&quot;</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">              </span><span class="p">],</span>
-<span class="w">              </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABAS&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081007&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;encounter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CYCLE1_DAY1&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;effectiveDateTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-12-14T02:03:00&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;issued&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-02-15T09:47:08+05:30&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;performer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Practitioner/YAN&quot;</span>
-<span class="w">              </span><span class="p">}</span>
-<span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;valueQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;K/mcL&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;referenceRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0-0.2&quot;</span>
-<span class="w">              </span><span class="p">}</span>
-<span class="w">          </span><span class="p">]</span>
-<span class="w">       </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/group?researchstudy=fhir-t&amp;page=1&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/Observation?category=laboratory&amp;researchstudy=FHIR-T&amp;Id=500009867&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;first&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/group?researchstudy=fhir-t&amp;page=1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;last&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/group?researchstudy=fhir-t&amp;page=1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;previous&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;null&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;next&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;null&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;entry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;fullUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://apigateway.apps.stageapi.mskcc.org/msk-apim/external/v2/crit/blaze/api/group?researchstudy=fhir-t&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Observation&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500009867&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;extension&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#IDB.Protocol&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;valueString&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#SponsorID&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;valueString&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C3861001&quot;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;resourceType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Group&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#LAB_RESULTS.LR_RESULT_GUID&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500009867&quot;</span>
+<span class="w">            </span><span class="nt">&quot;use&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;usual&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://fhir.mskcc.org/structure-definitions/#IDB.Protocol&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FHIR-T&quot;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;final&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;person&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;member&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://hl7.org/fhir/2021Mar/valueset-observation-category.html&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;laboratory&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laboratory&quot;</span>
+<span class="w">            </span><span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081001&quot;</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;coding&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://loinc.org&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;711-2&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AEOS&quot;</span>
+<span class="w">            </span><span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081004&quot;</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AEOS&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081007&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;encounter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CYCLE1_DAY1&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;effectiveDateTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-12-14T02:03:00&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;issued&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-02-15T09:47:08+05:30&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;performer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Practitioner/YAN&quot;</span>
+<span class="w">            </span><span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Patient/10081007&quot;</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;valueQuantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;K/mcL&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;referenceRange&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0-0.7&quot;</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">      </span><span class="p">}</span>
@@ -881,104 +766,24 @@
 </thead>
 <tbody>
 <tr>
-<td><code>id</code></td>
-<td>MSK Unique Identifier</td>
-</tr>
-<tr>
-<td><code>extension[0].url</code></td>
-<td>FHIR Structure Definition documentation</td>
-</tr>
-<tr>
-<td><code>extension[0].valueCode</code></td>
-<td>MSK IRB Protocol Number</td>
-</tr>
-<tr>
-<td><code>extension[1].url</code></td>
-<td>FHIR Structure Definition documentation</td>
-</tr>
-<tr>
-<td><code>extension[1].valueCode</code></td>
-<td>Sponsor Study Number</td>
+<td><code>identifier.use</code></td>
+<td>always <code>Usual</code></td>
 </tr>
 <tr>
 <td><code>identifier.system</code></td>
-<td>FHIR Structure Definition documentation</td>
+<td>Reference to structure definition</td>
 </tr>
 <tr>
 <td><code>identifier.value</code></td>
-<td>MSK Unique Identifier</td>
+<td>Unique research study number</td>
 </tr>
 <tr>
-<td><code>status</code></td>
-<td>Hardcoded to <code>final</code></td>
+<td><code>type</code></td>
+<td>always <code>person</code></td>
 </tr>
 <tr>
-<td><code>category.coding.system</code></td>
-<td>FHIR Observation category documentation</td>
-</tr>
-<tr>
-<td><code>category.coding.code</code></td>
-<td>FHIR Observation category code</td>
-</tr>
-<tr>
-<td><code>category.coding.display</code></td>
-<td>FHIR Observation category display</td>
-</tr>
-<tr>
-<td><code>category.text</code></td>
-<td>FHIR Observation category</td>
-</tr>
-<tr>
-<td><code>code.coding.system</code></td>
-<td>LOINC documentation</td>
-</tr>
-<tr>
-<td><code>code.coding.code</code></td>
-<td>LOINC code</td>
-</tr>
-<tr>
-<td><code>code.coding.display</code></td>
-<td>MSK test code</td>
-</tr>
-<tr>
-<td><code>code.text</code></td>
-<td>MSK test code</td>
-</tr>
-<tr>
-<td><code>subject.reference</code></td>
-<td><code>Patient/</code> + Sponsor assigned subject ID</td>
-</tr>
-<tr>
-<td><code>effectiveDateTime</code></td>
-<td>Specimen collection datetime</td>
-</tr>
-<tr>
-<td><code>issued</code></td>
-<td>Specimen datetime</td>
-</tr>
-<tr>
-<td><code>valueQuantity.value</code></td>
-<td>Numeric result</td>
-</tr>
-<tr>
-<td><code>valueQuantity.unit</code></td>
-<td>Test Unit</td>
-</tr>
-<tr>
-<td><code>valueString</code></td>
-<td>Text result</td>
-</tr>
-<tr>
-<td><code>referenceRange.text</code></td>
-<td>Reference range</td>
-</tr>
-<tr>
-<td><code>encounter.display</code></td>
-<td>Protocol visit</td>
-</tr>
-<tr>
-<td><code>performer.display</code></td>
-<td><code>Practitioner/</code> + Practitioner (CRT) ID</td>
+<td><code>member[x].entity.reference</code></td>
+<td><code>Patient/</code> + subject study ID</td>
 </tr>
 </tbody>
 </table>

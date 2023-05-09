@@ -6,6 +6,7 @@ This is not a visit specific data element and does not require any adjudication 
 ```
 GET /msk-apim/external/v2/crit/blaze/api/MedicationStatement
 -H Authorization: Bearer {access_token} 
+-H x-partnerid: {partnerId}
 ```
 
 ### Query Parameters
@@ -20,10 +21,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
 === "C# "
 
     ``` c# linenums="1"
-    var client = new RestClient("BASE_URL_PLUS_API_PATH?researchstudy={A1}&x-partnerid={A2}");
+    var client = new RestClient("BASE_URL_PLUS_API_PATH?researchstudy={A1}");
     client.Timeout = -1;
     var request = new RestRequest(Method.GET);
     request.AddHeader("Authorization", "Bearer {ACCESS_TOKEN}");
+    request.AddHeader("x-partnerid", "{partnerId}");
     IRestResponse response = client.Execute(request);
     Console.WriteLine(response.Content);
     ```
@@ -36,9 +38,10 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
     conn = http.client.HTTPSConnection("BASE_URL")
     payload = ''
     headers = {
-    'Authorization': 'Bearer {ACCESS_TOKEN}'
+    'Authorization': 'Bearer {ACCESS_TOKEN}',
+    'x-partnerid': '{partnerId}'
     }
-    conn.request("GET", "API_PATH?researchstudy={A1}&x-partnerid={A2}", payload, headers)
+    conn.request("GET", "API_PATH?researchstudy={A1}", payload, headers)
     res = conn.getresponse()
     data = res.read()
     print(data.decode("utf-8"))
@@ -90,11 +93,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
                         "valueCode": "FHIR-T"
                     },
                     {
-                        "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/",
                         "valueCode": "C3861001"
                     },
                     {
-                        "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/",
                         "valueCode": "40: end datetime derived: populated with idb.hml_client_prescription_hx.hcpx_hx_discontinued_dt when hcpr_status_type = 3 (Discontinued),18: days_supply derived: calculated by formula idb.hml_client_prescription.hcpr_duration_amt * (idb.hml_client_prescri"
                     }
                 ],
@@ -163,11 +166,11 @@ For a list of optional filtering parameters visit the [Searching page](/searchin
                         "valueCode": "FHIR-T"
                     },
                     {
-                        "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/",
                         "valueCode": "C3861001"
                     },
                     {
-                        "url": "https://fhir.mskcc.org/structure-definitions/#SponsorID",
+                        "url": "https://mskcc.github.io/critfhirdeveloper/identifiers/",
                         "valueCode": "18: days_supply derived: calculated by formula idb.hml_client_prescription.hcpr_duration_amt * (idb.hml_client_prescription.hcpr_refills + 1)"
                     }
                 ],

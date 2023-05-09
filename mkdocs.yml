@@ -27,12 +27,14 @@ nav:
   - "Available Resources":
       - "Adverse Event": resources/adverse-event.md
       - "Diagnostic Report (Response)": resources/diagnostic-report.md
+      - "Group": resources/group.md
       - "Patient (Demographics)": resources/patient.md
       - "Medication Statement": resources/medications.md
       - "Observation (Labs)": resources/lab-result.md
       - "Observation (Vitals)": resources/vital-sign.md
       - "Observation (Response Imaging)": resources/imaging.md
   - Structure Definitions: structure-definitions.md
+  - Errors: errors.md
   - "Release Notes": release-notes.md
   - "Contact Us": contact-us.md
 markdown_extensions:
