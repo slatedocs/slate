@@ -187,42 +187,21 @@ curl 'https://app.procurementexpress.com/api/v1/invoices'
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
   -H "authentication_token: your token"
-  -d "controller: "
-  -d "action"
-  -d "invoice[invoice_number": null,
-  -d "invoice[issue_date": null,
-  -d "invoice[validation_date": null,
-  -d "invoice[supplier_id": null,
-  -d "invoice[uploaded_date": null,
-  -d "invoice[received_date": null,
-  -d "invoice[due_date": null,
-  -d "invoice[gross_amount": null,
-  -d "invoice[currency_id": null,
-  -d "invoice[invoice_line_items_attributes][][id] = null,
-  -d "invoice[invoice_line_items_attributes][][sequence_no": null,
-  -d "invoice[invoice_line_items_attributes][][description": null,
-  -d "invoice[invoice_line_items_attributes][][unit_price": null,
-  -d "invoice[invoice_line_items_attributes][][quantity": null,
-  -d "invoice[invoice_line_items_attributes][][vat": null,
-  -d "invoice[invoice_line_items_attributes][][net_amount": null,
-  -d "invoice[invoice_line_items_attributes][][base_net_amount": null,
-  -d "invoice[invoice_line_items_attributes][][tax_rate_id": null,
-  -d "invoice[invoice_line_items_attributes][][chart_of_account_id": null,
-  -d "invoice[invoice_line_items_attributes][][purchase_order_id": null,
-  -d "invoice[invoice_line_items_attributes][][purchase_order_item_id": null,
-  -d "invoice[invoice_line_items_attributes][][billable_status": null,
-  -d "invoice[invoice_line_items_attributes][][_destroy": null,
-      "custom_field_values_attributes": [{
-        "id": null,
-        "value": null,
-        "custom_field_id": null
-      }]
-    }],
-    "supplier_invoice_uploads_attributes": [{
-      "id": null,
-      "file": null,
-      "_destroy": null
-    }]
+  -d "action: create"
+  -d "invoice[invoice_number] = inv-001",
+  -d "invoice[issue_date] = 2023-01-01",
+  -d "invoice[supplier_id] = null",
+  -d "invoice[received_date] = 2023-01-01",
+  -d "invoice[due_date] = 2023-02-01",
+  -d "invoice[gross_amount] = 1210",
+  -d "invoice[currency_id] = 1000",
+  -d "[invoice[invoice_line_items_attributes][][description] = Airfare",
+  -d "[invoice[invoice_line_items_attributes][][unit_price] = 1000",
+  -d "[invoice[invoice_line_items_attributes][][quantity] = 1",
+  -d "[invoice[invoice_line_items_attributes][][vat] = 21",
+  -d "[invoice[invoice_line_items_attributes][][net_amount] = 1000",
+  -d "[invoice[invoice_line_items_attributes][][purchase_order_id] = 100023456789",
+  -d "[supplier_invoice_uploads_attributes][][file] = https://po-app-staging.s3.amazonaws.com/supplier_invoice_uploads/files/000/000/007/original/test.pdf?1681894799"
 ```
 > The above command returns JSON structured like this:
 
@@ -344,7 +323,6 @@ Create a new Invoice for the Company ID mentioned in the header.
 | invoice_number | string | | Unique identifier for the invoice |
 | supplier_id | string | | ID of the supplier that the invoice is being issued to |
 | invoice_line_items_attributes | array | | An array of invoice line items that belongs to the invoice |
-| invoice_line_items_attributes.sequence_no | string | | Sequence number of the invoice line item |
 | invoice_line_items_attributes.description | string | | Description of the invoice line item |
 | invoice_line_items_attributes.unit_price | string | | Price per unit of the invoice line item |
 | invoice_line_items_attributes.quantity | string | | Quantity of the invoice line item |
@@ -353,7 +331,7 @@ Create a new Invoice for the Company ID mentioned in the header.
 | invoice_line_items_attributes.purchase_order_id | string || ID of the purchase order associated with the invoice line item |
 | invoice_line_items_attributes.purchase_order_item_id | string | | ID of the purchase order item associated with the invoice line item |
 | supplier_invoice_uploads_attributes | array| | An array of invoice uploads that belong to the supplier |
-| supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file |
+| supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file URL |
 
 <-- =============== UPDATE =============== -->
 ## Update an Invoice
