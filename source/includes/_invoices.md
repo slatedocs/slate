@@ -1,20 +1,19 @@
 # Invoices
 
-<-- =============== LIST =============== -->
 ## List Invoices
 
 ```ruby
 RestClient.get(
-  'https://app.procurementexpress.com/api/v1/invoices',
+  "https://app.procurementexpress.com/api/v1/invoices",
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/invoices'
+curl "https://app.procurementexpress.com/api/v1/invoices"
   -X GET
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -26,8 +25,8 @@ curl 'https://app.procurementexpress.com/api/v1/invoices'
 {
   "invoices": [{
     "id": 1,
-    "invoice_number": 'Invoice 1',
-    "status": 'ready_to_pay',
+    "invoice_number": "Invoice 1",
+    "status": "ready_to_pay",
     "issue_date": 1683522000,
     "validation_date": 1683522000,
     "uploaded_date": 1683522000,
@@ -37,9 +36,9 @@ curl 'https://app.procurementexpress.com/api/v1/invoices'
     "gross_amount": 1150.0,
     "balance_amount": 1150.0,
     "supplier_id": 1,
-    "supplier_name": 'Supplier Name',
+    "supplier_name": "Supplier Name",
     "purchase_order_references": [{
-      '1-1970-01-01'
+      "1-1970-01-01"
     }],
     "can_approve": false,
     "can_reject": false,
@@ -48,12 +47,12 @@ curl 'https://app.procurementexpress.com/api/v1/invoices'
     "can_dearchive": false,
     "currency": {
       "id": 162,
-      "iso_code": 'ZAR',
+      "iso_code": "ZAR",
       "iso_numeric": 710,
-      "name": 'South African Rand',
-      "symbol": 'R',
-      "created_at": '2015-01-01T04:21:56.144-06:00',
-      "updated_at": '2023-05-08T03:02:08.904-05:00'
+      "name": "South African Rand",
+      "symbol": "R",
+      "created_at": "2015-01-01T04:21:56.144-06:00",
+      "updated_at": "2023-05-08T03:02:08.904-05:00"
     }
   }],
   "meta": {
@@ -90,23 +89,23 @@ Please see the `Query Parameters` for a complete list of potential filter argume
 | requester_id | number |  | The ID Number of the user thgat requested the Invoice(s) |
 | approver_id | number |  | The ID Number of the user that approved the Invoice(s) |
 | supplier_id | number |  | The ID Number of the supplier the Invoice(s) are associated with |
-| invoice_date_filter | string | 'last 7days' | The date-range filter for the updated date with which to filter the Invoice(s) by |
+| invoice_date_filter | string | "last 7days" | The date-range filter for the updated date with which to filter the Invoice(s) by |
 | page | number |  | The page number for which results are returned (see `Pagination`)
 
-## Inspect an Invoice
+## Invoice Details
 
 ```ruby
 RestClient.post(
-  'https://app.procurementexpress.com/api/v1/invoices/1',
+  "https://app.procurementexpress.com/api/v1/invoices/1",
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/invoices/1'
+curl "https://app.procurementexpress.com/api/v1/invoices/1"
   -X POST
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -131,12 +130,11 @@ This endpoint gives acces to detailed information about a specific Invoice.
 | authentication_token | header | | Authentication Token |
 | 
 
-<-- =============== CREATE =============== -->
 ## Create an Invoice
 
 ```ruby
 RestClient.post(
-  'https://app.procurementexpress.com/api/v1/invoices',
+  "https://app.procurementexpress.com/api/v1/invoices",
   {
     "invoice_number": null,
     "issue_date": null,
@@ -176,13 +174,13 @@ RestClient.post(
   },
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/invoices'
+curl "https://app.procurementexpress.com/api/v1/invoices"
   -X POST
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -333,11 +331,10 @@ Create a new Invoice for the Company ID mentioned in the header.
 | supplier_invoice_uploads_attributes | array| | An array of invoice uploads that belong to the supplier |
 | supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file URL |
 
-<-- =============== UPDATE =============== -->
 ## Update an Invoice
 ```ruby
 RestClient.post(
-  'https://app.procurementexpress.com/api/v1/invoices',
+  "https://app.procurementexpress.com/api/v1/invoices",
   {
     "invoice_number": null,
     "issue_date": null,
@@ -377,13 +374,13 @@ RestClient.post(
   },
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/invoices'
+curl "https://app.procurementexpress.com/api/v1/invoices"
   -X POST
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -538,19 +535,19 @@ Update an Invoice. THIS SECTION IS BEING WORKED ON.
 
 ```ruby
 RestClient.post(
-  'https://app.procurementexpress.com/api/v1/invoices/1/create_comment',
+  "https://app.procurementexpress.com/api/v1/invoices/1/create_comment",
   {
-    comment: 'write a comment'
+    comment: "write a comment"
   }
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/invoices/1/create_comment'
+curl "https://app.procurementexpress.com/api/v1/invoices/1/create_comment"
   -X POST
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -590,16 +587,16 @@ Leave a comment on an Invoice.
 ## Approve an Invoice
 ```ruby
 RestClient.put(
-  'https://app.procurementexpress.com/api/v1/1/invoices/approve',
+  "https://app.procurementexpress.com/api/v1/1/invoices/approve",
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/1/invoices/approve'
+curl "https://app.procurementexpress.com/api/v1/1/invoices/approve"
   -X PUT
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -629,16 +626,16 @@ Approve an Invoice in the `Pending` status.
 
 ```ruby
 RestClient.put(
-  'https://app.procurementexpress.com/api/v1/invoices/1/reject',
+  "https://app.procurementexpress.com/api/v1/invoices/1/reject",
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/invoices/1/reject'
+curl "https://app.procurementexpress.com/api/v1/invoices/1/reject"
   -X PUT
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -668,16 +665,16 @@ Reject an Invoice in the `Pending` status.
 
 ```ruby
 RestClient.put(
-  'https://app.procurementexpress.com/api/v1/invoices/1/cancel',
+  "https://app.procurementexpress.com/api/v1/invoices/1/cancel",
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel'
+curl "https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel"
   -X PUT
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -687,7 +684,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/cancel'
 
 ```json
 {
-  success: true
+  "success": true
 }
 ```
 
@@ -707,16 +704,16 @@ Cancel an existing Invoice.
 
 ```ruby
 RestClient.put(
-  'https://app.procurementexpress.com/api/v1/invoices/1/archive',
+  "https://app.procurementexpress.com/api/v1/invoices/1/archive",
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/archive'
+curl "https://app.procurementexpress.com/api/v1/purchase_orders/1/archive"
   -X PUT
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -726,7 +723,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/archive'
 
 ```json
 {
-  success: true
+  "success": true
 }
 ```
 
@@ -746,16 +743,16 @@ Archive an existing Invoice.
 
 ```ruby
 RestClient.put(
-  'https://app.procurementexpress.com/api/v1/invoices/1/dearchive',
+  "https://app.procurementexpress.com/api/v1/invoices/1/dearchive",
   headers = {
     app_company_id: 1,
-    authentication_token: 'your token'
+    authentication_token: "your token"
   }
 )
 ```
 
 ```shell
-curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/dearchive'
+curl "https://app.procurementexpress.com/api/v1/purchase_orders/1/dearchive"
   -X PUT
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -765,7 +762,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/dearchive'
 
 ```json
 {
-  success: true
+  "success": true
 }
 ```
 
