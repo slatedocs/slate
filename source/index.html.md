@@ -22,6 +22,7 @@ includes:
   - departments
   - products
   - purchase_orders
+  - invoices
   - payments
   - suppliers
   - send_to_supplier_templates
