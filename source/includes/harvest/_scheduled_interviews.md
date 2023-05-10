@@ -417,7 +417,7 @@ Create a new Scheduled Interview.
 
 [DEPRECATED] ~~`POST https://harvest.greenhouse.io/v1/scheduled_interviews`~~
 
-POST `https://harvest.greenhouse.io/v2/scheduled_interviews`
+`POST https://harvest.greenhouse.io/v2/scheduled_interviews`
 
 Greenhouse deprecated the V1 endpoint on April 5th, 2020. The V2 endpoint was released so the validations performed by Harvest matched the validations performed when creating an interview in the Greenhouse application. Specifically, Greenhouse allows the addition of users with e-mail addresses that do not match any users in the organization and users who do not otherwise have permission to see the job, both of which Harvest prevented. Changing the validations in this way was considered a breaking change and a second version of the endpoint was released. The V1 endpoint should not be used as it is no longer supported and will be removed in a future release.
 
@@ -525,7 +525,7 @@ only update Scheduled Interviews in the following statues: Scheduled, Awaiting F
 
 DEPRECATED ~~`PATCH https://harvest.greenhouse.io/v1/scheduled_interviews/{id}`~~
 
-`PATCH: `PATCH https://harvest.greenhouse.io/v2/scheduled_interviews/{id}`
+`PATCH https://harvest.greenhouse.io/v2/scheduled_interviews/{id}`
 
 Greenhouse deprecated the V1 endpoint on April 5th, 2020. The V2 endpoint was released so the validations performed by Harvest matched the validations performed when updating an interview in the Greenhouse application. Specifically, Greenhouse allows the addition of users with e-mail addresses that do not match any users in the organization and users who do not otherwise have permission to see the job, both of which Harvest prevented. Changing the validations in this way was considered a breaking change and a second version of the endpoint was released. The V1 endpoint should not be used as it is no longer supported and will be removed in a future release.
 

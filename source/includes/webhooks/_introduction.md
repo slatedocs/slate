@@ -66,7 +66,7 @@ Currently, Web Hooks for all event types include these common attributes:
 | `application.candidate.phone_numbers[].type` | One of: `home`, `work`, `mobile`, `skype`, `other`
 | `application.candidate.addresses[].type` | Application Candidate Addresses Type
 | `application.candidate.email_addresses[].type` | One of: `personal`, `work`, `other`
-| `application.candidate.attachments[].type` | One of: `admin_only`, `public`, `cover_letter`, `offer_packet`, `resume`, `take_home_test`, `offer_letter`, `signed_offer_letter` <br/><br/> Note: Attachments expire in 7 days.
+| `application.candidate.attachments[].type` | One of: `cover_letter`, `offer_packet`, `resume`, `take_home_test`, `offer_letter`, `signed_offer_letter` <br/><br/> Note: Attachments expire in 7 days.
 | `application.candidate.external_id` | An arbitrary ID provided by an external source; does not map to another entity in Greenhouse.
 | `application.prospect` | If true, this is a prospect application which means that the associated person is a prospect and has not yet applied for this job. (Only prospects will have non-null values for `prospect_owner`, `prospect_pool`, or `prospect_stage` under `prospect_detail`)  |
 | `application.prospect_detail.prospect_owner` | The user responsible for keeping track of the prospect. Either null or a user's `id` and `name` |
@@ -121,6 +121,17 @@ Currently, Web Hooks for all event types include these common attributes:
                     "unit": "USD"
                 }
             },
+            "compensation_field": {
+                "name": "Compensation Field",
+                "type": "currency",
+                "value": {
+                    "amount": 80000,
+                    "unit": "USD"
+                },
+                "compensation_type": "base",
+                "frequency": "annually",
+                "rationale": "base rationale"
+            },
             "currency_range_field": {
                 "name": "Currency Range Field",
                 "type": "currency_range",
@@ -169,20 +180,22 @@ Currently, Web Hooks for all event types include these common attributes:
 
 Custom fields may be attached to several objects within the Greenhouse Recruiting system. These fields may appear on candidates, applications, offers, and other objects in the system. These fields share several properties and are always indicated in web hooks by the "custom_fields" element. However, the "value" attribute of custom fields are different depending on the "type" attribute, so you must check the "type" attribute in order to predict what will be included in the value "attribute". As described in the previous section, the type attribute will be one of short_text, long_text, boolean, single_select, multi_select, currency, currency_range, number, number_range, date, url, or user. An example of each of these fields' expected value format are provided.
 
+Compensation Field is a special type of `currency` custom field. If a currency field is marked as a compensation field, three additional fields will be included: `compensation_type`, `rationale`, `frequency`
+
 ## Disabled web hooks
 
 If a web hook is disabled, it will not trigger when the event occurs. Web hooks become disabled automatically if a ping event fails on create or update. They need to be manually re-enabled if this occurs.
 
 ## Retry policy
 
-In the event of a failed webhook request (due to timeout, a non HTTP 200 response, or network issues), Greenhouse will attempt a maximum of 6 retries according to the formula on the right:
+In the event of a failed webhook request (due to timeout, a non HTTP 200 response, or network issues), Greenhouse will attempt a maximum of 5 retries according to the formula on the right:
 
 This formula increases the amount of time between each retry, while assigning a random number of seconds to avoid consistent failures from overload or contention.
 
-Greenhouse will attempt 6 retries over the course of 15 hours.
+Greenhouse will attempt 5 retries over the course of 7 hours.
 
 ```
-RETRY_DELAY_MINUTES = [1, 15, 60, 120, 240, 480]
+RETRY_DELAY_MINUTES = [1, 15, 60, 120, 240]
 
 sidekiq_retry_in do |index, _exception|
   seconds_delay = (RETRY_DELAY_MINUTES[index] || RETRY_DELAY_MINUTES.last) * 60
@@ -201,4 +214,3 @@ The table below outlines the estimated wait time for each retry request, assumin
 |       3      |       60m     |        1h 16m      |
 |       4      |      120m     |        3h 16m      |
 |       5      |      240m     |        7h 16m      |
-|       6      |      480m     |       15h 16m      |
