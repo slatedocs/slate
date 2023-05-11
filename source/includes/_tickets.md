@@ -323,7 +323,7 @@ curl "https://getquipu.com/tickets" \
               "data": [{
                 "type": "book_entry_items",
                 "attributes": {
-                  "concept": "Tornillos"
+                  "concept": "Tornillos",
                   "unitary_amount": "0.50",
                   "quantity": 30,
                   "vat_percent": 21,
@@ -332,7 +332,7 @@ curl "https://getquipu.com/tickets" \
               }, {
                 "type": "book_entry_items",
                 "attributes": {
-                  "concept": "Tuercas"
+                  "concept": "Tuercas",
                   "unitary_amount": "0.35",
                   "quantity": 30,
                   "vat_percent": 21,
