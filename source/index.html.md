@@ -65,6 +65,7 @@ Ratelimit-Reset: 1597048500
 * `Ratelimit-Reset`: the timestamp when the quota resets
 
 # Changelog
+- (2023-04-26) **ActorProfile#show**: Add `filmmakers_url` and `filmmakers_cd_url` (formerly `castupload_url` and `castupload_professional_url`)
 - (2022-12-06) **ActorProfile#show**: Add `unions`
 - (2022-09-09) **ActorProfile#index**: Add `updated_at` as selectable field
 - (2022-01-26) **ActorProfile#show**: Add `pitches`, `figures`, `native_dialects`, `sport_skills`, `special_skills`
@@ -399,6 +400,8 @@ See example response to the right for an overview of included fields. Please not
 - **Deprecation**: `pitch` is deprecated. Use `pitches` instead.
 - **Deprecation**: `figure` is deprecated. Use `figures` instead.
 - **Deprecation**: `native_dialect` is deprecated. Use `native_dialects` instead.
+- **Deprecation**: `castupload_url` is deprecated. Use `filmmakers_url` instead.
+- **Deprecation**: `castupload_professional_url` is deprecated. Use `filmmakers_cd_url` instead.
 
 # Talent agencies
 
