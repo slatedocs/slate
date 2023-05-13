@@ -51,7 +51,7 @@ Access-Control-Allow-Methods: GET
 
 # Rate limits
 
-Rate limits are enforced on a per IP address basis. Currently we allow up to 300 requests within a 5 minute period. If this quota is exceeded your IP will be throttled for the remainder of this period. In this case the API will return an error responses that shows up as status code `429`.
+Rate limits are enforced on a per IP address basis. Currently Filmmakers allows up to 300 requests within a 5 minute period. If this quota is exceeded your IP will be throttled for the remainder of this period. In this case the API will return an error responses that shows up as status code `429`.
 
 Along with the status code the following `RateLimit` response header fields will be returned:
 
@@ -86,7 +86,7 @@ There are currently two event types: `actor_profile.updated` and `actor_profile.
 
 **Return a 200 response**
 
-Send a successful 200 response to Filmmakers as quickly as possible because Filmmakers retries the event with an exponential back off if a response isn't sent within a reasonable time. This means that you should write any long-running processes as code that can run asynchronously outside the webhook endpoint.
+Send a successful 200 response to Filmmakers as quickly as possible because the event is retried with an exponential back off if a response isn't sent within a reasonable time. This means that you should write any long-running processes as code that can run asynchronously outside the webhook endpoint.
 
 **Verify requests are sent by Filmmakers**
 
@@ -94,10 +94,9 @@ Send a successful 200 response to Filmmakers as quickly as possible because Film
 X-Signature: t=1492774577, v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd
 ```
 
-Filmmakers signs all webhook events by including a signature in each event's header. This allows you to verify that the events were sent by Filmmakers, not by a third party. The same Api key that you use to send Api requests is also used as secret to sign webhook events.
-Signatures are generated using a hash-based message authentication code (HMAC) with SHA-256.
+All webhook events are signed by including a signature in each event's header. This allows you to verify that the events were sent by Filmmakers, not by a third party. The Api key is used as secret to sign webhook events. Signatures are generated using a hash-based message authentication code (HMAC) with SHA-256.
 
-The `X-Signature` header included in each signed event contains a timestamp and one signature. The timestamp is prefixed by `t=`, and the signature is prefixed by a scheme. Schemes start with `v`, followed by an integer. Currently, the only valid live signature scheme is `v1`.
+The `X-Signature` header included in each signed event contains a timestamp and one signature. The timestamp is prefixed by `t=`, and the signature is prefixed by a scheme. Schemes start with `v`, followed by an integer. Currently, the only signature scheme is `v1`.
 
 You can verify the signature on your side as follows (see example on the right in Ruby):
 
@@ -451,7 +450,7 @@ ID | The ID of the actor profile to retrieve
 
 Parameter | Default | Description
 --------- | ------- | -----------
-enum | null | If set to `translate` attributes are translated if possible (eg. gender will be `male` or `männlich` instead of `m`). _Note that hash and array attributes (eg. dances / sports) will be joined to a comma-separated string when translating attributes._
+enum | null | If set to `translate` attributes are translated if possible (e.g. gender will be `male` or `männlich` instead of `m`). _Note that hash and array attributes (eg. dances / sports) will be joined to a comma-separated string when translating attributes._
 locale | en | Translates attributes with closed lists, free text fields are only available in the entry language. Possible values are: `en`, `de`, `fr`, `it`, `es`, `pl`, `ro`, `ru`, `tr`. _This parameter only has an effect when `enum` is set to `translate`._
 
 ### Response fields
@@ -550,7 +549,7 @@ curl "https://www.filmmakers.eu/api/v1/attributes/xxx" \
   -H "Authorization: Token token=API_KEY"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns JSON structured like this (e.g. for nationalities):
 
 ```json
 {
