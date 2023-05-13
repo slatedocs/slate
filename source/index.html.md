@@ -66,7 +66,7 @@ Ratelimit-Reset: 1597048500
 
 # Webhooks
 
-A webhook is an endpoint on your server that receives requests from Filmmakers, notifying you about events for actor profiles such as a profile edit. This requires a new endpoint on your server such as https://www.example.com/webhooks/castupload which should be publicly accessible and allow unauthenticated POST requests.
+A webhook is an endpoint on your server that receives requests from Filmmakers, notifying you about events for actor profiles such as a profile edit. This requires a new endpoint on your server such as <https://www.example.com/webhooks/filmmakers> which should be publicly accessible and allow unauthenticated POST requests.
 
 **Read the event data**
 
@@ -232,7 +232,7 @@ curl "https://www.filmmakers.eu/api/v1/actor_profiles/123" \
   "imdb_id": "nm0000001",
   "facebook_page": "Filmmakers",
   "twitter_handle": "Filmmakers",
-  "instagram_username": "castupload",
+  "instagram_username": "Filmmakers",
   "filmmakers_url": null,
   "sv_url": null,
   "wikipedia_url": "https://de.wikipedia.org/wiki/My_Page",
