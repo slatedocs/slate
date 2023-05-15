@@ -66,7 +66,7 @@ Ratelimit-Reset: 1597048500
 
 # Webhooks
 
-A webhook is an endpoint on your server that receives requests from Filmmakers, notifying you about events for actor profiles such as a profile edit. This requires a new endpoint on your server such as <https://www.example.com/webhooks/filmmakers> which should be publicly accessible and allow unauthenticated POST requests.
+A webhook is an endpoint on your server that receives requests from Filmmakers, notifying you about events for actor profiles such as a profile edit. This requires a new endpoint on your server such as <https://www.example.com/webhooks/filmmakers> which should be publicly accessible and allow unauthenticated POST requests. Note that HTTPS URLs are required for all webhook endpoints.
 
 **Read the event data**
 
