@@ -316,7 +316,7 @@ status | no | string | Accepts either "open" or "closed". This can be used to cl
 close_reason_id | no | integer | When closing, you may provide a close_reason_id. Providing a close_reason_id without closing the opening will return an error.
 custom_fields | no | array | Array of custom field objects containing updated values for custom fields on the opening. See the "Custom Field Object Parameters" section below for more details. Note: updating a custom field may reset official job approvals if this option is selected in the custom field settings page.
 
-**Note**: Closed openings must first be reopened before they can be patched by this endpoint. If the job is closed at the same time the opening_id is changed, approvals will be ignored in favor of closing the opening.
+**Note**: If the job is closed at the same time the opening_id is changed, approvals will be ignored in favor of closing the opening.
 
 ### Custom Field Object Parameters
 
