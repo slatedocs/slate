@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-05-17
+
+- Added [403 error code](#requests-amp-responses) for permissions-related errors.
+
 ## 2023-03-27
 
 - Added the ability to [create a List](#create-a-new-list).
