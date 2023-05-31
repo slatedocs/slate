@@ -127,6 +127,9 @@ expected_signature == signature["v1"]
 
 
 # Changelog
+- (2023-05-31) **ActorProfile#index**:
+  - Also emit `picture_copyright` if `include_picture` is specified
+  - Add query field `representative`
 - (2023-04-26) **ActorProfile#show**: Add `filmmakers_url` and `filmmakers_cd_url` (formerly `castupload_url` and `castupload_professional_url`)
 - (2022-12-06) **ActorProfile#show**: Add `unions`
 - (2022-09-09) **ActorProfile#index**: Add `updated_at` as selectable field
@@ -178,7 +181,7 @@ Parameter | Default | Description
 page | 1 | Page to display - see "Pagination" above
 include_picture | false | If set to true, the result will include the profile picture thumbnail in a field named `main_picture_url_tile`.
 picture_version | null | Can be set to `original`, `large` or `thumb` to change the included picture version. The picture will be included in a field named `picture_url`. _(Only applies if `include_picture` is true)_
-fields | name,gender | Can be used to modify the fields included in the response. Possible values are: `age`, `gender`, `first_name`, `last_name`, `name`, `professions`, `languages`, `updated_at`.
+fields | name,gender | Can be used to modify the fields included in the response. Possible values are: `age`, `gender`, `first_name`, `last_name`, `name`, `professions`, `languages`, `representative`, `updated_at`.
 order | id | Changes the order of returned results. Possible values are: `id`, `name`, `last_name`
 gender | null | Allows filtering by gender. Possible values are: `m`, `f`, `i`.
 
@@ -197,6 +200,8 @@ languages | JSON Object | format `{ "language": "skill level" }`
 updated_at | string | format ISO 8601
 main_picture_url_tile | string | profile picture url (thumbnail version)
 picture_url | string | profile picture url of specified version
+picture_copyright | string | copyright information for the profile picture
+representative | JSON Object | "id" and "name" of the agent representing the actor
 
 ## Get a specific actor profile
 
