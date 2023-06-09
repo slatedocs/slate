@@ -4,7 +4,6 @@
   'use strict';
 
   var htmlPattern = /<[^>]*>/g;
-  var loaded = false;
 
   var debounce = function(func, waitTime) {
     var timeout = false;
@@ -26,8 +25,6 @@
 
   function loadToc($toc, tocLinkSelector, tocListSelector, scrollOffset) {
     var headerHeights = {};
-    var pageHeight = 0;
-    var windowHeight = 0;
     var originalTitle = document.title;
 
     var recacheHeights = function() {
@@ -43,29 +40,38 @@
       });
     };
 
-    var refreshToc = function() {
-      var currentTop = $(document).scrollTop() + scrollOffset;
+    var clicked = false;
 
-      if (currentTop + windowHeight >= pageHeight) {
-        // at bottom of page, so just select last header by making currentTop very large
-        // this fixes the problem where the last header won't ever show as active if its content
-        // is shorter than the window height
-        currentTop = pageHeight + 1000;
+    var tocClick = function() {
+      clicked = true;
+      tocUpdate(window.location.hash);
+    }
+
+    var refreshToc = function(preservePagePosition = false) {
+      // the scroll that occurs after clicking a link
+      // is already handled by tocClick
+      if (clicked) {
+        clicked = false;
+        return;
       }
 
       var best = null;
-      for (var name in headerHeights) {
-        if ((headerHeights[name] < currentTop && headerHeights[name] > headerHeights[best]) || best === null) {
-          best = name;
+      if (preservePagePosition) {
+        best = window.location.hash;
+      } else {
+        var currentTop = $(document).scrollTop() + scrollOffset;
+
+        for (var name in headerHeights) {
+          if ((headerHeights[name] < currentTop && headerHeights[name] > headerHeights[best]) || best === null) {
+            best = name;
+          }
         }
       }
 
-      // Catch the initial load case
-      if (currentTop == scrollOffset && !loaded) {
-        best = window.location.hash;
-        loaded = true;
-      }
+      tocUpdate(best);
+    };
 
+    var tocUpdate = function(best) {
       var $best = $toc.find("[href='" + best + "']").first();
       if (!$best.hasClass("active")) {
         // .active is applied to the ToC link we're currently on, and its parent <ul>s selected by tocListSelector
@@ -91,7 +97,7 @@
 
     var makeToc = function() {
       recacheHeights();
-      refreshToc();
+      refreshToc(true);
 
       $("#nav-button").click(function() {
         $(".toc-wrapper").toggleClass('open');
@@ -104,7 +110,7 @@
       // reload immediately after scrolling on toc click
       $toc.find(tocLinkSelector).click(function() {
         setTimeout(function() {
-          refreshToc();
+          tocClick();
         }, 0);
       });
 
