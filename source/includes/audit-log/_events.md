@@ -20,7 +20,7 @@ event.meta | The before and after values from data change events, or other relev
 ```shell
 HTTP request
 
-curl -X GET 'https://auditlog.greenhouse.io/events'
+curl -X GET 'https://auditlog.us.greenhouse.io/events'
 -H "Content-Type: application/json"
 -H "On-Behalf-Of: {greenhouse user ID}"
 -H "Authorization: Bearer MeyJhbGci.eyJhdWQiO"
@@ -93,7 +93,7 @@ curl -X GET 'https://auditlog.greenhouse.io/events'
 ```
 #### HTTP request
 
-`GET https://auditlog.greenhouse.io/events/`
+`GET https://auditlog.us.greenhouse.io/events/`
 #### URL Parameters
 Parameter | Definition
 --------- | -----------
