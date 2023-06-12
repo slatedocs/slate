@@ -61,6 +61,10 @@ Audit log API requests are limited to the amount specified in the returned X-Rat
 ## Pagination
 Pagination on audit log API allows for retrieving the next page from your query results. To retrieve the next page, use the `paging` field of the response body. The `pit_id` should be the value of your `Pit-Id` header, and the `next_search_after` should be the value of your Search-After header. Your query parameters should remain consistent with your original query. Audit log results with only one page will return `null` results on the next page.
 
+- `pit_id`. The ID from a specific [point in time (PIT)](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/pit.html) in a fixed time dataset, created automatically when you run a query.
+- `search_after`. Use this parameter to retrieve audit log after a specific page in the search results when running a query with the `pit_id`.
+- `size`. The size of the requested query. This parameter has a minimum value of `100` and a maximum value of `500`.
+
 ## Validation
 Any methods that take input will validate all parameters. Any parameter that fails validation will trigger an error response with status `HTTP 422`. The response body will be a JSON object that includes a message as well as a list of fields that failed validation.
 

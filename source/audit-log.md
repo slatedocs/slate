@@ -1,5 +1,5 @@
 ---
-title: Harvest API
+title: Audit Log API
 
 language_tabs:
   - shell
@@ -10,6 +10,7 @@ toc_footers:
   - <a href='/webhooks.html' title="Web Hooks">Web Hooks</a>
   - <a href='/candidate-ingestion.html' title="Ingestion API">Ingestion API</a>
   - <a href='/assessment.html' title="Assessment API">Assessment API</a>
+  - <a href='/harvest.html' title="Harvest API">Harvest API</a>
 
 includes:
   - audit-log/introduction
