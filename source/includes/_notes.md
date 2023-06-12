@@ -286,16 +286,16 @@ It is possible to create a <strong>reply</strong> to an existing note by setting
 
 ### Path Parameters
 
-| Parameter        | Type      | Required | Description                                                                                                                                                                                     |
-| ---------------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| content          | string    | true     | The string containing the content of the new note. See [formatting options](#formatting-content-as-html) for HTML support.                                                                      |
-| person_ids       | integer[] | false    | An array of unique identifiers of person objects that are associated with the new note.                                                                                                         |
-| organization_ids | integer[] | false    | An array of unique identifiers of organization objects that are associated with the new note.                                                                                                   |
-| opportunity_ids  | integer[] | false    | An array of unique identifiers of opportunity objects that are associated with the new note.                                                                                                    |
-| type             | integer   | false    | The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively. If submitting as HTML, see the [formatting options](#formatting-content-as-html). |
-| parent_id        | integer   | false    | The unique identifier of the note to which the newly created note should reply. See comments above.                                                                                             |
-| creator_id       | integer   | false    | The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.       |
-| created_at       | datetime  | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time. |
+| Parameter        | Type      | Required | Description                                                                                                                                                                                                                           |
+| ---------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| content          | string    | true     | The string containing the content of the new note. See [formatting options](#formatting-content-as-html) for HTML support.                                                                                                            |
+| person_ids       | integer[] | false    | An array of unique identifiers of person objects that are associated with the new note.                                                                                                                                               |
+| organization_ids | integer[] | false    | An array of unique identifiers of organization objects that are associated with the new note.                                                                                                                                         |
+| opportunity_ids  | integer[] | false    | An array of unique identifiers of opportunity objects that are associated with the new note.                                                                                                                                          |
+| type             | integer   | false    | The type of the new note. Defaults to 0. The types 0 and 2 represent plain text and HTML notes, respectively. If submitting as HTML, see the [formatting options](#formatting-content-as-html).                                       |
+| parent_id        | integer   | false    | The unique identifier of the note to which the newly created note should reply. See comments above.                                                                                                                                   |
+| creator_id       | integer   | false    | The ID of a Person resource who should be recorded as the author of the note. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key.                                             |
+| created_at       | datetime  | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the creation time to be recorded for the note. If not provided, defaults to the current time. Does not support times in the future. |
 
 ### Returns
 

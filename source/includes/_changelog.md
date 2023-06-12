@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-06-13
+
+- The `created_at` parameter on the [POST endpoint for notes](#create-a-new-note) no longer accepts timestamps in the future.
+
 ## 2023-05-17
 
 - Added [403 error code](#requests-amp-responses) for permissions-related errors.
