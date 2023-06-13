@@ -31,8 +31,10 @@ html, body {
   width: 140px;
   height: 140px;
   background-image: url('/images/logo-green.png');
-  background-size: 100%;
+  background-size: 30%;
   margin-top: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .blocks {
