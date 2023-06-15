@@ -972,6 +972,49 @@ order.
 | app_company_id       | header | Company ID              |
 | token                | string | Approver's accept token |
 
+## Approval Override
+
+```ruby
+require 'rest-client'
+
+RestClient.get(
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/override_and_approve',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/override_and_approve'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true
+}
+```
+
+Approve a Purchase Order via 'Approval Override' functionality. This endpoint is only availble to `Finance` users. This endpoint differs from 'Approval' in the fact that an Approver's token is not required.
+
+### HTTP Request
+
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/:id/override_and_approve`
+
+### URL Parameters
+
+| Params               | Type   | Description             |
+| -------------------- | ------ | ----------------------- |
+| authentication_token | header | Authentication token    |
+| app_company_id       | header | Company ID              |
+
 ## Reject
 
 ```ruby
