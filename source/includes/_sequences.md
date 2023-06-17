@@ -136,7 +136,8 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "send_email_from_email_account_id": "email_account_id",
     "sequence_active_in_other_campaigns": false,
     "sequence_no_email": false,
-    "sequence_finished_in_other_campaigns": false   
+    "sequence_finished_in_other_campaigns": false,
+    "user_id": "5cc77dXXXXXXXXXXXXXXXXXX",
 }' "https://api.apollo.io/v1/emailer_campaigns/REPLACE_WITH_SEQUENCE_ID/add_contact_ids"
 ```
 
@@ -334,6 +335,7 @@ sequence_no_email | Whether to still sequence the contact if he/she does not hav
 sequence_active_in_other_campaigns | Whether to still sequence the contact if he/she is active or paused in another sequence | true or false (default false)
 sequence_finished_in_other_campaigns  | Whether to still sequence the contact if he/she already finished another sequence | true or false (default false)
 async | Whether process should be executed synchronously or asynchronously | true or false (default false)
+user_id | User who is performing this action | 5cc77dXXXXXXXXXXXXXXXXXX
 
 
 ## Remove Contacts from Sequence / Marking Contacts as Finished in Sequence
