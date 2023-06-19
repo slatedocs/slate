@@ -459,31 +459,65 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   "purchase_orders": [
     {
       "id": 1,
-      "creator_name": "James Kennedy",
+      "approval_key": "100001-2023-01-01",
+      "creator_name": "Bottom Man",
       "amount": "50.55",
       "status": "pending",
-      "supplier_name": "John Doe",
+      "supplier_name": "Doggie Treats Ltd.",
       "keywords": "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972258000,
       "currency_id": 1,
       "currency_symbol": "$",
+      "currency_iso_code": "USD",
       "total_gross_amount": "50.55",
-      "total_net_amount": "50.0",
-      "base_gross_amount": "44.564375"
+      "total_net_amount": "40.44",
+      "base_gross_amount": 28.640227,
+      "submitted_on": 1505972258000,
+      "share_key": "YOURSHAREKEY123456789",
+      "department_id": 35113,
+      "department_name": "Home Office",
+      "approver_requests": [
+        {
+          "id": 1,
+          "status": "approved",
+          "approver_name": "Middle Man",
+          "approver_id": 2,
+          "accept_token": "APPROVALACCEPTTOKEN",
+          "reject_token": "APPROVALREJECTTOKEN",
+          "delegate_id": null
+        }
+      ]
     },
     {
       "id": 2,
-      "creator_name": "James Kennedy",
-      "amount": "50.55",
+      "approval_key": "100002-2023-01-01",
+      "creator_name": "Bottom Man",
+      "amount": "101.10",
       "status": "pending",
-      "supplier_name": "John Doe",
-      "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
-      "created_at": 1505972227000,
+      "supplier_name": "Doggie Treats Ltd.",
+      "keywords": "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "created_at": 1505972258000,
       "currency_id": 1,
       "currency_symbol": "$",
-      "total_gross_amount": "50.55",
-      "total_net_amount": "50.0",
-      "base_gross_amount": "44.564375"
+      "currency_iso_code": "USD",
+      "total_gross_amount": "101.10",
+      "total_net_amount": "80.88",
+      "base_gross_amount": 57.280453,
+      "submitted_on": 1505972258000,
+      "share_key": "YOURSHAREKEY123456789",
+      "department_id": 1,
+      "department_name": "Home Office",
+      "approver_requests": [
+        {
+          "id": 1,
+          "status": "cancelled",
+          "approver_name": "Middle Man",
+          "approver_id": 2,
+          "accept_token": "APPROVALACCEPTTOKEN",
+          "reject_token": "APPROVALREJECTTOKEN",
+          "delegate_id": null
+        }
+      ]
     }
   ],
   "meta": {
