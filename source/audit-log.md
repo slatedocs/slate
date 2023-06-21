@@ -3,7 +3,6 @@ title: Audit Log API
 
 language_tabs:
   - shell
-  - ruby
 
 toc_footers:
   - <a href="/job-board.html" title="Job Board API">Job Board API</a>
