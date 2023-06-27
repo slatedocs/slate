@@ -163,7 +163,7 @@ html, body {
   }
 
   .toc-link:hover {
-    background-color: darken($nav-bg, 10%);
+    background-color: lighten($nav-bg, 10%);
     color: $nav-text;
   }
 
@@ -382,7 +382,6 @@ html, body {
     margin-bottom: 0;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
