@@ -317,6 +317,11 @@ html, body {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
     }
+
+    &:hover {
+      background-color: $lang-select-hover-bg;
+      color: $lang-select-hover-text;
+    }
   }
 
   &:after {
