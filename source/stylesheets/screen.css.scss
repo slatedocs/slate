@@ -173,7 +173,7 @@ html, body {
     color: $nav-active-parent-text;
 
     &:hover {
-      background-color: darken($nav-bg, 10%);
+      background-color: lighten($nav-bg, 10%);
       color: $nav-text;
     }
   }
