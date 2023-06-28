@@ -20,7 +20,7 @@ The authenticate audit log object returns an access token that is valid for 24 h
 Attribute | Definition
 --------- | -----------
 access_token | A JWT (JSON web token) that’s valid for 24 hours from the time of creation.
-expires | The exact time the access token will expire in Unix time, like  `1688049943`.
+expires | The exact time the access token will expire in `ISO-8601` format, like `2024-02-03T16:38:46.985Z`.
 
 
 ### POST: Authenticate audit log
@@ -34,7 +34,7 @@ curl -X POST 'https://harvest.greenhouse.io/auth/jwt_access_token'
 
 {
     "access_token": "MeyJhbGci.eyJhdWQiO",
-    "expires": 1688049943
+    "expires": 2024-02-03T16:38:46.985Z
 }
 ```
 #### HTTP request
