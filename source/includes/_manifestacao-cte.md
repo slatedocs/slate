@@ -297,6 +297,14 @@ Utilize o método **HTTP GET** para consultar os dados da nota fiscal.
 
 Na URL, informe em **CHAVE** a chave da CTe recebida. O retorno será o mesmo que a operação de manifestação.
 
+**OBS**: Conforme definido pela SEFAZ na NT 2022.001 do CT-e, se o tomador/destinatário for pessoa física (CPF cadastrado em nossa API para a manifestação do CT-e) não pode registrar o evento de desacordo desse tipo de documento via webservice. Essa ação deve ser realizada exclusivamente através da plataforma gov.br conforme procedimento a seguir:
+* Acessar o site: https://dfe-portal.svrs.rs.gov.br/CTE/PrestacaoServicoDesacordo
+* Selecionar a segunda opção: Login pela Plataforma gov.br (Tomador Pessoa Física)
+* Realizar o login na plataforma gov.br com o certificado digital do tomador/destinatário ou com o CPF e senha de seu cadastrado nesta plataforma.
+* Inserir a chave do CT-e que desejar manifestar o desacordo, e também o motivo, em seus respectivos campos.
+* Registar o desacordo.
+Ao final do processo receberá uma mensagem informando o sucesso do registro.
+
 > Exemplo de como consultar o desacordo de uma CTe
 
 ```python
