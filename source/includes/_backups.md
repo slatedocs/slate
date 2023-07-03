@@ -1,4 +1,4 @@
-# Backups (NFe, NFCe e CTe)
+# Backups (NFe, NFCe, CTe e MDFe)
 
 Atualmente, realizamos o backup de todos os arquivos XML’s das notas fiscais emitidas pela nossa API. Vale lembrar que o XML é um arquivo com validade legal e deve ser armazenado pelos emitentes, para fins fiscais, por no mínimo 5 anos após a emissão.
 
@@ -15,9 +15,9 @@ Onde CNPJ é o CNPJ da empresa a ser consultada. Está requisição irá devolve
 * <strong>backups</strong>: Array de objetos contendo:
    * <strong>mes</strong>: Mês do backup no formato AAAAMM”, ex: “201701”
    * <strong>danfes</strong>: Caminho para baixar arquivo ZIP com as DANFEs geradas (NFe)
-   * <strong>xmls</strong>: Caminho para baixar arquivo ZIP com os XMLs gerados (NFe e NFCe)
+   * <strong>xmls</strong>: Caminho para baixar arquivo ZIP com os XMLs gerados (NFe, NFCe, CTe e MDFe)
 
-Os backups serão mantidos por 6 meses em nossos servidores.
+Os backups serão mantidos por pelo menos 6 meses em nossos servidores.
 
 ## Momentos de geração e cuidados necessários
 
