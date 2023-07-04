@@ -39,3 +39,8 @@ operations on the different objects that make up Affinity. If you are trying to
 accomplish an action through this API and are not sure on what endpoints to use, or
 if you have ideas on more endpoints we could create to make your workflow easier,
 please do not hesitate to contact us at [support@affinity.co](support@affinity.co).
+
+<aside class="notice">
+  <h6>Note</h6>
+  <p>The Affinity API is <span class="bold">only for Premium and Enterprise tier customers,</span> and for Professional tier customers who signed up for Affinity before July 5, 2023.</p>
+</aside>

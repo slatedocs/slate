@@ -11,9 +11,14 @@ Current rate limits by plan tier are:
 
 | Plan Tier    | Calls per month |
 | ------------ | --------------- |
-| Professional | 40,000          |
+| Professional | None\*          |
 | Premium      | 100,000         |
 | Enterprise   | Unlimited       |
+
+<aside class="notice">
+  <h6>Note</h6>
+  <p>Professional tier customers who signed up for Affinity before July 5, 2023 are alotted 40,000 calls per month.</p>
+</aside>
 
 This monthly account-level limit resets at the end of each calendar month.
 

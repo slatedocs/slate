@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-07-03
+
+- Updated API access information for Professional tier customers.
+
 ## 2023-06-13
 
 - The `created_at` parameter on the [POST endpoint for notes](#create-a-new-note) no longer accepts timestamps in the future.

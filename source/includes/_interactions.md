@@ -2,7 +2,7 @@
 
 The interactions API allows you to manage interactions.
 
-**This endpoint is only available to Enterprise tier customers**. Please reach out to
+**These endpoints are only available to Enterprise tier customers**. Please reach out to
 [support@affinity.co](support@affinity.co) if you are interested in getting access.
 
 ## The Interactions Resource
@@ -121,20 +121,20 @@ Note the combination of ID and type for an interaction is unique.
 }
 ```
 
-| Attribute         | Type      | Description
-| ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id                | integer   | The identifier of the interaction. Note the ID is not unique across different types of interactions.                                              |
-| manual_creator_id | integer   | The unique identifier of the person object who created the interaction.                                                                           |
-| persons           | object[]  | The list of persons who are associated with the interaction.                                                                                      |
-| type              | integer   | The type of interaction. This can be one of many values, as described in the table below.                                                         |
-| logging_type      | integer   | The logging type of interaction.                                                                                                                  |
-| attendees         | string[]  | The list of person emails that attended the event.                                                                                                |
-| date              | datetime  | The time when the interaction happens.                                                                                                            |
-| start_time        | datetime  | The time when event starts.                                                                                                                       |
-| end_time          | datetime  | The time when event ends.                                                                                                                         |
-| title             | string    | The title of event.                                                                                                                               |
-| notes             | integer[] | The list of note IDs that are associated with the event.                                                                                          |
-| direction         | integer   | The direction of the interaction. Only relevant for `type == 2` and `type == 3`. This can be one of two values, as described in the table below.  |
+| Attribute         | Type      | Description                                                                                                                                      |
+| ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| id                | integer   | The identifier of the interaction. Note the ID is not unique across different types of interactions.                                             |
+| manual_creator_id | integer   | The unique identifier of the person object who created the interaction.                                                                          |
+| persons           | object[]  | The list of persons who are associated with the interaction.                                                                                     |
+| type              | integer   | The type of interaction. This can be one of many values, as described in the table below.                                                        |
+| logging_type      | integer   | The logging type of interaction.                                                                                                                 |
+| attendees         | string[]  | The list of person emails that attended the event.                                                                                               |
+| date              | datetime  | The time when the interaction happens.                                                                                                           |
+| start_time        | datetime  | The time when event starts.                                                                                                                      |
+| end_time          | datetime  | The time when event ends.                                                                                                                        |
+| title             | string    | The title of event.                                                                                                                              |
+| notes             | integer[] | The list of note IDs that are associated with the event.                                                                                         |
+| direction         | integer   | The direction of the interaction. Only relevant for `type == 2` and `type == 3`. This can be one of two values, as described in the table below. |
 
 ### Interactions Types
 
@@ -145,13 +145,12 @@ Note the combination of ID and type for an interaction is unique.
 | Chat message | 2     | Type specifying a chat message interaction. |
 | Email        | 3     | Type specifying a email interaction.        |
 
-
 ### Direction Types
 
-| Type          | Value | Description                                       |
-| ------------  | ----- | ------------------------------------------------- |
-| Sent          | 0     | The interaction is sent by an internal person.    |
-| Received      | 1     | The interaction is sent by an external person.    |
+| Type     | Value | Description                                    |
+| -------- | ----- | ---------------------------------------------- |
+| Sent     | 0     | The interaction is sent by an internal person. |
+| Received | 1     | The interaction is sent by an external person. |
 
 ### Logging Types
 
@@ -172,69 +171,61 @@ curl "https://api.affinity.co/interactions?organization_id=1609909&type=3&start_
 
 ```json
 {
-    "emails": [
+  "emails": [
+    {
+      "date": "2021-02-04T09:43:39.717-08:00",
+      "id": 417,
+      "subject": "John <-> Alice",
+      "type": 3,
+      "from": {
+        "id": 443,
+        "type": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "primary_email": "john@affinity.co",
+        "emails": ["john@affinity.co"]
+      },
+      "to": [
         {
-            "date": "2021-02-04T09:43:39.717-08:00",
-            "id": 417,
-            "subject": "John <-> Alice",
-            "type": 3,
-            "from": {
-                "id": 443,
-                "type": 1,
-                "first_name": "John",
-                "last_name": "Doe",
-                "primary_email": "john@affinity.co",
-                "emails": [
-                    "john@affinity.co"
-                ]
-            },
-            "to": [
-                {
-                    "id": 2021,
-                    "type": 0,
-                    "first_name": "Alice",
-                    "last_name": "Yen",
-                    "primary_email": "yen@alice.com",
-                    "emails": [
-                        "yen@alice.com"
-                    ]
-                }
-            ],
-            "cc": [],
-            "direction": 0
-        },
-        {
-            "date": "2021-02-02T12:55:19.801-08:00",
-            "id": 265,
-            "subject": "Alfred <-> Alice",
-            "type": 3,
-            "from": {
-                "id": 1012,
-                "type": 1,
-                "first_name": "Alfred",
-                "last_name": "Hickey",
-                "primary_email": "alfredhickeyshmcneax@affinity.co",
-                "emails": [
-                    "alfredhickeyshmcneax@affinity.co"
-                ]
-            },
-            "to": [
-                {
-                    "id": 2021,
-                    "type": 0,
-                    "first_name": "Alice",
-                    "last_name": "Yen",
-                    "primary_email": "yen@alice.com",
-                    "emails": [
-                        "yen@alice.com"
-                    ]
-                }
-            ],
-            "cc": [],
-            "direction": 0
+          "id": 2021,
+          "type": 0,
+          "first_name": "Alice",
+          "last_name": "Yen",
+          "primary_email": "yen@alice.com",
+          "emails": ["yen@alice.com"]
         }
-    ],
-    "next_page_token": "eyJwYXJhbXMiOnsiY29tcGxldGVyX2lkIjpudWxsLCJvd25lcl9pZCI6bnVsbCwiY3JlYXRvcl9"
+      ],
+      "cc": [],
+      "direction": 0
+    },
+    {
+      "date": "2021-02-02T12:55:19.801-08:00",
+      "id": 265,
+      "subject": "Alfred <-> Alice",
+      "type": 3,
+      "from": {
+        "id": 1012,
+        "type": 1,
+        "first_name": "Alfred",
+        "last_name": "Hickey",
+        "primary_email": "alfredhickeyshmcneax@affinity.co",
+        "emails": ["alfredhickeyshmcneax@affinity.co"]
+      },
+      "to": [
+        {
+          "id": 2021,
+          "type": 0,
+          "first_name": "Alice",
+          "last_name": "Yen",
+          "primary_email": "yen@alice.com",
+          "emails": ["yen@alice.com"]
+        }
+      ],
+      "cc": [],
+      "direction": 0
+    }
+  ],
+  "next_page_token": "eyJwYXJhbXMiOnsiY29tcGxldGVyX2lkIjpudWxsLCJvd25lcl9pZCI6bnVsbCwiY3JlYXRvcl9"
 }
 ```
 
@@ -291,36 +282,30 @@ curl "https://api.affinity.co/interactions/15326?type=2" -u :$APIKEY
 
 ```json
 {
-    "id": 7267,
-    "date": "2022-02-22T11:50:20.126-08:00",
-    "direction": 0,
-    "manual_creator_id": 64056952,
-    "persons": [
-        {
-            "id": 443,
-            "type": 1,
-            "first_name": "John",
-            "last_name": "Doe",
-            "primary_email": "john@affinity.co",
-            "emails": [
-                "john@affinity.co"
-            ]
-        },
-        {
-            "id": 2021,
-            "type": 0,
-            "first_name": "Alice",
-            "last_name": "Yen",
-            "primary_email": "yen@alice.com",
-            "emails": [
-                "yen@alice.com"
-            ]
-        }
-    ],
-    "type": 2,
-    "notes": [
-        7462534
-    ]
+  "id": 7267,
+  "date": "2022-02-22T11:50:20.126-08:00",
+  "direction": 0,
+  "manual_creator_id": 64056952,
+  "persons": [
+    {
+      "id": 443,
+      "type": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "primary_email": "john@affinity.co",
+      "emails": ["john@affinity.co"]
+    },
+    {
+      "id": 2021,
+      "type": 0,
+      "first_name": "Alice",
+      "last_name": "Yen",
+      "primary_email": "yen@alice.com",
+      "emails": ["yen@alice.com"]
+    }
+  ],
+  "type": 2,
+  "notes": [7462534]
 }
 ```
 
@@ -330,10 +315,10 @@ Gets the details for a specific interaction given the existing ID and type.
 
 ### Path Parameters
 
-| Parameter   | Type    | Required | Description                                               |
-| ----------- | ------- | -------- | --------------------------------------------------------- |
-| id          | integer | true     | The identifier of the interaction object to be retrieved. |
-| type        | integer | true     | The type of interaction to be retrieved.                  |
+| Parameter | Type    | Required | Description                                               |
+| --------- | ------- | -------- | --------------------------------------------------------- |
+| id        | integer | true     | The identifier of the interaction object to be retrieved. |
+| type      | integer | true     | The type of interaction to be retrieved.                  |
 
 ### Returns
 
@@ -355,43 +340,34 @@ curl -X POST "https://api.affinity.co/interactions" \
 
 ```json
 {
-    "date": "2021-02-07T10:56:29.546-08:00",
-    "id": 3007,
-    "attendees": [
-        "john@affinity.co",
-        "yen@alice.com"
-    ],
-    "start_time": "2021-02-07T10:56:29.546-08:00",
-    "end_time": null,
-    "updated_at": null,
-    "manual_creator_id": 443,
-    "title": "Manually logged event",
-    "type": 0,
-    "notes": [
-        7
-    ],
-    "persons": [
-        {
-            "id": 443,
-            "type": 1,
-            "first_name": "John",
-            "last_name": "Doe",
-            "primary_email": "john@affinity.co",
-            "emails": [
-                "john@affinity.co"
-            ]
-        },
-        {
-            "id": 2021,
-            "type": 0,
-            "first_name": "Alice",
-            "last_name": "Yen",
-            "primary_email": "yen@alice.com",
-            "emails": [
-                "yen@alice.com"
-            ]
-        }
-    ]
+  "date": "2021-02-07T10:56:29.546-08:00",
+  "id": 3007,
+  "attendees": ["john@affinity.co", "yen@alice.com"],
+  "start_time": "2021-02-07T10:56:29.546-08:00",
+  "end_time": null,
+  "updated_at": null,
+  "manual_creator_id": 443,
+  "title": "Manually logged event",
+  "type": 0,
+  "notes": [7],
+  "persons": [
+    {
+      "id": 443,
+      "type": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "primary_email": "john@affinity.co",
+      "emails": ["john@affinity.co"]
+    },
+    {
+      "id": 2021,
+      "type": 0,
+      "first_name": "Alice",
+      "last_name": "Yen",
+      "primary_email": "yen@alice.com",
+      "emails": ["yen@alice.com"]
+    }
+  ]
 }
 ```
 
@@ -401,13 +377,13 @@ Creates a new interaction with the supplied parameters.
 
 ### Path Parameters
 
-| Parameter  | Type      | Required | Description                                                                                                                                                                                       |
-| ---------- | --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------                                                       |
-| type       | integer   | true     | The type of interaction to be created. Only meetings (`type == 0`), calls (`type == 1`) and chat messages (`type == 2`) are supported.                                                                                                        |
-| person_ids | integer[] | true     | The list of person IDs that are associated with the event. At least one internal person ID must be included (see [Person Resource](#the-person-resource) for more details on internal persons).   |
-| content    | string    | true     | The string containing the content of the new interaction.                                                                                                                                         |
-| direction  | integer   | false    | The direction of the chat message to be created. Only applies to chat messages (`type == 2`).                                                                                                     |
-| date       | string    | true     | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred.                                                         |
+| Parameter  | Type      | Required | Description                                                                                                                                                                                     |
+| ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type       | integer   | true     | The type of interaction to be created. Only meetings (`type == 0`), calls (`type == 1`) and chat messages (`type == 2`) are supported.                                                          |
+| person_ids | integer[] | true     | The list of person IDs that are associated with the event. At least one internal person ID must be included (see [Person Resource](#the-person-resource) for more details on internal persons). |
+| content    | string    | true     | The string containing the content of the new interaction.                                                                                                                                       |
+| direction  | integer   | false    | The direction of the chat message to be created. Only applies to chat messages (`type == 2`).                                                                                                   |
+| date       | string    | true     | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred.                                                       |
 
 ### Returns
 
@@ -433,43 +409,34 @@ curl -X PUT "https://api.affinity.co/interaction/3007" \
 
 ```json
 {
-    "date": "2022-02-07T10:56:29.546-08:00",
-    "id": 3007,
-    "attendees": [
-        "john@affinity.co",
-        "yen@alice.com"
-    ],
-    "start_time": "2022-02-07T10:56:29.546-08:00",
-    "end_time": null,
-    "updated_at": null,
-    "manual_creator_id": 443,
-    "title": "Manually logged event",
-    "type": 0,
-    "notes": [
-        7
-    ],
-    "persons": [
-        {
-            "id": 443,
-            "type": 1,
-            "first_name": "John",
-            "last_name": "Doe",
-            "primary_email": "john@affinity.co",
-            "emails": [
-                "john@affinity.co"
-            ]
-        },
-        {
-            "id": 2021,
-            "type": 0,
-            "first_name": "Alice",
-            "last_name": "Yen",
-            "primary_email": "yen@alice.com",
-            "emails": [
-                "yen@alice.com"
-            ]
-        }
-    ]
+  "date": "2022-02-07T10:56:29.546-08:00",
+  "id": 3007,
+  "attendees": ["john@affinity.co", "yen@alice.com"],
+  "start_time": "2022-02-07T10:56:29.546-08:00",
+  "end_time": null,
+  "updated_at": null,
+  "manual_creator_id": 443,
+  "title": "Manually logged event",
+  "type": 0,
+  "notes": [7],
+  "persons": [
+    {
+      "id": 443,
+      "type": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "primary_email": "john@affinity.co",
+      "emails": ["john@affinity.co"]
+    },
+    {
+      "id": 2021,
+      "type": 0,
+      "first_name": "Alice",
+      "last_name": "Yen",
+      "primary_email": "yen@alice.com",
+      "emails": ["yen@alice.com"]
+    }
+  ]
 }
 ```
 
@@ -484,19 +451,18 @@ Updates the content of an existing interaction with the supplied parameters.
 
 ### Path Parameters
 
-| Parameter   | Type    | Required | Description                                             |
-| ----------- | ------- | -------- | ------------------------------------------------------- |
-| id          | integer | true     | The ID of the interaction to be updated.                |
-
+| Parameter | Type    | Required | Description                              |
+| --------- | ------- | -------- | ---------------------------------------- |
+| id        | integer | true     | The ID of the interaction to be updated. |
 
 ### Payload Parameters
 
-| Parameter     | Type      | Required | Description                                                                                                                                 |
-| ------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| type          | integer   | true     | The type of interaction to be updated.                                                                                                      |
-| person_ids    | integer[] | true     | The list of person IDs that are associated with the event.                                                                                  |
-| content       | string    | false    | The string containing the content of the interaction.                                                                                       |
-| date          | string    | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred.   |
+| Parameter  | Type      | Required | Description                                                                                                                               |
+| ---------- | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| type       | integer   | true     | The type of interaction to be updated.                                                                                                    |
+| person_ids | integer[] | true     | The list of person IDs that are associated with the event.                                                                                |
+| content    | string    | false    | The string containing the content of the interaction.                                                                                     |
+| date       | string    | false    | A string (formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) representing the date time the interaction occurred. |
 
 ### Returns
 
@@ -524,10 +490,10 @@ Deletes the interaction with the specified `id`.
 
 ### Path Parameters
 
-| Parameter   | Type    | Required | Description                                             |
-| ----------- | ------- | -------- | ------------------------------------------------------- |
-| id          | integer | true     | The unique ID of the interaction to be deleted.         |
-| type        | integer | true     | The type of interaction to be deleted.                  |
+| Parameter | Type    | Required | Description                                     |
+| --------- | ------- | -------- | ----------------------------------------------- |
+| id        | integer | true     | The unique ID of the interaction to be deleted. |
+| type      | integer | true     | The type of interaction to be deleted.          |
 
 ### Returns
 
