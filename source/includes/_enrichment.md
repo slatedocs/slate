@@ -113,7 +113,7 @@ print(response.text)
                "source":"Owler"
             },
             "languages":[
-
+               
             ],
             "alexa_ranking":2651,
             "phone":"+1 415-763-6055",
@@ -125,7 +125,7 @@ print(response.text)
             "crunchbase_url":null,
             "primary_domain":"apollo.io",
             "persona_counts":{
-
+               
             },
             "industry":"computer software",
             "keywords":[
@@ -169,7 +169,7 @@ print(response.text)
                "source":"Owler"
             },
             "languages":[
-
+               
             ],
             "alexa_ranking":2651,
             "phone":"2023741312",
@@ -181,7 +181,7 @@ print(response.text)
             "crunchbase_url":null,
             "primary_domain":"apollo.io",
             "persona_counts":{
-
+               
             },
             "domain":"apollo.io",
             "team_id":"6181a50999668600ded6fe71",
@@ -220,7 +220,7 @@ print(response.text)
             ],
             "existence_level":"full",
             "label_ids":[
-
+               
             ],
             "typed_custom_fields":{
                "618438b906b01300da086546":"Google, Okta, Lyft"
@@ -271,7 +271,7 @@ print(response.text)
                "source":"Owler"
             },
             "languages":[
-
+               
             ],
             "alexa_ranking":2651,
             "phone":"+1 415-763-6055",
@@ -283,7 +283,7 @@ print(response.text)
             "crunchbase_url":null,
             "primary_domain":"apollo.io",
             "persona_counts":{
-
+               
             },
             "industry":"computer software",
             "keywords":[
@@ -327,7 +327,7 @@ print(response.text)
                "source":"Owler"
             },
             "languages":[
-
+               
             ],
             "alexa_ranking":2651,
             "phone":"2023741312",
@@ -339,7 +339,7 @@ print(response.text)
             "crunchbase_url":null,
             "primary_domain":"apollo.io",
             "persona_counts":{
-
+               
             },
             "domain":"apollo.io",
             "team_id":"6181a50999668600ded6fe71",
@@ -378,7 +378,7 @@ print(response.text)
             ],
             "existence_level":"full",
             "label_ids":[
-
+               
             ],
             "typed_custom_fields":{
                "618438b906b01300da086546":"Google, Okta, Lyft"
@@ -395,14 +395,14 @@ print(response.text)
             }
          ]
       }
-   ],
+   ], 
    "personal_emails": [
        "personalemail1@domain.com",
        "personalemail2@domain.com"
    ],
    "departments": [
-       "c_suite",
-       "master_information_technology",
+       "c_suite", 
+       "master_information_technology", 
        "master_operations"
    ],
    "subdepartments": [
@@ -417,9 +417,9 @@ print(response.text)
 }
 ```
 
-This endpoint enriches people information in bulk - the more information you pass in, the more likely we can find a match.
+This endpoint enriches people information in bulk - the more information you pass in, the more likely we can find a match. 
 
-Up to 10 records can be enriched at the same time through this endpoint.
+Up to 10 records can be enriched at the same time through this endpoint.  
 
 ### Rate Limits
 
@@ -434,15 +434,13 @@ Parameter | Description | Example
 first_name (optional) | The person's first name | Tim
 last_name (optional) | The person's last name | Zheng
 name (optional) | The person's full name | Tim Zheng
-email (optional) | The person's email | example@domain.com
+email (optional) | The person's email | example@domani.com
 email_md5 (optional) | The person's hashed email | 8d935115b9ff4489f2d1f9249503cadf
 email_sha256 (optional) | The person's sha 256 hashed email | 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
 organization_name (optional) | The person's company name | Apollo Inc.
 domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
 reveal_personal_emails (optional) | Flag to reveal personal emails | true
-reveal_phone_number (optional) | Flag to reveal phone number | true
-webhook_url (optional) | Webhook URL for sending 'reveal_phone_number' response | "https://example.com/hook"
 
 
 ## Bulk Organization Enrichment
@@ -508,7 +506,7 @@ print(response.text)
             "source":"Owler"
          },
          "languages":[
-
+            
          ],
          "alexa_ranking":2651,
          "phone":"+1 415-763-6055",
@@ -520,7 +518,7 @@ print(response.text)
          "crunchbase_url":null,
          "primary_domain":"apollo.io",
          "persona_counts":{
-
+            
          },
          "industry":"computer software",
          "keywords":[
@@ -591,14 +589,14 @@ print(response.text)
             ],
             "existence_level":"full",
             "label_ids":[
-
+               
             ],
             "typed_custom_fields":{
                "618438b906b01300da086546":"Google, Okta, Lyft"
             },
             "modality":"account",
             "persona_counts":{
-
+               
             }
          },
          "departmental_head_count":{
@@ -650,7 +648,7 @@ print(response.text)
          "crunchbase_url":null,
          "primary_domain":"outreach.com",
          "persona_counts":{
-
+            
          },
          "industry":"marketing \u0026 advertising",
          "keywords":[
@@ -725,7 +723,7 @@ print(response.text)
          "crunchbase_url":null,
          "primary_domain":"microsoft.com",
          "persona_counts":{
-
+            
          },
          "market_cap":"2099.6B",
          "industry":"computer software",
@@ -804,7 +802,7 @@ Up to 10 records can be enriched at the same time through this endpoint.
 
 ### Rate Limits
 
-Rate limits on this endpoint are 1/10th of what is available on the single enrichment endpoint.
+Rate limits on this endpoint are 1/10th of what is available on the single enrichment endpoint. 
 
 `POST https://api.apollo.io/api/v1/organizations/bulk_enrich`
 
@@ -1079,15 +1077,13 @@ Parameter | Description | Example
 first_name (optional) | The person's first name | Tim
 last_name (optional) | The person's last name | Zheng
 name (optional) | The person's full name | Tim Zheng
-email (optional) | The person's email | example@domain.com
-email_md5 (optional) | The person's hashed email | 8d935115b9ff4489f2d1f9249503cadf
+email (optional) | The person's email | example@domani.com
+email_md5 (optional) | The person's hashed email | 8d935115b9ff4489f2d1f9249503cadf 
 email_sha256 (optional) | The person's sha 256 hashed email | 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
 organization_name (optional) | The person's company name | Apollo Inc.
 domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
 reveal_personal_emails (optional) | Flag to reveal personal emails | true
-reveal_phone_number (optional) | Flag to reveal phone number | true
-webhook_url (optional) | Webhook URL for sending 'reveal_phone_number' response | "https://example.com/hook"
 
 
 ## Organization Enrichment
