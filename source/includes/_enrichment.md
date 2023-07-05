@@ -434,13 +434,15 @@ Parameter | Description | Example
 first_name (optional) | The person's first name | Tim
 last_name (optional) | The person's last name | Zheng
 name (optional) | The person's full name | Tim Zheng
-email (optional) | The person's email | example@domani.com
+email (optional) | The person's email | example@domain.com
 email_md5 (optional) | The person's hashed email | 8d935115b9ff4489f2d1f9249503cadf
 email_sha256 (optional) | The person's sha 256 hashed email | 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
 organization_name (optional) | The person's company name | Apollo Inc.
 domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
 reveal_personal_emails (optional) | Flag to reveal personal emails | true
+reveal_phone_number (optional) | Flag to reveal phone number | true
+webhook_url (optional) | Webhook URL for sending 'reveal_phone_number' response | "https://example.com/hook"
 
 
 ## Bulk Organization Enrichment
@@ -1077,13 +1079,15 @@ Parameter | Description | Example
 first_name (optional) | The person's first name | Tim
 last_name (optional) | The person's last name | Zheng
 name (optional) | The person's full name | Tim Zheng
-email (optional) | The person's email | example@domani.com
+email (optional) | The person's email | example@domain.com
 email_md5 (optional) | The person's hashed email | 8d935115b9ff4489f2d1f9249503cadf 
 email_sha256 (optional) | The person's sha 256 hashed email | 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
 organization_name (optional) | The person's company name | Apollo Inc.
 domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
 reveal_personal_emails (optional) | Flag to reveal personal emails | true
+reveal_phone_number (optional) | Flag to reveal phone number | true
+webhook_url (optional) | Webhook URL for sending 'reveal_phone_number' response | "https://example.com/hook"
 
 
 ## Organization Enrichment
