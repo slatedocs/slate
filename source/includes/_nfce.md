@@ -777,6 +777,49 @@ Nos dados JSON da nota, acrescente os seguintes campos:
 Usando esta forma de emissão, a SEFAZ irá autorizar notas mesmo com a data de
 emissão retroativa.
 
+### Tratativa de erros de timeout em estados onde não há contingência offline
+
+> Exemplo de NFCe com correção de timeout 
+
+```json
+{
+  "cnpj_emitente": "28999399000136",
+  "ref": "46262079",
+  "status": "autorizado",
+  "status_sefaz": "100",
+  "mensagem_sefaz": "Autorizado o uso da NF-e",
+  "chave_nfe": "NFe35230428199999000136650010009920901420209841",
+  "numero": "90",
+  "serie": "1",
+  "protocolo": "135230310999953",
+  "caminho_xml_nota_fiscal": "/arquivos/28999399000136/202304/XMLs/35230428199999000136650010009920901420209841-nfe.xml",
+  "caminho_danfe": "/notas_fiscais_consumidor/NFe35230428199999000136650010009920901420209841.html",
+  "qrcode_url": "https://www.nfce.fazenda.sp.gov.br/?p=NFe35230428199999000136650010009920901420209841",
+  "url_consulta_nf": "https://www.nfce.fazenda.sp.gov.br/consulta",
+  "tentativas_anteriores": [
+    {
+      "status": "cancelado",
+      "chave_nfe": "NFe35230999999999000136650010009920881211857222",
+      "numero": "88",
+      "serie": "1",
+      "protocolo": "135230310368696",
+      "caminho_xml_nota_fiscal": "/arquivos/28165341000136/202304/XMLs/35230999999999000136650010009920881211857222-nfe.xml",
+      "caminho_xml_cancelamento": "/arquivos/28165341000136/202304/XMLs/35230999999999000136650010009920881211857222-can.xml"
+    }
+  ]
+}
+```
+
+Em estados como São Paulo (sem contingência offline), pode acontecer da SEFAZ ficar indisponível e devolver 
+erro de timeout na emissão de NFCe, mas ainda assim autorizar a nota. Nestas situações
+a NFCe é automaticamente cancelada quando detectamos esta situação. Podemos levar algum 
+tempo para ter a confirmação da duplicidade, dependendo da disponibilidade da SEFAZ, mas
+todas as notas emitidas sem o conhecimento da API serão canceladas.
+
+Ao consultar a NFCe, os dados de cancelamento serão encontrados na chave `tentativas_anteriores`
+Você pode criar um webhook com o evento `nfce_correcao_timeout` para ser notificado dessas ocorrências.
+
+
 ## Consulta
 
 ```python
@@ -1024,7 +1067,8 @@ Campos de retorno:
  * caminho_xml_nota_fiscal
  * caminho_xml_cancelamento
  * numero_protocolo
-
+* **tentativas_anteriores**: Nos casos de estados sem contingência offline, será devolvido um array com todas as notas que foram eventualmente canceladas
+devido à erro de timeout. Os campos devolvidos serão os mesmos de `tentativa_anterior`, porém podendo conter múltiplas ocorrências.
 
 Caso na requisição seja passado o parâmetro `completa=1` será adicionado mais 6 campos:
 

@@ -130,6 +130,7 @@ Abaixo são listados todos os campos de uma empresa.
 | cpf\_responsavel                                              | texto            |          |           |           | | CPF do resonsável pela empresa
 | login\_responsavel                                            | texto |             |              |              | Login para acesso da prefeitura. Necessário para emissão de NFSe em alguns municípios que não utilizam certificado digital.              |
 | senha\_responsavel                                            | texto |             |              |              | Senha para acesso da prefeitura. Necessário para emissão de NFSe em alguns municípios que não utilizam certificado digital. Por motivos de segurança, este atributo não é exibido na consulta da empresa após ser salvo. |
+| data\_inicio\_recebimento\_nfe                                | data         |          |           |           | Caso MDe esteja habilitado, permite especificar qual a data em que os documentos começarão ser recebidos. Documentos com datas anteriores serão ignorados e não serão cobrados. Se deixado em branco, serão buscados todos os documentos disponíveis. Uma vez definido, não poderá ser modificado.
 
 ## Status API
 

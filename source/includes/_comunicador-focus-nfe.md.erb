@@ -1,4 +1,4 @@
-# Comunicador Offline Focus NFe v2
+# Comunicador Offline
 
 O Comunicador Offline Focus NFe consiste em uma aplicação desktop que permite a emissão de NFCe e CFe (SAT e MFe) de maneira simplificada, voltada especialmente para usuários de tecnologias que não permitem o acesso à API via Web Services ou que não desejam programar o acesso HTTP, podendo assim utilizar um sistema de processamento de diretórios para emissão de documentos fiscais. Ainda, a aplicação também disponibiliza uma API local para usuários que prefiram uma comunicação direta entre sistemas. As especificações descritas nessa seção são válidas para a build 3.0.0 e posteriores do executável.
 
@@ -465,8 +465,10 @@ Através da API Local é possível:
 - Verificar o status do equipamento (SAT/MFe).
 - Extrair os logs do equipamento (SAT/MFe).
 - Emissão do cupom fiscal (SAT/MFe).
-- Cancalemento do cupom fiscal (SAT/MFe).
-- Geração espelho do cupom fiscal pdf (SAT/MFe).
+- Cancelamento do cupom fiscal (SAT/MFe).
+- Geração do espelho do cupom fiscal pdf (SAT/MFe).
+- Geração do xml do cupom fiscal (SAT/MFe);
+- Consulta do cupom fiscal (SAT/MFe);
 
 ### URLs
 
@@ -541,6 +543,136 @@ GET  | http://localhost:PORTA/v2/fiscal/nfce/pendentes                          
 - Após a NFCe ser emitida em contingência offline, o comunicador irá tentar efetiva-lá automaticamente quatro vezes com um intervalo de 30 minutos entre cada tentativa.
 - Caso esgotem-se as quatro tentativas e ainda  não tenha sido possível efetivar a NFCe, seja devido a falta de conexão da máquina com a internet, ou por indisponibilidade de Gateway ou da Sefaz, o usuário poderá tentar efetivá-la manualmente por meio da API local utilizando a URL apresentada anteriormente.
     - É importante ressaltar que o usuário poderá tentar efetivar manualmente uma NFCe a qualquer momento por meio da API local, não sendo necessário esperar a finalização das tentativas automáticas do comunicador.
+
+
+## API Remota (Beta)
+
+```shell
+# Consultar status
+curl -XGET -T https://homologacao.focusnfe.com.br/v2/cfe/12345/status
+```
+
+> Exemplo de resposta da API local após consultar o **status** do equipamento:
+
+```json
+{
+  "status": "autorizado",
+  "mensagem": "SAT em operação",
+}
+```
+
+```shell
+# Extrair logs
+curl -XGET -T https://homologacao.focusnfe.com.br/v2/cfe/12345/logs
+```
+> Exemplo de resposta da API local após extrair os **logs** do equipamento:
+
+```json
+{
+  "status": "autorizado",
+  "mensagem": "Transferência finalizada",
+  "arquivo_log_base64": "...", # String em base 64 contendo os logs retornados pelo equipamento
+}
+```
+
+```shell
+curl -XPOST  https://homologacao.focusnfe.com.br/v2/cfe?ref=REFERENCIA&pos_id=12345 -T arquivo.json
+```
+> Exemplo de resposta da API local após **emissão** do cupom fiscal pelo equipamento SAT/MFe:
+
+```json
+{
+  "ref": "REFERENCIA",
+  "status": "autorizado",
+  "mensagem": "Emitido com sucesso + conteudo notas.",
+  "cpf_cnpj_emitente": "",
+  "chave_nfe": "CFe77781082373077987991599000999380000289999993",
+  "numero": "123",
+}
+```
+
+```shell
+curl -XDELETE https://homologacao.focusnfe.com.br/v2/cfe/REFERENCIA?pos_id=12345
+```
+> Exemplo de resposta da API local após **cancelamento** do cupom fiscal pelo equipamento SAT/MFe:
+
+```json
+{
+  "ref": "REFERENCIA",
+  "status": "autorizado",
+  "mensagem": "Cupom cancelado com sucesso + conteudo CF-E-SAT cancelado.",
+  "cpf_cnpj_emitente": "",
+  "chave_nfe": "CFe77781082373077987991599000999380000289999993",
+  "numero": "123","
+}
+```
+
+> Exemplo de requisição para geração do espelho do cupom fiscal:
+
+```shell
+curl -XGET https://homologacao.focusnfe.com.br/v2/cfe/CHAVE_NFE.pdf?pos_id=12345
+```
+
+> Exemplo de requisição para geração do XML do cupom fiscal:
+
+```shell
+curl -XGET  https://homologacao.focusnfe.com.br/v2/cfe/CHAVE_NFE.xml?pos_id=12345
+```
+
+Além do sistema de comunicação via diretórios e API Local, também é possível utilizar a API remota oficial da Focus NFe. Para isso, é necessário que
+o usuário tenha acesso à internet e siga as instruções de autenticação descritas na introdução da documentação.
+
+<aside class="warning">
+A API Remota está disponível apenas nas versões 3.4.0 do Comunicador Offline e superiores.
+</aside>
+
+
+
+Através da API Remota é possível:
+
+- Verificar o status do equipamento (SAT/MFe).
+- Extrair os logs do equipamento (SAT/MFe).
+- Emissão do cupom fiscal (SAT/MFe).
+- Cancelamento do cupom fiscal (SAT/MFe).
+- Geração do espelho do cupom fiscal pdf (SAT/MFe).
+- Geração do xml do cupom fiscal (SAT/MFe);
+- Consulta do cupom fiscal (SAT/MFe);
+
+### URLs
+
+Método | URL (recurso) | Ação
+-------|---------------|------
+GET|https://homologacao.focusnfe.com.br/v2/cfe/IDENTIFICADOR/status | Retorna o status do equipamento SAT/MFe.
+GET|https://homologacao.focusnfe.com.br/v2/cfe/IDENTIFICADOR/logs  | Extrai os logs do equipamento SAT/MFe.
+POST|https://homologacao.focusnfe.com.br/v2/cfe?ref=REFERENCIA&pos_id=IDENTIFICADOR  | Emite um cupom fiscal eletrônico.
+DELETE|https://homologacao.focusnfe.com.br/v2/cfe/REFERENCIA?pos_id=IDENTIFICADOR  | Cancela um cupom fiscal eletrônico.
+GET|https://homologacao.focusnfe.com.br/v2/cfe/REFERENCIA?pos_id=IDENTIFICADOR  | Retorna os dados do CFe.
+GET|https://homologacao.focusnfe.com.br/v2/cfe/CHAVE_NFE.pdf?pos_id=IDENTIFICADOR  | Gera o espelho do cupom fiscal em PDF.
+GET|https://homologacao.focusnfe.com.br/v2/cfe/CHAVE_NFE.xml?pos_id=IDENTIFICADOR  | Gera o XML do cupom fiscal.
+GET|https://homologacao.focusnfe.com.br/v2/cfe/CHAVE_NFE-canc.xml?pos_id=IDENTIFICADOR  | Gera o XML do cupom fiscal cancelado.
+
+
+- Obs 1: O valor de 'IDENTIFICADOR' é um número único para cada aplicação e pode ser encontrado na tela inicial do Comunicador Offline.
+- Obs 2: O body das requisições para emissão do cupom fiscal segue exatamente o mesmo padrão utilizado no arquivos '.cfe' exemplificado anteriormente.
+
+### Consultar Status
+A consulta de status retorna o status do equipamento SAT/MFe conectado no computador do usuário. O modelo do equipamento e o código de ativação devem ser devidamente configurados no Comunicador Offline Focus NFe para o correto funcionamento da consulta.
+
+### Extrair logs
+A extração dos logs retorna os logs do equipamento SAT/MFe conectado no computador do usuário. Devido ao tamanho do arquivo, os dados são retornados em base64.
+
+### Emitir cupom fiscal
+A emissão de um cupom retorna um json com os detalhes da autorização feita pelo equipamento SAT/MFe conectado no computador do usuário.
+
+### Cancelar cupom fiscal
+O cancelamento de um cupom retorna um json com os detalhes do cancelamento feito pelo equipamento SAT/MFe conectado no computador do usuário.
+
+### Gerar espelho PDF
+A geração do espelho é feita com base no XML retornado pelo equipamento S@T/MFe e retornado na requisição em formato PDF.
+
+### Gerar XML referente ao cupom autorizado
+A geração do XML é feita com base no XML retornado pelo equipamento S@T/MFe.
+
 
 ## Download
 

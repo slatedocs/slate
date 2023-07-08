@@ -647,7 +647,8 @@ Utilize o método **HTTP GET** para consultar as notas. Esta requisição aceita
 
 * **cnpj**(*): CNPJ da empresa. Campo obrigatório.
 * **versao**: Se informado, irá buscar apenas os documentos cuja versão seja maior que o parâmetro recebido. Utilize este parâmetro para buscar apenas as notas que seu sistema ainda não conhece.
-* **pendente**: Se este parâmetro for informado, serão listadas apenas as notas que estão pendentes de manifestação.
+* **pendente**: Se este parâmetro for informado, serão listadas apenas as notas que estão pendentes de manifestação final. Consideramos notas pendentes aquelas que não tem manifesto ou tem apenas manifesto de ciência (não havendo o manifesto final de operação de confirmação, desconhecimento ou operação não realizada)
+* **pendente_ciencia**: Se este parâmetro for informado, serão listadas apenas as notas que não tem a operação de ciência registrada.
 
 Serão devolvidas as 100 primeiras notas encontradas. Para recuperar as demais notas você deverá fazer uma nova requisição alterando o campo versão.
 
