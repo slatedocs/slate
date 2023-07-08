@@ -1,6 +1,6 @@
 # NFSes Recebidas
 
-De forma similar à [manifestação de NFe](#manifestacao-nfe), a API Focus para busca de _NFSes Recebidas_ permite que você consulte notas de serviço em que sua empresa é a tomadora do serviço. Aqui chamamos de _notas recebidas_ pois NFSe não contempla a operação de manifestação.
+De forma similar à [manifestação de NFe](#manifestacao-nfe), a API Focus para busca de _NFSes Recebidas_ permite que você consulte notas de serviço em que sua empresa é a tomadora do serviço. Denominamos _notas recebidas_ pois NFSe não contempla a operação de manifestação.
 
 A recuperação de notas é possível apenas em municípios que disponibilizam a consulta de notas recebidas / tomadas - como São Paulo, Sorocaba, Barueri e outras dezenas de [municípios integrados em nossa API](https://focusnfe.com.br/cidades-integradas-nfse/).
 
@@ -389,7 +389,7 @@ Você pode configurar o gatilho `nfse_recebida` para receber estes dados diretam
 ]
 ```
 
-Caso utilize o argumento `completa=1`, os dados serão devolvidos em formato estendido, similar ao de emissão de NFSe com algumas melhorias. Para mais detalhes consulte a [Documentação Completa de Campos NFSes Recebidas](LINK_PARA_DOCUMENTACAO_COMPLETA_DE_CAMPOS). Informações adicionais na seção [Versões da API](#nfses-recebidas_versoes-da-api).
+Caso utilize o argumento `completa=1`, os dados serão devolvidos em formato estendido, similar ao de emissão de NFSe com algumas melhorias. Para mais detalhes consulte a [Documentação Completa de Campos NFSes Recebidas](https://campos.focusnfe.com.br/nfser/NfseRecebida.html). Informações adicionais na seção [Versões da API](#nfses-recebidas_versoes-da-api).
 
 
 ## Consulta de NFSe Individual
@@ -417,7 +417,7 @@ Para garantir compatibilidade, é possível consultar dados de _versões especí
 api_version | Padrão | Descrição | Links
 ------------|:------:|-----------|------:
 2020-11-17  |   | Versão preliminar (beta) | [documentação legada](https://github.com/FocusNFe/api-doc/blob/v2.4.3/source/includes/_nfses-recebidas.md#dados-devolvidos)
-2023-03-01  | * | Primeira versão oficial estável | [changelog](LINK_BLOG), [documentação atual](LINK_PARA_DOCUMENTACAO_COMPLETA_DE_CAMPOS)
+2023-03-01  | * | Primeira versão oficial estável | [changelog](LINK_BLOG), [documentação atual](https://campos.focusnfe.com.br/nfser/NfseRecebida.html)
 
 <small>
 (*) Última versão estável da API de _NFSes Recebidas_, assumida como padrão quando não informado o parâmetro.
