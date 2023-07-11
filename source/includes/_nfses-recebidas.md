@@ -417,7 +417,7 @@ Para garantir compatibilidade, é possível consultar dados de _versões especí
 api_version | Padrão¹ | Descrição | Links | <abbr title="End of Life">EOL</abbr>
 ------------|:-------:|:---------:|:----: | -----:
 `2020-11-17` | **x**<br><small>_(até 1/10/2023)_</small> | Versão preliminar (beta) | [documentação legada](https://github.com/FocusNFe/api-doc/blob/v2.6.3/source/includes/_nfses-recebidas.md#dados-devolvidos) | 01/10/2024
-`2023-03-01` |  | Primeira versão oficial | [documentação](https://campos.focusnfe.com.br/nfser/NfseRecebida.html), [changelog](LINK_BLOG) | -
+`2023-03-01` |  | Primeira versão oficial | [documentação](https://campos.focusnfe.com.br/nfser/NfseRecebida.html), [changelog](https://focusnfe.com.br/blog/changelog-nfser-v2023-03-01/) | -
 <small>(¹) Última versão estável da API de _NFSes Recebidas_, assumida como padrão quando não informado o parâmetro.</small>
 
 <aside class="notice">
