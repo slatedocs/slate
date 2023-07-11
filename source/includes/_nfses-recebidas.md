@@ -404,7 +404,7 @@ Isto irá devolver os mesmos campos da nota completa, conforme descritos na [se�
 
 ## Versões da API
 
-> Exemplo de consulta de NFSe a ser devolvida no formato da versão beta da API:
+> Exemplo de consulta de NFSe a ser devolvida no formato da versão _beta_ da API:
 
 ```shell
 curl -u "token obtido no cadastro da empresa:" \
@@ -414,12 +414,12 @@ curl -u "token obtido no cadastro da empresa:" \
 Eventualmente são integradas melhorias nos dados retornados pela API de _NFSes Recebidas_.
 Para garantir compatibilidade, é possível consultar dados de _versões específicas da API_ informando o parâmetro **api_version**.
 
-api_version | Padrão | Descrição | Links
-------------|:------:|-----------|------:
-2020-11-17  |   | Versão preliminar (beta) | [documentação legada](https://github.com/FocusNFe/api-doc/blob/v2.4.3/source/includes/_nfses-recebidas.md#dados-devolvidos)
-2023-03-01  | * | Primeira versão oficial estável | [changelog](LINK_BLOG), [documentação atual](https://campos.focusnfe.com.br/nfser/NfseRecebida.html)
+api_version | Padrão¹ | Descrição | Links | <abbr title="End of Life">EOL</abbr>
+------------|:-------:|:---------:|:----: | -----:
+`2020-11-17` | **x**<br><small>_(até 1/10/2023)_</small> | Versão preliminar (beta) | [documentação legada](https://github.com/FocusNFe/api-doc/blob/v2.6.3/source/includes/_nfses-recebidas.md#dados-devolvidos) | 01/10/2024
+`2023-03-01` |  | Primeira versão oficial | [documentação](https://campos.focusnfe.com.br/nfser/NfseRecebida.html), [changelog](LINK_BLOG) | -
+<small>(¹) Última versão estável da API de _NFSes Recebidas_, assumida como padrão quando não informado o parâmetro.</small>
 
-<small>
-(*) Última versão estável da API de _NFSes Recebidas_, assumida como padrão quando não informado o parâmetro.
-</small>
-
+<aside class="notice">
+A partir do dia <i>2/10/2023</i> a versão padrão será <code>2023-03-01</code>. Recomendamos que especifique a versão da API em seu sistema.
+</aside>
