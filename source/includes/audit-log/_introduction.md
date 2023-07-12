@@ -1,7 +1,7 @@
 # Introduction
 Audit log offers a record of important events from the prior thirty days, providing insights to who accessed or edited information in Greenhouse Recruiting.
 
-Use audit log to empower your teams to detect and minimize the impact of incidents when they occur, scrutinize configuration edits, and ensure sensitive data is only accessed by the people who truly need it. Learn more about [what to expect with audit log](https://greenhouse.zendesk.com/hc/en-us/articles/15074318933275).
+Use audit log to empower your teams to detect and minimize the impact of incidents when they occur, scrutinize configuration edits, and ensure sensitive data is only accessed by the people who truly need it. Learn more about [what to expect with audit log](https://support.greenhouse.io/hc/en-us/articles/15074318933275).
 
 <aside class="success">
 <b>Note</b>: Audit log is in a closed beta and is only available to select customers.
