@@ -208,7 +208,8 @@ content | If set to `true`, include the full post description, department, and o
   "data_compliance": [
     {
       "type": "gdpr",
-      "requires_consent": true,
+      "requires_processing_consent": true,
+      "requires_retention_consent": true,
       "retention_period": 12345
     }
   ],

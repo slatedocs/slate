@@ -34,7 +34,8 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
     <label><input type="checkbox" name="question_2222[]" value="5" /> Orange</label>
   </label><br/>
   <label>
-    <input type="checkbox" name="data_compliance[gdpr_consent_given]" value="1" />
+    <input type="checkbox" name="data_compliance[gdpr_processing_consent_given]" value="1" />
+    <input type="checkbox" name="data_compliance[gdpr_retention_consent_given]" value="1" />
     {{ORGANIZATION}} has my consent to collect, store, and process my data for the purpose
     of considering me for employment.
   </label>
@@ -81,7 +82,8 @@ curl -X POST \
   -F "demographic_answers[][question_id]=88" \
   -F "demographic_answers[][answer_options][][answer_option_id]=212" \
   -F "demographic_answers[][answer_options][][text]=Free-form Answer" \
-  -F "data_compliance[gdpr_consent_given]=true" \
+  -F "data_compliance[gdpr_processing_consent_given]=true" \
+  -F "data_compliance[gdpr_retention_consent_given]=true" \
   "https://boards-api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
 ```
 
@@ -166,7 +168,8 @@ curl -X POST \
     ]
   },
   "data_compliance": {
-    "gdpr_consent_given": true
+    "gdpr_processing_consent_given": true
+    "gdpr_retention_consent_given": true
   }' \
   "https://boards-api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
 ```
@@ -216,7 +219,7 @@ email | Applicant's email address
 *educations | An array of education objects. Each education object should have five fields: `school_name_id`, `degree_id`, `discipline_id`, `start_date`, and `end_date`. You can get the `school_name_id`, `degree_id`, `discipline_id` from our [List Schools](#list-schools), [List Degrees](#list-degrees), and [List Disciplines](#list-disciplines) endpoints. `start_date` and `end_date` will use a hash of month and year.
 *employments | An array of employments objects. Each employment object should have: `company_name`, `title`, `start_date`, and `current` (must be `true` or `false`). If `current` is `false`, must have `end_date`. `start_date` and `end_date` will use a hash of month and year.
 *demographic_answers | An array of demographic answer objects, applicable only if your organization has Greenhouse Inclusion and demographic questions are enabled on the job post. Each object must have a `question_id` field. The `answer_options` field is an array of objects, one for each `answer_option_id` the candidate selected. For answer options which support free-form responses, a `text` field may also be supplied with the candidate's hand-typed answer. Note that these questions are always optional, so the `answer_options` array may be empty, null, or omitted if the candidate did not make any selections.
-*data_compliance | An object representing an candidate's answer to required data compliance questions. This field is dependent on your organization's privacy and compliance configuration and is only applicable in some cases. Example: `{ "gdpr_consent_given": true }`.
+*data_compliance | An object representing an candidate's answer to required data compliance questions. This field is dependent on your organization's privacy and compliance configuration and is only applicable in some cases. Example: `{ "gdpr_processing_consent_given": true, "gdpr_retention_consent_given": false }`.
 
 ### Submitting Attachments
 
