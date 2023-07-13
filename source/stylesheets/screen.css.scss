@@ -88,7 +88,7 @@ html, body {
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - ($nav-padding*2);
+      width: $nav-width - ($nav-padding*3);
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
@@ -155,12 +155,27 @@ html, body {
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
+
+    &:hover {
+      background-color: darken($nav-active-bg, 5%);
+      color: $nav-active-text;
+    }
+  }
+
+  .toc-link:hover {
+    background-color: lighten($nav-bg, 10%);
+    color: $nav-text;
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+
+    &:hover {
+      background-color: lighten($nav-bg, 10%);
+      color: $nav-text;
+    }
   }
 
   .toc-list-h2 {
@@ -171,13 +186,12 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 0.9em;
   }
 
   .toc-footer {
     padding: 1em 0;
-    margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    margin-top: 1.5em;
 
     li,a {
       color: $nav-text;
@@ -207,6 +221,9 @@ html, body {
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  font-size: 0.9em;
 }
 
 // button to show navigation on mobile devices
@@ -300,6 +317,11 @@ html, body {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
     }
+
+    &:hover {
+      background-color: $lang-select-hover-bg;
+      color: $lang-select-hover-text;
+    }
   }
 
   &:after {
@@ -352,13 +374,9 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
   }
 
   h1:first-child, div:first-child + h1 {
-    border-top-width: 0;
     margin-top: 0;
   }
 
@@ -367,10 +385,8 @@ html, body {
     font-size: 19px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
@@ -449,17 +465,62 @@ html, body {
     max-width: 100%;
   }
 
-  code {
-    background-color: rgba(0,0,0,0.05);
-    padding: 3px;
-    border-radius: 3px;
-    @extend %break-words;
-    @extend %code-font;
+  blockquote {
+    padding: 20px 28px 0 0;
   }
 
-  pre>code {
-    background-color: transparent;
+  blockquote, pre {
+    color: #fff;
+    margin: 0;
+    width: 50%;
+    float: right;
+    clear: right;
+    box-sizing: border-box;
+    text-shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+
+  blockquote > p {
     padding: 0;
+  }
+
+  pre {
+    padding: 0 28px 10px;
+  }
+
+  pre code {
+    display: block;
+    background-color: #212429;
+    padding: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: rgba(0,0,0,.2) 0 0 2px inset;
+    -moz-box-shadow: rgba(0,0,0,.2) 0 0 2px inset;
+    -o-box-shadow: rgba(0,0,0,.2) 0 0 2px inset;
+    -ms-box-shadow: rgba(0,0,0,.2) 0 0 2px inset;
+    box-shadow: inset 0 0 2px rgba(0,0,0,.2);
+    line-height: 1.5;
+    font-size: 12px;
+    font-family: Monaco,consolas,monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  code {
+    background: transparent;
+    padding: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    @extend %break-words;
+    @extend %code-font;
   }
 
   aside {
@@ -469,6 +530,7 @@ html, body {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    color: $aside-text;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -495,6 +557,14 @@ html, body {
 
   aside.success:before {
     @extend %icon-ok-sign;
+  }
+
+  a {
+    color: $primary;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .search-highlight {
@@ -550,6 +620,7 @@ html, body {
     &>p {
       background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;
+      padding-bottom: 0;
       color: #eee;
     }
   }
@@ -576,11 +647,6 @@ html, body {
 
   #nav-button {
     display: block;
-  }
-
-  .toc-link {
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
   }
 }
 
@@ -619,11 +685,8 @@ html, body {
   color: #909090;
 }
 
-.highlight, .highlight .w {
-  background-color: $code-bg;
-}
-
 .copy-clipboard {
+  padding: 10px;
   float: right;
   fill: #9DAAB6;
   cursor: pointer;
@@ -640,24 +703,26 @@ html, body {
 /* Focus Custom CSS STARTS HERE */
 
 .toc-wrapper .logo {
-  margin: 15px auto 0px;
+  margin: 15px auto 10px;
 }
 .cta-doc-link {
   text-align: center;
   padding: 24px 6px;
-}
-.cta-doc-link a {
-  color: #fff;
-  text-decoration: none;
-  letter-spacing: 0.6px;
-  background: #2a7ae3;
-  padding: 9px 15px;
-  border-radius: 3px;
-  font-size: 12px;
-}
-.cta-doc-link a:hover {
-  background-color: #2eade6;
-  transition: background-color 150ms linear;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.6px;
+    background: $primary;
+    padding: 9px 15px;
+    border-radius: 3px;
+    font-size: 12px;
+    transition: background-color 150ms linear;
+
+    &:hover {
+      background: darken($primary, 5%);
+    }
+  }
 }
 
 
