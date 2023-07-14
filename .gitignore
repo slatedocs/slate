@@ -25,3 +25,6 @@ doc/
 
 # Vagrant artifacts
 ubuntu-*-console.log
+
+# Node.js artifacts
+node_modules/
