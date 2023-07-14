@@ -10,3 +10,6 @@ deploy.sh
 font-selection.json
 README.md
 Vagrantfile
+node_modules/
+package.json
+package-lock.json

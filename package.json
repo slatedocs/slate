@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "size-limit": [
+    {
+      "path": "build/javascripts/all.js"
+    },
+    {
+      "path": "build/javascripts/all_nosearch.js"
+    },
+    {
+      "path": "build/stylesheets/screen.css"
+    },
+    {
+      "path": "build/stylesheets/print.css"
+    },
+    {
+      "path": "build/images/navbar.png"
+    },
+    {
+      "path": "build/fonts/slate.woff2"
+    },
+    {
+      "path": "build/index.html"
+    }
+  ],
+  "scripts": {
+    "size": "size-limit"
+  },
+  "devDependencies": {
+    "@size-limit/file": "^8.2.6",
+    "size-limit": "^8.2.6"
+  }
+}
