@@ -51,7 +51,7 @@ under the License.
       var language = (new URLSearchParams(location.search)).get('language');
       if (language) {
         return language;
-      } else if (jQuery.inArray(location.search.substr(1), languages) != -1) {
+      } else if (languages.includes(jQuery.inArray(location.search.substr(1)))) {
         return location.search.substr(1);
       }
     }
@@ -93,14 +93,14 @@ under the License.
     languages = l;
 
     var presetLanguage = getLanguageFromQueryString();
-    if (presetLanguage  && (jQuery.inArray(presetLanguage, languages) != -1)) {
+    if (presetLanguage  && languages.includes(presetLanguage)) {
       // the language is in the URL, so use that language!
       activateLanguage(presetLanguage);
 
       if (localStorage) {
         localStorage.setItem("language", presetLanguage);
       }
-    } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, languages) != -1)) {
+    } else if (defaultLanguage !== null && languages.includes(defaultLanguage)) {
       // the language was the last selected one saved in localstorage, so use that language!
       activateLanguage(defaultLanguage);
     } else {
