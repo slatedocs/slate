@@ -23,16 +23,6 @@ meta:
     content: Documentation for the EFEX API
 ---
 
-# Preview
-
-Pruebaaa
-
-```python
-import efex_api
-
-ap = efex.authorize('meowmeowmeow')
-```
-
 # EFEX's API Introduction
 
 The purpose of this documetnation is to guide you through the implementation of our API that allows businesses like your's to automate their FX operations and international payments.
