@@ -19,17 +19,37 @@ search: true
 code_clipboard: true
 
 meta:
-  - name: description
-    content: Documentation for the Kittn API
+  - name: EFEX API
+    content: Documentation for the EFEX API
 ---
 
-# Introduction
+# Preview
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Pruebaaa
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+```python
+import efex_api
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+ap = efex.authorize('meowmeowmeow')
+```
+
+# EFEX's API Introduction
+
+The purpose of this documetnation is to guide you through the implementation of our API that allows businesses like your's to automate their FX operations and international payments.
+
+With our API, we help you process nearly instant cross-border payments with $0 transaction fees, competitive exchange rates, and automated local dispersion.  
+
+We currently accept companies that operate from the United States, Mexico, and Colombia. Hence, we accept deposits from our users in USD, MXN, and COP respectively. 
+
+In addition, our API allows our users to make instant payouts in:
+<br>
+- United States (USD)
+<br>
+- Mexico (MXN)
+<br>
+- Colombia (COP)
+<br>
+- **Rest of the world (SWIFT in USD)
 
 # Authentication
 
