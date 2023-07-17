@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-07-17
+
+- Add information about [notes with `type` 1](#the-note-resource).
+
 ## 2023-07-03
 
 - Updated API access information for Professional tier customers.
