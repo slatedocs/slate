@@ -15,7 +15,7 @@ Equipment Table Can be updated and a new set of data can be added by using the f
 > General URL Of POST Endpoint : 
 
 ```
-https: // *.intelex.com/API-staging/DEVELOPMENT/v1/Equipment
+https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Equipment
 ```
 
 ## 2.Operation Table POST API Endpoint 
@@ -25,7 +25,7 @@ Operation Table Can be updated and a new set of data can be added by using the f
 > General URL Of POST Endpoint : 
 
 ```
-https: // *.intelex.com/API-staging/DEVELOPMENT/v1/Operation
+https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Operation
 ```
 
 ## 3.Facility Table POST API Endpoint 
@@ -35,7 +35,7 @@ Facility Table Can be updated and a new set of data can be added by using the fo
 > General URL Of POST Endpoint : 
 
 ```
-https: // *.intelex.com/API-staging/DEVELOPMENT/v1/Facility
+https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Facility
 ```
 
 ## 4.Facility Attribute Table POST API Endpoint 
@@ -45,7 +45,7 @@ Facility Attribute Table Can be updated and a new set of data can be added by us
 > General URL Of POST Endpoint : 
 
 ```
-https: // *.intelex.com/API-staging/DEVELOPMENT/v1/FacilityAttribute 
+https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/FacilityAttribute 
 ```
 
 ## One of the Endpoints Input Json body for both Insert & Update 

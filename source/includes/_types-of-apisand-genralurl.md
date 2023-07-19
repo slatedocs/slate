@@ -2,7 +2,7 @@
 
 1.	GET API’s In the current ACTS – API release overall there have been planned for 11 GET API’s 
 
-> Example GET API Endpoint : https : // *.intelex.com/API-develop/v1/{Table Object}/{Fetch_Based_On_ID’s} 
+> Example GET API Endpoint : https : // *actsapi.intelex.com/API-develop/v1/{Table Object}/{Fetch_Based_On_ID’s} 
 
 2.  POST API’s in the upcoming release we are including 4 POST API’s . 
     These API’s helps to edit and make updates in the respective tables.
@@ -26,7 +26,7 @@
 ]
 ```
 
-> Example POST API Endpoint : https : // *.intelex.com/API-develop/v1/{Table Object}
+> Example POST API Endpoint : https : // *actsapi.intelex.com/API-develop/v1/{Table Object}
 
 {Table Object} : Unit , Operation , Emission , Emission Category tables etc 
 
@@ -38,7 +38,7 @@ v1 : Version , First version of the ACTS - API
 3. GET API's With Pagination Option 
 In this case user can specify the page number and page size where 500 is maximum size of the page. Example output with the page number and page size 
 
-> Example GET API Endpoint : https ://*.intelex.com/API-develop/v1/{Table Object}/{Fetch_Based_On_ID’s}/ ?PageNumber=1&PageSize=50 
+> Example GET API Endpoint : https ://*actsapi.intelex.com/API-develop/v1/{Table Object}/{Fetch_Based_On_ID’s}/ ?PageNumber=1&PageSize=50 
 
 {Table Object} : Unit , Operation , Emission , Emission Category tables etc 
 

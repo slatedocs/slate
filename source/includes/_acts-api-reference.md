@@ -77,6 +77,6 @@ Response Code | Meaning
 
 When we make backwards-incompatible changes to the API, we release new versions. The current version of ACTS – API  is v1 and can be determined with our API base path /api/v1/.
 
->Example API Endpoint : https://*.intelex.com/API/**/v1/TableName
+>Example API Endpoint : https://*actsapi.intelex.com/API/**/v1/TableName
 
 
