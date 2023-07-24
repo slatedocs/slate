@@ -1,11 +1,12 @@
 # ACTS API Reference
 
-The Intelex API[ACTS API] is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. JSON is returned by all API responses, including errors.
+The Intelex ACTS API provides endpoints in ACTS, with it's own URL for access. If you currently use the Intelex API, you will not be able to use the ACTS API unless you have Admin access to ACTS. At the same time, you can use the ACTS API without any permission for Intelex V6.  
+
+Our ACTS API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. JSON is returned by all API responses, including errors.
 
 ## Getting Started
 
 To begin using the Intelex API you will need:
-*	Your own instance of the Intelex platform with the REST API enabled.
 *	A valid Intelex ACTS user account
 *	The full URL to your Intelex ACTS API and system
 *	A basic understanding of the Intelex ACTS API Application.
@@ -17,6 +18,7 @@ https://*.actsapi.intelex.com
 ```
 
 ## Authentication
+
 >Example Requests:
 
 ```CSharp 
@@ -39,24 +41,23 @@ https://*.actsapi.intelex.com
 }
 ```
 
-Intelex ACTS API utilizes tokens for authentication, and it uses the Auth0 for the authentication process. 
-In which the client would be passing the client id and client secret to the auth0 validation endpoint along with those two things they would pass the audience and grant type as well. Which results in the access token of type bearer which has a time limit further this access token is used as authentication code to access all other ACTS – API’s.
+Intelex's ACTS API uses Auth0 tokens for authentication. Only ACTS Admin users can access the API. 
 
-The unique generated key can then be used to access the Intelex ACTS APIs - REST API and used to authenticate and prove that the user is who they claim to be.
+During Auth0 authentication, the client passes 'client id' and 'client secret' to the auth0 validation endpoint, along with the audience and grant type, as shown above. The API returns a bearer-type access token with a time limit. Only ACTS admin users will be authenticated. Once authenticated, users have access to all ACTS API endpoints. 
 
-All API requests must be made over HTTPS and API requests without authentication will fail. Security on data is managed by the platform security configuration.
+All API requests must be made over HTTPS, and API requests without authentication will fail. Security on data is managed by the ACTS platform, and API requests will provide the same admin access available to logged in ACTS admin users. 
 
-API requests will maintain the same security settings you have configured in the platform for each user. Here we are having a authentication POST API which is used for generating the access token [bearer token] to which we can pass it on the required input parameters.
+The user authentication endpoint uses a POST (with input parameters described above) to generate the access token [bearer token]. 
 
 >Authentication API Endpoint - https: // dev-intelex.us.auth0.com/oauth/token 
 
 ## Data Format
 
-The Intelex API - ACTS API only supports [JSON](http://www.json.org/) as the data format for requests and responses.
+The ACTS API only supports [JSON](http://www.json.org/) for requests and responses.
 
 ## Response Codes
 
-The Intelex ACTS API's - REST API will respond with the following HTTP status codes:
+The ACTS API will respond with the following HTTP status codes:
 
 Response Code | Meaning
 ---------- | -------
@@ -75,8 +76,6 @@ Response Code | Meaning
 
 ## Versioning
 
-When we make backwards-incompatible changes to the API, we release new versions. The current version of ACTS – API  is v1 and can be determined with our API base path /api/v1/.
+When we make backwards-incompatible changes to the API, we release new versions. The current version of the ACTS API  is v1 and can be determined with our API base path /api/v1/.
 
->Example API Endpoint : https://*actsapi.intelex.com/API/**/v1/TableName
-
-
+>Example API Endpoint : https://*.actsapi.intelex.com/API/**/v1/TableName

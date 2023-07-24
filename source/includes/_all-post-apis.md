@@ -1,36 +1,36 @@
 # ALL POST API's 
 
-The following POST APIs are used to modify the data like update the existing records with latest values and insert a new set of records for the respective tables which are covered in the following release.
+The following POST APIs are used to modify ACTS data. Options include updating existing records and inserting new records, and you can complete both in the same POST. To insert new records, the primary key is set to 0, while for updates to existing records, the primary key for the existing record is used. You can see an example for this in 4. Facility Attribute Table POST API Endpoint below. 
 
-And here as we are dealing with a huge amount of data to be inserted and updated so we are doing it in a batch wise. For example, we are trying to insert in a form of 50 rows a batch at once.We can alter the batch size at any time. In the current release we have 4 POST API’s included which would help in update & insert of the records to the following tables Equipment, Operation, Facility and Facility Attribute tables.
+For large data inserts, we recommend you break data into batch POSTs of up to 500 rows. Large batch POSTs may be throttled or failed, depending on system resources. 
 
-When we are going for insert operation then we need to pass the primary key as zero – 0 as it is unique key and is auto increment in table. When new row gets added and a new primary would be assigned to the newly added rows .
+In the current release we have 4 POST API’s available, for the Equipment, Operation, Facility, and Facility Attribute tables. POSTs to these endpoints must be JSON format. 
 
-The data on the equipment, Operation , Facility and Facility Attribute table can be updated with new set of values and even we can add new set of records to it by using the below-mentioned endpoint. The inputs are passed as JSON format data.
+As described above, to insert to a table, the primary key should be zero – 0. When the record is added to the table it will be assigned the next available incremental primary key.
 
-## 1.Equipment Table POST API Endpoint 
+## 1.Equipment POST API Endpoint 
 
-Equipment Table Can be updated and a new set of data can be added by using the following endpoint .
+Equipment records can be updated, or new records added at the following endpoint:
 
-> General URL Of POST Endpoint : 
+> Equipment POST endpoint: 
 
 ```
 https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Equipment
 ```
 
-## 2.Operation Table POST API Endpoint 
+## 2.Operation POST API endpoint 
 
-Operation Table Can be updated and a new set of data can be added by using the following endpoint .
+Operation records can be updated, or new records added at the following endpoint:
 
-> General URL Of POST Endpoint : 
+> General URL Of POST Endpoint: 
 
 ```
 https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Operation
 ```
 
-## 3.Facility Table POST API Endpoint 
+## 3.Facility POST API endpoint 
 
-Facility Table Can be updated and a new set of data can be added by using the following endpoint .
+Facility records can be updated, or new records added at the following endpoint:
 
 > General URL Of POST Endpoint : 
 
@@ -38,20 +38,19 @@ Facility Table Can be updated and a new set of data can be added by using the fo
 https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Facility
 ```
 
-## 4.Facility Attribute Table POST API Endpoint 
+## 4.Facility Attribute POST API endpoint 
 
-Facility Attribute Table Can be updated and a new set of data can be added by using the following endpoint .
+Facility Attribute records can be updated, or new records added at the following endpoint:
 
-> General URL Of POST Endpoint : 
+> Facility Attribute POST Endpoint: 
 
 ```
 https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/FacilityAttribute 
 ```
 
-## One of the Endpoints Input Json body for both Insert & Update 
+## JSON body for both Insert & Update 
 
-The primary id is zero - "0" then the data we are passing is considered as the insert option , like in the below example option 
-"EquipmentAttributeId" is passed as "0" then this data would be added as new row in the respective table [Insert Option] . 
+If the primary id is zero - "0" then the data we are passing is handled as an insert, shown in the example below, where "EquipmentAttributeId" is passed as "0". 
 
 > Example Input JSON Body For Insert 
 
@@ -73,6 +72,9 @@ The primary id is zero - "0" then the data we are passing is considered as the i
 
 > Example Input JSON Body For Update 
 
+If the primary id is an existing ID - "#####" then the data we are passing is handled as an update, shown in the example below, where "EquipmentAttributeId" is passed as "164". 
+
+
 ```json
 
 [
@@ -89,5 +91,4 @@ The primary id is zero - "0" then the data we are passing is considered as the i
 ]
 ```
 
-The primary id is "164" which is predefined existing ID in the table then the data we are passing is considered as the update option , 
-"EquipmentAttributeId" is passed as "164" then row which has the following ID would be updated with new values. 
+
