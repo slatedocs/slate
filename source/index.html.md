@@ -91,19 +91,23 @@ https://together.sharethemeal.org/api/v3/partner/campaigns/locale=en-GB
     "progress": 0.613,
     "name": "Syria",
     "caption": "Share for children in Syria",
-    "textShort": "From the onset of the Syrian crisis in 2011, the World Food Programme has been on the frontlines doing whatever it takes to deliver food to millions of people who need it. As the crisis enters its eighth year, your help can make a difference in the lives of those who continue to suffer.",
-    "textLong": "From the onset of the Syrian crisis in 2011, the World Food Programme has been on the frontlines doing whatever it takes to deliver food to millions of people who need it. As the crisis enters its eighth year, your help can make a difference in the lives of those who continue to suffer.\n<br>&nbsp;<br>\nBy sharing your meal, you can help to provide much-needed nutrition to children living in this conflict-ridden area. Families will receive staple foods such as rice, bulgur wheat, pulses and vegetable oil, to improve their nutrition in these difficult circumstances.\n<br>&nbsp;<br>\n<b>Together, we can ensure 2,500 children in rural Damascus will have food for 1 year.</b>",
-    "imageUrl": "https://images.contentful.com/z0x29akdg5eb/w8sOmPl9hQ8usmiwcQQ66/97f55cfd4bdc95f4d11d053f8c1e1231/Homecards_Syria2.png"
+    "imageUrl": "https://images.contentful.com/z0x29akdg5eb/w8sOmPl9hQ8usmiwcQQ66/97f55cfd4bdc95f4d11d053f8c1e1231/Homecards_Syria2.png",
+    "story": {
+      "summary": "From the onset of the Syrian crisis in 2011, the World Food Programme has been on the frontlines doing whatever it takes to deliver food to millions of people who need it. As the crisis enters its eighth year, your help can make a difference in the lives of those who continue to suffer.",
+      "details": "By sharing your meal, you can help to provide much-needed nutrition to children living in this conflict-ridden area. Families will receive staple foods such as rice, bulgur wheat, pulses and vegetable oil, to improve their nutrition in these difficult circumstances.\n<br>&nbsp;<br>\n<b>Together, we can ensure 2,500 children in rural Damascus will have food for 1 year."
+    },
   },{
     "campaignId": "yemen",
     "progress": 0.21,
     "name": "Yemen",
     "caption": "Give life-saving aid in Yemen",
-    "textShort": "Shared meals will help provide food baskets, cash transfers, school meals and nutrition support in Yemen.",
-    "textLong": "Over 20 million people in Yemen are in need of humanitarian assistance. Ongoing conflict, economic collapse and a global rise in food and fuel prices have pushed the country into one of the world’s biggest hunger crises. As wheat is a staple ingredient in Yemen, the war in Ukraine has exacerbated the situation and the country continues to struggle with malnutrition, with 2.2 million children acutely malnourished.
-    <br>The World Food Programme is on the ground continuing to serve 13 million people - one third of the population - with emergency assistance. This includes food baskets, vouchers or cash, prioritising areas with the highest rates of food insecurity.
-    <br>WFP is having an impact on many children’s lives, providing daily nutritious school snacks - either date bars or high-energy biscuits - as well as its nutrition programme which supports almost 900,000 children under five.",
-    "imageUrl": "https://images.ctfassets.net/z0x29akdg5eb/1Or8JB1ll3TRqZKckQH8hm/5d78bc05d75526e29149e23beeff2d7b/WFP_STM_yemen16_homecard.png"
+    "imageUrl": "https://images.ctfassets.net/z0x29akdg5eb/1Or8JB1ll3TRqZKckQH8hm/5d78bc05d75526e29149e23beeff2d7b/WFP_STM_yemen16_homecard.png",
+    "story": {
+      "summary": "Shared meals will help provide food baskets, cash transfers, school meals and nutrition support in Yemen.",
+      "details": "Over 20 million people in Yemen are in need of humanitarian assistance. Ongoing conflict, economic collapse and a global rise in food and fuel prices have pushed the country into one of the world’s biggest hunger crises. As wheat is a staple ingredient in Yemen, the war in Ukraine has exacerbated the situation and the country continues to struggle with malnutrition, with 2.2 million children acutely malnourished.
+      <br>The World Food Programme is on the ground continuing to serve 13 million people - one third of the population - with emergency assistance. This includes food baskets, vouchers or cash, prioritising areas with the highest rates of food insecurity.
+      <br>WFP is having an impact on many children’s lives, providing daily nutritious school snacks - either date bars or high-energy biscuits - as well as its nutrition programme which supports almost 900,000 children under five."
+    },
   }]
 }
 ```
@@ -118,8 +122,8 @@ campaignId | string | The internal identifier for the campaign, can also be used
 progress | float | Float value of completion towards campaign goal. 1.0 = 100%. Can be used to render a progress bar, for example
 name |  string | Localized Short Name (“Syria”)
 caption |  string | localized caption / topic of campaign (“Share for children in Syria”).
-textShort |  string | Short description text (usually 1-2 sentences)
-textLong | string | Longer description text of campaign and goal
+story.summary |  string | Short description text (usually 1-2 sentences)
+story.details | string | Longer description text of campaign and goal
 imageUrl | string | Square aspect ratio image representing the campaign, see Images API for info about requesting specific variants.
 
 ## GET /campaigns/{campaignId} 
@@ -156,9 +160,11 @@ https://together.sharethemeal.org/api/v3/partner/campaigns/syria?locale=en-GB
     "progress": 0.613,
     "name": "Syria",
     "caption": "Share for children in Syria",
-    "textShort": "From the onset of the Syrian crisis in 2011, the World Food Programme has been on the frontlines doing whatever it takes to deliver food to millions of people who need it. As the crisis enters its eighth year, your help can make a difference in the lives of those who continue to suffer.",
-    "textLong": "From the onset of the Syrian crisis in 2011, the World Food Programme has been on the frontlines doing whatever it takes to deliver food to millions of people who need it. As the crisis enters its eighth year, your help can make a difference in the lives of those who continue to suffer.\n<br>&nbsp;<br>\nBy sharing your meal, you can help to provide much-needed nutrition to children living in this conflict-ridden area. Families will receive staple foods such as rice, bulgur wheat, pulses and vegetable oil, to improve their nutrition in these difficult circumstances.\n<br>&nbsp;<br>\n<b>Together, we can ensure 2,500 children in rural Damascus will have food for 1 year.</b>",
-    "imageUrl": "https://images.contentful.com/z0x29akdg5eb/w8sOmPl9hQ8usmiwcQQ66/97f55cfd4bdc95f4d11d053f8c1e1231/Homecards_Syria2.png"
+    "imageUrl": "https://images.contentful.com/z0x29akdg5eb/w8sOmPl9hQ8usmiwcQQ66/97f55cfd4bdc95f4d11d053f8c1e1231/Homecards_Syria2.png",
+    "story": {
+      "summary": "From the onset of the Syrian crisis in 2011, the World Food Programme has been on the frontlines doing whatever it takes to deliver food to millions of people who need it. As the crisis enters its eighth year, your help can make a difference in the lives of those who continue to suffer.",
+      "details": "By sharing your meal, you can help to provide much-needed nutrition to children living in this conflict-ridden area. Families will receive staple foods such as rice, bulgur wheat, pulses and vegetable oil, to improve their nutrition in these difficult circumstances.\n<br>&nbsp;<br>\n<b>Together, we can ensure 2,500 children in rural Damascus will have food for 1 year."
+    },
   }
 }
 ```
@@ -171,8 +177,8 @@ campaignId | string | The internal identifier for the campaign, can also be used
 progress | float | Float value of completion towards campaign goal. 1.0 = 100%. Can be used to render a progress bar, for example
 name |  string | Localized Short Name (“Syria”)
 caption |  string | localized caption / topic of campaign (“Share for children in Syria”).
-textShort |  string | Short description text (usually 1-2 sentences)
-textLong | string | Longer description text of campaign and goal
+story.summary |  string | Short description text (usually 1-2 sentences)
+story.details | string | Longer description text of campaign and goal
 imageUrl | string | Square aspect ratio image representing the campaign, see Images API for info about requesting specific variants.
 
 # Donations
