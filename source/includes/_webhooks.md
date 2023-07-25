@@ -28,8 +28,8 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 | id            | integer  | The unique identifier of the webhook subscription object.                                                                                                                                                             |
 | webhook_url   | string   | The URL to which the webhooks are sent to.                                                                                                                                                                            |
 | subscriptions | string[] | An array of webhook events that are enabled for that endpoint. An empty array indicates subscription to all webhook events. See [below](#supported-webhook-events) for the complete list of supported webhook events. |
-| disabled      | boolean  | If the subscription is disabled, this is true. Otherwise, this is false by default. A subscription may be disabled manually via API or automatically if we are not able to process it.|
-| created_by    | integer  | The unique identifier of the user who created the webhook subscription. |
+| disabled      | boolean  | If the subscription is disabled, this is true. Otherwise, this is false by default. A subscription may be disabled manually via API or automatically if we are not able to process it.                                |
+| created_by    | integer  | The unique identifier of the user who created the webhook subscription.                                                                                                                                               |
 
 ## Supported Webhook Events
 
@@ -51,9 +51,7 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
       "first_name": "John",
       "last_name": "Doe",
       "primary_email": "john@affinity.co",
-      "emails": [
-        "john@affinity.co"
-      ]
+      "emails": ["john@affinity.co"]
     }
   },
   "sent_at": 1631120151
@@ -71,9 +69,9 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
 | Organization | `organization.created`, `organization.updated`, `organization.deleted`, `organization.merged` |
 | Opportunity  | `opportunity.created`, `opportunity.updated`, `opportunity.deleted`                           |
 | Entity File  | `file.created`, `file.deleted`                                                                |
-| Reminder     | `reminder.created`, `reminder.updated`, `reminder.deleted`                                                               |
+| Reminder     | `reminder.created`, `reminder.updated`, `reminder.deleted`                                    |
 
-The Field Value webhook events do not include enrichment events by default. To enable enrichment webhooks, please contact [support@affinity.co](support@affinity.co).
+The Field Value webhook events do not include enrichment events; updates to enrichment field values are not supported.
 
 <aside class="notice">
   <h6>Note</h6>
@@ -235,9 +233,9 @@ Update webhook subscription with the supplied parameters. A webhook subscription
 
 | Parameter     | Type     | Required | Description                                                                                                                                                                                                                                          |
 | ------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| webhook_url   | string   | false     | The URL to which the webhooks will be sent to.                                                                                                                                                                                                       |
+| webhook_url   | string   | false    | The URL to which the webhooks will be sent to.                                                                                                                                                                                                       |
 | subscriptions | string[] | false    | An array of webhook events that will be enabled for that endpoint. Leave out this parameter or pass an empty array to subscribe to all webhook events. You can find the complete list of supported webhook events [here](#supported-webhook-events). |
-| disabled      | boolean  | false    | Change the status of a subscription. To enable a subscription, provide the value as `false`. Otherwise, provide the value as `true.` |
+| disabled      | boolean  | false    | Change the status of a subscription. To enable a subscription, provide the value as `false`. Otherwise, provide the value as `true.`                                                                                                                 |
 
 ### Returns
 
