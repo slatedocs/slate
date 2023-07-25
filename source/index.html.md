@@ -10,7 +10,7 @@ includes:
   - object-data-api
   - task-api
   - dev-support
-  - _acts-api-reference.md
+  - _acts-api-reference
 
   
 search: true
