@@ -9,7 +9,7 @@ jobs:
             - run:
                 name: Install and configure dependencies
                 command: |
-                    gem install bundler
+                    gem install bundler -v 2.3.26
                     bundle install --jobs 4 --retry 3
             - run:
                 name: Build static html
