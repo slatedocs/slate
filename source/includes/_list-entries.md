@@ -17,7 +17,7 @@
     "primary_email": "jdoe@jdoe.com",
     "emails": ["jdoe@jdoe.com", "jdoe2@jdoe2.com"]
   },
-  "created_at": "2017-01-16 16:34:03 -0800"
+  "created_at": "2017-01-16T16:34:03.539-08:00"
 }
 ```
 
@@ -36,6 +36,7 @@ list entry abstraction.
 | entity_id  | integer  | The unique identifier of the entity corresponding to the list entry.                                                                                                              |
 | entity     | object   | Object containing entity-specific details like name, email address, domain etc. for the entity corresponding to `entity_id`.                                                      |
 | created_at | datetime | The time when the list entry was created.                                                                                                                                         |
+
 <aside class="notice">
   <h6>Note</h6>
   <p>Although list entries correspond to rows in an Affinity spreadsheet, the values associated with the entity are not stored inside the list entry resource. If you are trying to update, create, or delete a value in one of the custom columns for this list entry, please refer to the <a href="#field-values">Field Values</a> section. The list entry API is only used for getting, adding, or removing entities from a list. It does not handle updating individual cells in columns.</p>
@@ -58,7 +59,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
     "list_id": 450,
     "creator_id": 287843,
     "entity_id": 62034,
-    "created_at": "2017-05-04 10:44:31 -0700",
+    "created_at": "2017-05-04T10:44:31.525-08:00",
     "entity": {
       "type": 0,
       "first_name": "Affinity",
@@ -74,7 +75,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
     "list_id": 450,
     "creator_id": 38596,
     "entity_id": 241576,
-    "created_at": "2017-02-22 15:22:21 -0800",
+    "created_at": "2017-02-22T15:22:21.125-08:00",
     "entity": {
       "type": 0,
       "first_name": "John",
@@ -89,7 +90,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
 ]
 ```
 
-> Example Response with Pagingation
+> Example Response with Pagination
 
 ```json
 {
@@ -99,7 +100,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
       "list_id": 450,
       "creator_id": 287843,
       "entity_id": 62034,
-      "created_at": "2017-05-04 10:44:31 -0700",
+      "created_at": "2017-05-04T10:44:31.526-08:00",
       "entity": {
         "type": 0,
         "first_name": "Affinity",
@@ -115,7 +116,7 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :$APIKEY
       "list_id": 450,
       "creator_id": 38596,
       "entity_id": 241576,
-      "created_at": "2017-02-22 15:22:21 -0800",
+      "created_at": "2017-02-22T15:22:21.125-08:00",
       "entity": {
         "type": 0,
         "first_name": "John",
@@ -140,9 +141,9 @@ list with the supplied list id.
 
 ### Path Parameters
 
-| Parameter  | Type    | Required | Description                                                                                     |
-| ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
-| list_id    | integer | true     | The unique ID of the list whose list entries are to be retrieved.                               |
+| Parameter | Type    | Required | Description                                                       |
+| --------- | ------- | -------- | ----------------------------------------------------------------- |
+| list_id   | integer | true     | The unique ID of the list whose list entries are to be retrieved. |
 
 ### Query Parameters
 
@@ -182,7 +183,7 @@ curl "https://api.affinity.co/lists/450/list-entries/16367" -u :$APIKEY
   "list_id": 450,
   "creator_id": 38596,
   "entity_id": 241576,
-  "created_at": "2017-02-22 15:22:21 -0800",
+  "created_at": "2017-02-22T15:22:21.125-08:00",
   "entity": {
     "type": 0,
     "first_name": "John",
@@ -223,7 +224,7 @@ curl -X POST “https://api.affinity.co/lists/450/list-entries” \
   "list_id": 450,
   "creator_id": 38596,
   "entity_id": 38706,
-  "created_at": "2017-02-22 15:22:21 -0800",
+  "created_at": "2017-02-22T15:22:21.125-08:00",
   "entity": {
     "type": 0,
     "first_name": "John",
@@ -240,15 +241,15 @@ Creates a new list entry in the list with the supplied list id.
 
 ### Path Parameters
 
-| Parameter  | Type    | Required | Description                                                                                                                                                                                     |
-| ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| list_id    | integer | true     | The unique ID of the list whose list entries are to be retrieved.                                                                                                                               |
+| Parameter | Type    | Required | Description                                                       |
+| --------- | ------- | -------- | ----------------------------------------------------------------- |
+| list_id   | integer | true     | The unique ID of the list whose list entries are to be retrieved. |
 
 ### Payload Parameters
 
-| Parameter        | Type      | Required | Description                                                                                        |
-| ---------------- | --------- | -------- | -------------------------------------------------------------------------------------------------- |
-| entity_id  | integer | true     | The unique ID of the person or organization to add to this list. Opportunities **cannot** be created using this endpoint. See note below.                                                                                                         |
+| Parameter  | Type    | Required | Description                                                                                                                                                                                     |
+| ---------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| entity_id  | integer | true     | The unique ID of the person or organization to add to this list. Opportunities **cannot** be created using this endpoint. See note below.                                                       |
 | creator_id | integer | false    | The ID of a Person resource who should be recorded as adding the entry to the list. Must be a person who can access Affinity. If not provided the creator defaults to the owner of the API key. |
 
 <aside class="notice">

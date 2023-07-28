@@ -44,7 +44,7 @@ Each webhook subscription object has a unique `id`. It also has a `webhook_url` 
     "creator_id": 38603,
     "entity_id": 38706,
     "entity_type": 0,
-    "created_at": "2021-09-08 09:55:50 -0700",
+    "created_at": "2021-09-08T09:55:50.321-07:00",
     "entity": {
       "id": 70796737,
       "type": 0,

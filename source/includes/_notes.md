@@ -20,8 +20,8 @@ store logged activity from a prospect's visit to your website.
   "parent_id": null,
   "content": "Had a lunch meeting with Jane and John today. They are looking to invest.",
   "type": 0,
-  "created_at": "2017-03-28 00:38:41 -0700",
-  "updated_at": "2017-04-03 00:38:41 -0700"
+  "created_at": "2017-03-28T00:38:41.275-08:00",
+  "updated_at": "2017-04-03T00:22:25.612-08:00"
 }
 ```
 
@@ -89,8 +89,8 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "parent_id":  null,
     "content": "Had a lunch meeting with Jane ... ",
     "type": 0,
-    "created_at": "2017-03-28 00:38:41 -0700",
-    "updated_at": "2017-04-03 00:38:41 -0700"
+    "created_at": "2017-03-28T00:38:41.275-08:00",
+    "updated_at": "2017-04-03T00:22:25.612-08:00"
   },
   {
     "id": 22983,
@@ -103,7 +103,7 @@ curl "https://api.affinity.co/notes" -u :$APIKEY
     "parent_id":  null,
     "content": "Had a **lunch meeting** @ Google ... ",
     "type": 2,
-    "created_at": "2018-03-28 00:38:41 -0700",
+    "created_at": "2017-03-28T00:38:41.275-08:00",
     "updated_at": null
   },
   ...
@@ -152,8 +152,8 @@ curl "https://api.affinity.co/notes/22984" -u :$APIKEY
   "parent_id":  null,
   "content": "Had a lunch meeting with Jane ... ",
   "type": 0,
-  "created_at": "2017-03-28 00:38:41 -0700",
-  "updated_at": "2017-04-03 00:38:41 -0700",
+  "created_at": "2017-03-28T00:38:41.275-08:00",
+  "updated_at": "2017-04-03T00:22:25.612-08:00",
 },
 ```
 
@@ -206,7 +206,7 @@ curl -X POST "https://api.affinity.co/notes" \
   "parent_id": null,
   "content": "Had a lunch meeting with Jane ... ",
   "type": 0,
-  "created_at": "2017-03-28 00:38:41 -0700",
+  "created_at": "2017-03-28T00:38:41.275-08:00",
   "updated_at": null
 }
 ```
@@ -243,7 +243,7 @@ curl -X POST "https://api.affinity.co/notes" \
   "parent_id": null,
   "content": "Had a **lunch meeting** with Jane ... ",
   "type": 2,
-  "created_at": "2017-03-28 00:38:41 -0700",
+  "created_at": "2017-03-28T00:38:41.275-08:00",
   "updated_at": null
 }
 ```
@@ -271,7 +271,7 @@ curl -X POST "https://api.affinity.co/notes" \
   "parent_id": 22984,
   "content": "This is a reply to the previous note. Because a parent_id was supplied, the supplied person_ids, organization_ids, and opportunity_ids were ignored.",
   "type": 2,
-  "created_at": "2017-03-29 00:38:41 -0700",
+  "created_at": "2017-03-29T00:38:41.275-08:00",
   "updated_at": null
 }
 ```
@@ -336,8 +336,8 @@ curl -X PUT "https://api.affinity.co/notes/22984" \
   "parent_id": null,
   "content": "Had another meeting with Jane ... ",
   "type": 0,
-  "created_at": "2017-03-28 00:38:41 -0700",
-  "updated_at": "2017-04-03 00:38:41 -0700"
+  "created_at": "2017-03-28T00:38:41.275-08:00",
+  "updated_at": "2017-04-03T00:22:25.612-08:00"
 }
 ```
 
