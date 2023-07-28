@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-07-28
+
+- Added `associated_person_ids`, `interaction_person_ids`, `interaction_id`, and `interaction_type` to Note response.
+
 ## 2023-07-27
 
 - datetime values in webhook bodies and API responses are ISO 8601-formatted date strings. For example: `"2023-06-21T16:00:28.315-07:00"`.

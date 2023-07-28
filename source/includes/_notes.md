@@ -12,8 +12,12 @@ store logged activity from a prospect's visit to your website.
 {
   "id": 22984,
   "creator_id": 860197,
-  "person_ids": [38706, 89734],
-  "is_meeting": false,
+  "person_ids": [38708, 24809, 89203, 97304],
+  "associated_person_ids": [38708, 24809],
+  "interaction_person_ids": [89203, 97304],
+  "interaction_id": 114,
+  "interaction_type": 0,
+  "is_meeting": true,
   "mentioned_person_ids": [49817, 78624],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
@@ -29,18 +33,24 @@ A note object contains `content`, which is a string containing the note body. In
 addition, a note can be associated with multiple people, organizations, or opportunities.
 Each person, organization, or opportunity will display linked notes on their profiles.
 
-| Attribute        | Type      | Description                                                                                                                                                                                                                                                                                                                               |
-| ---------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id               | integer   | The unique identifier of the note object.                                                                                                                                                                                                                                                                                                 |
-| creator_id       | integer   | The unique identifier of the person object who created the note.                                                                                                                                                                                                                                                                          |
-| person_ids       | integer[] | An array of unique identifiers of person objects that are associated with the note.                                                                                                                                                                                                                                                       |
-| organization_ids | integer[] | An array of unique identifiers of organization objects that are associated with the note.                                                                                                                                                                                                                                                 |
-| opportunity_ids  | integer[] | An array of unique identifiers of opportunity objects that are associated with the note.                                                                                                                                                                                                                                                  |
-| parent_id        | integer   | The unique identifier of the note that this note is a reply to. If this field is `null`, the note is not a reply. Note replies will never have values for `opportunity_ids`, `person_ids`, and `organization_ids`. Only the parent note is associated with an entity. You can fetch the parent note resource to identify the root entity. |
-| content          | string    | The string containing the content of the note.                                                                                                                                                                                                                                                                                            |
-| type             | integer   | The type of the note. The supported types for new note creation are 0 and 2, which represent plain text and HTML notes, respectively. Users may also encounter existing notes with type 1, which represents notes created directly from email messages (this creation method is now deprecated).                                          |
-| created_at       | datetime  | The string representing the time when the note was created.                                                                                                                                                                                                                                                                               |
-| updated_at       | datetime  | The string representing the last time the note was updated.                                                                                                                                                                                                                                                                               |
+| Attribute              | Type      | Description                                                                                                                                                                                                                                                                                                                               |
+| ---------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                     | integer   | The unique identifier of the note object.                                                                                                                                                                                                                                                                                                 |
+| creator_id             | integer   | The unique identifier of the person object who created the note.                                                                                                                                                                                                                                                                          |
+| person_ids             | integer[] | An array containing the unique identifiers for all the persons relevant to the note. This is the union of `associated_person_ids` and `interaction_person_ids`.                                                                                                                                                                           |
+| associated_person_ids  | integer[] | An array containing the unique identifiers for the persons directly associated with the note.                                                                                                                                                                                                                                             |
+| interaction_person_ids | integer[] | An array containing the unique identifiers for the persons on the interaction the note is attached to, if any. This will be an empty array if there is no such interaction or there aren’t any attendees.                                                                                                                                 |
+| interaction_id         | integer   | The unique identifier of the interaction the note is attached to, if any.                                                                                                                                                                                                                                                                 |
+| interaction_type       | integer   | The type of the interaction the note is attached to, if any.                                                                                                                                                                                                                                                                              |
+| is_meeting             | boolean   | True if the note is attached to a meeting or a call.                                                                                                                                                                                                                                                                                      |
+| mentioned_person_ids   | integer[] | An array containing the unique identifiers for the persons who are @ mentioned in the note. If there are no mentioned persons, this will be an empty array.                                                                                                                                                                               |
+| organization_ids       | integer[] | An array of unique identifiers of organization objects that are associated with the note.                                                                                                                                                                                                                                                 |
+| opportunity_ids        | integer[] | An array of unique identifiers of opportunity objects that are associated with the note.                                                                                                                                                                                                                                                  |
+| parent_id              | integer   | The unique identifier of the note that this note is a reply to. If this field is `null`, the note is not a reply. Note replies will never have values for `opportunity_ids`, `person_ids`, and `organization_ids`. Only the parent note is associated with an entity. You can fetch the parent note resource to identify the root entity. |
+| content                | string    | The string containing the content of the note.                                                                                                                                                                                                                                                                                            |
+| type                   | integer   | The type of the note. The supported types for new note creation are 0 and 2, which represent plain text and HTML notes, respectively. Users may also encounter existing notes with type 1, which represents notes created directly from email messages (this creation method is now deprecated).                                          |
+| created_at             | datetime  | The string representing the time when the note was created.                                                                                                                                                                                                                                                                               |
+| updated_at             | datetime  | The string representing the last time the note was updated.                                                                                                                                                                                                                                                                               |
 
 ### Formatting `content` as HTML
 
@@ -144,8 +154,12 @@ curl "https://api.affinity.co/notes/22984" -u :$APIKEY
 {
   "id": 22984,
   "creator_id": 860197,
-  "person_ids": [38706,89734],
-  "is_meeting": false,
+  "person_ids": [38708, 24809, 89203, 97304],
+  "associated_person_ids": [38708, 24809],
+  "interaction_person_ids": [89203, 97304],
+  "interaction_id": 114,
+  "interaction_type": 0,
+  "is_meeting": true,
   "mentioned_person_ids": [49817, 78624],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
@@ -198,9 +212,13 @@ curl -X POST "https://api.affinity.co/notes" \
 {
   "id": 22985,
   "creator_id": 860197,
-  "person_ids": [38706, 89734],
-  "is_meeting": false,
-  "mentioned_person_ids": null,
+  "person_ids": [38708, 24809, 89203, 97304],
+  "associated_person_ids": [38708, 24809],
+  "interaction_person_ids": [89203, 97304],
+  "interaction_id": 114,
+  "interaction_type": 0,
+  "is_meeting": true,
+  "mentioned_person_ids": [],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id": null,
@@ -235,9 +253,13 @@ curl -X POST "https://api.affinity.co/notes" \
 {
   "id": 22986,
   "creator_id": 860197,
-  "person_ids": [38706, 89734],
-  "is_meeting": false,
-  "mentioned_person_ids": null,
+  "person_ids": [38708, 24809, 89203, 97304],
+  "associated_person_ids": [38708, 24809],
+  "interaction_person_ids": [89203, 97304],
+  "interaction_id": 114,
+  "interaction_type": 0,
+  "is_meeting": true,
+  "mentioned_person_ids": [],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
   "parent_id": null,
@@ -264,8 +286,12 @@ curl -X POST "https://api.affinity.co/notes" \
   "id": 22987,
   "creator_id": 860197,
   "person_ids": [],
+  "associated_person_ids": [],
+  "interaction_person_ids": [],
+  "interaction_id": null,
+  "interaction_type": null,
   "is_meeting": false,
-  "mentioned_person_ids": null,
+  "mentioned_person_ids": [],
   "organization_ids": [],
   "opportunity_ids": [],
   "parent_id": 22984,
@@ -328,8 +354,12 @@ curl -X PUT "https://api.affinity.co/notes/22984" \
 {
   "id": 22984,
   "creator_id": 860197,
-  "person_ids": [38706, 89734],
-  "is_meeting": false,
+  "person_ids": [38708, 24809, 89203, 97304],
+  "associated_person_ids": [38708, 24809],
+  "interaction_person_ids": [89203, 97304],
+  "interaction_id": 114,
+  "interaction_type": 0,
+  "is_meeting": true,
   "mentioned_person_ids": [49817, 78624],
   "organization_ids": [64779194],
   "opportunity_ids": [117],
