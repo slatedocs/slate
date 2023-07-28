@@ -1668,21 +1668,7 @@
                     "key": "person_ids[]",
                     "value": "",
                     "type": "text",
-                    "description": "An array of unique identifiers of all person objects that are associated with the new note.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "interaction_person_ids[]",
-                    "value": "",
-                    "type": "text",
-                    "description": "An array of unique identifiers of attendee person objects for a meeting note.",
-                    "disabled": true
-                  },
-                  {
-                    "key": "associated_person_ids[]",
-                    "value": "",
-                    "type": "text",
-                    "description": "An array of unique identifiers of all person objects that are associated with the new note.",
+                    "description": "An array of unique identifiers of person objects that are associated with the new note.",
                     "disabled": true
                   },
                   {
