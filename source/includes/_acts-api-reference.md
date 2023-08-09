@@ -14,7 +14,7 @@ To begin using the Intelex API you will need:
 >API Endpoint - replace **intelex_ACTS API url** with the full URL path to your Intelex system
 
 ```
-https://*.actsapi.intelex.com
+https://{tenant}.actsapi.intelex.com
 ```
 
 ## Authentication
@@ -23,10 +23,10 @@ https://*.actsapi.intelex.com
 
 ```CSharp 
 
-//PostMan Body for Authentication Endpoint
+//JSON Body for Authentication Endpoint
 {"client_id":"Client ID Data",
 "client_secret":"Client Secret Data",
-"audience":"https://*.intelex.com/API-release",
+"audience":"https://{tenant}.intelex.com/API-release",
 "grant_type":"client_credentials"}
 ```
 >Example Response:
@@ -47,7 +47,7 @@ During Auth0 authentication, the client passes 'client id' and 'client secret' t
 
 All API requests must be made over HTTPS, and API requests without authentication will fail. Security on data is managed by the ACTS platform, and API requests will provide the same admin access available to logged in ACTS admin users. 
 
-The user authentication endpoint uses a POST (with input parameters described above) to generate the access token [bearer token]. 
+The user authentication endpoint uses a POST to generate the access token [bearer token]. 
 
 >Authentication API Endpoint - https: // dev-intelex.us.auth0.com/oauth/token 
 
@@ -78,4 +78,4 @@ Response Code | Meaning
 
 When we make backwards-incompatible changes to the API, we release new versions. The current version of the ACTS API  is v1 and can be determined with our API base path /api/v1/.
 
->Example API Endpoint : https://*.actsapi.intelex.com/API/**/v1/TableName
+>Example API Endpoint : https://{tenant}.actsapi.intelex.com/API/**/v1/TableName

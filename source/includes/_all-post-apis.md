@@ -15,27 +15,27 @@ Equipment records can be updated, or new records added at the following endpoint
 > Equipment POST endpoint: 
 
 ```
-https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Equipment
+https: // {tenant}.actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Equipment
 ```
 
 ## 2.Operation POST API endpoint 
 
 Operation records can be updated, or new records added at the following endpoint:
 
-> General URL Of POST Endpoint: 
+> Operation POST Endpoint: 
 
 ```
-https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Operation
+https: // {tenant}.actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Operation
 ```
 
 ## 3.Facility POST API endpoint 
 
 Facility records can be updated, or new records added at the following endpoint:
 
-> General URL Of POST Endpoint : 
+> Facility POST Endpoint : 
 
 ```
-https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Facility
+https: // {tenant}.actsapi.intelex.com/API-staging/DEVELOPMENT/v1/Facility
 ```
 
 ## 4.Facility Attribute POST API endpoint 
@@ -45,7 +45,7 @@ Facility Attribute records can be updated, or new records added at the following
 > Facility Attribute POST Endpoint: 
 
 ```
-https: // *actsapi.intelex.com/API-staging/DEVELOPMENT/v1/FacilityAttribute 
+https: // {tenant}.actsapi.intelex.com/API-staging/DEVELOPMENT/v1/FacilityAttribute 
 ```
 
 ## JSON body for both Insert & Update 
@@ -91,4 +91,27 @@ If the primary id is an existing ID - "#####" then the data we are passing is ha
 ]
 ```
 
+> Example Output For Both Update and Insert 
+```
+{
+	"insertedRowCount" : 2 , 
+	"updatedRowCount" : 3 ,
+	"failureCount" : 0 ,
+	"errorMessage" : []
 
+}
+
+```
+
+> Example Output For When Data Get's Failed To Insert or Update
+```
+{
+	"insertedRowCount" : 0 , 
+	"updatedRowCount" : 1 ,
+	"failureCount" : 1 ,
+	"errorMessage" : [
+	 "Operation ID : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
+	]
+}
+
+```
