@@ -48,7 +48,7 @@ workflows:
     version: 2
     build-and-deploy:
         jobs:
-            - build
+            - build:
                 context:
                     - docker-hub
             - deploy:
