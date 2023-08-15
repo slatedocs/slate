@@ -50,10 +50,10 @@ workflows:
         jobs:
             - build
                 context:
-                    - docker-hub
+                  - docker-hub
             - deploy:
                 context:
-                    - docker-hub
+                  - docker-hub
                 filters:
                     branches:
                         only: master
