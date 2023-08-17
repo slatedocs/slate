@@ -127,6 +127,7 @@ expected_signature == signature["v1"]
 
 
 # Changelog
+- (2023-08-17) **ActorProfile#index**: Added possibility to filter by `updated_at`
 - (2023-05-31) **ActorProfile#index**:
   - Also emit `picture_copyright` if `include_picture` is specified
   - Add query field `representative`
@@ -184,6 +185,7 @@ picture_version | null | Can be set to `original`, `large` or `thumb` to change 
 fields | name,gender | Can be used to modify the fields included in the response. Possible values are: `age`, `gender`, `first_name`, `last_name`, `name`, `professions`, `languages`, `representative`, `updated_at`.
 order | id | Changes the order of returned results. Possible values are: `id`, `name`, `last_name`
 gender | null | Allows filtering by gender. Possible values are: `m`, `f`, `i`.
+updated_at[gte] | null | Allows filtering for profiles updated since the passed timestamp. Passed as an integer Unix timestamp.
 
 ### Response fields
 
