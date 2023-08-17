@@ -12,16 +12,14 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
             "last_name": "Zheng",
             "domain": "apollo.io",
             "email": "tim@apollo.io",
-            "email_md5": "8d935115b9ff4489f2d1f9249503cadf",
-            "email_sha256": "337dc0c1aad74f93af086dcf7dc0289f141c8ef5f44c3f104f07b0f03050ff49",
+            "hashed_email": "8d935115b9ff4489f2d1f9249503cadf",
             "organization_name": "Apollo"
         },
         {
             "first_name": "Roy",
             "last_name": "Chung",
             "email": "roy@apollo.io",
-            "email_md5": "7328fddefd53de471baeb6e2b764f78a",
-            "email_sha256": "97817c0c49994eb500ad0a5e7e2d8aed51977b26424d508f66e4e8887746a152",
+            "hashed_email": "97817c0c49994eb500ad0a5e7e2d8aed51977b26424d508f66e4e8887746a152",
             "organization_name": "Apollo"
         }
     ]
@@ -41,8 +39,7 @@ data = {
             "first_name": "Tim",
             "last_name": "Zheng",
             "domain": "apollo.io",
-            "email_md5": "8d935115b9ff4489f2d1f9249503cadf",
-            "email_sha256": "337dc0c1aad74f93af086dcf7dc0289f141c8ef5f44c3f104f07b0f03050ff49",
+            "hashed_email": "8d935115b9ff4489f2d1f9249503cadf",
             "email": "tim@apollo.io",
             "organization_name": "Apollo"
         },
@@ -50,8 +47,7 @@ data = {
             "first_name": "Roy",
             "last_name": "Chung",
             "email": "roy@apollo.io",
-            "email_md5": "7328fddefd53de471baeb6e2b764f78a",
-            "email_sha256": "97817c0c49994eb500ad0a5e7e2d8aed51977b26424d508f66e4e8887746a152",
+            "hashed_email": "97817c0c49994eb500ad0a5e7e2d8aed51977b26424d508f66e4e8887746a152",
             "organization_name": "Apollo"
         }
     ]
@@ -435,8 +431,7 @@ first_name (optional) | The person's first name | Tim
 last_name (optional) | The person's last name | Zheng
 name (optional) | The person's full name | Tim Zheng
 email (optional) | The person's email | example@domain.com
-email_md5 (optional) | The person's hashed email | 8d935115b9ff4489f2d1f9249503cadf
-email_sha256 (optional) | The person's sha 256 hashed email | 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
+hashed_email (optional) | The person's md5 or sha256 hashed email | 8d935115b9ff4489f2d1f9249503cadf OR 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
 organization_name (optional) | The person's company name | Apollo Inc.
 domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
@@ -827,8 +822,7 @@ curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d
     "last_name": "Zheng",
     "organization_name": "Apollo",
     "email": "name@domain.io",
-    "email_md5": "8d935115b9ff4489f2d1f9249503cadf",
-    "email_sha256": "337dc0c1aad74f93af086dcf7dc0289f141c8ef5f44c3f104f07b0f03050ff49",
+    "hashed_email": "8d935115b9ff4489f2d1f9249503cadf",
     "domain": "apollo.io",
     "reveal_personal_emails": true
 }' "https://api.apollo.io/v1/people/match"
@@ -846,8 +840,7 @@ data = {
     "last_name": "Zheng",
     "organization_name": "Apollo",
     "email": "name@domain.io",
-    "email_md5": "8d935115b9ff4489f2d1f9249503cadf",
-    "email_sha256": "337dc0c1aad74f93af086dcf7dc0289f141c8ef5f44c3f104f07b0f03050ff49",
+    "hashed_email": "8d935115b9ff4489f2d1f9249503cadf",
     "domain": "apollo.io",
     "reveal_personal_emails": true
 }
@@ -1080,8 +1073,7 @@ first_name (optional) | The person's first name | Tim
 last_name (optional) | The person's last name | Zheng
 name (optional) | The person's full name | Tim Zheng
 email (optional) | The person's email | example@domain.com
-email_md5 (optional) | The person's hashed email | 8d935115b9ff4489f2d1f9249503cadf 
-email_sha256 (optional) | The person's sha 256 hashed email | 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
+hashed_email (optional) | The person's md5 or sha256 hashed email | 8d935115b9ff4489f2d1f9249503cadf OR 97817c0c49994eb500ad0a5e7e2d8aed 51977b26424d508f66e4e8887746a152
 organization_name (optional) | The person's company name | Apollo Inc.
 domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
