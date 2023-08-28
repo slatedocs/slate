@@ -2,7 +2,7 @@
 
 An Account is a company your team has explicitly added to your database. It can be from prospected from Apollo, manually added by your team, or created by the API.
 
-## Create an Account
+## Create an account
 
 > Sample request:
 
@@ -84,7 +84,7 @@ print(response.text)
 | phone_number | The corporate phone for this account.                                                                                          |
 | raw_address  | The address string for this account, Apollo will intelligently infer the city, state, country, and time zone from your address |
 
-## Update an Account
+## Update an account
 
 > Sample request:
 
@@ -158,7 +158,7 @@ print(response.text)
 | domain        | The domain of the account you are updating |
 | phone_number  | The corporate phone for this account.      |
 
-## Search for Accounts
+## Search for accounts
 
 > Sample request:
 
@@ -295,7 +295,7 @@ print(response.text)
 | sort_ascending      | Possible values: true or false                                                                                  |
 | page                | which page to return. Defaults to 1                                                                             |
 
-## Get a List of Account Stages
+## Get a list of account stages
 
 > Sample request:
 
@@ -378,7 +378,7 @@ print(response.text)
 
 `GET https://api.apollo.io/v1/account_stages`
 
-## Update Account Stage
+## Update account stage
 
 > Sample request:
 
@@ -426,14 +426,14 @@ print(response.text)
 
 `POST https://api.apollo.io/v1/accounts/bulk_update`
 
-### Query Parameters
+### Query parameters
 
 | Parameter        | Description                                                                                                                       |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | account_ids      | An array of account ids. You can filter for a list of account IDS with the accounts/search API.                                   |
 | account_stage_id | The account stage id to change into. You can GET a list of possible stage ids and its associated information from /account_stages |
 
-## Update Account Ownership
+## Update account ownership
 
 > Sample request:
 
@@ -481,7 +481,7 @@ print(response.text)
 
 `POST https://api.apollo.io/v1/accounts/update_owners`
 
-### Query Parameters
+### Query parameters
 
 | Parameter   | Description                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------------ |

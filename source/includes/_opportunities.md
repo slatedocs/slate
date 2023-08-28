@@ -3,7 +3,7 @@
 Opportunities are records that you can use to track possible deals with your prospective customers.
 Opportunities can be associated with both companies and people in Apollo.
 
-## Create Opportunity
+## Create opportunity
 
 > Sample request:
 
@@ -81,7 +81,7 @@ print(response.text)
 | closed_date          | The date the Opportunity was closed                                                                                                         |
 | account_id           | ID of the Account                                                                                                                           |
 
-## Get all Opportunities
+## Get all opportunities
 
 > Sample request:
 
@@ -232,7 +232,7 @@ This endpoint returns all opportunities you have Created.
 
 `GET https://api.apollo.io/v1/opportunities`
 
-## View Opportunity
+## View opportunity
 
 > Sample request:
 
@@ -295,7 +295,7 @@ You can GET a list of all created Opportunities from [Opportunities/all](#get-al
 
 `GET https://api.apollo.io/v1/opportunities/REPLACE_WITH_OPPORTUNITY_ID`
 
-## Update Opportunity
+## Update opportunity
 
 > Sample request:
 

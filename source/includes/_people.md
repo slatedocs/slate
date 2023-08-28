@@ -252,7 +252,7 @@ This endpoint searches for people and do not return any email information. To ge
 
 `POST https://api.apollo.io/v1/mixed_people/search`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Description | Example
 --------- | ----------- | -----------
@@ -260,6 +260,6 @@ person_titles (optional) | an array of the person's title. Apollo will return re
 q_organization_domains (optional) | an array of the company domains to search for, joined by the new line character.  | "google.com\nfacebook.com"
 page (optional) | an integer that allows you to paginate through the results  | 1
 
-### Return Results
+### Return results
 "people" are people in Apollo's database.
 "contacts" are people already in your linked CRM.

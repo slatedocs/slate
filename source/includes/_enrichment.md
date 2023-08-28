@@ -1,6 +1,6 @@
 # Enrichment API
 
-## Bulk People Enrichment
+## Bulk people enrichment
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
@@ -417,13 +417,13 @@ This endpoint enriches people information in bulk - the more information you pas
 
 Up to 10 records can be enriched at the same time through this endpoint.  
 
-### Rate Limits
+### Rate limits
 
 Rate limits on this endpoint are 1/10th of what is available on the single enrichment endpoint.
 
 `POST https://api.apollo.io/api/v1/people/bulk_match`
 
-### Request Parameters
+### Request parameters
 
 Parameter | Description | Example
 --------- | ----------- | -----------
@@ -440,7 +440,7 @@ reveal_phone_number (optional) | Flag to reveal phone number | true
 webhook_url (optional) | Webhook URL for sending 'reveal_phone_number' response | "https://example.com/hook"
 
 
-## Bulk Organization Enrichment
+## Bulk organization enrichment
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
@@ -797,20 +797,20 @@ This endpoint enriches organization information in bulk with info such as indust
 Up to 10 records can be enriched at the same time through this endpoint.
 
 
-### Rate Limits
+### Rate limits
 
 Rate limits on this endpoint are 1/10th of what is available on the single enrichment endpoint. 
 
 `POST https://api.apollo.io/api/v1/organizations/bulk_enrich`
 
-### Request Parameters
+### Request parameters
 
 | Parameter | Description        | Example    |
 | --------- | ------------------ | ---------- |
 | domains    | The company domain | google.com |
 
 
-## People Enrichment
+## People enrichment
 
 > Sample request:
 
@@ -1065,7 +1065,7 @@ This endpoint enriches a person's information, the more information you pass in,
 
 `POST https://api.apollo.io/v1/people/match`
 
-### Query Parameters
+### Query parameters
 
 Parameter | Description | Example
 --------- | ----------- | -----------
@@ -1082,7 +1082,7 @@ reveal_phone_number (optional) | Flag to reveal phone number | true
 webhook_url (optional) | Webhook URL for sending 'reveal_phone_number' response | "https://example.com/hook"
 
 
-## Organization Enrichment
+## Organization enrichment
 
 > Sample request:
 
@@ -1298,7 +1298,7 @@ This endpoint enriches a company with info such as industry, company size, etc. 
 
 `GET https://api.apollo.io/v1/organizations/enrich`
 
-### Query Parameters
+### Query parameters
 
 | Parameter | Description        | Example    |
 | --------- | ------------------ | ---------- |

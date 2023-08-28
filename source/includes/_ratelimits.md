@@ -1,4 +1,4 @@
-# Rate Limits
+# Rate limits
 
 > Sample response:
 
@@ -24,9 +24,9 @@ To view how many requests your current plan allows, as well as how many requests
 We use a fixed-window rate limiting strategy for calls to our API. If your team's rate limit is 50 requests per minute, those 50 api calls can be made at any interval within the 60 second window.
 </aside>
 
-### Response Headers
+### Response headers
 
-Header Name | Description | Example
+Header name | Description | Example
 ----------- | ----------- | -----------
 x-daily-requests-left | the total requests left for the current 24 hour period |  295
 x-daily-usage | the total requests used for the current 24 hour period | 5
