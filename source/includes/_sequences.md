@@ -123,7 +123,7 @@ Parameter | Description | Example
 q_name| Name | "Name of Sequence"
 
 
-## Add Contacts to Sequence
+## Add contacts to sequence
 
 > Sample request:
 
@@ -338,7 +338,7 @@ async | Whether process should be executed synchronously or asynchronously | tru
 user_id | User who is performing this action | 5cc77dXXXXXXXXXXXXXXXXXX
 
 
-## Remove Contacts from Sequence / Marking Contacts as Finished in Sequence
+## Remove contacts from sequence / marking contacts as finished in sequence
 
 > Sample request:
 

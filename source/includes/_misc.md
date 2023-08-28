@@ -1,6 +1,6 @@
 # Misc
 
-## Get a List of Users
+## Get a list of users
 
 > Sample request:
 
@@ -253,7 +253,7 @@ print(response.text)
 
 
 
-## Get a List of Email Accounts
+## Get a list of email accounts
 
 > Sample request:
 
@@ -314,7 +314,7 @@ print(response.text)
 `GET https://api.apollo.io/v1/email_accounts`
 
 
-## Get a List of All Lists/Tags
+## Get a list of all lists/tags
 
 > Sample request:
 
@@ -387,7 +387,7 @@ print(response.text)
 `GET https://api.apollo.io/v1/labels`
 
 
-## Get a List of All Custom Fields
+## Get a list of all custom fields
 
 > Sample request:
 
@@ -601,7 +601,7 @@ print(response.text)
 `GET https://api.apollo.io/v1/typed_custom_fields`
 
 
-## Get a List of Opportunity Stages
+## Get a list of opportunity stages
 
 > Sample request:
 
