@@ -336,8 +336,12 @@ curl 'https://app.procurementexpress.com/api/v1/companies/details'
     "user_can_add_supplier": true,
     "po_fields": ["Date", "Budgets", "From", "PO number", "Net Amount"],
     "reserve_po_number": false,
-    "is_quickbooks_connected": true
-    "is_sage_connected": true
+    "is_quickbooks_connected": true,
+    "is_sage_connected": true,
+    "show_currency_symbol": true,
+    "enable_approval_override": true,
+    "can_upload_invoice": true,
+    "invoice_reference_mandatory": false
   },
   "custom_fields": [
     {
