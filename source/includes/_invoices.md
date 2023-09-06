@@ -70,12 +70,10 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
 List all invoices for the Company indicated by `app_company_id`.
 
 ### Pagination
-
-The Invoice list returned is paginated with 100 records per page. You can find details on the current page and total number of pages under the `meta` attributes in the JSON repsonse. You can enter additioal pages by passing the `page` argument as follows: `https://app.procurementexpress.com/api/v1/purchase_orders?page=2`
+The Invoice list returned is paginated with 100 records per page. You can find details on the current page and total number of pages under the `meta` attributes in the JSON repsonse. You can enter additioal pages by passing the `page` argument as follows: `https://app.procurementexpress.com/api/v1/invoices?page=2`
 
 ### Filtering
-
-A variety of filters can be applied to the list by adding additional parameters, e.g. `archived`, like follows: `https://app.procurementexpress.com/api/v1/purchase_orders?archived=false`
+A variety of filters can be applied to the list by adding additional parameters, e.g. `archived`, like follows: `https://app.procurementexpress.com/api/v1/invoices?archived=false`
 
 Please see the `Query Parameters` for a complete list of potential filter arguments.
 
@@ -99,7 +97,7 @@ Please see the `Query Parameters` for a complete list of potential filter argume
 ## Invoice Details
 
 ```ruby
-RestClient.post(
+RestClient.get(
   "https://app.procurementexpress.com/api/v1/invoices/1",
   headers = {
     app_company_id: 1,
@@ -110,7 +108,7 @@ RestClient.post(
 
 ```shell
 curl "https://app.procurementexpress.com/api/v1/invoices/1"
-  -X POST
+  -X GET
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
   -H "authentication_token: your token"
@@ -140,42 +138,34 @@ This endpoint gives acces to detailed information about a specific Invoice.
 RestClient.post(
   "https://app.procurementexpress.com/api/v1/invoices",
   {
-    "invoice_number": null,
-    "issue_date": null,
-    "validation_date": null,
-    "supplier_id": null,
-    "uploaded_date": null,
-    "received_date": null,
-    "due_date": null,
-    "gross_amount": null,
-    "currency_id": null,
-    "invoice_line_items_attributes": [{
-      "id": null,
-      "sequence_no": null,
-      "description": null,
-      "unit_price": null,
-      "quantity": null,
-      "vat": null,
-      "net_amount": null,
-      "base_net_amount": null,
-      "tax_rate_id": null,
-      "chart_of_account_id": null,
-      "purchase_order_id": null,
-      "purchase_order_item_id": null,
-      "billable_status": null,
-      "_destroy": null,
-      "custom_field_values_attributes": [{
-        "id": null,
-        "value": null,
-        "custom_field_id": null
-      }]
-    }],
-    "supplier_invoice_uploads_attributes": [{
-      "id": null,
-      "file": null,
-      "_destroy": null
-    }]
-  },
+    "invoice": {
+        "gross_amount": "20.00",
+        "due_date": "2023-05-17",
+        "uploaded_date": "2023-05-16",
+        "currency_id": 1000,
+        "company_id": 20000,
+        "invoice_number": "inv-001",
+        "supplier_id": 131,
+        "issue_date": "2023-05-16",
+        "received_date": "2023-05-16",
+        "invoice_line_items_attributes": [
+            {
+                "sequence_no": 1,
+                "description": "Advertising",
+                "unit_price": "100",
+                "quantity": "10",
+                "vat": "5",
+                "net_amount": 1000,
+                "purchase_order_id": 30000,
+                "purchase_order_item_id": 433
+            }
+        ],
+        "supplier_invoice_uploads_attributes": [{
+          "id": null,
+          "file": null
+        }]
+    }
+},
   headers = {
     app_company_id: 1,
     authentication_token: "your token"
@@ -189,7 +179,6 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
   -H "authentication_token: your token"
-  -d "action: create"
   -d "invoice[invoice_number] = inv-001",
   -d "invoice[issue_date] = 2023-01-01",
   -d "invoice[supplier_id] = null",
@@ -197,13 +186,14 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
   -d "invoice[due_date] = 2023-02-01",
   -d "invoice[gross_amount] = 1210",
   -d "invoice[currency_id] = 1000",
-  -d "[invoice[invoice_line_items_attributes][][description] = Airfare",
-  -d "[invoice[invoice_line_items_attributes][][unit_price] = 1000",
-  -d "[invoice[invoice_line_items_attributes][][quantity] = 1",
-  -d "[invoice[invoice_line_items_attributes][][vat] = 21",
-  -d "[invoice[invoice_line_items_attributes][][net_amount] = 1000",
-  -d "[invoice[invoice_line_items_attributes][][purchase_order_id] = 100023456789",
-  -d "[supplier_invoice_uploads_attributes][][file] = https://po-app-staging.s3.amazonaws.com/supplier_invoice_uploads/files/000/000/007/original/test.pdf?1681894799"
+  -d "invoice[invoice_line_items_attributes][][description] = Airfare",
+  -d "invoice[invoice_line_items_attributes][][unit_price] = 1000",
+  -d "invoice[invoice_line_items_attributes][][quantity] = 1",
+  -d "invoice[invoice_line_items_attributes][][vat] = 21",
+  -d "invoice[invoice_line_items_attributes][][net_amount] = 1000",
+  -d "invoice[invoice_line_items_attributes][][purchase_order_id] = 2",
+  -d "invoice[invoice_line_items_attributes][][purchase_order_item_id] = 1",
+  -d "invoice[supplier_invoice_uploads_attributes][][file] = https://po-app-staging.s3.amazonaws.com/supplier_invoice_uploads/files/000/000/007/original/test.pdf?1681894799"
 ```
 > The above command returns JSON structured like this:
 
@@ -314,69 +304,71 @@ Create a new Invoice for the Company ID mentioned in the header.
 | ------ | ---- | ------- | ----------- |
 | app_company_id | header | | Company ID number |
 | authentication_token | header | | Authentication Token |
-| action | string | | The name of the action that processes the request |
-| gross_amount | string | | Gross amount of the invoice |
-| due_date | string | | Due date of the invoice |
-| uploaded_date | string | | Date on which the invoice was uploaded |
-| issue_date | string | | Date on which the invoice was issued |
-| received_date | string | | Date on which the invoice was received |
-| currency_id | string | | ID of the currency used for the invoice |
-| company_id | string | | ID of the company that issued the invoice |
-| invoice_number | string | | Unique identifier for the invoice |
-| supplier_id | string | | ID of the supplier that the invoice is being issued to |
-| invoice_line_items_attributes | array | | An array of invoice line items that belongs to the invoice |
-| invoice_line_items_attributes.description | string | | Description of the invoice line item |
-| invoice_line_items_attributes.unit_price | string | | Price per unit of the invoice line item |
-| invoice_line_items_attributes.quantity | string | | Quantity of the invoice line item |
-| invoice_line_items_attributes.vat | string | | VAT of the invoice line item |
-| invoice_line_items_attributes.net_amount | string | | Net amount of the invoice line item |
-| invoice_line_items_attributes.purchase_order_id | string || ID of the purchase order associated with the invoice line item |
-| invoice_line_items_attributes.purchase_order_item_id | string | | ID of the purchase order item associated with the invoice line item |
-| supplier_invoice_uploads_attributes | array| | An array of invoice uploads that belong to the supplier |
-| supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file URL |
+| invoice[gross_amount] | string | | Gross amount of the invoice |
+| invoice[due_date] | string | | Due date of the invoice |
+| invoice[uploaded_date] | string | | Date on which the invoice was uploaded |
+| invoice[issue_date] | string | | Date on which the invoice was issued |
+| invoice[received_date] | string | | Date on which the invoice was received |
+| invoice[currency_id] | string | | ID of the currency used for the invoice |
+| invoice[company_id] | string | | ID of the company that issued the invoice |
+| invoice[invoice_number] | string | | Unique identifier for the invoice |
+| invoice[supplier_id] | string | | ID of the supplier that the invoice is being issued to |
+| invoice[invoice_line_items_attributes] | array | | An array of invoice line items that belongs to the invoice |
+| invoice[invoice_line_items_attributes][][description] | string | | Description of the invoice line item |
+| invoice[invoice_line_items_attributes][][unit_price] | string | | Price per unit of the invoice line item |
+| invoice[invoice_line_items_attributes][][quantity] | string | | Quantity of the invoice line item |
+| invoice[invoice_line_items_attributes][][vat] | string | | VAT of the invoice line item |
+| invoice[invoice_line_items_attributes][][net_amount] | string | | Net amount of the invoice line item |
+| invoice[invoice_line_items_attributes][][purchase_order_id] | string || ID of the purchase order associated with the invoice line item |
+| invoice[invoice_line_items_attributes][][purchase_order_item_id] | string | | ID of the purchase order item associated with the invoice line item |
+| invoice[supplier_invoice_uploads_attributes][][file] | string | | The uploaded invoice file URL |
 
 ## Update an Invoice
 
 ```ruby
 RestClient.put(
-  "https://app.procurementexpress.com/api/v1/invoices/1",
+  "https://app.procurementexpress.com/api/v1/invoices/:id",
   {
-    "invoice_number": null,
-    "issue_date": null,
-    "validation_date": null,
-    "supplier_id": null,
-    "uploaded_date": null,
-    "received_date": null,
-    "due_date": null,
-    "gross_amount": null,
-    "currency_id": null,
-    "invoice_line_items_attributes": [{
-      "id": null,
-      "sequence_no": null,
-      "description": null,
-      "unit_price": null,
-      "quantity": null,
-      "vat": null,
-      "net_amount": null,
-      "base_net_amount": null,
-      "tax_rate_id": null,
-      "chart_of_account_id": null,
-      "purchase_order_id": null,
-      "purchase_order_item_id": null,
-      "billable_status": null,
-      "_destroy": null,
-      "custom_field_values_attributes": [{
-        "id": null,
-        "value": null,
-        "custom_field_id": null
-      }]
-    }],
-    "supplier_invoice_uploads_attributes": [{
-      "id": null,
-      "file": null,
-      "_destroy": null
-    }]
-  },
+    "invoice": {
+        "gross_amount": "20.00",
+        "due_date": "2023-05-17",
+        "uploaded_date": "2023-05-16",
+        "currency_id": 1000,
+        "company_id": 20000,
+        "invoice_number": "inv-001",
+        "supplier_id": 131,
+        "issue_date": "2023-05-16",
+        "received_date": "2023-05-16",
+        "invoice_line_items_attributes": [
+            {
+              "id": null,
+              "sequence_no": 1,
+              "description": "Advertising",
+              "unit_price": "100",
+              "quantity": "10",
+              "vat": "5",
+              "net_amount": 1000,
+              "purchase_order_id": 30000,
+              "purchase_order_item_id": 433
+            },
+            {
+              "id": 1,
+              "sequence_no": 1,
+              "description": "Advertising",
+              "unit_price": "100",
+              "quantity": "10",
+              "vat": "5",
+              "net_amount": 1000,
+              "purchase_order_id": 30000,
+              "purchase_order_item_id": 433,
+              "_destroy": 1
+            },
+        ],
+        "supplier_invoice_uploads_attributes": [{
+          "id": null,
+          "file": null
+        }]
+    },
   headers = {
     app_company_id: 1,
     authentication_token: "your token"
@@ -385,7 +377,7 @@ RestClient.put(
 ```
 
 ```shell
-curl "https://app.procurementexpress.com/api/v1/invoices/1"
+curl "https://app.procurementexpress.com/api/v1/invoices/:id"
   -X PUT
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
@@ -403,7 +395,8 @@ curl "https://app.procurementexpress.com/api/v1/invoices/1"
   -d "[invoice[invoice_line_items_attributes][][quantity] = 1",
   -d "[invoice[invoice_line_items_attributes][][vat] = 21",
   -d "[invoice[invoice_line_items_attributes][][net_amount] = 1000",
-  -d "[invoice[invoice_line_items_attributes][][purchase_order_id] = 100023456789",
+  -d "[invoice[invoice_line_items_attributes][][purchase_order_id] = 2",
+  -d "[invoice[invoice_line_items_attributes][][purchase_order_item_id] = 1",
   -d "[supplier_invoice_uploads_attributes][][file] = https://po-app-staging.s3.amazonaws.com/supplier_invoice_uploads/files/000/000/007/original/test.pdf?1681894799"
 ```
 > The above command returns JSON structured like this:
@@ -507,11 +500,27 @@ curl "https://app.procurementexpress.com/api/v1/invoices/1"
 Update an Invoice. Always pass the id of an existing items including `Invoice`, `invoice_line_items_attributes` and so on
 this will help us update your existing items. 
 
-If you want to delete existing Invoice line items than you can pass `_destroy: 1` in the corresponding `invoice_line_items_attributes`
-along with the invoice item id.
+**Deleting Existing invoice line items**
 
-If any item is missing `id` attribute or `id: null` is passed, those items will be treated as new items and will  be created
-as new entry in our database.
+If you want to delete existing line items from server, than you need to pass `id` for those line items
+as well as `"_destroy": 1`, check example JSON request for example
+
+Eample:
+
+```json
+{
+  "invoice": {
+    ....
+    "invoice_line_items_attributes": [
+      {
+        "id": 1,
+        "_destroy": 1,
+        ...
+      }
+    ]
+  }
+}
+```
 
 ### HTTP Request
 
@@ -523,26 +532,25 @@ as new entry in our database.
 | ------ | ---- | ------- | ----------- |
 | app_company_id | header | | Company ID number |
 | authentication_token | header | | Authentication Token |
-| action | string | | The name of the action that processes the request |
-| gross_amount | string | | Gross amount of the invoice |
-| due_date | string | | Due date of the invoice |
-| uploaded_date | string | | Date on which the invoice was uploaded |
-| issue_date | string | | Date on which the invoice was issued |
-| received_date | string | | Date on which the invoice was received |
-| currency_id | string | | ID of the currency used for the invoice |
-| company_id | string | | ID of the company that issued the invoice |
-| invoice_number | string | | Unique identifier for the invoice |
-| supplier_id | string | | ID of the supplier that the invoice is being issued to |
-| invoice_line_items_attributes | array | | An array of invoice line items that belongs to the invoice |
-| invoice_line_items_attributes.description | string | | Description of the invoice line item |
-| invoice_line_items_attributes.unit_price | string | | Price per unit of the invoice line item |
-| invoice_line_items_attributes.quantity | string | | Quantity of the invoice line item |
-| invoice_line_items_attributes.vat | string | | VAT of the invoice line item |
-| invoice_line_items_attributes.net_amount | string | | Net amount of the invoice line item |
-| invoice_line_items_attributes.purchase_order_id | string || ID of the purchase order associated with the invoice line item |
-| invoice_line_items_attributes.purchase_order_item_id | string | | ID of the purchase order item associated with the invoice line item |
-| supplier_invoice_uploads_attributes | array| | An array of invoice uploads that belong to the supplier |
-| supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file URL |
+| invoice[gross_amount] | string | | Gross amount of the invoice |
+| invoice[due_date] | string | | Due date of the invoice |
+| invoice[uploaded_date] | string | | Date on which the invoice was uploaded |
+| invoice[issue_date] | string | | Date on which the invoice was issued |
+| invoice[received_date] | string | | Date on which the invoice was received |
+| invoice[currency_id] | string | | ID of the currency used for the invoice |
+| invoice[company_id] | string | | ID of the company that issued the invoice |
+| invoice[invoice_number] | string | | Unique identifier for the invoice |
+| invoice[supplier_id] | string | | ID of the supplier that the invoice is being issued to |
+| invoice[invoice_line_items_attributes][][id] | id | | Pass id if it is existing item, pass `null` for new item |
+| invoice[invoice_line_items_attributes][][description] | string | | Description of the invoice line item |
+| invoice[invoice_line_items_attributes][][unit_price] | string | | Price per unit of the invoice line item |
+| invoice[invoice_line_items_attributes][][quantity] | string | | Quantity of the invoice line item |
+| invoice[invoice_line_items_attributes][][vat] | string | | VAT of the invoice line item |
+| invoice[invoice_line_items_attributes][][net_amount] | string | | Net amount of the invoice line item |
+| invoice[invoice_line_items_attributes][][purchase_order_id] | string || ID of the purchase order associated with the invoice line item |
+| invoice[invoice_line_items_attributes][][purchase_order_item_id] | string | | ID of the purchase order item associated with the invoice line item |
+| invoice[supplier_invoice_uploads_attributes][id] | id| | Id if it is existing upload item pass `null` for new item |
+| invoice[supplier_invoice_uploads_attributes][file] | string | | The uploaded invoice file URL |
 
 ## Create a Comment
 
