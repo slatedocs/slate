@@ -40,6 +40,7 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
     "purchase_order_references": [{
       "1-1970-01-01"
     }],
+    "can_accept": true,
     "can_approve": false,
     "can_reject": false,
     "can_cancel": true,
@@ -69,14 +70,17 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
 List all invoices for the Company indicated by `app_company_id`.
 
 ### Pagination
+
 The Invoice list returned is paginated with 100 records per page. You can find details on the current page and total number of pages under the `meta` attributes in the JSON repsonse. You can enter additioal pages by passing the `page` argument as follows: `https://app.procurementexpress.com/api/v1/purchase_orders?page=2`
 
 ### Filtering
+
 A variety of filters can be applied to the list by adding additional parameters, e.g. `archived`, like follows: `https://app.procurementexpress.com/api/v1/purchase_orders?archived=false`
 
 Please see the `Query Parameters` for a complete list of potential filter arguments.
 
 ### HTTP Request
+
 `GET /api/v1/invoices`
 
 ### Query Parameters
@@ -302,7 +306,7 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
 Create a new Invoice for the Company ID mentioned in the header.
 
 ### HTTP Request
-`GET /api/v1/invoices/create`
+`POST /api/v1/invoices`
 
 ### Query Parameters
 
@@ -332,9 +336,10 @@ Create a new Invoice for the Company ID mentioned in the header.
 | supplier_invoice_uploads_attributes.file | string | | The uploaded invoice file URL |
 
 ## Update an Invoice
+
 ```ruby
-RestClient.post(
-  "https://app.procurementexpress.com/api/v1/invoices",
+RestClient.put(
+  "https://app.procurementexpress.com/api/v1/invoices/1",
   {
     "invoice_number": null,
     "issue_date": null,
@@ -380,8 +385,8 @@ RestClient.post(
 ```
 
 ```shell
-curl "https://app.procurementexpress.com/api/v1/invoices"
-  -X POST
+curl "https://app.procurementexpress.com/api/v1/invoices/1"
+  -X PUT
   -H "Content-Type: application/json"
   -H "app_company_id: 1"
   -H "authentication_token: your token"
@@ -499,10 +504,18 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
 
 ```
 
-Update an Invoice. THIS SECTION IS BEING WORKED ON.
+Update an Invoice. Always pass the id of an existing items including `Invoice`, `invoice_line_items_attributes` and so on
+this will help us update your existing items. 
+
+If you want to delete existing Invoice line items than you can pass `_destroy: 1` in the corresponding `invoice_line_items_attributes`
+along with the invoice item id.
+
+If any item is missing `id` attribute or `id: null` is passed, those items will be treated as new items and will  be created
+as new entry in our database.
 
 ### HTTP Request
-`GET /api/v1/invoices/create`
+
+`PUT /api/v1/invoices/:id`
 
 ### Query Parameters
 
@@ -584,7 +597,52 @@ Leave a comment on an Invoice.
 | authentication_token | header | | Authentication Token |
 | comment | string | | Text to be added as a comment |
 
+## Accept an awaiting review invoices
+
+If your invoice status is in `awaiting_review` status and you are authorized to perform
+and `accept` action on the invoice. You can check [Invoice List](#list-invoices) or [Invoice Detail](#invoice-details)
+API response which includes `can_accept` boolean value. If it is `true` current logged in
+user can accept an invoice, otherwise they can not accept.
+
+```ruby
+RestClient.put(
+  "https://app.procurementexpress.com/api/v1/invoices/:id/accept",
+  headers = {
+    app_company_id: 1,
+    authentication_token: "your token"
+  }
+)
+```
+
+```shell
+curl "https://app.procurementexpress.com/api/v1/invoices/:id/accept"
+  -X PUT
+  -H "Content-Type: application/json"
+  -H "app_company_id: 1"
+  -H "authentication_token: your token"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+Accept an Invoice scan in the `Awaiting Review` status.
+
+### HTTP Request
+`PUT /api/v1/invoices/:id/accept`
+
+### Query Parameters
+
+| Params | Type | Options | Description |
+| --- | --- | --- | --- | --- |
+| app_company_id | header | | Company ID number |
+| authentication_token | header | | Authentication Token |
+
 ## Approve an Invoice
+
 ```ruby
 RestClient.put(
   "https://app.procurementexpress.com/api/v1/1/invoices/approve",
