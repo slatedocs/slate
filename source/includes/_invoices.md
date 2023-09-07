@@ -46,6 +46,9 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
     "can_cancel": true,
     "can_archive": true,
     "can_dearchive": false,
+    "digital_invoice": false,
+    "standalone_invoice": false,
+    "confidence_score": "0.9",
     "currency": {
       "id": 162,
       "iso_code": "ZAR",
@@ -148,6 +151,9 @@ RestClient.post(
         "supplier_id": 131,
         "issue_date": "2023-05-16",
         "received_date": "2023-05-16",
+        "digital_invoice": true,
+        "standalone_invoice": false,
+        "confidence_score": "0.9",
         "invoice_line_items_attributes": [
             {
                 "sequence_no": 1,
@@ -294,6 +300,21 @@ curl "https://app.procurementexpress.com/api/v1/invoices"
 ```
 
 Create a new Invoice for the Company ID mentioned in the header.
+
+**Digital Invoice (Invoice Scan and Match)**
+
+For all the invoices that were scanned using OCR, please pass `invoice[digital_invoice] = true` as a 
+value that allow us to know if that invoice was manually created by user or using scan and match feature.
+This is important for us, because we need to charge our customer based on how much scan they have done
+in our application.
+
+**standalone invoice**
+
+If any invoice that is extracted by OCR service do not detect the matching PO, you can mark them
+as standalone invoice today in webapp. There also is a option available to the customer where they
+can mark invoice as standalone invoice if there are no linked purchase orders in any invoices.
+In that case you can pass `invoice[standalone_invoice] = true` and those invoices will be treated
+as stand alone invoices.
 
 ### HTTP Request
 `POST /api/v1/invoices`
