@@ -9,13 +9,11 @@ includes:
   - api-reference
   - object-data-api
   - task-api
+  - acts-api
+  - acts/reference
+  - acts/get_api
+  - acts/post_api
   - dev-support
-  - _acts-api-reference
-  - _total-apis-and-tables
-  - _types-of-apisand-genralurl
-  - _all-get-apis
-  - _all-post-apis
-  - _acts-apis-dev-support
 
   
 search: true

@@ -4,9 +4,6 @@ jobs:
         working_directory: ~/project
         docker:
             - image: starefossen/ruby-node:2-8
-              auth:
-                  username: intelexdocker
-                  password: $DOCKERHUB_PASSWORD
         steps:
             - checkout
             - run:
@@ -25,9 +22,6 @@ jobs:
         working_directory: ~/project
         docker:
             - image: starefossen/ruby-node:2-8
-              auth:
-                  username: intelexdocker
-                  password: $DOCKERHUB_PASSWORD
         steps:
             - checkout
             - add_ssh_keys:
@@ -48,12 +42,8 @@ workflows:
     version: 2
     build-and-deploy:
         jobs:
-            - build:
-                context:
-                    - docker-hub
+            - build
             - deploy:
-                context:
-                    - docker-hub
                 filters:
                     branches:
                         only: master
