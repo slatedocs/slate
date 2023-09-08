@@ -23,6 +23,7 @@ includes:
   - products
   - purchase_orders
   - invoices
+  - digital_invoices
   - payments
   - suppliers
   - send_to_supplier_templates
