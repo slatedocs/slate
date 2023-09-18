@@ -70,12 +70,42 @@ curl https://api.handshq.com/v1/roles/[id] \
       "type": "role",
       "attributes": {
         "position": "Engineer"
+      },
+      "relationships": {
+        "courses": {
+          "data": [
+            {
+              "id": "111",
+              "type": "course"
+            },
+            {
+              "id": "222",
+              "type": "course"
+            }
+          ]
+        }
       }
-    }
+    },
+    "included": [
+      {
+        "id": "111",
+        "type": "course",
+        "attributes": {
+          "name": "Engineering course 101"
+        }
+      },
+      {
+        "id": "222",
+        "type": "course",
+        "attributes": {
+          "name": "Engineering course 102"
+        }
+      }
+    ]
   }
 ```
 
-This endpoint allows you to view a role by providing the id.
+This endpoint allows you to view a role and its required courses by providing the role's id.
 
 ### Request
 
