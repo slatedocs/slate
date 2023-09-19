@@ -19,9 +19,14 @@ POST|/v2/nfse/REFERENCIA/email | Envia um email com uma cópia da nota fiscal co
 
 ## Campos
 
-Cada prefeitura pode utilizar um formato diferente de XML, mas utilizando nossa API você utiliza
-um formato único de campos para todas as prefeituras. A listagem dos campos segue abaixo.
-Os campos denotados com (*) são obrigatórios.
+Cada prefeitura pode utilizar um formato diferente de XML, mas utilizando nossa API você utiliza um formato único de campos para todas as prefeituras.
+**OBSERVAÇÃO**: Alguns municípios podem ter campos adicionais ou algumas regras específicas para preenchimento de campos. Uma boa prática é consultar a nossa [lista de municípios atendidos](https://focusnfe.com.br/cidades-atendidas/) e ver as orientações a respeito das especificidades dos campos em sua cidade, em especial os destacados na sequência:
+* natureza_operacao
+* item_lista_servico
+* codigo_cnae
+* codigo_tributario_municipio
+
+A listagem completa dos campos segue abaixo. Aqueles denotados com (*) são obrigatórios.
 
 ### Geral
 
@@ -143,7 +148,6 @@ informar o número do RPS que será substituído. Municípios que seguem o padr�
   - **cnpj**: (String) CNPJ do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
   - **inscricao_municipal**: (String) Inscrição municipal do intermediário do serviço, se aplicável. Caracteres não numéricos são ignorados.
 
-Alguns municípios podem ter campos adicionais ou algumas regras específicas para preenchimento de campos. Uma boa prática é consultar a nossa [lista de municípios atendidos](https://focusnfe.com.br/cidades-atendidas/) e ver se existe algum artigo escrito sobre especificidades do seu município.
 
 ## Status API
 
