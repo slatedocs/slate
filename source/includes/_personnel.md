@@ -47,6 +47,12 @@ curl https://api.handshq.com/v1/personnel \
             }
           ]
         }
+      },
+      "primary_role": {
+        "data": {
+          "id": "123",
+          "type": "primary_role"
+        }
       }
     }
   ],
@@ -121,6 +127,12 @@ curl https://api.handshq.com/v1/personnel/[id] \
               "type": "role"
             }
           ]
+        },
+        "primary_role": {
+          "data": {
+            "id": "123",
+            "type": "primary_role"
+          }
         }
       }
     }
@@ -158,7 +170,8 @@ curl https://api.handshq.com/v1/personnel \
       "email":"sandra.smith@email.com",
       "external_id": "JSMITH",
       "line_manager_id": "456",
-      "role_ids": ["987", "765"]
+      "role_ids": ["987", "765"],
+      "primary_role_id": "987"
     }
   }
 ```
@@ -180,6 +193,7 @@ email | String | No | Email address of the personnel
 external_id | String | No | External ID of the personnel
 line_manager_id | String | No | ID of the line manager of the personnel
 role_ids | Association IDs | No | IDs of roles that exist in the training register, that the personnel holds. For more information see [Associations](#associations)
+primary_role_id | String | No | ID of the primary role of the personnel
 
 ### Response
 
@@ -218,6 +232,12 @@ Successful requests will return a json payload of the newly created personnel an
               "type": "role"
             }
           ]
+        },
+        "primary_role": {
+          "data": {
+            "id": "987",
+            "type": "primary_role"
+          }
         }
       }
     }
@@ -245,7 +265,8 @@ curl https://api.handshq.com/v1/personnel/[id] \
       "email":"sally-sw@email.com",
       "external_id": "JSMITH",
       "line_manager_id": "567",
-      "role_ids": ["345"]
+      "role_ids": ["345"],
+      "primary_role_id": "345"
     }
   }
 ```
@@ -268,6 +289,7 @@ email | String | No | Email address of the personnel
 external_id | String | No | External ID of the personnel
 line_manager_id | String | No | ID of the line manager of the personnel
 role_ids | Association IDs | No | IDs of roles that exist in the training register, that the personnel holds. For more information see [Associations](#associations)
+primary_role_id | String | No | ID of the primary role of the personnel
 
 ### Response
 
@@ -302,6 +324,12 @@ Successful requests will return a json payload of the updated personnel and a `2
               "type": "role"
             }
           ]
+        },
+        "primary_role": {
+          "data": {
+            "id": "345",
+            "type": "primary_role"
+          }
         }
       }
     }
@@ -380,6 +408,12 @@ Successful requests will return a json payload of the archived personnel and a `
               "type": "role"
             }
           ]
+        },
+        "primary_role": {
+          "data": {
+            "id": "345",
+            "type": "primary_role"
+          }
         }
       }
     }
@@ -429,6 +463,12 @@ This endpoint allows you to unarchive an archived personnel.
               "type": "role"
             }
           ]
+        },
+        "primary_role": {
+          "data": {
+            "id": "345",
+            "type": "primary_role"
+          }
         }
       }
     }
