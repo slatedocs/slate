@@ -31,12 +31,38 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"value": [
-	  {
-		"name": "string",
-		"kind": "string",
-		"url": "string"
-	  }
+    "currentPage": 1,
+    "totalPages": 3,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 1346,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "attribute_type_id": "number",
+            "attribute_type": "string",
+            "data_type_id": "number",
+            "data_type_size": "number",
+			"data_type_precision": "number",
+			"data_type_filter": "string",
+			"readonly_ind": "string",
+			"searchable_ind": "string",
+			"remote_ind": "string",
+			"default_value": "string",
+			"always_evaluate_default_ind": "string",
+			"display_condition": "string",
+			"disabled_condition": "string",
+			"validation_condition": "string",
+			"validation_error_text": "string",
+			"view_column_name": "string",
+            "activedate": "2011-07-04t17:42:43",
+			"inactive_date": "2010-07-04t17:42:43",
+			"lastmodifieddate": "2020-09-10t10:01:19",
+            "externalidentifier": "string",
+            "comments": "string",
+            "refid": "string"
+        }
 	]
 }
 ```
@@ -83,13 +109,58 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"value": [
-	  {
-		"name": "string",
-		"kind": "string",
-		"url": "string"
-	  }
-	]
+    "currentPage": 1,
+    "totalPages": 3,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 1346,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "compoundId": "number",
+            "compound": "string",
+            "compoundTypeId": "number",
+            "compoundStatusId": "number",
+            "activeDate": "2011-07-04T17:42:43",
+            "description": "string",
+            "alternateNames": "string",
+            "cas": "string",
+            "formula": "string",
+            "molecularWeight": "number",
+            "vpMolecularWeight": "number",
+            "vp40": "number",
+            "vp50": "number",
+            "vp60": "number",
+            "vp70": "number",
+            "vp80": "number",
+            "vp90": "number",
+            "vp100": "number",
+            "vpCoefA": "number",
+            "vpCoefB": "number",
+            "vpCoefC": "number",
+            "vp2A": "number",
+            "vp2B": "number",
+            "reid": "number",
+            "astmSlope": "number",
+            "vpA": "number",
+            "vpB": "number",
+            "vpXMin": "number",
+            "vpXMax": "number",
+            "density": "number",
+            "specificGravity": "number",
+            "supplier": "string",
+            "manufacturerId": "number",
+            "epaTanksCategory": "string",
+            "epaTanksId": "number",
+            "inactiveDate": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2020-09-10T10:01:19",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "refId": "string"
+        }
+	]	
 }
 ```
 
@@ -136,12 +207,24 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"value": [
-	  {
-		"name": "string",
-		"kind": "string",
-		"url": "string"
-	  }
+    "currentPage": 1,
+    "totalPages": 3,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 1346,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "emission_category_id": "number",
+            "emission_category": "string",
+            "sort_order": "number",
+            "last_modified_date": "2020-09-10t10:01:19",
+			"external_identifier": "string",
+			"comments": "string",
+			"ref_id": "string"
+			
+        }
 	]
 }
 ```
@@ -187,12 +270,24 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"value": [
-	  {
-		"name": "string",
-		"kind": "string",
-		"url": "string"
-	  }
+    "currentPage": 1,
+    "totalPages": 3,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 1346,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "emission_type_id": "number",
+            "emission_type": "string",
+            "sort_order": "number",
+            "last_modified_date": "2020-09-10t10:01:19",
+			"external_identifier": "string",
+			"comments": "string",
+			"ref_id": "string"
+			
+        }
 	]
 }
 ```
@@ -238,14 +333,41 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"value": [
-	  {
-		"name": "string",
-		"kind": "string",
-		"url": "string"
-	  }
+    "currentPage": 1,
+    "totalPages": 3,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 1346,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "equipment_id": "number",
+			"area_id": "number",
+			"facility_id": "number",
+			"equipment_type_id": "number",
+			"source_name": "string",
+			"equipment_status_id": "number",
+			"model_id": "number",
+			"ownership_id": "number",
+			"owner_id": "number",
+			"serial_number": "string",
+			"manufacture_date": "2019-09-10t10:01:19",
+			"internal_name": "string",
+			"alternate_name": "string",
+			"design": "string",
+			"original_survey_date": "2021-09-10t10:01:19",
+			"active_date": "2022-09-10t10:01:19",
+			"inactive_date": "2023-09-10t10:01:19",
+			"data_lock_type_id": "number",
+			"last_modified_date": "2023-09-11t10:01:19",
+			"external_identifier": "string",
+			"comments": "string"
+			
+        }
 	]
 }
+
 ```
 
 **API Endpoints**
@@ -290,12 +412,23 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"value": [
-	  {
-		"name": "string",
-		"kind": "string",
-		"url": "string"
-	  }
+    "currentPage": 1,
+    "totalPages": 3,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 1346,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "emission_status_id": "number",
+            "emission_status": "string",
+			"color_id": "number",
+            "sort_order": "number",
+            "last_modified_date": "2020-09-10t10:01:19",
+			"external_identifier": "string",
+			"comments": "string"
+        }
 	]
 }
 ```
@@ -342,12 +475,44 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"value": [
-	  {
-		"name": "string",
-		"kind": "string",
-		"url": "string"
-	  }
+    "currentPage": 1,
+    "totalPages": 3,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 1346,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "equipment_type_id": "number",
+			"equipment_type": "string",
+			"visible_ind": "string",
+			"equipment_attributes_ind": "string",
+			"emission_calculations_ind": "string",
+			"containment_ind": "string",
+			"geometry_ind": "string",
+			"emission_factors_ind": "string",
+			"sample_locations_ind": "string",
+			"equipment_associations_ind": "string",
+			"facility_associations_ind": "string",
+			"location_information_ind": "string",
+			"fuel_use_ind": "string",
+			"people_associations_ind": "string",
+			"service_schedule_ind": "string",
+			"service_history_ind": "string",
+			"operational_data_collectn_ind": "string",
+			"pte_operational_data_ind": "string",
+			"schedule_ind": "string",
+			"correspondence_ind": "string",
+			"requirements_ind": "string",
+			"file_attachments_ind": "string",
+			"view_name": "string",
+			"sort_order": "number", 
+			"last_modified_date": "2020-09-10t10:01:19",
+			"external_identifier": "string",
+			"comments": "string",
+			"ref_id": "string"
+		}
 	]
 }
 ```
@@ -394,7 +559,7 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	 "currentPage": 1,
+	"currentPage": 1,
     "totalPages": 1,
     "currentPageSize": 500,
     "maxAPIPageSize": 500,
@@ -424,7 +589,7 @@ IRestResponse response = client.Execute(request);
 			"badDataFlag": "number(0,1)",
 			"operationAmount": "number"
         }
-		    ]
+	]
 }
 ```
 
@@ -496,7 +661,7 @@ IRestResponse response = client.Execute(request);
             "comments": "string",
             "refId": "string"
         }
-		    ]
+	]
 }
 
 ```

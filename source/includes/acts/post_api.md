@@ -16,7 +16,8 @@ In the current release, four POST APIs End points are provided to add or update 
 * Equipment
 * Operation
 * Facility
-* Facility Attribute 
+* Facility Attribute
+* Equipment Attribute
  
 POST requests to these endpoints should be formatted in JSON.
 
@@ -154,7 +155,7 @@ var options = { method: 'POST',
    { operationId: 'number',
      equipmentId: 'number',
      emissionTypeId: 'number',
-	 emissionCategoryId: 'number',
+	   emissionCategoryId: 'number',
      operationTypeId: 'number',
      activeDate: '2023-06-25T04:00:00Z',
      unitId: 'number',
@@ -294,23 +295,23 @@ IRestResponse response = client.Execute(request);
     "emissionTypeId": "number",
     "areaId": "number",
     "facilityTypeId": "number",
-	"facilityStatusId": "number",
-	"sortOrder": "number",
-	"facilityOwnershipId": "number",
-	"facilityOwnerId": "number",
-	"landOwnerId": "number",
-	"operatorId": "number",
-	"countryId": "number",
-	"countyId": "number",
-	"offshoreBlockId": "number",
-	"meteorologicalId": "number",
-	"businessEntityId": "number",
-	"businessUnitId": "number",
-	"alternateName": "string",
-	"purchaseDate": "2023-06-25T04:00:00Z",
-	"previousOwnerId": "number",
-	"soldDate": "2023-06-25T04:00:00Z",
-	"soldToId": "number",
+	  "facilityStatusId": "number",
+	  "sortOrder": "number",
+	  "facilityOwnershipId": "number",
+	  "facilityOwnerId": "number",
+	  "landOwnerId": "number",
+	  "operatorId": "number",
+	  "countryId": "number",
+	  "countyId": "number",
+	  "offshoreBlockId": "number",
+	  "meteorologicalId": "number",
+	  "businessEntityId": "number",
+	  "businessUnitId": "number",
+	  "alternateName": "string",
+	  "purchaseDate": "2023-06-25T04:00:00Z",
+	  "previousOwnerId": "number",
+	  "soldDate": "2023-06-25T04:00:00Z",
+	  "soldToId": "number",
     "activeDate": "2023-06-25T04:00:00Z",
     "inactiveDate": "2023-06-25T04:00:00Z",
     "dataLockTypeId": "number",
@@ -433,6 +434,91 @@ IRestResponse response = client.Execute(request);
 
 ```
 
+### 5. Equipment Attribute Table 
+
+This section outlines the process of adding new entries or modifying existing records within the Equipment Attribute table using the dedicated API endpoint.
+
+**Equipment Attribute POST Endpoint**
+
+`POST` api/development/v1/equipmentattribute
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://intelex_url/api/v1/equipmentattribute',
+  headers: { 'content-type': 'application/json' },
+  body:
+   { EquipmentAttributeId: 'number',
+     EquipmentId: 'number',
+     AttributeTypeId: 'number',
+     EquipmentAttribute:"string",
+     DataLockTypeId: 'number',
+     LastModifiedDate: '2023-03-30T07:27:06.295Z',
+     ExternalIdentifier: 'string',
+     Comments:'string'},
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://intelex_url/api/v1/equipmentattribute");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"EquipmentAttributeId\": \"number\",\r\n    \"EquipmentId\": \"number\",\r\n    \"AttributeTypeId\": \"number\",\r\n    \"EquipmentAttribute\": \"string\",\r\n    \"DataLockTypeId\": \"number\",\r\n    \"LastModifiedDate\": \"2023-03-30T07:27:06.295Z\",\r\n    \"ExternalIdentifier\": \"string\",\r\n    \"Comments\": \"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body 
+
+```json
+[
+  { 
+	 "EquipmentAttributeId": "number",
+    "EquipmentId": "number",
+    "AttributeTypeId": "number",
+    "EquipmentAttribute":"string",
+    "DataLockTypeId": "number",
+    "LastModifiedDate": "2023-03-30T07:27:06.295Z",
+    "ExternalIdentifier": "string",
+    "Comments":"string"
+  }
+]
+```
+> Example Response
+
+```json
+{
+	"insertedRowCount" : 2 , 
+	"updatedRowCount" : 3 ,
+	"failureCount" : 0 ,
+	"errorMessage" : []
+
+}
+
+```
+
+> Example Output For When Data Get's Failed To Insert or Update
+
+```json
+{
+	"insertedRowCount" : 0 , 
+	"updatedRowCount" : 1 ,
+	"failureCount" : 1 ,
+	"errorMessage" : [
+	 "EquipmentAttribute ID : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
+	]
+}
+
+```
+
 ### JSON body for both Insert & Update 
 
 #### JSON Input body for Insert 
@@ -458,11 +544,11 @@ Comments  | Comments accepts the string data as input
         "EquipmentAttributeId": 0,
         "EquipmentId": "number",
         "AttributeTypeId": "number",
-		"EquipmentAttribute":"string",
+		    "EquipmentAttribute":"string",
         "DataLockTypeId": "number",
         "LastModifiedDate": "datetime",
         "ExternalIdentifier": "string",
-		"Comments":"string"
+		    "Comments":"string"
     }
 ]
 ```
@@ -491,11 +577,11 @@ Comments  | Comments accepts the string data as input
         "EquipmentAttributeId": 164,
         "EquipmentId": "number",
         "AttributeTypeId": "number",
-		"EquipmentAttribute":"string",
+		    "EquipmentAttribute":"string",
         "DataLockTypeId": "number",
         "LastModifiedDate": "datetime",
         "ExternalIdentifier": "string",
-		"Comments":"string"
+		    "Comments":"string"
     }
 ]
 ```

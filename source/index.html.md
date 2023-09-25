@@ -13,6 +13,7 @@ includes:
   - acts/reference
   - acts/get_api
   - acts/post_api
+  - acts/delete_api
   - dev-support
 
   
