@@ -165,6 +165,15 @@ the file, create an invoice, calculate confidence score, and try to find and mat
 currency, and purchase orders. It will also automatically link the invoice line items with
 the purchase order line items if any match found.
 
+### Requires Invoice and Match feature flag
+
+This API endpoint return `Invoice Scan and Match feature is disabled for this company` if
+`enable_digital_invoice` feature flag or corrosponding feature flag for Invoice scan and match
+feature is disabled for the company. So make sure to only allow this feature in mobile app
+for the companies where Invoice scan and match feature flag is enabled. To check if required
+feature flag is enabled or not check [Company Detail API](#get-a-specific-company) and check if
+`scan_and_match_ff_enabled` attribute is `true`.
+
 ### How to know Invoice is Linked with Purchase Order
 
 Invoice are linked with Purchase order through Invoice line items. Every invoice line items
