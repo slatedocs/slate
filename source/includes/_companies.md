@@ -272,6 +272,23 @@ curl 'https://app.procurementexpress.com/api/v1/companies/1'
 Retrieves the details of an existing company. You need to send unique company id
 that was returned upon company creation.
 
+### Check for Specific feature flags
+
+If you are interested in checking any feature flags, then all feature flags flag are
+available in this API endpiont.
+
+**Invoice Scan and Match Feature flag**
+
+For example, if you want to enable **Invoice Scan and Match**
+feature then you can check `scan_and_match_ff_enabled` is `true`, if this value is `false` that means
+it is not available to the customer. Visit [Invoice scan and match](#invoice-scan-and-match) for more information.
+
+**Payment Terms Feature Flag**
+
+We have also added feature flag for **Payment Terms** in the invoice section, and maybe in future we
+can add it to Supplier also. Check if `payment_term_ff_enabled` is `true`, then `Payment Term`
+feature is available for those companies.
+
 ### HTTP Request
 
 `GET https://app.procurementexpress.com/api/v1/companies/:id`
