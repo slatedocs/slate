@@ -174,12 +174,19 @@ for the companies where Invoice scan and match feature flag is enabled. To check
 feature flag is enabled or not check [Company Detail API](#get-a-specific-company) and check if
 `scan_and_match_ff_enabled` attribute is `true`.
 
-### How to know Invoice is Linked with Purchase Order
+### How to know Invoice is Linked with Purchase Order?
 
 Invoice are linked with Purchase order through Invoice line items. Every invoice line items
 has a `purcahse_order_item_id` and `purchase_order_id` properties. If There is a match found
 then corresponding invoice line items will have these 2 values set. If the values are `null`
 in that case, User need to link invoice items with purchase order items using our app.
+
+### How to create Draft Purchase Request rather than Invoice from a scan?
+
+To create a purchase request pass a `upload_type = 'request'` data along with file and other required POST body params. If `upload_type` is other than `request` it will always create `Invoice`.
+
+Also note that, the response you get is a valid JSON response of either `Invoice` json serializer, or `PurchaseOrder` json serializer or `Error` json depending on the `upload_type` value and the success/failure state of the request.
+
 
 ### Limitations
 
@@ -217,3 +224,4 @@ NOTE that `<file>` can be either a file object or a base64
 | authentication_token | header | Authentication token in header |
 | app_company_id | header | Company id |
 | file | File | either a file object or a base64 |
+| upload_type | String | `request` to create draft PO, default is Invoice |
