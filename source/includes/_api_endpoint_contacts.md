@@ -330,6 +330,21 @@ $data = array(
 
 $contact = $contactApi->create($data);
 ```
+
+```
+{
+    "firstname": "Jim",
+    "lastname": "Contact",
+    "email": "jim@his-site.com",
+    "doNotContact": [
+            {
+                "reason": 3,
+                "comments": "DNC from API"
+            }
+    ]
+}
+```
+
 Create a new contact.
 
 #### HTTP Request
@@ -374,6 +389,28 @@ $data = array(
 );
 $contact = $contactApi->createBatch($data);
 ```
+
+```
+[
+    {
+    "firstname": "Jim",
+    "lastname": "Contact",
+    "email": "jim@his-site.com",
+    "doNotContact": [
+            {
+                "reason": 3,
+                "comments": "DNC from API"
+            }
+        ]
+    },
+    {
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john@the-site.com"
+    }
+]
+```
+
 Create a batch of new contacts.
 
 #### HTTP Request
