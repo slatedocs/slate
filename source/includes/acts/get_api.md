@@ -12,7 +12,7 @@ This section outlines the process of retrieving data from the Attribute Type tab
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/attributetype' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/attributetype' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -22,7 +22,7 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/attributetype");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/attributetype");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -44,21 +44,21 @@ IRestResponse response = client.Execute(request);
             "attribute_type": "string",
             "data_type_id": "number",
             "data_type_size": "number",
-			"data_type_precision": "number",
-			"data_type_filter": "string",
-			"readonly_ind": "string",
-			"searchable_ind": "string",
-			"remote_ind": "string",
-			"default_value": "string",
-			"always_evaluate_default_ind": "string",
-			"display_condition": "string",
-			"disabled_condition": "string",
-			"validation_condition": "string",
-			"validation_error_text": "string",
-			"view_column_name": "string",
+            "data_type_precision": "number",
+            "data_type_filter": "string",
+            "readonly_ind": "string",
+            "searchable_ind": "string",
+            "remote_ind": "string",
+            "default_value": "string",
+            "always_evaluate_default_ind": "string",
+            "display_condition": "string",
+            "disabled_condition": "string",
+            "validation_condition": "string",
+            "validation_error_text": "string",
+            "view_column_name": "string",
             "activedate": "2011-07-04t17:42:43",
-			"inactive_date": "2010-07-04t17:42:43",
-			"lastmodifieddate": "2020-09-10t10:01:19",
+            "inactive_date": "2010-07-04t17:42:43",
+            "lastmodifieddate": "2020-09-10t10:01:19",
             "externalidentifier": "string",
             "comments": "string",
             "refid": "string"
@@ -73,9 +73,9 @@ IRestResponse response = client.Execute(request);
 
 **Query parameters**
 
-Attribute | Type | Description
+Attribute | Type | Description 
 --------- | ---- | -----------
-PageNumber | int | Page number of the results to fetch.
+PageNumber | int | Page number of the results to fetch. 
 PageSize | int | The number of results per page
 attributeTypeIDs | int | Attribute ID is one of the filter parameter is a integer data type
 attributeTypes | string | Attribute Types is for the project detail type
@@ -90,7 +90,7 @@ This section guides you through the process of fetching data from the Compound t
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/compound' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/compound' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -100,7 +100,7 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/compound");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/compound");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -191,14 +191,14 @@ This section elaborates on how to obtain data from the Emission Category table u
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/emissioncategory' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/emissioncategory' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/emissioncategory");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/emissioncategory");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -220,11 +220,10 @@ IRestResponse response = client.Execute(request);
             "emission_category": "string",
             "sort_order": "number",
             "last_modified_date": "2020-09-10t10:01:19",
-			"external_identifier": "string",
-			"comments": "string",
-			"ref_id": "string"
-			
-        }
+            "external_identifier": "string",
+            "comments": "string",
+            "ref_id": "string"
+		    }
 	]
 }
 ```
@@ -239,7 +238,7 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-emissionCategoryID | int | Emission Category ID is one of the unique identifier for this emission category record and is one of the filter option provided for Emission Category
+emissionCategoryIDs | int | Emission Category ID is one of the unique identifier for this emission category record and is one of the filter option provided for Emission Category
 
 ### 4. Emission Type Table
 
@@ -251,7 +250,7 @@ This section guides you through the process of fetching data from the Emission T
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/emissiontype' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/emissiontype' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -261,7 +260,7 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/emissiontype");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/emissiontype");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -283,11 +282,10 @@ IRestResponse response = client.Execute(request);
             "emission_type": "string",
             "sort_order": "number",
             "last_modified_date": "2020-09-10t10:01:19",
-			"external_identifier": "string",
-			"comments": "string",
-			"ref_id": "string"
-			
-        }
+            "external_identifier": "string",
+            "comments": "string",
+            "ref_id": "string"
+		    }
 	]
 }
 ```
@@ -302,7 +300,7 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-emissionTypeID | int | Emission Type ID is one of the type of emissions and is the one of the filter option provided for Emission Type
+emissionTypeIDs | int | Emission Type ID is one of the type of emissions and is the one of the filter option provided for Emission Type
 
 ### 5. Equipment Table
 
@@ -314,7 +312,7 @@ This section provides guidance on retrieving data from the Equipment table using
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/equipment' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/equipment' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -324,7 +322,7 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/equipment");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/equipment");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -343,27 +341,26 @@ IRestResponse response = client.Execute(request);
     "data": [
         {
             "equipment_id": "number",
-			"area_id": "number",
-			"facility_id": "number",
-			"equipment_type_id": "number",
-			"source_name": "string",
-			"equipment_status_id": "number",
-			"model_id": "number",
-			"ownership_id": "number",
-			"owner_id": "number",
-			"serial_number": "string",
-			"manufacture_date": "2019-09-10t10:01:19",
-			"internal_name": "string",
-			"alternate_name": "string",
-			"design": "string",
-			"original_survey_date": "2021-09-10t10:01:19",
-			"active_date": "2022-09-10t10:01:19",
-			"inactive_date": "2023-09-10t10:01:19",
-			"data_lock_type_id": "number",
-			"last_modified_date": "2023-09-11t10:01:19",
-			"external_identifier": "string",
-			"comments": "string"
-			
+            "area_id": "number",
+            "facility_id": "number",
+            "equipment_type_id": "number",
+            "source_name": "string",
+            "equipment_status_id": "number",
+            "model_id": "number",
+            "ownership_id": "number",
+            "owner_id": "number",
+            "serial_number": "string",
+            "manufacture_date": "2019-09-10t10:01:19",
+            "internal_name": "string",
+            "alternate_name": "string",
+            "design": "string",
+            "original_survey_date": "2021-09-10t10:01:19",
+            "active_date": "2022-09-10t10:01:19",
+            "inactive_date": "2023-09-10t10:01:19",
+            "data_lock_type_id": "number",
+            "last_modified_date": "2023-09-11t10:01:19",
+            "external_identifier": "string",
+            "comments": "string"
         }
 	]
 }
@@ -380,7 +377,15 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-equipmentID | int | Equipment ID is one of the unique identifier for this equipment record
+equipmentIDs | int | Equipment ID is one of the unique identifier for this equipment record
+equipmentTypeIDs | int | Equipment Type ID is one of the unique identifier for this equipment type record
+equipmentStatusIDs | int | Equipment Status ID is one of the unique identifier for this equipment status record
+facilityIDs | int | Facility ID is one of the unique identifier for this equipment status record
+sourceNames | strings | Source Names is one of the unique identifier for this equipment record
+internalNames | strings | Internal Names is one of the unique identifier for this equipment record
+alternateNames | strings | Alternate Names is one of the unique identifier for this equipment record
+lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
 
 
 ### 6. Equipment Status Table
@@ -393,7 +398,7 @@ All data from the Equipment Status table will be returned from the endpoint belo
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/equipmentstatus' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/equipmentstatus' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -403,7 +408,7 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/equipmentstatus");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/equipmentstatus");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -423,11 +428,11 @@ IRestResponse response = client.Execute(request);
         {
             "emission_status_id": "number",
             "emission_status": "string",
-			"color_id": "number",
+			      "color_id": "number",
             "sort_order": "number",
             "last_modified_date": "2020-09-10t10:01:19",
-			"external_identifier": "string",
-			"comments": "string"
+            "external_identifier": "string",
+            "comments": "string"
         }
 	]
 }
@@ -446,9 +451,10 @@ PageSize | int | The number of results per page
 equipmentStatusIDs | int | Equipment Status ID is one of the unique identifier for this equipment status record
 equipmentStatus | string | Equipment Status is one of the identifier for the status of the equipment
 
-### 7. Equipment Type Table
 
-All data from the Equipment Type table will be returned from the endpoint below. You can optionally fetch specific data by including the equipment type ID and equipment types value. The Equipment type endpoint supports pagination.
+### 7. Equipment Attribute Table
+
+All data from the Equipment Attribute table will be returned from the endpoint below. You can optionally fetch specific data by including the facility attribute ids, facility names, emission type ids, facility type ids, unit ids, equipment ids, last modified start date and last modified end date. The facility attribute endpoint supports pagination.
 
 > Example Request
 
@@ -456,7 +462,7 @@ All data from the Equipment Type table will be returned from the endpoint below.
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/equipmenttype' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/equipmentattribute' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -466,7 +472,80 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/equipmenttype");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/equipmentattribute");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "EquipmentAttributeId": "number",
+            "EquipmentId": "number",
+            "AttributeTypeId": "number",
+            "EquipmentAttribute":"string",
+            "DataLockTypeId": "number",
+            "LastModifiedDate": "datetime",
+            "ExternalIdentifier": "string",
+            "Comments":"string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/equipmentattribute
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+equipmentAttributeIds | int | EquipmentAttributeId one of the unique identifier for this Equipment record
+equipmentIds | int |  EquipmentId accepts the numbers as input 
+attributetypeIds | int | AttributeTypeId accepts the numbers as input
+equipmentattributes | string | Equipment Attribute is one of the filter option and the parameter is for the Equipment Attribute Type 
+datalocktypeIds | int | Data Lock Type ID the unique identifier of the associated data lock type
+lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+externalidentifier | string | External Identifier a unique identifier for this record to an external data system
+comments | string | Comments any comments associated with this record
+
+
+### 8. Equipment Type Table
+
+All data from the Equipment Type table will be returned from the endpoint below. You can optionally fetch specific data by including the equipment type ID and equipment types value. The Equipment type endpoint supports pagination.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/equipmenttype' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/equipmenttype");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -485,33 +564,33 @@ IRestResponse response = client.Execute(request);
     "data": [
         {
             "equipment_type_id": "number",
-			"equipment_type": "string",
-			"visible_ind": "string",
-			"equipment_attributes_ind": "string",
-			"emission_calculations_ind": "string",
-			"containment_ind": "string",
-			"geometry_ind": "string",
-			"emission_factors_ind": "string",
-			"sample_locations_ind": "string",
-			"equipment_associations_ind": "string",
-			"facility_associations_ind": "string",
-			"location_information_ind": "string",
-			"fuel_use_ind": "string",
-			"people_associations_ind": "string",
-			"service_schedule_ind": "string",
-			"service_history_ind": "string",
-			"operational_data_collectn_ind": "string",
-			"pte_operational_data_ind": "string",
-			"schedule_ind": "string",
-			"correspondence_ind": "string",
-			"requirements_ind": "string",
-			"file_attachments_ind": "string",
-			"view_name": "string",
-			"sort_order": "number", 
-			"last_modified_date": "2020-09-10t10:01:19",
-			"external_identifier": "string",
-			"comments": "string",
-			"ref_id": "string"
+            "equipment_type": "string",
+            "visible_ind": "string",
+            "equipment_attributes_ind": "string",
+            "emission_calculations_ind": "string",
+            "containment_ind": "string",
+            "geometry_ind": "string",
+            "emission_factors_ind": "string",
+            "sample_locations_ind": "string",
+            "equipment_associations_ind": "string",
+            "facility_associations_ind": "string",
+            "location_information_ind": "string",
+            "fuel_use_ind": "string",
+            "people_associations_ind": "string",
+            "service_schedule_ind": "string",
+            "service_history_ind": "string",
+            "operational_data_collectn_ind": "string",
+            "pte_operational_data_ind": "string",
+            "schedule_ind": "string",
+            "correspondence_ind": "string",
+            "requirements_ind": "string",
+            "file_attachments_ind": "string",
+            "view_name": "string",
+            "sort_order": "number", 
+            "last_modified_date": "2020-09-10t10:01:19",
+            "external_identifier": "string",
+            "comments": "string",
+            "ref_id": "string"
 		}
 	]
 }
@@ -528,11 +607,12 @@ Attribute | Type | Description
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
 equipmentTypeIDs | int | Equipment Type ID is one of the unique identifier for this equipment type record
-equipmentType | string | Equipment Types is one of the filter option and the parameter is for the type of the equipment
+equipmentTypes | string | Equipment Types is one of the filter option and the parameter is for the type of the equipment
 
-### 8. Operation Table
 
-All data from the Operation table will be returned from the endpoint below. You can optionally fetch specific data by including the operation ids, operation type ids, emission type ids, emission category ids, unit ids, equipment ids, last modified start date and last modified end date. The Operation endpoint supports pagination.
+### 9. Facility Table
+
+All data from the Facility table will be returned from the endpoint below. You can optionally fetch specific data by including the facility ids, facility names, emission type ids, facility type ids, facility status ids, county ids, last modified start date and last modified end date. The facility endpoint supports pagination.
 
 > Example Request
 
@@ -540,7 +620,7 @@ All data from the Operation table will be returned from the endpoint below. You 
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/operation' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/facility' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -550,7 +630,7 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/operation");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/facility");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -559,7 +639,174 @@ IRestResponse response = client.Execute(request);
 
 ```json
 {
-	"currentPage": 1,
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "facilityId": "number",
+            "facilityName": "string",
+            "emissionTypeId": "number",
+            "areaId": "number",
+            "facilityTypeId": "number",
+            "facilityStatusId": "number",
+            "sortOrder": "number",
+            "facilityOwnershipId": "number",
+            "facilityOwnerId": "number",
+            "landOwnerId": "number",
+            "operatorId": "number",
+            "countryId": "number",
+            "countyId": "number",
+            "offshoreBlockId": "number",
+            "meteorologicalId": "number",
+            "businessEntityId": "number",
+            "businessUnitId": "number",
+            "alternateName": "string",
+            "purchaseDate": "2023-06-25T04:00:00Z",
+            "previousOwnerId": "number",
+            "soldDate": "2023-06-25T04:00:00Z",
+            "soldToId": "number",
+            "activeDate": "2023-06-25T04:00:00Z",
+            "inactiveDate": "2023-06-25T04:00:00Z",
+            "dataLockTypeId": "number",
+            "lastModifiedDate": "2023-06-25T04:00:00Z",
+            "externalIdentifier": "string",
+            "comments": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/facility
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+facilityIds | int | Facility ID is one of the unique identifier for this Facility record
+facilityTypeIds | int | Facility Type ID is one of the unique identifier for this Facility record
+facilityStatusIds | int | Facility Status ID is one of the unique identifier for this Facility record
+countyIds | int | County ID is one of the unique identifier for this Facility record
+facilityNames | string | Facility Name is the unique identifier of the associated facility type
+alternateNames | string | Alternate Name is the unique identifier of the associated facility 
+externalidentifier | string | External Identifier a unique identifier for this record to an external data system
+areaIds | int | Area ID is one of the unique identifier for this Facility record to determine the region 
+lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+
+
+### 10. Facility Attribute Table
+
+All data from the Facility Attribute table will be returned from the endpoint below. You can optionally fetch specific data by including the facility attribute ids, facility names, emission type ids, facility type ids, facility attribute and last modified end date. The facility attribute endpoint supports pagination.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/facilityattribute' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/facilityattribute");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+          "FacilityAttributeId": "number",
+          "FacilityId": "number",
+          "AttributeTypeId": "number",
+          "FacilityAttribute":"string",
+          "DataLockTypeId": "number",
+          "LastModifiedDate": "2023-03-30T07:27:06.295Z",
+          "ExternalIdentifier": "string",
+          "Comments":"string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/facilityattribute
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+facilityAttributeIds | int | Facility ID is one of the unique identifier for this Facility record
+facilityIds | int | Facility Name is the unique identifier of the associated facility type
+attributetypeIds | int | Attribute Type ID is the unique identifier of the associated attribute type
+facilityattributes | string | Facility Attribute is one of the filter option and the parameter is for the Facility Attribute Type 
+datalocktypeIds | int | Data Lock Type ID the unique identifier of the associated data lock type
+lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+externalidentifier | string | External Identifier a unique identifier for this record to an external data system
+comments | string | Comments any comments associated with this record
+
+
+### 11. Operation Table
+
+All data from the Operation table will be returned from the endpoint below. You can optionally fetch specific data by including the operation ids, operation type ids, emission type ids, emission category ids, unit ids, equipment ids, last modified start date and last modified end date. The Operation endpoint supports pagination.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/operation' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/operation");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+	  "currentPage": 1,
     "totalPages": 1,
     "currentPageSize": 500,
     "maxAPIPageSize": 500,
@@ -569,25 +816,25 @@ IRestResponse response = client.Execute(request);
     "data": [
         {
             "operationId": "number",
-			"equipmentId": "number",
-			"emissionTypeId": "number",
-			"emissionCategoryId": "number",
-			"operationTypeId": "number",
-			"activeDate": "2023-06-25T04:00:00Z",
-			"unitId": "number",
-			"controlledInd": "string 1 Byte Y or N",
-			"estimatedInd": "string 1 Byte Y or N",
-			"invalidInd": "string 1 Byte Y or N",
-			"calculateEmissionsInd": "string 1 Byte Y or N",
-			"collectionDate": "2023-06-25T04:00:00Z",
-			"fieldEventId": "number",
-			"inactiveDate": "2023-06-25T04:00:00Z",
-			"dataLockTypeId": "number",
-			"lastModifiedDate": "2023-06-25T04:00:00Z",
-			"externalIdentifier": "string",
-			"comments": "string",
-			"badDataFlag": "number(0,1)",
-			"operationAmount": "number"
+            "equipmentId": "number",
+            "emissionTypeId": "number",
+            "emissionCategoryId": "number",
+            "operationTypeId": "number",
+            "activeDate": "2023-06-25T04:00:00Z",
+            "unitId": "number",
+            "controlledInd": "string 1 Byte Y or N",
+            "estimatedInd": "string 1 Byte Y or N",
+            "invalidInd": "string 1 Byte Y or N",
+            "calculateEmissionsInd": "string 1 Byte Y or N",
+            "collectionDate": "2023-06-25T04:00:00Z",
+            "fieldEventId": "number",
+            "inactiveDate": "2023-06-25T04:00:00Z",
+            "dataLockTypeId": "number",
+            "lastModifiedDate": "2023-06-25T04:00:00Z",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "badDataFlag": "number(0,1)",
+            "operationAmount": "number"
         }
 	]
 }
@@ -609,12 +856,13 @@ emissionTypeIDs | int | The unique identifier of the associated emission type
 emissionCategoryIDs | int | The unique identifier of the associated emission category
 unitIDs | int | The unique identifier of the associated unit 
 equipmentIDs | int | The unique identifier of the associated equipment
-lastModifiedStartDate | string | Date time format "mm/dd/yyyy"
-lastModifiedEndDate | string | Date time format "mm/dd/yyyy"
+lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
+lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
 
-### 9. Unit Table
 
-This section outlines how to retrieve data from the Unit table using the provided endpoint. You have the flexibility to fetch specific data by including unit IDs, unit type IDs, and units. The Unit type endpoint also supports pagination for managing large datasets effectively.
+### 12. Operation Type Table
+
+All data from the Operation Type table will be returned from the endpoint below. You can optionally fetch specific data by including the operation type ids, operation types . The Operation Type endpoint supports pagination.
 
 > Example Request
 
@@ -622,7 +870,7 @@ This section outlines how to retrieve data from the Unit table using the provide
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://intelex_acts_api_url/api/v1/unit' };
+  url: 'https://[tenant].actsapi.intelex.com/v1/operationtype' };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -632,7 +880,75 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_acts_api_url/api/v1/unit");
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/operationtype");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "operationTypeId": "number",
+            "operationType": "string",
+            "parentOperationTypeId": "number",
+            "compoundId": "number",
+            "applicabilityFormula": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2020-09-01T15:55:25",
+            "externalIdentifier": "number",
+            "comments": "number",
+            "refId": "number"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/operationtype
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+operationTypeIDs | int | The unique identifier for this operation type record
+operationTypes | int | The type of operational data
+
+
+### 13. Unit Table
+
+This section outlines how to retrieve data from the Unit table using the provided endpoint. You have the flexibility to fetch specific data by including unit IDs, unit type IDs, and units. The Unit type endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/unit' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/unit");
 var request = new RestRequest(Method.GET);
 IRestResponse response = client.Execute(request);
 ```
@@ -679,3 +995,7 @@ PageSize | int | The number of results per page
 unitIDs | int | Unit ID is one of the unique identifier for this Unit record
 unitTypeIDs | int | Unit Type IDs is the unique identifier of the associated unit type
 units | string | Units is one of the filter option and the parameter is for the Name of the Unit
+
+
+
+

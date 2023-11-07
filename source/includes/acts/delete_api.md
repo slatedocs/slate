@@ -16,7 +16,7 @@ This section guides you through the process of removing/deleting the existing re
 
 **Operation DELETE endpoint**
 
-`DELETE` api/development/v1/operation
+`DELETE` /api/v1/operation
 
 > Example Request & JSON Input Body 
 
@@ -24,7 +24,7 @@ This section guides you through the process of removing/deleting the existing re
 var request = require("request");
 
 var options = { method: 'DELETE',
-  url: 'https://intelex_url/api/v1/operation',
+  url: 'https://[tenant].actsapi.intelex.com/v1/operation',
   headers: { 'content-type': 'application/json' },
   body:
    { operationId: 'number',
@@ -57,7 +57,8 @@ request(options, function (error, response, body) {
 ```
 
 ```csharp
-var client = new RestClient("https://intelex_url/api/v1/operation");
+
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/operation");
 var request = new RestRequest(Method.DELETE);
 request.AddHeader("content-type", "application/json");
 request.AddParameter("application/json", "{\r\n    \"ActionsTaken\": \"string\",\r\n    \"Date\": \"2017-02-13T22:15:30.203Z\",\r\n    \"Description\": \"string\",\r\n    \"IncidentNo\": 0,\r\n    \"ReportedDate\": \"2017-02-13T22:15:30.203Z\",\r\n    \"SuspectedCause\": \"string\"\r\n}", ParameterType.RequestBody);

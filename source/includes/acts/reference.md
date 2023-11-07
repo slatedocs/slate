@@ -24,10 +24,10 @@ To begin using the Intelex API you will need:
 >Example Requests:
 
 ```CSharp 
-//JSON Body for Authentication Endpoint
+Body for Authentication Endpoint
 {"client_id":"Client ID Data",
 "client_secret":"Client Secret Data",
-"audience":"https://intelex_acts_api_url/api",
+"audience":"https://tenant.actsapi.intelex.com/v1/api",
 "grant_type":"client_credentials"}
 ```
 
@@ -53,27 +53,32 @@ The user authentication endpoint uses a POST to generate the access token [beare
 
 When we make backwards-incompatible changes to the API, we release new versions. The current version of the ACTS API  is v1 and can be determined with our API base path /api/v1/.
 
->Example API endpoint : https://intelex_acts_api_url/api/v1
+>Example API endpoint : https://tenant.actsapi.intelex.com/v1/
 
 ### API's and Associated Database Tables 
 
-This ACTS API release includes 11 GET enpoints and 4 POST endpoints, along with the authentication endpoint described above. The tables that can be queried and updated are as follows. 
+This ACTS API release includes 13 GET enpoints and 5 POST endpoints, along with the authentication endpoint described above. The tables that can be queried and updated are as follows. 
 
 Database Tables supporting GET requests 
 
-1. Operation 					   
-2. Equipment				    
+1. Attribute Type					   
+2. Compound 				    
 3. Emission Type			     
 4. Emission Category
-5. Equipment Status
-6. Unit
-7. Attribute Type 
+5. Equipment 
+6. Equipment Status
+7. Equipment Attribute 
 8. Equipment Type
-9. Compound
+9. Facility
+10. Facility Attribute
+11. Operation 
+12. Operation Type
+13. Unit
 
 Database Tables supporting POST requests 
 
 1. Equipment
-2. Operation
+2. Equipment Attribute
 3. Facility
 4. Facility Attribute
+5. Operation
