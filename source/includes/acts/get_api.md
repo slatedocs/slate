@@ -1,10 +1,10 @@
 ## Retrieve data from Database Table
 
-This section outlines the various GET APIs available for fetching data from different tables. Each API provides the capability to retrieve specific data based on provided parameters. Pagination support is available for managing large datasets effectively.
+This section outlines the various GET APIs available for fetching data from different tables. Each API provides the capability to retrieve specific data based on provided parameters. Pagination support is available for managing large datasets effectively.The user can pass the set of parameters of same or different filter options at once .
 
 ### 1. Attribute Type Table 
 
-This section outlines the process of retrieving data from the Attribute Type table using the dedicated API endpoint. The endpoint facilitates the retrieval of all data from the Attribute Type table or enables the selection of specific information by including Attribute IDs and Attribute Types. Additionally, the Attribute Type endpoint supports pagination to effectively manage larger datasets.
+This section outlines the process of retrieving data from the Attribute Type table using the dedicated API endpoint. The endpoint facilitates the retrieval of all data from the Attribute Type table or enables the selection of specific information by including Attribute Ids and Attribute Types. Additionally, the Attribute Type endpoint supports pagination to effectively manage larger datasets.
 
 > Example Request
 
@@ -77,12 +77,12 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch. 
 PageSize | int | The number of results per page
-attributeTypeIDs | int | Attribute ID is one of the filter parameter is a integer data type
+attributeTypeIds | int | Attribute ID is one of the filter parameter is a integer data type
 attributeTypes | string | Attribute Types is for the project detail type
 
 ### 2. Compound API Table
 
-This section guides you through the process of fetching data from the Compound table using the dedicated API endpoint. The endpoint offers the flexibility to retrieve all data from the Compound table or selectively acquire information by including Compound IDs, Compound Type IDs, Compound Status IDs, Compound Names, External Identifiers, or CAS Numbers. Additionally, the Compound endpoint is equipped with pagination capabilities to facilitate efficient management of substantial datasets.
+This section guides you through the process of fetching data from the Compound table using the dedicated API endpoint. The endpoint offers the flexibility to retrieve all data from the Compound table or selectively acquire information by including Compound Ids, Compound Type Ids, Compound Status Ids, Compound Names, External Identifiers, or CAS Numbers. Additionally, the Compound endpoint is equipped with pagination capabilities to facilitate efficient management of substantial datasets.
 
 > Example Request
 
@@ -174,9 +174,9 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-compoundIDs | int | Compound ID is one of the unique identifier for this compound record 
-compoundTypeIDs | int | Compound TYpe IDs is the associated compound type and is a second filter parameter option
-compoundstatusIDs | int | Compound Status IDs is associated with compound status
+compoundIds | int | Compound ID is one of the unique identifier for this compound record 
+compoundTypeIds | int | Compound Type Ids is the associated compound type and is a second filter parameter option
+compoundstatusIds | int | Compound Status Ids is associated with compound status
 compoundNames | string | Compound Names The name of the compound which is a string type data and is one among the parameter for filter option
 externalIdentifier | int | External Identifiers is a unique identifier for this record to an external data system
 CAS | string | CAS Number is a Chemical Abstract Service number for the compound 
@@ -238,11 +238,12 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-emissionCategoryIDs | int | Emission Category ID is one of the unique identifier for this emission category record and is one of the filter option provided for Emission Category
+emissionCategoryIds | int | Emission Category ID is one of the unique identifier for this emission category record and is one of the filter option provided for Emission Category
+emissionCategoryTypes | string | Emission Category Types is for the project to emission category detail types
 
 ### 4. Emission Type Table
 
-This section guides you through the process of fetching data from the Emission Type table using the dedicated API endpoint. The endpoint enables you to retrieve data from the entire Emission Type table or selectively obtain information by including Emission Type IDs. Additionally, the Emission Type endpoint is equipped with pagination capabilities to facilitate the handling of extensive datasets.
+This section guides you through the process of fetching data from the Emission Type table using the dedicated API endpoint. The endpoint enables you to retrieve data from the entire Emission Type table or selectively obtain information by including Emission Type Ids. Additionally, the Emission Type endpoint is equipped with pagination capabilities to facilitate the handling of extensive datasets.
 
 > Example Request
 
@@ -300,11 +301,13 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-emissionTypeIDs | int | Emission Type ID is one of the type of emissions and is the one of the filter option provided for Emission Type
+emissionTypeIds | int | Emission Type ID is one of the type of emissions and is the one of the filter option provided for Emission Type
+emissionTypes | string | Emission Types is for the project to emission detail types
+
 
 ### 5. Equipment Table
 
-This section provides guidance on retrieving data from the Equipment table using the designated API endpoint. The endpoint allows you to retrieve all data from the Equipment table or specify specific data based on equipment IDs. Additionally, the Equipment endpoint offers pagination support to facilitate the handling of substantial datasets.
+This section provides guidance on retrieving data from the Equipment table using the designated API endpoint. The endpoint allows you to retrieve all data from the Equipment table or specify specific data based on equipment Ids. Additionally, the Equipment endpoint offers pagination support to facilitate the handling of substantial datasets.
 
 > Example Request
 
@@ -377,13 +380,13 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-equipmentIDs | int | Equipment ID is one of the unique identifier for this equipment record
-equipmentTypeIDs | int | Equipment Type ID is one of the unique identifier for this equipment type record
-equipmentStatusIDs | int | Equipment Status ID is one of the unique identifier for this equipment status record
-facilityIDs | int | Facility ID is one of the unique identifier for this equipment status record
-sourceNames | strings | Source Names is one of the unique identifier for this equipment record
-internalNames | strings | Internal Names is one of the unique identifier for this equipment record
-alternateNames | strings | Alternate Names is one of the unique identifier for this equipment record
+equipmentIds | int | Equipment ID is one of the unique identifier for this equipment record
+equipmentTypeIds | int | Equipment Type ID is one of the unique identifier for this equipment type record
+equipmentStatusIds | int | Equipment Status ID is one of the unique identifier for this equipment status record
+facilityIds | int | Facility ID is one of the unique identifier for this equipment status record
+sourceNames | string | Source Names is one of the unique identifier for this equipment record
+internalNames | string | Internal Names is one of the unique identifier for this equipment record
+alternateNames | string | Alternate Names is one of the unique identifier for this equipment record
 lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
 lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
 
@@ -448,13 +451,13 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-equipmentStatusIDs | int | Equipment Status ID is one of the unique identifier for this equipment status record
+equipmentStatusIds | int | Equipment Status ID is one of the unique identifier for this equipment status record
 equipmentStatus | string | Equipment Status is one of the identifier for the status of the equipment
 
 
 ### 7. Equipment Attribute Table
 
-All data from the Equipment Attribute table will be returned from the endpoint below. You can optionally fetch specific data by including the facility attribute ids, facility names, emission type ids, facility type ids, unit ids, equipment ids, last modified start date and last modified end date. The facility attribute endpoint supports pagination.
+All data from the Equipment Attribute table will be returned from the endpoint below. You can optionally fetch specific data by including the facility attribute Ids, facility names, emission type Ids, facility type Ids, unit Ids, equipment Ids, last modified start date and last modified end date. The facility attribute endpoint supports pagination.
 
 > Example Request
 
@@ -606,13 +609,13 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-equipmentTypeIDs | int | Equipment Type ID is one of the unique identifier for this equipment type record
+equipmentTypeIds | int | Equipment Type ID is one of the unique identifier for this equipment type record
 equipmentTypes | string | Equipment Types is one of the filter option and the parameter is for the type of the equipment
 
 
 ### 9. Facility Table
 
-All data from the Facility table will be returned from the endpoint below. You can optionally fetch specific data by including the facility ids, facility names, emission type ids, facility type ids, facility status ids, county ids, last modified start date and last modified end date. The facility endpoint supports pagination.
+All data from the Facility table will be returned from the endpoint below. You can optionally fetch specific data by including the facility Ids, facility names, emission type Ids, facility type Ids, facility status Ids, county Ids, last modified start date and last modified end date. The facility endpoint supports pagination.
 
 > Example Request
 
@@ -621,7 +624,6 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://[tenant].actsapi.intelex.com/v1/facility' };
-
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
@@ -706,7 +708,7 @@ lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - E
 
 ### 10. Facility Attribute Table
 
-All data from the Facility Attribute table will be returned from the endpoint below. You can optionally fetch specific data by including the facility attribute ids, facility names, emission type ids, facility type ids, facility attribute and last modified end date. The facility attribute endpoint supports pagination.
+All data from the Facility Attribute table will be returned from the endpoint below. You can optionally fetch specific data by including the facility attribute Ids, facility names, emission type Ids, facility type Ids, facility attribute and last modified end date. The facility attribute endpoint supports pagination.
 
 > Example Request
 
@@ -779,7 +781,7 @@ comments | string | Comments any comments associated with this record
 
 ### 11. Operation Table
 
-All data from the Operation table will be returned from the endpoint below. You can optionally fetch specific data by including the operation ids, operation type ids, emission type ids, emission category ids, unit ids, equipment ids, last modified start date and last modified end date. The Operation endpoint supports pagination.
+All data from the Operation table will be returned from the endpoint below. You can optionally fetch specific data by including the operation Ids, operation type Ids, emission type Ids, emission category Ids, unit Ids, equipment Ids, last modified start date and last modified end date. The Operation endpoint supports pagination.
 
 > Example Request
 
@@ -850,12 +852,12 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-operationIDs | int | Operation Ids are unique identifier for this operation type record
-operationTypeIDs | string | Operation Type IDs is one of the filter option and the parameter is for the type of the Operation Type
-emissionTypeIDs | int | The unique identifier of the associated emission type
-emissionCategoryIDs | int | The unique identifier of the associated emission category
-unitIDs | int | The unique identifier of the associated unit 
-equipmentIDs | int | The unique identifier of the associated equipment
+operationIds | int | Operation Ids are unique identifier for this operation type record
+operationTypeIds | string | Operation Type Ids is one of the filter option and the parameter is for the type of the Operation Type
+emissionTypeIds | int | The unique identifier of the associated emission type
+emissionCategoryIds | int | The unique identifier of the associated emission category
+unitIds | int | The unique identifier of the associated unit 
+equipmentIds | int | The unique identifier of the associated equipment
 lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
 lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
 
@@ -930,7 +932,74 @@ operationTypes | int | The type of operational data
 
 ### 13. Unit Table
 
-This section outlines how to retrieve data from the Unit table using the provided endpoint. You have the flexibility to fetch specific data by including unit IDs, unit type IDs, and units. The Unit type endpoint also supports pagination for managing large datasets effectively.
+All data from the Operation Type table will be returned from the endpoint below. You can optionally fetch specific data by including the operation type Ids, operation types . The Operation Type endpoint supports pagination.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/operationtype' };
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/operationtype");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "operationTypeId": "number",
+            "operationType": "string",
+            "parentOperationTypeId": "number",
+            "compoundId": "number",
+            "applicabilityFormula": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2020-09-01T15:55:25",
+            "externalIdentifier": "number",
+            "comments": "number",
+            "refId": "number"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/operationtype
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+operationTypeIds | int | The unique identifier for this operation type record
+operationTypes | string | The type of operational data
+
+
+### 13. Unit Table
+
+This section outlines how to retrieve data from the Unit table using the provided endpoint. You have the flexibility to fetch specific data by including unit Ids, unit type Ids, and units. The Unit type endpoint also supports pagination for managing large datasets effectively.
 
 > Example Request
 
@@ -992,8 +1061,8 @@ Attribute | Type | Description
 --------- | ---- | -----------
 PageNumber | int | Page number of the results to fetch.
 PageSize | int | The number of results per page
-unitIDs | int | Unit ID is one of the unique identifier for this Unit record
-unitTypeIDs | int | Unit Type IDs is the unique identifier of the associated unit type
+unitIds | int | Unit ID is one of the unique identifier for this Unit record
+unitTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
 units | string | Units is one of the filter option and the parameter is for the Name of the Unit
 
 

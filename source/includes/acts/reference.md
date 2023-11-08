@@ -6,10 +6,10 @@ Our API has predictable, resource-oriented URLs, and uses HTTP response codes to
 
 ### Getting Started with ACTS API
 
->API Endpoint - replace **intelex_acts_api_url** with the full URL path to your Intelex ACTS API system
+>API Endpoint - In the URL the tenant is the individual unique tenants based on the tenants they are specifying 
 
 ```
-https://intelex_acts_api_url/api/v1
+https://[tenant].actsapi.intelex.com/v1/api/
 ```
 
 To begin using the Intelex API you will need:
@@ -27,7 +27,7 @@ To begin using the Intelex API you will need:
 Body for Authentication Endpoint
 {"client_id":"Client ID Data",
 "client_secret":"Client Secret Data",
-"audience":"https://tenant.actsapi.intelex.com/v1/api",
+"audience":"https://*.intelex.com/API-release",
 "grant_type":"client_credentials"}
 ```
 
@@ -41,9 +41,9 @@ Body for Authentication Endpoint
 }
 ```
 
-Intelex's ACTS API uses tokens based authentication. Only ACTS Admin users can access the API. 
+Intelex ACTS API uses tokens based authentication. Only ACTS Admin users can access the API. 
 
-During the authentication process, the client provides the 'client id' and 'client secret' to the authentication endpoint, along with the audience and grant type, as demonstrated above. In response, the API furnishes an access token that comes with a specified time limit. This authentication is exclusively applicable to admin users. After successful authentication, users gain unrestricted access to all ACTS API endpoints.
+During the authentication process, the client provides the 'client id' and 'client secret' to the authentication endpoint, along with the audience and grant type, as demonstrated above. In response, the API furnishes an access token that comes with a specified time limit. This authentication is exclusively applicable to admin users. After successful authentication, users gain unrestricted access to all ACTS API endpoints till the token expiration.
 
 All interactions with the API are required to occur via HTTPS, and any API requests lacking proper authentication will result in failure. Data security is meticulously overseen by the ACTS platform, ensuring that API requests grant identical administrative access as enjoyed by authenticated ACTS admin users.
 
@@ -51,13 +51,13 @@ The user authentication endpoint uses a POST to generate the access token [beare
 
 ### ACTS API Versioning
 
-When we make backwards-incompatible changes to the API, we release new versions. The current version of the ACTS API  is v1 and can be determined with our API base path /api/v1/.
+When we make any new changes to the API, we release new versions. The current version of the ACTS API  is v1 and can be determined with our API base path /api/v1/.
 
->Example API endpoint : https://tenant.actsapi.intelex.com/v1/
+>Example API endpoint : https://[tenant].actsapi.intelex.com/v1/[endpoint-name]
 
 ### API's and Associated Database Tables 
 
-This ACTS API release includes 13 GET enpoints and 5 POST endpoints, along with the authentication endpoint described above. The tables that can be queried and updated are as follows. 
+This ACTS API release includes 13 GET enpoints and 5 POST endpoints, along with the authentication endpoint described earlier. The tables that can be queried and updated are as follows. 
 
 Database Tables supporting GET requests 
 
