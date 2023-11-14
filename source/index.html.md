@@ -20,12 +20,12 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the Adi API
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, Adis, and breeds in our database.
+Welcome to the Adi API! You can use our API to access Adi API endpoints, which can get information on various cats, Adis, and breeds in our database.
 
 We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -36,15 +36,15 @@ This example API documentation page was created with [Slate](https://github.com/
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
+require 'Adi'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Adi::APIClient.authorize!('meowmeowmeow')
 ```
 
 ```python
-import kittn
+import Adi
 
-api = kittn.authorize('meowmeowmeow')
+api = Adi.authorize('meowmeowmeow')
 ```
 
 ```shell
@@ -54,16 +54,16 @@ curl "api_endpoint_here" \
 ```
 
 ```javascript
-const kittn = require('kittn');
+const Adi = require('Adi');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = Adi.authorize('meowmeowmeow');
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Adi uses API keys to allow access to the API. You can register a new Adi API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Adi expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
 
@@ -76,16 +76,16 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 ## Get All Adis
 
 ```ruby
-require 'kittn'
+require 'Adi'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Adi::APIClient.authorize!('meowmeowmeow')
 api.Adis.get
 ```
 
 ```python
-import kittn
+import Adi
 
-api = kittn.authorize('meowmeowmeow')
+api = Adi.authorize('meowmeowmeow')
 api.Adis.get()
 ```
 
@@ -95,9 +95,9 @@ curl "http://example.com/api/Adis" \
 ```
 
 ```javascript
-const kittn = require('kittn');
+const Adi = require('Adi');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = Adi.authorize('meowmeowmeow');
 let Adis = api.Adis.get();
 ```
 
@@ -142,16 +142,16 @@ Remember — a happy Adi is an authenticated Adi!
 ## Get a Specific Adi
 
 ```ruby
-require 'kittn'
+require 'Adi'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Adi::APIClient.authorize!('meowmeowmeow')
 api.Adis.get(2)
 ```
 
 ```python
-import kittn
+import Adi
 
-api = kittn.authorize('meowmeowmeow')
+api = Adi.authorize('meowmeowmeow')
 api.Adis.get(2)
 ```
 
@@ -161,9 +161,9 @@ curl "http://example.com/api/Adis/2" \
 ```
 
 ```javascript
-const kittn = require('kittn');
+const Adi = require('Adi');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = Adi.authorize('meowmeowmeow');
 let max = api.Adis.get(2);
 ```
 
@@ -196,16 +196,16 @@ ID | The ID of the Adi to retrieve
 ## Delete a Specific Adi
 
 ```ruby
-require 'kittn'
+require 'Adi'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+api = Adi::APIClient.authorize!('meowmeowmeow')
 api.Adis.delete(2)
 ```
 
 ```python
-import kittn
+import Adi
 
-api = kittn.authorize('meowmeowmeow')
+api = Adi.authorize('meowmeowmeow')
 api.Adis.delete(2)
 ```
 
@@ -216,9 +216,9 @@ curl "http://example.com/api/Adis/2" \
 ```
 
 ```javascript
-const kittn = require('kittn');
+const Adi = require('Adi');
 
-let api = kittn.authorize('meowmeowmeow');
+let api = Adi.authorize('meowmeowmeow');
 let max = api.Adis.delete(2);
 ```
 
