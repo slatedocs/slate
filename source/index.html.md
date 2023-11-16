@@ -491,6 +491,7 @@ curl "https://www.filmmakers.eu/api/v1/talent_agencies/123" \
 {
   "id": 1,
   "name": "Example agency",
+  "short_name": "Agency",
   "homepage_url": "https://www.example.com",
   "imdb_link": "https://pro.imdb.com/company/co0000001",
   "imdb_id": "co0000001",
@@ -506,7 +507,18 @@ curl "https://www.filmmakers.eu/api/v1/talent_agencies/123" \
     "line2": "",
     "phone": "49613163691950",
     "zipcode": "55122"
-  }
+  },
+  "employees": [
+    {
+      "id": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "phone": "49613163691950",
+      "email": "info@example.com",
+      "role": "role",
+      "picture_url": "https://static.filmmakers.eu/example.png"
+    }
+  ]
 }
 ```
 
