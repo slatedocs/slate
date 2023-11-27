@@ -75,7 +75,7 @@ The unique generated key can then be used to access the Intelex REST API and use
 
 For both HTTP Basic Auth and ApiKey authentication, access to Intelex apps and data is constrained by the user's existing access, set up and managed in Intelex. 
 
-Secure token based authentication is supported in V6 API. Only Admin or dedicated users can access the API.
+Secure token based authentication is supported in V6 API. Only Admin and full-access users can access the API.
 
 During the authentication process, the client provides the ‘client id’ and ‘client secret’ to the authentication endpoint, along with the audience and grant type, as shown in the example. In response, the API furnishes an access token that comes with a specified time limit of the token expiration. After successful authentication, clients gain access to V6 API endpoints.
 
