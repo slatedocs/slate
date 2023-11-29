@@ -75,7 +75,7 @@ html, body {
   .logo {
     display: block;
     max-width: 100%;
-    margin-bottom: $logo-margin;
+    margin: 15px;
   }
 
   &>.search {
@@ -254,7 +254,7 @@ html, body {
   background-color: $main-bg;
   min-height: 100%;
 
-  padding-bottom: 1px; // prevent margin overflow
+  padding-bottom: 2px; // prevent margin overflow
 
   // The dark box is what gives the code samples their dark background.
   // It sits essentially under the actual content block, which has a
@@ -320,6 +320,7 @@ html, body {
   // to place content above the dark box
   position: relative;
   z-index: 30;
+  font-size: 16px;
 
   &:after {
     content: '';
@@ -352,9 +353,9 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    border-top: 1px solid #16151567;
+    border-bottom: 1px solid #1312125b;
+    background-color: #191d1f96;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -365,12 +366,11 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 19px;
-    margin-top: 4em;
+    margin-top: 2em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #ccccccc4;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
@@ -382,7 +382,7 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
+    font-size: 20px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
@@ -431,7 +431,13 @@ html, body {
       background-color: lighten($main-bg,2.4%);
     }
   }
+  a {
+    color: #8ac5fcf5;
+    text-decoration: none;
+    border-bottom: solid 1px #ccccccc0;
+    font-size: 16px;
 
+  } 
   dt {
     font-weight: bold;
   }
@@ -569,7 +575,7 @@ html, body {
       left: 0;
     }
   }
-
+  
   .page-wrapper {
     margin-left: 0;
   }
@@ -582,6 +588,12 @@ html, body {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
   }
+
+  // This is the logo at the top of the ToC
+  .logo {
+    margin-top: 5px;
+  }
+
 }
 
 @media (max-width: $phone-width) {
@@ -595,6 +607,10 @@ html, body {
 
   .toc-wrapper .lang-selector {
     display: block;
+  }
+
+  .logo {
+    margin-top: 5px;
   }
 
   .page-wrapper .lang-selector {

@@ -21,7 +21,7 @@ under the License.
 
 $print-color: #999;
 $print-color-light: #ccc;
-$print-font-size: 12px;
+$print-font-size: 20px;
 
 body {
   @extend %default-font;
@@ -37,7 +37,7 @@ body {
 }
 
 .content {
-  font-size: 12px;
+  font-size: 20px;
 
   pre, code {
     @extend %code-font;
@@ -77,7 +77,7 @@ body {
 
   a {
     text-decoration: none;
-    color: #000;
+    color: #f8f7f7;
   }
 
   h1 {
