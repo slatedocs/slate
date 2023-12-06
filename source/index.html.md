@@ -538,6 +538,120 @@ ID | The ID of the talent agency to retrieve
 
 See example response to the right for an overview of included fields.
 
+# Blog posts
+
+## Get all blog posts
+
+```shell
+curl "https://www.filmmakers.eu/api/v1/blog_posts" \
+  -H "Authorization: Token token=API_KEY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 36,
+    "title": "Blog post title"
+  },
+  {
+    "id": 35,
+    "title": "Blog post title"
+  }
+]
+
+```
+
+This endpoint retrieves all blog posts available with the access rights of the API key.
+
+### Pagination
+
+This API endpoint is paginated, following the proposed [RFC-8288](https://tools.ietf.org/html/rfc8288) standard for Web linking.
+
+The pagination information is included in response HTTP headers, namely `Total` (total entries), `Per-Page` (entries per page) and `Link` (containing links to corresponding pages). The current page can be set using the `page`-parameter.
+
+### HTTP Request
+
+`GET https://www.filmmakers.eu/api/v1/blog_posts`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+page | 1 | Page to display - see "Pagination" above
+
+### Response fields
+
+Field | Type | Description
+--------- | ------- | -----------
+id | number | Unique ID of the blog post
+title | string | Title of the blog post
+
+## Get a specific blog post
+
+```shell
+curl "https://www.filmmakers.eu/api/v1/blog_posts/123" \
+  -H "Authorization: Token token=API_KEY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 123,
+  "title": "Blog post title",
+  "note": "Blog post note",
+  "publication_date": "2019-09-02T12:44:19.776+02:00",
+  "source": null,
+  "body": "Blog post body",
+  "body_html": "<div>Blog post body<action-text-attachment content-type=\"image/jpeg\" url=\"https://www.filmmakers.eu/rails/active_storage/blobs/redirect/abc/image.jpg\" filename=\"image.jpg\" filesize=\"407594\" width=\"2048\" height=\"1910\" previewable=\"true\" presentation=\"caption\" caption=\"Acme inc\"><figure class=\"attachment attachment--preview attachment--jpg\"><div class=\"image-wrapper\"><img src=\"https://www.filmmakers.eu/rails/active_storage/representations/redirect/abc/image.jpg\"><div class=\"image-caption\"><span title=\"© Acme inc\">© Acme inc</span></div></div></figure></action-text-attachment></div>",
+  "images": [
+    {
+      "url": "https://whitelabel-b2b.s3.eu-west-1.amazonaws.com/development/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJGACRGVP6KE3UHDQ%2F20220615%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20220615T080549Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f86f3fbe97b730d16e4af0c7e7d9a84321a3801ee7185cd2df234b35bf14a88c",
+      "copyright": "Acme inc"
+    },
+    {
+      "url": "https://whitelabel-b2b.s3.eu-west-1.amazonaws.com/development/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJGACRGVP6KE3UHDQ%2F20220615%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20220615T080549Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f86f3fbe97b730d16e4af0c7e7d9a84321a3801ee7185cd2df234b35bf14a88c",
+      "copyright": "Abc inc"
+    }
+  ]
+}
+
+
+
+```
+
+This endpoint retrieves a specific blog post.
+
+### HTTP Request
+
+`GET https://www.filmmakers.eu/api/v1/blog_posts/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the blog post to retrieve
+
+### Response fields
+
+See example response to the right for an overview of included fields
+
+Field | Type | Description
+--------- | ------- | -----------
+title | string | title of the blog post
+note | string | optional comment on the post
+body | string | plain text representation of the blog post body with line breaks, **but no HTML markup**
+body_html | string |  blog post body with **HTML markup**
+publication_date | datetime | publication date of this post
+source | string | original source of the post - e.g. a newspaper in case an article was shared from an external url. Will be null in case of internal posts, i.e. posts written by the entity themselves.
+source.url | string | url of the source article
+source.publication_date | datetime | date of publication of original (may be null if source date cannot be determined)
+images[].url | string | URL of image
+images[].copyright | string | copyright 
+
+
 # Attributes
 
 ## Get all attributes
