@@ -770,7 +770,7 @@ package_id | <span class="label label-required">Required</span> CB package id co
 autoselect | String. Possible values 'N' or 'Y'. Default 'N'.
 citations | JSON Array. List of sites you require listings for. You can leave citations empty for auto selecting citations.
 remove-duplicates | String. Possible values 'N' or 'Y'. Default 'N'. Find and Remove Duplicate Listings
-aggregators | JSON Array. List of aggregators you require listings for. Possible values for USA are: ‘dataaxle’ ‘neustar’, ‘foursquare’, ‘gpsnetwork’ and ‘ypnetwork’. For CAN possible values are ‘dataaxle’, ‘foursquare’, ‘gpsnetwork’.  For AUS possible values are ‘foursquare’, ‘gpsnetwork’ and ‘locafynetwork’. The only possible values for all other countries are ‘foursquare’, and ‘gpsnetwork’.
+aggregators | JSON Array. List of aggregators you require listings for. Possible values for USA are: ‘dataaxle’ ‘neustar’, ‘foursquare’, ‘gpsnetwork’ and ‘ypnetwork’. For CAN possible values are ‘dataaxle’, ‘foursquare’, ‘gpsnetwork’.  For AUS possible values are ‘foursquare’, ‘gpsnetwork’ and ‘locafynetwork’.  For UK possible values are ‘foursquare’, ‘gpsnetwork’ and ‘centralindexnetwork’. The only possible values for all other countries are ‘foursquare’, and ‘gpsnetwork’.
 notes | Provide instructions to our submissions team with specifics about how you'd like your campaign handled.
 
 ## Get Campaigns
