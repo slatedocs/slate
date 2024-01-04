@@ -1065,6 +1065,486 @@ unitIds | int | Unit ID is one of the unique identifier for this Unit record
 unitTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
 units | string | Units is one of the filter option and the parameter is for the Name of the Unit
 
+### 14. Workflow Table
 
+This section outlines how to retrieve data from the Workflow table using the provided endpoint. You have the flexibility to fetch specific data by including workflow Ids, workflow type Ids, workflow date for both start date and end date along with the last modified date. The workflow endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflow' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflow");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "workflowId": "number",
+            "workflowTypeId": "number",
+            "workflowDate": "2017-02-13T22:15:30.203Z",
+            "dataLockTypeId": "1",
+            "alternateNames": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2017-02-13T22:15:30.203Z",
+            "externalIdentifier": "string",
+            "comments": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/workflow
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+workflowIds | int | Unit ID is one of the unique identifier for this Unit record
+workflowTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
+workflow | string | Units is one of the filter option and the parameter is for the Name of the Unit
+
+
+### 15. Workflow Answer Table
+
+This section outlines how to retrieve data from the Workflow Answer table using the provided endpoint. You have the flexibility to fetch specific data by including workflow Ids, workflow type Ids, and workflows. The Unit type endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowanswer' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowanswer");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "workflowId": "number",
+            "workflow": "string",
+            "workflowTypeId": 0,
+            "description": "string",
+            "alternateNames": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2017-02-13T22:15:30.203Z",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "refId": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/workflowanswer
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+workflowIds | int | Unit ID is one of the unique identifier for this Unit record
+workflowAnswerIds | int | Unit Type Ids is the unique identifier of the associated unit type
+workflow | string | Units is one of the filter option and the parameter is for the Name of the Unit
+
+
+### 16. Workflow Equipment Table
+
+This section outlines how to retrieve data from the Workflow Answer table using the provided endpoint. You have the flexibility to fetch specific data by including workflow Ids, workflow type Ids, and workflows. The Unit type endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowequipment' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowequipment");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "workflowId": "number",
+            "workflow": "string",
+            "workflowTypeId": 0,
+            "description": "string",
+            "alternateNames": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2017-02-13T22:15:30.203Z",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "refId": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/workflowequipment
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+workflowIds | int | Unit ID is one of the unique identifier for this Unit record
+workflowTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
+workflow | string | Units is one of the filter option and the parameter is for the Name of the Unit
+
+
+### 17. Workflow Facility Table
+
+This section outlines how to retrieve data from the Workflow Answer table using the provided endpoint. You have the flexibility to fetch specific data by including workflow Ids, workflow type Ids, and workflows. The Unit type endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowfacility' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowfacility");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "workflowId": "number",
+            "workflow": "string",
+            "workflowTypeId": 0,
+            "description": "string",
+            "alternateNames": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2017-02-13T22:15:30.203Z",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "refId": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/workflowfacility
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+workflowIds | int | Unit ID is one of the unique identifier for this Unit record
+workflowTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
+workflow | string | Units is one of the filter option and the parameter is for the Name of the Unit
+
+
+
+### 18. Workflow Person Table
+
+This section outlines how to retrieve data from the Workflow Answer table using the provided endpoint. You have the flexibility to fetch specific data by including workflow Ids, workflow type Ids, and workflows. The Unit type endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowperson' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowperson");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "workflowId": "number",
+            "workflow": "string",
+            "workflowTypeId": 0,
+            "description": "string",
+            "alternateNames": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2017-02-13T22:15:30.203Z",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "refId": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/workflowperson
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+workflowIds | int | Unit ID is one of the unique identifier for this Unit record
+workflowTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
+workflow | string | Units is one of the filter option and the parameter is for the Name of the Unit
+
+
+### 19. Workflow Question Table
+
+This section outlines how to retrieve data from the Workflow Answer table using the provided endpoint. You have the flexibility to fetch specific data by including workflow Ids, workflow type Ids, and workflows. The Unit type endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowquestion' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowquestion");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "workflowId": "number",
+            "workflow": "string",
+            "workflowTypeId": 0,
+            "description": "string",
+            "alternateNames": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2017-02-13T22:15:30.203Z",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "refId": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/workflowquestion
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+workflowIds | int | Unit ID is one of the unique identifier for this Unit record
+workflowTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
+workflow | string | Units is one of the filter option and the parameter is for the Name of the Unit
+
+
+### 20. Workflow Type Table
+
+This section outlines how to retrieve data from the Workflow Type table using the provided endpoint. You have the flexibility to fetch specific data by including workflow Ids, workflow type Ids, and workflows. The Unit type endpoint also supports pagination for managing large datasets effectively.
+
+> Example Request
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowtype' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowtype");
+var request = new RestRequest(Method.GET);
+IRestResponse response = client.Execute(request);
+```
+
+> Response Schema
+
+```json
+{
+    "currentPage": 1,
+    "totalPages": 1,
+    "currentPageSize": 500,
+    "maxAPIPageSize": 500,
+    "totalCount": 337,
+    "hasPrevious": false,
+    "hasNext": true,
+    "data": [
+        {
+            "workflowId": "number",
+            "workflow": "string",
+            "workflowTypeId": 0,
+            "description": "string",
+            "alternateNames": "string",
+            "sortOrder": "number",
+            "lastModifiedDate": "2017-02-13T22:15:30.203Z",
+            "externalIdentifier": "string",
+            "comments": "string",
+            "refId": "string"
+        }
+	]
+}
+
+```
+
+**API Endpoints**
+
+`GET` /api/v1/workflowtype
+
+**Query parameters**
+
+Attribute | Type | Description
+--------- | ---- | -----------
+PageNumber | int | Page number of the results to fetch.
+PageSize | int | The number of results per page
+workflowIds | int | Unit ID is one of the unique identifier for this Unit record
+workflowTypeIds | int | Unit Type Ids is the unique identifier of the associated unit type
+workflow | string | Units is one of the filter option and the parameter is for the Name of the Unit
 
 

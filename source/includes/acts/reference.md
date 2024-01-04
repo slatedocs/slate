@@ -74,6 +74,13 @@ Database Tables supporting GET requests
 11. Operation 
 12. Operation Type
 13. Unit
+14. Workflow 
+15. Workflow Answer
+16. Workflow Equipment
+17. Workflow Facility
+18. Workflow Person
+19. Workflow Question
+20. Workflow Type
 
 Database Tables supporting POST requests 
 
