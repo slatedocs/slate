@@ -521,11 +521,8 @@ equipmentAttributeIds | int | EquipmentAttributeId one of the unique identifier 
 equipmentIds | int |  EquipmentId accepts the numbers as input 
 attributetypeIds | int | AttributeTypeId accepts the numbers as input
 equipmentattributes | string | Equipment Attribute is one of the filter option and the parameter is for the Equipment Attribute Type 
-datalocktypeIds | int | Data Lock Type ID the unique identifier of the associated data lock type
 lastModifiedStartDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
 lastModifiedEndDate | string | Date time format "yyyy/mm/dd T hours:min:secZ - Ex : 2017-02-13T22:15:30Z"
-externalidentifier | string | External Identifier a unique identifier for this record to an external data system
-comments | string | Comments any comments associated with this record
 
 
 ### 8. Equipment Type Table
