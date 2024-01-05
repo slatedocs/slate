@@ -523,7 +523,440 @@ IRestResponse response = client.Execute(request);
 }
 
 ```
+### 6. Workflow Table 
 
+This section outlines the process of adding new entries or modifying existing records within the Workflow table using the dedicated API endpoint.
+
+**Workflow POST Endpoint**
+
+`POST` api/v1/workflow
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflow',
+  headers: { 'content-type': 'application/json' },
+  body:
+      {
+        "workflowId": "number",
+        "workflowTypeId": "number",
+        "workflowDate": "2024-01-03T08:16:24.155Z",
+        "dataLockTypeId": "number",
+        "lastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "externalIdentifier": "string",
+        "comments": "string"
+      };
+
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflow");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"WorkflowId\": \"number\",\r\n    \"WorkflowTypeId\": \"number\",\r\n    \"WorkflowDate\": \"2023-03-30T07:27:06.295Z\",\r\n    \"DataLockTypeId\": \"number\",\r\n    \"LastModifiedDate\": \"2023-03-30T07:27:06.295Z\",\r\n    \"ExternalIdentifier\": \"string\",\r\n    \"Comments\": \"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body 
+
+```json
+[
+  {
+        "WorkflowId": "number",
+        "WorkflowTypeId": "number",
+        "WorkflowDate": "2024-01-03T08:16:24.155Z",
+        "DataLockTypeId": "number",
+        "LastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "ExternalIdentifier": "string",
+        "Comments": "string"
+  }
+]
+```
+> Example Response
+
+```json
+{
+	"insertedRowCount" : 2 , 
+	"updatedRowCount" : 3 ,
+	"failureCount" : 0 ,
+	"errorMessage" : []
+
+}
+
+```
+
+> Example Output For When Data Get's Failed To Insert or Update
+
+```json
+{
+    "insertedRowCount" : 0 , 
+    "updatedRowCount" : 1 ,
+    "failureCount" : 1 ,
+    "errorMessage" : [
+	 "Workflow Id : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
+	]
+}
+
+```
+### 7. Workflow Answer Table 
+
+This section outlines the process of adding new entries or modifying existing records within the Workflow Answer table using the dedicated API endpoint.
+
+**Workflow Answer POST Endpoint**
+
+`POST` api/v1/workflowAnswer
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowAnswer',
+  headers: { 'content-type': 'application/json' },
+  body:
+      {
+       "workflowAnswerId": "number",
+        "workflowId": "number",
+        "workflowQuestionId": "number",
+        "categoryAnswerIndex": "number",
+        "categoryRevisionIndex": "number",
+        "questionAnswerIndex": "number",
+        "questionRevisionIndex": "number",
+        "workflowAnswer": "string",
+        "dataLockTypeId": "number",
+        "personId": "number",
+        "lastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "externalIdentifier": "string",
+        "comments": "string"
+      };
+
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowAnswer");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"WorkflowAnswerId\": \"number\",\r\n    \"WorkflowId\": \"number\",\r\n    \"WorkflowQuestionId\": \"number\",\r\n    \"CategoryAnswerIndex\": \"number\",\r\n    \"CategoryRevisionIndex\": \"number\",\r\n     \"QuestionAnswerIndex\": \"number\",\r\n     \"QuestionRevisionIndex\": \"number\",\r\n     \"WorkflowAnswer\": \"string\",\r\n    \"DataLockTypeId\": \"number\",\r\n    \"PersonId\": \"number\",\r\n    \"LastModifiedDate\": \"2023-03-30T07:27:06.295Z\",\r\n    \"ExternalIdentifier\": \"string\",\r\n    \"Comments\": \"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body 
+
+```json
+[
+  {
+        "WorkflowAnswerId": "number",
+        "WorkflowId": "number",
+        "WorkflowQuestionId": "number",
+        "CategoryAnswerIndex": "number",
+        "CategoryRevisionIndex": "number",
+        "QuestionAnswerIndex": "number",
+        "QuestionRevisionIndex": "number",
+        "WorkflowAnswer": "string",
+        "DataLockTypeId": "number",
+        "PersonId": "number",
+        "LastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "ExternalIdentifier": "string",
+        "Comments": "string"
+  }
+]
+```
+> Example Response
+
+```json
+{
+	"insertedRowCount" : 2 , 
+	"updatedRowCount" : 3 ,
+	"failureCount" : 0 ,
+	"errorMessage" : []
+
+}
+
+```
+
+> Example Output For When Data Get's Failed To Insert or Update
+
+```json
+{
+    "insertedRowCount" : 0 , 
+    "updatedRowCount" : 1 ,
+    "failureCount" : 1 ,
+    "errorMessage" : [
+	 "Workflow Answer Id : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
+	]
+}
+
+```
+### 8. Workflow Equipment Table 
+
+This section outlines the process of adding new entries or modifying existing records within the Workflow Equipment table using the dedicated API endpoint.
+
+**Workflow Equipment POST Endpoint**
+
+`POST` api/v1/workflowEquipment
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowEquipment',
+  headers: { 'content-type': 'application/json' },
+  body:
+      {
+        "workflowEquipmentId": "number",
+        "workflowId": "number",
+        "equipmentId": "number",
+        "workflowQuestionId": "number",
+        "lastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "externalIdentifier": "string",
+        "comments": "string"
+      };
+
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowEquipment");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"WorkflowEquipmentId\": \"number\",\r\n    \"WorkflowId\": \"number\",\r\n    \"EquipmentId\": \"number\",\r\n    \"WorkflowQuestionId\": \"number\",\r\n    \"LastModifiedDate\": \"2023-03-30T07:27:06.295Z\",\r\n    \"ExternalIdentifier\": \"string\",\r\n    \"Comments\": \"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body 
+
+```json
+[
+  {
+        "WorkflowEquipmentId": "number",
+        "WorkflowId": "number",
+        "EquipmentId": "number",
+        "WorkflowQuestionId": "number",
+        "LastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "ExternalIdentifier": "string",
+        "Comments": "string"
+  }
+]
+```
+> Example Response
+
+```json
+{
+	"insertedRowCount" : 2 , 
+	"updatedRowCount" : 3 ,
+	"failureCount" : 0 ,
+	"errorMessage" : []
+
+}
+
+```
+
+> Example Output For When Data Get's Failed To Insert or Update
+
+```json
+{
+    "insertedRowCount" : 0 , 
+    "updatedRowCount" : 1 ,
+    "failureCount" : 1 ,
+    "errorMessage" : [
+	 "Workflow Equipment Id : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
+	]
+}
+
+```
+### 9. Workflow Facility Table 
+
+This section outlines the process of adding new entries or modifying existing records within the Workflow Facility table using the dedicated API endpoint.
+
+**Workflow Facility POST Endpoint**
+
+`POST` api/v1/workflowFacility
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowFacility',
+  headers: { 'content-type': 'application/json' },
+  body:
+      {
+        "workflowFacilityId": "number",
+        "workflowId": "number",
+        "facilityId": "number",
+        "workflowQuestionId": "number",
+        "lastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "externalIdentifier": "string",
+        "comments": "string"
+      };
+
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/workflowFacility");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"WorkflowFacilityId\": \"number\",\r\n    \"WorkflowId\": \"number\",\r\n    \"FacilityId\": \"number\",\r\n    \"WorkflowQuestionId\": \"number\",\r\n    \"LastModifiedDate\": \"2023-03-30T07:27:06.295Z\",\r\n    \"ExternalIdentifier\": \"string\",\r\n    \"Comments\": \"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body 
+
+```json
+[
+  {
+        "WorkflowFacilityId": "number",
+        "WorkflowId": "number",
+        "FacilityId": "number",
+        "WorkflowQuestionId": "number",
+        "LastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "ExternalIdentifier": "string",
+        "Comments": "string"
+  }
+]
+```
+> Example Response
+
+```json
+{
+	"insertedRowCount" : 2 , 
+	"updatedRowCount" : 3 ,
+	"failureCount" : 0 ,
+	"errorMessage" : []
+
+}
+
+```
+
+> Example Output For When Data Get's Failed To Insert or Update
+
+```json
+
+{
+    "insertedRowCount" : 0 , 
+    "updatedRowCount" : 1 ,
+    "failureCount" : 1 ,
+    "errorMessage" : [
+	 "Workflow Facility Id : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
+	]
+}
+
+```
+### 10. Workflow Person Table 
+
+This section outlines the process of adding new entries or modifying existing records within the Workflow Person table using the dedicated API endpoint.
+
+**Workflow Person POST Endpoint**
+
+`POST` api/v1/workflowPerson
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://[tenant].actsapi.intelex.com/v1/workflowPerson',
+  headers: { 'content-type': 'application/json' },
+  body:
+      {
+        "workflowPersonId": "number",
+        "workflowId": "number",
+        "personId": "number",
+        "workflowQuestionId": "number",
+        "lastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "externalIdentifier": "string",
+        "comments": "string"
+      };
+
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/WorkflowPerson");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"WorkflowPersonId\": \"number\",\r\n    \"WorkflowId\": \"number\",\r\n    \"PersonId\": \"number\",\r\n    \"WorkflowQuestionId\": \"number\",\r\n    \"LastModifiedDate\": \"2023-03-30T07:27:06.295Z\",\r\n    \"ExternalIdentifier\": \"string\",\r\n    \"Comments\": \"string\"}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body 
+
+```json
+[
+  {
+        "WorkflowPersonId": "number",
+        "WorkflowId": "number",
+        "PersonId": "number",
+        "WorkflowQuestionId": "number",
+        "LastModifiedDate": "2024-01-03T08:16:24.155Z",
+        "ExternalIdentifier": "string",
+        "Comments": "string"
+  }
+]
+```
+> Example Response
+
+```json
+{
+	"insertedRowCount" : 2 , 
+	"updatedRowCount" : 3 ,
+	"failureCount" : 0 ,
+	"errorMessage" : []
+
+}
+
+```
+
+> Example Output For When Data Get's Failed To Insert or Update
+
+```json
+
+{
+    "insertedRowCount" : 0 , 
+    "updatedRowCount" : 1 ,
+    "failureCount" : 1 ,
+    "errorMessage" : [
+	 "Workflow Person Id : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
+	]
+}
+
+```
 ### JSON body for both Insert & Update 
 
 #### JSON Input body for Insert 
