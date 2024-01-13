@@ -31,7 +31,7 @@ jobs:
 
     # necessary to get ruby 2.3 to work nicely with bundler vendor/bundle cache
     # can remove once ruby 2.3 is no longer supported
-    - run: gem update --system
+    - run: gem update --system 3.4.22
 
     - run: bundle config set deployment 'true'
     - name: bundle install
