@@ -647,6 +647,7 @@ source | string | original source of the post - e.g. a newspaper in case an arti
 source.url | string | url of the source article
 source.publication_date | datetime | date of publication of original (may be null if source date cannot be determined)
 images[].url | string | image url
+images[].cover | boolean | true if image is a cover image; default: `false`
 images[].copyright | string | image copyright
 
 
