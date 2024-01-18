@@ -641,13 +641,13 @@ Field | Type | Description
 title | string | title of the blog post
 note | string | optional comment on the post
 body | string | plain text representation of the blog post body with line breaks, **but no HTML markup**
-body_html | string |  blog post body with **HTML markup**
+body_html | string |  blog post body with **HTML markup**, includes images with copyright information. Following example CSS can be used to show copyright over the image at the top left corner: `.image-wrapper { position: relative; } .image-caption { position: absolute; top: 0; left: 0; z-index: 1; }`
 publication_date | datetime | publication date of this post
 source | string | original source of the post - e.g. a newspaper in case an article was shared from an external url. Will be null in case of internal posts, i.e. posts written by the entity themselves.
 source.url | string | url of the source article
 source.publication_date | datetime | date of publication of original (may be null if source date cannot be determined)
-images[].url | string | blog post body with **HTML markup**, includes images with copyright information. Following example CSS can be used to show copyright over the image at the top left corner: `.image-wrapper { position: relative; } .image-caption { position: absolute; top: 0; left: 0; z-index: 1; }`
-images[].copyright | string | copyright 
+images[].url | string | image url
+images[].copyright | string | image copyright
 
 
 # Attributes
