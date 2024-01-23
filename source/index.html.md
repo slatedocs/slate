@@ -605,7 +605,7 @@ curl "https://www.filmmakers.eu/api/v1/blog_posts/123" \
   "publication_date": "2019-09-02T12:44:19.776+02:00",
   "source": null,
   "body": "Blog post body",
-  "body_html": "<div>Blog post body<action-text-attachment content-type=\"image/jpeg\" url=\"https://www.filmmakers.eu/rails/active_storage/blobs/redirect/abc/image.jpg\" filename=\"image.jpg\" filesize=\"407594\" width=\"2048\" height=\"1910\" previewable=\"true\" presentation=\"caption\" caption=\"Acme inc\"><figure class=\"attachment attachment--preview attachment--jpg\"><div class=\"image-wrapper\"><img src=\"https://www.filmmakers.eu/rails/active_storage/representations/redirect/abc/image.jpg\"><div class=\"image-caption\"><span title=\"© Acme inc\">© Acme inc</span></div></div></figure></action-text-attachment></div>",
+  "body_html": "<div>Blog post body<figure class=\"attachment attachment--preview attachment--jpg\"><div class=\"image-wrapper\"><img src=\"https://www.filmmakers.eu/rails/active_storage/representations/redirect/abc/image.jpg\"><div class=\"image-caption\"><span title=\"© Acme inc\">© Acme inc</span></div></div></figure></div>",
   "images": [
     {
       "url": "https://whitelabel-b2b.s3.eu-west-1.amazonaws.com/development/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJGACRGVP6KE3UHDQ%2F20220615%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20220615T080549Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f86f3fbe97b730d16e4af0c7e7d9a84321a3801ee7185cd2df234b35bf14a88c",
