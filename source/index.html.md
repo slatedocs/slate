@@ -615,14 +615,14 @@ curl "https://www.filmmakers.eu/api/v1/blog_posts/123" \
     }
   ],
   "body": "Blog post body",
-  "body_html": "<div>Blog post body<figure class=\"attachment attachment--preview attachment--jpg\"><div class=\"image-wrapper\"><img src=\"https://www.filmmakers.eu/rails/active_storage/representations/redirect/abc/image.jpg\"><div class=\"image-caption\"><span title=\"© Acme inc\">© Acme inc</span></div></div></figure></div>",
+  "body_html": "<div>Blog post body<figure class=\"attachment attachment--preview attachment--jpg\"><div class=\"image-wrapper\"><img src=\"https://imgproxy.filmmakers.eu/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg\"><div class=\"image-caption\"><span title=\"© Acme inc\">© Acme inc</span></div></div></figure></div>",
   "images": [
     {
-      "url": "https://xxx.cloudfront.net/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg",
+      "url": "https://imgproxy.filmmakers.eu/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg",
       "copyright": "Acme inc"
     },
     {
-      "url": "https://xxx.cloudfront.net/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg",
+      "url": "https://imgproxy.filmmakers.eu/83570365-9d0f-4165-85c6-df1dd48adb1f.jpeg",
       "copyright": "Abc inc"
     }
   ]
