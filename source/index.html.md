@@ -604,6 +604,16 @@ curl "https://www.filmmakers.eu/api/v1/blog_posts/123" \
   "note": "Blog post note",
   "publication_date": "2019-09-02T12:44:19.776+02:00",
   "source": null,
+  "tags": [
+    {
+      "id": 3,
+      "name": "News"
+    },
+    {
+      "id": 4,
+      "name": "Premiere"
+    }
+  ],
   "body": "Blog post body",
   "body_html": "<div>Blog post body<figure class=\"attachment attachment--preview attachment--jpg\"><div class=\"image-wrapper\"><img src=\"https://www.filmmakers.eu/rails/active_storage/representations/redirect/abc/image.jpg\"><div class=\"image-caption\"><span title=\"© Acme inc\">© Acme inc</span></div></div></figure></div>",
   "images": [
@@ -646,6 +656,7 @@ publication_date | datetime | publication date of this post
 source | string | original source of the post - e.g. a newspaper in case an article was shared from an external url. Will be null in case of internal posts, i.e. posts written by the entity themselves.
 source.url | string | url of the source article
 source.publication_date | datetime | date of publication of original (may be null if source date cannot be determined)
+tags | array | array of tags applied to the blog post, each containing two key-value pairs: "id" and "name". Available tag names are: "News", "Premiere", "Awards", and "Press"
 images[].url | string | image url
 images[].cover | boolean | true if image is a cover image; default: `false`
 images[].copyright | string | image copyright
