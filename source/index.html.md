@@ -64,6 +64,14 @@ Ratelimit-Reset: 1597048500
 * `Ratelimit-Limit`: the request-quota associated to your client (defaults to 300)
 * `Ratelimit-Reset`: the timestamp when the quota resets
 
+# Pagination
+
+This API supports pagination, following the proposed [RFC-8288](https://tools.ietf.org/html/rfc8288) standard for Web linking.
+
+The pagination information is included in response HTTP headers, namely `Total` (total entries), `Per-Page` (entries per page) and `Link` (containing links to corresponding pages).
+
+The current page can be set using the `page` parameter, and the number of entries per page can be specified with the optional `per_page` parameter. The default value for `per_page` is 250, and the maximum allowed value for `per_page` is 1000. If this limit is exceeded, a `400 Bad Request` error code will be returned.
+
 # Webhooks
 
 A webhook is an endpoint on your server that receives requests from Filmmakers, notifying you about events for actor profiles such as a profile edit. This requires a new endpoint on your server such as <https://www.example.com/webhooks/filmmakers> which should be publicly accessible and allow unauthenticated POST requests. Note that HTTPS URLs are required for all webhook endpoints.
@@ -165,12 +173,6 @@ curl "https://www.filmmakers.eu/api/v1/actor_profiles" \
 
 This endpoint retrieves all actor profiles available with the access rights of the API key. Most of the time it is scoped to a talent agency.
 
-### Pagination
-
-This API endpoint is paginated, following the proposed [RFC-8288](https://tools.ietf.org/html/rfc8288) standard for Web linking.
-
-The pagination information is included in response HTTP headers, namely `Total` (total entries), `Per-Page` (entries per page) and `Link` (containing links to corresponding pages). The current page can be set using the `page`-parameter.
-
 ### HTTP Request
 
 `GET https://www.filmmakers.eu/api/v1/actor_profiles`
@@ -179,7 +181,8 @@ The pagination information is included in response HTTP headers, namely `Total` 
 
 Parameter | Default | Description
 --------- | ------- | -----------
-page | 1 | Page to display - see "Pagination" above
+page | 1 | Page to display - see "Pagination" section
+per_page | 250 | Items per page - see "Pagination" section
 include_picture | false | If set to true, the result will include the profile picture thumbnail in a field named `main_picture_url_tile`.
 picture_version | null | Can be set to `original`, `large` or `thumb` to change the included picture version. The picture will be included in a field named `picture_url`. _(Only applies if `include_picture` is true)_
 fields | name,gender | Can be used to modify the fields included in the response. Possible values are: `age`, `gender`, `first_name`, `last_name`, `name`, `professions`, `languages`, `representative`, `updated_at`.
@@ -457,6 +460,7 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the actor profile to retrieve
 
+
 ### Query Parameters
 
 Parameter | Default | Description
@@ -565,12 +569,6 @@ curl "https://www.filmmakers.eu/api/v1/blog_posts" \
 
 This endpoint retrieves all blog posts available with the access rights of the API key.
 
-### Pagination
-
-This API endpoint is paginated, following the proposed [RFC-8288](https://tools.ietf.org/html/rfc8288) standard for Web linking.
-
-The pagination information is included in response HTTP headers, namely `Total` (total entries), `Per-Page` (entries per page) and `Link` (containing links to corresponding pages). The current page can be set using the `page`-parameter.
-
 ### HTTP Request
 
 `GET https://www.filmmakers.eu/api/v1/blog_posts`
@@ -579,7 +577,8 @@ The pagination information is included in response HTTP headers, namely `Total` 
 
 Parameter | Default | Description
 --------- | ------- | -----------
-page | 1 | Page to display - see "Pagination" above
+page | 1 | Page to display - see "Pagination" section
+per_page | 250 | Items per page - see "Pagination" section
 
 ### Response fields
 
