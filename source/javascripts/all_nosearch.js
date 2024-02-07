@@ -13,7 +13,7 @@ $(function() {
   setupLanguages($('body').data('languages'));
   $('.content').imagesLoaded( function() {
     window.recacheHeights();
-    window.refreshToc();
+    window.refreshToc(true);
   });
 
   $(window).resize(function() {
