@@ -29,10 +29,6 @@ jobs:
           gems-${{ runner.os }}-${{ matrix.ruby-version }}-
           gems-${{ runner.os }}-
 
-    # necessary to get ruby 2.3 to work nicely with bundler vendor/bundle cache
-    # can remove once ruby 2.3 is no longer supported
-    - run: gem update --system
-
     - run: bundle config set deployment 'true'
     - name: bundle install
       run: |
