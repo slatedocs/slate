@@ -17,6 +17,7 @@ includes:
   - version_pdfs
   - fields
   - personnel
+  - training
   - roles
   - personnel_roles
   - personnel_assignments
