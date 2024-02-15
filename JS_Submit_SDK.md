@@ -63,7 +63,7 @@ The description of supported parameters are mentioned below:
 | name | string | '' | true |name of the lead |
 | phone | integer or string | null | true | phone number of lead |
 | country_code | string | 'in' | true | Standard ISO3166-1 alpha-2 code for a country. Link: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 |
-| email | string | null | true | email id of lead |
+| email | string | null | - | email id of lead |
 | campaign_id | string | null | true | campaign_id - specific for a project - ask from anarock team |
 | channel_name | string | null | true | channel_name - specific for an agency - ask from anarock team |
 | api_key | string | null | true | api_key - specific for an agency - ask from anarock team |
