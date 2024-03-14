@@ -14,6 +14,7 @@ includes:
   - errors
   - internationalization
   - tracking_source
+  - oauth_authentication
   - users
   - budgets
   - comments
