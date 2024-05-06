@@ -1,5 +1,5 @@
 ---
-title: Nitro API Reference
+title: NitroTranslate API Reference
 
 language_tabs:
   - shell
@@ -15,7 +15,7 @@ search: false
 
 # Introduction  
 
-Welcome to the Alconost Nitro API! You can use our API to access Nitro API endpoints.
+Welcome to the NitroTranslate API! You can use our API to access NitroTranslate API endpoints.
 
 # Authentication
 
