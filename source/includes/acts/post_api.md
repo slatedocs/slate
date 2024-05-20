@@ -11,13 +11,18 @@ For efficient handling of larger data inserts, it is recommended to perform batc
 Note that excessively large batch POSTs may encounter throttling or failure, depending on system resources.
 </aside>
 
-In the current release, four POST APIs End points are provided to add or update following table 
+In the following release, the POST APIs End points are provided to add or update following table.
 
 * Equipment
 * Equipment Attribute
 * Facility
 * Facility Attribute
 * Operation
+* Workflow
+* Workflow Answer
+* Workflow Equipment
+* Workflow Facility
+* Workflow Person
  
 POST requests to these endpoints should be formatted in JSON.
 
@@ -131,6 +136,77 @@ IRestResponse response = client.Execute(request);
 	"errorMessage" : [
 	 "Equipment ID : 0, Error: An error occurred while saving the entity changes. See the inner exception for details "
 	]
+}
+
+```
+**Equipment/EmissionCalculation POST endpoint**
+
+Emission Calculation using equipment ids can be triggered using below operation.
+
+`POST` api/v1/equipment/emissioncalculation
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://[tenant].actsapi.intelex.com/v1/equipment/emissioncalculation',
+  headers: { 'content-type': 'application/json' },
+  body:
+    { [EquipmentId: 'number']
+	 },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/equipment/emissioncalculation");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"EquipmentId\": \"number\",\r\n}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body
+
+```json
+[
+  {
+    "EquipmentId": "number"
+	}
+]
+```
+> Example Response
+
+```json
+{
+    "processedIds": [
+        "34",
+        "36"
+    ],
+    "invalidIds": [
+        "1234"
+    ],
+    "errorMessages": []
+}
+
+```
+
+> Example Output when data is missing
+
+```json
+{
+    "processedIds": [],
+    "invalidIds": [],
+    "errorMessages": [
+        "Equipment ids are missing."
+    ]
 }
 
 ```
@@ -523,6 +599,79 @@ IRestResponse response = client.Execute(request);
 }
 
 ```
+
+**Operation/EmissionCalculation POST endpoint**
+
+Emission Calculation using Operation ids can be triggered using below operation.
+
+`POST` api/v1/operation/emissioncalculation
+
+> Example Request & JSON Input Body 
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://[tenant].actsapi.intelex.com/v1/operation/emissioncalculation',
+  headers: { 'content-type': 'application/json' },
+  body:
+    { [OperationId: 'number']
+	 },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```csharp
+var client = new RestClient("https://[tenant].actsapi.intelex.com/v1/operation/emissioncalculation");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddParameter("application/json", "{\r\n    \"OperationId\": \"number\",\r\n}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> Input JSON Body
+
+```json
+[
+  {
+    "OperationId": "number"
+	}
+]
+```
+> Example Response
+
+```json
+{
+    "processedIds": [
+        "34",
+        "36"
+    ],
+    "invalidIds": [
+        "1234"
+    ],
+    "errorMessages": []
+}
+
+```
+
+> Example Output when data is missing
+
+```json
+{
+    "processedIds": [],
+    "invalidIds": [],
+    "errorMessages": [
+        "Operation ids are missing."
+    ]
+}
+
+```
+
 ### 6. Workflow Table 
 
 This section outlines the process of adding new entries or modifying existing records within the Workflow table using the dedicated API endpoint.
