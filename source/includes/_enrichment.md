@@ -1193,7 +1193,7 @@ print(response.text)
 }
 ```
 
-This endpoint enriches a person's information, the more information you pass in, the more likely we can find a match. This endpoint unveils the email addresses of new people. It will deduct **1 email credit** for each verified email found and **1 export credit** for teams utilizing Export Credits (in newer plans) for each non-empty record returned
+This endpoint enriches a person's information, the more information you pass in, the more likely we can find a match. This endpoint unveils the email addresses of new people. It will deduct **1 email credit** for each verified email found and **1 export credit** for teams utilizing Export Credits (in newer plans) for each non-empty record returned. Note that by default, this endpoint will not return emails or direct dials, because those fields incur additional credit charges. 
 
 `POST https://api.apollo.io/v1/people/match`
 
@@ -1210,8 +1210,8 @@ organization_name (optional) | The person's company name | Apollo Inc.
 domain (optional) | The person's company domain | apollo.io
 id (optional) |  The person's ID obtained from the search endpoint | "583f2f7ed9ced98ab5bfXXXX"
 linkedin_url (optional) | The person's linkedin URL | http://www.linkedin.com/in/tim-zheng
-reveal_personal_emails (optional) | Flag to reveal personal emails. Note: Personal emails will not be revealed for GDPR compliant regions | true
-reveal_phone_number (optional) | Flag to reveal phone number | true
+reveal_personal_emails (optional) | Flag to reveal personal emails. Default false. Note: Personal emails will not be revealed for GDPR compliant regions | false (default), true
+reveal_phone_number (optional) | Flag to reveal phone number. Default false. If you set to this true, Apollo will asynchronously verify direct dials for you, and you must specify a callback URL. Phone numbers requested via this method can also be downloaded in Settings->Direct Dials Requests UI. | false (default), true
 webhook_url (optional) | Webhook URL for sending 'reveal_phone_number' response | "https://example.com/hook"
 
 
