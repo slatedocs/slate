@@ -1,10 +1,24 @@
 function copyToClipboard(container) {
-  const el = document.createElement('textarea');
-  el.value = container.textContent.replace(/\n$/, '');
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
+  const text = container.textContent.replace(/\n$/, '');
+  
+  // Use the Clipboard API
+  navigator.clipboard.writeText(text)
+    .then(() => {
+    // Add success feedback
+      const button = container.parentNode.querySelector('.copy-clipboard');
+      const originalHTML = button.innerHTML;
+      
+      // Show success state
+      button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Copied!</title><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path></svg>';
+      
+      // Reset after 1 second
+      setTimeout(() => {
+        button.innerHTML = originalHTML;
+      }, 1000);
+    })
+    .catch(err => {
+      console.error('Failed to copy: ', err);
+    });
 }
 
 function setupCodeCopy() {
